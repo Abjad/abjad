@@ -84,14 +84,14 @@ def get_nth_component_in_time_order_from_component(component, n):
     def _next(component):
         if component is not None:
             for parent in component.select_parentage(include_self=True):
-                next_sibling = componenttools.get_nth_sibling_from_component(parent, 1)
+                next_sibling = parent._get_sibling(1)
                 if next_sibling is not None:
                     return next_sibling
 
     def _prev(component):
         if component is not None:
             for parent in component.select_parentage(include_self=True):
-                next_sibling = componenttools.get_nth_sibling_from_component(parent, -1)
+                next_sibling = parent._get_sibling(-1)
                 if next_sibling is not None:
                     return next_sibling
 

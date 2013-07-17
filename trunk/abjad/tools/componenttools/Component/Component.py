@@ -90,75 +90,6 @@ class Component(AbjadObject):
             parent = parent.parent
         return result
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def duration(self):
-        return self.prolation * self.preprolated_duration
-
-    @abc.abstractproperty
-    def duration_in_seconds(self):
-        pass
-
-    @property
-    def lilypond_format(self):
-        self._update_marks_of_entire_score_tree_if_necessary()
-        return self._format_component()
-
-    @property
-    def override(self):
-        '''Reference to LilyPond grob override component plug-in.
-        '''
-        if not hasattr(self, '_override'):
-            self._override = \
-                lilypondproxytools.LilyPondGrobOverrideComponentPlugIn()
-        return self._override
-
-    @property
-    def parent(self):
-        return self._parent
-
-    @property
-    def prolation(self):
-        products = mathtools.cumulative_products(
-            [fractions.Fraction(1)] + self._prolations)
-        return products[-1]
-
-    @property
-    def set(self):
-        '''Reference LilyPond context setting component plug-in.
-        '''
-        if not hasattr(self, '_set'):
-            self._set = \
-                lilypondproxytools.LilyPondContextSettingComponentPlugIn()
-        return self._set
-
-    @property
-    def spanners(self):
-        '''Reference to unordered set of spanners attached 
-        to component.
-        '''
-        return set(self._spanners)
-
-    @property
-    def timespan(self):
-        '''Timespan of component.
-        '''
-        self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
-        return self._timespan
-
-    @property
-    def timespan_in_seconds(self):
-        '''Timespan of component in seconds.
-        '''
-        self._update_offset_values_in_seconds_of_entire_score_tree_if_necessary()
-        if self._start_offset_in_seconds is None:
-            raise MissingTempoError
-        return timespantools.Timespan(
-            start_offset=self._start_offset_in_seconds, 
-            stop_offset=self._stop_offset_in_seconds,
-            )
-
     ### PRIVATE METHODS ###
 
     def _cache_named_children(self):
@@ -255,6 +186,22 @@ class Component(AbjadObject):
             result.extend(contributions)
         return result
 
+    def _get_sibling(self, n):
+        if n == 0:
+            return self
+        elif 0 < n:
+            if self.parent is not None:
+                if not self.parent.is_parallel:
+                    index = self.parent.index(self)
+                    if index + n < len(self.parent):
+                        return self.parent[index + n]
+        elif n < 0:
+            if self.parent is not None:
+                if not self.parent.is_parallel:
+                    index = self.parent.index(self)
+                    if 0 <= index + n:
+                        return self.parent[index + n]
+
     def _get_spanner(self, spanner_classes=None):
         spanners = self._get_spanners(spanner_classes=spanner_classes)
         if not spanners:
@@ -288,8 +235,7 @@ class Component(AbjadObject):
         temporal_successors = []
         current = self
         while current is not None:
-            next_sibling = \
-                componenttools.get_nth_sibling_from_component(current, 1)
+            next_sibling = current._get_sibling(1)
             if next_sibling is None:
                 current = current.parent
             else:
@@ -516,8 +462,76 @@ class Component(AbjadObject):
             self._update_prolated_offset_values_of_entire_score_tree()
             self._update_leaf_indices_and_measure_numbers_in_score_tree()
 
-    ### PUBLIC METHODS ###
+    ### PUBLIC PROPERTIES ###
 
+    @property
+    def duration(self):
+        return self.prolation * self.preprolated_duration
+
+    @abc.abstractproperty
+    def duration_in_seconds(self):
+        pass
+
+    @property
+    def lilypond_format(self):
+        self._update_marks_of_entire_score_tree_if_necessary()
+        return self._format_component()
+
+    @property
+    def override(self):
+        '''Reference to LilyPond grob override component plug-in.
+        '''
+        if not hasattr(self, '_override'):
+            self._override = \
+                lilypondproxytools.LilyPondGrobOverrideComponentPlugIn()
+        return self._override
+
+    @property
+    def parent(self):
+        return self._parent
+
+    @property
+    def prolation(self):
+        products = mathtools.cumulative_products(
+            [fractions.Fraction(1)] + self._prolations)
+        return products[-1]
+
+    @property
+    def set(self):
+        '''Reference LilyPond context setting component plug-in.
+        '''
+        if not hasattr(self, '_set'):
+            self._set = \
+                lilypondproxytools.LilyPondContextSettingComponentPlugIn()
+        return self._set
+
+    @property
+    def spanners(self):
+        '''Reference to unordered set of spanners attached 
+        to component.
+        '''
+        return set(self._spanners)
+
+    @property
+    def timespan(self):
+        '''Timespan of component.
+        '''
+        self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
+        return self._timespan
+
+    @property
+    def timespan_in_seconds(self):
+        '''Timespan of component in seconds.
+        '''
+        self._update_offset_values_in_seconds_of_entire_score_tree_if_necessary()
+        if self._start_offset_in_seconds is None:
+            raise MissingTempoError
+        return timespantools.Timespan(
+            start_offset=self._start_offset_in_seconds, 
+            stop_offset=self._stop_offset_in_seconds,
+            )
+
+    ### PUBLIC METHODS ###
 
     def extend_in_parent(
         self,
