@@ -1183,7 +1183,6 @@ Core composition packages
       tools/marktools/detach_lilypond_comments_attached_to_component
       tools/marktools/detach_marks_attached_to_component
       tools/marktools/detach_marks_attached_to_components_in_expr
-      tools/marktools/detach_noncontext_marks_attached_to_component
       tools/marktools/detach_stem_tremolos_attached_to_component
       tools/marktools/get_annotation_attached_to_component
       tools/marktools/get_articulation_attached_to_component
@@ -1192,8 +1191,6 @@ Core composition packages
       tools/marktools/get_lilypond_comments_attached_to_component
       tools/marktools/get_mark_attached_to_component
       tools/marktools/get_marks_attached_to_components_in_expr
-      tools/marktools/get_noncontext_mark_attached_to_component
-      tools/marktools/get_noncontext_marks_attached_to_component
       tools/marktools/get_stem_tremolo_attached_to_component
       tools/marktools/get_stem_tremolos_attached_to_component
       tools/marktools/get_value_of_annotation_attached_to_component
@@ -1202,7 +1199,6 @@ Core composition packages
       tools/marktools/is_component_with_lilypond_command_mark_attached
       tools/marktools/is_component_with_lilypond_comment_attached
       tools/marktools/is_component_with_mark_attached
-      tools/marktools/is_component_with_noncontext_mark_attached
       tools/marktools/is_component_with_stem_tremolo_attached
       tools/marktools/move_marks
 
@@ -1245,7 +1241,6 @@ Core composition packages
       tools/marktools/detach_lilypond_comments_attached_to_component
       tools/marktools/detach_marks_attached_to_component
       tools/marktools/detach_marks_attached_to_components_in_expr
-      tools/marktools/detach_noncontext_marks_attached_to_component
       tools/marktools/detach_stem_tremolos_attached_to_component
       tools/marktools/get_annotation_attached_to_component
       tools/marktools/get_articulation_attached_to_component
@@ -1254,8 +1249,6 @@ Core composition packages
       tools/marktools/get_lilypond_comments_attached_to_component
       tools/marktools/get_mark_attached_to_component
       tools/marktools/get_marks_attached_to_components_in_expr
-      tools/marktools/get_noncontext_mark_attached_to_component
-      tools/marktools/get_noncontext_marks_attached_to_component
       tools/marktools/get_stem_tremolo_attached_to_component
       tools/marktools/get_stem_tremolos_attached_to_component
       tools/marktools/get_value_of_annotation_attached_to_component
@@ -1264,7 +1257,6 @@ Core composition packages
       tools/marktools/is_component_with_lilypond_command_mark_attached
       tools/marktools/is_component_with_lilypond_comment_attached
       tools/marktools/is_component_with_mark_attached
-      tools/marktools/is_component_with_noncontext_mark_attached
       tools/marktools/is_component_with_stem_tremolo_attached
       tools/marktools/move_marks
 

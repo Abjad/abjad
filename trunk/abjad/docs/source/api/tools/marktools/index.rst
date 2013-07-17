@@ -40,7 +40,6 @@ Functions
    ~abjad.tools.marktools.detach_lilypond_comments_attached_to_component.detach_lilypond_comments_attached_to_component
    ~abjad.tools.marktools.detach_marks_attached_to_component.detach_marks_attached_to_component
    ~abjad.tools.marktools.detach_marks_attached_to_components_in_expr.detach_marks_attached_to_components_in_expr
-   ~abjad.tools.marktools.detach_noncontext_marks_attached_to_component.detach_noncontext_marks_attached_to_component
    ~abjad.tools.marktools.detach_stem_tremolos_attached_to_component.detach_stem_tremolos_attached_to_component
    ~abjad.tools.marktools.get_annotation_attached_to_component.get_annotation_attached_to_component
    ~abjad.tools.marktools.get_articulation_attached_to_component.get_articulation_attached_to_component
@@ -49,8 +48,6 @@ Functions
    ~abjad.tools.marktools.get_lilypond_comments_attached_to_component.get_lilypond_comments_attached_to_component
    ~abjad.tools.marktools.get_mark_attached_to_component.get_mark_attached_to_component
    ~abjad.tools.marktools.get_marks_attached_to_components_in_expr.get_marks_attached_to_components_in_expr
-   ~abjad.tools.marktools.get_noncontext_mark_attached_to_component.get_noncontext_mark_attached_to_component
-   ~abjad.tools.marktools.get_noncontext_marks_attached_to_component.get_noncontext_marks_attached_to_component
    ~abjad.tools.marktools.get_stem_tremolo_attached_to_component.get_stem_tremolo_attached_to_component
    ~abjad.tools.marktools.get_stem_tremolos_attached_to_component.get_stem_tremolos_attached_to_component
    ~abjad.tools.marktools.get_value_of_annotation_attached_to_component.get_value_of_annotation_attached_to_component
@@ -59,6 +56,5 @@ Functions
    ~abjad.tools.marktools.is_component_with_lilypond_command_mark_attached.is_component_with_lilypond_command_mark_attached
    ~abjad.tools.marktools.is_component_with_lilypond_comment_attached.is_component_with_lilypond_comment_attached
    ~abjad.tools.marktools.is_component_with_mark_attached.is_component_with_mark_attached
-   ~abjad.tools.marktools.is_component_with_noncontext_mark_attached.is_component_with_noncontext_mark_attached
    ~abjad.tools.marktools.is_component_with_stem_tremolo_attached.is_component_with_stem_tremolo_attached
    ~abjad.tools.marktools.move_marks.move_marks
