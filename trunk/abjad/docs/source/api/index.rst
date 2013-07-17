@@ -4450,7 +4450,6 @@ Abjad internal packages
    .. toctree::
       :maxdepth: 1
 
-      tools/documentationtools/APICrawler/APICrawler
       tools/documentationtools/AbjadAPIGenerator/AbjadAPIGenerator
       tools/documentationtools/ClassCrawler/ClassCrawler
       tools/documentationtools/ClassDocumenter/ClassDocumenter
@@ -4502,7 +4501,6 @@ Abjad internal packages
 
    .. toctree::
 
-      tools/documentationtools/APICrawler/APICrawler
       tools/documentationtools/AbjadAPIGenerator/AbjadAPIGenerator
       tools/documentationtools/ClassCrawler/ClassCrawler
       tools/documentationtools/ClassDocumenter/ClassDocumenter

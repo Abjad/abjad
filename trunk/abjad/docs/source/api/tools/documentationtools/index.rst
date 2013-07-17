@@ -17,7 +17,6 @@ Concrete classes
 
 .. autosummary::
 
-   ~abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler
    ~abjad.tools.documentationtools.AbjadAPIGenerator.AbjadAPIGenerator.AbjadAPIGenerator
    ~abjad.tools.documentationtools.ClassCrawler.ClassCrawler.ClassCrawler
    ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter
