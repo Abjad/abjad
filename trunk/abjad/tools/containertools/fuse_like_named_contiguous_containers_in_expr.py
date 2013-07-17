@@ -53,8 +53,7 @@ def fuse_like_named_contiguous_containers_in_expr(expr):
 
     g = iterationtools.iterate_components_depth_first(expr, direction=Right)
     for component in g:
-        next_component = \
-            componenttools.get_nth_namesake_from_component(component, 1)
+        next_component = component._get_namesake(1)
         if isinstance(next_component, containertools.Container) and \
             not next_component.is_parallel and \
             not isinstance(next_component, tuplettools.Tuplet) and \

@@ -243,8 +243,7 @@ class VerticalMoment(Selection):
         for leaf in self.leaves[1:]:
             if leaf.stop < candidate_shortest_leaf.stop:
                 candidate_shortest_leaf = leaf
-        next_leaf = componenttools.get_nth_namesake_from_component(
-            candidate_shortest_leaf, 1)
+        next_leaf = candidate_shortest_leaf._get_namesake(1)
         next_vertical_moment = next_leaf.select_vertical_moment()
         return next_vertical_moment
 
@@ -258,8 +257,7 @@ class VerticalMoment(Selection):
             if leaf.timespan.stop_offset < \
                 candidate_shortest_leaf.timespan.stop_offset:
                 candidate_shortest_leaf = leaf
-        next_leaf = componenttools.get_nth_namesake_from_component(
-            candidate_shortest_leaf, 1)
+        next_leaf = candidate_shortest_leaf._get_namesake(1)
         next_vertical_moment = next_leaf.select_vertical_moment()
         return next_vertical_moment
 
@@ -349,9 +347,7 @@ class VerticalMoment(Selection):
             else:
                 #print 'found leaf starting on this moment ...'
                 try:
-                    previous_leaf = \
-                        componenttools.get_nth_namesake_from_component(
-                            leaf, -1)
+                    previous_leaf = leaf._get_namesake(-1)
                     start = previous_leaf.timespan.start_offset
                     #print previous_leaf, start
                     if most_recent_start_offset <= start:

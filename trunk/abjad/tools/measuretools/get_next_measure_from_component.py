@@ -58,7 +58,7 @@ def get_next_measure_from_component(component):
                 return parent
         raise MissingMeasureError
     elif isinstance(component, measuretools.Measure):
-        return componenttools.get_nth_namesake_from_component(component, 1)
+        return component._get_namesake(1)
     elif isinstance(component, containertools.Container):
         return measuretools.get_measure_that_starts_with_container(component)
     elif isinstance(component, (list, tuple)):

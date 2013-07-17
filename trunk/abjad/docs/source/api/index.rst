@@ -86,7 +86,6 @@ Core composition packages
       tools/componenttools/copy_governed_component_subtree_by_leaf_range
       tools/componenttools/copy_governed_component_subtree_from_offset_to
       tools/componenttools/get_nth_component_in_time_order_from_component
-      tools/componenttools/get_nth_namesake_from_component
       tools/componenttools/get_parent_and_start_stop_indices_of_components
       tools/componenttools/move_component_subtree_to_right_in_immediate_parent_of_component
       tools/componenttools/move_parentage_and_spanners_from_components_to_components
@@ -139,7 +138,6 @@ Core composition packages
       tools/componenttools/copy_governed_component_subtree_by_leaf_range
       tools/componenttools/copy_governed_component_subtree_from_offset_to
       tools/componenttools/get_nth_component_in_time_order_from_component
-      tools/componenttools/get_nth_namesake_from_component
       tools/componenttools/get_parent_and_start_stop_indices_of_components
       tools/componenttools/move_component_subtree_to_right_in_immediate_parent_of_component
       tools/componenttools/move_parentage_and_spanners_from_components_to_components

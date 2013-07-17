@@ -186,6 +186,21 @@ class Component(AbjadObject):
             result.extend(contributions)
         return result
 
+    def _get_namesake(self, n):
+        from abjad.tools import iterationtools
+        if 0 <= n:
+            for i, namesake in enumerate(
+                iterationtools.iterate_namesakes_from_component(self)):
+                if i == n:
+                    return namesake
+        else:
+            n = abs(n)
+            for i, namesake in enumerate(
+                iterationtools.iterate_namesakes_from_component(
+                    self, reverse=True)):
+                if i == n:
+                    return namesake
+
     def _get_sibling(self, n):
         if n == 0:
             return self
