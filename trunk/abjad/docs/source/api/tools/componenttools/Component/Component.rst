@@ -54,6 +54,9 @@ Methods
 .. automethod:: abjad.tools.componenttools.Component.Component.Component.extend_in_parent
    :noindex:
 
+.. automethod:: abjad.tools.componenttools.Component.Component.Component.get_marks
+   :noindex:
+
 .. automethod:: abjad.tools.componenttools.Component.Component.Component.select
    :noindex:
 

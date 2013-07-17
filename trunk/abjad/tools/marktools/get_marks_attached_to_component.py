@@ -24,13 +24,15 @@ def get_marks_attached_to_component(component):
 
     ::
 
-        >>> marktools.get_marks_attached_to_component(staff[0])
+        >>> staff[0].get_marks()
         (LilyPondComment('beginning of note content')(c'8), LilyPondCommandMark('slurDotted')(c'8))
 
     Return tuple of zero or more marks.
     '''
 
-    marks = component._start_marks
-    marks = tuple(marks)
+    return component.get_marks()
 
-    return marks
+#    marks = component._start_marks
+#    marks = tuple(marks)
+#
+#    return marks

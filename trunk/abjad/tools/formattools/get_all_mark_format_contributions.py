@@ -26,7 +26,7 @@ def get_all_mark_format_contributions(component):
 
     contributions = {}
 
-    marks = marktools.get_marks_attached_to_component(component)
+    marks = component.get_marks()
 
     up_markup, down_markup, neutral_markup = [], [], []
 

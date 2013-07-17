@@ -84,6 +84,9 @@ Methods
 .. automethod:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.extend_in_parent
    :noindex:
 
+.. automethod:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.get_marks
+   :noindex:
+
 .. automethod:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.select
    :noindex:
 

@@ -149,7 +149,7 @@ class Measure(FixedDurationContainer):
             new._override = copy.copy(self.override)
         if getattr(self, '_set', None) is not None:
             new._set = copy.copy(self.set)
-        for mark in marktools.get_marks_attached_to_component(self):
+        for mark in self.get_marks():
             new_mark = copy.copy(mark)
             new_mark.attach(new)
         new.is_parallel = self.is_parallel

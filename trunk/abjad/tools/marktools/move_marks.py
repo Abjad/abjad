@@ -45,7 +45,7 @@ def move_marks(donor, recipient):
     assert isinstance(recipient, componenttools.Component)
 
     result = []
-    for mark in marktools.get_marks_attached_to_component(donor):
+    for mark in donor.get_marks():
         result.append(mark.attach(recipient))
 
     return result

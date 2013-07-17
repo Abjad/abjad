@@ -80,6 +80,9 @@ Methods
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.extend_in_parent
    :noindex:
 
+.. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.get_marks
+   :noindex:
+
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select
    :noindex:
 

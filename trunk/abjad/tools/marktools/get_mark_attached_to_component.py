@@ -30,7 +30,7 @@ def get_mark_attached_to_component(component):
     '''
     from abjad.tools import marktools
 
-    marks = marktools.get_marks_attached_to_component(component)
+    marks = component.get_marks()
     if not marks:
         raise MissingMarkError
     elif 1 < len(marks):

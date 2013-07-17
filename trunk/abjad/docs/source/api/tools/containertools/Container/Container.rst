@@ -77,6 +77,9 @@ Methods
 .. automethod:: abjad.tools.containertools.Container.Container.Container.extend_in_parent
    :noindex:
 
+.. automethod:: abjad.tools.containertools.Container.Container.Container.get_marks
+   :noindex:
+
 .. automethod:: abjad.tools.containertools.Container.Container.Container.index
    :noindex:
 

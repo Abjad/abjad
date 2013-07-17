@@ -85,6 +85,9 @@ Methods
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.extend_in_parent
    :noindex:
 
+.. automethod:: abjad.tools.resttools.Rest.Rest.Rest.get_marks
+   :noindex:
+
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.select
    :noindex:
 

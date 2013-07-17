@@ -99,6 +99,9 @@ Methods
 .. automethod:: abjad.tools.stafftools.Staff.Staff.Staff.extend_in_parent
    :noindex:
 
+.. automethod:: abjad.tools.stafftools.Staff.Staff.Staff.get_marks
+   :noindex:
+
 .. automethod:: abjad.tools.stafftools.Staff.Staff.Staff.index
    :noindex:
 

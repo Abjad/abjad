@@ -113,7 +113,7 @@ class Component(AbjadObject):
             new._override = copy.copy(self.override)
         if getattr(self, '_set', None) is not None:
             new._set = copy.copy(self.set)
-        for mark in marktools.get_marks_attached_to_component(self):
+        for mark in self.get_marks():
             new_mark = copy.copy(mark)
             new_mark.attach(new)
         return new
@@ -606,6 +606,20 @@ class Component(AbjadObject):
                 else:
                     parent.__setitem__(slice(start, start), new_components)
             return new_components + [self]
+
+    def get_marks(
+        self,
+        mark_classes=None,
+        ):
+        from abjad.tools import marktools
+        mark_classes = mark_classes or (marktools.Mark,)
+        if not isinstance(mark_classes, tuple):
+            mark_classes = (mark_classes,)
+        marks = []
+        for mark in self._start_marks:
+            if isinstance(mark, mark_classes):
+                marks.append(mark)
+        return tuple(marks)
 
     def select(self):
         '''Select component.

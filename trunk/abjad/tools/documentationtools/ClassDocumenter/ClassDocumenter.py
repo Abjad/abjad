@@ -12,8 +12,8 @@ class ClassDocumenter(Documenter):
         >>> documenter = documentationtools.ClassDocumenter(cls)
         >>> restructured_text = documenter()
         >>> print restructured_text
-        documentationtools.ClassDocumenter
-        ==================================
+        :py:mod:`documentationtools <abjad.tools.documentationtools>`.ClassDocumenter
+        =============================================================================
         <BLANKLINE>
         .. abjad-lineage:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter
         <BLANKLINE>
@@ -34,87 +34,84 @@ class ClassDocumenter(Documenter):
         --------------------
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.class_methods
-            :noindex:
+        :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.data
-            :noindex:
-        <BLANKLINE>
-        .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.ignored_directories
-            :noindex:
+        :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.inherited_attributes
-            :noindex:
+        :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.is_abstract
-            :noindex:
+        :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.methods
-            :noindex:
+        :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.module_name
-            :noindex:
+        :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.object
-            :noindex:
+        :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.prefix
-            :noindex:
+        :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.readonly_properties
-            :noindex:
+        :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.readwrite_properties
-            :noindex:
+        :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.special_methods
-            :noindex:
+        :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.static_methods
-            :noindex:
+        :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.storage_format
-            :noindex:
+        :noindex:
         <BLANKLINE>
         Methods
         -------
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.new
-            :noindex:
+        :noindex:
         <BLANKLINE>
         Static methods
         --------------
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.write
-            :noindex:
+        :noindex:
         <BLANKLINE>
         Special methods
         ---------------
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__call__
-            :noindex:
+        :noindex:
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__eq__
-            :noindex:
+        :noindex:
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__ge__
-            :noindex:
+        :noindex:
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__gt__
-            :noindex:
+        :noindex:
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__le__
-            :noindex:
+        :noindex:
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__lt__
-            :noindex:
+        :noindex:
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__ne__
-            :noindex:
+        :noindex:
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__repr__
-            :noindex:
-        <BLANKLINE>
-    
+        :noindex:
+        <BLANKLINE>    
+
     Returns ``ClassDocumenter`` instance.
     '''
 

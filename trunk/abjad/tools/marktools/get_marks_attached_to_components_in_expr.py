@@ -31,6 +31,6 @@ def get_marks_attached_to_components_in_expr(expr):
 
     result = []
     for component in iterationtools.iterate_components_in_expr(expr):
-        result.extend(marktools.get_marks_attached_to_component(component))
+        result.extend(component.get_marks())
 
     return tuple(result)

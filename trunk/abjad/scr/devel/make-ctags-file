@@ -2,6 +2,5 @@ current_directory=`pwd`
 cd $ABJADROOT
 ctags --python-kinds=-iv \
     --exclude=*.pyc --exclude=.svn --exclude=docs \
-    --recurse=yes --totals=yes \
-    -f $ABJADROOT/trunk/abjad/etc/editors/tags
+    --recurse=yes --totals=yes
 cd $current_directory

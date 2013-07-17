@@ -9,11 +9,11 @@ class FunctionDocumenter(Documenter):
 
         >>> documenter = documentationtools.FunctionDocumenter(notetools.make_notes)
         >>> print documenter()
-        notetools.make_notes
-        ====================
+        :py:mod:`notetools <abjad.tools.notetools>`.make_notes
+        ======================================================
         <BLANKLINE>
         .. autofunction:: abjad.tools.notetools.make_notes.make_notes
-           :noindex:
+        <BLANKLINE>
 
     Returns ``FunctionDocumenter``` instance.
     '''

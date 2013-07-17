@@ -99,6 +99,9 @@ Methods
 .. automethod:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.extend_in_parent
    :noindex:
 
+.. automethod:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.get_marks
+   :noindex:
+
 .. automethod:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.index
    :noindex:
 

@@ -34,7 +34,7 @@ def get_noncontext_marks_attached_to_component(component):
 
     result = []
 
-    for mark in marktools.get_marks_attached_to_component(component):
+    for mark in component.get_marks():
         if not isinstance(mark, contexttools.ContextMark):
             result.append(mark)
 
