@@ -43,7 +43,6 @@ Functions
    ~abjad.tools.marktools.detach_noncontext_marks_attached_to_component.detach_noncontext_marks_attached_to_component
    ~abjad.tools.marktools.detach_stem_tremolos_attached_to_component.detach_stem_tremolos_attached_to_component
    ~abjad.tools.marktools.get_annotation_attached_to_component.get_annotation_attached_to_component
-   ~abjad.tools.marktools.get_annotations_attached_to_component.get_annotations_attached_to_component
    ~abjad.tools.marktools.get_articulation_attached_to_component.get_articulation_attached_to_component
    ~abjad.tools.marktools.get_articulations_attached_to_component.get_articulations_attached_to_component
    ~abjad.tools.marktools.get_lilypond_command_mark_attached_to_component.get_lilypond_command_mark_attached_to_component

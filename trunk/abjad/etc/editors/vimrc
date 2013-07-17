@@ -34,6 +34,8 @@ set completeopt=menuone,preview
 set encoding=utf-8
 set expandtab
 set fileencodings=utf-8,latin1
+set grepformat=%f:%l:%c:%m
+set grepprg=ack\ --nogroup\ --column\ $*
 set helpheight=80
 set history=700
 set ignorecase
@@ -42,7 +44,6 @@ set nobackup
 set noswapfile
 set nowrap
 set nowritebackup
-"set paste
 set pastetoggle=<F2>
 set shiftround
 set shiftwidth=4

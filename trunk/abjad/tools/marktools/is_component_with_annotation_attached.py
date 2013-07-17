@@ -33,7 +33,7 @@ def is_component_with_annotation_attached(expr, annotation_name=None, annotation
     from abjad.tools import marktools
 
     if isinstance(expr, componenttools.Component):
-        for annotation in marktools.get_annotations_attached_to_component(expr):
+        for annotation in expr.get_marks(marktools.Annotation):
             if annotation.name == annotation_name or annotation_name is None:
                 if annotation.value == annotation_value or annotation_value is None:
                     return True

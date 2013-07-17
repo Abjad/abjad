@@ -160,7 +160,7 @@ class QTarget(AbjadObject):
             leaf_one, leaf_two = leaves[i], leaves[i + 1]
             leaf_one = self._notate_one_leaf(leaf_one, grace_handler)
             leaves[i] = leaf_one
-            if not marktools.get_annotations_attached_to_component(leaf_two):
+            if not leaf_two.get_marks(marktools.Annotation):
                 spanner_classes = (spannertools.TieSpanner, )
                 spanner = tuple(
                     spannertools.get_spanners_attached_to_component(
@@ -173,8 +173,7 @@ class QTarget(AbjadObject):
         self._notate_one_leaf(leaves[-1], grace_handler)
 
     def _notate_one_leaf(self, leaf, grace_handler):
-        leaf_annotations = \
-            marktools.get_annotations_attached_to_component(leaf)
+        leaf_annotations = leaf.get_marks(marktools.Annotation)
         tempo_marks = \
             contexttools.get_tempo_marks_attached_to_component(leaf)
         if leaf_annotations:

@@ -23,7 +23,7 @@ def detach_annotations_attached_to_component(component):
 
     ::
 
-        >>> marktools.get_annotations_attached_to_component(staff[0])
+        >>> staff[0].get_marks(marktools.Annotation)
         (Annotation('annotation 1')(c'8), Annotation('annotation 2')(c'8))
 
     ::
@@ -33,7 +33,7 @@ def detach_annotations_attached_to_component(component):
 
     ::
 
-        >>> marktools.get_annotations_attached_to_component(staff[0])
+        >>> staff[0].get_marks(marktools.Annotation)
         ()
 
     Return tuple or zero or more annotations detached.
@@ -41,7 +41,7 @@ def detach_annotations_attached_to_component(component):
     from abjad.tools import marktools
 
     annotations = []
-    for annotation in marktools.get_annotations_attached_to_component(component):
+    for annotation in component.get_marks(marktools.Annotation):
         annotation.detach()
         annotations.append(annotation)
 

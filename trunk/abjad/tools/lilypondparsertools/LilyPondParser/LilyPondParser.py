@@ -596,8 +596,10 @@ class LilyPondParser(abctools.Parser):
             if hasattr(post_event, '__call__'):
                 post_event(leaf)
             else:
-                annotation = [x for x in marktools.get_annotations_attached_to_component(leaf)
-                    if x.name == 'spanners']
+                annotation = [
+                    x for x in leaf.get_marks(marktools.Annotation)
+                    if x.name == 'spanners'
+                    ]
                 if not annotation:
                     annotation = marktools.Annotation('spanners', [])(leaf)
                 else:

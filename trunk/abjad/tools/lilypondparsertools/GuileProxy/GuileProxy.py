@@ -202,7 +202,7 @@ class GuileProxy(AbjadObject):
     ### HELPER FUNCTIONS ###
 
     def _is_unrelativable(self, music):
-        annotations = marktools.get_annotations_attached_to_component(music)
+        annotations = music.get_marks(marktools.Annotation)
         if 'UnrelativableMusic' in [x.name for x in annotations]:
             return True
         return False

@@ -30,7 +30,7 @@ def get_annotation_attached_to_component(component):
     '''
     from abjad.tools import marktools
 
-    annotations = marktools.get_annotations_attached_to_component(component)
+    annotations = component.get_marks(marktools.Annotation)
     if not annotations:
         raise MissingMarkError
     elif 1 < len(annotations):

@@ -80,11 +80,11 @@ def test_Component_detach_marks_04():
     slur = spannertools.SlurSpanner(staff.select_leaves())
     marktools.Annotation('comment 1')(staff[0])
     marktools.Annotation('comment 2')(staff[0])
-    annotations = marktools.get_annotations_attached_to_component(staff[0])
+    annotations = staff[0].get_marks(marktools.Annotation)
     assert len(annotations) == 2
 
     marktools.detach_annotations_attached_to_component(staff[0])
-    annotations = marktools.get_annotations_attached_to_component(staff[0])
+    annotations = staff[0].get_marks(marktools.Annotation)
     assert len(annotations) == 0
 
 
