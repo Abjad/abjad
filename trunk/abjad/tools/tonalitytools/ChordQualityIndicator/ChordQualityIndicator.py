@@ -14,6 +14,18 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
         repr('major'),
         )
 
+    _segment_to_quality_and_extent = {
+        '<m3, m3>': ('diminished', 5),
+        '<m3, M3>': ('minor', 5),
+        '<M3, m3>': ('major', 5),
+        '<M3, M3>': ('augmented', 5),
+        '<m3, m3, m3>': ('diminished', 7),
+        '<m3, m3, M3>': ('half diminished', 7),
+        '<m3, M3, m3>': ('minor', 7),
+        '<M3, m3, m3>': ('dominant', 7),
+        '<M3, m3, M3>': ('major', 7),
+        '<M3, m3, m3, M3>': ('dominant', 9),
+        }
     ### INITIALIZER ###
 
     def __new__(self, quality_string, extent='triad', inversion='root'):
@@ -219,3 +231,11 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
     @property
     def rotation(self):
         return self._rotation
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def from_diatonic_interval_class_segment(segment):
+        quality, extent = \
+            ChordQualityIndicator._segment_to_quality_and_extent[str(segment)]
+        return ChordQualityIndicator(quality, extent=extent)

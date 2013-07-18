@@ -33,7 +33,6 @@ Functions
    ~abjad.tools.tonalitytools.are_stepwise_ascending_notes.are_stepwise_ascending_notes
    ~abjad.tools.tonalitytools.are_stepwise_descending_notes.are_stepwise_descending_notes
    ~abjad.tools.tonalitytools.are_stepwise_notes.are_stepwise_notes
-   ~abjad.tools.tonalitytools.diatonic_interval_class_segment_to_chord_quality_string.diatonic_interval_class_segment_to_chord_quality_string
    ~abjad.tools.tonalitytools.is_neighbor_note.is_neighbor_note
    ~abjad.tools.tonalitytools.is_passing_tone.is_passing_tone
    ~abjad.tools.tonalitytools.is_unlikely_melodic_diatonic_interval_in_chorale.is_unlikely_melodic_diatonic_interval_in_chorale

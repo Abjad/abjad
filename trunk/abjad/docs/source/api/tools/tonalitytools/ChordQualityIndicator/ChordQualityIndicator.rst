@@ -76,6 +76,12 @@ Methods
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.rotate
    :noindex:
 
+Static methods
+--------------
+
+.. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.from_diatonic_interval_class_segment
+   :noindex:
+
 Special methods
 ---------------
 
