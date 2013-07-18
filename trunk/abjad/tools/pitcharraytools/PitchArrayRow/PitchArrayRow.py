@@ -1,14 +1,18 @@
 import copy
+from abjad.tools import contexttools
+from abjad.tools import durationtools
+from abjad.tools import leaftools
+from abjad.tools import measuretools
+from abjad.tools import pitchtools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell \
 	import PitchArrayCell
-from abjad.tools.pitchtools.PitchRange.PitchRange import PitchRange
 
 
 class PitchArrayRow(AbjadObject):
-    '''.. versionadded:: 2.0
+    '''One row in pitch arra:
 
-    One row in pitch array. ::
+    ::
 
         >>> array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
         >>> array[0].cells[0].pitches.append(0)
@@ -51,7 +55,7 @@ class PitchArrayRow(AbjadObject):
 
     def __init__(self, cells):
         self._parent_array = None
-        self._pitch_range = PitchRange(None, None)
+        self._pitch_range = pitchtools.PitchRange(None, None)
         self._cells = []
         self.extend(cells)
 
@@ -206,7 +210,7 @@ class PitchArrayRow(AbjadObject):
         def fget(self):
             return self._pitch_range
         def fset(self, arg):
-            if not isinstance(arg, PitchRange):
+            if not isinstance(arg, pitchtools.PitchRange):
                 raise TypeError('must be pitch range.')
             self._pitch_range = arg
         return property(**locals())
@@ -332,6 +336,59 @@ class PitchArrayRow(AbjadObject):
                 self._cells.pop(i)
                 break
         cell._parent_row = None
+
+    def to_measure(self, cell_duration_denominator=8):
+        r'''Change pitch array row to measure with time signature
+        numerator equal to pitch array row width and
+        time signature denominator equal to `cell_duration_denominator`:
+
+        ::
+
+            >>> array = pitcharraytools.PitchArray([
+            ...     [1, (2, 1), ([-2, -1.5], 2)],
+            ...     [(7, 2), (6, 1), 1]])
+
+        ::
+
+            >>> print array
+            [  ] [d'] [bf bqf    ]
+            [g'     ] [fs'   ] [ ]
+
+        ::
+
+            >>> measure = array.rows[0].to_measure()
+
+        ::
+
+            >>> f(measure)
+            {
+                \time 4/8
+                r8
+                d'8
+                <bf bqf>4
+            }
+
+        Return measure.
+        '''
+        time_signature = contexttools.TimeSignatureMark(
+            (self.width, cell_duration_denominator))
+        measure = measuretools.Measure(time_signature, [])
+        basic_cell_duration = \
+            durationtools.Duration(1, cell_duration_denominator)
+        measure_pitches, measure_durations = [], []
+        for cell in self.cells:
+            cell_pitches = cell.pitches
+            if not cell_pitches:
+                measure_pitches.append(None)
+            elif len(cell_pitches) == 1:
+                measure_pitches.append(cell_pitches[0])
+            else:
+                measure_pitches.append(cell_pitches)
+            measure_duration = cell.width * basic_cell_duration
+            measure_durations.append(measure_duration)
+        leaves = leaftools.make_leaves(measure_pitches, measure_durations)
+        measure.extend(leaves)
+        return measure
 
     def withdraw(self):
         if self.parent_array is not None:

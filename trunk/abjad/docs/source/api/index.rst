@@ -1560,8 +1560,6 @@ Core composition packages
 
       tools/pitcharraytools/make_pitch_array_from_leaf_iterables
       tools/pitcharraytools/make_pitch_array_score_from_pitch_arrays
-      tools/pitcharraytools/pitch_array_row_to_measure
-      tools/pitcharraytools/pitch_array_to_measures
 
 .. only:: latex
 
@@ -1582,8 +1580,6 @@ Core composition packages
 
       tools/pitcharraytools/make_pitch_array_from_leaf_iterables
       tools/pitcharraytools/make_pitch_array_score_from_pitch_arrays
-      tools/pitcharraytools/pitch_array_row_to_measure
-      tools/pitcharraytools/pitch_array_to_measures
 
 :py:mod:`pitchtools <abjad.tools.pitchtools>`
 =============================================

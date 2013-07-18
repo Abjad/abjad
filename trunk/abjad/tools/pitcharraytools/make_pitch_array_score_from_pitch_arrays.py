@@ -72,7 +72,7 @@ def make_pitch_array_score_from_pitch_arrays(pitch_arrays):
     staff_group.extend(staves)
 
     for pitch_array in pitch_arrays:
-        measures = pitcharraytools.pitch_array_to_measures(pitch_array)
+        measures = pitch_array.to_measures()
         for staff, measure in zip(staves, measures):
             staff.append(measure)
 

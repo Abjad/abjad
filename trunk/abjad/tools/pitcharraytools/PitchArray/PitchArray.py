@@ -1,3 +1,4 @@
+from abjad.tools import measuretools
 from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools import sequencetools
@@ -12,9 +13,7 @@ from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch \
 
 
 class PitchArray(AbjadObject):
-    '''.. versionadded:: 2.0
-
-    Two-dimensional array of pitches.
+    '''Two-dimensional array of pitches.
     '''
 
     ### INITIALIZER ###
@@ -403,3 +402,51 @@ class PitchArray(AbjadObject):
             raise ValueError('row not in array.')
         self._rows.remove(row)
         row._parent_array = None
+
+    def to_measures(self, cell_duration_denominator=8):
+        r'''Change pitch array  to measures with time signatures
+        with numerators equal to row width and denominators
+        equal to `cell_duration_denominator` for each row
+        in pitch array:
+
+        ::
+
+            >>> array = pitcharraytools.PitchArray([
+            ...     [1, (2, 1), ([-2, -1.5], 2)],
+            ...     [(7, 2), (6, 1), 1]])
+
+        ::
+
+            >>> print array
+            [  ] [d'] [bf bqf    ]
+            [g'     ] [fs'   ] [ ]
+
+        ::
+
+            >>> measures = array.to_measures()
+
+        ::
+
+            >>> for measure in measures:
+            ...     f(measure)
+            ...
+            {
+                \time 4/8
+                r8
+                d'8
+                <bf bqf>4
+            }
+            {
+                \time 4/8
+                g'4
+                fs'8
+                r8
+            }
+
+        Return list of measures.
+        '''
+        measures = []
+        for row in self.rows:
+            measure = row.to_measure(cell_duration_denominator)
+            measures.append(measure)
+        return measures

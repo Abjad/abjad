@@ -96,6 +96,9 @@ Methods
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.remove
    :noindex:
 
+.. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.to_measure
+   :noindex:
+
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.withdraw
    :noindex:
 

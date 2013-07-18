@@ -99,6 +99,9 @@ Methods
 .. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.remove_row
    :noindex:
 
+.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.to_measures
+   :noindex:
+
 Special methods
 ---------------
 
