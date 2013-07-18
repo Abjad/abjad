@@ -30,4 +30,6 @@ def is_passing_tone(note):
     if previous_note is None or next_note is None:
         return False
 
-    return tonalanalysistools.are_scalar_notes(previous_note, note, next_note)
+    notes = [previous_note, note, next_note]
+    selection = tonalanalysistools.select(notes)
+    return selection.are_scalar_notes()

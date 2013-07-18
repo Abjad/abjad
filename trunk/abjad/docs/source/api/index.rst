@@ -3563,7 +3563,6 @@ Core composition packages
       tools/tonalanalysistools/analyze_incomplete_chord
       tools/tonalanalysistools/analyze_incomplete_tonal_function
       tools/tonalanalysistools/analyze_tonal_function
-      tools/tonalanalysistools/are_scalar_notes
       tools/tonalanalysistools/are_stepwise_ascending_notes
       tools/tonalanalysistools/are_stepwise_descending_notes
       tools/tonalanalysistools/are_stepwise_notes
@@ -3601,7 +3600,6 @@ Core composition packages
       tools/tonalanalysistools/analyze_incomplete_chord
       tools/tonalanalysistools/analyze_incomplete_tonal_function
       tools/tonalanalysistools/analyze_tonal_function
-      tools/tonalanalysistools/are_scalar_notes
       tools/tonalanalysistools/are_stepwise_ascending_notes
       tools/tonalanalysistools/are_stepwise_descending_notes
       tools/tonalanalysistools/are_stepwise_notes

@@ -2,14 +2,14 @@ from abjad import *
 from abjad.tools import tonalanalysistools
 
 
-def test_tonalanalysistools_are_stepwise_notes_01():
+def test_tonalitytools_are_stepwise_notes_01():
     '''Notes with the same pitch name are stepwise so long
     as pitch numbers differ.'''
 
     assert tonalanalysistools.are_stepwise_notes(Note('c', (1, 4)), Note('cs', (1, 4)))
 
 
-def test_tonalanalysistools_are_stepwise_notes_02():
+def test_tonalitytools_are_stepwise_notes_02():
     '''Notes with the different pitch name are stepwise so long
     as they differ by exactly one staff space.'''
 
@@ -20,21 +20,21 @@ def test_tonalanalysistools_are_stepwise_notes_02():
     assert tonalanalysistools.are_stepwise_notes(Note('c', (1, 4)), Note('bf,', (1, 4)))
 
 
-def test_tonalanalysistools_are_stepwise_notes_03():
+def test_tonalitytools_are_stepwise_notes_03():
     '''Notes with the same pitch are not stepwise.
     '''
 
     assert not tonalanalysistools.are_stepwise_notes(Note('c', (1, 4)), Note('c', (1, 4)))
 
 
-def test_tonalanalysistools_are_stepwise_notes_04():
+def test_tonalitytools_are_stepwise_notes_04():
     '''Notes separated by more than 1 staff space are not stepwise.
     '''
 
     assert not tonalanalysistools.are_stepwise_notes(Note('c', (1, 4)), Note('e', (1, 4)))
 
 
-def test_tonalanalysistools_are_stepwise_notes_05():
+def test_tonalitytools_are_stepwise_notes_05():
     '''Contour changes in note sequence qualifies as tepwise.
     '''
 

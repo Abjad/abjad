@@ -1,5 +1,6 @@
-from abjad.tools import notetools
 from abjad.tools import componenttools
+from abjad.tools import mathtools
+from abjad.tools import notetools
 
 
 def is_neighbor_note(note):
@@ -23,15 +24,28 @@ def is_neighbor_note(note):
     from abjad.tools import tonalanalysistools
 
     if not isinstance(note, notetools.Note):
-        raise TypeError('must be note: %s' % note)
+        raise TypeError('must be note: {!r}.'.format(note))
 
-    try:
-        previous_note = note._get_namesake(-1)
-        next_note = note._get_namesake(1)
-    except IndexError:
+    previous_note = note._get_namesake(-1)
+    next_note = note._get_namesake(1)
+
+    if previous_note is None:
+        return False
+    if next_note is None:
         return False
 
     notes = [previous_note, note, next_note]
+    selection = tonalanalysistools.select(notes)
 
-    return tonalanalysistools.are_stepwise_notes(notes) and \
-        not tonalanalysistools.are_scalar_notes(notes)
+    preceding_interval = note.written_pitch - previous_note.written_pitch
+    preceding_interval_direction = \
+        mathtools.sign(preceding_interval.direction_number)
+    following_interval = next_note.written_pitch - note.written_pitch
+    following_interval_direction = \
+        mathtools.sign(following_interval.direction_number)
+
+    if tonalanalysistools.are_stepwise_notes(notes):
+        if preceding_interval_direction != following_interval_direction:
+            return True
+
+    return False
