@@ -3570,6 +3570,7 @@ Core composition packages
       tools/tonalanalysistools/is_neighbor_note
       tools/tonalanalysistools/is_passing_tone
       tools/tonalanalysistools/is_unlikely_melodic_diatonic_interval_in_chorale
+      tools/tonalanalysistools/select
 
 .. only:: latex
 
@@ -3607,6 +3608,7 @@ Core composition packages
       tools/tonalanalysistools/is_neighbor_note
       tools/tonalanalysistools/is_passing_tone
       tools/tonalanalysistools/is_unlikely_melodic_diatonic_interval_in_chorale
+      tools/tonalanalysistools/select
 
 :py:mod:`tuplettools <abjad.tools.tuplettools>`
 ===============================================

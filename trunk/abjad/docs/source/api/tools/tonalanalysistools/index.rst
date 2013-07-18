@@ -37,3 +37,4 @@ Functions
    ~abjad.tools.tonalanalysistools.is_neighbor_note.is_neighbor_note
    ~abjad.tools.tonalanalysistools.is_passing_tone.is_passing_tone
    ~abjad.tools.tonalanalysistools.is_unlikely_melodic_diatonic_interval_in_chorale.is_unlikely_melodic_diatonic_interval_in_chorale
+   ~abjad.tools.tonalanalysistools.select.select
