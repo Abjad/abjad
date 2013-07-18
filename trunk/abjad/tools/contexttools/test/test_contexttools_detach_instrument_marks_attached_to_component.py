@@ -7,7 +7,8 @@ def test_contexttools_detach_instrument_marks_attached_to_component_01():
     instrument_mark = contexttools.InstrumentMark('Violin', 'Vn.')
     instrument_mark.attach(staff)
 
-    detached_instrument_marks = contexttools.detach_instrument_marks_attached_to_component(staff)
+    detached_instrument_marks = \
+        staff.select().detach_marks(contexttools.InstrumentMark)
 
     r'''
     \new Staff {

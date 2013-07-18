@@ -32,7 +32,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
             effective_time_signature = contexttools.get_effective_time_signature(measure)
             power_of_two_time_signature = effective_time_signature.with_power_of_two_denominator(
                 contents_multiplier)
-            contexttools.detach_time_signature_marks_attached_to_component(measure)
+            measure.select().detach_marks(contexttools.TimeSignatureMark)
             power_of_two_time_signature.attach(measure)
 
             # find target duration and create tuplet

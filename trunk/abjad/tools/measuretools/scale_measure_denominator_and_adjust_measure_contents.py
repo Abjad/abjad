@@ -62,7 +62,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
     measuretools.scale_contents_of_measures_in_expr(measure, new_time_signature.implied_prolation.reciprocal)
 
     # assign new time signature
-    contexttools.detach_time_signature_marks_attached_to_component(measure)
+    measure.select().detach_marks(contexttools.TimeSignatureMark)
     new_time_signature.attach(measure)
 
     # return measure

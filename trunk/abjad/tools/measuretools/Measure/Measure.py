@@ -144,7 +144,7 @@ class Measure(FixedDurationContainer):
         from abjad.tools import marktools
         new = type(self)(*self.__getnewargs__())
         # only the following line differs from Conatainer
-        contexttools.detach_time_signature_marks_attached_to_component(new)
+        new.select().detach_marks(contexttools.TimeSignatureMark)
         if getattr(self, '_override', None) is not None:
             new._override = copy.copy(self.override)
         if getattr(self, '_set', None) is not None:
@@ -180,8 +180,7 @@ class Measure(FixedDurationContainer):
                 better_time_signature.with_denominator(old_denominator)
             better_time_signature = \
                 contexttools.TimeSignatureMark(better_time_signature)
-            contexttools.detach_time_signature_marks_attached_to_component(
-                self)
+            self.select().detach_marks(contexttools.TimeSignatureMark)
             better_time_signature.attach(self)
 
     def _format_content_pieces(self):

@@ -22,7 +22,7 @@ def detach_instrument_marks_attached_to_component(component):
 
     ::
 
-        >>> contexttools.detach_instrument_marks_attached_to_component(staff)
+        >>> staff.select().detach_marks(contexttools.InstrumentMark)
         (InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. '),)
 
     ::

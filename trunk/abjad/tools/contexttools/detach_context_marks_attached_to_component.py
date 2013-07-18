@@ -17,7 +17,7 @@ def detach_context_marks_attached_to_component(component, classes=None):
 
     ::
 
-        >>> contexttools.detach_context_marks_attached_to_component(staff[0])
+        >>> staff[0].select().detach_marks(contexttools.ContextMark)
         (DynamicMark('p'),)
 
     ::

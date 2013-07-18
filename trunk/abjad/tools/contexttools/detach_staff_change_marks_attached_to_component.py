@@ -30,7 +30,7 @@ def detach_staff_change_marks_attached_to_component(component):
 
     ::
 
-        >>> contexttools.detach_staff_change_marks_attached_to_component(rh_staff[2])
+        >>> rh_staff[2].select().detach_marks(contexttools.StaffChangeMark)
         (StaffChangeMark(Staff-"LHStaff"{1}),)
 
     Return tuple of zero or more staff change marks.

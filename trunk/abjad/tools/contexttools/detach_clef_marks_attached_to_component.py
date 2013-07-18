@@ -21,7 +21,7 @@ def detach_clef_marks_attached_to_component(component):
 
     ::
 
-        >>> contexttools.detach_clef_marks_attached_to_component(staff)
+        >>> staff.select().detach_marks(contexttools.ClefMark)
         (ClefMark('treble'),)
 
     ::

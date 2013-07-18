@@ -115,7 +115,7 @@ def copy_components_and_immediate_parent_of_first_component(components):
     elif type(result) is measuretools.Measure:
         new_duration = parent_multiplier * result.contents_duration
         new_time_signature = contexttools.TimeSignatureMark(new_duration)
-        contexttools.detach_time_signature_marks_attached_to_component(result)
+        result.select().detach_marks(contexttools.TimeSignatureMark)
         new_time_signature.attach(result)
 
     # new: rewrite result denominator, if available
@@ -128,7 +128,7 @@ def copy_components_and_immediate_parent_of_first_component(components):
         new_time_signature = new_time_signature.with_denominator(
             parent_denominator)
         new_time_signature = contexttools.TimeSignatureMark(new_time_signature)
-        contexttools.detach_time_signature_marks_attached_to_component(result)
+        result.select().detach_marks(contexttools.TimeSignatureMark)
         new_time_signature.attach(result)
 
     # return copy

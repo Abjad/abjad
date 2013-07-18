@@ -21,7 +21,7 @@ def detach_key_signature_marks_attached_to_component(component):
 
     ::
 
-        >>> contexttools.detach_key_signature_marks_attached_to_component(staff)
+        >>> staff.select().detach_marks(contexttools.KeySignatureMark)
         (KeySignatureMark(NamedChromaticPitchClass('c'), Mode('major')),)
 
     ::

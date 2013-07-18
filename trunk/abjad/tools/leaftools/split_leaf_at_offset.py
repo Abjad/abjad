@@ -161,7 +161,7 @@ def split_leaf_at_offset(
     # adjust new leaf
     gracetools.detach_grace_containers_attached_to_leaf(new_leaf, kind='grace')
     new_leaf.select().detach_marks()
-    contexttools.detach_context_marks_attached_to_component(new_leaf)
+    new_leaf.select().detach_marks(contexttools.ContextMark)
 
     left_leaf_list = leaftools.set_preprolated_leaf_duration(leaf, preprolated_duration)
     right_preprolated_duration = leaf_multiplied_duration - preprolated_duration

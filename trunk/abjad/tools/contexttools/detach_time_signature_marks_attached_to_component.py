@@ -20,7 +20,7 @@ def detach_time_signature_marks_attached_to_component(component):
 
     ::
 
-        >>> contexttools.detach_time_signature_marks_attached_to_component(staff[0])
+        >>> staff[0].select().detach_marks(contexttools.TimeSignatureMark)
         (TimeSignatureMark((4, 4)),)
 
     ::

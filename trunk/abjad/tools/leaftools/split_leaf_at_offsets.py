@@ -244,14 +244,14 @@ def split_leaf_at_offsets(
         gracetools.detach_grace_containers_attached_to_leaf(
             leaf, kind='after')
         middle_leaf.select().detach_marks()
-        contexttools.detach_context_marks_attached_to_component(middle_leaf)
+        middle_leaf.select().detach_marks(contexttools.ContextMark)
 
     # adjust last leaf
     last_leaf = flattened_result[-1]
     gracetools.detach_grace_containers_attached_to_leaf(
         last_leaf, kind='grace')
     last_leaf.select().detach_marks()
-    contexttools.detach_context_marks_attached_to_component(last_leaf)
+    last_leaf.select().detach_marks(contexttools.ContextMark)
 
     # tie split notes, rests and chords as specified
     if  (pitchtools.is_pitch_carrier(leaf) and tie_split_notes) or \

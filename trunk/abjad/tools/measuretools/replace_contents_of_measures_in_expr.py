@@ -86,7 +86,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
         # otherwise restore current measure and advance to next measure
         else:
             current_time_signature = contexttools.TimeSignatureMark(current_time_signature)
-            contexttools.detach_time_signature_marks_attached_to_component(current_measure)
+            current_measure.select().detach_marks(contexttools.TimeSignatureMark)
             current_time_signature.attach(current_measure)
             measuretools.append_spacer_skips_to_underfull_measures_in_expr([current_measure])
             current_measure = measuretools.get_next_measure_from_component(current_measure)
@@ -100,7 +100,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
 
     # restore last iterated measure
     current_time_signature = contexttools.TimeSignatureMark(current_time_signature)
-    contexttools.detach_time_signature_marks_attached_to_component(current_measure)
+    current_measure.select().detach_marks(contexttools.TimeSignatureMark)
     current_time_signature.attach(current_measure)
     measuretools.append_spacer_skips_to_underfull_measures_in_expr(current_measure)
 

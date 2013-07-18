@@ -28,7 +28,7 @@ def detach_tempo_marks_attached_to_component(component):
 
     ::
 
-        >>> contexttools.detach_tempo_marks_attached_to_component(staff)
+        >>> staff.select().detach_marks(contexttools.TempoMark)
         (TempoMark(Duration(1, 8), 52),)
 
     ::

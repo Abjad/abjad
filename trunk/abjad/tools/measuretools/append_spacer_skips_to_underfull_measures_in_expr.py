@@ -4,11 +4,11 @@ def append_spacer_skips_to_underfull_measures_in_expr(expr):
     Append spacer skips to underfull measures in `expr`::
 
         >>> staff = Staff(Measure((3, 8), "c'8 d'8 e'8") * 3)
-        >>> contexttools.detach_time_signature_marks_attached_to_component(staff[1])
+        >>> staff[1].select().detach_marks(contexttools.TimeSignatureMark)
         (TimeSignatureMark((3, 8)),)
         >>> contexttools.TimeSignatureMark((4, 8))(staff[1])
         TimeSignatureMark((4, 8))(|4/8 c'8 d'8 e'8|)
-        >>> contexttools.detach_time_signature_marks_attached_to_component(staff[2])
+        >>> staff[2].select().detach_marks(contexttools.TimeSignatureMark)
         (TimeSignatureMark((3, 8)),)
         >>> contexttools.TimeSignatureMark((5, 8))(staff[2])
         TimeSignatureMark((5, 8))(|5/8 c'8 d'8 e'8|)

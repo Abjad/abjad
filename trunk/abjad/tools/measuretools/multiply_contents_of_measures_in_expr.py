@@ -57,5 +57,5 @@ def multiply_contents_of_measures_in_expr(expr, n):
         new_pair = mathtools.NonreducedFraction(old_pair)
         new_pair = new_pair.multiply_without_reducing(n)
         time_signature = contexttools.TimeSignatureMark(new_pair)
-        contexttools.detach_time_signature_marks_attached_to_component(measure)
+        measure.select().detach_marks(contexttools.TimeSignatureMark)
         time_signature.attach(measure)

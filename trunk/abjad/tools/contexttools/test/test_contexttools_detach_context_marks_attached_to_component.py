@@ -17,7 +17,7 @@ def test_contexttools_detach_context_marks_attached_to_component_01():
     }
     '''
 
-    contexttools.detach_context_marks_attached_to_component(staff[0])
+    staff[0].select().detach_marks(contexttools.ContextMark)
 
     r'''
     \new Staff {
