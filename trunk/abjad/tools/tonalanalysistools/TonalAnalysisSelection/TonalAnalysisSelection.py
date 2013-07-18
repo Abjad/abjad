@@ -52,6 +52,7 @@ class TonalAnalysisSelection(Selection):
 
     '''
 
+    ### PUBLIC METHODS ###
 
     def are_scalar_notes(self):
         '''True when notes in selection are scalar:
@@ -82,6 +83,34 @@ class TonalAnalysisSelection(Selection):
                 if direction_string is None:
                     direction_string = mdi.direction_string
                 assert direction_string == mdi.direction_string
+            except AssertionError:
+                return False
+        return True
+
+    def are_stepwise_notes(self):
+        '''True when notes in selection are stepwise:
+
+        ::
+
+
+            >>> selection_1.are_stepwise_notes()
+            True
+
+        Otherwise false:
+
+        ::
+
+            >>> selection_2.are_stepwise_notes()
+            False
+
+        Return boolean.
+        '''
+        for left, right in sequencetools.iterate_sequence_pairwise_strict(
+            iterationtools.iterate_notes_in_expr(self)):
+            try:
+                assert not (left.written_pitch == right.written_pitch)
+                hdi = pitchtools.calculate_harmonic_diatonic_interval(left, right)
+                assert hdi.number <= 2
             except AssertionError:
                 return False
         return True

@@ -8,7 +8,9 @@ def is_neighbor_note(note):
 
     True when `note` is preceeded by a stepwise interval in one direction
     and followed by a stepwise interval in the other direction.
-    Otherwise false. ::
+    Otherwise false:
+
+    ::
 
         >>> t = Staff("c'8 d'8 e'8 f'8")
         >>> for note in t:
@@ -44,7 +46,7 @@ def is_neighbor_note(note):
     following_interval_direction = \
         mathtools.sign(following_interval.direction_number)
 
-    if tonalanalysistools.are_stepwise_notes(notes):
+    if selection.are_stepwise_notes():
         if preceding_interval_direction != following_interval_direction:
             return True
 
