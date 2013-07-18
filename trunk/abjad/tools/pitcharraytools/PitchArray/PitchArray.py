@@ -71,6 +71,43 @@ class PitchArray(AbjadObject):
         return self.rows[arg]
 
     def __iadd__(self, arg):
+        '''Add `arg` in place to self:
+
+            >>> array_1 = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
+            >>> print array_1
+            [ ] [     ] [ ]
+            [     ] [ ] [ ]
+
+        ::
+
+            >>> array_2 = pitcharraytools.PitchArray([[3, 4], [4, 3]])
+            >>> print array_2
+            [     ] [           ]
+            [           ] [     ]
+
+        ::
+
+            >>> array_3 = pitcharraytools.PitchArray([[1, 1], [1, 1]])
+            >>> print array_3
+            [ ] [ ]
+            [ ] [ ]
+
+        ::
+
+            >>> array_1 += array_2
+            >>> print array_1
+            [ ] [     ] [ ] [     ] [         ]
+            [     ] [ ] [ ] [         ] [     ]
+
+        ::
+
+            >>> array_1 += array_3
+            >>> print array_1
+            [ ] [     ] [ ] [     ] [         ] [ ] [ ]
+            [     ] [ ] [ ] [         ] [     ] [ ] [ ]
+
+        Return self.
+        '''
         if not isinstance(arg, PitchArray):
             raise TypeError('must be pitch array.')
         for self_row, arg_row in zip(self.rows, arg.rows):
