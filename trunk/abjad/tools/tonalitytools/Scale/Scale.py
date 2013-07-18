@@ -1,8 +1,13 @@
+import copy
+from abjad.tools import componenttools
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import notetools
 from abjad.tools import pitchtools
+from abjad.tools import schemetools
+from abjad.tools import scoretools
 from abjad.tools import sequencetools
+from abjad.tools import stafftools
 from abjad.tools.pitchtools.NamedChromaticPitchClassSegment \
     import NamedChromaticPitchClassSegment
 
@@ -181,6 +186,59 @@ class Scale(NamedChromaticPitchClassSegment):
         pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
             result, self.key_signature)
         return result
+
+    def make_score(self):
+        r'''Make MIDI playback score from scale:
+
+        ::
+
+            >>> scale = tonalitytools.Scale('E', 'major')
+            >>> score = scale.make_score()
+
+        ::
+
+            >>> f(score)
+            \new Score \with {
+                tempoWholesPerMinute = #(ly:make-moment 30 1)
+            } <<
+                \new Staff {
+                    \key e \major
+                    e'8
+                    fs'8
+                    gs'8
+                    a'8
+                    b'8
+                    cs''8
+                    ds''8
+                    e''8
+                    ds''8
+                    cs''8
+                    b'8
+                    a'8
+                    gs'8
+                    fs'8
+                    e'4
+                }
+            >>
+
+        ::
+
+            >>> show(score) # doctest: +SKIP
+
+        Return score.
+        '''
+        ascending_notes = self.make_notes(8, durationtools.Duration(1, 8))
+        descending_notes = componenttools.copy_components_and_detach_spanners(
+            ascending_notes[:-1])
+        descending_notes.reverse()
+        notes = ascending_notes + descending_notes
+        notes[-1].written_duration = durationtools.Duration(1, 4)
+        staff = stafftools.Staff(notes)
+        key_signature = copy.copy(self.key_signature)
+        key_signature.attach(staff)
+        score = scoretools.Score([staff])
+        score.set.tempo_wholes_per_minute = schemetools.SchemeMoment(30)
+        return score
 
     def named_chromatic_pitch_class_to_scale_degree(self, *args):
         from abjad.tools import tonalitytools
