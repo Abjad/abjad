@@ -25,10 +25,7 @@ Functions
 
 .. autosummary::
 
-   ~abjad.tools.contexttools.get_clef_mark_attached_to_component.get_clef_mark_attached_to_component
-   ~abjad.tools.contexttools.get_context_mark_attached_to_component.get_context_mark_attached_to_component
    ~abjad.tools.contexttools.get_context_marks_attached_to_any_improper_parent_of_component.get_context_marks_attached_to_any_improper_parent_of_component
-   ~abjad.tools.contexttools.get_dynamic_mark_attached_to_component.get_dynamic_mark_attached_to_component
    ~abjad.tools.contexttools.get_effective_clef.get_effective_clef
    ~abjad.tools.contexttools.get_effective_context_mark.get_effective_context_mark
    ~abjad.tools.contexttools.get_effective_dynamic.get_effective_dynamic
@@ -37,10 +34,5 @@ Functions
    ~abjad.tools.contexttools.get_effective_staff.get_effective_staff
    ~abjad.tools.contexttools.get_effective_tempo.get_effective_tempo
    ~abjad.tools.contexttools.get_effective_time_signature.get_effective_time_signature
-   ~abjad.tools.contexttools.get_instrument_mark_attached_to_component.get_instrument_mark_attached_to_component
-   ~abjad.tools.contexttools.get_key_signature_mark_attached_to_component.get_key_signature_mark_attached_to_component
-   ~abjad.tools.contexttools.get_staff_change_mark_attached_to_component.get_staff_change_mark_attached_to_component
-   ~abjad.tools.contexttools.get_tempo_mark_attached_to_component.get_tempo_mark_attached_to_component
-   ~abjad.tools.contexttools.get_time_signature_mark_attached_to_component.get_time_signature_mark_attached_to_component
    ~abjad.tools.contexttools.list_clef_names.list_clef_names
    ~abjad.tools.contexttools.set_accidental_style_on_sequential_contexts_in_expr.set_accidental_style_on_sequential_contexts_in_expr

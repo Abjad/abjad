@@ -74,7 +74,8 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
             if durationtools.Duration(0) < candidate_new_parent_dur:
                 parent.target_duration = candidate_new_parent_dur
         elif isinstance(parent, measuretools.Measure):
-            parent_time_signature = contexttools.get_time_signature_mark_attached_to_component(parent)
+            parent_time_signature = parent.get_mark(
+                contexttools.TimeSignatureMark)
             old_prolation = parent_time_signature.implied_prolation
             naive_time_signature = parent_time_signature.duration - prolated_leaf_duration
             better_time_signature = mathtools.NonreducedFraction(naive_time_signature)
@@ -82,7 +83,8 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
             better_time_signature = contexttools.TimeSignatureMark(better_time_signature)
             parent.select().detach_marks(contexttools.TimeSignatureMark)
             better_time_signature.attach(parent)
-            parent_time_signature = contexttools.get_time_signature_mark_attached_to_component(parent)
+            parent_time_signature = parent.get_mark(
+                contexttools.TimeSignatureMark)
             new_denominator = parent_time_signature.denominator
             new_prolation = parent_time_signature.implied_prolation
             adjusted_prolation = old_prolation / new_prolation

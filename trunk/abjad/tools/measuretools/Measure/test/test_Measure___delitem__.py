@@ -131,7 +131,7 @@ def test_Measure___delitem___07():
 
     assert not wellformednesstools.is_well_formed_component(measure)
     assert len(measure) == 3
-    assert contexttools.get_time_signature_mark_attached_to_component(measure) == (4, 8)
+    assert measure.get_mark(contexttools.TimeSignatureMark) == (4, 8)
 
 
 def test_Measure___delitem___08():
@@ -145,4 +145,4 @@ def test_Measure___delitem___08():
 
     assert not wellformednesstools.is_well_formed_component(measure)
     assert len(measure) == 3
-    assert contexttools.get_time_signature_mark_attached_to_component(measure) == (4, 9)
+    assert measure.get_mark(contexttools.TimeSignatureMark) == (4, 9)

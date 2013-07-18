@@ -44,8 +44,7 @@ def get_effective_context_mark(component, context_mark_class):
             if not getattr(component, '_time_signature_is_current', True):
                 component._update_time_signature()
             if component._has_mark(contexttools.TimeSignatureMark):
-                return contexttools.get_time_signature_mark_attached_to_component(
-                    component)
+                return component.get_mark(contexttools.TimeSignatureMark)
 
     # updating marks of entire score tree if necessary
     component._update_marks_of_entire_score_tree_if_necessary()

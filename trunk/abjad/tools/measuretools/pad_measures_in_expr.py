@@ -66,9 +66,8 @@ def pad_measures_in_expr(expr, front, back, pad_class, splice=False):
         if front is not None or back is not None:
             new_duration = measure.duration
             new_time_signature = mathtools.NonreducedFraction(new_duration)
-            old_time_signature = \
-                contexttools.get_time_signature_mark_attached_to_component(
-                    measure)
+            old_time_signature = measure.get_mark(
+                contexttools.TimeSignatureMark)
             new_time_signature = new_time_signature.with_denominator(
                 old_time_signature.denominator)
             new_time_signature = contexttools.TimeSignatureMark(

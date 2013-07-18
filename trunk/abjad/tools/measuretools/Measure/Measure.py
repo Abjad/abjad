@@ -85,8 +85,7 @@ class Measure(FixedDurationContainer):
         '''String form of measure with parentheses for interpreter display.
         '''
         class_name = self._class_name
-        forced_time_signature = \
-            contexttools.get_time_signature_mark_attached_to_component(self)
+        forced_time_signature = self.get_mark(contexttools.TimeSignatureMark)
         summary = self._summary
         length = len(self)
         if forced_time_signature and length:
