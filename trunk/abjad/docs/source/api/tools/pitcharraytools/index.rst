@@ -18,5 +18,4 @@ Functions
 
 .. autosummary::
 
-   ~abjad.tools.pitcharraytools.make_pitch_array_from_leaf_iterables.make_pitch_array_from_leaf_iterables
    ~abjad.tools.pitcharraytools.make_pitch_array_score_from_pitch_arrays.make_pitch_array_score_from_pitch_arrays

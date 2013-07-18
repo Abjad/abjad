@@ -1558,7 +1558,6 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/pitcharraytools/make_pitch_array_from_leaf_iterables
       tools/pitcharraytools/make_pitch_array_score_from_pitch_arrays
 
 .. only:: latex
@@ -1578,7 +1577,6 @@ Core composition packages
 
    .. toctree::
 
-      tools/pitcharraytools/make_pitch_array_from_leaf_iterables
       tools/pitcharraytools/make_pitch_array_score_from_pitch_arrays
 
 :py:mod:`pitchtools <abjad.tools.pitchtools>`

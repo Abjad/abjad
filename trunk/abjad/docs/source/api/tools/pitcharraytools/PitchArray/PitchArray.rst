@@ -102,6 +102,12 @@ Methods
 .. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.to_measures
    :noindex:
 
+Static methods
+--------------
+
+.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.from_score
+   :noindex:
+
 Special methods
 ---------------
 
