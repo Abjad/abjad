@@ -38,10 +38,8 @@ Functions
    ~abjad.tools.marktools.get_articulation_attached_to_component.get_articulation_attached_to_component
    ~abjad.tools.marktools.get_lilypond_command_mark_attached_to_component.get_lilypond_command_mark_attached_to_component
    ~abjad.tools.marktools.get_lilypond_comment_attached_to_component.get_lilypond_comment_attached_to_component
-   ~abjad.tools.marktools.get_lilypond_comments_attached_to_component.get_lilypond_comments_attached_to_component
    ~abjad.tools.marktools.get_mark_attached_to_component.get_mark_attached_to_component
    ~abjad.tools.marktools.get_marks_attached_to_components_in_expr.get_marks_attached_to_components_in_expr
    ~abjad.tools.marktools.get_stem_tremolo_attached_to_component.get_stem_tremolo_attached_to_component
-   ~abjad.tools.marktools.get_stem_tremolos_attached_to_component.get_stem_tremolos_attached_to_component
    ~abjad.tools.marktools.get_value_of_annotation_attached_to_component.get_value_of_annotation_attached_to_component
    ~abjad.tools.marktools.move_marks.move_marks
