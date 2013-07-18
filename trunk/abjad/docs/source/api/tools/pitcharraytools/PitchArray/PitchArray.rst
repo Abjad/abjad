@@ -81,6 +81,9 @@ Methods
 .. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.has_spanning_cell_over_index
    :noindex:
 
+.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.list_nonspanning_subarrays
+   :noindex:
+
 .. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.pad_to_depth
    :noindex:
 

@@ -1,8 +1,7 @@
 from abjad import *
-from abjad.tools import pitcharraytools
 
 
-def test_pitcharraytools_list_nonspanning_subarrays_of_pitch_array_01():
+def test_PitchArray_list_nonspanning_subarrays_01():
 
     array = pitcharraytools.PitchArray([
         [2, 2, 3, 1],
@@ -16,7 +15,7 @@ def test_pitcharraytools_list_nonspanning_subarrays_of_pitch_array_01():
     [] [] [] [] [] [] [] []
     '''
 
-    subarrays = pitcharraytools.list_nonspanning_subarrays_of_pitch_array(array)
+    subarrays = array.list_nonspanning_subarrays()
 
     '''
     [      ] [      ]

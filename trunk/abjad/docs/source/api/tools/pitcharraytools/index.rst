@@ -18,7 +18,6 @@ Functions
 
 .. autosummary::
 
-   ~abjad.tools.pitcharraytools.list_nonspanning_subarrays_of_pitch_array.list_nonspanning_subarrays_of_pitch_array
    ~abjad.tools.pitcharraytools.make_pitch_array_from_leaf_iterables.make_pitch_array_from_leaf_iterables
    ~abjad.tools.pitcharraytools.make_pitch_array_score_from_pitch_arrays.make_pitch_array_score_from_pitch_arrays
    ~abjad.tools.pitcharraytools.pitch_array_row_to_measure.pitch_array_row_to_measure

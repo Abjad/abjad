@@ -1558,7 +1558,6 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/pitcharraytools/list_nonspanning_subarrays_of_pitch_array
       tools/pitcharraytools/make_pitch_array_from_leaf_iterables
       tools/pitcharraytools/make_pitch_array_score_from_pitch_arrays
       tools/pitcharraytools/pitch_array_row_to_measure
@@ -1581,7 +1580,6 @@ Core composition packages
 
    .. toctree::
 
-      tools/pitcharraytools/list_nonspanning_subarrays_of_pitch_array
       tools/pitcharraytools/make_pitch_array_from_leaf_iterables
       tools/pitcharraytools/make_pitch_array_score_from_pitch_arrays
       tools/pitcharraytools/pitch_array_row_to_measure

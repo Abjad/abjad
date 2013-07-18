@@ -1,3 +1,4 @@
+from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools import sequencetools
 from abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell \
@@ -303,6 +304,63 @@ class PitchArray(AbjadObject):
             new_row = rows[row_index].copy_subrow(start_j, stop_j)
             new_array.append_row(new_row)
         return new_array
+
+    def list_nonspanning_subarrays(self):
+        r'''List nonspanning subarrays of pitch array:
+
+        ::
+
+            >>> array = pitcharraytools.PitchArray([
+            ...     [2, 2, 3, 1],
+            ...     [1, 2, 1, 1, 2, 1],
+            ...     [1, 1, 1, 1, 1, 1, 1, 1]])
+            >>> print array
+            [     ] [     ] [         ] [ ]
+            [ ] [     ] [ ] [ ] [     ] [ ]
+            [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ]
+
+        ::
+
+            >>> subarrays = array.list_nonspanning_subarrays()
+            >>> len(subarrays)
+            3
+
+        ::
+
+            >>> print subarrays[0]
+            [     ] [     ]
+            [ ] [     ] [ ]
+            [ ] [ ] [ ] [ ]
+
+        ::
+
+            >>> print subarrays[1]
+            [         ]
+            [ ] [     ]
+            [ ] [ ] [ ]
+
+        ::
+
+            >>> print subarrays[2]
+            [ ]
+            [ ]
+            [ ]
+
+        Return list.
+        '''
+        unspanned_indices = []
+        for i in range(self.width + 1):
+            if not self.has_spanning_cell_over_index(i):
+                unspanned_indices.append(i)
+        array_depth = self.depth
+        subarrays = []
+        for start_column, stop_column in \
+            sequencetools.iterate_sequence_pairwise_strict(unspanned_indices):
+            upper_left_pair = (0, start_column)
+            lower_right_pair = (array_depth, stop_column)
+            subarray = self.copy_subarray(upper_left_pair, lower_right_pair)
+            subarrays.append(subarray)
+        return subarrays
 
     def has_spanning_cell_over_index(self, index):
         rows = self.rows
