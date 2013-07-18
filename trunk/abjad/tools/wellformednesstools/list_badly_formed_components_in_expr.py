@@ -24,6 +24,6 @@ def list_badly_formed_components_in_expr(expr):
     from abjad.tools import wellformednesstools
 
     badly_formed_components = []
-    for checker in wellformednesstools.list_checks():
+    for checker in wellformednesstools.Check.list_checks():
         badly_formed_components.extend(checker.violators(expr))
     return badly_formed_components

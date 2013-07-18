@@ -1556,11 +1556,6 @@ Core composition packages
       tools/pitcharraytools/PitchArrayInventory/PitchArrayInventory
       tools/pitcharraytools/PitchArrayRow/PitchArrayRow
 
-   .. toctree::
-      :maxdepth: 1
-
-      tools/pitcharraytools/make_pitch_array_score_from_pitch_arrays
-
 .. only:: latex
 
    Concrete classes
@@ -1573,13 +1568,6 @@ Core composition packages
       tools/pitcharraytools/PitchArrayColumn/PitchArrayColumn
       tools/pitcharraytools/PitchArrayInventory/PitchArrayInventory
       tools/pitcharraytools/PitchArrayRow/PitchArrayRow
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/pitcharraytools/make_pitch_array_score_from_pitch_arrays
 
 :py:mod:`pitchtools <abjad.tools.pitchtools>`
 =============================================
@@ -3760,7 +3748,6 @@ Core composition packages
 
       tools/wellformednesstools/is_well_formed_component
       tools/wellformednesstools/list_badly_formed_components_in_expr
-      tools/wellformednesstools/list_checks
       tools/wellformednesstools/tabulate_well_formedness_violations_in_expr
 
 .. only:: latex
@@ -3800,7 +3787,6 @@ Core composition packages
 
       tools/wellformednesstools/is_well_formed_component
       tools/wellformednesstools/list_badly_formed_components_in_expr
-      tools/wellformednesstools/list_checks
       tools/wellformednesstools/tabulate_well_formedness_violations_in_expr
 
 **************************

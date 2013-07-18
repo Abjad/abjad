@@ -32,6 +32,12 @@ Methods
 .. automethod:: abjad.tools.wellformednesstools.EmptyContainerCheck.EmptyContainerCheck.EmptyContainerCheck.violators
    :noindex:
 
+Static methods
+--------------
+
+.. automethod:: abjad.tools.wellformednesstools.EmptyContainerCheck.EmptyContainerCheck.EmptyContainerCheck.list_checks
+   :noindex:
+
 Special methods
 ---------------
 

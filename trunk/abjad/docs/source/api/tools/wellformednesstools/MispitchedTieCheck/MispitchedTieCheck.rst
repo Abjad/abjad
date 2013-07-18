@@ -32,6 +32,12 @@ Methods
 .. automethod:: abjad.tools.wellformednesstools.MispitchedTieCheck.MispitchedTieCheck.MispitchedTieCheck.violators
    :noindex:
 
+Static methods
+--------------
+
+.. automethod:: abjad.tools.wellformednesstools.MispitchedTieCheck.MispitchedTieCheck.MispitchedTieCheck.list_checks
+   :noindex:
+
 Special methods
 ---------------
 

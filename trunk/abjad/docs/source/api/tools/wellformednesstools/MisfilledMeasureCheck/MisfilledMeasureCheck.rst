@@ -32,6 +32,12 @@ Methods
 .. automethod:: abjad.tools.wellformednesstools.MisfilledMeasureCheck.MisfilledMeasureCheck.MisfilledMeasureCheck.violators
    :noindex:
 
+Static methods
+--------------
+
+.. automethod:: abjad.tools.wellformednesstools.MisfilledMeasureCheck.MisfilledMeasureCheck.MisfilledMeasureCheck.list_checks
+   :noindex:
+
 Special methods
 ---------------
 

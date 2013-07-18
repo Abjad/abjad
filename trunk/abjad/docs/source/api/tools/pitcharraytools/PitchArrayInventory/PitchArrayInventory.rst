@@ -58,6 +58,9 @@ Methods
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.sort
    :noindex:
 
+.. automethod:: abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.to_score
+   :noindex:
+
 Special methods
 ---------------
 

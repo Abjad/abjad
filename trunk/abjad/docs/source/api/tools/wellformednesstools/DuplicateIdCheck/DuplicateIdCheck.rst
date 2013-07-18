@@ -32,6 +32,12 @@ Methods
 .. automethod:: abjad.tools.wellformednesstools.DuplicateIdCheck.DuplicateIdCheck.DuplicateIdCheck.violators
    :noindex:
 
+Static methods
+--------------
+
+.. automethod:: abjad.tools.wellformednesstools.DuplicateIdCheck.DuplicateIdCheck.DuplicateIdCheck.list_checks
+   :noindex:
+
 Special methods
 ---------------
 

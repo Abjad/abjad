@@ -30,6 +30,12 @@ Methods
 .. automethod:: abjad.tools.wellformednesstools.Check.Check.Check.violators
    :noindex:
 
+Static methods
+--------------
+
+.. automethod:: abjad.tools.wellformednesstools.Check.Check.Check.list_checks
+   :noindex:
+
 Special methods
 ---------------
 

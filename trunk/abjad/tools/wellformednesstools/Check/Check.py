@@ -34,6 +34,41 @@ class Check(AbjadObject):
     def check(self, expr):
         return not self.violators(expr)
 
+    @staticmethod
+    def list_checks():
+        '''List checks:
+
+        ::
+
+            >>> for check in wellformednesstools.Check.list_checks():
+            ...     check
+            BeamedQuarterNoteCheck()
+            DiscontiguousSpannerCheck()
+            DuplicateIdCheck()
+            EmptyContainerCheck()
+            IntermarkedHairpinCheck()
+            MisduratedMeasureCheck()
+            MisfilledMeasureCheck()
+            MispitchedTieCheck()
+            MisrepresentedFlagCheck()
+            MissingParentCheck()
+            NestedMeasureCheck()
+            OverlappingBeamCheck()
+            OverlappingGlissandoCheck()
+            OverlappingOctavationCheck()
+            ShortHairpinCheck()
+
+        Return list of checks.
+        '''
+        from abjad.tools import wellformednesstools
+        result = []
+        for name in dir(wellformednesstools):
+            if not name == 'Check':
+                if name[0].isupper():
+                    exec('check = wellformednesstools.{}()'.format(name))
+                    result.append(check)
+        return result
+
     def report(self, expr):
         violators, total = self._run(expr)
         bad = len(violators)

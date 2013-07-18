@@ -32,6 +32,12 @@ Methods
 .. automethod:: abjad.tools.wellformednesstools.NestedMeasureCheck.NestedMeasureCheck.NestedMeasureCheck.violators
    :noindex:
 
+Static methods
+--------------
+
+.. automethod:: abjad.tools.wellformednesstools.NestedMeasureCheck.NestedMeasureCheck.NestedMeasureCheck.list_checks
+   :noindex:
+
 Special methods
 ---------------
 

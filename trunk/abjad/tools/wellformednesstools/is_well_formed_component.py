@@ -33,7 +33,7 @@ def is_well_formed_component(expr, allow_empty_containers=True):
         return False
 
     results = []
-    for checker in wellformednesstools.list_checks():
+    for checker in wellformednesstools.Check.list_checks():
         if allow_empty_containers:
             if getattr(checker, 'runtime', False) == 'composition':
                 continue

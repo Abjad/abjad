@@ -32,6 +32,12 @@ Methods
 .. automethod:: abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck.violators
    :noindex:
 
+Static methods
+--------------
+
+.. automethod:: abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck.list_checks
+   :noindex:
+
 Special methods
 ---------------
 

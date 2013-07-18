@@ -32,6 +32,12 @@ Methods
 .. automethod:: abjad.tools.wellformednesstools.ShortHairpinCheck.ShortHairpinCheck.ShortHairpinCheck.violators
    :noindex:
 
+Static methods
+--------------
+
+.. automethod:: abjad.tools.wellformednesstools.ShortHairpinCheck.ShortHairpinCheck.ShortHairpinCheck.list_checks
+   :noindex:
+
 Special methods
 ---------------
 
