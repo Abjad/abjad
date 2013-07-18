@@ -590,14 +590,14 @@ class ReducedLyParser(abctools.Parser):
         if leaves:
             self._apply_spanners(leaves)
         for leaf in leaves:
-            marktools.detach_annotations_attached_to_component(leaf)
+            leaf.select().detach_marks(marktools.Annotation)
         if 1 < self._toplevel_component_count:
             return parsed
         return parsed[0]
 
     def _get_span_events(self, leaf):
         annotations = [
-            x for x in marktools.detach_annotations_attached_to_component(leaf)
+            x for x in leaf.select().detach_marks(marktools.Annotation)
             if x.name == 'post events']
         if annotations:
             return annotations[0].value

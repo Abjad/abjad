@@ -93,9 +93,6 @@ Methods
 .. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.append
    :noindex:
 
-.. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.detach_marks
-   :noindex:
-
 .. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.extend
    :noindex:
 

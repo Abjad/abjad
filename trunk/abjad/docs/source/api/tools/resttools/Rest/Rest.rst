@@ -79,9 +79,6 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: abjad.tools.resttools.Rest.Rest.Rest.detach_marks
-   :noindex:
-
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.divide
    :noindex:
 

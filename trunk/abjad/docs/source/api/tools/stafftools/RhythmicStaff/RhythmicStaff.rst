@@ -95,9 +95,6 @@ Methods
 .. automethod:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.append
    :noindex:
 
-.. automethod:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.detach_marks
-   :noindex:
-
 .. automethod:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.extend
    :noindex:
 

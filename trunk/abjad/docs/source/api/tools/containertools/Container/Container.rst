@@ -71,9 +71,6 @@ Methods
 .. automethod:: abjad.tools.containertools.Container.Container.Container.append
    :noindex:
 
-.. automethod:: abjad.tools.containertools.Container.Container.Container.detach_marks
-   :noindex:
-
 .. automethod:: abjad.tools.containertools.Container.Container.Container.extend
    :noindex:
 

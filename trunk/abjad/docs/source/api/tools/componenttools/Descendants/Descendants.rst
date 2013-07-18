@@ -41,7 +41,13 @@ Read-only properties
 Methods
 -------
 
+.. automethod:: abjad.tools.componenttools.Descendants.Descendants.Descendants.attach_marks
+   :noindex:
+
 .. automethod:: abjad.tools.componenttools.Descendants.Descendants.Descendants.attach_spanners
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.Descendants.Descendants.Descendants.detach_marks
    :noindex:
 
 .. automethod:: abjad.tools.componenttools.Descendants.Descendants.Descendants.detach_spanners

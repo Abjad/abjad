@@ -88,9 +88,6 @@ Methods
 .. automethod:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.append
    :noindex:
 
-.. automethod:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.detach_marks
-   :noindex:
-
 .. automethod:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.extend
    :noindex:
 

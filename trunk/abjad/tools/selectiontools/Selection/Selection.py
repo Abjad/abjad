@@ -269,6 +269,23 @@ class Selection(AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    def attach_marks(self, mark, recurse=False):
+        '''Attach shallow copy of `mark` 
+        to each component in selection.
+
+        Return list of marks created.
+        '''
+        from abjad.tools import marktools
+        if issubclass(spanner, marktools.Mark):
+            mark = mark()
+        assert isinstance(mark, marktools.Mark)
+        marks = []
+        for component in self._iterate_components(recurse=recurse):
+            copied_mark = copy.copy(mark)
+            copied_mark.attach(component)
+            marks.append(copied_mark)
+        return tuple(marks)
+
     def attach_spanners(self, spanner, recurse=False):
         '''Attach shallow copy of `spanner` 
         to each component in selection.
@@ -284,7 +301,13 @@ class Selection(AbjadObject):
             copied_spanner = copy.copy(spanner)
             copied_spanner.attach([component])
             spanners.append(copied_spanner)
-        return spanners
+        return tuple(spanners)
+
+    def detach_marks(self, mark_classes=None, recurse=True):
+        marks = []
+        for component in self._iterate_components(recurse=recurse):
+            marks.extend(component._detach_marks(mark_classes=mark_classes))
+        return tuple(marks)
 
     def detach_spanners(self, spanner_classes=None, recurse=True):
         r'''Detach `spanner_classes` from components in selection.
@@ -318,6 +341,7 @@ class Selection(AbjadObject):
             >>> selection = staff[:]
             >>> selection.detach_spanners(
             ...     spanner_classes=(spannertools.TieSpanner,))
+            (TieSpanner(), TieSpanner())
 
         ::
 
@@ -347,8 +371,11 @@ class Selection(AbjadObject):
 
         Return none.
         '''
+        spanners = []
         for component in self._iterate_components(recurse=recurse):
-            component._detach_spanners(spanner_classes=spanner_classes)
+            spanners.extend(
+                component._detach_spanners(spanner_classes=spanner_classes))
+        return tuple(spanners)
 
     def get(self, component_classes=None, n=0, recurse=True):
         '''Get instance `n` of `component_classes` in selection.

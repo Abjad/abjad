@@ -118,6 +118,16 @@ class Component(AbjadObject):
             new_mark.attach(new)
         return new
 
+    def _detach_marks(
+        self,
+        mark_classes=None,
+        ):
+        marks = []
+        for mark in self.get_marks(mark_classes=mark_classes):
+            mark.detach()
+            marks.append(mark)
+        return tuple(marks)
+
     def _detach_spanners(self, spanner_classes=None):
         spanners = self._get_spanners(spanner_classes=spanner_classes)
         for spanner in spanners:
@@ -236,6 +246,10 @@ class Component(AbjadObject):
             if isinstance(spanner, spanner_classes):
                 spanners.add(spanner)
         return spanners
+
+    def _has_mark(self, mark_classes=None):
+        marks = self.get_marks(mark_classes=mark_classes)
+        return bool(marks)
 
     def _has_spanner(self, spanner_classes=None):
         spanners = self._get_spanners(spanner_classes=spanner_classes)
@@ -547,16 +561,6 @@ class Component(AbjadObject):
             )
 
     ### PUBLIC METHODS ###
-
-    def detach_marks(
-        self,
-        mark_classes=None,
-        ):
-        marks = []
-        for mark in self.get_marks(mark_classes=mark_classes):
-            mark.detach()
-            marks.append(mark)
-        return tuple(marks)
 
     def extend_in_parent(
         self,

@@ -93,9 +93,6 @@ Methods
 .. automethod:: abjad.tools.stafftools.Staff.Staff.Staff.append
    :noindex:
 
-.. automethod:: abjad.tools.stafftools.Staff.Staff.Staff.detach_marks
-   :noindex:
-
 .. automethod:: abjad.tools.stafftools.Staff.Staff.Staff.extend
    :noindex:
 

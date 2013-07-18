@@ -65,7 +65,13 @@ Read-only properties
 Methods
 -------
 
+.. automethod:: abjad.tools.componenttools.Parentage.Parentage.Parentage.attach_marks
+   :noindex:
+
 .. automethod:: abjad.tools.componenttools.Parentage.Parentage.Parentage.attach_spanners
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.Parentage.Parentage.Parentage.detach_marks
    :noindex:
 
 .. automethod:: abjad.tools.componenttools.Parentage.Parentage.Parentage.detach_spanners

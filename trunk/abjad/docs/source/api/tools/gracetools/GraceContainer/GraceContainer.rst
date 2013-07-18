@@ -79,9 +79,6 @@ Methods
 .. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.detach
    :noindex:
 
-.. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.detach_marks
-   :noindex:
-
 .. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.extend
    :noindex:
 

@@ -43,8 +43,7 @@ def get_effective_context_mark(component, context_mark_class):
         if isinstance(component, measuretools.Measure):
             if not getattr(component, '_time_signature_is_current', True):
                 component._update_time_signature()
-            if contexttools.is_component_with_time_signature_mark_attached(
-                component):
+            if component._has_mark(contexttools.TimeSignatureMark):
                 return contexttools.get_time_signature_mark_attached_to_component(
                     component)
 

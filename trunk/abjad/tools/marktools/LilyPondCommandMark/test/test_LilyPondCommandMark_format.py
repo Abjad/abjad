@@ -83,7 +83,7 @@ def test_LilyPondCommandMark_format_06():
 
     t = Note("c'4")
     marktools.LilyPondCommandMark('flageolet', 'right')(t)
-    marktools.detach_lilypond_command_marks_attached_to_component(t, 'flageolet')
+    t.select().detach_marks()
     assert t.lilypond_format == "c'4"
 
 
@@ -136,19 +136,19 @@ def test_LilyPondCommandMark_format_10():
     marktools.LilyPondCommandMark('voiceOne')(t[0])
     assert t.lilypond_format == "\\new Voice {\n\t\\voiceOne\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
-    marktools.detach_lilypond_command_marks_attached_to_component(t[0], 'voiceOne')
+    t[:1].detach_marks()
     marktools.LilyPondCommandMark('voiceTwo')(t[0])
     assert t.lilypond_format == "\\new Voice {\n\t\\voiceTwo\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
-    marktools.detach_lilypond_command_marks_attached_to_component(t[0], 'voiceTwo')
+    t[:1].detach_marks()
     marktools.LilyPondCommandMark('voiceThree')(t[0])
     assert t.lilypond_format == "\\new Voice {\n\t\\voiceThree\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
-    marktools.detach_lilypond_command_marks_attached_to_component(t[0], 'voiceThree')
+    t[:1].detach_marks()
     marktools.LilyPondCommandMark('voiceFour')(t[0])
     assert t.lilypond_format == "\\new Voice {\n\t\\voiceFour\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
-    marktools.detach_lilypond_command_marks_attached_to_component(t[0], 'voiceFour')
+    t[:1].detach_marks()
     assert t.lilypond_format == "\\new Voice {\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
 

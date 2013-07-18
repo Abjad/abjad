@@ -77,9 +77,6 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.detach_marks
-   :noindex:
-
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.extend_in_parent
    :noindex:
 

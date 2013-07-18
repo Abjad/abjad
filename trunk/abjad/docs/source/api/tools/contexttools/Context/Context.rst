@@ -91,9 +91,6 @@ Methods
 .. automethod:: abjad.tools.contexttools.Context.Context.Context.append
    :noindex:
 
-.. automethod:: abjad.tools.contexttools.Context.Context.Context.detach_marks
-   :noindex:
-
 .. automethod:: abjad.tools.contexttools.Context.Context.Context.extend
    :noindex:
 

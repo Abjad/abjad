@@ -95,9 +95,6 @@ Methods
 .. automethod:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.append
    :noindex:
 
-.. automethod:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.detach_marks
-   :noindex:
-
 .. automethod:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.extend
    :noindex:
 

@@ -62,7 +62,13 @@ Read-only properties
 Methods
 -------
 
+.. automethod:: abjad.tools.leaftools.TieChain.TieChain.TieChain.attach_marks
+   :noindex:
+
 .. automethod:: abjad.tools.leaftools.TieChain.TieChain.TieChain.attach_spanners
+   :noindex:
+
+.. automethod:: abjad.tools.leaftools.TieChain.TieChain.TieChain.detach_marks
    :noindex:
 
 .. automethod:: abjad.tools.leaftools.TieChain.TieChain.TieChain.detach_spanners

@@ -8,8 +8,13 @@ from abjad.tools import pitchtools
 #       extended to handle graces.
 #       Also important to migrate over the (large-ish) set of tests for this i
 #       function.
-def split_leaf_at_offset(leaf, offset, fracture_spanners=False,
-    tie_split_notes=True, tie_split_rests=False):
+def split_leaf_at_offset(
+    leaf, 
+    offset, 
+    fracture_spanners=False,
+    tie_split_notes=True, 
+    tie_split_rests=False,
+    ):
     r'''Split `leaf` at `offset`.
 
     Example 1. Split note at assignable offset. Two notes result. 
@@ -19,7 +24,7 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False,
 
         >>> staff = Staff(r"abj: | 2/8 c'8 ( d'8 || 2/8 e'8 f'8 ) |")
         >>> staff[:].attach_spanners(spannertools.BeamSpanner)
-        [BeamSpanner(|2/8(2)|), BeamSpanner(|2/8(2)|)]
+        (BeamSpanner(|2/8(2)|), BeamSpanner(|2/8(2)|))
         >>> contexttools.DynamicMark('f')(staff.select_leaves()[0])
         DynamicMark('f')(c'8)
         >>> marktools.Articulation('accent')(staff.select_leaves()[0])
@@ -66,7 +71,7 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False,
 
         >>> staff = Staff(r"abj: | 2/8 c'8 ( d'8 || 2/8 e'8 f'8 ) |")
         >>> staff[:].attach_spanners(spannertools.BeamSpanner)
-        [BeamSpanner(|2/8(2)|), BeamSpanner(|2/8(2)|)]
+        (BeamSpanner(|2/8(2)|), BeamSpanner(|2/8(2)|))
         >>> gracetools.GraceContainer("cs'16")(staff.select_leaves()[0])
         Note("c'8")
         >>> gracetools.GraceContainer("ds'16", kind='after')(staff.select_leaves()[0])
@@ -155,7 +160,7 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False,
 
     # adjust new leaf
     gracetools.detach_grace_containers_attached_to_leaf(new_leaf, kind='grace')
-    marktools.detach_marks_attached_to_component(new_leaf)
+    new_leaf.select().detach_marks()
     contexttools.detach_context_marks_attached_to_component(new_leaf)
 
     left_leaf_list = leaftools.set_preprolated_leaf_duration(leaf, preprolated_duration)

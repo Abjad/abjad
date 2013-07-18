@@ -93,9 +93,6 @@ Methods
 .. automethod:: abjad.tools.scoretools.Score.Score.Score.append
    :noindex:
 
-.. automethod:: abjad.tools.scoretools.Score.Score.Score.detach_marks
-   :noindex:
-
 .. automethod:: abjad.tools.scoretools.Score.Score.Score.extend
    :noindex:
 

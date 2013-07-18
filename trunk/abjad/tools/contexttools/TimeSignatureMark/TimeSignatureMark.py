@@ -503,8 +503,7 @@ class TimeSignatureMark(ContextMark):
         from abjad.tools import contexttools
         from abjad.tools import marktools
         classes = (type(self), )
-        if contexttools.is_component_with_context_mark_attached(
-            start_component, classes):
+        if start_component._has_mark(mark_classes=classes):
             message = 'component already has context mark attached.'
             raise ExtraMarkError(message)
         return marktools.Mark.attach(self, start_component)

@@ -109,9 +109,6 @@ Methods
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.append
    :noindex:
 
-.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.detach_marks
-   :noindex:
-
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.extend
    :noindex:
 
