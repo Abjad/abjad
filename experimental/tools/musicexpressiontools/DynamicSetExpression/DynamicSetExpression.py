@@ -14,5 +14,5 @@ class DynamicSetExpression(LeafSetExpression):
         '''
         dynamic_mark = self.source_expression.payload
         for leaf in self._iterate_selected_leaves_in_score(score):
-            contexttools.detach_dynamic_marks_attached_to_component(leaf)
+            leaf.select().detach_marks(contexttools.DynamicMark)
             contexttools.DynamicMark(dynamic_mark)(leaf)

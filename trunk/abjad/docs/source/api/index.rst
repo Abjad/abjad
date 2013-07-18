@@ -268,14 +268,6 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/contexttools/detach_clef_marks_attached_to_component
-      tools/contexttools/detach_context_marks_attached_to_component
-      tools/contexttools/detach_dynamic_marks_attached_to_component
-      tools/contexttools/detach_instrument_marks_attached_to_component
-      tools/contexttools/detach_key_signature_marks_attached_to_component
-      tools/contexttools/detach_staff_change_marks_attached_to_component
-      tools/contexttools/detach_tempo_marks_attached_to_component
-      tools/contexttools/detach_time_signature_marks_attached_to_component
       tools/contexttools/get_clef_mark_attached_to_component
       tools/contexttools/get_clef_marks_attached_to_component
       tools/contexttools/get_context_mark_attached_to_component
@@ -328,14 +320,6 @@ Core composition packages
 
    .. toctree::
 
-      tools/contexttools/detach_clef_marks_attached_to_component
-      tools/contexttools/detach_context_marks_attached_to_component
-      tools/contexttools/detach_dynamic_marks_attached_to_component
-      tools/contexttools/detach_instrument_marks_attached_to_component
-      tools/contexttools/detach_key_signature_marks_attached_to_component
-      tools/contexttools/detach_staff_change_marks_attached_to_component
-      tools/contexttools/detach_tempo_marks_attached_to_component
-      tools/contexttools/detach_time_signature_marks_attached_to_component
       tools/contexttools/get_clef_mark_attached_to_component
       tools/contexttools/get_clef_marks_attached_to_component
       tools/contexttools/get_context_mark_attached_to_component
