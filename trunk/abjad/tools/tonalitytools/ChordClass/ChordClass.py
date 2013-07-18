@@ -28,6 +28,22 @@ class ChordClass(NamedChromaticPitchClassSet):
         7: 13,
         }
 
+    _extent_to_cardinality = {
+        5: 3,
+        7: 4,
+        9: 5,
+        11: 6,
+        13: 7,
+    }
+
+    _extent_to_extent_name = {
+        5: 'triad',
+        7: 'seventh',
+        9: 'ninth',
+        11: 'eleventh',
+        13: 'thirteenth',
+    }
+
     ### CONSTRUCTOR ###
 
     def __new__(cls, root, *args):
@@ -209,6 +225,8 @@ class ChordClass(NamedChromaticPitchClassSet):
         Example: tertian chord with four pitch classes
         qualifies as a seventh chord:
 
+        ::
+
             >>> tonalitytools.ChordClass.cardinality_to_extent(4)
             7
 
@@ -216,5 +234,36 @@ class ChordClass(NamedChromaticPitchClassSet):
         '''
         return ChordClass._cardinality_to_extent[cardinality]
 
+    @staticmethod
+    def extent_to_cardinality(extent):
+        '''Change `extent` to cardinality.
+
+        Example: tertian chord with extent of seven
+        comprises four pitch-clases:
+
+        ::
+
+            >>> tonalitytools.ChordClass.extent_to_cardinality(7)
+            4
+
+        Return integer.
+        '''
+        return ChordClass._extent_to_cardinality[extent]
+
+    @staticmethod
+    def extent_to_extent_name(extent):
+        '''Change `extent` to extent name.
+
+        Example: extent of seven is a seventh:
+
+        ::
+
+            >>> tonalitytools.ChordClass.extent_to_extent_name(7)
+            'seventh'
+
+        Return string.
+        '''
+        return ChordClass._extent_to_extent_name[extent]
+
     def transpose(self):
-        raise Exception(NotImplemented)
+        raise NotImplementedError

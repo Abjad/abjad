@@ -3566,8 +3566,6 @@ Core composition packages
       tools/tonalitytools/are_stepwise_ascending_notes
       tools/tonalitytools/are_stepwise_descending_notes
       tools/tonalitytools/are_stepwise_notes
-      tools/tonalitytools/chord_class_extent_to_cardinality
-      tools/tonalitytools/chord_class_extent_to_extent_name
       tools/tonalitytools/diatonic_interval_class_segment_to_chord_quality_string
       tools/tonalitytools/is_neighbor_note
       tools/tonalitytools/is_passing_tone
@@ -3607,8 +3605,6 @@ Core composition packages
       tools/tonalitytools/are_stepwise_ascending_notes
       tools/tonalitytools/are_stepwise_descending_notes
       tools/tonalitytools/are_stepwise_notes
-      tools/tonalitytools/chord_class_extent_to_cardinality
-      tools/tonalitytools/chord_class_extent_to_extent_name
       tools/tonalitytools/diatonic_interval_class_segment_to_chord_quality_string
       tools/tonalitytools/is_neighbor_note
       tools/tonalitytools/is_passing_tone

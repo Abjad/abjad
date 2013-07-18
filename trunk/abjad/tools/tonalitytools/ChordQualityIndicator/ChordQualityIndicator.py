@@ -191,7 +191,7 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
     @property
     def extent_name(self):
         from abjad.tools import tonalitytools
-        return tonalitytools.chord_class_extent_to_extent_name(self.extent)
+        return tonalitytools.ChordClass.extent_to_extent_name(self.extent)
 
     @property
     def inversion(self):

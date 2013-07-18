@@ -106,6 +106,12 @@ Static methods
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.cardinality_to_extent
    :noindex:
 
+.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.extent_to_cardinality
+   :noindex:
+
+.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.extent_to_extent_name
+   :noindex:
+
 Special methods
 ---------------
 

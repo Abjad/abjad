@@ -120,11 +120,13 @@ class NamedChromaticPitchClassSet(PitchClassSet):
 
         ::
 
-            >>> named_chromatic_pitch_class_set = \
-            ...     pitchtools.NamedChromaticPitchClassSet(
+            >>> ncpcs = pitchtools.NamedChromaticPitchClassSet(
             ...     ['gs', 'g', 'as', 'c', 'cs'])
-            >>> for x in named_chromatic_pitch_class_set.named_chromatic_pitch_classes: x
-            ...
+
+        ::
+
+            >>> for x in ncpcs.named_chromatic_pitch_classes:
+            ...     x
             NamedChromaticPitchClass('as')
             NamedChromaticPitchClass('c')
             NamedChromaticPitchClass('cs')
