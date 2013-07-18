@@ -33,7 +33,6 @@ Functions
    ~abjad.tools.tonalitytools.are_stepwise_ascending_notes.are_stepwise_ascending_notes
    ~abjad.tools.tonalitytools.are_stepwise_descending_notes.are_stepwise_descending_notes
    ~abjad.tools.tonalitytools.are_stepwise_notes.are_stepwise_notes
-   ~abjad.tools.tonalitytools.chord_class_cardinality_to_extent.chord_class_cardinality_to_extent
    ~abjad.tools.tonalitytools.chord_class_extent_to_cardinality.chord_class_extent_to_cardinality
    ~abjad.tools.tonalitytools.chord_class_extent_to_extent_name.chord_class_extent_to_extent_name
    ~abjad.tools.tonalitytools.diatonic_interval_class_segment_to_chord_quality_string.diatonic_interval_class_segment_to_chord_quality_string

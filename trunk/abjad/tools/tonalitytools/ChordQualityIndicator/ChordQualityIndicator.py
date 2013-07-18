@@ -5,9 +5,7 @@ from abjad.tools.pitchtools import HarmonicDiatonicInterval
 
 
 class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
-    '''.. versionadded:: 2.0
-
-    Chord quality indicator.
+    '''Chord quality indicator.
     '''
 
     ### CLASS VARIABLES ###
@@ -188,8 +186,7 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
     @property
     def extent(self):
         from abjad.tools import tonalitytools
-        return tonalitytools.chord_class_cardinality_to_extent(
-            self.cardinality)
+        return tonalitytools.ChordClass.cardinality_to_extent(self.cardinality)
 
     @property
     def extent_name(self):

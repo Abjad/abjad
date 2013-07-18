@@ -2,15 +2,17 @@ from abjad.tools import pitchtools
 
 
 def analyze_chord(expr):
-    '''.. versionadded:: 2.0
+    '''Analyze `expr` and return chord class:
 
-    Analyze `expr` and return chord class. ::
+    ::
 
         >>> chord = Chord([7, 10, 12, 16], (1, 4))
         >>> tonalitytools.analyze_chord(chord)
         CDominantSeventhInSecondInversion
 
-    Return none when no tonal chord is understood. ::
+    Return none when no tonal chord is understood:
+
+    ::
 
         >>> chord = Chord(['c', 'cs', 'd'], (1, 4))
         >>> tonalitytools.analyze_chord(chord) is None
@@ -23,7 +25,6 @@ def analyze_chord(expr):
     pitches = pitchtools.list_named_chromatic_pitches_in_expr(expr)
     npcset = pitchtools.NamedChromaticPitchClassSet(pitches)
 
-    #ordered_npcs = pitchtools.NamedChromaticPitchClassSegment([])
     ordered_npcs = []
     letters = ('c', 'e', 'g', 'b', 'd', 'f', 'a')
     for letter in letters:
@@ -37,7 +38,6 @@ def analyze_chord(expr):
         if ordered_npcs.inversion_equivalent_diatonic_interval_class_segment.is_tertian:
             break
     else:
-        #raise TonalHarmonyError('expr is not tertian harmony: %s' % str(expr))
         return None
 
     try:
@@ -46,7 +46,7 @@ def analyze_chord(expr):
         inversion = ordered_npcs.index(bass)
         dic_seg =  ordered_npcs.inversion_equivalent_diatonic_interval_class_segment
         cardinality = len(ordered_npcs)
-        extent = tonalitytools.chord_class_cardinality_to_extent(cardinality)
+        extent = tonalitytools.ChordClass.cardinality_to_extent(cardinality)
         quality = tonalitytools.diatonic_interval_class_segment_to_chord_quality_string(dic_seg)
     except TonalHarmonyError:
         return None

@@ -100,6 +100,12 @@ Methods
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.union
    :noindex:
 
+Static methods
+--------------
+
+.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.cardinality_to_extent
+   :noindex:
+
 Special methods
 ---------------
 

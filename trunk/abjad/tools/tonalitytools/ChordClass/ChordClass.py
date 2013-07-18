@@ -20,6 +20,14 @@ class ChordClass(NamedChromaticPitchClassSet):
         '_root',
         )
 
+    _cardinality_to_extent = {
+        3: 5,
+        4: 7,
+        5: 9,
+        6: 11,
+        7: 13,
+        }
+
     ### CONSTRUCTOR ###
 
     def __new__(cls, root, *args):
@@ -66,7 +74,6 @@ class ChordClass(NamedChromaticPitchClassSet):
         else:
             root = str(self.root).lower()
         if len(root) == 2:
-            #adjustment = r'\hspace #-1 \raise #1 \fontsize #-3'
             adjustment = r'\hspace #-0.5 \raise #1 \fontsize #-3'
             if root[-1].lower() == 's':
                 root = root[0] + r'%s \sharp' % adjustment
@@ -111,8 +118,7 @@ class ChordClass(NamedChromaticPitchClassSet):
     @property
     def extent(self):
         from abjad.tools import tonalitytools
-        extent = \
-            tonalitytools.chord_class_cardinality_to_extent(self.cardinality)
+        extent = self.cardinality_to_extent(self.cardinality)
         return tonalitytools.ExtentIndicator(extent)
 
     @property
@@ -195,6 +201,20 @@ class ChordClass(NamedChromaticPitchClassSet):
         return letter + accidental
 
     ### PUBLIC METHODS ###
+
+    @staticmethod
+    def cardinality_to_extent(cardinality):
+        '''Change `cardinality` to extent.
+
+        Example: tertian chord with four pitch classes
+        qualifies as a seventh chord:
+
+            >>> tonalitytools.ChordClass.cardinality_to_extent(4)
+            7
+
+        Return integer.
+        '''
+        return ChordClass._cardinality_to_extent[cardinality]
 
     def transpose(self):
         raise Exception(NotImplemented)
