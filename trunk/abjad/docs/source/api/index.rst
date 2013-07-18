@@ -3570,7 +3570,6 @@ Core composition packages
       tools/tonalitytools/is_passing_tone
       tools/tonalitytools/is_unlikely_melodic_diatonic_interval_in_chorale
       tools/tonalitytools/make_all_notes_in_ascending_and_descending_diatonic_scale
-      tools/tonalitytools/make_first_n_notes_in_ascending_diatonic_scale
 
 .. only:: latex
 
@@ -3608,7 +3607,6 @@ Core composition packages
       tools/tonalitytools/is_passing_tone
       tools/tonalitytools/is_unlikely_melodic_diatonic_interval_in_chorale
       tools/tonalitytools/make_all_notes_in_ascending_and_descending_diatonic_scale
-      tools/tonalitytools/make_first_n_notes_in_ascending_diatonic_scale
 
 :py:mod:`tuplettools <abjad.tools.tuplettools>`
 ===============================================

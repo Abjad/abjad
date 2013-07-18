@@ -88,6 +88,9 @@ Methods
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.is_equivalent_under_transposition
    :noindex:
 
+.. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.make_notes
+   :noindex:
+
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.named_chromatic_pitch_class_to_scale_degree
    :noindex:
 

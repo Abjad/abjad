@@ -50,9 +50,8 @@ def make_all_notes_in_ascending_and_descending_diatonic_scale(key_signature=None
     Return score suitable for MIDI playback.
     '''
     from abjad.tools import tonalitytools
-
-    ascending_notes = tonalitytools.make_first_n_notes_in_ascending_diatonic_scale(
-        8, durationtools.Duration(1, 8), key_signature)
+    scale = tonalitytools.Scale(key_signature)
+    ascending_notes = scale.make_notes(8, durationtools.Duration(1, 8))
     descending_notes = componenttools.copy_components_and_detach_spanners(ascending_notes[:-1])
     descending_notes.reverse()
     notes = ascending_notes + descending_notes
@@ -61,5 +60,4 @@ def make_all_notes_in_ascending_and_descending_diatonic_scale(key_signature=None
     contexttools.KeySignatureMark(key_signature.tonic, key_signature.mode)(staff)
     score = scoretools.Score([staff])
     score.set.tempo_wholes_per_minute = schemetools.SchemeMoment(30)
-
     return score

@@ -1,4 +1,6 @@
 from abjad.tools import contexttools
+from abjad.tools import durationtools
+from abjad.tools import notetools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
 from abjad.tools.pitchtools.NamedChromaticPitchClassSegment \
@@ -114,6 +116,71 @@ class Scale(NamedChromaticPitchClassSegment):
                     pitches.append(pitch)
             octave += 1
         return pitchtools.NamedChromaticPitchSet(pitches)
+
+    def make_notes(self, n, written_duration=None):
+        r'''Make first `n` notes in ascending diatonic scale.
+        according to `key_signature`.
+
+        Set `written_duration` equal to `written_duration` or ``1/8``:
+
+        ::
+
+            >>> scale = tonalitytools.Scale('c', 'major')
+            >>> notes = scale.make_notes(8)
+            >>> staff = Staff(notes)
+
+        ::
+
+            >>> f(staff)
+            \new Staff {
+                c'8
+                d'8
+                e'8
+                f'8
+                g'8
+                a'8
+                b'8
+                c''8
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        Allow nonassignable `written_duration`:
+
+        ::
+
+            >>> notes = scale.make_notes(4, Duration(5, 16))
+            >>> staff = Staff(notes)
+            >>> time_signature = contexttools.TimeSignatureMark((5, 4))(staff)
+
+        ::
+
+            >>> f(staff)
+            \new Staff {
+                \time 5/4
+                c'4 ~
+                c'16
+                d'4 ~
+                d'16
+                e'4 ~
+                e'16
+                f'4 ~
+                f'16
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        Return list of notes.
+        '''
+        written_duration = written_duration or durationtools.Duration(1, 8)
+        result = notetools.make_notes(n * [0], [written_duration])
+        pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
+            result, self.key_signature)
+        return result
 
     def named_chromatic_pitch_class_to_scale_degree(self, *args):
         from abjad.tools import tonalitytools
