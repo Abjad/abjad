@@ -1129,13 +1129,7 @@ Core composition packages
       tools/marktools/attach_lilypond_command_marks_to_components_in_expr
       tools/marktools/attach_lilypond_comments_to_components_in_expr
       tools/marktools/attach_stem_tremolos_to_notes_and_chords_in_expr
-      tools/marktools/get_annotation_attached_to_component
-      tools/marktools/get_articulation_attached_to_component
-      tools/marktools/get_lilypond_command_mark_attached_to_component
-      tools/marktools/get_lilypond_comment_attached_to_component
-      tools/marktools/get_mark_attached_to_component
       tools/marktools/get_marks_attached_to_components_in_expr
-      tools/marktools/get_stem_tremolo_attached_to_component
       tools/marktools/get_value_of_annotation_attached_to_component
       tools/marktools/move_marks
 
@@ -1172,13 +1166,7 @@ Core composition packages
       tools/marktools/attach_lilypond_command_marks_to_components_in_expr
       tools/marktools/attach_lilypond_comments_to_components_in_expr
       tools/marktools/attach_stem_tremolos_to_notes_and_chords_in_expr
-      tools/marktools/get_annotation_attached_to_component
-      tools/marktools/get_articulation_attached_to_component
-      tools/marktools/get_lilypond_command_mark_attached_to_component
-      tools/marktools/get_lilypond_comment_attached_to_component
-      tools/marktools/get_mark_attached_to_component
       tools/marktools/get_marks_attached_to_components_in_expr
-      tools/marktools/get_stem_tremolo_attached_to_component
       tools/marktools/get_value_of_annotation_attached_to_component
       tools/marktools/move_marks
 

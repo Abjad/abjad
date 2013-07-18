@@ -205,7 +205,7 @@ def test_Component_detach_marks_10():
     note = Note("c'4")
     stem_tremolo = marktools.StemTremolo(16)(note)
 
-    attached_stem_tremolo = marktools.get_stem_tremolo_attached_to_component(note)
+    attached_stem_tremolo = note.get_mark(marktools.StemTremolo)
     assert attached_stem_tremolo is stem_tremolo
 
     stem_tremolos = note.select().detach_marks(marktools.StemTremolo)

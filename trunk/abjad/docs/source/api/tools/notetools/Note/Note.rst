@@ -97,6 +97,9 @@ Methods
 .. automethod:: abjad.tools.notetools.Note.Note.Note.extend_in_parent
    :noindex:
 
+.. automethod:: abjad.tools.notetools.Note.Note.Note.get_mark
+   :noindex:
+
 .. automethod:: abjad.tools.notetools.Note.Note.Note.get_marks
    :noindex:
 

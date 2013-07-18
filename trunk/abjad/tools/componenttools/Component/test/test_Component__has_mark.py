@@ -33,7 +33,7 @@ def test_Component__has_mark_03():
 
 
 
-def test_Component__has_mark_06():
+def test_Component__has_mark_04():
 
     staff = Staff("c'2 d'2")
     marktools.LilyPondComment('comment')(staff[0])
@@ -42,7 +42,7 @@ def test_Component__has_mark_06():
     assert not staff[1]._has_mark(marktools.LilyPondComment)
 
 
-def test_Component__has_mark_07():
+def test_Component__has_mark_05():
 
     staff = Staff("c'2 d'2")
     marktools.Mark()(staff[0])
@@ -51,7 +51,7 @@ def test_Component__has_mark_07():
     assert not staff[1]._has_mark()
 
 
-def test_Component__has_mark_08():
+def test_Component__has_mark_06():
 
     staff = Staff("c'2 d'2")
     marktools.StemTremolo(16)(staff[0])
@@ -60,7 +60,7 @@ def test_Component__has_mark_08():
     assert not staff[1]._has_mark(marktools.StemTremolo)
 
 
-def test_Component__has_mark_09():
+def test_Component__has_mark_07():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     contexttools.TimeSignatureMark((4, 8))(staff[0])

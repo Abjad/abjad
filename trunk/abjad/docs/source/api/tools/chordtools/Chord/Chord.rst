@@ -103,6 +103,9 @@ Methods
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.extend_in_parent
    :noindex:
 
+.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.get_mark
+   :noindex:
+
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.get_marks
    :noindex:
 

@@ -114,6 +114,9 @@ Methods
 .. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.extend_in_parent
    :noindex:
 
+.. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.get_mark
+   :noindex:
+
 .. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.get_marks
    :noindex:
 

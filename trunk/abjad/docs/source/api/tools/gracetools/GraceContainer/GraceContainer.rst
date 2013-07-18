@@ -85,6 +85,9 @@ Methods
 .. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.extend_in_parent
    :noindex:
 
+.. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.get_mark
+   :noindex:
+
 .. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.get_marks
    :noindex:
 

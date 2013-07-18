@@ -97,6 +97,9 @@ Methods
 .. automethod:: abjad.tools.contexttools.Context.Context.Context.extend_in_parent
    :noindex:
 
+.. automethod:: abjad.tools.contexttools.Context.Context.Context.get_mark
+   :noindex:
+
 .. automethod:: abjad.tools.contexttools.Context.Context.Context.get_marks
    :noindex:
 

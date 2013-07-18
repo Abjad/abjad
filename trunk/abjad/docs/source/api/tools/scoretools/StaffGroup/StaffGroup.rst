@@ -99,6 +99,9 @@ Methods
 .. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.extend_in_parent
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.get_mark
+   :noindex:
+
 .. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.get_marks
    :noindex:
 

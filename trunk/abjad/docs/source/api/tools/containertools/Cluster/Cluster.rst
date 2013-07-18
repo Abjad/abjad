@@ -79,6 +79,9 @@ Methods
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.extend_in_parent
    :noindex:
 
+.. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.get_mark
+   :noindex:
+
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.get_marks
    :noindex:
 

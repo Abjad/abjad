@@ -99,6 +99,9 @@ Methods
 .. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.extend_in_parent
    :noindex:
 
+.. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.get_mark
+   :noindex:
+
 .. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.get_marks
    :noindex:
 

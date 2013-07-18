@@ -101,6 +101,9 @@ Methods
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.extend_in_parent
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.get_mark
+   :noindex:
+
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.get_marks
    :noindex:
 

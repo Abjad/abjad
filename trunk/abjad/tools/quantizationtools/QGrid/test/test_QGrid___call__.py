@@ -19,7 +19,7 @@ def test_QGrid___call___01():
     assert isinstance(result, list) and len(result) == 1
     assert result[0].lilypond_format == "c'4"
 
-    annotation = marktools.get_annotation_attached_to_component(result[0])
+    annotation = result[0].get_mark(marktools.Annotation)
 
     assert isinstance(annotation.value, tuple) and len(annotation.value) == 4
     assert annotation.value[0].attachments == ('A',)
@@ -56,8 +56,9 @@ def test_QGrid___call___02():
     leaf = result[0].select_leaves()[1]
     assert not leaf.get_marks(marktools.Annotation)
 
-    annotation = marktools.get_annotation_attached_to_component(
-        result[0].select_leaves()[2])
+    leaf = result[0].select_leaves()[2]
+    annotation = leaf.get_mark(marktools.Annotation)
+
     assert isinstance(annotation.value, tuple) and len(annotation.value) == 3
     assert annotation.value[0].attachments == ('C',)
     assert annotation.value[1].attachments == ('D',)

@@ -82,6 +82,9 @@ Methods
 .. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.extend_in_parent
    :noindex:
 
+.. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.get_mark
+   :noindex:
+
 .. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.get_marks
    :noindex:
 

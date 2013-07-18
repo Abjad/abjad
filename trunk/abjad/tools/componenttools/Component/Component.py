@@ -621,6 +621,18 @@ class Component(AbjadObject):
                     parent.__setitem__(slice(start, start), new_components)
             return new_components + [self]
 
+    def get_mark(
+        self,
+        mark_classes=None,
+        ):
+        marks = self.get_marks(mark_classes=mark_classes)
+        if not marks:
+            raise MissingMarkError
+        elif 1 < len(marks):
+            raise ExtraMarkError
+        else:
+            return marks[0]
+
     def get_marks(
         self,
         mark_classes=None,

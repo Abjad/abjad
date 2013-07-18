@@ -17,7 +17,7 @@ def test_marktools_attach_stem_tremolos_to_notes_and_chords_in_expr_01():
     '''
 
     for leaf in staff.select_leaves():
-        new_stem_tremolo = marktools.get_stem_tremolo_attached_to_component(leaf)
+        new_stem_tremolo = leaf.get_mark(marktools.StemTremolo)
         assert new_stem_tremolo == stem_tremolo
         assert new_stem_tremolo is not stem_tremolo
 
