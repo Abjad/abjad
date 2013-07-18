@@ -18,6 +18,7 @@ Concrete classes
    ~abjad.tools.tonalanalysistools.Scale.Scale.Scale
    ~abjad.tools.tonalanalysistools.ScaleDegree.ScaleDegree.ScaleDegree
    ~abjad.tools.tonalanalysistools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator
+   ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection
    ~abjad.tools.tonalanalysistools.TonalFunction.TonalFunction.TonalFunction
 
 Functions

@@ -3553,6 +3553,7 @@ Core composition packages
       tools/tonalanalysistools/Scale/Scale
       tools/tonalanalysistools/ScaleDegree/ScaleDegree
       tools/tonalanalysistools/SuspensionIndicator/SuspensionIndicator
+      tools/tonalanalysistools/TonalAnalysisSelection/TonalAnalysisSelection
       tools/tonalanalysistools/TonalFunction/TonalFunction
 
    .. toctree::
@@ -3587,6 +3588,7 @@ Core composition packages
       tools/tonalanalysistools/Scale/Scale
       tools/tonalanalysistools/ScaleDegree/ScaleDegree
       tools/tonalanalysistools/SuspensionIndicator/SuspensionIndicator
+      tools/tonalanalysistools/TonalAnalysisSelection/TonalAnalysisSelection
       tools/tonalanalysistools/TonalFunction/TonalFunction
 
    Functions
