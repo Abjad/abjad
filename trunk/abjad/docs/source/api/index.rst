@@ -1553,6 +1553,7 @@ Core composition packages
       tools/pitcharraytools/PitchArray/PitchArray
       tools/pitcharraytools/PitchArrayCell/PitchArrayCell
       tools/pitcharraytools/PitchArrayColumn/PitchArrayColumn
+      tools/pitcharraytools/PitchArrayInventory/PitchArrayInventory
       tools/pitcharraytools/PitchArrayRow/PitchArrayRow
 
    .. toctree::
@@ -1570,6 +1571,7 @@ Core composition packages
       tools/pitcharraytools/PitchArray/PitchArray
       tools/pitcharraytools/PitchArrayCell/PitchArrayCell
       tools/pitcharraytools/PitchArrayColumn/PitchArrayColumn
+      tools/pitcharraytools/PitchArrayInventory/PitchArrayInventory
       tools/pitcharraytools/PitchArrayRow/PitchArrayRow
 
    Functions
