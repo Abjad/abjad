@@ -257,7 +257,7 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
   The direction options are exactly the same as for ``Articulation`` and ``Markup``: 
   ``'up'``, ``'^'``, ``'down'``, ``'_'``, ``'neutral'``, ``'-'`` and ``None``.
 
-- Extended ``tonalitytools.Scale`` with ``create_named_chromatic_pitch_set_in_pitch_range()`` method.
+- Extended ``tonalanalysistools.Scale`` with ``create_named_chromatic_pitch_set_in_pitch_range()`` method.
 
 
 - Changed ``tuplettools.FixedDurationTuplet.multiplier`` to return fraction instead of duration.
@@ -293,7 +293,7 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
 
 - Added ``text_editor`` key to user config dictionary (in ``~/.abjad/config.py``).
 
-- Improved ``__repr__`` strings of ``tonalitytools.Mode`` and ``tonalitytools.Scale``.
+- Improved ``__repr__`` strings of ``tonalanalysistools.Mode`` and ``tonalanalysistools.Scale``.
 
 - ``contexttools.TempoMark`` ``__repr__`` now shows ``__repr__`` version of duration
   instead of string version of duration.

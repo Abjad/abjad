@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.tools import tonalitytools
+from abjad.tools import tonalanalysistools
 
 
 def test_KeySignatureMark_mode_01():
@@ -7,7 +7,7 @@ def test_KeySignatureMark_mode_01():
     '''
 
     key_signature = contexttools.KeySignatureMark('e', 'major')
-    assert key_signature.mode == tonalitytools.Mode('major')
+    assert key_signature.mode == tonalanalysistools.Mode('major')
 
     key_signature.mode = 'minor'
-    assert key_signature.mode == tonalitytools.Mode('minor')
+    assert key_signature.mode == tonalanalysistools.Mode('minor')

@@ -31,12 +31,12 @@ def set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(expr, key_signatu
     from abjad.tools import iterationtools
     from abjad.tools import notetools
     from abjad.tools import pitchtools
-    from abjad.tools import tonalitytools
+    from abjad.tools import tonalanalysistools
 
     if key_signature is None:
-        scale = tonalitytools.Scale('C', 'major')
+        scale = tonalanalysistools.Scale('C', 'major')
     else:
-        scale = tonalitytools.Scale(key_signature)
+        scale = tonalanalysistools.Scale(key_signature)
 
     dicg = scale.diatonic_interval_class_segment
     length = len(dicg)

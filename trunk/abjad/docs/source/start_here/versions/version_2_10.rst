@@ -17,7 +17,7 @@ The following packages now load by default when you start Abjad::
     'offsettools', 'pitcharraytools', 'pitchtools', 'resttools', 'rhythmtreetools', 'schemetools', 
     'scoretemplatetools', 'scoretools', 'sequencetools', 'sievetools', 'skiptools', 'spannertools', 
     'stafftools', 'stringtools', 'tempotools', 'tietools', 'timeintervaltools', 'timesignaturetools', 
-    'rhythmmakertools', 'tonalitytools', 'tuplettools', 'verticalitytools', 'voicetools']
+    'rhythmmakertools', 'tonalanalysistools', 'tuplettools', 'verticalitytools', 'voicetools']
 
 Improved formatting engine.  Scores now format approximately 30% faster.
 

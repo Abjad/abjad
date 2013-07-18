@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.tools import tonalitytools
+from abjad.tools import tonalanalysistools
 
 
 def test_KeySignatureMark___init___01():
@@ -9,4 +9,4 @@ def test_KeySignatureMark___init___01():
     ks = contexttools.KeySignatureMark('g', 'major')
 
     assert ks.tonic == pitchtools.NamedChromaticPitchClass('g')
-    assert ks.mode == tonalitytools.Mode('major')
+    assert ks.mode == tonalanalysistools.Mode('major')

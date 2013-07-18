@@ -47,11 +47,11 @@ class KeySignatureMark(ContextMark):
     def __init__(self, tonic, mode, target_context=None):
         from abjad.tools import pitchtools
         from abjad.tools import stafftools
-        from abjad.tools import tonalitytools
+        from abjad.tools import tonalanalysistools
         target_context = target_context or stafftools.Staff
         ContextMark.__init__(self, target_context=target_context)
         tonic = pitchtools.NamedChromaticPitchClass(tonic)
-        mode = tonalitytools.Mode(mode)
+        mode = tonalanalysistools.Mode(mode)
         self._tonic = tonic
         self._mode = mode
 
@@ -117,8 +117,8 @@ class KeySignatureMark(ContextMark):
             '''
             return self._mode
         def fset(self, mode):
-            from abjad.tools import tonalitytools
-            mode = tonalitytools.Mode(mode)
+            from abjad.tools import tonalanalysistools
+            mode = tonalanalysistools.Mode(mode)
             self._mode = mode
         return property(**locals())
 

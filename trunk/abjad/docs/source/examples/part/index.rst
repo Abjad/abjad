@@ -206,7 +206,7 @@ as there are pitches in its overall scale:
 
    def create_pitch_contour_reservoir():
    
-       scale = tonalitytools.Scale('a', 'minor')
+       scale = tonalanalysistools.Scale('a', 'minor')
        pitch_ranges = {
            'First Violin': pitchtools.PitchRange(("c'", "a'''")),
            'Second Violin': pitchtools.PitchRange(('a', "a''")),

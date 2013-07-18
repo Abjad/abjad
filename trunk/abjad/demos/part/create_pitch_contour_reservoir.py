@@ -1,10 +1,10 @@
 from abjad.tools import pitchtools
-from abjad.tools import tonalitytools
+from abjad.tools import tonalanalysistools
 
 
 def create_pitch_contour_reservoir():
 
-    scale = tonalitytools.Scale('a', 'minor')
+    scale = tonalanalysistools.Scale('a', 'minor')
     pitch_ranges = {
         'First Violin': pitchtools.PitchRange(("c'", "a'''")),
         'Second Violin': pitchtools.PitchRange(('a', "a''")),

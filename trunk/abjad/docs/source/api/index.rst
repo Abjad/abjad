@@ -3529,46 +3529,46 @@ Core composition packages
       tools/timespantools/Timespan/Timespan
       tools/timespantools/TimespanInventory/TimespanInventory
 
-:py:mod:`tonalitytools <abjad.tools.tonalitytools>`
-===================================================
+:py:mod:`tonalanalysistools <abjad.tools.tonalanalysistools>`
+=============================================================
 
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   tools/tonalitytools/index
+   tools/tonalanalysistools/index
 
 .. only:: html
 
    .. toctree::
       :maxdepth: 1
 
-      tools/tonalitytools/ChordClass/ChordClass
-      tools/tonalitytools/ChordQualityIndicator/ChordQualityIndicator
-      tools/tonalitytools/ExtentIndicator/ExtentIndicator
-      tools/tonalitytools/InversionIndicator/InversionIndicator
-      tools/tonalitytools/Mode/Mode
-      tools/tonalitytools/OmissionIndicator/OmissionIndicator
-      tools/tonalitytools/QualityIndicator/QualityIndicator
-      tools/tonalitytools/Scale/Scale
-      tools/tonalitytools/ScaleDegree/ScaleDegree
-      tools/tonalitytools/SuspensionIndicator/SuspensionIndicator
-      tools/tonalitytools/TonalFunction/TonalFunction
+      tools/tonalanalysistools/ChordClass/ChordClass
+      tools/tonalanalysistools/ChordQualityIndicator/ChordQualityIndicator
+      tools/tonalanalysistools/ExtentIndicator/ExtentIndicator
+      tools/tonalanalysistools/InversionIndicator/InversionIndicator
+      tools/tonalanalysistools/Mode/Mode
+      tools/tonalanalysistools/OmissionIndicator/OmissionIndicator
+      tools/tonalanalysistools/QualityIndicator/QualityIndicator
+      tools/tonalanalysistools/Scale/Scale
+      tools/tonalanalysistools/ScaleDegree/ScaleDegree
+      tools/tonalanalysistools/SuspensionIndicator/SuspensionIndicator
+      tools/tonalanalysistools/TonalFunction/TonalFunction
 
    .. toctree::
       :maxdepth: 1
 
-      tools/tonalitytools/analyze_chord
-      tools/tonalitytools/analyze_incomplete_chord
-      tools/tonalitytools/analyze_incomplete_tonal_function
-      tools/tonalitytools/analyze_tonal_function
-      tools/tonalitytools/are_scalar_notes
-      tools/tonalitytools/are_stepwise_ascending_notes
-      tools/tonalitytools/are_stepwise_descending_notes
-      tools/tonalitytools/are_stepwise_notes
-      tools/tonalitytools/is_neighbor_note
-      tools/tonalitytools/is_passing_tone
-      tools/tonalitytools/is_unlikely_melodic_diatonic_interval_in_chorale
+      tools/tonalanalysistools/analyze_chord
+      tools/tonalanalysistools/analyze_incomplete_chord
+      tools/tonalanalysistools/analyze_incomplete_tonal_function
+      tools/tonalanalysistools/analyze_tonal_function
+      tools/tonalanalysistools/are_scalar_notes
+      tools/tonalanalysistools/are_stepwise_ascending_notes
+      tools/tonalanalysistools/are_stepwise_descending_notes
+      tools/tonalanalysistools/are_stepwise_notes
+      tools/tonalanalysistools/is_neighbor_note
+      tools/tonalanalysistools/is_passing_tone
+      tools/tonalanalysistools/is_unlikely_melodic_diatonic_interval_in_chorale
 
 .. only:: latex
 
@@ -3577,34 +3577,34 @@ Core composition packages
 
    .. toctree::
 
-      tools/tonalitytools/ChordClass/ChordClass
-      tools/tonalitytools/ChordQualityIndicator/ChordQualityIndicator
-      tools/tonalitytools/ExtentIndicator/ExtentIndicator
-      tools/tonalitytools/InversionIndicator/InversionIndicator
-      tools/tonalitytools/Mode/Mode
-      tools/tonalitytools/OmissionIndicator/OmissionIndicator
-      tools/tonalitytools/QualityIndicator/QualityIndicator
-      tools/tonalitytools/Scale/Scale
-      tools/tonalitytools/ScaleDegree/ScaleDegree
-      tools/tonalitytools/SuspensionIndicator/SuspensionIndicator
-      tools/tonalitytools/TonalFunction/TonalFunction
+      tools/tonalanalysistools/ChordClass/ChordClass
+      tools/tonalanalysistools/ChordQualityIndicator/ChordQualityIndicator
+      tools/tonalanalysistools/ExtentIndicator/ExtentIndicator
+      tools/tonalanalysistools/InversionIndicator/InversionIndicator
+      tools/tonalanalysistools/Mode/Mode
+      tools/tonalanalysistools/OmissionIndicator/OmissionIndicator
+      tools/tonalanalysistools/QualityIndicator/QualityIndicator
+      tools/tonalanalysistools/Scale/Scale
+      tools/tonalanalysistools/ScaleDegree/ScaleDegree
+      tools/tonalanalysistools/SuspensionIndicator/SuspensionIndicator
+      tools/tonalanalysistools/TonalFunction/TonalFunction
 
    Functions
    ---------
 
    .. toctree::
 
-      tools/tonalitytools/analyze_chord
-      tools/tonalitytools/analyze_incomplete_chord
-      tools/tonalitytools/analyze_incomplete_tonal_function
-      tools/tonalitytools/analyze_tonal_function
-      tools/tonalitytools/are_scalar_notes
-      tools/tonalitytools/are_stepwise_ascending_notes
-      tools/tonalitytools/are_stepwise_descending_notes
-      tools/tonalitytools/are_stepwise_notes
-      tools/tonalitytools/is_neighbor_note
-      tools/tonalitytools/is_passing_tone
-      tools/tonalitytools/is_unlikely_melodic_diatonic_interval_in_chorale
+      tools/tonalanalysistools/analyze_chord
+      tools/tonalanalysistools/analyze_incomplete_chord
+      tools/tonalanalysistools/analyze_incomplete_tonal_function
+      tools/tonalanalysistools/analyze_tonal_function
+      tools/tonalanalysistools/are_scalar_notes
+      tools/tonalanalysistools/are_stepwise_ascending_notes
+      tools/tonalanalysistools/are_stepwise_descending_notes
+      tools/tonalanalysistools/are_stepwise_notes
+      tools/tonalanalysistools/is_neighbor_note
+      tools/tonalanalysistools/is_passing_tone
+      tools/tonalanalysistools/is_unlikely_melodic_diatonic_interval_in_chorale
 
 :py:mod:`tuplettools <abjad.tools.tuplettools>`
 ===============================================
