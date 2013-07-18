@@ -18,4 +18,6 @@ def test_LilyPondParser__marks__TimeSignatureMark_01():
     parser = LilyPondParser()
     result = parser(target.lilypond_format)
     assert target.lilypond_format == result.lilypond_format and target is not result
-    assert 1 == len(contexttools.get_time_signature_marks_attached_to_component(result.select_leaves()[0]))
+    leaf = result.select_leaves()[0]
+    time_signature_marks = leaf.get_marks(contexttools.TimeSignatureMark)
+    assert len(time_signature_marks) == 1

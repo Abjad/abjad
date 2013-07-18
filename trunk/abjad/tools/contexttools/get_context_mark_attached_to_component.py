@@ -32,7 +32,7 @@ def get_context_mark_attached_to_component(component, classes=None):
     if classes is None:
         classes = (contexttools.ContextMark,)
 
-    context_marks = contexttools.get_context_marks_attached_to_component(component, classes=classes)
+    context_marks = component.get_marks(mark_classes=classes)
 
     if len(context_marks) == 0:
         raise MissingMarkError

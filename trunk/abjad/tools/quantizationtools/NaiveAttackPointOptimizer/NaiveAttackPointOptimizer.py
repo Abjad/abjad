@@ -25,8 +25,7 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
             sub_chains = []
             current_sub_chain = []
             for leaf in tie_chain:
-                tempo_marks = \
-                    contexttools.get_tempo_marks_attached_to_component(leaf)
+                tempo_marks = leaf.get_marks(contexttools.TempoMark)
                 if tempo_marks:
                     if current_sub_chain:
                         current_sub_chain = \

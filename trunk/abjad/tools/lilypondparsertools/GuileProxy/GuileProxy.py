@@ -158,9 +158,7 @@ class GuileProxy(AbjadObject):
         self._make_unrelativable(music)
 
         def recurse(music):
-            key_signatures = \
-                contexttools.get_key_signature_marks_attached_to_component(
-                    music)
+            key_signatures = music.get_marks(contexttools.KeySignatureMark)
             if key_signatures:
                 for x in key_signatures:
                     tonic = pitchtools.NamedChromaticPitch(x.tonic, 4)

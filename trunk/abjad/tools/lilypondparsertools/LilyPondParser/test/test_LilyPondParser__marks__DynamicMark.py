@@ -19,4 +19,5 @@ def test_LilyPondParser__marks__DynamicMark_01():
     result = parser(input)
     assert target.lilypond_format == result.lilypond_format and target is not result
     for x in result:
-        assert 1 == len(contexttools.get_dynamic_marks_attached_to_component(x))
+        dynamic_marks = x.get_marks(contexttools.DynamicMark)
+        assert len(dynamic_marks) == 1

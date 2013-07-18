@@ -269,12 +269,9 @@ Core composition packages
       :maxdepth: 1
 
       tools/contexttools/get_clef_mark_attached_to_component
-      tools/contexttools/get_clef_marks_attached_to_component
       tools/contexttools/get_context_mark_attached_to_component
       tools/contexttools/get_context_marks_attached_to_any_improper_parent_of_component
-      tools/contexttools/get_context_marks_attached_to_component
       tools/contexttools/get_dynamic_mark_attached_to_component
-      tools/contexttools/get_dynamic_marks_attached_to_component
       tools/contexttools/get_effective_clef
       tools/contexttools/get_effective_context_mark
       tools/contexttools/get_effective_dynamic
@@ -284,15 +281,10 @@ Core composition packages
       tools/contexttools/get_effective_tempo
       tools/contexttools/get_effective_time_signature
       tools/contexttools/get_instrument_mark_attached_to_component
-      tools/contexttools/get_instrument_marks_attached_to_component
       tools/contexttools/get_key_signature_mark_attached_to_component
-      tools/contexttools/get_key_signature_marks_attached_to_component
       tools/contexttools/get_staff_change_mark_attached_to_component
-      tools/contexttools/get_staff_change_marks_attached_to_component
       tools/contexttools/get_tempo_mark_attached_to_component
-      tools/contexttools/get_tempo_marks_attached_to_component
       tools/contexttools/get_time_signature_mark_attached_to_component
-      tools/contexttools/get_time_signature_marks_attached_to_component
       tools/contexttools/list_clef_names
       tools/contexttools/set_accidental_style_on_sequential_contexts_in_expr
 
@@ -321,12 +313,9 @@ Core composition packages
    .. toctree::
 
       tools/contexttools/get_clef_mark_attached_to_component
-      tools/contexttools/get_clef_marks_attached_to_component
       tools/contexttools/get_context_mark_attached_to_component
       tools/contexttools/get_context_marks_attached_to_any_improper_parent_of_component
-      tools/contexttools/get_context_marks_attached_to_component
       tools/contexttools/get_dynamic_mark_attached_to_component
-      tools/contexttools/get_dynamic_marks_attached_to_component
       tools/contexttools/get_effective_clef
       tools/contexttools/get_effective_context_mark
       tools/contexttools/get_effective_dynamic
@@ -336,15 +325,10 @@ Core composition packages
       tools/contexttools/get_effective_tempo
       tools/contexttools/get_effective_time_signature
       tools/contexttools/get_instrument_mark_attached_to_component
-      tools/contexttools/get_instrument_marks_attached_to_component
       tools/contexttools/get_key_signature_mark_attached_to_component
-      tools/contexttools/get_key_signature_marks_attached_to_component
       tools/contexttools/get_staff_change_mark_attached_to_component
-      tools/contexttools/get_staff_change_marks_attached_to_component
       tools/contexttools/get_tempo_mark_attached_to_component
-      tools/contexttools/get_tempo_marks_attached_to_component
       tools/contexttools/get_time_signature_mark_attached_to_component
-      tools/contexttools/get_time_signature_marks_attached_to_component
       tools/contexttools/list_clef_names
       tools/contexttools/set_accidental_style_on_sequential_contexts_in_expr
 
