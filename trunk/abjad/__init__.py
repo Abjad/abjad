@@ -46,6 +46,7 @@ from abjad.tools.importtools.import_public_names_from_filesystem_path_into_names
 _exceptions_path = os.path.join(__path__[0], 'tools', 'exceptiontools')
 import_public_names_from_filesystem_path_into_namespace(
     _exceptions_path, __builtins__)
+del import_public_names_from_filesystem_path_into_namespace
 
 del os
 del platform
