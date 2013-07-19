@@ -87,6 +87,72 @@ class TonalAnalysisSelection(Selection):
                 return False
         return True
 
+    def are_stepwise_ascending_notes(self):
+        '''True when notes in `expr` are stepwise ascending:
+
+        ::
+
+            >>> selection_1.are_stepwise_ascending_notes()
+            True
+
+        Otherwise false:
+
+        ::
+
+            >>> selection_2.are_stepwise_ascending_notes()
+            False
+
+        Return boolean.
+        '''
+        for left, right in sequencetools.iterate_sequence_pairwise_strict(
+            iterationtools.iterate_notes_in_expr(self)):
+            try:
+                assert not (left.written_pitch == right.written_pitch)
+                mdi = pitchtools.calculate_melodic_diatonic_interval(
+                    left, right)
+                assert mdi.number == 2
+            except AssertionError:
+                return False
+        return True
+
+    def are_stepwise_descending_notes(self):
+        '''True when notes in `expr` are stepwise descending.
+
+        ::
+
+            >>> selection_3 = tonalanalysistools.select(
+            ...     reversed(selection_1))
+
+        ::
+
+            >>> selection_3.are_stepwise_descending_notes()
+            True
+
+        Otherwise false:
+
+        ::
+
+            >>> selection_1.are_stepwise_descending_notes()
+            False
+
+        ::
+
+            >>> selection_2.are_stepwise_descending_notes()
+            False
+
+        Return boolean.
+        '''
+        for left, right in sequencetools.iterate_sequence_pairwise_strict(
+            iterationtools.iterate_notes_in_expr(self)):
+            try:
+                assert not (left.written_pitch == right.written_pitch)
+                mdi = pitchtools.calculate_melodic_diatonic_interval(
+                    left, right)
+                assert mdi.number == -2
+            except AssertionError:
+                return False
+        return True
+
     def are_stepwise_notes(self):
         '''True when notes in selection are stepwise:
 
@@ -109,7 +175,8 @@ class TonalAnalysisSelection(Selection):
             iterationtools.iterate_notes_in_expr(self)):
             try:
                 assert not (left.written_pitch == right.written_pitch)
-                hdi = pitchtools.calculate_harmonic_diatonic_interval(left, right)
+                hdi = pitchtools.calculate_harmonic_diatonic_interval(
+                    left, right)
                 assert hdi.number <= 2
             except AssertionError:
                 return False

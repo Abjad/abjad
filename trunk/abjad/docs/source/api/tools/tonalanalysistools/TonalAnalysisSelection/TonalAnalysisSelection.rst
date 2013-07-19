@@ -41,6 +41,12 @@ Methods
 .. automethod:: abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.are_scalar_notes
    :noindex:
 
+.. automethod:: abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.are_stepwise_ascending_notes
+   :noindex:
+
+.. automethod:: abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.are_stepwise_descending_notes
+   :noindex:
+
 .. automethod:: abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.are_stepwise_notes
    :noindex:
 

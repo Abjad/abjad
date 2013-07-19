@@ -3563,8 +3563,6 @@ Core composition packages
       tools/tonalanalysistools/analyze_incomplete_chord
       tools/tonalanalysistools/analyze_incomplete_tonal_function
       tools/tonalanalysistools/analyze_tonal_function
-      tools/tonalanalysistools/are_stepwise_ascending_notes
-      tools/tonalanalysistools/are_stepwise_descending_notes
       tools/tonalanalysistools/is_neighbor_note
       tools/tonalanalysistools/is_passing_tone
       tools/tonalanalysistools/is_unlikely_melodic_diatonic_interval_in_chorale
@@ -3599,8 +3597,6 @@ Core composition packages
       tools/tonalanalysistools/analyze_incomplete_chord
       tools/tonalanalysistools/analyze_incomplete_tonal_function
       tools/tonalanalysistools/analyze_tonal_function
-      tools/tonalanalysistools/are_stepwise_ascending_notes
-      tools/tonalanalysistools/are_stepwise_descending_notes
       tools/tonalanalysistools/is_neighbor_note
       tools/tonalanalysistools/is_passing_tone
       tools/tonalanalysistools/is_unlikely_melodic_diatonic_interval_in_chorale
