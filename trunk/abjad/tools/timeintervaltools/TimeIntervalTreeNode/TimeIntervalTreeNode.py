@@ -4,7 +4,10 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 class TimeIntervalTreeNode(AbjadObject):
     '''A red-black node in an TimeIntervalTree.
-    Duplicate payloads are supported by maintaining a list of TimeIntervals
+
+    Duplicate payloads are supported by maintaining a list of TimeIntervals.
+    
+    Not composer-safe.
     '''
 
     ### CLASS VARIABLES ###
