@@ -123,25 +123,20 @@ class RedBlackTree(AbjadObject):
             y = z
         else:
             y = self._find_successor(z)
-
         if y.left != self._sentinel:
             x = y.left
         else:
             x = y.right
-
         x.parent = y.parent
-
         if y.parent == self._sentinel:
             self._root = x
         elif y.is_left_child:
             y.parent.left = x
         else:
             y.parent.right = x
-
         if y != z:
             z.key = y.key
             z.payload = y.payload
-
         if not y.red:
             self._delete_fixup(x)
 
@@ -238,14 +233,11 @@ class RedBlackTree(AbjadObject):
 
     def _rotate_left(self, x):
         y = x.right
-
         x.right = y.left
         if y.left != self._sentinel:
             y.left.parent = x
-
         if y != self._sentinel:
             y.parent = x.parent
-
         if x.parent == self._sentinel:
             self._root = y
         elif x != self._sentinel:
@@ -253,21 +245,17 @@ class RedBlackTree(AbjadObject):
                 x.parent.left = y
             else:
                 x.parent.right = y
-
         y.left = x
         if x != self._sentinel:
             x.parent = y
 
     def _rotate_right(self, x):
         y = x.left
-
         x.left = y.right
         if y.right != self._sentinel:
             y.right.parent = x
-
         if y != self._sentinel:
             y.parent = x.parent
-
         if x.parent == self._sentinel:
             self._root = y
         elif x != self._sentinel:
@@ -275,7 +263,6 @@ class RedBlackTree(AbjadObject):
                 x.parent.right = y
             else:
                 x.parent.left = y
-
         y.right = x
         if x != self._sentinel:
             x.parent = y

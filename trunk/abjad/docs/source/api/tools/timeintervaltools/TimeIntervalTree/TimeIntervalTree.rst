@@ -8,8 +8,6 @@
 Bases
 -----
 
-- :class:`timeintervaltools.RedBlackTree <abjad.tools.timeintervaltools.RedBlackTree.RedBlackTree.RedBlackTree>`
-
 - :class:`timeintervaltools.TimeIntervalAggregateMixin <abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin>`
 
 - :class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
@@ -178,7 +176,4 @@ Special methods
    :noindex:
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.__repr__
-   :noindex:
-
-.. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.__str__
    :noindex:
