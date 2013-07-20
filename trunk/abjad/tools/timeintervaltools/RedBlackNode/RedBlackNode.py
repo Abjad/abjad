@@ -1,7 +1,7 @@
 from abjad.tools.abctools import AbjadObject
 
 
-class _RedBlackNode(AbjadObject):
+class RedBlackNode(AbjadObject):
 
     ### CLASS VARIABLES ###
 

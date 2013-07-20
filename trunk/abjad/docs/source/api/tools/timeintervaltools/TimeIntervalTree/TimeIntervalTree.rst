@@ -8,7 +8,7 @@
 Bases
 -----
 
-- :class:`timeintervaltools._RedBlackTree <abjad.tools.timeintervaltools._RedBlackTree._RedBlackTree._RedBlackTree>`
+- :class:`timeintervaltools.RedBlackTree <abjad.tools.timeintervaltools.RedBlackTree.RedBlackTree.RedBlackTree>`
 
 - :class:`timeintervaltools.TimeIntervalAggregateMixin <abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin>`
 

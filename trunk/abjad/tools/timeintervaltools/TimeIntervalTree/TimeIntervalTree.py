@@ -4,10 +4,10 @@ import fractions
 from abjad.tools import durationtools
 from abjad.tools.timeintervaltools.TimeIntervalAggregateMixin \
 	import TimeIntervalAggregateMixin
-from abjad.tools.timeintervaltools._RedBlackTree import _RedBlackTree
+from abjad.tools.timeintervaltools.RedBlackTree import RedBlackTree
 
 
-class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
+class TimeIntervalTree(RedBlackTree, TimeIntervalAggregateMixin):
     '''An augmented red-black tree for storing and searching for intervals of
     time (rather than pitch).
 
@@ -56,9 +56,8 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
     ### INITIALIZER ###
 
     def __init__(self, intervals=None):
-        from abjad.tools.timeintervaltools._IntervalNode._IntervalNode \
-            import _IntervalNode
-        self._sentinel = _IntervalNode(0)
+        from abjad.tools import timeintervaltools
+        self._sentinel = timeintervaltools.IntervalNode(0)
         self._sentinel.red = True
         self._sentinel.left = self._sentinel
         self._sentinel.right = self._sentinel
@@ -279,8 +278,6 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
     def _insert(self, args):
         from abjad.tools import timeintervaltools
-        from abjad.tools.timeintervaltools._IntervalNode._IntervalNode \
-            import _IntervalNode
         def recurse(x):
             result = []
             if isinstance(x, timeintervaltools.TimeInterval):
@@ -298,7 +295,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             if node is not None:
                 node.payload.append(interval)
             else:
-                node = _IntervalNode(interval.start, interval)
+                node = timeintervaltools.IntervalNode(interval.start, interval)
                 node.left = self._sentinel
                 node.right = self._sentinel
                 node.parent = self._sentinel

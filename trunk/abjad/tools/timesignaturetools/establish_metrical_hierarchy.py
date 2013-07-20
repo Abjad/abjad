@@ -841,8 +841,10 @@ def establish_metrical_hierarchy(
 
     # Validate arguments.
     assert componenttools.all_are_thread_contiguous_components(components)
-    metrical_hierarchy = \
-        timesignaturetools.MetricalHierarchy(metrical_hierarchy)
+    if not isinstance(metrical_hierarchy,
+        timesignaturetools.MetricalHierarchy):
+        metrical_hierarchy = \
+            timesignaturetools.MetricalHierarchy(metrical_hierarchy)
     assert sum([x.preprolated_duration for x in components]) == \
         metrical_hierarchy.preprolated_duration
     if boundary_depth is not None:
@@ -882,7 +884,7 @@ def establish_metrical_hierarchy(
                 boundary_depth=sub_boundary_depth,
                 maximum_dot_count=maximum_dot_count,
                 )
-
+   
 
 def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
     expr):
@@ -982,23 +984,25 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
     from abjad.tools import notetools
     from abjad.tools import resttools
     from abjad.tools import skiptools
+    from abjad.tools import spannertools
 
-    last_tie_chain = None
+    last_tie_spanner = None
     current_leaf_group = None
     current_leaf_group_is_silent = False
 
     for x in expr:
         if isinstance(x, (notetools.Note, chordtools.Chord)):
-            this_tie_chain = x.select_tie_chain()
+            this_tie_spanner = x._get_spanners(spannertools.TieSpanner) or None
             if current_leaf_group is None:
                 current_leaf_group = []
             elif current_leaf_group_is_silent or \
-                last_tie_chain != this_tie_chain:
+                this_tie_spanner is None or \
+                last_tie_spanner != this_tie_spanner:
                 yield leaftools.TieChain(current_leaf_group)
                 current_leaf_group = []
             current_leaf_group_is_silent = False
             current_leaf_group.append(x)
-            last_tie_chain = this_tie_chain
+            last_tie_spanner = this_tie_spanner
         elif isinstance(x, (resttools.Rest, skiptools.Skip)):
             if current_leaf_group is None:
                 current_leaf_group = []
@@ -1007,12 +1011,12 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
                 current_leaf_group = []
             current_leaf_group_is_silent = True
             current_leaf_group.append(x)
-            last_tie_chain = None
+            last_tie_spanner = None
         elif isinstance(x, containertools.Container):
             if current_leaf_group is not None:
                 yield leaftools.TieChain(current_leaf_group)
                 current_leaf_group = None
-                last_tie_chain = None
+                last_tie_spanner = None
             yield x
 
         else:
