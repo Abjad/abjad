@@ -16,8 +16,6 @@ Concrete classes
 
 .. autosummary::
 
-   ~abjad.tools.timeintervaltools.RedBlackNode.RedBlackNode.RedBlackNode
-   ~abjad.tools.timeintervaltools.RedBlackTree.RedBlackTree.RedBlackTree
    ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval
    ~abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree
    ~abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary

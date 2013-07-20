@@ -3205,8 +3205,6 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/timeintervaltools/RedBlackNode/RedBlackNode
-      tools/timeintervaltools/RedBlackTree/RedBlackTree
       tools/timeintervaltools/TimeInterval/TimeInterval
       tools/timeintervaltools/TimeIntervalTree/TimeIntervalTree
       tools/timeintervaltools/TimeIntervalTreeDictionary/TimeIntervalTreeDictionary
@@ -3280,8 +3278,6 @@ Core composition packages
 
    .. toctree::
 
-      tools/timeintervaltools/RedBlackNode/RedBlackNode
-      tools/timeintervaltools/RedBlackTree/RedBlackTree
       tools/timeintervaltools/TimeInterval/TimeInterval
       tools/timeintervaltools/TimeIntervalTree/TimeIntervalTree
       tools/timeintervaltools/TimeIntervalTreeDictionary/TimeIntervalTreeDictionary
