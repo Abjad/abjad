@@ -57,7 +57,7 @@ class TimeIntervalTree(RedBlackTree, TimeIntervalAggregateMixin):
 
     def __init__(self, intervals=None):
         from abjad.tools import timeintervaltools
-        self._sentinel = timeintervaltools.IntervalNode(0)
+        self._sentinel = timeintervaltools.TimeIntervalTreeNode(0)
         self._sentinel.red = True
         self._sentinel.left = self._sentinel
         self._sentinel.right = self._sentinel
@@ -295,7 +295,7 @@ class TimeIntervalTree(RedBlackTree, TimeIntervalAggregateMixin):
             if node is not None:
                 node.payload.append(interval)
             else:
-                node = timeintervaltools.IntervalNode(interval.start, interval)
+                node = timeintervaltools.TimeIntervalTreeNode(interval.start, interval)
                 node.left = self._sentinel
                 node.right = self._sentinel
                 node.parent = self._sentinel
