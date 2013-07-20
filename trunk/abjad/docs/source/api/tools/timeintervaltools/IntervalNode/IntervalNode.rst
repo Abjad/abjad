@@ -8,8 +8,6 @@
 Bases
 -----
 
-- :class:`timeintervaltools.RedBlackNode <abjad.tools.timeintervaltools.RedBlackNode.RedBlackNode.RedBlackNode>`
-
 - :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 - :class:`__builtin__.object <object>`
@@ -26,6 +24,12 @@ Read-only properties
 .. autoattribute:: abjad.tools.timeintervaltools.IntervalNode.IntervalNode.IntervalNode.is_right_child
    :noindex:
 
+.. autoattribute:: abjad.tools.timeintervaltools.IntervalNode.IntervalNode.IntervalNode.key
+   :noindex:
+
+.. autoattribute:: abjad.tools.timeintervaltools.IntervalNode.IntervalNode.IntervalNode.payload
+   :noindex:
+
 .. autoattribute:: abjad.tools.timeintervaltools.IntervalNode.IntervalNode.IntervalNode.sibling
    :noindex:
 
@@ -33,6 +37,27 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: abjad.tools.timeintervaltools.IntervalNode.IntervalNode.IntervalNode.uncle
+   :noindex:
+
+Read/write properties
+---------------------
+
+.. autoattribute:: abjad.tools.timeintervaltools.IntervalNode.IntervalNode.IntervalNode.earliest_stop
+   :noindex:
+
+.. autoattribute:: abjad.tools.timeintervaltools.IntervalNode.IntervalNode.IntervalNode.latest_stop
+   :noindex:
+
+.. autoattribute:: abjad.tools.timeintervaltools.IntervalNode.IntervalNode.IntervalNode.left
+   :noindex:
+
+.. autoattribute:: abjad.tools.timeintervaltools.IntervalNode.IntervalNode.IntervalNode.parent
+   :noindex:
+
+.. autoattribute:: abjad.tools.timeintervaltools.IntervalNode.IntervalNode.IntervalNode.red
+   :noindex:
+
+.. autoattribute:: abjad.tools.timeintervaltools.IntervalNode.IntervalNode.IntervalNode.right
    :noindex:
 
 Special methods
