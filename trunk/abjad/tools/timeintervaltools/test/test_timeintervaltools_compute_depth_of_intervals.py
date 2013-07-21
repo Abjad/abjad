@@ -1,9 +1,9 @@
 from abjad import *
-from abjad.tools.timeintervaltools.TimeIntervalTree import TimeIntervalTree
 
 
 def test_timeintervaltools_compute_depth_of_intervals_01():
-    tree = TimeIntervalTree(timeintervaltools.make_test_intervals())
+    tree = timeintervaltools.TimeIntervalTree(
+        timeintervaltools.make_test_intervals())
     depths = timeintervaltools.compute_depth_of_intervals(tree)
     target = [
         ((0, 3), 1),
@@ -30,3 +30,38 @@ def test_timeintervaltools_compute_depth_of_intervals_01():
     ]
     actual = [(i.signature, i['depth']) for i in depths]
     assert actual == target
+
+
+def test_timeintervaltools_compute_depth_of_intervals_02():
+    a = timeintervaltools.TimeInterval(0, 3)
+    b = timeintervaltools.TimeInterval(6, 12)
+    c = timeintervaltools.TimeInterval(9, 15)
+    tree = timeintervaltools.TimeIntervalTree([a, b, c])
+    d = timeintervaltools.TimeInterval(1, 14)
+    depth = timeintervaltools.compute_depth_of_intervals(tree, d)
+    assert [(x.signature, x['depth']) for x in depth] == \
+        [((1, 3), 1), ((3, 6), 0), ((6, 9), 1),
+        ((9, 12), 2), ((12, 14), 1)]
+
+
+def test_timeintervaltools_compute_depth_of_intervals_03():
+    a = timeintervaltools.TimeInterval(0, 3)
+    b = timeintervaltools.TimeInterval(6, 12)
+    c = timeintervaltools.TimeInterval(9, 15)
+    tree = timeintervaltools.TimeIntervalTree([a, b, c])
+    d = timeintervaltools.TimeInterval(-1, 16)
+    depth = timeintervaltools.compute_depth_of_intervals(tree, d)
+    assert [(x.signature, x['depth']) for x in depth] == \
+        [((-1, 0), 0), ((0, 3), 1), ((3, 6), 0), ((6, 9), 1),
+        ((9, 12), 2), ((12, 15), 1), ((15, 16), 0)]
+
+
+def test_timeintervaltools_compute_depth_of_intervals_04():
+    a = timeintervaltools.TimeInterval(0, 3)
+    b = timeintervaltools.TimeInterval(6, 12)
+    c = timeintervaltools.TimeInterval(9, 15)
+    tree = timeintervaltools.TimeIntervalTree([a, b, c])
+    d = timeintervaltools.TimeInterval(2001, 2010)
+    depth = timeintervaltools.compute_depth_of_intervals(tree, d)
+    assert [(x.signature, x['depth']) for x in depth] == \
+        [((2001, 2010), 0)]
