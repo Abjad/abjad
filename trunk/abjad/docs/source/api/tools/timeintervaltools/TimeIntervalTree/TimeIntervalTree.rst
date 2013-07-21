@@ -52,10 +52,10 @@ Read-only properties
 .. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.signature
    :noindex:
 
-.. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.start
+.. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.start_offset
    :noindex:
 
-.. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.stop
+.. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.stop_offset
    :noindex:
 
 .. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.storage_format
@@ -63,6 +63,21 @@ Read-only properties
 
 Methods
 -------
+
+.. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.compute_depth
+   :noindex:
+
+.. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.compute_logical_and
+   :noindex:
+
+.. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.compute_logical_not
+   :noindex:
+
+.. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.compute_logical_or
+   :noindex:
+
+.. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.compute_logical_xor
+   :noindex:
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.find_intervals_intersecting_or_tangent_to_interval
    :noindex:

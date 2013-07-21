@@ -39,10 +39,10 @@ Read-only properties
 .. autoattribute:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.signature
    :noindex:
 
-.. autoattribute:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.start
+.. autoattribute:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.start_offset
    :noindex:
 
-.. autoattribute:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.stop
+.. autoattribute:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.stop_offset
    :noindex:
 
 .. autoattribute:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.storage_format
