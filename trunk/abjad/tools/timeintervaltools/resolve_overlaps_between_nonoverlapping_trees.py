@@ -39,7 +39,8 @@ def resolve_overlaps_between_nonoverlapping_trees(trees, minimum_duration=None):
 
     rtree = trees[0]
     for tree in trees[1:]:
-        xor = timeintervaltools.compute_logical_xor_of_intervals([tree, rtree])
+        xor = timeintervaltools.TimeIntervalTree(
+            tree.intervals + rtree.intervals).compute_logical_xor()
         masked = timeintervaltools.mask_intervals_with_intervals(tree, xor)
         rtree._insert([x for x in masked if minimum_duration <= x.duration])
 

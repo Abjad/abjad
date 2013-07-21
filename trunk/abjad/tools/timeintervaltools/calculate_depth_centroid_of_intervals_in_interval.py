@@ -9,8 +9,7 @@ def calculate_depth_centroid_of_intervals_in_interval(
     '''
     from abjad.tools import timeintervaltools
 
-    depth = timeintervaltools.compute_depth_of_intervals(
-        intervals, bounding_interval=bounding_interval)
+    depth = intervals.compute_depth(bounding_interval=bounding_interval)
 
     weighted_centroids = sum([x.center * x['depth'] for x in depth])
     sum_of_weights = sum([x['depth'] for x in depth])

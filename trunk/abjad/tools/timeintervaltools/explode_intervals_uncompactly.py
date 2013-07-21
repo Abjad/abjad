@@ -12,7 +12,7 @@ def explode_intervals_uncompactly(intervals):
 
     tree = timeintervaltools.TimeIntervalTree(intervals)
 
-    depth_tree = timeintervaltools.compute_depth_of_intervals(tree)
+    depth_tree = tree.compute_depth()
     max_depth = max([x['depth'] for x in depth_tree])
     layers = [[] for i in range(max_depth)]
 
