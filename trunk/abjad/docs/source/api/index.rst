@@ -3213,7 +3213,6 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/timeintervaltools/all_intervals_are_contiguous
       tools/timeintervaltools/calculate_density_of_attacks_in_interval
       tools/timeintervaltools/calculate_density_of_releases_in_interval
       tools/timeintervaltools/calculate_depth_centroid_of_intervals
@@ -3263,7 +3262,6 @@ Core composition packages
 
    .. toctree::
 
-      tools/timeintervaltools/all_intervals_are_contiguous
       tools/timeintervaltools/calculate_density_of_attacks_in_interval
       tools/timeintervaltools/calculate_density_of_releases_in_interval
       tools/timeintervaltools/calculate_depth_centroid_of_intervals

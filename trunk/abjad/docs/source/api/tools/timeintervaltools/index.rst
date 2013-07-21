@@ -26,7 +26,6 @@ Functions
 
 .. autosummary::
 
-   ~abjad.tools.timeintervaltools.all_intervals_are_contiguous.all_intervals_are_contiguous
    ~abjad.tools.timeintervaltools.calculate_density_of_attacks_in_interval.calculate_density_of_attacks_in_interval
    ~abjad.tools.timeintervaltools.calculate_density_of_releases_in_interval.calculate_density_of_releases_in_interval
    ~abjad.tools.timeintervaltools.calculate_depth_centroid_of_intervals.calculate_depth_centroid_of_intervals

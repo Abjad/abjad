@@ -219,6 +219,19 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
     @property
     def intervals(self):
         return tuple(self[:])
+    
+    @property
+    def intervals_are_contiguous(self):
+        '''True when all intervals are contiguous and non-overlapping,
+        otherwise False.
+
+        Return boolean.
+        '''
+        for first, second in sequencetools.iterate_sequence_pairwise_strict(
+            self):
+            if first.stop_offset != second.start_offset:
+                return False
+        return True
 
     @property
     def intervals_are_nonoverlapping(self):
