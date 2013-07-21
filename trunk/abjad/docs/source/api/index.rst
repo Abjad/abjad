@@ -3243,8 +3243,6 @@ Core composition packages
       tools/timeintervaltools/make_voice_from_nonoverlapping_intervals
       tools/timeintervaltools/mask_intervals_with_intervals
       tools/timeintervaltools/resolve_overlaps_between_nonoverlapping_trees
-      tools/timeintervaltools/scale_aggregate_duration_by_rational
-      tools/timeintervaltools/scale_aggregate_duration_to_rational
       tools/timeintervaltools/scale_interval_durations_by_rational
       tools/timeintervaltools/scale_interval_durations_to_rational
       tools/timeintervaltools/scale_interval_offsets_by_rational
@@ -3304,8 +3302,6 @@ Core composition packages
       tools/timeintervaltools/make_voice_from_nonoverlapping_intervals
       tools/timeintervaltools/mask_intervals_with_intervals
       tools/timeintervaltools/resolve_overlaps_between_nonoverlapping_trees
-      tools/timeintervaltools/scale_aggregate_duration_by_rational
-      tools/timeintervaltools/scale_aggregate_duration_to_rational
       tools/timeintervaltools/scale_interval_durations_by_rational
       tools/timeintervaltools/scale_interval_durations_to_rational
       tools/timeintervaltools/scale_interval_offsets_by_rational

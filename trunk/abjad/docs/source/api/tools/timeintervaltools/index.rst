@@ -56,8 +56,6 @@ Functions
    ~abjad.tools.timeintervaltools.make_voice_from_nonoverlapping_intervals.make_voice_from_nonoverlapping_intervals
    ~abjad.tools.timeintervaltools.mask_intervals_with_intervals.mask_intervals_with_intervals
    ~abjad.tools.timeintervaltools.resolve_overlaps_between_nonoverlapping_trees.resolve_overlaps_between_nonoverlapping_trees
-   ~abjad.tools.timeintervaltools.scale_aggregate_duration_by_rational.scale_aggregate_duration_by_rational
-   ~abjad.tools.timeintervaltools.scale_aggregate_duration_to_rational.scale_aggregate_duration_to_rational
    ~abjad.tools.timeintervaltools.scale_interval_durations_by_rational.scale_interval_durations_by_rational
    ~abjad.tools.timeintervaltools.scale_interval_durations_to_rational.scale_interval_durations_to_rational
    ~abjad.tools.timeintervaltools.scale_interval_offsets_by_rational.scale_interval_offsets_by_rational
