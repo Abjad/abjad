@@ -1,15 +1,14 @@
-from abjad.tools.durationtools import Offset
-from abjad.tools.timeintervaltools import TimeInterval
-from abjad.tools.timeintervaltools import TimeIntervalTree
+from abjad import *
+import py.test
 
 
-def test_TimeIntervalTree_shift_by_rational_01():
+def test_timeintervaltools_TimeIntervalTree_shift_by_rational_01():
 
-    t1 = TimeInterval(-1, 3)
-    t2 = TimeInterval(0, 1)
-    t3 = TimeInterval(1, 2)
+    t1 = timeintervaltools.TimeInterval(-1, 3)
+    t2 = timeintervaltools.TimeInterval(0, 1)
+    t3 = timeintervaltools.TimeInterval(1, 2)
 
-    tree = TimeIntervalTree([t1, t2, t3])
+    tree = timeintervaltools.TimeIntervalTree([t1, t2, t3])
     offset = Offset(1, 2)
     result = tree.shift_by_rational(offset)
 
@@ -19,3 +18,47 @@ def test_TimeIntervalTree_shift_by_rational_01():
         (Offset(-1, 2), Offset(7, 2)),
         (Offset(1, 2), Offset(3, 2)),
         (Offset(3, 2), Offset(5, 2))]
+
+
+def test_timeintervaltools_TimeIntervalTree_shift_by_rational_02():
+    rational = 0
+    tree = timeintervaltools.TimeIntervalTree(timeintervaltools.make_test_intervals())
+
+    shifted = tree.shift_by_rational(rational)
+
+    assert tree.duration == shifted.duration
+    assert tree.start_offset == shifted.start_offset
+
+
+def test_timeintervaltools_TimeIntervalTree_shift_by_rational_03():
+    rational = Fraction(1, 2)
+    tree = timeintervaltools.TimeIntervalTree(timeintervaltools.make_test_intervals())
+
+    shifted = tree.shift_by_rational(rational)
+
+    assert tree.duration == shifted.duration
+    assert tree.start_offset != shifted.start_offset
+    assert shifted.start_offset == rational
+
+
+def test_timeintervaltools_TimeIntervalTree_shift_by_rational_04():
+    rational = Fraction(-1, 2)
+    tree = timeintervaltools.TimeIntervalTree(timeintervaltools.make_test_intervals())
+
+    shifted = tree.shift_by_rational(rational)
+
+    assert tree.duration == shifted.duration
+    assert tree.start_offset != shifted.start_offset
+    assert shifted.start_offset == rational
+
+
+def test_timeintervaltools_TimeIntervalTree_shift_by_rational_05():
+    rational = Fraction(-1, 2)
+    tree = timeintervaltools.TimeIntervalTree(timeintervaltools.make_test_intervals())
+
+    shifted = tree.shift_by_rational(rational)
+    shifted = shifted.shift_by_rational(rational)
+
+    assert tree.duration == shifted.duration
+    assert tree.start_offset != shifted.start_offset
+    assert shifted.start_offset == rational * 2
