@@ -3237,15 +3237,10 @@ Core composition packages
       tools/timeintervaltools/get_all_unique_bounds_in_intervals
       tools/timeintervaltools/group_overlapping_intervals_and_yield_groups
       tools/timeintervaltools/group_tangent_or_overlapping_intervals_and_yield_groups
-      tools/timeintervaltools/make_monophonic_percussion_score_from_nonoverlapping_intervals
-      tools/timeintervaltools/make_polyphonic_percussion_score_from_nonoverlapping_trees
       tools/timeintervaltools/make_test_intervals
       tools/timeintervaltools/make_voice_from_nonoverlapping_intervals
       tools/timeintervaltools/mask_intervals_with_intervals
       tools/timeintervaltools/resolve_overlaps_between_nonoverlapping_trees
-      tools/timeintervaltools/scale_interval_durations_by_rational
-      tools/timeintervaltools/scale_interval_durations_to_rational
-      tools/timeintervaltools/scale_interval_offsets_by_rational
 
 .. only:: latex
 
@@ -3296,15 +3291,10 @@ Core composition packages
       tools/timeintervaltools/get_all_unique_bounds_in_intervals
       tools/timeintervaltools/group_overlapping_intervals_and_yield_groups
       tools/timeintervaltools/group_tangent_or_overlapping_intervals_and_yield_groups
-      tools/timeintervaltools/make_monophonic_percussion_score_from_nonoverlapping_intervals
-      tools/timeintervaltools/make_polyphonic_percussion_score_from_nonoverlapping_trees
       tools/timeintervaltools/make_test_intervals
       tools/timeintervaltools/make_voice_from_nonoverlapping_intervals
       tools/timeintervaltools/mask_intervals_with_intervals
       tools/timeintervaltools/resolve_overlaps_between_nonoverlapping_trees
-      tools/timeintervaltools/scale_interval_durations_by_rational
-      tools/timeintervaltools/scale_interval_durations_to_rational
-      tools/timeintervaltools/scale_interval_offsets_by_rational
 
 :py:mod:`timerelationtools <abjad.tools.timerelationtools>`
 ===========================================================
