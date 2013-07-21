@@ -38,8 +38,8 @@ def mask_intervals_with_intervals(masked_intervals, mask_intervals):
 
     not_mask_tree_bounds = timeintervaltools.get_all_unique_bounds_in_intervals(
         not_mask_tree)
-    split_masked_tree = timeintervaltools.split_intervals_at_rationals(
-        masked_tree, not_mask_tree_bounds)
+    split_masked_tree = timeintervaltools.TimeIntervalTree(
+        masked_tree.split_at_rationals(*not_mask_tree_bounds))
 
     for interval in not_mask_tree:
         starts = set(split_masked_tree.find_intervals_starting_within_interval(

@@ -10,9 +10,8 @@ def calculate_depth_density_of_intervals_in_interval(intervals, interval):
 
     tree = timeintervaltools.TimeIntervalTree(intervals)
 
-    split_tree = timeintervaltools.split_intervals_at_rationals(
-        tree, 
-        [interval.start_offset, interval.stop_offset])
+    split_tree = timeintervaltools.TimeIntervalTree(
+        tree.split_at_rationals(interval.start_offset, interval.stop_offset))
     split_tree = timeintervaltools.TimeIntervalTree(
         split_tree.find_intervals_starting_and_stopping_within_interval(
             interval))
