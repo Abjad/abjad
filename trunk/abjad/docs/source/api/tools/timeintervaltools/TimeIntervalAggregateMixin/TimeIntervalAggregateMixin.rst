@@ -65,6 +65,9 @@ Read-only properties
 Methods
 -------
 
+.. automethod:: abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.clip_interval_durations_to_range
+   :noindex:
+
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.compute_depth
    :noindex:
 

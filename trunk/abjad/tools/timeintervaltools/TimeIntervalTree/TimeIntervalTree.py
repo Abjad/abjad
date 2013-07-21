@@ -578,6 +578,28 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
 
     ### PUBLIC METHODS ###
 
+    def clip_interval_durations_to_range(self, minimum=None, maximum=None):
+        from abjad.tools import timeintervaltools
+        if not self:
+            return self
+        if minimum is not None:
+            minimum = durationtools.Duration(minimum)
+            assert 0 < minimum
+        if maximum is not None:
+            maximum = durationtools.Duration(maximum)
+            assert 0 < maximum
+        if minimum is not None and maximum is not None:
+            assert minimum < maximum
+        intervals = []
+        for interval in self:
+            if minimum is not None and interval.duration < minimum:
+                intervals.append(interval.scale_to_rational(minimum))
+            elif maximum is not None and maximum < interval.duration:
+                intervals.append(interval.scale_to_rational(maximum))
+            else:
+                intervals.append(interval)
+        return timeintervaltools.TimeIntervalTree(intervals)
+
     def find_intervals_intersecting_or_tangent_to_interval(self, *args):
         '''Find all intervals in tree intersecting or tangent to the interval
         defined in `args`:

@@ -307,6 +307,15 @@ class TimeIntervalTreeDictionary(
 
     ### PUBLIC METHODS ###
 
+    def clip_interval_durations_to_range(self, minimum=None, maximum=None):
+        result = {}
+        for key, tree in self.iteritems():
+            result[key] = tree.clip_interval_durations_to_range(
+                minimum=minimum,
+                maximum=maximum,
+                )
+        return type(self)(result)
+
     def find_intervals_intersecting_or_tangent_to_interval(self, *args):
         '''Find all intervals in dictionary intersecting or tangent 
         to the interval defined in `args`:

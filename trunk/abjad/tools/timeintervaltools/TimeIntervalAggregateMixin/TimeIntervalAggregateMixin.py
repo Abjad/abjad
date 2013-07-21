@@ -61,6 +61,10 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
 
     ### PUBLIC METHODS ###
 
+    @abc.abstractmethod
+    def clip_interval_durations_to_range(self, minimum=None, maximum=None):
+        raise NotImplementedError
+
     def compute_depth(self, bounding_interval=None):
         '''Compute a tree whose intervals represent the level of overlap
         of the time interval aggregate:
