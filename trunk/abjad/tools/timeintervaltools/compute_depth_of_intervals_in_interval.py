@@ -1,7 +1,7 @@
 from abjad.tools import sequencetools
 
 
-def compute_depth_of_intervals_in_interval(intervals, interval):
+def compute_depth_of_intervals_in_interval(intervals, bounding_interval):
     '''Compute a tree whose intervals represent the depth (level of overlap)
     in each boundary pair of `intervals`, cropped within `interval`::
 
@@ -27,23 +27,39 @@ def compute_depth_of_intervals_in_interval(intervals, interval):
     from abjad.tools import timeintervaltools
 
     tree = timeintervaltools.TimeIntervalTree(intervals)
-
-    if interval.stop <= tree.start or tree.stop <= interval.start:
+    tree = tree.find_intervals_intersecting_or_tangent_to_interval(
+        bounding_interval)
+    if not tree:
         return timeintervaltools.TimeIntervalTree([timeintervaltools.TimeInterval(
-            interval.start, interval.stop, {'depth': 0})])
-    else:
-        all_bounds = list(timeintervaltools.get_all_unique_bounds_in_intervals(tree))
-        if interval.start < tree.start:
-            all_bounds.insert(0, interval.start)
-        elif tree.start < interval.start:
-            all_bounds = [x for x in all_bounds if interval.start <= x]
-            all_bounds.insert(0, interval.start)
-        if tree.stop < interval.stop:
-            all_bounds.append(interval.stop)
-        elif interval.stop < tree.stop:
-            all_bounds = [x for x in all_bounds if x <= interval.stop]
-            all_bounds.append(interval.stop)
-        all_bounds = sorted(list(set(all_bounds)))
+            bounding_interval.start, bounding_interval.stop, {'depth': 0})])
+
+    all_bounds = list(timeintervaltools.get_all_unique_bounds_in_intervals(
+        tree))
+    while all_bounds[0] < bounding_interval.start:
+        all_bounds.pop(0)
+    while bounding_interval.stop < all_bounds[-1]:
+        all_bounds.pop()
+    if bounding_interval.start < all_bounds[0]:
+        all_bounds.insert(0, bounding_interval.start)
+    if all_bounds[-1] < bounding_interval.stop:
+        all_bounds.append(bounding_interval.stop)
+
+#    if interval.stop <= tree.start or tree.stop <= interval.start:
+#        return timeintervaltools.TimeIntervalTree([timeintervaltools.TimeInterval(
+#            interval.start, interval.stop, {'depth': 0})])
+#    else:
+#        all_bounds = list(timeintervaltools.get_all_unique_bounds_in_intervals(tree))
+#        if interval.start < tree.start:
+#            all_bounds.insert(0, interval.start)
+#        elif tree.start < interval.start:
+#            all_bounds = [x for x in all_bounds if interval.start <= x]
+#            all_bounds.insert(0, interval.start)
+#        if tree.stop < interval.stop:
+#            all_bounds.append(interval.stop)
+#        elif interval.stop < tree.stop:
+#            all_bounds = [x for x in all_bounds if x <= interval.stop]
+#            all_bounds.append(interval.stop)
+#        all_bounds = sorted(list(set(all_bounds)))
 
     depth_intervals = []
     for start, stop in sequencetools.iterate_sequence_pairwise_strict(
