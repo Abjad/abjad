@@ -13,13 +13,11 @@ def concatenate_trees(trees, padding=0):
     padding = durationtools.Duration(padding)
     assert 0 <= padding
 
-    output_tree = timeintervaltools.TimeIntervalTree(
-        timeintervaltools.shift_aggregate_offset_to_rational(trees[0], 0))
+    output_tree = trees[0].shift_to_rational(0)
     for tree in trees[1:]:
         output_tree = timeintervaltools.TimeIntervalTree([
             output_tree,
-            timeintervaltools.shift_aggregate_offset_to_rational(
-                tree, output_tree.latest_stop + padding)
+            tree.shift_to_rational(output_tree.latest_stop + padding)
         ])
 
     return output_tree
