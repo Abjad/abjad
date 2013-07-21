@@ -1185,6 +1185,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
         Return `TimeIntervalTree` instance.
         '''
         rational = durationtools.Duration(rational)
+        assert 0 < rational
         intervals = []
         for interval in self:
             start = durationtools.Offset(
