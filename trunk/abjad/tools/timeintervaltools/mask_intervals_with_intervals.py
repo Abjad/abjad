@@ -36,8 +36,7 @@ def mask_intervals_with_intervals(masked_intervals, mask_intervals):
     if not not_mask_tree:
         return masked_tree
 
-    not_mask_tree_bounds = timeintervaltools.get_all_unique_bounds_in_intervals(
-        not_mask_tree)
+    not_mask_tree_bounds = not_mask_tree.all_unique_bounds
     split_masked_tree = timeintervaltools.TimeIntervalTree(
         masked_tree.split_at_rationals(*not_mask_tree_bounds))
 

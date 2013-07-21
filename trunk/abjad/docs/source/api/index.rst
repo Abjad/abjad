@@ -3234,7 +3234,6 @@ Core composition packages
       tools/timeintervaltools/explode_intervals_uncompactly
       tools/timeintervaltools/fuse_overlapping_intervals
       tools/timeintervaltools/fuse_tangent_or_overlapping_intervals
-      tools/timeintervaltools/get_all_unique_bounds_in_intervals
       tools/timeintervaltools/group_overlapping_intervals_and_yield_groups
       tools/timeintervaltools/group_tangent_or_overlapping_intervals_and_yield_groups
       tools/timeintervaltools/make_test_intervals
@@ -3288,7 +3287,6 @@ Core composition packages
       tools/timeintervaltools/explode_intervals_uncompactly
       tools/timeintervaltools/fuse_overlapping_intervals
       tools/timeintervaltools/fuse_tangent_or_overlapping_intervals
-      tools/timeintervaltools/get_all_unique_bounds_in_intervals
       tools/timeintervaltools/group_overlapping_intervals_and_yield_groups
       tools/timeintervaltools/group_tangent_or_overlapping_intervals_and_yield_groups
       tools/timeintervaltools/make_test_intervals

@@ -17,6 +17,9 @@ Bases
 Read-only properties
 --------------------
 
+.. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.all_unique_bounds
+   :noindex:
+
 .. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.bounds
    :noindex:
 

@@ -47,7 +47,6 @@ Functions
    ~abjad.tools.timeintervaltools.explode_intervals_uncompactly.explode_intervals_uncompactly
    ~abjad.tools.timeintervaltools.fuse_overlapping_intervals.fuse_overlapping_intervals
    ~abjad.tools.timeintervaltools.fuse_tangent_or_overlapping_intervals.fuse_tangent_or_overlapping_intervals
-   ~abjad.tools.timeintervaltools.get_all_unique_bounds_in_intervals.get_all_unique_bounds_in_intervals
    ~abjad.tools.timeintervaltools.group_overlapping_intervals_and_yield_groups.group_overlapping_intervals_and_yield_groups
    ~abjad.tools.timeintervaltools.group_tangent_or_overlapping_intervals_and_yield_groups.group_tangent_or_overlapping_intervals_and_yield_groups
    ~abjad.tools.timeintervaltools.make_test_intervals.make_test_intervals

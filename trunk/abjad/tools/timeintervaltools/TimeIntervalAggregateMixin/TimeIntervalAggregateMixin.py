@@ -12,6 +12,16 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
 
     ### PUBLIC PROPERTIES ###
 
+    @property
+    def all_unique_bounds(self):
+        values = []
+        for interval in self.intervals:
+            if interval.start_offset not in values:
+                values.append(interval.start_offset)
+            if interval.stop_offset not in values:
+                values.append(interval.stop_offset)
+        return tuple(sorted(values))
+    
     @abc.abstractproperty
     def earliest_start(self):
         raise NotImplementedError
@@ -106,8 +116,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
                         {'depth': 0},
                         )
                     ])
-            all_bounds = list(timeintervaltools.get_all_unique_bounds_in_intervals(
-                bounded_tree))
+            all_bounds = list(bounded_tree.all_unique_bounds)
             while all_bounds[0] < bounding_interval.start_offset:
                 all_bounds.pop(0)
             while bounding_interval.stop_offset < all_bounds[-1]:
@@ -117,8 +126,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
             if all_bounds[-1] < bounding_interval.stop_offset:
                 all_bounds.append(bounding_interval.stop_offset)
         else:
-            all_bounds = list(timeintervaltools.get_all_unique_bounds_in_intervals(
-                self))
+            all_bounds = list(self.all_unique_bounds)
         depth_intervals = []
         for start_offset, stop_offset in sequencetools.iterate_sequence_pairwise_strict(
             all_bounds):

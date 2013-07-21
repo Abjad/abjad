@@ -23,6 +23,9 @@ Bases
 Read-only properties
 --------------------
 
+.. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.all_unique_bounds
+   :noindex:
+
 .. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.bounds
    :noindex:
 
