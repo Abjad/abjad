@@ -26,7 +26,6 @@ Functions
 
 .. autosummary::
 
-   ~abjad.tools.timeintervaltools.all_are_intervals_or_trees_or_empty.all_are_intervals_or_trees_or_empty
    ~abjad.tools.timeintervaltools.all_intervals_are_contiguous.all_intervals_are_contiguous
    ~abjad.tools.timeintervaltools.all_intervals_are_nonoverlapping.all_intervals_are_nonoverlapping
    ~abjad.tools.timeintervaltools.calculate_density_of_attacks_in_interval.calculate_density_of_attacks_in_interval

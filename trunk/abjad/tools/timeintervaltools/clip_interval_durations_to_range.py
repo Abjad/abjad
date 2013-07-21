@@ -4,7 +4,13 @@ from abjad.tools import durationtools
 def clip_interval_durations_to_range(intervals, minimum=None, maximum=None):
     from abjad.tools import timeintervaltools
 
-    assert timeintervaltools.all_are_intervals_or_trees_or_empty(intervals)
+    if isinstance(intervals, timeintervaltools.TimeIntervalTree):
+        tree = intervals
+    else:
+        tree = timeintervaltools.TimeIntervalTree(intervals)
+
+    if not tree:
+        return tree
 
     if minimum is not None:
         minimum = durationtools.Duration(minimum)
@@ -16,14 +22,6 @@ def clip_interval_durations_to_range(intervals, minimum=None, maximum=None):
 
     if minimum is not None and maximum is not None:
         assert minimum < maximum
-
-    if isinstance(intervals, timeintervaltools.TimeIntervalTree):
-        tree = intervals
-    else:
-        tree = timeintervaltools.TimeIntervalTree(intervals)
-
-    if not tree:
-        return tree
 
     intervals = []
     for interval in tree:

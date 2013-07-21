@@ -3213,7 +3213,6 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/timeintervaltools/all_are_intervals_or_trees_or_empty
       tools/timeintervaltools/all_intervals_are_contiguous
       tools/timeintervaltools/all_intervals_are_nonoverlapping
       tools/timeintervaltools/calculate_density_of_attacks_in_interval
@@ -3266,7 +3265,6 @@ Core composition packages
 
    .. toctree::
 
-      tools/timeintervaltools/all_are_intervals_or_trees_or_empty
       tools/timeintervaltools/all_intervals_are_contiguous
       tools/timeintervaltools/all_intervals_are_nonoverlapping
       tools/timeintervaltools/calculate_density_of_attacks_in_interval
