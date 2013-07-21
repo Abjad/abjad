@@ -1,7 +1,7 @@
 from abjad.tools import sequencetools
 
 
-def compute_depth_of_intervals(intervals):
+def compute_depth_of_intervals(intervals, bounding_interval=None):
     '''Compute a tree whose intervals represent the depth (level of overlap)
     in each boundary pair of `intervals`::
 
@@ -25,7 +25,31 @@ def compute_depth_of_intervals(intervals):
 
     tree = timeintervaltools.TimeIntervalTree(intervals)
 
-    all_bounds = list(timeintervaltools.get_all_unique_bounds_in_intervals(tree))
+    if bounding_interval is not None:
+        tree = tree.find_intervals_intersecting_or_tangent_to_interval(
+            bounding_interval)
+        if not tree:
+            return timeintervaltools.TimeIntervalTree([
+                timeintervaltools.TimeInterval(
+                    bounding_interval.start, 
+                    bounding_interval.stop, 
+                    {'depth': 0},
+                    )
+                ])
+        all_bounds = list(timeintervaltools.get_all_unique_bounds_in_intervals(
+            tree))
+        while all_bounds[0] < bounding_interval.start:
+            all_bounds.pop(0)
+        while bounding_interval.stop < all_bounds[-1]:
+            all_bounds.pop()
+        if bounding_interval.start < all_bounds[0]:
+            all_bounds.insert(0, bounding_interval.start)
+        if all_bounds[-1] < bounding_interval.stop:
+            all_bounds.append(bounding_interval.stop)
+    else:
+        all_bounds = list(timeintervaltools.get_all_unique_bounds_in_intervals(
+            tree))
+    
     depth_intervals = []
     for start, stop in sequencetools.iterate_sequence_pairwise_strict(
         all_bounds):
