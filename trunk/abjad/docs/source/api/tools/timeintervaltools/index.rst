@@ -43,13 +43,9 @@ Functions
    ~abjad.tools.timeintervaltools.clip_interval_durations_to_range.clip_interval_durations_to_range
    ~abjad.tools.timeintervaltools.compute_depth_of_intervals.compute_depth_of_intervals
    ~abjad.tools.timeintervaltools.compute_logical_and_of_intervals.compute_logical_and_of_intervals
-   ~abjad.tools.timeintervaltools.compute_logical_and_of_intervals_in_interval.compute_logical_and_of_intervals_in_interval
    ~abjad.tools.timeintervaltools.compute_logical_not_of_intervals.compute_logical_not_of_intervals
-   ~abjad.tools.timeintervaltools.compute_logical_not_of_intervals_in_interval.compute_logical_not_of_intervals_in_interval
    ~abjad.tools.timeintervaltools.compute_logical_or_of_intervals.compute_logical_or_of_intervals
-   ~abjad.tools.timeintervaltools.compute_logical_or_of_intervals_in_interval.compute_logical_or_of_intervals_in_interval
    ~abjad.tools.timeintervaltools.compute_logical_xor_of_intervals.compute_logical_xor_of_intervals
-   ~abjad.tools.timeintervaltools.compute_logical_xor_of_intervals_in_interval.compute_logical_xor_of_intervals_in_interval
    ~abjad.tools.timeintervaltools.concatenate_trees.concatenate_trees
    ~abjad.tools.timeintervaltools.explode_intervals_compactly.explode_intervals_compactly
    ~abjad.tools.timeintervaltools.explode_intervals_into_n_trees_heuristically.explode_intervals_into_n_trees_heuristically

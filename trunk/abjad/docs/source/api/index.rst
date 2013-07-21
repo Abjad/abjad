@@ -3230,13 +3230,9 @@ Core composition packages
       tools/timeintervaltools/clip_interval_durations_to_range
       tools/timeintervaltools/compute_depth_of_intervals
       tools/timeintervaltools/compute_logical_and_of_intervals
-      tools/timeintervaltools/compute_logical_and_of_intervals_in_interval
       tools/timeintervaltools/compute_logical_not_of_intervals
-      tools/timeintervaltools/compute_logical_not_of_intervals_in_interval
       tools/timeintervaltools/compute_logical_or_of_intervals
-      tools/timeintervaltools/compute_logical_or_of_intervals_in_interval
       tools/timeintervaltools/compute_logical_xor_of_intervals
-      tools/timeintervaltools/compute_logical_xor_of_intervals_in_interval
       tools/timeintervaltools/concatenate_trees
       tools/timeintervaltools/explode_intervals_compactly
       tools/timeintervaltools/explode_intervals_into_n_trees_heuristically
@@ -3304,13 +3300,9 @@ Core composition packages
       tools/timeintervaltools/clip_interval_durations_to_range
       tools/timeintervaltools/compute_depth_of_intervals
       tools/timeintervaltools/compute_logical_and_of_intervals
-      tools/timeintervaltools/compute_logical_and_of_intervals_in_interval
       tools/timeintervaltools/compute_logical_not_of_intervals
-      tools/timeintervaltools/compute_logical_not_of_intervals_in_interval
       tools/timeintervaltools/compute_logical_or_of_intervals
-      tools/timeintervaltools/compute_logical_or_of_intervals_in_interval
       tools/timeintervaltools/compute_logical_xor_of_intervals
-      tools/timeintervaltools/compute_logical_xor_of_intervals_in_interval
       tools/timeintervaltools/concatenate_trees
       tools/timeintervaltools/explode_intervals_compactly
       tools/timeintervaltools/explode_intervals_into_n_trees_heuristically
