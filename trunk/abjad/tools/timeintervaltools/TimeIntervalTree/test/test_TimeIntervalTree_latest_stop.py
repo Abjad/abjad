@@ -3,7 +3,7 @@ from abjad.tools.timeintervaltools import *
 
 
 def test_TimeIntervalTree_latest_stop_01():
-    '''latest_stop returns maximum stop value of all intervals in tree.
+    '''latest_stop returns maximum stop_offset value of all intervals in tree.
     '''
     blocks = timeintervaltools.make_test_intervals()
     for i in range(len(blocks)):

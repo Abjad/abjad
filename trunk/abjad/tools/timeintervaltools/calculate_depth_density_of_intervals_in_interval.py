@@ -10,11 +10,15 @@ def calculate_depth_density_of_intervals_in_interval(intervals, interval):
 
     tree = timeintervaltools.TimeIntervalTree(intervals)
 
-    split_tree = timeintervaltools.split_intervals_at_rationals(tree, [interval.start, interval.stop])
+    split_tree = timeintervaltools.split_intervals_at_rationals(
+        tree, 
+        [interval.start_offset, interval.stop_offset])
     split_tree = timeintervaltools.TimeIntervalTree(
-        split_tree.find_intervals_starting_and_stopping_within_interval(interval))
+        split_tree.find_intervals_starting_and_stopping_within_interval(
+            interval))
 
     if not split_tree:
         return fractions.Fraction(0)
 
-    return fractions.Fraction(sum([x.duration for x in split_tree])) / interval.duration
+    return fractions.Fraction(sum([x.duration for x in split_tree])) \
+        / interval.duration

@@ -21,7 +21,7 @@ def test_TimeInterval_scale_to_rational_02():
 
     i1 = TimeInterval(3, 23)
     i2 = i1.scale_to_rational(10)
-    assert i1.start == i2.start
+    assert i1.start_offset == i2.start_offset
     assert i2.duration == 10
 
 
@@ -31,7 +31,7 @@ def test_TimeInterval_scale_to_rational_03():
 
     i1 = TimeInterval(3, 23)
     i2 = i1.scale_to_rational(Fraction(2, 5))
-    assert i1.start == i2.start
+    assert i1.start_offset == i2.start_offset
     assert i2.duration == Fraction(2, 5)
 
 

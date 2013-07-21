@@ -17,7 +17,7 @@ def explode_intervals_into_n_trees_heuristically(intervals, n):
         return [tree]
 
     # cache
-    treebounds = timeintervaltools.TimeInterval(tree.start, tree.stop)
+    treebounds = timeintervaltools.TimeInterval(tree.start_offset, tree.stop_offset)
     xtrees = [timeintervaltools.TimeIntervalTree(tree[0])]
     densities = [timeintervaltools.calculate_depth_density_of_intervals_in_interval(
         xtrees[0], treebounds)]

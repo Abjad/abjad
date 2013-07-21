@@ -27,10 +27,10 @@ def mask_intervals_with_intervals(masked_intervals, mask_intervals):
     if not masked_tree or not mask_tree:
         return timeintervaltools.TimeIntervalTree([])
 
-    start = min(mask_tree.start, masked_tree.start)
-    stop = max(mask_tree.stop, masked_tree.stop)
+    start_offset = min(mask_tree.start_offset, masked_tree.start_offset)
+    stop_offset = max(mask_tree.stop_offset, masked_tree.stop_offset)
     not_mask_tree = timeintervaltools.compute_logical_not_of_intervals(
-        mask_tree, timeintervaltools.TimeInterval(start, stop))
+        mask_tree, timeintervaltools.TimeInterval(start_offset, stop_offset))
 
     if not not_mask_tree:
         return masked_tree

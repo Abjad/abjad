@@ -3,7 +3,7 @@ import py.test
 
 
 def test_TimeInterval___init___01():
-    '''High offset must be greater than start offset.
+    '''High offset must be greater than start_offset offset.
     '''
     py.test.raises(AssertionError,
         "i = TimeInterval(0, -10, 'this should fail.')")
@@ -23,12 +23,12 @@ def test_TimeInterval___init___03():
     assert i1 is not i2
 
 def test_TimeInterval___init___04():
-    '''TimeIntervals can be instantiated with just a start and stop offset.
+    '''TimeIntervals can be instantiated with just a start_offset and stop_offset offset.
     '''
     i = TimeInterval(0, 10)
 
 def test_TimeInterval___init___05():
-    '''TimeIntervals can be instantiated with start offset, stop offset and dictionary.
+    '''TimeIntervals can be instantiated with start_offset offset, stop_offset offset and dictionary.
     '''
     i = TimeInterval(0, 10, {'hello': 'world!'})
 

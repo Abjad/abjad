@@ -6,7 +6,7 @@ from abjad.tools.timeintervaltools.TimeIntervalMixin import TimeIntervalMixin
 
 
 class TimeInterval(TimeIntervalMixin, collections.MutableMapping):
-    '''A start / stop pair, carrying some metadata.
+    '''A start_offset / stop_offset pair, carrying some metadata.
     '''
 
     ### CLASS VARIABLES ###
@@ -21,20 +21,20 @@ class TimeInterval(TimeIntervalMixin, collections.MutableMapping):
 
     def __init__(self, *args):
         if len(args) == 1 and isinstance(args[0], type(self)):
-            start, stop, data = args[0].start, args[0].stop, args[0]
+            start_offset, stop_offset, data = args[0].start_offset, args[0].stop_offset, args[0]
         elif len(args) == 2:
-            start, stop, data = args[0], args[1], {}
+            start_offset, stop_offset, data = args[0], args[1], {}
         elif len(args) == 3:
-            start, stop, data = args[0], args[1], args[2]
+            start_offset, stop_offset, data = args[0], args[1], args[2]
 
-        start, stop = durationtools.Offset(start), durationtools.Offset(stop)
-        assert start < stop
+        start_offset, stop_offset = durationtools.Offset(start_offset), durationtools.Offset(stop_offset)
+        assert start_offset < stop_offset
         if isinstance(data, type(self)):
             data = data._data
         assert isinstance(data, dict)
 
-        object.__setattr__(self, '_start', start)
-        object.__setattr__(self, '_stop', stop)
+        object.__setattr__(self, '_start', start_offset)
+        object.__setattr__(self, '_stop', stop_offset)
         object.__setattr__(self, '_data', copy.copy(data))
 
     ### SPECIAL METHODS ###
@@ -44,8 +44,8 @@ class TimeInterval(TimeIntervalMixin, collections.MutableMapping):
 
     def __eq__(self, expr):
         if type(expr) == type(self) and \
-            expr.start == self.start and \
-            expr.stop == self.stop and \
+            expr.start_offset == self.start_offset and \
+            expr.stop_offset == self.stop_offset and \
             expr._data == self._data:
                 return True
         return False
@@ -68,7 +68,7 @@ class TimeInterval(TimeIntervalMixin, collections.MutableMapping):
 
     def __repr__(self):
         return '%s(%r, %r, %r)' % (
-            self._class_name, self.start, self.stop, self._data)
+            self._class_name, self.start_offset, self.stop_offset, self._data)
 
     def __setitem__(self, item, value):
         self._data.__setitem__(item, value)
@@ -77,31 +77,31 @@ class TimeInterval(TimeIntervalMixin, collections.MutableMapping):
 
     @property
     def center(self):
-        '''Center point of start and stop bounds.
+        '''Center point of start_offset and stop_offset bounds.
         '''
-        return durationtools.Offset(self.stop + self.start) / 2
+        return durationtools.Offset(self.stop_offset + self.start_offset) / 2
 
     @property
     def duration(self):
-        '''stop bound minus start bound.
+        '''stop_offset bound minus start_offset bound.
         '''
-        return durationtools.Duration(self.stop - self.start)
+        return durationtools.Duration(self.stop_offset - self.start_offset)
 
     @property
     def signature(self):
-        '''Tuple of start bound and stop bound.
+        '''Tuple of start_offset bound and stop_offset bound.
         '''
-        return (self.start, self.stop)
+        return (self.start_offset, self.stop_offset)
 
     @property
-    def start(self):
-        '''start bound.
+    def start_offset(self):
+        '''start_offset bound.
         '''
         return self._start
 
     @property
-    def stop(self):
-        '''stop bound.
+    def stop_offset(self):
+        '''stop_offset bound.
         '''
         return self._stop
 
@@ -110,8 +110,8 @@ class TimeInterval(TimeIntervalMixin, collections.MutableMapping):
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
         pieces = []
         pieces.append('{}('.format(self._tools_package_qualified_class_name))
-        pieces.append('\t{!r},'.format(self.start))
-        pieces.append('\t{!r},'.format(self.stop))
+        pieces.append('\t{!r},'.format(self.start_offset))
+        pieces.append('\t{!r},'.format(self.stop_offset))
 
         if len(self):
             pieces.append('\t{')
@@ -144,20 +144,20 @@ class TimeInterval(TimeIntervalMixin, collections.MutableMapping):
     def quantize_to_rational(self, rational):
         rational = durationtools.Duration(rational)
         assert 0 < rational
-        start = durationtools.Offset(
-            int(round(interval.start / rational))) * rational
-        stop = durationtools.Offset(
-            int(round(interval.stop / rational))) * rational
-        if start == stop:
-            stop = start + rational
-        return type(self)(start, stop, self)
+        start_offset = durationtools.Offset(
+            int(round(interval.start_offset / rational))) * rational
+        stop_offset = durationtools.Offset(
+            int(round(interval.stop_offset / rational))) * rational
+        if start_offset == stop_offset:
+            stop_offset = start_offset + rational
+        return type(self)(start_offset, stop_offset, self)
 
     def scale_by_rational(self, rational):
         rational = durationtools.Duration(rational)
         assert 0 < rational
         if rational != 1:
-            new_duration = (self.stop - self.start) * rational
-            return type(self)(self.start, self.start + new_duration, self)
+            new_duration = (self.stop_offset - self.start_offset) * rational
+            return type(self)(self.start_offset, self.start_offset + new_duration, self)
         else:
             return self
 
@@ -165,7 +165,7 @@ class TimeInterval(TimeIntervalMixin, collections.MutableMapping):
         rational = durationtools.Duration(rational)
         assert 0 < rational
         if rational != self.duration:
-            return type(self)(self.start, self.start + rational, self)
+            return type(self)(self.start_offset, self.start_offset + rational, self)
         else:
             return self
 
@@ -173,14 +173,14 @@ class TimeInterval(TimeIntervalMixin, collections.MutableMapping):
         rational = durationtools.Duration(rational)
         if rational != 0:
             return type(self)(
-                self.start + rational, self.stop + rational, self)
+                self.start_offset + rational, self.stop_offset + rational, self)
         else:
             return self
 
     def shift_to_rational(self, rational):
         rational = durationtools.Offset(rational)
-        if rational != self.start:
-            duration = self.stop - self.start
+        if rational != self.start_offset:
+            duration = self.stop_offset - self.start_offset
             return type(self)(rational, rational + duration, self)
         else:
             return self
@@ -193,11 +193,11 @@ class TimeInterval(TimeIntervalMixin, collections.MutableMapping):
         new_intervals = []
         for rational in sorted(rationals):
             for interval in intervals:
-                if interval.start < rational < interval.stop:
+                if interval.start_offset < rational < interval.stop_offset:
                     new_intervals.append(
-                        type(self)(interval.start, rational, self))
+                        type(self)(interval.start_offset, rational, self))
                     new_intervals.append(
-                        type(self)(rational, interval.stop, self))
+                        type(self)(rational, interval.stop_offset, self))
                 else:
                     new_intervals.append(type(self)(interval))
             intervals = new_intervals

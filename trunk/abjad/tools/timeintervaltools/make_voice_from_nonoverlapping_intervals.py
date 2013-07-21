@@ -18,7 +18,7 @@ def make_voice_from_nonoverlapping_intervals(intervals, colorkey=None, pitch=Non
     voice = voicetools.Voice([])
 
     depth_tree = timeintervaltools.compute_depth_of_intervals(
-        tree, bounding_interval=timeintervaltools.TimeInterval(0, tree.stop))
+        tree, bounding_interval=timeintervaltools.TimeInterval(0, tree.stop_offset))
 
     if pitch is None:
         pitch = 0
@@ -41,7 +41,7 @@ def make_voice_from_nonoverlapping_intervals(intervals, colorkey=None, pitch=Non
             note.duration_multiplier = depth_interval.duration
             if colorkey is not None:
                 try:
-                    original_interval = tree.find_intervals_starting_at_offset(depth_interval.start)[0]
+                    original_interval = tree.find_intervals_starting_at_offset(depth_interval.start_offset)[0]
                     color = schemetools.SchemeColor(original_interval[colorkey])
                     note.override.note_head.color = color
                     note.override.glissando.color = color

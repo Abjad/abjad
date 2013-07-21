@@ -19,7 +19,7 @@ def test_TimeInterval_shift_by_rational_02():
 
     i1 = TimeInterval(3, 23)
     i2 = i1.shift_by_rational(2)
-    assert i2.start == 5
+    assert i2.start_offset == 5
     assert i2.duration == i1.duration
 
 
@@ -29,5 +29,5 @@ def test_TimeInterval_shift_by_rational_03():
 
     i1 = TimeInterval(3, 23)
     i2 = i1.shift_by_rational(Fraction(1, 5))
-    assert i2.start == Fraction(16, 5)
+    assert i2.start_offset == Fraction(16, 5)
     assert i2.duration == i1.duration

@@ -3,7 +3,7 @@ from abjad.tools.timeintervaltools import *
 
 
 def test_TimeIntervalTree_earliest_stop_01():
-    '''earliest_stop returns minimum stop value of all intervals in tree.
+    '''earliest_stop returns minimum stop_offset value of all intervals in tree.
     '''
     blocks = timeintervaltools.make_test_intervals()
     for i in range(len(blocks)):

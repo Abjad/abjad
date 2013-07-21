@@ -14,19 +14,19 @@ def group_tangent_or_overlapping_intervals_and_yield_groups(intervals):
     groups = []
     group = [tree[0]]
 
-    # start = group[0].start
-    stop = group[0].stop
+    # start_offset = group[0].start_offset
+    stop_offset = group[0].stop_offset
 
     for i in range(1, len(tree)):
-        if tree[i].start <= stop:
+        if tree[i].start_offset <= stop_offset:
             group.append(tree[i])
-            if stop < tree[i].stop:
-                stop = tree[i].stop
+            if stop_offset < tree[i].stop_offset:
+                stop_offset = tree[i].stop_offset
         else:
             groups.append(group)
             group = [tree[i]]
-            # start = group[0].start
-            stop = group[0].stop
+            # start_offset = group[0].start_offset
+            stop_offset = group[0].stop_offset
 
     if group not in groups:
         groups.append(group)

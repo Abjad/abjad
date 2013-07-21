@@ -30,7 +30,7 @@ class TimeIntervalMixin(AbjadObject):
 
     @property
     def bounds(self):
-        '''Start and stop of self returned as TimeInterval instance:
+        '''Start and stop_offset of self returned as TimeInterval instance:
 
         ::
 
@@ -46,11 +46,11 @@ class TimeIntervalMixin(AbjadObject):
         Returns `TimeInterval` instance.
         '''
         from abjad.tools import timeintervaltools
-        return timeintervaltools.TimeInterval(self.start, self.stop)
+        return timeintervaltools.TimeInterval(self.start_offset, self.stop_offset)
 
     @property
     def center(self):
-        '''Center offset of start and stop offsets:
+        '''Center offset of start_offset and stop_offset offsets:
 
         ::
 
@@ -60,8 +60,8 @@ class TimeIntervalMixin(AbjadObject):
 
         Returns `Offset` instance.
         '''
-        if self.start is not None and self.stop is not None:
-            return durationtools.Offset(self.stop + self.start) / 2
+        if self.start_offset is not None and self.stop_offset is not None:
+            return durationtools.Offset(self.stop_offset + self.start_offset) / 2
         raise UnboundedTimeIntervalError
 
     @property
@@ -76,13 +76,13 @@ class TimeIntervalMixin(AbjadObject):
 
         Returns `Duration` instance.
         '''
-        if self.start is not None and self.stop is not None:
-            return durationtools.Duration(self.stop - self.start)
+        if self.start_offset is not None and self.stop_offset is not None:
+            return durationtools.Duration(self.stop_offset - self.start_offset)
         raise UnboundedTimeIntervalError
 
     @property
     def signature(self):
-        '''Tuple of start bound and stop bound.
+        '''Tuple of start_offset bound and stop_offset bound.
 
         ::
 
@@ -92,18 +92,18 @@ class TimeIntervalMixin(AbjadObject):
 
         Returns 2-tuple of `Offset` instances.
         '''
-        if self.start is not None and self.stop is not None:
-            return (self.start, self.stop)
+        if self.start_offset is not None and self.stop_offset is not None:
+            return (self.start_offset, self.stop_offset)
         raise UnboundedTimeIntervalError
 
     @property
-    def start(self):
+    def start_offset(self):
         '''Starting offset of interval:
 
         ::
 
             >>> interval = TimeInterval(2, 10)
-            >>> interval.start
+            >>> interval.start_offset
             Offset(2, 1)
 
         Returns `Offset` instance.
@@ -111,13 +111,13 @@ class TimeIntervalMixin(AbjadObject):
         return self._start
 
     @property
-    def stop(self):
+    def stop_offset(self):
         '''Stopping offset of interval:
 
         ::
 
             >>> interval = TimeInterval(2, 10)
-            >>> interval.stop
+            >>> interval.stop_offset
             Offset(10, 1)
 
         Returns `Offset` instance.
@@ -131,7 +131,7 @@ class TimeIntervalMixin(AbjadObject):
         '''
         assert isinstance(interval, TimeIntervalMixin)
 
-        if self.start is None or self.stop is None:
+        if self.start_offset is None or self.stop_offset is None:
             raise UnboundedTimeIntervalError
 
         if not self.is_overlapped_by_interval(interval):
@@ -140,20 +140,20 @@ class TimeIntervalMixin(AbjadObject):
             return interval.duration
         elif self.is_contained_by_interval(interval):
             return self.duration
-        elif self.start < interval.start:
-            return self.stop - interval.start
+        elif self.start_offset < interval.start_offset:
+            return self.stop_offset - interval.start_offset
         else:
-            return interval.stop - self.start
+            return interval.stop_offset - self.start_offset
 
     def is_contained_by_interval(self, interval):
         '''True if interval is contained by `interval`.
         '''
         assert isinstance(interval, TimeIntervalMixin)
 
-        if self.start is None or self.stop is None:
+        if self.start_offset is None or self.stop_offset is None:
             raise UnboundedTimeIntervalError
 
-        if interval.start <= self.start and self.stop <= interval.stop:
+        if interval.start_offset <= self.start_offset and self.stop_offset <= interval.stop_offset:
             return True
         else:
             return False
@@ -163,10 +163,10 @@ class TimeIntervalMixin(AbjadObject):
         '''
         assert isinstance(interval, TimeIntervalMixin)
 
-        if self.start is None or self.stop is None:
+        if self.start_offset is None or self.stop_offset is None:
             raise UnboundedTimeIntervalError
 
-        if self.start <= interval.start and interval.stop <= self.stop:
+        if self.start_offset <= interval.start_offset and interval.stop_offset <= self.stop_offset:
             return True
         else:
             return False
@@ -176,20 +176,20 @@ class TimeIntervalMixin(AbjadObject):
         '''
         assert isinstance(interval, TimeIntervalMixin)
 
-        if self.start is None or self.stop is None:
+        if self.start_offset is None or self.stop_offset is None:
             raise UnboundedTimeIntervalError
 
         if self.is_container_of_interval(interval):
             return True
         elif self.is_contained_by_interval(interval):
             return True
-        elif self.start < interval.start < self.stop:
+        elif self.start_offset < interval.start_offset < self.stop_offset:
             return True
-        elif self.start == interval.start:
+        elif self.start_offset == interval.start_offset:
             return True
-        elif self.stop == interval.stop:
+        elif self.stop_offset == interval.stop_offset:
             return True
-        elif self.start < interval.stop < self.stop:
+        elif self.start_offset < interval.stop_offset < self.stop_offset:
             return True
         return False
 
@@ -198,46 +198,46 @@ class TimeIntervalMixin(AbjadObject):
         '''
         assert isinstance(interval, TimeIntervalMixin)
 
-        if self.start is None or self.stop is None:
+        if self.start_offset is None or self.stop_offset is None:
             raise UnboundedTimeIntervalError
 
-        if self.stop == interval.start or interval.stop == self.start:
+        if self.stop_offset == interval.start_offset or interval.stop_offset == self.start_offset:
             return True
         else:
             return False
 
     @abc.abstractmethod
     def quantize_to_rational(self, rational):
-        if self.start is None or self.stop is None:
+        if self.start_offset is None or self.stop_offset is None:
             raise UnboundedTimeIntervalError
         raise NotImplementedErro
 
     @abc.abstractmethod
     def scale_by_rational(self, rational):
-        if self.start is None or self.stop is None:
+        if self.start_offset is None or self.stop_offset is None:
             raise UnboundedTimeIntervalError
         raise NotImplementedError
 
     @abc.abstractmethod
     def scale_to_rational(self, rational):
-        if self.start is None or self.stop is None:
+        if self.start_offset is None or self.stop_offset is None:
             raise UnboundedTimeIntervalError
         raise NotImplementedError
 
     @abc.abstractmethod
     def shift_by_rational(self, rational):
-        if self.start is None or self.stop is None:
+        if self.start_offset is None or self.stop_offset is None:
             raise UnboundedTimeIntervalError
         raise NotImplementedError
 
     @abc.abstractmethod
     def shift_to_rational(self, rational):
-        if self.start is None or self.stop is None:
+        if self.start_offset is None or self.stop_offset is None:
             raise UnboundedTimeIntervalError
         raise NotImplementedError
 
     @abc.abstractmethod
     def split_at_rationals(self, *rationals):
-        if self.start is None or self.stop is None:
+        if self.start_offset is None or self.stop_offset is None:
             raise UnboundedTimeIntervalError
         raise NotImplementedError

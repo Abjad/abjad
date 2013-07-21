@@ -11,4 +11,4 @@ def calculate_mean_release_of_intervals(intervals):
     if not tree:
         return None
 
-    return durationtools.Offset(sum([i.stop for i in tree])) / len(tree)
+    return durationtools.Offset(sum([i.stop_offset for i in tree])) / len(tree)

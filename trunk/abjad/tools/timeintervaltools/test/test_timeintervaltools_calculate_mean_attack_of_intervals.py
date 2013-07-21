@@ -5,7 +5,7 @@ from abjad.tools.timeintervaltools import *
 def test_timeintervaltools_calculate_mean_attack_of_intervals_01():
     tree = TimeIntervalTree(timeintervaltools.make_test_intervals())
     attack = calculate_mean_attack_of_intervals(tree)
-    assert attack == Offset(sum([x.start for x in tree]), len(tree))
+    assert attack == Offset(sum([x.start_offset for x in tree]), len(tree))
 
 
 def test_timeintervaltools_calculate_mean_attack_of_intervals_02():

@@ -11,4 +11,4 @@ def calculate_mean_attack_of_intervals(intervals):
     if not tree:
         return None
 
-    return durationtools.Offset(sum([i.start for i in tree])) / len(tree)
+    return durationtools.Offset(sum([i.start_offset for i in tree])) / len(tree)

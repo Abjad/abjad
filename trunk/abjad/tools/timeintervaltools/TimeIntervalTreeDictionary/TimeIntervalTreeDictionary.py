@@ -78,8 +78,8 @@ class TimeIntervalTreeDictionary(
             result = args[0]
             dict.update(self, result)
             object.__setattr__(self, '_composite_tree', result.composite_tree)
-            object.__setattr__(self, '_start', result.start)
-            object.__setattr__(self, '_stop', result.stop)
+            object.__setattr__(self, '_start', result.start_offset)
+            object.__setattr__(self, '_stop', result.stop_offset)
 
         # fuse dictionaries keywise
         elif 1 < len(args) and all(isinstance(x, type(self)) for x in args):
@@ -96,8 +96,8 @@ class TimeIntervalTreeDictionary(
                 self, 
                 '_composite_tree',
                 timeintervaltools.TimeIntervalTree(self.values()))
-            object.__setattr__(self, '_start', self.composite_tree.start)
-            object.__setattr__(self, '_stop', self.composite_tree.stop)
+            object.__setattr__(self, '_start', self.composite_tree.start_offset)
+            object.__setattr__(self, '_stop', self.composite_tree.stop_offset)
 
         # unpack a regular dict as pairs, or simply accept pairs
         else:
@@ -121,8 +121,8 @@ class TimeIntervalTreeDictionary(
                 self,
                 '_composite_tree',
                 timeintervaltools.TimeIntervalTree(self.values()))
-            object.__setattr__(self, '_start', self.composite_tree.start)
-            object.__setattr__(self, '_stop', self.composite_tree.stop)
+            object.__setattr__(self, '_start', self.composite_tree.start_offset)
+            object.__setattr__(self, '_stop', self.composite_tree.stop_offset)
 
     ### SPECIAL METHODS ###
 
@@ -174,7 +174,7 @@ class TimeIntervalTreeDictionary(
 
     @property
     def earliest_start(self):
-        '''The earliest start offset of all intervals in all trees in self:
+        '''The earliest start_offset offset of all intervals in all trees in self:
 
         ::
 
@@ -196,7 +196,7 @@ class TimeIntervalTreeDictionary(
 
     @property
     def earliest_stop(self):
-        '''The earliest stop offset of all intervals in all trees in self:
+        '''The earliest stop_offset offset of all intervals in all trees in self:
 
         ::
 
@@ -222,7 +222,7 @@ class TimeIntervalTreeDictionary(
 
     @property
     def latest_start(self):
-        '''The latest start offset of all intervals in all trees in self:
+        '''The latest start_offset offset of all intervals in all trees in self:
 
         ::
 
@@ -244,7 +244,7 @@ class TimeIntervalTreeDictionary(
 
     @property
     def latest_stop(self):
-        '''The latest stop offset of all intervals in all trees in self:
+        '''The latest stop_offset offset of all intervals in all trees in self:
 
         ::
 
@@ -1248,7 +1248,7 @@ class TimeIntervalTreeDictionary(
 
         ::
 
-            >>> result.start == treedict.start
+            >>> result.start_offset == treedict.start_offset
             True
             >>> result.duration == treedict.duration * 2
             True
@@ -1258,10 +1258,10 @@ class TimeIntervalTreeDictionary(
         rational = durationtools.Duration(rational)
         result = {}
         for key, tree in self.iteritems():
-            offset = (tree.start - self.start) * rational
+            offset = (tree.start_offset - self.start_offset) * rational
             result[key] = \
                 tree.scale_by_rational(rational).shift_to_rational(
-                self.start + offset)
+                self.start_offset + offset)
         return type(self)(result)
 
     def scale_to_rational(self, rational):
@@ -1355,7 +1355,7 @@ class TimeIntervalTreeDictionary(
         rational = durationtools.Duration(rational)
         result = {}
         for key, tree in self.iteritems():
-            offset = (((tree.start - self.start) / self.duration) * rational) + self.start
+            offset = (((tree.start_offset - self.start_offset) / self.duration) * rational) + self.start_offset
             duration = (tree.duration / self.duration) * rational
             result[key] = \
                 tree.scale_to_rational(duration).shift_to_rational(offset)
@@ -1473,7 +1473,7 @@ class TimeIntervalTreeDictionary(
         rational = durationtools.Offset(rational)
         result = {}
         for key, tree in self.iteritems():
-            offset = tree.start - self.start
+            offset = tree.start_offset - self.start_offset
             result[key] = tree.shift_to_rational(rational + offset)
         return type(self)(result)
 
@@ -1555,7 +1555,7 @@ class TimeIntervalTreeDictionary(
         '''
         assert 0 < len(rationals)
         rationals = sorted([durationtools.Offset(x) for x in rationals])
-        rationals = [x for x in rationals if self.start < x < self.stop]
+        rationals = [x for x in rationals if self.start_offset < x < self.stop_offset]
         dicts = []
         carried = dict(self)
         to_remove = []
@@ -1568,11 +1568,11 @@ class TimeIntervalTreeDictionary(
                 if len(splits) == 2:
                     result[key] = splits[0]
                     carried[key] = splits[1]
-                elif splits[0].stop <= rational:
+                elif splits[0].stop_offset <= rational:
                     result[key] = splits[0]
                     carried[key] = None
                     to_remove.append(key)
-                elif rational <= splits[0].start:
+                elif rational <= splits[0].start_offset:
                     pass
                 else:
                     raise Exception('Tree failed to split.')

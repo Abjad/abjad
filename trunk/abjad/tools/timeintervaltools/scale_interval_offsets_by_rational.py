@@ -33,6 +33,6 @@ def scale_interval_offsets_by_rational(intervals, rational):
         return tree
 
     return timeintervaltools.TimeIntervalTree([
-        x.shift_to_rational(((x.start - tree.start) * rational) + tree.start) \
+        x.shift_to_rational(((x.start_offset - tree.start_offset) * rational) + tree.start_offset) \
             for x in tree
     ])

@@ -50,36 +50,36 @@ def compute_depth_of_intervals(intervals, bounding_interval=None):
         if not tree:
             return timeintervaltools.TimeIntervalTree([
                 timeintervaltools.TimeInterval(
-                    bounding_interval.start, 
-                    bounding_interval.stop, 
+                    bounding_interval.start_offset, 
+                    bounding_interval.stop_offset, 
                     {'depth': 0},
                     )
                 ])
         all_bounds = list(timeintervaltools.get_all_unique_bounds_in_intervals(
             tree))
-        while all_bounds[0] < bounding_interval.start:
+        while all_bounds[0] < bounding_interval.start_offset:
             all_bounds.pop(0)
-        while bounding_interval.stop < all_bounds[-1]:
+        while bounding_interval.stop_offset < all_bounds[-1]:
             all_bounds.pop()
-        if bounding_interval.start < all_bounds[0]:
-            all_bounds.insert(0, bounding_interval.start)
-        if all_bounds[-1] < bounding_interval.stop:
-            all_bounds.append(bounding_interval.stop)
+        if bounding_interval.start_offset < all_bounds[0]:
+            all_bounds.insert(0, bounding_interval.start_offset)
+        if all_bounds[-1] < bounding_interval.stop_offset:
+            all_bounds.append(bounding_interval.stop_offset)
     else:
         all_bounds = list(timeintervaltools.get_all_unique_bounds_in_intervals(
             tree))
     
     depth_intervals = []
-    for start, stop in sequencetools.iterate_sequence_pairwise_strict(
+    for start_offset, stop_offset in sequencetools.iterate_sequence_pairwise_strict(
         all_bounds):
-        current_interval = timeintervaltools.TimeInterval(start, stop, {})
+        current_interval = timeintervaltools.TimeInterval(start_offset, stop_offset, {})
         found = tree.find_intervals_intersecting_or_tangent_to_interval(
             current_interval)
         depth = 0
         if found:
             depth = len([x for x in found 
-                if (not x.start == current_interval.stop 
-                and not x.stop == current_interval.start)])
+                if (not x.start_offset == current_interval.stop_offset 
+                and not x.stop_offset == current_interval.start_offset)])
         current_interval['depth'] = depth
         depth_intervals.append(current_interval)
 

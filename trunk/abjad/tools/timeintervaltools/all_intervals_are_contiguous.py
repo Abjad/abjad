@@ -7,7 +7,7 @@ def all_intervals_are_contiguous(intervals):
     tree = timeintervaltools.TimeIntervalTree(intervals)
 
     for i in range(1, len(tree)):
-        if tree[i].start != tree[i-1].stop:
+        if tree[i].start_offset != tree[i-1].stop_offset:
             return False
 
     return True

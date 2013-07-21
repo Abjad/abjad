@@ -28,9 +28,9 @@ def shift_aggregate_offset_to_rational(intervals, rational):
 
     rational = durationtools.Duration(rational)
 
-    if not tree or rational == tree.start:
+    if not tree or rational == tree.start_offset:
         return tree
 
     return timeintervaltools.TimeIntervalTree([
-        x.shift_by_rational(rational - tree.start) for x in tree
+        x.shift_by_rational(rational - tree.start_offset) for x in tree
     ])

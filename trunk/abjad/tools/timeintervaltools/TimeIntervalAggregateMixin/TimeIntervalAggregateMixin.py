@@ -37,16 +37,16 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
         from collections import Counter
         offsets = []
         for interval in self.intervals:
-            offsets.append(interval.start)
-            offsets.append(interval.stop)
+            offsets.append(interval.start_offset)
+            offsets.append(interval.stop_offset)
         return dict(Counter(offsets))
 
     @property
     def offsets(self):
         offsets = []
         for interval in self.intervals:
-            offsets.append(interval.start)
-            offsets.append(interval.stop)
+            offsets.append(interval.start_offset)
+            offsets.append(interval.stop_offset)
         return set(offsets)
 
     ### PUBLIC METHODS ###
