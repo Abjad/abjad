@@ -29,18 +29,22 @@ def mask_intervals_with_intervals(masked_intervals, mask_intervals):
 
     start = min(mask_tree.start, masked_tree.start)
     stop = max(mask_tree.stop, masked_tree.stop)
-    not_mask_tree = timeintervaltools.compute_logical_not_of_intervals_in_interval(
+    not_mask_tree = timeintervaltools.compute_logical_not_of_intervals(
         mask_tree, timeintervaltools.TimeInterval(start, stop))
 
     if not not_mask_tree:
         return masked_tree
 
-    not_mask_tree_bounds = timeintervaltools.get_all_unique_bounds_in_intervals(not_mask_tree)
-    split_masked_tree = timeintervaltools.split_intervals_at_rationals(masked_tree, not_mask_tree_bounds)
+    not_mask_tree_bounds = timeintervaltools.get_all_unique_bounds_in_intervals(
+        not_mask_tree)
+    split_masked_tree = timeintervaltools.split_intervals_at_rationals(
+        masked_tree, not_mask_tree_bounds)
 
     for interval in not_mask_tree:
-        starts = set(split_masked_tree.find_intervals_starting_within_interval(interval))
-        stops = set(split_masked_tree.find_intervals_stopping_within_interval(interval))
+        starts = set(split_masked_tree.find_intervals_starting_within_interval(
+            interval))
+        stops = set(split_masked_tree.find_intervals_stopping_within_interval(
+            interval))
         intersection = set(starts).intersection(set(stops))
         split_masked_tree = timeintervaltools.TimeIntervalTree(
             list(set(split_masked_tree).difference(intersection)))
