@@ -27,7 +27,6 @@ Functions
 .. autosummary::
 
    ~abjad.tools.timeintervaltools.all_intervals_are_contiguous.all_intervals_are_contiguous
-   ~abjad.tools.timeintervaltools.all_intervals_are_nonoverlapping.all_intervals_are_nonoverlapping
    ~abjad.tools.timeintervaltools.calculate_density_of_attacks_in_interval.calculate_density_of_attacks_in_interval
    ~abjad.tools.timeintervaltools.calculate_density_of_releases_in_interval.calculate_density_of_releases_in_interval
    ~abjad.tools.timeintervaltools.calculate_depth_centroid_of_intervals.calculate_depth_centroid_of_intervals
@@ -49,6 +48,5 @@ Functions
    ~abjad.tools.timeintervaltools.group_overlapping_intervals_and_yield_groups.group_overlapping_intervals_and_yield_groups
    ~abjad.tools.timeintervaltools.group_tangent_or_overlapping_intervals_and_yield_groups.group_tangent_or_overlapping_intervals_and_yield_groups
    ~abjad.tools.timeintervaltools.make_test_intervals.make_test_intervals
-   ~abjad.tools.timeintervaltools.make_voice_from_nonoverlapping_intervals.make_voice_from_nonoverlapping_intervals
    ~abjad.tools.timeintervaltools.mask_intervals_with_intervals.mask_intervals_with_intervals
    ~abjad.tools.timeintervaltools.resolve_overlaps_between_nonoverlapping_trees.resolve_overlaps_between_nonoverlapping_trees

@@ -40,6 +40,9 @@ Read-only properties
 .. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.intervals
    :noindex:
 
+.. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.intervals_are_nonoverlapping
+   :noindex:
+
 .. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.latest_start
    :noindex:
 

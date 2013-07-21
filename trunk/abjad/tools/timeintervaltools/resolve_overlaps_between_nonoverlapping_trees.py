@@ -29,7 +29,7 @@ def resolve_overlaps_between_nonoverlapping_trees(trees, minimum_duration=None):
 
     assert isinstance(trees, collections.Iterable) and len(trees) \
         and all(isinstance(x, timeintervaltools.TimeIntervalTree) for x in trees) \
-        and all(timeintervaltools.all_intervals_are_nonoverlapping(x) for x in trees)
+        and all(x.intervals_are_nonoverlapping for x in trees)
 
     if minimum_duration is None:
         minimum_duration = durationtools.Duration(0)
@@ -44,6 +44,6 @@ def resolve_overlaps_between_nonoverlapping_trees(trees, minimum_duration=None):
         masked = timeintervaltools.mask_intervals_with_intervals(tree, xor)
         rtree._insert([x for x in masked if minimum_duration <= x.duration])
 
-    assert timeintervaltools.all_intervals_are_nonoverlapping(rtree)
+    assert rtree.intervals_are_nonoverlapping
 
     return rtree

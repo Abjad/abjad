@@ -3214,7 +3214,6 @@ Core composition packages
       :maxdepth: 1
 
       tools/timeintervaltools/all_intervals_are_contiguous
-      tools/timeintervaltools/all_intervals_are_nonoverlapping
       tools/timeintervaltools/calculate_density_of_attacks_in_interval
       tools/timeintervaltools/calculate_density_of_releases_in_interval
       tools/timeintervaltools/calculate_depth_centroid_of_intervals
@@ -3236,7 +3235,6 @@ Core composition packages
       tools/timeintervaltools/group_overlapping_intervals_and_yield_groups
       tools/timeintervaltools/group_tangent_or_overlapping_intervals_and_yield_groups
       tools/timeintervaltools/make_test_intervals
-      tools/timeintervaltools/make_voice_from_nonoverlapping_intervals
       tools/timeintervaltools/mask_intervals_with_intervals
       tools/timeintervaltools/resolve_overlaps_between_nonoverlapping_trees
 
@@ -3266,7 +3264,6 @@ Core composition packages
    .. toctree::
 
       tools/timeintervaltools/all_intervals_are_contiguous
-      tools/timeintervaltools/all_intervals_are_nonoverlapping
       tools/timeintervaltools/calculate_density_of_attacks_in_interval
       tools/timeintervaltools/calculate_density_of_releases_in_interval
       tools/timeintervaltools/calculate_depth_centroid_of_intervals
@@ -3288,7 +3285,6 @@ Core composition packages
       tools/timeintervaltools/group_overlapping_intervals_and_yield_groups
       tools/timeintervaltools/group_tangent_or_overlapping_intervals_and_yield_groups
       tools/timeintervaltools/make_test_intervals
-      tools/timeintervaltools/make_voice_from_nonoverlapping_intervals
       tools/timeintervaltools/mask_intervals_with_intervals
       tools/timeintervaltools/resolve_overlaps_between_nonoverlapping_trees
 

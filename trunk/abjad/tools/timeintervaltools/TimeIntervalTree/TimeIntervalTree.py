@@ -2,6 +2,7 @@ import collections
 import copy
 import fractions
 from abjad.tools import durationtools
+from abjad.tools import sequencetools
 from abjad.tools.timeintervaltools.TimeIntervalAggregateMixin \
 	import TimeIntervalAggregateMixin
 
@@ -218,6 +219,18 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
     @property
     def intervals(self):
         return tuple(self[:])
+
+    @property
+    def intervals_are_nonoverlapping(self):
+        '''True when all intervals are non-overlapping, otherwise False.
+
+        Return boolean.
+        '''
+        for first, second in sequencetools.iterate_sequence_pairwise_strict(
+            self):
+            if second.start_offset < first.stop_offset:
+                return False
+        return True
 
     @property
     def latest_start(self):
