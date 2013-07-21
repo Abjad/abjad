@@ -61,4 +61,3 @@ Functions
    ~abjad.tools.timeintervaltools.scale_interval_durations_by_rational.scale_interval_durations_by_rational
    ~abjad.tools.timeintervaltools.scale_interval_durations_to_rational.scale_interval_durations_to_rational
    ~abjad.tools.timeintervaltools.scale_interval_offsets_by_rational.scale_interval_offsets_by_rational
-   ~abjad.tools.timeintervaltools.split_intervals_at_rationals.split_intervals_at_rationals

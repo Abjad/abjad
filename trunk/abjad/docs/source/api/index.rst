@@ -3248,7 +3248,6 @@ Core composition packages
       tools/timeintervaltools/scale_interval_durations_by_rational
       tools/timeintervaltools/scale_interval_durations_to_rational
       tools/timeintervaltools/scale_interval_offsets_by_rational
-      tools/timeintervaltools/split_intervals_at_rationals
 
 .. only:: latex
 
@@ -3310,7 +3309,6 @@ Core composition packages
       tools/timeintervaltools/scale_interval_durations_by_rational
       tools/timeintervaltools/scale_interval_durations_to_rational
       tools/timeintervaltools/scale_interval_offsets_by_rational
-      tools/timeintervaltools/split_intervals_at_rationals
 
 :py:mod:`timerelationtools <abjad.tools.timerelationtools>`
 ===========================================================

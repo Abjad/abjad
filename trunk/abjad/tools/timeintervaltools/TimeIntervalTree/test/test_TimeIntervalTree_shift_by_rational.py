@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_timeintervaltools_TimeIntervalTree_shift_by_rational_01():
+def test_TimeIntervalTree_shift_by_rational_01():
 
     t1 = timeintervaltools.TimeInterval(-1, 3)
     t2 = timeintervaltools.TimeInterval(0, 1)
@@ -20,7 +20,7 @@ def test_timeintervaltools_TimeIntervalTree_shift_by_rational_01():
         (Offset(3, 2), Offset(5, 2))]
 
 
-def test_timeintervaltools_TimeIntervalTree_shift_by_rational_02():
+def test_TimeIntervalTree_shift_by_rational_02():
     rational = 0
     tree = timeintervaltools.TimeIntervalTree(timeintervaltools.make_test_intervals())
 
@@ -30,7 +30,7 @@ def test_timeintervaltools_TimeIntervalTree_shift_by_rational_02():
     assert tree.start_offset == shifted.start_offset
 
 
-def test_timeintervaltools_TimeIntervalTree_shift_by_rational_03():
+def test_TimeIntervalTree_shift_by_rational_03():
     rational = Fraction(1, 2)
     tree = timeintervaltools.TimeIntervalTree(timeintervaltools.make_test_intervals())
 
@@ -41,7 +41,7 @@ def test_timeintervaltools_TimeIntervalTree_shift_by_rational_03():
     assert shifted.start_offset == rational
 
 
-def test_timeintervaltools_TimeIntervalTree_shift_by_rational_04():
+def test_TimeIntervalTree_shift_by_rational_04():
     rational = Fraction(-1, 2)
     tree = timeintervaltools.TimeIntervalTree(timeintervaltools.make_test_intervals())
 
@@ -52,7 +52,7 @@ def test_timeintervaltools_TimeIntervalTree_shift_by_rational_04():
     assert shifted.start_offset == rational
 
 
-def test_timeintervaltools_TimeIntervalTree_shift_by_rational_05():
+def test_TimeIntervalTree_shift_by_rational_05():
     rational = Fraction(-1, 2)
     tree = timeintervaltools.TimeIntervalTree(timeintervaltools.make_test_intervals())
 
