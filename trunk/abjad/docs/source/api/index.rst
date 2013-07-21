@@ -3229,7 +3229,6 @@ Core composition packages
       tools/timeintervaltools/calculate_sustain_centroid_of_intervals
       tools/timeintervaltools/clip_interval_durations_to_range
       tools/timeintervaltools/compute_depth_of_intervals
-      tools/timeintervaltools/compute_depth_of_intervals_in_interval
       tools/timeintervaltools/compute_logical_and_of_intervals
       tools/timeintervaltools/compute_logical_and_of_intervals_in_interval
       tools/timeintervaltools/compute_logical_not_of_intervals
@@ -3304,7 +3303,6 @@ Core composition packages
       tools/timeintervaltools/calculate_sustain_centroid_of_intervals
       tools/timeintervaltools/clip_interval_durations_to_range
       tools/timeintervaltools/compute_depth_of_intervals
-      tools/timeintervaltools/compute_depth_of_intervals_in_interval
       tools/timeintervaltools/compute_logical_and_of_intervals
       tools/timeintervaltools/compute_logical_and_of_intervals_in_interval
       tools/timeintervaltools/compute_logical_not_of_intervals
