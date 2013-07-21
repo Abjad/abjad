@@ -222,3 +222,15 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
     @abc.abstractmethod
     def find_intervals_stopping_within_interval(self):
         raise NotImplementedError
+
+    @abc.abstractmethod
+    def scale_interval_durations_by_rational(self, rational):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def scale_interval_durations_to_rational(self, rational):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def scale_interval_offsets_by_rational(self, rational):
+        raise NotImplementedError

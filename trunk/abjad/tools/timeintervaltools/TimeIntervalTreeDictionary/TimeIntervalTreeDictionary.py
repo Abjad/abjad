@@ -1264,6 +1264,36 @@ class TimeIntervalTreeDictionary(
                 self.start_offset + offset)
         return type(self)(result)
 
+    def scale_interval_durations_by_rational(self, rational):
+        from abjad.tools import timeintervaltools
+        result = {}
+        for key, tree in self.iteritems():
+            result[key] = tree.scale_interval_durations_by_rational(rational)
+        return type(self)(result)
+
+    def scale_interval_durations_to_rational(self, rational):
+        from abjad.tools import timeintervaltools
+        result = {}
+        for key, tree in self.iteritems():
+            result[key] = tree.scale_interval_durations_to_rational(rational)
+        return type(self)(result)
+
+    def scale_interval_offsets_by_rational(self, rational):
+        from abjad.tools import timeintervaltools
+        rational = durationtools.Multiplier(rational)
+        assert 0 < rational
+        if not self.intervals or rational == 1:
+            return self
+        result = {}
+        for key, tree in self.iteritems():
+            result[key] = timeintervaltools.TimeIntervalTree([
+                x.shift_to_rational(
+                    ((x.start_offset - self.start_offset) * rational) 
+                    + self.start_offset)
+                    for x in tree
+                ])
+        return type(self)(result)
+
     def scale_to_rational(self, rational):
         '''Scale aggregate duration of dictionary to `rational`:
 

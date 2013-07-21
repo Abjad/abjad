@@ -1267,6 +1267,95 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
                 for x in self
         ])
 
+    def scale_interval_durations_by_rational(self, rational):
+        '''Scale the duration of each interval by
+        `rational`, maintaining their start_offset offsets:
+
+        ::
+
+            >>> a = timeintervaltools.TimeInterval(-1, 3)
+            >>> b = timeintervaltools.TimeInterval(6, 12)
+            >>> c = timeintervaltools.TimeInterval(9, 16)
+            >>> tree = timeintervaltools.TimeIntervalTree([a, b, c])
+            >>> tree.scale_interval_durations_by_rational(Multiplier(6, 5))
+            TimeIntervalTree([
+                TimeInterval(Offset(-1, 1), Offset(19, 5), {}),
+                TimeInterval(Offset(6, 1), Offset(66, 5), {}),
+                TimeInterval(Offset(9, 1), Offset(87, 5), {})
+            ])
+
+        Return TimeIntervalTree.
+        '''
+        from abjad.tools import timeintervaltools
+        rational = durationtools.Multiplier(rational)
+        assert 0 < rational
+        if not self or rational == 1:
+            return self
+        return timeintervaltools.TimeIntervalTree([
+            x.scale_by_rational(rational)
+            for x in self
+            ])
+
+    def scale_interval_durations_to_rational(self, rational):
+        '''Scale the duration of each interval to
+        `rational`, maintaining their start_offset offsets:
+
+        ::
+
+            >>> a = timeintervaltools.TimeInterval(-1, 3)
+            >>> b = timeintervaltools.TimeInterval(6, 12)
+            >>> c = timeintervaltools.TimeInterval(9, 16)
+            >>> tree = timeintervaltools.TimeIntervalTree([a, b, c])
+            >>> tree.scale_interval_durations_to_rational(Duration(1, 7))
+            TimeIntervalTree([
+                TimeInterval(Offset(-1, 1), Offset(-6, 7), {}),
+                TimeInterval(Offset(6, 1), Offset(43, 7), {}),
+                TimeInterval(Offset(9, 1), Offset(64, 7), {})
+            ])
+
+        Return TimeIntervalTree.
+        '''
+        from abjad.tools import timeintervaltools
+        rational = durationtools.Duration(rational)
+        assert 0 < rational
+        if not self:
+            return self
+        return timeintervaltools.TimeIntervalTree([
+            x.scale_to_rational(rational) 
+            for x in self
+            ])
+
+    def scale_interval_offsets_by_rational(self, rational):
+        '''Scale the starting offset of each interval by
+        `rational`, maintaining the earliest startest offset:
+
+        ::
+
+            >>> a = timeintervaltools.TimeInterval(-1, 3)
+            >>> b = timeintervaltools.TimeInterval(6, 12)
+            >>> c = timeintervaltools.TimeInterval(9, 16)
+            >>> tree = timeintervaltools.TimeIntervalTree([a, b, c])
+            >>> tree.scale_interval_offsets_by_rational(Multiplier(4, 5))
+            TimeIntervalTree([
+                TimeInterval(Offset(-1, 1), Offset(3, 1), {}),
+                TimeInterval(Offset(23, 5), Offset(53, 5), {}),
+                TimeInterval(Offset(7, 1), Offset(14, 1), {})
+            ])
+
+        Return interval tree.
+        '''
+        from abjad.tools import timeintervaltools
+        rational = durationtools.Multiplier(rational)
+        assert 0 < rational
+        if not self or rational == 1:
+            return self
+        return timeintervaltools.TimeIntervalTree([
+            x.shift_to_rational(
+                ((x.start_offset - self.start_offset) * rational) 
+                + self.start_offset)
+                for x in self
+            ])
+
     def scale_to_rational(self, rational):
         '''Scale aggregate duration of tree to `rational`:
 

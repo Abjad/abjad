@@ -134,6 +134,15 @@ Methods
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.scale_by_rational
    :noindex:
 
+.. automethod:: abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.scale_interval_durations_by_rational
+   :noindex:
+
+.. automethod:: abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.scale_interval_durations_to_rational
+   :noindex:
+
+.. automethod:: abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.scale_interval_offsets_by_rational
+   :noindex:
+
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.scale_to_rational
    :noindex:
 

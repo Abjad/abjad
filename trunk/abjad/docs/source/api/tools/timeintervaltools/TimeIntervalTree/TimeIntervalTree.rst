@@ -136,6 +136,15 @@ Methods
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.scale_by_rational
    :noindex:
 
+.. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.scale_interval_durations_by_rational
+   :noindex:
+
+.. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.scale_interval_durations_to_rational
+   :noindex:
+
+.. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.scale_interval_offsets_by_rational
+   :noindex:
+
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.scale_to_rational
    :noindex:
 
