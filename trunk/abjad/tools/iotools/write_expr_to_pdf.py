@@ -4,7 +4,9 @@ from abjad.tools import configurationtools
 
 
 def write_expr_to_pdf(expr, file_name, print_status=False, tagline=False):
-    '''Write `expr` to pdf `file_name`::
+    '''Write `expr` to pdf `file_name`:
+
+    ::
 
         >>> note = Note("c'4")
         >>> iotools.write_expr_to_pdf(note, 'one_note.pdf') # doctest: +SKIP

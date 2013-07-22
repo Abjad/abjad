@@ -5,7 +5,9 @@ from abjad.tools import configurationtools
 def save_last_pdf_as(file_name):
     r'''.. versionadded:: 2.0
 
-    Save last PDF as `file_name`::
+    Save last PDF as `file_name`:
+
+    ::
 
         >>> iotools.save_last_pdf_as('/project/output/example-1.pdf') # doctest: +SKIP
 

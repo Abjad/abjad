@@ -3,7 +3,9 @@ import os
 
 
 def show(expr, return_timing=False, suppress_pdf=False, docs=False):
-    '''Show `expr`::
+    '''Show `expr`:
+
+    ::
 
         >>> note = Note("c'4")
         >>> show(note) # doctest: +SKIP

@@ -6,7 +6,9 @@ def clear_terminal():
 
     Run ``clear`` if OS is POSIX-compliant (UNIX / Linux / MacOS).
 
-    Run ``cls`` if OS is not POSIX-compliant (Windows)::
+    Run ``cls`` if OS is not POSIX-compliant (Windows):
+
+    ::
 
         >>> iotools.clear_terminal() # doctest: +SKIP
 

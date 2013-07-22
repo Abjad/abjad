@@ -4,7 +4,9 @@ import os
 
 
 def play(expr):
-    '''Play `expr`::
+    '''Play `expr`:
+
+    ::
 
         >>> note = Note("c'4")
 

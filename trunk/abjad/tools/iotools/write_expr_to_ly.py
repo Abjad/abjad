@@ -3,7 +3,9 @@ from abjad.tools import documentationtools
 
 
 def write_expr_to_ly(expr, file_name, print_status=False, tagline=False, docs=False):
-    '''Write `expr` to `file_name`::
+    '''Write `expr` to `file_name`:
+
+    ::
 
         >>> note = Note("c'4")
         >>> iotools.write_expr_to_ly(note, '/home/user/foo.ly') # doctest: +SKIP
