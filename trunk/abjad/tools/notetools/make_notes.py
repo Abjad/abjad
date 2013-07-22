@@ -10,13 +10,17 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
     '''Make notes according to `pitches` and `durations`.
 
     Cycle through `pitches` when the length of `pitches` is less than the
-    length of `durations`::
+    length of `durations`:
+
+    ::
 
         >>> notetools.make_notes([0], [(1, 16), (1, 8), (1, 8)])
         [Note("c'16"), Note("c'8"), Note("c'8")]
 
     Cycle through `durations` when the length of `durations` is less than the
-    length of `pitches`::
+    length of `pitches`:
+
+    ::
 
         >>> notetools.make_notes([0, 2, 4, 5, 7], [(1, 16), (1, 8), (1, 8)])
         [Note("c'16"), Note("d'8"), Note("e'8"), Note("f'16"), Note("g'8")]

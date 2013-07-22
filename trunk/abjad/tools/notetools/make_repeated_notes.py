@@ -2,12 +2,16 @@ from abjad.tools import durationtools
 
 
 def make_repeated_notes(count, duration=durationtools.Duration(1, 8)):
-    r'''Make `count` repeated notes with note head-assignable `duration`::
+    r'''Make `count` repeated notes with note head-assignable `duration`:
+
+    ::
 
         >>> notetools.make_repeated_notes(4)
         [Note("c'8"), Note("c'8"), Note("c'8"), Note("c'8")]
 
-    Make `count` repeated tie chains with tied `duration`::
+    Make `count` repeated tie chains with tied `duration`:
+
+    ::
 
         >>> notes = notetools.make_repeated_notes(2, (5, 16))
         >>> voice = Voice(notes)
@@ -22,7 +26,9 @@ def make_repeated_notes(count, duration=durationtools.Duration(1, 8)):
             c'16
         }
 
-    Make ad hoc tuplet holding `count` repeated notes with non-power-of-two `duration`::
+    Make ad hoc tuplet holding `count` repeated notes with non-power-of-two `duration`:
+
+    ::
 
         >>> notetools.make_repeated_notes(3, (1, 12))
         [Tuplet(2/3, [c'8, c'8, c'8])]
