@@ -67,7 +67,7 @@ def doctree_read(app, doctree):
                 labelnode = addnodes.only(expr='html')
                 labelnode.append(nodes.literal(
                     '',
-                    'abstract ',
+                    ' abstract ',
                     classes=['attribute', 'abstract'],
                     ))
                 signature_node.insert(0, labelnode)
@@ -81,16 +81,36 @@ def doctree_read(app, doctree):
             attr = getattr(cls, attr_name)
             inspected_attr = classes_to_attributes[cls][attr_name]
             label_node = addnodes.only(expr='html')
-            if inspected_attr.defining_class != cls:
+            defining_class = inspected_attr.defining_class
+            if defining_class != cls:
+                addname_node = signature_node.traverse(
+                    addnodes.desc_addname)[0]
+                xref_node = addnodes.pending_xref(
+                    '',
+                    refdomain='py',
+                    refexplicit=True,
+                    reftype='class',
+                    reftarget='{}.{}'.format(
+                        defining_class.__module__,
+                        defining_class.__name__,
+                        ))
+                xref_node.append(nodes.literal(
+                    '',
+                    '{}'.format(defining_class.__name__),
+                    ))
+                addname_node.clear()
+                addname_node.append(nodes.Text('('))
+                addname_node.append(xref_node)
+                addname_node.append(nodes.Text(').'))
                 label_node.append(nodes.literal(
                     '',
-                    'inherited ',
+                    ' inherited ',
                     classes=['attribute', 'inherited'],
                     ))
             if getattr(attr, '__isabstractmethod__', False):
                 label_node.append(nodes.literal(
                     '',
-                    'abstract ',
+                    ' abstract ',
                     classes=['attribute', 'abstract'],
                     ))
             if isinstance(attr, types.FunctionType):
@@ -98,14 +118,14 @@ def doctree_read(app, doctree):
                 signature_node.pop(0)
                 label_node.append(nodes.literal(
                     '',
-                    'staticmethod ',
+                    ' staticmethod ',
                     classes=['attribute', 'staticmethod'],
                     ))
             elif hasattr(attr, 'im_self') and attr.im_self is not None:
                 signature_node.pop(0)
                 label_node.append(nodes.literal(
                     '',
-                    'classmethod ',
+                    ' classmethod ',
                     classes=['attribute', 'classmethod'],
                     ))
             signature_node.insert(0, label_node)
