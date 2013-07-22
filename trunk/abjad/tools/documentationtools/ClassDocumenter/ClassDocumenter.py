@@ -220,6 +220,7 @@ class ClassDocumenter(Documenter):
                 #'noindex': True, 
                 },
             ))
+        document.extend(self._build_attributes_autosummary())
         document.extend(self._build_bases_section())
 #        document.extend(self._build_attribute_section(
 #            self.data,
@@ -311,6 +312,32 @@ class ClassDocumenter(Documenter):
                 wrap=False,                                                         
                 )
             pieces.append(paragraph) 
+        return pieces
+
+    def _build_attributes_autosummary(self):
+        from abjad.tools import documentationtools
+        pieces = []
+        attributes = []
+        attributes.extend(self.readonly_properties)
+        attributes.extend(self.readwrite_properties)
+        attributes.extend(self.methods)
+        attributes.extend(self.class_methods)
+        attributes.extend(self.static_methods)
+        attributes.sort(key=lambda x: x.name)
+        attributes.extend(self.special_methods)
+        autosummary = documentationtools.ReSTAutosummaryDirective()
+        for attribute in attributes:
+            autosummary.append('~{}.{}'.format(
+                self.module_name,
+                attribute.name,
+                ))
+        html_only = documentationtools.ReSTOnlyDirective(argument='html')
+        html_only.append(documentationtools.ReSTHeading(
+            level=3,
+            text='Attributes summary',
+            ))
+        html_only.append(autosummary)
+        pieces.append(html_only)
         return pieces
 
     ### PUBLIC PROPERTIES ###
