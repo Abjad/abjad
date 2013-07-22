@@ -138,7 +138,9 @@ class NumberedChromaticPitch(ChromaticPitch, NumberedPitch):
     ### PUBLIC METHODS ###
 
     def apply_accidental(self, accidental=None):
-        '''Apply `accidental`::
+        '''Apply `accidental`:
+
+        ::
 
             >>> pitch.apply_accidental('flat')
             NumberedChromaticPitch(12)

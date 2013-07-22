@@ -183,7 +183,9 @@ class NamedChromaticPitchClass(PitchClass):
     ### PUBLIC METHODS ###
 
     def apply_accidental(self, accidental):
-        '''Apply `accidental`::
+        '''Apply `accidental`:
+
+        ::
 
             >>> ncpc.apply_accidental('qs')
             NamedChromaticPitchClass('ctqs')
