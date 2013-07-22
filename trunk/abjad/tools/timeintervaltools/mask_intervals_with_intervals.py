@@ -1,6 +1,9 @@
 def mask_intervals_with_intervals(masked_intervals, mask_intervals):
     '''Clip or remove all intervals in `masked_intervals` outside of the bounds
-    defined in `mask_intervals`, while maintaining `masked_intervals`' payload contents ::
+    defined in `mask_intervals`, while maintaining `masked_intervals`' payload
+    contents:
+    
+    ::
 
         >>> from abjad.tools.timeintervaltools import TimeInterval
         >>> from abjad.tools.timeintervaltools import TimeIntervalTree

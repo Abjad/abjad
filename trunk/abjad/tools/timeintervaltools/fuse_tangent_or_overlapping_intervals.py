@@ -1,5 +1,8 @@
 def fuse_tangent_or_overlapping_intervals(intervals):
-    '''Fuse all tangent or overlapping intervals and return an `TimeIntervalTree` of the result ::
+    '''Fuse all tangent or overlapping intervals and return an
+    `TimeIntervalTree` of the result:
+
+    ::
 
         >>> from abjad.tools.timeintervaltools import TimeInterval
         >>> from abjad.tools.timeintervaltools import TimeIntervalTree
