@@ -383,6 +383,10 @@ tt.classmethod {
     background-color: #c96;
     }
 
+tt.inherited {
+    background-color: #6cc;
+    }
+
 tt.staticmethod {
     background-color: #69c;
     }
