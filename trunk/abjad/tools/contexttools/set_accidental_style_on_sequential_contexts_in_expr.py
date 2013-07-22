@@ -4,7 +4,9 @@ from abjad.tools import marktools
 def set_accidental_style_on_sequential_contexts_in_expr(expr, accidental_style):
     r'''.. versionadded:: 2.0
 
-    Set `accidental_style` for sequential semantic contexts in `expr`::
+    Set `accidental_style` for sequential semantic contexts in `expr`:
+
+    ::
 
         >>> score = Score(Staff("c'8 d'8") * 2)
         >>> contexttools.set_accidental_style_on_sequential_contexts_in_expr(score, 'forget')

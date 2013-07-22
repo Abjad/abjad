@@ -1,7 +1,9 @@
 def get_effective_tempo(component):
     r'''.. versionadded:: 2.0
 
-    Get effective tempo of `component`::
+    Get effective tempo of `component`:
+
+    ::
 
         >>> score = Score([])
         >>> staff = Staff("c'8 d'8 e'8 f'8")

@@ -1,7 +1,9 @@
 def get_effective_time_signature(component):
     r'''.. versionadded:: 2.0
 
-    Get effective time signature of `component`::
+    Get effective time signature of `component`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> contexttools.TimeSignatureMark((4, 8))(staff)

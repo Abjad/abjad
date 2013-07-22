@@ -1,7 +1,9 @@
 def get_effective_clef(component):
     r'''.. versionadded:: 2.0
 
-    Get effective clef of `component`::
+    Get effective clef of `component`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> contexttools.ClefMark('treble')(staff)

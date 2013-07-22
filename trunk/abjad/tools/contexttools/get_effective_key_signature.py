@@ -1,7 +1,9 @@
 def get_effective_key_signature(component):
     r'''.. versionadded:: 2.0
 
-    Get effective key signature of `component`::
+    Get effective key signature of `component`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> contexttools.KeySignatureMark('c', 'major')(staff)

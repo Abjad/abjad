@@ -488,7 +488,9 @@ class TimeSignatureMark(ContextMark):
     # optimal and someday time signature marks should check for conflicts 
     # at attachment.
     def attach(self, start_component):
-        r'''Attach time signature mark to `start_component`::
+        r'''Attach time signature mark to `start_component`:
+
+        ::
 
             >>> time_signature = contexttools.TimeSignatureMark((3, 8))
             >>> staff = Staff()

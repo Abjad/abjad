@@ -1,7 +1,9 @@
 def get_effective_dynamic(component):
     r'''.. versionadded:: 2.0
 
-    Get effective dynamic of `component`::
+    Get effective dynamic of `component`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> contexttools.DynamicMark('f')(staff[0])

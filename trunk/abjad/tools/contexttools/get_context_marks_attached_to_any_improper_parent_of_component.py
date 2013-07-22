@@ -4,7 +4,7 @@ from abjad.tools import componenttools
 def get_context_marks_attached_to_any_improper_parent_of_component(component):
     r'''.. versionadded:: 2.0
 
-    Get all context marks attached to any improper parent of `component`::
+    Get all context marks attached to any improper parent of `component`:
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> contexttools.ClefMark('treble')(staff)

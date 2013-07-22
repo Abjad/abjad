@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def get_effective_staff(component):
     '''.. versionadded:: 2.0
 
-    Get effective staff of `component`::
+    Get effective staff of `component`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> staff.name = 'First Staff'

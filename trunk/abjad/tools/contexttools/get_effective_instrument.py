@@ -1,7 +1,9 @@
 def get_effective_instrument(component):
     r'''.. versionadded:: 2.0
 
-    Get effective instrument of `component`::
+    Get effective instrument of `component`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> contexttools.InstrumentMark('Flute', 'Fl.')(staff)
