@@ -21,6 +21,8 @@ class AbjadDoctestDirective(sphinx.util.compat.Directive):
 
 def doctree_read(app, doctree):
 
+    classes_to_attributes = {}
+
     def get_unique_parts(parts):
         unique_parts = [parts[0]]
         for part in parts[1:]:
@@ -56,6 +58,11 @@ def doctree_read(app, doctree):
             cls = getattr(module, object_name, None)
             if cls is None:
                 continue
+            if cls not in classes_to_attributes:
+                classes_to_attributes[cls] = {}
+                attributes = inspect.classify_class_attrs(cls)
+                for attribute in attributes:
+                    classes_to_attributes[cls][attribute.name] = attribute
             if inspect.isabstract(cls):
                 labelnode = addnodes.only(expr='html')
                 labelnode.append(nodes.literal(
@@ -72,7 +79,14 @@ def doctree_read(app, doctree):
             if cls is None:
                 continue
             attr = getattr(cls, attr_name)
+            inspected_attr = classes_to_attributes[cls][attr_name]
             label_node = addnodes.only(expr='html')
+            if inspected_attr.defining_class != cls:
+                label_node.append(nodes.literal(
+                    '',
+                    'inherited ',
+                    classes=['attribute', 'inherited'],
+                    ))
             if getattr(attr, '__isabstractmethod__', False):
                 label_node.append(nodes.literal(
                     '',
