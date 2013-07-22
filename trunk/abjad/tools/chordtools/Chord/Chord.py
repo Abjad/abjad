@@ -369,7 +369,9 @@ class Chord(Leaf):
         return treble, bass
 
     def extend(self, note_heads):
-        '''Extend chord with `note_heads`::
+        '''Extend chord with `note_heads`:
+
+        ::
 
             >>> chord = Chord([4, 13, 17], (1, 4))
             >>> chord
