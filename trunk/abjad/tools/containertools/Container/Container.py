@@ -666,7 +666,9 @@ class Container(Component):
             raise ValueError(message)
 
     def insert(self, i, component):
-        '''Insert `component` in container at index `i`::
+        '''Insert `component` in container at index `i`:
+
+        ::
 
             >>> container = Container("c'8 d'8 e'8")
             >>> beam = spannertools.BeamSpanner(container.music)
