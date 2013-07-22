@@ -3,7 +3,9 @@ from abjad.tools import containertools
 
 
 def move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet(tuplet):
-    r'''Move prolation of `tuplet` to contents of `tuplet` and remove `tuplet`::
+    r'''Move prolation of `tuplet` to contents of `tuplet` and remove `tuplet`:
+
+    ::
 
         >>> t = Staff(r"\times 3/2 { c'8 [ d'8 } \times 3/2 { c'8 d'8 ] }")
 

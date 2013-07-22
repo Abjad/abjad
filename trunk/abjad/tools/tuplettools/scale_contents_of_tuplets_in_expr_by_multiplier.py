@@ -3,7 +3,9 @@ from abjad.tools import leaftools
 
 
 def scale_contents_of_tuplets_in_expr_by_multiplier(tuplet, multiplier):
-    r'''Scale contents of fixed-duration `tuplet` by `multiplier`::
+    r'''Scale contents of fixed-duration `tuplet` by `multiplier`:
+
+    ::
 
         >>> tuplet = tuplettools.FixedDurationTuplet((3, 8), "c'8 d'8 e'8 f'8 g'8")
 

@@ -2,7 +2,9 @@ from abjad.tools import componenttools
 
 
 def remove_trivial_tuplets_in_expr(expr):
-    r'''Remove trivial tuplets in `expr`::
+    r'''Remove trivial tuplets in `expr`:
+
+    ::
 
         >>> tuplet_1 = tuplettools.FixedDurationTuplet(Duration(1, 4), "c'8 d'8 e'8")
         >>> tuplet_2 = tuplettools.FixedDurationTuplet(Duration(1, 4), "c'8 d'8")

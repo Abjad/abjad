@@ -4,7 +4,9 @@ from abjad.tools import durationtools
 
 
 def fuse_tuplets(tuplets):
-    r'''Fuse parent-contiguous `tuplets`::
+    r'''Fuse parent-contiguous `tuplets`:
+
+    ::
 
         >>> t1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
         >>> spannertools.BeamSpanner(t1[:])
