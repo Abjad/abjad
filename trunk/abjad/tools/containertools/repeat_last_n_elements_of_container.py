@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def repeat_last_n_elements_of_container(container, n=1, total=2):
     r'''.. versionadded:: 1.1
 
-    Repeat last `n` elements of `container`::
+    Repeat last `n` elements of `container`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> spannertools.BeamSpanner(staff.select_leaves())

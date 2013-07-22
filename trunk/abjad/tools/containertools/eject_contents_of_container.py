@@ -1,7 +1,9 @@
 def eject_contents_of_container(container):
     '''.. versionadded:: 2.0
 
-    Eject contents of `container`::
+    Eject contents of `container`:
+
+    ::
 
         >>> container = Container("c'8 d'8 e'8 f'8")
 

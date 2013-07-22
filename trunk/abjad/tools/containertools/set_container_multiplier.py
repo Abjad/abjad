@@ -3,7 +3,9 @@ from abjad.tools import durationtools
 
 # TODO: reimplement as settable attribute of container duration interface.
 def set_container_multiplier(container, multiplier):
-    r'''Set `container` `multiplier`::
+    r'''Set `container` `multiplier`:
+
+    ::
 
         >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
 

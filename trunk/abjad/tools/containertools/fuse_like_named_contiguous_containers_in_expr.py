@@ -3,7 +3,9 @@ from abjad.tools import componenttools
 
 # TODO: change interface to fuse.containers_by_name() to pass containers-to-be-fused explicitly.
 def fuse_like_named_contiguous_containers_in_expr(expr):
-    r'''Fuse like-named contiguous containers in `expr`::
+    r'''Fuse like-named contiguous containers in `expr`:
+
+    ::
 
         >>> staff = Staff(r"\new Voice { c'8 d'8 } \new Voice { e'8 f'8 }")
         >>> staff[0].name = 'soprano'

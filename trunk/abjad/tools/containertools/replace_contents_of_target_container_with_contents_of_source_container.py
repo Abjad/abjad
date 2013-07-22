@@ -1,7 +1,9 @@
 def replace_contents_of_target_container_with_contents_of_source_container(target_container, source_container):
     r'''.. versionadded:: 2.0
 
-    Replace contents of `target_container` with contents of `source_container`::
+    Replace contents of `target_container` with contents of `source_container`:
+
+    ::
 
         >>> staff = Staff(Tuplet(Fraction(2, 3), "c'8 d'8 e'8") * 3)
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(

@@ -4,7 +4,9 @@ from abjad.tools import durationtools
 def get_first_element_starting_strictly_after_offset(container, prolated_offset):
     '''.. versionadded:: 2.0
 
-    Get first `container` element starting strictly after `prolated_offset`::
+    Get first `container` element starting strictly after `prolated_offset`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 

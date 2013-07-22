@@ -1,7 +1,9 @@
 def reverse_contents_of_container(container):
     r'''.. versionadded:: 1.1
 
-    Reverse contents of `container`::
+    Reverse contents of `container`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> spannertools.BeamSpanner(staff.select_leaves()[:2])

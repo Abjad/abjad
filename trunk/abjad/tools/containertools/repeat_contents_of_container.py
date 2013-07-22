@@ -1,7 +1,9 @@
 def repeat_contents_of_container(container, total=2):
     r'''.. versionadded:: 1.1
 
-    Repeat contents of `container`::
+    Repeat contents of `container`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8")
         >>> spannertools.BeamSpanner(staff.select_leaves())
