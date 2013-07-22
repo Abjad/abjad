@@ -1,5 +1,7 @@
 def iterate_components_and_grace_containers_in_expr(expr, component_class):
-    r'''Iterate components of `component_class` forward in `expr`::
+    r'''Iterate components of `component_class` forward in `expr`:
+
+    ::
 
         >>> voice = Voice("c'8 d'8 e'8 f'8")
         >>> spannertools.BeamSpanner(voice[:])

@@ -31,7 +31,9 @@ def iterate_nontrivial_tie_chains_in_expr(expr, reverse=False):
         TieChain(Note("c'4"), Note("c'16"))
         TieChain(Note("f'4"), Note("f'16"))
 
-    Iterate nontrivial tie chains backward in `expr`::
+    Iterate nontrivial tie chains backward in `expr`:
+
+    ::
 
         >>> for x in \
         ...     iterationtools.iterate_nontrivial_tie_chains_in_expr(

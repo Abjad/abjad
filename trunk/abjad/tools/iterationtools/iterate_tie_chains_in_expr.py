@@ -32,7 +32,7 @@ def iterate_tie_chains_in_expr(expr, reverse=False):
         TieChain(Note("e'8"),)
         TieChain(Note("f'4"), Note("f'16"))
 
-    Iterate tie chains backward in `expr`::
+    Iterate tie chains backward in `expr`:
 
     ::
 
