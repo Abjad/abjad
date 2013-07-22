@@ -5,6 +5,40 @@
 
 .. autoclass:: experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.asset_output_directory_name
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.asset_output_directory_path
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.asset_output_proxies
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.console
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.create_code_block
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.document
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.document_file_name
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.execute_code_blocks
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.extract_code_block_options
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.extract_code_blocks
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.has_asset_output_proxies
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.image_format
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.output_directory_path
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.rebuild_document
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.source_to_code_block_mapping
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.storage_format
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.write_assets_to_disk
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.write_rebuilt_document_to_disk
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.__call__
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.__eq__
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.__ge__
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.__gt__
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.__le__
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.__lt__
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.__ne__
+      ~experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.__repr__
+
 Bases
 -----
 

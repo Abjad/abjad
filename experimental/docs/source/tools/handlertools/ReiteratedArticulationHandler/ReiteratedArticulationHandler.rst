@@ -5,6 +5,25 @@
 
 .. autoclass:: experimental.tools.handlertools.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.handlertools.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler.articulation_list
+      ~experimental.tools.handlertools.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler.new
+      ~experimental.tools.handlertools.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler.storage_format
+      ~experimental.tools.handlertools.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler.__call__
+      ~experimental.tools.handlertools.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler.__eq__
+      ~experimental.tools.handlertools.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler.__ge__
+      ~experimental.tools.handlertools.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler.__gt__
+      ~experimental.tools.handlertools.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler.__le__
+      ~experimental.tools.handlertools.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler.__lt__
+      ~experimental.tools.handlertools.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler.__ne__
+      ~experimental.tools.handlertools.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler.__repr__
+
 Bases
 -----
 

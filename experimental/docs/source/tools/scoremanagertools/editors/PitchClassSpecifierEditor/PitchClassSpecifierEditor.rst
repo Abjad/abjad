@@ -5,6 +5,46 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.attribute_name_to_menu_key
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.clean_up_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.copy_target_attributes_to_memory
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.has_target
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.initialize_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.initialize_target
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.initialize_target_from_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.make_target_attribute_tokens_from_target_manifest
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.menu_key_to_delegated_editor_kwargs
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.menu_key_to_prepopulated_value
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.session
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.set_target_attribute
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.space_delimited_lowercase_target_class_name
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.storage_format
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_args_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_attribute_names
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_attribute_tokens
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_class
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_keyword_attribute_names
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_kwargs_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_name
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_positional_initializer_argument_names
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_positional_initializer_retrievable_attribute_names
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.__eq__
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.__ge__
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.__gt__
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.__le__
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.__lt__
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.__ne__
+      ~experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.__repr__
+
 Bases
 -----
 

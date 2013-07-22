@@ -5,6 +5,25 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.StatalServer.StatalServer.StatalServer
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.StatalServer.StatalServer.StatalServer.cyclic_tree
+      ~experimental.tools.musicexpressiontools.StatalServer.StatalServer.StatalServer.last_node
+      ~experimental.tools.musicexpressiontools.StatalServer.StatalServer.StatalServer.storage_format
+      ~experimental.tools.musicexpressiontools.StatalServer.StatalServer.StatalServer.__call__
+      ~experimental.tools.musicexpressiontools.StatalServer.StatalServer.StatalServer.__eq__
+      ~experimental.tools.musicexpressiontools.StatalServer.StatalServer.StatalServer.__ge__
+      ~experimental.tools.musicexpressiontools.StatalServer.StatalServer.StatalServer.__gt__
+      ~experimental.tools.musicexpressiontools.StatalServer.StatalServer.StatalServer.__le__
+      ~experimental.tools.musicexpressiontools.StatalServer.StatalServer.StatalServer.__lt__
+      ~experimental.tools.musicexpressiontools.StatalServer.StatalServer.StatalServer.__ne__
+      ~experimental.tools.musicexpressiontools.StatalServer.StatalServer.StatalServer.__repr__
+
 Bases
 -----
 

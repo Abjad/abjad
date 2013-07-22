@@ -5,6 +5,42 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.divisions
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.duration
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.is_closed
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.is_half_closed
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.is_half_open
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.is_left_closed
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.is_left_open
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.is_open
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.is_right_closed
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.is_right_open
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.is_well_formed
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.new
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.pairs
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.reflect
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.rotate
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.start_offset
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.storage_format
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.voice_name
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.__add__
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.__eq__
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.__ge__
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.__getitem__
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.__gt__
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.__le__
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.__len__
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.__lt__
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.__ne__
+      ~experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList.__repr__
+
 Bases
 -----
 

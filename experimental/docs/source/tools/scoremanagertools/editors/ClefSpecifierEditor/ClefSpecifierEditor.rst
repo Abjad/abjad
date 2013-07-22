@@ -5,6 +5,46 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.attribute_name_to_menu_key
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.clean_up_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.copy_target_attributes_to_memory
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.has_target
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.initialize_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.initialize_target
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.initialize_target_from_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.make_target_attribute_tokens_from_target_manifest
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.menu_key_to_delegated_editor_kwargs
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.menu_key_to_prepopulated_value
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.session
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.set_target_attribute
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.space_delimited_lowercase_target_class_name
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.storage_format
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.target_args_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.target_attribute_names
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.target_attribute_tokens
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.target_class
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.target_keyword_attribute_names
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.target_kwargs_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.target_name
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.target_positional_initializer_argument_names
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.target_positional_initializer_retrievable_attribute_names
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.__eq__
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.__ge__
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.__gt__
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.__le__
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.__lt__
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.__ne__
+      ~experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,25 @@
 
 .. autoclass:: experimental.tools.handlertools.TwoStageHairpinHandler.TwoStageHairpinHandler.TwoStageHairpinHandler
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.handlertools.TwoStageHairpinHandler.TwoStageHairpinHandler.TwoStageHairpinHandler.new
+      ~experimental.tools.handlertools.TwoStageHairpinHandler.TwoStageHairpinHandler.TwoStageHairpinHandler.storage_format
+      ~experimental.tools.handlertools.TwoStageHairpinHandler.TwoStageHairpinHandler.TwoStageHairpinHandler.swell_dynamics
+      ~experimental.tools.handlertools.TwoStageHairpinHandler.TwoStageHairpinHandler.TwoStageHairpinHandler.__call__
+      ~experimental.tools.handlertools.TwoStageHairpinHandler.TwoStageHairpinHandler.TwoStageHairpinHandler.__eq__
+      ~experimental.tools.handlertools.TwoStageHairpinHandler.TwoStageHairpinHandler.TwoStageHairpinHandler.__ge__
+      ~experimental.tools.handlertools.TwoStageHairpinHandler.TwoStageHairpinHandler.TwoStageHairpinHandler.__gt__
+      ~experimental.tools.handlertools.TwoStageHairpinHandler.TwoStageHairpinHandler.TwoStageHairpinHandler.__le__
+      ~experimental.tools.handlertools.TwoStageHairpinHandler.TwoStageHairpinHandler.TwoStageHairpinHandler.__lt__
+      ~experimental.tools.handlertools.TwoStageHairpinHandler.TwoStageHairpinHandler.TwoStageHairpinHandler.__ne__
+      ~experimental.tools.handlertools.TwoStageHairpinHandler.TwoStageHairpinHandler.TwoStageHairpinHandler.__repr__
+
 Bases
 -----
 

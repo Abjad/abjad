@@ -5,6 +5,63 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.anchor
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.callbacks
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.evaluate
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.is_score_rooted
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.is_segment_rooted
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.map_to_each
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.new
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.partition_by_ratio
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.partition_by_ratio_of_durations
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.reflect
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.repeat_to_duration
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.repeat_to_length
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.root_specification
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.root_specification_identifier
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.rotate
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.score_specification
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.select_beats
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.select_divisions
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.select_leaves
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.select_measures
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.select_notes_and_chords
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.select_time_signatures
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.set_aggregate
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.set_articulation
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.set_dynamic
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.set_leaf_color
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.set_mark
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.set_markup
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.set_pitch
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.set_pitch_class_transform
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.set_register
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.set_tempo
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.start_offset
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.stop_offset
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.storage_format
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.time_relation
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.timespan
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.voice_name
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.__and__
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.__deepcopy__
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.__eq__
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.__ge__
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.__getitem__
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.__gt__
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.__hash__
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.__le__
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.__lt__
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.__ne__
+      ~experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression.__repr__
+
 Bases
 -----
 

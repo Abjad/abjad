@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.change_expr_to_menu_entry
+      ~experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.get_tag_from_directory_path
+      ~experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.items
+      ~experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.list_items
+      ~experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.make_menu_entries
+      ~experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.session
+      ~experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.storage_format
+      ~experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.__eq__
+      ~experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.__ge__
+      ~experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.__gt__
+      ~experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.__le__
+      ~experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.__lt__
+      ~experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.__ne__
+      ~experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.__repr__
+
 Bases
 -----
 

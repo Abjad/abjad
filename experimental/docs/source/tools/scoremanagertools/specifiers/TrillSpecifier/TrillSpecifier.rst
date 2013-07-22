@@ -5,6 +5,22 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.TrillSpecifier.TrillSpecifier.TrillSpecifier
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.specifiers.TrillSpecifier.TrillSpecifier.TrillSpecifier.storage_format
+      ~experimental.tools.scoremanagertools.specifiers.TrillSpecifier.TrillSpecifier.TrillSpecifier.__eq__
+      ~experimental.tools.scoremanagertools.specifiers.TrillSpecifier.TrillSpecifier.TrillSpecifier.__ge__
+      ~experimental.tools.scoremanagertools.specifiers.TrillSpecifier.TrillSpecifier.TrillSpecifier.__gt__
+      ~experimental.tools.scoremanagertools.specifiers.TrillSpecifier.TrillSpecifier.TrillSpecifier.__le__
+      ~experimental.tools.scoremanagertools.specifiers.TrillSpecifier.TrillSpecifier.TrillSpecifier.__lt__
+      ~experimental.tools.scoremanagertools.specifiers.TrillSpecifier.TrillSpecifier.TrillSpecifier.__ne__
+      ~experimental.tools.scoremanagertools.specifiers.TrillSpecifier.TrillSpecifier.TrillSpecifier.__repr__
+
 Bases
 -----
 

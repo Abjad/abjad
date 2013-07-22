@@ -5,6 +5,27 @@
 
 .. autoclass:: experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.index_span
+      ~experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.indices
+      ~experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.kind
+      ~experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.predicate
+      ~experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.storage_format
+      ~experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.__call__
+      ~experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.__eq__
+      ~experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.__ge__
+      ~experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.__gt__
+      ~experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.__le__
+      ~experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.__lt__
+      ~experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.__ne__
+      ~experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.__repr__
+
 Bases
 -----
 

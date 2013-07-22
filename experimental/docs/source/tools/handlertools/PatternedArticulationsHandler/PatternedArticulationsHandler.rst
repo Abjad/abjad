@@ -5,6 +5,25 @@
 
 .. autoclass:: experimental.tools.handlertools.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.handlertools.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler.articulation_lists
+      ~experimental.tools.handlertools.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler.new
+      ~experimental.tools.handlertools.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler.storage_format
+      ~experimental.tools.handlertools.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler.__call__
+      ~experimental.tools.handlertools.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler.__eq__
+      ~experimental.tools.handlertools.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler.__ge__
+      ~experimental.tools.handlertools.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler.__gt__
+      ~experimental.tools.handlertools.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler.__le__
+      ~experimental.tools.handlertools.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler.__lt__
+      ~experimental.tools.handlertools.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler.__ne__
+      ~experimental.tools.handlertools.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,40 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.asset_proxy_class
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.interactively_make_asset
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.interactively_remove_assets
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.interactively_rename_asset
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.interactively_select_asset_filesystem_path
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.interactively_select_asset_packagesystem_path
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.interactively_select_asset_storehouse_filesystem_path
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.list_asset_filesystem_paths
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.list_asset_names
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.list_asset_packagesystem_paths
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.list_asset_proxies
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.list_asset_storehouse_filesystem_paths
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.list_asset_storehouse_packagesystem_paths
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.list_visible_asset_packagesystem_paths
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.make_asset
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.make_asset_storehouse_packages
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.make_empty_package
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.session
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.storage_format
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.__eq__
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.__ge__
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.__gt__
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.__le__
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.__lt__
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.__ne__
+      ~experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,29 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.callbacks
+      ~experimental.tools.musicexpressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.divide_by_ratio
+      ~experimental.tools.musicexpressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.scale
+      ~experimental.tools.musicexpressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.set_duration
+      ~experimental.tools.musicexpressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.set_offsets
+      ~experimental.tools.musicexpressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.storage_format
+      ~experimental.tools.musicexpressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.translate
+      ~experimental.tools.musicexpressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.translate_offsets
+      ~experimental.tools.musicexpressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.__eq__
+      ~experimental.tools.musicexpressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.__ge__
+      ~experimental.tools.musicexpressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.__gt__
+      ~experimental.tools.musicexpressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.__le__
+      ~experimental.tools.musicexpressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.__lt__
+      ~experimental.tools.musicexpressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.__ne__
+      ~experimental.tools.musicexpressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin.__repr__
+
 Bases
 -----
 

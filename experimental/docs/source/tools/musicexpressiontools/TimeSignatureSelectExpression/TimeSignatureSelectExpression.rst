@@ -5,6 +5,64 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.anchor
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.callbacks
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.evaluate
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.evaluate_early
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.is_score_rooted
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.is_segment_rooted
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.map_to_each
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.new
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.partition_by_ratio
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.partition_by_ratio_of_durations
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.reflect
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.repeat_to_duration
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.repeat_to_length
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.root_specification
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.root_specification_identifier
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.rotate
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.score_specification
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.select_beats
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.select_divisions
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.select_leaves
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.select_measures
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.select_notes_and_chords
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.select_time_signatures
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.set_aggregate
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.set_articulation
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.set_dynamic
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.set_leaf_color
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.set_mark
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.set_markup
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.set_pitch
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.set_pitch_class_transform
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.set_register
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.set_tempo
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.start_offset
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.stop_offset
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.storage_format
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.time_relation
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.timespan
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.voice_name
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.__and__
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.__deepcopy__
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.__eq__
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.__ge__
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.__getitem__
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.__gt__
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.__hash__
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.__le__
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.__lt__
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.__ne__
+      ~experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression.__repr__
+
 Bases
 -----
 

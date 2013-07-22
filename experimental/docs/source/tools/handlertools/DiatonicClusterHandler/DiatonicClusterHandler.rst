@@ -5,6 +5,24 @@
 
 .. autoclass:: experimental.tools.handlertools.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.handlertools.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler.new
+      ~experimental.tools.handlertools.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler.storage_format
+      ~experimental.tools.handlertools.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler.__call__
+      ~experimental.tools.handlertools.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler.__eq__
+      ~experimental.tools.handlertools.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler.__ge__
+      ~experimental.tools.handlertools.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler.__gt__
+      ~experimental.tools.handlertools.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler.__le__
+      ~experimental.tools.handlertools.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler.__lt__
+      ~experimental.tools.handlertools.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler.__ne__
+      ~experimental.tools.handlertools.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,54 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.attribute_name_to_menu_key
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.clean_up_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.copy_target_attributes_to_memory
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.get_item_from_item_number
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.has_target
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.initialize_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.initialize_target
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.initialize_target_from_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.interactively_add_items
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.interactively_edit_item
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.interactively_move_item
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.interactively_remove_items
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.item_getter_configuration_method
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.items
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.items_identifier
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.make_target_attribute_tokens_from_target_manifest
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.menu_key_to_delegated_editor_kwargs
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.menu_key_to_prepopulated_value
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.session
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.set_target_attribute
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.space_delimited_lowercase_target_class_name
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.storage_format
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.target_args_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.target_attribute_names
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.target_attribute_tokens
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.target_class
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.target_keyword_attribute_names
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.target_kwargs_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.target_name
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.target_positional_initializer_argument_names
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.target_positional_initializer_retrievable_attribute_names
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.__eq__
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.__ge__
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.__gt__
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.__le__
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.__lt__
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.__ne__
+      ~experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.__repr__
+
 Bases
 -----
 

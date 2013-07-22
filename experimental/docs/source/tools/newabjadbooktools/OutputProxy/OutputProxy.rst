@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.generate_document_representation
+      ~experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.handle_doctree_document_environment
+      ~experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.handle_html_document_environment
+      ~experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.handle_latex_document_environment
+      ~experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.handle_rest_document_environment
+      ~experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.payload
+      ~experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.storage_format
+      ~experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.__eq__
+      ~experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.__ge__
+      ~experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.__gt__
+      ~experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.__le__
+      ~experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.__lt__
+      ~experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.__ne__
+      ~experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.__repr__
+
 Bases
 -----
 

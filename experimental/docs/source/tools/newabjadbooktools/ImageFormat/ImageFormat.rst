@@ -5,6 +5,23 @@
 
 .. autoclass:: experimental.tools.newabjadbooktools.ImageFormat.ImageFormat.ImageFormat
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.newabjadbooktools.ImageFormat.ImageFormat.ImageFormat.file_extension
+      ~experimental.tools.newabjadbooktools.ImageFormat.ImageFormat.ImageFormat.storage_format
+      ~experimental.tools.newabjadbooktools.ImageFormat.ImageFormat.ImageFormat.__eq__
+      ~experimental.tools.newabjadbooktools.ImageFormat.ImageFormat.ImageFormat.__ge__
+      ~experimental.tools.newabjadbooktools.ImageFormat.ImageFormat.ImageFormat.__gt__
+      ~experimental.tools.newabjadbooktools.ImageFormat.ImageFormat.ImageFormat.__le__
+      ~experimental.tools.newabjadbooktools.ImageFormat.ImageFormat.ImageFormat.__lt__
+      ~experimental.tools.newabjadbooktools.ImageFormat.ImageFormat.ImageFormat.__ne__
+      ~experimental.tools.newabjadbooktools.ImageFormat.ImageFormat.ImageFormat.__repr__
+
 Bases
 -----
 

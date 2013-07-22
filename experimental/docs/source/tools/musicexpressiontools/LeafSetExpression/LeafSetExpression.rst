@@ -5,6 +5,27 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.LeafSetExpression.LeafSetExpression.LeafSetExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.LeafSetExpression.LeafSetExpression.LeafSetExpression.evaluate
+      ~experimental.tools.musicexpressiontools.LeafSetExpression.LeafSetExpression.LeafSetExpression.new
+      ~experimental.tools.musicexpressiontools.LeafSetExpression.LeafSetExpression.LeafSetExpression.source_expression
+      ~experimental.tools.musicexpressiontools.LeafSetExpression.LeafSetExpression.LeafSetExpression.storage_format
+      ~experimental.tools.musicexpressiontools.LeafSetExpression.LeafSetExpression.LeafSetExpression.target_select_expression_inventory
+      ~experimental.tools.musicexpressiontools.LeafSetExpression.LeafSetExpression.LeafSetExpression.__eq__
+      ~experimental.tools.musicexpressiontools.LeafSetExpression.LeafSetExpression.LeafSetExpression.__ge__
+      ~experimental.tools.musicexpressiontools.LeafSetExpression.LeafSetExpression.LeafSetExpression.__gt__
+      ~experimental.tools.musicexpressiontools.LeafSetExpression.LeafSetExpression.LeafSetExpression.__hash__
+      ~experimental.tools.musicexpressiontools.LeafSetExpression.LeafSetExpression.LeafSetExpression.__le__
+      ~experimental.tools.musicexpressiontools.LeafSetExpression.LeafSetExpression.LeafSetExpression.__lt__
+      ~experimental.tools.musicexpressiontools.LeafSetExpression.LeafSetExpression.LeafSetExpression.__ne__
+      ~experimental.tools.musicexpressiontools.LeafSetExpression.LeafSetExpression.LeafSetExpression.__repr__
+
 Bases
 -----
 

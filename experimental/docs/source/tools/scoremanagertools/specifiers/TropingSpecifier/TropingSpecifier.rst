@@ -5,6 +5,22 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.TropingSpecifier.TropingSpecifier.TropingSpecifier
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.specifiers.TropingSpecifier.TropingSpecifier.TropingSpecifier.storage_format
+      ~experimental.tools.scoremanagertools.specifiers.TropingSpecifier.TropingSpecifier.TropingSpecifier.__eq__
+      ~experimental.tools.scoremanagertools.specifiers.TropingSpecifier.TropingSpecifier.TropingSpecifier.__ge__
+      ~experimental.tools.scoremanagertools.specifiers.TropingSpecifier.TropingSpecifier.TropingSpecifier.__gt__
+      ~experimental.tools.scoremanagertools.specifiers.TropingSpecifier.TropingSpecifier.TropingSpecifier.__le__
+      ~experimental.tools.scoremanagertools.specifiers.TropingSpecifier.TropingSpecifier.TropingSpecifier.__lt__
+      ~experimental.tools.scoremanagertools.specifiers.TropingSpecifier.TropingSpecifier.TropingSpecifier.__ne__
+      ~experimental.tools.scoremanagertools.specifiers.TropingSpecifier.TropingSpecifier.TropingSpecifier.__repr__
+
 Bases
 -----
 

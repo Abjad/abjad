@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.DynamicSetExpression.DynamicSetExpression.DynamicSetExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.DynamicSetExpression.DynamicSetExpression.DynamicSetExpression.evaluate
+      ~experimental.tools.musicexpressiontools.DynamicSetExpression.DynamicSetExpression.DynamicSetExpression.execute_against_score
+      ~experimental.tools.musicexpressiontools.DynamicSetExpression.DynamicSetExpression.DynamicSetExpression.new
+      ~experimental.tools.musicexpressiontools.DynamicSetExpression.DynamicSetExpression.DynamicSetExpression.source_expression
+      ~experimental.tools.musicexpressiontools.DynamicSetExpression.DynamicSetExpression.DynamicSetExpression.storage_format
+      ~experimental.tools.musicexpressiontools.DynamicSetExpression.DynamicSetExpression.DynamicSetExpression.target_select_expression_inventory
+      ~experimental.tools.musicexpressiontools.DynamicSetExpression.DynamicSetExpression.DynamicSetExpression.__eq__
+      ~experimental.tools.musicexpressiontools.DynamicSetExpression.DynamicSetExpression.DynamicSetExpression.__ge__
+      ~experimental.tools.musicexpressiontools.DynamicSetExpression.DynamicSetExpression.DynamicSetExpression.__gt__
+      ~experimental.tools.musicexpressiontools.DynamicSetExpression.DynamicSetExpression.DynamicSetExpression.__hash__
+      ~experimental.tools.musicexpressiontools.DynamicSetExpression.DynamicSetExpression.DynamicSetExpression.__le__
+      ~experimental.tools.musicexpressiontools.DynamicSetExpression.DynamicSetExpression.DynamicSetExpression.__lt__
+      ~experimental.tools.musicexpressiontools.DynamicSetExpression.DynamicSetExpression.DynamicSetExpression.__ne__
+      ~experimental.tools.musicexpressiontools.DynamicSetExpression.DynamicSetExpression.DynamicSetExpression.__repr__
+
 Bases
 -----
 

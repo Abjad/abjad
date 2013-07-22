@@ -5,6 +5,26 @@
 
 .. autoclass:: experimental.tools.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint.kind
+      ~experimental.tools.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint.predicate
+      ~experimental.tools.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint.reference
+      ~experimental.tools.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint.storage_format
+      ~experimental.tools.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint.__call__
+      ~experimental.tools.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint.__eq__
+      ~experimental.tools.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint.__ge__
+      ~experimental.tools.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint.__gt__
+      ~experimental.tools.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint.__le__
+      ~experimental.tools.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint.__lt__
+      ~experimental.tools.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint.__ne__
+      ~experimental.tools.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint.__repr__
+
 Bases
 -----
 

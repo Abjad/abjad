@@ -5,6 +5,24 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.get_handler_editor
+      ~experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.session
+      ~experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.storage_format
+      ~experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.__eq__
+      ~experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.__ge__
+      ~experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.__gt__
+      ~experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.__le__
+      ~experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.__lt__
+      ~experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.__ne__
+      ~experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.__repr__
+
 Bases
 -----
 

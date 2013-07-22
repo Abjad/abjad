@@ -5,6 +5,46 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.score_specification
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.segment_name
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.select_beats
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.select_divisions
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.select_leaves
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.select_measures
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.select_notes_and_chords
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.select_time_signatures
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_aggregate
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_articulation
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_divisions
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_dynamic
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_leaf_color
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_mark
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_markup
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_pitch
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_pitch_class_transform
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_register
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_rhythm
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_tempo
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.set_time_signatures
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.specification
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.specification_name
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.storage_format
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.timespan
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.__eq__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.__ge__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.__gt__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.__le__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.__lt__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.__ne__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInterface.SegmentSpecificationInterface.SegmentSpecificationInterface.__repr__
+
 Bases
 -----
 

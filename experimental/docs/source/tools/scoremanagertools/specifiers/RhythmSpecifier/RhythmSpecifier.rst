@@ -5,6 +5,22 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.RhythmSpecifier.RhythmSpecifier.RhythmSpecifier
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.specifiers.RhythmSpecifier.RhythmSpecifier.RhythmSpecifier.storage_format
+      ~experimental.tools.scoremanagertools.specifiers.RhythmSpecifier.RhythmSpecifier.RhythmSpecifier.__eq__
+      ~experimental.tools.scoremanagertools.specifiers.RhythmSpecifier.RhythmSpecifier.RhythmSpecifier.__ge__
+      ~experimental.tools.scoremanagertools.specifiers.RhythmSpecifier.RhythmSpecifier.RhythmSpecifier.__gt__
+      ~experimental.tools.scoremanagertools.specifiers.RhythmSpecifier.RhythmSpecifier.RhythmSpecifier.__le__
+      ~experimental.tools.scoremanagertools.specifiers.RhythmSpecifier.RhythmSpecifier.RhythmSpecifier.__lt__
+      ~experimental.tools.scoremanagertools.specifiers.RhythmSpecifier.RhythmSpecifier.RhythmSpecifier.__ne__
+      ~experimental.tools.scoremanagertools.specifiers.RhythmSpecifier.RhythmSpecifier.RhythmSpecifier.__repr__
+
 Bases
 -----
 

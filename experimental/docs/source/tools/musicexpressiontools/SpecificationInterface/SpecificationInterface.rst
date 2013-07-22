@@ -5,6 +5,45 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.score_specification
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.select_beats
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.select_divisions
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.select_leaves
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.select_measures
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.select_notes_and_chords
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.select_time_signatures
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_aggregate
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_articulation
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_divisions
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_dynamic
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_leaf_color
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_mark
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_markup
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_pitch
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_pitch_class_transform
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_register
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_rhythm
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_tempo
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.set_time_signatures
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.specification
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.specification_name
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.storage_format
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.timespan
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__eq__
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__ge__
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__gt__
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__le__
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__lt__
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__ne__
+      ~experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.AggregateSetExpression.AggregateSetExpression.AggregateSetExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.AggregateSetExpression.AggregateSetExpression.AggregateSetExpression.evaluate
+      ~experimental.tools.musicexpressiontools.AggregateSetExpression.AggregateSetExpression.AggregateSetExpression.execute_against_score
+      ~experimental.tools.musicexpressiontools.AggregateSetExpression.AggregateSetExpression.AggregateSetExpression.new
+      ~experimental.tools.musicexpressiontools.AggregateSetExpression.AggregateSetExpression.AggregateSetExpression.source_expression
+      ~experimental.tools.musicexpressiontools.AggregateSetExpression.AggregateSetExpression.AggregateSetExpression.storage_format
+      ~experimental.tools.musicexpressiontools.AggregateSetExpression.AggregateSetExpression.AggregateSetExpression.target_select_expression_inventory
+      ~experimental.tools.musicexpressiontools.AggregateSetExpression.AggregateSetExpression.AggregateSetExpression.__eq__
+      ~experimental.tools.musicexpressiontools.AggregateSetExpression.AggregateSetExpression.AggregateSetExpression.__ge__
+      ~experimental.tools.musicexpressiontools.AggregateSetExpression.AggregateSetExpression.AggregateSetExpression.__gt__
+      ~experimental.tools.musicexpressiontools.AggregateSetExpression.AggregateSetExpression.AggregateSetExpression.__hash__
+      ~experimental.tools.musicexpressiontools.AggregateSetExpression.AggregateSetExpression.AggregateSetExpression.__le__
+      ~experimental.tools.musicexpressiontools.AggregateSetExpression.AggregateSetExpression.AggregateSetExpression.__lt__
+      ~experimental.tools.musicexpressiontools.AggregateSetExpression.AggregateSetExpression.AggregateSetExpression.__ne__
+      ~experimental.tools.musicexpressiontools.AggregateSetExpression.AggregateSetExpression.AggregateSetExpression.__repr__
+
 Bases
 -----
 

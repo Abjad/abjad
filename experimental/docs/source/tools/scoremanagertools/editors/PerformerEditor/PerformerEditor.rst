@@ -5,6 +5,54 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.attribute_name_to_menu_key
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.clean_up_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.copy_target_attributes_to_memory
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.get_item_from_item_number
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.has_target
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.initialize_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.initialize_target
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.initialize_target_from_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.interactively_add_items
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.interactively_edit_item
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.interactively_move_item
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.interactively_remove_items
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.item_getter_configuration_method
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.items
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.items_identifier
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.make_target_attribute_tokens_from_target_manifest
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.menu_key_to_delegated_editor_kwargs
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.menu_key_to_prepopulated_value
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.session
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.set_target_attribute
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.space_delimited_lowercase_target_class_name
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.storage_format
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.target_args_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.target_attribute_names
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.target_attribute_tokens
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.target_class
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.target_keyword_attribute_names
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.target_kwargs_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.target_name
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.target_positional_initializer_argument_names
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.target_positional_initializer_retrievable_attribute_names
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.__eq__
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.__ge__
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.__gt__
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.__le__
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.__lt__
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.__ne__
+      ~experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.__repr__
+
 Bases
 -----
 

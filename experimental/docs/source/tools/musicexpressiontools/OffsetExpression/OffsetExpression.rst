@@ -5,6 +5,41 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.anchor
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.callbacks
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.edge
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.evaluate
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.is_score_rooted
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.is_segment_rooted
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.look_up_division_set_expression
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.look_up_rhythm_set_expression
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.look_up_time_signature_set_expression
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.new
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.root_specification
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.root_specification_identifier
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.scale
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.score_specification
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.start_offset
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.stop_offset
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.storage_format
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.translate
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.__deepcopy__
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.__eq__
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.__ge__
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.__gt__
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.__hash__
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.__le__
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.__lt__
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.__ne__
+      ~experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression.__repr__
+
 Bases
 -----
 

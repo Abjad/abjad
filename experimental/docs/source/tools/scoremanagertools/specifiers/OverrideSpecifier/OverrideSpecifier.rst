@@ -5,6 +5,22 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.OverrideSpecifier.OverrideSpecifier.OverrideSpecifier
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.specifiers.OverrideSpecifier.OverrideSpecifier.OverrideSpecifier.storage_format
+      ~experimental.tools.scoremanagertools.specifiers.OverrideSpecifier.OverrideSpecifier.OverrideSpecifier.__eq__
+      ~experimental.tools.scoremanagertools.specifiers.OverrideSpecifier.OverrideSpecifier.OverrideSpecifier.__ge__
+      ~experimental.tools.scoremanagertools.specifiers.OverrideSpecifier.OverrideSpecifier.OverrideSpecifier.__gt__
+      ~experimental.tools.scoremanagertools.specifiers.OverrideSpecifier.OverrideSpecifier.OverrideSpecifier.__le__
+      ~experimental.tools.scoremanagertools.specifiers.OverrideSpecifier.OverrideSpecifier.OverrideSpecifier.__lt__
+      ~experimental.tools.scoremanagertools.specifiers.OverrideSpecifier.OverrideSpecifier.OverrideSpecifier.__ne__
+      ~experimental.tools.scoremanagertools.specifiers.OverrideSpecifier.OverrideSpecifier.OverrideSpecifier.__repr__
+
 Bases
 -----
 

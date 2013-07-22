@@ -5,6 +5,54 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.attribute_name_to_menu_key
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.clean_up_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.copy_target_attributes_to_memory
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.get_item_from_item_number
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.has_target
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.initialize_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.initialize_target
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.initialize_target_from_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.interactively_add_items
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.interactively_edit_item
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.interactively_move_item
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.interactively_remove_items
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.item_getter_configuration_method
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.items
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.items_identifier
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.make_target_attribute_tokens_from_target_manifest
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.menu_key_to_delegated_editor_kwargs
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.menu_key_to_prepopulated_value
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.session
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.set_target_attribute
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.space_delimited_lowercase_target_class_name
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.storage_format
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.target_args_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.target_attribute_names
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.target_attribute_tokens
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.target_class
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.target_keyword_attribute_names
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.target_kwargs_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.target_name
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.target_positional_initializer_argument_names
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.target_positional_initializer_retrievable_attribute_names
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.__eq__
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.__ge__
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.__gt__
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.__le__
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.__lt__
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.__ne__
+      ~experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,29 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.evaluate
+      ~experimental.tools.musicexpressiontools.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.new
+      ~experimental.tools.musicexpressiontools.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.source_expression
+      ~experimental.tools.musicexpressiontools.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.start_offset
+      ~experimental.tools.musicexpressiontools.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.storage_format
+      ~experimental.tools.musicexpressiontools.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.total_duration
+      ~experimental.tools.musicexpressiontools.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.voice_name
+      ~experimental.tools.musicexpressiontools.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.__eq__
+      ~experimental.tools.musicexpressiontools.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.__ge__
+      ~experimental.tools.musicexpressiontools.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.__gt__
+      ~experimental.tools.musicexpressiontools.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.__hash__
+      ~experimental.tools.musicexpressiontools.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.__le__
+      ~experimental.tools.musicexpressiontools.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.__lt__
+      ~experimental.tools.musicexpressiontools.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.__ne__
+      ~experimental.tools.musicexpressiontools.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.SelectExpressionDivisionRegionExpression.__repr__
+
 Bases
 -----
 

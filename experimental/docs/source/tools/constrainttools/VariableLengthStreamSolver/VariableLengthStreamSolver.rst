@@ -5,6 +5,30 @@
 
 .. autoclass:: experimental.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.constraints
+      ~experimental.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.domain
+      ~experimental.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.get_le_n_solutions
+      ~experimental.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.iterator
+      ~experimental.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.randomized
+      ~experimental.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.solutions
+      ~experimental.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.storage_format
+      ~experimental.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.terminators
+      ~experimental.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__eq__
+      ~experimental.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__ge__
+      ~experimental.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__gt__
+      ~experimental.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__iter__
+      ~experimental.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__le__
+      ~experimental.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__lt__
+      ~experimental.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__ne__
+      ~experimental.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__repr__
+
 Bases
 -----
 

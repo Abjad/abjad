@@ -5,6 +5,22 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.RegistrationSpecifier.RegistrationSpecifier.RegistrationSpecifier
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.specifiers.RegistrationSpecifier.RegistrationSpecifier.RegistrationSpecifier.storage_format
+      ~experimental.tools.scoremanagertools.specifiers.RegistrationSpecifier.RegistrationSpecifier.RegistrationSpecifier.__eq__
+      ~experimental.tools.scoremanagertools.specifiers.RegistrationSpecifier.RegistrationSpecifier.RegistrationSpecifier.__ge__
+      ~experimental.tools.scoremanagertools.specifiers.RegistrationSpecifier.RegistrationSpecifier.RegistrationSpecifier.__gt__
+      ~experimental.tools.scoremanagertools.specifiers.RegistrationSpecifier.RegistrationSpecifier.RegistrationSpecifier.__le__
+      ~experimental.tools.scoremanagertools.specifiers.RegistrationSpecifier.RegistrationSpecifier.RegistrationSpecifier.__lt__
+      ~experimental.tools.scoremanagertools.specifiers.RegistrationSpecifier.RegistrationSpecifier.RegistrationSpecifier.__ne__
+      ~experimental.tools.scoremanagertools.specifiers.RegistrationSpecifier.RegistrationSpecifier.RegistrationSpecifier.__repr__
+
 Bases
 -----
 

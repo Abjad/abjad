@@ -5,6 +5,34 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.anchor
+      ~experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.evaluate
+      ~experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.is_score_rooted
+      ~experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.is_segment_rooted
+      ~experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.new
+      ~experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.root_specification
+      ~experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.root_specification_identifier
+      ~experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.score_specification
+      ~experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.start_offset
+      ~experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.stop_offset
+      ~experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.storage_format
+      ~experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.__deepcopy__
+      ~experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.__eq__
+      ~experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.__ge__
+      ~experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.__gt__
+      ~experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.__hash__
+      ~experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.__le__
+      ~experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.__lt__
+      ~experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.__ne__
+      ~experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression.__repr__
+
 Bases
 -----
 

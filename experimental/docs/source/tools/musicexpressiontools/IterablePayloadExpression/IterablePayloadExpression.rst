@@ -5,6 +5,35 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.elements
+      ~experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.evaluate
+      ~experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.new
+      ~experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.partition_by_ratio
+      ~experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.partition_by_ratio_of_durations
+      ~experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.payload
+      ~experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.reflect
+      ~experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.repeat_to_duration
+      ~experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.repeat_to_length
+      ~experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.rotate
+      ~experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.storage_format
+      ~experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__and__
+      ~experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__eq__
+      ~experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__ge__
+      ~experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__getitem__
+      ~experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__gt__
+      ~experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__hash__
+      ~experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__le__
+      ~experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__lt__
+      ~experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__ne__
+      ~experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,26 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.PayloadExpression.PayloadExpression.PayloadExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.PayloadExpression.PayloadExpression.PayloadExpression.evaluate
+      ~experimental.tools.musicexpressiontools.PayloadExpression.PayloadExpression.PayloadExpression.new
+      ~experimental.tools.musicexpressiontools.PayloadExpression.PayloadExpression.PayloadExpression.payload
+      ~experimental.tools.musicexpressiontools.PayloadExpression.PayloadExpression.PayloadExpression.storage_format
+      ~experimental.tools.musicexpressiontools.PayloadExpression.PayloadExpression.PayloadExpression.__eq__
+      ~experimental.tools.musicexpressiontools.PayloadExpression.PayloadExpression.PayloadExpression.__ge__
+      ~experimental.tools.musicexpressiontools.PayloadExpression.PayloadExpression.PayloadExpression.__gt__
+      ~experimental.tools.musicexpressiontools.PayloadExpression.PayloadExpression.PayloadExpression.__hash__
+      ~experimental.tools.musicexpressiontools.PayloadExpression.PayloadExpression.PayloadExpression.__le__
+      ~experimental.tools.musicexpressiontools.PayloadExpression.PayloadExpression.PayloadExpression.__lt__
+      ~experimental.tools.musicexpressiontools.PayloadExpression.PayloadExpression.PayloadExpression.__ne__
+      ~experimental.tools.musicexpressiontools.PayloadExpression.PayloadExpression.PayloadExpression.__repr__
+
 Bases
 -----
 

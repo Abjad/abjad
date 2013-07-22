@@ -5,6 +5,31 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.change_expr_to_menu_entry
+      ~experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.get_tag_from_directory_path
+      ~experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.items
+      ~experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.list_current_material_directory_paths
+      ~experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.list_items
+      ~experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.list_public_directory_paths_in_subtree
+      ~experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.list_public_directory_paths_with_initializers_in_subtree
+      ~experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.make_menu_entries
+      ~experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.session
+      ~experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.storage_format
+      ~experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.__eq__
+      ~experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.__ge__
+      ~experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.__gt__
+      ~experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.__le__
+      ~experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.__lt__
+      ~experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.__ne__
+      ~experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.__repr__
+
 Bases
 -----
 

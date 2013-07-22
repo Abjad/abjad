@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.change_expr_to_menu_entry
+      ~experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.get_tag_from_directory_path
+      ~experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.items
+      ~experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.list_items
+      ~experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.make_menu_entries
+      ~experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.session
+      ~experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.storage_format
+      ~experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.__eq__
+      ~experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.__ge__
+      ~experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.__gt__
+      ~experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.__le__
+      ~experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.__lt__
+      ~experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.__ne__
+      ~experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.__repr__
+
 Bases
 -----
 

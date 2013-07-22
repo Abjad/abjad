@@ -5,6 +5,32 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.callbacks
+      ~experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.map_to_each
+      ~experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.partition_by_ratio
+      ~experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.partition_by_ratio_of_durations
+      ~experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.reflect
+      ~experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.repeat_to_duration
+      ~experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.repeat_to_length
+      ~experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.rotate
+      ~experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.storage_format
+      ~experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.__and__
+      ~experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.__eq__
+      ~experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.__ge__
+      ~experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.__getitem__
+      ~experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.__gt__
+      ~experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.__le__
+      ~experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.__lt__
+      ~experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.__ne__
+      ~experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.__repr__
+
 Bases
 -----
 

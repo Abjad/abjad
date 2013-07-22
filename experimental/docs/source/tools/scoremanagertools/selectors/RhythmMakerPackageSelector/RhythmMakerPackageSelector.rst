@@ -5,6 +5,31 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.change_expr_to_menu_entry
+      ~experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.get_tag_from_directory_path
+      ~experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.items
+      ~experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.list_current_material_directory_paths
+      ~experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.list_items
+      ~experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.list_public_directory_paths_in_subtree
+      ~experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.list_public_directory_paths_with_initializers_in_subtree
+      ~experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.make_menu_entries
+      ~experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.session
+      ~experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.storage_format
+      ~experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.__eq__
+      ~experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.__ge__
+      ~experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.__gt__
+      ~experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.__le__
+      ~experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.__lt__
+      ~experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.__ne__
+      ~experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,31 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.division_list
+      ~experimental.tools.musicexpressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.evaluate
+      ~experimental.tools.musicexpressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.new
+      ~experimental.tools.musicexpressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.prolongs_expr
+      ~experimental.tools.musicexpressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.source_expression
+      ~experimental.tools.musicexpressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.start_offset
+      ~experimental.tools.musicexpressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.storage_format
+      ~experimental.tools.musicexpressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.total_duration
+      ~experimental.tools.musicexpressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.voice_name
+      ~experimental.tools.musicexpressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.__eq__
+      ~experimental.tools.musicexpressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.__ge__
+      ~experimental.tools.musicexpressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.__gt__
+      ~experimental.tools.musicexpressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.__hash__
+      ~experimental.tools.musicexpressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.__le__
+      ~experimental.tools.musicexpressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.__lt__
+      ~experimental.tools.musicexpressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.__ne__
+      ~experimental.tools.musicexpressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.__repr__
+
 Bases
 -----
 

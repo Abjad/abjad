@@ -5,6 +5,22 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.storage_format
+      ~experimental.tools.scoremanagertools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.__eq__
+      ~experimental.tools.scoremanagertools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.__ge__
+      ~experimental.tools.scoremanagertools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.__gt__
+      ~experimental.tools.scoremanagertools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.__le__
+      ~experimental.tools.scoremanagertools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.__lt__
+      ~experimental.tools.scoremanagertools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.__ne__
+      ~experimental.tools.scoremanagertools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.__repr__
+
 Bases
 -----
 

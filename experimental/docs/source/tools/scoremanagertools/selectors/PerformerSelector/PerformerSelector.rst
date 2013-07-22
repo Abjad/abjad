@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.change_expr_to_menu_entry
+      ~experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.get_tag_from_directory_path
+      ~experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.items
+      ~experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.list_items
+      ~experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.make_menu_entries
+      ~experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.session
+      ~experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.storage_format
+      ~experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.__eq__
+      ~experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.__ge__
+      ~experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.__gt__
+      ~experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.__le__
+      ~experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.__lt__
+      ~experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.__ne__
+      ~experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.__repr__
+
 Bases
 -----
 

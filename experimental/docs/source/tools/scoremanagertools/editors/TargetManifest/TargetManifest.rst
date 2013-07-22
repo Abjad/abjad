@@ -5,6 +5,37 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.attribute_details
+      ~experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.attribute_menu_keys
+      ~experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.attribute_names
+      ~experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.change_initializer_argument_name_to_retrievable_attribute_name
+      ~experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.change_retrievable_attribute_name_to_initializer_argument_name
+      ~experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.format_pieces
+      ~experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.keyword_attribute_names
+      ~experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.menu_key_to_attribute_detail
+      ~experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.menu_key_to_attribute_name
+      ~experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.menu_key_to_editor
+      ~experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.menu_key_to_prepopulated_value
+      ~experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.menu_key_to_space_delimited_lowercase_attribute_name
+      ~experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.positional_initializer_argument_names
+      ~experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.positional_initializer_retrievable_attribute_names
+      ~experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.space_delimited_lowercase_attribute_names
+      ~experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.storage_format
+      ~experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.__eq__
+      ~experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.__ge__
+      ~experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.__gt__
+      ~experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.__le__
+      ~experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.__lt__
+      ~experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.__ne__
+      ~experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,22 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.ClefSpecifier.ClefSpecifier.ClefSpecifier
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.specifiers.ClefSpecifier.ClefSpecifier.ClefSpecifier.storage_format
+      ~experimental.tools.scoremanagertools.specifiers.ClefSpecifier.ClefSpecifier.ClefSpecifier.__eq__
+      ~experimental.tools.scoremanagertools.specifiers.ClefSpecifier.ClefSpecifier.ClefSpecifier.__ge__
+      ~experimental.tools.scoremanagertools.specifiers.ClefSpecifier.ClefSpecifier.ClefSpecifier.__gt__
+      ~experimental.tools.scoremanagertools.specifiers.ClefSpecifier.ClefSpecifier.ClefSpecifier.__le__
+      ~experimental.tools.scoremanagertools.specifiers.ClefSpecifier.ClefSpecifier.ClefSpecifier.__lt__
+      ~experimental.tools.scoremanagertools.specifiers.ClefSpecifier.ClefSpecifier.ClefSpecifier.__ne__
+      ~experimental.tools.scoremanagertools.specifiers.ClefSpecifier.ClefSpecifier.ClefSpecifier.__repr__
+
 Bases
 -----
 

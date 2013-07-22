@@ -5,6 +5,33 @@
 
 .. autoclass:: experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy.file_name_prefix
+      ~experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy.file_name_without_extension
+      ~experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy.generate_document_representation
+      ~experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy.get_asset_output_absolute_file_path
+      ~experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy.get_asset_output_relative_file_path
+      ~experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy.handle_doctree_document_environment
+      ~experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy.handle_html_document_environment
+      ~experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy.handle_latex_document_environment
+      ~experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy.handle_rest_document_environment
+      ~experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy.payload
+      ~experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy.storage_format
+      ~experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy.write_asset_to_disk
+      ~experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy.__eq__
+      ~experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy.__ge__
+      ~experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy.__gt__
+      ~experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy.__le__
+      ~experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy.__lt__
+      ~experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy.__ne__
+      ~experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy.__repr__
+
 Bases
 -----
 

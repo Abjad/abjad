@@ -5,6 +5,23 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.session
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.storage_format
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.__eq__
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.__ge__
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.__gt__
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.__le__
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.__lt__
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.__ne__
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.__repr__
+
 Bases
 -----
 

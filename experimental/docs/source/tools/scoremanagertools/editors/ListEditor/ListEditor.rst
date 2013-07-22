@@ -5,6 +5,54 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.attribute_name_to_menu_key
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.clean_up_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.copy_target_attributes_to_memory
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.get_item_from_item_number
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.has_target
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.initialize_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.initialize_target
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.initialize_target_from_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.interactively_add_items
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.interactively_edit_item
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.interactively_move_item
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.interactively_remove_items
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.item_getter_configuration_method
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.items
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.items_identifier
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.make_target_attribute_tokens_from_target_manifest
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.menu_key_to_delegated_editor_kwargs
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.menu_key_to_prepopulated_value
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.session
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.set_target_attribute
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.space_delimited_lowercase_target_class_name
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.storage_format
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.target_args_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.target_attribute_names
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.target_attribute_tokens
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.target_class
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.target_keyword_attribute_names
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.target_kwargs_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.target_name
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.target_positional_initializer_argument_names
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.target_positional_initializer_retrievable_attribute_names
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.__eq__
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.__ge__
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.__gt__
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.__le__
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.__lt__
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.__ne__
+      ~experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.__repr__
+
 Bases
 -----
 

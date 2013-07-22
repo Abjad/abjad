@@ -5,6 +5,32 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_aggregate
+      ~experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_articulation
+      ~experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_dynamic
+      ~experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_leaf_color
+      ~experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_mark
+      ~experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_markup
+      ~experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_pitch
+      ~experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_pitch_class_transform
+      ~experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_register
+      ~experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.set_tempo
+      ~experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.storage_format
+      ~experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__eq__
+      ~experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__ge__
+      ~experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__gt__
+      ~experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__le__
+      ~experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__lt__
+      ~experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__ne__
+      ~experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin.__repr__
+
 Bases
 -----
 

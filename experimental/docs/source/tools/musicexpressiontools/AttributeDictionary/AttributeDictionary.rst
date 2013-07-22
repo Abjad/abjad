@@ -5,6 +5,47 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.clear
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.copy
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.get
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.has_key
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.items
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.iteritems
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.iterkeys
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.itervalues
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.keys
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.pop
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.popitem
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.setdefault
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.storage_format
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.update
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.values
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.viewitems
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.viewkeys
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.viewvalues
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.__cmp__
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.__contains__
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.__delitem__
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.__eq__
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.__ge__
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.__getitem__
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.__gt__
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.__iter__
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.__le__
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.__len__
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.__lt__
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.__ne__
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.__repr__
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.__reversed__
+      ~experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary.__setitem__
+
 Bases
 -----
 

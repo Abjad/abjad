@@ -5,6 +5,31 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.io.IOTranscript.IOTranscript.IOTranscript
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.io.IOTranscript.IOTranscript.IOTranscript.append_lines
+      ~experimental.tools.scoremanagertools.io.IOTranscript.IOTranscript.IOTranscript.current_time
+      ~experimental.tools.scoremanagertools.io.IOTranscript.IOTranscript.IOTranscript.entries
+      ~experimental.tools.scoremanagertools.io.IOTranscript.IOTranscript.IOTranscript.format_entry
+      ~experimental.tools.scoremanagertools.io.IOTranscript.IOTranscript.IOTranscript.last_menu_lines
+      ~experimental.tools.scoremanagertools.io.IOTranscript.IOTranscript.IOTranscript.signature
+      ~experimental.tools.scoremanagertools.io.IOTranscript.IOTranscript.IOTranscript.start_time
+      ~experimental.tools.scoremanagertools.io.IOTranscript.IOTranscript.IOTranscript.storage_format
+      ~experimental.tools.scoremanagertools.io.IOTranscript.IOTranscript.IOTranscript.write_to_disk
+      ~experimental.tools.scoremanagertools.io.IOTranscript.IOTranscript.IOTranscript.__eq__
+      ~experimental.tools.scoremanagertools.io.IOTranscript.IOTranscript.IOTranscript.__ge__
+      ~experimental.tools.scoremanagertools.io.IOTranscript.IOTranscript.IOTranscript.__getitem__
+      ~experimental.tools.scoremanagertools.io.IOTranscript.IOTranscript.IOTranscript.__gt__
+      ~experimental.tools.scoremanagertools.io.IOTranscript.IOTranscript.IOTranscript.__le__
+      ~experimental.tools.scoremanagertools.io.IOTranscript.IOTranscript.IOTranscript.__lt__
+      ~experimental.tools.scoremanagertools.io.IOTranscript.IOTranscript.IOTranscript.__ne__
+      ~experimental.tools.scoremanagertools.io.IOTranscript.IOTranscript.IOTranscript.__repr__
+
 Bases
 -----
 

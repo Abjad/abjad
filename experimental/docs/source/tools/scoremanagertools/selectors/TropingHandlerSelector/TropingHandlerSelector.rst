@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.change_expr_to_menu_entry
+      ~experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.get_tag_from_directory_path
+      ~experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.items
+      ~experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.list_items
+      ~experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.make_menu_entries
+      ~experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.session
+      ~experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.storage_format
+      ~experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.__eq__
+      ~experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.__ge__
+      ~experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.__gt__
+      ~experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.__le__
+      ~experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.__lt__
+      ~experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.__ne__
+      ~experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.__repr__
+
 Bases
 -----
 

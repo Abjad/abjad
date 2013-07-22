@@ -5,6 +5,40 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.anchor
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.attribute
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.evaluate
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.is_score_rooted
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.is_segment_rooted
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.new
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.persist
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.root_specification
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.root_specification_identifier
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.score_specification
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.source_expression
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.start_offset
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.stop_offset
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.storage_format
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.target_timespan
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.timespan
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.truncate
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__deepcopy__
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__eq__
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__ge__
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__gt__
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__hash__
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__le__
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__lt__
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__ne__
+      ~experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.__repr__
+
 Bases
 -----
 

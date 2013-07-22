@@ -5,6 +5,25 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin.callbacks
+      ~experimental.tools.musicexpressiontools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin.scale
+      ~experimental.tools.musicexpressiontools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin.storage_format
+      ~experimental.tools.musicexpressiontools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin.translate
+      ~experimental.tools.musicexpressiontools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin.__eq__
+      ~experimental.tools.musicexpressiontools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin.__ge__
+      ~experimental.tools.musicexpressiontools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin.__gt__
+      ~experimental.tools.musicexpressiontools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin.__le__
+      ~experimental.tools.musicexpressiontools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin.__lt__
+      ~experimental.tools.musicexpressiontools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin.__ne__
+      ~experimental.tools.musicexpressiontools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin.__repr__
+
 Bases
 -----
 

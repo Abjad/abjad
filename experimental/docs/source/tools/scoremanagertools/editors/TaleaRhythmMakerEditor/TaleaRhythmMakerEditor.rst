@@ -5,6 +5,46 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.attribute_name_to_menu_key
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.clean_up_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.copy_target_attributes_to_memory
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.has_target
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.initialize_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.initialize_target
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.initialize_target_from_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.make_target_attribute_tokens_from_target_manifest
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.menu_key_to_delegated_editor_kwargs
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.menu_key_to_prepopulated_value
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.session
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.set_target_attribute
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.space_delimited_lowercase_target_class_name
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.storage_format
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.target_args_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.target_attribute_names
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.target_attribute_tokens
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.target_class
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.target_keyword_attribute_names
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.target_kwargs_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.target_name
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.target_positional_initializer_argument_names
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.target_positional_initializer_retrievable_attribute_names
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.__eq__
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.__ge__
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.__gt__
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.__le__
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.__lt__
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.__ne__
+      ~experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.__repr__
+
 Bases
 -----
 

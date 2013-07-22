@@ -5,6 +5,34 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.asset_proxy_class
+      ~experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.interactively_make_asset
+      ~experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.interactively_remove_assets
+      ~experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.interactively_rename_asset
+      ~experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.interactively_select_asset_filesystem_path
+      ~experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.interactively_select_asset_storehouse_filesystem_path
+      ~experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.list_asset_filesystem_paths
+      ~experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.list_asset_names
+      ~experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.list_asset_proxies
+      ~experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.list_asset_storehouse_filesystem_paths
+      ~experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.make_asset
+      ~experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.session
+      ~experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.storage_format
+      ~experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.__eq__
+      ~experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.__ge__
+      ~experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.__gt__
+      ~experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.__le__
+      ~experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.__lt__
+      ~experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.__ne__
+      ~experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.__repr__
+
 Bases
 -----
 

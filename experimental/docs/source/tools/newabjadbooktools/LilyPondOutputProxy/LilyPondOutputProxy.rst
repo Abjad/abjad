@@ -5,6 +5,37 @@
 
 .. autoclass:: experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.file_name_prefix
+      ~experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.file_name_without_extension
+      ~experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.generate_document_representation
+      ~experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.get_asset_output_absolute_file_path
+      ~experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.get_asset_output_relative_file_path
+      ~experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.get_image_file_name
+      ~experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.handle_doctree_document_environment
+      ~experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.handle_html_document_environment
+      ~experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.handle_latex_document_environment
+      ~experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.handle_pdf_image_format
+      ~experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.handle_png_image_format
+      ~experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.handle_rest_document_environment
+      ~experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.handle_svg_image_format
+      ~experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.payload
+      ~experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.storage_format
+      ~experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.write_asset_to_disk
+      ~experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.__eq__
+      ~experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.__ge__
+      ~experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.__gt__
+      ~experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.__le__
+      ~experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.__lt__
+      ~experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.__ne__
+      ~experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.__repr__
+
 Bases
 -----
 

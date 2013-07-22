@@ -5,6 +5,42 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.anchor
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.attribute
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.evaluate
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.evaluate_and_store_in_root_specification
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.is_score_rooted
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.is_segment_rooted
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.new
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.persist
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.root_specification
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.root_specification_identifier
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.score_specification
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.source_expression
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.start_offset
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.stop_offset
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.storage_format
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.target_context_names
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.target_timespan
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.timespan
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.truncate
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__deepcopy__
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__eq__
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__ge__
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__gt__
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__hash__
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__le__
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__lt__
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__ne__
+      ~experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression.__repr__
+
 Bases
 -----
 

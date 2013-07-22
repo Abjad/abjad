@@ -5,6 +5,23 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.session
+      ~experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.storage_format
+      ~experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.__eq__
+      ~experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.__ge__
+      ~experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.__gt__
+      ~experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.__le__
+      ~experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.__lt__
+      ~experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.__ne__
+      ~experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.__repr__
+
 Bases
 -----
 

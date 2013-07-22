@@ -5,6 +5,31 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.evaluate
+      ~experimental.tools.musicexpressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.execute_against_score
+      ~experimental.tools.musicexpressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.level
+      ~experimental.tools.musicexpressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.new
+      ~experimental.tools.musicexpressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.node_count
+      ~experimental.tools.musicexpressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.source_expression
+      ~experimental.tools.musicexpressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.storage_format
+      ~experimental.tools.musicexpressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.target_select_expression_inventory
+      ~experimental.tools.musicexpressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.trope
+      ~experimental.tools.musicexpressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.__eq__
+      ~experimental.tools.musicexpressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.__ge__
+      ~experimental.tools.musicexpressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.__gt__
+      ~experimental.tools.musicexpressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.__hash__
+      ~experimental.tools.musicexpressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.__le__
+      ~experimental.tools.musicexpressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.__lt__
+      ~experimental.tools.musicexpressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.__ne__
+      ~experimental.tools.musicexpressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression.__repr__
+
 Bases
 -----
 

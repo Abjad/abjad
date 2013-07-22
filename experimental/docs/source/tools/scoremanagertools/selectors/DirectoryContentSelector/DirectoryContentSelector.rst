@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.change_expr_to_menu_entry
+      ~experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.get_tag_from_directory_path
+      ~experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.items
+      ~experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.list_items
+      ~experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.make_menu_entries
+      ~experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.session
+      ~experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.storage_format
+      ~experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.__eq__
+      ~experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.__ge__
+      ~experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.__gt__
+      ~experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.__le__
+      ~experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.__lt__
+      ~experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.__ne__
+      ~experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.__repr__
+
 Bases
 -----
 

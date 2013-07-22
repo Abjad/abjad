@@ -5,6 +5,47 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.append
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.count
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.extend
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.index
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.insert
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.name
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.pop
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.remove
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.reverse
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.sort
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.storage_format
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.__add__
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.__contains__
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.__delitem__
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.__delslice__
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.__eq__
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.__ge__
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.__getitem__
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.__getslice__
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.__gt__
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.__iadd__
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.__imul__
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.__iter__
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.__le__
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.__len__
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.__lt__
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.__mul__
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.__ne__
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.__repr__
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.__reversed__
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.__rmul__
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.__setitem__
+      ~experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory.__setslice__
+
 Bases
 -----
 

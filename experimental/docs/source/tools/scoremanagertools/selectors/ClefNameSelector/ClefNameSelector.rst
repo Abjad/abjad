@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.change_expr_to_menu_entry
+      ~experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.get_tag_from_directory_path
+      ~experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.items
+      ~experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.list_items
+      ~experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.make_menu_entries
+      ~experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.session
+      ~experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.storage_format
+      ~experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.__eq__
+      ~experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.__ge__
+      ~experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.__gt__
+      ~experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.__le__
+      ~experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.__lt__
+      ~experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.__ne__
+      ~experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.__repr__
+
 Bases
 -----
 

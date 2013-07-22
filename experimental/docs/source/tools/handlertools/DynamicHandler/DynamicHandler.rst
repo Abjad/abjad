@@ -5,6 +5,23 @@
 
 .. autoclass:: experimental.tools.handlertools.DynamicHandler.DynamicHandler.DynamicHandler
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.handlertools.DynamicHandler.DynamicHandler.DynamicHandler.new
+      ~experimental.tools.handlertools.DynamicHandler.DynamicHandler.DynamicHandler.storage_format
+      ~experimental.tools.handlertools.DynamicHandler.DynamicHandler.DynamicHandler.__eq__
+      ~experimental.tools.handlertools.DynamicHandler.DynamicHandler.DynamicHandler.__ge__
+      ~experimental.tools.handlertools.DynamicHandler.DynamicHandler.DynamicHandler.__gt__
+      ~experimental.tools.handlertools.DynamicHandler.DynamicHandler.DynamicHandler.__le__
+      ~experimental.tools.handlertools.DynamicHandler.DynamicHandler.DynamicHandler.__lt__
+      ~experimental.tools.handlertools.DynamicHandler.DynamicHandler.DynamicHandler.__ne__
+      ~experimental.tools.handlertools.DynamicHandler.DynamicHandler.DynamicHandler.__repr__
+
 Bases
 -----
 

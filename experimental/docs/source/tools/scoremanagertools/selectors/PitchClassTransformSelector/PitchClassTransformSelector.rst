@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.change_expr_to_menu_entry
+      ~experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.get_tag_from_directory_path
+      ~experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.items
+      ~experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.list_items
+      ~experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.make_menu_entries
+      ~experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.session
+      ~experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.storage_format
+      ~experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.__eq__
+      ~experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.__ge__
+      ~experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.__gt__
+      ~experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.__le__
+      ~experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.__lt__
+      ~experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.__ne__
+      ~experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.__repr__
+
 Bases
 -----
 

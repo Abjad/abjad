@@ -5,6 +5,27 @@
 
 .. autoclass:: experimental.tools.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.indices
+      ~experimental.tools.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.kind
+      ~experimental.tools.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.max_index
+      ~experimental.tools.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.predicate
+      ~experimental.tools.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.storage_format
+      ~experimental.tools.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.__call__
+      ~experimental.tools.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.__eq__
+      ~experimental.tools.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.__ge__
+      ~experimental.tools.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.__gt__
+      ~experimental.tools.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.__le__
+      ~experimental.tools.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.__lt__
+      ~experimental.tools.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.__ne__
+      ~experimental.tools.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.__repr__
+
 Bases
 -----
 

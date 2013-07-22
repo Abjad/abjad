@@ -5,6 +5,24 @@
 
 .. autoclass:: experimental.tools.handlertools.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.handlertools.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler.new
+      ~experimental.tools.handlertools.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler.storage_format
+      ~experimental.tools.handlertools.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler.__call__
+      ~experimental.tools.handlertools.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler.__eq__
+      ~experimental.tools.handlertools.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler.__ge__
+      ~experimental.tools.handlertools.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler.__gt__
+      ~experimental.tools.handlertools.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler.__le__
+      ~experimental.tools.handlertools.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler.__lt__
+      ~experimental.tools.handlertools.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler.__ne__
+      ~experimental.tools.handlertools.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler.__repr__
+
 Bases
 -----
 

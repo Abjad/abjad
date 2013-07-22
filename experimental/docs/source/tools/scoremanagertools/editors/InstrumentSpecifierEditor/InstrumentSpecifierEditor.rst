@@ -5,6 +5,46 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.attribute_name_to_menu_key
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.clean_up_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.copy_target_attributes_to_memory
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.has_target
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.initialize_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.initialize_target
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.initialize_target_from_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.make_target_attribute_tokens_from_target_manifest
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.menu_key_to_delegated_editor_kwargs
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.menu_key_to_prepopulated_value
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.session
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.set_target_attribute
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.space_delimited_lowercase_target_class_name
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.storage_format
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.target_args_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.target_attribute_names
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.target_attribute_tokens
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.target_class
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.target_keyword_attribute_names
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.target_kwargs_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.target_name
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.target_positional_initializer_argument_names
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.target_positional_initializer_retrievable_attribute_names
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.__eq__
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.__ge__
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.__gt__
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.__le__
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.__lt__
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.__ne__
+      ~experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.MarkSetExpression.MarkSetExpression.MarkSetExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.MarkSetExpression.MarkSetExpression.MarkSetExpression.evaluate
+      ~experimental.tools.musicexpressiontools.MarkSetExpression.MarkSetExpression.MarkSetExpression.execute_against_score
+      ~experimental.tools.musicexpressiontools.MarkSetExpression.MarkSetExpression.MarkSetExpression.new
+      ~experimental.tools.musicexpressiontools.MarkSetExpression.MarkSetExpression.MarkSetExpression.source_expression
+      ~experimental.tools.musicexpressiontools.MarkSetExpression.MarkSetExpression.MarkSetExpression.storage_format
+      ~experimental.tools.musicexpressiontools.MarkSetExpression.MarkSetExpression.MarkSetExpression.target_select_expression_inventory
+      ~experimental.tools.musicexpressiontools.MarkSetExpression.MarkSetExpression.MarkSetExpression.__eq__
+      ~experimental.tools.musicexpressiontools.MarkSetExpression.MarkSetExpression.MarkSetExpression.__ge__
+      ~experimental.tools.musicexpressiontools.MarkSetExpression.MarkSetExpression.MarkSetExpression.__gt__
+      ~experimental.tools.musicexpressiontools.MarkSetExpression.MarkSetExpression.MarkSetExpression.__hash__
+      ~experimental.tools.musicexpressiontools.MarkSetExpression.MarkSetExpression.MarkSetExpression.__le__
+      ~experimental.tools.musicexpressiontools.MarkSetExpression.MarkSetExpression.MarkSetExpression.__lt__
+      ~experimental.tools.musicexpressiontools.MarkSetExpression.MarkSetExpression.MarkSetExpression.__ne__
+      ~experimental.tools.musicexpressiontools.MarkSetExpression.MarkSetExpression.MarkSetExpression.__repr__
+
 Bases
 -----
 

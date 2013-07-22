@@ -188,41 +188,6 @@ Unstable packages (load manually)
       tools/handlertools/TimewisePitchClassHandler/TimewisePitchClassHandler
       tools/handlertools/TwoStageHairpinHandler/TwoStageHairpinHandler
 
-:py:mod:`lyrictools <experimental.tools.lyrictools>`
-====================================================
-
-.. toctree::
-   :hidden:
-   :maxdepth: 1
-
-   tools/lyrictools/index
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/lyrictools/AddLyrics/AddLyrics
-      tools/lyrictools/LyricExtender/LyricExtender
-      tools/lyrictools/LyricHyphen/LyricHyphen
-      tools/lyrictools/LyricSpace/LyricSpace
-      tools/lyrictools/LyricText/LyricText
-      tools/lyrictools/Lyrics/Lyrics
-
-.. only:: latex
-
-   Concrete classes
-   ----------------
-
-   .. toctree::
-
-      tools/lyrictools/AddLyrics/AddLyrics
-      tools/lyrictools/LyricExtender/LyricExtender
-      tools/lyrictools/LyricHyphen/LyricHyphen
-      tools/lyrictools/LyricSpace/LyricSpace
-      tools/lyrictools/LyricText/LyricText
-      tools/lyrictools/Lyrics/Lyrics
-
 :py:mod:`metricmodulationtools <experimental.tools.metricmodulationtools>`
 ==========================================================================
 

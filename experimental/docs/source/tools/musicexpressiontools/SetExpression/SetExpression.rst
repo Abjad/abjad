@@ -5,6 +5,29 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.SetExpression.SetExpression.SetExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.SetExpression.SetExpression.SetExpression.attribute
+      ~experimental.tools.musicexpressiontools.SetExpression.SetExpression.SetExpression.evaluate
+      ~experimental.tools.musicexpressiontools.SetExpression.SetExpression.SetExpression.new
+      ~experimental.tools.musicexpressiontools.SetExpression.SetExpression.SetExpression.source_expression
+      ~experimental.tools.musicexpressiontools.SetExpression.SetExpression.SetExpression.storage_format
+      ~experimental.tools.musicexpressiontools.SetExpression.SetExpression.SetExpression.target_timespan
+      ~experimental.tools.musicexpressiontools.SetExpression.SetExpression.SetExpression.timespan
+      ~experimental.tools.musicexpressiontools.SetExpression.SetExpression.SetExpression.__eq__
+      ~experimental.tools.musicexpressiontools.SetExpression.SetExpression.SetExpression.__ge__
+      ~experimental.tools.musicexpressiontools.SetExpression.SetExpression.SetExpression.__gt__
+      ~experimental.tools.musicexpressiontools.SetExpression.SetExpression.SetExpression.__hash__
+      ~experimental.tools.musicexpressiontools.SetExpression.SetExpression.SetExpression.__le__
+      ~experimental.tools.musicexpressiontools.SetExpression.SetExpression.SetExpression.__lt__
+      ~experimental.tools.musicexpressiontools.SetExpression.SetExpression.SetExpression.__ne__
+      ~experimental.tools.musicexpressiontools.SetExpression.SetExpression.SetExpression.__repr__
+
 Bases
 -----
 

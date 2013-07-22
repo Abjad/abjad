@@ -5,6 +5,27 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.evaluate
+      ~experimental.tools.musicexpressiontools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.new
+      ~experimental.tools.musicexpressiontools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.payload
+      ~experimental.tools.musicexpressiontools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.reflect
+      ~experimental.tools.musicexpressiontools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.storage_format
+      ~experimental.tools.musicexpressiontools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.__eq__
+      ~experimental.tools.musicexpressiontools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.__ge__
+      ~experimental.tools.musicexpressiontools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.__gt__
+      ~experimental.tools.musicexpressiontools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.__hash__
+      ~experimental.tools.musicexpressiontools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.__le__
+      ~experimental.tools.musicexpressiontools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.__lt__
+      ~experimental.tools.musicexpressiontools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.__ne__
+      ~experimental.tools.musicexpressiontools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression.__repr__
+
 Bases
 -----
 

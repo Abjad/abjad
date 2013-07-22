@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression.evaluate
+      ~experimental.tools.musicexpressiontools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression.execute_against_score
+      ~experimental.tools.musicexpressiontools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression.new
+      ~experimental.tools.musicexpressiontools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression.source_expression
+      ~experimental.tools.musicexpressiontools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression.storage_format
+      ~experimental.tools.musicexpressiontools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression.target_counttime_component_select_expression
+      ~experimental.tools.musicexpressiontools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression.__eq__
+      ~experimental.tools.musicexpressiontools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression.__ge__
+      ~experimental.tools.musicexpressiontools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression.__gt__
+      ~experimental.tools.musicexpressiontools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression.__hash__
+      ~experimental.tools.musicexpressiontools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression.__le__
+      ~experimental.tools.musicexpressiontools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression.__lt__
+      ~experimental.tools.musicexpressiontools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression.__ne__
+      ~experimental.tools.musicexpressiontools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression.__repr__
+
 Bases
 -----
 

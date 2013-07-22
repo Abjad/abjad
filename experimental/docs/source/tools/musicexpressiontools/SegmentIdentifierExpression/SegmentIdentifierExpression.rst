@@ -5,6 +5,23 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.storage_format
+      ~experimental.tools.musicexpressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.string
+      ~experimental.tools.musicexpressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__eq__
+      ~experimental.tools.musicexpressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__ge__
+      ~experimental.tools.musicexpressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__gt__
+      ~experimental.tools.musicexpressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__le__
+      ~experimental.tools.musicexpressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__lt__
+      ~experimental.tools.musicexpressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__ne__
+      ~experimental.tools.musicexpressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__repr__
+
 Bases
 -----
 

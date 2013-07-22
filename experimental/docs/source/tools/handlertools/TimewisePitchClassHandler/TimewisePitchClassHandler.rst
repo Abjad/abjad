@@ -5,6 +5,24 @@
 
 .. autoclass:: experimental.tools.handlertools.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.handlertools.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler.new
+      ~experimental.tools.handlertools.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler.storage_format
+      ~experimental.tools.handlertools.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler.__call__
+      ~experimental.tools.handlertools.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler.__eq__
+      ~experimental.tools.handlertools.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler.__ge__
+      ~experimental.tools.handlertools.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler.__gt__
+      ~experimental.tools.handlertools.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler.__le__
+      ~experimental.tools.handlertools.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler.__lt__
+      ~experimental.tools.handlertools.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler.__ne__
+      ~experimental.tools.handlertools.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler.__repr__
+
 Bases
 -----
 

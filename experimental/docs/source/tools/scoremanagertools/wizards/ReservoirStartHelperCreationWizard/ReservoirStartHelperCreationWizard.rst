@@ -5,6 +5,24 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.get_function_arguments
+      ~experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.session
+      ~experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.storage_format
+      ~experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.__eq__
+      ~experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.__ge__
+      ~experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.__gt__
+      ~experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.__le__
+      ~experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.__lt__
+      ~experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.__ne__
+      ~experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.__repr__
+
 Bases
 -----
 

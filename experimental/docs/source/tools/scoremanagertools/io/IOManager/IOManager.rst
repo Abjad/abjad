@@ -5,6 +5,38 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager.assign_user_input
+      ~experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager.clear_terminal
+      ~experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager.confirm
+      ~experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager.display
+      ~experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager.get_one_line_menuing_summary
+      ~experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager.handle_hidden_menu_section_return_value
+      ~experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager.handle_raw_input
+      ~experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager.handle_raw_input_with_default
+      ~experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager.interactively_exec_statement
+      ~experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager.make_default_hidden_section
+      ~experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager.make_getter
+      ~experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager.make_menu
+      ~experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager.pop_from_pending_user_input
+      ~experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager.print_not_yet_implemented
+      ~experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager.proceed
+      ~experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager.session
+      ~experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager.storage_format
+      ~experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager.__eq__
+      ~experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager.__ge__
+      ~experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager.__gt__
+      ~experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager.__le__
+      ~experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager.__lt__
+      ~experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager.__ne__
+      ~experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,35 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_aggregate
+      ~experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_articulation
+      ~experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_divisions
+      ~experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_dynamic
+      ~experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_leaf_color
+      ~experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_mark
+      ~experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_markup
+      ~experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_pitch
+      ~experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_pitch_class_transform
+      ~experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_register
+      ~experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_rhythm
+      ~experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_tempo
+      ~experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.set_time_signatures
+      ~experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.storage_format
+      ~experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.__eq__
+      ~experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.__ge__
+      ~experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.__gt__
+      ~experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.__le__
+      ~experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.__lt__
+      ~experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.__ne__
+      ~experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,48 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.clear
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.copy
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.get
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.has_key
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.items
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.iteritems
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.iterkeys
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.itervalues
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.keys
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.pop
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.popitem
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.score
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.setdefault
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.storage_format
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.update
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.values
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.viewitems
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.viewkeys
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.viewvalues
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__cmp__
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__contains__
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__delitem__
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__eq__
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__ge__
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__getitem__
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__gt__
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__iter__
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__le__
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__len__
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__lt__
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__ne__
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__repr__
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__reversed__
+      ~experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary.__setitem__
+
 Bases
 -----
 

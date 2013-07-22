@@ -5,6 +5,24 @@
 
 .. autoclass:: experimental.tools.handlertools.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.handlertools.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler.new
+      ~experimental.tools.handlertools.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler.storage_format
+      ~experimental.tools.handlertools.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler.__call__
+      ~experimental.tools.handlertools.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler.__eq__
+      ~experimental.tools.handlertools.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler.__ge__
+      ~experimental.tools.handlertools.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler.__gt__
+      ~experimental.tools.handlertools.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler.__le__
+      ~experimental.tools.handlertools.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler.__lt__
+      ~experimental.tools.handlertools.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler.__ne__
+      ~experimental.tools.handlertools.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler.__repr__
+
 Bases
 -----
 

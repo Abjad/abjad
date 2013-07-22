@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.ArticulationSetExpression.ArticulationSetExpression.ArticulationSetExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.ArticulationSetExpression.ArticulationSetExpression.ArticulationSetExpression.evaluate
+      ~experimental.tools.musicexpressiontools.ArticulationSetExpression.ArticulationSetExpression.ArticulationSetExpression.execute_against_score
+      ~experimental.tools.musicexpressiontools.ArticulationSetExpression.ArticulationSetExpression.ArticulationSetExpression.new
+      ~experimental.tools.musicexpressiontools.ArticulationSetExpression.ArticulationSetExpression.ArticulationSetExpression.source_expression
+      ~experimental.tools.musicexpressiontools.ArticulationSetExpression.ArticulationSetExpression.ArticulationSetExpression.storage_format
+      ~experimental.tools.musicexpressiontools.ArticulationSetExpression.ArticulationSetExpression.ArticulationSetExpression.target_select_expression_inventory
+      ~experimental.tools.musicexpressiontools.ArticulationSetExpression.ArticulationSetExpression.ArticulationSetExpression.__eq__
+      ~experimental.tools.musicexpressiontools.ArticulationSetExpression.ArticulationSetExpression.ArticulationSetExpression.__ge__
+      ~experimental.tools.musicexpressiontools.ArticulationSetExpression.ArticulationSetExpression.ArticulationSetExpression.__gt__
+      ~experimental.tools.musicexpressiontools.ArticulationSetExpression.ArticulationSetExpression.ArticulationSetExpression.__hash__
+      ~experimental.tools.musicexpressiontools.ArticulationSetExpression.ArticulationSetExpression.ArticulationSetExpression.__le__
+      ~experimental.tools.musicexpressiontools.ArticulationSetExpression.ArticulationSetExpression.ArticulationSetExpression.__lt__
+      ~experimental.tools.musicexpressiontools.ArticulationSetExpression.ArticulationSetExpression.ArticulationSetExpression.__ne__
+      ~experimental.tools.musicexpressiontools.ArticulationSetExpression.ArticulationSetExpression.ArticulationSetExpression.__repr__
+
 Bases
 -----
 

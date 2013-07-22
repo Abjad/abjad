@@ -5,6 +5,23 @@
 
 .. autoclass:: experimental.tools.handlertools.ArticulationHandler.ArticulationHandler.ArticulationHandler
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.handlertools.ArticulationHandler.ArticulationHandler.ArticulationHandler.new
+      ~experimental.tools.handlertools.ArticulationHandler.ArticulationHandler.ArticulationHandler.storage_format
+      ~experimental.tools.handlertools.ArticulationHandler.ArticulationHandler.ArticulationHandler.__eq__
+      ~experimental.tools.handlertools.ArticulationHandler.ArticulationHandler.ArticulationHandler.__ge__
+      ~experimental.tools.handlertools.ArticulationHandler.ArticulationHandler.ArticulationHandler.__gt__
+      ~experimental.tools.handlertools.ArticulationHandler.ArticulationHandler.ArticulationHandler.__le__
+      ~experimental.tools.handlertools.ArticulationHandler.ArticulationHandler.ArticulationHandler.__lt__
+      ~experimental.tools.handlertools.ArticulationHandler.ArticulationHandler.ArticulationHandler.__ne__
+      ~experimental.tools.handlertools.ArticulationHandler.ArticulationHandler.ArticulationHandler.__repr__
+
 Bases
 -----
 

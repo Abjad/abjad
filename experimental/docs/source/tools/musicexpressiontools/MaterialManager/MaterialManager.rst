@@ -5,6 +5,23 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.MaterialManager.MaterialManager.MaterialManager
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.MaterialManager.MaterialManager.MaterialManager.register_material
+      ~experimental.tools.musicexpressiontools.MaterialManager.MaterialManager.MaterialManager.storage_format
+      ~experimental.tools.musicexpressiontools.MaterialManager.MaterialManager.MaterialManager.__eq__
+      ~experimental.tools.musicexpressiontools.MaterialManager.MaterialManager.MaterialManager.__ge__
+      ~experimental.tools.musicexpressiontools.MaterialManager.MaterialManager.MaterialManager.__gt__
+      ~experimental.tools.musicexpressiontools.MaterialManager.MaterialManager.MaterialManager.__le__
+      ~experimental.tools.musicexpressiontools.MaterialManager.MaterialManager.MaterialManager.__lt__
+      ~experimental.tools.musicexpressiontools.MaterialManager.MaterialManager.MaterialManager.__ne__
+      ~experimental.tools.musicexpressiontools.MaterialManager.MaterialManager.MaterialManager.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,23 @@
 
 .. autoclass:: experimental.tools.newabjadbooktools.SVGImageFormat.SVGImageFormat.SVGImageFormat
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.newabjadbooktools.SVGImageFormat.SVGImageFormat.SVGImageFormat.file_extension
+      ~experimental.tools.newabjadbooktools.SVGImageFormat.SVGImageFormat.SVGImageFormat.storage_format
+      ~experimental.tools.newabjadbooktools.SVGImageFormat.SVGImageFormat.SVGImageFormat.__eq__
+      ~experimental.tools.newabjadbooktools.SVGImageFormat.SVGImageFormat.SVGImageFormat.__ge__
+      ~experimental.tools.newabjadbooktools.SVGImageFormat.SVGImageFormat.SVGImageFormat.__gt__
+      ~experimental.tools.newabjadbooktools.SVGImageFormat.SVGImageFormat.SVGImageFormat.__le__
+      ~experimental.tools.newabjadbooktools.SVGImageFormat.SVGImageFormat.SVGImageFormat.__lt__
+      ~experimental.tools.newabjadbooktools.SVGImageFormat.SVGImageFormat.SVGImageFormat.__ne__
+      ~experimental.tools.newabjadbooktools.SVGImageFormat.SVGImageFormat.SVGImageFormat.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,46 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.append
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.count
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.extend
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.index
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.insert
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.pop
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.remove
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.reverse
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.sort
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.storage_format
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__add__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__contains__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__delitem__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__delslice__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__eq__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__ge__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__getitem__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__getslice__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__gt__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__iadd__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__imul__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__iter__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__le__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__len__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__lt__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__mul__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__ne__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__repr__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__reversed__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__rmul__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__setitem__
+      ~experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__setslice__
+
 Bases
 -----
 

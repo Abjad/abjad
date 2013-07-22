@@ -5,6 +5,23 @@
 
 .. autoclass:: experimental.tools.handlertools.Handler.Handler.Handler
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.handlertools.Handler.Handler.Handler.new
+      ~experimental.tools.handlertools.Handler.Handler.Handler.storage_format
+      ~experimental.tools.handlertools.Handler.Handler.Handler.__eq__
+      ~experimental.tools.handlertools.Handler.Handler.Handler.__ge__
+      ~experimental.tools.handlertools.Handler.Handler.Handler.__gt__
+      ~experimental.tools.handlertools.Handler.Handler.Handler.__le__
+      ~experimental.tools.handlertools.Handler.Handler.Handler.__lt__
+      ~experimental.tools.handlertools.Handler.Handler.Handler.__ne__
+      ~experimental.tools.handlertools.Handler.Handler.Handler.__repr__
+
 Bases
 -----
 

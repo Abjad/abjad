@@ -5,6 +5,46 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.copy
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.exists
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.filesystem_basename
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.filesystem_path
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.interactively_copy
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.interactively_get_filesystem_path
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.interactively_remove
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.interactively_remove_and_backtrack_locally
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.interactively_rename
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.interactively_write_boilerplate
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.is_versioned
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.list_directory
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.make_empty_asset
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.parent_directory_filesystem_path
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.print_directory_entries
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.remove
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.rename
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.run_py_test
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.session
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.storage_format
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.svn_add
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.svn_ci
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.svn_st
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.svn_up
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.write_boilerplate
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.__eq__
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.__ge__
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.__gt__
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.__le__
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.__lt__
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.__ne__
+      ~experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.__repr__
+
 Bases
 -----
 

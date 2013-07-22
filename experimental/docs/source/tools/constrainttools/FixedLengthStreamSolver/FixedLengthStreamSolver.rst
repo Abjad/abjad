@@ -5,6 +5,29 @@
 
 .. autoclass:: experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.constraints
+      ~experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.domain
+      ~experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.get_le_n_solutions
+      ~experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.iterator
+      ~experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.randomized
+      ~experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.solutions
+      ~experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.storage_format
+      ~experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__eq__
+      ~experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__ge__
+      ~experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__gt__
+      ~experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__iter__
+      ~experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__le__
+      ~experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__lt__
+      ~experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__ne__
+      ~experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__repr__
+
 Bases
 -----
 

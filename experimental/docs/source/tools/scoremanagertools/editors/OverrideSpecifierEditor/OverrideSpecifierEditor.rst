@@ -5,6 +5,46 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.attribute_name_to_menu_key
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.clean_up_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.copy_target_attributes_to_memory
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.has_target
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.initialize_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.initialize_target
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.initialize_target_from_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.make_target_attribute_tokens_from_target_manifest
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.menu_key_to_delegated_editor_kwargs
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.menu_key_to_prepopulated_value
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.session
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.set_target_attribute
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.space_delimited_lowercase_target_class_name
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.storage_format
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.target_args_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.target_attribute_names
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.target_attribute_tokens
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.target_class
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.target_keyword_attribute_names
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.target_kwargs_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.target_name
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.target_positional_initializer_argument_names
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.target_positional_initializer_retrievable_attribute_names
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.__eq__
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.__ge__
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.__gt__
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.__le__
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.__lt__
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.__ne__
+      ~experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.__repr__
+
 Bases
 -----
 

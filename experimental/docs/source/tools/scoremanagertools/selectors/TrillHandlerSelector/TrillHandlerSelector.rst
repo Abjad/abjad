@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.change_expr_to_menu_entry
+      ~experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.get_tag_from_directory_path
+      ~experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.items
+      ~experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.list_items
+      ~experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.make_menu_entries
+      ~experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.session
+      ~experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.storage_format
+      ~experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.__eq__
+      ~experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.__ge__
+      ~experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.__gt__
+      ~experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.__le__
+      ~experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.__lt__
+      ~experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.__ne__
+      ~experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.__repr__
+
 Bases
 -----
 

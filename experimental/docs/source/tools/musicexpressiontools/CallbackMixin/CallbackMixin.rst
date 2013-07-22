@@ -5,6 +5,23 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.CallbackMixin.CallbackMixin.CallbackMixin
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.CallbackMixin.CallbackMixin.CallbackMixin.callbacks
+      ~experimental.tools.musicexpressiontools.CallbackMixin.CallbackMixin.CallbackMixin.storage_format
+      ~experimental.tools.musicexpressiontools.CallbackMixin.CallbackMixin.CallbackMixin.__eq__
+      ~experimental.tools.musicexpressiontools.CallbackMixin.CallbackMixin.CallbackMixin.__ge__
+      ~experimental.tools.musicexpressiontools.CallbackMixin.CallbackMixin.CallbackMixin.__gt__
+      ~experimental.tools.musicexpressiontools.CallbackMixin.CallbackMixin.CallbackMixin.__le__
+      ~experimental.tools.musicexpressiontools.CallbackMixin.CallbackMixin.CallbackMixin.__lt__
+      ~experimental.tools.musicexpressiontools.CallbackMixin.CallbackMixin.CallbackMixin.__ne__
+      ~experimental.tools.musicexpressiontools.CallbackMixin.CallbackMixin.CallbackMixin.__repr__
+
 Bases
 -----
 

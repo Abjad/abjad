@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.change_expr_to_menu_entry
+      ~experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.get_tag_from_directory_path
+      ~experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.items
+      ~experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.list_items
+      ~experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.make_menu_entries
+      ~experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.session
+      ~experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.storage_format
+      ~experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.__eq__
+      ~experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.__ge__
+      ~experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.__gt__
+      ~experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.__le__
+      ~experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.__lt__
+      ~experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.__ne__
+      ~experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.__repr__
+
 Bases
 -----
 

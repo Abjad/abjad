@@ -5,6 +5,26 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.proxies.ParseableModuleMixin.ParseableModuleMixin.ParseableModuleMixin
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.proxies.ParseableModuleMixin.ParseableModuleMixin.ParseableModuleMixin.clear
+      ~experimental.tools.scoremanagertools.proxies.ParseableModuleMixin.ParseableModuleMixin.ParseableModuleMixin.file_sections
+      ~experimental.tools.scoremanagertools.proxies.ParseableModuleMixin.ParseableModuleMixin.ParseableModuleMixin.parse
+      ~experimental.tools.scoremanagertools.proxies.ParseableModuleMixin.ParseableModuleMixin.ParseableModuleMixin.storage_format
+      ~experimental.tools.scoremanagertools.proxies.ParseableModuleMixin.ParseableModuleMixin.ParseableModuleMixin.write_to_disk
+      ~experimental.tools.scoremanagertools.proxies.ParseableModuleMixin.ParseableModuleMixin.ParseableModuleMixin.__eq__
+      ~experimental.tools.scoremanagertools.proxies.ParseableModuleMixin.ParseableModuleMixin.ParseableModuleMixin.__ge__
+      ~experimental.tools.scoremanagertools.proxies.ParseableModuleMixin.ParseableModuleMixin.ParseableModuleMixin.__gt__
+      ~experimental.tools.scoremanagertools.proxies.ParseableModuleMixin.ParseableModuleMixin.ParseableModuleMixin.__le__
+      ~experimental.tools.scoremanagertools.proxies.ParseableModuleMixin.ParseableModuleMixin.ParseableModuleMixin.__lt__
+      ~experimental.tools.scoremanagertools.proxies.ParseableModuleMixin.ParseableModuleMixin.ParseableModuleMixin.__ne__
+      ~experimental.tools.scoremanagertools.proxies.ParseableModuleMixin.ParseableModuleMixin.ParseableModuleMixin.__repr__
+
 Bases
 -----
 

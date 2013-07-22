@@ -5,6 +5,23 @@
 
 .. autoclass:: experimental.demos.windungen.WindungenScoreTemplate.WindungenScoreTemplate.WindungenScoreTemplate
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.demos.windungen.WindungenScoreTemplate.WindungenScoreTemplate.WindungenScoreTemplate.storage_format
+      ~experimental.demos.windungen.WindungenScoreTemplate.WindungenScoreTemplate.WindungenScoreTemplate.__call__
+      ~experimental.demos.windungen.WindungenScoreTemplate.WindungenScoreTemplate.WindungenScoreTemplate.__eq__
+      ~experimental.demos.windungen.WindungenScoreTemplate.WindungenScoreTemplate.WindungenScoreTemplate.__ge__
+      ~experimental.demos.windungen.WindungenScoreTemplate.WindungenScoreTemplate.WindungenScoreTemplate.__gt__
+      ~experimental.demos.windungen.WindungenScoreTemplate.WindungenScoreTemplate.WindungenScoreTemplate.__le__
+      ~experimental.demos.windungen.WindungenScoreTemplate.WindungenScoreTemplate.WindungenScoreTemplate.__lt__
+      ~experimental.demos.windungen.WindungenScoreTemplate.WindungenScoreTemplate.WindungenScoreTemplate.__ne__
+      ~experimental.demos.windungen.WindungenScoreTemplate.WindungenScoreTemplate.WindungenScoreTemplate.__repr__
+
 Bases
 -----
 

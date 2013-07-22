@@ -5,6 +5,22 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.PitchClassSpecifier.PitchClassSpecifier.PitchClassSpecifier
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.specifiers.PitchClassSpecifier.PitchClassSpecifier.PitchClassSpecifier.storage_format
+      ~experimental.tools.scoremanagertools.specifiers.PitchClassSpecifier.PitchClassSpecifier.PitchClassSpecifier.__eq__
+      ~experimental.tools.scoremanagertools.specifiers.PitchClassSpecifier.PitchClassSpecifier.PitchClassSpecifier.__ge__
+      ~experimental.tools.scoremanagertools.specifiers.PitchClassSpecifier.PitchClassSpecifier.PitchClassSpecifier.__gt__
+      ~experimental.tools.scoremanagertools.specifiers.PitchClassSpecifier.PitchClassSpecifier.PitchClassSpecifier.__le__
+      ~experimental.tools.scoremanagertools.specifiers.PitchClassSpecifier.PitchClassSpecifier.PitchClassSpecifier.__lt__
+      ~experimental.tools.scoremanagertools.specifiers.PitchClassSpecifier.PitchClassSpecifier.PitchClassSpecifier.__ne__
+      ~experimental.tools.scoremanagertools.specifiers.PitchClassSpecifier.PitchClassSpecifier.PitchClassSpecifier.__repr__
+
 Bases
 -----
 

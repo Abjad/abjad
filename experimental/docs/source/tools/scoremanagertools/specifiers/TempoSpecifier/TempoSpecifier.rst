@@ -5,6 +5,22 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.TempoSpecifier.TempoSpecifier.TempoSpecifier
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.specifiers.TempoSpecifier.TempoSpecifier.TempoSpecifier.storage_format
+      ~experimental.tools.scoremanagertools.specifiers.TempoSpecifier.TempoSpecifier.TempoSpecifier.__eq__
+      ~experimental.tools.scoremanagertools.specifiers.TempoSpecifier.TempoSpecifier.TempoSpecifier.__ge__
+      ~experimental.tools.scoremanagertools.specifiers.TempoSpecifier.TempoSpecifier.TempoSpecifier.__gt__
+      ~experimental.tools.scoremanagertools.specifiers.TempoSpecifier.TempoSpecifier.TempoSpecifier.__le__
+      ~experimental.tools.scoremanagertools.specifiers.TempoSpecifier.TempoSpecifier.TempoSpecifier.__lt__
+      ~experimental.tools.scoremanagertools.specifiers.TempoSpecifier.TempoSpecifier.TempoSpecifier.__ne__
+      ~experimental.tools.scoremanagertools.specifiers.TempoSpecifier.TempoSpecifier.TempoSpecifier.__repr__
+
 Bases
 -----
 

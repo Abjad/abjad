@@ -5,6 +5,46 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.attribute_name_to_menu_key
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.clean_up_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.copy_target_attributes_to_memory
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.has_target
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.initialize_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.initialize_target
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.initialize_target_from_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.make_target_attribute_tokens_from_target_manifest
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.menu_key_to_delegated_editor_kwargs
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.menu_key_to_prepopulated_value
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.session
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.set_target_attribute
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.space_delimited_lowercase_target_class_name
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.storage_format
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.target_args_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.target_attribute_names
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.target_attribute_tokens
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.target_class
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.target_keyword_attribute_names
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.target_kwargs_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.target_name
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.target_positional_initializer_argument_names
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.target_positional_initializer_retrievable_attribute_names
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.__eq__
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.__ge__
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.__gt__
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.__le__
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.__lt__
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.__ne__
+      ~experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.__repr__
+
 Bases
 -----
 

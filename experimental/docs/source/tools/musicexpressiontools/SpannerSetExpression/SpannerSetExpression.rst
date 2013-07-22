@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.SpannerSetExpression.SpannerSetExpression.SpannerSetExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.SpannerSetExpression.SpannerSetExpression.SpannerSetExpression.evaluate
+      ~experimental.tools.musicexpressiontools.SpannerSetExpression.SpannerSetExpression.SpannerSetExpression.execute_against_score
+      ~experimental.tools.musicexpressiontools.SpannerSetExpression.SpannerSetExpression.SpannerSetExpression.new
+      ~experimental.tools.musicexpressiontools.SpannerSetExpression.SpannerSetExpression.SpannerSetExpression.source_expression
+      ~experimental.tools.musicexpressiontools.SpannerSetExpression.SpannerSetExpression.SpannerSetExpression.storage_format
+      ~experimental.tools.musicexpressiontools.SpannerSetExpression.SpannerSetExpression.SpannerSetExpression.target_counttime_component_select_expression
+      ~experimental.tools.musicexpressiontools.SpannerSetExpression.SpannerSetExpression.SpannerSetExpression.__eq__
+      ~experimental.tools.musicexpressiontools.SpannerSetExpression.SpannerSetExpression.SpannerSetExpression.__ge__
+      ~experimental.tools.musicexpressiontools.SpannerSetExpression.SpannerSetExpression.SpannerSetExpression.__gt__
+      ~experimental.tools.musicexpressiontools.SpannerSetExpression.SpannerSetExpression.SpannerSetExpression.__hash__
+      ~experimental.tools.musicexpressiontools.SpannerSetExpression.SpannerSetExpression.SpannerSetExpression.__le__
+      ~experimental.tools.musicexpressiontools.SpannerSetExpression.SpannerSetExpression.SpannerSetExpression.__lt__
+      ~experimental.tools.musicexpressiontools.SpannerSetExpression.SpannerSetExpression.SpannerSetExpression.__ne__
+      ~experimental.tools.musicexpressiontools.SpannerSetExpression.SpannerSetExpression.SpannerSetExpression.__repr__
+
 Bases
 -----
 

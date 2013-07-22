@@ -5,6 +5,24 @@
 
 .. autoclass:: experimental.tools.handlertools.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.handlertools.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler.new
+      ~experimental.tools.handlertools.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler.storage_format
+      ~experimental.tools.handlertools.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler.__call__
+      ~experimental.tools.handlertools.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler.__eq__
+      ~experimental.tools.handlertools.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler.__ge__
+      ~experimental.tools.handlertools.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler.__gt__
+      ~experimental.tools.handlertools.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler.__le__
+      ~experimental.tools.handlertools.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler.__lt__
+      ~experimental.tools.handlertools.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler.__ne__
+      ~experimental.tools.handlertools.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler.__repr__
+
 Bases
 -----
 

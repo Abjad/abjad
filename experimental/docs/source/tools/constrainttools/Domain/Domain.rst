@@ -5,6 +5,26 @@
 
 .. autoclass:: experimental.tools.constrainttools.Domain.Domain.Domain
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.constrainttools.Domain.Domain.Domain.randomized
+      ~experimental.tools.constrainttools.Domain.Domain.Domain.storage_format
+      ~experimental.tools.constrainttools.Domain.Domain.Domain.__eq__
+      ~experimental.tools.constrainttools.Domain.Domain.Domain.__ge__
+      ~experimental.tools.constrainttools.Domain.Domain.Domain.__getitem__
+      ~experimental.tools.constrainttools.Domain.Domain.Domain.__gt__
+      ~experimental.tools.constrainttools.Domain.Domain.Domain.__iter__
+      ~experimental.tools.constrainttools.Domain.Domain.Domain.__le__
+      ~experimental.tools.constrainttools.Domain.Domain.Domain.__len__
+      ~experimental.tools.constrainttools.Domain.Domain.Domain.__lt__
+      ~experimental.tools.constrainttools.Domain.Domain.Domain.__ne__
+      ~experimental.tools.constrainttools.Domain.Domain.Domain.__repr__
+
 Bases
 -----
 

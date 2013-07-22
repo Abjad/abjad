@@ -5,6 +5,25 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.look_up_division_set_expression
+      ~experimental.tools.musicexpressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.look_up_rhythm_set_expression
+      ~experimental.tools.musicexpressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.look_up_time_signature_set_expression
+      ~experimental.tools.musicexpressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.storage_format
+      ~experimental.tools.musicexpressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.__eq__
+      ~experimental.tools.musicexpressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.__ge__
+      ~experimental.tools.musicexpressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.__gt__
+      ~experimental.tools.musicexpressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.__le__
+      ~experimental.tools.musicexpressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.__lt__
+      ~experimental.tools.musicexpressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.__ne__
+      ~experimental.tools.musicexpressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin.__repr__
+
 Bases
 -----
 

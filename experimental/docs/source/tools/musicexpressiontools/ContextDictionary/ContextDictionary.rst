@@ -5,6 +5,50 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.clear
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.copy
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.get
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.has_key
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.items
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.iteritems
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.iterkeys
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.itervalues
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.keys
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.pop
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.popitem
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.score
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.score_name
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.score_proxy
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.setdefault
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.storage_format
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.update
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.values
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.viewitems
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.viewkeys
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.viewvalues
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__cmp__
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__contains__
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__delitem__
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__eq__
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__ge__
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__getitem__
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__gt__
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__iter__
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__le__
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__len__
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__lt__
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__ne__
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__repr__
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__reversed__
+      ~experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary.__setitem__
+
 Bases
 -----
 

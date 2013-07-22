@@ -5,6 +5,33 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.io.MenuSection.MenuSection.MenuSection
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.io.MenuSection.MenuSection.MenuSection.append
+      ~experimental.tools.scoremanagertools.io.MenuSection.MenuSection.MenuSection.default_index
+      ~experimental.tools.scoremanagertools.io.MenuSection.MenuSection.MenuSection.display_prepopulated_values
+      ~experimental.tools.scoremanagertools.io.MenuSection.MenuSection.MenuSection.indent_level
+      ~experimental.tools.scoremanagertools.io.MenuSection.MenuSection.MenuSection.is_hidden
+      ~experimental.tools.scoremanagertools.io.MenuSection.MenuSection.MenuSection.is_numbered
+      ~experimental.tools.scoremanagertools.io.MenuSection.MenuSection.MenuSection.is_ranged
+      ~experimental.tools.scoremanagertools.io.MenuSection.MenuSection.MenuSection.menu_entries
+      ~experimental.tools.scoremanagertools.io.MenuSection.MenuSection.MenuSection.return_value_attribute
+      ~experimental.tools.scoremanagertools.io.MenuSection.MenuSection.MenuSection.storage_format
+      ~experimental.tools.scoremanagertools.io.MenuSection.MenuSection.MenuSection.title
+      ~experimental.tools.scoremanagertools.io.MenuSection.MenuSection.MenuSection.__eq__
+      ~experimental.tools.scoremanagertools.io.MenuSection.MenuSection.MenuSection.__ge__
+      ~experimental.tools.scoremanagertools.io.MenuSection.MenuSection.MenuSection.__gt__
+      ~experimental.tools.scoremanagertools.io.MenuSection.MenuSection.MenuSection.__le__
+      ~experimental.tools.scoremanagertools.io.MenuSection.MenuSection.MenuSection.__len__
+      ~experimental.tools.scoremanagertools.io.MenuSection.MenuSection.MenuSection.__lt__
+      ~experimental.tools.scoremanagertools.io.MenuSection.MenuSection.MenuSection.__ne__
+      ~experimental.tools.scoremanagertools.io.MenuSection.MenuSection.MenuSection.__repr__
+
 Bases
 -----
 

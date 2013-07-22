@@ -5,6 +5,22 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.PerformerSpecifier.PerformerSpecifier.PerformerSpecifier
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.specifiers.PerformerSpecifier.PerformerSpecifier.PerformerSpecifier.storage_format
+      ~experimental.tools.scoremanagertools.specifiers.PerformerSpecifier.PerformerSpecifier.PerformerSpecifier.__eq__
+      ~experimental.tools.scoremanagertools.specifiers.PerformerSpecifier.PerformerSpecifier.PerformerSpecifier.__ge__
+      ~experimental.tools.scoremanagertools.specifiers.PerformerSpecifier.PerformerSpecifier.PerformerSpecifier.__gt__
+      ~experimental.tools.scoremanagertools.specifiers.PerformerSpecifier.PerformerSpecifier.PerformerSpecifier.__le__
+      ~experimental.tools.scoremanagertools.specifiers.PerformerSpecifier.PerformerSpecifier.PerformerSpecifier.__lt__
+      ~experimental.tools.scoremanagertools.specifiers.PerformerSpecifier.PerformerSpecifier.PerformerSpecifier.__ne__
+      ~experimental.tools.scoremanagertools.specifiers.PerformerSpecifier.PerformerSpecifier.PerformerSpecifier.__repr__
+
 Bases
 -----
 

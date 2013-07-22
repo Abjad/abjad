@@ -5,6 +5,22 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.DirectiveSpecifier.DirectiveSpecifier.DirectiveSpecifier
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.specifiers.DirectiveSpecifier.DirectiveSpecifier.DirectiveSpecifier.storage_format
+      ~experimental.tools.scoremanagertools.specifiers.DirectiveSpecifier.DirectiveSpecifier.DirectiveSpecifier.__eq__
+      ~experimental.tools.scoremanagertools.specifiers.DirectiveSpecifier.DirectiveSpecifier.DirectiveSpecifier.__ge__
+      ~experimental.tools.scoremanagertools.specifiers.DirectiveSpecifier.DirectiveSpecifier.DirectiveSpecifier.__gt__
+      ~experimental.tools.scoremanagertools.specifiers.DirectiveSpecifier.DirectiveSpecifier.DirectiveSpecifier.__le__
+      ~experimental.tools.scoremanagertools.specifiers.DirectiveSpecifier.DirectiveSpecifier.DirectiveSpecifier.__lt__
+      ~experimental.tools.scoremanagertools.specifiers.DirectiveSpecifier.DirectiveSpecifier.DirectiveSpecifier.__ne__
+      ~experimental.tools.scoremanagertools.specifiers.DirectiveSpecifier.DirectiveSpecifier.DirectiveSpecifier.__repr__
+
 Bases
 -----
 

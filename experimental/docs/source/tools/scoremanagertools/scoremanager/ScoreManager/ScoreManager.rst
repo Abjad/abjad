@@ -5,6 +5,40 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.display_active_scores
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.display_all_scores
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.display_mothballed_scores
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.fix_visible_scores
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.interactively_edit_score
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.interactively_make_new_score
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.manage_materials
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.manage_stylesheets
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.manage_svn
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.material_package_maker_wrangler
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.material_package_wrangler
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.profile_visible_scores
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.run_py_test_on_all_user_scores
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.score_package_wrangler
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.segment_package_wrangler
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.session
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.storage_format
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.stylesheet_file_wrangler
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.write_cache
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.__eq__
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.__ge__
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.__gt__
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.__le__
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.__lt__
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.__ne__
+      ~experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.__repr__
+
 Bases
 -----
 

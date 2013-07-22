@@ -5,6 +5,63 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.anchor
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.callbacks
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.evaluate
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.is_score_rooted
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.is_segment_rooted
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.map_to_each
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.new
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.partition_by_ratio
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.partition_by_ratio_of_durations
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.reflect
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.repeat_to_duration
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.repeat_to_length
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.root_specification
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.root_specification_identifier
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.rotate
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.score_specification
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.select_beats
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.select_divisions
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.select_leaves
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.select_measures
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.select_notes_and_chords
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.select_time_signatures
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.set_aggregate
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.set_articulation
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.set_dynamic
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.set_leaf_color
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.set_mark
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.set_markup
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.set_pitch
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.set_pitch_class_transform
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.set_register
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.set_tempo
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.start_offset
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.stop_offset
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.storage_format
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.time_relation
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.timespan
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.voice_name
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.__and__
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.__deepcopy__
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.__eq__
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.__ge__
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.__getitem__
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.__gt__
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.__hash__
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.__le__
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.__lt__
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.__ne__
+      ~experimental.tools.musicexpressiontools.DivisionSelectExpression.DivisionSelectExpression.DivisionSelectExpression.__repr__
+
 Bases
 -----
 

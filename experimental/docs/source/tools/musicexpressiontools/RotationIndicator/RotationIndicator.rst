@@ -5,6 +5,25 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.RotationIndicator.RotationIndicator.RotationIndicator
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.RotationIndicator.RotationIndicator.RotationIndicator.fracture_spanners
+      ~experimental.tools.musicexpressiontools.RotationIndicator.RotationIndicator.RotationIndicator.index
+      ~experimental.tools.musicexpressiontools.RotationIndicator.RotationIndicator.RotationIndicator.level
+      ~experimental.tools.musicexpressiontools.RotationIndicator.RotationIndicator.RotationIndicator.storage_format
+      ~experimental.tools.musicexpressiontools.RotationIndicator.RotationIndicator.RotationIndicator.__eq__
+      ~experimental.tools.musicexpressiontools.RotationIndicator.RotationIndicator.RotationIndicator.__ge__
+      ~experimental.tools.musicexpressiontools.RotationIndicator.RotationIndicator.RotationIndicator.__gt__
+      ~experimental.tools.musicexpressiontools.RotationIndicator.RotationIndicator.RotationIndicator.__le__
+      ~experimental.tools.musicexpressiontools.RotationIndicator.RotationIndicator.RotationIndicator.__lt__
+      ~experimental.tools.musicexpressiontools.RotationIndicator.RotationIndicator.RotationIndicator.__ne__
+      ~experimental.tools.musicexpressiontools.RotationIndicator.RotationIndicator.RotationIndicator.__repr__
+
 Bases
 -----
 

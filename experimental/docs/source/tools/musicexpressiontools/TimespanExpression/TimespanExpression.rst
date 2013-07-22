@@ -5,6 +5,60 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.anchor
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.callbacks
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.divide_by_ratio
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.evaluate
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.is_score_rooted
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.is_segment_rooted
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.new
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.root_specification
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.root_specification_identifier
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.scale
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.score_specification
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.select_beats
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.select_divisions
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.select_leaves
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.select_measures
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.select_notes_and_chords
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.select_time_signatures
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_aggregate
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_articulation
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_divisions
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_duration
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_dynamic
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_leaf_color
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_mark
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_markup
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_offsets
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_pitch
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_pitch_class_transform
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_register
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_rhythm
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_tempo
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_time_signatures
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.start_offset
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.stop_offset
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.storage_format
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.translate
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.translate_offsets
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.__deepcopy__
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.__eq__
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.__ge__
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.__gt__
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.__hash__
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.__le__
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.__lt__
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.__ne__
+      ~experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.__repr__
+
 Bases
 -----
 

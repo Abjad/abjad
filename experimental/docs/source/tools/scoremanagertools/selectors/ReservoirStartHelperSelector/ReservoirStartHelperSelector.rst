@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.change_expr_to_menu_entry
+      ~experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.get_tag_from_directory_path
+      ~experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.items
+      ~experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.list_items
+      ~experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.make_menu_entries
+      ~experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.session
+      ~experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.storage_format
+      ~experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.__eq__
+      ~experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.__ge__
+      ~experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.__gt__
+      ~experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.__le__
+      ~experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.__lt__
+      ~experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.__ne__
+      ~experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.__repr__
+
 Bases
 -----
 

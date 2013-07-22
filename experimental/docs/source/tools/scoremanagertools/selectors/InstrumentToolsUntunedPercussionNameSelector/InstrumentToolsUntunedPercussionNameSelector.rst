@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.change_expr_to_menu_entry
+      ~experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.get_tag_from_directory_path
+      ~experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.items
+      ~experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.list_items
+      ~experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.make_menu_entries
+      ~experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.session
+      ~experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.storage_format
+      ~experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.__eq__
+      ~experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.__ge__
+      ~experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.__gt__
+      ~experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.__le__
+      ~experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.__lt__
+      ~experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.__ne__
+      ~experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.__repr__
+
 Bases
 -----
 

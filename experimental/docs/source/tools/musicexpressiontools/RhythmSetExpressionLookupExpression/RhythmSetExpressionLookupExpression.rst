@@ -5,6 +5,47 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.anchor
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.attribute
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.callbacks
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.evaluate
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.is_score_rooted
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.is_segment_rooted
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.map_to_each
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.new
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.offset
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.partition_by_ratio
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.partition_by_ratio_of_durations
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.reflect
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.repeat_to_duration
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.repeat_to_length
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.root_specification
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.root_specification_identifier
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.rotate
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.score_specification
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.start_offset
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.stop_offset
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.storage_format
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.voice_name
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.__and__
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.__deepcopy__
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.__eq__
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.__ge__
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.__getitem__
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.__gt__
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.__hash__
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.__le__
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.__lt__
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.__ne__
+      ~experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.__repr__
+
 Bases
 -----
 

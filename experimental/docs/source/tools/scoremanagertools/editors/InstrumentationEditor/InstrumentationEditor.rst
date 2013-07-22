@@ -5,6 +5,54 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.attribute_name_to_menu_key
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.clean_up_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.copy_target_attributes_to_memory
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.get_item_from_item_number
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.has_target
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.initialize_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.initialize_target
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.initialize_target_from_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.interactively_add_items
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.interactively_edit_item
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.interactively_move_item
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.interactively_remove_items
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.item_getter_configuration_method
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.items
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.items_identifier
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.make_target_attribute_tokens_from_target_manifest
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.menu_key_to_delegated_editor_kwargs
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.menu_key_to_prepopulated_value
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.session
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.set_target_attribute
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.space_delimited_lowercase_target_class_name
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.storage_format
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.target_args_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.target_attribute_names
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.target_attribute_tokens
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.target_class
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.target_keyword_attribute_names
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.target_kwargs_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.target_name
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.target_positional_initializer_argument_names
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.target_positional_initializer_retrievable_attribute_names
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.__eq__
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.__ge__
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.__gt__
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.__le__
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.__lt__
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.__ne__
+      ~experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.__repr__
+
 Bases
 -----
 

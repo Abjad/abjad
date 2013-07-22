@@ -5,6 +5,60 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.anchor
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.callbacks
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.divide_by_ratio
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.evaluate
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.is_score_rooted
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.is_segment_rooted
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.new
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.root_specification
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.root_specification_identifier
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.scale
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.score_specification
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.select_beats
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.select_divisions
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.select_leaves
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.select_measures
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.select_notes_and_chords
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.select_time_signatures
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_aggregate
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_articulation
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_divisions
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_duration
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_dynamic
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_leaf_color
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_mark
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_markup
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_offsets
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_pitch
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_pitch_class_transform
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_register
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_rhythm
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_tempo
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_time_signatures
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.start_offset
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.stop_offset
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.storage_format
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.translate
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.translate_offsets
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.__deepcopy__
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.__eq__
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.__ge__
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.__gt__
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.__hash__
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.__le__
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.__lt__
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.__ne__
+      ~experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.__repr__
+
 Bases
 -----
 

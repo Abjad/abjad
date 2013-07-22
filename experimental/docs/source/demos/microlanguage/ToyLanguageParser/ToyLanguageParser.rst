@@ -5,6 +5,53 @@
 
 .. autoclass:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.debug
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.lexer
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.lexer_rules_object
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.logger
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.logger_path
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.output_path
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.p_apostrophes__APOSTROPHE
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.p_apostrophes__apostrophes__APOSTROPHE
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.p_assignment__IDENTIFIER__EQUALS__expression
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.p_commas__COMMA
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.p_commas__commas__commas
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.p_error
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.p_expression__IDENTIFIER
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.p_expression__pitch_cell
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.p_pitch__PITCHNAME
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.p_pitch__PITCHNAME__apostrophes
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.p_pitch__PITCHNAME__commas
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.p_pitch_cell__PARENTHESIS_L__pitches__PARENTHESIS_R
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.p_pitches__pitch
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.p_pitches__pitches__pitch
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.p_start__EMPTY
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.p_start__start__statement
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.p_statement__assignment__SEMICOLON
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.p_statement__expression__SEMICOLON
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.parser
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.parser_rules_object
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.pickle_path
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.storage_format
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.t_IDENTIFIER
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.t_error
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.tokenize
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.__call__
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.__eq__
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.__ge__
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.__gt__
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.__le__
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.__lt__
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.__ne__
+      ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser.__repr__
+
 Bases
 -----
 

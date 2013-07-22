@@ -5,6 +5,25 @@
 
 .. autoclass:: experimental.tools.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.kind
+      ~experimental.tools.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.predicate
+      ~experimental.tools.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.storage_format
+      ~experimental.tools.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.__call__
+      ~experimental.tools.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.__eq__
+      ~experimental.tools.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.__ge__
+      ~experimental.tools.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.__gt__
+      ~experimental.tools.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.__le__
+      ~experimental.tools.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.__lt__
+      ~experimental.tools.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.__ne__
+      ~experimental.tools.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.__repr__
+
 Bases
 -----
 

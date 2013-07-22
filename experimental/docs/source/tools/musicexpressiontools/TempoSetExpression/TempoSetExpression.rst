@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.TempoSetExpression.TempoSetExpression.TempoSetExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.TempoSetExpression.TempoSetExpression.TempoSetExpression.evaluate
+      ~experimental.tools.musicexpressiontools.TempoSetExpression.TempoSetExpression.TempoSetExpression.execute_against_score
+      ~experimental.tools.musicexpressiontools.TempoSetExpression.TempoSetExpression.TempoSetExpression.new
+      ~experimental.tools.musicexpressiontools.TempoSetExpression.TempoSetExpression.TempoSetExpression.source_expression
+      ~experimental.tools.musicexpressiontools.TempoSetExpression.TempoSetExpression.TempoSetExpression.storage_format
+      ~experimental.tools.musicexpressiontools.TempoSetExpression.TempoSetExpression.TempoSetExpression.target_select_expression_inventory
+      ~experimental.tools.musicexpressiontools.TempoSetExpression.TempoSetExpression.TempoSetExpression.__eq__
+      ~experimental.tools.musicexpressiontools.TempoSetExpression.TempoSetExpression.TempoSetExpression.__ge__
+      ~experimental.tools.musicexpressiontools.TempoSetExpression.TempoSetExpression.TempoSetExpression.__gt__
+      ~experimental.tools.musicexpressiontools.TempoSetExpression.TempoSetExpression.TempoSetExpression.__hash__
+      ~experimental.tools.musicexpressiontools.TempoSetExpression.TempoSetExpression.TempoSetExpression.__le__
+      ~experimental.tools.musicexpressiontools.TempoSetExpression.TempoSetExpression.TempoSetExpression.__lt__
+      ~experimental.tools.musicexpressiontools.TempoSetExpression.TempoSetExpression.TempoSetExpression.__ne__
+      ~experimental.tools.musicexpressiontools.TempoSetExpression.TempoSetExpression.TempoSetExpression.__repr__
+
 Bases
 -----
 

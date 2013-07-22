@@ -5,6 +5,63 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.anchor
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.callbacks
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.evaluate
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.is_score_rooted
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.is_segment_rooted
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.map_to_each
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.new
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.partition_by_ratio
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.partition_by_ratio_of_durations
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.reflect
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.repeat_to_duration
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.repeat_to_length
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.root_specification
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.root_specification_identifier
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.rotate
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.score_specification
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.select_beats
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.select_divisions
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.select_leaves
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.select_measures
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.select_notes_and_chords
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.select_time_signatures
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.set_aggregate
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.set_articulation
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.set_dynamic
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.set_leaf_color
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.set_mark
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.set_markup
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.set_pitch
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.set_pitch_class_transform
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.set_register
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.set_tempo
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.start_offset
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.stop_offset
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.storage_format
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.time_relation
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.timespan
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.voice_name
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.__and__
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.__deepcopy__
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.__eq__
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.__ge__
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.__getitem__
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.__gt__
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.__hash__
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.__le__
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.__lt__
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.__ne__
+      ~experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression.__repr__
+
 Bases
 -----
 

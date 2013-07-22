@@ -5,6 +5,70 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.append
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.count
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.elements
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.evaluate
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.extend
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.index
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.insert
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.name
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.new
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.partition_by_ratio
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.partition_by_ratio_of_durations
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.payload
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.pop
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.reflect
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.remove
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.repeat_to_duration
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.repeat_to_length
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.reverse
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.rotate
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.score_specification
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_aggregate
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_articulation
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_dynamic
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_leaf_color
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_mark
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_markup
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_pitch
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_pitch_class_transform
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_register
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.set_tempo
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.sort
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.storage_format
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__add__
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__and__
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__contains__
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__deepcopy__
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__delitem__
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__delslice__
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__eq__
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__ge__
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__getitem__
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__getslice__
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__gt__
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__iadd__
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__imul__
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__iter__
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__le__
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__len__
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__lt__
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__mul__
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__ne__
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__repr__
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__reversed__
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__rmul__
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__setitem__
+      ~experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory.__setslice__
+
 Bases
 -----
 

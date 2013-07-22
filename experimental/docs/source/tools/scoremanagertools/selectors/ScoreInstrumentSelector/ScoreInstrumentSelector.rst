@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.change_expr_to_menu_entry
+      ~experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.get_tag_from_directory_path
+      ~experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.items
+      ~experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.list_items
+      ~experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.make_menu_entries
+      ~experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.session
+      ~experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.storage_format
+      ~experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.__eq__
+      ~experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.__ge__
+      ~experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.__gt__
+      ~experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.__le__
+      ~experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.__lt__
+      ~experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.__ne__
+      ~experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.__repr__
+
 Bases
 -----
 

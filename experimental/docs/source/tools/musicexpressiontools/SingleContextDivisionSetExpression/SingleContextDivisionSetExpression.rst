@@ -5,6 +5,43 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.anchor
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.attribute
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.evaluate
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.fresh
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.is_score_rooted
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.is_segment_rooted
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.new
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.persist
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.root_specification
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.root_specification_identifier
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.score_specification
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.source_expression
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.start_offset
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.stop_offset
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.storage_format
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.store_in_root_specification_by_context_and_attribute
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.target_context_name
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.target_timespan
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.timespan
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.truncate
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.__deepcopy__
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.__eq__
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.__ge__
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.__gt__
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.__hash__
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.__le__
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.__lt__
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.__ne__
+      ~experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.__repr__
+
 Bases
 -----
 

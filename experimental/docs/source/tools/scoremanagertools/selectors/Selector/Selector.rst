@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.change_expr_to_menu_entry
+      ~experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.get_tag_from_directory_path
+      ~experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.items
+      ~experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.list_items
+      ~experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.make_menu_entries
+      ~experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.session
+      ~experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.storage_format
+      ~experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.__eq__
+      ~experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.__ge__
+      ~experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.__gt__
+      ~experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.__le__
+      ~experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.__lt__
+      ~experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.__ne__
+      ~experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.__repr__
+
 Bases
 -----
 

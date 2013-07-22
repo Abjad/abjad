@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin.select_beats
+      ~experimental.tools.musicexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin.select_divisions
+      ~experimental.tools.musicexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin.select_leaves
+      ~experimental.tools.musicexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin.select_measures
+      ~experimental.tools.musicexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin.select_notes_and_chords
+      ~experimental.tools.musicexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin.select_time_signatures
+      ~experimental.tools.musicexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin.storage_format
+      ~experimental.tools.musicexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin.__eq__
+      ~experimental.tools.musicexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin.__ge__
+      ~experimental.tools.musicexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin.__gt__
+      ~experimental.tools.musicexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin.__le__
+      ~experimental.tools.musicexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin.__lt__
+      ~experimental.tools.musicexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin.__ne__
+      ~experimental.tools.musicexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin.__repr__
+
 Bases
 -----
 

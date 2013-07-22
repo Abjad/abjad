@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.change_expr_to_menu_entry
+      ~experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.get_tag_from_directory_path
+      ~experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.items
+      ~experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.list_items
+      ~experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.make_menu_entries
+      ~experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.session
+      ~experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.storage_format
+      ~experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.__eq__
+      ~experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.__ge__
+      ~experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.__gt__
+      ~experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.__le__
+      ~experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.__lt__
+      ~experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.__ne__
+      ~experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.PitchClassTransformExpression.PitchClassTransformExpression.PitchClassTransformExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.PitchClassTransformExpression.PitchClassTransformExpression.PitchClassTransformExpression.evaluate
+      ~experimental.tools.musicexpressiontools.PitchClassTransformExpression.PitchClassTransformExpression.PitchClassTransformExpression.new
+      ~experimental.tools.musicexpressiontools.PitchClassTransformExpression.PitchClassTransformExpression.PitchClassTransformExpression.payload
+      ~experimental.tools.musicexpressiontools.PitchClassTransformExpression.PitchClassTransformExpression.PitchClassTransformExpression.storage_format
+      ~experimental.tools.musicexpressiontools.PitchClassTransformExpression.PitchClassTransformExpression.PitchClassTransformExpression.transform_functions
+      ~experimental.tools.musicexpressiontools.PitchClassTransformExpression.PitchClassTransformExpression.PitchClassTransformExpression.__call__
+      ~experimental.tools.musicexpressiontools.PitchClassTransformExpression.PitchClassTransformExpression.PitchClassTransformExpression.__eq__
+      ~experimental.tools.musicexpressiontools.PitchClassTransformExpression.PitchClassTransformExpression.PitchClassTransformExpression.__ge__
+      ~experimental.tools.musicexpressiontools.PitchClassTransformExpression.PitchClassTransformExpression.PitchClassTransformExpression.__gt__
+      ~experimental.tools.musicexpressiontools.PitchClassTransformExpression.PitchClassTransformExpression.PitchClassTransformExpression.__hash__
+      ~experimental.tools.musicexpressiontools.PitchClassTransformExpression.PitchClassTransformExpression.PitchClassTransformExpression.__le__
+      ~experimental.tools.musicexpressiontools.PitchClassTransformExpression.PitchClassTransformExpression.PitchClassTransformExpression.__lt__
+      ~experimental.tools.musicexpressiontools.PitchClassTransformExpression.PitchClassTransformExpression.PitchClassTransformExpression.__ne__
+      ~experimental.tools.musicexpressiontools.PitchClassTransformExpression.PitchClassTransformExpression.PitchClassTransformExpression.__repr__
+
 Bases
 -----
 

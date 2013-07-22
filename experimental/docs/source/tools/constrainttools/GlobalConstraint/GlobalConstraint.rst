@@ -5,6 +5,25 @@
 
 .. autoclass:: experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.kind
+      ~experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.predicate
+      ~experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.storage_format
+      ~experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__call__
+      ~experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__eq__
+      ~experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__ge__
+      ~experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__gt__
+      ~experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__le__
+      ~experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__lt__
+      ~experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__ne__
+      ~experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__repr__
+
 Bases
 -----
 

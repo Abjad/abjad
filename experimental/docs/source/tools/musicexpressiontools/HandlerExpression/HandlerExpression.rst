@@ -5,6 +5,36 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression.callbacks
+      ~experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression.evaluate
+      ~experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression.handler
+      ~experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression.map_to_each
+      ~experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression.new
+      ~experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression.partition_by_ratio
+      ~experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression.partition_by_ratio_of_durations
+      ~experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression.reflect
+      ~experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression.repeat_to_duration
+      ~experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression.repeat_to_length
+      ~experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression.rotate
+      ~experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression.storage_format
+      ~experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression.__and__
+      ~experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression.__eq__
+      ~experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression.__ge__
+      ~experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression.__getitem__
+      ~experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression.__gt__
+      ~experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression.__hash__
+      ~experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression.__le__
+      ~experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression.__lt__
+      ~experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression.__ne__
+      ~experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression.__repr__
+
 Bases
 -----
 

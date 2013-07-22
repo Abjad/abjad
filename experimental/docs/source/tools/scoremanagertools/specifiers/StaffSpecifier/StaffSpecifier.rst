@@ -5,6 +5,22 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.StaffSpecifier.StaffSpecifier.StaffSpecifier
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.specifiers.StaffSpecifier.StaffSpecifier.StaffSpecifier.storage_format
+      ~experimental.tools.scoremanagertools.specifiers.StaffSpecifier.StaffSpecifier.StaffSpecifier.__eq__
+      ~experimental.tools.scoremanagertools.specifiers.StaffSpecifier.StaffSpecifier.StaffSpecifier.__ge__
+      ~experimental.tools.scoremanagertools.specifiers.StaffSpecifier.StaffSpecifier.StaffSpecifier.__gt__
+      ~experimental.tools.scoremanagertools.specifiers.StaffSpecifier.StaffSpecifier.StaffSpecifier.__le__
+      ~experimental.tools.scoremanagertools.specifiers.StaffSpecifier.StaffSpecifier.StaffSpecifier.__lt__
+      ~experimental.tools.scoremanagertools.specifiers.StaffSpecifier.StaffSpecifier.StaffSpecifier.__ne__
+      ~experimental.tools.scoremanagertools.specifiers.StaffSpecifier.StaffSpecifier.StaffSpecifier.__repr__
+
 Bases
 -----
 

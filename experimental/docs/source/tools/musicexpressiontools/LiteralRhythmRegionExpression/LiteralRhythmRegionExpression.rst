@@ -5,6 +5,30 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.evaluate
+      ~experimental.tools.musicexpressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.new
+      ~experimental.tools.musicexpressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.prolongs_expr
+      ~experimental.tools.musicexpressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.source_expression
+      ~experimental.tools.musicexpressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.start_offset
+      ~experimental.tools.musicexpressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.storage_format
+      ~experimental.tools.musicexpressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.total_duration
+      ~experimental.tools.musicexpressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.voice_name
+      ~experimental.tools.musicexpressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.__eq__
+      ~experimental.tools.musicexpressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.__ge__
+      ~experimental.tools.musicexpressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.__gt__
+      ~experimental.tools.musicexpressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.__hash__
+      ~experimental.tools.musicexpressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.__le__
+      ~experimental.tools.musicexpressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.__lt__
+      ~experimental.tools.musicexpressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.__ne__
+      ~experimental.tools.musicexpressiontools.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.LiteralRhythmRegionExpression.__repr__
+
 Bases
 -----
 

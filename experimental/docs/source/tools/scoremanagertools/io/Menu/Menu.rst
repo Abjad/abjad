@@ -5,6 +5,38 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.io.Menu.Menu.Menu
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.io.Menu.Menu.Menu.display_calling_code_line_number
+      ~experimental.tools.scoremanagertools.io.Menu.Menu.Menu.display_hidden_menu_section
+      ~experimental.tools.scoremanagertools.io.Menu.Menu.Menu.hidden_section
+      ~experimental.tools.scoremanagertools.io.Menu.Menu.Menu.interactively_edit_calling_code
+      ~experimental.tools.scoremanagertools.io.Menu.Menu.Menu.make_asset_section
+      ~experimental.tools.scoremanagertools.io.Menu.Menu.Menu.make_attribute_section
+      ~experimental.tools.scoremanagertools.io.Menu.Menu.Menu.make_command_section
+      ~experimental.tools.scoremanagertools.io.Menu.Menu.Menu.make_keyed_attribute_section
+      ~experimental.tools.scoremanagertools.io.Menu.Menu.Menu.make_numbered_list_section
+      ~experimental.tools.scoremanagertools.io.Menu.Menu.Menu.make_numbered_section
+      ~experimental.tools.scoremanagertools.io.Menu.Menu.Menu.menu_sections
+      ~experimental.tools.scoremanagertools.io.Menu.Menu.Menu.session
+      ~experimental.tools.scoremanagertools.io.Menu.Menu.Menu.should_clear_terminal
+      ~experimental.tools.scoremanagertools.io.Menu.Menu.Menu.storage_format
+      ~experimental.tools.scoremanagertools.io.Menu.Menu.Menu.title
+      ~experimental.tools.scoremanagertools.io.Menu.Menu.Menu.toggle_menu_commands
+      ~experimental.tools.scoremanagertools.io.Menu.Menu.Menu.__eq__
+      ~experimental.tools.scoremanagertools.io.Menu.Menu.Menu.__ge__
+      ~experimental.tools.scoremanagertools.io.Menu.Menu.Menu.__gt__
+      ~experimental.tools.scoremanagertools.io.Menu.Menu.Menu.__le__
+      ~experimental.tools.scoremanagertools.io.Menu.Menu.Menu.__len__
+      ~experimental.tools.scoremanagertools.io.Menu.Menu.Menu.__lt__
+      ~experimental.tools.scoremanagertools.io.Menu.Menu.Menu.__ne__
+      ~experimental.tools.scoremanagertools.io.Menu.Menu.Menu.__repr__
+
 Bases
 -----
 

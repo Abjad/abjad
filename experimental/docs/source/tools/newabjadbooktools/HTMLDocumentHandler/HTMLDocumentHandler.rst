@@ -5,6 +5,40 @@
 
 .. autoclass:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.asset_output_directory_name
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.asset_output_directory_path
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.asset_output_proxies
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.console
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.create_code_block
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.document
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.document_file_name
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.execute_code_blocks
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.extract_code_block_options
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.extract_code_blocks
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.has_asset_output_proxies
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.image_format
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.output_directory_path
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.rebuild_document
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.source_to_code_block_mapping
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.storage_format
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.write_assets_to_disk
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.write_rebuilt_document_to_disk
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.__call__
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.__eq__
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.__ge__
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.__gt__
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.__le__
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.__lt__
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.__ne__
+      ~experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.__repr__
+
 Bases
 -----
 

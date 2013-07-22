@@ -5,6 +5,42 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.copy
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.exists
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.filesystem_basename
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.filesystem_path
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.interactively_copy
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.interactively_remove
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.interactively_remove_and_backtrack_locally
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.interactively_rename
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.interactively_write_boilerplate
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.is_versioned
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.make_empty_asset
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.parent_directory_filesystem_path
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.remove
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.rename
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.session
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.storage_format
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.svn_add
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.svn_ci
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.svn_st
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.svn_up
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.write_boilerplate
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.__eq__
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.__ge__
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.__gt__
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.__le__
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.__lt__
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.__ne__
+      ~experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.__repr__
+
 Bases
 -----
 

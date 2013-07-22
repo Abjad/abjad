@@ -5,6 +5,32 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.division_list
+      ~experimental.tools.musicexpressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.evaluate
+      ~experimental.tools.musicexpressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.new
+      ~experimental.tools.musicexpressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.prolongs_expr
+      ~experimental.tools.musicexpressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.region_start_offset
+      ~experimental.tools.musicexpressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.source_expression
+      ~experimental.tools.musicexpressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.start_offset
+      ~experimental.tools.musicexpressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.storage_format
+      ~experimental.tools.musicexpressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.total_duration
+      ~experimental.tools.musicexpressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.voice_name
+      ~experimental.tools.musicexpressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.__eq__
+      ~experimental.tools.musicexpressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.__ge__
+      ~experimental.tools.musicexpressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.__gt__
+      ~experimental.tools.musicexpressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.__hash__
+      ~experimental.tools.musicexpressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.__le__
+      ~experimental.tools.musicexpressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.__lt__
+      ~experimental.tools.musicexpressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.__ne__
+      ~experimental.tools.musicexpressiontools.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.LookupExpressionRhythmRegionExpression.__repr__
+
 Bases
 -----
 

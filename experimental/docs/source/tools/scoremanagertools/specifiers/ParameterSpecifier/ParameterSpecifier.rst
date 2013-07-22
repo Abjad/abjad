@@ -5,6 +5,22 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.ParameterSpecifier.ParameterSpecifier.ParameterSpecifier
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.specifiers.ParameterSpecifier.ParameterSpecifier.ParameterSpecifier.storage_format
+      ~experimental.tools.scoremanagertools.specifiers.ParameterSpecifier.ParameterSpecifier.ParameterSpecifier.__eq__
+      ~experimental.tools.scoremanagertools.specifiers.ParameterSpecifier.ParameterSpecifier.ParameterSpecifier.__ge__
+      ~experimental.tools.scoremanagertools.specifiers.ParameterSpecifier.ParameterSpecifier.ParameterSpecifier.__gt__
+      ~experimental.tools.scoremanagertools.specifiers.ParameterSpecifier.ParameterSpecifier.ParameterSpecifier.__le__
+      ~experimental.tools.scoremanagertools.specifiers.ParameterSpecifier.ParameterSpecifier.ParameterSpecifier.__lt__
+      ~experimental.tools.scoremanagertools.specifiers.ParameterSpecifier.ParameterSpecifier.ParameterSpecifier.__ne__
+      ~experimental.tools.scoremanagertools.specifiers.ParameterSpecifier.ParameterSpecifier.ParameterSpecifier.__repr__
+
 Bases
 -----
 

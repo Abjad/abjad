@@ -5,6 +5,34 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.asset_proxy_class
+      ~experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.interactively_make_asset
+      ~experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.interactively_remove_assets
+      ~experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.interactively_rename_asset
+      ~experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.interactively_select_asset_filesystem_path
+      ~experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.interactively_select_asset_storehouse_filesystem_path
+      ~experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.list_asset_filesystem_paths
+      ~experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.list_asset_names
+      ~experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.list_asset_proxies
+      ~experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.list_asset_storehouse_filesystem_paths
+      ~experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.make_asset
+      ~experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.session
+      ~experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.storage_format
+      ~experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.__eq__
+      ~experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.__ge__
+      ~experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.__gt__
+      ~experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.__le__
+      ~experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.__lt__
+      ~experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.__ne__
+      ~experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.__repr__
+
 Bases
 -----
 

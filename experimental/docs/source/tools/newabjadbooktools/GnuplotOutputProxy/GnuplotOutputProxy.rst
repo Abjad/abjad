@@ -5,6 +5,37 @@
 
 .. autoclass:: experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.file_name_prefix
+      ~experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.file_name_without_extension
+      ~experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.generate_document_representation
+      ~experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.get_asset_output_absolute_file_path
+      ~experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.get_asset_output_relative_file_path
+      ~experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.get_image_file_name
+      ~experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.handle_doctree_document_environment
+      ~experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.handle_html_document_environment
+      ~experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.handle_latex_document_environment
+      ~experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.handle_pdf_image_format
+      ~experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.handle_png_image_format
+      ~experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.handle_rest_document_environment
+      ~experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.handle_svg_image_format
+      ~experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.payload
+      ~experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.storage_format
+      ~experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.write_asset_to_disk
+      ~experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.__eq__
+      ~experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.__ge__
+      ~experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.__gt__
+      ~experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.__le__
+      ~experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.__lt__
+      ~experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.__ne__
+      ~experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.__repr__
+
 Bases
 -----
 

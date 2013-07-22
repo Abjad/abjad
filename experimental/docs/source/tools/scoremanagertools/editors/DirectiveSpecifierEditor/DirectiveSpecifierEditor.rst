@@ -5,6 +5,46 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.attribute_name_to_menu_key
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.clean_up_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.copy_target_attributes_to_memory
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.has_target
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.initialize_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.initialize_target
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.initialize_target_from_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.make_target_attribute_tokens_from_target_manifest
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.menu_key_to_delegated_editor_kwargs
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.menu_key_to_prepopulated_value
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.session
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.set_target_attribute
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.space_delimited_lowercase_target_class_name
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.storage_format
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.target_args_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.target_attribute_names
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.target_attribute_tokens
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.target_class
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.target_keyword_attribute_names
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.target_kwargs_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.target_name
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.target_positional_initializer_argument_names
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.target_positional_initializer_retrievable_attribute_names
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.__eq__
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.__ge__
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.__gt__
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.__le__
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.__lt__
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.__ne__
+      ~experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.__repr__
+
 Bases
 -----
 

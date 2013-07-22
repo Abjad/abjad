@@ -5,6 +5,25 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.Expression.Expression.Expression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.Expression.Expression.Expression.evaluate
+      ~experimental.tools.musicexpressiontools.Expression.Expression.Expression.new
+      ~experimental.tools.musicexpressiontools.Expression.Expression.Expression.storage_format
+      ~experimental.tools.musicexpressiontools.Expression.Expression.Expression.__eq__
+      ~experimental.tools.musicexpressiontools.Expression.Expression.Expression.__ge__
+      ~experimental.tools.musicexpressiontools.Expression.Expression.Expression.__gt__
+      ~experimental.tools.musicexpressiontools.Expression.Expression.Expression.__hash__
+      ~experimental.tools.musicexpressiontools.Expression.Expression.Expression.__le__
+      ~experimental.tools.musicexpressiontools.Expression.Expression.Expression.__lt__
+      ~experimental.tools.musicexpressiontools.Expression.Expression.Expression.__ne__
+      ~experimental.tools.musicexpressiontools.Expression.Expression.Expression.__repr__
+
 Bases
 -----
 

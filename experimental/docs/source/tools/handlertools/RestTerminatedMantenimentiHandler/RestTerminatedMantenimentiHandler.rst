@@ -5,6 +5,25 @@
 
 .. autoclass:: experimental.tools.handlertools.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.handlertools.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.dynamics_talea
+      ~experimental.tools.handlertools.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.new
+      ~experimental.tools.handlertools.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.storage_format
+      ~experimental.tools.handlertools.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.__call__
+      ~experimental.tools.handlertools.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.__eq__
+      ~experimental.tools.handlertools.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.__ge__
+      ~experimental.tools.handlertools.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.__gt__
+      ~experimental.tools.handlertools.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.__le__
+      ~experimental.tools.handlertools.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.__lt__
+      ~experimental.tools.handlertools.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.__ne__
+      ~experimental.tools.handlertools.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.__repr__
+
 Bases
 -----
 

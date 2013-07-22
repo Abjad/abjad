@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.RegisterSetExpression.RegisterSetExpression.RegisterSetExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.RegisterSetExpression.RegisterSetExpression.RegisterSetExpression.evaluate
+      ~experimental.tools.musicexpressiontools.RegisterSetExpression.RegisterSetExpression.RegisterSetExpression.execute_against_score
+      ~experimental.tools.musicexpressiontools.RegisterSetExpression.RegisterSetExpression.RegisterSetExpression.new
+      ~experimental.tools.musicexpressiontools.RegisterSetExpression.RegisterSetExpression.RegisterSetExpression.source_expression
+      ~experimental.tools.musicexpressiontools.RegisterSetExpression.RegisterSetExpression.RegisterSetExpression.storage_format
+      ~experimental.tools.musicexpressiontools.RegisterSetExpression.RegisterSetExpression.RegisterSetExpression.target_select_expression_inventory
+      ~experimental.tools.musicexpressiontools.RegisterSetExpression.RegisterSetExpression.RegisterSetExpression.__eq__
+      ~experimental.tools.musicexpressiontools.RegisterSetExpression.RegisterSetExpression.RegisterSetExpression.__ge__
+      ~experimental.tools.musicexpressiontools.RegisterSetExpression.RegisterSetExpression.RegisterSetExpression.__gt__
+      ~experimental.tools.musicexpressiontools.RegisterSetExpression.RegisterSetExpression.RegisterSetExpression.__hash__
+      ~experimental.tools.musicexpressiontools.RegisterSetExpression.RegisterSetExpression.RegisterSetExpression.__le__
+      ~experimental.tools.musicexpressiontools.RegisterSetExpression.RegisterSetExpression.RegisterSetExpression.__lt__
+      ~experimental.tools.musicexpressiontools.RegisterSetExpression.RegisterSetExpression.RegisterSetExpression.__ne__
+      ~experimental.tools.musicexpressiontools.RegisterSetExpression.RegisterSetExpression.RegisterSetExpression.__repr__
+
 Bases
 -----
 

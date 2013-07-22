@@ -5,6 +5,28 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.Interpreter.Interpreter.Interpreter
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.Interpreter.Interpreter.Interpreter.callback_cache
+      ~experimental.tools.musicexpressiontools.Interpreter.Interpreter.Interpreter.evaluate_multiple_context_set_expressions
+      ~experimental.tools.musicexpressiontools.Interpreter.Interpreter.Interpreter.instantiate_score
+      ~experimental.tools.musicexpressiontools.Interpreter.Interpreter.Interpreter.storage_format
+      ~experimental.tools.musicexpressiontools.Interpreter.Interpreter.Interpreter.store_score_rooted_single_context_set_expressions_by_context
+      ~experimental.tools.musicexpressiontools.Interpreter.Interpreter.Interpreter.store_segment_rooted_single_context_set_expressions_by_context
+      ~experimental.tools.musicexpressiontools.Interpreter.Interpreter.Interpreter.__call__
+      ~experimental.tools.musicexpressiontools.Interpreter.Interpreter.Interpreter.__eq__
+      ~experimental.tools.musicexpressiontools.Interpreter.Interpreter.Interpreter.__ge__
+      ~experimental.tools.musicexpressiontools.Interpreter.Interpreter.Interpreter.__gt__
+      ~experimental.tools.musicexpressiontools.Interpreter.Interpreter.Interpreter.__le__
+      ~experimental.tools.musicexpressiontools.Interpreter.Interpreter.Interpreter.__lt__
+      ~experimental.tools.musicexpressiontools.Interpreter.Interpreter.Interpreter.__ne__
+      ~experimental.tools.musicexpressiontools.Interpreter.Interpreter.Interpreter.__repr__
+
 Bases
 -----
 

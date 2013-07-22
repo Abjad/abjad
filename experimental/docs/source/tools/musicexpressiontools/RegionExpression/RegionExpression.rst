@@ -5,6 +5,29 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.RegionExpression.RegionExpression.RegionExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.RegionExpression.RegionExpression.RegionExpression.evaluate
+      ~experimental.tools.musicexpressiontools.RegionExpression.RegionExpression.RegionExpression.new
+      ~experimental.tools.musicexpressiontools.RegionExpression.RegionExpression.RegionExpression.source_expression
+      ~experimental.tools.musicexpressiontools.RegionExpression.RegionExpression.RegionExpression.start_offset
+      ~experimental.tools.musicexpressiontools.RegionExpression.RegionExpression.RegionExpression.storage_format
+      ~experimental.tools.musicexpressiontools.RegionExpression.RegionExpression.RegionExpression.total_duration
+      ~experimental.tools.musicexpressiontools.RegionExpression.RegionExpression.RegionExpression.voice_name
+      ~experimental.tools.musicexpressiontools.RegionExpression.RegionExpression.RegionExpression.__eq__
+      ~experimental.tools.musicexpressiontools.RegionExpression.RegionExpression.RegionExpression.__ge__
+      ~experimental.tools.musicexpressiontools.RegionExpression.RegionExpression.RegionExpression.__gt__
+      ~experimental.tools.musicexpressiontools.RegionExpression.RegionExpression.RegionExpression.__hash__
+      ~experimental.tools.musicexpressiontools.RegionExpression.RegionExpression.RegionExpression.__le__
+      ~experimental.tools.musicexpressiontools.RegionExpression.RegionExpression.RegionExpression.__lt__
+      ~experimental.tools.musicexpressiontools.RegionExpression.RegionExpression.RegionExpression.__ne__
+      ~experimental.tools.musicexpressiontools.RegionExpression.RegionExpression.RegionExpression.__repr__
+
 Bases
 -----
 

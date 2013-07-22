@@ -5,6 +5,33 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.Specification.Specification.Specification
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.Specification.Specification.Specification.compare_context_names
+      ~experimental.tools.musicexpressiontools.Specification.Specification.Specification.context_name_abbreviations
+      ~experimental.tools.musicexpressiontools.Specification.Specification.Specification.context_name_to_depth
+      ~experimental.tools.musicexpressiontools.Specification.Specification.Specification.context_names
+      ~experimental.tools.musicexpressiontools.Specification.Specification.Specification.fresh_single_context_set_expressions
+      ~experimental.tools.musicexpressiontools.Specification.Specification.Specification.get_single_context_set_expressions_rooted_to_specification_that_govern_context_name
+      ~experimental.tools.musicexpressiontools.Specification.Specification.Specification.score_model
+      ~experimental.tools.musicexpressiontools.Specification.Specification.Specification.score_name
+      ~experimental.tools.musicexpressiontools.Specification.Specification.Specification.score_template
+      ~experimental.tools.musicexpressiontools.Specification.Specification.Specification.single_context_set_expressions_by_context
+      ~experimental.tools.musicexpressiontools.Specification.Specification.Specification.storage_format
+      ~experimental.tools.musicexpressiontools.Specification.Specification.Specification.timespan
+      ~experimental.tools.musicexpressiontools.Specification.Specification.Specification.__eq__
+      ~experimental.tools.musicexpressiontools.Specification.Specification.Specification.__ge__
+      ~experimental.tools.musicexpressiontools.Specification.Specification.Specification.__gt__
+      ~experimental.tools.musicexpressiontools.Specification.Specification.Specification.__le__
+      ~experimental.tools.musicexpressiontools.Specification.Specification.Specification.__lt__
+      ~experimental.tools.musicexpressiontools.Specification.Specification.Specification.__ne__
+      ~experimental.tools.musicexpressiontools.Specification.Specification.Specification.__repr__
+
 Bases
 -----
 

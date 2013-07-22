@@ -5,6 +5,29 @@
 
 .. autoclass:: experimental.tools.musicexpressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.musicexpressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.evaluate
+      ~experimental.tools.musicexpressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.new
+      ~experimental.tools.musicexpressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.source_expression
+      ~experimental.tools.musicexpressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.start_offset
+      ~experimental.tools.musicexpressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.storage_format
+      ~experimental.tools.musicexpressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.total_duration
+      ~experimental.tools.musicexpressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.voice_name
+      ~experimental.tools.musicexpressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.__eq__
+      ~experimental.tools.musicexpressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.__ge__
+      ~experimental.tools.musicexpressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.__gt__
+      ~experimental.tools.musicexpressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.__hash__
+      ~experimental.tools.musicexpressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.__le__
+      ~experimental.tools.musicexpressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.__lt__
+      ~experimental.tools.musicexpressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.__ne__
+      ~experimental.tools.musicexpressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression.__repr__
+
 Bases
 -----
 

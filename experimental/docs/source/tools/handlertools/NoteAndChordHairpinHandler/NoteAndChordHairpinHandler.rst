@@ -5,6 +5,25 @@
 
 .. autoclass:: experimental.tools.handlertools.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.handlertools.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.hairpin_token
+      ~experimental.tools.handlertools.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.new
+      ~experimental.tools.handlertools.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.storage_format
+      ~experimental.tools.handlertools.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__call__
+      ~experimental.tools.handlertools.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__eq__
+      ~experimental.tools.handlertools.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__ge__
+      ~experimental.tools.handlertools.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__gt__
+      ~experimental.tools.handlertools.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__le__
+      ~experimental.tools.handlertools.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__lt__
+      ~experimental.tools.handlertools.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__ne__
+      ~experimental.tools.handlertools.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__repr__
+
 Bases
 -----
 

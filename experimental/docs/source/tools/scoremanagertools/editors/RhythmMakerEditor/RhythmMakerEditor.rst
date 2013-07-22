@@ -5,6 +5,46 @@
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.attribute_name_to_menu_key
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.clean_up_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.copy_target_attributes_to_memory
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.has_target
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.initialize_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.initialize_target
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.initialize_target_from_attributes_in_memory
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.make_target_attribute_tokens_from_target_manifest
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.menu_key_to_delegated_editor_kwargs
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.menu_key_to_prepopulated_value
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.session
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.set_target_attribute
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.space_delimited_lowercase_target_class_name
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.storage_format
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.target_args_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.target_attribute_names
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.target_attribute_tokens
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.target_class
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.target_keyword_attribute_names
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.target_kwargs_to_target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.target_name
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.target_positional_initializer_argument_names
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.target_positional_initializer_retrievable_attribute_names
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.target_summary_lines
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.__eq__
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.__ge__
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.__gt__
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.__le__
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.__lt__
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.__ne__
+      ~experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.__repr__
+
 Bases
 -----
 

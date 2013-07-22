@@ -5,6 +5,27 @@
 
 .. autoclass:: experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.index_span
+      ~experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.indices
+      ~experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.kind
+      ~experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.predicate
+      ~experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.storage_format
+      ~experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__call__
+      ~experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__eq__
+      ~experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__ge__
+      ~experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__gt__
+      ~experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__le__
+      ~experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__lt__
+      ~experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__ne__
+      ~experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__repr__
+
 Bases
 -----
 
