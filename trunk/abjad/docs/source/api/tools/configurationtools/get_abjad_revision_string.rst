@@ -1,4 +1,0 @@
-:py:mod:`configurationtools <abjad.tools.configurationtools>`.get_abjad_revision_string
-=======================================================================================
-
-.. autofunction:: abjad.tools.configurationtools.get_abjad_revision_string.get_abjad_revision_string

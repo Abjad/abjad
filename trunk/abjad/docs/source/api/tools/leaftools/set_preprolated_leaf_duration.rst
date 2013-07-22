@@ -1,4 +1,0 @@
-:py:mod:`leaftools <abjad.tools.leaftools>`.set_preprolated_leaf_duration
-=========================================================================
-
-.. autofunction:: abjad.tools.leaftools.set_preprolated_leaf_duration.set_preprolated_leaf_duration

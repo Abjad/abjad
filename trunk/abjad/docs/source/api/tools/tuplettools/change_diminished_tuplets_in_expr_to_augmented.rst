@@ -1,4 +1,0 @@
-:py:mod:`tuplettools <abjad.tools.tuplettools>`.change_diminished_tuplets_in_expr_to_augmented
-==============================================================================================
-
-.. autofunction:: abjad.tools.tuplettools.change_diminished_tuplets_in_expr_to_augmented.change_diminished_tuplets_in_expr_to_augmented
