@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.all_clefs
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.attach
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.default_instrument_name
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.default_pitch_range
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.default_short_instrument_name
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.detach
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.effective_context
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.get_default_performer_name
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.get_performer_names
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.instrument_name
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.instrument_name_markup
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.interval_of_transposition
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.is_primary_instrument
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.is_secondary_instrument
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.is_transposing
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.lilypond_format
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.pitch_range
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.primary_clefs
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.short_instrument_name
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.start_component
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.storage_format
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.target_context
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.__call__
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.__copy__
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.__eq__
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.__ge__
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.__gt__
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.__hash__
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.__le__
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.__lt__
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.__ne__
+      ~abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,37 @@
 
 .. autoclass:: abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.depth
+      ~abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.depthwise_inventory
+      ~abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.graph_order
+      ~abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.improper_parentage
+      ~abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.name
+      ~abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.parent
+      ~abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.proper_parentage
+      ~abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.rest_format
+      ~abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.root
+      ~abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.storage_format
+      ~abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.text
+      ~abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.wrap
+      ~abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.__copy__
+      ~abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.__deepcopy__
+      ~abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.__eq__
+      ~abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.__ge__
+      ~abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.__getstate__
+      ~abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.__gt__
+      ~abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.__le__
+      ~abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.__lt__
+      ~abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.__ne__
+      ~abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.__repr__
+      ~abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph.__setstate__
+
 Bases
 -----
 

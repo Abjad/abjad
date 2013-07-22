@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.exceptiontools.PartitionError.PartitionError
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.exceptiontools.PartitionError.PartitionError.__delattr__
+      ~abjad.tools.exceptiontools.PartitionError.PartitionError.__getitem__
+      ~abjad.tools.exceptiontools.PartitionError.PartitionError.__getslice__
+      ~abjad.tools.exceptiontools.PartitionError.PartitionError.__repr__
+      ~abjad.tools.exceptiontools.PartitionError.PartitionError.__setattr__
+      ~abjad.tools.exceptiontools.PartitionError.PartitionError.__setstate__
+      ~abjad.tools.exceptiontools.PartitionError.PartitionError.__str__
+      ~abjad.tools.exceptiontools.PartitionError.PartitionError.__unicode__
+
 Bases
 -----
 

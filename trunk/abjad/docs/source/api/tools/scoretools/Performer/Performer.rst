@@ -5,6 +5,30 @@
 
 .. autoclass:: abjad.tools.scoretools.Performer.Performer.Performer
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.scoretools.Performer.Performer.Performer.instrument_count
+      ~abjad.tools.scoretools.Performer.Performer.Performer.instruments
+      ~abjad.tools.scoretools.Performer.Performer.Performer.is_doubling
+      ~abjad.tools.scoretools.Performer.Performer.Performer.likely_instruments_based_on_performer_name
+      ~abjad.tools.scoretools.Performer.Performer.Performer.make_performer_name_instrument_dictionary
+      ~abjad.tools.scoretools.Performer.Performer.Performer.most_likely_instrument_based_on_performer_name
+      ~abjad.tools.scoretools.Performer.Performer.Performer.name
+      ~abjad.tools.scoretools.Performer.Performer.Performer.storage_format
+      ~abjad.tools.scoretools.Performer.Performer.Performer.__eq__
+      ~abjad.tools.scoretools.Performer.Performer.Performer.__ge__
+      ~abjad.tools.scoretools.Performer.Performer.Performer.__gt__
+      ~abjad.tools.scoretools.Performer.Performer.Performer.__hash__
+      ~abjad.tools.scoretools.Performer.Performer.Performer.__le__
+      ~abjad.tools.scoretools.Performer.Performer.Performer.__lt__
+      ~abjad.tools.scoretools.Performer.Performer.Performer.__ne__
+      ~abjad.tools.scoretools.Performer.Performer.Performer.__repr__
+
 Bases
 -----
 

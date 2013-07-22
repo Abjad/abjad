@@ -5,6 +5,24 @@
 
 .. autoclass:: abjad.tools.abctools.Maker.Maker.Maker
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.abctools.Maker.Maker.Maker.new
+      ~abjad.tools.abctools.Maker.Maker.Maker.storage_format
+      ~abjad.tools.abctools.Maker.Maker.Maker.__call__
+      ~abjad.tools.abctools.Maker.Maker.Maker.__eq__
+      ~abjad.tools.abctools.Maker.Maker.Maker.__ge__
+      ~abjad.tools.abctools.Maker.Maker.Maker.__gt__
+      ~abjad.tools.abctools.Maker.Maker.Maker.__le__
+      ~abjad.tools.abctools.Maker.Maker.Maker.__lt__
+      ~abjad.tools.abctools.Maker.Maker.Maker.__ne__
+      ~abjad.tools.abctools.Maker.Maker.Maker.__repr__
+
 Bases
 -----
 

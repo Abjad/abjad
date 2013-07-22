@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.exceptiontools.MissingMeasureError.MissingMeasureError
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.exceptiontools.MissingMeasureError.MissingMeasureError.__delattr__
+      ~abjad.tools.exceptiontools.MissingMeasureError.MissingMeasureError.__getitem__
+      ~abjad.tools.exceptiontools.MissingMeasureError.MissingMeasureError.__getslice__
+      ~abjad.tools.exceptiontools.MissingMeasureError.MissingMeasureError.__repr__
+      ~abjad.tools.exceptiontools.MissingMeasureError.MissingMeasureError.__setattr__
+      ~abjad.tools.exceptiontools.MissingMeasureError.MissingMeasureError.__setstate__
+      ~abjad.tools.exceptiontools.MissingMeasureError.MissingMeasureError.__str__
+      ~abjad.tools.exceptiontools.MissingMeasureError.MissingMeasureError.__unicode__
+
 Bases
 -----
 

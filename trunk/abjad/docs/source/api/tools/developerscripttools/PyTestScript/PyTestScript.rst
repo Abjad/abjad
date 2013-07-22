@@ -5,6 +5,35 @@
 
 .. autoclass:: abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript.alias
+      ~abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript.argument_parser
+      ~abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript.formatted_help
+      ~abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript.formatted_usage
+      ~abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript.formatted_version
+      ~abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript.long_description
+      ~abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript.process_args
+      ~abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript.program_name
+      ~abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript.scripting_group
+      ~abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript.setup_argument_parser
+      ~abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript.short_description
+      ~abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript.storage_format
+      ~abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript.version
+      ~abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript.__call__
+      ~abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript.__eq__
+      ~abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript.__ge__
+      ~abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript.__gt__
+      ~abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript.__le__
+      ~abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript.__lt__
+      ~abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript.__ne__
+      ~abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript.__repr__
+
 Bases
 -----
 

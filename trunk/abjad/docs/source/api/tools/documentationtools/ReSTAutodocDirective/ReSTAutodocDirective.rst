@@ -5,6 +5,54 @@
 
 .. autoclass:: abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.append
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.argument
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.children
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.depth
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.depthwise_inventory
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.directive
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.extend
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.graph_order
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.improper_parentage
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.index
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.insert
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.leaves
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.name
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.node_class
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.nodes
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.options
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.parent
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.pop
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.proper_parentage
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.remove
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.rest_format
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.root
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.storage_format
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.__contains__
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.__copy__
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.__deepcopy__
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.__delitem__
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.__eq__
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.__ge__
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.__getitem__
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.__getstate__
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.__gt__
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.__iter__
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.__le__
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.__len__
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.__lt__
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.__ne__
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.__repr__
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.__setitem__
+      ~abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.__setstate__
+
 Bases
 -----
 

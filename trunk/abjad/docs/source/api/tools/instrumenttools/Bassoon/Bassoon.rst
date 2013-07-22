@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.all_clefs
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.attach
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.default_instrument_name
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.default_pitch_range
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.default_short_instrument_name
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.detach
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.effective_context
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.get_default_performer_name
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.get_performer_names
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.instrument_name
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.instrument_name_markup
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.interval_of_transposition
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.is_primary_instrument
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.is_secondary_instrument
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.is_transposing
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.lilypond_format
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.pitch_range
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.primary_clefs
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.short_instrument_name
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.start_component
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.storage_format
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.target_context
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.__call__
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.__copy__
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.__eq__
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.__ge__
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.__gt__
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.__hash__
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.__le__
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.__lt__
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.__ne__
+      ~abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.__repr__
+
 Bases
 -----
 

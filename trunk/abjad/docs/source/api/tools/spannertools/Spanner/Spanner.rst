@@ -5,6 +5,47 @@
 
 .. autoclass:: abjad.tools.spannertools.Spanner.Spanner.Spanner
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.append
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.append_left
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.attach
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.components
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.detach
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.duration
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.duration_in_seconds
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.extend
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.extend_left
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.fracture
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.fuse
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.index
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.leaves
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.override
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.pop
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.pop_left
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.preprolated_duration
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.set
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.storage_format
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.timespan
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.written_duration
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.__call__
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.__contains__
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.__copy__
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.__eq__
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.__ge__
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.__getitem__
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.__gt__
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.__le__
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.__len__
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.__lt__
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.__ne__
+      ~abjad.tools.spannertools.Spanner.Spanner.Spanner.__repr__
+
 Bases
 -----
 

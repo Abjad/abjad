@@ -5,6 +5,26 @@
 
 .. autoclass:: abjad.tools.pitchtools.DiatonicPitchClass.DiatonicPitchClass.DiatonicPitchClass
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.DiatonicPitchClass.DiatonicPitchClass.DiatonicPitchClass.storage_format
+      ~abjad.tools.pitchtools.DiatonicPitchClass.DiatonicPitchClass.DiatonicPitchClass.__abs__
+      ~abjad.tools.pitchtools.DiatonicPitchClass.DiatonicPitchClass.DiatonicPitchClass.__eq__
+      ~abjad.tools.pitchtools.DiatonicPitchClass.DiatonicPitchClass.DiatonicPitchClass.__float__
+      ~abjad.tools.pitchtools.DiatonicPitchClass.DiatonicPitchClass.DiatonicPitchClass.__ge__
+      ~abjad.tools.pitchtools.DiatonicPitchClass.DiatonicPitchClass.DiatonicPitchClass.__gt__
+      ~abjad.tools.pitchtools.DiatonicPitchClass.DiatonicPitchClass.DiatonicPitchClass.__hash__
+      ~abjad.tools.pitchtools.DiatonicPitchClass.DiatonicPitchClass.DiatonicPitchClass.__int__
+      ~abjad.tools.pitchtools.DiatonicPitchClass.DiatonicPitchClass.DiatonicPitchClass.__le__
+      ~abjad.tools.pitchtools.DiatonicPitchClass.DiatonicPitchClass.DiatonicPitchClass.__lt__
+      ~abjad.tools.pitchtools.DiatonicPitchClass.DiatonicPitchClass.DiatonicPitchClass.__ne__
+      ~abjad.tools.pitchtools.DiatonicPitchClass.DiatonicPitchClass.DiatonicPitchClass.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,24 @@
 
 .. autoclass:: abjad.tools.iotools.RedirectedStreams.RedirectedStreams.RedirectedStreams
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.iotools.RedirectedStreams.RedirectedStreams.RedirectedStreams.storage_format
+      ~abjad.tools.iotools.RedirectedStreams.RedirectedStreams.RedirectedStreams.__enter__
+      ~abjad.tools.iotools.RedirectedStreams.RedirectedStreams.RedirectedStreams.__eq__
+      ~abjad.tools.iotools.RedirectedStreams.RedirectedStreams.RedirectedStreams.__exit__
+      ~abjad.tools.iotools.RedirectedStreams.RedirectedStreams.RedirectedStreams.__ge__
+      ~abjad.tools.iotools.RedirectedStreams.RedirectedStreams.RedirectedStreams.__gt__
+      ~abjad.tools.iotools.RedirectedStreams.RedirectedStreams.RedirectedStreams.__le__
+      ~abjad.tools.iotools.RedirectedStreams.RedirectedStreams.RedirectedStreams.__lt__
+      ~abjad.tools.iotools.RedirectedStreams.RedirectedStreams.RedirectedStreams.__ne__
+      ~abjad.tools.iotools.RedirectedStreams.RedirectedStreams.RedirectedStreams.__repr__
+
 Bases
 -----
 

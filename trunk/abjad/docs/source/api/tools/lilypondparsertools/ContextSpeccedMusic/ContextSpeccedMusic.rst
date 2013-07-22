@@ -5,6 +5,24 @@
 
 .. autoclass:: abjad.tools.lilypondparsertools.ContextSpeccedMusic.ContextSpeccedMusic.ContextSpeccedMusic
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.lilypondparsertools.ContextSpeccedMusic.ContextSpeccedMusic.ContextSpeccedMusic.construct
+      ~abjad.tools.lilypondparsertools.ContextSpeccedMusic.ContextSpeccedMusic.ContextSpeccedMusic.known_contexts
+      ~abjad.tools.lilypondparsertools.ContextSpeccedMusic.ContextSpeccedMusic.ContextSpeccedMusic.storage_format
+      ~abjad.tools.lilypondparsertools.ContextSpeccedMusic.ContextSpeccedMusic.ContextSpeccedMusic.__eq__
+      ~abjad.tools.lilypondparsertools.ContextSpeccedMusic.ContextSpeccedMusic.ContextSpeccedMusic.__ge__
+      ~abjad.tools.lilypondparsertools.ContextSpeccedMusic.ContextSpeccedMusic.ContextSpeccedMusic.__gt__
+      ~abjad.tools.lilypondparsertools.ContextSpeccedMusic.ContextSpeccedMusic.ContextSpeccedMusic.__le__
+      ~abjad.tools.lilypondparsertools.ContextSpeccedMusic.ContextSpeccedMusic.ContextSpeccedMusic.__lt__
+      ~abjad.tools.lilypondparsertools.ContextSpeccedMusic.ContextSpeccedMusic.ContextSpeccedMusic.__ne__
+      ~abjad.tools.lilypondparsertools.ContextSpeccedMusic.ContextSpeccedMusic.ContextSpeccedMusic.__repr__
+
 Bases
 -----
 

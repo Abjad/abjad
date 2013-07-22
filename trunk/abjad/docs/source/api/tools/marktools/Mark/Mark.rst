@@ -5,6 +5,27 @@
 
 .. autoclass:: abjad.tools.marktools.Mark.Mark.Mark
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.marktools.Mark.Mark.Mark.attach
+      ~abjad.tools.marktools.Mark.Mark.Mark.detach
+      ~abjad.tools.marktools.Mark.Mark.Mark.start_component
+      ~abjad.tools.marktools.Mark.Mark.Mark.storage_format
+      ~abjad.tools.marktools.Mark.Mark.Mark.__call__
+      ~abjad.tools.marktools.Mark.Mark.Mark.__copy__
+      ~abjad.tools.marktools.Mark.Mark.Mark.__eq__
+      ~abjad.tools.marktools.Mark.Mark.Mark.__ge__
+      ~abjad.tools.marktools.Mark.Mark.Mark.__gt__
+      ~abjad.tools.marktools.Mark.Mark.Mark.__le__
+      ~abjad.tools.marktools.Mark.Mark.Mark.__lt__
+      ~abjad.tools.marktools.Mark.Mark.Mark.__ne__
+      ~abjad.tools.marktools.Mark.Mark.Mark.__repr__
+
 Bases
 -----
 

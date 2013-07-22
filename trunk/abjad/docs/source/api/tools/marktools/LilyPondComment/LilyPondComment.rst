@@ -5,6 +5,30 @@
 
 .. autoclass:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.attach
+      ~abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.contents_string
+      ~abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.detach
+      ~abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.format_slot
+      ~abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.lilypond_format
+      ~abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.start_component
+      ~abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.storage_format
+      ~abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__call__
+      ~abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__copy__
+      ~abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__eq__
+      ~abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__ge__
+      ~abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__gt__
+      ~abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__le__
+      ~abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__lt__
+      ~abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__ne__
+      ~abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__repr__
+
 Bases
 -----
 

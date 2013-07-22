@@ -5,6 +5,23 @@
 
 .. autoclass:: abjad.tools.quantizationtools.SerialJobHandler.SerialJobHandler.SerialJobHandler
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.quantizationtools.SerialJobHandler.SerialJobHandler.SerialJobHandler.storage_format
+      ~abjad.tools.quantizationtools.SerialJobHandler.SerialJobHandler.SerialJobHandler.__call__
+      ~abjad.tools.quantizationtools.SerialJobHandler.SerialJobHandler.SerialJobHandler.__eq__
+      ~abjad.tools.quantizationtools.SerialJobHandler.SerialJobHandler.SerialJobHandler.__ge__
+      ~abjad.tools.quantizationtools.SerialJobHandler.SerialJobHandler.SerialJobHandler.__gt__
+      ~abjad.tools.quantizationtools.SerialJobHandler.SerialJobHandler.SerialJobHandler.__le__
+      ~abjad.tools.quantizationtools.SerialJobHandler.SerialJobHandler.SerialJobHandler.__lt__
+      ~abjad.tools.quantizationtools.SerialJobHandler.SerialJobHandler.SerialJobHandler.__ne__
+      ~abjad.tools.quantizationtools.SerialJobHandler.SerialJobHandler.SerialJobHandler.__repr__
+
 Bases
 -----
 

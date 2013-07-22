@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.all_clefs
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.attach
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.default_instrument_name
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.default_pitch_range
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.default_short_instrument_name
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.detach
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.effective_context
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.get_default_performer_name
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.get_performer_names
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.instrument_name
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.instrument_name_markup
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.interval_of_transposition
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.is_primary_instrument
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.is_secondary_instrument
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.is_transposing
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.lilypond_format
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.pitch_range
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.primary_clefs
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.short_instrument_name
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.start_component
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.storage_format
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.target_context
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.__call__
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.__copy__
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.__eq__
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.__ge__
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.__gt__
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.__hash__
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.__le__
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.__lt__
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.__ne__
+      ~abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.__repr__
+
 Bases
 -----
 

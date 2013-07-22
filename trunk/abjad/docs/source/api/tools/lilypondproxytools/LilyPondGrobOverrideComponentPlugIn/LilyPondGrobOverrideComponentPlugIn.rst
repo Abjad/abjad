@@ -5,6 +5,24 @@
 
 .. autoclass:: abjad.tools.lilypondproxytools.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.lilypondproxytools.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.storage_format
+      ~abjad.tools.lilypondproxytools.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.__eq__
+      ~abjad.tools.lilypondproxytools.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.__ge__
+      ~abjad.tools.lilypondproxytools.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.__getattr__
+      ~abjad.tools.lilypondproxytools.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.__gt__
+      ~abjad.tools.lilypondproxytools.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.__le__
+      ~abjad.tools.lilypondproxytools.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.__lt__
+      ~abjad.tools.lilypondproxytools.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.__ne__
+      ~abjad.tools.lilypondproxytools.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.__repr__
+      ~abjad.tools.lilypondproxytools.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.__setattr__
+
 Bases
 -----
 

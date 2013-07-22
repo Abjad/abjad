@@ -5,6 +5,46 @@
 
 .. autoclass:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.append
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.count
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.extend
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.index
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.insert
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.pop
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.remove
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.reverse
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.sort
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__add__
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__contains__
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__delitem__
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__delslice__
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__eq__
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__ge__
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__getitem__
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__getslice__
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__gt__
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__iadd__
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__imul__
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__iter__
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__le__
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__len__
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__lt__
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__mul__
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__ne__
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__repr__
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__reversed__
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__rmul__
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__setitem__
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__setslice__
+      ~abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__str__
+
 Bases
 -----
 

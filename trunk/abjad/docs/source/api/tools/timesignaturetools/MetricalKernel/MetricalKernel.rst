@@ -5,6 +5,24 @@
 
 .. autoclass:: abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel.kernel
+      ~abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel.storage_format
+      ~abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel.__call__
+      ~abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel.__eq__
+      ~abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel.__ge__
+      ~abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel.__gt__
+      ~abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel.__le__
+      ~abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel.__lt__
+      ~abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel.__ne__
+      ~abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.Marimba.Marimba.Marimba
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.all_clefs
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.attach
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.default_instrument_name
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.default_pitch_range
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.default_short_instrument_name
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.detach
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.effective_context
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.get_default_performer_name
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.get_performer_names
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.instrument_name
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.instrument_name_markup
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.interval_of_transposition
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.is_primary_instrument
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.is_secondary_instrument
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.is_transposing
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.lilypond_format
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.pitch_range
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.primary_clefs
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.short_instrument_name
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.start_component
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.storage_format
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.target_context
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.__call__
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.__copy__
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.__eq__
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.__ge__
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.__gt__
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.__hash__
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.__le__
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.__lt__
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.__ne__
+      ~abjad.tools.instrumenttools.Marimba.Marimba.Marimba.__repr__
+
 Bases
 -----
 

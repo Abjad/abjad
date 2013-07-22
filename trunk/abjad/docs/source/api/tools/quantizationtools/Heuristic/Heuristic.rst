@@ -5,6 +5,23 @@
 
 .. autoclass:: abjad.tools.quantizationtools.Heuristic.Heuristic.Heuristic
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.quantizationtools.Heuristic.Heuristic.Heuristic.storage_format
+      ~abjad.tools.quantizationtools.Heuristic.Heuristic.Heuristic.__call__
+      ~abjad.tools.quantizationtools.Heuristic.Heuristic.Heuristic.__eq__
+      ~abjad.tools.quantizationtools.Heuristic.Heuristic.Heuristic.__ge__
+      ~abjad.tools.quantizationtools.Heuristic.Heuristic.Heuristic.__gt__
+      ~abjad.tools.quantizationtools.Heuristic.Heuristic.Heuristic.__le__
+      ~abjad.tools.quantizationtools.Heuristic.Heuristic.Heuristic.__lt__
+      ~abjad.tools.quantizationtools.Heuristic.Heuristic.Heuristic.__ne__
+      ~abjad.tools.quantizationtools.Heuristic.Heuristic.Heuristic.__repr__
+
 Bases
 -----
 

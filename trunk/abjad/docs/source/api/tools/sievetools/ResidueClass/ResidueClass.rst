@@ -5,6 +5,29 @@
 
 .. autoclass:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.get_boolean_train
+      ~abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.get_congruent_bases
+      ~abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.modulo
+      ~abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.residue
+      ~abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.storage_format
+      ~abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__and__
+      ~abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__eq__
+      ~abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__ge__
+      ~abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__gt__
+      ~abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__le__
+      ~abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__lt__
+      ~abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__ne__
+      ~abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__or__
+      ~abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__repr__
+      ~abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__xor__
+
 Bases
 -----
 

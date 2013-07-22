@@ -5,6 +5,37 @@
 
 .. autoclass:: abjad.tools.documentationtools.Pipe.Pipe.Pipe
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.documentationtools.Pipe.Pipe.Pipe.arguments
+      ~abjad.tools.documentationtools.Pipe.Pipe.Pipe.close
+      ~abjad.tools.documentationtools.Pipe.Pipe.Pipe.communicate
+      ~abjad.tools.documentationtools.Pipe.Pipe.Pipe.executable
+      ~abjad.tools.documentationtools.Pipe.Pipe.Pipe.kill
+      ~abjad.tools.documentationtools.Pipe.Pipe.Pipe.poll
+      ~abjad.tools.documentationtools.Pipe.Pipe.Pipe.read
+      ~abjad.tools.documentationtools.Pipe.Pipe.Pipe.read_wait
+      ~abjad.tools.documentationtools.Pipe.Pipe.Pipe.send_signal
+      ~abjad.tools.documentationtools.Pipe.Pipe.Pipe.storage_format
+      ~abjad.tools.documentationtools.Pipe.Pipe.Pipe.terminate
+      ~abjad.tools.documentationtools.Pipe.Pipe.Pipe.timeout
+      ~abjad.tools.documentationtools.Pipe.Pipe.Pipe.wait
+      ~abjad.tools.documentationtools.Pipe.Pipe.Pipe.write
+      ~abjad.tools.documentationtools.Pipe.Pipe.Pipe.write_line
+      ~abjad.tools.documentationtools.Pipe.Pipe.Pipe.__del__
+      ~abjad.tools.documentationtools.Pipe.Pipe.Pipe.__eq__
+      ~abjad.tools.documentationtools.Pipe.Pipe.Pipe.__ge__
+      ~abjad.tools.documentationtools.Pipe.Pipe.Pipe.__gt__
+      ~abjad.tools.documentationtools.Pipe.Pipe.Pipe.__le__
+      ~abjad.tools.documentationtools.Pipe.Pipe.Pipe.__lt__
+      ~abjad.tools.documentationtools.Pipe.Pipe.Pipe.__ne__
+      ~abjad.tools.documentationtools.Pipe.Pipe.Pipe.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,26 @@
 
 .. autoclass:: abjad.tools.tonalanalysistools.Mode.Mode.Mode
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.tonalanalysistools.Mode.Mode.Mode.melodic_diatonic_interval_segment
+      ~abjad.tools.tonalanalysistools.Mode.Mode.Mode.mode_name
+      ~abjad.tools.tonalanalysistools.Mode.Mode.Mode.storage_format
+      ~abjad.tools.tonalanalysistools.Mode.Mode.Mode.__eq__
+      ~abjad.tools.tonalanalysistools.Mode.Mode.Mode.__ge__
+      ~abjad.tools.tonalanalysistools.Mode.Mode.Mode.__gt__
+      ~abjad.tools.tonalanalysistools.Mode.Mode.Mode.__le__
+      ~abjad.tools.tonalanalysistools.Mode.Mode.Mode.__len__
+      ~abjad.tools.tonalanalysistools.Mode.Mode.Mode.__lt__
+      ~abjad.tools.tonalanalysistools.Mode.Mode.Mode.__ne__
+      ~abjad.tools.tonalanalysistools.Mode.Mode.Mode.__repr__
+      ~abjad.tools.tonalanalysistools.Mode.Mode.Mode.__str__
+
 Bases
 -----
 

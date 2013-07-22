@@ -5,6 +5,49 @@
 
 .. autoclass:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.append
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.children
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.depth
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.depthwise_inventory
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.extend
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.graph_order
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.improper_parentage
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.index
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.insert
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.leaves
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.name
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.nodes
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.parent
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.pop
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.proper_parentage
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.remove
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.root
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.storage_format
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__contains__
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__copy__
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__deepcopy__
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__delitem__
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__eq__
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__ge__
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__getitem__
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__getstate__
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__gt__
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__iter__
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__le__
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__len__
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__lt__
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__ne__
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__repr__
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__setitem__
+      ~abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__setstate__
+
 Bases
 -----
 

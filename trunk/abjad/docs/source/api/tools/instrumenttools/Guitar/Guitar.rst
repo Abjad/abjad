@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.Guitar.Guitar.Guitar
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.all_clefs
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.attach
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.default_instrument_name
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.default_pitch_range
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.default_short_instrument_name
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.detach
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.effective_context
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.get_default_performer_name
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.get_performer_names
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.instrument_name
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.instrument_name_markup
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.interval_of_transposition
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.is_primary_instrument
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.is_secondary_instrument
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.is_transposing
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.lilypond_format
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.pitch_range
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.primary_clefs
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.short_instrument_name
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.start_component
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.storage_format
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.target_context
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.__call__
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.__copy__
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.__eq__
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.__ge__
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.__gt__
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.__hash__
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.__le__
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.__lt__
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.__ne__
+      ~abjad.tools.instrumenttools.Guitar.Guitar.Guitar.__repr__
+
 Bases
 -----
 

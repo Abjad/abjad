@@ -5,6 +5,38 @@
 
 .. autoclass:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.quantizationtools.QGrid.QGrid.QGrid.distance
+      ~abjad.tools.quantizationtools.QGrid.QGrid.QGrid.fit_q_events
+      ~abjad.tools.quantizationtools.QGrid.QGrid.QGrid.leaves
+      ~abjad.tools.quantizationtools.QGrid.QGrid.QGrid.next_downbeat
+      ~abjad.tools.quantizationtools.QGrid.QGrid.QGrid.offsets
+      ~abjad.tools.quantizationtools.QGrid.QGrid.QGrid.pretty_rtm_format
+      ~abjad.tools.quantizationtools.QGrid.QGrid.QGrid.root_node
+      ~abjad.tools.quantizationtools.QGrid.QGrid.QGrid.rtm_format
+      ~abjad.tools.quantizationtools.QGrid.QGrid.QGrid.sort_q_events_by_index
+      ~abjad.tools.quantizationtools.QGrid.QGrid.QGrid.storage_format
+      ~abjad.tools.quantizationtools.QGrid.QGrid.QGrid.subdivide_leaf
+      ~abjad.tools.quantizationtools.QGrid.QGrid.QGrid.subdivide_leaves
+      ~abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__call__
+      ~abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__copy__
+      ~abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__deepcopy__
+      ~abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__eq__
+      ~abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__ge__
+      ~abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__getstate__
+      ~abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__gt__
+      ~abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__le__
+      ~abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__lt__
+      ~abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__ne__
+      ~abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__repr__
+      ~abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__setstate__
+
 Bases
 -----
 

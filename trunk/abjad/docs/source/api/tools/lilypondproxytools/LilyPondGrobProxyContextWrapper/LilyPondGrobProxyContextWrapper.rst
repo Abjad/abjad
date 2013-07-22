@@ -5,6 +5,16 @@
 
 .. autoclass:: abjad.tools.lilypondproxytools.LilyPondGrobProxyContextWrapper.LilyPondGrobProxyContextWrapper.LilyPondGrobProxyContextWrapper
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.lilypondproxytools.LilyPondGrobProxyContextWrapper.LilyPondGrobProxyContextWrapper.LilyPondGrobProxyContextWrapper.__getattr__
+      ~abjad.tools.lilypondproxytools.LilyPondGrobProxyContextWrapper.LilyPondGrobProxyContextWrapper.LilyPondGrobProxyContextWrapper.__repr__
+
 Bases
 -----
 

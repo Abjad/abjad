@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.lilypondparsertools.LilyPondFraction.LilyPondFraction.LilyPondFraction
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.lilypondparsertools.LilyPondFraction.LilyPondFraction.LilyPondFraction.storage_format
+      ~abjad.tools.lilypondparsertools.LilyPondFraction.LilyPondFraction.LilyPondFraction.__eq__
+      ~abjad.tools.lilypondparsertools.LilyPondFraction.LilyPondFraction.LilyPondFraction.__ge__
+      ~abjad.tools.lilypondparsertools.LilyPondFraction.LilyPondFraction.LilyPondFraction.__gt__
+      ~abjad.tools.lilypondparsertools.LilyPondFraction.LilyPondFraction.LilyPondFraction.__le__
+      ~abjad.tools.lilypondparsertools.LilyPondFraction.LilyPondFraction.LilyPondFraction.__lt__
+      ~abjad.tools.lilypondparsertools.LilyPondFraction.LilyPondFraction.LilyPondFraction.__ne__
+      ~abjad.tools.lilypondparsertools.LilyPondFraction.LilyPondFraction.LilyPondFraction.__repr__
+
 Bases
 -----
 

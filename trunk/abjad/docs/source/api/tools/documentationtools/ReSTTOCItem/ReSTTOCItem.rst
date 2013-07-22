@@ -5,6 +5,36 @@
 
 .. autoclass:: abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.depth
+      ~abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.depthwise_inventory
+      ~abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.graph_order
+      ~abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.improper_parentage
+      ~abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.name
+      ~abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.parent
+      ~abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.proper_parentage
+      ~abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.rest_format
+      ~abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.root
+      ~abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.storage_format
+      ~abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.text
+      ~abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.__copy__
+      ~abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.__deepcopy__
+      ~abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.__eq__
+      ~abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.__ge__
+      ~abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.__getstate__
+      ~abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.__gt__
+      ~abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.__le__
+      ~abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.__lt__
+      ~abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.__ne__
+      ~abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.__repr__
+      ~abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem.__setstate__
+
 Bases
 -----
 

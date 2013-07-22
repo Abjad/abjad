@@ -5,6 +5,33 @@
 
 .. autoclass:: abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.count
+      ~abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.index
+      ~abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.__add__
+      ~abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.__contains__
+      ~abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.__eq__
+      ~abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.__ge__
+      ~abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.__getitem__
+      ~abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.__getslice__
+      ~abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.__gt__
+      ~abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.__hash__
+      ~abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.__iter__
+      ~abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.__le__
+      ~abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.__len__
+      ~abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.__lt__
+      ~abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.__mul__
+      ~abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.__ne__
+      ~abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.__repr__
+      ~abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.__rmul__
+      ~abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.__str__
+
 Bases
 -----
 

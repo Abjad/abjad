@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.exceptiontools.ContextContainmentError.ContextContainmentError
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.exceptiontools.ContextContainmentError.ContextContainmentError.__delattr__
+      ~abjad.tools.exceptiontools.ContextContainmentError.ContextContainmentError.__getitem__
+      ~abjad.tools.exceptiontools.ContextContainmentError.ContextContainmentError.__getslice__
+      ~abjad.tools.exceptiontools.ContextContainmentError.ContextContainmentError.__repr__
+      ~abjad.tools.exceptiontools.ContextContainmentError.ContextContainmentError.__setattr__
+      ~abjad.tools.exceptiontools.ContextContainmentError.ContextContainmentError.__setstate__
+      ~abjad.tools.exceptiontools.ContextContainmentError.ContextContainmentError.__str__
+      ~abjad.tools.exceptiontools.ContextContainmentError.ContextContainmentError.__unicode__
+
 Bases
 -----
 

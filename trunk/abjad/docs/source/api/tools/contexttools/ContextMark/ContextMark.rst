@@ -5,6 +5,29 @@
 
 .. autoclass:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.attach
+      ~abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.detach
+      ~abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.effective_context
+      ~abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.start_component
+      ~abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.storage_format
+      ~abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.target_context
+      ~abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.__call__
+      ~abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.__copy__
+      ~abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.__eq__
+      ~abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.__ge__
+      ~abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.__gt__
+      ~abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.__le__
+      ~abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.__lt__
+      ~abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.__ne__
+      ~abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,31 @@
 
 .. autoclass:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.attach
+      ~abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.detach
+      ~abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.effective_context
+      ~abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.lilypond_format
+      ~abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.staff
+      ~abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.start_component
+      ~abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.storage_format
+      ~abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.target_context
+      ~abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.__call__
+      ~abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.__copy__
+      ~abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.__eq__
+      ~abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.__ge__
+      ~abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.__gt__
+      ~abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.__le__
+      ~abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.__lt__
+      ~abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.__ne__
+      ~abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.__repr__
+
 Bases
 -----
 

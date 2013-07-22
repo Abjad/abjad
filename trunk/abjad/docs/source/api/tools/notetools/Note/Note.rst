@@ -5,6 +5,67 @@
 
 .. autoclass:: abjad.tools.notetools.Note.Note.Note
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.notetools.Note.Note.Note.divide
+      ~abjad.tools.notetools.Note.Note.Note.duration
+      ~abjad.tools.notetools.Note.Note.Note.duration_in_seconds
+      ~abjad.tools.notetools.Note.Note.Note.duration_multiplier
+      ~abjad.tools.notetools.Note.Note.Note.extend_in_parent
+      ~abjad.tools.notetools.Note.Note.Note.fingered_pitch
+      ~abjad.tools.notetools.Note.Note.Note.get_mark
+      ~abjad.tools.notetools.Note.Note.Note.get_marks
+      ~abjad.tools.notetools.Note.Note.Note.leaf_index
+      ~abjad.tools.notetools.Note.Note.Note.lilypond_format
+      ~abjad.tools.notetools.Note.Note.Note.multiplied_duration
+      ~abjad.tools.notetools.Note.Note.Note.note_head
+      ~abjad.tools.notetools.Note.Note.Note.override
+      ~abjad.tools.notetools.Note.Note.Note.parent
+      ~abjad.tools.notetools.Note.Note.Note.preprolated_duration
+      ~abjad.tools.notetools.Note.Note.Note.prolation
+      ~abjad.tools.notetools.Note.Note.Note.select
+      ~abjad.tools.notetools.Note.Note.Note.select_components
+      ~abjad.tools.notetools.Note.Note.Note.select_contents
+      ~abjad.tools.notetools.Note.Note.Note.select_descendants
+      ~abjad.tools.notetools.Note.Note.Note.select_descendants_starting_with
+      ~abjad.tools.notetools.Note.Note.Note.select_descendants_stopping_with
+      ~abjad.tools.notetools.Note.Note.Note.select_lineage
+      ~abjad.tools.notetools.Note.Note.Note.select_parentage
+      ~abjad.tools.notetools.Note.Note.Note.select_tie_chain
+      ~abjad.tools.notetools.Note.Note.Note.select_vertical_moment
+      ~abjad.tools.notetools.Note.Note.Note.select_vertical_moment_at
+      ~abjad.tools.notetools.Note.Note.Note.set
+      ~abjad.tools.notetools.Note.Note.Note.shorten
+      ~abjad.tools.notetools.Note.Note.Note.sounding_pitch
+      ~abjad.tools.notetools.Note.Note.Note.spanners
+      ~abjad.tools.notetools.Note.Note.Note.storage_format
+      ~abjad.tools.notetools.Note.Note.Note.timespan
+      ~abjad.tools.notetools.Note.Note.Note.timespan_in_seconds
+      ~abjad.tools.notetools.Note.Note.Note.written_duration
+      ~abjad.tools.notetools.Note.Note.Note.written_pitch
+      ~abjad.tools.notetools.Note.Note.Note.written_pitch_indication_is_at_sounding_pitch
+      ~abjad.tools.notetools.Note.Note.Note.written_pitch_indication_is_nonsemantic
+      ~abjad.tools.notetools.Note.Note.Note.__and__
+      ~abjad.tools.notetools.Note.Note.Note.__copy__
+      ~abjad.tools.notetools.Note.Note.Note.__eq__
+      ~abjad.tools.notetools.Note.Note.Note.__ge__
+      ~abjad.tools.notetools.Note.Note.Note.__gt__
+      ~abjad.tools.notetools.Note.Note.Note.__le__
+      ~abjad.tools.notetools.Note.Note.Note.__lt__
+      ~abjad.tools.notetools.Note.Note.Note.__mul__
+      ~abjad.tools.notetools.Note.Note.Note.__ne__
+      ~abjad.tools.notetools.Note.Note.Note.__or__
+      ~abjad.tools.notetools.Note.Note.Note.__repr__
+      ~abjad.tools.notetools.Note.Note.Note.__rmul__
+      ~abjad.tools.notetools.Note.Note.Note.__str__
+      ~abjad.tools.notetools.Note.Note.Note.__sub__
+      ~abjad.tools.notetools.Note.Note.Note.__xor__
+
 Bases
 -----
 

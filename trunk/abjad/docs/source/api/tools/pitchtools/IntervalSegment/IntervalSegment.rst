@@ -5,6 +5,38 @@
 
 .. autoclass:: abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment.count
+      ~abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment.index
+      ~abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment.interval_classes
+      ~abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment.intervals
+      ~abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment.rotate
+      ~abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment.storage_format
+      ~abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment.__add__
+      ~abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment.__contains__
+      ~abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment.__eq__
+      ~abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment.__ge__
+      ~abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment.__getitem__
+      ~abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment.__getslice__
+      ~abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment.__gt__
+      ~abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment.__hash__
+      ~abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment.__iter__
+      ~abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment.__le__
+      ~abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment.__len__
+      ~abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment.__lt__
+      ~abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment.__mul__
+      ~abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment.__ne__
+      ~abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment.__new__
+      ~abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment.__repr__
+      ~abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment.__rmul__
+      ~abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment.__str__
+
 Bases
 -----
 

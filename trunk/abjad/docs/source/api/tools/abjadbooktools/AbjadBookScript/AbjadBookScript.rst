@@ -5,6 +5,36 @@
 
 .. autoclass:: abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.alias
+      ~abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.argument_parser
+      ~abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.formatted_help
+      ~abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.formatted_usage
+      ~abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.formatted_version
+      ~abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.long_description
+      ~abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.output_formats
+      ~abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.process_args
+      ~abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.program_name
+      ~abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.scripting_group
+      ~abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.setup_argument_parser
+      ~abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.short_description
+      ~abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.storage_format
+      ~abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.version
+      ~abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.__call__
+      ~abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.__eq__
+      ~abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.__ge__
+      ~abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.__gt__
+      ~abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.__le__
+      ~abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.__lt__
+      ~abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.__ne__
+      ~abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.__repr__
+
 Bases
 -----
 

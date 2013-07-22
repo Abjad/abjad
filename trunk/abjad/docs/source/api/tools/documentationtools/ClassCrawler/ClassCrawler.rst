@@ -5,6 +5,27 @@
 
 .. autoclass:: abjad.tools.documentationtools.ClassCrawler.ClassCrawler.ClassCrawler
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.documentationtools.ClassCrawler.ClassCrawler.ClassCrawler.code_root
+      ~abjad.tools.documentationtools.ClassCrawler.ClassCrawler.ClassCrawler.include_private_objects
+      ~abjad.tools.documentationtools.ClassCrawler.ClassCrawler.ClassCrawler.module_crawler
+      ~abjad.tools.documentationtools.ClassCrawler.ClassCrawler.ClassCrawler.root_package_name
+      ~abjad.tools.documentationtools.ClassCrawler.ClassCrawler.ClassCrawler.storage_format
+      ~abjad.tools.documentationtools.ClassCrawler.ClassCrawler.ClassCrawler.__call__
+      ~abjad.tools.documentationtools.ClassCrawler.ClassCrawler.ClassCrawler.__eq__
+      ~abjad.tools.documentationtools.ClassCrawler.ClassCrawler.ClassCrawler.__ge__
+      ~abjad.tools.documentationtools.ClassCrawler.ClassCrawler.ClassCrawler.__gt__
+      ~abjad.tools.documentationtools.ClassCrawler.ClassCrawler.ClassCrawler.__le__
+      ~abjad.tools.documentationtools.ClassCrawler.ClassCrawler.ClassCrawler.__lt__
+      ~abjad.tools.documentationtools.ClassCrawler.ClassCrawler.ClassCrawler.__ne__
+      ~abjad.tools.documentationtools.ClassCrawler.ClassCrawler.ClassCrawler.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,55 @@
 
 .. autoclass:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.children
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.depth
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.get_manifest_payload_of_next_n_nodes_at_level
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.get_next_n_complete_nodes_at_level
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.get_next_n_nodes_at_level
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.get_node_at_position
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.get_position_of_descendant
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.graphviz_format
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.graphviz_graph
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.improper_parentage
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.index
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.index_in_parent
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.is_at_level
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.iterate_at_level
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.iterate_depth_first
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.iterate_forever_depth_first
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.iterate_payload
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.level
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.manifest_payload
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.negative_level
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.payload
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.position
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.proper_parentage
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.remove_node
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.remove_to_root
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.root
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.storage_format
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.to_nested_lists
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.width
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.__contains__
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.__eq__
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.__ge__
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.__getitem__
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.__gt__
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.__iter__
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.__le__
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.__len__
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.__lt__
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.__ne__
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.__repr__
+      ~abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.__str__
+
 Bases
 -----
 

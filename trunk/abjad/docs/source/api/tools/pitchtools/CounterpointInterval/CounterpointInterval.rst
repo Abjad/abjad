@@ -5,6 +5,31 @@
 
 .. autoclass:: abjad.tools.pitchtools.CounterpointInterval.CounterpointInterval.CounterpointInterval
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.CounterpointInterval.CounterpointInterval.CounterpointInterval.cents
+      ~abjad.tools.pitchtools.CounterpointInterval.CounterpointInterval.CounterpointInterval.interval_class
+      ~abjad.tools.pitchtools.CounterpointInterval.CounterpointInterval.CounterpointInterval.number
+      ~abjad.tools.pitchtools.CounterpointInterval.CounterpointInterval.CounterpointInterval.semitones
+      ~abjad.tools.pitchtools.CounterpointInterval.CounterpointInterval.CounterpointInterval.storage_format
+      ~abjad.tools.pitchtools.CounterpointInterval.CounterpointInterval.CounterpointInterval.__abs__
+      ~abjad.tools.pitchtools.CounterpointInterval.CounterpointInterval.CounterpointInterval.__eq__
+      ~abjad.tools.pitchtools.CounterpointInterval.CounterpointInterval.CounterpointInterval.__float__
+      ~abjad.tools.pitchtools.CounterpointInterval.CounterpointInterval.CounterpointInterval.__ge__
+      ~abjad.tools.pitchtools.CounterpointInterval.CounterpointInterval.CounterpointInterval.__gt__
+      ~abjad.tools.pitchtools.CounterpointInterval.CounterpointInterval.CounterpointInterval.__hash__
+      ~abjad.tools.pitchtools.CounterpointInterval.CounterpointInterval.CounterpointInterval.__int__
+      ~abjad.tools.pitchtools.CounterpointInterval.CounterpointInterval.CounterpointInterval.__le__
+      ~abjad.tools.pitchtools.CounterpointInterval.CounterpointInterval.CounterpointInterval.__lt__
+      ~abjad.tools.pitchtools.CounterpointInterval.CounterpointInterval.CounterpointInterval.__ne__
+      ~abjad.tools.pitchtools.CounterpointInterval.CounterpointInterval.CounterpointInterval.__repr__
+      ~abjad.tools.pitchtools.CounterpointInterval.CounterpointInterval.CounterpointInterval.__str__
+
 Bases
 -----
 

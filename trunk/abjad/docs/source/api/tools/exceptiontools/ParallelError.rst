@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.exceptiontools.ParallelError.ParallelError
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.exceptiontools.ParallelError.ParallelError.__delattr__
+      ~abjad.tools.exceptiontools.ParallelError.ParallelError.__getitem__
+      ~abjad.tools.exceptiontools.ParallelError.ParallelError.__getslice__
+      ~abjad.tools.exceptiontools.ParallelError.ParallelError.__repr__
+      ~abjad.tools.exceptiontools.ParallelError.ParallelError.__setattr__
+      ~abjad.tools.exceptiontools.ParallelError.ParallelError.__setstate__
+      ~abjad.tools.exceptiontools.ParallelError.ParallelError.__str__
+      ~abjad.tools.exceptiontools.ParallelError.ParallelError.__unicode__
+
 Bases
 -----
 

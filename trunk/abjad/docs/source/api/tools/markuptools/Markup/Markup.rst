@@ -5,6 +5,34 @@
 
 .. autoclass:: abjad.tools.markuptools.Markup.Markup.Markup
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.markuptools.Markup.Markup.Markup.attach
+      ~abjad.tools.markuptools.Markup.Markup.Markup.contents
+      ~abjad.tools.markuptools.Markup.Markup.Markup.detach
+      ~abjad.tools.markuptools.Markup.Markup.Markup.direction
+      ~abjad.tools.markuptools.Markup.Markup.Markup.indented_lilypond_format
+      ~abjad.tools.markuptools.Markup.Markup.Markup.lilypond_format
+      ~abjad.tools.markuptools.Markup.Markup.Markup.markup_name
+      ~abjad.tools.markuptools.Markup.Markup.Markup.start_component
+      ~abjad.tools.markuptools.Markup.Markup.Markup.storage_format
+      ~abjad.tools.markuptools.Markup.Markup.Markup.__call__
+      ~abjad.tools.markuptools.Markup.Markup.Markup.__copy__
+      ~abjad.tools.markuptools.Markup.Markup.Markup.__eq__
+      ~abjad.tools.markuptools.Markup.Markup.Markup.__ge__
+      ~abjad.tools.markuptools.Markup.Markup.Markup.__gt__
+      ~abjad.tools.markuptools.Markup.Markup.Markup.__hash__
+      ~abjad.tools.markuptools.Markup.Markup.Markup.__le__
+      ~abjad.tools.markuptools.Markup.Markup.Markup.__lt__
+      ~abjad.tools.markuptools.Markup.Markup.Markup.__ne__
+      ~abjad.tools.markuptools.Markup.Markup.Markup.__repr__
+      ~abjad.tools.markuptools.Markup.Markup.Markup.__str__
+
 Bases
 -----
 

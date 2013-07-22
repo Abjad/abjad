@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.exceptiontools.LilyPondParserError.LilyPondParserError
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.exceptiontools.LilyPondParserError.LilyPondParserError.__delattr__
+      ~abjad.tools.exceptiontools.LilyPondParserError.LilyPondParserError.__getitem__
+      ~abjad.tools.exceptiontools.LilyPondParserError.LilyPondParserError.__getslice__
+      ~abjad.tools.exceptiontools.LilyPondParserError.LilyPondParserError.__repr__
+      ~abjad.tools.exceptiontools.LilyPondParserError.LilyPondParserError.__setattr__
+      ~abjad.tools.exceptiontools.LilyPondParserError.LilyPondParserError.__setstate__
+      ~abjad.tools.exceptiontools.LilyPondParserError.LilyPondParserError.__str__
+      ~abjad.tools.exceptiontools.LilyPondParserError.LilyPondParserError.__unicode__
+
 Bases
 -----
 

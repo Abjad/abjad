@@ -5,6 +5,23 @@
 
 .. autoclass:: abjad.tools.lilypondfiletools.DateTimeToken.DateTimeToken.DateTimeToken
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.lilypondfiletools.DateTimeToken.DateTimeToken.DateTimeToken.lilypond_format
+      ~abjad.tools.lilypondfiletools.DateTimeToken.DateTimeToken.DateTimeToken.storage_format
+      ~abjad.tools.lilypondfiletools.DateTimeToken.DateTimeToken.DateTimeToken.__eq__
+      ~abjad.tools.lilypondfiletools.DateTimeToken.DateTimeToken.DateTimeToken.__ge__
+      ~abjad.tools.lilypondfiletools.DateTimeToken.DateTimeToken.DateTimeToken.__gt__
+      ~abjad.tools.lilypondfiletools.DateTimeToken.DateTimeToken.DateTimeToken.__le__
+      ~abjad.tools.lilypondfiletools.DateTimeToken.DateTimeToken.DateTimeToken.__lt__
+      ~abjad.tools.lilypondfiletools.DateTimeToken.DateTimeToken.DateTimeToken.__ne__
+      ~abjad.tools.lilypondfiletools.DateTimeToken.DateTimeToken.DateTimeToken.__repr__
+
 Bases
 -----
 

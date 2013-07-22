@@ -5,6 +5,78 @@
 
 .. autoclass:: abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.debug
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.lexer
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.lexer_rules_object
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.logger
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.logger_path
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.output_path
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_boolean__BOOLEAN
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_constant__boolean
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_constant__number
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_constant__string
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_data__EMPTY
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_data__data__datum
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_datum__constant
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_datum__list
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_datum__symbol
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_datum__vector
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_error
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_expression__QUOTE__datum
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_expression__constant
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_expression__variable
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_form__expression
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_forms__EMPTY
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_forms__forms__form
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_list__L_PAREN__data__R_PAREN
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_list__L_PAREN__data__datum__PERIOD__datum__R_PAREN
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_number__DECIMAL
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_number__HEXADECIMAL
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_number__INTEGER
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_program__forms
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_string__STRING
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_symbol__IDENTIFIER
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_variable__IDENTIFIER
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_vector__HASH__L_PAREN__data__R_PAREN
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.parser
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.parser_rules_object
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.pickle_path
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.storage_format
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.t_BOOLEAN
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.t_DECIMAL
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.t_HASH
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.t_HEXADECIMAL
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.t_IDENTIFIER
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.t_INTEGER
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.t_L_PAREN
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.t_R_PAREN
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.t_anything
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.t_error
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.t_newline
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.t_quote
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.t_quote_440
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.t_quote_443
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.t_quote_446
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.t_quote_456
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.t_quote_error
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.t_whitespace
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.tokenize
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.__call__
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.__eq__
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.__ge__
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.__gt__
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.__le__
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.__lt__
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.__ne__
+      ~abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.__repr__
+
 Bases
 -----
 

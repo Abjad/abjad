@@ -5,6 +5,75 @@
 
 .. autoclass:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.append
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.contents_duration
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.context_name
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.duration
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.duration_in_seconds
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.engraver_consists
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.engraver_removals
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.extend
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.extend_in_parent
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.get_mark
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.get_marks
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.index
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.insert
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.is_nonsemantic
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.is_parallel
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.is_semantic
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.lilypond_format
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.music
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.name
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.override
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.parent
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.pop
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.preprolated_duration
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.prolation
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.remove
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.select
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.select_components
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.select_contents
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.select_descendants
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.select_descendants_starting_with
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.select_descendants_stopping_with
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.select_leaves
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.select_lineage
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.select_parentage
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.select_vertical_moment
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.select_vertical_moment_at
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.set
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.shorten
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.spanners
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.storage_format
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.timespan
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.timespan_in_seconds
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.__add__
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.__contains__
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.__copy__
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.__delitem__
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.__eq__
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.__ge__
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.__getitem__
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.__gt__
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.__iadd__
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.__imul__
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.__le__
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.__len__
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.__lt__
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.__mul__
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.__ne__
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.__radd__
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.__repr__
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.__rmul__
+      ~abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.__setitem__
+
 Bases
 -----
 

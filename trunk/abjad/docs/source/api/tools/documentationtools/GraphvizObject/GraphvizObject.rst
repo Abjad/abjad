@@ -5,6 +5,23 @@
 
 .. autoclass:: abjad.tools.documentationtools.GraphvizObject.GraphvizObject.GraphvizObject
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.documentationtools.GraphvizObject.GraphvizObject.GraphvizObject.attributes
+      ~abjad.tools.documentationtools.GraphvizObject.GraphvizObject.GraphvizObject.storage_format
+      ~abjad.tools.documentationtools.GraphvizObject.GraphvizObject.GraphvizObject.__eq__
+      ~abjad.tools.documentationtools.GraphvizObject.GraphvizObject.GraphvizObject.__ge__
+      ~abjad.tools.documentationtools.GraphvizObject.GraphvizObject.GraphvizObject.__gt__
+      ~abjad.tools.documentationtools.GraphvizObject.GraphvizObject.GraphvizObject.__le__
+      ~abjad.tools.documentationtools.GraphvizObject.GraphvizObject.GraphvizObject.__lt__
+      ~abjad.tools.documentationtools.GraphvizObject.GraphvizObject.GraphvizObject.__ne__
+      ~abjad.tools.documentationtools.GraphvizObject.GraphvizObject.GraphvizObject.__repr__
+
 Bases
 -----
 

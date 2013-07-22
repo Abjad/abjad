@@ -5,6 +5,40 @@
 
 .. autoclass:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.attach
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.denominator
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.detach
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.duration
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.effective_context
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.has_non_power_of_two_denominator
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.implied_prolation
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.lilypond_format
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.numerator
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.pair
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.partial
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.start_component
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.storage_format
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.target_context
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.with_power_of_two_denominator
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.__call__
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.__copy__
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.__eq__
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.__ge__
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.__gt__
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.__le__
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.__lt__
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.__ne__
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.__nonzero__
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.__repr__
+      ~abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.__str__
+
 Bases
 -----
 

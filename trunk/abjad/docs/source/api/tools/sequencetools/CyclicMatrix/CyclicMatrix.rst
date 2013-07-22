@@ -5,6 +5,25 @@
 
 .. autoclass:: abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix.columns
+      ~abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix.rows
+      ~abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix.storage_format
+      ~abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix.__eq__
+      ~abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix.__ge__
+      ~abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix.__getitem__
+      ~abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix.__gt__
+      ~abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix.__le__
+      ~abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix.__lt__
+      ~abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix.__ne__
+      ~abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix.__repr__
+
 Bases
 -----
 

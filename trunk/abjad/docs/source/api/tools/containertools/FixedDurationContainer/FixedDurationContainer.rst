@@ -5,6 +5,74 @@
 
 .. autoclass:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.append
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.contents_duration
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.duration
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.duration_in_seconds
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.extend
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.extend_in_parent
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.get_mark
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.get_marks
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.index
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.insert
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.is_full
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.is_misfilled
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.is_overfull
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.is_parallel
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.is_underfull
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.lilypond_format
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.music
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.override
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.parent
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.pop
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.preprolated_duration
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.prolation
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.remove
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select_components
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select_contents
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select_descendants
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select_descendants_starting_with
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select_descendants_stopping_with
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select_leaves
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select_lineage
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select_parentage
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select_vertical_moment
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select_vertical_moment_at
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.set
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.shorten
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.spanners
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.storage_format
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.target_duration
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.timespan
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.timespan_in_seconds
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.__add__
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.__contains__
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.__copy__
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.__delitem__
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.__eq__
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.__ge__
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.__getitem__
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.__gt__
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.__iadd__
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.__imul__
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.__le__
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.__len__
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.__lt__
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.__mul__
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.__ne__
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.__radd__
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.__repr__
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.__rmul__
+      ~abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.__setitem__
+
 Bases
 -----
 

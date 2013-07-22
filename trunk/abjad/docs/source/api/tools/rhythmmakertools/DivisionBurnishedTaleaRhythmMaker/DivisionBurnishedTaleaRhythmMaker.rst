@@ -5,6 +5,25 @@
 
 .. autoclass:: abjad.tools.rhythmmakertools.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.rhythmmakertools.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.new
+      ~abjad.tools.rhythmmakertools.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.reverse
+      ~abjad.tools.rhythmmakertools.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.storage_format
+      ~abjad.tools.rhythmmakertools.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.__call__
+      ~abjad.tools.rhythmmakertools.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.__eq__
+      ~abjad.tools.rhythmmakertools.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.__ge__
+      ~abjad.tools.rhythmmakertools.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.__gt__
+      ~abjad.tools.rhythmmakertools.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.__le__
+      ~abjad.tools.rhythmmakertools.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.__lt__
+      ~abjad.tools.rhythmmakertools.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.__ne__
+      ~abjad.tools.rhythmmakertools.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.__repr__
+
 Bases
 -----
 

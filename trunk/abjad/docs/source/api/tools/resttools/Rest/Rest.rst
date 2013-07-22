@@ -5,6 +5,63 @@
 
 .. autoclass:: abjad.tools.resttools.Rest.Rest.Rest
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.resttools.Rest.Rest.Rest.divide
+      ~abjad.tools.resttools.Rest.Rest.Rest.duration
+      ~abjad.tools.resttools.Rest.Rest.Rest.duration_in_seconds
+      ~abjad.tools.resttools.Rest.Rest.Rest.duration_multiplier
+      ~abjad.tools.resttools.Rest.Rest.Rest.extend_in_parent
+      ~abjad.tools.resttools.Rest.Rest.Rest.get_mark
+      ~abjad.tools.resttools.Rest.Rest.Rest.get_marks
+      ~abjad.tools.resttools.Rest.Rest.Rest.leaf_index
+      ~abjad.tools.resttools.Rest.Rest.Rest.lilypond_format
+      ~abjad.tools.resttools.Rest.Rest.Rest.multiplied_duration
+      ~abjad.tools.resttools.Rest.Rest.Rest.override
+      ~abjad.tools.resttools.Rest.Rest.Rest.parent
+      ~abjad.tools.resttools.Rest.Rest.Rest.preprolated_duration
+      ~abjad.tools.resttools.Rest.Rest.Rest.prolation
+      ~abjad.tools.resttools.Rest.Rest.Rest.select
+      ~abjad.tools.resttools.Rest.Rest.Rest.select_components
+      ~abjad.tools.resttools.Rest.Rest.Rest.select_contents
+      ~abjad.tools.resttools.Rest.Rest.Rest.select_descendants
+      ~abjad.tools.resttools.Rest.Rest.Rest.select_descendants_starting_with
+      ~abjad.tools.resttools.Rest.Rest.Rest.select_descendants_stopping_with
+      ~abjad.tools.resttools.Rest.Rest.Rest.select_lineage
+      ~abjad.tools.resttools.Rest.Rest.Rest.select_parentage
+      ~abjad.tools.resttools.Rest.Rest.Rest.select_tie_chain
+      ~abjad.tools.resttools.Rest.Rest.Rest.select_vertical_moment
+      ~abjad.tools.resttools.Rest.Rest.Rest.select_vertical_moment_at
+      ~abjad.tools.resttools.Rest.Rest.Rest.set
+      ~abjad.tools.resttools.Rest.Rest.Rest.shorten
+      ~abjad.tools.resttools.Rest.Rest.Rest.spanners
+      ~abjad.tools.resttools.Rest.Rest.Rest.storage_format
+      ~abjad.tools.resttools.Rest.Rest.Rest.timespan
+      ~abjad.tools.resttools.Rest.Rest.Rest.timespan_in_seconds
+      ~abjad.tools.resttools.Rest.Rest.Rest.written_duration
+      ~abjad.tools.resttools.Rest.Rest.Rest.written_pitch_indication_is_at_sounding_pitch
+      ~abjad.tools.resttools.Rest.Rest.Rest.written_pitch_indication_is_nonsemantic
+      ~abjad.tools.resttools.Rest.Rest.Rest.__and__
+      ~abjad.tools.resttools.Rest.Rest.Rest.__copy__
+      ~abjad.tools.resttools.Rest.Rest.Rest.__eq__
+      ~abjad.tools.resttools.Rest.Rest.Rest.__ge__
+      ~abjad.tools.resttools.Rest.Rest.Rest.__gt__
+      ~abjad.tools.resttools.Rest.Rest.Rest.__le__
+      ~abjad.tools.resttools.Rest.Rest.Rest.__lt__
+      ~abjad.tools.resttools.Rest.Rest.Rest.__mul__
+      ~abjad.tools.resttools.Rest.Rest.Rest.__ne__
+      ~abjad.tools.resttools.Rest.Rest.Rest.__or__
+      ~abjad.tools.resttools.Rest.Rest.Rest.__repr__
+      ~abjad.tools.resttools.Rest.Rest.Rest.__rmul__
+      ~abjad.tools.resttools.Rest.Rest.Rest.__str__
+      ~abjad.tools.resttools.Rest.Rest.Rest.__sub__
+      ~abjad.tools.resttools.Rest.Rest.Rest.__xor__
+
 Bases
 -----
 

@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.exceptiontools.SchemeParserFinishedException.SchemeParserFinishedException
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.exceptiontools.SchemeParserFinishedException.SchemeParserFinishedException.__delattr__
+      ~abjad.tools.exceptiontools.SchemeParserFinishedException.SchemeParserFinishedException.__getitem__
+      ~abjad.tools.exceptiontools.SchemeParserFinishedException.SchemeParserFinishedException.__getslice__
+      ~abjad.tools.exceptiontools.SchemeParserFinishedException.SchemeParserFinishedException.__repr__
+      ~abjad.tools.exceptiontools.SchemeParserFinishedException.SchemeParserFinishedException.__setattr__
+      ~abjad.tools.exceptiontools.SchemeParserFinishedException.SchemeParserFinishedException.__setstate__
+      ~abjad.tools.exceptiontools.SchemeParserFinishedException.SchemeParserFinishedException.__str__
+      ~abjad.tools.exceptiontools.SchemeParserFinishedException.SchemeParserFinishedException.__unicode__
+
 Bases
 -----
 

@@ -5,6 +5,32 @@
 
 .. autoclass:: abjad.tools.tonalanalysistools.TonalFunction.TonalFunction.TonalFunction
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.tonalanalysistools.TonalFunction.TonalFunction.TonalFunction.bass_scale_degree
+      ~abjad.tools.tonalanalysistools.TonalFunction.TonalFunction.TonalFunction.extent
+      ~abjad.tools.tonalanalysistools.TonalFunction.TonalFunction.TonalFunction.figured_bass_string
+      ~abjad.tools.tonalanalysistools.TonalFunction.TonalFunction.TonalFunction.inversion
+      ~abjad.tools.tonalanalysistools.TonalFunction.TonalFunction.TonalFunction.markup
+      ~abjad.tools.tonalanalysistools.TonalFunction.TonalFunction.TonalFunction.quality
+      ~abjad.tools.tonalanalysistools.TonalFunction.TonalFunction.TonalFunction.root_scale_degree
+      ~abjad.tools.tonalanalysistools.TonalFunction.TonalFunction.TonalFunction.scale_degree
+      ~abjad.tools.tonalanalysistools.TonalFunction.TonalFunction.TonalFunction.storage_format
+      ~abjad.tools.tonalanalysistools.TonalFunction.TonalFunction.TonalFunction.suspension
+      ~abjad.tools.tonalanalysistools.TonalFunction.TonalFunction.TonalFunction.symbolic_string
+      ~abjad.tools.tonalanalysistools.TonalFunction.TonalFunction.TonalFunction.__eq__
+      ~abjad.tools.tonalanalysistools.TonalFunction.TonalFunction.TonalFunction.__ge__
+      ~abjad.tools.tonalanalysistools.TonalFunction.TonalFunction.TonalFunction.__gt__
+      ~abjad.tools.tonalanalysistools.TonalFunction.TonalFunction.TonalFunction.__le__
+      ~abjad.tools.tonalanalysistools.TonalFunction.TonalFunction.TonalFunction.__lt__
+      ~abjad.tools.tonalanalysistools.TonalFunction.TonalFunction.TonalFunction.__ne__
+      ~abjad.tools.tonalanalysistools.TonalFunction.TonalFunction.TonalFunction.__repr__
+
 Bases
 -----
 

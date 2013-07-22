@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.Harp.Harp.Harp
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.all_clefs
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.attach
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.default_instrument_name
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.default_pitch_range
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.default_short_instrument_name
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.detach
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.effective_context
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.get_default_performer_name
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.get_performer_names
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.instrument_name
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.instrument_name_markup
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.interval_of_transposition
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.is_primary_instrument
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.is_secondary_instrument
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.is_transposing
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.lilypond_format
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.pitch_range
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.primary_clefs
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.short_instrument_name
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.start_component
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.storage_format
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.target_context
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.__call__
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.__copy__
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.__eq__
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.__ge__
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.__gt__
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.__hash__
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.__le__
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.__lt__
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.__ne__
+      ~abjad.tools.instrumenttools.Harp.Harp.Harp.__repr__
+
 Bases
 -----
 

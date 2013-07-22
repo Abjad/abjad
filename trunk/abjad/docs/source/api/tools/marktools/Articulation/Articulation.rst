@@ -5,6 +5,31 @@
 
 .. autoclass:: abjad.tools.marktools.Articulation.Articulation.Articulation
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.marktools.Articulation.Articulation.Articulation.attach
+      ~abjad.tools.marktools.Articulation.Articulation.Articulation.detach
+      ~abjad.tools.marktools.Articulation.Articulation.Articulation.direction
+      ~abjad.tools.marktools.Articulation.Articulation.Articulation.lilypond_format
+      ~abjad.tools.marktools.Articulation.Articulation.Articulation.name
+      ~abjad.tools.marktools.Articulation.Articulation.Articulation.start_component
+      ~abjad.tools.marktools.Articulation.Articulation.Articulation.storage_format
+      ~abjad.tools.marktools.Articulation.Articulation.Articulation.__call__
+      ~abjad.tools.marktools.Articulation.Articulation.Articulation.__copy__
+      ~abjad.tools.marktools.Articulation.Articulation.Articulation.__eq__
+      ~abjad.tools.marktools.Articulation.Articulation.Articulation.__ge__
+      ~abjad.tools.marktools.Articulation.Articulation.Articulation.__gt__
+      ~abjad.tools.marktools.Articulation.Articulation.Articulation.__le__
+      ~abjad.tools.marktools.Articulation.Articulation.Articulation.__lt__
+      ~abjad.tools.marktools.Articulation.Articulation.Articulation.__ne__
+      ~abjad.tools.marktools.Articulation.Articulation.Articulation.__repr__
+      ~abjad.tools.marktools.Articulation.Articulation.Articulation.__str__
+
 Bases
 -----
 

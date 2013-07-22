@@ -5,6 +5,49 @@
 
 .. autoclass:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.append
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.append_left
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.attach
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.components
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.detach
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.duration
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.duration_in_seconds
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.extend
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.extend_left
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.fracture
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.fuse
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.index
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.leaves
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.override
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.pop
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.pop_left
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.preprolated_duration
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.set
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.start
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.stop
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.storage_format
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.timespan
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.written_duration
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.__call__
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.__contains__
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.__copy__
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.__eq__
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.__ge__
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.__getitem__
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.__gt__
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.__le__
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.__len__
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.__lt__
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.__ne__
+      ~abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,35 @@
 
 .. autoclass:: abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript.alias
+      ~abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript.argument_parser
+      ~abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript.formatted_help
+      ~abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript.formatted_usage
+      ~abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript.formatted_version
+      ~abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript.long_description
+      ~abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript.process_args
+      ~abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript.program_name
+      ~abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript.scripting_group
+      ~abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript.setup_argument_parser
+      ~abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript.short_description
+      ~abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript.storage_format
+      ~abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript.version
+      ~abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript.__call__
+      ~abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript.__eq__
+      ~abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript.__ge__
+      ~abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript.__gt__
+      ~abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript.__le__
+      ~abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript.__lt__
+      ~abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript.__ne__
+      ~abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript.__repr__
+
 Bases
 -----
 

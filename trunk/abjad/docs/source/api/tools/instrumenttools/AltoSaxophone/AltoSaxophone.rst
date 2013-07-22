@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.all_clefs
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.attach
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.default_instrument_name
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.default_pitch_range
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.default_short_instrument_name
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.detach
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.effective_context
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.get_default_performer_name
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.get_performer_names
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.instrument_name
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.instrument_name_markup
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.interval_of_transposition
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.is_primary_instrument
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.is_secondary_instrument
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.is_transposing
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.lilypond_format
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.pitch_range
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.primary_clefs
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.short_instrument_name
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.start_component
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.storage_format
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.target_context
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.__call__
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.__copy__
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.__eq__
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.__ge__
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.__gt__
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.__hash__
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.__le__
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.__lt__
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.__ne__
+      ~abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.__repr__
+
 Bases
 -----
 

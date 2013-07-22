@@ -5,6 +5,40 @@
 
 .. autoclass:: abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.count
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.duration_in_ms
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.from_millisecond_durations
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.from_millisecond_offsets
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.from_millisecond_pitch_pairs
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.from_tempo_scaled_durations
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.from_tempo_scaled_leaves
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.index
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.storage_format
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.__add__
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.__contains__
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.__eq__
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.__ge__
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.__getitem__
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.__getslice__
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.__gt__
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.__hash__
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.__iter__
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.__le__
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.__len__
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.__lt__
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.__mul__
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.__ne__
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.__new__
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.__repr__
+      ~abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.__rmul__
+
 Bases
 -----
 

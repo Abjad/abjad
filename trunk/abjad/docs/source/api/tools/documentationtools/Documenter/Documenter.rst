@@ -5,6 +5,28 @@
 
 .. autoclass:: abjad.tools.documentationtools.Documenter.Documenter.Documenter
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.documentationtools.Documenter.Documenter.Documenter.module_name
+      ~abjad.tools.documentationtools.Documenter.Documenter.Documenter.new
+      ~abjad.tools.documentationtools.Documenter.Documenter.Documenter.object
+      ~abjad.tools.documentationtools.Documenter.Documenter.Documenter.prefix
+      ~abjad.tools.documentationtools.Documenter.Documenter.Documenter.storage_format
+      ~abjad.tools.documentationtools.Documenter.Documenter.Documenter.write
+      ~abjad.tools.documentationtools.Documenter.Documenter.Documenter.__call__
+      ~abjad.tools.documentationtools.Documenter.Documenter.Documenter.__eq__
+      ~abjad.tools.documentationtools.Documenter.Documenter.Documenter.__ge__
+      ~abjad.tools.documentationtools.Documenter.Documenter.Documenter.__gt__
+      ~abjad.tools.documentationtools.Documenter.Documenter.Documenter.__le__
+      ~abjad.tools.documentationtools.Documenter.Documenter.Documenter.__lt__
+      ~abjad.tools.documentationtools.Documenter.Documenter.Documenter.__ne__
+      ~abjad.tools.documentationtools.Documenter.Documenter.Documenter.__repr__
+
 Bases
 -----
 

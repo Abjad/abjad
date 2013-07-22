@@ -5,6 +5,47 @@
 
 .. autoclass:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.append
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.count
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.extend
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.index
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.insert
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.name
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.pop
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.remove
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.reverse
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.sort
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.storage_format
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.__add__
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.__contains__
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.__delitem__
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.__delslice__
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.__eq__
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.__ge__
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.__getitem__
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.__getslice__
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.__gt__
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.__iadd__
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.__imul__
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.__iter__
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.__le__
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.__len__
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.__lt__
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.__mul__
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.__ne__
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.__repr__
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.__reversed__
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.__rmul__
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.__setitem__
+      ~abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.__setslice__
+
 Bases
 -----
 

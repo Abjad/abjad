@@ -5,6 +5,75 @@
 
 .. autoclass:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.append
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.contents_duration
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.context_name
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.duration
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.duration_in_seconds
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.engraver_consists
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.engraver_removals
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.extend
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.extend_in_parent
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.get_mark
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.get_marks
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.index
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.insert
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.is_nonsemantic
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.is_parallel
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.is_semantic
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.lilypond_format
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.music
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.name
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.override
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.parent
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.pop
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.preprolated_duration
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.prolation
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.remove
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select_components
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select_contents
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select_descendants
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select_descendants_starting_with
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select_descendants_stopping_with
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select_leaves
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select_lineage
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select_parentage
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select_vertical_moment
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select_vertical_moment_at
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.set
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.shorten
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.spanners
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.storage_format
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.timespan
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.timespan_in_seconds
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__add__
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__contains__
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__copy__
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__delitem__
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__eq__
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__ge__
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__getitem__
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__gt__
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__iadd__
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__imul__
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__le__
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__len__
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__lt__
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__mul__
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__ne__
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__radd__
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__repr__
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__rmul__
+      ~abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__setitem__
+
 Bases
 -----
 

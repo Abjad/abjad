@@ -5,6 +5,88 @@
 
 .. autoclass:: abjad.tools.timespantools.Timespan.Timespan.Timespan
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.axis
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.contains_timespan_improperly
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.curtails_timespan
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.delays_timespan
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.divide_by_ratio
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.duration
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.happens_during_timespan
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.intersects_timespan
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.is_closed
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.is_congruent_to_timespan
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.is_half_closed
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.is_half_open
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.is_left_closed
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.is_left_open
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.is_open
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.is_right_closed
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.is_right_open
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.is_tangent_to_timespan
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.is_well_formed
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.new
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.offsets
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.overlaps_all_of_timespan
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.overlaps_only_start_of_timespan
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.overlaps_only_stop_of_timespan
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.overlaps_start_of_timespan
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.overlaps_stop_of_timespan
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.reflect
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.scale
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.set_duration
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.set_offsets
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.split_at_offset
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.start_offset
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_after_offset
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_after_timespan_starts
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_after_timespan_stops
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_at_offset
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_at_or_after_offset
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_before_offset
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_before_or_at_offset
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_before_timespan_starts
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_before_timespan_stops
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_during_timespan
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_when_timespan_starts
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_when_timespan_stops
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.stop_offset
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_after_offset
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_after_timespan_starts
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_after_timespan_stops
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_at_offset
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_at_or_after_offset
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_before_offset
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_before_or_at_offset
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_before_timespan_starts
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_before_timespan_stops
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_during_timespan
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_when_timespan_starts
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.stops_when_timespan_stops
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.storage_format
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.stretch
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.translate
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.translate_offsets
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.trisects_timespan
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.__and__
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.__eq__
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.__ge__
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.__gt__
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.__le__
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.__len__
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.__lt__
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.__ne__
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.__or__
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.__repr__
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.__sub__
+      ~abjad.tools.timespantools.Timespan.Timespan.Timespan.__xor__
+
 Bases
 -----
 

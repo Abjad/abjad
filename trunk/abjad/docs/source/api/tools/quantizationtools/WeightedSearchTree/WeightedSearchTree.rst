@@ -5,6 +5,28 @@
 
 .. autoclass:: abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree.all_compositions
+      ~abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree.default_definition
+      ~abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree.definition
+      ~abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree.storage_format
+      ~abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree.__call__
+      ~abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree.__eq__
+      ~abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree.__ge__
+      ~abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree.__getstate__
+      ~abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree.__gt__
+      ~abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree.__le__
+      ~abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree.__lt__
+      ~abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree.__ne__
+      ~abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree.__repr__
+      ~abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree.__setstate__
+
 Bases
 -----
 

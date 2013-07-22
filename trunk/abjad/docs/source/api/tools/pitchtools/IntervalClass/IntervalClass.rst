@@ -5,6 +5,28 @@
 
 .. autoclass:: abjad.tools.pitchtools.IntervalClass.IntervalClass.IntervalClass
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.IntervalClass.IntervalClass.IntervalClass.number
+      ~abjad.tools.pitchtools.IntervalClass.IntervalClass.IntervalClass.storage_format
+      ~abjad.tools.pitchtools.IntervalClass.IntervalClass.IntervalClass.__abs__
+      ~abjad.tools.pitchtools.IntervalClass.IntervalClass.IntervalClass.__eq__
+      ~abjad.tools.pitchtools.IntervalClass.IntervalClass.IntervalClass.__float__
+      ~abjad.tools.pitchtools.IntervalClass.IntervalClass.IntervalClass.__ge__
+      ~abjad.tools.pitchtools.IntervalClass.IntervalClass.IntervalClass.__gt__
+      ~abjad.tools.pitchtools.IntervalClass.IntervalClass.IntervalClass.__hash__
+      ~abjad.tools.pitchtools.IntervalClass.IntervalClass.IntervalClass.__int__
+      ~abjad.tools.pitchtools.IntervalClass.IntervalClass.IntervalClass.__le__
+      ~abjad.tools.pitchtools.IntervalClass.IntervalClass.IntervalClass.__lt__
+      ~abjad.tools.pitchtools.IntervalClass.IntervalClass.IntervalClass.__ne__
+      ~abjad.tools.pitchtools.IntervalClass.IntervalClass.IntervalClass.__repr__
+      ~abjad.tools.pitchtools.IntervalClass.IntervalClass.IntervalClass.__str__
+
 Bases
 -----
 

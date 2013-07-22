@@ -5,6 +5,30 @@
 
 .. autoclass:: abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject.is_closed
+      ~abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject.is_half_closed
+      ~abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject.is_half_open
+      ~abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject.is_left_closed
+      ~abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject.is_left_open
+      ~abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject.is_open
+      ~abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject.is_right_closed
+      ~abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject.is_right_open
+      ~abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject.storage_format
+      ~abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject.__eq__
+      ~abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject.__ge__
+      ~abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject.__gt__
+      ~abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject.__le__
+      ~abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject.__lt__
+      ~abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject.__ne__
+      ~abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject.__repr__
+
 Bases
 -----
 

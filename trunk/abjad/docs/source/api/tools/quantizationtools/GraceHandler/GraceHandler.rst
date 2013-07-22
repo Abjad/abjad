@@ -5,6 +5,23 @@
 
 .. autoclass:: abjad.tools.quantizationtools.GraceHandler.GraceHandler.GraceHandler
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.quantizationtools.GraceHandler.GraceHandler.GraceHandler.storage_format
+      ~abjad.tools.quantizationtools.GraceHandler.GraceHandler.GraceHandler.__call__
+      ~abjad.tools.quantizationtools.GraceHandler.GraceHandler.GraceHandler.__eq__
+      ~abjad.tools.quantizationtools.GraceHandler.GraceHandler.GraceHandler.__ge__
+      ~abjad.tools.quantizationtools.GraceHandler.GraceHandler.GraceHandler.__gt__
+      ~abjad.tools.quantizationtools.GraceHandler.GraceHandler.GraceHandler.__le__
+      ~abjad.tools.quantizationtools.GraceHandler.GraceHandler.GraceHandler.__lt__
+      ~abjad.tools.quantizationtools.GraceHandler.GraceHandler.GraceHandler.__ne__
+      ~abjad.tools.quantizationtools.GraceHandler.GraceHandler.GraceHandler.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.append
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.count
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.extend
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.index
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.insert
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.name
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.pop
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.remove
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.reverse
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.sort
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.storage_format
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.to_score
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.__add__
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.__contains__
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.__delitem__
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.__delslice__
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.__eq__
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.__ge__
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.__getitem__
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.__getslice__
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.__gt__
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.__iadd__
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.__imul__
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.__iter__
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.__le__
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.__len__
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.__lt__
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.__mul__
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.__ne__
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.__repr__
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.__reversed__
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.__rmul__
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.__setitem__
+      ~abjad.tools.pitcharraytools.PitchArrayInventory.PitchArrayInventory.PitchArrayInventory.__setslice__
+
 Bases
 -----
 

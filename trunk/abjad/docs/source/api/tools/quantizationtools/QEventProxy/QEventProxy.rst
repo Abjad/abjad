@@ -5,6 +5,27 @@
 
 .. autoclass:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.index
+      ~abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.offset
+      ~abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.q_event
+      ~abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.storage_format
+      ~abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__eq__
+      ~abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__ge__
+      ~abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__getstate__
+      ~abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__gt__
+      ~abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__le__
+      ~abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__lt__
+      ~abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__ne__
+      ~abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__repr__
+      ~abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__setstate__
+
 Bases
 -----
 

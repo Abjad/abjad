@@ -5,6 +5,27 @@
 
 .. autoclass:: abjad.tools.quantizationtools.QTarget.QTarget.QTarget
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.quantizationtools.QTarget.QTarget.QTarget.beats
+      ~abjad.tools.quantizationtools.QTarget.QTarget.QTarget.duration_in_ms
+      ~abjad.tools.quantizationtools.QTarget.QTarget.QTarget.item_class
+      ~abjad.tools.quantizationtools.QTarget.QTarget.QTarget.items
+      ~abjad.tools.quantizationtools.QTarget.QTarget.QTarget.storage_format
+      ~abjad.tools.quantizationtools.QTarget.QTarget.QTarget.__call__
+      ~abjad.tools.quantizationtools.QTarget.QTarget.QTarget.__eq__
+      ~abjad.tools.quantizationtools.QTarget.QTarget.QTarget.__ge__
+      ~abjad.tools.quantizationtools.QTarget.QTarget.QTarget.__gt__
+      ~abjad.tools.quantizationtools.QTarget.QTarget.QTarget.__le__
+      ~abjad.tools.quantizationtools.QTarget.QTarget.QTarget.__lt__
+      ~abjad.tools.quantizationtools.QTarget.QTarget.QTarget.__ne__
+      ~abjad.tools.quantizationtools.QTarget.QTarget.QTarget.__repr__
+
 Bases
 -----
 

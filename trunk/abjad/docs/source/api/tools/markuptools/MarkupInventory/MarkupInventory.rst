@@ -5,6 +5,47 @@
 
 .. autoclass:: abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.append
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.count
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.extend
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.index
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.insert
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.name
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.pop
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.remove
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.reverse
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.sort
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.storage_format
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.__add__
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.__contains__
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.__delitem__
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.__delslice__
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.__eq__
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.__ge__
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.__getitem__
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.__getslice__
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.__gt__
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.__iadd__
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.__imul__
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.__iter__
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.__le__
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.__len__
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.__lt__
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.__mul__
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.__ne__
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.__repr__
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.__reversed__
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.__rmul__
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.__setitem__
+      ~abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.__setslice__
+
 Bases
 -----
 

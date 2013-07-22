@@ -5,6 +5,50 @@
 
 .. autoclass:: abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.cardinality
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.count
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.extent
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.extent_name
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.from_diatonic_interval_class_segment
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.harmonic_chromatic_interval_segment
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.index
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.interval_classes
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.intervals
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.inversion
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.melodic_chromatic_interval_segment
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.melodic_diatonic_interval_segment
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.position
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.quality_string
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.rotate
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.rotation
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.storage_format
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__add__
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__contains__
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__copy__
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__eq__
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__ge__
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__getitem__
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__getslice__
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__gt__
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__hash__
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__iter__
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__le__
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__len__
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__lt__
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__mul__
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__ne__
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__new__
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__repr__
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__rmul__
+      ~abjad.tools.tonalanalysistools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__str__
+
 Bases
 -----
 

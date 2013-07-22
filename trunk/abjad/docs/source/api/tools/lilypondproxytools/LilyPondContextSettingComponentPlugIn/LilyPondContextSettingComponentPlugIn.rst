@@ -5,6 +5,23 @@
 
 .. autoclass:: abjad.tools.lilypondproxytools.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.lilypondproxytools.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.storage_format
+      ~abjad.tools.lilypondproxytools.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.__eq__
+      ~abjad.tools.lilypondproxytools.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.__ge__
+      ~abjad.tools.lilypondproxytools.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.__getattr__
+      ~abjad.tools.lilypondproxytools.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.__gt__
+      ~abjad.tools.lilypondproxytools.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.__le__
+      ~abjad.tools.lilypondproxytools.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.__lt__
+      ~abjad.tools.lilypondproxytools.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.__ne__
+      ~abjad.tools.lilypondproxytools.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.__repr__
+
 Bases
 -----
 

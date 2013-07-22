@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.append
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.append_left
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.attach
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.components
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.detach
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.direction
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.duration
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.duration_in_seconds
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.extend
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.extend_left
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.fracture
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.fuse
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.index
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.leaves
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.override
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.pop
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.pop_left
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.preprolated_duration
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.set
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.storage_format
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.timespan
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.written_duration
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.__call__
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.__contains__
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.__copy__
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.__eq__
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.__ge__
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.__getitem__
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.__gt__
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.__le__
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.__len__
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.__lt__
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.__ne__
+      ~abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.__repr__
+
 Bases
 -----
 

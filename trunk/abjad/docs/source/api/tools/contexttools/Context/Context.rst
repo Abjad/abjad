@@ -5,6 +5,75 @@
 
 .. autoclass:: abjad.tools.contexttools.Context.Context.Context
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.contexttools.Context.Context.Context.append
+      ~abjad.tools.contexttools.Context.Context.Context.contents_duration
+      ~abjad.tools.contexttools.Context.Context.Context.context_name
+      ~abjad.tools.contexttools.Context.Context.Context.duration
+      ~abjad.tools.contexttools.Context.Context.Context.duration_in_seconds
+      ~abjad.tools.contexttools.Context.Context.Context.engraver_consists
+      ~abjad.tools.contexttools.Context.Context.Context.engraver_removals
+      ~abjad.tools.contexttools.Context.Context.Context.extend
+      ~abjad.tools.contexttools.Context.Context.Context.extend_in_parent
+      ~abjad.tools.contexttools.Context.Context.Context.get_mark
+      ~abjad.tools.contexttools.Context.Context.Context.get_marks
+      ~abjad.tools.contexttools.Context.Context.Context.index
+      ~abjad.tools.contexttools.Context.Context.Context.insert
+      ~abjad.tools.contexttools.Context.Context.Context.is_nonsemantic
+      ~abjad.tools.contexttools.Context.Context.Context.is_parallel
+      ~abjad.tools.contexttools.Context.Context.Context.is_semantic
+      ~abjad.tools.contexttools.Context.Context.Context.lilypond_format
+      ~abjad.tools.contexttools.Context.Context.Context.music
+      ~abjad.tools.contexttools.Context.Context.Context.name
+      ~abjad.tools.contexttools.Context.Context.Context.override
+      ~abjad.tools.contexttools.Context.Context.Context.parent
+      ~abjad.tools.contexttools.Context.Context.Context.pop
+      ~abjad.tools.contexttools.Context.Context.Context.preprolated_duration
+      ~abjad.tools.contexttools.Context.Context.Context.prolation
+      ~abjad.tools.contexttools.Context.Context.Context.remove
+      ~abjad.tools.contexttools.Context.Context.Context.select
+      ~abjad.tools.contexttools.Context.Context.Context.select_components
+      ~abjad.tools.contexttools.Context.Context.Context.select_contents
+      ~abjad.tools.contexttools.Context.Context.Context.select_descendants
+      ~abjad.tools.contexttools.Context.Context.Context.select_descendants_starting_with
+      ~abjad.tools.contexttools.Context.Context.Context.select_descendants_stopping_with
+      ~abjad.tools.contexttools.Context.Context.Context.select_leaves
+      ~abjad.tools.contexttools.Context.Context.Context.select_lineage
+      ~abjad.tools.contexttools.Context.Context.Context.select_parentage
+      ~abjad.tools.contexttools.Context.Context.Context.select_vertical_moment
+      ~abjad.tools.contexttools.Context.Context.Context.select_vertical_moment_at
+      ~abjad.tools.contexttools.Context.Context.Context.set
+      ~abjad.tools.contexttools.Context.Context.Context.shorten
+      ~abjad.tools.contexttools.Context.Context.Context.spanners
+      ~abjad.tools.contexttools.Context.Context.Context.storage_format
+      ~abjad.tools.contexttools.Context.Context.Context.timespan
+      ~abjad.tools.contexttools.Context.Context.Context.timespan_in_seconds
+      ~abjad.tools.contexttools.Context.Context.Context.__add__
+      ~abjad.tools.contexttools.Context.Context.Context.__contains__
+      ~abjad.tools.contexttools.Context.Context.Context.__copy__
+      ~abjad.tools.contexttools.Context.Context.Context.__delitem__
+      ~abjad.tools.contexttools.Context.Context.Context.__eq__
+      ~abjad.tools.contexttools.Context.Context.Context.__ge__
+      ~abjad.tools.contexttools.Context.Context.Context.__getitem__
+      ~abjad.tools.contexttools.Context.Context.Context.__gt__
+      ~abjad.tools.contexttools.Context.Context.Context.__iadd__
+      ~abjad.tools.contexttools.Context.Context.Context.__imul__
+      ~abjad.tools.contexttools.Context.Context.Context.__le__
+      ~abjad.tools.contexttools.Context.Context.Context.__len__
+      ~abjad.tools.contexttools.Context.Context.Context.__lt__
+      ~abjad.tools.contexttools.Context.Context.Context.__mul__
+      ~abjad.tools.contexttools.Context.Context.Context.__ne__
+      ~abjad.tools.contexttools.Context.Context.Context.__radd__
+      ~abjad.tools.contexttools.Context.Context.Context.__repr__
+      ~abjad.tools.contexttools.Context.Context.Context.__rmul__
+      ~abjad.tools.contexttools.Context.Context.Context.__setitem__
+
 Bases
 -----
 

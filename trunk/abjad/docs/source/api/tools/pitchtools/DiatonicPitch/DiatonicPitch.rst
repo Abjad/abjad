@@ -5,6 +5,26 @@
 
 .. autoclass:: abjad.tools.pitchtools.DiatonicPitch.DiatonicPitch.DiatonicPitch
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.DiatonicPitch.DiatonicPitch.DiatonicPitch.storage_format
+      ~abjad.tools.pitchtools.DiatonicPitch.DiatonicPitch.DiatonicPitch.__abs__
+      ~abjad.tools.pitchtools.DiatonicPitch.DiatonicPitch.DiatonicPitch.__eq__
+      ~abjad.tools.pitchtools.DiatonicPitch.DiatonicPitch.DiatonicPitch.__float__
+      ~abjad.tools.pitchtools.DiatonicPitch.DiatonicPitch.DiatonicPitch.__ge__
+      ~abjad.tools.pitchtools.DiatonicPitch.DiatonicPitch.DiatonicPitch.__gt__
+      ~abjad.tools.pitchtools.DiatonicPitch.DiatonicPitch.DiatonicPitch.__hash__
+      ~abjad.tools.pitchtools.DiatonicPitch.DiatonicPitch.DiatonicPitch.__int__
+      ~abjad.tools.pitchtools.DiatonicPitch.DiatonicPitch.DiatonicPitch.__le__
+      ~abjad.tools.pitchtools.DiatonicPitch.DiatonicPitch.DiatonicPitch.__lt__
+      ~abjad.tools.pitchtools.DiatonicPitch.DiatonicPitch.DiatonicPitch.__ne__
+      ~abjad.tools.pitchtools.DiatonicPitch.DiatonicPitch.DiatonicPitch.__repr__
+
 Bases
 -----
 

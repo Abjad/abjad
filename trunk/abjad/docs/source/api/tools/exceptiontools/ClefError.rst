@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.exceptiontools.ClefError.ClefError
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.exceptiontools.ClefError.ClefError.__delattr__
+      ~abjad.tools.exceptiontools.ClefError.ClefError.__getitem__
+      ~abjad.tools.exceptiontools.ClefError.ClefError.__getslice__
+      ~abjad.tools.exceptiontools.ClefError.ClefError.__repr__
+      ~abjad.tools.exceptiontools.ClefError.ClefError.__setattr__
+      ~abjad.tools.exceptiontools.ClefError.ClefError.__setstate__
+      ~abjad.tools.exceptiontools.ClefError.ClefError.__str__
+      ~abjad.tools.exceptiontools.ClefError.ClefError.__unicode__
+
 Bases
 -----
 

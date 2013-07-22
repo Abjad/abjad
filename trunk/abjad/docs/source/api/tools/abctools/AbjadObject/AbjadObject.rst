@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject.storage_format
+      ~abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject.__eq__
+      ~abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject.__ge__
+      ~abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject.__gt__
+      ~abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject.__le__
+      ~abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject.__lt__
+      ~abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject.__ne__
+      ~abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject.__repr__
+
 Bases
 -----
 

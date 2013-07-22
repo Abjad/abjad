@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.exceptiontools.TieChainError.TieChainError
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.exceptiontools.TieChainError.TieChainError.__delattr__
+      ~abjad.tools.exceptiontools.TieChainError.TieChainError.__getitem__
+      ~abjad.tools.exceptiontools.TieChainError.TieChainError.__getslice__
+      ~abjad.tools.exceptiontools.TieChainError.TieChainError.__repr__
+      ~abjad.tools.exceptiontools.TieChainError.TieChainError.__setattr__
+      ~abjad.tools.exceptiontools.TieChainError.TieChainError.__setstate__
+      ~abjad.tools.exceptiontools.TieChainError.TieChainError.__str__
+      ~abjad.tools.exceptiontools.TieChainError.TieChainError.__unicode__
+
 Bases
 -----
 

@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.exceptiontools.ContiguityError.ContiguityError
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.exceptiontools.ContiguityError.ContiguityError.__delattr__
+      ~abjad.tools.exceptiontools.ContiguityError.ContiguityError.__getitem__
+      ~abjad.tools.exceptiontools.ContiguityError.ContiguityError.__getslice__
+      ~abjad.tools.exceptiontools.ContiguityError.ContiguityError.__repr__
+      ~abjad.tools.exceptiontools.ContiguityError.ContiguityError.__setattr__
+      ~abjad.tools.exceptiontools.ContiguityError.ContiguityError.__setstate__
+      ~abjad.tools.exceptiontools.ContiguityError.ContiguityError.__str__
+      ~abjad.tools.exceptiontools.ContiguityError.ContiguityError.__unicode__
+
 Bases
 -----
 

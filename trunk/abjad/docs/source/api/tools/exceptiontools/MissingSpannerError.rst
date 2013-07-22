@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.exceptiontools.MissingSpannerError.MissingSpannerError
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.exceptiontools.MissingSpannerError.MissingSpannerError.__delattr__
+      ~abjad.tools.exceptiontools.MissingSpannerError.MissingSpannerError.__getitem__
+      ~abjad.tools.exceptiontools.MissingSpannerError.MissingSpannerError.__getslice__
+      ~abjad.tools.exceptiontools.MissingSpannerError.MissingSpannerError.__repr__
+      ~abjad.tools.exceptiontools.MissingSpannerError.MissingSpannerError.__setattr__
+      ~abjad.tools.exceptiontools.MissingSpannerError.MissingSpannerError.__setstate__
+      ~abjad.tools.exceptiontools.MissingSpannerError.MissingSpannerError.__str__
+      ~abjad.tools.exceptiontools.MissingSpannerError.MissingSpannerError.__unicode__
+
 Bases
 -----
 

@@ -5,6 +5,23 @@
 
 .. autoclass:: abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant.storage_format
+      ~abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant.__eq__
+      ~abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant.__ge__
+      ~abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant.__gt__
+      ~abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant.__le__
+      ~abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant.__lt__
+      ~abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant.__ne__
+      ~abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant.__new__
+      ~abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant.__repr__
+
 Bases
 -----
 

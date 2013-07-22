@@ -5,6 +5,27 @@
 
 .. autoclass:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.code_root
+      ~abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.ignored_directory_names
+      ~abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.root_package_name
+      ~abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.storage_format
+      ~abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.visit_private_modules
+      ~abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.__eq__
+      ~abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.__ge__
+      ~abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.__gt__
+      ~abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.__iter__
+      ~abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.__le__
+      ~abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.__lt__
+      ~abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.__ne__
+      ~abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.__repr__
+
 Bases
 -----
 

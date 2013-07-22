@@ -5,6 +5,45 @@
 
 .. autoclass:: abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.are_scalar_notes
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.are_stepwise_ascending_notes
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.are_stepwise_descending_notes
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.are_stepwise_notes
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.attach_marks
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.attach_spanners
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.detach_marks
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.detach_spanners
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.duration
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.duration_in_seconds
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.get
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.get_offset_lists
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.get_parent_and_start_stop_indices
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.group_by
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.music
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.preprolated_duration
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.select_vertical_moment_at
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.storage_format
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.timespan
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.__add__
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.__contains__
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.__eq__
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.__ge__
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.__getitem__
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.__gt__
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.__le__
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.__len__
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.__lt__
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.__ne__
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.__radd__
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.Oboe.Oboe.Oboe
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.all_clefs
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.attach
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.default_instrument_name
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.default_pitch_range
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.default_short_instrument_name
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.detach
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.effective_context
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.get_default_performer_name
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.get_performer_names
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.instrument_name
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.instrument_name_markup
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.interval_of_transposition
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.is_primary_instrument
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.is_secondary_instrument
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.is_transposing
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.lilypond_format
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.pitch_range
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.primary_clefs
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.short_instrument_name
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.start_component
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.storage_format
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.target_context
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.__call__
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.__copy__
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.__eq__
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.__ge__
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.__gt__
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.__hash__
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.__le__
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.__lt__
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.__ne__
+      ~abjad.tools.instrumenttools.Oboe.Oboe.Oboe.__repr__
+
 Bases
 -----
 

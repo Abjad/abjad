@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.all_clefs
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.attach
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.default_instrument_name
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.default_pitch_range
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.default_short_instrument_name
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.detach
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.effective_context
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.get_default_performer_name
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.get_performer_names
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.instrument_name
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.instrument_name_markup
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.interval_of_transposition
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.is_primary_instrument
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.is_secondary_instrument
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.is_transposing
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.lilypond_format
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.pitch_range
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.primary_clefs
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.short_instrument_name
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.start_component
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.storage_format
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.target_context
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.__call__
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.__copy__
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.__eq__
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.__ge__
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.__gt__
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.__hash__
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.__le__
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.__lt__
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.__ne__
+      ~abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.__repr__
+
 Bases
 -----
 

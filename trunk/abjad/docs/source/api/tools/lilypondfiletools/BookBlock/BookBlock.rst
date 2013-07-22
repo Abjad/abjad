@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.append
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.count
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.extend
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.index
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.insert
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.is_formatted_when_empty
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.lilypond_format
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.pop
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.remove
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.reverse
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.sort
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.storage_format
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.__add__
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.__contains__
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.__delitem__
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.__delslice__
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.__eq__
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.__ge__
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.__getitem__
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.__getslice__
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.__gt__
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.__iadd__
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.__imul__
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.__iter__
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.__le__
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.__len__
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.__lt__
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.__mul__
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.__ne__
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.__repr__
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.__reversed__
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.__rmul__
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.__setitem__
+      ~abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.__setslice__
+
 Bases
 -----
 

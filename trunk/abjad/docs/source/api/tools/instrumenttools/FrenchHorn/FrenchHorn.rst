@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.all_clefs
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.attach
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.default_instrument_name
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.default_pitch_range
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.default_short_instrument_name
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.detach
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.effective_context
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.get_default_performer_name
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.get_performer_names
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.instrument_name
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.instrument_name_markup
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.interval_of_transposition
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.is_primary_instrument
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.is_secondary_instrument
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.is_transposing
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.lilypond_format
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.pitch_range
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.primary_clefs
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.short_instrument_name
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.start_component
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.storage_format
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.target_context
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.__call__
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.__copy__
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.__eq__
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.__ge__
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.__gt__
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.__hash__
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.__le__
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.__lt__
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.__ne__
+      ~abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn.__repr__
+
 Bases
 -----
 

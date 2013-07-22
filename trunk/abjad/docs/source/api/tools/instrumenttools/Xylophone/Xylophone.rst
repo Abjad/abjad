@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.all_clefs
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.attach
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.default_instrument_name
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.default_pitch_range
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.default_short_instrument_name
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.detach
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.effective_context
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.get_default_performer_name
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.get_performer_names
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.instrument_name
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.instrument_name_markup
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.interval_of_transposition
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.is_primary_instrument
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.is_secondary_instrument
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.is_transposing
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.lilypond_format
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.pitch_range
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.primary_clefs
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.short_instrument_name
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.start_component
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.storage_format
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.target_context
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.__call__
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.__copy__
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.__eq__
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.__ge__
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.__gt__
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.__hash__
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.__le__
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.__lt__
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.__ne__
+      ~abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone.__repr__
+
 Bases
 -----
 

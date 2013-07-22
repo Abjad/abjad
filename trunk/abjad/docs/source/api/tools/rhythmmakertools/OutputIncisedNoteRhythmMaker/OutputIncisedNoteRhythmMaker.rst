@@ -5,6 +5,25 @@
 
 .. autoclass:: abjad.tools.rhythmmakertools.OutputIncisedNoteRhythmMaker.OutputIncisedNoteRhythmMaker.OutputIncisedNoteRhythmMaker
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.rhythmmakertools.OutputIncisedNoteRhythmMaker.OutputIncisedNoteRhythmMaker.OutputIncisedNoteRhythmMaker.new
+      ~abjad.tools.rhythmmakertools.OutputIncisedNoteRhythmMaker.OutputIncisedNoteRhythmMaker.OutputIncisedNoteRhythmMaker.reverse
+      ~abjad.tools.rhythmmakertools.OutputIncisedNoteRhythmMaker.OutputIncisedNoteRhythmMaker.OutputIncisedNoteRhythmMaker.storage_format
+      ~abjad.tools.rhythmmakertools.OutputIncisedNoteRhythmMaker.OutputIncisedNoteRhythmMaker.OutputIncisedNoteRhythmMaker.__call__
+      ~abjad.tools.rhythmmakertools.OutputIncisedNoteRhythmMaker.OutputIncisedNoteRhythmMaker.OutputIncisedNoteRhythmMaker.__eq__
+      ~abjad.tools.rhythmmakertools.OutputIncisedNoteRhythmMaker.OutputIncisedNoteRhythmMaker.OutputIncisedNoteRhythmMaker.__ge__
+      ~abjad.tools.rhythmmakertools.OutputIncisedNoteRhythmMaker.OutputIncisedNoteRhythmMaker.OutputIncisedNoteRhythmMaker.__gt__
+      ~abjad.tools.rhythmmakertools.OutputIncisedNoteRhythmMaker.OutputIncisedNoteRhythmMaker.OutputIncisedNoteRhythmMaker.__le__
+      ~abjad.tools.rhythmmakertools.OutputIncisedNoteRhythmMaker.OutputIncisedNoteRhythmMaker.OutputIncisedNoteRhythmMaker.__lt__
+      ~abjad.tools.rhythmmakertools.OutputIncisedNoteRhythmMaker.OutputIncisedNoteRhythmMaker.OutputIncisedNoteRhythmMaker.__ne__
+      ~abjad.tools.rhythmmakertools.OutputIncisedNoteRhythmMaker.OutputIncisedNoteRhythmMaker.OutputIncisedNoteRhythmMaker.__repr__
+
 Bases
 -----
 

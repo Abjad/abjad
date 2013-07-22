@@ -5,6 +5,31 @@
 
 .. autoclass:: abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.one_line_named_chromatic_pitch_repr
+      ~abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.one_line_numbered_chromatic_pitch_repr
+      ~abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.pitch_range_name
+      ~abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.pitch_range_name_markup
+      ~abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.start_pitch
+      ~abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.start_pitch_is_included_in_range
+      ~abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.stop_pitch
+      ~abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.stop_pitch_is_included_in_range
+      ~abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.storage_format
+      ~abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.__contains__
+      ~abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.__eq__
+      ~abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.__ge__
+      ~abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.__gt__
+      ~abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.__le__
+      ~abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.__lt__
+      ~abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.__ne__
+      ~abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.__repr__
+
 Bases
 -----
 

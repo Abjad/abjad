@@ -5,6 +5,75 @@
 
 .. autoclass:: abjad.tools.scoretools.Score.Score.Score
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.scoretools.Score.Score.Score.append
+      ~abjad.tools.scoretools.Score.Score.Score.contents_duration
+      ~abjad.tools.scoretools.Score.Score.Score.context_name
+      ~abjad.tools.scoretools.Score.Score.Score.duration
+      ~abjad.tools.scoretools.Score.Score.Score.duration_in_seconds
+      ~abjad.tools.scoretools.Score.Score.Score.engraver_consists
+      ~abjad.tools.scoretools.Score.Score.Score.engraver_removals
+      ~abjad.tools.scoretools.Score.Score.Score.extend
+      ~abjad.tools.scoretools.Score.Score.Score.extend_in_parent
+      ~abjad.tools.scoretools.Score.Score.Score.get_mark
+      ~abjad.tools.scoretools.Score.Score.Score.get_marks
+      ~abjad.tools.scoretools.Score.Score.Score.index
+      ~abjad.tools.scoretools.Score.Score.Score.insert
+      ~abjad.tools.scoretools.Score.Score.Score.is_nonsemantic
+      ~abjad.tools.scoretools.Score.Score.Score.is_parallel
+      ~abjad.tools.scoretools.Score.Score.Score.is_semantic
+      ~abjad.tools.scoretools.Score.Score.Score.lilypond_format
+      ~abjad.tools.scoretools.Score.Score.Score.music
+      ~abjad.tools.scoretools.Score.Score.Score.name
+      ~abjad.tools.scoretools.Score.Score.Score.override
+      ~abjad.tools.scoretools.Score.Score.Score.parent
+      ~abjad.tools.scoretools.Score.Score.Score.pop
+      ~abjad.tools.scoretools.Score.Score.Score.preprolated_duration
+      ~abjad.tools.scoretools.Score.Score.Score.prolation
+      ~abjad.tools.scoretools.Score.Score.Score.remove
+      ~abjad.tools.scoretools.Score.Score.Score.select
+      ~abjad.tools.scoretools.Score.Score.Score.select_components
+      ~abjad.tools.scoretools.Score.Score.Score.select_contents
+      ~abjad.tools.scoretools.Score.Score.Score.select_descendants
+      ~abjad.tools.scoretools.Score.Score.Score.select_descendants_starting_with
+      ~abjad.tools.scoretools.Score.Score.Score.select_descendants_stopping_with
+      ~abjad.tools.scoretools.Score.Score.Score.select_leaves
+      ~abjad.tools.scoretools.Score.Score.Score.select_lineage
+      ~abjad.tools.scoretools.Score.Score.Score.select_parentage
+      ~abjad.tools.scoretools.Score.Score.Score.select_vertical_moment
+      ~abjad.tools.scoretools.Score.Score.Score.select_vertical_moment_at
+      ~abjad.tools.scoretools.Score.Score.Score.set
+      ~abjad.tools.scoretools.Score.Score.Score.shorten
+      ~abjad.tools.scoretools.Score.Score.Score.spanners
+      ~abjad.tools.scoretools.Score.Score.Score.storage_format
+      ~abjad.tools.scoretools.Score.Score.Score.timespan
+      ~abjad.tools.scoretools.Score.Score.Score.timespan_in_seconds
+      ~abjad.tools.scoretools.Score.Score.Score.__add__
+      ~abjad.tools.scoretools.Score.Score.Score.__contains__
+      ~abjad.tools.scoretools.Score.Score.Score.__copy__
+      ~abjad.tools.scoretools.Score.Score.Score.__delitem__
+      ~abjad.tools.scoretools.Score.Score.Score.__eq__
+      ~abjad.tools.scoretools.Score.Score.Score.__ge__
+      ~abjad.tools.scoretools.Score.Score.Score.__getitem__
+      ~abjad.tools.scoretools.Score.Score.Score.__gt__
+      ~abjad.tools.scoretools.Score.Score.Score.__iadd__
+      ~abjad.tools.scoretools.Score.Score.Score.__imul__
+      ~abjad.tools.scoretools.Score.Score.Score.__le__
+      ~abjad.tools.scoretools.Score.Score.Score.__len__
+      ~abjad.tools.scoretools.Score.Score.Score.__lt__
+      ~abjad.tools.scoretools.Score.Score.Score.__mul__
+      ~abjad.tools.scoretools.Score.Score.Score.__ne__
+      ~abjad.tools.scoretools.Score.Score.Score.__radd__
+      ~abjad.tools.scoretools.Score.Score.Score.__repr__
+      ~abjad.tools.scoretools.Score.Score.Score.__rmul__
+      ~abjad.tools.scoretools.Score.Score.Score.__setitem__
+
 Bases
 -----
 

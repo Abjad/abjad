@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.append
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.count
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.extend
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.index
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.insert
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.is_formatted_when_empty
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.lilypond_format
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.pop
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.remove
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.reverse
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.sort
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.storage_format
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.__add__
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.__contains__
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.__delitem__
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.__delslice__
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.__eq__
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.__ge__
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.__getitem__
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.__getslice__
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.__gt__
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.__iadd__
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.__imul__
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.__iter__
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.__le__
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.__len__
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.__lt__
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.__mul__
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.__ne__
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.__repr__
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.__reversed__
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.__rmul__
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.__setitem__
+      ~abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock.__setslice__
+
 Bases
 -----
 

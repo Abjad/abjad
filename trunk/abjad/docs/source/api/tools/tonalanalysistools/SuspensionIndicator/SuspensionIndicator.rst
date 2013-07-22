@@ -5,6 +5,30 @@
 
 .. autoclass:: abjad.tools.tonalanalysistools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.tonalanalysistools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.chord_name
+      ~abjad.tools.tonalanalysistools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.figured_bass_pair
+      ~abjad.tools.tonalanalysistools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.figured_bass_string
+      ~abjad.tools.tonalanalysistools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.is_empty
+      ~abjad.tools.tonalanalysistools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.start
+      ~abjad.tools.tonalanalysistools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.stop
+      ~abjad.tools.tonalanalysistools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.storage_format
+      ~abjad.tools.tonalanalysistools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.title_string
+      ~abjad.tools.tonalanalysistools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.__eq__
+      ~abjad.tools.tonalanalysistools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.__ge__
+      ~abjad.tools.tonalanalysistools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.__gt__
+      ~abjad.tools.tonalanalysistools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.__le__
+      ~abjad.tools.tonalanalysistools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.__lt__
+      ~abjad.tools.tonalanalysistools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.__ne__
+      ~abjad.tools.tonalanalysistools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.__repr__
+      ~abjad.tools.tonalanalysistools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.__str__
+
 Bases
 -----
 

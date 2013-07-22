@@ -5,6 +5,26 @@
 
 .. autoclass:: abjad.tools.timerelationtools.SimpleInequality.SimpleInequality.SimpleInequality
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.timerelationtools.SimpleInequality.SimpleInequality.SimpleInequality.evaluate
+      ~abjad.tools.timerelationtools.SimpleInequality.SimpleInequality.SimpleInequality.evaluate_offset_inequality
+      ~abjad.tools.timerelationtools.SimpleInequality.SimpleInequality.SimpleInequality.get_offset_indices
+      ~abjad.tools.timerelationtools.SimpleInequality.SimpleInequality.SimpleInequality.storage_format
+      ~abjad.tools.timerelationtools.SimpleInequality.SimpleInequality.SimpleInequality.template
+      ~abjad.tools.timerelationtools.SimpleInequality.SimpleInequality.SimpleInequality.__eq__
+      ~abjad.tools.timerelationtools.SimpleInequality.SimpleInequality.SimpleInequality.__ge__
+      ~abjad.tools.timerelationtools.SimpleInequality.SimpleInequality.SimpleInequality.__gt__
+      ~abjad.tools.timerelationtools.SimpleInequality.SimpleInequality.SimpleInequality.__le__
+      ~abjad.tools.timerelationtools.SimpleInequality.SimpleInequality.SimpleInequality.__lt__
+      ~abjad.tools.timerelationtools.SimpleInequality.SimpleInequality.SimpleInequality.__ne__
+      ~abjad.tools.timerelationtools.SimpleInequality.SimpleInequality.SimpleInequality.__repr__
+
 Bases
 -----
 

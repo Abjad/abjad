@@ -5,6 +5,75 @@
 
 .. autoclass:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.append
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.contents_duration
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.context_name
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.duration
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.duration_in_seconds
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.engraver_consists
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.engraver_removals
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.extend
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.extend_in_parent
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.get_mark
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.get_marks
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.index
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.insert
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.is_nonsemantic
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.is_parallel
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.is_semantic
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.lilypond_format
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.music
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.name
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.override
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.parent
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.pop
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.preprolated_duration
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.prolation
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.remove
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.select
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.select_components
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.select_contents
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.select_descendants
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.select_descendants_starting_with
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.select_descendants_stopping_with
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.select_leaves
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.select_lineage
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.select_parentage
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.select_vertical_moment
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.select_vertical_moment_at
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.set
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.shorten
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.spanners
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.storage_format
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.timespan
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.timespan_in_seconds
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.__add__
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.__contains__
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.__copy__
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.__delitem__
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.__eq__
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.__ge__
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.__getitem__
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.__gt__
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.__iadd__
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.__imul__
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.__le__
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.__len__
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.__lt__
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.__mul__
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.__ne__
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.__radd__
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.__repr__
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.__rmul__
+      ~abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.__setitem__
+
 Bases
 -----
 

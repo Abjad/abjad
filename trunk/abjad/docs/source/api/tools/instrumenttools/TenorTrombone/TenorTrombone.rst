@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.all_clefs
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.attach
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.default_instrument_name
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.default_pitch_range
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.default_short_instrument_name
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.detach
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.effective_context
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.get_default_performer_name
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.get_performer_names
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.instrument_name
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.instrument_name_markup
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.interval_of_transposition
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.is_primary_instrument
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.is_secondary_instrument
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.is_transposing
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.lilypond_format
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.pitch_range
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.primary_clefs
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.short_instrument_name
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.start_component
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.storage_format
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.target_context
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.__call__
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.__copy__
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.__eq__
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.__ge__
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.__gt__
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.__hash__
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.__le__
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.__lt__
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.__ne__
+      ~abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.__repr__
+
 Bases
 -----
 

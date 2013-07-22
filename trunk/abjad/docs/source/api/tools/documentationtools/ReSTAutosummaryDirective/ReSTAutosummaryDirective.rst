@@ -5,6 +5,54 @@
 
 .. autoclass:: abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.append
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.argument
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.children
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.depth
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.depthwise_inventory
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.directive
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.extend
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.graph_order
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.improper_parentage
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.index
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.insert
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.leaves
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.name
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.node_class
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.nodes
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.options
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.parent
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.pop
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.proper_parentage
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.remove
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.rest_format
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.root
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.storage_format
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.__contains__
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.__copy__
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.__deepcopy__
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.__delitem__
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.__eq__
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.__ge__
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.__getitem__
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.__getstate__
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.__gt__
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.__iter__
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.__le__
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.__len__
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.__lt__
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.__ne__
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.__repr__
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.__setitem__
+      ~abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective.__setstate__
+
 Bases
 -----
 

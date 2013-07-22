@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.all_clefs
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.attach
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.default_instrument_name
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.default_pitch_range
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.default_short_instrument_name
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.detach
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.effective_context
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.get_default_performer_name
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.get_performer_names
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.instrument_name
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.instrument_name_markup
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.interval_of_transposition
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.is_primary_instrument
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.is_secondary_instrument
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.is_transposing
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.lilypond_format
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.pitch_range
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.primary_clefs
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.short_instrument_name
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.start_component
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.storage_format
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.target_context
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.__call__
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.__copy__
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.__eq__
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.__ge__
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.__gt__
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.__hash__
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.__le__
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.__lt__
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.__ne__
+      ~abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,46 @@
 
 .. autoclass:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.clear
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.copy
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.get
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.has_key
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.items
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.iteritems
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.iterkeys
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.itervalues
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.keys
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.pop
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.popitem
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.setdefault
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.storage_format
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.update
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.values
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.viewitems
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.viewkeys
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.viewvalues
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__cmp__
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__contains__
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__delitem__
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__eq__
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__ge__
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__getitem__
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__gt__
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__iter__
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__le__
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__len__
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__lt__
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__ne__
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__repr__
+      ~abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__setitem__
+
 Bases
 -----
 

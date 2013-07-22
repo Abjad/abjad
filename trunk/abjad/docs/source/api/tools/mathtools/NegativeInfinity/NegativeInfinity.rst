@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.mathtools.NegativeInfinity.NegativeInfinity.NegativeInfinity
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.mathtools.NegativeInfinity.NegativeInfinity.NegativeInfinity.storage_format
+      ~abjad.tools.mathtools.NegativeInfinity.NegativeInfinity.NegativeInfinity.__eq__
+      ~abjad.tools.mathtools.NegativeInfinity.NegativeInfinity.NegativeInfinity.__ge__
+      ~abjad.tools.mathtools.NegativeInfinity.NegativeInfinity.NegativeInfinity.__gt__
+      ~abjad.tools.mathtools.NegativeInfinity.NegativeInfinity.NegativeInfinity.__le__
+      ~abjad.tools.mathtools.NegativeInfinity.NegativeInfinity.NegativeInfinity.__lt__
+      ~abjad.tools.mathtools.NegativeInfinity.NegativeInfinity.NegativeInfinity.__ne__
+      ~abjad.tools.mathtools.NegativeInfinity.NegativeInfinity.NegativeInfinity.__repr__
+
 Bases
 -----
 

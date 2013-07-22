@@ -5,6 +5,25 @@
 
 .. autoclass:: abjad.tools.rhythmmakertools.RestRhythmMaker.RestRhythmMaker.RestRhythmMaker
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.rhythmmakertools.RestRhythmMaker.RestRhythmMaker.RestRhythmMaker.new
+      ~abjad.tools.rhythmmakertools.RestRhythmMaker.RestRhythmMaker.RestRhythmMaker.reverse
+      ~abjad.tools.rhythmmakertools.RestRhythmMaker.RestRhythmMaker.RestRhythmMaker.storage_format
+      ~abjad.tools.rhythmmakertools.RestRhythmMaker.RestRhythmMaker.RestRhythmMaker.__call__
+      ~abjad.tools.rhythmmakertools.RestRhythmMaker.RestRhythmMaker.RestRhythmMaker.__eq__
+      ~abjad.tools.rhythmmakertools.RestRhythmMaker.RestRhythmMaker.RestRhythmMaker.__ge__
+      ~abjad.tools.rhythmmakertools.RestRhythmMaker.RestRhythmMaker.RestRhythmMaker.__gt__
+      ~abjad.tools.rhythmmakertools.RestRhythmMaker.RestRhythmMaker.RestRhythmMaker.__le__
+      ~abjad.tools.rhythmmakertools.RestRhythmMaker.RestRhythmMaker.RestRhythmMaker.__lt__
+      ~abjad.tools.rhythmmakertools.RestRhythmMaker.RestRhythmMaker.RestRhythmMaker.__ne__
+      ~abjad.tools.rhythmmakertools.RestRhythmMaker.RestRhythmMaker.RestRhythmMaker.__repr__
+
 Bases
 -----
 

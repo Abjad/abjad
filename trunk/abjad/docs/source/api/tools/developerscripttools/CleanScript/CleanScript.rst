@@ -5,6 +5,35 @@
 
 .. autoclass:: abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript.alias
+      ~abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript.argument_parser
+      ~abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript.formatted_help
+      ~abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript.formatted_usage
+      ~abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript.formatted_version
+      ~abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript.long_description
+      ~abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript.process_args
+      ~abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript.program_name
+      ~abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript.scripting_group
+      ~abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript.setup_argument_parser
+      ~abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript.short_description
+      ~abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript.storage_format
+      ~abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript.version
+      ~abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript.__call__
+      ~abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript.__eq__
+      ~abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript.__ge__
+      ~abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript.__gt__
+      ~abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript.__le__
+      ~abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript.__lt__
+      ~abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript.__ne__
+      ~abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,24 @@
 
 .. autoclass:: abjad.tools.tonalanalysistools.QualityIndicator.QualityIndicator.QualityIndicator
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.tonalanalysistools.QualityIndicator.QualityIndicator.QualityIndicator.is_uppercase
+      ~abjad.tools.tonalanalysistools.QualityIndicator.QualityIndicator.QualityIndicator.quality_string
+      ~abjad.tools.tonalanalysistools.QualityIndicator.QualityIndicator.QualityIndicator.storage_format
+      ~abjad.tools.tonalanalysistools.QualityIndicator.QualityIndicator.QualityIndicator.__eq__
+      ~abjad.tools.tonalanalysistools.QualityIndicator.QualityIndicator.QualityIndicator.__ge__
+      ~abjad.tools.tonalanalysistools.QualityIndicator.QualityIndicator.QualityIndicator.__gt__
+      ~abjad.tools.tonalanalysistools.QualityIndicator.QualityIndicator.QualityIndicator.__le__
+      ~abjad.tools.tonalanalysistools.QualityIndicator.QualityIndicator.QualityIndicator.__lt__
+      ~abjad.tools.tonalanalysistools.QualityIndicator.QualityIndicator.QualityIndicator.__ne__
+      ~abjad.tools.tonalanalysistools.QualityIndicator.QualityIndicator.QualityIndicator.__repr__
+
 Bases
 -----
 

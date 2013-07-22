@@ -5,6 +5,38 @@
 
 .. autoclass:: abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.alias
+      ~abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.argument_parser
+      ~abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.developer_script_aliases
+      ~abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.developer_script_classes
+      ~abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.developer_script_program_names
+      ~abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.formatted_help
+      ~abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.formatted_usage
+      ~abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.formatted_version
+      ~abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.long_description
+      ~abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.process_args
+      ~abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.program_name
+      ~abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.scripting_group
+      ~abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.setup_argument_parser
+      ~abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.short_description
+      ~abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.storage_format
+      ~abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.version
+      ~abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.__call__
+      ~abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.__eq__
+      ~abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.__ge__
+      ~abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.__gt__
+      ~abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.__le__
+      ~abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.__lt__
+      ~abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.__ne__
+      ~abjad.tools.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.__repr__
+
 Bases
 -----
 

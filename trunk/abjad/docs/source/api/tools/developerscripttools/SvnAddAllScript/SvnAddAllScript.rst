@@ -5,6 +5,35 @@
 
 .. autoclass:: abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.alias
+      ~abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.argument_parser
+      ~abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.formatted_help
+      ~abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.formatted_usage
+      ~abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.formatted_version
+      ~abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.long_description
+      ~abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.process_args
+      ~abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.program_name
+      ~abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.scripting_group
+      ~abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.setup_argument_parser
+      ~abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.short_description
+      ~abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.storage_format
+      ~abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.version
+      ~abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.__call__
+      ~abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.__eq__
+      ~abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.__ge__
+      ~abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.__gt__
+      ~abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.__le__
+      ~abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.__lt__
+      ~abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.__ne__
+      ~abjad.tools.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.__repr__
+
 Bases
 -----
 

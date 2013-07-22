@@ -5,6 +5,34 @@
 
 .. autoclass:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.depth
+      ~abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.depthwise_inventory
+      ~abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.graph_order
+      ~abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.improper_parentage
+      ~abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.name
+      ~abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.parent
+      ~abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.proper_parentage
+      ~abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.root
+      ~abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.storage_format
+      ~abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.__copy__
+      ~abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.__deepcopy__
+      ~abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.__eq__
+      ~abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.__ge__
+      ~abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.__getstate__
+      ~abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.__gt__
+      ~abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.__le__
+      ~abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.__lt__
+      ~abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.__ne__
+      ~abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.__repr__
+      ~abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.__setstate__
+
 Bases
 -----
 

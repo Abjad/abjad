@@ -5,6 +5,68 @@
 
 .. autoclass:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.divide
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.duration
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.duration_in_seconds
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.duration_multiplier
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.extend_in_parent
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.fingered_pitch
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.get_mark
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.get_marks
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.leaf_index
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.lilypond_format
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.multiplied_duration
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.note_head
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.override
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.parent
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.preprolated_duration
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.prolation
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.select
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.select_components
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.select_contents
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.select_descendants
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.select_descendants_starting_with
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.select_descendants_stopping_with
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.select_lineage
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.select_parentage
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.select_tie_chain
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.select_vertical_moment
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.select_vertical_moment_at
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.set
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.shorten
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.sounding_pitch
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.spanners
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.storage_format
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.suono_reale
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.timespan
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.timespan_in_seconds
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.written_duration
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.written_pitch
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.written_pitch_indication_is_at_sounding_pitch
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.written_pitch_indication_is_nonsemantic
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.__and__
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.__copy__
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.__eq__
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.__ge__
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.__gt__
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.__le__
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.__lt__
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.__mul__
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.__ne__
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.__or__
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.__repr__
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.__rmul__
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.__str__
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.__sub__
+      ~abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.__xor__
+
 Bases
 -----
 

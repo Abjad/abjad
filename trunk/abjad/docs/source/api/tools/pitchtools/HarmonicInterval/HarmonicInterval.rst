@@ -5,6 +5,31 @@
 
 .. autoclass:: abjad.tools.pitchtools.HarmonicInterval.HarmonicInterval.HarmonicInterval
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.HarmonicInterval.HarmonicInterval.HarmonicInterval.cents
+      ~abjad.tools.pitchtools.HarmonicInterval.HarmonicInterval.HarmonicInterval.interval_class
+      ~abjad.tools.pitchtools.HarmonicInterval.HarmonicInterval.HarmonicInterval.number
+      ~abjad.tools.pitchtools.HarmonicInterval.HarmonicInterval.HarmonicInterval.semitones
+      ~abjad.tools.pitchtools.HarmonicInterval.HarmonicInterval.HarmonicInterval.storage_format
+      ~abjad.tools.pitchtools.HarmonicInterval.HarmonicInterval.HarmonicInterval.__abs__
+      ~abjad.tools.pitchtools.HarmonicInterval.HarmonicInterval.HarmonicInterval.__eq__
+      ~abjad.tools.pitchtools.HarmonicInterval.HarmonicInterval.HarmonicInterval.__float__
+      ~abjad.tools.pitchtools.HarmonicInterval.HarmonicInterval.HarmonicInterval.__ge__
+      ~abjad.tools.pitchtools.HarmonicInterval.HarmonicInterval.HarmonicInterval.__gt__
+      ~abjad.tools.pitchtools.HarmonicInterval.HarmonicInterval.HarmonicInterval.__hash__
+      ~abjad.tools.pitchtools.HarmonicInterval.HarmonicInterval.HarmonicInterval.__int__
+      ~abjad.tools.pitchtools.HarmonicInterval.HarmonicInterval.HarmonicInterval.__le__
+      ~abjad.tools.pitchtools.HarmonicInterval.HarmonicInterval.HarmonicInterval.__lt__
+      ~abjad.tools.pitchtools.HarmonicInterval.HarmonicInterval.HarmonicInterval.__ne__
+      ~abjad.tools.pitchtools.HarmonicInterval.HarmonicInterval.HarmonicInterval.__repr__
+      ~abjad.tools.pitchtools.HarmonicInterval.HarmonicInterval.HarmonicInterval.__str__
+
 Bases
 -----
 

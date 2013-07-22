@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.all_clefs
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.attach
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.default_instrument_name
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.default_pitch_range
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.default_short_instrument_name
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.detach
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.effective_context
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.get_default_performer_name
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.get_performer_names
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.instrument_name
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.instrument_name_markup
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.interval_of_transposition
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.is_primary_instrument
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.is_secondary_instrument
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.is_transposing
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.lilypond_format
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.pitch_range
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.primary_clefs
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.short_instrument_name
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.start_component
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.storage_format
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.target_context
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.__call__
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.__copy__
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.__eq__
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.__ge__
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.__gt__
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.__hash__
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.__le__
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.__lt__
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.__ne__
+      ~abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel.__repr__
+
 Bases
 -----
 

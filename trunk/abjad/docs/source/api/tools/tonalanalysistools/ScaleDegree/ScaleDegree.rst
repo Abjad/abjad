@@ -5,6 +5,30 @@
 
 .. autoclass:: abjad.tools.tonalanalysistools.ScaleDegree.ScaleDegree.ScaleDegree
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.tonalanalysistools.ScaleDegree.ScaleDegree.ScaleDegree.accidental
+      ~abjad.tools.tonalanalysistools.ScaleDegree.ScaleDegree.ScaleDegree.apply_accidental
+      ~abjad.tools.tonalanalysistools.ScaleDegree.ScaleDegree.ScaleDegree.name
+      ~abjad.tools.tonalanalysistools.ScaleDegree.ScaleDegree.ScaleDegree.number
+      ~abjad.tools.tonalanalysistools.ScaleDegree.ScaleDegree.ScaleDegree.roman_numeral_string
+      ~abjad.tools.tonalanalysistools.ScaleDegree.ScaleDegree.ScaleDegree.storage_format
+      ~abjad.tools.tonalanalysistools.ScaleDegree.ScaleDegree.ScaleDegree.symbolic_string
+      ~abjad.tools.tonalanalysistools.ScaleDegree.ScaleDegree.ScaleDegree.title_string
+      ~abjad.tools.tonalanalysistools.ScaleDegree.ScaleDegree.ScaleDegree.__eq__
+      ~abjad.tools.tonalanalysistools.ScaleDegree.ScaleDegree.ScaleDegree.__ge__
+      ~abjad.tools.tonalanalysistools.ScaleDegree.ScaleDegree.ScaleDegree.__gt__
+      ~abjad.tools.tonalanalysistools.ScaleDegree.ScaleDegree.ScaleDegree.__le__
+      ~abjad.tools.tonalanalysistools.ScaleDegree.ScaleDegree.ScaleDegree.__lt__
+      ~abjad.tools.tonalanalysistools.ScaleDegree.ScaleDegree.ScaleDegree.__ne__
+      ~abjad.tools.tonalanalysistools.ScaleDegree.ScaleDegree.ScaleDegree.__repr__
+      ~abjad.tools.tonalanalysistools.ScaleDegree.ScaleDegree.ScaleDegree.__str__
+
 Bases
 -----
 

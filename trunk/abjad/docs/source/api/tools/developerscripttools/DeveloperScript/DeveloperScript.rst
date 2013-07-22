@@ -5,6 +5,35 @@
 
 .. autoclass:: abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.alias
+      ~abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.argument_parser
+      ~abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.formatted_help
+      ~abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.formatted_usage
+      ~abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.formatted_version
+      ~abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.long_description
+      ~abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.process_args
+      ~abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.program_name
+      ~abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.scripting_group
+      ~abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.setup_argument_parser
+      ~abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.short_description
+      ~abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.storage_format
+      ~abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.version
+      ~abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.__call__
+      ~abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.__eq__
+      ~abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.__ge__
+      ~abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.__gt__
+      ~abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.__le__
+      ~abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.__lt__
+      ~abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.__ne__
+      ~abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.__repr__
+
 Bases
 -----
 

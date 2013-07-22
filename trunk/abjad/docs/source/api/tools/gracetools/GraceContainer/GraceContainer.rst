@@ -5,6 +5,72 @@
 
 .. autoclass:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.append
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.contents_duration
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.detach
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.duration
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.duration_in_seconds
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.extend
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.extend_in_parent
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.get_mark
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.get_marks
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.index
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.insert
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.is_parallel
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.kind
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.lilypond_format
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.music
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.override
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.parent
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.pop
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.preprolated_duration
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.prolation
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.remove
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.select
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.select_components
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.select_contents
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.select_descendants
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.select_descendants_starting_with
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.select_descendants_stopping_with
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.select_leaves
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.select_lineage
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.select_parentage
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.select_vertical_moment
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.select_vertical_moment_at
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.set
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.shorten
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.spanners
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.storage_format
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.timespan
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.timespan_in_seconds
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.__add__
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.__call__
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.__contains__
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.__copy__
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.__delitem__
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.__eq__
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.__ge__
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.__getitem__
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.__gt__
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.__iadd__
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.__imul__
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.__le__
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.__len__
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.__lt__
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.__mul__
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.__ne__
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.__radd__
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.__repr__
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.__rmul__
+      ~abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.__setitem__
+
 Bases
 -----
 

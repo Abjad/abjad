@@ -5,6 +5,23 @@
 
 .. autoclass:: abjad.tools.quantizationtools.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.quantizationtools.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer.storage_format
+      ~abjad.tools.quantizationtools.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer.__call__
+      ~abjad.tools.quantizationtools.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer.__eq__
+      ~abjad.tools.quantizationtools.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer.__ge__
+      ~abjad.tools.quantizationtools.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer.__gt__
+      ~abjad.tools.quantizationtools.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer.__le__
+      ~abjad.tools.quantizationtools.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer.__lt__
+      ~abjad.tools.quantizationtools.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer.__ne__
+      ~abjad.tools.quantizationtools.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer.__repr__
+
 Bases
 -----
 

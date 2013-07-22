@@ -5,6 +5,44 @@
 
 .. autoclass:: abjad.tools.pitchtools.Set.Set.Set
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.Set.Set.Set.copy
+      ~abjad.tools.pitchtools.Set.Set.Set.difference
+      ~abjad.tools.pitchtools.Set.Set.Set.intersection
+      ~abjad.tools.pitchtools.Set.Set.Set.isdisjoint
+      ~abjad.tools.pitchtools.Set.Set.Set.issubset
+      ~abjad.tools.pitchtools.Set.Set.Set.issuperset
+      ~abjad.tools.pitchtools.Set.Set.Set.storage_format
+      ~abjad.tools.pitchtools.Set.Set.Set.symmetric_difference
+      ~abjad.tools.pitchtools.Set.Set.Set.union
+      ~abjad.tools.pitchtools.Set.Set.Set.__and__
+      ~abjad.tools.pitchtools.Set.Set.Set.__cmp__
+      ~abjad.tools.pitchtools.Set.Set.Set.__contains__
+      ~abjad.tools.pitchtools.Set.Set.Set.__eq__
+      ~abjad.tools.pitchtools.Set.Set.Set.__ge__
+      ~abjad.tools.pitchtools.Set.Set.Set.__gt__
+      ~abjad.tools.pitchtools.Set.Set.Set.__hash__
+      ~abjad.tools.pitchtools.Set.Set.Set.__iter__
+      ~abjad.tools.pitchtools.Set.Set.Set.__le__
+      ~abjad.tools.pitchtools.Set.Set.Set.__len__
+      ~abjad.tools.pitchtools.Set.Set.Set.__lt__
+      ~abjad.tools.pitchtools.Set.Set.Set.__ne__
+      ~abjad.tools.pitchtools.Set.Set.Set.__new__
+      ~abjad.tools.pitchtools.Set.Set.Set.__or__
+      ~abjad.tools.pitchtools.Set.Set.Set.__rand__
+      ~abjad.tools.pitchtools.Set.Set.Set.__repr__
+      ~abjad.tools.pitchtools.Set.Set.Set.__ror__
+      ~abjad.tools.pitchtools.Set.Set.Set.__rsub__
+      ~abjad.tools.pitchtools.Set.Set.Set.__rxor__
+      ~abjad.tools.pitchtools.Set.Set.Set.__sub__
+      ~abjad.tools.pitchtools.Set.Set.Set.__xor__
+
 Bases
 -----
 

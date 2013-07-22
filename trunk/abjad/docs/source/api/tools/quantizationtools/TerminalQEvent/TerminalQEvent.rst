@@ -5,6 +5,26 @@
 
 .. autoclass:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.index
+      ~abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.offset
+      ~abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.storage_format
+      ~abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__eq__
+      ~abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__ge__
+      ~abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__getstate__
+      ~abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__gt__
+      ~abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__le__
+      ~abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__lt__
+      ~abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__ne__
+      ~abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__repr__
+      ~abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__setstate__
+
 Bases
 -----
 

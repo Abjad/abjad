@@ -5,6 +5,35 @@
 
 .. autoclass:: abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.alias
+      ~abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.argument_parser
+      ~abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.formatted_help
+      ~abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.formatted_usage
+      ~abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.formatted_version
+      ~abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.long_description
+      ~abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.process_args
+      ~abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.program_name
+      ~abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.scripting_group
+      ~abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.setup_argument_parser
+      ~abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.short_description
+      ~abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.storage_format
+      ~abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.version
+      ~abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.__call__
+      ~abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.__eq__
+      ~abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.__ge__
+      ~abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.__gt__
+      ~abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.__le__
+      ~abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.__lt__
+      ~abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.__ne__
+      ~abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.__repr__
+
 Bases
 -----
 

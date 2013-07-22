@@ -5,6 +5,41 @@
 
 .. autoclass:: abjad.tools.selectiontools.Selection.Selection.Selection
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.attach_marks
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.attach_spanners
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.detach_marks
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.detach_spanners
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.duration
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.duration_in_seconds
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.get
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.get_offset_lists
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.get_parent_and_start_stop_indices
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.group_by
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.music
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.preprolated_duration
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.select_vertical_moment_at
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.storage_format
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.timespan
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.__add__
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.__contains__
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.__eq__
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.__ge__
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.__getitem__
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.__gt__
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.__le__
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.__len__
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.__lt__
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.__ne__
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.__radd__
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.__repr__
+
 Bases
 -----
 

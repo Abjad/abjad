@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.all_clefs
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.attach
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.default_instrument_name
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.default_pitch_range
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.default_short_instrument_name
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.detach
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.effective_context
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.get_default_performer_name
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.get_performer_names
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.instrument_name
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.instrument_name_markup
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.interval_of_transposition
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.is_primary_instrument
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.is_secondary_instrument
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.is_transposing
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.lilypond_format
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.pitch_range
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.primary_clefs
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.short_instrument_name
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.start_component
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.storage_format
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.target_context
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.__call__
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.__copy__
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.__eq__
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.__ge__
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.__gt__
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.__hash__
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.__le__
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.__lt__
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.__ne__
+      ~abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject.storage_format
+      ~abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject.__eq__
+      ~abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject.__ge__
+      ~abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject.__gt__
+      ~abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject.__le__
+      ~abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject.__lt__
+      ~abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject.__ne__
+      ~abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject.__repr__
+
 Bases
 -----
 

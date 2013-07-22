@@ -5,6 +5,25 @@
 
 .. autoclass:: abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant.force_quotes
+      ~abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant.lilypond_format
+      ~abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant.storage_format
+      ~abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant.__eq__
+      ~abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant.__ge__
+      ~abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant.__gt__
+      ~abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant.__le__
+      ~abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant.__lt__
+      ~abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant.__ne__
+      ~abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant.__repr__
+      ~abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant.__str__
+
 Bases
 -----
 

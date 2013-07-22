@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.all_clefs
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.attach
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.default_instrument_name
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.default_pitch_range
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.default_short_instrument_name
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.detach
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.effective_context
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.get_default_performer_name
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.get_performer_names
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.instrument_name
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.instrument_name_markup
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.interval_of_transposition
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.is_primary_instrument
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.is_secondary_instrument
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.is_transposing
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.lilypond_format
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.pitch_range
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.primary_clefs
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.short_instrument_name
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.start_component
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.storage_format
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.target_context
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.__call__
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.__copy__
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.__eq__
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.__ge__
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.__gt__
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.__hash__
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.__le__
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.__lt__
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.__ne__
+      ~abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,69 @@
 
 .. autoclass:: abjad.tools.containertools.Container.Container.Container
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.containertools.Container.Container.Container.append
+      ~abjad.tools.containertools.Container.Container.Container.contents_duration
+      ~abjad.tools.containertools.Container.Container.Container.duration
+      ~abjad.tools.containertools.Container.Container.Container.duration_in_seconds
+      ~abjad.tools.containertools.Container.Container.Container.extend
+      ~abjad.tools.containertools.Container.Container.Container.extend_in_parent
+      ~abjad.tools.containertools.Container.Container.Container.get_mark
+      ~abjad.tools.containertools.Container.Container.Container.get_marks
+      ~abjad.tools.containertools.Container.Container.Container.index
+      ~abjad.tools.containertools.Container.Container.Container.insert
+      ~abjad.tools.containertools.Container.Container.Container.is_parallel
+      ~abjad.tools.containertools.Container.Container.Container.lilypond_format
+      ~abjad.tools.containertools.Container.Container.Container.music
+      ~abjad.tools.containertools.Container.Container.Container.override
+      ~abjad.tools.containertools.Container.Container.Container.parent
+      ~abjad.tools.containertools.Container.Container.Container.pop
+      ~abjad.tools.containertools.Container.Container.Container.preprolated_duration
+      ~abjad.tools.containertools.Container.Container.Container.prolation
+      ~abjad.tools.containertools.Container.Container.Container.remove
+      ~abjad.tools.containertools.Container.Container.Container.select
+      ~abjad.tools.containertools.Container.Container.Container.select_components
+      ~abjad.tools.containertools.Container.Container.Container.select_contents
+      ~abjad.tools.containertools.Container.Container.Container.select_descendants
+      ~abjad.tools.containertools.Container.Container.Container.select_descendants_starting_with
+      ~abjad.tools.containertools.Container.Container.Container.select_descendants_stopping_with
+      ~abjad.tools.containertools.Container.Container.Container.select_leaves
+      ~abjad.tools.containertools.Container.Container.Container.select_lineage
+      ~abjad.tools.containertools.Container.Container.Container.select_parentage
+      ~abjad.tools.containertools.Container.Container.Container.select_vertical_moment
+      ~abjad.tools.containertools.Container.Container.Container.select_vertical_moment_at
+      ~abjad.tools.containertools.Container.Container.Container.set
+      ~abjad.tools.containertools.Container.Container.Container.shorten
+      ~abjad.tools.containertools.Container.Container.Container.spanners
+      ~abjad.tools.containertools.Container.Container.Container.storage_format
+      ~abjad.tools.containertools.Container.Container.Container.timespan
+      ~abjad.tools.containertools.Container.Container.Container.timespan_in_seconds
+      ~abjad.tools.containertools.Container.Container.Container.__add__
+      ~abjad.tools.containertools.Container.Container.Container.__contains__
+      ~abjad.tools.containertools.Container.Container.Container.__copy__
+      ~abjad.tools.containertools.Container.Container.Container.__delitem__
+      ~abjad.tools.containertools.Container.Container.Container.__eq__
+      ~abjad.tools.containertools.Container.Container.Container.__ge__
+      ~abjad.tools.containertools.Container.Container.Container.__getitem__
+      ~abjad.tools.containertools.Container.Container.Container.__gt__
+      ~abjad.tools.containertools.Container.Container.Container.__iadd__
+      ~abjad.tools.containertools.Container.Container.Container.__imul__
+      ~abjad.tools.containertools.Container.Container.Container.__le__
+      ~abjad.tools.containertools.Container.Container.Container.__len__
+      ~abjad.tools.containertools.Container.Container.Container.__lt__
+      ~abjad.tools.containertools.Container.Container.Container.__mul__
+      ~abjad.tools.containertools.Container.Container.Container.__ne__
+      ~abjad.tools.containertools.Container.Container.Container.__radd__
+      ~abjad.tools.containertools.Container.Container.Container.__repr__
+      ~abjad.tools.containertools.Container.Container.Container.__rmul__
+      ~abjad.tools.containertools.Container.Container.Container.__setitem__
+
 Bases
 -----
 

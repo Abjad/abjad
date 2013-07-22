@@ -5,6 +5,27 @@
 
 .. autoclass:: abjad.tools.quantizationtools.SearchTree.SearchTree.SearchTree
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.quantizationtools.SearchTree.SearchTree.SearchTree.default_definition
+      ~abjad.tools.quantizationtools.SearchTree.SearchTree.SearchTree.definition
+      ~abjad.tools.quantizationtools.SearchTree.SearchTree.SearchTree.storage_format
+      ~abjad.tools.quantizationtools.SearchTree.SearchTree.SearchTree.__call__
+      ~abjad.tools.quantizationtools.SearchTree.SearchTree.SearchTree.__eq__
+      ~abjad.tools.quantizationtools.SearchTree.SearchTree.SearchTree.__ge__
+      ~abjad.tools.quantizationtools.SearchTree.SearchTree.SearchTree.__getstate__
+      ~abjad.tools.quantizationtools.SearchTree.SearchTree.SearchTree.__gt__
+      ~abjad.tools.quantizationtools.SearchTree.SearchTree.SearchTree.__le__
+      ~abjad.tools.quantizationtools.SearchTree.SearchTree.SearchTree.__lt__
+      ~abjad.tools.quantizationtools.SearchTree.SearchTree.SearchTree.__ne__
+      ~abjad.tools.quantizationtools.SearchTree.SearchTree.SearchTree.__repr__
+      ~abjad.tools.quantizationtools.SearchTree.SearchTree.SearchTree.__setstate__
+
 Bases
 -----
 

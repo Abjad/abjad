@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.exceptiontools.TonalHarmonyError.TonalHarmonyError
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.exceptiontools.TonalHarmonyError.TonalHarmonyError.__delattr__
+      ~abjad.tools.exceptiontools.TonalHarmonyError.TonalHarmonyError.__getitem__
+      ~abjad.tools.exceptiontools.TonalHarmonyError.TonalHarmonyError.__getslice__
+      ~abjad.tools.exceptiontools.TonalHarmonyError.TonalHarmonyError.__repr__
+      ~abjad.tools.exceptiontools.TonalHarmonyError.TonalHarmonyError.__setattr__
+      ~abjad.tools.exceptiontools.TonalHarmonyError.TonalHarmonyError.__setstate__
+      ~abjad.tools.exceptiontools.TonalHarmonyError.TonalHarmonyError.__str__
+      ~abjad.tools.exceptiontools.TonalHarmonyError.TonalHarmonyError.__unicode__
+
 Bases
 -----
 

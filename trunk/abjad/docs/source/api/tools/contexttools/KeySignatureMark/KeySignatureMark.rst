@@ -5,6 +5,34 @@
 
 .. autoclass:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.attach
+      ~abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.detach
+      ~abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.effective_context
+      ~abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.lilypond_format
+      ~abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.mode
+      ~abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.name
+      ~abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.start_component
+      ~abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.storage_format
+      ~abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.target_context
+      ~abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.tonic
+      ~abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.__call__
+      ~abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.__copy__
+      ~abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.__eq__
+      ~abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.__ge__
+      ~abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.__gt__
+      ~abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.__le__
+      ~abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.__lt__
+      ~abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.__ne__
+      ~abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.__repr__
+      ~abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.__str__
+
 Bases
 -----
 

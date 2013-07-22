@@ -5,6 +5,26 @@
 
 .. autoclass:: abjad.tools.pitchtools.NumberedPitch.NumberedPitch.NumberedPitch
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.NumberedPitch.NumberedPitch.NumberedPitch.storage_format
+      ~abjad.tools.pitchtools.NumberedPitch.NumberedPitch.NumberedPitch.__abs__
+      ~abjad.tools.pitchtools.NumberedPitch.NumberedPitch.NumberedPitch.__eq__
+      ~abjad.tools.pitchtools.NumberedPitch.NumberedPitch.NumberedPitch.__float__
+      ~abjad.tools.pitchtools.NumberedPitch.NumberedPitch.NumberedPitch.__ge__
+      ~abjad.tools.pitchtools.NumberedPitch.NumberedPitch.NumberedPitch.__gt__
+      ~abjad.tools.pitchtools.NumberedPitch.NumberedPitch.NumberedPitch.__hash__
+      ~abjad.tools.pitchtools.NumberedPitch.NumberedPitch.NumberedPitch.__int__
+      ~abjad.tools.pitchtools.NumberedPitch.NumberedPitch.NumberedPitch.__le__
+      ~abjad.tools.pitchtools.NumberedPitch.NumberedPitch.NumberedPitch.__lt__
+      ~abjad.tools.pitchtools.NumberedPitch.NumberedPitch.NumberedPitch.__ne__
+      ~abjad.tools.pitchtools.NumberedPitch.NumberedPitch.NumberedPitch.__repr__
+
 Bases
 -----
 

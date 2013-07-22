@@ -5,6 +5,32 @@
 
 .. autoclass:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.datastructuretools.Digraph.Digraph.Digraph.child_graph
+      ~abjad.tools.datastructuretools.Digraph.Digraph.Digraph.cyclic_nodes
+      ~abjad.tools.datastructuretools.Digraph.Digraph.Digraph.edges
+      ~abjad.tools.datastructuretools.Digraph.Digraph.Digraph.is_cyclic
+      ~abjad.tools.datastructuretools.Digraph.Digraph.Digraph.nodes
+      ~abjad.tools.datastructuretools.Digraph.Digraph.Digraph.parent_graph
+      ~abjad.tools.datastructuretools.Digraph.Digraph.Digraph.partition
+      ~abjad.tools.datastructuretools.Digraph.Digraph.Digraph.reverse
+      ~abjad.tools.datastructuretools.Digraph.Digraph.Digraph.root_nodes
+      ~abjad.tools.datastructuretools.Digraph.Digraph.Digraph.storage_format
+      ~abjad.tools.datastructuretools.Digraph.Digraph.Digraph.terminal_nodes
+      ~abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__eq__
+      ~abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__ge__
+      ~abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__gt__
+      ~abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__le__
+      ~abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__lt__
+      ~abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__ne__
+      ~abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__repr__
+
 Bases
 -----
 

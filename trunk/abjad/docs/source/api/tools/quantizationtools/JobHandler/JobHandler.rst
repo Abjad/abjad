@@ -5,6 +5,23 @@
 
 .. autoclass:: abjad.tools.quantizationtools.JobHandler.JobHandler.JobHandler
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.quantizationtools.JobHandler.JobHandler.JobHandler.storage_format
+      ~abjad.tools.quantizationtools.JobHandler.JobHandler.JobHandler.__call__
+      ~abjad.tools.quantizationtools.JobHandler.JobHandler.JobHandler.__eq__
+      ~abjad.tools.quantizationtools.JobHandler.JobHandler.JobHandler.__ge__
+      ~abjad.tools.quantizationtools.JobHandler.JobHandler.JobHandler.__gt__
+      ~abjad.tools.quantizationtools.JobHandler.JobHandler.JobHandler.__le__
+      ~abjad.tools.quantizationtools.JobHandler.JobHandler.JobHandler.__lt__
+      ~abjad.tools.quantizationtools.JobHandler.JobHandler.JobHandler.__ne__
+      ~abjad.tools.quantizationtools.JobHandler.JobHandler.JobHandler.__repr__
+
 Bases
 -----
 

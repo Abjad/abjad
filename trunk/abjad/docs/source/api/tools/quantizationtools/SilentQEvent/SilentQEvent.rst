@@ -5,6 +5,27 @@
 
 .. autoclass:: abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent.attachments
+      ~abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent.index
+      ~abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent.offset
+      ~abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent.storage_format
+      ~abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent.__eq__
+      ~abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent.__ge__
+      ~abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent.__getstate__
+      ~abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent.__gt__
+      ~abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent.__le__
+      ~abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent.__lt__
+      ~abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent.__ne__
+      ~abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent.__repr__
+      ~abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent.__setstate__
+
 Bases
 -----
 

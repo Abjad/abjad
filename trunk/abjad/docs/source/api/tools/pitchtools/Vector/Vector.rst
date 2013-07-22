@@ -5,6 +5,46 @@
 
 .. autoclass:: abjad.tools.pitchtools.Vector.Vector.Vector
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.clear
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.copy
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.get
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.has_key
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.items
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.iteritems
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.iterkeys
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.itervalues
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.keys
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.pop
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.popitem
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.setdefault
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.storage_format
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.update
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.values
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.viewitems
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.viewkeys
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.viewvalues
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.__cmp__
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.__contains__
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.__delitem__
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.__eq__
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.__ge__
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.__getitem__
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.__gt__
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.__iter__
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.__le__
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.__len__
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.__lt__
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.__ne__
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.__repr__
+      ~abjad.tools.pitchtools.Vector.Vector.Vector.__setitem__
+
 Bases
 -----
 

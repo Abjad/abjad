@@ -5,6 +5,49 @@
 
 .. autoclass:: abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.append
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.append_left
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.attach
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.components
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.detach
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.direction
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.duration
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.duration_in_seconds
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.extend
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.extend_left
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.fracture
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.fuse
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.index
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.is_beamable_component
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.leaves
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.override
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.pop
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.pop_left
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.preprolated_duration
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.set
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.storage_format
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.timespan
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.written_duration
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.__call__
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.__contains__
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.__copy__
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.__eq__
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.__ge__
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.__getitem__
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.__gt__
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.__le__
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.__len__
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.__lt__
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.__ne__
+      ~abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.componenttools.Component.Component.Component
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.componenttools.Component.Component.Component.duration
+      ~abjad.tools.componenttools.Component.Component.Component.duration_in_seconds
+      ~abjad.tools.componenttools.Component.Component.Component.extend_in_parent
+      ~abjad.tools.componenttools.Component.Component.Component.get_mark
+      ~abjad.tools.componenttools.Component.Component.Component.get_marks
+      ~abjad.tools.componenttools.Component.Component.Component.lilypond_format
+      ~abjad.tools.componenttools.Component.Component.Component.override
+      ~abjad.tools.componenttools.Component.Component.Component.parent
+      ~abjad.tools.componenttools.Component.Component.Component.prolation
+      ~abjad.tools.componenttools.Component.Component.Component.select
+      ~abjad.tools.componenttools.Component.Component.Component.select_components
+      ~abjad.tools.componenttools.Component.Component.Component.select_contents
+      ~abjad.tools.componenttools.Component.Component.Component.select_descendants
+      ~abjad.tools.componenttools.Component.Component.Component.select_descendants_starting_with
+      ~abjad.tools.componenttools.Component.Component.Component.select_descendants_stopping_with
+      ~abjad.tools.componenttools.Component.Component.Component.select_lineage
+      ~abjad.tools.componenttools.Component.Component.Component.select_parentage
+      ~abjad.tools.componenttools.Component.Component.Component.select_vertical_moment
+      ~abjad.tools.componenttools.Component.Component.Component.select_vertical_moment_at
+      ~abjad.tools.componenttools.Component.Component.Component.set
+      ~abjad.tools.componenttools.Component.Component.Component.spanners
+      ~abjad.tools.componenttools.Component.Component.Component.storage_format
+      ~abjad.tools.componenttools.Component.Component.Component.timespan
+      ~abjad.tools.componenttools.Component.Component.Component.timespan_in_seconds
+      ~abjad.tools.componenttools.Component.Component.Component.__copy__
+      ~abjad.tools.componenttools.Component.Component.Component.__eq__
+      ~abjad.tools.componenttools.Component.Component.Component.__ge__
+      ~abjad.tools.componenttools.Component.Component.Component.__gt__
+      ~abjad.tools.componenttools.Component.Component.Component.__le__
+      ~abjad.tools.componenttools.Component.Component.Component.__lt__
+      ~abjad.tools.componenttools.Component.Component.Component.__mul__
+      ~abjad.tools.componenttools.Component.Component.Component.__ne__
+      ~abjad.tools.componenttools.Component.Component.Component.__repr__
+      ~abjad.tools.componenttools.Component.Component.Component.__rmul__
+
 Bases
 -----
 

@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.all_clefs
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.attach
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.default_instrument_name
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.default_pitch_range
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.default_short_instrument_name
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.detach
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.effective_context
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.get_default_performer_name
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.get_performer_names
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.instrument_name
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.instrument_name_markup
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.interval_of_transposition
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.is_primary_instrument
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.is_secondary_instrument
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.is_transposing
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.lilypond_format
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.pitch_range
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.primary_clefs
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.short_instrument_name
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.start_component
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.storage_format
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.target_context
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.__call__
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.__copy__
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.__eq__
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.__ge__
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.__gt__
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.__hash__
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.__le__
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.__lt__
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.__ne__
+      ~abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.__repr__
+
 Bases
 -----
 

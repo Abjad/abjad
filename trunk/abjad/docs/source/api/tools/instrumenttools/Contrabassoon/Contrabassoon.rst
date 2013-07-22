@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.all_clefs
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.attach
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.default_instrument_name
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.default_pitch_range
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.default_short_instrument_name
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.detach
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.effective_context
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.get_default_performer_name
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.get_performer_names
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.instrument_name
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.instrument_name_markup
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.interval_of_transposition
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.is_primary_instrument
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.is_secondary_instrument
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.is_transposing
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.lilypond_format
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.pitch_range
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.primary_clefs
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.short_instrument_name
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.start_component
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.storage_format
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.target_context
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.__call__
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.__copy__
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.__eq__
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.__ge__
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.__gt__
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.__hash__
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.__le__
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.__lt__
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.__ne__
+      ~abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.__repr__
+
 Bases
 -----
 

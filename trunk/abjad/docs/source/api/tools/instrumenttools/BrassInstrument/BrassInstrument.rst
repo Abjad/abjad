@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.all_clefs
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.attach
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.default_instrument_name
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.default_pitch_range
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.default_short_instrument_name
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.detach
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.effective_context
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.get_default_performer_name
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.get_performer_names
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.instrument_name
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.instrument_name_markup
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.interval_of_transposition
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.is_primary_instrument
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.is_secondary_instrument
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.is_transposing
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.lilypond_format
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.pitch_range
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.primary_clefs
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.short_instrument_name
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.start_component
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.storage_format
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.target_context
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.__call__
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.__copy__
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.__eq__
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.__ge__
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.__gt__
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.__hash__
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.__le__
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.__lt__
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.__ne__
+      ~abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument.__repr__
+
 Bases
 -----
 

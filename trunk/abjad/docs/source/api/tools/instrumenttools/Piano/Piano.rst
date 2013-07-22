@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.Piano.Piano.Piano
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.all_clefs
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.attach
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.default_instrument_name
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.default_pitch_range
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.default_short_instrument_name
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.detach
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.effective_context
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.get_default_performer_name
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.get_performer_names
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.instrument_name
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.instrument_name_markup
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.interval_of_transposition
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.is_primary_instrument
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.is_secondary_instrument
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.is_transposing
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.lilypond_format
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.pitch_range
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.primary_clefs
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.short_instrument_name
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.start_component
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.storage_format
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.target_context
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.__call__
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.__copy__
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.__eq__
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.__ge__
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.__gt__
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.__hash__
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.__le__
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.__lt__
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.__ne__
+      ~abjad.tools.instrumenttools.Piano.Piano.Piano.__repr__
+
 Bases
 -----
 

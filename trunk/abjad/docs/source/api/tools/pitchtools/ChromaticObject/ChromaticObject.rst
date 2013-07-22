@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.pitchtools.ChromaticObject.ChromaticObject.ChromaticObject
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.ChromaticObject.ChromaticObject.ChromaticObject.storage_format
+      ~abjad.tools.pitchtools.ChromaticObject.ChromaticObject.ChromaticObject.__eq__
+      ~abjad.tools.pitchtools.ChromaticObject.ChromaticObject.ChromaticObject.__ge__
+      ~abjad.tools.pitchtools.ChromaticObject.ChromaticObject.ChromaticObject.__gt__
+      ~abjad.tools.pitchtools.ChromaticObject.ChromaticObject.ChromaticObject.__le__
+      ~abjad.tools.pitchtools.ChromaticObject.ChromaticObject.ChromaticObject.__lt__
+      ~abjad.tools.pitchtools.ChromaticObject.ChromaticObject.ChromaticObject.__ne__
+      ~abjad.tools.pitchtools.ChromaticObject.ChromaticObject.ChromaticObject.__repr__
+
 Bases
 -----
 

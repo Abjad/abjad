@@ -5,6 +5,49 @@
 
 .. autoclass:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.append
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.count
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.extend
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.index
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.insert
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.is_formatted_when_empty
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.lilypond_format
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.minimal_page_breaking
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.pop
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.remove
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.reverse
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.sort
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.storage_format
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__add__
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__contains__
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__delitem__
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__delslice__
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__eq__
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__ge__
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__getitem__
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__getslice__
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__gt__
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__iadd__
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__imul__
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__iter__
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__le__
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__len__
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__lt__
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__mul__
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__ne__
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__repr__
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__reversed__
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__rmul__
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__setitem__
+      ~abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__setslice__
+
 Bases
 -----
 

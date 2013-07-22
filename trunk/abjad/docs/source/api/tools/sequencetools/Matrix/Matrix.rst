@@ -5,6 +5,25 @@
 
 .. autoclass:: abjad.tools.sequencetools.Matrix.Matrix.Matrix
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.sequencetools.Matrix.Matrix.Matrix.columns
+      ~abjad.tools.sequencetools.Matrix.Matrix.Matrix.rows
+      ~abjad.tools.sequencetools.Matrix.Matrix.Matrix.storage_format
+      ~abjad.tools.sequencetools.Matrix.Matrix.Matrix.__eq__
+      ~abjad.tools.sequencetools.Matrix.Matrix.Matrix.__ge__
+      ~abjad.tools.sequencetools.Matrix.Matrix.Matrix.__getitem__
+      ~abjad.tools.sequencetools.Matrix.Matrix.Matrix.__gt__
+      ~abjad.tools.sequencetools.Matrix.Matrix.Matrix.__le__
+      ~abjad.tools.sequencetools.Matrix.Matrix.Matrix.__lt__
+      ~abjad.tools.sequencetools.Matrix.Matrix.Matrix.__ne__
+      ~abjad.tools.sequencetools.Matrix.Matrix.Matrix.__repr__
+
 Bases
 -----
 

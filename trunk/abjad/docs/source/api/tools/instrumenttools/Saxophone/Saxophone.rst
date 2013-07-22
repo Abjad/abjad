@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.all_clefs
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.attach
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.default_instrument_name
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.default_pitch_range
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.default_short_instrument_name
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.detach
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.effective_context
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.get_default_performer_name
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.get_performer_names
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.instrument_name
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.instrument_name_markup
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.interval_of_transposition
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.is_primary_instrument
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.is_secondary_instrument
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.is_transposing
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.lilypond_format
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.pitch_range
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.primary_clefs
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.short_instrument_name
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.start_component
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.storage_format
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.target_context
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.__call__
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.__copy__
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.__eq__
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.__ge__
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.__gt__
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.__hash__
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.__le__
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.__lt__
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.__ne__
+      ~abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.__repr__
+
 Bases
 -----
 

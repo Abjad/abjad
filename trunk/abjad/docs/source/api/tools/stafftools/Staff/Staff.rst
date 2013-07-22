@@ -5,6 +5,75 @@
 
 .. autoclass:: abjad.tools.stafftools.Staff.Staff.Staff
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.stafftools.Staff.Staff.Staff.append
+      ~abjad.tools.stafftools.Staff.Staff.Staff.contents_duration
+      ~abjad.tools.stafftools.Staff.Staff.Staff.context_name
+      ~abjad.tools.stafftools.Staff.Staff.Staff.duration
+      ~abjad.tools.stafftools.Staff.Staff.Staff.duration_in_seconds
+      ~abjad.tools.stafftools.Staff.Staff.Staff.engraver_consists
+      ~abjad.tools.stafftools.Staff.Staff.Staff.engraver_removals
+      ~abjad.tools.stafftools.Staff.Staff.Staff.extend
+      ~abjad.tools.stafftools.Staff.Staff.Staff.extend_in_parent
+      ~abjad.tools.stafftools.Staff.Staff.Staff.get_mark
+      ~abjad.tools.stafftools.Staff.Staff.Staff.get_marks
+      ~abjad.tools.stafftools.Staff.Staff.Staff.index
+      ~abjad.tools.stafftools.Staff.Staff.Staff.insert
+      ~abjad.tools.stafftools.Staff.Staff.Staff.is_nonsemantic
+      ~abjad.tools.stafftools.Staff.Staff.Staff.is_parallel
+      ~abjad.tools.stafftools.Staff.Staff.Staff.is_semantic
+      ~abjad.tools.stafftools.Staff.Staff.Staff.lilypond_format
+      ~abjad.tools.stafftools.Staff.Staff.Staff.music
+      ~abjad.tools.stafftools.Staff.Staff.Staff.name
+      ~abjad.tools.stafftools.Staff.Staff.Staff.override
+      ~abjad.tools.stafftools.Staff.Staff.Staff.parent
+      ~abjad.tools.stafftools.Staff.Staff.Staff.pop
+      ~abjad.tools.stafftools.Staff.Staff.Staff.preprolated_duration
+      ~abjad.tools.stafftools.Staff.Staff.Staff.prolation
+      ~abjad.tools.stafftools.Staff.Staff.Staff.remove
+      ~abjad.tools.stafftools.Staff.Staff.Staff.select
+      ~abjad.tools.stafftools.Staff.Staff.Staff.select_components
+      ~abjad.tools.stafftools.Staff.Staff.Staff.select_contents
+      ~abjad.tools.stafftools.Staff.Staff.Staff.select_descendants
+      ~abjad.tools.stafftools.Staff.Staff.Staff.select_descendants_starting_with
+      ~abjad.tools.stafftools.Staff.Staff.Staff.select_descendants_stopping_with
+      ~abjad.tools.stafftools.Staff.Staff.Staff.select_leaves
+      ~abjad.tools.stafftools.Staff.Staff.Staff.select_lineage
+      ~abjad.tools.stafftools.Staff.Staff.Staff.select_parentage
+      ~abjad.tools.stafftools.Staff.Staff.Staff.select_vertical_moment
+      ~abjad.tools.stafftools.Staff.Staff.Staff.select_vertical_moment_at
+      ~abjad.tools.stafftools.Staff.Staff.Staff.set
+      ~abjad.tools.stafftools.Staff.Staff.Staff.shorten
+      ~abjad.tools.stafftools.Staff.Staff.Staff.spanners
+      ~abjad.tools.stafftools.Staff.Staff.Staff.storage_format
+      ~abjad.tools.stafftools.Staff.Staff.Staff.timespan
+      ~abjad.tools.stafftools.Staff.Staff.Staff.timespan_in_seconds
+      ~abjad.tools.stafftools.Staff.Staff.Staff.__add__
+      ~abjad.tools.stafftools.Staff.Staff.Staff.__contains__
+      ~abjad.tools.stafftools.Staff.Staff.Staff.__copy__
+      ~abjad.tools.stafftools.Staff.Staff.Staff.__delitem__
+      ~abjad.tools.stafftools.Staff.Staff.Staff.__eq__
+      ~abjad.tools.stafftools.Staff.Staff.Staff.__ge__
+      ~abjad.tools.stafftools.Staff.Staff.Staff.__getitem__
+      ~abjad.tools.stafftools.Staff.Staff.Staff.__gt__
+      ~abjad.tools.stafftools.Staff.Staff.Staff.__iadd__
+      ~abjad.tools.stafftools.Staff.Staff.Staff.__imul__
+      ~abjad.tools.stafftools.Staff.Staff.Staff.__le__
+      ~abjad.tools.stafftools.Staff.Staff.Staff.__len__
+      ~abjad.tools.stafftools.Staff.Staff.Staff.__lt__
+      ~abjad.tools.stafftools.Staff.Staff.Staff.__mul__
+      ~abjad.tools.stafftools.Staff.Staff.Staff.__ne__
+      ~abjad.tools.stafftools.Staff.Staff.Staff.__radd__
+      ~abjad.tools.stafftools.Staff.Staff.Staff.__repr__
+      ~abjad.tools.stafftools.Staff.Staff.Staff.__rmul__
+      ~abjad.tools.stafftools.Staff.Staff.Staff.__setitem__
+
 Bases
 -----
 

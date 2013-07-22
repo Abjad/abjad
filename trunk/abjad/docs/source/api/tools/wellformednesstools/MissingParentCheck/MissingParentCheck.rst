@@ -5,6 +5,26 @@
 
 .. autoclass:: abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck.check
+      ~abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck.list_checks
+      ~abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck.report
+      ~abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck.storage_format
+      ~abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck.violators
+      ~abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck.__eq__
+      ~abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck.__ge__
+      ~abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck.__gt__
+      ~abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck.__le__
+      ~abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck.__lt__
+      ~abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck.__ne__
+      ~abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck.__repr__
+
 Bases
 -----
 

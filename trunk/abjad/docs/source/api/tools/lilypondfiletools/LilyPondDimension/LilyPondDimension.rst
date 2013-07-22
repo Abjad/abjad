@@ -5,6 +5,25 @@
 
 .. autoclass:: abjad.tools.lilypondfiletools.LilyPondDimension.LilyPondDimension.LilyPondDimension
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.lilypondfiletools.LilyPondDimension.LilyPondDimension.LilyPondDimension.lilypond_format
+      ~abjad.tools.lilypondfiletools.LilyPondDimension.LilyPondDimension.LilyPondDimension.storage_format
+      ~abjad.tools.lilypondfiletools.LilyPondDimension.LilyPondDimension.LilyPondDimension.unit
+      ~abjad.tools.lilypondfiletools.LilyPondDimension.LilyPondDimension.LilyPondDimension.value
+      ~abjad.tools.lilypondfiletools.LilyPondDimension.LilyPondDimension.LilyPondDimension.__eq__
+      ~abjad.tools.lilypondfiletools.LilyPondDimension.LilyPondDimension.LilyPondDimension.__ge__
+      ~abjad.tools.lilypondfiletools.LilyPondDimension.LilyPondDimension.LilyPondDimension.__gt__
+      ~abjad.tools.lilypondfiletools.LilyPondDimension.LilyPondDimension.LilyPondDimension.__le__
+      ~abjad.tools.lilypondfiletools.LilyPondDimension.LilyPondDimension.LilyPondDimension.__lt__
+      ~abjad.tools.lilypondfiletools.LilyPondDimension.LilyPondDimension.LilyPondDimension.__ne__
+      ~abjad.tools.lilypondfiletools.LilyPondDimension.LilyPondDimension.LilyPondDimension.__repr__
+
 Bases
 -----
 

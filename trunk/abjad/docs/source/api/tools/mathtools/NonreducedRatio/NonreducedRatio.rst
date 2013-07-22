@@ -5,6 +5,34 @@
 
 .. autoclass:: abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio.count
+      ~abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio.index
+      ~abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio.storage_format
+      ~abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio.__add__
+      ~abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio.__contains__
+      ~abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio.__eq__
+      ~abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio.__ge__
+      ~abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio.__getitem__
+      ~abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio.__getslice__
+      ~abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio.__gt__
+      ~abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio.__hash__
+      ~abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio.__iter__
+      ~abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio.__le__
+      ~abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio.__len__
+      ~abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio.__lt__
+      ~abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio.__mul__
+      ~abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio.__ne__
+      ~abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio.__new__
+      ~abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio.__repr__
+      ~abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio.__rmul__
+
 Bases
 -----
 

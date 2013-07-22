@@ -5,6 +5,42 @@
 
 .. autoclass:: abjad.tools.componenttools.Lineage.Lineage.Lineage
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.attach_marks
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.attach_spanners
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.component
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.detach_marks
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.detach_spanners
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.duration
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.duration_in_seconds
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.get
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.get_offset_lists
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.get_parent_and_start_stop_indices
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.group_by
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.music
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.preprolated_duration
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.select_vertical_moment_at
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.storage_format
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.timespan
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.__add__
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.__contains__
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.__eq__
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.__ge__
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.__getitem__
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.__gt__
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.__le__
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.__len__
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.__lt__
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.__ne__
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.__radd__
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.__repr__
+
 Bases
 -----
 

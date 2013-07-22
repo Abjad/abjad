@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.append
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.count
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.extend
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.index
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.insert
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.is_formatted_when_empty
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.lilypond_format
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.pop
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.remove
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.reverse
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.sort
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.storage_format
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__add__
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__contains__
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__delitem__
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__delslice__
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__eq__
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__ge__
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__getitem__
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__getslice__
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__gt__
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__iadd__
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__imul__
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__iter__
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__le__
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__len__
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__lt__
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__mul__
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__ne__
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__repr__
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__reversed__
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__rmul__
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__setitem__
+      ~abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__setslice__
+
 Bases
 -----
 

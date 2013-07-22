@@ -5,6 +5,26 @@
 
 .. autoclass:: abjad.tools.markuptools.MusicGlyph.MusicGlyph.MusicGlyph
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.markuptools.MusicGlyph.MusicGlyph.MusicGlyph.args
+      ~abjad.tools.markuptools.MusicGlyph.MusicGlyph.MusicGlyph.command
+      ~abjad.tools.markuptools.MusicGlyph.MusicGlyph.MusicGlyph.lilypond_format
+      ~abjad.tools.markuptools.MusicGlyph.MusicGlyph.MusicGlyph.storage_format
+      ~abjad.tools.markuptools.MusicGlyph.MusicGlyph.MusicGlyph.__eq__
+      ~abjad.tools.markuptools.MusicGlyph.MusicGlyph.MusicGlyph.__ge__
+      ~abjad.tools.markuptools.MusicGlyph.MusicGlyph.MusicGlyph.__gt__
+      ~abjad.tools.markuptools.MusicGlyph.MusicGlyph.MusicGlyph.__le__
+      ~abjad.tools.markuptools.MusicGlyph.MusicGlyph.MusicGlyph.__lt__
+      ~abjad.tools.markuptools.MusicGlyph.MusicGlyph.MusicGlyph.__ne__
+      ~abjad.tools.markuptools.MusicGlyph.MusicGlyph.MusicGlyph.__repr__
+      ~abjad.tools.markuptools.MusicGlyph.MusicGlyph.MusicGlyph.__str__
+
 Bases
 -----
 

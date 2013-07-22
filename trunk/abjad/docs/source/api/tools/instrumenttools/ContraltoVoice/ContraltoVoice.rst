@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.all_clefs
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.attach
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.default_instrument_name
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.default_pitch_range
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.default_short_instrument_name
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.detach
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.effective_context
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.get_default_performer_name
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.get_performer_names
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.instrument_name
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.instrument_name_markup
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.interval_of_transposition
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.is_primary_instrument
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.is_secondary_instrument
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.is_transposing
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.lilypond_format
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.pitch_range
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.primary_clefs
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.short_instrument_name
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.start_component
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.storage_format
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.target_context
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.__call__
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.__copy__
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.__eq__
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.__ge__
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.__gt__
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.__hash__
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.__le__
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.__lt__
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.__ne__
+      ~abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice.__repr__
+
 Bases
 -----
 

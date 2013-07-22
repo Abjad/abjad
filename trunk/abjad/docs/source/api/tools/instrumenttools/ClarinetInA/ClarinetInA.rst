@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.all_clefs
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.attach
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.default_instrument_name
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.default_pitch_range
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.default_short_instrument_name
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.detach
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.effective_context
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.get_default_performer_name
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.get_performer_names
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.instrument_name
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.instrument_name_markup
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.interval_of_transposition
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.is_primary_instrument
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.is_secondary_instrument
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.is_transposing
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.lilypond_format
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.pitch_range
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.primary_clefs
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.short_instrument_name
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.start_component
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.storage_format
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.target_context
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.__call__
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.__copy__
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.__eq__
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.__ge__
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.__gt__
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.__hash__
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.__le__
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.__lt__
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.__ne__
+      ~abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.__repr__
+
 Bases
 -----
 

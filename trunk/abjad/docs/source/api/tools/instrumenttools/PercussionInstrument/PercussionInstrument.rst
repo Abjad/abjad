@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.all_clefs
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.attach
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.default_instrument_name
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.default_pitch_range
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.default_short_instrument_name
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.detach
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.effective_context
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.get_default_performer_name
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.get_performer_names
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.instrument_name
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.instrument_name_markup
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.interval_of_transposition
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.is_primary_instrument
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.is_secondary_instrument
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.is_transposing
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.lilypond_format
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.pitch_range
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.primary_clefs
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.short_instrument_name
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.start_component
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.storage_format
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.target_context
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.__call__
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.__copy__
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.__eq__
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.__ge__
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.__gt__
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.__hash__
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.__le__
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.__lt__
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.__ne__
+      ~abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.__repr__
+
 Bases
 -----
 

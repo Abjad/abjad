@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.all_clefs
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.attach
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.default_instrument_name
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.default_pitch_range
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.default_short_instrument_name
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.detach
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.effective_context
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.get_default_performer_name
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.get_performer_names
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.instrument_name
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.instrument_name_markup
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.interval_of_transposition
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.is_primary_instrument
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.is_secondary_instrument
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.is_transposing
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.lilypond_format
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.pitch_range
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.primary_clefs
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.short_instrument_name
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.start_component
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.storage_format
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.target_context
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.__call__
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.__copy__
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.__eq__
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.__ge__
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.__gt__
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.__hash__
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.__le__
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.__lt__
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.__ne__
+      ~abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.__repr__
+
 Bases
 -----
 

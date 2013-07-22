@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.all_clefs
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.attach
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.default_instrument_name
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.default_pitch_range
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.default_short_instrument_name
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.detach
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.effective_context
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.get_default_performer_name
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.get_performer_names
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.instrument_name
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.instrument_name_markup
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.interval_of_transposition
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.is_primary_instrument
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.is_secondary_instrument
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.is_transposing
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.lilypond_format
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.pitch_range
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.primary_clefs
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.short_instrument_name
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.start_component
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.storage_format
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.target_context
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.__call__
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.__copy__
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.__eq__
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.__ge__
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.__gt__
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.__hash__
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.__le__
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.__lt__
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.__ne__
+      ~abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.__repr__
+
 Bases
 -----
 

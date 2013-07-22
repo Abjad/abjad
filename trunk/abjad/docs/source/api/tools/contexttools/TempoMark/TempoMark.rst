@@ -5,6 +5,40 @@
 
 .. autoclass:: abjad.tools.contexttools.TempoMark.TempoMark.TempoMark
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.attach
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.detach
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.duration
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.effective_context
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.is_imprecise
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.is_tempo_mark_token
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.lilypond_format
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.quarters_per_minute
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.start_component
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.storage_format
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.target_context
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.textual_indication
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.units_per_minute
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.__add__
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.__call__
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.__copy__
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.__div__
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.__eq__
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.__ge__
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.__gt__
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.__le__
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.__lt__
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.__mul__
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.__ne__
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.__repr__
+      ~abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.__sub__
+
 Bases
 -----
 

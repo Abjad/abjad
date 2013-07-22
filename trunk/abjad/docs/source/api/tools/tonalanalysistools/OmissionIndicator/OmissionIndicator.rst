@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.tonalanalysistools.OmissionIndicator.OmissionIndicator.OmissionIndicator
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.tonalanalysistools.OmissionIndicator.OmissionIndicator.OmissionIndicator.storage_format
+      ~abjad.tools.tonalanalysistools.OmissionIndicator.OmissionIndicator.OmissionIndicator.__eq__
+      ~abjad.tools.tonalanalysistools.OmissionIndicator.OmissionIndicator.OmissionIndicator.__ge__
+      ~abjad.tools.tonalanalysistools.OmissionIndicator.OmissionIndicator.OmissionIndicator.__gt__
+      ~abjad.tools.tonalanalysistools.OmissionIndicator.OmissionIndicator.OmissionIndicator.__le__
+      ~abjad.tools.tonalanalysistools.OmissionIndicator.OmissionIndicator.OmissionIndicator.__lt__
+      ~abjad.tools.tonalanalysistools.OmissionIndicator.OmissionIndicator.OmissionIndicator.__ne__
+      ~abjad.tools.tonalanalysistools.OmissionIndicator.OmissionIndicator.OmissionIndicator.__repr__
+
 Bases
 -----
 

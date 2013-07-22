@@ -5,6 +5,23 @@
 
 .. autoclass:: abjad.tools.quantizationtools.MeasurewiseAttackPointOptimizer.MeasurewiseAttackPointOptimizer.MeasurewiseAttackPointOptimizer
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.quantizationtools.MeasurewiseAttackPointOptimizer.MeasurewiseAttackPointOptimizer.MeasurewiseAttackPointOptimizer.storage_format
+      ~abjad.tools.quantizationtools.MeasurewiseAttackPointOptimizer.MeasurewiseAttackPointOptimizer.MeasurewiseAttackPointOptimizer.__call__
+      ~abjad.tools.quantizationtools.MeasurewiseAttackPointOptimizer.MeasurewiseAttackPointOptimizer.MeasurewiseAttackPointOptimizer.__eq__
+      ~abjad.tools.quantizationtools.MeasurewiseAttackPointOptimizer.MeasurewiseAttackPointOptimizer.MeasurewiseAttackPointOptimizer.__ge__
+      ~abjad.tools.quantizationtools.MeasurewiseAttackPointOptimizer.MeasurewiseAttackPointOptimizer.MeasurewiseAttackPointOptimizer.__gt__
+      ~abjad.tools.quantizationtools.MeasurewiseAttackPointOptimizer.MeasurewiseAttackPointOptimizer.MeasurewiseAttackPointOptimizer.__le__
+      ~abjad.tools.quantizationtools.MeasurewiseAttackPointOptimizer.MeasurewiseAttackPointOptimizer.MeasurewiseAttackPointOptimizer.__lt__
+      ~abjad.tools.quantizationtools.MeasurewiseAttackPointOptimizer.MeasurewiseAttackPointOptimizer.MeasurewiseAttackPointOptimizer.__ne__
+      ~abjad.tools.quantizationtools.MeasurewiseAttackPointOptimizer.MeasurewiseAttackPointOptimizer.MeasurewiseAttackPointOptimizer.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,47 @@
 
 .. autoclass:: abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.bpf
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.clip_x_axis
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.clip_y_axis
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.concatenate
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.dc_bias
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.get_y_at_x
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.gnuplot_format
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.invert
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.normalize_axes
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.reflect
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.remove_dc_bias
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.scale_x_axis
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.scale_y_axis
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.set_y_at_x
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.storage_format
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.tessalate_by_ratio
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.x_center
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.x_range
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.x_values
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.y_center
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.y_range
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.__add__
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.__div__
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.__eq__
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.__ge__
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.__getitem__
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.__gt__
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.__le__
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.__lt__
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.__mul__
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.__ne__
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.__repr__
+      ~abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction.__sub__
+
 Bases
 -----
 

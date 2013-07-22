@@ -5,6 +5,25 @@
 
 .. autoclass:: abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode.SyntaxNode
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode.SyntaxNode.storage_format
+      ~abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode.SyntaxNode.__eq__
+      ~abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode.SyntaxNode.__ge__
+      ~abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode.SyntaxNode.__getitem__
+      ~abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode.SyntaxNode.__gt__
+      ~abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode.SyntaxNode.__le__
+      ~abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode.SyntaxNode.__len__
+      ~abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode.SyntaxNode.__lt__
+      ~abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode.SyntaxNode.__ne__
+      ~abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode.SyntaxNode.__repr__
+      ~abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode.SyntaxNode.__str__
+
 Bases
 -----
 

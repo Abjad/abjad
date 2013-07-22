@@ -5,6 +5,50 @@
 
 .. autoclass:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.depth
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.depthwise_inventory
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.duration
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.graph_order
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.graphviz_format
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.graphviz_graph
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.improper_parentage
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.is_divisible
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.name
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.parent
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.parentage_ratios
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.preceding_q_event_proxies
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.preprolated_duration
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.pretty_rtm_format
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.prolation
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.prolations
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.proper_parentage
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.q_event_proxies
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.root
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.rtm_format
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.start_offset
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.stop_offset
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.storage_format
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.succeeding_q_event_proxies
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__call__
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__copy__
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__deepcopy__
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__eq__
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__ge__
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__getstate__
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__gt__
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__le__
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__lt__
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__ne__
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__repr__
+      ~abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__setstate__
+
 Bases
 -----
 

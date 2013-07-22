@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.all_clefs
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.attach
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.default_instrument_name
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.default_pitch_range
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.default_short_instrument_name
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.detach
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.effective_context
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.get_default_performer_name
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.get_performer_names
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.instrument_name
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.instrument_name_markup
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.interval_of_transposition
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.is_primary_instrument
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.is_secondary_instrument
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.is_transposing
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.lilypond_format
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.pitch_range
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.primary_clefs
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.short_instrument_name
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.start_component
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.storage_format
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.target_context
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.__call__
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.__copy__
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.__eq__
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.__ge__
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.__gt__
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.__hash__
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.__le__
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.__lt__
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.__ne__
+      ~abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet.__repr__
+
 Bases
 -----
 

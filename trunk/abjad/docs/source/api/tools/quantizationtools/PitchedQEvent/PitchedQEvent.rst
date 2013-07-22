@@ -5,6 +5,28 @@
 
 .. autoclass:: abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent.attachments
+      ~abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent.index
+      ~abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent.offset
+      ~abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent.pitches
+      ~abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent.storage_format
+      ~abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent.__eq__
+      ~abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent.__ge__
+      ~abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent.__getstate__
+      ~abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent.__gt__
+      ~abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent.__le__
+      ~abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent.__lt__
+      ~abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent.__ne__
+      ~abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent.__repr__
+      ~abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent.__setstate__
+
 Bases
 -----
 

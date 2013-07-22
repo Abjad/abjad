@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.exceptiontools.LineBreakError.LineBreakError
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.exceptiontools.LineBreakError.LineBreakError.__delattr__
+      ~abjad.tools.exceptiontools.LineBreakError.LineBreakError.__getitem__
+      ~abjad.tools.exceptiontools.LineBreakError.LineBreakError.__getslice__
+      ~abjad.tools.exceptiontools.LineBreakError.LineBreakError.__repr__
+      ~abjad.tools.exceptiontools.LineBreakError.LineBreakError.__setattr__
+      ~abjad.tools.exceptiontools.LineBreakError.LineBreakError.__setstate__
+      ~abjad.tools.exceptiontools.LineBreakError.LineBreakError.__str__
+      ~abjad.tools.exceptiontools.LineBreakError.LineBreakError.__unicode__
+
 Bases
 -----
 

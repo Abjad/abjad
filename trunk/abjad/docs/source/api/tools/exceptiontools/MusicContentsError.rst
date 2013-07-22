@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.exceptiontools.MusicContentsError.MusicContentsError
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.exceptiontools.MusicContentsError.MusicContentsError.__delattr__
+      ~abjad.tools.exceptiontools.MusicContentsError.MusicContentsError.__getitem__
+      ~abjad.tools.exceptiontools.MusicContentsError.MusicContentsError.__getslice__
+      ~abjad.tools.exceptiontools.MusicContentsError.MusicContentsError.__repr__
+      ~abjad.tools.exceptiontools.MusicContentsError.MusicContentsError.__setattr__
+      ~abjad.tools.exceptiontools.MusicContentsError.MusicContentsError.__setstate__
+      ~abjad.tools.exceptiontools.MusicContentsError.MusicContentsError.__str__
+      ~abjad.tools.exceptiontools.MusicContentsError.MusicContentsError.__unicode__
+
 Bases
 -----
 

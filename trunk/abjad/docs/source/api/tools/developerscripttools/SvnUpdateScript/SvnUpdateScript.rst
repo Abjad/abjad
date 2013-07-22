@@ -5,6 +5,35 @@
 
 .. autoclass:: abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript.alias
+      ~abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript.argument_parser
+      ~abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript.formatted_help
+      ~abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript.formatted_usage
+      ~abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript.formatted_version
+      ~abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript.long_description
+      ~abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript.process_args
+      ~abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript.program_name
+      ~abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript.scripting_group
+      ~abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript.setup_argument_parser
+      ~abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript.short_description
+      ~abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript.storage_format
+      ~abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript.version
+      ~abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript.__call__
+      ~abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript.__eq__
+      ~abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript.__ge__
+      ~abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript.__gt__
+      ~abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript.__le__
+      ~abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript.__lt__
+      ~abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript.__ne__
+      ~abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript.__repr__
+
 Bases
 -----
 

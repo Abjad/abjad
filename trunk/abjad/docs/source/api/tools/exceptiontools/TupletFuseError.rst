@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.exceptiontools.TupletFuseError.TupletFuseError
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.exceptiontools.TupletFuseError.TupletFuseError.__delattr__
+      ~abjad.tools.exceptiontools.TupletFuseError.TupletFuseError.__getitem__
+      ~abjad.tools.exceptiontools.TupletFuseError.TupletFuseError.__getslice__
+      ~abjad.tools.exceptiontools.TupletFuseError.TupletFuseError.__repr__
+      ~abjad.tools.exceptiontools.TupletFuseError.TupletFuseError.__setattr__
+      ~abjad.tools.exceptiontools.TupletFuseError.TupletFuseError.__setstate__
+      ~abjad.tools.exceptiontools.TupletFuseError.TupletFuseError.__str__
+      ~abjad.tools.exceptiontools.TupletFuseError.TupletFuseError.__unicode__
+
 Bases
 -----
 

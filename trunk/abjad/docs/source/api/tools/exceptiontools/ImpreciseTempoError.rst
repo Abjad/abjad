@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.exceptiontools.ImpreciseTempoError.ImpreciseTempoError
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.exceptiontools.ImpreciseTempoError.ImpreciseTempoError.__delattr__
+      ~abjad.tools.exceptiontools.ImpreciseTempoError.ImpreciseTempoError.__getitem__
+      ~abjad.tools.exceptiontools.ImpreciseTempoError.ImpreciseTempoError.__getslice__
+      ~abjad.tools.exceptiontools.ImpreciseTempoError.ImpreciseTempoError.__repr__
+      ~abjad.tools.exceptiontools.ImpreciseTempoError.ImpreciseTempoError.__setattr__
+      ~abjad.tools.exceptiontools.ImpreciseTempoError.ImpreciseTempoError.__setstate__
+      ~abjad.tools.exceptiontools.ImpreciseTempoError.ImpreciseTempoError.__str__
+      ~abjad.tools.exceptiontools.ImpreciseTempoError.ImpreciseTempoError.__unicode__
+
 Bases
 -----
 

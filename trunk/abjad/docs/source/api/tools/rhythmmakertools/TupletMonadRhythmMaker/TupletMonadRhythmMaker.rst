@@ -5,6 +5,25 @@
 
 .. autoclass:: abjad.tools.rhythmmakertools.TupletMonadRhythmMaker.TupletMonadRhythmMaker.TupletMonadRhythmMaker
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.rhythmmakertools.TupletMonadRhythmMaker.TupletMonadRhythmMaker.TupletMonadRhythmMaker.new
+      ~abjad.tools.rhythmmakertools.TupletMonadRhythmMaker.TupletMonadRhythmMaker.TupletMonadRhythmMaker.reverse
+      ~abjad.tools.rhythmmakertools.TupletMonadRhythmMaker.TupletMonadRhythmMaker.TupletMonadRhythmMaker.storage_format
+      ~abjad.tools.rhythmmakertools.TupletMonadRhythmMaker.TupletMonadRhythmMaker.TupletMonadRhythmMaker.__call__
+      ~abjad.tools.rhythmmakertools.TupletMonadRhythmMaker.TupletMonadRhythmMaker.TupletMonadRhythmMaker.__eq__
+      ~abjad.tools.rhythmmakertools.TupletMonadRhythmMaker.TupletMonadRhythmMaker.TupletMonadRhythmMaker.__ge__
+      ~abjad.tools.rhythmmakertools.TupletMonadRhythmMaker.TupletMonadRhythmMaker.TupletMonadRhythmMaker.__gt__
+      ~abjad.tools.rhythmmakertools.TupletMonadRhythmMaker.TupletMonadRhythmMaker.TupletMonadRhythmMaker.__le__
+      ~abjad.tools.rhythmmakertools.TupletMonadRhythmMaker.TupletMonadRhythmMaker.TupletMonadRhythmMaker.__lt__
+      ~abjad.tools.rhythmmakertools.TupletMonadRhythmMaker.TupletMonadRhythmMaker.TupletMonadRhythmMaker.__ne__
+      ~abjad.tools.rhythmmakertools.TupletMonadRhythmMaker.TupletMonadRhythmMaker.TupletMonadRhythmMaker.__repr__
+
 Bases
 -----
 

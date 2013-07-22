@@ -5,6 +5,50 @@
 
 .. autoclass:: abjad.tools.leaftools.TieChain.TieChain.TieChain
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.all_leaves_are_in_same_parent
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.attach_marks
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.attach_spanners
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.detach_marks
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.detach_spanners
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.duration
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.duration_in_seconds
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.get
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.get_offset_lists
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.get_parent_and_start_stop_indices
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.group_by
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.head
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.is_pitched
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.is_trivial
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.leaves
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.leaves_grouped_by_immediate_parents
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.music
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.preprolated_duration
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.select_vertical_moment_at
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.storage_format
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.tie_spanner
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.timespan
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.to_tuplet
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.written_duration
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.__add__
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.__contains__
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.__eq__
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.__ge__
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.__getitem__
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.__gt__
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.__le__
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.__len__
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.__lt__
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.__ne__
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.__radd__
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.__repr__
+
 Bases
 -----
 

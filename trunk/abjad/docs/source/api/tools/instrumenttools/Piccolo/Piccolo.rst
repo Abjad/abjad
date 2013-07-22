@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.all_clefs
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.attach
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.default_instrument_name
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.default_pitch_range
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.default_short_instrument_name
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.detach
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.effective_context
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.get_default_performer_name
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.get_performer_names
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.instrument_name
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.instrument_name_markup
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.interval_of_transposition
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.is_primary_instrument
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.is_secondary_instrument
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.is_transposing
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.lilypond_format
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.pitch_range
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.primary_clefs
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.short_instrument_name
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.start_component
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.storage_format
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.target_context
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.__call__
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.__copy__
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.__eq__
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.__ge__
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.__gt__
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.__hash__
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.__le__
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.__lt__
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.__ne__
+      ~abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo.__repr__
+
 Bases
 -----
 

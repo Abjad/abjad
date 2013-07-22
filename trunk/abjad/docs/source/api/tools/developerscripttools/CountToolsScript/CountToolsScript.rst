@@ -5,6 +5,35 @@
 
 .. autoclass:: abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.alias
+      ~abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.argument_parser
+      ~abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.formatted_help
+      ~abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.formatted_usage
+      ~abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.formatted_version
+      ~abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.long_description
+      ~abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.process_args
+      ~abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.program_name
+      ~abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.scripting_group
+      ~abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.setup_argument_parser
+      ~abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.short_description
+      ~abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.storage_format
+      ~abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.version
+      ~abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.__call__
+      ~abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.__eq__
+      ~abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.__ge__
+      ~abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.__gt__
+      ~abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.__le__
+      ~abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.__lt__
+      ~abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.__ne__
+      ~abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.__repr__
+
 Bases
 -----
 

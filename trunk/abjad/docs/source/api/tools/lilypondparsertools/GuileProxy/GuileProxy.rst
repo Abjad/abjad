@@ -5,6 +5,44 @@
 
 .. autoclass:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.acciaccatura
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.appoggiatura
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.bar
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.breathe
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.clef
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.grace
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.key
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.language
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.makeClusters
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.mark
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.one_voice
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.relative
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.skip
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.slashed_grace_container
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.storage_format
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.time
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.times
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.transpose
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.voiceFour
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.voiceOne
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.voiceThree
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.voiceTwo
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.__call__
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.__eq__
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.__ge__
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.__gt__
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.__le__
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.__lt__
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.__ne__
+      ~abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy.__repr__
+
 Bases
 -----
 

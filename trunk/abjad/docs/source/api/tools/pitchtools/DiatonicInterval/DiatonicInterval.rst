@@ -5,6 +5,35 @@
 
 .. autoclass:: abjad.tools.pitchtools.DiatonicInterval.DiatonicInterval.DiatonicInterval
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.DiatonicInterval.DiatonicInterval.DiatonicInterval.cents
+      ~abjad.tools.pitchtools.DiatonicInterval.DiatonicInterval.DiatonicInterval.diatonic_interval_class
+      ~abjad.tools.pitchtools.DiatonicInterval.DiatonicInterval.DiatonicInterval.interval_class
+      ~abjad.tools.pitchtools.DiatonicInterval.DiatonicInterval.DiatonicInterval.interval_string
+      ~abjad.tools.pitchtools.DiatonicInterval.DiatonicInterval.DiatonicInterval.number
+      ~abjad.tools.pitchtools.DiatonicInterval.DiatonicInterval.DiatonicInterval.quality_string
+      ~abjad.tools.pitchtools.DiatonicInterval.DiatonicInterval.DiatonicInterval.semitones
+      ~abjad.tools.pitchtools.DiatonicInterval.DiatonicInterval.DiatonicInterval.staff_spaces
+      ~abjad.tools.pitchtools.DiatonicInterval.DiatonicInterval.DiatonicInterval.storage_format
+      ~abjad.tools.pitchtools.DiatonicInterval.DiatonicInterval.DiatonicInterval.__abs__
+      ~abjad.tools.pitchtools.DiatonicInterval.DiatonicInterval.DiatonicInterval.__eq__
+      ~abjad.tools.pitchtools.DiatonicInterval.DiatonicInterval.DiatonicInterval.__float__
+      ~abjad.tools.pitchtools.DiatonicInterval.DiatonicInterval.DiatonicInterval.__ge__
+      ~abjad.tools.pitchtools.DiatonicInterval.DiatonicInterval.DiatonicInterval.__gt__
+      ~abjad.tools.pitchtools.DiatonicInterval.DiatonicInterval.DiatonicInterval.__hash__
+      ~abjad.tools.pitchtools.DiatonicInterval.DiatonicInterval.DiatonicInterval.__int__
+      ~abjad.tools.pitchtools.DiatonicInterval.DiatonicInterval.DiatonicInterval.__le__
+      ~abjad.tools.pitchtools.DiatonicInterval.DiatonicInterval.DiatonicInterval.__lt__
+      ~abjad.tools.pitchtools.DiatonicInterval.DiatonicInterval.DiatonicInterval.__ne__
+      ~abjad.tools.pitchtools.DiatonicInterval.DiatonicInterval.DiatonicInterval.__repr__
+      ~abjad.tools.pitchtools.DiatonicInterval.DiatonicInterval.DiatonicInterval.__str__
+
 Bases
 -----
 

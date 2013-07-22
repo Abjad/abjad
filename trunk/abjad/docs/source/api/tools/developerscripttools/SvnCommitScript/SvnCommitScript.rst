@@ -5,6 +5,35 @@
 
 .. autoclass:: abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript.alias
+      ~abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript.argument_parser
+      ~abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript.formatted_help
+      ~abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript.formatted_usage
+      ~abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript.formatted_version
+      ~abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript.long_description
+      ~abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript.process_args
+      ~abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript.program_name
+      ~abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript.scripting_group
+      ~abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript.setup_argument_parser
+      ~abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript.short_description
+      ~abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript.storage_format
+      ~abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript.version
+      ~abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript.__call__
+      ~abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript.__eq__
+      ~abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript.__ge__
+      ~abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript.__gt__
+      ~abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript.__le__
+      ~abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript.__lt__
+      ~abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript.__ne__
+      ~abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript.__repr__
+
 Bases
 -----
 

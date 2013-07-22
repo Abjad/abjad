@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.exceptiontools.TimeSignatureError.TimeSignatureError
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.exceptiontools.TimeSignatureError.TimeSignatureError.__delattr__
+      ~abjad.tools.exceptiontools.TimeSignatureError.TimeSignatureError.__getitem__
+      ~abjad.tools.exceptiontools.TimeSignatureError.TimeSignatureError.__getslice__
+      ~abjad.tools.exceptiontools.TimeSignatureError.TimeSignatureError.__repr__
+      ~abjad.tools.exceptiontools.TimeSignatureError.TimeSignatureError.__setattr__
+      ~abjad.tools.exceptiontools.TimeSignatureError.TimeSignatureError.__setstate__
+      ~abjad.tools.exceptiontools.TimeSignatureError.TimeSignatureError.__str__
+      ~abjad.tools.exceptiontools.TimeSignatureError.TimeSignatureError.__unicode__
+
 Bases
 -----
 

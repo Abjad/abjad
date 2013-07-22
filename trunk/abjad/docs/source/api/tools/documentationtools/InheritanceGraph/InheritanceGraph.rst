@@ -5,6 +5,37 @@
 
 .. autoclass:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.addresses
+      ~abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.child_parents_mapping
+      ~abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.graphviz_format
+      ~abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.graphviz_graph
+      ~abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.immediate_classes
+      ~abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.lineage_addresses
+      ~abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.lineage_classes
+      ~abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.lineage_distance_mapping
+      ~abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.lineage_prune_distance
+      ~abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.parent_children_mapping
+      ~abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.recurse_into_submodules
+      ~abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.root_addresses
+      ~abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.root_classes
+      ~abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.storage_format
+      ~abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.use_clusters
+      ~abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.use_groups
+      ~abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.__eq__
+      ~abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.__ge__
+      ~abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.__gt__
+      ~abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.__le__
+      ~abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.__lt__
+      ~abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.__ne__
+      ~abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.__repr__
+
 Bases
 -----
 

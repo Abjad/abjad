@@ -5,6 +5,26 @@
 
 .. autoclass:: abjad.tools.pitchtools.ChromaticPitch.ChromaticPitch.ChromaticPitch
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.ChromaticPitch.ChromaticPitch.ChromaticPitch.storage_format
+      ~abjad.tools.pitchtools.ChromaticPitch.ChromaticPitch.ChromaticPitch.__abs__
+      ~abjad.tools.pitchtools.ChromaticPitch.ChromaticPitch.ChromaticPitch.__eq__
+      ~abjad.tools.pitchtools.ChromaticPitch.ChromaticPitch.ChromaticPitch.__float__
+      ~abjad.tools.pitchtools.ChromaticPitch.ChromaticPitch.ChromaticPitch.__ge__
+      ~abjad.tools.pitchtools.ChromaticPitch.ChromaticPitch.ChromaticPitch.__gt__
+      ~abjad.tools.pitchtools.ChromaticPitch.ChromaticPitch.ChromaticPitch.__hash__
+      ~abjad.tools.pitchtools.ChromaticPitch.ChromaticPitch.ChromaticPitch.__int__
+      ~abjad.tools.pitchtools.ChromaticPitch.ChromaticPitch.ChromaticPitch.__le__
+      ~abjad.tools.pitchtools.ChromaticPitch.ChromaticPitch.ChromaticPitch.__lt__
+      ~abjad.tools.pitchtools.ChromaticPitch.ChromaticPitch.ChromaticPitch.__ne__
+      ~abjad.tools.pitchtools.ChromaticPitch.ChromaticPitch.ChromaticPitch.__repr__
+
 Bases
 -----
 

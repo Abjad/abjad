@@ -5,6 +5,24 @@
 
 .. autoclass:: abjad.tools.tonalanalysistools.ExtentIndicator.ExtentIndicator.ExtentIndicator
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.tonalanalysistools.ExtentIndicator.ExtentIndicator.ExtentIndicator.name
+      ~abjad.tools.tonalanalysistools.ExtentIndicator.ExtentIndicator.ExtentIndicator.number
+      ~abjad.tools.tonalanalysistools.ExtentIndicator.ExtentIndicator.ExtentIndicator.storage_format
+      ~abjad.tools.tonalanalysistools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__eq__
+      ~abjad.tools.tonalanalysistools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__ge__
+      ~abjad.tools.tonalanalysistools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__gt__
+      ~abjad.tools.tonalanalysistools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__le__
+      ~abjad.tools.tonalanalysistools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__lt__
+      ~abjad.tools.tonalanalysistools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__ne__
+      ~abjad.tools.tonalanalysistools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__repr__
+
 Bases
 -----
 

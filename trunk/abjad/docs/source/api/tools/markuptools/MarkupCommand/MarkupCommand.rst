@@ -5,6 +5,26 @@
 
 .. autoclass:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.args
+      ~abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.command
+      ~abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.lilypond_format
+      ~abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.storage_format
+      ~abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.__eq__
+      ~abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.__ge__
+      ~abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.__gt__
+      ~abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.__le__
+      ~abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.__lt__
+      ~abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.__ne__
+      ~abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.__repr__
+      ~abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.__str__
+
 Bases
 -----
 

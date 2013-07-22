@@ -5,6 +5,77 @@
 
 .. autoclass:: abjad.tools.chordtools.Chord.Chord.Chord
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.chordtools.Chord.Chord.Chord.append
+      ~abjad.tools.chordtools.Chord.Chord.Chord.divide
+      ~abjad.tools.chordtools.Chord.Chord.Chord.duration
+      ~abjad.tools.chordtools.Chord.Chord.Chord.duration_in_seconds
+      ~abjad.tools.chordtools.Chord.Chord.Chord.duration_multiplier
+      ~abjad.tools.chordtools.Chord.Chord.Chord.extend
+      ~abjad.tools.chordtools.Chord.Chord.Chord.extend_in_parent
+      ~abjad.tools.chordtools.Chord.Chord.Chord.fingered_pitches
+      ~abjad.tools.chordtools.Chord.Chord.Chord.get_mark
+      ~abjad.tools.chordtools.Chord.Chord.Chord.get_marks
+      ~abjad.tools.chordtools.Chord.Chord.Chord.get_note_head
+      ~abjad.tools.chordtools.Chord.Chord.Chord.leaf_index
+      ~abjad.tools.chordtools.Chord.Chord.Chord.lilypond_format
+      ~abjad.tools.chordtools.Chord.Chord.Chord.multiplied_duration
+      ~abjad.tools.chordtools.Chord.Chord.Chord.note_heads
+      ~abjad.tools.chordtools.Chord.Chord.Chord.override
+      ~abjad.tools.chordtools.Chord.Chord.Chord.parent
+      ~abjad.tools.chordtools.Chord.Chord.Chord.pop
+      ~abjad.tools.chordtools.Chord.Chord.Chord.preprolated_duration
+      ~abjad.tools.chordtools.Chord.Chord.Chord.prolation
+      ~abjad.tools.chordtools.Chord.Chord.Chord.remove
+      ~abjad.tools.chordtools.Chord.Chord.Chord.select
+      ~abjad.tools.chordtools.Chord.Chord.Chord.select_components
+      ~abjad.tools.chordtools.Chord.Chord.Chord.select_contents
+      ~abjad.tools.chordtools.Chord.Chord.Chord.select_descendants
+      ~abjad.tools.chordtools.Chord.Chord.Chord.select_descendants_starting_with
+      ~abjad.tools.chordtools.Chord.Chord.Chord.select_descendants_stopping_with
+      ~abjad.tools.chordtools.Chord.Chord.Chord.select_lineage
+      ~abjad.tools.chordtools.Chord.Chord.Chord.select_parentage
+      ~abjad.tools.chordtools.Chord.Chord.Chord.select_tie_chain
+      ~abjad.tools.chordtools.Chord.Chord.Chord.select_vertical_moment
+      ~abjad.tools.chordtools.Chord.Chord.Chord.select_vertical_moment_at
+      ~abjad.tools.chordtools.Chord.Chord.Chord.set
+      ~abjad.tools.chordtools.Chord.Chord.Chord.shorten
+      ~abjad.tools.chordtools.Chord.Chord.Chord.sounding_pitches
+      ~abjad.tools.chordtools.Chord.Chord.Chord.spanners
+      ~abjad.tools.chordtools.Chord.Chord.Chord.storage_format
+      ~abjad.tools.chordtools.Chord.Chord.Chord.timespan
+      ~abjad.tools.chordtools.Chord.Chord.Chord.timespan_in_seconds
+      ~abjad.tools.chordtools.Chord.Chord.Chord.written_duration
+      ~abjad.tools.chordtools.Chord.Chord.Chord.written_pitch_indication_is_at_sounding_pitch
+      ~abjad.tools.chordtools.Chord.Chord.Chord.written_pitch_indication_is_nonsemantic
+      ~abjad.tools.chordtools.Chord.Chord.Chord.written_pitches
+      ~abjad.tools.chordtools.Chord.Chord.Chord.__and__
+      ~abjad.tools.chordtools.Chord.Chord.Chord.__contains__
+      ~abjad.tools.chordtools.Chord.Chord.Chord.__copy__
+      ~abjad.tools.chordtools.Chord.Chord.Chord.__delitem__
+      ~abjad.tools.chordtools.Chord.Chord.Chord.__eq__
+      ~abjad.tools.chordtools.Chord.Chord.Chord.__ge__
+      ~abjad.tools.chordtools.Chord.Chord.Chord.__getitem__
+      ~abjad.tools.chordtools.Chord.Chord.Chord.__gt__
+      ~abjad.tools.chordtools.Chord.Chord.Chord.__le__
+      ~abjad.tools.chordtools.Chord.Chord.Chord.__len__
+      ~abjad.tools.chordtools.Chord.Chord.Chord.__lt__
+      ~abjad.tools.chordtools.Chord.Chord.Chord.__mul__
+      ~abjad.tools.chordtools.Chord.Chord.Chord.__ne__
+      ~abjad.tools.chordtools.Chord.Chord.Chord.__or__
+      ~abjad.tools.chordtools.Chord.Chord.Chord.__repr__
+      ~abjad.tools.chordtools.Chord.Chord.Chord.__rmul__
+      ~abjad.tools.chordtools.Chord.Chord.Chord.__setitem__
+      ~abjad.tools.chordtools.Chord.Chord.Chord.__str__
+      ~abjad.tools.chordtools.Chord.Chord.Chord.__sub__
+      ~abjad.tools.chordtools.Chord.Chord.Chord.__xor__
+
 Bases
 -----
 

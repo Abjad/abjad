@@ -5,6 +5,23 @@
 
 .. autoclass:: abjad.tools.quantizationtools.Quantizer.Quantizer.Quantizer
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.quantizationtools.Quantizer.Quantizer.Quantizer.storage_format
+      ~abjad.tools.quantizationtools.Quantizer.Quantizer.Quantizer.__call__
+      ~abjad.tools.quantizationtools.Quantizer.Quantizer.Quantizer.__eq__
+      ~abjad.tools.quantizationtools.Quantizer.Quantizer.Quantizer.__ge__
+      ~abjad.tools.quantizationtools.Quantizer.Quantizer.Quantizer.__gt__
+      ~abjad.tools.quantizationtools.Quantizer.Quantizer.Quantizer.__le__
+      ~abjad.tools.quantizationtools.Quantizer.Quantizer.Quantizer.__lt__
+      ~abjad.tools.quantizationtools.Quantizer.Quantizer.Quantizer.__ne__
+      ~abjad.tools.quantizationtools.Quantizer.Quantizer.Quantizer.__repr__
+
 Bases
 -----
 

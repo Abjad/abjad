@@ -5,6 +5,28 @@
 
 .. autoclass:: abjad.tools.pitchtools.CounterpointIntervalClass.CounterpointIntervalClass.CounterpointIntervalClass
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.CounterpointIntervalClass.CounterpointIntervalClass.CounterpointIntervalClass.number
+      ~abjad.tools.pitchtools.CounterpointIntervalClass.CounterpointIntervalClass.CounterpointIntervalClass.storage_format
+      ~abjad.tools.pitchtools.CounterpointIntervalClass.CounterpointIntervalClass.CounterpointIntervalClass.__abs__
+      ~abjad.tools.pitchtools.CounterpointIntervalClass.CounterpointIntervalClass.CounterpointIntervalClass.__eq__
+      ~abjad.tools.pitchtools.CounterpointIntervalClass.CounterpointIntervalClass.CounterpointIntervalClass.__float__
+      ~abjad.tools.pitchtools.CounterpointIntervalClass.CounterpointIntervalClass.CounterpointIntervalClass.__ge__
+      ~abjad.tools.pitchtools.CounterpointIntervalClass.CounterpointIntervalClass.CounterpointIntervalClass.__gt__
+      ~abjad.tools.pitchtools.CounterpointIntervalClass.CounterpointIntervalClass.CounterpointIntervalClass.__hash__
+      ~abjad.tools.pitchtools.CounterpointIntervalClass.CounterpointIntervalClass.CounterpointIntervalClass.__int__
+      ~abjad.tools.pitchtools.CounterpointIntervalClass.CounterpointIntervalClass.CounterpointIntervalClass.__le__
+      ~abjad.tools.pitchtools.CounterpointIntervalClass.CounterpointIntervalClass.CounterpointIntervalClass.__lt__
+      ~abjad.tools.pitchtools.CounterpointIntervalClass.CounterpointIntervalClass.CounterpointIntervalClass.__ne__
+      ~abjad.tools.pitchtools.CounterpointIntervalClass.CounterpointIntervalClass.CounterpointIntervalClass.__repr__
+      ~abjad.tools.pitchtools.CounterpointIntervalClass.CounterpointIntervalClass.CounterpointIntervalClass.__str__
+
 Bases
 -----
 

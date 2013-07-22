@@ -5,6 +5,33 @@
 
 .. autoclass:: abjad.tools.datastructuretools.SortedCollection.SortedCollection.SortedCollection
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.datastructuretools.SortedCollection.SortedCollection.SortedCollection.clear
+      ~abjad.tools.datastructuretools.SortedCollection.SortedCollection.SortedCollection.copy
+      ~abjad.tools.datastructuretools.SortedCollection.SortedCollection.SortedCollection.count
+      ~abjad.tools.datastructuretools.SortedCollection.SortedCollection.SortedCollection.find
+      ~abjad.tools.datastructuretools.SortedCollection.SortedCollection.SortedCollection.find_ge
+      ~abjad.tools.datastructuretools.SortedCollection.SortedCollection.SortedCollection.find_gt
+      ~abjad.tools.datastructuretools.SortedCollection.SortedCollection.SortedCollection.find_le
+      ~abjad.tools.datastructuretools.SortedCollection.SortedCollection.SortedCollection.find_lt
+      ~abjad.tools.datastructuretools.SortedCollection.SortedCollection.SortedCollection.index
+      ~abjad.tools.datastructuretools.SortedCollection.SortedCollection.SortedCollection.insert
+      ~abjad.tools.datastructuretools.SortedCollection.SortedCollection.SortedCollection.insert_right
+      ~abjad.tools.datastructuretools.SortedCollection.SortedCollection.SortedCollection.key
+      ~abjad.tools.datastructuretools.SortedCollection.SortedCollection.SortedCollection.remove
+      ~abjad.tools.datastructuretools.SortedCollection.SortedCollection.SortedCollection.__contains__
+      ~abjad.tools.datastructuretools.SortedCollection.SortedCollection.SortedCollection.__getitem__
+      ~abjad.tools.datastructuretools.SortedCollection.SortedCollection.SortedCollection.__iter__
+      ~abjad.tools.datastructuretools.SortedCollection.SortedCollection.SortedCollection.__len__
+      ~abjad.tools.datastructuretools.SortedCollection.SortedCollection.SortedCollection.__repr__
+      ~abjad.tools.datastructuretools.SortedCollection.SortedCollection.SortedCollection.__reversed__
+
 Bases
 -----
 

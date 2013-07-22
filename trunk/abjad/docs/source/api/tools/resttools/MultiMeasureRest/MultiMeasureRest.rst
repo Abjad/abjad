@@ -5,6 +5,63 @@
 
 .. autoclass:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.divide
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.duration
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.duration_in_seconds
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.duration_multiplier
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.extend_in_parent
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.get_mark
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.get_marks
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.leaf_index
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.lilypond_format
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.multiplied_duration
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.override
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.parent
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.preprolated_duration
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.prolation
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.select
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.select_components
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.select_contents
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.select_descendants
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.select_descendants_starting_with
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.select_descendants_stopping_with
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.select_lineage
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.select_parentage
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.select_tie_chain
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.select_vertical_moment
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.select_vertical_moment_at
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.set
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.shorten
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.spanners
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.storage_format
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.timespan
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.timespan_in_seconds
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.written_duration
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.written_pitch_indication_is_at_sounding_pitch
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.written_pitch_indication_is_nonsemantic
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.__and__
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.__copy__
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.__eq__
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.__ge__
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.__gt__
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.__le__
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.__lt__
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.__mul__
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.__ne__
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.__or__
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.__repr__
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.__rmul__
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.__str__
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.__sub__
+      ~abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.__xor__
+
 Bases
 -----
 

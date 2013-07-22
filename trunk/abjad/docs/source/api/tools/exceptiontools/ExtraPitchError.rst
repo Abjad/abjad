@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.exceptiontools.ExtraPitchError.ExtraPitchError
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.exceptiontools.ExtraPitchError.ExtraPitchError.__delattr__
+      ~abjad.tools.exceptiontools.ExtraPitchError.ExtraPitchError.__getitem__
+      ~abjad.tools.exceptiontools.ExtraPitchError.ExtraPitchError.__getslice__
+      ~abjad.tools.exceptiontools.ExtraPitchError.ExtraPitchError.__repr__
+      ~abjad.tools.exceptiontools.ExtraPitchError.ExtraPitchError.__setattr__
+      ~abjad.tools.exceptiontools.ExtraPitchError.ExtraPitchError.__setstate__
+      ~abjad.tools.exceptiontools.ExtraPitchError.ExtraPitchError.__str__
+      ~abjad.tools.exceptiontools.ExtraPitchError.ExtraPitchError.__unicode__
+
 Bases
 -----
 

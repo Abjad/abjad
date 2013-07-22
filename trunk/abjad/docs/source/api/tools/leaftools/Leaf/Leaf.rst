@@ -5,6 +5,62 @@
 
 .. autoclass:: abjad.tools.leaftools.Leaf.Leaf.Leaf
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.duration
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.duration_in_seconds
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.duration_multiplier
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.extend_in_parent
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.get_mark
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.get_marks
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.leaf_index
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.lilypond_format
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.multiplied_duration
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.override
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.parent
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.preprolated_duration
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.prolation
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.select
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.select_components
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.select_contents
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.select_descendants
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.select_descendants_starting_with
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.select_descendants_stopping_with
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.select_lineage
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.select_parentage
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.select_tie_chain
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.select_vertical_moment
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.select_vertical_moment_at
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.set
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.shorten
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.spanners
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.storage_format
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.timespan
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.timespan_in_seconds
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.written_duration
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.written_pitch_indication_is_at_sounding_pitch
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.written_pitch_indication_is_nonsemantic
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.__and__
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.__copy__
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.__eq__
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.__ge__
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.__gt__
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.__le__
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.__lt__
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.__mul__
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.__ne__
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.__or__
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.__repr__
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.__rmul__
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.__str__
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.__sub__
+      ~abjad.tools.leaftools.Leaf.Leaf.Leaf.__xor__
+
 Bases
 -----
 

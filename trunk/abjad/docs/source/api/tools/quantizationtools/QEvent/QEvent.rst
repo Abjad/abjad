@@ -5,6 +5,26 @@
 
 .. autoclass:: abjad.tools.quantizationtools.QEvent.QEvent.QEvent
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.quantizationtools.QEvent.QEvent.QEvent.index
+      ~abjad.tools.quantizationtools.QEvent.QEvent.QEvent.offset
+      ~abjad.tools.quantizationtools.QEvent.QEvent.QEvent.storage_format
+      ~abjad.tools.quantizationtools.QEvent.QEvent.QEvent.__eq__
+      ~abjad.tools.quantizationtools.QEvent.QEvent.QEvent.__ge__
+      ~abjad.tools.quantizationtools.QEvent.QEvent.QEvent.__getstate__
+      ~abjad.tools.quantizationtools.QEvent.QEvent.QEvent.__gt__
+      ~abjad.tools.quantizationtools.QEvent.QEvent.QEvent.__le__
+      ~abjad.tools.quantizationtools.QEvent.QEvent.QEvent.__lt__
+      ~abjad.tools.quantizationtools.QEvent.QEvent.QEvent.__ne__
+      ~abjad.tools.quantizationtools.QEvent.QEvent.QEvent.__repr__
+      ~abjad.tools.quantizationtools.QEvent.QEvent.QEvent.__setstate__
+
 Bases
 -----
 

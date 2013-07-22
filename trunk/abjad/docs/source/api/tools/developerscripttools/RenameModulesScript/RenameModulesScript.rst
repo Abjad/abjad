@@ -5,6 +5,35 @@
 
 .. autoclass:: abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.alias
+      ~abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.argument_parser
+      ~abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.formatted_help
+      ~abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.formatted_usage
+      ~abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.formatted_version
+      ~abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.long_description
+      ~abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.process_args
+      ~abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.program_name
+      ~abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.scripting_group
+      ~abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.setup_argument_parser
+      ~abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.short_description
+      ~abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.storage_format
+      ~abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.version
+      ~abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.__call__
+      ~abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.__eq__
+      ~abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.__ge__
+      ~abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.__gt__
+      ~abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.__le__
+      ~abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.__lt__
+      ~abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.__ne__
+      ~abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.__repr__
+
 Bases
 -----
 

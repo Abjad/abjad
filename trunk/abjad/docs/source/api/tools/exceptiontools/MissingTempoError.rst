@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.exceptiontools.MissingTempoError.MissingTempoError
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.exceptiontools.MissingTempoError.MissingTempoError.__delattr__
+      ~abjad.tools.exceptiontools.MissingTempoError.MissingTempoError.__getitem__
+      ~abjad.tools.exceptiontools.MissingTempoError.MissingTempoError.__getslice__
+      ~abjad.tools.exceptiontools.MissingTempoError.MissingTempoError.__repr__
+      ~abjad.tools.exceptiontools.MissingTempoError.MissingTempoError.__setattr__
+      ~abjad.tools.exceptiontools.MissingTempoError.MissingTempoError.__setstate__
+      ~abjad.tools.exceptiontools.MissingTempoError.MissingTempoError.__str__
+      ~abjad.tools.exceptiontools.MissingTempoError.MissingTempoError.__unicode__
+
 Bases
 -----
 

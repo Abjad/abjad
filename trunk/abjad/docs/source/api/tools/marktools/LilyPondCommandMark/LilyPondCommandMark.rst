@@ -5,6 +5,30 @@
 
 .. autoclass:: abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.attach
+      ~abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.command_name
+      ~abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.detach
+      ~abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.format_slot
+      ~abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.lilypond_format
+      ~abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.start_component
+      ~abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.storage_format
+      ~abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.__call__
+      ~abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.__copy__
+      ~abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.__eq__
+      ~abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.__ge__
+      ~abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.__gt__
+      ~abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.__le__
+      ~abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.__lt__
+      ~abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.__ne__
+      ~abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.__repr__
+
 Bases
 -----
 

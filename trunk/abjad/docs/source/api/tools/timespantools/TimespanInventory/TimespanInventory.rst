@@ -5,6 +5,71 @@
 
 .. autoclass:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.all_are_contiguous
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.all_are_well_formed
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.append
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.axis
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.compute_logical_and
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.compute_logical_or
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.compute_logical_xor
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.count
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.duration
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.extend
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.get_timespan_that_satisfies_time_relation
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.get_timespans_that_satisfy_time_relation
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.has_timespan_that_satisfies_time_relation
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.index
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.insert
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.is_sorted
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.name
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.pop
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.reflect
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.remove
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.remove_degenerate_timespans
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.repeat_to_stop_offset
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.reverse
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.rotate
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.scale
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.sort
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.start_offset
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.stop_offset
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.storage_format
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.stretch
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.timespan
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.translate
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.translate_offsets
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__add__
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__and__
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__contains__
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__delitem__
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__delslice__
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__eq__
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__ge__
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__getitem__
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__getslice__
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__gt__
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__iadd__
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__imul__
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__iter__
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__le__
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__len__
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__lt__
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__mul__
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__ne__
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__repr__
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__reversed__
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__rmul__
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__setitem__
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__setslice__
+      ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.__sub__
+
 Bases
 -----
 

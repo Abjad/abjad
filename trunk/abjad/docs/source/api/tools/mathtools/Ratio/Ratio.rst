@@ -5,6 +5,34 @@
 
 .. autoclass:: abjad.tools.mathtools.Ratio.Ratio.Ratio
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.mathtools.Ratio.Ratio.Ratio.count
+      ~abjad.tools.mathtools.Ratio.Ratio.Ratio.index
+      ~abjad.tools.mathtools.Ratio.Ratio.Ratio.storage_format
+      ~abjad.tools.mathtools.Ratio.Ratio.Ratio.__add__
+      ~abjad.tools.mathtools.Ratio.Ratio.Ratio.__contains__
+      ~abjad.tools.mathtools.Ratio.Ratio.Ratio.__eq__
+      ~abjad.tools.mathtools.Ratio.Ratio.Ratio.__ge__
+      ~abjad.tools.mathtools.Ratio.Ratio.Ratio.__getitem__
+      ~abjad.tools.mathtools.Ratio.Ratio.Ratio.__getslice__
+      ~abjad.tools.mathtools.Ratio.Ratio.Ratio.__gt__
+      ~abjad.tools.mathtools.Ratio.Ratio.Ratio.__hash__
+      ~abjad.tools.mathtools.Ratio.Ratio.Ratio.__iter__
+      ~abjad.tools.mathtools.Ratio.Ratio.Ratio.__le__
+      ~abjad.tools.mathtools.Ratio.Ratio.Ratio.__len__
+      ~abjad.tools.mathtools.Ratio.Ratio.Ratio.__lt__
+      ~abjad.tools.mathtools.Ratio.Ratio.Ratio.__mul__
+      ~abjad.tools.mathtools.Ratio.Ratio.Ratio.__ne__
+      ~abjad.tools.mathtools.Ratio.Ratio.Ratio.__new__
+      ~abjad.tools.mathtools.Ratio.Ratio.Ratio.__repr__
+      ~abjad.tools.mathtools.Ratio.Ratio.Ratio.__rmul__
+
 Bases
 -----
 

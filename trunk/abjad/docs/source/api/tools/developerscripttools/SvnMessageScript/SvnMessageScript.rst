@@ -5,6 +5,36 @@
 
 .. autoclass:: abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.alias
+      ~abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.argument_parser
+      ~abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.commit_message_path
+      ~abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.formatted_help
+      ~abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.formatted_usage
+      ~abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.formatted_version
+      ~abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.long_description
+      ~abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.process_args
+      ~abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.program_name
+      ~abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.scripting_group
+      ~abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.setup_argument_parser
+      ~abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.short_description
+      ~abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.storage_format
+      ~abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.version
+      ~abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.__call__
+      ~abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.__eq__
+      ~abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.__ge__
+      ~abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.__gt__
+      ~abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.__le__
+      ~abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.__lt__
+      ~abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.__ne__
+      ~abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.__repr__
+
 Bases
 -----
 

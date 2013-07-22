@@ -5,6 +5,47 @@
 
 .. autoclass:: abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.append
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.append_left
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.attach
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.components
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.detach
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.duration
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.duration_in_seconds
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.extend
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.extend_left
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.fracture
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.fuse
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.index
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.leaves
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.override
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.pop
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.pop_left
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.preprolated_duration
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.set
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.storage_format
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.timespan
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.written_duration
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.__call__
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.__contains__
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.__copy__
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.__eq__
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.__ge__
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.__getitem__
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.__gt__
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.__le__
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.__len__
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.__lt__
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.__ne__
+      ~abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.__repr__
+
 Bases
 -----
 

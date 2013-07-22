@@ -5,6 +5,31 @@
 
 .. autoclass:: abjad.tools.marktools.BarLine.BarLine.BarLine
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.attach
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.bar_line_string
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.command_name
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.detach
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.format_slot
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.lilypond_format
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.start_component
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.storage_format
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.__call__
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.__copy__
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.__eq__
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.__ge__
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.__gt__
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.__le__
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.__lt__
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.__ne__
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.__repr__
+
 Bases
 -----
 

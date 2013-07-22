@@ -5,6 +5,54 @@
 
 .. autoclass:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.append
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.append_left
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.attach
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.components
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.detach
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.direction
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.duration
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.duration_in_seconds
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.extend
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.extend_left
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.fracture
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.fuse
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.include_rests
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.index
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.is_hairpin_shape_string
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.is_hairpin_token
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.leaves
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.override
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.pop
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.pop_left
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.preprolated_duration
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.set
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.shape_string
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.start_dynamic_string
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.stop_dynamic_string
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.storage_format
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.timespan
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.written_duration
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.__call__
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.__contains__
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.__copy__
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.__eq__
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.__ge__
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.__getitem__
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.__gt__
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.__le__
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.__len__
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.__lt__
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.__ne__
+      ~abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.__repr__
+
 Bases
 -----
 

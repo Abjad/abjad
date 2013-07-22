@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.Instrument.Instrument.Instrument
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.all_clefs
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.attach
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.default_instrument_name
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.default_pitch_range
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.default_short_instrument_name
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.detach
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.effective_context
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.get_default_performer_name
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.get_performer_names
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.instrument_name
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.instrument_name_markup
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.interval_of_transposition
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.is_primary_instrument
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.is_secondary_instrument
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.is_transposing
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.lilypond_format
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.pitch_range
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.primary_clefs
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.short_instrument_name
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.start_component
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.storage_format
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.target_context
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.__call__
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.__copy__
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.__eq__
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.__ge__
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.__gt__
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.__hash__
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.__le__
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.__lt__
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.__ne__
+      ~abjad.tools.instrumenttools.Instrument.Instrument.Instrument.__repr__
+
 Bases
 -----
 

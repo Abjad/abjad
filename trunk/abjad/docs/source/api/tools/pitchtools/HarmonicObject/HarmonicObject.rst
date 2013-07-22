@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.pitchtools.HarmonicObject.HarmonicObject.HarmonicObject
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.HarmonicObject.HarmonicObject.HarmonicObject.storage_format
+      ~abjad.tools.pitchtools.HarmonicObject.HarmonicObject.HarmonicObject.__eq__
+      ~abjad.tools.pitchtools.HarmonicObject.HarmonicObject.HarmonicObject.__ge__
+      ~abjad.tools.pitchtools.HarmonicObject.HarmonicObject.HarmonicObject.__gt__
+      ~abjad.tools.pitchtools.HarmonicObject.HarmonicObject.HarmonicObject.__le__
+      ~abjad.tools.pitchtools.HarmonicObject.HarmonicObject.HarmonicObject.__lt__
+      ~abjad.tools.pitchtools.HarmonicObject.HarmonicObject.HarmonicObject.__ne__
+      ~abjad.tools.pitchtools.HarmonicObject.HarmonicObject.HarmonicObject.__repr__
+
 Bases
 -----
 

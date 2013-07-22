@@ -5,6 +5,35 @@
 
 .. autoclass:: abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.alias
+      ~abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.argument_parser
+      ~abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.formatted_help
+      ~abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.formatted_usage
+      ~abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.formatted_version
+      ~abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.long_description
+      ~abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.process_args
+      ~abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.program_name
+      ~abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.scripting_group
+      ~abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.setup_argument_parser
+      ~abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.short_description
+      ~abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.storage_format
+      ~abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.version
+      ~abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.__call__
+      ~abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.__eq__
+      ~abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.__ge__
+      ~abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.__gt__
+      ~abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.__le__
+      ~abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.__lt__
+      ~abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.__ne__
+      ~abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.__repr__
+
 Bases
 -----
 

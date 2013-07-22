@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.all_clefs
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.attach
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.default_instrument_name
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.default_pitch_range
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.default_short_instrument_name
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.detach
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.effective_context
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.get_default_performer_name
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.get_performer_names
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.instrument_name
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.instrument_name_markup
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.interval_of_transposition
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.is_primary_instrument
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.is_secondary_instrument
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.is_transposing
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.lilypond_format
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.pitch_range
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.primary_clefs
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.short_instrument_name
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.start_component
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.storage_format
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.target_context
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.__call__
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.__copy__
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.__eq__
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.__ge__
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.__gt__
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.__hash__
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.__le__
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.__lt__
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.__ne__
+      ~abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.__repr__
+
 Bases
 -----
 

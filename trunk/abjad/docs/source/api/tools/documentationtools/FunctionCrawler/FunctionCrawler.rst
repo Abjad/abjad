@@ -5,6 +5,27 @@
 
 .. autoclass:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.code_root
+      ~abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.include_private_objects
+      ~abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.module_crawler
+      ~abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.root_package_name
+      ~abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.storage_format
+      ~abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__call__
+      ~abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__eq__
+      ~abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__ge__
+      ~abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__gt__
+      ~abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__le__
+      ~abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__lt__
+      ~abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__ne__
+      ~abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__repr__
+
 Bases
 -----
 

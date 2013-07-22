@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.all_clefs
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.attach
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.default_instrument_name
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.default_pitch_range
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.default_short_instrument_name
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.detach
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.effective_context
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.get_default_performer_name
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.get_performer_names
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.instrument_name
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.instrument_name_markup
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.interval_of_transposition
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.is_primary_instrument
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.is_secondary_instrument
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.is_transposing
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.lilypond_format
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.pitch_range
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.primary_clefs
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.short_instrument_name
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.start_component
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.storage_format
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.target_context
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.__call__
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.__copy__
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.__eq__
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.__ge__
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.__gt__
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.__hash__
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.__le__
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.__lt__
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.__ne__
+      ~abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice.__repr__
+
 Bases
 -----
 

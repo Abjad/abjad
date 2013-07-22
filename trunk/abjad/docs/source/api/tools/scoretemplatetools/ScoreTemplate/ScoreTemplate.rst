@@ -5,6 +5,23 @@
 
 .. autoclass:: abjad.tools.scoretemplatetools.ScoreTemplate.ScoreTemplate.ScoreTemplate
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.scoretemplatetools.ScoreTemplate.ScoreTemplate.ScoreTemplate.storage_format
+      ~abjad.tools.scoretemplatetools.ScoreTemplate.ScoreTemplate.ScoreTemplate.__call__
+      ~abjad.tools.scoretemplatetools.ScoreTemplate.ScoreTemplate.ScoreTemplate.__eq__
+      ~abjad.tools.scoretemplatetools.ScoreTemplate.ScoreTemplate.ScoreTemplate.__ge__
+      ~abjad.tools.scoretemplatetools.ScoreTemplate.ScoreTemplate.ScoreTemplate.__gt__
+      ~abjad.tools.scoretemplatetools.ScoreTemplate.ScoreTemplate.ScoreTemplate.__le__
+      ~abjad.tools.scoretemplatetools.ScoreTemplate.ScoreTemplate.ScoreTemplate.__lt__
+      ~abjad.tools.scoretemplatetools.ScoreTemplate.ScoreTemplate.ScoreTemplate.__ne__
+      ~abjad.tools.scoretemplatetools.ScoreTemplate.ScoreTemplate.ScoreTemplate.__repr__
+
 Bases
 -----
 

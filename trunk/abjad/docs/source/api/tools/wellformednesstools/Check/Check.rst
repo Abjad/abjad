@@ -5,6 +5,26 @@
 
 .. autoclass:: abjad.tools.wellformednesstools.Check.Check.Check
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.wellformednesstools.Check.Check.Check.check
+      ~abjad.tools.wellformednesstools.Check.Check.Check.list_checks
+      ~abjad.tools.wellformednesstools.Check.Check.Check.report
+      ~abjad.tools.wellformednesstools.Check.Check.Check.storage_format
+      ~abjad.tools.wellformednesstools.Check.Check.Check.violators
+      ~abjad.tools.wellformednesstools.Check.Check.Check.__eq__
+      ~abjad.tools.wellformednesstools.Check.Check.Check.__ge__
+      ~abjad.tools.wellformednesstools.Check.Check.Check.__gt__
+      ~abjad.tools.wellformednesstools.Check.Check.Check.__le__
+      ~abjad.tools.wellformednesstools.Check.Check.Check.__lt__
+      ~abjad.tools.wellformednesstools.Check.Check.Check.__ne__
+      ~abjad.tools.wellformednesstools.Check.Check.Check.__repr__
+
 Bases
 -----
 

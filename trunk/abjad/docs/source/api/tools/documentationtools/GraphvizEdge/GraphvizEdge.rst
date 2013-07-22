@@ -5,6 +5,27 @@
 
 .. autoclass:: abjad.tools.documentationtools.GraphvizEdge.GraphvizEdge.GraphvizEdge
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.documentationtools.GraphvizEdge.GraphvizEdge.GraphvizEdge.attributes
+      ~abjad.tools.documentationtools.GraphvizEdge.GraphvizEdge.GraphvizEdge.head
+      ~abjad.tools.documentationtools.GraphvizEdge.GraphvizEdge.GraphvizEdge.is_directed
+      ~abjad.tools.documentationtools.GraphvizEdge.GraphvizEdge.GraphvizEdge.storage_format
+      ~abjad.tools.documentationtools.GraphvizEdge.GraphvizEdge.GraphvizEdge.tail
+      ~abjad.tools.documentationtools.GraphvizEdge.GraphvizEdge.GraphvizEdge.__call__
+      ~abjad.tools.documentationtools.GraphvizEdge.GraphvizEdge.GraphvizEdge.__eq__
+      ~abjad.tools.documentationtools.GraphvizEdge.GraphvizEdge.GraphvizEdge.__ge__
+      ~abjad.tools.documentationtools.GraphvizEdge.GraphvizEdge.GraphvizEdge.__gt__
+      ~abjad.tools.documentationtools.GraphvizEdge.GraphvizEdge.GraphvizEdge.__le__
+      ~abjad.tools.documentationtools.GraphvizEdge.GraphvizEdge.GraphvizEdge.__lt__
+      ~abjad.tools.documentationtools.GraphvizEdge.GraphvizEdge.GraphvizEdge.__ne__
+      ~abjad.tools.documentationtools.GraphvizEdge.GraphvizEdge.GraphvizEdge.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,49 @@
 
 .. autoclass:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.append
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.append_left
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.attach
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.components
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.detach
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.duration
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.duration_in_seconds
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.extend
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.extend_left
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.fracture
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.fuse
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.index
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.leaves
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.override
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.pitch
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.pop
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.pop_left
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.preprolated_duration
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.set
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.storage_format
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.timespan
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.written_duration
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.written_pitch
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.__call__
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.__contains__
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.__copy__
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.__eq__
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.__ge__
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.__getitem__
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.__gt__
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.__le__
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.__len__
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.__lt__
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.__ne__
+      ~abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.__repr__
+
 Bases
 -----
 

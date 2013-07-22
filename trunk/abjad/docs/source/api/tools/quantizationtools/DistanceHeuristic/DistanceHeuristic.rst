@@ -5,6 +5,23 @@
 
 .. autoclass:: abjad.tools.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic.storage_format
+      ~abjad.tools.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic.__call__
+      ~abjad.tools.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic.__eq__
+      ~abjad.tools.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic.__ge__
+      ~abjad.tools.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic.__gt__
+      ~abjad.tools.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic.__le__
+      ~abjad.tools.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic.__lt__
+      ~abjad.tools.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic.__ne__
+      ~abjad.tools.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic.__repr__
+
 Bases
 -----
 

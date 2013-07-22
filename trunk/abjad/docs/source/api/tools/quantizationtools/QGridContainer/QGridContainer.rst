@@ -5,6 +5,63 @@
 
 .. autoclass:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.append
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.children
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.contents_duration
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.depth
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.depthwise_inventory
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.duration
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.extend
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.graph_order
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.graphviz_format
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.graphviz_graph
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.improper_parentage
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.index
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.insert
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.leaves
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.name
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.nodes
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.parent
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.parentage_ratios
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.pop
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.preprolated_duration
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.pretty_rtm_format
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.prolation
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.prolations
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.proper_parentage
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.remove
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.root
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.rtm_format
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.start_offset
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.stop_offset
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.storage_format
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__add__
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__call__
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__contains__
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__copy__
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__deepcopy__
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__delitem__
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__eq__
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__ge__
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__getitem__
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__getstate__
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__gt__
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__iter__
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__le__
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__len__
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__lt__
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__ne__
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__repr__
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__setitem__
+      ~abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__setstate__
+
 Bases
 -----
 

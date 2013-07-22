@@ -5,6 +5,44 @@
 
 .. autoclass:: abjad.tools.configurationtools.Configuration.Configuration.Configuration
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.clear
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.configuration_directory_path
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.configuration_file_name
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.configuration_file_path
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.get
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.home_directory_path
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.items
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.iteritems
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.iterkeys
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.itervalues
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.keys
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.pop
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.popitem
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.setdefault
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.storage_format
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.update
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.values
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.__contains__
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.__delitem__
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.__eq__
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.__ge__
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.__getitem__
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.__gt__
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.__iter__
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.__le__
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.__len__
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.__lt__
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.__ne__
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.__repr__
+      ~abjad.tools.configurationtools.Configuration.Configuration.Configuration.__setitem__
+
 Bases
 -----
 

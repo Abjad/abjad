@@ -5,6 +5,59 @@
 
 .. autoclass:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.bounds
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.center
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.clear
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.duration
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.get
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.get_overlap_with_interval
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.is_contained_by_interval
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.is_container_of_interval
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.is_overlapped_by_interval
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.is_tangent_to_interval
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.items
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.iteritems
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.iterkeys
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.itervalues
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.keys
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.pop
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.popitem
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.quantize_to_rational
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.scale_by_rational
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.scale_to_rational
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.setdefault
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.shift_by_rational
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.shift_to_rational
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.signature
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.split_at_rationals
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.start_offset
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.stop_offset
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.storage_format
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.update
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.values
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__contains__
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__delitem__
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__eq__
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__ge__
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__getitem__
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__gt__
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__hash__
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__iter__
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__le__
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__len__
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__lt__
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__ne__
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__nonzero__
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__repr__
+      ~abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__setitem__
+
 Bases
 -----
 

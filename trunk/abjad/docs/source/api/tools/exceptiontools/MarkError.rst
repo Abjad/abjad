@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.exceptiontools.MarkError.MarkError
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.exceptiontools.MarkError.MarkError.__delattr__
+      ~abjad.tools.exceptiontools.MarkError.MarkError.__getitem__
+      ~abjad.tools.exceptiontools.MarkError.MarkError.__getslice__
+      ~abjad.tools.exceptiontools.MarkError.MarkError.__repr__
+      ~abjad.tools.exceptiontools.MarkError.MarkError.__setattr__
+      ~abjad.tools.exceptiontools.MarkError.MarkError.__setstate__
+      ~abjad.tools.exceptiontools.MarkError.MarkError.__str__
+      ~abjad.tools.exceptiontools.MarkError.MarkError.__unicode__
+
 Bases
 -----
 

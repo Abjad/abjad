@@ -5,6 +5,37 @@
 
 .. autoclass:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.class_methods
+      ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.data
+      ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.inherited_attributes
+      ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.is_abstract
+      ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.methods
+      ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.module_name
+      ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.new
+      ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.object
+      ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.prefix
+      ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.readonly_properties
+      ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.readwrite_properties
+      ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.special_methods
+      ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.static_methods
+      ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.storage_format
+      ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.write
+      ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__call__
+      ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__eq__
+      ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__ge__
+      ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__gt__
+      ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__le__
+      ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__lt__
+      ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__ne__
+      ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,54 @@
 
 .. autoclass:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.append
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.append_left
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.attach
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.components
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.detach
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.direction
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.duration
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.duration_in_seconds
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.extend
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.extend_left
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.fracture
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.fuse
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.include_rests
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.index
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.is_hairpin_shape_string
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.is_hairpin_token
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.leaves
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.override
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.pop
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.pop_left
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.preprolated_duration
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.set
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.shape_string
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.start_dynamic_string
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.stop_dynamic_string
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.storage_format
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.timespan
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.written_duration
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.__call__
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.__contains__
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.__copy__
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.__eq__
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.__ge__
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.__getitem__
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.__gt__
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.__le__
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.__len__
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.__lt__
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.__ne__
+      ~abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.__repr__
+
 Bases
 -----
 

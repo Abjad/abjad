@@ -5,6 +5,28 @@
 
 .. autoclass:: abjad.tools.abjadbooktools.OutputFormat.OutputFormat.OutputFormat
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.code_block_closing
+      ~abjad.tools.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.code_block_opening
+      ~abjad.tools.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.code_indent
+      ~abjad.tools.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.image_block
+      ~abjad.tools.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.image_format
+      ~abjad.tools.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.storage_format
+      ~abjad.tools.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.__call__
+      ~abjad.tools.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.__eq__
+      ~abjad.tools.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.__ge__
+      ~abjad.tools.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.__gt__
+      ~abjad.tools.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.__le__
+      ~abjad.tools.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.__lt__
+      ~abjad.tools.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.__ne__
+      ~abjad.tools.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.__repr__
+
 Bases
 -----
 

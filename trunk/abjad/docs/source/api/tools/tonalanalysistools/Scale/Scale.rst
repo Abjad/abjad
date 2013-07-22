@@ -5,6 +5,59 @@
 
 .. autoclass:: abjad.tools.tonalanalysistools.Scale.Scale.Scale
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.count
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.create_named_chromatic_pitch_set_in_pitch_range
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.diatonic_interval_class_segment
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.dominant
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.index
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.inversion_equivalent_diatonic_interval_class_segment
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.is_equivalent_under_transposition
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.key_signature
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.leading_tone
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.make_notes
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.make_score
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.mediant
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.named_chromatic_pitch_class_set
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.named_chromatic_pitch_class_to_scale_degree
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.named_chromatic_pitch_classes
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.numbered_chromatic_pitch_class_segment
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.numbered_chromatic_pitch_class_set
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.numbered_chromatic_pitch_classes
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.retrograde
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.rotate
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.scale_degree_to_named_chromatic_pitch_class
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.storage_format
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.subdominant
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.submediant
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.superdominant
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.tonic
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.transpose
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.__add__
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.__contains__
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.__eq__
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.__ge__
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.__getitem__
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.__getslice__
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.__gt__
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.__hash__
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.__iter__
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.__le__
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.__len__
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.__lt__
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.__mul__
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.__ne__
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.__new__
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.__repr__
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.__rmul__
+      ~abjad.tools.tonalanalysistools.Scale.Scale.Scale.__str__
+
 Bases
 -----
 

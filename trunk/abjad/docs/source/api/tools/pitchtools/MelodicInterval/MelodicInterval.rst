@@ -5,6 +5,34 @@
 
 .. autoclass:: abjad.tools.pitchtools.MelodicInterval.MelodicInterval.MelodicInterval
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.MelodicInterval.MelodicInterval.MelodicInterval.cents
+      ~abjad.tools.pitchtools.MelodicInterval.MelodicInterval.MelodicInterval.direction_number
+      ~abjad.tools.pitchtools.MelodicInterval.MelodicInterval.MelodicInterval.direction_string
+      ~abjad.tools.pitchtools.MelodicInterval.MelodicInterval.MelodicInterval.interval_class
+      ~abjad.tools.pitchtools.MelodicInterval.MelodicInterval.MelodicInterval.number
+      ~abjad.tools.pitchtools.MelodicInterval.MelodicInterval.MelodicInterval.semitones
+      ~abjad.tools.pitchtools.MelodicInterval.MelodicInterval.MelodicInterval.storage_format
+      ~abjad.tools.pitchtools.MelodicInterval.MelodicInterval.MelodicInterval.__abs__
+      ~abjad.tools.pitchtools.MelodicInterval.MelodicInterval.MelodicInterval.__eq__
+      ~abjad.tools.pitchtools.MelodicInterval.MelodicInterval.MelodicInterval.__float__
+      ~abjad.tools.pitchtools.MelodicInterval.MelodicInterval.MelodicInterval.__ge__
+      ~abjad.tools.pitchtools.MelodicInterval.MelodicInterval.MelodicInterval.__gt__
+      ~abjad.tools.pitchtools.MelodicInterval.MelodicInterval.MelodicInterval.__hash__
+      ~abjad.tools.pitchtools.MelodicInterval.MelodicInterval.MelodicInterval.__int__
+      ~abjad.tools.pitchtools.MelodicInterval.MelodicInterval.MelodicInterval.__le__
+      ~abjad.tools.pitchtools.MelodicInterval.MelodicInterval.MelodicInterval.__lt__
+      ~abjad.tools.pitchtools.MelodicInterval.MelodicInterval.MelodicInterval.__ne__
+      ~abjad.tools.pitchtools.MelodicInterval.MelodicInterval.MelodicInterval.__neg__
+      ~abjad.tools.pitchtools.MelodicInterval.MelodicInterval.MelodicInterval.__repr__
+      ~abjad.tools.pitchtools.MelodicInterval.MelodicInterval.MelodicInterval.__str__
+
 Bases
 -----
 

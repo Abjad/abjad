@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.Tuba.Tuba.Tuba
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.all_clefs
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.attach
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.default_instrument_name
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.default_pitch_range
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.default_short_instrument_name
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.detach
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.effective_context
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.get_default_performer_name
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.get_performer_names
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.instrument_name
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.instrument_name_markup
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.interval_of_transposition
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.is_primary_instrument
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.is_secondary_instrument
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.is_transposing
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.lilypond_format
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.pitch_range
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.primary_clefs
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.short_instrument_name
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.start_component
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.storage_format
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.target_context
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.__call__
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.__copy__
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.__eq__
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.__ge__
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.__gt__
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.__hash__
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.__le__
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.__lt__
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.__ne__
+      ~abjad.tools.instrumenttools.Tuba.Tuba.Tuba.__repr__
+
 Bases
 -----
 

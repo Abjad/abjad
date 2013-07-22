@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.all_clefs
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.attach
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.default_instrument_name
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.default_pitch_range
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.default_short_instrument_name
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.detach
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.effective_context
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.get_default_performer_name
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.get_performer_names
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.instrument_name
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.instrument_name_markup
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.interval_of_transposition
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.is_primary_instrument
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.is_secondary_instrument
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.is_transposing
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.lilypond_format
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.pitch_range
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.primary_clefs
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.short_instrument_name
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.start_component
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.storage_format
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.target_context
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.__call__
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.__copy__
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.__eq__
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.__ge__
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.__gt__
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.__hash__
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.__le__
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.__lt__
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.__ne__
+      ~abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument.__repr__
+
 Bases
 -----
 

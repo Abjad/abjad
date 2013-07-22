@@ -5,6 +5,44 @@
 
 .. autoclass:: abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.copy
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.difference
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.intersection
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.isdisjoint
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.issubset
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.issuperset
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.storage_format
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.symmetric_difference
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.union
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.__and__
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.__cmp__
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.__contains__
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.__eq__
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.__ge__
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.__gt__
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.__hash__
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.__iter__
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.__le__
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.__len__
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.__lt__
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.__ne__
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.__new__
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.__or__
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.__rand__
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.__repr__
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.__ror__
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.__rsub__
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.__rxor__
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.__sub__
+      ~abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet.__xor__
+
 Bases
 -----
 

@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.all_clefs
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.attach
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.default_instrument_name
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.default_pitch_range
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.default_short_instrument_name
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.detach
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.effective_context
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.get_default_performer_name
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.get_performer_names
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.instrument_name
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.instrument_name_markup
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.interval_of_transposition
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.is_primary_instrument
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.is_secondary_instrument
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.is_transposing
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.lilypond_format
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.pitch_range
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.primary_clefs
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.short_instrument_name
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.start_component
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.storage_format
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.target_context
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.__call__
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.__copy__
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.__eq__
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.__ge__
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.__gt__
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.__hash__
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.__le__
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.__lt__
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.__ne__
+      ~abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.__repr__
+
 Bases
 -----
 

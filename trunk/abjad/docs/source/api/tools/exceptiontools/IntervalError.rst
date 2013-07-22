@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.exceptiontools.IntervalError.IntervalError
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.exceptiontools.IntervalError.IntervalError.__delattr__
+      ~abjad.tools.exceptiontools.IntervalError.IntervalError.__getitem__
+      ~abjad.tools.exceptiontools.IntervalError.IntervalError.__getslice__
+      ~abjad.tools.exceptiontools.IntervalError.IntervalError.__repr__
+      ~abjad.tools.exceptiontools.IntervalError.IntervalError.__setattr__
+      ~abjad.tools.exceptiontools.IntervalError.IntervalError.__setstate__
+      ~abjad.tools.exceptiontools.IntervalError.IntervalError.__str__
+      ~abjad.tools.exceptiontools.IntervalError.IntervalError.__unicode__
+
 Bases
 -----
 

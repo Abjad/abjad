@@ -5,6 +5,47 @@
 
 .. autoclass:: abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.append
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.append_left
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.attach
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.components
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.detach
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.duration
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.duration_in_seconds
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.extend
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.extend_left
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.fracture
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.fuse
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.index
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.leaves
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.override
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.pop
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.pop_left
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.preprolated_duration
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.set
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.storage_format
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.timespan
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.written_duration
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.__call__
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.__contains__
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.__copy__
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.__eq__
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.__ge__
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.__getitem__
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.__gt__
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.__le__
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.__len__
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.__lt__
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.__ne__
+      ~abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.__repr__
+
 Bases
 -----
 

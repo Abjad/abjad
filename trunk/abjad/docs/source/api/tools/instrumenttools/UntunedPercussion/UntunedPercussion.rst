@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.all_clefs
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.attach
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.default_instrument_name
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.default_pitch_range
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.default_short_instrument_name
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.detach
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.effective_context
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.get_default_performer_name
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.get_performer_names
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.instrument_name
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.instrument_name_markup
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.interval_of_transposition
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.is_primary_instrument
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.is_secondary_instrument
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.is_transposing
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.lilypond_format
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.pitch_range
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.primary_clefs
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.short_instrument_name
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.start_component
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.storage_format
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.target_context
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.__call__
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.__copy__
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.__eq__
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.__ge__
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.__gt__
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.__hash__
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.__le__
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.__lt__
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.__ne__
+      ~abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.__repr__
+
 Bases
 -----
 

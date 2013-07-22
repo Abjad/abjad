@@ -5,6 +5,24 @@
 
 .. autoclass:: abjad.tools.abctools.ContextManager.ContextManager.ContextManager
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.abctools.ContextManager.ContextManager.ContextManager.storage_format
+      ~abjad.tools.abctools.ContextManager.ContextManager.ContextManager.__enter__
+      ~abjad.tools.abctools.ContextManager.ContextManager.ContextManager.__eq__
+      ~abjad.tools.abctools.ContextManager.ContextManager.ContextManager.__exit__
+      ~abjad.tools.abctools.ContextManager.ContextManager.ContextManager.__ge__
+      ~abjad.tools.abctools.ContextManager.ContextManager.ContextManager.__gt__
+      ~abjad.tools.abctools.ContextManager.ContextManager.ContextManager.__le__
+      ~abjad.tools.abctools.ContextManager.ContextManager.ContextManager.__lt__
+      ~abjad.tools.abctools.ContextManager.ContextManager.ContextManager.__ne__
+      ~abjad.tools.abctools.ContextManager.ContextManager.ContextManager.__repr__
+
 Bases
 -----
 

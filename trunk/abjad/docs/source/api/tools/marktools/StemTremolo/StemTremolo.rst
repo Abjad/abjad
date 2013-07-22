@@ -5,6 +5,30 @@
 
 .. autoclass:: abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.attach
+      ~abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.detach
+      ~abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.lilypond_format
+      ~abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.start_component
+      ~abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.storage_format
+      ~abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.tremolo_flags
+      ~abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.__call__
+      ~abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.__copy__
+      ~abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.__eq__
+      ~abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.__ge__
+      ~abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.__gt__
+      ~abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.__le__
+      ~abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.__lt__
+      ~abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.__ne__
+      ~abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.__repr__
+      ~abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.__str__
+
 Bases
 -----
 

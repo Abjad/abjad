@@ -5,6 +5,29 @@
 
 .. autoclass:: abjad.tools.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.job_id
+      ~abjad.tools.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.q_event_proxies
+      ~abjad.tools.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.q_grids
+      ~abjad.tools.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.search_tree
+      ~abjad.tools.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.storage_format
+      ~abjad.tools.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.__call__
+      ~abjad.tools.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.__eq__
+      ~abjad.tools.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.__ge__
+      ~abjad.tools.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.__getstate__
+      ~abjad.tools.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.__gt__
+      ~abjad.tools.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.__le__
+      ~abjad.tools.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.__lt__
+      ~abjad.tools.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.__ne__
+      ~abjad.tools.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.__repr__
+      ~abjad.tools.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.__setstate__
+
 Bases
 -----
 

@@ -5,6 +5,63 @@
 
 .. autoclass:: abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.bass
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.cardinality
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.cardinality_to_extent
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.copy
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.difference
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.extent
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.extent_to_cardinality
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.extent_to_extent_name
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.figured_bass
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.intersection
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.inversion
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.inversion_equivalent_diatonic_interval_class_vector
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.isdisjoint
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.issubset
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.issuperset
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.markup
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.named_chromatic_pitch_classes
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.numbered_chromatic_pitch_class_set
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.order_by
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.quality_indicator
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.quality_pair
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.root
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.root_string
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.storage_format
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.symmetric_difference
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.transpose
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.union
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.__and__
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.__cmp__
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.__contains__
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.__eq__
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.__ge__
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.__gt__
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.__hash__
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.__iter__
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.__le__
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.__len__
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.__lt__
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.__ne__
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.__new__
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.__or__
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.__rand__
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.__repr__
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.__ror__
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.__rsub__
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.__rxor__
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.__str__
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.__sub__
+      ~abjad.tools.tonalanalysistools.ChordClass.ChordClass.ChordClass.__xor__
+
 Bases
 -----
 

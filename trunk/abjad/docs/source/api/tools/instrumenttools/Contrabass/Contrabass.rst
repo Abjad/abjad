@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.all_clefs
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.attach
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.default_instrument_name
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.default_pitch_range
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.default_short_instrument_name
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.detach
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.effective_context
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.get_default_performer_name
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.get_performer_names
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.instrument_name
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.instrument_name_markup
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.interval_of_transposition
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.is_primary_instrument
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.is_secondary_instrument
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.is_transposing
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.lilypond_format
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.pitch_range
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.primary_clefs
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.short_instrument_name
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.start_component
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.storage_format
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.target_context
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.__call__
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.__copy__
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.__eq__
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.__ge__
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.__gt__
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.__hash__
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.__le__
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.__lt__
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.__ne__
+      ~abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.__repr__
+
 Bases
 -----
 

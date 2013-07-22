@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.pitchtools.MelodicObject.MelodicObject.MelodicObject
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.MelodicObject.MelodicObject.MelodicObject.storage_format
+      ~abjad.tools.pitchtools.MelodicObject.MelodicObject.MelodicObject.__eq__
+      ~abjad.tools.pitchtools.MelodicObject.MelodicObject.MelodicObject.__ge__
+      ~abjad.tools.pitchtools.MelodicObject.MelodicObject.MelodicObject.__gt__
+      ~abjad.tools.pitchtools.MelodicObject.MelodicObject.MelodicObject.__le__
+      ~abjad.tools.pitchtools.MelodicObject.MelodicObject.MelodicObject.__lt__
+      ~abjad.tools.pitchtools.MelodicObject.MelodicObject.MelodicObject.__ne__
+      ~abjad.tools.pitchtools.MelodicObject.MelodicObject.MelodicObject.__repr__
+
 Bases
 -----
 

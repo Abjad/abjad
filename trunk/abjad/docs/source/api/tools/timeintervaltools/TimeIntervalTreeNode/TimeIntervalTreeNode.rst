@@ -5,6 +5,35 @@
 
 .. autoclass:: abjad.tools.timeintervaltools.TimeIntervalTreeNode.TimeIntervalTreeNode.TimeIntervalTreeNode
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.timeintervaltools.TimeIntervalTreeNode.TimeIntervalTreeNode.TimeIntervalTreeNode.earliest_stop
+      ~abjad.tools.timeintervaltools.TimeIntervalTreeNode.TimeIntervalTreeNode.TimeIntervalTreeNode.grandparent
+      ~abjad.tools.timeintervaltools.TimeIntervalTreeNode.TimeIntervalTreeNode.TimeIntervalTreeNode.is_left_child
+      ~abjad.tools.timeintervaltools.TimeIntervalTreeNode.TimeIntervalTreeNode.TimeIntervalTreeNode.is_right_child
+      ~abjad.tools.timeintervaltools.TimeIntervalTreeNode.TimeIntervalTreeNode.TimeIntervalTreeNode.key
+      ~abjad.tools.timeintervaltools.TimeIntervalTreeNode.TimeIntervalTreeNode.TimeIntervalTreeNode.latest_stop
+      ~abjad.tools.timeintervaltools.TimeIntervalTreeNode.TimeIntervalTreeNode.TimeIntervalTreeNode.left
+      ~abjad.tools.timeintervaltools.TimeIntervalTreeNode.TimeIntervalTreeNode.TimeIntervalTreeNode.parent
+      ~abjad.tools.timeintervaltools.TimeIntervalTreeNode.TimeIntervalTreeNode.TimeIntervalTreeNode.payload
+      ~abjad.tools.timeintervaltools.TimeIntervalTreeNode.TimeIntervalTreeNode.TimeIntervalTreeNode.red
+      ~abjad.tools.timeintervaltools.TimeIntervalTreeNode.TimeIntervalTreeNode.TimeIntervalTreeNode.right
+      ~abjad.tools.timeintervaltools.TimeIntervalTreeNode.TimeIntervalTreeNode.TimeIntervalTreeNode.sibling
+      ~abjad.tools.timeintervaltools.TimeIntervalTreeNode.TimeIntervalTreeNode.TimeIntervalTreeNode.storage_format
+      ~abjad.tools.timeintervaltools.TimeIntervalTreeNode.TimeIntervalTreeNode.TimeIntervalTreeNode.uncle
+      ~abjad.tools.timeintervaltools.TimeIntervalTreeNode.TimeIntervalTreeNode.TimeIntervalTreeNode.__eq__
+      ~abjad.tools.timeintervaltools.TimeIntervalTreeNode.TimeIntervalTreeNode.TimeIntervalTreeNode.__ge__
+      ~abjad.tools.timeintervaltools.TimeIntervalTreeNode.TimeIntervalTreeNode.TimeIntervalTreeNode.__gt__
+      ~abjad.tools.timeintervaltools.TimeIntervalTreeNode.TimeIntervalTreeNode.TimeIntervalTreeNode.__le__
+      ~abjad.tools.timeintervaltools.TimeIntervalTreeNode.TimeIntervalTreeNode.TimeIntervalTreeNode.__lt__
+      ~abjad.tools.timeintervaltools.TimeIntervalTreeNode.TimeIntervalTreeNode.TimeIntervalTreeNode.__ne__
+      ~abjad.tools.timeintervaltools.TimeIntervalTreeNode.TimeIntervalTreeNode.TimeIntervalTreeNode.__repr__
+
 Bases
 -----
 

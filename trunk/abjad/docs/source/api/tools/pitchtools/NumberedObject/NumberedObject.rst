@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.pitchtools.NumberedObject.NumberedObject.NumberedObject
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.NumberedObject.NumberedObject.NumberedObject.storage_format
+      ~abjad.tools.pitchtools.NumberedObject.NumberedObject.NumberedObject.__eq__
+      ~abjad.tools.pitchtools.NumberedObject.NumberedObject.NumberedObject.__ge__
+      ~abjad.tools.pitchtools.NumberedObject.NumberedObject.NumberedObject.__gt__
+      ~abjad.tools.pitchtools.NumberedObject.NumberedObject.NumberedObject.__le__
+      ~abjad.tools.pitchtools.NumberedObject.NumberedObject.NumberedObject.__lt__
+      ~abjad.tools.pitchtools.NumberedObject.NumberedObject.NumberedObject.__ne__
+      ~abjad.tools.pitchtools.NumberedObject.NumberedObject.NumberedObject.__repr__
+
 Bases
 -----
 

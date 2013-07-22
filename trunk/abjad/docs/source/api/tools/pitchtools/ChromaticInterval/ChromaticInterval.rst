@@ -5,6 +5,34 @@
 
 .. autoclass:: abjad.tools.pitchtools.ChromaticInterval.ChromaticInterval.ChromaticInterval
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.ChromaticInterval.ChromaticInterval.ChromaticInterval.cents
+      ~abjad.tools.pitchtools.ChromaticInterval.ChromaticInterval.ChromaticInterval.interval_class
+      ~abjad.tools.pitchtools.ChromaticInterval.ChromaticInterval.ChromaticInterval.number
+      ~abjad.tools.pitchtools.ChromaticInterval.ChromaticInterval.ChromaticInterval.semitones
+      ~abjad.tools.pitchtools.ChromaticInterval.ChromaticInterval.ChromaticInterval.storage_format
+      ~abjad.tools.pitchtools.ChromaticInterval.ChromaticInterval.ChromaticInterval.__abs__
+      ~abjad.tools.pitchtools.ChromaticInterval.ChromaticInterval.ChromaticInterval.__add__
+      ~abjad.tools.pitchtools.ChromaticInterval.ChromaticInterval.ChromaticInterval.__copy__
+      ~abjad.tools.pitchtools.ChromaticInterval.ChromaticInterval.ChromaticInterval.__eq__
+      ~abjad.tools.pitchtools.ChromaticInterval.ChromaticInterval.ChromaticInterval.__float__
+      ~abjad.tools.pitchtools.ChromaticInterval.ChromaticInterval.ChromaticInterval.__ge__
+      ~abjad.tools.pitchtools.ChromaticInterval.ChromaticInterval.ChromaticInterval.__gt__
+      ~abjad.tools.pitchtools.ChromaticInterval.ChromaticInterval.ChromaticInterval.__hash__
+      ~abjad.tools.pitchtools.ChromaticInterval.ChromaticInterval.ChromaticInterval.__int__
+      ~abjad.tools.pitchtools.ChromaticInterval.ChromaticInterval.ChromaticInterval.__le__
+      ~abjad.tools.pitchtools.ChromaticInterval.ChromaticInterval.ChromaticInterval.__lt__
+      ~abjad.tools.pitchtools.ChromaticInterval.ChromaticInterval.ChromaticInterval.__ne__
+      ~abjad.tools.pitchtools.ChromaticInterval.ChromaticInterval.ChromaticInterval.__repr__
+      ~abjad.tools.pitchtools.ChromaticInterval.ChromaticInterval.ChromaticInterval.__str__
+      ~abjad.tools.pitchtools.ChromaticInterval.ChromaticInterval.ChromaticInterval.__sub__
+
 Bases
 -----
 

@@ -5,6 +5,54 @@
 
 .. autoclass:: abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.append
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.argument
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.children
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.depth
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.depthwise_inventory
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.directive
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.extend
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.graph_order
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.improper_parentage
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.index
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.insert
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.leaves
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.name
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.node_class
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.nodes
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.options
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.parent
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.pop
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.proper_parentage
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.remove
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.rest_format
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.root
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.storage_format
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.__contains__
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.__copy__
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.__deepcopy__
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.__delitem__
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.__eq__
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.__ge__
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.__getitem__
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.__getstate__
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.__gt__
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.__iter__
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.__le__
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.__len__
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.__lt__
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.__ne__
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.__repr__
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.__setitem__
+      ~abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.__setstate__
+
 Bases
 -----
 

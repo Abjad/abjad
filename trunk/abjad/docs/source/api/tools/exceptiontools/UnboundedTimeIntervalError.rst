@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.exceptiontools.UnboundedTimeIntervalError.UnboundedTimeIntervalError
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.exceptiontools.UnboundedTimeIntervalError.UnboundedTimeIntervalError.__delattr__
+      ~abjad.tools.exceptiontools.UnboundedTimeIntervalError.UnboundedTimeIntervalError.__getitem__
+      ~abjad.tools.exceptiontools.UnboundedTimeIntervalError.UnboundedTimeIntervalError.__getslice__
+      ~abjad.tools.exceptiontools.UnboundedTimeIntervalError.UnboundedTimeIntervalError.__repr__
+      ~abjad.tools.exceptiontools.UnboundedTimeIntervalError.UnboundedTimeIntervalError.__setattr__
+      ~abjad.tools.exceptiontools.UnboundedTimeIntervalError.UnboundedTimeIntervalError.__setstate__
+      ~abjad.tools.exceptiontools.UnboundedTimeIntervalError.UnboundedTimeIntervalError.__str__
+      ~abjad.tools.exceptiontools.UnboundedTimeIntervalError.UnboundedTimeIntervalError.__unicode__
+
 Bases
 -----
 

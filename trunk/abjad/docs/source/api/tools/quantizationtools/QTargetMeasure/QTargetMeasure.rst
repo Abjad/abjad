@@ -5,6 +5,29 @@
 
 .. autoclass:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.beats
+      ~abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.duration_in_ms
+      ~abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.offset_in_ms
+      ~abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.search_tree
+      ~abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.storage_format
+      ~abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.tempo
+      ~abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.time_signature
+      ~abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.use_full_measure
+      ~abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__eq__
+      ~abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__ge__
+      ~abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__gt__
+      ~abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__le__
+      ~abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__lt__
+      ~abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__ne__
+      ~abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__repr__
+
 Bases
 -----
 

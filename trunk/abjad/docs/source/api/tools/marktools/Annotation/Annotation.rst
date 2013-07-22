@@ -5,6 +5,29 @@
 
 .. autoclass:: abjad.tools.marktools.Annotation.Annotation.Annotation
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.marktools.Annotation.Annotation.Annotation.attach
+      ~abjad.tools.marktools.Annotation.Annotation.Annotation.detach
+      ~abjad.tools.marktools.Annotation.Annotation.Annotation.name
+      ~abjad.tools.marktools.Annotation.Annotation.Annotation.start_component
+      ~abjad.tools.marktools.Annotation.Annotation.Annotation.storage_format
+      ~abjad.tools.marktools.Annotation.Annotation.Annotation.value
+      ~abjad.tools.marktools.Annotation.Annotation.Annotation.__call__
+      ~abjad.tools.marktools.Annotation.Annotation.Annotation.__copy__
+      ~abjad.tools.marktools.Annotation.Annotation.Annotation.__eq__
+      ~abjad.tools.marktools.Annotation.Annotation.Annotation.__ge__
+      ~abjad.tools.marktools.Annotation.Annotation.Annotation.__gt__
+      ~abjad.tools.marktools.Annotation.Annotation.Annotation.__le__
+      ~abjad.tools.marktools.Annotation.Annotation.Annotation.__lt__
+      ~abjad.tools.marktools.Annotation.Annotation.Annotation.__ne__
+      ~abjad.tools.marktools.Annotation.Annotation.Annotation.__repr__
+
 Bases
 -----
 

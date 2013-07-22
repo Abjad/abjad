@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.all_clefs
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.attach
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.default_instrument_name
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.default_pitch_range
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.default_short_instrument_name
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.detach
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.effective_context
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.get_default_performer_name
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.get_performer_names
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.instrument_name
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.instrument_name_markup
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.interval_of_transposition
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.is_primary_instrument
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.is_secondary_instrument
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.is_transposing
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.lilypond_format
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.pitch_range
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.primary_clefs
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.short_instrument_name
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.start_component
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.storage_format
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.target_context
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.__call__
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.__copy__
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.__eq__
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.__ge__
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.__gt__
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.__hash__
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.__le__
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.__lt__
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.__ne__
+      ~abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument.__repr__
+
 Bases
 -----
 

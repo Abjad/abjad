@@ -5,6 +5,81 @@
 
 .. autoclass:: abjad.tools.measuretools.Measure.Measure.Measure
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.measuretools.Measure.Measure.Measure.always_format_time_signature
+      ~abjad.tools.measuretools.Measure.Measure.Measure.append
+      ~abjad.tools.measuretools.Measure.Measure.Measure.automatically_adjust_time_signature
+      ~abjad.tools.measuretools.Measure.Measure.Measure.contents_duration
+      ~abjad.tools.measuretools.Measure.Measure.Measure.duration
+      ~abjad.tools.measuretools.Measure.Measure.Measure.duration_in_seconds
+      ~abjad.tools.measuretools.Measure.Measure.Measure.extend
+      ~abjad.tools.measuretools.Measure.Measure.Measure.extend_in_parent
+      ~abjad.tools.measuretools.Measure.Measure.Measure.get_mark
+      ~abjad.tools.measuretools.Measure.Measure.Measure.get_marks
+      ~abjad.tools.measuretools.Measure.Measure.Measure.has_non_power_of_two_denominator
+      ~abjad.tools.measuretools.Measure.Measure.Measure.has_power_of_two_denominator
+      ~abjad.tools.measuretools.Measure.Measure.Measure.implied_prolation
+      ~abjad.tools.measuretools.Measure.Measure.Measure.index
+      ~abjad.tools.measuretools.Measure.Measure.Measure.insert
+      ~abjad.tools.measuretools.Measure.Measure.Measure.is_full
+      ~abjad.tools.measuretools.Measure.Measure.Measure.is_misfilled
+      ~abjad.tools.measuretools.Measure.Measure.Measure.is_overfull
+      ~abjad.tools.measuretools.Measure.Measure.Measure.is_parallel
+      ~abjad.tools.measuretools.Measure.Measure.Measure.is_underfull
+      ~abjad.tools.measuretools.Measure.Measure.Measure.lilypond_format
+      ~abjad.tools.measuretools.Measure.Measure.Measure.measure_number
+      ~abjad.tools.measuretools.Measure.Measure.Measure.music
+      ~abjad.tools.measuretools.Measure.Measure.Measure.override
+      ~abjad.tools.measuretools.Measure.Measure.Measure.parent
+      ~abjad.tools.measuretools.Measure.Measure.Measure.pop
+      ~abjad.tools.measuretools.Measure.Measure.Measure.preprolated_duration
+      ~abjad.tools.measuretools.Measure.Measure.Measure.prolation
+      ~abjad.tools.measuretools.Measure.Measure.Measure.remove
+      ~abjad.tools.measuretools.Measure.Measure.Measure.select
+      ~abjad.tools.measuretools.Measure.Measure.Measure.select_components
+      ~abjad.tools.measuretools.Measure.Measure.Measure.select_contents
+      ~abjad.tools.measuretools.Measure.Measure.Measure.select_descendants
+      ~abjad.tools.measuretools.Measure.Measure.Measure.select_descendants_starting_with
+      ~abjad.tools.measuretools.Measure.Measure.Measure.select_descendants_stopping_with
+      ~abjad.tools.measuretools.Measure.Measure.Measure.select_leaves
+      ~abjad.tools.measuretools.Measure.Measure.Measure.select_lineage
+      ~abjad.tools.measuretools.Measure.Measure.Measure.select_parentage
+      ~abjad.tools.measuretools.Measure.Measure.Measure.select_vertical_moment
+      ~abjad.tools.measuretools.Measure.Measure.Measure.select_vertical_moment_at
+      ~abjad.tools.measuretools.Measure.Measure.Measure.set
+      ~abjad.tools.measuretools.Measure.Measure.Measure.shorten
+      ~abjad.tools.measuretools.Measure.Measure.Measure.spanners
+      ~abjad.tools.measuretools.Measure.Measure.Measure.storage_format
+      ~abjad.tools.measuretools.Measure.Measure.Measure.target_duration
+      ~abjad.tools.measuretools.Measure.Measure.Measure.timespan
+      ~abjad.tools.measuretools.Measure.Measure.Measure.timespan_in_seconds
+      ~abjad.tools.measuretools.Measure.Measure.Measure.__add__
+      ~abjad.tools.measuretools.Measure.Measure.Measure.__contains__
+      ~abjad.tools.measuretools.Measure.Measure.Measure.__copy__
+      ~abjad.tools.measuretools.Measure.Measure.Measure.__delitem__
+      ~abjad.tools.measuretools.Measure.Measure.Measure.__eq__
+      ~abjad.tools.measuretools.Measure.Measure.Measure.__ge__
+      ~abjad.tools.measuretools.Measure.Measure.Measure.__getitem__
+      ~abjad.tools.measuretools.Measure.Measure.Measure.__gt__
+      ~abjad.tools.measuretools.Measure.Measure.Measure.__iadd__
+      ~abjad.tools.measuretools.Measure.Measure.Measure.__imul__
+      ~abjad.tools.measuretools.Measure.Measure.Measure.__le__
+      ~abjad.tools.measuretools.Measure.Measure.Measure.__len__
+      ~abjad.tools.measuretools.Measure.Measure.Measure.__lt__
+      ~abjad.tools.measuretools.Measure.Measure.Measure.__mul__
+      ~abjad.tools.measuretools.Measure.Measure.Measure.__ne__
+      ~abjad.tools.measuretools.Measure.Measure.Measure.__radd__
+      ~abjad.tools.measuretools.Measure.Measure.Measure.__repr__
+      ~abjad.tools.measuretools.Measure.Measure.Measure.__rmul__
+      ~abjad.tools.measuretools.Measure.Measure.Measure.__setitem__
+      ~abjad.tools.measuretools.Measure.Measure.Measure.__str__
+
 Bases
 -----
 

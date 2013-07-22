@@ -5,6 +5,35 @@
 
 .. autoclass:: abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.alias
+      ~abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.argument_parser
+      ~abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.formatted_help
+      ~abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.formatted_usage
+      ~abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.formatted_version
+      ~abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.long_description
+      ~abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.process_args
+      ~abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.program_name
+      ~abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.scripting_group
+      ~abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.setup_argument_parser
+      ~abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.short_description
+      ~abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.storage_format
+      ~abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.version
+      ~abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.__call__
+      ~abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.__eq__
+      ~abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.__ge__
+      ~abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.__gt__
+      ~abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.__le__
+      ~abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.__lt__
+      ~abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.__ne__
+      ~abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.__repr__
+
 Bases
 -----
 

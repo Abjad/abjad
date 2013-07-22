@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.all_clefs
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.attach
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.default_instrument_name
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.default_pitch_range
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.default_short_instrument_name
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.detach
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.effective_context
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.get_default_performer_name
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.get_performer_names
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.instrument_name
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.instrument_name_markup
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.interval_of_transposition
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.is_primary_instrument
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.is_secondary_instrument
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.is_transposing
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.lilypond_format
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.pitch_range
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.primary_clefs
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.short_instrument_name
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.start_component
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.storage_format
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.target_context
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.__call__
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.__copy__
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.__eq__
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.__ge__
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.__gt__
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.__hash__
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.__le__
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.__lt__
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.__ne__
+      ~abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.__repr__
+
 Bases
 -----
 

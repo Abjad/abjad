@@ -5,6 +5,41 @@
 
 .. autoclass:: abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_bound_hairpin_score_01
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_bound_hairpin_score_02
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_bound_hairpin_score_03
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_context_mark_score_01
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_context_mark_score_02
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_context_mark_score_03
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_hairpin_score_01
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_hairpin_score_02
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_hairpin_score_03
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_score_00
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_spanner_score_01
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_spanner_score_02
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_spanner_score_03
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_spanner_score_04
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_spanner_score_05
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_spanner_score_06
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_spanner_score_07
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_spanner_score_08
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.make_spanner_score_09
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.storage_format
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.__eq__
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.__ge__
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.__gt__
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.__le__
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.__lt__
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.__ne__
+      ~abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker.__repr__
+
 Bases
 -----
 

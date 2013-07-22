@@ -5,6 +5,23 @@
 
 .. autoclass:: abjad.tools.lilypondparsertools.Music.Music.Music
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.lilypondparsertools.Music.Music.Music.construct
+      ~abjad.tools.lilypondparsertools.Music.Music.Music.storage_format
+      ~abjad.tools.lilypondparsertools.Music.Music.Music.__eq__
+      ~abjad.tools.lilypondparsertools.Music.Music.Music.__ge__
+      ~abjad.tools.lilypondparsertools.Music.Music.Music.__gt__
+      ~abjad.tools.lilypondparsertools.Music.Music.Music.__le__
+      ~abjad.tools.lilypondparsertools.Music.Music.Music.__lt__
+      ~abjad.tools.lilypondparsertools.Music.Music.Music.__ne__
+      ~abjad.tools.lilypondparsertools.Music.Music.Music.__repr__
+
 Bases
 -----
 

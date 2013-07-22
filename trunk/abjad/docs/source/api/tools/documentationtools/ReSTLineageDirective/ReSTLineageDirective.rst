@@ -5,6 +5,54 @@
 
 .. autoclass:: abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.append
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.argument
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.children
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.depth
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.depthwise_inventory
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.directive
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.extend
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.graph_order
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.improper_parentage
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.index
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.insert
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.leaves
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.name
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.node_class
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.nodes
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.options
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.parent
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.pop
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.proper_parentage
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.remove
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.rest_format
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.root
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.storage_format
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.__contains__
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.__copy__
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.__deepcopy__
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.__delitem__
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.__eq__
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.__ge__
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.__getitem__
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.__getstate__
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.__gt__
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.__iter__
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.__le__
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.__len__
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.__lt__
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.__ne__
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.__repr__
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.__setitem__
+      ~abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective.__setstate__
+
 Bases
 -----
 

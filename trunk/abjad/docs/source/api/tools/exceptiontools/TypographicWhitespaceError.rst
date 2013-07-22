@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.exceptiontools.TypographicWhitespaceError.TypographicWhitespaceError
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.exceptiontools.TypographicWhitespaceError.TypographicWhitespaceError.__delattr__
+      ~abjad.tools.exceptiontools.TypographicWhitespaceError.TypographicWhitespaceError.__getitem__
+      ~abjad.tools.exceptiontools.TypographicWhitespaceError.TypographicWhitespaceError.__getslice__
+      ~abjad.tools.exceptiontools.TypographicWhitespaceError.TypographicWhitespaceError.__repr__
+      ~abjad.tools.exceptiontools.TypographicWhitespaceError.TypographicWhitespaceError.__setattr__
+      ~abjad.tools.exceptiontools.TypographicWhitespaceError.TypographicWhitespaceError.__setstate__
+      ~abjad.tools.exceptiontools.TypographicWhitespaceError.TypographicWhitespaceError.__str__
+      ~abjad.tools.exceptiontools.TypographicWhitespaceError.TypographicWhitespaceError.__unicode__
+
 Bases
 -----
 

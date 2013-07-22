@@ -5,6 +5,30 @@
 
 .. autoclass:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.notetools.NoteHead.NoteHead.NoteHead.is_cautionary
+      ~abjad.tools.notetools.NoteHead.NoteHead.NoteHead.is_forced
+      ~abjad.tools.notetools.NoteHead.NoteHead.NoteHead.lilypond_format
+      ~abjad.tools.notetools.NoteHead.NoteHead.NoteHead.named_chromatic_pitch
+      ~abjad.tools.notetools.NoteHead.NoteHead.NoteHead.storage_format
+      ~abjad.tools.notetools.NoteHead.NoteHead.NoteHead.tweak
+      ~abjad.tools.notetools.NoteHead.NoteHead.NoteHead.written_pitch
+      ~abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__copy__
+      ~abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__eq__
+      ~abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__ge__
+      ~abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__gt__
+      ~abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__le__
+      ~abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__lt__
+      ~abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__ne__
+      ~abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__repr__
+      ~abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__str__
+
 Bases
 -----
 

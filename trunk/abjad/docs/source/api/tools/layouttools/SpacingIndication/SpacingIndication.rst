@@ -5,6 +5,25 @@
 
 .. autoclass:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.normalized_spacing_duration
+      ~abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.proportional_notation_duration
+      ~abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.storage_format
+      ~abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.tempo_indication
+      ~abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__eq__
+      ~abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__ge__
+      ~abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__gt__
+      ~abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__le__
+      ~abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__lt__
+      ~abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__ne__
+      ~abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,30 @@
 
 .. autoclass:: abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.ending_line_number
+      ~abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.hide
+      ~abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.lines
+      ~abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.processed_results
+      ~abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.read
+      ~abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.starting_line_number
+      ~abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.storage_format
+      ~abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.strip_prompt
+      ~abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__call__
+      ~abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__eq__
+      ~abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__ge__
+      ~abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__gt__
+      ~abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__le__
+      ~abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__lt__
+      ~abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__ne__
+      ~abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__repr__
+
 Bases
 -----
 

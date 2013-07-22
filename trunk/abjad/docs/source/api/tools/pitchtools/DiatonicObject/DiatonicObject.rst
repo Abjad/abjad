@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.pitchtools.DiatonicObject.DiatonicObject.DiatonicObject
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.DiatonicObject.DiatonicObject.DiatonicObject.storage_format
+      ~abjad.tools.pitchtools.DiatonicObject.DiatonicObject.DiatonicObject.__eq__
+      ~abjad.tools.pitchtools.DiatonicObject.DiatonicObject.DiatonicObject.__ge__
+      ~abjad.tools.pitchtools.DiatonicObject.DiatonicObject.DiatonicObject.__gt__
+      ~abjad.tools.pitchtools.DiatonicObject.DiatonicObject.DiatonicObject.__le__
+      ~abjad.tools.pitchtools.DiatonicObject.DiatonicObject.DiatonicObject.__lt__
+      ~abjad.tools.pitchtools.DiatonicObject.DiatonicObject.DiatonicObject.__ne__
+      ~abjad.tools.pitchtools.DiatonicObject.DiatonicObject.DiatonicObject.__repr__
+
 Bases
 -----
 

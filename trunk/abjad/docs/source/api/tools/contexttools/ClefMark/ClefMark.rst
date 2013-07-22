@@ -5,6 +5,32 @@
 
 .. autoclass:: abjad.tools.contexttools.ClefMark.ClefMark.ClefMark
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.attach
+      ~abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.clef_name
+      ~abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.detach
+      ~abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.effective_context
+      ~abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.lilypond_format
+      ~abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.middle_c_position
+      ~abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.start_component
+      ~abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.storage_format
+      ~abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.target_context
+      ~abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.__call__
+      ~abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.__copy__
+      ~abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.__eq__
+      ~abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.__ge__
+      ~abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.__gt__
+      ~abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.__le__
+      ~abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.__lt__
+      ~abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.__ne__
+      ~abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.__repr__
+
 Bases
 -----
 

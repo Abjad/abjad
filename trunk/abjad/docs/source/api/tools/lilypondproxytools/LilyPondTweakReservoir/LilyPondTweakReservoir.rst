@@ -5,6 +5,23 @@
 
 .. autoclass:: abjad.tools.lilypondproxytools.LilyPondTweakReservoir.LilyPondTweakReservoir.LilyPondTweakReservoir
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.lilypondproxytools.LilyPondTweakReservoir.LilyPondTweakReservoir.LilyPondTweakReservoir.storage_format
+      ~abjad.tools.lilypondproxytools.LilyPondTweakReservoir.LilyPondTweakReservoir.LilyPondTweakReservoir.__copy__
+      ~abjad.tools.lilypondproxytools.LilyPondTweakReservoir.LilyPondTweakReservoir.LilyPondTweakReservoir.__eq__
+      ~abjad.tools.lilypondproxytools.LilyPondTweakReservoir.LilyPondTweakReservoir.LilyPondTweakReservoir.__ge__
+      ~abjad.tools.lilypondproxytools.LilyPondTweakReservoir.LilyPondTweakReservoir.LilyPondTweakReservoir.__gt__
+      ~abjad.tools.lilypondproxytools.LilyPondTweakReservoir.LilyPondTweakReservoir.LilyPondTweakReservoir.__le__
+      ~abjad.tools.lilypondproxytools.LilyPondTweakReservoir.LilyPondTweakReservoir.LilyPondTweakReservoir.__lt__
+      ~abjad.tools.lilypondproxytools.LilyPondTweakReservoir.LilyPondTweakReservoir.LilyPondTweakReservoir.__ne__
+      ~abjad.tools.lilypondproxytools.LilyPondTweakReservoir.LilyPondTweakReservoir.LilyPondTweakReservoir.__repr__
+
 Bases
 -----
 

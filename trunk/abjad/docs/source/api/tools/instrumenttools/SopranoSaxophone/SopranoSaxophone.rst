@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.all_clefs
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.attach
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.default_instrument_name
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.default_pitch_range
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.default_short_instrument_name
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.detach
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.effective_context
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.get_default_performer_name
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.get_performer_names
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.instrument_name
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.instrument_name_markup
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.interval_of_transposition
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.is_primary_instrument
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.is_secondary_instrument
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.is_transposing
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.lilypond_format
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.pitch_range
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.primary_clefs
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.short_instrument_name
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.start_component
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.storage_format
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.target_context
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.__call__
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.__copy__
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.__eq__
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.__ge__
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.__gt__
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.__hash__
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.__le__
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.__lt__
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.__ne__
+      ~abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.__repr__
+
 Bases
 -----
 

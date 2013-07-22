@@ -5,6 +5,37 @@
 
 .. autoclass:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.attach
+      ~abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.default_instrument_name
+      ~abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.default_short_instrument_name
+      ~abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.detach
+      ~abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.effective_context
+      ~abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.instrument_name
+      ~abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.instrument_name_markup
+      ~abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.lilypond_format
+      ~abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.short_instrument_name
+      ~abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.short_instrument_name_markup
+      ~abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.start_component
+      ~abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.storage_format
+      ~abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.target_context
+      ~abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.__call__
+      ~abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.__copy__
+      ~abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.__eq__
+      ~abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.__ge__
+      ~abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.__gt__
+      ~abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.__hash__
+      ~abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.__le__
+      ~abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.__lt__
+      ~abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.__ne__
+      ~abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.__repr__
+
 Bases
 -----
 

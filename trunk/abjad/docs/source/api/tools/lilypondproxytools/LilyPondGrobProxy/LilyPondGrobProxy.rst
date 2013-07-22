@@ -5,6 +5,23 @@
 
 .. autoclass:: abjad.tools.lilypondproxytools.LilyPondGrobProxy.LilyPondGrobProxy.LilyPondGrobProxy
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.lilypondproxytools.LilyPondGrobProxy.LilyPondGrobProxy.LilyPondGrobProxy.storage_format
+      ~abjad.tools.lilypondproxytools.LilyPondGrobProxy.LilyPondGrobProxy.LilyPondGrobProxy.__copy__
+      ~abjad.tools.lilypondproxytools.LilyPondGrobProxy.LilyPondGrobProxy.LilyPondGrobProxy.__eq__
+      ~abjad.tools.lilypondproxytools.LilyPondGrobProxy.LilyPondGrobProxy.LilyPondGrobProxy.__ge__
+      ~abjad.tools.lilypondproxytools.LilyPondGrobProxy.LilyPondGrobProxy.LilyPondGrobProxy.__gt__
+      ~abjad.tools.lilypondproxytools.LilyPondGrobProxy.LilyPondGrobProxy.LilyPondGrobProxy.__le__
+      ~abjad.tools.lilypondproxytools.LilyPondGrobProxy.LilyPondGrobProxy.LilyPondGrobProxy.__lt__
+      ~abjad.tools.lilypondproxytools.LilyPondGrobProxy.LilyPondGrobProxy.LilyPondGrobProxy.__ne__
+      ~abjad.tools.lilypondproxytools.LilyPondGrobProxy.LilyPondGrobProxy.LilyPondGrobProxy.__repr__
+
 Bases
 -----
 

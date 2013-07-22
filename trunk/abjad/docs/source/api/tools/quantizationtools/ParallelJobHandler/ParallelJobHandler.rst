@@ -5,6 +5,23 @@
 
 .. autoclass:: abjad.tools.quantizationtools.ParallelJobHandler.ParallelJobHandler.ParallelJobHandler
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.quantizationtools.ParallelJobHandler.ParallelJobHandler.ParallelJobHandler.storage_format
+      ~abjad.tools.quantizationtools.ParallelJobHandler.ParallelJobHandler.ParallelJobHandler.__call__
+      ~abjad.tools.quantizationtools.ParallelJobHandler.ParallelJobHandler.ParallelJobHandler.__eq__
+      ~abjad.tools.quantizationtools.ParallelJobHandler.ParallelJobHandler.ParallelJobHandler.__ge__
+      ~abjad.tools.quantizationtools.ParallelJobHandler.ParallelJobHandler.ParallelJobHandler.__gt__
+      ~abjad.tools.quantizationtools.ParallelJobHandler.ParallelJobHandler.ParallelJobHandler.__le__
+      ~abjad.tools.quantizationtools.ParallelJobHandler.ParallelJobHandler.ParallelJobHandler.__lt__
+      ~abjad.tools.quantizationtools.ParallelJobHandler.ParallelJobHandler.ParallelJobHandler.__ne__
+      ~abjad.tools.quantizationtools.ParallelJobHandler.ParallelJobHandler.ParallelJobHandler.__repr__
+
 Bases
 -----
 

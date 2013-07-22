@@ -5,6 +5,28 @@
 
 .. autoclass:: abjad.tools.instrumenttools.WoodwindFingering.WoodwindFingering.WoodwindFingering
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.WoodwindFingering.WoodwindFingering.WoodwindFingering.center_column
+      ~abjad.tools.instrumenttools.WoodwindFingering.WoodwindFingering.WoodwindFingering.instrument_name
+      ~abjad.tools.instrumenttools.WoodwindFingering.WoodwindFingering.WoodwindFingering.left_hand
+      ~abjad.tools.instrumenttools.WoodwindFingering.WoodwindFingering.WoodwindFingering.print_guide
+      ~abjad.tools.instrumenttools.WoodwindFingering.WoodwindFingering.WoodwindFingering.right_hand
+      ~abjad.tools.instrumenttools.WoodwindFingering.WoodwindFingering.WoodwindFingering.storage_format
+      ~abjad.tools.instrumenttools.WoodwindFingering.WoodwindFingering.WoodwindFingering.__call__
+      ~abjad.tools.instrumenttools.WoodwindFingering.WoodwindFingering.WoodwindFingering.__eq__
+      ~abjad.tools.instrumenttools.WoodwindFingering.WoodwindFingering.WoodwindFingering.__ge__
+      ~abjad.tools.instrumenttools.WoodwindFingering.WoodwindFingering.WoodwindFingering.__gt__
+      ~abjad.tools.instrumenttools.WoodwindFingering.WoodwindFingering.WoodwindFingering.__le__
+      ~abjad.tools.instrumenttools.WoodwindFingering.WoodwindFingering.WoodwindFingering.__lt__
+      ~abjad.tools.instrumenttools.WoodwindFingering.WoodwindFingering.WoodwindFingering.__ne__
+      ~abjad.tools.instrumenttools.WoodwindFingering.WoodwindFingering.WoodwindFingering.__repr__
+
 Bases
 -----
 

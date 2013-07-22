@@ -5,6 +5,26 @@
 
 .. autoclass:: abjad.tools.tonalanalysistools.InversionIndicator.InversionIndicator.InversionIndicator
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.tonalanalysistools.InversionIndicator.InversionIndicator.InversionIndicator.extent_to_figured_bass_string
+      ~abjad.tools.tonalanalysistools.InversionIndicator.InversionIndicator.InversionIndicator.name
+      ~abjad.tools.tonalanalysistools.InversionIndicator.InversionIndicator.InversionIndicator.number
+      ~abjad.tools.tonalanalysistools.InversionIndicator.InversionIndicator.InversionIndicator.storage_format
+      ~abjad.tools.tonalanalysistools.InversionIndicator.InversionIndicator.InversionIndicator.title
+      ~abjad.tools.tonalanalysistools.InversionIndicator.InversionIndicator.InversionIndicator.__eq__
+      ~abjad.tools.tonalanalysistools.InversionIndicator.InversionIndicator.InversionIndicator.__ge__
+      ~abjad.tools.tonalanalysistools.InversionIndicator.InversionIndicator.InversionIndicator.__gt__
+      ~abjad.tools.tonalanalysistools.InversionIndicator.InversionIndicator.InversionIndicator.__le__
+      ~abjad.tools.tonalanalysistools.InversionIndicator.InversionIndicator.InversionIndicator.__lt__
+      ~abjad.tools.tonalanalysistools.InversionIndicator.InversionIndicator.InversionIndicator.__ne__
+      ~abjad.tools.tonalanalysistools.InversionIndicator.InversionIndicator.InversionIndicator.__repr__
+
 Bases
 -----
 

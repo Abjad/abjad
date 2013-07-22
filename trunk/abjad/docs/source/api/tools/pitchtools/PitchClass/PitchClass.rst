@@ -5,6 +5,23 @@
 
 .. autoclass:: abjad.tools.pitchtools.PitchClass.PitchClass.PitchClass
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.PitchClass.PitchClass.PitchClass.storage_format
+      ~abjad.tools.pitchtools.PitchClass.PitchClass.PitchClass.__eq__
+      ~abjad.tools.pitchtools.PitchClass.PitchClass.PitchClass.__ge__
+      ~abjad.tools.pitchtools.PitchClass.PitchClass.PitchClass.__gt__
+      ~abjad.tools.pitchtools.PitchClass.PitchClass.PitchClass.__hash__
+      ~abjad.tools.pitchtools.PitchClass.PitchClass.PitchClass.__le__
+      ~abjad.tools.pitchtools.PitchClass.PitchClass.PitchClass.__lt__
+      ~abjad.tools.pitchtools.PitchClass.PitchClass.PitchClass.__ne__
+      ~abjad.tools.pitchtools.PitchClass.PitchClass.PitchClass.__repr__
+
 Bases
 -----
 

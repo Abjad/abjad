@@ -5,6 +5,34 @@
 
 .. autoclass:: abjad.tools.pitchtools.PitchSegment.PitchSegment.PitchSegment
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.PitchSegment.PitchSegment.PitchSegment.count
+      ~abjad.tools.pitchtools.PitchSegment.PitchSegment.PitchSegment.index
+      ~abjad.tools.pitchtools.PitchSegment.PitchSegment.PitchSegment.storage_format
+      ~abjad.tools.pitchtools.PitchSegment.PitchSegment.PitchSegment.__add__
+      ~abjad.tools.pitchtools.PitchSegment.PitchSegment.PitchSegment.__contains__
+      ~abjad.tools.pitchtools.PitchSegment.PitchSegment.PitchSegment.__eq__
+      ~abjad.tools.pitchtools.PitchSegment.PitchSegment.PitchSegment.__ge__
+      ~abjad.tools.pitchtools.PitchSegment.PitchSegment.PitchSegment.__getitem__
+      ~abjad.tools.pitchtools.PitchSegment.PitchSegment.PitchSegment.__getslice__
+      ~abjad.tools.pitchtools.PitchSegment.PitchSegment.PitchSegment.__gt__
+      ~abjad.tools.pitchtools.PitchSegment.PitchSegment.PitchSegment.__hash__
+      ~abjad.tools.pitchtools.PitchSegment.PitchSegment.PitchSegment.__iter__
+      ~abjad.tools.pitchtools.PitchSegment.PitchSegment.PitchSegment.__le__
+      ~abjad.tools.pitchtools.PitchSegment.PitchSegment.PitchSegment.__len__
+      ~abjad.tools.pitchtools.PitchSegment.PitchSegment.PitchSegment.__lt__
+      ~abjad.tools.pitchtools.PitchSegment.PitchSegment.PitchSegment.__mul__
+      ~abjad.tools.pitchtools.PitchSegment.PitchSegment.PitchSegment.__ne__
+      ~abjad.tools.pitchtools.PitchSegment.PitchSegment.PitchSegment.__new__
+      ~abjad.tools.pitchtools.PitchSegment.PitchSegment.PitchSegment.__repr__
+      ~abjad.tools.pitchtools.PitchSegment.PitchSegment.PitchSegment.__rmul__
+
 Bases
 -----
 

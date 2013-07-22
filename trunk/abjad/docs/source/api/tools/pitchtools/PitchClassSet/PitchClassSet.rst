@@ -5,6 +5,44 @@
 
 .. autoclass:: abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.copy
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.difference
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.intersection
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.isdisjoint
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.issubset
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.issuperset
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.storage_format
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.symmetric_difference
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.union
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.__and__
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.__cmp__
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.__contains__
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.__eq__
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.__ge__
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.__gt__
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.__hash__
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.__iter__
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.__le__
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.__len__
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.__lt__
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.__ne__
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.__new__
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.__or__
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.__rand__
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.__repr__
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.__ror__
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.__rsub__
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.__rxor__
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.__sub__
+      ~abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet.__xor__
+
 Bases
 -----
 

@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.exceptiontools.OverfullContainerError.OverfullContainerError
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.exceptiontools.OverfullContainerError.OverfullContainerError.__delattr__
+      ~abjad.tools.exceptiontools.OverfullContainerError.OverfullContainerError.__getitem__
+      ~abjad.tools.exceptiontools.OverfullContainerError.OverfullContainerError.__getslice__
+      ~abjad.tools.exceptiontools.OverfullContainerError.OverfullContainerError.__repr__
+      ~abjad.tools.exceptiontools.OverfullContainerError.OverfullContainerError.__setattr__
+      ~abjad.tools.exceptiontools.OverfullContainerError.OverfullContainerError.__setstate__
+      ~abjad.tools.exceptiontools.OverfullContainerError.OverfullContainerError.__str__
+      ~abjad.tools.exceptiontools.OverfullContainerError.OverfullContainerError.__unicode__
+
 Bases
 -----
 

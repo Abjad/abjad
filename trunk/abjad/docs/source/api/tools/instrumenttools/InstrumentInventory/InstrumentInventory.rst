@@ -5,6 +5,47 @@
 
 .. autoclass:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.append
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.count
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.extend
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.index
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.insert
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.name
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.pop
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.remove
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.reverse
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.sort
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.storage_format
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__add__
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__contains__
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__delitem__
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__delslice__
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__eq__
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__ge__
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__getitem__
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__getslice__
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__gt__
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__iadd__
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__imul__
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__iter__
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__le__
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__len__
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__lt__
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__mul__
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__ne__
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__repr__
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__reversed__
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__rmul__
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__setitem__
+      ~abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__setslice__
+
 Bases
 -----
 

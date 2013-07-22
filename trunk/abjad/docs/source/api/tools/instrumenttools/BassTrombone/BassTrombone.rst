@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.all_clefs
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.attach
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.default_instrument_name
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.default_pitch_range
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.default_short_instrument_name
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.detach
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.effective_context
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.get_default_performer_name
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.get_performer_names
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.instrument_name
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.instrument_name_markup
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.interval_of_transposition
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.is_primary_instrument
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.is_secondary_instrument
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.is_transposing
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.lilypond_format
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.pitch_range
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.primary_clefs
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.short_instrument_name
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.start_component
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.storage_format
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.target_context
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.__call__
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.__copy__
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.__eq__
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.__ge__
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.__gt__
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.__hash__
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.__le__
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.__lt__
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.__ne__
+      ~abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.__repr__
+
 Bases
 -----
 

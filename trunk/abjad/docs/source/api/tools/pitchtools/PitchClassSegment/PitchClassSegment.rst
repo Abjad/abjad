@@ -5,6 +5,34 @@
 
 .. autoclass:: abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment.count
+      ~abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment.index
+      ~abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment.storage_format
+      ~abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment.__add__
+      ~abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment.__contains__
+      ~abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment.__eq__
+      ~abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment.__ge__
+      ~abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment.__getitem__
+      ~abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment.__getslice__
+      ~abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment.__gt__
+      ~abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment.__hash__
+      ~abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment.__iter__
+      ~abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment.__le__
+      ~abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment.__len__
+      ~abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment.__lt__
+      ~abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment.__mul__
+      ~abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment.__ne__
+      ~abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment.__new__
+      ~abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment.__repr__
+      ~abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment.__rmul__
+
 Bases
 -----
 

@@ -5,6 +5,69 @@
 
 .. autoclass:: abjad.tools.containertools.Cluster.Cluster.Cluster
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.append
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.contents_duration
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.duration
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.duration_in_seconds
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.extend
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.extend_in_parent
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.get_mark
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.get_marks
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.index
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.insert
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.is_parallel
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.lilypond_format
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.music
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.override
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.parent
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.pop
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.preprolated_duration
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.prolation
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.remove
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.select
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.select_components
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.select_contents
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.select_descendants
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.select_descendants_starting_with
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.select_descendants_stopping_with
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.select_leaves
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.select_lineage
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.select_parentage
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.select_vertical_moment
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.select_vertical_moment_at
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.set
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.shorten
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.spanners
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.storage_format
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.timespan
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.timespan_in_seconds
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.__add__
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.__contains__
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.__copy__
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.__delitem__
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.__eq__
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.__ge__
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.__getitem__
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.__gt__
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.__iadd__
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.__imul__
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.__le__
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.__len__
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.__lt__
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.__mul__
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.__ne__
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.__radd__
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.__repr__
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.__rmul__
+      ~abjad.tools.containertools.Cluster.Cluster.Cluster.__setitem__
+
 Bases
 -----
 

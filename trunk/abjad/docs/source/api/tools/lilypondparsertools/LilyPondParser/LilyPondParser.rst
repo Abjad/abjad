@@ -5,6 +5,36 @@
 
 .. autoclass:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.available_languages
+      ~abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.debug
+      ~abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.default_language
+      ~abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.lexer
+      ~abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.lexer_rules_object
+      ~abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.logger
+      ~abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.logger_path
+      ~abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.output_path
+      ~abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.parser
+      ~abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.parser_rules_object
+      ~abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.pickle_path
+      ~abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.register_markup_function
+      ~abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.storage_format
+      ~abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.tokenize
+      ~abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.__call__
+      ~abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.__eq__
+      ~abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.__ge__
+      ~abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.__gt__
+      ~abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.__le__
+      ~abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.__lt__
+      ~abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.__ne__
+      ~abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.__repr__
+
 Bases
 -----
 

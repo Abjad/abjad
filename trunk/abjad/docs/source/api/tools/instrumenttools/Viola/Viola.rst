@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.Viola.Viola.Viola
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.all_clefs
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.attach
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.default_instrument_name
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.default_pitch_range
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.default_short_instrument_name
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.detach
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.effective_context
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.get_default_performer_name
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.get_performer_names
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.instrument_name
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.instrument_name_markup
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.interval_of_transposition
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.is_primary_instrument
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.is_secondary_instrument
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.is_transposing
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.lilypond_format
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.pitch_range
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.primary_clefs
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.short_instrument_name
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.start_component
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.storage_format
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.target_context
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.__call__
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.__copy__
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.__eq__
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.__ge__
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.__gt__
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.__hash__
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.__le__
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.__lt__
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.__ne__
+      ~abjad.tools.instrumenttools.Viola.Viola.Viola.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,47 @@
 
 .. autoclass:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.append
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.count
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.extend
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.index
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.insert
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.name
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.pop
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.remove
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.reverse
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.sort
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.storage_format
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__add__
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__contains__
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__delitem__
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__delslice__
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__eq__
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__ge__
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__getitem__
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__getslice__
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__gt__
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__iadd__
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__imul__
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__iter__
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__le__
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__len__
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__lt__
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__mul__
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__ne__
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__repr__
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__reversed__
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__rmul__
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__setitem__
+      ~abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__setslice__
+
 Bases
 -----
 

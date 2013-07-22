@@ -5,6 +5,34 @@
 
 .. autoclass:: abjad.tools.sievetools.Sieve.Sieve.Sieve
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.sievetools.Sieve.Sieve.Sieve.from_cycle_tokens
+      ~abjad.tools.sievetools.Sieve.Sieve.Sieve.get_boolean_train
+      ~abjad.tools.sievetools.Sieve.Sieve.Sieve.get_congruent_bases
+      ~abjad.tools.sievetools.Sieve.Sieve.Sieve.is_congruent_base
+      ~abjad.tools.sievetools.Sieve.Sieve.Sieve.logical_operator
+      ~abjad.tools.sievetools.Sieve.Sieve.Sieve.period
+      ~abjad.tools.sievetools.Sieve.Sieve.Sieve.rcs
+      ~abjad.tools.sievetools.Sieve.Sieve.Sieve.representative_boolean_train
+      ~abjad.tools.sievetools.Sieve.Sieve.Sieve.representative_congruent_bases
+      ~abjad.tools.sievetools.Sieve.Sieve.Sieve.storage_format
+      ~abjad.tools.sievetools.Sieve.Sieve.Sieve.__and__
+      ~abjad.tools.sievetools.Sieve.Sieve.Sieve.__eq__
+      ~abjad.tools.sievetools.Sieve.Sieve.Sieve.__ge__
+      ~abjad.tools.sievetools.Sieve.Sieve.Sieve.__gt__
+      ~abjad.tools.sievetools.Sieve.Sieve.Sieve.__le__
+      ~abjad.tools.sievetools.Sieve.Sieve.Sieve.__lt__
+      ~abjad.tools.sievetools.Sieve.Sieve.Sieve.__ne__
+      ~abjad.tools.sievetools.Sieve.Sieve.Sieve.__or__
+      ~abjad.tools.sievetools.Sieve.Sieve.Sieve.__repr__
+      ~abjad.tools.sievetools.Sieve.Sieve.Sieve.__xor__
+
 Bases
 -----
 

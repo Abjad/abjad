@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.Voice.Voice.Voice
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.all_clefs
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.attach
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.default_instrument_name
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.default_pitch_range
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.default_short_instrument_name
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.detach
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.effective_context
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.get_default_performer_name
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.get_performer_names
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.instrument_name
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.instrument_name_markup
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.interval_of_transposition
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.is_primary_instrument
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.is_secondary_instrument
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.is_transposing
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.lilypond_format
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.pitch_range
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.primary_clefs
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.short_instrument_name
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.start_component
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.storage_format
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.target_context
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.__call__
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.__copy__
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.__eq__
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.__ge__
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.__gt__
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.__hash__
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.__le__
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.__lt__
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.__ne__
+      ~abjad.tools.instrumenttools.Voice.Voice.Voice.__repr__
+
 Bases
 -----
 

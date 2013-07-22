@@ -5,6 +5,49 @@
 
 .. autoclass:: abjad.tools.instrumenttools.Accordion.Accordion.Accordion
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.all_clefs
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.attach
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.default_instrument_name
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.default_performer_names
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.default_pitch_range
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.default_short_instrument_name
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.detach
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.effective_context
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.get_default_performer_name
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.get_performer_names
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.instrument_name
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.instrument_name_markup
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.interval_of_transposition
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.is_primary_instrument
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.is_secondary_instrument
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.is_transposing
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.lilypond_format
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.pitch_range
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.primary_clefs
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.short_instrument_name
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.start_component
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.storage_format
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.target_context
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.__call__
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.__copy__
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.__eq__
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.__ge__
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.__gt__
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.__hash__
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.__le__
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.__lt__
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.__ne__
+      ~abjad.tools.instrumenttools.Accordion.Accordion.Accordion.__repr__
+
 Bases
 -----
 

@@ -5,6 +5,82 @@
 
 .. autoclass:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.append
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.contents_duration
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.duration
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.duration_in_seconds
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.extend
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.extend_in_parent
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.force_fraction
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.get_mark
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.get_marks
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.has_non_power_of_two_denominator
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.has_power_of_two_denominator
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.implied_prolation
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.index
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.insert
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.is_augmentation
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.is_diminution
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.is_invisible
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.is_parallel
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.is_trivial
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.lilypond_format
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.multiplied_duration
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.multiplier
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.music
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.override
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.parent
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.pop
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.preferred_denominator
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.preprolated_duration
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.prolation
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.ratio_string
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.remove
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_components
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_contents
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_descendants
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_descendants_starting_with
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_descendants_stopping_with
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_leaves
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_lineage
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_parentage
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_vertical_moment
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_vertical_moment_at
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.set
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.shorten
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.spanners
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.storage_format
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.timespan
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.timespan_in_seconds
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__add__
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__contains__
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__copy__
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__delitem__
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__eq__
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__ge__
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__getitem__
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__gt__
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__iadd__
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__imul__
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__le__
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__len__
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__lt__
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__mul__
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__ne__
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__radd__
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__repr__
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__rmul__
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__setitem__
+      ~abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__str__
+
 Bases
 -----
 

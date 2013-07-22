@@ -5,6 +5,27 @@
 
 .. autoclass:: abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.inequality
+      ~abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.is_fully_loaded
+      ~abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.is_fully_unloaded
+      ~abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.new
+      ~abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.storage_format
+      ~abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.__call__
+      ~abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.__eq__
+      ~abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.__ge__
+      ~abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.__gt__
+      ~abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.__le__
+      ~abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.__lt__
+      ~abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.__ne__
+      ~abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.__repr__
+
 Bases
 -----
 

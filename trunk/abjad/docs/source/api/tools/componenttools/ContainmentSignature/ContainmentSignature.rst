@@ -5,6 +5,23 @@
 
 .. autoclass:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.storage_format
+      ~abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.__eq__
+      ~abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.__ge__
+      ~abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.__gt__
+      ~abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.__le__
+      ~abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.__lt__
+      ~abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.__ne__
+      ~abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.__repr__
+      ~abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.__str__
+
 Bases
 -----
 

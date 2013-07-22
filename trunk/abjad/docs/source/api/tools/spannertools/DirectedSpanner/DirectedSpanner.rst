@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.append
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.append_left
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.attach
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.components
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.detach
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.direction
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.duration
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.duration_in_seconds
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.extend
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.extend_left
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.fracture
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.fuse
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.index
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.leaves
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.override
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.pop
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.pop_left
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.preprolated_duration
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.set
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.storage_format
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.timespan
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.written_duration
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.__call__
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.__contains__
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.__copy__
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.__eq__
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.__ge__
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.__getitem__
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.__gt__
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.__le__
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.__len__
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.__lt__
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.__ne__
+      ~abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.__repr__
+
 Bases
 -----
 

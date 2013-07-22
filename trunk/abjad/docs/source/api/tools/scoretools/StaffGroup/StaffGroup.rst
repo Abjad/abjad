@@ -5,6 +5,75 @@
 
 .. autoclass:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.append
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.contents_duration
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.context_name
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.duration
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.duration_in_seconds
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.engraver_consists
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.engraver_removals
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.extend
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.extend_in_parent
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.get_mark
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.get_marks
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.index
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.insert
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.is_nonsemantic
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.is_parallel
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.is_semantic
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.lilypond_format
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.music
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.name
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.override
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.parent
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.pop
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.preprolated_duration
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.prolation
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.remove
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select_components
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select_contents
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select_descendants
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select_descendants_starting_with
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select_descendants_stopping_with
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select_leaves
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select_lineage
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select_parentage
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select_vertical_moment
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select_vertical_moment_at
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.set
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.shorten
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.spanners
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.storage_format
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.timespan
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.timespan_in_seconds
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.__add__
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.__contains__
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.__copy__
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.__delitem__
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.__eq__
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.__ge__
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.__getitem__
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.__gt__
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.__iadd__
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.__imul__
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.__le__
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.__len__
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.__lt__
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.__mul__
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.__ne__
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.__radd__
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.__repr__
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.__rmul__
+      ~abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.__setitem__
+
 Bases
 -----
 

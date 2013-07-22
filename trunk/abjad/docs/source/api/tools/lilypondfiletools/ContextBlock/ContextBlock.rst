@@ -5,6 +5,57 @@
 
 .. autoclass:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.accepts
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.alias
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.append
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.context_name
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.count
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.engraver_consists
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.engraver_removals
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.extend
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.index
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.insert
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.is_formatted_when_empty
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.lilypond_format
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.name
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.override
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.pop
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.remove
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.reverse
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.set
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.sort
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.storage_format
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.type
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__add__
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__contains__
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__delitem__
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__delslice__
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__eq__
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__ge__
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__getitem__
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__getslice__
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__gt__
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__iadd__
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__imul__
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__iter__
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__le__
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__len__
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__lt__
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__mul__
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__ne__
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__repr__
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__reversed__
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__rmul__
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__setitem__
+      ~abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__setslice__
+
 Bases
 -----
 

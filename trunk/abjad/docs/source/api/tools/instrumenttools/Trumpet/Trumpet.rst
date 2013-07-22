@@ -5,6 +5,48 @@
 
 .. autoclass:: abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.all_clefs
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.attach
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.default_instrument_name
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.default_pitch_range
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.default_short_instrument_name
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.detach
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.effective_context
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.get_default_performer_name
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.get_performer_names
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.instrument_name
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.instrument_name_markup
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.interval_of_transposition
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.is_primary_instrument
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.is_secondary_instrument
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.is_transposing
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.lilypond_format
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.pitch_range
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.primary_clefs
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.short_instrument_name
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.short_instrument_name_markup
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.sounding_pitch_of_fingered_middle_c
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.start_component
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.storage_format
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.target_context
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.__call__
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.__copy__
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.__eq__
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.__ge__
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.__gt__
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.__hash__
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.__le__
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.__lt__
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.__ne__
+      ~abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.__repr__
+
 Bases
 -----
 

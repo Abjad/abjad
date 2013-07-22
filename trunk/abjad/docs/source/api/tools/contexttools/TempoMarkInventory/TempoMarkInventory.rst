@@ -5,6 +5,47 @@
 
 .. autoclass:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.append
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.count
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.extend
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.index
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.insert
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.name
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.pop
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.remove
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.reverse
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.sort
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.storage_format
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__add__
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__contains__
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__delitem__
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__delslice__
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__eq__
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__ge__
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__getitem__
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__getslice__
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__gt__
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__iadd__
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__imul__
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__iter__
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__le__
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__len__
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__lt__
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__mul__
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__ne__
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__repr__
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__reversed__
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__rmul__
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__setitem__
+      ~abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__setslice__
+
 Bases
 -----
 

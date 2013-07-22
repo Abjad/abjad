@@ -5,6 +5,22 @@
 
 .. autoclass:: abjad.tools.exceptiontools.AssignabilityError.AssignabilityError
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.exceptiontools.AssignabilityError.AssignabilityError.__delattr__
+      ~abjad.tools.exceptiontools.AssignabilityError.AssignabilityError.__getitem__
+      ~abjad.tools.exceptiontools.AssignabilityError.AssignabilityError.__getslice__
+      ~abjad.tools.exceptiontools.AssignabilityError.AssignabilityError.__repr__
+      ~abjad.tools.exceptiontools.AssignabilityError.AssignabilityError.__setattr__
+      ~abjad.tools.exceptiontools.AssignabilityError.AssignabilityError.__setstate__
+      ~abjad.tools.exceptiontools.AssignabilityError.AssignabilityError.__str__
+      ~abjad.tools.exceptiontools.AssignabilityError.AssignabilityError.__unicode__
+
 Bases
 -----
 

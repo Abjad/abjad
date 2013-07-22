@@ -5,6 +5,33 @@
 
 .. autoclass:: abjad.tools.abctools.Parser.Parser.Parser
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.abctools.Parser.Parser.Parser.debug
+      ~abjad.tools.abctools.Parser.Parser.Parser.lexer
+      ~abjad.tools.abctools.Parser.Parser.Parser.lexer_rules_object
+      ~abjad.tools.abctools.Parser.Parser.Parser.logger
+      ~abjad.tools.abctools.Parser.Parser.Parser.logger_path
+      ~abjad.tools.abctools.Parser.Parser.Parser.output_path
+      ~abjad.tools.abctools.Parser.Parser.Parser.parser
+      ~abjad.tools.abctools.Parser.Parser.Parser.parser_rules_object
+      ~abjad.tools.abctools.Parser.Parser.Parser.pickle_path
+      ~abjad.tools.abctools.Parser.Parser.Parser.storage_format
+      ~abjad.tools.abctools.Parser.Parser.Parser.tokenize
+      ~abjad.tools.abctools.Parser.Parser.Parser.__call__
+      ~abjad.tools.abctools.Parser.Parser.Parser.__eq__
+      ~abjad.tools.abctools.Parser.Parser.Parser.__ge__
+      ~abjad.tools.abctools.Parser.Parser.Parser.__gt__
+      ~abjad.tools.abctools.Parser.Parser.Parser.__le__
+      ~abjad.tools.abctools.Parser.Parser.Parser.__lt__
+      ~abjad.tools.abctools.Parser.Parser.Parser.__ne__
+      ~abjad.tools.abctools.Parser.Parser.Parser.__repr__
+
 Bases
 -----
 

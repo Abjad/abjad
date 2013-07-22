@@ -5,6 +5,47 @@
 
 .. autoclass:: abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory
 
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.append
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.count
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.extend
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.index
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.insert
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.name
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.pop
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.remove
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.reverse
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.sort
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.storage_format
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.__add__
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.__contains__
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.__delitem__
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.__delslice__
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.__eq__
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.__ge__
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.__getitem__
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.__getslice__
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.__gt__
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.__iadd__
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.__imul__
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.__iter__
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.__le__
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.__len__
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.__lt__
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.__mul__
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.__ne__
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.__repr__
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.__reversed__
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.__rmul__
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.__setitem__
+      ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory.__setslice__
+
 Bases
 -----
 
