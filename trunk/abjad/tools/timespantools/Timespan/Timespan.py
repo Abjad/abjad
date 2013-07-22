@@ -909,7 +909,9 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def divide_by_ratio(self, ratio):
-        '''Divide timespan by `ratio`::
+        '''Divide timespan by `ratio`:
+
+        ::
 
             >>> timespan = timespantools.Timespan((1, 2), (3, 2))
 
@@ -1266,7 +1268,9 @@ class Timespan(BoundedObject):
         return result
 
     def set_duration(self, duration):
-        '''Set timespan duration to `duration`::
+        '''Set timespan duration to `duration`:
+
+        ::
 
             >>> timespan = timespantools.Timespan((1, 2), (3, 2))
 
@@ -1284,7 +1288,9 @@ class Timespan(BoundedObject):
 
     def set_offsets(self, start_offset=None, stop_offset=None):
         '''Set timespan start offset to `start_offset` and
-        stop offset to `stop_offset`::
+        stop offset to `stop_offset`:
+
+        ::
 
             >>> timespan = timespantools.Timespan((1, 2), (3, 2))
 
@@ -1988,7 +1994,9 @@ class Timespan(BoundedObject):
         stop_offset_translation=None,
         ):
         '''Translate timespan start offset by `start_offset_translation` and
-        stop offset by `stop_offset_translation`::
+        stop offset by `stop_offset_translation`:
+
+        ::
 
             >>> timespan = timespantools.Timespan((1, 2), (3, 2))
 
