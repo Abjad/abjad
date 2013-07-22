@@ -132,7 +132,9 @@ class TimespanCallbackMixin(CallbackMixin):
     ### PUBLIC METHODS ###
 
     def divide_by_ratio(self, ratio):
-        '''Divide timespan expression by `ratio`::
+        '''Divide timespan expression by `ratio`:
+
+        ::
 
             >>> timespans = red_segment.timespan.divide_by_ratio((2, 3))
 
@@ -156,7 +158,9 @@ class TimespanCallbackMixin(CallbackMixin):
                     ])
                 )
 
-        Coerce integer `ratio` to ``Ratio(ratio*[1])``::
+        Coerce integer `ratio` to ``Ratio(ratio*[1])``:
+
+        ::
 
             >>> timespans = red_segment.timespan.divide_by_ratio(3)
 
@@ -204,6 +208,8 @@ class TimespanCallbackMixin(CallbackMixin):
 
     def scale(self, multiplier):
         '''Scale timespan expression duration by `multiplier`.
+
+        ::
 
             >>> timespan = red_segment.timespan.scale(Multiplier(4, 5))
 

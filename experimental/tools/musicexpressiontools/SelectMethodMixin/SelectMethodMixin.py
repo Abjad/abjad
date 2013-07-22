@@ -25,7 +25,9 @@ class SelectMethodMixin(AbjadObject):
     ### PUBLIC METHODS ###
 
     def select_beats(self, voice_name, time_relation=None):
-        '''Select voice ``1`` beats that start during segment ``'red'``::
+        '''Select voice ``1`` beats that start during segment ``'red'``:
+
+        ::
 
             >>> beats = red_segment.select_beats('Voice 1')
 
@@ -49,7 +51,9 @@ class SelectMethodMixin(AbjadObject):
         return select_expression
 
     def select_divisions(self, voice_name, time_relation=None):
-        '''Select voice ``1`` divisions that start during segment ``'red'``::
+        '''Select voice ``1`` divisions that start during segment ``'red'``:
+
+        ::
 
             >>> divisions = red_segment.select_divisions('Voice 1')
 
@@ -74,7 +78,9 @@ class SelectMethodMixin(AbjadObject):
         return select_expression
 
     def select_leaves(self, voice_name, time_relation=None):
-        '''Select voice ``1`` leaves that start during segment ``'red'``::
+        '''Select voice ``1`` leaves that start during segment ``'red'``:
+
+        ::
 
             >>> leaves = red_segment.select_leaves('Voice 1')
 
@@ -103,8 +109,9 @@ class SelectMethodMixin(AbjadObject):
         return select_expression
 
     def select_measures(self, voice_name, time_relation=None):
-        '''Select voice ``1`` measures
-        that start during segment ``'red'``::
+        '''Select voice ``1`` measures that start during segment ``'red'``:
+
+        ::
 
             >>> measures = red_segment.select_measures('Voice 1')
 
@@ -129,7 +136,10 @@ class SelectMethodMixin(AbjadObject):
         return select_expression
 
     def select_notes_and_chords(self, voice_name, time_relation=None):
-        '''Select voice ``1`` notes and chords that start during segment ``'red'``::
+        '''Select voice ``1`` notes and chords that start during segment 
+        ``'red'``:
+
+        ::
 
             >>> notes_and_chords = red_segment.select_notes_and_chords('Voice 1')
 
@@ -180,7 +190,10 @@ class SelectMethodMixin(AbjadObject):
 #        return select_expression
 
     def select_time_signatures(self, voice_name, time_relation=None):
-        '''Select voice ``1`` time signatures that start during segment ``'red'``::
+        '''Select voice ``1`` time signatures that start during segment 
+        ``'red'``:
+
+        ::
 
             >>> time_signatures = red_segment.select_time_signatures('Voice 1')
 
