@@ -47,7 +47,8 @@ def list_time_signatures_of_measures_in_expr(components):
 
     # iterate measures and store time signature pairs
     for measure in iterationtools.iterate_measures_in_expr(components):
-        time_signature = contexttools.get_effective_time_signature(measure)
+        time_signature = measure.get_effective_context_mark(
+            contexttools.TimeSignatureMark)
         result.append(time_signature)
 
     # return result

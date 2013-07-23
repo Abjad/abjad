@@ -12,10 +12,10 @@ class MisduratedMeasureCheck(Check):
         violators = []
         total, bad = 0, 0
         for measure in iterationtools.iterate_measures_in_expr(expr):
-            if contexttools.get_effective_time_signature(measure) is not None:
-                if measure.preprolated_duration != \
-                    contexttools.get_effective_time_signature(
-                    measure).duration:
+            time_signature = measure.get_effective_context_mark(
+                contexttools.TimeSignatureMark)
+            if time_signature is not None:
+                if measure.preprolated_duration != time_signature.duration:
                     violators.append(measure)
                     bad += 1
             total += 1

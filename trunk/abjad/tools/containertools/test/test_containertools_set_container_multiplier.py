@@ -21,8 +21,10 @@ def test_containertools_set_container_multiplier_02():
     '''
 
     t = Measure((3, 8), "c'8 d'8 e'8")
-    assert contexttools.get_effective_time_signature(t).duration == Duration(3, 8)
+    assert t.get_effective_context_mark(
+        contexttools.TimeSignatureMark).duration == Duration(3, 8)
 
     containertools.set_container_multiplier(t, Duration(2, 3))
-    assert contexttools.get_effective_time_signature(t).duration == Duration(2, 8)
+    assert t.get_effective_context_mark(
+        contexttools.TimeSignatureMark).duration == Duration(2, 8)
     assert py.test.raises(OverfullContainerError, 't.lilypond_format')

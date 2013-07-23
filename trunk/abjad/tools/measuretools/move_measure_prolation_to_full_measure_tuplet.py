@@ -22,14 +22,15 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
     from abjad.tools import tuplettools
 
     for measure in iterationtools.iterate_measures_in_expr(expr):
-        if contexttools.get_effective_time_signature(measure).has_non_power_of_two_denominator:
+        effective_time_signature = measure.get_effective_context_mark(
+            contexttools.TimeSignatureMark)
+        if effective_time_signature.has_non_power_of_two_denominator:
 
             # find time signature and contents multipliers
-            time_signature_multiplier = contexttools.get_effective_time_signature(measure).implied_prolation
+            time_signature_multiplier = effective_time_signature.implied_prolation
             contents_multiplier = measuretools.get_likely_multiplier_of_components(measure[:])
 
             # update non-power-of-two time signature to power-of-two
-            effective_time_signature = contexttools.get_effective_time_signature(measure)
             power_of_two_time_signature = effective_time_signature.with_power_of_two_denominator(
                 contents_multiplier)
             measure.select().detach_marks(contexttools.TimeSignatureMark)

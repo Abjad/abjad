@@ -151,7 +151,8 @@ def split_container_at_index(component, i, fracture_spanners=False):
 
     # instantiate new left and right containers
     if isinstance(component, measuretools.Measure):
-        time_signature_denominator = contexttools.get_effective_time_signature(component).denominator
+        time_signature_denominator = component.get_effective_context_mark(
+            contexttools.TimeSignatureMark).denominator
         left_duration = sum([x.duration for x in left_music])
         left_pair = mathtools.NonreducedFraction(left_duration)
         left_pair = left_pair.with_multiple_of_denominator(time_signature_denominator)

@@ -96,8 +96,8 @@ def fuse_measures(measures):
     old_denominators = []
     new_duration = durationtools.Duration(0)
     for measure in measures:
-        effective_time_signature = \
-            contexttools.get_effective_time_signature(measure)
+        effective_time_signature = measure.get_effective_context_mark(
+            contexttools.TimeSignatureMark)
         old_denominators.append(effective_time_signature.denominator)
         new_duration += effective_time_signature.duration
 
@@ -108,7 +108,8 @@ def fuse_measures(measures):
     music = []
     for measure in measures:
         # scale before reassignment to prevent tie chain scale drama
-        signature = contexttools.get_effective_time_signature(measure)
+        signature = measure.get_effective_context_mark(
+            contexttools.TimeSignatureMark)
         prolation = signature.implied_prolation
         multiplier = prolation / new_time_signature.implied_prolation
         containertools.scale_contents_of_container(measure, multiplier)

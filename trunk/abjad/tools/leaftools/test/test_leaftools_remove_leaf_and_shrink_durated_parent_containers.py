@@ -228,7 +228,8 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_04():
         '''
 
     assert isinstance(t, Measure)
-    assert contexttools.get_effective_time_signature(t) == contexttools.TimeSignatureMark((11, 14))
+    assert t.get_effective_context_mark(contexttools.TimeSignatureMark) \
+        == contexttools.TimeSignatureMark((11, 14))
     assert len(t) == 2
     tuplet = t[0]
     assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
@@ -306,7 +307,8 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_05():
         '''
 
     assert isinstance(t, Measure)
-    assert contexttools.get_effective_time_signature(t) == contexttools.TimeSignatureMark((11, 14))
+    assert t.get_effective_context_mark(contexttools.TimeSignatureMark) \
+        == contexttools.TimeSignatureMark((11, 14))
     assert len(t) == 4
     tuplet = t[0]
     assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
@@ -375,7 +377,8 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_06():
         '''
 
     assert isinstance(t, Measure)
-    assert contexttools.get_effective_time_signature(t) == contexttools.TimeSignatureMark((4, 6))
+    assert t.get_effective_context_mark(contexttools.TimeSignatureMark) \
+        == contexttools.TimeSignatureMark((4, 6))
     assert len(t) == 3
     tuplet = t[0]
     assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
@@ -415,7 +418,8 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_07():
     leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[-1])
     measure = t
     assert isinstance(measure, Measure)
-    assert contexttools.get_effective_time_signature(measure) == contexttools.TimeSignatureMark((8, 9))
+    assert measure.get_effective_context_mark(contexttools.TimeSignatureMark) \
+        == contexttools.TimeSignatureMark((8, 9))
     assert len(measure) == 1
     tuplet = t[0]
     assert isinstance(tuplet, tuplettools.FixedDurationTuplet)

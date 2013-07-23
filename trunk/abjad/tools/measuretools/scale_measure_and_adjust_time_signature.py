@@ -34,7 +34,8 @@ def scale_measure_and_adjust_time_signature(measure, multiplier=1):
     if multiplier == 0:
         raise ZeroDivisionError
 
-    old_time_signature = contexttools.get_effective_time_signature(measure)
+    old_time_signature = measure.get_effective_context_mark(
+        contexttools.TimeSignatureMark)
     old_pair = (old_time_signature.numerator, old_time_signature.denominator)
     old_multiplier = old_time_signature.implied_prolation
     old_multiplier_pair = (old_multiplier.numerator, old_multiplier.denominator)

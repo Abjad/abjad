@@ -81,7 +81,8 @@ def color_measures_with_non_power_of_two_denominators_in_expr(expr, color='red')
 
     # color non-power-of-two measures in expr
     for measure in iterationtools.iterate_measures_in_expr(expr):
-        if contexttools.get_effective_time_signature(measure).has_non_power_of_two_denominator:
+        if measure.get_effective_context_mark(
+            contexttools.TimeSignatureMark).has_non_power_of_two_denominator:
             labeltools.color_measure(measure, color)
             measures_colored.append(measure)
 

@@ -48,7 +48,8 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
 
     if isinstance(measure, measuretools.Measure):
         # to allow iteration inside zero-update loop
-        old_time_signature = contexttools.get_effective_time_signature(measure)
+        old_time_signature = measure.get_effective_context_mark(
+            contexttools.TimeSignatureMark)
         old_time_signature_pair = (old_time_signature.numerator, old_time_signature.denominator)
         new_time_signature = mathtools.NonreducedFraction(old_time_signature_pair)
         new_time_signature = new_time_signature.with_denominator(denominator)

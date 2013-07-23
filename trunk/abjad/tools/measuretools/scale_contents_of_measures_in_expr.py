@@ -25,13 +25,15 @@ def scale_contents_of_measures_in_expr(expr, multiplier=1):
         if multiplier == durationtools.Duration(1):
             continue
 
+        old_time_signature = measure.get_effective_context_mark(
+            contexttools.TimeSignatureMark)
+
         if mathtools.is_nonnegative_integer_power_of_two(multiplier) and 1 <= multiplier:
-            old_numerator = contexttools.get_effective_time_signature(measure).numerator
-            old_denominator = contexttools.get_effective_time_signature(measure).denominator
+            old_numerator = old_time_signature.numerator
+            old_denominator = old_time_signature.denominator
             new_denominator = old_denominator / multiplier.numerator
             new_time_signature = contexttools.TimeSignatureMark((old_numerator, new_denominator))
         else:
-            old_time_signature = contexttools.get_effective_time_signature(measure)
             old_denominator = old_time_signature.denominator
             old_duration = old_time_signature.duration
             new_duration = multiplier * old_duration

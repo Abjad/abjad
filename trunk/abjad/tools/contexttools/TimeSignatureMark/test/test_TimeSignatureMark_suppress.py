@@ -7,7 +7,8 @@ def test_TimeSignatureMark_suppress_01():
     '''
 
     t = Measure((7, 8), "c'8 d'8 e'8 f'8 g'8 a'8 b'8")
-    contexttools.get_effective_time_signature(t).suppress = True
+    t.get_effective_context_mark(
+        contexttools.TimeSignatureMark).suppress = True
 
     r'''
     {
@@ -29,6 +30,7 @@ def test_TimeSignatureMark_suppress_02():
     '''
 
     t = Measure((8, 9), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    contexttools.get_effective_time_signature(t).suppress = True
+    t.get_effective_context_mark(
+        contexttools.TimeSignatureMark).suppress = True
 
     assert py.test.raises(Exception, 't.lilypond_format')

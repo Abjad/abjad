@@ -48,7 +48,8 @@ def report_time_signature_distribution(expr):
 
     time_signatures = []
     for measure in iterationtools.iterate_measures_in_expr(expr):
-        time_signatures.append(contexttools.get_effective_time_signature(measure))
+        time_signatures.append(measure.get_effective_context_mark(
+            contexttools.TimeSignatureMark))
 
     time_signatures.sort()
 

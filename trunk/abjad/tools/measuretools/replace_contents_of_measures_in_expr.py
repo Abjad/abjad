@@ -63,7 +63,8 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
     # get first measure and first time signature
     current_measure = measuretools.get_next_measure_from_component(expr)
     result.append(current_measure)
-    current_time_signature = contexttools.get_effective_time_signature(current_measure)
+    current_time_signature = current_measure.get_effective_context_mark(
+        contexttools.TimeSignatureMark)
     # to avoide pychecker slice assignment error
     #del(current_measure[:])
     current_measure.__delitem__(slice(0, len(current_measure)))
@@ -93,7 +94,9 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
             if current_measure is None:
                 raise StopIteration
             result.append(current_measure)
-            current_time_signature = contexttools.get_effective_time_signature(current_measure)
+            current_time_signature = \
+                current_measure.get_effective_context_mark(
+                    contexttools.TimeSignatureMark)
             # to avoid pychecker slice assignment error
             #del(current_measure[:])
             current_measure.__delitem__(slice(0, len(current_measure)))

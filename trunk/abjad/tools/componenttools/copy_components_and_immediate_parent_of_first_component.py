@@ -84,7 +84,8 @@ def copy_components_and_immediate_parent_of_first_component(components):
 
     # new: remember parent denominator, if any
     if isinstance(parent, measuretools.Measure):
-        time_signature = contexttools.get_effective_time_signature(parent)
+        time_signature = parent.get_effective_context_mark(
+            contexttools.TimeSignatureMark)
         parent_denominator = time_signature.denominator
     else:
         parent_denominator = None
@@ -120,7 +121,8 @@ def copy_components_and_immediate_parent_of_first_component(components):
 
     # new: rewrite result denominator, if available
     if parent_denominator is not None:
-        old_time_signature = contexttools.get_effective_time_signature(result)
+        old_time_signature = result.get_effective_context_mark(
+            contexttools.TimeSignatureMark)
         old_time_signature_pair = (
             old_time_signature.numerator, old_time_signature.denominator)
         new_time_signature = mathtools.NonreducedFraction(

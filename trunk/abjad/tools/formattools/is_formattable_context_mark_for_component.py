@@ -20,8 +20,8 @@ def is_formattable_context_mark_for_component(mark, component):
                     mark.start_component)
                 if previous_measure is not None:
                     previous_effective_time_signature = \
-                        contexttools.get_effective_time_signature(
-                        previous_measure)
+                        previous_measure.get_effective_context_mark(
+                            contexttools.TimeSignatureMark)
                 else:
                     previous_effective_time_signature = None
                 if not mark == previous_effective_time_signature:
