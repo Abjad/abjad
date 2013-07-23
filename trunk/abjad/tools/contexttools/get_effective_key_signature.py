@@ -34,4 +34,4 @@ def get_effective_key_signature(component):
     '''
     from abjad.tools import contexttools
 
-    return contexttools.get_effective_context_mark(component, contexttools.KeySignatureMark)
+    return component.get_effective_context_mark(contexttools.KeySignatureMark)

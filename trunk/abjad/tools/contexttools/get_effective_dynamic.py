@@ -33,4 +33,4 @@ def get_effective_dynamic(component):
     '''
     from abjad.tools import contexttools
 
-    return contexttools.get_effective_context_mark(component, contexttools.DynamicMark)
+    return component.get_effective_context_mark(contexttools.DynamicMark)

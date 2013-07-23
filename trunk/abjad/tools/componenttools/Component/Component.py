@@ -621,6 +621,67 @@ class Component(AbjadObject):
                     parent.__setitem__(slice(start, start), new_components)
             return new_components + [self]
 
+    def get_effective_context_mark(self,
+        context_mark_classes=None,
+        ):
+        r'''Get effective context mark of `context_mark_class` from 
+        `component`:
+
+        ::
+
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> contexttools.TimeSignatureMark((4, 8))(staff)
+            TimeSignatureMark((4, 8))(Staff{4})
+
+        ::
+
+            >>> f(staff)
+            \new Staff {
+                \time 4/8
+                c'8
+                d'8
+                e'8
+                f'8
+            }
+
+        ::
+            >>> staff[0].get_effective_context_mark(
+            ...     contexttools.TimeSignatureMark)
+            TimeSignatureMark((4, 8))(Staff{4})
+
+        Return context mark or none.
+        '''
+        from abjad.tools import contexttools
+        from abjad.tools import datastructuretools
+        from abjad.tools import measuretools
+        # do special things for time signature marks
+        if context_mark_classes == contexttools.TimeSignatureMark:
+            if isinstance(self, measuretools.Measure):
+                if not getattr(self, '_time_signature_is_current', True):
+                    self._update_time_signature()
+                if self._has_mark(contexttools.TimeSignatureMark):
+                    return self.get_mark(contexttools.TimeSignatureMark)
+        # updating marks of entire score tree if necessary
+        self._update_marks_of_entire_score_tree_if_necessary()
+        # gathering candidate marks
+        candidate_marks = datastructuretools.SortedCollection(
+            key=lambda x: x.start_component.timespan.start_offset)
+        for parent in self.select_parentage(include_self=True):
+            parent_marks = parent._dependent_context_marks
+            for mark in parent_marks:
+                if isinstance(mark, context_mark_classes):
+                    if mark.effective_context is not None:
+                        candidate_marks.insert(mark)
+                    elif isinstance(mark, contexttools.TimeSignatureMark):
+                        if isinstance(mark.start_component, measuretools.Measure):
+                            candidate_marks.insert(mark)
+        # elect most recent candidate mark
+        if candidate_marks:
+            try:
+                return candidate_marks.find_le(self.timespan.start_offset)
+            except ValueError:
+                pass
+
     def get_mark(
         self,
         mark_classes=None,

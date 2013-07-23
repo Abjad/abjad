@@ -34,4 +34,4 @@ def get_effective_time_signature(component):
     '''
     from abjad.tools import contexttools
 
-    return contexttools.get_effective_context_mark(component, contexttools.TimeSignatureMark)
+    return component.get_effective_context_mark(contexttools.TimeSignatureMark)

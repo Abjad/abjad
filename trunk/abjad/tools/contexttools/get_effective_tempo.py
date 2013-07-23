@@ -38,4 +38,4 @@ def get_effective_tempo(component):
     '''
     from abjad.tools import contexttools
 
-    return contexttools.get_effective_context_mark(component, contexttools.TempoMark)
+    return component.get_effective_context_mark(contexttools.TempoMark)

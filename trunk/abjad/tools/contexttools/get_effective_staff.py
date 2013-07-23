@@ -36,8 +36,8 @@ def get_effective_staff(component):
     from abjad.tools import contexttools
     from abjad.tools import stafftools
 
-    staff_change_mark = contexttools.get_effective_context_mark(
-        component, contexttools.StaffChangeMark)
+    staff_change_mark = component.get_effective_context_mark(
+        contexttools.StaffChangeMark)
 
     if staff_change_mark is not None:
         return staff_change_mark.staff
