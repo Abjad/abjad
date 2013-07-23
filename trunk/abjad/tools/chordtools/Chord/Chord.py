@@ -175,7 +175,8 @@ class Chord(Leaf):
         from abjad.tools import contexttools
         from abjad.tools import pitchtools
         if self.written_pitch_indication_is_at_sounding_pitch:
-            instrument = contexttools.get_effective_instrument(self)
+            instrument = self.get_effective_context_mark(
+                contexttools.InstrumentMark)
             if not instrument:
                 message = 'effective instrument of note can not be determined.'
                 raise InstrumentError(message)
@@ -251,7 +252,8 @@ class Chord(Leaf):
         if self.written_pitch_indication_is_at_sounding_pitch:
             return self.written_pitches
         else:
-            instrument = contexttools.get_effective_instrument(self)
+            instrument = self.get_effective_context_mark(
+                contexttools.InstrumentMark)
             if not instrument:
                 message = 'effective instrument of note can not be determined.'
                 raise InstrumentError(message)

@@ -53,7 +53,8 @@ def transpose_from_fingered_pitch_to_sounding_pitch(expr):
     for note_or_chord in iterationtools.iterate_notes_and_chords_in_expr(expr):
         if note_or_chord.written_pitch_indication_is_at_sounding_pitch:
             continue
-        instrument = contexttools.get_effective_instrument(note_or_chord)
+        instrument = note_or_chord.get_effective_context_mark(
+            contexttools.InstrumentMark)
         if not instrument:
             continue
         t_n = instrument.interval_of_transposition

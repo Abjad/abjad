@@ -26,7 +26,8 @@ def iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges(expr)
     from abjad.tools import iterationtools
 
     for note_or_chord in iterationtools.iterate_notes_and_chords_in_expr(expr):
-        instrument = contexttools.get_effective_instrument(note_or_chord)
+        instrument = note_or_chord.get_effective_context_mark(
+            contexttools.InstrumentMark)
         if instrument is None:
             raise MissingInstrumentError
         if note_or_chord not in instrument.default_pitch_range:
