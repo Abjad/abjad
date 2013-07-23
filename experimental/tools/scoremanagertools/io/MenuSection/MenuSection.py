@@ -6,14 +6,20 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class MenuSection(AbjadObject):
     '''Menu section.
 
+    ::
+
         >>> score_manager = scoremanagertools.scoremanager.ScoreManager()
         >>> menu = score_manager._make_svn_menu()
         >>> menu
         <Menu (2)>
 
+
+    ::
         >>> menu_section = menu.menu_sections[1]
         >>> menu_section
         <MenuSection (4)>
+
+    ::
 
         >>> for menu_entry in menu_section.menu_entries:
         ...     menu_entry
