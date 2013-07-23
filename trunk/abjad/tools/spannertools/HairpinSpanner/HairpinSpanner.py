@@ -118,8 +118,8 @@ class HairpinSpanner(DirectedSpanner):
                     result.append('%s\\%s' % (
                         direction_string, self.stop_dynamic_string))
                 else:
-                    effective_dynamic = \
-                        contexttools.get_effective_dynamic(leaf)
+                    effective_dynamic = leaf.get_effective_context_mark(
+                        contexttools.DynamicMark)
                     if effective_dynamic is None or \
                         effective_dynamic not in \
                         leaf._start_marks:
@@ -135,8 +135,8 @@ class HairpinSpanner(DirectedSpanner):
                     result.append('%s\\%s' % (
                         direction_string, self.stop_dynamic_string))
                 else:
-                    effective_dynamic = \
-                        contexttools.get_effective_dynamic(leaf)
+                    effective_dynamic = leaf.get_effective_context_mark(
+                        contexttools.DynamicMark)
                     if effective_dynamic is None:
                         result.append('\\!')
         return result

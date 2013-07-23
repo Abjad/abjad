@@ -57,7 +57,7 @@ def test_Component_get_effective_context_mark_05():
     t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     contexttools.ClefMark('treble')(t[0])
     contexttools.ClefMark('bass')(t[4])
-    clef = contexttools.get_effective_clef(t[4])
+    clef = t[4].get_effective_context_mark(contexttools.ClefMark)
     clef.detach()
     for note in t:
         assert note.get_effective_context_mark(contexttools.ClefMark) == \
@@ -126,7 +126,7 @@ def test_Component_get_effective_context_mark_08():
 
     t = Staff("c'8 d'8 e'8 f'8")
     contexttools.ClefMark('alto')(t[0])
-    clef = contexttools.get_effective_clef(t[0])
+    clef = t[0].get_effective_context_mark(contexttools.ClefMark)
     clef.detach()
 
     for leaf in t:

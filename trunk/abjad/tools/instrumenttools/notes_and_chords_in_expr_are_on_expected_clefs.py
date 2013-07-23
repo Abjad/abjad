@@ -76,10 +76,11 @@ def notes_and_chords_in_expr_are_on_expected_clefs(expr, percussion_clef_is_allo
     '''
 
     for note_or_chord in iterationtools.iterate_notes_and_chords_in_expr(expr):
-        instrument = contexttools.get_effective_instrument(note_or_chord)
+        instrument = note_or_chord.get_effective_context_mark(
+            contexttools.InstrumentMark)
         if not instrument:
             return False
-        clef = contexttools.get_effective_clef(note_or_chord)
+        clef = note_or_chord.get_effective_context_mark(contexttools.ClefMark)
         if not clef:
             return False
         if clef == contexttools.ClefMark('percussion'):
