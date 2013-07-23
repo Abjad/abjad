@@ -49,7 +49,8 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo=None):
     assert componenttools.all_are_contiguous_components_in_same_thread(
         leaves) and len(leaves)
     if tempo is None:
-        assert contexttools.get_effective_tempo(leaves[0]) is not None
+        assert leaves[0].get_effective_context_mark(
+            contexttools.TempoMark) is not None
     else:
         tempo = contexttools.TempoMark(tempo)
 
@@ -79,7 +80,9 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo=None):
         else:
             duration = sum(
                 [quantizationtools.tempo_scaled_duration_to_milliseconds(
-                    x.duration, contexttools.get_effective_tempo(x)) 
+                    x.duration,
+                    x.get_effective_context_mark(contexttools.TempoMark),
+                    )
                     for x in group])
         durations.append(duration)
 
