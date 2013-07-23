@@ -105,6 +105,33 @@ class ClefMark(ContextMark):
     def _contents_repr_string(self):
         return repr(self._clef_name)
 
+    ### PUBLIC METHODS ###
+
+    @classmethod
+    def list_clef_names(cls):
+        r'''List clef names:
+
+        ::
+
+            >>> for name in contexttools.ClefMark.list_clef_names():
+            ...     name
+            ...
+            'alto'
+            'baritone'
+            'bass'
+            'french'
+            'mezzosoprano'
+            'percussion'
+            'soprano'
+            'tab'
+            'tenor'
+            'treble'
+            'varbaritone'
+
+        Return list of strings.
+        '''
+        return list(sorted(cls._clef_name_to_middle_c_position))
+
     ### PUBLIC PROPERTIES ###
 
     @apply
