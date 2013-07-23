@@ -7,4 +7,4 @@ class ClefNameSelector(Selector):
     ### PUBLIC METHODS ###
 
     def list_items(self):
-        return contexttools.list_clef_names()
+        return contexttools.ClefMark.list_clef_names()
