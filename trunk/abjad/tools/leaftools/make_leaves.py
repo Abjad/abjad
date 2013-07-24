@@ -6,20 +6,26 @@ from abjad.tools import pitchtools
 from abjad.tools import sequencetools
 
 
-def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_rests=False,
-    forbidden_written_duration=None, metrical_hiearchy=None):
-    r'''.. versionadded:: 1.1
-
-    Make leaves.
+def make_leaves(
+    pitches,
+    durations,
+    decrease_durations_monotonically=True,
+    tie_rests=False,
+    forbidden_written_duration=None,
+    metrical_hiearchy=None,
+    ):
+    r'''Make leaves.
 
     Example 1. Integer and string elements in `pitches` result in notes:
 
     ::
 
-        >>> leaves = leaftools.make_leaves([2, 4, 'F#5', 'G#5'], [Duration(1, 4)])
+        >>> pitches = [2, 4, 'F#5', 'G#5']
+        >>> duration = Duration(1, 4)
+        >>> leaves = leaftools.make_leaves(pitches, duration)
         >>> staff = Staff(leaves)
 
-    ::
+    ..  lilypond
 
         >>> f(staff)
         \new Staff {
@@ -37,10 +43,12 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
 
     ::
 
-        >>> leaves = leaftools.make_leaves([(0, 2, 4), ('F#5', 'G#5', 'A#5')], [Duration(1, 2)])
+        >>> pitches = [(0, 2, 4), ('F#5', 'G#5', 'A#5')]
+        >>> duration = Duration(1, 2)
+        >>> leaves = leaftools.make_leaves(pitches, duration)
         >>> staff = Staff(leaves)
 
-    ::
+    ..  lilypond
 
         >>> f(staff)
         \new Staff {
@@ -59,7 +67,7 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
         >>> leaves = leaftools.make_leaves([None, None, None, None], [Duration(1, 4)])
         >>> staff = stafftools.RhythmicStaff(leaves)
 
-    ::
+    ..  lilypond
 
         >>> f(staff)
         \new RhythmicStaff {
@@ -80,7 +88,7 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
         >>> leaves = leaftools.make_leaves([(0, 2, 4), None, 'C#5', 'D#5'], [Duration(1, 4)])
         >>> staff = Staff(leaves)
 
-    ::
+    ..  lilypond
 
         >>> f(staff)
         \new Staff {
@@ -102,7 +110,7 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
         >>> leaves = leaftools.make_leaves(['C5'], 2 * [Duration(3, 8), Duration(1, 8)])
         >>> staff = Staff(leaves)
 
-    ::
+    ..  lilypond
 
         >>> f(staff)
         \new Staff {
@@ -124,7 +132,7 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
         >>> leaves = leaftools.make_leaves("c'' d'' e'' f''", [Duration(1, 4)])
         >>> staff = Staff(leaves)
 
-    ::
+    ..  lilypond
 
         >>> f(staff)
         \new Staff {
@@ -146,7 +154,7 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
         >>> leaves = leaftools.make_leaves(['D5'], 3 * [Duration(1, 3)])
         >>> staff = Staff(leaves)
 
-    ::
+    ..  lilypond
 
         >>> f(staff)
         \new Staff {
@@ -170,7 +178,7 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
         >>> staff = Staff(leaves)
         >>> time_signature = contexttools.TimeSignatureMark((13, 16))(staff)
 
-    ::
+    ..  lilypond
 
         >>> f(staff)
         \new Staff {
@@ -193,7 +201,7 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
         >>> staff = Staff(leaves)
         >>> time_signature = contexttools.TimeSignatureMark((13, 16))(staff)
 
-    ::
+    ..  lilypond
 
         >>> f(staff)
         \new Staff {
@@ -215,7 +223,7 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
         >>> staff = stafftools.RhythmicStaff(leaves)
         >>> time_signature = contexttools.TimeSignatureMark((5, 8))(staff)
 
-    ::
+    ..  lilypond
 
         >>> f(staff)
         \new RhythmicStaff {
@@ -238,7 +246,7 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
         >>> staff = Staff(leaves)
         >>> time_signature = contexttools.TimeSignatureMark((5, 4))(staff)
 
-    ::
+    ..  lilypond
 
         >>> f(staff)
         \new Staff {
@@ -266,7 +274,7 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
         >>> staff = Staff(leaves)
         >>> time_signature = contexttools.TimeSignatureMark((5, 4))(staff)
 
-    ::
+    ..  lilypond
 
         >>> f(staff)
         \new Staff {
@@ -306,7 +314,7 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
                 forbidden_written_duration=forbidden_written_duration,
                 tie_parts=tie_rests)
         else:
-            raise ValueError('Unknown pitch {!r}.'.format(pitch))
+            raise ValueError('unknown pitch {!r}.'.format(pitch))
         return leaves
 
     if isinstance(pitches, str):
