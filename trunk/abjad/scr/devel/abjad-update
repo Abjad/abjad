@@ -2,7 +2,7 @@
 
 from abjad import abjad_configuration
 from abjad.tools import iotools
-from abjad.tools.iotools._update_docs_release_string import _update_docs_release_string
+from abjad.tools.iotools.update_docs_release_string import update_docs_release_string
 import os
 
 

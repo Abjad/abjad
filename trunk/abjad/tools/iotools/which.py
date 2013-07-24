@@ -12,7 +12,11 @@ def which(name, flags=os.X_OK):
     Return list of zero or more full paths to ``name``.
     '''
     result = []
-    extensions = [x for x in os.environ.get('PATHEXT', '').split(os.pathsep) if x]
+    extensions = [
+        x 
+        for x in os.environ.get('PATHEXT', '').split(os.pathsep) 
+        if x
+        ]
     path = os.environ.get('PATH', None)
     if path is None:
         return []

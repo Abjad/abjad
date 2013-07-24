@@ -27,15 +27,18 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
         >>> notetools.make_percussion_note(2, (5, 4), (1, 8))
         [Note("d'8"), Rest('r1'), Rest('r8')]
 
-    Return list of newly constructed note followed by zero or more newly constructed rests.
+    Return list of newly constructed note followed by zero or 
+    more newly constructed rests.
 
     Durations of note and rests returned will sum to `total_duration`.
 
     Duration of note returned will be no greater than `max_note_duration`.
 
-    Duration of rests returned will sum to note duration taken from `total_duration`.
+    Duration of rests returned will sum to note duration taken 
+    from `total_duration`.
 
-    Useful for percussion music where attack duration is negligible and tied notes undesirable.
+    Useful for percussion music where attack duration is negligible 
+    and tied notes undesirable.
     '''
     from abjad.tools import notetools
     from abjad.tools import resttools
@@ -47,14 +50,27 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
     # make note and rest
     if max_note_duration < total_duration:
         rest_duration = total_duration - max_note_duration
-        r = resttools.make_tied_rest(rest_duration)
-        n = notetools.make_tied_note(pitch, max_note_duration)
+        rests = leaftools.make_tied_leaf(
+            resttools.Rest,
+            rest_duration,
+            pitches=None,
+            )
+        notes = leaftools.make_tied_leaf(
+            notetools.Note,
+            max_note_duration,
+            pitches=pitch,
+            )
     else:
-        n = leaftools.make_tied_leaf(notetools.Note, total_duration, pitches=pitch, tie_parts=False)
-        if 1 < len(n):
-            for i in range(1, len(n)):
-                n[i] = resttools.Rest(n[i])
-        r = []
+        notes = leaftools.make_tied_leaf(
+            notetools.Note,
+            total_duration,
+            pitches=pitch,
+            tie_parts=False,
+            )
+        if 1 < len(notes):
+            for i in range(1, len(notes)):
+                notes[i] = resttools.Rest(notes[i])
+        rests = []
 
     # return list of percussion note followed by rest
-    return n + r
+    return notes + rests

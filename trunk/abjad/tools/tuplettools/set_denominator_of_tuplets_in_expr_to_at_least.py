@@ -43,9 +43,14 @@ def set_denominator_of_tuplets_in_expr_to_at_least(expr, n):
     from abjad.tools import tuplettools
 
     assert mathtools.is_nonnegative_integer_power_of_two(n)
+    Duration = durationtools.Duration
     for tuplet in iterationtools.iterate_tuplets_in_expr(expr):
         tuplet.force_fraction = True
-        durations = [tuplet.contents_duration, tuplet.preprolated_duration, (1, n)]
-        duration_pairs = durationtools.durations_to_nonreduced_fractions_with_common_denominator(
+        durations = [
+            tuplet.contents_duration, 
+            tuplet.preprolated_duration, 
+            (1, n),
+            ]
+        duration_pairs = Duration.durations_to_nonreduced_fractions_with_common_denominator(
             durations)
         tuplet.preferred_denominator = duration_pairs[1].numerator

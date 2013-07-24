@@ -2,32 +2,43 @@ import numbers
 from abjad.tools import durationtools
 
 
-def make_rests(durations, decrease_durations_monotonically=True, tie_parts=False):
-    r'''.. versionadded:: 1.1
-
-    Make rests.
+def make_rests(
+    durations,
+    decrease_durations_monotonically=True,
+    tie_parts=False,
+    ):
+    r'''Make rests.
 
     Make rests and drecrease durations monotonically:
 
     ::
 
-        >>> resttools.make_rests([(5, 16), (9, 16)], decrease_durations_monotonically=True)
+        >>> resttools.make_rests(
+        ...     [(5, 16), (9, 16)], 
+        ...     decrease_durations_monotonically=True,
+        ...     )
         [Rest('r4'), Rest('r16'), Rest('r2'), Rest('r16')]
 
     Makes rests and increase durations monotonically:
 
     ::
 
-        >>> resttools.make_rests([(5, 16), (9, 16)], decrease_durations_monotonically=False)
+        >>> resttools.make_rests(
+        ...     [(5, 16), (9, 16)], 
+        ...     decrease_durations_monotonically=False,
+        ...     )
         [Rest('r16'), Rest('r4'), Rest('r16'), Rest('r2')]
 
     Make tied rests:
 
     ::
 
-        >>> voice = Voice(resttools.make_rests([(5, 16), (9, 16)], tie_parts=True))
+        >>> voice = Voice(resttools.make_rests(
+        ...     [(5, 16), (9, 16)], 
+        ...     tie_parts=True,
+        ...     ))
 
-    ::
+    ..  lilypond
 
         >>> f(voice)
         \new Voice {
@@ -37,8 +48,13 @@ def make_rests(durations, decrease_durations_monotonically=True, tie_parts=False
             r16
         }
 
+    ::
+
+        >>> show(voice) # doctest: +SKIP
+
     Return list of rests.
     '''
+    from abjad.tools import leaftools
     from abjad.tools import resttools
 
     # check input
@@ -48,9 +64,14 @@ def make_rests(durations, decrease_durations_monotonically=True, tie_parts=False
     # make rests
     result = []
     for duration in durations:
-        result.extend(resttools.make_tied_rest(
-            duration, decrease_durations_monotonically=decrease_durations_monotonically,
-            tie_parts=tie_parts))
+        rests = leaftools.make_tied_leaf(
+            resttools.Rest,
+            duration,
+            pitches=None,
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            tie_parts=tie_parts,
+            )
+        result.extend(rests)
 
     # return result
     return result

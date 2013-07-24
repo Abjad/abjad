@@ -1,11 +1,9 @@
-from abjad.tools import configurationtools
 import os
+from abjad.tools import configurationtools
 
 
 def save_last_ly_as(file_name):
-    r'''.. versionadded:: 2.0
-
-    Save last ly file as `file_name`:
+    r'''Save last ly file as `file_name`:
 
     ::
 
@@ -15,7 +13,6 @@ def save_last_ly_as(file_name):
     '''
     from abjad import abjad_configuration
     from abjad.tools import iotools
-
     ABJADOUTPUT = abjad_configuration['abjad_output']
     last_ly = iotools.get_last_output_file_name()
     last_ly_full_name = os.path.join(ABJADOUTPUT, last_ly)

@@ -3,9 +3,16 @@ import StringIO
 import sys
 
 
-def profile_expr(expr, sort_by='cum', line_count=12, strip_dirs=True,
-    print_callers=False, print_callees=False,
-    global_context=None, local_context=None, print_to_terminal=True):
+def profile_expr(
+    expr,
+    sort_by='cum',
+    line_count=12, strip_dirs=True,
+    print_callers=False,
+    print_callees=False,
+    global_context=None,
+    local_context=None,
+    print_to_terminal=True,
+    ):
     '''Profile `expr`:
 
     ::

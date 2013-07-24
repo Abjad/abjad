@@ -6,9 +6,9 @@ def get_next_output_file_name(file_extension='ly', path=None):
     Return string.
     '''
     from abjad.tools import iotools
-    from abjad.tools.iotools._warn_almost_full import _warn_almost_full
 
-    assert file_extension.isalpha() and 0 < len(file_extension) < 4, repr(file_extension)
+    assert file_extension.isalpha() and \
+        0 < len(file_extension) < 4, repr(file_extension)
 
     last_output = iotools.get_last_output_file_name(path=path)
     if last_output is None:
@@ -20,5 +20,5 @@ def get_next_output_file_name(file_extension='ly', path=None):
         next_output_file_name = '{next_number:04d}.{file_extension}'.format(
             next_number=next_number, file_extension=file_extension)
     if 9000 < next_number:
-        _warn_almost_full(last_number)
+        iotools.warn_almost_full(last_number)
     return next_output_file_name

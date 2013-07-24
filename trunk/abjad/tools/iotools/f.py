@@ -5,7 +5,7 @@ def f(expr):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 
-    ::
+    ..  lilypond
 
         >>> f(staff)
         \new Staff {
@@ -14,6 +14,10 @@ def f(expr):
             e'8
             f'8
         }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     Return none.
     '''

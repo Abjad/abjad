@@ -3,7 +3,8 @@ import subprocess
 
 
 def graph(expr, image_format='pdf', layout='dot'):
-    '''Graph `expr` with graphviz, and open resulting image in the default image viewer:
+    '''Graph `expr` with graphviz, and open resulting image in 
+    the default image viewer:
 
     ::
 
@@ -25,8 +26,6 @@ def graph(expr, image_format='pdf', layout='dot'):
 
     from abjad import abjad_configuration
     from abjad.tools import iotools
-    from abjad.tools.iotools._open_file import _open_file
-    from abjad.tools.iotools._verify_output_directory import _verify_output_directory
 
     assert image_format in ('pdf', 'png')
     assert layout in ('circo', 'dot', 'fdp', 'neato', 'osage', 'sfdp', 'twopi')
@@ -39,16 +38,20 @@ def graph(expr, image_format='pdf', layout='dot'):
 
     current_directory = os.path.abspath('.')
     ABJADOUTPUT = abjad_configuration['abjad_output']
-    _verify_output_directory(ABJADOUTPUT)
-    dot_path = os.path.join(ABJADOUTPUT, iotools.get_next_output_file_name(file_extension='dot'))
+    iotools.verify_output_directory(ABJADOUTPUT)
+    dot_path = os.path.join(
+        ABJADOUTPUT,
+        iotools.get_next_output_file_name(file_extension='dot')
+        )
     img_path = os.path.join(ABJADOUTPUT, dot_path.replace('dot', 'pdf'))
 
     with open(dot_path, 'w') as f:
         f.write(graphviz_format)
 
-    command = '{} -v -T{} {} -o {}'.format(layout, image_format, dot_path, img_path)
+    command = '{} -v -T{} {} -o {}'.format(
+        layout, image_format, dot_path, img_path)
     subprocess.call(command, shell=True)
 
     pdf_viewer = abjad_configuration['pdf_viewer']
     ABJADOUTPUT = abjad_configuration['abjad_output']
-    _open_file(img_path, pdf_viewer)
+    iotools.open_file(img_path, pdf_viewer)

@@ -1,7 +1,5 @@
 def p(arg, language='english'):
-    r'''.. versionadded:: 2.7
-
-    Parse `arg` as LilyPond string:
+    r'''Parse `arg` as LilyPond string:
 
     ::
 

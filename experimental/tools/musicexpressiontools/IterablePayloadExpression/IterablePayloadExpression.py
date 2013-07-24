@@ -115,6 +115,44 @@ class IterablePayloadExpression(PayloadExpression):
             duration = durationtools.Duration(expression)
             return duration
 
+    @staticmethod
+    def _durations_to_integers(durations):
+        '''Change `durations` to integers:
+
+        ::
+
+            >>> durations = [Duration(2, 4), 3, (5, 16)]
+            >>> for integer in payload_expression._durations_to_integers(
+            ...     durations):
+            ...     integer
+            ...
+            8
+            48
+            5
+
+        Return new object of `durations` type.
+        '''
+        from abjad.tools import durationtools
+        # change to nonreduced fractions
+        nonreduced_fractions = \
+            durationtools.Duration.durations_to_nonreduced_fractions_with_common_denominator(
+            durations)
+        # find common denominator
+        common_denominator = nonreduced_fractions[0].denominator
+        # change to integers
+        nonreduced_fractions = [
+            common_denominator * nonreduced_fraction 
+            for nonreduced_fraction in nonreduced_fractions
+            ]
+        fractions = [
+            nonreduced_fraction.reduce() 
+            for nonreduced_fraction in nonreduced_fractions
+            ]
+        assert all(fraction.denominator == 1 for fraction in fractions)
+        integers = [fraction.numerator for fraction in fractions]
+        # return integers
+        return integers
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -220,7 +258,7 @@ class IterablePayloadExpression(PayloadExpression):
         Return newly constructed payload expression.
         '''
         element_durations = [self._duration_helper(x) for x in self.payload]
-        element_tokens = durationtools.durations_to_integers(element_durations)
+        element_tokens = self._durations_to_integers(element_durations)
         token_parts = sequencetools.partition_sequence_by_ratio_of_weights(
                 element_tokens, ratio)
         part_lengths = [len(x) for x in token_parts]

@@ -2,19 +2,29 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 
 
-def make_tied_leaf(kind, duration, decrease_durations_monotonically=True,
-    forbidden_written_duration=None, pitches=None, tie_parts=True):
-    r'''.. versionadded:: 1.0
+def make_tied_leaf(
+    kind,
+    duration,
+    decrease_durations_monotonically=True,
+    forbidden_written_duration=None,
+    pitches=None,
+    tie_parts=True,
+    ):
+    r'''Make tied `kind` with `duration`.
 
     Example 1. Make note:
 
     ::
 
-        >>> leaves = leaftools.make_tied_leaf(notetools.Note, Duration(1, 2), pitches='C#5')
+        >>> leaves = leaftools.make_tied_leaf(
+        ...     Note, 
+        ...     Duration(1, 2), 
+        ...     pitches='C#5',
+        ...     )
         >>> staff = Staff(leaves)
         >>> time_signature = contexttools.TimeSignatureMark((2, 4))(staff)
 
-    ::
+    ..  lilypond
 
         >>> f(staff)
         \new Staff {
@@ -31,12 +41,15 @@ def make_tied_leaf(kind, duration, decrease_durations_monotonically=True,
     ::
 
         >>> leaves = leaftools.make_tied_leaf(
-        ...     notetools.Note, Duration(1, 2), pitches='C#5',
-        ...     forbidden_written_duration=Duration(1, 2))
+        ...     Note, 
+        ...     Duration(1, 2), 
+        ...     pitches='C#5',
+        ...     forbidden_written_duration=Duration(1, 2),
+        ...     )
         >>> staff = Staff(leaves)
         >>> time_signature = contexttools.TimeSignatureMark((2, 4))(staff)
 
-    ::
+    ..  lilypond
 
         >>> f(staff)
         \new Staff {
@@ -49,18 +62,22 @@ def make_tied_leaf(kind, duration, decrease_durations_monotonically=True,
 
         >>> show(staff) # doctest: +SKIP
 
-    Example 3. Make tied note with half notes forbidden and durations decreasing monotonically:
+    Example 3. Make tied note with half notes forbidden and 
+    durations decreasing monotonically:
 
     ::
 
         >>> leaves = leaftools.make_tied_leaf(
-        ...     notetools.Note, Duration(9, 8), pitches='C#5',
+        ...     Note, 
+        ...     Duration(9, 8), 
+        ...     pitches='C#5',
         ...     forbidden_written_duration=Duration(1, 2),
-        ...     decrease_durations_monotonically=True)
+        ...     decrease_durations_monotonically=True,
+        ...     )
         >>> staff = Staff(leaves)
         >>> time_signature = contexttools.TimeSignatureMark((9, 8))(staff)
 
-    ::
+    ..  lilypond
 
         >>> f(staff)
         \new Staff {
@@ -76,18 +93,22 @@ def make_tied_leaf(kind, duration, decrease_durations_monotonically=True,
 
         >>> show(staff) # doctest: +SKIP
 
-    Example 4. Make tied note with half notes forbidden and durations increasing monotonically:
+    Example 4. Make tied note with half notes forbidden and 
+    durations increasing monotonically:
 
     ::
 
         >>> leaves = leaftools.make_tied_leaf(
-        ...     notetools.Note, Duration(9, 8), pitches='C#5',
+        ...     Note, 
+        ...     Duration(9, 8), 
+        ...     pitches='C#5',
         ...     forbidden_written_duration=Duration(1, 2),
-        ...     decrease_durations_monotonically=False)
+        ...     decrease_durations_monotonically=False,
+        ...     )
         >>> staff = Staff(leaves)
         >>> time_signature = contexttools.TimeSignatureMark((9, 8))(staff)
 
-    ::
+    ..  lilypond
 
         >>> f(staff)
         \new Staff {
@@ -127,7 +148,8 @@ def make_tied_leaf(kind, duration, decrease_durations_monotonically=True,
             mathtools.NonreducedFraction(forbidden_written_duration)
         forbidden_written_duration = \
             forbidden_written_duration.with_denominator(denominator)
-        duration = mathtools.NonreducedFraction(duration).with_denominator(denominator)
+        duration = mathtools.NonreducedFraction(duration)
+        duration = duration.with_denominator(denominator)
         forbidden_numerator = forbidden_written_duration.numerator
         assert forbidden_numerator % 2 == 0
         preferred_numerator = forbidden_numerator / 2
@@ -139,7 +161,8 @@ def make_tied_leaf(kind, duration, decrease_durations_monotonically=True,
         forbidden_written_duration <= duration:
         for part in parts:
             if forbidden_numerator <= part:
-                better_parts = mathtools.partition_integer_into_parts_less_than_double(
+                better_parts = \
+                    mathtools.partition_integer_into_parts_less_than_double(
                     part, preferred_numerator)
                 numerators.extend(better_parts)
             else:

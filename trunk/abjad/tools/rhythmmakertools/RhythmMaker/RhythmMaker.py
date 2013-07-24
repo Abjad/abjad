@@ -121,8 +121,9 @@ class RhythmMaker(Maker):
     def _scale_talee(self, duration_pairs, talea_denominator, talee):
         dummy_duration_pair = (1, talea_denominator)
         duration_pairs.append(dummy_duration_pair)
+        Duration = durationtools.Duration
         duration_pairs = \
-            durationtools.durations_to_nonreduced_fractions_with_common_denominator(
+            Duration.durations_to_nonreduced_fractions_with_common_denominator(
             duration_pairs)
         dummy_duration_pair = duration_pairs.pop()
         lcd = dummy_duration_pair.denominator

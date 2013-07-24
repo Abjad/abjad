@@ -356,7 +356,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         from experimental.tools import musicexpressiontools
         element_durations = [
             self._get_duration_of_expr(leaf) for leaf in self.elements]
-        integers = durationtools.durations_to_integers(element_durations)
+        integers = self._durations_to_integers(element_durations)
         parts = sequencetools.partition_sequence_by_ratio_of_weights(
             integers, ratio)
         part_lengths = [len(part) for part in parts]

@@ -2,5 +2,5 @@
 
 
 if __name__ == '__main__':
-    from abjad.tools.abjadbooktools._run_abjad_book import _run_abjad_book
-    _run_abjad_book()
+    from abjad.tools.abjadbooktools.run_abjad_book import run_abjad_book
+    run_abjad_book()

@@ -3,15 +3,14 @@ import subprocess
 
 
 def plot(expr, image_format='png', width=640, height=320):
-    '''Plot `expr` with gnuplot, and open resulting image in the default image viewer.
+    '''Plot `expr` with gnuplot, and open resulting image in 
+    the default image viewer.
 
     Return None.
     '''
 
     from abjad import abjad_configuration
     from abjad.tools import iotools
-    from abjad.tools.iotools._open_file import _open_file
-    from abjad.tools.iotools._verify_output_directory import _verify_output_directory
 
     assert image_format in ('pdf', 'png')
     assert isinstance(width, int) and 0 < width
@@ -22,8 +21,9 @@ def plot(expr, image_format='png', width=640, height=320):
 
     current_directory = os.path.abspath('.')
     ABJADOUTPUT = abjad_configuration['abjad_output']
-    _verify_output_directory(ABJADOUTPUT)
-    txt_path = os.path.join(ABJADOUTPUT, iotools.get_next_output_file_name(file_extension='txt'))
+    iotools.verify_output_directory(ABJADOUTPUT)
+    txt_path = os.path.join(
+        ABJADOUTPUT, iotools.get_next_output_file_name(file_extension='txt'))
     img_path = os.path.join(ABJADOUTPUT, txt_path.replace('txt', image_format))
 
     if image_format == 'png':
@@ -44,4 +44,4 @@ def plot(expr, image_format='png', width=640, height=320):
 
     pdf_viewer = abjad_configuration['pdf_viewer']
     ABJADOUTPUT = abjad_configuration['abjad_output']
-    _open_file(img_path, pdf_viewer)
+    iotools.open_file(img_path, pdf_viewer)

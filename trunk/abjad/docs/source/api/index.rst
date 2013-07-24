@@ -22,11 +22,6 @@ Core composition packages
 
       tools/chordtools/Chord/Chord
 
-   .. toctree::
-      :maxdepth: 1
-
-      tools/chordtools/make_tied_chord
-
 .. only:: latex
 
    Concrete classes
@@ -35,13 +30,6 @@ Core composition packages
    .. toctree::
 
       tools/chordtools/Chord/Chord
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/chordtools/make_tied_chord
 
 :py:mod:`componenttools <abjad.tools.componenttools>`
 =====================================================
@@ -318,13 +306,6 @@ Core composition packages
       tools/durationtools/Multiplier/Multiplier
       tools/durationtools/Offset/Offset
 
-   .. toctree::
-      :maxdepth: 1
-
-      tools/durationtools/count_offsets_in_expr
-      tools/durationtools/durations_to_integers
-      tools/durationtools/durations_to_nonreduced_fractions_with_common_denominator
-
 .. only:: latex
 
    Concrete classes
@@ -335,15 +316,6 @@ Core composition packages
       tools/durationtools/Duration/Duration
       tools/durationtools/Multiplier/Multiplier
       tools/durationtools/Offset/Offset
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/durationtools/count_offsets_in_expr
-      tools/durationtools/durations_to_integers
-      tools/durationtools/durations_to_nonreduced_fractions_with_common_denominator
 
 :py:mod:`gracetools <abjad.tools.gracetools>`
 =============================================
@@ -598,18 +570,26 @@ Core composition packages
       tools/iotools/get_last_output_file_name
       tools/iotools/get_next_output_file_name
       tools/iotools/graph
+      tools/iotools/insert_expr_into_lilypond_file
       tools/iotools/log
+      tools/iotools/log_render_lilypond_input
       tools/iotools/ly
+      tools/iotools/open_file
       tools/iotools/p
       tools/iotools/pdf
       tools/iotools/play
       tools/iotools/plot
       tools/iotools/profile_expr
       tools/iotools/redo
+      tools/iotools/run_abjad
+      tools/iotools/run_lilypond
       tools/iotools/save_last_ly_as
       tools/iotools/save_last_pdf_as
       tools/iotools/show
       tools/iotools/spawn_subprocess
+      tools/iotools/update_docs_release_string
+      tools/iotools/verify_output_directory
+      tools/iotools/warn_almost_full
       tools/iotools/which
       tools/iotools/write_expr_to_ly
       tools/iotools/write_expr_to_pdf
@@ -635,18 +615,26 @@ Core composition packages
       tools/iotools/get_last_output_file_name
       tools/iotools/get_next_output_file_name
       tools/iotools/graph
+      tools/iotools/insert_expr_into_lilypond_file
       tools/iotools/log
+      tools/iotools/log_render_lilypond_input
       tools/iotools/ly
+      tools/iotools/open_file
       tools/iotools/p
       tools/iotools/pdf
       tools/iotools/play
       tools/iotools/plot
       tools/iotools/profile_expr
       tools/iotools/redo
+      tools/iotools/run_abjad
+      tools/iotools/run_lilypond
       tools/iotools/save_last_ly_as
       tools/iotools/save_last_pdf_as
       tools/iotools/show
       tools/iotools/spawn_subprocess
+      tools/iotools/update_docs_release_string
+      tools/iotools/verify_output_directory
+      tools/iotools/warn_almost_full
       tools/iotools/which
       tools/iotools/write_expr_to_ly
       tools/iotools/write_expr_to_pdf
@@ -1484,7 +1472,6 @@ Core composition packages
       tools/notetools/make_repeated_notes_from_time_signature
       tools/notetools/make_repeated_notes_from_time_signatures
       tools/notetools/make_repeated_notes_with_shorter_notes_at_end
-      tools/notetools/make_tied_note
 
 .. only:: latex
 
@@ -1512,7 +1499,6 @@ Core composition packages
       tools/notetools/make_repeated_notes_from_time_signature
       tools/notetools/make_repeated_notes_from_time_signatures
       tools/notetools/make_repeated_notes_with_shorter_notes_at_end
-      tools/notetools/make_tied_note
 
 :py:mod:`pitcharraytools <abjad.tools.pitcharraytools>`
 =======================================================
@@ -2173,7 +2159,6 @@ Core composition packages
       tools/resttools/make_repeated_rests_from_time_signature
       tools/resttools/make_repeated_rests_from_time_signatures
       tools/resttools/make_rests
-      tools/resttools/make_tied_rest
       tools/resttools/replace_leaves_in_expr_with_rests
       tools/resttools/set_vertical_positioning_pitch_on_rest
 
@@ -2196,7 +2181,6 @@ Core composition packages
       tools/resttools/make_repeated_rests_from_time_signature
       tools/resttools/make_repeated_rests_from_time_signatures
       tools/resttools/make_rests
-      tools/resttools/make_tied_rest
       tools/resttools/replace_leaves_in_expr_with_rests
       tools/resttools/set_vertical_positioning_pitch_on_rest
 
@@ -3659,8 +3643,6 @@ Core composition packages
       :maxdepth: 1
 
       tools/wellformednesstools/is_well_formed_component
-      tools/wellformednesstools/list_badly_formed_components_in_expr
-      tools/wellformednesstools/tabulate_well_formedness_violations_in_expr
 
 .. only:: latex
 
@@ -3698,8 +3680,6 @@ Core composition packages
    .. toctree::
 
       tools/wellformednesstools/is_well_formed_component
-      tools/wellformednesstools/list_badly_formed_components_in_expr
-      tools/wellformednesstools/tabulate_well_formedness_violations_in_expr
 
 **************************
 Demos and example packages

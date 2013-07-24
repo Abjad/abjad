@@ -62,6 +62,7 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
 
     Return list of newly constructed notes.
     '''
+    from abjad.tools import leaftools
     from abjad.tools import notetools
     from abjad.tools import tuplettools
 
@@ -84,13 +85,20 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
     durations = Duration._group_nonreduced_fractions_by_implied_prolation(
         duration_pairs)
 
-    def _make_unprolated_notes(pitches, durations,
-        decrease_durations_monotonically=decrease_durations_monotonically):
+    def _make_unprolated_notes(
+        pitches,
+        durations,
+        decrease_durations_monotonically=decrease_durations_monotonically,
+        ):
         assert len(pitches) == len(durations)
         result = []
         for pitch, duration in zip(pitches, durations):
-            result.extend(notetools.make_tied_note(pitch, duration,
-                decrease_durations_monotonically=decrease_durations_monotonically))
+            result.extend(leaftools.make_tied_leaf(
+                notetools.Note,
+                duration,
+                pitches=pitch,
+                decrease_durations_monotonically=decrease_durations_monotonically,
+                ))
         return result
 
     result = []

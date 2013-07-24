@@ -1,14 +1,20 @@
 from abjad.tools import durationtools
 
 
-def fit_metrical_hierarchies_to_expr(expr, metrical_hierarchies,
-    discard_final_orphan_downbeat=True, starting_offset=None, denominator=32):
-    r'''Find the best-matching sequence of metrical hierarchies for the offsets
-    contained in `expr`.
+def fit_metrical_hierarchies_to_expr(
+    expr,
+    metrical_hierarchies,
+    discard_final_orphan_downbeat=True,
+    starting_offset=None,
+    denominator=32,
+    ):
+    r'''Find the best-matching sequence of metrical hierarchies for the 
+    offsets contained in `expr`.
 
     ::
 
-        >>> metrical_hierarchies = timesignaturetools.MetricalHierarchyInventory(
+        >>> metrical_hierarchies = \
+        ...     timesignaturetools.MetricalHierarchyInventory(
         ...     [(3, 4), (4, 4), (5, 4)])
 
     Example 1. Matching a series of hypothetical 4/4 measures:
@@ -39,15 +45,18 @@ def fit_metrical_hierarchies_to_expr(expr, metrical_hierarchies,
         5/4
         5/4
 
-    Offsets are coerced from `expr` via `durationtools.count_offsets_in_expr()`.
+    Offsets are coerced from `expr` via 
+    `MetricalKernel.count_offsets_in_expr()`.
 
-    MetricalHierarchies are coerced from `metrical_hierarchies` via `MetricalHierarchyInventory`.
+    MetricalHierarchies are coerced from `metrical_hierarchies` 
+    via `MetricalHierarchyInventory`.
 
     Return list.
     '''
     from abjad.tools import timesignaturetools
 
-    offset_counter = durationtools.count_offsets_in_expr(expr)
+    offset_counter = \
+        timesignaturetools.MetricalKernel.count_offsets_in_expr(expr)
     ordered_offsets = sorted(offset_counter, reverse=True)
     if not ordered_offsets:
         return []

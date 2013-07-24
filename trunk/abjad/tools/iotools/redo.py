@@ -6,13 +6,15 @@ from abjad.tools import configurationtools
 # TODO: Remove code duplication between this and iotools.ly and iotools.show.
 # TODO: Encapsulate stuff below.
 def redo(target=-1, lily_time=10):
-    r'''Rerender the last ``.ly`` file created in Abjad and then show the resulting PDF:
+    r'''Rerender the last ``.ly`` file created in Abjad and 
+    then show the resulting PDF:
 
     ::
 
         >>> iotools.redo() # doctest: +SKIP
 
-    Rerender the next-to-last ``.ly`` file created in Abjad and then show the resulting PDF:
+    Rerender the next-to-last ``.ly`` file created in Abjad and 
+    then show the resulting PDF:
 
     ::
 
@@ -22,13 +24,10 @@ def redo(target=-1, lily_time=10):
     '''
     from abjad import abjad_configuration
     from abjad.tools import iotools
-    from abjad.tools.iotools._open_file import _open_file
-    from abjad.tools.iotools._run_lilypond import _run_lilypond
-    from abjad.tools.iotools._verify_output_directory import _verify_output_directory
 
     current_directory = os.path.abspath('.')
     ABJADOUTPUT = abjad_configuration['abjad_output']
-    _verify_output_directory(ABJADOUTPUT)
+    iotools.verify_output_directory(ABJADOUTPUT)
     os.chdir(ABJADOUTPUT)
 
     # TODO: Encapsulate as a single function called cfg._find_target()
@@ -55,18 +54,19 @@ def redo(target=-1, lily_time=10):
 
     # render
     start_time = time.time()
-    _run_lilypond(target_ly, abjad_configuration['lilypond_path'])
+    iotools.run_lilypond(target_ly, abjad_configuration['lilypond_path'])
     stop_time = time.time()
     actual_lily_time = int(stop_time - start_time)
 
     os.chdir(current_directory)
 
     if lily_time <= actual_lily_time:
-        print 'LilyPond processing time equal to %s seconds ...' % actual_lily_time
+        message = 'LilyPond processing time equal to {} seconds ...'
+        print message.format(actual_lily_time)
 
     # TODO: Encapsulate as cfg._open_pdf()
     # open pdf
     pdf_viewer = abjad_configuration['pdf_viewer']
     ABJADOUTPUT = abjad_configuration['abjad_output']
     name = target_ly
-    _open_file('%s.pdf' % name[:-3], pdf_viewer)
+    iotools.open_file('%s.pdf' % name[:-3], pdf_viewer)

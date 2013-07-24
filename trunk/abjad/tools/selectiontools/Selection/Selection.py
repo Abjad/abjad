@@ -404,6 +404,40 @@ class Selection(AbjadObject):
                 if i == abs(n) - 1:
                     return x
 
+    def get_badly_formed_components(self):
+        r'''Get badly formed components in selection:
+
+        ::
+
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> staff[1].written_duration = Duration(1, 4)
+            >>> spannertools.BeamSpanner(staff[:])
+            BeamSpanner(c'8, d'4, e'8, f'8)
+
+        ::
+
+            >>> f(staff)
+            \new Staff {
+                c'8 [
+                d'4
+                e'8
+                f'8 ]
+            }
+
+        ::
+            >>> staff[:].get_badly_formed_components()
+            [Note("d'4")]
+
+        (Beamed quarter notes are not well formed.)
+
+        Return list.
+        '''
+        from abjad.tools import wellformednesstools
+        badly_formed_components = []
+        for checker in wellformednesstools.Check.list_checks():
+            badly_formed_components.extend(checker.violators(self))
+        return badly_formed_components
+
     def get_offset_lists(self):
         '''Get offset lists of components in selection:
 
@@ -455,3 +489,50 @@ class Selection(AbjadObject):
         '''
         from abjad.tools import componenttools
         return componenttools.VerticalMoment(self, offset)
+
+    def tabulate_well_formedness_violations(self):
+        r'''Tabulate well-formedness violations in selection:
+
+        ::
+
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> staff[1].written_duration = Duration(1, 4)
+            >>> spannertools.BeamSpanner(staff[:])
+            BeamSpanner(c'8, d'4, e'8, f'8)
+
+        ::
+
+            >>> f(staff)
+            \new Staff {
+                c'8 [
+                d'4
+                e'8
+                f'8 ]
+            }
+
+        ::
+
+            >>> staff.select().tabulate_well_formedness_violations() # doctest: +SKIP
+            1 /    4 beamed quarter note
+            0 /    1 discontiguous spanner
+            0 /    5 duplicate id
+            0 /    1 empty container
+            0 /    0 intermarked hairpin
+            0 /    0 misdurated measure
+            0 /    0 misfilled measure
+            0 /    4 mispitched tie
+            0 /    4 misrepresented flag
+            0 /    5 missing parent
+            0 /    0 nested measure
+            0 /    0 overlapping beam
+            0 /    0 overlapping glissando
+            0 /    0 overlapping octavation
+            0 /    0 short hairpin
+
+        .. todo:: figure out why staff is showing as missing parent.
+
+        Beamed quarter notes are not well formed.
+        '''
+        from abjad.tools import wellformednesstools
+        for checker in wellformednesstools.Check.list_checks():
+            checker.report(self)

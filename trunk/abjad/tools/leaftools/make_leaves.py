@@ -402,30 +402,35 @@ def _make_leaf_on_pitch(
     tie_rests=False,
     ):
     from abjad.tools import chordtools
+    from abjad.tools import leaftools
     from abjad.tools import notetools
     from abjad.tools import resttools
     note_types = (numbers.Number, str, pitchtools.NamedChromaticPitch)
     chord_types = (tuple, list)
     rest_types = (type(None),)
     if isinstance(pitch, note_types):
-        leaves = notetools.make_tied_note(
-            pitch,
+        leaves = leaftools.make_tied_leaf(
+            notetools.Note,
             duration,
             decrease_durations_monotonically=decrease_durations_monotonically,
             forbidden_written_duration=forbidden_written_duration,
+            pitches=pitch,
             )
     elif isinstance(pitch, chord_types):
-        leaves = chordtools.make_tied_chord(
-            pitch,
+        leaves = leaftools.make_tied_leaf(
+            chordtools.Chord,
             duration,
             decrease_durations_monotonically=decrease_durations_monotonically,
             forbidden_written_duration=forbidden_written_duration,
+            pitches=pitch,
             )
     elif isinstance(pitch, rest_types):
-        leaves = resttools.make_tied_rest(
+        leaves = leaftools.make_tied_leaf(
+            resttools.Rest,
             duration,
             decrease_durations_monotonically=decrease_durations_monotonically,
             forbidden_written_duration=forbidden_written_duration,
+            pitches=None,
             tie_parts=tie_rests,
             )
     else:
