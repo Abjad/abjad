@@ -1,9 +1,12 @@
 def yield_prolation_rewrite_pairs(duration, minimum_written_duration=None):
-    r'''Yield all prolation rewrite pairs of `duration` in Cantor diagonalized order.
+    r'''Yield all prolation rewrite pairs of `duration` in 
+    Cantor diagonalized order.
 
     Ensure written duration never less than `minimum_written_duration`.
 
-    The different ways to notate a prolated duration of ``1/8``::
+    The different ways to notate a prolated duration of ``1/8``:
+
+    ::
 
         >>> pairs = metricmodulationtools.yield_prolation_rewrite_pairs(Duration(1, 8))
 
@@ -20,7 +23,9 @@ def yield_prolation_rewrite_pairs(duration, minimum_written_duration=None):
         (Multiplier(16, 15), Duration(15, 128))
         (Multiplier(16, 31), Duration(31, 128))
 
-    The different ways to notate a prolated duration of ``1/12``::
+    The different ways to notate a prolated duration of ``1/12``:
+
+    ::
 
         >>> pairs = metricmodulationtools.yield_prolation_rewrite_pairs(Duration(1, 12))
 
@@ -36,7 +41,9 @@ def yield_prolation_rewrite_pairs(duration, minimum_written_duration=None):
         (Multiplier(32, 21), Duration(7, 128))
         (Multiplier(32, 45), Duration(15, 128))
 
-    The different ways to notate a prolated duration of ``5/48``::
+    The different ways to notate a prolated duration of ``5/48``:
+
+    ::
 
         >>> pairs = metricmodulationtools.yield_prolation_rewrite_pairs(Duration(5, 48))
 
@@ -63,9 +70,10 @@ def yield_prolation_rewrite_pairs(duration, minimum_written_duration=None):
     if minimum_written_duration is None:
         minimum_written_duration = durationtools.Duration(1, 128)
     else:
-        minimum_written_duration = durationtools.Duration(minimum_written_duration)
+        minimum_written_duration = \
+            durationtools.Duration(minimum_written_duration)
 
-    generator = durationtools.yield_durations(unique=True)
+    generator = durationtools.Duration.yield_durations(unique=True)
     pairs = []
 
     while True:
