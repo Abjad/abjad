@@ -20,5 +20,3 @@ Functions
    ~abjad.tools.durationtools.count_offsets_in_expr.count_offsets_in_expr
    ~abjad.tools.durationtools.durations_to_integers.durations_to_integers
    ~abjad.tools.durationtools.durations_to_nonreduced_fractions_with_common_denominator.durations_to_nonreduced_fractions_with_common_denominator
-   ~abjad.tools.durationtools.group_nonreduced_fractions_by_implied_prolation.group_nonreduced_fractions_by_implied_prolation
-   ~abjad.tools.durationtools.numeric_seconds_to_clock_string.numeric_seconds_to_clock_string

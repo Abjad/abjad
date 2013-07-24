@@ -36,6 +36,7 @@
       ~abjad.tools.durationtools.Offset.Offset.Offset.real
       ~abjad.tools.durationtools.Offset.Offset.Offset.reciprocal
       ~abjad.tools.durationtools.Offset.Offset.Offset.storage_format
+      ~abjad.tools.durationtools.Offset.Offset.Offset.to_clock_string
       ~abjad.tools.durationtools.Offset.Offset.Offset.with_denominator
       ~abjad.tools.durationtools.Offset.Offset.Offset.yield_durations
       ~abjad.tools.durationtools.Offset.Offset.Offset.__abs__
@@ -161,6 +162,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.limit_denominator
+   :noindex:
+
+.. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.to_clock_string
    :noindex:
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.with_denominator

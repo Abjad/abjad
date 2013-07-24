@@ -37,6 +37,7 @@
       ~abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.real
       ~abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.reciprocal
       ~abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.storage_format
+      ~abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.to_clock_string
       ~abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.with_denominator
       ~abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.yield_durations
       ~abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.__abs__
@@ -165,6 +166,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.limit_denominator
+   :noindex:
+
+.. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.to_clock_string
    :noindex:
 
 .. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.with_denominator

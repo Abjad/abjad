@@ -36,6 +36,7 @@
       ~abjad.tools.durationtools.Duration.Duration.Duration.real
       ~abjad.tools.durationtools.Duration.Duration.Duration.reciprocal
       ~abjad.tools.durationtools.Duration.Duration.Duration.storage_format
+      ~abjad.tools.durationtools.Duration.Duration.Duration.to_clock_string
       ~abjad.tools.durationtools.Duration.Duration.Duration.with_denominator
       ~abjad.tools.durationtools.Duration.Duration.Duration.yield_durations
       ~abjad.tools.durationtools.Duration.Duration.Duration.__abs__
@@ -159,6 +160,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.limit_denominator
+   :noindex:
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.to_clock_string
    :noindex:
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.with_denominator
