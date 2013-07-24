@@ -1,0 +1,4 @@
+:py:mod:`mathtools <abjad.tools.mathtools>`.integer_to_base_k_tuple
+===================================================================
+
+.. autofunction:: abjad.tools.mathtools.integer_to_base_k_tuple.integer_to_base_k_tuple

@@ -1,0 +1,4 @@
+:py:mod:`sequencetools <abjad.tools.sequencetools>`.iterate_sequence_nwise_wrapped
+==================================================================================
+
+.. autofunction:: abjad.tools.sequencetools.iterate_sequence_nwise_wrapped.iterate_sequence_nwise_wrapped

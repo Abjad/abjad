@@ -1,0 +1,4 @@
+:py:mod:`sequencetools <abjad.tools.sequencetools>`.is_repetition_free_sequence
+===============================================================================
+
+.. autofunction:: abjad.tools.sequencetools.is_repetition_free_sequence.is_repetition_free_sequence

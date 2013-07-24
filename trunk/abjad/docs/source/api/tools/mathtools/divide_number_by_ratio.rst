@@ -1,0 +1,4 @@
+:py:mod:`mathtools <abjad.tools.mathtools>`.divide_number_by_ratio
+==================================================================
+
+.. autofunction:: abjad.tools.mathtools.divide_number_by_ratio.divide_number_by_ratio

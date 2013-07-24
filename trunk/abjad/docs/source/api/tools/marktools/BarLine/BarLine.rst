@@ -1,0 +1,105 @@
+:py:mod:`marktools <abjad.tools.marktools>`.BarLine
+===================================================
+
+.. abjad-lineage:: abjad.tools.marktools.BarLine.BarLine.BarLine
+
+.. autoclass:: abjad.tools.marktools.BarLine.BarLine.BarLine
+
+.. only:: html
+
+   Attributes summary
+   ------------------
+
+   .. autosummary::
+
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.attach
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.bar_line_string
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.command_name
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.detach
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.format_slot
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.lilypond_format
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.start_component
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.storage_format
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.__call__
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.__copy__
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.__eq__
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.__ge__
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.__gt__
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.__le__
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.__lt__
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.__ne__
+      ~abjad.tools.marktools.BarLine.BarLine.BarLine.__repr__
+
+Bases
+-----
+
+- :class:`marktools.LilyPondCommandMark <abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark>`
+
+- :class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
+
+Read-only properties
+--------------------
+
+.. autoattribute:: abjad.tools.marktools.BarLine.BarLine.BarLine.lilypond_format
+   :noindex:
+
+.. autoattribute:: abjad.tools.marktools.BarLine.BarLine.BarLine.start_component
+   :noindex:
+
+.. autoattribute:: abjad.tools.marktools.BarLine.BarLine.BarLine.storage_format
+   :noindex:
+
+Read/write properties
+---------------------
+
+.. autoattribute:: abjad.tools.marktools.BarLine.BarLine.BarLine.bar_line_string
+   :noindex:
+
+.. autoattribute:: abjad.tools.marktools.BarLine.BarLine.BarLine.command_name
+   :noindex:
+
+.. autoattribute:: abjad.tools.marktools.BarLine.BarLine.BarLine.format_slot
+   :noindex:
+
+Methods
+-------
+
+.. automethod:: abjad.tools.marktools.BarLine.BarLine.BarLine.attach
+   :noindex:
+
+.. automethod:: abjad.tools.marktools.BarLine.BarLine.BarLine.detach
+   :noindex:
+
+Special methods
+---------------
+
+.. automethod:: abjad.tools.marktools.BarLine.BarLine.BarLine.__call__
+   :noindex:
+
+.. automethod:: abjad.tools.marktools.BarLine.BarLine.BarLine.__copy__
+   :noindex:
+
+.. automethod:: abjad.tools.marktools.BarLine.BarLine.BarLine.__eq__
+   :noindex:
+
+.. automethod:: abjad.tools.marktools.BarLine.BarLine.BarLine.__ge__
+   :noindex:
+
+.. automethod:: abjad.tools.marktools.BarLine.BarLine.BarLine.__gt__
+   :noindex:
+
+.. automethod:: abjad.tools.marktools.BarLine.BarLine.BarLine.__le__
+   :noindex:
+
+.. automethod:: abjad.tools.marktools.BarLine.BarLine.BarLine.__lt__
+   :noindex:
+
+.. automethod:: abjad.tools.marktools.BarLine.BarLine.BarLine.__ne__
+   :noindex:
+
+.. automethod:: abjad.tools.marktools.BarLine.BarLine.BarLine.__repr__
+   :noindex:
