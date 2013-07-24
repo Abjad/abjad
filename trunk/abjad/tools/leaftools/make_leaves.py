@@ -64,7 +64,9 @@ def make_leaves(
 
     ::
 
-        >>> leaves = leaftools.make_leaves([None, None, None, None], [Duration(1, 4)])
+        >>> pitches = 4 * [None]
+        >>> durations = [Duration(1, 4)]
+        >>> leaves = leaftools.make_leaves(pitches, durations)
         >>> staff = stafftools.RhythmicStaff(leaves)
 
     ..  lilypond
@@ -85,7 +87,9 @@ def make_leaves(
 
     ::
 
-        >>> leaves = leaftools.make_leaves([(0, 2, 4), None, 'C#5', 'D#5'], [Duration(1, 4)])
+        >>> pitches = [(0, 2, 4), None, 'C#5', 'D#5']
+        >>> durations = [Duration(1, 4)]
+        >>> leaves = leaftools.make_leaves(pitches, durations)
         >>> staff = Staff(leaves)
 
     ..  lilypond
@@ -107,7 +111,9 @@ def make_leaves(
 
     ::
 
-        >>> leaves = leaftools.make_leaves(['C5'], 2 * [Duration(3, 8), Duration(1, 8)])
+        >>> pitches = ['C5']
+        >>> durations = 2 * [Duration(3, 8), Duration(1, 8)]
+        >>> leaves = leaftools.make_leaves(pitches, durations)
         >>> staff = Staff(leaves)
 
     ..  lilypond
@@ -129,7 +135,9 @@ def make_leaves(
 
     ::
 
-        >>> leaves = leaftools.make_leaves("c'' d'' e'' f''", [Duration(1, 4)])
+        >>> pitches = "c'' d'' e'' f''"
+        >>> durations = [Duration(1, 4)]
+        >>> leaves = leaftools.make_leaves(pitches, durations)
         >>> staff = Staff(leaves)
 
     ..  lilypond
@@ -151,7 +159,9 @@ def make_leaves(
 
     ::
 
-        >>> leaves = leaftools.make_leaves(['D5'], 3 * [Duration(1, 3)])
+        >>> pitches = ['D5']
+        >>> durations = [Duration(1, 3), Duration(1, 3), Duration(1, 3)]
+        >>> leaves = leaftools.make_leaves(pitches, durations)
         >>> staff = Staff(leaves)
 
     ..  lilypond
@@ -174,7 +184,9 @@ def make_leaves(
 
     ::
 
-        >>> leaves = leaftools.make_leaves(['D#5'], [Duration(13, 16)])
+        >>> pitches = ['D#5']
+        >>> durations = [Duration(13, 16)]
+        >>> leaves = leaftools.make_leaves(pitches, durations)
         >>> staff = Staff(leaves)
         >>> time_signature = contexttools.TimeSignatureMark((13, 16))(staff)
 
@@ -196,8 +208,13 @@ def make_leaves(
 
     ::
 
-        >>> leaves = leaftools.make_leaves(['E5'], [Duration(13, 16)],
-        ...     decrease_durations_monotonically=False)
+        >>> pitches = ['E5']
+        >>> durations = [Duration(13, 16)]
+        >>> leaves = leaftools.make_leaves(
+        ...     pitches, 
+        ...     durations,
+        ...     decrease_durations_monotonically=False,
+        ...     )
         >>> staff = Staff(leaves)
         >>> time_signature = contexttools.TimeSignatureMark((13, 16))(staff)
 
@@ -214,12 +231,15 @@ def make_leaves(
 
         >>> show(staff) # doctest: +SKIP
 
-    Example 10. Set `tie_rests` to true to return tied rests for nonassignable durations.
-    Note that LilyPond does not engrave ties between rests:
+    Example 10. Set `tie_rests` to true to return tied rests for 
+    nonassignable durations. Note that LilyPond does not engrave 
+    ties between rests:
 
     ::
 
-        >>> leaves = leaftools.make_leaves([None], [Duration(5, 8)], tie_rests=True)
+        >>> pitches = [None]
+        >>> durations = [Duration(5, 8)]
+        >>> leaves = leaftools.make_leaves(pitches, durations, tie_rests=True)
         >>> staff = stafftools.RhythmicStaff(leaves)
         >>> time_signature = contexttools.TimeSignatureMark((5, 8))(staff)
 
@@ -241,8 +261,13 @@ def make_leaves(
 
     ::
 
-        >>> leaves = leaftools.make_leaves("f' g'", [Duration(5, 8)],
-        ...     forbidden_written_duration=Duration(1, 2))
+        >>> pitches = "f' g'"
+        >>> durations = [Duration(5, 8)]
+        >>> leaves = leaftools.make_leaves(
+        ...     pitches,
+        ...     durations,
+        ...     forbidden_written_duration=Duration(1, 2),
+        ...     )
         >>> staff = Staff(leaves)
         >>> time_signature = contexttools.TimeSignatureMark((5, 4))(staff)
 
@@ -268,9 +293,14 @@ def make_leaves(
 
     ::
 
-        >>> leaves = leaftools.make_leaves("f' g'", [Duration(5, 8)],
+        >>> pitches = "f' g'"
+        >>> durations = [Duration(5, 8)]
+        >>> leaves = leaftools.make_leaves(
+        ...     pitches,
+        ...     durations,
         ...     forbidden_written_duration=Duration(1, 2),
-        ...     decrease_durations_monotonically=False)
+        ...     decrease_durations_monotonically=False,
+        ...     )
         >>> staff = Staff(leaves)
         >>> time_signature = contexttools.TimeSignatureMark((5, 4))(staff)
 
@@ -298,25 +328,6 @@ def make_leaves(
     from abjad.tools import resttools
     from abjad.tools import tuplettools
 
-    def _make_leaf_on_pitch(pitch, duration,
-        decrease_durations_monotonically=decrease_durations_monotonically):
-        if isinstance(pitch, (numbers.Number, str, pitchtools.NamedChromaticPitch)):
-            leaves = notetools.make_tied_note(pitch, duration,
-                decrease_durations_monotonically=decrease_durations_monotonically,
-                forbidden_written_duration=forbidden_written_duration)
-        elif isinstance(pitch, (tuple, list)):
-            leaves = chordtools.make_tied_chord(pitch, duration,
-                decrease_durations_monotonically=decrease_durations_monotonically,
-                forbidden_written_duration=forbidden_written_duration)
-        elif pitch is None:
-            leaves = resttools.make_tied_rest(duration,
-                decrease_durations_monotonically=decrease_durations_monotonically,
-                forbidden_written_duration=forbidden_written_duration,
-                tie_parts=tie_rests)
-        else:
-            raise ValueError('unknown pitch {!r}.'.format(pitch))
-        return leaves
-
     if isinstance(pitches, str):
         pitches = pitches.split()
 
@@ -327,14 +338,19 @@ def make_leaves(
         durations = [durations]
 
     # make duration pairs
-    duration_pairs = [durationtools.Duration(duration) for duration in durations]
+    duration_pairs = [durationtools.Duration(duration) 
+        for duration in durations]
 
     # set lists of pitches and duration pairs to the same length
     size = max(len(duration_pairs), len(pitches))
-    duration_pairs = sequencetools.repeat_sequence_to_length(duration_pairs, size)
+    duration_pairs = \
+        sequencetools.repeat_sequence_to_length(duration_pairs, size)
     pitches = sequencetools.repeat_sequence_to_length(pitches, size)
 
-    duration_groups = durationtools.group_nonreduced_fractions_by_implied_prolation(duration_pairs)
+    Duration = durationtools.Duration
+    duration_groups = \
+        Duration._group_nonreduced_fractions_by_implied_prolation(
+        duration_pairs)
 
     result = []
     for duration_group in duration_groups:
@@ -342,26 +358,76 @@ def make_leaves(
         factors = set(mathtools.factors(duration_group[0].denominator))
         factors.discard(1)
         factors.discard(2)
-        ps = pitches[0:len(duration_group)]
+        current_pitches = pitches[0:len(duration_group)]
         pitches = pitches[len(duration_group):]
         if len(factors) == 0:
-            for pitch, duration in zip(ps, duration_group):
-                leaves = _make_leaf_on_pitch(pitch, duration,
-                    decrease_durations_monotonically=decrease_durations_monotonically)
+            for pitch, duration in zip(current_pitches, duration_group):
+                leaves = _make_leaf_on_pitch(
+                    pitch,
+                    duration,
+                    decrease_durations_monotonically=decrease_durations_monotonically,
+                    forbidden_written_duration=forbidden_written_duration,
+                    tie_rests=tie_rests,
+                    )
                 result.extend(leaves)
         else:
-            # compute prolation
+            # compute tuplet prolation
             denominator = duration_group[0].denominator
-            numerator = mathtools.greatest_power_of_two_less_equal(denominator)
+            numerator = \
+                mathtools.greatest_power_of_two_less_equal(denominator)
             multiplier = (numerator, denominator)
             ratio = 1 / durationtools.Duration(*multiplier)
-            duration_group = [ratio * durationtools.Duration(duration) for duration in duration_group]
-            # make leaves
-            leaves = []
-            for pitch, duration in zip(ps, duration_group):
-                leaves.extend(_make_leaf_on_pitch(pitch, duration,
-                    decrease_durations_monotonically=decrease_durations_monotonically))
-            tuplet = tuplettools.Tuplet(multiplier, leaves)
+            duration_group = [ratio * durationtools.Duration(duration) 
+                for duration in duration_group]
+            # make tuplet leaves
+            tuplet_leaves = []
+            for pitch, duration in zip(current_pitches, duration_group):
+                leaves = _make_leaf_on_pitch(
+                    pitch,
+                    duration,
+                    decrease_durations_monotonically=decrease_durations_monotonically,
+                    )
+                tuplet_leaves.extend(leaves)
+            tuplet = tuplettools.Tuplet(multiplier, tuplet_leaves)
             result.append(tuplet)
 
     return result
+
+
+def _make_leaf_on_pitch(
+    pitch,
+    duration,
+    decrease_durations_monotonically=True,
+    forbidden_written_duration=None,
+    tie_rests=False,
+    ):
+    from abjad.tools import chordtools
+    from abjad.tools import notetools
+    from abjad.tools import resttools
+    note_types = (numbers.Number, str, pitchtools.NamedChromaticPitch)
+    chord_types = (tuple, list)
+    rest_types = (type(None),)
+    if isinstance(pitch, note_types):
+        leaves = notetools.make_tied_note(
+            pitch,
+            duration,
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            forbidden_written_duration=forbidden_written_duration,
+            )
+    elif isinstance(pitch, chord_types):
+        leaves = chordtools.make_tied_chord(
+            pitch,
+            duration,
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            forbidden_written_duration=forbidden_written_duration,
+            )
+    elif isinstance(pitch, rest_types):
+        leaves = resttools.make_tied_rest(
+            duration,
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            forbidden_written_duration=forbidden_written_duration,
+            tie_parts=tie_rests,
+            )
+    else:
+        raise ValueError('unknown pitch {!r}.'.format(pitch))
+    return leaves

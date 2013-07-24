@@ -32,18 +32,28 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
         >>> notetools.make_notes([0], [(1, 16), (1, 12), (1, 8)])
         [Note("c'16"), Tuplet(2/3, [c'8]), Note("c'8")]
 
-    Set ``decrease_durations_monotonically=True`` to express tied values in decreasing duration:
+    Set ``decrease_durations_monotonically=True`` to express tied values 
+    in decreasing duration:
 
     ::
 
-        >>> notetools.make_notes([0], [(13, 16)], decrease_durations_monotonically=True)
+        >>> notetools.make_notes(
+        ...     [0], 
+        ...     [(13, 16)], 
+        ...     decrease_durations_monotonically=True,
+        ...     )
         [Note("c'2."), Note("c'16")]
 
-    Set ``decrease_durations_monotonically=False`` to express tied values in increasing duration:
+    Set ``decrease_durations_monotonically=False`` to express tied 
+    values in increasing duration:
 
     ::
 
-        >>> notetools.make_notes([0], [(13, 16)], decrease_durations_monotonically=False)
+        >>> notetools.make_notes(
+        ...     [0], 
+        ...     [(13, 16)], 
+        ...     decrease_durations_monotonically=False,
+        ...     )
         [Note("c'16"), Note("c'2.")]
 
     Set `pitches` to a single pitch or a sequence of pitches.
@@ -61,14 +71,18 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
     if isinstance(durations, (numbers.Number, tuple)):
         durations = [durations]
 
-    duration_pairs = [durationtools.Duration(duration) for duration in durations]
+    duration_pairs = [durationtools.Duration(duration) 
+        for duration in durations]
 
     # set lists of pitches and duration pairs to the same length
     size = max(len(duration_pairs), len(pitches))
-    duration_pairs = sequencetools.repeat_sequence_to_length(duration_pairs, size)
+    duration_pairs = \
+        sequencetools.repeat_sequence_to_length(duration_pairs, size)
     pitches = sequencetools.repeat_sequence_to_length(pitches, size)
 
-    durations = durationtools.group_nonreduced_fractions_by_implied_prolation(duration_pairs)
+    Duration = durationtools.Duration
+    durations = Duration._group_nonreduced_fractions_by_implied_prolation(
+        duration_pairs)
 
     def _make_unprolated_notes(pitches, durations,
         decrease_durations_monotonically=decrease_durations_monotonically):

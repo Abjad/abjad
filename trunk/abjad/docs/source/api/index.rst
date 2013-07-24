@@ -324,7 +324,6 @@ Core composition packages
       tools/durationtools/count_offsets_in_expr
       tools/durationtools/durations_to_integers
       tools/durationtools/durations_to_nonreduced_fractions_with_common_denominator
-      tools/durationtools/group_nonreduced_fractions_by_implied_prolation
       tools/durationtools/numeric_seconds_to_clock_string
 
 .. only:: latex
@@ -346,7 +345,6 @@ Core composition packages
       tools/durationtools/count_offsets_in_expr
       tools/durationtools/durations_to_integers
       tools/durationtools/durations_to_nonreduced_fractions_with_common_denominator
-      tools/durationtools/group_nonreduced_fractions_by_implied_prolation
       tools/durationtools/numeric_seconds_to_clock_string
 
 :py:mod:`gracetools <abjad.tools.gracetools>`

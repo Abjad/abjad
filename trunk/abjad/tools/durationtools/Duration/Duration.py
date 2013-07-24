@@ -1,14 +1,12 @@
 import fractions
 import math
 import re
-from abjad.tools.abctools import ImmutableAbjadObject
 from abjad.tools import mathtools
+from abjad.tools.abctools import ImmutableAbjadObject
 
 
 class Duration(ImmutableAbjadObject, fractions.Fraction):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of musical duration.
+    r'''Abjad model of musical duration.
 
     Initialize from integer numerator:
 
@@ -264,19 +262,38 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
                 self, is_indented=False))]
 
     @staticmethod
+    def _group_nonreduced_fractions_by_implied_prolation(durations):
+        durations = [
+            mathtools.NonreducedFraction(duration) 
+            for duration in durations
+            ]
+        assert 0 < len(durations)
+        group = [durations[0]]
+        result = [group]
+        for d in durations[1:]:
+            d_f = set(mathtools.factors(d.denominator))
+            d_f.discard(2)
+            gd_f = set(mathtools.factors(group[0].denominator))
+            gd_f.discard(2)
+            if d_f == gd_f:
+                group.append(d)
+            else:
+                group = [d]
+                result.append(group)
+        return result
+
+    @staticmethod
     def _init_from_lilypond_duration_string(duration_string):
         numeric_body_strings = [str(2 ** n) for n in range(8)]
         other_body_strings = [r'\\breve', r'\\longa', r'\\maxima']
         body_strings = numeric_body_strings + other_body_strings
         body_strings = '|'.join(body_strings)
         pattern = r'^(%s)(\.*)$' % body_strings
-
         match = re.match(pattern, duration_string)
         if match is None:
-            raise DurationError('incorrect duration string format: %s.' %
-                duration_string)
+            message = 'incorrect duration string format: {!r}.'
+            raise DurationError(message.format(duration_string))
         body_string, dots_string = match.groups()
-
         try:
             body_denominator = int(body_string)
             body_duration = fractions.Fraction(1, body_denominator)
@@ -288,8 +305,8 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
             elif body_string == r'\maxima':
                 body_duration = fractions.Fraction(8)
             else:
-                raise ValueError('unknown body string %s.' % body_string)
-
+                message = 'unknown body string: {!r}.'
+                raise ValueError(message.format(body_string))
         rational = body_duration
         for n in range(len(dots_string)):
             exponent = n + 1
@@ -297,7 +314,6 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
             multiplier = fractions.Fraction(1, denominator)
             addend = multiplier * body_duration
             rational += addend
-
         return rational
 
     ### PUBLIC PROPERTIES ###
