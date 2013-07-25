@@ -54,6 +54,8 @@
 Bases
 -----
 
+- :class:`selectiontools.HorizontalSelection <abjad.tools.selectiontools.HorizontalSelection.HorizontalSelection.HorizontalSelection>`
+
 - :class:`selectiontools.Selection <abjad.tools.selectiontools.Selection.Selection.Selection>`
 
 - :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

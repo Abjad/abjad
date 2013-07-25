@@ -1,13 +1,11 @@
 import itertools
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
-from abjad.tools.selectiontools.Selection import Selection
+from abjad.tools.selectiontools.HorizontalSelection import HorizontalSelection
 
 
-class TieChain(Selection):
-    '''.. versionadded:: 2.9
-
-    All the notes in a tie chain:
+class TieChain(HorizontalSelection):
+    '''All the notes in a tie chain:
 
     ::
 
@@ -24,10 +22,10 @@ class TieChain(Selection):
     ### INITIALIZER ###
 
     def __init__(self, music=None):
-        if isinstance(music, Selection):
-            Selection.__init__(self, music.music)
+        if isinstance(music, HorizontalSelection):
+            HorizontalSelection.__init__(self, music.music)
         else:
-            Selection.__init__(self, music)
+            HorizontalSelection.__init__(self, music)
 
     ### PRIVATE METHODS ###
 
