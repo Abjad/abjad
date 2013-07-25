@@ -72,7 +72,8 @@ class Check(AbjadObject):
     def report(self, expr):
         violators, total = self._run(expr)
         bad = len(violators)
-        print '%4d / %4d %s' % (bad, total, self._message)
+        line = '%4d / %4d %s' % (bad, total, self._message)
+        return line
 
     def violators(self, expr):
         violators, total = self._run(expr)

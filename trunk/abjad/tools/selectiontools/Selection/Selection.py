@@ -510,10 +510,11 @@ class Selection(AbjadObject):
 
         ::
 
-            staff.select().tabulate_well_formedness_violations() # doctest: +SKIP
+            >>> result =  select(staff).tabulate_well_formedness_violations()
 
         ::
 
+            >>> print result
             1 /    4 beamed quarter note
             0 /    1 discontiguous spanner
             0 /    5 duplicate id
@@ -525,15 +526,16 @@ class Selection(AbjadObject):
             0 /    4 misrepresented flag
             0 /    5 missing parent
             0 /    0 nested measure
-            0 /    0 overlapping beam
+            0 /    1 overlapping beam
             0 /    0 overlapping glissando
             0 /    0 overlapping octavation
             0 /    0 short hairpin
 
-        .. todo:: figure out why staff is showing as missing parent.
-
         Beamed quarter notes are not well formed.
         '''
         from abjad.tools import wellformednesstools
+        lines = []
         for checker in wellformednesstools.Check.list_checks():
-            checker.report(self)
+            lines.append(checker.report(self))
+        result = '\n'.join(lines)
+        return result
