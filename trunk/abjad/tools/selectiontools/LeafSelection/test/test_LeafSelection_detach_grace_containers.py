@@ -1,24 +1,27 @@
 from abjad import *
 
 
-def test_gracetools_detach_grace_containers_attached_to_leaves_in_expr_01():
+def test_LeafSelection_detach_grace_containers_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
 
-    grace_container = gracetools.GraceContainer([Note("cs'16")], kind = 'grace')
+    grace_container = gracetools.GraceContainer(
+        [Note("cs'16")], kind='grace')
     grace_container(staff[1])
 
-    after_grace_container = gracetools.GraceContainer([Note("ds'16")], kind = 'after')
+    after_grace_container = gracetools.GraceContainer(
+        [Note("ds'16")], kind='after')
     after_grace_container(staff[1])
 
-    grace_containers = gracetools.get_grace_containers_attached_to_leaf(staff[1])
+    grace_containers = \
+        gracetools.get_grace_containers_attached_to_leaf(staff[1])
 
     assert len(grace_containers) == 2
 
     assert grace_container in grace_containers
     assert after_grace_container in grace_containers
 
-    grace_containers = gracetools.detach_grace_containers_attached_to_leaves_in_expr(staff[1])
+    staff.select_leaves().detach_grace_containers()
 
     assert len(grace_containers) == 2
 
