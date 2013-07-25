@@ -7,8 +7,8 @@
 
 .. only:: html
 
-   Attributes summary
-   ------------------
+   Attribute summary
+   -----------------
 
    .. autosummary::
 
