@@ -2477,6 +2477,11 @@ Core composition packages
       tools/selectiontools/Selection/Selection
       tools/selectiontools/SelectionInventory/SelectionInventory
 
+   .. toctree::
+      :maxdepth: 1
+
+      tools/selectiontools/select
+
 .. only:: latex
 
    Concrete classes
@@ -2487,6 +2492,13 @@ Core composition packages
       tools/selectiontools/HorizontalSelection/HorizontalSelection
       tools/selectiontools/Selection/Selection
       tools/selectiontools/SelectionInventory/SelectionInventory
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/selectiontools/select
 
 :py:mod:`sequencetools <abjad.tools.sequencetools>`
 ===================================================
