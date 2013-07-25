@@ -510,7 +510,10 @@ class Selection(AbjadObject):
 
         ::
 
-            >>> staff.select().tabulate_well_formedness_violations() # doctest: +SKIP
+            staff.select().tabulate_well_formedness_violations() # doctest: +SKIP
+
+        ::
+
             1 /    4 beamed quarter note
             0 /    1 discontiguous spanner
             0 /    5 duplicate id
