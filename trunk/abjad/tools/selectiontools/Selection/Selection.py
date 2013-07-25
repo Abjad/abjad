@@ -91,12 +91,12 @@ class Selection(AbjadObject):
         assert isinstance(expr, (type(self), list, tuple))
         if isinstance(expr, type(self)):
             music = expr.music + self.music
-            return type(self)(music)
+            return Selection(music)
         # eventually remove this permissive branch 
         # and force the use of selections only
         elif isinstance(expr, (tuple, list)):
             music = tuple(expr) + self.music
-        return type(self)(music)
+        return Selection(music)
 
     def __repr__(self):
         return '{}{!r}'.format(self._class_name, self.music)

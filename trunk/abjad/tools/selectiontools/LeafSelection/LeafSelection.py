@@ -7,7 +7,7 @@ class LeafSelection(HorizontalSelection):
 
     ### INITIALIZER ###
 
-    def __init__(self, music):
+    def __init__(self, music=None):
         from abjad.tools import leaftools
         HorizontalSelection.__init__(self, music=music)
         assert all(isinstance(x, leaftools.Leaf) for x in self)

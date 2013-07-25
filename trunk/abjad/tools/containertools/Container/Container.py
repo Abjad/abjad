@@ -812,14 +812,14 @@ class Container(Component):
         ::
 
             >>> container.select_leaves()
-            Selection(Note("c'8"), Note("d'8"), Note("e'8"))
+            LeafSelection(Note("c'8"), Note("d'8"), Note("e'8"))
 
-        Return selection of zero or more leaves.
+        Return leaf selection.
         '''
         from abjad.tools import iterationtools
         from abjad.tools import selectiontools
         generator = iterationtools.iterate_leaves_in_expr(self)
-        return selectiontools.Selection(generator)
+        return selectiontools.LeafSelection(generator)
 
     def shorten(self, duration):
         '''Shorten container by `duration`.

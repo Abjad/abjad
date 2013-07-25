@@ -389,9 +389,9 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         ::
 
             >>> expression.elements
-            Selection(Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"))
+            LeafSelection(Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"))
 
-        Return tuple.
+        Return leaf selection.
         '''
         return self.payload.select_leaves()
 
