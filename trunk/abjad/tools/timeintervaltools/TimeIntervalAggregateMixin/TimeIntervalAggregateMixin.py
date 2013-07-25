@@ -1,4 +1,5 @@
 import abc
+from abjad.tools import durationtools
 from abjad.tools.timeintervaltools.TimeIntervalMixin import TimeIntervalMixin
 
 
@@ -61,6 +62,116 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
 
     ### PUBLIC METHODS ###
 
+    def calculate_attack_density(self, bounding_interval=None):
+        if bounding_interval is None:
+            return len(self.intervals) / self.duration
+        return len(self.find_intervals_starting_within_interval(
+            bounding_interval)) / bounding_interval.duration
+
+    def calculate_depth_centroid(self, bounding_interval=None):
+        '''Calculate the weighted mean offset of `intervals`, such that the
+        centroids of each interval in the depth tree of `intervals` make up
+        the values of the mean, and the depth of each interval in the depth
+        tree of `intervals` make up the weights.
+
+        Return Offset.
+        '''
+        if not self:
+            return None
+        depth_tree = self.compute_depth(bounding_interval=bounding_interval)
+        weighted_centroids = sum(interval.center * interval['depth']
+            for interval in depth_tree)
+        sum_of_weights = sum(interval['depth'] for interval in depth_tree)
+        if not sum_of_weights:
+            return None
+        return durationtools.Offset(weighted_centroids) / sum_of_weights
+
+    def calculate_depth_density(self, bounding_interval=None):
+        '''Return a fraction, of the duration of each interval in the
+        depth tree of `intervals`, multiplied by the depth at that interval,
+        divided by the overall duration of `intervals`.
+
+        The depth density of a single interval is `1`:
+
+        Return multiplier.
+        '''
+        from abjad.tools import timeintervaltools
+        tree = self
+        if bounding_interval is not None:
+            tree = timeintervaltools.TimeIntervalTree(
+                tree.split_at_rationals(
+                    bounding_interval.start_offset,
+                    bounding_interval.stop_offset,
+                    ))
+            tree = \
+                tree.find_intervals_starting_and_stopping_within_interval(
+                bounding_interval)
+        if not tree:
+            return durationtools.Multiplier(0)
+        duration_sum = sum(interval.duration for interval in tree)
+        if bounding_interval is None:
+            return duration_sum / tree.duration
+        return duration_sum / bounding_interval.duration
+
+    def calculate_mean_attack_offset(self):
+        if not self:
+            return None
+        return durationtools.Offset(sum(interval.start_offset 
+            for interval in self)) / len(self.intervals)
+
+    def calculate_mean_release_offset(self):
+        if not self:
+            return None
+        return durationtools.Offset(sum(interval.stop_offset 
+            for interval in self)) / len(self.intervals)
+
+    def calculate_minimum_mean_and_maximum_depths(self):
+        '''Return a 3-tuple of the minimum, mean and maximum depth of 
+        `intervals`.
+
+        If `intervals` is empty, return None.
+        
+        "Mean" in this case is a weighted mean, where the durations of the 
+        intervals in depth tree of `intervals` are the weights.
+        '''
+        if not self:
+            return None
+        depth_tree = self.compute_depth()
+        depths = [interval['depth'] for interval in depth_tree]
+        mean = self.calculate_depth_density()
+        return min(depths), mean, max(depths)
+
+    def calculate_minimum_mean_and_maximum_durations(self):
+        '''Return a 3-tuple of the minimum, mean and maximum duration of all 
+        intervals in `intervals`.
+
+        If `intervals` is empty, return None.
+        '''
+        if not self.intervals:
+            return None
+        durations = [interval.duration for interval in self.intervals]
+        minimum = min(durations)
+        maximum = max(durations)
+        mean = durationtools.Duration(sum(durations), len(durations))
+        return minimum, mean, maximum
+
+    def calculate_release_density(self, bounding_interval=None):
+        if bounding_interval is None:
+            return len(self.intervals) / self.duration
+        return len(self.find_intervals_stopping_within_interval(
+            bounding_interval)) / bounding_interval.duration
+
+    def calculate_sustain_centroid(self):
+        '''Return a weighted mean, such that the centroid of each interval
+        in `intervals` are the values, and the weights are their durations.
+        '''
+        if not self:
+            return None
+        weighted_centroids = sum(interval.center * interval.duration 
+            for interval in self.intervals)
+        sum_of_weights = sum(interval.duration for interval in self.intervals)
+        return durationtools.Offset(weighted_centroids) / sum_of_weights
+        
     @abc.abstractmethod
     def clip_interval_durations_to_range(self, minimum=None, maximum=None):
         raise NotImplementedError
