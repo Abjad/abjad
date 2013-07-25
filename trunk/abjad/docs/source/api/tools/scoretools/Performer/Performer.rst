@@ -16,6 +16,8 @@
       ~abjad.tools.scoretools.Performer.Performer.Performer.instruments
       ~abjad.tools.scoretools.Performer.Performer.Performer.is_doubling
       ~abjad.tools.scoretools.Performer.Performer.Performer.likely_instruments_based_on_performer_name
+      ~abjad.tools.scoretools.Performer.Performer.Performer.list_performer_names
+      ~abjad.tools.scoretools.Performer.Performer.Performer.list_primary_performer_names
       ~abjad.tools.scoretools.Performer.Performer.Performer.make_performer_name_instrument_dictionary
       ~abjad.tools.scoretools.Performer.Performer.Performer.most_likely_instrument_based_on_performer_name
       ~abjad.tools.scoretools.Performer.Performer.Performer.name
@@ -67,6 +69,15 @@ Methods
 -------
 
 .. automethod:: abjad.tools.scoretools.Performer.Performer.Performer.make_performer_name_instrument_dictionary
+   :noindex:
+
+Static methods
+--------------
+
+.. automethod:: abjad.tools.scoretools.Performer.Performer.Performer.list_performer_names
+   :noindex:
+
+.. automethod:: abjad.tools.scoretools.Performer.Performer.Performer.list_primary_performer_names
    :noindex:
 
 Special methods

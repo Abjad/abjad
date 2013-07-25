@@ -38,13 +38,5 @@ def list_performer_names():
 
     Return list.
     '''
-    from abjad.tools import instrumenttools
-
-    performer_names = set([])
-
-    for instrument_class in instrumenttools.list_instruments():
-        instrument = instrument_class()
-        performer_name = instrument.get_default_performer_name()
-        performer_names.add(performer_name)
-
-    return list(sorted(performer_names))
+    from abjad.tools import scoretools
+    return scoretools.Performer.list_performer_names()

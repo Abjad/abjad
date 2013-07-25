@@ -35,18 +35,5 @@ def list_primary_performer_names():
 
     Return list.
     '''
-    from abjad.tools import instrumenttools
-
-    performer_names = set([])
-
-    for instrument_class in instrumenttools.list_instruments():
-        instrument = instrument_class()
-        if instrument.is_primary_instrument:
-            performer_name = instrument.get_default_performer_name()
-            performer_abbreviation = getattr(
-                instrument, 'default_performer_abbreviation', None)
-            performer_abbreviation = performer_abbreviation or \
-                instrument.default_short_instrument_name
-            performer_names.add((performer_name, performer_abbreviation))
-
-    return list(sorted(performer_names))
+    from abjad.tools import scoretools
+    return scoretools.Performer.list_primary_performer_names()

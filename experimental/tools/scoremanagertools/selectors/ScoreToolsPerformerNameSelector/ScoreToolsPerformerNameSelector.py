@@ -21,7 +21,7 @@ class ScoreToolsPerformerNameSelector(Selector):
         return main_menu
 
     def make_menu_entries(self):
-        performer_pairs = scoretools.list_primary_performer_names()
+        performer_pairs = scoretools.Performer.list_primary_performer_names()
         performer_pairs.append(('percussionist', 'perc.'))
         performer_pairs.sort()
         menu_entries = []
