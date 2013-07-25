@@ -9,6 +9,7 @@ Concrete classes
 .. autosummary::
 
    ~abjad.tools.selectiontools.HorizontalSelection.HorizontalSelection.HorizontalSelection
+   ~abjad.tools.selectiontools.LeafSelection.LeafSelection.LeafSelection
    ~abjad.tools.selectiontools.Selection.Selection.Selection
    ~abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory
 
