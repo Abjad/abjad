@@ -2473,6 +2473,7 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
+      tools/selectiontools/HorizontalSelection/HorizontalSelection
       tools/selectiontools/Selection/Selection
       tools/selectiontools/SelectionInventory/SelectionInventory
 
@@ -2483,6 +2484,7 @@ Core composition packages
 
    .. toctree::
 
+      tools/selectiontools/HorizontalSelection/HorizontalSelection
       tools/selectiontools/Selection/Selection
       tools/selectiontools/SelectionInventory/SelectionInventory
 

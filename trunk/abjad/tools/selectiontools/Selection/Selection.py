@@ -5,9 +5,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Selection(AbjadObject):
-    '''.. versionadded:: 2.9
-
-    Selection taken from a single score:
+    '''Selection of components taken from a single score:
 
     ::
 
