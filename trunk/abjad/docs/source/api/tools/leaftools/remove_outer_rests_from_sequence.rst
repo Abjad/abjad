@@ -1,4 +1,0 @@
-:py:mod:`leaftools <abjad.tools.leaftools>`.remove_outer_rests_from_sequence
-============================================================================
-
-.. autofunction:: abjad.tools.leaftools.remove_outer_rests_from_sequence.remove_outer_rests_from_sequence
