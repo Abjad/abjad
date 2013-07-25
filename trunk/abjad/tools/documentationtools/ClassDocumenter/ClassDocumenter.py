@@ -21,8 +21,8 @@ class ClassDocumenter(Documenter):
         <BLANKLINE>
         .. only:: html
         <BLANKLINE>
-        Attributes summary
-        ------------------
+        Attribute summary
+        -----------------
         <BLANKLINE>
         .. autosummary::
         <BLANKLINE>
@@ -365,7 +365,7 @@ class ClassDocumenter(Documenter):
         html_only = documentationtools.ReSTOnlyDirective(argument='html')
         html_only.append(documentationtools.ReSTHeading(
             level=3,
-            text='Attributes summary',
+            text='Attribute summary',
             ))
         html_only.append(autosummary)
         pieces.append(html_only)
