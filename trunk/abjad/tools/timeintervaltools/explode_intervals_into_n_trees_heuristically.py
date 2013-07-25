@@ -19,8 +19,8 @@ def explode_intervals_into_n_trees_heuristically(intervals, n):
     # cache
     treebounds = timeintervaltools.TimeInterval(tree.start_offset, tree.stop_offset)
     xtrees = [timeintervaltools.TimeIntervalTree(tree[0])]
-    densities = [timeintervaltools.calculate_depth_density_of_intervals_in_interval(
-        xtrees[0], treebounds)]
+    densities = [xtrees[0].calculate_depth_density(
+        bounding_interval=treebounds)]
     logical_ors = [xtrees[0].compute_logical_or()]
     for i in range(1, n):
         xtrees.append(timeintervaltools.TimeIntervalTree([]))
@@ -59,7 +59,8 @@ def explode_intervals_into_n_trees_heuristically(intervals, n):
             i = overlapping_trees[0][0]
 
         xtrees[i]._insert(interval)
-        densities[i] = timeintervaltools.calculate_depth_density_of_intervals_in_interval(xtrees[i], treebounds)
+        densities[i] = xtrees[i].calculate_depth_density(
+            bounding_interval=treebounds)
         logical_ors[i] = xtrees[i].compute_logical_or()
 
     return xtrees

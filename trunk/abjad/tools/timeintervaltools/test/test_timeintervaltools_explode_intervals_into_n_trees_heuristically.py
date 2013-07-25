@@ -21,7 +21,7 @@ def test_timeintervaltools_explode_intervals_into_n_trees_heuristically_01():
         TimeInterval(32, 34, {'name': 'k'}),
         TimeInterval(34, 37, {'name': 'l'})
     ])]
-    if n == calculate_min_mean_and_max_depth_of_intervals(tree)[2]:
+    if n == tree.calculate_minimum_mean_and_maximum_depths()[2]:
         assert all(x.intervals_are_nonoverlapping for x in result)
 
 def test_timeintervaltools_explode_intervals_into_n_trees_heuristically_02():
@@ -44,7 +44,7 @@ def test_timeintervaltools_explode_intervals_into_n_trees_heuristically_02():
         TimeInterval(32, 34, {'name': 'k'}),
         TimeInterval(34, 37, {'name': 'l'})
     ])]
-    if n == calculate_min_mean_and_max_depth_of_intervals(tree)[2]:
+    if n == tree.calculate_minimum_mean_and_maximum_depths()[2]:
         assert all(x.intervals_are_nonoverlapping for x in result)
 
 
@@ -69,5 +69,5 @@ def test_timeintervaltools_explode_intervals_into_n_trees_heuristically_03():
         TimeInterval(16, 21, {'name': 'f'}),
         TimeInterval(25, 30, {'name': 'i'})
     ])]
-    if n == calculate_min_mean_and_max_depth_of_intervals(tree)[2]:
+    if n == tree.calculate_minimum_mean_and_maximum_depths()[2]:
         assert all(x.intervals_are_nonoverlapping for x in result)
