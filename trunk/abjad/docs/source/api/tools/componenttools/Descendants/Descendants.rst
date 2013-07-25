@@ -20,6 +20,7 @@
       ~abjad.tools.componenttools.Descendants.Descendants.Descendants.duration
       ~abjad.tools.componenttools.Descendants.Descendants.Descendants.duration_in_seconds
       ~abjad.tools.componenttools.Descendants.Descendants.Descendants.get
+      ~abjad.tools.componenttools.Descendants.Descendants.Descendants.get_badly_formed_components
       ~abjad.tools.componenttools.Descendants.Descendants.Descendants.get_offset_lists
       ~abjad.tools.componenttools.Descendants.Descendants.Descendants.get_parent_and_start_stop_indices
       ~abjad.tools.componenttools.Descendants.Descendants.Descendants.group_by
@@ -27,6 +28,7 @@
       ~abjad.tools.componenttools.Descendants.Descendants.Descendants.preprolated_duration
       ~abjad.tools.componenttools.Descendants.Descendants.Descendants.select_vertical_moment_at
       ~abjad.tools.componenttools.Descendants.Descendants.Descendants.storage_format
+      ~abjad.tools.componenttools.Descendants.Descendants.Descendants.tabulate_well_formedness_violations
       ~abjad.tools.componenttools.Descendants.Descendants.Descendants.timespan
       ~abjad.tools.componenttools.Descendants.Descendants.Descendants.__add__
       ~abjad.tools.componenttools.Descendants.Descendants.Descendants.__contains__
@@ -92,6 +94,9 @@ Methods
 .. automethod:: abjad.tools.componenttools.Descendants.Descendants.Descendants.get
    :noindex:
 
+.. automethod:: abjad.tools.componenttools.Descendants.Descendants.Descendants.get_badly_formed_components
+   :noindex:
+
 .. automethod:: abjad.tools.componenttools.Descendants.Descendants.Descendants.get_offset_lists
    :noindex:
 
@@ -102,6 +107,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.componenttools.Descendants.Descendants.Descendants.select_vertical_moment_at
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.Descendants.Descendants.Descendants.tabulate_well_formedness_violations
    :noindex:
 
 Special methods

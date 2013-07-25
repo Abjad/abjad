@@ -15,6 +15,7 @@
       ~abjad.tools.durationtools.Offset.Offset.Offset.conjugate
       ~abjad.tools.durationtools.Offset.Offset.Offset.denominator
       ~abjad.tools.durationtools.Offset.Offset.Offset.dot_count
+      ~abjad.tools.durationtools.Offset.Offset.Offset.durations_to_nonreduced_fractions_with_common_denominator
       ~abjad.tools.durationtools.Offset.Offset.Offset.equal_or_greater_assignable
       ~abjad.tools.durationtools.Offset.Offset.Offset.equal_or_greater_power_of_two
       ~abjad.tools.durationtools.Offset.Offset.Offset.equal_or_lesser_assignable
@@ -181,6 +182,9 @@ Class methods
 
 Static methods
 --------------
+
+.. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.durations_to_nonreduced_fractions_with_common_denominator
+   :noindex:
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.from_lilypond_duration_string
    :noindex:

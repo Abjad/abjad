@@ -21,6 +21,7 @@
       ~abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.duration
       ~abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.duration_in_seconds
       ~abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.get
+      ~abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.get_badly_formed_components
       ~abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.get_offset_lists
       ~abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.get_parent_and_start_stop_indices
       ~abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.governors
@@ -42,6 +43,7 @@
       ~abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.start_leaves
       ~abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.start_notes
       ~abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.storage_format
+      ~abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.tabulate_well_formedness_violations
       ~abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.timespan
       ~abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.__add__
       ~abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.__contains__
@@ -153,6 +155,9 @@ Methods
 .. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.get
    :noindex:
 
+.. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.get_badly_formed_components
+   :noindex:
+
 .. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.get_offset_lists
    :noindex:
 
@@ -163,6 +168,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.select_vertical_moment_at
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.tabulate_well_formedness_violations
    :noindex:
 
 Special methods

@@ -12,6 +12,7 @@
 
    .. autosummary::
 
+      ~abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel.count_offsets_in_expr
       ~abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel.kernel
       ~abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel.storage_format
       ~abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel.__call__
@@ -37,6 +38,12 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel.storage_format
+   :noindex:
+
+Static methods
+--------------
+
+.. automethod:: abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel.count_offsets_in_expr
    :noindex:
 
 Special methods

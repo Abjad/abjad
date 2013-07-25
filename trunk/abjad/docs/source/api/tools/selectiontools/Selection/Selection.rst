@@ -19,6 +19,7 @@
       ~abjad.tools.selectiontools.Selection.Selection.Selection.duration
       ~abjad.tools.selectiontools.Selection.Selection.Selection.duration_in_seconds
       ~abjad.tools.selectiontools.Selection.Selection.Selection.get
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.get_badly_formed_components
       ~abjad.tools.selectiontools.Selection.Selection.Selection.get_offset_lists
       ~abjad.tools.selectiontools.Selection.Selection.Selection.get_parent_and_start_stop_indices
       ~abjad.tools.selectiontools.Selection.Selection.Selection.group_by
@@ -26,6 +27,7 @@
       ~abjad.tools.selectiontools.Selection.Selection.Selection.preprolated_duration
       ~abjad.tools.selectiontools.Selection.Selection.Selection.select_vertical_moment_at
       ~abjad.tools.selectiontools.Selection.Selection.Selection.storage_format
+      ~abjad.tools.selectiontools.Selection.Selection.Selection.tabulate_well_formedness_violations
       ~abjad.tools.selectiontools.Selection.Selection.Selection.timespan
       ~abjad.tools.selectiontools.Selection.Selection.Selection.__add__
       ~abjad.tools.selectiontools.Selection.Selection.Selection.__contains__
@@ -86,6 +88,9 @@ Methods
 .. automethod:: abjad.tools.selectiontools.Selection.Selection.Selection.get
    :noindex:
 
+.. automethod:: abjad.tools.selectiontools.Selection.Selection.Selection.get_badly_formed_components
+   :noindex:
+
 .. automethod:: abjad.tools.selectiontools.Selection.Selection.Selection.get_offset_lists
    :noindex:
 
@@ -96,6 +101,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.selectiontools.Selection.Selection.Selection.select_vertical_moment_at
+   :noindex:
+
+.. automethod:: abjad.tools.selectiontools.Selection.Selection.Selection.tabulate_well_formedness_violations
    :noindex:
 
 Special methods

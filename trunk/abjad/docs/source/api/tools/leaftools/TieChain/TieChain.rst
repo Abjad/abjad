@@ -20,6 +20,7 @@
       ~abjad.tools.leaftools.TieChain.TieChain.TieChain.duration
       ~abjad.tools.leaftools.TieChain.TieChain.TieChain.duration_in_seconds
       ~abjad.tools.leaftools.TieChain.TieChain.TieChain.get
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.get_badly_formed_components
       ~abjad.tools.leaftools.TieChain.TieChain.TieChain.get_offset_lists
       ~abjad.tools.leaftools.TieChain.TieChain.TieChain.get_parent_and_start_stop_indices
       ~abjad.tools.leaftools.TieChain.TieChain.TieChain.group_by
@@ -32,6 +33,7 @@
       ~abjad.tools.leaftools.TieChain.TieChain.TieChain.preprolated_duration
       ~abjad.tools.leaftools.TieChain.TieChain.TieChain.select_vertical_moment_at
       ~abjad.tools.leaftools.TieChain.TieChain.TieChain.storage_format
+      ~abjad.tools.leaftools.TieChain.TieChain.TieChain.tabulate_well_formedness_violations
       ~abjad.tools.leaftools.TieChain.TieChain.TieChain.tie_spanner
       ~abjad.tools.leaftools.TieChain.TieChain.TieChain.timespan
       ~abjad.tools.leaftools.TieChain.TieChain.TieChain.to_tuplet
@@ -121,6 +123,9 @@ Methods
 .. automethod:: abjad.tools.leaftools.TieChain.TieChain.TieChain.get
    :noindex:
 
+.. automethod:: abjad.tools.leaftools.TieChain.TieChain.TieChain.get_badly_formed_components
+   :noindex:
+
 .. automethod:: abjad.tools.leaftools.TieChain.TieChain.TieChain.get_offset_lists
    :noindex:
 
@@ -131,6 +136,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.leaftools.TieChain.TieChain.TieChain.select_vertical_moment_at
+   :noindex:
+
+.. automethod:: abjad.tools.leaftools.TieChain.TieChain.TieChain.tabulate_well_formedness_violations
    :noindex:
 
 .. automethod:: abjad.tools.leaftools.TieChain.TieChain.TieChain.to_tuplet

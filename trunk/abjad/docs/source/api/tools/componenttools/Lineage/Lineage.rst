@@ -20,6 +20,7 @@
       ~abjad.tools.componenttools.Lineage.Lineage.Lineage.duration
       ~abjad.tools.componenttools.Lineage.Lineage.Lineage.duration_in_seconds
       ~abjad.tools.componenttools.Lineage.Lineage.Lineage.get
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.get_badly_formed_components
       ~abjad.tools.componenttools.Lineage.Lineage.Lineage.get_offset_lists
       ~abjad.tools.componenttools.Lineage.Lineage.Lineage.get_parent_and_start_stop_indices
       ~abjad.tools.componenttools.Lineage.Lineage.Lineage.group_by
@@ -27,6 +28,7 @@
       ~abjad.tools.componenttools.Lineage.Lineage.Lineage.preprolated_duration
       ~abjad.tools.componenttools.Lineage.Lineage.Lineage.select_vertical_moment_at
       ~abjad.tools.componenttools.Lineage.Lineage.Lineage.storage_format
+      ~abjad.tools.componenttools.Lineage.Lineage.Lineage.tabulate_well_formedness_violations
       ~abjad.tools.componenttools.Lineage.Lineage.Lineage.timespan
       ~abjad.tools.componenttools.Lineage.Lineage.Lineage.__add__
       ~abjad.tools.componenttools.Lineage.Lineage.Lineage.__contains__
@@ -92,6 +94,9 @@ Methods
 .. automethod:: abjad.tools.componenttools.Lineage.Lineage.Lineage.get
    :noindex:
 
+.. automethod:: abjad.tools.componenttools.Lineage.Lineage.Lineage.get_badly_formed_components
+   :noindex:
+
 .. automethod:: abjad.tools.componenttools.Lineage.Lineage.Lineage.get_offset_lists
    :noindex:
 
@@ -102,6 +107,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.componenttools.Lineage.Lineage.Lineage.select_vertical_moment_at
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.Lineage.Lineage.Lineage.tabulate_well_formedness_violations
    :noindex:
 
 Special methods

@@ -27,4 +27,3 @@ Functions
    ~abjad.tools.notetools.make_repeated_notes_from_time_signature.make_repeated_notes_from_time_signature
    ~abjad.tools.notetools.make_repeated_notes_from_time_signatures.make_repeated_notes_from_time_signatures
    ~abjad.tools.notetools.make_repeated_notes_with_shorter_notes_at_end.make_repeated_notes_with_shorter_notes_at_end
-   ~abjad.tools.notetools.make_tied_note.make_tied_note

@@ -37,5 +37,3 @@ Functions
 .. autosummary::
 
    ~abjad.tools.wellformednesstools.is_well_formed_component.is_well_formed_component
-   ~abjad.tools.wellformednesstools.list_badly_formed_components_in_expr.list_badly_formed_components_in_expr
-   ~abjad.tools.wellformednesstools.tabulate_well_formedness_violations_in_expr.tabulate_well_formedness_violations_in_expr

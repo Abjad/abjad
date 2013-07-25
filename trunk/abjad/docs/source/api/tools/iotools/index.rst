@@ -21,18 +21,26 @@ Functions
    ~abjad.tools.iotools.get_last_output_file_name.get_last_output_file_name
    ~abjad.tools.iotools.get_next_output_file_name.get_next_output_file_name
    ~abjad.tools.iotools.graph.graph
+   ~abjad.tools.iotools.insert_expr_into_lilypond_file.insert_expr_into_lilypond_file
    ~abjad.tools.iotools.log.log
+   ~abjad.tools.iotools.log_render_lilypond_input.log_render_lilypond_input
    ~abjad.tools.iotools.ly.ly
+   ~abjad.tools.iotools.open_file.open_file
    ~abjad.tools.iotools.p.p
    ~abjad.tools.iotools.pdf.pdf
    ~abjad.tools.iotools.play.play
    ~abjad.tools.iotools.plot.plot
    ~abjad.tools.iotools.profile_expr.profile_expr
    ~abjad.tools.iotools.redo.redo
+   ~abjad.tools.iotools.run_abjad.run_abjad
+   ~abjad.tools.iotools.run_lilypond.run_lilypond
    ~abjad.tools.iotools.save_last_ly_as.save_last_ly_as
    ~abjad.tools.iotools.save_last_pdf_as.save_last_pdf_as
    ~abjad.tools.iotools.show.show
    ~abjad.tools.iotools.spawn_subprocess.spawn_subprocess
+   ~abjad.tools.iotools.update_docs_release_string.update_docs_release_string
+   ~abjad.tools.iotools.verify_output_directory.verify_output_directory
+   ~abjad.tools.iotools.warn_almost_full.warn_almost_full
    ~abjad.tools.iotools.which.which
    ~abjad.tools.iotools.write_expr_to_ly.write_expr_to_ly
    ~abjad.tools.iotools.write_expr_to_pdf.write_expr_to_pdf

@@ -22,6 +22,7 @@
       ~abjad.tools.componenttools.Parentage.Parentage.Parentage.duration
       ~abjad.tools.componenttools.Parentage.Parentage.Parentage.duration_in_seconds
       ~abjad.tools.componenttools.Parentage.Parentage.Parentage.get
+      ~abjad.tools.componenttools.Parentage.Parentage.Parentage.get_badly_formed_components
       ~abjad.tools.componenttools.Parentage.Parentage.Parentage.get_first
       ~abjad.tools.componenttools.Parentage.Parentage.Parentage.get_offset_lists
       ~abjad.tools.componenttools.Parentage.Parentage.Parentage.get_parent_and_start_stop_indices
@@ -35,6 +36,7 @@
       ~abjad.tools.componenttools.Parentage.Parentage.Parentage.score_index
       ~abjad.tools.componenttools.Parentage.Parentage.Parentage.select_vertical_moment_at
       ~abjad.tools.componenttools.Parentage.Parentage.Parentage.storage_format
+      ~abjad.tools.componenttools.Parentage.Parentage.Parentage.tabulate_well_formedness_violations
       ~abjad.tools.componenttools.Parentage.Parentage.Parentage.timespan
       ~abjad.tools.componenttools.Parentage.Parentage.Parentage.tuplet_depth
       ~abjad.tools.componenttools.Parentage.Parentage.Parentage.__add__
@@ -125,6 +127,9 @@ Methods
 .. automethod:: abjad.tools.componenttools.Parentage.Parentage.Parentage.get
    :noindex:
 
+.. automethod:: abjad.tools.componenttools.Parentage.Parentage.Parentage.get_badly_formed_components
+   :noindex:
+
 .. automethod:: abjad.tools.componenttools.Parentage.Parentage.Parentage.get_first
    :noindex:
 
@@ -138,6 +143,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.componenttools.Parentage.Parentage.Parentage.select_vertical_moment_at
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.Parentage.Parentage.Parentage.tabulate_well_formedness_violations
    :noindex:
 
 Special methods

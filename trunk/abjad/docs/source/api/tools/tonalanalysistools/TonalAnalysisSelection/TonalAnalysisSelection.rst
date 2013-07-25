@@ -23,6 +23,7 @@
       ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.duration
       ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.duration_in_seconds
       ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.get
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.get_badly_formed_components
       ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.get_offset_lists
       ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.get_parent_and_start_stop_indices
       ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.group_by
@@ -30,6 +31,7 @@
       ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.preprolated_duration
       ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.select_vertical_moment_at
       ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.storage_format
+      ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.tabulate_well_formedness_violations
       ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.timespan
       ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.__add__
       ~abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.__contains__
@@ -104,6 +106,9 @@ Methods
 .. automethod:: abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.get
    :noindex:
 
+.. automethod:: abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.get_badly_formed_components
+   :noindex:
+
 .. automethod:: abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.get_offset_lists
    :noindex:
 
@@ -114,6 +119,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.select_vertical_moment_at
+   :noindex:
+
+.. automethod:: abjad.tools.tonalanalysistools.TonalAnalysisSelection.TonalAnalysisSelection.TonalAnalysisSelection.tabulate_well_formedness_violations
    :noindex:
 
 Special methods

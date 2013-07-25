@@ -15,6 +15,7 @@
       ~abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.conjugate
       ~abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.denominator
       ~abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.dot_count
+      ~abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.durations_to_nonreduced_fractions_with_common_denominator
       ~abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.equal_or_greater_assignable
       ~abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.equal_or_greater_power_of_two
       ~abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.equal_or_lesser_assignable
@@ -185,6 +186,9 @@ Class methods
 
 Static methods
 --------------
+
+.. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.durations_to_nonreduced_fractions_with_common_denominator
+   :noindex:
 
 .. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.from_lilypond_duration_string
    :noindex:
