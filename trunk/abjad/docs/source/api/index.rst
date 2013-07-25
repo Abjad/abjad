@@ -2425,8 +2425,6 @@ Core composition packages
 
       tools/scoretools/add_double_bar_to_end_of_score
       tools/scoretools/add_markup_to_end_of_score
-      tools/scoretools/list_performer_names
-      tools/scoretools/list_primary_performer_names
       tools/scoretools/make_empty_piano_score
       tools/scoretools/make_piano_score_from_leaves
       tools/scoretools/make_piano_sketch_score_from_leaves
@@ -2453,8 +2451,6 @@ Core composition packages
 
       tools/scoretools/add_double_bar_to_end_of_score
       tools/scoretools/add_markup_to_end_of_score
-      tools/scoretools/list_performer_names
-      tools/scoretools/list_primary_performer_names
       tools/scoretools/make_empty_piano_score
       tools/scoretools/make_piano_score_from_leaves
       tools/scoretools/make_piano_sketch_score_from_leaves
