@@ -19,14 +19,6 @@ class TieChain(HorizontalSelection):
     Tie chains are immutable score selections.
     '''
 
-    ### INITIALIZER ###
-
-    def __init__(self, music=None):
-        if isinstance(music, HorizontalSelection):
-            HorizontalSelection.__init__(self, music.music)
-        else:
-            HorizontalSelection.__init__(self, music)
-
     ### PRIVATE METHODS ###
 
     def _add_or_remove_notes_to_achieve_written_duration(

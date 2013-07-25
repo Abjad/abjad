@@ -3196,7 +3196,6 @@ Core composition packages
       tools/timeintervaltools/calculate_min_mean_and_max_depth_of_intervals
       tools/timeintervaltools/calculate_min_mean_and_max_durations_of_intervals
       tools/timeintervaltools/calculate_sustain_centroid_of_intervals
-      tools/timeintervaltools/clip_interval_durations_to_range
       tools/timeintervaltools/concatenate_trees
       tools/timeintervaltools/explode_intervals_compactly
       tools/timeintervaltools/explode_intervals_into_n_trees_heuristically
@@ -3245,7 +3244,6 @@ Core composition packages
       tools/timeintervaltools/calculate_min_mean_and_max_depth_of_intervals
       tools/timeintervaltools/calculate_min_mean_and_max_durations_of_intervals
       tools/timeintervaltools/calculate_sustain_centroid_of_intervals
-      tools/timeintervaltools/clip_interval_durations_to_range
       tools/timeintervaltools/concatenate_trees
       tools/timeintervaltools/explode_intervals_compactly
       tools/timeintervaltools/explode_intervals_into_n_trees_heuristically

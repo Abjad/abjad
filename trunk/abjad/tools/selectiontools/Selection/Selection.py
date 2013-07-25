@@ -39,7 +39,9 @@ class Selection(AbjadObject):
     def __init__(self, music=None):
         if music is None:
             music = ()
-        elif isinstance(music, (tuple, list, type(self))):
+        elif isinstance(music, (tuple, list)):
+            music = tuple(music)
+        elif isinstance(music, Selection):
             music = tuple(music)
         elif isinstance(music, types.GeneratorType):
             music = tuple(music)

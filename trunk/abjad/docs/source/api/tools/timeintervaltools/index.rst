@@ -37,7 +37,6 @@ Functions
    ~abjad.tools.timeintervaltools.calculate_min_mean_and_max_depth_of_intervals.calculate_min_mean_and_max_depth_of_intervals
    ~abjad.tools.timeintervaltools.calculate_min_mean_and_max_durations_of_intervals.calculate_min_mean_and_max_durations_of_intervals
    ~abjad.tools.timeintervaltools.calculate_sustain_centroid_of_intervals.calculate_sustain_centroid_of_intervals
-   ~abjad.tools.timeintervaltools.clip_interval_durations_to_range.clip_interval_durations_to_range
    ~abjad.tools.timeintervaltools.concatenate_trees.concatenate_trees
    ~abjad.tools.timeintervaltools.explode_intervals_compactly.explode_intervals_compactly
    ~abjad.tools.timeintervaltools.explode_intervals_into_n_trees_heuristically.explode_intervals_into_n_trees_heuristically
