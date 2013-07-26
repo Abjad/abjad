@@ -64,10 +64,8 @@ class LeafSelection(HorizontalSelection):
 
         Return tuple of zero or more grace containers.
         '''
-        from abjad.tools import gracetools
-        from abjad.tools import iterationtools
         result = []
         for leaf in self:
-            result.extend(gracetools.detach_grace_containers_attached_to_leaf(
-                leaf, kind=kind))
+            grace_containers = leaf.detach_grace_containers(kind=kind)
+            result.extend(grace_containers)
         return tuple(result)

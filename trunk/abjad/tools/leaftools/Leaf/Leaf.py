@@ -375,6 +375,16 @@ class Leaf(Component):
 
     ### PUBLIC METHODS ###
 
+    def detach_grace_containers(self, kind=None):
+        '''Detach grace containers attached to leaf.
+
+        Return tuple of detached grace containers.
+        '''
+        grace_containers = self.get_grace_containers(kind=kind)
+        for grace_container in grace_containers:
+            grace_container.detach()
+        return grace_containers
+
     def get_grace_containers(self, kind=None):
         r'''Get grace containers attached to leaf.
 

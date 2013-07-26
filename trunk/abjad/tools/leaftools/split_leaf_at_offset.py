@@ -156,10 +156,10 @@ def split_leaf_at_offset(
     leaf.extend_in_parent([new_leaf], grow_spanners=True)
 
     # adjust leaf
-    gracetools.detach_grace_containers_attached_to_leaf(leaf, kind='after')
+    leaf.detach_grace_containers(kind='after')
 
     # adjust new leaf
-    gracetools.detach_grace_containers_attached_to_leaf(new_leaf, kind='grace')
+    new_leaf.detach_grace_containers(kind='grace')
     new_leaf.select().detach_marks()
     new_leaf.select().detach_marks(contexttools.ContextMark)
 
