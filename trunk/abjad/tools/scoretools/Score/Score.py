@@ -94,3 +94,67 @@ class Score(Context):
         last_leaf = self.select().get(leaftools.Leaf, -1)
         double_bar = marktools.BarLine('|.')(last_leaf)
         return double_bar
+
+    def add_final_markup(self, markup, extra_offset=None):
+        r'''Add `markup` to end of score:
+
+        ::
+
+            >>> staff = Staff("c'4 d'4 e'4 f'4")
+            >>> score = Score([staff])
+            >>> markup = r'\italic \right-column { "Bremen - Boston - LA." "Jul 2010 - May 2011." }'
+            >>> markup = markuptools.Markup(markup, Down)
+            >>> markup = score.add_final_markup(markup, extra_offset=(4, -2))
+
+        ::
+
+            >>> z(markup)
+            markuptools.Markup((
+                markuptools.MarkupCommand(
+                    'italic',
+                    markuptools.MarkupCommand(
+                        'right-column',
+                        [
+                            'Bremen - Boston - LA.',
+                            'Jul 2010 - May 2011.'
+                        ]
+                        )
+                    ),
+                ),
+                direction=Down
+                )
+
+        ..  lilypond
+
+            >>> f(score)
+            \new Score <<
+                \new Staff {
+                    c'4
+                    d'4
+                    e'4
+                    \once \override TextScript #'extra-offset = #'(4 . -2)
+                    f'4 _ \markup {
+                        \italic
+                            \right-column
+                                {
+                                    "Bremen - Boston - LA."
+                                    "Jul 2010 - May 2011."
+                                }
+                        }
+                }
+            >>
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        Return `markup`.
+        '''
+        from abjad.tools import markuptools
+        from abjad.tools import leaftools
+        last_leaf = self[:].get(leaftools.Leaf, -1)
+        # TODO: copy markup direction from markup input
+        markup = markuptools.Markup(markup, Down)(last_leaf)
+        if extra_offset is not None:
+            last_leaf.override.text_script.extra_offset = extra_offset
+        return markup
