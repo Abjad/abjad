@@ -5,13 +5,17 @@ Abjad packaging checklist:
     Record the revision of repository in the packaging transcript.
 
  2.  Document the packaging environment in the packaging transcript.
-    (a) Apply any OS updates to the machine on which you will produce the package.
+    (a) Apply any OS updates to the machine on which you will produce 
+        the package.
         Record the output of "uname -v" in the packaging transcript.
 
     (b) Decide whether to upgrade svn.
-        OS X svn binaries are available at http://subversion.apache.org/packages.html#osx.
-        The openCollabNet universal build maintained by Jeremy Whitlock is recomended.
-        Regardless of whether svn is upgraded or not, record the output of "svn --version".
+        OS X svn binaries are available at 
+        http://subversion.apache.org/packages.html#osx.
+        The openCollabNet universal build maintained by Jeremy Whitlock 
+        is recomended.
+        Regardless of whether svn is upgraded or not, 
+        record the output of "svn --version".
 
     (c) If necessary, upgrade Python on the packaging machine.
         Python upgrade procedures are OS-dependent.
@@ -24,7 +28,8 @@ Abjad packaging checklist:
         Record the output "py.test --version" in the packaging transcript.
 
     (f) Update Sphinx with "sudo pip install --upgrade Sphinx".
-        Record the output of "sphinx-build --version" in the packaging transcript.
+        Record the output of "sphinx-build --version" 
+        in the packaging transcript.
 
     (g) Update LilyPond.
         Record the output of "lilypond --version" in the packaging transcript.
@@ -41,8 +46,10 @@ Abjad packaging checklist:
         Example: "Released 2009-05-21. Built from r5752."
         Run "ajv count tools ." and "scr/devel/count-source-lines".
         Add a sentence detailing the output of these scripts to this chapter.
-        Example: "Implements 405 public classes and 1066 functions totaling 182,000 lines of code."
-        Run "svn log --revision 4083:4977 | less" (for example) and read output in chronological order.
+        Example: "Implements 405 public classes and 1066 functions 
+        totaling 182,000 lines of code."
+        Run "svn log --revision 4083:4977 | less" (for example) 
+        and read output in chronological order.
         Read log and write release notes.
         Follow the pattern already established in the document.
         List new features and functionality.
@@ -53,7 +60,8 @@ Abjad packaging checklist:
         List changes in user syntax last.
     Also update change log:
         Open docs/source/appendices/change_log/index.rst 
-        Add entries for function, method and class names changed during development.
+        Add entries for function, method and class names changed 
+        during development.
     Commit.
 
  4. Run the following codebase maintenance scripts on the root Abjad directory:
@@ -74,12 +82,12 @@ Abjad packaging checklist:
         find-noninstantiable-concrete-classes (NEEDS TO BE FINISHED)
         find-private-modules (WE'RE NOT YET BOUND BY THE OUTPUT)
         find-public-helpers-without-docstrings (NEEDS TO BE PORTED FORWARD)
-        find-slots-implementation-inconsistencies (CAN'T BE RUN ON EXPERIMENTAL YET)
+        find-slots-implementation-inconsistencies (CAN'T BE RUN ON EXP. YET)
     Also run these:
         fix-nonalphabetized-module-headers (NEEDS TO BE PORTED FORWARD)
         fix-test-case-block-comments
         fix-test-cases
-        reindent-3-spaces-as-4 (this will cause all 1500 pages of the docs to rebuild)
+        reindent-3-spaces-as-4 (this will cause all 1500 doc pages to rebuild)
         remove-source-file-terminal-blank-lines
     AVOID these scripts at build time:
         reindent-spaces-variably
@@ -100,8 +108,10 @@ Abjad packaging checklist:
 
  7. Change back to the abjad root directory and run "ajv api -M".
     You will need Graphviz installed to build the API.
-    OS X Graphviz downloads are available at http://www.graphviz.org/Download..php.
-    Ubuntu Graphic installation is available with "sudo apt-get install graphviz".
+    OS X Graphviz downloads are available at 
+        http://www.graphviz.org/Download..php.
+    Ubuntu Graphic installation is available with 
+        "sudo apt-get install graphviz".
     The HTML version of the API should build with no warnings and no errors.
     If Sphinx gives any warnings or errors, fix, commit and go back to (6.)
 
@@ -131,7 +141,8 @@ Abjad packaging checklist:
 
 12. Change to the abjad/etc/optimization directory.
     Create a v2.x optimization transcript by copying the most recent such file.
-    Record memory usage and profiling test results in the optimization transcript.
+    Record memory usage and profiling test results in the 
+    optimization transcript.
 
 13. Run "svn info".
     Note the current revision of the working copy you are packaging.
@@ -198,7 +209,8 @@ Abjad packaging checklist:
 27. Run 'python setup.py register sdist upload'
     Follow the login instructions provided by PyPI.
     You must have Abjad package owner credentials for this step to work.
-    If you need Abjad package owner credentials, talk to Trevor, Josiah or Víctor.
+    If you need Abjad package owner credentials, 
+    talk to Trevor, Josiah or Víctor.
     PyPI should respond with "Server response (200): OK".
 
 28. Remove 'dist' and 'Abjad.egg-info'.
@@ -209,15 +221,21 @@ Abjad packaging checklist:
     Talk to Trevor, Josiah or Víctor if you need Abjad owner credentials.
     Click on the Abjad link to edit PyPI's information about the package.
 
-30. Click your browser's "back" button to return to the "Package 'Abjad' Editing" page.
-    Then click on the "edit" link to the left of the entry for the new x.y version.
+30. Click your browser's "back" button to return to the 
+    "Package 'Abjad' Editing" page.
+    Then click on the "edit" link to the left of the entry for the 
+    new x.y version.
     This will take you to the "Submitting package information" page.
 
-31. Manually restore the diacritics in "Víctor Adán" and "Trevor Bača" in the "Author" field.
-    (This is necessary because there's a bug in setup.py that fails on UNICODE metadata.
-    So UNICODE characters must be added back in by hand on this page of the PyPI website
+31. Manually restore the diacritics in "Víctor Adán" and "Trevor Bača" 
+    in the "Author" field.
+    (This is necessary because there's a bug in setup.py that fails on 
+    UNICODE metadata.
+    So UNICODE characters must be added back in by hand on this page 
+    of the PyPI website
     rather than being more conveniently read from abjad/trunk/setup.py.)
-    ("Josiah Wolf Oberholtzer" transmits fine here and doesn't have to be tweaked.)
+    ("Josiah Wolf Oberholtzer" transmits fine here and doesn't 
+    have to be tweaked.)
 
 32. Manually restore the spaces after each of the keyword phrases in
     "music composition, music notation, formalized score control, lilypond"
@@ -229,7 +247,8 @@ Abjad packaging checklist:
 34. Click around PyPI to make sure everything looks correct.
     Then leave PyPI.
     
-35. Edit abjad/__init__.py and increment '__version__' to the *next* minor number.
+35. Edit abjad/__init__.py and increment '__version__' to the *next* 
+    minor number.
 
 36. Edit tools/configurationtools/get_abjad_version_string.py and change the
     version number string given in the docstring.
@@ -243,9 +262,11 @@ Abjad packaging checklist:
  2012-01-29, 2012-02-27, 2012-05-22, 2012-06-05, 2012-10-03, 2012-10-05,
  2012-10-29, 2012-12-17, 2012-03-25]
 
-### The following steps are no longer necessary as we are now hosting our own docs ###
+### The following steps are no longer necessary ###
+### because we are now hosting our own docs     ###
 
-29. Change to docs/build/html and archive all 17 or 18 files and subdirectories therein.
+    Change to docs/build/html and archive all 17 or 18 files and 
+    subdirectories therein.
     You must create a single archive of all 17 or 18 files.
     Through the Finder on the Mac you can shift-click all 17 or 18 files,
     then control-click the selected files and choose "Compress 17 items"
