@@ -6,7 +6,7 @@ def test_GraceContainer_01():
     '''Grace music is a container.
     '''
 
-    t = gracetools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])
+    t = leaftools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])
 
     assert isinstance(t, Container)
     assert len(t) == 3
@@ -26,7 +26,7 @@ def test_GraceContainer_02():
         GraceContainer.kind knows about "after", "grace",
         "acciaccatura", "appoggiatura"'''
 
-    t = gracetools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])
+    t = leaftools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])
     t.kind = 'acciaccatura'
     assert t.kind == 'acciaccatura'
     t.kind = 'grace'
@@ -42,7 +42,7 @@ def test_GraceContainer_03():
     '''Grace formats correctly as grace.
     '''
 
-    t = gracetools.GraceContainer(notetools.make_repeated_notes(3))
+    t = leaftools.GraceContainer(notetools.make_repeated_notes(3))
     t.kind = 'grace'
     assert t.lilypond_format == "\\grace {\n\tc'8\n\tc'8\n\tc'8\n}"
 
@@ -59,7 +59,7 @@ def test_GraceContainer_04():
     '''Grace formats correctly as acciaccatura.
     '''
 
-    t = gracetools.GraceContainer(notetools.make_repeated_notes(3))
+    t = leaftools.GraceContainer(notetools.make_repeated_notes(3))
     t.kind = 'acciaccatura'
     assert t.lilypond_format == "\\acciaccatura {\n\tc'8\n\tc'8\n\tc'8\n}"
 
@@ -76,7 +76,7 @@ def test_GraceContainer_05():
     '''Grace formats correctly as appoggiatura.
     '''
 
-    t = gracetools.GraceContainer(notetools.make_repeated_notes(3))
+    t = leaftools.GraceContainer(notetools.make_repeated_notes(3))
     t.kind = 'appoggiatura'
     assert t.lilypond_format == "\\appoggiatura {\n\tc'8\n\tc'8\n\tc'8\n}"
 
@@ -93,7 +93,7 @@ def test_GraceContainer_06():
     '''Grace formats correctly as after grace.
     '''
 
-    t = gracetools.GraceContainer(notetools.make_repeated_notes(3))
+    t = leaftools.GraceContainer(notetools.make_repeated_notes(3))
     t.kind = 'after'
     assert t.lilypond_format == "{\n\tc'8\n\tc'8\n\tc'8\n}"
 
@@ -110,7 +110,7 @@ def test_GraceContainer_07():
     '''Grace containers can be appended.
     '''
 
-    t = gracetools.GraceContainer(notetools.make_repeated_notes(2))
+    t = leaftools.GraceContainer(notetools.make_repeated_notes(2))
     n = Note(1, (1, 4))
     t.append(n)
     assert len(t) == 3
@@ -121,7 +121,7 @@ def test_GraceContainer_08():
     '''Grace containers can be extended.
     '''
 
-    t = gracetools.GraceContainer(notetools.make_repeated_notes(2))
+    t = leaftools.GraceContainer(notetools.make_repeated_notes(2))
     ns = Note(1, (1, 4)) * 2
     t.extend(ns)
     assert len(t) == 4

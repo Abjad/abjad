@@ -18,7 +18,7 @@ class LeafSelection(HorizontalSelection):
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> grace_container = gracetools.GraceContainer(
+            >>> grace_container = leaftools.GraceContainer(
             ...     [Note("cs'16")], 
             ...     kind='grace',
             ...     )

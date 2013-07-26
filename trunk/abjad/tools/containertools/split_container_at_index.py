@@ -1,7 +1,6 @@
 from abjad.tools import componenttools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import leaftools
 
 
 def split_container_at_index(component, i, fracture_spanners=False):
@@ -127,6 +126,7 @@ def split_container_at_index(component, i, fracture_spanners=False):
     from abjad.tools import spannertools
     from abjad.tools import containertools
     from abjad.tools import contexttools
+    from abjad.tools import leaftools
     from abjad.tools import measuretools
     from abjad.tools import tuplettools
 

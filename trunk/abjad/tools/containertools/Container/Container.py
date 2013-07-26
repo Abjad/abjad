@@ -293,7 +293,7 @@ class Container(Component):
         '''
         from abjad.tools import componenttools
         from abjad.tools import contexttools
-        from abjad.tools import gracetools
+        from abjad.tools import leaftools
         from abjad.tools import iterationtools
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
@@ -309,7 +309,7 @@ class Container(Component):
                 assert len(expr) == 1, repr(expr)
                 expr = expr[0]
             assert componenttools.all_are_components([expr]), repr([expr])
-            if any(isinstance(x, gracetools.GraceContainer) for x in [expr]):
+            if any(isinstance(x, leaftools.GraceContainer) for x in [expr]):
                 message = 'must attach grace container to note or chord.'
                 raise GraceContainerError(message)
             old = self[i]
@@ -336,7 +336,7 @@ class Container(Component):
                 isinstance(expr[0], str):
                 expr = self._parse_string(expr[0])[:]
             assert componenttools.all_are_components(expr), repr(expr)
-            if any(isinstance(x, gracetools.GraceContainer) for x in expr):
+            if any(isinstance(x, leaftools.GraceContainer) for x in expr):
                 message = 'must attach grace container to note or chord.'
                 raise GraceContainerError(message)
             if i.start == i.stop and i.start is not None \

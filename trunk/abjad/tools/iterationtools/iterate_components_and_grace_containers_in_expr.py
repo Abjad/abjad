@@ -10,13 +10,13 @@ def iterate_components_and_grace_containers_in_expr(expr, component_class):
     ::
 
         >>> grace_notes = [Note("c'16"), Note("d'16")]
-        >>> gracetools.GraceContainer(grace_notes, kind='grace')(voice[1])
+        >>> leaftools.GraceContainer(grace_notes, kind='grace')(voice[1])
         Note("d'8")
 
     ::
 
         >>> after_grace_notes = [Note("e'16"), Note("f'16")]
-        >>> gracetools.GraceContainer(after_grace_notes, kind='after')(voice[1])
+        >>> leaftools.GraceContainer(after_grace_notes, kind='after')(voice[1])
         Note("d'8")
 
     ::

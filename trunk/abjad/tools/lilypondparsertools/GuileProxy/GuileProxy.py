@@ -36,14 +36,14 @@ class GuileProxy(AbjadObject):
     ### FUNCTION EMULATORS ###
 
     def acciaccatura(self, music):
-        grace = gracetools.GraceContainer(music[:])
+        grace = leaftools.GraceContainer(music[:])
         grace.kind = 'acciaccatura'
         return grace
 
     # afterGrace
 
     def appoggiatura(self, music):
-        grace = gracetools.GraceContainer(music[:])
+        grace = leaftools.GraceContainer(music[:])
         grace.kind = 'appoggiatura'
         return grace
 
@@ -57,7 +57,7 @@ class GuileProxy(AbjadObject):
         return contexttools.ClefMark(string)
 
     def grace(self, music):
-        return gracetools.GraceContainer(music[:])
+        return leaftools.GraceContainer(music[:])
 
     def key(self, notename_pitch, number_list):
         if number_list is None:
@@ -136,7 +136,7 @@ class GuileProxy(AbjadObject):
         return leaf
 
     def slashed_grace_container(self, music):
-        grace = gracetools.GraceContainer(music[:])
+        grace = leaftools.GraceContainer(music[:])
         grace.kind = 'slashedGrace'
         return grace
 

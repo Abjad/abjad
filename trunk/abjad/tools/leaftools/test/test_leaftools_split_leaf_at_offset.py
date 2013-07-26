@@ -393,7 +393,7 @@ def test_leaftools_split_leaf_at_offset_17():
     '''
 
     t = Note("c'4")
-    gracetools.GraceContainer([Note(0, (1, 32))], kind = 'after')(t)
+    leaftools.GraceContainer([Note(0, (1, 32))], kind = 'after')(t)
     halves = leaftools.split_leaf_at_offset(t, Duration(1, 8))
 
     assert not hasattr(halves[0][0], 'after_grace')
@@ -405,7 +405,7 @@ def test_leaftools_split_leaf_at_offset_18():
     '''
 
     t = Note("c'4")
-    gracetools.GraceContainer([Note(0, (1, 32))], kind = 'after')(t)
+    leaftools.GraceContainer([Note(0, (1, 32))], kind = 'after')(t)
     halves = leaftools.split_leaf_at_offset(t, Duration(5, 32))
 
     assert len(halves) == 2
@@ -420,7 +420,7 @@ def test_leaftools_split_leaf_at_offset_19():
     '''
 
     t = Note("c'4")
-    gracetools.GraceContainer([Note(0, (1, 32))])(t)
+    leaftools.GraceContainer([Note(0, (1, 32))])(t)
     halves = leaftools.split_leaf_at_offset(t, Duration(1, 16))
 
     assert len(halves[0]) == 1

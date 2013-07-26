@@ -153,6 +153,6 @@ def test_Container_append_06():
     '''
 
     staff = Staff("c' d' e'")
-    grace_container = gracetools.GraceContainer("f'16 g'")
+    grace_container = leaftools.GraceContainer("f'16 g'")
 
     assert py.test.raises(GraceContainerError, 'staff.append(grace_container)')

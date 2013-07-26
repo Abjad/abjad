@@ -391,13 +391,13 @@ class Leaf(Component):
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> grace_container = gracetools.GraceContainer(
+            >>> grace_container = leaftools.GraceContainer(
             ...     [Note("cs'16")], 
             ...     kind='grace',
             ...     )
             >>> grace_container.attach(staff[1])
             Note("d'8")
-            >>> after_grace = gracetools.GraceContainer(
+            >>> after_grace = leaftools.GraceContainer(
             ...     [Note("ds'16")], 
             ...     kind='after'
             ...     )

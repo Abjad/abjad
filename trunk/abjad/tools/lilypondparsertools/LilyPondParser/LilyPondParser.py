@@ -7,7 +7,7 @@ from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import contexttools
 from abjad.tools import durationtools
-from abjad.tools import gracetools
+from abjad.tools import leaftools
 from abjad.tools import lilypondfiletools
 from abjad.tools import marktools
 from abjad.tools import scoretools
@@ -466,7 +466,7 @@ class LilyPondParser(abctools.Parser):
         # sort events into forward or backwards attaching, and attach them to
         # the proper leaf
         for x in music:
-            if isinstance(x, componenttools.Component) and not isinstance(x, gracetools.GraceContainer):
+            if isinstance(x, componenttools.Component) and not isinstance(x, leaftools.GraceContainer):
                 for mark in apply_forward:
                     if hasattr(mark, '__call__'):
                         mark(x)

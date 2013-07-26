@@ -1,4 +1,3 @@
-from abjad.tools import leaftools
 from abjad.tools import sequencetools
 
 
@@ -224,6 +223,7 @@ def split_container_by_counts(components, counts, fracture_spanners=False, cycli
     Return list of split parts.
     '''
     from abjad.tools import containertools
+    from abjad.tools import leaftools
 
     # check input
     assert isinstance(components, containertools.Container)

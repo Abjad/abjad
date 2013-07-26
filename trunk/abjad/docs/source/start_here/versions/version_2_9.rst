@@ -756,7 +756,7 @@ Changes to end-user functionality:
 
   ::
 
-    gracetools.GraceContainer
+    leaftools.GraceContainer
 
 - Changed::
 
@@ -843,4 +843,4 @@ Changes to end-user functionality:
 
   If you have been working with grace notes, for example, 
   you will need to change all occurrences of ``gracetools.Grace``
-  to ``gracetools.GraceContainer``.
+  to ``leaftools.GraceContainer``.

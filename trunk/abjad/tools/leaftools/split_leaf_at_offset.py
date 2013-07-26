@@ -72,9 +72,9 @@ def split_leaf_at_offset(
         >>> staff = Staff(r"abj: | 2/8 c'8 ( d'8 || 2/8 e'8 f'8 ) |")
         >>> staff[:].attach_spanners(spannertools.BeamSpanner)
         (BeamSpanner(|2/8(2)|), BeamSpanner(|2/8(2)|))
-        >>> gracetools.GraceContainer("cs'16")(staff.select_leaves()[0])
+        >>> leaftools.GraceContainer("cs'16")(staff.select_leaves()[0])
         Note("c'8")
-        >>> gracetools.GraceContainer("ds'16", kind='after')(staff.select_leaves()[0])
+        >>> leaftools.GraceContainer("ds'16", kind='after')(staff.select_leaves()[0])
         Note("c'8")
 
     ::

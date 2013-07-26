@@ -1,5 +1,4 @@
 from abjad.tools.containertools.Container import Container
-from abjad.tools.leaftools.Leaf import Leaf
 
 
 class GraceContainer(Container):
@@ -28,7 +27,7 @@ class GraceContainer(Container):
     ::
 
         >>> grace_notes = [Note("c'16"), Note("d'16")]
-        >>> gracetools.GraceContainer(grace_notes, kind='grace')(voice[1])
+        >>> leaftools.GraceContainer(grace_notes, kind='grace')(voice[1])
         Note("d'8")
 
     ::
@@ -52,7 +51,7 @@ class GraceContainer(Container):
     ::
 
         >>> after_grace_notes = [Note("e'16"), Note("f'16")]
-        >>> gracetools.GraceContainer(
+        >>> leaftools.GraceContainer(
         ...     after_grace_notes, kind='after')(voice[1])
         Note("d'8")
 
@@ -105,7 +104,8 @@ class GraceContainer(Container):
     ### SPECIAL METHODS ###
 
     def __call__(self, arg):
-        if not isinstance(arg, Leaf):
+        from abjad.tools import leaftools
+        if not isinstance(arg, leaftools.Leaf):
             message = 'object to which grace container attaches'
             message += ' must be leaf: "%s".'
             raise TypeError(message.format(arg))
@@ -149,7 +149,7 @@ class GraceContainer(Container):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> gracetools.GraceContainer(
+                >>> leaftools.GraceContainer(
                 ...     [Note("cs'16")], kind = 'grace')(staff[1])
                 Note("d'8")
                 >>> grace_container = staff[1].grace
@@ -163,7 +163,7 @@ class GraceContainer(Container):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> gracetools.GraceContainer(
+                >>> leaftools.GraceContainer(
                 ...     [Note("cs'16")], kind = 'grace')(staff[1])
                 Note("d'8")
                 >>> grace_container = staff[1].grace
@@ -207,7 +207,7 @@ class GraceContainer(Container):
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> grace_container = gracetools.GraceContainer(
+            >>> grace_container = leaftools.GraceContainer(
             ...     [Note("cs'16")], kind = 'grace')
             >>> grace_container(staff[1])
             Note("d'8")
