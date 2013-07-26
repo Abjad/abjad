@@ -76,7 +76,7 @@ def list_known_grobs():
         MelodyItem
         MensuralLigature
         MetronomeMark
-        MultimeasureRest
+        MultiMeasureRest
         MultiMeasureRestNumber
         MultiMeasureRestText
         NonMusicalPaperColumn

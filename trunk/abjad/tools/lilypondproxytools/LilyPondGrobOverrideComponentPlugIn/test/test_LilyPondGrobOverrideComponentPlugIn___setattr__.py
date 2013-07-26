@@ -422,13 +422,13 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___19():
 
     r'''
     \new Staff \with {
-        \override MultimeasureRest #'expand-limit = #12
+        \override MultiMeasureRest #'expand-limit = #12
     } {
         c'4
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff \\with {\n\t\\override MultimeasureRest #'expand-limit = #12\n} {\n\tc'4\n}"
+    assert staff.lilypond_format == "\\new Staff \\with {\n\t\\override MultiMeasureRest #'expand-limit = #12\n} {\n\tc'4\n}"
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___20():
