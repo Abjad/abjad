@@ -188,7 +188,7 @@ def test_Component_detach_marks_08():
 def test_Component_detach_marks_09():
 
     staff = Staff("c'4 \staccato d' \marcato e' \staccato f' \marcato")
-    assert len(marktools.get_marks_attached_to_components_in_expr(staff)) == 4
+    assert len(select(staff).get_marks()) == 4
 
     marks = staff[:].detach_marks()
     assert marks == (

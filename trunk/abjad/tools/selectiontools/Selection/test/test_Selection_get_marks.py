@@ -16,3 +16,10 @@ def test_Selection_get_marks_01():
     assert len(context_marks) == 2
     assert clef in context_marks
     assert dynamic in context_marks
+
+
+def test_Selection_get_marks_02():
+
+    staff = Staff(r"c'4 \pp d' \staccato e' \ff f' \staccato")
+
+    assert len(select(staff).get_marks()) == 4
