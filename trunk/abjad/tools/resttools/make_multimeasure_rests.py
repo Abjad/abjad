@@ -1,12 +1,12 @@
 from abjad.tools import durationtools
 
 
-def make_multi_measure_rests(durations):
+def make_multimeasure_rests(durations):
     '''.. versionadded:: 2.0
 
     Make multi-measure rests from `durations`::
 
-        >>> resttools.make_multi_measure_rests([(4, 4), (7, 4)])
+        >>> resttools.make_multimeasure_rests([(4, 4), (7, 4)])
         [MultimeasureRest('R1'), MultimeasureRest('R1..')]
 
     Return list.
