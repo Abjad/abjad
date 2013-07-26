@@ -97,5 +97,5 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo=None):
         pitches.append(pitch)
 
     # convert durations and pitches to QEvents and return
-    return quantizationtools.millisecond_pitch_pairs_to_q_events(
+    return quantizationtools.QEventSequence.from_millisecond_pitch_pairs(
         zip(durations, pitches))

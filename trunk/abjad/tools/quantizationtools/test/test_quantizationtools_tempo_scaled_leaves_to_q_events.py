@@ -27,7 +27,7 @@ def test_quantizationtools_tempo_scaled_leaves_to_q_events_01():
 
     q_events = quantizationtools.tempo_scaled_leaves_to_q_events(staff.select_leaves(), tempo)
 
-    assert q_events == [
+    assert q_events == quantizationtools.QEventSequence((
         quantizationtools.PitchedQEvent(
             durationtools.Offset(0, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
@@ -65,7 +65,7 @@ def test_quantizationtools_tempo_scaled_leaves_to_q_events_01():
         quantizationtools.TerminalQEvent(
             durationtools.Offset(102000, 11)
             )
-    ]
+    ))
 
 
 def test_quantizationtools_tempo_scaled_leaves_to_q_events_02():
@@ -94,7 +94,7 @@ def test_quantizationtools_tempo_scaled_leaves_to_q_events_02():
 
     q_events = quantizationtools.tempo_scaled_leaves_to_q_events(staff.select_leaves())
 
-    assert q_events == [
+    assert q_events == quantizationtools.QEventSequence((
         quantizationtools.PitchedQEvent(
             durationtools.Offset(0, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
@@ -132,4 +132,4 @@ def test_quantizationtools_tempo_scaled_leaves_to_q_events_02():
         quantizationtools.TerminalQEvent(
             durationtools.Offset(18210000, 2233)
             )
-    ]
+    ))

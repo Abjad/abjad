@@ -3,15 +3,16 @@ from abjad.tools import pitchtools
 from abjad.tools import quantizationtools
 
 
-def test_quantizationtools_millisecond_pitch_pairs_to_q_events_01():
+def test_QEventSequence_from_millisecond_pitch_pairs_01():
 
     durations = [100, 200, 100, 300, 350, 400, 600]
     pitches = [0, None, None, [1, 4], None, 5, 7]
     pairs = zip(durations, pitches)
 
-    q_events = quantizationtools.millisecond_pitch_pairs_to_q_events(pairs)
+    q_events = quantizationtools.QEventSequence.from_millisecond_pitch_pairs(
+        pairs)
 
-    assert q_events == [
+    assert q_events == quantizationtools.QEventSequence((
         quantizationtools.PitchedQEvent(
             durationtools.Offset(0),
             (pitchtools.NamedChromaticPitch("c'"),)
@@ -40,4 +41,4 @@ def test_quantizationtools_millisecond_pitch_pairs_to_q_events_01():
         quantizationtools.TerminalQEvent(
             durationtools.Offset(2050, 1),
             )
-    ]
+    ))

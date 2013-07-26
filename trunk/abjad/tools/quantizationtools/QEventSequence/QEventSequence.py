@@ -1,5 +1,9 @@
 # -*- encoding: utf-8 -*-
+import collections
+import itertools
+import numbers
 from abjad.tools import durationtools
+from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools.abctools import ImmutableAbjadObject
 
@@ -263,9 +267,41 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
         Return ``QEventSequence`` instance.
         '''
-        from abjad.tools.quantizationtools \
-            import millisecond_pitch_pairs_to_q_events
-        return cls(millisecond_pitch_pairs_to_q_events(pairs))
+        from abjad.tools import quantizationtools
+        assert isinstance(pairs, collections.Iterable)
+        assert all(isinstance(x, collections.Iterable) for x in pairs)
+        assert all(len(x) == 2 for x in pairs)
+        assert all(0 < x[0] for x in pairs)
+        for pair in pairs:
+            assert isinstance(pair[1], (numbers.Number, type(None), collections.Iterable))
+            if isinstance(pair[1], collections.Iterable):
+                assert 0 < len(pair[1])
+                assert all(isinstance(x, numbers.Number) for x in pair[1])
+        # fuse silences
+        g = itertools.groupby(pairs, lambda x: x[1] is not None)
+        groups = []
+        for value, group in g:
+            if value:
+                groups.extend(list(group))
+            else:
+                duration = sum(x[0] for x in group)
+                groups.append((duration, None))
+        # find offsets
+        offsets = mathtools.cumulative_sums_zero([abs(x[0]) for x in groups])
+        # build QEvents
+        q_events = []
+        for pair in zip(offsets, groups):
+            offset = durationtools.Offset(pair[0])
+            pitches = pair[1][1]
+            if isinstance(pitches, collections.Iterable):
+                assert all(isinstance(x, numbers.Number) for x in pitches)
+                q_events.append(quantizationtools.PitchedQEvent(offset, pitches))
+            elif isinstance(pitches, type(None)):
+                q_events.append(quantizationtools.SilentQEvent(offset))
+            elif isinstance(pitches, numbers.Number):
+                q_events.append(quantizationtools.PitchedQEvent(offset, [pitches]))
+        q_events.append(quantizationtools.TerminalQEvent(durationtools.Offset(offsets[-1])))
+        return cls(q_events)
 
     @classmethod
     def from_tempo_scaled_durations(cls, durations, tempo=None):
