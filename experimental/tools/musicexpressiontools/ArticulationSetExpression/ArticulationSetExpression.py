@@ -1,4 +1,5 @@
 from abjad.tools import marktools
+from abjad.tools.selectiontools import select
 from experimental.tools.musicexpressiontools.LeafSetExpression \
     import LeafSetExpression
 
@@ -14,5 +15,8 @@ class ArticulationSetExpression(LeafSetExpression):
         '''
         articulation_list = self.source_expression.payload
         leaves = self._iterate_selected_leaves_in_score(score)
-        marktools.attach_articulations_to_notes_and_chords_in_expr(
-            leaves, articulation_list)
+        articulation_list = [
+            marktools.Articulation(x)
+            for x in articulation_list
+            ]
+        select(leaves).attach_marks(articulation_list)

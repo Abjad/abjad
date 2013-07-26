@@ -2,6 +2,7 @@ from abjad.tools import iterationtools
 from abjad.tools import marktools
 from abjad.tools import notetools
 from abjad.tools import sequencetools
+from abjad.tools.selectiontools import select
 from experimental.tools.handlertools.ArticulationHandler \
     import ArticulationHandler
 
@@ -59,8 +60,11 @@ class ReiteratedArticulationHandler(ArticulationHandler):
                     maximum_written_pitch = note_or_chord.pitches[-1]
                 if self.maximum_written_pitch < maximum_written_pitch:
                     continue
-            marktools.attach_articulations_to_notes_and_chords_in_expr(
-                note_or_chord, self.articulation_list)
+            articulation_list = [
+                marktools.Articulation(x)
+                for x in self.articulation_list
+                ]
+            select(note_or_chord).attach_marks(articulation_list)
         return expr
 
     ### PUBLIC PROPERTIES ###
