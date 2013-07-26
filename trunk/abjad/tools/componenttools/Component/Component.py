@@ -621,6 +621,42 @@ class Component(AbjadObject):
                     parent.__setitem__(slice(start, start), new_components)
             return new_components + [self]
 
+
+    def get_annotation_value(self, annotation_name, default=None):
+        r'''Get value of `annotation_name`:
+
+        ::
+
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> marktools.Annotation('special dictionary', {})(staff[0])
+            Annotation('special dictionary', {})(c'8)
+
+        ::
+
+            >>> staff[0].get_annotation_value('special dictionary')
+            {}
+
+        Return arbitrary value of annotation.
+
+        Return `default` when no `annotation_name` is attached.
+
+        Raise exception when more than one `annotation_name` is attached.
+        '''
+        from abjad.tools import marktools
+        annotations = self.get_marks(marktools.Annotation)
+        if not annotations:
+            return default
+        with_correct_name = []
+        for annotation in annotations:
+            if annotation.name == annotation_name:
+                with_correct_name.append(annotation)
+        if not with_correct_name:
+            return default
+        if 1 < len(with_correct_name):
+            raise Exception('more than one annotation.')
+        annotation_value = with_correct_name[0].value
+        return annotation_value
+
     def get_effective_context_mark(
         self,
         context_mark_classes=None,
