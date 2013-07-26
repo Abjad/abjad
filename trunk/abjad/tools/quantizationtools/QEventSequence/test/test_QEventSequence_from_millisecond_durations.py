@@ -4,15 +4,16 @@ from abjad.tools import pitchtools
 from abjad.tools import quantizationtools
 
 
-def test_quantizationtools_milliseconds_to_q_events_01():
+def test_QEventSequence_from_millisecond_durations_01():
     '''Test basic functionality.
     '''
 
     durations = mathtools.difference_series(
         [x[0] for x in quantizationtools.make_test_time_segments()])
-    q_events = quantizationtools.milliseconds_to_q_events(durations)
+    q_events = quantizationtools.QEventSequence.from_millisecond_durations(
+        durations)
 
-    assert q_events == [
+    assert q_events == quantizationtools.QEventSequence((
         quantizationtools.PitchedQEvent(
             durationtools.Offset(0, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
@@ -196,17 +197,18 @@ def test_quantizationtools_milliseconds_to_q_events_01():
         quantizationtools.TerminalQEvent(
             durationtools.Offset(18483, 1)
             )
-    ]
+    ))
 
 
-def test_quantizationtools_milliseconds_to_q_events_02():
+def test_QEventSequence_from_millisecond_durations_02():
     '''Silences are not fused.
     '''
 
     durations = [100, -100, 100, -100, -100, 100]
-    q_events = quantizationtools.milliseconds_to_q_events(durations, fuse_silences=False)
+    q_events = quantizationtools.QEventSequence.from_millisecond_durations(
+        durations, fuse_silences=False)
 
-    assert q_events == [
+    assert q_events == quantizationtools.QEventSequence((
         quantizationtools.PitchedQEvent(
             durationtools.Offset(0),
             (pitchtools.NamedChromaticPitch("c'"),)
@@ -231,17 +233,18 @@ def test_quantizationtools_milliseconds_to_q_events_02():
         quantizationtools.TerminalQEvent(
             durationtools.Offset(600)
             )
-    ]
+    ))
 
 
-def test_quantizationtools_milliseconds_to_q_events_03():
+def test_QEventSequence_from_millisecond_durations_03():
     '''Silences are fused.
     '''
 
     durations = [100, -100, 100, -100, -100, 100]
-    q_events = quantizationtools.milliseconds_to_q_events(durations, fuse_silences=True)
+    q_events = quantizationtools.QEventSequence.from_millisecond_durations(
+        durations, fuse_silences=True)
 
-    assert q_events == [
+    assert q_events == quantizationtools.QEventSequence((
         quantizationtools.PitchedQEvent(
             durationtools.Offset(0),
             (pitchtools.NamedChromaticPitch("c'"),)
@@ -263,4 +266,4 @@ def test_quantizationtools_milliseconds_to_q_events_03():
         quantizationtools.TerminalQEvent(
             durationtools.Offset(600)
             )
-    ]
+    ))

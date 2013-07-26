@@ -117,7 +117,7 @@ class QEventSequence(tuple, ImmutableAbjadObject):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_millisecond_durations(cls, durations, fuse_silences=False):
+    def from_millisecond_durations(cls, milliseconds, fuse_silences=False):
         '''Convert a sequence of millisecond durations ``durations`` into
         a ``QEventSequence``:
 
@@ -164,8 +164,23 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
         Return ``QEventSequence`` instance.
         '''
-        from abjad.tools.quantizationtools import milliseconds_to_q_events
-        return cls(milliseconds_to_q_events(durations, fuse_silences))
+        from abjad.tools import quantizationtools
+        if fuse_silences:
+            durations = [x for x in sequencetools.sum_consecutive_sequence_elements_by_sign(milliseconds, sign=[-1]) if x]
+        else:
+            durations = milliseconds
+        offsets = mathtools.cumulative_sums_zero([abs(x) for x in durations])
+        q_events = []
+        for pair in zip(offsets, durations):
+            offset = durationtools.Offset(pair[0])
+            duration = pair[1]
+            if duration < 0: # negative duration indicates silence
+                q_event = quantizationtools.SilentQEvent(offset)
+            else:
+                q_event = quantizationtools.PitchedQEvent(offset, [0])
+            q_events.append(q_event)
+        q_events.append(quantizationtools.TerminalQEvent(durationtools.Offset(offsets[-1])))
+        return cls(q_events)
 
     @classmethod
     def from_millisecond_offsets(cls, offsets):
