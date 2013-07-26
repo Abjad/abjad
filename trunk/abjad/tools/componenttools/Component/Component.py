@@ -273,6 +273,12 @@ class Component(AbjadObject):
                 break
         return component in temporal_successors
 
+    def _move_marks(self, recipient_component):
+        result = []
+        for mark in self.get_marks():
+            result.append(mark.attach(recipient_component))
+        return tuple(result)
+
     def _remove_from_parent(self):
         self._mark_entire_score_tree_for_later_update('prolated')
         if self.parent is not None:
