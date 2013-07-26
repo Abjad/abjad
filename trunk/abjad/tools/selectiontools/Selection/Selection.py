@@ -465,6 +465,17 @@ class Selection(AbjadObject):
             stop_offsets.append(component.timespan.stop_offset)
         return start_offsets, stop_offsets
 
+    def get_marks(self, mark_classes=None, recurse=True):
+        '''Get `mark_classes` attached to components in selection.
+
+        Return tuple.
+        '''
+        result = []
+        for component in self._iterate_components(recurse=recurse):
+            marks = component.get_marks(mark_classes=mark_classes)
+            result.extend(marks)
+        return tuple(result)
+
     def get_parent_and_start_stop_indices(self):
         if self:
             first, last = self[0], self[-1]

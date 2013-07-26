@@ -674,7 +674,8 @@ class Component(AbjadObject):
                     if mark.effective_context is not None:
                         candidate_marks.insert(mark)
                     elif isinstance(mark, contexttools.TimeSignatureMark):
-                        if isinstance(mark.start_component, measuretools.Measure):
+                        if isinstance(
+                            mark.start_component, measuretools.Measure):
                             candidate_marks.insert(mark)
         # elect most recent candidate mark
         if candidate_marks:
