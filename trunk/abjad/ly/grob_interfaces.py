@@ -509,7 +509,7 @@ grob_interfaces = {
         "side-position-interface",
         "text-interface",
     ],
-    "MultiMeasureRest": [
+    "MultimeasureRest": [
         "font-interface",
         "grob-interface",
         "multi-measure-interface",

@@ -1125,7 +1125,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     def p_event_chord__MULTI_MEASURE_REST__optional_notemode_duration__post_events(self, p):
         'event_chord : MULTI_MEASURE_REST optional_notemode_duration post_events'
-        rest = resttools.MultiMeasureRest(p[2].duration)
+        rest = resttools.MultimeasureRest(p[2].duration)
         if p[2].multiplier is not None:
             rest.duration_multiplier = p[2].multiplier
         self.client._process_post_events(rest, p[3])

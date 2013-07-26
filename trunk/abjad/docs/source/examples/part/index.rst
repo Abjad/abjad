@@ -327,7 +327,7 @@ pattern for their rhythms:
            div = rest_duration // Duration(3, 2)
            mod = rest_duration % Duration(3, 2)
    
-           initial_rest = resttools.MultiMeasureRest((3, 2)) * div
+           initial_rest = resttools.MultimeasureRest((3, 2)) * div
            if mod:
                initial_rest += resttools.make_rests(mod)
    
