@@ -126,8 +126,7 @@ class QTargetMeasure(AbjadObject):
             beatspan = durationtools.Duration(1, time_signature.denominator)
             current_offset_in_ms = offset_in_ms
             beatspan_duration_in_ms = \
-                quantizationtools.tempo_scaled_duration_to_milliseconds(
-                    beatspan, tempo)
+                tempo.duration_to_milliseconds(beatspan)
             for i in range(time_signature.numerator):
                 beat = quantizationtools.QTargetBeat(
                     beatspan=beatspan,
@@ -222,8 +221,8 @@ class QTargetMeasure(AbjadObject):
         Return Duration.
         '''
         from abjad.tools import quantizationtools
-        return quantizationtools.tempo_scaled_duration_to_milliseconds(
-            self.time_signature.duration, self.tempo)
+        return self.tempo.duration_to_milliseconds(
+            self.time_signature.duration)
 
     @property
     def offset_in_ms(self):

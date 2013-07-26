@@ -405,6 +405,30 @@ class TempoMark(ContextMark):
 
     ### PUBLIC METHODS ###
 
+    def duration_to_milliseconds(self, duration):
+        '''Return the millisecond value of `duration` under a given tempo:
+
+        ::
+
+            >>> duration = (1, 4)
+            >>> tempo = contexttools.TempoMark((1, 4), 60)
+            >>> tempo.duration_to_milliseconds(duration)
+            Duration(1000, 1)
+
+        Return duration.
+        '''
+        duration = durationtools.Duration(duration)
+        whole_note_duration = 1000 \
+            * durationtools.Multiplier(
+                self.duration.denominator, 
+                self.duration.numerator,
+                ) \
+            * durationtools.Multiplier(
+                60, 
+                self.units_per_minute,
+                )
+        return durationtools.Duration(duration * whole_note_duration)
+
     def is_tempo_mark_token(self, expr):
         '''True when `expr` has the form of a tempo mark initializer:
 

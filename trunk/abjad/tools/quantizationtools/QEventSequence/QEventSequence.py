@@ -376,8 +376,7 @@ class QEventSequence(tuple, ImmutableAbjadObject):
                 durations, 
                 sign=[-1],
                 ) if x]
-        durations = [quantizationtools.tempo_scaled_duration_to_milliseconds(
-            x, tempo) for x in durations]
+        durations = [tempo.duration_to_milliseconds(x) for x in durations]
         offsets = mathtools.cumulative_sums_zero(abs(x) for x in durations)
         q_events = []
         for pair in zip(offsets, durations):
@@ -469,16 +468,13 @@ class QEventSequence(tuple, ImmutableAbjadObject):
             # get millisecond cumulative duration
             if tempo is not None:
                 duration = sum(
-                    quantizationtools.tempo_scaled_duration_to_milliseconds(
-                        x.duration, tempo)
+                    tempo.duration_to_milliseconds(x.duration)
                     for x in group)
             else:
-                duration = sum(
-                    [quantizationtools.tempo_scaled_duration_to_milliseconds(
-                        x.duration,
-                        x.get_effective_context_mark(contexttools.TempoMark),
-                        )
-                        for x in group])
+                duration = sum(x.get_effective_context_mark(
+                    contexttools.TempoMark).duration_to_milliseconds(
+                    x.duration) 
+                    for x in group)
             durations.append(duration)
             # get pitch of first leaf in group
             if isinstance(group[0], (resttools.Rest, skiptools.Skip)):

@@ -151,8 +151,7 @@ class QTargetBeat(AbjadObject):
         Return Duration instance.
         '''
         from abjad.tools import quantizationtools
-        return quantizationtools.tempo_scaled_duration_to_milliseconds(
-            self.beatspan, self.tempo)
+        return self.tempo.duration_to_milliseconds(self.beatspan)
 
     @property
     def offset_in_ms(self):
