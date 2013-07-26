@@ -22,7 +22,6 @@ from abjad.tools import documentationtools
 from abjad.tools import durationtools
 from abjad.tools import exceptiontools
 from abjad.tools import formattools
-from abjad.tools import gracetools
 from abjad.tools import importtools
 from abjad.tools import instrumenttools
 from abjad.tools import introspectiontools

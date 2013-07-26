@@ -177,7 +177,6 @@ def split_leaf_at_offsets(
     Return list of shards.
     '''
     from abjad.tools import contexttools
-    from abjad.tools import gracetools
     from abjad.tools import iterationtools
     from abjad.tools import leaftools
     from abjad.tools import marktools
