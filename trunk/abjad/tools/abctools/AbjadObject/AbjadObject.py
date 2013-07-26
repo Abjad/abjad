@@ -36,38 +36,6 @@ class AbjadObject(object):
         '''
         return id(self) == id(expr)
 
-    def __ge__(self, expr):
-        '''Abjad objects by default do not implement this method.
-
-        Raise exception.
-        '''
-        message = 'Greater-equal not implemented on {!r}.'.format(expr)
-        raise NotImplementedError(message)
-
-    def __gt__(self, expr):
-        '''Abjad objects by default do not implement this method.
-
-        Raise exception
-        '''
-        message = 'Greater-than not implemented on {!r}.'.format(expr)
-        raise NotImplementedError(message)
-
-    def __le__(self, expr):
-        '''Abjad objects by default do not implement this method.
-
-        Raise exception.
-        '''
-        message = 'Less-equal not implemented on {!r}.'.format(expr)
-        raise NotImplementedError(message)
-
-    def __lt__(self, expr):
-        '''Abjad objects by default do not implement this method.
-
-        Raise exception.
-        '''
-        message = 'Less-than not implemented on {!r}.'.format(expr)
-        raise NotImplementedError(message)
-
     def __ne__(self, expr):
         '''Defined equal to the opposite of equality.
 

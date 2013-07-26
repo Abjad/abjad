@@ -100,8 +100,10 @@ class LeafSelection(HorizontalSelection):
 
         Example 1. Replace leaves with rests:
 
-        >>> selection = staff[0].select_leaves()
-        >>> selection.replace_with(Rest)
+        ::
+
+            >>> selection = staff[0].select_leaves()
+            >>> selection.replace_with(Rest)
 
         ..  lilypond
 

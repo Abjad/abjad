@@ -43,10 +43,6 @@ class ClassDocumenter(Documenter):
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.write
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__call__
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__eq__
-            ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__ge__
-            ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__gt__
-            ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__le__
-            ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__lt__
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__ne__
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__repr__
         <BLANKLINE>
@@ -124,24 +120,14 @@ class ClassDocumenter(Documenter):
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__eq__
         :noindex:
         <BLANKLINE>
-        .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__ge__
-        :noindex:
-        <BLANKLINE>
-        .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__gt__
-        :noindex:
-        <BLANKLINE>
-        .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__le__
-        :noindex:
-        <BLANKLINE>
-        .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__lt__
-        :noindex:
-        <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__ne__
         :noindex:
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__repr__
         :noindex:
         <BLANKLINE>
+
+
 
     Returns ``ClassDocumenter`` instance.
     '''
