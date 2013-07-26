@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_contexttools_get_effective_staff_01():
+def test_Component_get_effective_staff_01():
     '''Staff changes work on the first note of a staff.
     '''
 
@@ -30,19 +30,19 @@ def test_contexttools_get_effective_staff_01():
     '''
 
     assert wellformednesstools.is_well_formed_component(piano)
-    assert contexttools.get_effective_staff(piano[0][0]) is piano[1]
-    assert contexttools.get_effective_staff(piano[0][1]) is piano[1]
-    assert contexttools.get_effective_staff(piano[0][2]) is piano[1]
-    assert contexttools.get_effective_staff(piano[0][3]) is piano[1]
-    assert contexttools.get_effective_staff(piano[1][0]) is piano[1]
-    assert contexttools.get_effective_staff(piano[1][1]) is piano[1]
-    assert contexttools.get_effective_staff(piano[1][2]) is piano[1]
-    assert contexttools.get_effective_staff(piano[1][3]) is piano[1]
+    assert piano[0][0].get_effective_staff() is piano[1]
+    assert piano[0][1].get_effective_staff() is piano[1]
+    assert piano[0][2].get_effective_staff() is piano[1]
+    assert piano[0][3].get_effective_staff() is piano[1]
+    assert piano[1][0].get_effective_staff() is piano[1]
+    assert piano[1][1].get_effective_staff() is piano[1]
+    assert piano[1][2].get_effective_staff() is piano[1]
+    assert piano[1][3].get_effective_staff() is piano[1]
 
     assert piano.lilypond_format == '\\new PianoStaff <<\n\t\\context Staff = "RH" {\n\t\t\\change Staff = LH\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n\t\\context Staff = "LH" {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n>>'
 
 
-def test_contexttools_get_effective_staff_02():
+def test_Component_get_effective_staff_02():
     '''Staff changes work on middle notes of a staff.
     '''
 
@@ -73,19 +73,19 @@ def test_contexttools_get_effective_staff_02():
     '''
 
     assert wellformednesstools.is_well_formed_component(piano)
-    assert contexttools.get_effective_staff(piano[0][0]) is piano[1]
-    assert contexttools.get_effective_staff(piano[0][1]) is piano[1]
-    assert contexttools.get_effective_staff(piano[0][2]) is piano[0]
-    assert contexttools.get_effective_staff(piano[0][3]) is piano[0]
-    assert contexttools.get_effective_staff(piano[1][0]) is piano[1]
-    assert contexttools.get_effective_staff(piano[1][1]) is piano[1]
-    assert contexttools.get_effective_staff(piano[1][2]) is piano[1]
-    assert contexttools.get_effective_staff(piano[1][3]) is piano[1]
+    assert piano[0][0].get_effective_staff() is piano[1]
+    assert piano[0][1].get_effective_staff() is piano[1]
+    assert piano[0][2].get_effective_staff() is piano[0]
+    assert piano[0][3].get_effective_staff() is piano[0]
+    assert piano[1][0].get_effective_staff() is piano[1]
+    assert piano[1][1].get_effective_staff() is piano[1]
+    assert piano[1][2].get_effective_staff() is piano[1]
+    assert piano[1][3].get_effective_staff() is piano[1]
 
     assert piano.lilypond_format == '\\new PianoStaff <<\n\t\\context Staff = "RH" {\n\t\t\\change Staff = LH\n\t\tc\'8\n\t\td\'8\n\t\t\\change Staff = RH\n\t\te\'8\n\t\tf\'8\n\t}\n\t\\context Staff = "LH" {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n>>'
 
 
-def test_contexttools_get_effective_staff_03():
+def test_Component_get_effective_staff_03():
     '''Staff changes work on the last note of a staff.
     '''
 
@@ -117,7 +117,7 @@ def test_contexttools_get_effective_staff_03():
     assert piano.lilypond_format == '\\new PianoStaff <<\n\t\\context Staff = "RH" {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\t\\change Staff = LH\n\t\tf\'8\n\t}\n\t\\context Staff = "LH" {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n>>'
 
 
-def test_contexttools_get_effective_staff_04():
+def test_Component_get_effective_staff_04():
     '''Redudant staff changes are allowed.
     '''
 
@@ -148,13 +148,13 @@ def test_contexttools_get_effective_staff_04():
     '''
 
     assert wellformednesstools.is_well_formed_component(piano)
-    assert contexttools.get_effective_staff(piano[0][0]) is piano[1]
-    assert contexttools.get_effective_staff(piano[0][1]) is piano[1]
-    assert contexttools.get_effective_staff(piano[0][2]) is piano[1]
-    assert contexttools.get_effective_staff(piano[0][3]) is piano[1]
-    assert contexttools.get_effective_staff(piano[1][0]) is piano[1]
-    assert contexttools.get_effective_staff(piano[1][1]) is piano[1]
-    assert contexttools.get_effective_staff(piano[1][2]) is piano[1]
-    assert contexttools.get_effective_staff(piano[1][3]) is piano[1]
+    assert piano[0][0].get_effective_staff() is piano[1]
+    assert piano[0][1].get_effective_staff() is piano[1]
+    assert piano[0][2].get_effective_staff() is piano[1]
+    assert piano[0][3].get_effective_staff() is piano[1]
+    assert piano[1][0].get_effective_staff() is piano[1]
+    assert piano[1][1].get_effective_staff() is piano[1]
+    assert piano[1][2].get_effective_staff() is piano[1]
+    assert piano[1][3].get_effective_staff() is piano[1]
 
     assert piano.lilypond_format == '\\new PianoStaff <<\n\t\\context Staff = "RH" {\n\t\t\\change Staff = LH\n\t\tc\'8\n\t\t\\change Staff = LH\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n\t\\context Staff = "LH" {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n>>'

@@ -621,7 +621,8 @@ class Component(AbjadObject):
                     parent.__setitem__(slice(start, start), new_components)
             return new_components + [self]
 
-    def get_effective_context_mark(self,
+    def get_effective_context_mark(
+        self,
         context_mark_classes=None,
         ):
         r'''Get effective context mark of `context_mark_class` from 
@@ -681,6 +682,22 @@ class Component(AbjadObject):
                 return candidate_marks.find_le(self.timespan.start_offset)
             except ValueError:
                 pass
+
+    def get_effective_staff(self):
+        '''Get effective staff.
+
+        Return staff or none.
+        '''
+        from abjad.tools import contexttools
+        from abjad.tools import stafftools
+        staff_change_mark = self.get_effective_context_mark(
+            contexttools.StaffChangeMark)
+        if staff_change_mark is not None:
+            effective_staff = staff_change_mark.staff
+        else:
+            parentage = self.select_parentage()
+            effective_staff = parentage.get_first(stafftools.Staff)
+        return effective_staff
 
     def get_mark(
         self,
