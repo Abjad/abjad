@@ -12,6 +12,8 @@ class LeafSelection(HorizontalSelection):
         HorizontalSelection.__init__(self, music=music)
         assert all(isinstance(x, leaftools.Leaf) for x in self)
 
+    ### PUBLIC METHODS ###
+
     def detach_grace_containers(self, kind=None):
         r'''Detach grace containers attached to leaves in selection:
 

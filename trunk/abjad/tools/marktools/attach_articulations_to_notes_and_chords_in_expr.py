@@ -1,10 +1,11 @@
 def attach_articulations_to_notes_and_chords_in_expr(expr, articulations):
-    r'''.. versionadded:: 2.0
+    r'''Attach `articulations` to notes and chords in `expr`:
 
-    Attach `articulations` to notes and chords in `expr`::
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> marktools.attach_articulations_to_notes_and_chords_in_expr(staff, list('^.'))
+        >>> marktools.attach_articulations_to_notes_and_chords_in_expr(
+        ...     staff, list('^.'))
 
     ::
 
@@ -18,7 +19,6 @@ def attach_articulations_to_notes_and_chords_in_expr(expr, articulations):
 
     Return none.
     '''
-    # TODO: marktools should be able to import leaftools at top level
     from abjad.tools import iterationtools
     from abjad.tools import marktools
 

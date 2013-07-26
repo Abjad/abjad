@@ -682,6 +682,7 @@ class Component(AbjadObject):
             }
 
         ::
+
             >>> staff[0].get_effective_context_mark(
             ...     contexttools.TimeSignatureMark)
             TimeSignatureMark((4, 8))(Staff{4})

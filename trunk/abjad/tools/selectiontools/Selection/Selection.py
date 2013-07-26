@@ -269,23 +269,30 @@ class Selection(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def attach_marks(self, mark, recurse=False):
-        '''Attach copy of `mark` to each component in selection.
+    def attach_marks(self, marks, recurse=False):
+        '''Attach copy of each mark in `marks` 
+        to each component in selection.
 
         Return tuple of marks created.
         '''
         from abjad.tools import marktools
-        if isinstance(mark, marktools.Mark):
-            pass
-        elif issubclass(mark, marktools.Mark):
-            mark = mark()
-        assert isinstance(mark, marktools.Mark)
-        marks = []
+        if not isinstance(marks, (list, tuple)):
+            marks = (marks,)
+        instantiated_marks = []
+        for mark in marks:
+            if not isinstance(mark, marktools.Mark):
+                if issubclass(mark, marktools.Mark):
+                    mark = mark()
+            assert isinstance(mark, marktools.Mark)
+            instantiated_marks.append(mark)
+        marks = instantiated_marks
+        result = []
         for component in self._iterate_components(recurse=recurse):
-            copied_mark = copy.copy(mark)
-            copied_mark.attach(component)
-            marks.append(copied_mark)
-        return tuple(marks)
+            for mark in marks:
+                copied_mark = copy.copy(mark)
+                copied_mark.attach(component)
+                result.append(copied_mark)
+        return tuple(result)
 
     def attach_spanners(self, spanner, recurse=False):
         '''Attach shallow copy of `spanner` 
