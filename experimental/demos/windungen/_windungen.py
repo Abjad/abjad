@@ -164,7 +164,9 @@ def fuse_large_rests_of_duration_in_score_by_duration_threshold(
 
 def set_vertical_positioning_pitch_on_rest_in_staff(staff, pitch):
     for rest in iterationtools.iterate_rests_in_expr(staff):
-        resttools.set_vertical_positioning_pitch_on_rest(rest, pitch)
+        note = Note(rest)
+        command = contexttools.LilyPondCommandMark('rest')
+        command.attach(note)
 
 
 def clean_up_rests_in_score(score):
