@@ -2,6 +2,7 @@
 import collections
 import itertools
 import numbers
+from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
@@ -348,9 +349,29 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
         Return ``QEventSequence`` instance.
         '''
-        from abjad.tools.quantizationtools \
-            import tempo_scaled_durations_to_q_events
-        return cls(tempo_scaled_durations_to_q_events(durations, tempo))
+        from abjad.tools import quantizationtools
+        durations = [durationtools.Duration(x) for x in durations]
+        assert isinstance(tempo, contexttools.TempoMark)
+        durations = [x for x in 
+            sequencetools.sum_consecutive_sequence_elements_by_sign(
+                durations, 
+                sign=[-1],
+                ) if x]
+        durations = [quantizationtools.tempo_scaled_duration_to_milliseconds(
+            x, tempo) for x in durations]
+        offsets = mathtools.cumulative_sums_zero(abs(x) for x in durations)
+        q_events = []
+        for pair in zip(offsets, durations):
+            offset = durationtools.Offset(pair[0])
+            duration = pair[1]
+            if duration < 0: # negative duration indicates silence
+                q_event = quantizationtools.SilentQEvent(offset)
+            else: # otherwise, use middle-C
+                q_event = quantizationtools.PitchedQEvent(offset, [0])
+            q_events.append(q_event)
+        # insert terminating silence QEvent
+        q_events.append(quantizationtools.TerminalQEvent(offsets[-1]))
+        return cls(q_events)
 
     @classmethod
     def from_tempo_scaled_leaves(cls, leaves, tempo=None):

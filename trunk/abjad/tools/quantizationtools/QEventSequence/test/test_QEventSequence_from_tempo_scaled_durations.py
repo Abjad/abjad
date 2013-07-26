@@ -5,15 +5,17 @@ from abjad.tools import pitchtools
 from abjad.tools import quantizationtools
 
 
-def test_quantizationtools_tempo_scaled_durations_to_q_events_01():
+def test_QEventSequence_from_tempo_scaled_durations_01():
     '''Test basic functionality.
     '''
 
-    durations = [durationtools.Duration(x) for x in [(1, 4), (1, 3), (1, 7), (2, 5), (3, 4)]]
+    durations = [durationtools.Duration(x) for x in 
+        [(1, 4), (1, 3), (1, 7), (2, 5), (3, 4)]]
     tempo = contexttools.TempoMark((1, 4), 55)
-    q_events = quantizationtools.tempo_scaled_durations_to_q_events(durations, tempo)
+    q_events = quantizationtools.QEventSequence.from_tempo_scaled_durations(
+        durations, tempo)
 
-    assert q_events == [
+    assert q_events == quantizationtools.QEventSequence((
         quantizationtools.PitchedQEvent(
             durationtools.Offset(0, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
@@ -37,19 +39,20 @@ def test_quantizationtools_tempo_scaled_durations_to_q_events_01():
         quantizationtools.TerminalQEvent(
             durationtools.Offset(630400, 77)
             )
-    ]
+    ))
 
 
-def test_quantizationtools_tempo_scaled_durations_to_q_events_02():
+def test_QEventSequence_from_tempo_scaled_durations_02():
     '''Silences are fused.
     '''
 
     durations = [durationtools.Duration(x) for x in
         [(1, 4), (-1, 4), (1, 4), (1, 4), (-1, 4), (-1, 4), (1, 4)]]
     tempo = contexttools.TempoMark((1, 4), 77)
-    q_events = quantizationtools.tempo_scaled_durations_to_q_events(durations, tempo)
+    q_events = quantizationtools.QEventSequence.from_tempo_scaled_durations(
+        durations, tempo)
 
-    assert q_events == [
+    assert q_events == quantizationtools.QEventSequence((
         quantizationtools.PitchedQEvent(
             durationtools.Offset(0, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
@@ -75,4 +78,4 @@ def test_quantizationtools_tempo_scaled_durations_to_q_events_02():
         quantizationtools.TerminalQEvent(
             durationtools.Offset(60000, 11)
             )
-    ]
+    ))
