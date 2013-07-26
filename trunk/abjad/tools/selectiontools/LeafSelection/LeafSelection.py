@@ -71,3 +71,63 @@ class LeafSelection(HorizontalSelection):
             grace_containers = leaf.detach_grace_containers(kind=kind)
             result.extend(grace_containers)
         return tuple(result)
+
+    def replace_with(self, leaf_class):
+        '''Replace leaves in selection with `leaf_class` instances.
+
+        ::
+
+            >>> staff = Staff(2 * Measure((2, 8), "c'8 d'8"))
+
+        ..  lilypond
+
+            >>> f(staff)
+            \new Staff {
+                {
+                    \time 2/8
+                    c'8
+                    d'8
+                }
+                {
+                    c'8
+                    d'8
+                }
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        Example 1. Replace leaves with rests:
+
+        >>> selection = staff[0].select_leaves()
+        >>> selection.replace_with(Rest)
+
+        ..  lilypond
+
+            >>> f(staff)
+            \new Staff {
+                {
+                    \time 2/8
+                    r8
+                    r8
+                }
+                {
+                    c'8
+                    d'8
+                }
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        Return none.
+        '''
+        from abjad.tools import componenttools
+        from abjad.tools import leaftools
+        assert issubclass(leaf_class, leaftools.Leaf)
+        for leaf in self:
+            new_leaf = leaf_class(leaf)
+            componenttools.move_parentage_and_spanners_from_components_to_components(
+                [leaf], [new_leaf])
