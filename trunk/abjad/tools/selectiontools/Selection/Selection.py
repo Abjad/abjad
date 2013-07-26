@@ -270,13 +270,14 @@ class Selection(AbjadObject):
     ### PUBLIC METHODS ###
 
     def attach_marks(self, mark, recurse=False):
-        '''Attach shallow copy of `mark` 
-        to each component in selection.
+        '''Attach copy of `mark` to each component in selection.
 
-        Return list of marks created.
+        Return tuple of marks created.
         '''
         from abjad.tools import marktools
-        if issubclass(spanner, marktools.Mark):
+        if isinstance(mark, marktools.Mark):
+            pass
+        elif issubclass(mark, marktools.Mark):
             mark = mark()
         assert isinstance(mark, marktools.Mark)
         marks = []

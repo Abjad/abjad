@@ -62,6 +62,7 @@ def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch=None):
     Return score, treble staff, bass staff.
     '''
     from abjad.tools import contexttools
+    from abjad.tools import layouttools
     from abjad.tools import lilypondfiletools
     from abjad.tools import markuptools
     from abjad.tools import pitchtools
@@ -71,12 +72,14 @@ def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch=None):
         lowest_treble_pitch = pitchtools.NamedChromaticPitch('b')
 
     # make and configure score
-    score, treble_staff, bass_staff = scoretools.make_piano_score_from_leaves(leaves, lowest_treble_pitch)
+    score, treble_staff, bass_staff = \
+        scoretools.make_piano_score_from_leaves(leaves, lowest_treble_pitch)
     score.override.time_signature.stencil = False
     score.override.bar_number.transparent = True
     score.override.bar_line.stencil = False
     score.override.span_bar.stencil = False
-    contexttools.set_accidental_style_on_sequential_contexts_in_expr(score, 'forget')
+    layouttools.set_accidental_style_on_sequential_contexts_in_expr(
+        score, 'forget')
 
     # make and configure lily file
     lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
