@@ -93,10 +93,8 @@ class Leaf(Component):
             self._set = copy.copy(leaf.set)
 
     def _copy_with_marks_but_without_children_or_spanners(self):
-        from abjad.tools import gracetools
         new = Component._copy_with_marks_but_without_children_or_spanners(self)
-        for grace_container in \
-            gracetools.get_grace_containers_attached_to_leaf(self):
+        for grace_container in self.get_grace_containers():
             new_grace_container = \
                 grace_container._copy_with_children_and_marks_but_without_spanners()
             new_grace_container(new)
@@ -376,6 +374,76 @@ class Leaf(Component):
         return property(**locals())
 
     ### PUBLIC METHODS ###
+
+    def get_grace_containers(self, kind=None):
+        r'''Get grace containers attached to leaf.
+
+        ::
+
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> grace_container = gracetools.GraceContainer(
+            ...     [Note("cs'16")], 
+            ...     kind='grace',
+            ...     )
+            >>> grace_container.attach(staff[1])
+            Note("d'8")
+            >>> after_grace = gracetools.GraceContainer(
+            ...     [Note("ds'16")], 
+            ...     kind='after'
+            ...     )
+            >>> after_grace.attach(staff[1])
+            Note("d'8")
+
+        ..  lilypond
+
+            >>> f(staff)
+            \new Staff {
+                c'8
+                \grace {
+                    cs'16
+                }
+                \afterGrace
+                d'8
+                {
+                    ds'16
+                }
+                e'8
+                f'8
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        Example 1. Get all grace containers attached to leaf:
+
+        ::
+
+            >>> staff[1].get_grace_containers()
+            (GraceContainer(cs'16), GraceContainer(ds'16))
+
+        Example 2. Get only (proper) grace containers attached to leaf:
+
+        ::
+
+            >>> staff[1].get_grace_containers(kind='grace')
+            (GraceContainer(cs'16),)
+
+        Example 3. Get only after grace containers attached to leaf:
+
+        ::
+
+            >>> staff[1].get_grace_containers(kind='after')
+            (GraceContainer(ds'16),)
+
+        Return tuple.
+        '''
+        result = []
+        if kind in (None, 'grace') and hasattr(self, '_grace'):
+            result.append(self._grace)
+        if kind in (None, 'after') and hasattr(self, '_after_grace'):
+            result.append(self._after_grace)
+        return tuple(result)
 
     def select_tie_chain(self):
         '''Select tie chain.

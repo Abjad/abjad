@@ -13,8 +13,7 @@ def test_LeafSelection_detach_grace_containers_01():
         [Note("ds'16")], kind='after')
     after_grace_container(staff[1])
 
-    grace_containers = \
-        gracetools.get_grace_containers_attached_to_leaf(staff[1])
+    grace_containers = staff[1].get_grace_containers()
 
     assert len(grace_containers) == 2
 

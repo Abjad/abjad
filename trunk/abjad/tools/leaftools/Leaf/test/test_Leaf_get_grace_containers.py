@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_gracetools_detach_grace_containers_attached_to_leaf_01():
+def test_Leaf_get_grace_containers_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
 
@@ -19,18 +19,3 @@ def test_gracetools_detach_grace_containers_attached_to_leaf_01():
 
     assert grace_container in grace_containers
     assert after_grace_container in grace_containers
-
-    grace_containers = gracetools.detach_grace_containers_attached_to_leaf(staff[1])
-
-    assert len(grace_containers) == 2
-
-    r'''
-    \new Staff {
-        c'8
-        d'8
-        e'8
-        f'8
-    }
-    '''
-
-    assert staff.lilypond_format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"

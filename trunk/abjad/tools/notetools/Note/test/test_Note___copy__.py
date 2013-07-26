@@ -49,7 +49,8 @@ def test_Note___copy___04():
     '''
 
     note_1 = Note("c'4")
-    grace_container_1 = gracetools.GraceContainer([Note("d'32")], kind = 'after')
+    grace_container_1 = gracetools.GraceContainer(
+        [Note("d'32")], kind='after')
     grace_container_1(note_1)
 
     r'''
@@ -61,7 +62,7 @@ def test_Note___copy___04():
     '''
 
     note_2 = copy.copy(note_1)
-    grace_container_2 = gracetools.get_grace_containers_attached_to_leaf(note_2)[0]
+    grace_container_2 = note_2.get_grace_containers()[0]
 
     r'''
     \afterGrace
