@@ -2,10 +2,14 @@
 import collections
 import itertools
 import numbers
+from abjad.tools import componenttools
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
+from abjad.tools import notetools
+from abjad.tools import resttools
 from abjad.tools import sequencetools
+from abjad.tools import skiptools
 from abjad.tools.abctools import ImmutableAbjadObject
 
 
@@ -424,6 +428,52 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
         Return ``QEventSequence`` instance.
         '''
-        from abjad.tools.quantizationtools \
-            import tempo_scaled_leaves_to_q_events
-        return cls(tempo_scaled_leaves_to_q_events(leaves, tempo))
+        from abjad.tools import quantizationtools
+        assert componenttools.all_are_contiguous_components_in_same_thread(
+            leaves) and len(leaves)
+        if tempo is None:
+            assert leaves[0].get_effective_context_mark(
+                contexttools.TempoMark) is not None
+        else:
+            tempo = contexttools.TempoMark(tempo)
+        # sort by silence and tied leaves
+        groups = []
+        for rvalue, rgroup in itertools.groupby(
+            leaves,
+            lambda x: isinstance(x, (resttools.Rest, skiptools.Skip))):
+            if rvalue:
+                groups.append(list(rgroup))
+            else:
+                for tvalue, tgroup in itertools.groupby(
+                    rgroup, lambda x: x.select_tie_chain()):
+                    groups.append(list(tgroup))
+        # calculate lists of pitches and durations
+        durations = []
+        pitches = []
+        for group in groups:
+            # get millisecond cumulative duration
+            if tempo is not None:
+                duration = sum(
+                    quantizationtools.tempo_scaled_duration_to_milliseconds(
+                        x.duration, tempo)
+                    for x in group)
+            else:
+                duration = sum(
+                    [quantizationtools.tempo_scaled_duration_to_milliseconds(
+                        x.duration,
+                        x.get_effective_context_mark(contexttools.TempoMark),
+                        )
+                        for x in group])
+            durations.append(duration)
+            # get pitch of first leaf in group
+            if isinstance(group[0], (resttools.Rest, skiptools.Skip)):
+                pitch = None
+            elif isinstance(group[0], notetools.Note):
+                pitch = group[0].written_pitch.chromatic_pitch_number
+            else: # chord
+                pitch = [x.written_pitch.chromatic_pitch_number 
+                    for x in group[0].note_heads]
+            pitches.append(pitch)
+        # convert durations and pitches to QEvents and return
+        return cls.from_millisecond_pitch_pairs(
+            zip(durations, pitches))
