@@ -1,5 +1,6 @@
 import os
 import subprocess
+import types
 from abjad.tools.configurationtools.Configuration import Configuration
 
 
@@ -271,6 +272,60 @@ class AbjadConfiguration(Configuration):
         else:
             return 'edit'
 
+    @staticmethod
+    def list_abjad_environment_variables():
+        '''List Abjad environment variables.
+
+        Return tuple of zero or more environment variable / setting pairs.
+
+        Abjad environment variables are defined in
+        ``abjad/tools/configurationtools/AbjadConfiguration/AbjadConfiguration.py``.
+        '''
+        from abjad import abjad_configuration
+        result = []
+        for key in dir(abjad_configuration):
+            if key.isupper() and not key.startswith('_'):
+                result.append((key, getattr(abjad_configuration, key)))
+        return tuple(result)
+
+    @staticmethod
+    def list_package_dependency_versions():
+        r'''List package dependency versions:
+
+        ::
+
+            >>> configurationtools.AbjadConfiguration.list_package_dependency_versions() # doctest: +SKIP
+            {'sphinx': '1.1.2', 'py.test': '2.1.2'}
+
+        Return dictionary.
+        '''
+        dependencies = {}
+        dependencies['configobj'] = None
+        try:
+            import configobj
+            dependencies['configobj'] = configobj.__version__
+        except ImportError:
+            pass
+        dependencies['ply'] = None
+        try:
+            from ply import lex
+            dependencies['ply'] = lex.__version__
+        except ImportError:
+            pass
+        dependencies['py.test'] = None
+        try:
+            import py.test
+            dependencies['py.test'] = py.test.__version__
+        except ImportError:
+            pass
+        dependencies['sphinx'] = None
+        try:
+            import sphinx
+            dependencies['sphinx'] = sphinx.__version__
+        except ImportError:
+            pass
+        return dependencies
+        
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -313,3 +368,4 @@ class AbjadConfiguration(Configuration):
     @property
     def configuration_file_name(self):
         return 'abjad.cfg'
+
