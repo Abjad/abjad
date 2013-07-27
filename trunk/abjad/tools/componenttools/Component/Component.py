@@ -769,6 +769,83 @@ class Component(AbjadObject):
                 marks.append(mark)
         return tuple(marks)
 
+    def get_markup(
+        self,
+        direction=None,
+        ):
+        r'''Get markup attached to `component`::
+
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> slur = spannertools.SlurSpanner(staff[:])
+
+        ::
+
+            >>> markuptools.Markup('foo')(staff[0])
+            Markup(('foo',))(c'8)
+
+        ::
+
+            >>> markuptools.Markup('bar')(staff[0])
+            Markup(('bar',))(c'8)
+
+        ::
+
+            >>> f(staff)
+            \new Staff {
+                c'8 (
+                    - \markup {
+                        \column
+                            {
+                                foo
+                                bar
+                            }
+                        }
+                d'8
+                e'8
+                f'8 )
+            }
+
+        ::
+
+            >>> staff[0].get_markup()
+            (Markup(('foo',))(c'8), Markup(('bar',))(c'8))
+
+        Get markup by direction:
+
+        ::
+
+            >>> chord = Chord([-11, 2, 5], (1, 4))
+
+        ::
+
+            >>> markuptools.Markup('UP', Up)(chord)
+            Markup(('UP',), direction=Up)(<cs d' f'>4)
+
+        ::
+
+            >>> markuptools.Markup('DOWN', Down)(chord)
+            Markup(('DOWN',), direction=Down)(<cs d' f'>4)
+
+        ::
+
+            >>> chord.get_markup(direction=Up)
+            (Markup(('UP',), direction=Up)(<cs d' f'>4),)
+            
+        ::
+
+            >>> chord.get_markup(direction=Down)
+            (Markup(('DOWN',), direction=Down)(<cs d' f'>4),)
+
+        Return tuple of zero or more markup objects.
+        '''
+        from abjad.tools import markuptools
+        markup = self.get_marks(mark_classes=(markuptools.Markup,))
+        if direction is Up:
+            return tuple(x for x in markup if x.direction is Up)
+        elif direction is Down:
+            return tuple(x for x in markup if x.direction is Down)
+        return markup
+
     def select(self):
         '''Select component.
 

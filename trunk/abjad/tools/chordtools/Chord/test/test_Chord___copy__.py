@@ -88,6 +88,6 @@ def test_Chord___copy___05():
     assert articulation_1 == articulation_2
     assert articulation_1 is not articulation_2
 
-    markup_2 = markuptools.get_markup_attached_to_component(chord_2)[0]
+    markup_2 = chord_2.get_markup()[0]
     assert markup_1 == markup_2
     assert markup_1 is not markup_2

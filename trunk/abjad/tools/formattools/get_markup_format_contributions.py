@@ -8,7 +8,7 @@ def get_markup_format_contributions(component):
     from abjad.tools import markuptools
 
     result = []
-    markup = markuptools.get_markup_attached_to_component(component)
+    markup = component.get_markup()
     up_markup, down_markup, neutral_markup = [], [], []
 
     for markup_object in markup:

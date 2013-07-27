@@ -47,7 +47,7 @@ def remove_markup_attached_to_component(component):
     from abjad.tools import markuptools
 
     # get markup attached to component
-    result = markuptools.get_markup_attached_to_component(component)
+    result = component.get_markup()
 
     # remove markup attached to component
     for mark in result:

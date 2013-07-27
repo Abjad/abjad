@@ -24,13 +24,4 @@ def get_down_markup_attached_to_component(component):
 
     Return tuple of zero or more markup objects.
     '''
-    from abjad.tools import markuptools
-
-    result = []
-
-    markups = markuptools.get_markup_attached_to_component(component)
-    for markup in markups:
-        if markup.direction is Down:
-            result.append(markup)
-
-    return tuple(result)
+    return component.get_markup(direction=Down)

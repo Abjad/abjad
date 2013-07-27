@@ -40,12 +40,4 @@ def get_markup_attached_to_component(component):
 
     Return tuple of zero or more markup objects.
     '''
-    from abjad.tools import markuptools
-
-    result = []
-    for mark in component._start_marks:
-        if isinstance(mark, markuptools.Markup):
-            result.append(mark)
-
-    result = tuple(result)
-    return result
+    return component.get_markup()
