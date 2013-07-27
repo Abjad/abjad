@@ -1189,6 +1189,44 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
 
         return type(self)(recurse(self._root, start_offset, stop_offset))
 
+    def fuse_overlapping_intervals(self, include_tangent_intervals=False):
+        '''Fuse overlapping intervals:
+
+        ::
+
+            >>> a = TimeInterval(0, 10)
+            >>> b = TimeInterval(5, 15)
+            >>> c = TimeInterval(15, 25)
+            >>> tree = TimeIntervalTree([a, b, c])
+            >>> tree.fuse_overlapping_intervals()
+            TimeIntervalTree([
+                TimeInterval(Offset(0, 1), Offset(15, 1), {}),
+                TimeInterval(Offset(15, 1), Offset(25, 1), {})
+            ])
+
+        ::
+        
+            >>> tree.fuse_overlapping_intervals(include_tangent_intervals=True)
+            TimeIntervalTree([
+                TimeInterval(Offset(0, 1), Offset(25, 1), {})
+            ])
+
+        Return time interval tree.
+        '''
+        from abjad.tools import timeintervaltools
+        procedure = timeintervaltools.group_overlapping_intervals_and_yield_groups
+        if include_tangent_intervals:
+            procedure = timeintervaltools.group_tangent_or_overlapping_intervals_and_yield_groups
+        trees = [timeintervaltools.TimeIntervalTree(group) for group in
+            procedure(self)]
+        return timeintervaltools.TimeIntervalTree([
+            timeintervaltools.TimeInterval(
+                tree.earliest_start,
+                tree.latest_stop,
+                )
+            for tree in trees
+            ])
+
     def quantize_to_rational(self, rational):
         '''Quantize all intervals in tree to a multiple (1 or more) 
         of `rational`:

@@ -347,6 +347,10 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
         raise NotImplementedError
 
     @abc.abstractmethod
+    def fuse_overlapping_intervals(self, include_tangent_intervals=False):
+        raise NotImplementedError
+
+    @abc.abstractmethod
     def scale_interval_durations_by_rational(self, rational):
         raise NotImplementedError
 

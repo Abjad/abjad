@@ -1091,6 +1091,13 @@ class TimeIntervalTreeDictionary(
                 result[key] = found
         return type(self)(result)
 
+    def fuse_overlapping_intervals(self, include_tangent_intervals=False):
+        result = {}
+        for key, tree in self.iteritems():
+            result[key] = tree.fuse_overlapping_intervals(
+                include_tangent_intervals=include_tangent_intervals)
+        return type(self)(result)
+
     def quantize_to_rational(self, rational):
         '''Quantize all intervals in dictionary to a multiple (1 or more)
         of `rational`:
