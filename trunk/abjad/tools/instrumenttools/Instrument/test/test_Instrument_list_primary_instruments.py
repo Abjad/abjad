@@ -1,9 +1,9 @@
 from abjad import *
 
 
-def test_instrumenttools_list_primary_instruments_01():
+def test_Instrument_list_primary_instruments_01():
 
-    primary_instruments = instrumenttools.list_primary_instruments()
+    primary_instruments = instrumenttools.Instrument.list_primary_instruments()
 
     assert instrumenttools.Piano in primary_instruments
     assert instrumenttools.Guitar in primary_instruments

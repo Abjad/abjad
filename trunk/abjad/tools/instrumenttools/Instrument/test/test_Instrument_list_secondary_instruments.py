@@ -1,9 +1,10 @@
 from abjad import *
 
 
-def test_instrumenttools_list_secondary_instruments_01():
+def test_Instrument_list_secondary_instruments_01():
 
-    secondary_instruments = instrumenttools.list_secondary_instruments()
+    secondary_instruments = \
+        instrumenttools.Instrument.list_secondary_instruments()
 
     assert instrumenttools.AltoFlute in secondary_instruments
     assert instrumenttools.BassClarinet in secondary_instruments

@@ -1,4 +1,5 @@
 import abc
+import inspect
 from abjad.tools import contexttools
 from abjad.tools import pitchtools
 
@@ -150,3 +151,171 @@ class Instrument(contexttools.InstrumentMark):
             return [performer_name]
         else:
             return self._default_performer_names[:]
+
+    @classmethod
+    def list_instrument_names(cls):
+        r'''List instrument names:
+
+        ::
+
+            >>> for instrument_name in instrumenttools.Instrument.\
+            ...     list_instrument_names():
+            ...     instrument_name
+            ...
+            'accordion'
+            'alto flute'
+            'alto saxophone'
+            'alto trombone'
+            'baritone saxophone'
+            'baritone voice'
+            'bass clarinet'
+            'bass flute'
+            'bass saxophone'
+            'bass trombone'
+            'bass voice'
+            'bassoon'
+            'cello'
+            'clarinet in A'
+            'clarinet in B-flat'
+            'clarinet in E-flat'
+            'contrabass'
+            'contrabass clarinet'
+            'contrabass flute'
+            'contrabass saxophone'
+            'contrabassoon'
+            'contralto voice'
+            'English horn'
+            'flute'
+            'glockenspiel'
+            'guitar'
+            'harp'
+            'harpsichord'
+            'horn'
+            'marimba'
+            'mezzo-soprano voice'
+            'oboe'
+            'piano'
+            'piccolo'
+            'sopranino saxophone'
+            'soprano saxophone'
+            'soprano voice'
+            'tenor saxophone'
+            'tenor trombone'
+            'tenor voice'
+            'trumpet'
+            'tuba'
+            'untuned percussion'
+            'vibraphone'
+            'viola'
+            'violin'
+            'xylophone'
+
+        Return list.
+        '''
+        instrument_names = []
+        for instrument_class in cls.list_instruments():
+            instrument = instrument_class()
+            instrument_names.append(instrument.instrument_name)
+        instrument_names.sort(key=lambda x: x.lower())
+        return instrument_names
+
+    @staticmethod
+    def list_instruments(classes=None):
+        r'''List instruments in ``instrumenttools`` module:
+
+        ::
+
+            >>> for instrument in instrumenttools.Instrument.\
+            ...     list_instruments()[:5]:
+            ...     instrument.__name__
+            ...
+            'Accordion'
+            'AltoFlute'
+            'AltoSaxophone'
+            'AltoTrombone'
+            'BaritoneSaxophone'
+
+        Return list.
+        '''
+        from abjad.tools import instrumenttools
+        if classes is None:
+            classes = (instrumenttools.Instrument,)
+        instruments = []
+        for value in instrumenttools.__dict__.itervalues():
+            try:
+                if issubclass(value, classes) \
+                    and not inspect.isabstract(value):
+                    instruments.append(value)
+            except TypeError:
+                pass
+        instruments.sort(key=lambda x: x.__name__.lower())
+        return instruments
+
+    @classmethod
+    def list_primary_instruments(cls):
+        r'''List primary instruments:
+
+        ::
+
+            >>> for instrument in instrumenttools.Instrument.\
+            ...     list_primary_instruments():
+            ...     instrument.__name__
+            ...
+            'Accordion'
+            'AltoSaxophone'
+            'BaritoneVoice'
+            'Bassoon'
+            'BassVoice'
+            'BFlatClarinet'
+            'Cello'
+            'Contrabass'
+            'ContraltoVoice'
+            'Flute'
+            'FrenchHorn'
+            'Guitar'
+            'Harp'
+            'Harpsichord'
+            'MezzoSopranoVoice'
+            'Oboe'
+            'Piano'
+            'SopranoVoice'
+            'TenorTrombone'
+            'TenorVoice'
+            'Trumpet'
+            'Tuba'
+            'Viola'
+            'Violin'
+
+        Return list
+        '''
+        primary_instruments = []
+        for instrument_class in cls.list_instruments():
+            instrument = instrument_class()
+            if instrument.is_primary_instrument:
+                primary_instruments.append(instrument_class)
+        return primary_instruments
+
+    @classmethod
+    def list_secondary_instruments(cls):
+        r'''List secondary instruments:
+
+        ::
+
+            >>> for secondary_instrument in instrumenttools.Instrument.\
+            ...     list_secondary_instruments()[:5]:
+            ...     secondary_instrument
+            ...
+            <class 'abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute'>
+            <class 'abjad.tools.instrumenttools.AltoTrombone.AltoTrombone.AltoTrombone'>
+            <class 'abjad.tools.instrumenttools.BaritoneSaxophone.BaritoneSaxophone.BaritoneSaxophone'>
+            <class 'abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet'>
+            <class 'abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute'>
+
+        Return list
+        '''
+        secondary_instruments = []
+        for instrument_class in cls.list_instruments():
+            instrument = instrument_class()
+            if instrument.is_secondary_instrument:
+                secondary_instruments.append(instrument_class)
+        return secondary_instruments

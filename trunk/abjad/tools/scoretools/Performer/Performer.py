@@ -108,7 +108,7 @@ class Performer(AbjadObject):
         '''
         from abjad.tools import instrumenttools
         performer_names = set([])
-        for instrument_class in instrumenttools.list_instruments():
+        for instrument_class in instrumenttools.Instrument.list_instruments():
             instrument = instrument_class()
             performer_name = instrument.get_default_performer_name()
             performer_names.add(performer_name)
@@ -152,7 +152,7 @@ class Performer(AbjadObject):
         '''
         from abjad.tools import instrumenttools
         performer_names = set([])
-        for instrument_class in instrumenttools.list_instruments():
+        for instrument_class in instrumenttools.Instrument.list_instruments():
             instrument = instrument_class()
             if instrument.is_primary_instrument:
                 performer_name = instrument.get_default_performer_name()
@@ -509,7 +509,7 @@ class Performer(AbjadObject):
         '''
         from abjad.tools import instrumenttools
         result = collections.OrderedDict()
-        for instrument_class in instrumenttools.list_instruments():
+        for instrument_class in instrumenttools.Instrument.list_instruments():
             instrument = instrument_class()
             for performer_name in instrument.get_performer_names():
                 if performer_name in result:

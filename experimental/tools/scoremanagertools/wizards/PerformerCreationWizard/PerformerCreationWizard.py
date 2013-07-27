@@ -149,7 +149,8 @@ class PerformerCreationWizard(Wizard):
             numbered_list_section.menu_entries = likely_instrument_names
             command_section.append(('more instruments', 'more'))
         else:
-            instrument_names = instrumenttools.list_instrument_names()
+            instrument_names = \
+                instrumenttools.Instrument.list_instrument_names()
             numbered_list_section.menu_entries = instrument_names
         numbered_list_section.default_index = default_index
         command_section.append(('skip instruments', 'skip'))
