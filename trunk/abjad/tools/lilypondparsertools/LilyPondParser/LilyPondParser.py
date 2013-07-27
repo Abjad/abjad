@@ -10,6 +10,7 @@ from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import lilypondfiletools
 from abjad.tools import marktools
+from abjad.tools import pitchtools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
@@ -700,6 +701,74 @@ class LilyPondParser(abctools.Parser):
         if predicate in predicates:
             return predicates[predicate](value)
         return True
+
+    @staticmethod
+    def _transpose_enharmonically(pitch_a, pitch_b, pitch_c):
+        '''Transpose `pitch_c` by the distance between `pitch_b` and `pitch_a`.
+
+        This function was reverse-engineered from LilyPond's source code.
+
+        Return NamedChromaticPitch.
+        '''
+        if not isinstance(pitch_a, pitchtools.NamedChromaticPitch):
+            pitch_a = pitchtools.NamedChromaticPitch(pitch_a)
+        if not isinstance(pitch_b, pitchtools.NamedChromaticPitch):
+            pitch_b = pitchtools.NamedChromaticPitch(pitch_b)
+        if not isinstance(pitch_c, pitchtools.NamedChromaticPitch):
+            pitch_c = pitchtools.NamedChromaticPitch(pitch_c)
+        scale = [0., 2., 4., 5., 7., 9., 11.]
+        def normalize_alteration(step, alteration):
+            while 2. < alteration:
+                alteration -= step_size(step)
+                step += 1.
+            while alteration < -2.:
+                step -= 1.
+                alteration += step_size(step)
+            return step, alteration
+        def normalize_octave(octave, step):
+            normalized_step = step % len(scale)
+            octave += (step - normalized_step) / len(scale)
+            return octave, normalized_step
+        def step_size(step):
+            normalized_step = step % len(scale)
+            if normalized_step == 6:
+                return 1. # b to c
+            return scale[normalized_step + 1] - scale[normalized_step]
+        a_oct, a_step, a_alt = pitch_a.octave_number, \
+            pitch_a.diatonic_pitch_class_number, pitch_a._accidental.semitones
+        b_oct, b_step, b_alt = pitch_b.octave_number, \
+            pitch_b.diatonic_pitch_class_number, pitch_b._accidental.semitones
+        c_oct, c_step, c_alt = pitch_c.octave_number, \
+            pitch_c.diatonic_pitch_class_number, pitch_c._accidental.semitones
+        d_oct, d_step, d_alt, d_tones = b_oct - a_oct, b_step - a_step, \
+            b_alt - a_alt, float(pitch_b) - float(pitch_a)
+        tmp_alt = float(pitch_c) + d_tones
+        # print 'TMP_ALT: %f' % tmp_alt
+        new_oct = c_oct + d_oct
+        new_step = c_step + d_step
+        new_alt = c_alt
+        # print 'NEW:', new_oct, new_step, new_alt
+        new_step, new_alt = normalize_alteration(new_step, new_alt)
+        new_oct, new_step = normalize_octave(new_oct, new_step)
+        # print 'NEW(norm):', new_oct, new_step, new_alt
+        octave_ticks = pitchtools.octave_number_to_octave_tick_string(new_oct)
+        pitch_class_name = str(pitchtools.NamedDiatonicPitchClass(
+            int(new_step)))
+        accidental = str(pitchtools.Accidental(new_alt))
+        tmp_pitch = pitchtools.NamedChromaticPitch(
+            pitch_class_name + accidental + octave_ticks)
+        # print 'TMP(pitch): %r' % tmp_pitch
+        new_alt += tmp_alt - float(tmp_pitch)
+        # print 'NEW(alt): %f' % new_alt
+        new_step, new_alt = normalize_alteration(new_step, new_alt)
+        new_oct, new_step = normalize_octave(new_oct, new_step)
+        # print 'NEW(norm):', new_oct, new_step, new_alt
+        octave_ticks = pitchtools.octave_number_to_octave_tick_string(new_oct)
+        pitch_class_name = str(pitchtools.NamedDiatonicPitchClass(
+            int(new_step)))
+        accidental = str(pitchtools.Accidental(new_alt))
+        return pitchtools.NamedChromaticPitch(
+            pitch_class_name + accidental + octave_ticks)
 
     ### PUBLIC METHODS ###
 

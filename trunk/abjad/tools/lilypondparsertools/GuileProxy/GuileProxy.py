@@ -153,31 +153,27 @@ class GuileProxy(AbjadObject):
 
     def transpose(self, from_pitch, to_pitch, music):
         from abjad.tools import lilypondparsertools
-
         self._make_unrelativable(music)
-
         def recurse(music):
             key_signatures = music.get_marks(contexttools.KeySignatureMark)
             if key_signatures:
                 for x in key_signatures:
                     tonic = pitchtools.NamedChromaticPitch(x.tonic, 4)
-                    x.tonic = lilypondparsertools.lilypond_enharmonic_transpose(
+                    x.tonic = lilypondparsertools.LilyPondParser._transpose_enharmonically(
                         from_pitch, to_pitch, tonic).named_chromatic_pitch_class
             if isinstance(music, notetools.Note):
                 music.written_pitch = \
-                    lilypondparsertools.lilypond_enharmonic_transpose(
+                    lilypondparsertools.LilyPondParser._transpose_enharmonically(
                     from_pitch, to_pitch, music.written_pitch)
             elif isinstance(music, chordtools.Chord):
                 for note_head in music.note_heads:
                     note_head.written_pitch = \
-                        lilypondparsertools.lilypond_enharmonic_transpose(
+                        lilypondparsertools.LilyPondParser._transpose_enharmonically(
                         from_pitch, to_pitch, note_head.written_pitch)
             elif isinstance(music, containertools.Container):
                 for x in music:
                     recurse(x)
-
         recurse(music)
-
         return music
 
     # transposition
