@@ -159,7 +159,7 @@ class MarkupCommand(AbjadObject):
                 elif isinstance(x, schemetools.Scheme):
                     result.append(x.lilypond_format)
                 else:
-                    formatted = schemetools.format_scheme_value(x)
+                    formatted = schemetools.Scheme.format_scheme_value(x)
                     if isinstance(x, str):
                         result.append(formatted)
                     else:

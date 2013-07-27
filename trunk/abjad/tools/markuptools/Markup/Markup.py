@@ -251,7 +251,7 @@ class Markup(DirectedMark):
         if len(self.contents) == 1 and isinstance(self.contents[0], str):
             content = self.contents[0]
             if '"' in content:
-                content = schemetools.format_scheme_value(content)
+                content = schemetools.Scheme.format_scheme_value(content)
             if direction:
                 return [r'{} \markup {{ {} }}'.format(direction, content)]
             return [r'\markup {{ {} }}'.format(content)]
@@ -263,7 +263,7 @@ class Markup(DirectedMark):
             pieces = [r'\markup {']
         for content in self.contents:
             if isinstance(content, str):
-                content = schemetools.format_scheme_value(content)
+                content = schemetools.Scheme.format_scheme_value(content)
                 pieces.append('{}{}'.format(indent, content))
             else:
                 pieces.extend(['{}{}'.format(indent, x) for x in

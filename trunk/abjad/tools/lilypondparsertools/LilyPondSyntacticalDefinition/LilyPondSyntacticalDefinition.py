@@ -3123,7 +3123,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     def p_simple_markup__markup_scm__MARKUP_IDENTIFIER(self, p):
         'simple_markup : markup_scm MARKUP_IDENTIFIER'
         if isinstance(p[2], str):
-            p[0] = schemetools.format_scheme_value(p[2])
+            p[0] = schemetools.Scheme.format_scheme_value(p[2])
 
 
     ### simple_music ###
