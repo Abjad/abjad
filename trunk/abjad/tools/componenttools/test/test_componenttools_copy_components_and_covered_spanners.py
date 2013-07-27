@@ -55,8 +55,8 @@ def test_componenttools_copy_components_and_covered_spanners_01():
     }
     '''
 
-    assert wellformednesstools.is_well_formed_component(t)
-    assert wellformednesstools.is_well_formed_component(new)
+    assert select(t).is_well_formed()
+    assert select(new).is_well_formed()
     assert new.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\tg'8\n\ta'8\n\tb'8\n\tc''8\n}"
 
 

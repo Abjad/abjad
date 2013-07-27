@@ -503,6 +503,17 @@ class Selection(AbjadObject):
             result.append(selection)
         return result
 
+    def is_well_formed(self, allow_empty_containers=True):
+        from abjad.tools import wellformednesstools
+        results = []
+        for component in self:
+            for checker in wellformednesstools.Check.list_checks():
+                if allow_empty_containers:
+                    if getattr(checker, 'runtime', False) == 'composition':
+                        continue
+                results.append(checker.check(component))
+        return all(results)
+
     def select_vertical_moment_at(self, offset):
         '''Select vertical moment at `offset`.
         '''

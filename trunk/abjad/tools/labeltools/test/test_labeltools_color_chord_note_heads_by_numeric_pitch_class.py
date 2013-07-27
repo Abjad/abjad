@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_chordtools_color_chord_note_heads_by_numeric_pitch_class_01():
+def test_labeltools_color_chord_note_heads_by_numeric_pitch_class_01():
     '''Works on chords.
     '''
 
@@ -31,7 +31,7 @@ def test_chordtools_color_chord_note_heads_by_numeric_pitch_class_01():
     assert chord.lilypond_format == "<\n\t\\tweak #'color #red\n\tc''\n\t\\tweak #'color #red\n\td''\n\t\\tweak #'color #green\n\tfs''\n\t\\tweak #'color #green\n\ta''\n\t\\tweak #'color #blue\n\tb''\n>4"
 
 
-def test_chordtools_color_chord_note_heads_by_numeric_pitch_class_02():
+def test_labeltools_color_chord_note_heads_by_numeric_pitch_class_02():
     '''Works on notes.
     '''
 
