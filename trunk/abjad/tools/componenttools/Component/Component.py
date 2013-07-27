@@ -809,7 +809,7 @@ class Component(AbjadObject):
 
         ::
 
-            >>> show(staff)
+            >>> show(staff) # doctest: +SKIP
 
         ::
 
@@ -834,7 +834,7 @@ class Component(AbjadObject):
 
         ::
 
-            >>> show(chord)
+            >>> show(chord) # doctest: +SKIP
             
         ::
 

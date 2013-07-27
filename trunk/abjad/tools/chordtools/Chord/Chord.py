@@ -334,8 +334,8 @@ class Chord(Leaf):
         pitch = pitchtools.NamedChromaticPitch(pitch)
         treble = copy.copy(self)
         bass = copy.copy(self)
-        markuptools.remove_markup_attached_to_component(treble)
-        markuptools.remove_markup_attached_to_component(bass)
+        treble.select().detach_marks(mark_classes=markuptools.Markup)
+        bass.select().detach_marks(mark_classes=markuptools.Markup)
         if isinstance(treble, notetools.Note):
             if treble.written_pitch < pitch:
                 treble = resttools.Rest(treble)
