@@ -1,5 +1,4 @@
 from abjad import *
-from abjad.tools import configurationtools
 
 
 def test_pitchtools_set_default_accidental_spelling_01():

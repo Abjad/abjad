@@ -13,9 +13,8 @@ def format_input_lines_as_doc_string(input_lines):
 
     Example skipped because docstring goes crazy on example input.
     '''
-
-    # TODO: use configurationtools to get tab width programmatically
-    tab = '    '
+    from abjad import abjad_configuration
+    tab = ' ' * abjad_configuration.get_tab_width()
     start = tab + tab + '>>> '
     lines = input_lines.split('\n')
     last_line_index = len(lines) - 1

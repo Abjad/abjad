@@ -1,6 +1,4 @@
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.configurationtools.get_abjad_revision_string \
-	import get_abjad_revision_string
 
 
 class AbjadRevisionToken(AbjadObject):
@@ -39,5 +37,6 @@ class AbjadRevisionToken(AbjadObject):
 
         Return string.
         '''
-        abjad_revision_string = get_abjad_revision_string()
+        from abjad import abjad_configuration
+        abjad_revision_string = abjad_configuration.get_abjad_revision_string()
         return 'Abjad revision %s' % abjad_revision_string

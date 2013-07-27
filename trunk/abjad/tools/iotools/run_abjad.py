@@ -12,9 +12,7 @@ def run_abjad():
 
     commands = [
         "from abjad import *;",
-        "from abjad.tools import configurationtools;",
-        "print configurationtools.get_abjad_startup_string();",
-        "del configurationtools",
+        "print abjad_configuration.get_abjad_startup_string();",
     ]
 
     command = '''python -i {} -c "{}"'''.format(file, ' '.join(commands))

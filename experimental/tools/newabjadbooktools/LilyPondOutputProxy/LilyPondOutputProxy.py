@@ -1,6 +1,5 @@
 import copy
 import os
-from abjad.tools import configurationtools
 from abjad.tools import iotools
 from abjad.tools import lilypondfiletools
 from experimental.tools.newabjadbooktools.ImageOutputProxy \
@@ -23,6 +22,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
     ### INITIALIZER ###
 
     def __init__(self, payload):
+        from abjad import abjad_configuration
         if isinstance(payload, str):
             self._payload = payload
         else:
@@ -30,7 +30,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
             lilypond_file = iotools.insert_expr_into_lilypond_file(payload)
             lilypond_file.file_initial_system_comments[:] = []
             lilypond_version_token = lilypondfiletools.LilyPondVersionToken(
-                configurationtools.get_lilypond_minimum_version_string(),
+                abjad_configuration.get_lilypond_minimum_version_string(),
                 )
             lilypond_file.file_initial_system_includes[0] = lilypond_version_token
             lilypond_format = lilypond_file.lilypond_format

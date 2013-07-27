@@ -247,15 +247,12 @@ Abjad packaging checklist:
 34. Click around PyPI to make sure everything looks correct.
     Then leave PyPI.
     
-35. Edit abjad/__init__.py and increment '__version__' to the *next* 
-    minor number.
+35. Edit _version.py and increment __version_info__ to the *next* minor
+    number.
 
-36. Edit tools/configurationtools/get_abjad_version_string.py and change the
-    version number string given in the docstring.
+36. Commit.
 
-37. Commit.
-
-38. Author release announcement and mail to abjad-user@googlegroups.com.
+37. Author release announcement and mail to abjad-user@googlegroups.com.
     Release announcement should recapitulate version history.
     
 [2011-08-21, 2011-08-30, 2011-09-12, 2011-09-22, 

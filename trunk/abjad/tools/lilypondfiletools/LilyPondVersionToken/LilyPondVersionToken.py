@@ -1,6 +1,4 @@
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.configurationtools.get_lilypond_version_string \
-	import get_lilypond_version_string
 
 
 class LilyPondVersionToken(AbjadObject):
@@ -51,6 +49,7 @@ class LilyPondVersionToken(AbjadObject):
 
     @property
     def version(self):
+        from abjad import abjad_configuration
         if self._version is None:
-            return get_lilypond_version_string()
+            return abjad_configuration.get_lilypond_version_string()
         return self._version

@@ -1,6 +1,5 @@
 import os
 import time
-from abjad.tools import configurationtools
 
 
 # TODO: Remove code duplication between this and iotools.ly and iotools.show.

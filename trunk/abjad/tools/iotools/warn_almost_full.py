@@ -1,6 +1,3 @@
-from abjad.tools import configurationtools
-
-
 def warn_almost_full(last_number):
     from abjad import abjad_configuration
     ABJADOUTPUT = abjad_configuration['abjad_output']

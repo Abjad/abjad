@@ -1,5 +1,4 @@
 import os
-from abjad.tools import configurationtools
 from abjad.tools import iotools
 from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 from abjad.tools.developerscripttools.SvnMessageScript import SvnMessageScript

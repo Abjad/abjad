@@ -1,5 +1,4 @@
 import os
-from abjad.tools import configurationtools
 
 
 def ly(target=-1):
@@ -35,7 +34,7 @@ def ly(target=-1):
     from abjad.tools import iotools
 
     ABJADOUTPUT = abjad_configuration['abjad_output']
-    text_editor = configurationtools.get_text_editor()
+    text_editor = abjad_configuration.get_text_editor()
     if isinstance(target, int) and target < 0:
         last_lilypond = iotools.get_last_output_file_name()
         if last_lilypond:

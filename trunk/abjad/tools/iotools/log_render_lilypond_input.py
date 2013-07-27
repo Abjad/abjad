@@ -1,6 +1,5 @@
 import os
 import time
-from abjad.tools import configurationtools
 from abjad.tools import documentationtools
 
 

@@ -1,6 +1,5 @@
 import os
 import shutil
-from abjad.tools import configurationtools
 
 
 def write_expr_to_pdf(expr, file_name, print_status=False, tagline=False):

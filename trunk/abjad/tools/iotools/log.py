@@ -1,5 +1,4 @@
 import os
-from abjad.tools import configurationtools
 
 
 def log():
@@ -30,7 +29,7 @@ def log():
     from abjad.tools import iotools
 
     ABJADOUTPUT = abjad_configuration['abjad_output']
-    text_editor = configurationtools.get_text_editor()
+    text_editor = abjad_configuration.get_text_editor()
     command = '{} {}'.format(text_editor, os.path.join(ABJADOUTPUT, 'lily.log'))
     # TODO: how do we get rid of this call to os.system()?
     #spawn_subprocess(command)

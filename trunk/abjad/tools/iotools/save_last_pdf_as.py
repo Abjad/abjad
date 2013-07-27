@@ -1,5 +1,4 @@
 import os
-from abjad.tools import configurationtools
 
 
 def save_last_pdf_as(file_name):

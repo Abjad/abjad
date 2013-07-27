@@ -1,5 +1,4 @@
 import os
-from abjad.tools import configurationtools
 
 
 def pdf(target=-1):

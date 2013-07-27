@@ -1,5 +1,4 @@
 import os
-from abjad.tools import configurationtools
 from abjad.tools import iotools
 from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 
@@ -57,7 +56,8 @@ class SvnMessageScript(DeveloperScript):
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
-        text_editor = configurationtools.get_text_editor()
+        from abjad import abjad_configuration
+        text_editor = abjad_configuration.get_text_editor()
         if args.clean:
             if os.path.exists(self.commit_message_path):
                 os.remove(self.commit_message_path)

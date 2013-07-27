@@ -1,5 +1,4 @@
 import os
-from abjad.tools import configurationtools
 
 
 def show(expr, return_timing=False, suppress_pdf=False, docs=False):

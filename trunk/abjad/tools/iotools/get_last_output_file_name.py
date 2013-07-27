@@ -1,6 +1,5 @@
 import os
 import re
-from abjad.tools import configurationtools
 
 
 def get_last_output_file_name(path=None):

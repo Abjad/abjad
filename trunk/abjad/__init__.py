@@ -15,7 +15,6 @@ else:
     readline.parse_and_bind("tab: complete")
 
 # setup .abjad directory and friends (if not already handled elsewhere)
-# configurationtools.setup_abjad_directory_silently()
 from abjad.tools.configurationtools import AbjadConfiguration
 abjad_configuration = AbjadConfiguration()
 del AbjadConfiguration

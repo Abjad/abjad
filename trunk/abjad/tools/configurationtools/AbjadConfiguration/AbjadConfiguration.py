@@ -1,4 +1,5 @@
 import os
+import subprocess
 from abjad.tools.configurationtools.Configuration import Configuration
 
 
@@ -121,6 +122,154 @@ class AbjadConfiguration(Configuration):
 
         }
         return options
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def get_abjad_revision_string():
+        '''.. versionadded:: 2.0
+
+        Get Abjad revision string:
+
+        ::
+
+            >>> configurationtools.AbjadConfiguration.get_abjad_revision_string() # doctest: +SKIP
+            '11266'
+
+        Return string.
+        '''
+        from abjad import abjad_configuration
+        command = 'svnversion {}'.format(abjad_configuration.abjad_directory_path)
+        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        return proc.stdout.readlines()[0].strip().strip('M')
+
+    @classmethod
+    def get_abjad_startup_string(cls):
+        return 'Abjad {} (r{})'.format(
+            cls.get_abjad_version_string(),
+            cls.get_abjad_revision_string(),
+            )
+
+    @staticmethod
+    def get_abjad_version_string():
+        '''.. versionadded:: 2.0
+
+        Get Abjad version string:
+
+        ::
+
+            >>> configurationtools.AbjadConfiguration.get_abjad_version_string()
+            '2.13'
+
+        Return string.
+        '''
+        import abjad
+        return abjad.__version__
+
+    @classmethod
+    def get_lilypond_minimum_version_string(cls):
+        '''Get the x.x.0 version of LilyPond:
+
+        ::
+
+            >>> configurationtools.AbjadConfiguration.get_lilypond_minimum_version_string()
+            '2.17.0'
+
+        This is useful for documentation purposes, where all developers are
+        using the development version of LilyPond, but not necessarily the exact
+        same version.
+
+        Return string.
+        '''
+        version = cls.get_lilypond_version_string()
+        parts = version.split('.')[0:2]
+        parts.append('0')
+        return '.'.join(parts)
+
+    @staticmethod
+    def get_lilypond_version_string():
+        '''.. versionadded:: 2.0
+
+        Get LilyPond version string:
+
+        ::
+
+            >>> configurationtools.AbjadConfiguration.get_lilypond_version_string() # doctest: +SKIP
+            '2.13.61'
+
+        Return string.
+        '''
+        from abjad import abjad_configuration
+        if subprocess.mswindows and not 'LilyPond' in os.environ.get('PATH'):
+            command = r'dir "C:\Program Files\*.exe" /s /b | find "lilypond.exe"'
+            proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+            lilypond = proc.stdout.readline()
+            lilypond = lilypond.strip('\r').strip('\n').strip()
+            if lilypond == '':
+                raise SystemError('Cannot find LilyPond under Windows.')
+        else:
+            lilypond = abjad_configuration['lilypond_path']
+            if not lilypond:
+                lilypond = 'lilypond'
+        command = lilypond + ' --version'
+        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        lilypond_version_string = proc.stdout.readline()
+        lilypond_version_string = lilypond_version_string.split(' ')[-1]
+        lilypond_version_string = lilypond_version_string.strip()
+        return lilypond_version_string
+
+    @staticmethod
+    def get_python_version_string():
+        '''.. versionadded:: 2.0
+
+        Get Python version string:
+
+        ::
+
+            >>> configurationtools.AbjadConfiguration.get_python_version_string() # doctest: +SKIP
+            '2.6.1'
+
+        Return string.
+        '''
+        # python prints to stderr on startup (instead of stdout)
+        command = 'python --version'
+        proc = subprocess.Popen(command, shell=True, stderr=subprocess.PIPE)
+        python_version_string = proc.stderr.readline()
+        # massage output string
+        python_version_string = python_version_string.split(' ')[-1]
+        python_version_string = python_version_string.strip()
+        # return trimmed string
+        return python_version_string
+        
+    @staticmethod
+    def get_tab_width():
+        r'''.. versionadded:: 2.9
+
+        Get system tab width:
+
+        ::
+
+            >>> configurationtools.AbjadConfiguration.get_tab_width()
+            4
+
+        The value is used by various functions that generate or test code in the system.
+
+        Return nonnegative integer.
+        '''
+        return 4
+
+    @staticmethod
+    def get_text_editor():
+        '''Get OS-appropriate text editor.
+        '''
+        from abjad import abjad_configuration
+        text_editor = abjad_configuration['text_editor']
+        if text_editor is not None:
+            return text_editor
+        elif os.name == 'posix':
+            return 'vim'
+        else:
+            return 'edit'
 
     ### PUBLIC PROPERTIES ###
 
