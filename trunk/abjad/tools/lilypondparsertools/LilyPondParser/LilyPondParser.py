@@ -467,17 +467,18 @@ class LilyPondParser(abctools.Parser):
         # sort events into forward or backwards attaching, and attach them to
         # the proper leaf
         for x in music:
-            if isinstance(x, componenttools.Component) and not isinstance(x, leaftools.GraceContainer):
+            if isinstance(x, componenttools.Component) \
+                and not isinstance(x, leaftools.GraceContainer):
                 for mark in apply_forward:
-                    if hasattr(mark, '__call__'):
+                    if hasattr(mark, 'attach'):
                         mark(x)
                 if previous_leaf:
                     for mark in apply_backward:
-                        if hasattr(mark, '__call__'):
+                        if hasattr(mark, 'attach'):
                             mark(previous_leaf)
                 else:
                     for mark in apply_backward:
-                        if hasattr(mark, '__call__'):
+                        if hasattr(mark, 'attach'):
                             mark.format_slot = 'before'
                             mark(x)
                 apply_forward = []
@@ -497,19 +498,19 @@ class LilyPondParser(abctools.Parser):
         # there were no leaves
         if previous_leaf:
             for mark in apply_forward:
-                if hasattr(mark, '__call__'):
+                if hasattr(mark, 'attach'):
                     mark.format_slot = 'after'
                     mark(previous_leaf)
             for mark in apply_backward:
-                if hasattr(mark, '__call__'):
+                if hasattr(mark, 'attach'):
                     mark(previous_leaf)
         else:
             for mark in apply_forward:
-                if hasattr(mark, '__call__'):
+                if hasattr(mark, 'attach'):
                     mark.format_slot = 'opening'
                     mark(container)
             for mark in apply_backward:
-                if hasattr(mark, '__call__'):
+                if hasattr(mark, 'attach'):
                     mark.format_slot = 'opening'
                     mark(container)
 
