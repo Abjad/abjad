@@ -360,9 +360,9 @@ class Chord(Leaf):
             raise TypeError
         treble = self._cast_defective_chord(treble)
         bass = self._cast_defective_chord(bass)
-        up_markup = markuptools.get_up_markup_attached_to_component(self)
+        up_markup = self.get_markup(direction=Up)
         up_markup = [copy.copy(markup) for markup in up_markup]
-        down_markup = markuptools.get_down_markup_attached_to_component(self)
+        down_markup = self.get_markup(direction=Down)
         down_markup = [copy.copy(markup) for markup in down_markup]
         for markup in up_markup:
             markup(treble)

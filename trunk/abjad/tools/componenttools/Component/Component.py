@@ -773,7 +773,9 @@ class Component(AbjadObject):
         self,
         direction=None,
         ):
-        r'''Get markup attached to `component`::
+        r"""Get markup attached to `component`:
+
+        ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
             >>> slur = spannertools.SlurSpanner(staff[:])
@@ -788,7 +790,7 @@ class Component(AbjadObject):
             >>> markuptools.Markup('bar')(staff[0])
             Markup(('bar',))(c'8)
 
-        ::
+        .. doctest::
 
             >>> f(staff)
             \new Staff {
@@ -804,6 +806,10 @@ class Component(AbjadObject):
                 e'8
                 f'8 )
             }
+
+        ::
+
+            >>> show(staff)
 
         ::
 
@@ -828,6 +834,10 @@ class Component(AbjadObject):
 
         ::
 
+            >>> show(chord)
+            
+        ::
+
             >>> chord.get_markup(direction=Up)
             (Markup(('UP',), direction=Up)(<cs d' f'>4),)
             
@@ -837,7 +847,7 @@ class Component(AbjadObject):
             (Markup(('DOWN',), direction=Down)(<cs d' f'>4),)
 
         Return tuple of zero or more markup objects.
-        '''
+        """
         from abjad.tools import markuptools
         markup = self.get_marks(mark_classes=(markuptools.Markup,))
         if direction is Up:

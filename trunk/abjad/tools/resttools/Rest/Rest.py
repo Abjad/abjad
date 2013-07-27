@@ -94,9 +94,9 @@ class Rest(Leaf):
         bass = copy.copy(self)
         markuptools.remove_markup_attached_to_component(treble)
         markuptools.remove_markup_attached_to_component(bass)
-        up_markup = markuptools.get_up_markup_attached_to_component(self)
+        up_markup = self.get_markup(direction=Up)
         up_markup = [copy.copy(markup) for markup in up_markup]
-        down_markup = markuptools.get_down_markup_attached_to_component(self)
+        down_markup = self.get_markup(direction=Down)
         down_markup = [copy.copy(markup) for markup in down_markup]
         for markup in up_markup:
             markup(treble)
