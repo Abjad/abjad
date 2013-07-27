@@ -31,7 +31,7 @@ def test_Container___add___03():
     tadd = t1 + t2
     assert len(tadd) == len(t1) + len(t2)
     assert tadd.lilypond_format == "{\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
-    assert wellformednesstools.is_well_formed_component(tadd)
+    assert select(tadd).is_well_formed()
 
 
 def test_Container___add___04():
@@ -98,9 +98,9 @@ def test_Container___add___07():
     t2.is_parallel = True
     t1[0].name = t2[0].name = 'voiceOne'
     tadd = t1 + t2
-    assert wellformednesstools.is_well_formed_component(tadd)
-    assert wellformednesstools.is_well_formed_component(t1)
-    assert wellformednesstools.is_well_formed_component(t2)
+    assert select(tadd).is_well_formed()
+    assert select(t1).is_well_formed()
+    assert select(t2).is_well_formed()
     assert isinstance(tadd, Container)
     assert tadd.is_parallel
     assert len(tadd) == 1
@@ -151,8 +151,8 @@ def test_Container___add___09():
     v2_id = id(v2)
 
     v1 += v2
-    assert wellformednesstools.is_well_formed_component(v1)
-    assert wellformednesstools.is_well_formed_component(v2)
+    assert select(v1).is_well_formed()
+    assert select(v2).is_well_formed()
     assert len(v1) == 8
     assert len(v2) == 4
     assert v1.name == 'voiceOne'

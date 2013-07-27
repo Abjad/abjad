@@ -41,7 +41,7 @@ def test_Measure___add___01():
     assert new is not t1 and new is not t2
     assert len(t1) == 0
     assert len(t2) == 0
-    assert wellformednesstools.is_well_formed_component(new)
+    assert select(new).is_well_formed()
     assert new.lilypond_format == "{\n\t\\time 2/8\n\tc'16 [\n\td'16 ]\n\tc'16 (\n\td'16 )\n}"
 
 
@@ -85,5 +85,5 @@ def test_Measure___add___02():
     assert new is not t1 and new is not t2
     assert len(t1) == 0
     assert len(t2) == 0
-    assert wellformednesstools.is_well_formed_component(t)
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16 [\n\t\td'16 ]\n\t\tc'16 (\n\t\td'16 )\n\t}\n}"

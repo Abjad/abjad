@@ -36,7 +36,7 @@ def test_componenttools_replace_components_with_children_of_components_01():
     }
     '''
 
-    assert wellformednesstools.is_well_formed_component(t)
+    assert select(t).is_well_formed()
     assert len(sequential) == 0
     assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\td'8\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
@@ -60,7 +60,7 @@ def test_componenttools_replace_components_with_children_of_components_02():
     }
     '''
 
-    assert wellformednesstools.is_well_formed_component(t)
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\tc'8 [ \\glissando\n\te'8 \\glissando\n\tf'8 ]\n}"
 
 
@@ -90,7 +90,7 @@ def test_componenttools_replace_components_with_children_of_components_03():
     }
     '''
 
-    assert wellformednesstools.is_well_formed_component(t)
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\te'8 [ \\glissando\n\tf'8 ]\n}"
 
 
@@ -135,5 +135,5 @@ def test_componenttools_replace_components_with_children_of_components_04():
     }
     '''
 
-    assert wellformednesstools.is_well_formed_component(t)
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\tc'8 [ \\glissando\n\td'8 \\glissando\n\te'8 \\glissando\n\tf'8 \\glissando\n\t{\n\t\tg'8 \\glissando\n\t\ta'8 ]\n\t}\n}"

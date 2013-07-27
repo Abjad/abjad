@@ -24,5 +24,5 @@ def test_PitchArrayRow_to_measure_01():
     }
     '''
 
-    assert wellformednesstools.is_well_formed_component(measure)
+    assert select(measure).is_well_formed()
     assert measure.lilypond_format == "{\n\t\\time 4/8\n\tr8\n\td'8\n\t<bf bqf>4\n}"

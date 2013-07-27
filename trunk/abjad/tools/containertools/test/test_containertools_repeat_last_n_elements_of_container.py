@@ -56,7 +56,7 @@ def test_containertools_repeat_last_n_elements_of_container_01():
     }
     '''
 
-    assert wellformednesstools.is_well_formed_component(t)
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n}"
 
 
@@ -109,5 +109,5 @@ def test_containertools_repeat_last_n_elements_of_container_02():
     }
     '''
 
-    assert wellformednesstools.is_well_formed_component(t)
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t}\n\t\\times 2/3 {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t}\n}"

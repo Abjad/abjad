@@ -9,7 +9,7 @@ def test_Selection__set_component_parents_01():
     selection = u[:]
     selection._set_parents(t)
 
-    assert wellformednesstools.is_well_formed_component(u)
+    assert select(u).is_well_formed()
     assert len(u) == 0
 
     "Container t now assigned to selection."
@@ -22,6 +22,6 @@ def test_Selection__set_component_parents_01():
 
     "Selection now in container t."
 
-    assert wellformednesstools.is_well_formed_component(t)
+    assert select(t).is_well_formed()
     assert selection[0]._parent is t
     assert selection[0] in t

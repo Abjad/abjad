@@ -21,7 +21,7 @@ def test_HairpinSpanner_include_rests_01():
     }
     '''
 
-    assert wellformednesstools.is_well_formed_component(t)
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\tr8\n\tr8\n\tr8\n\tr8\n\te'8 \\<\n\tf'8\n\tfs'8\n\tg'8 \\!\n}"
 
 
@@ -46,5 +46,5 @@ def test_HairpinSpanner_include_rests_02():
     }
     '''
 
-    assert wellformednesstools.is_well_formed_component(t)
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8\n\tef'8 \\!\n\tr8\n\tr8\n\tr8\n\tr8\n}"

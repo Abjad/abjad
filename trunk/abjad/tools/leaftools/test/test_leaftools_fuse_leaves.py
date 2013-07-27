@@ -70,6 +70,6 @@ def test_leaftools_fuse_leaves_05():
     }
     '''
 
-    assert wellformednesstools.is_well_formed_component(t)
+    assert select(t).is_well_formed()
     assert len(result) == 1
     assert t.duration == Duration(3, 8)

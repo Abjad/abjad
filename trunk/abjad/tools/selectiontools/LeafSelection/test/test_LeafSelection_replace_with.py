@@ -18,5 +18,5 @@ def test_LeafSelection_replace_with_01():
     }
     '''
 
-    assert wellformednesstools.is_well_formed_component(t)
+    assert select(t).is_well_formed()
     assert t.lilypond_format == '\\new Staff {\n\tr8\n\tr8\n\tr8\n\tr8\n}'

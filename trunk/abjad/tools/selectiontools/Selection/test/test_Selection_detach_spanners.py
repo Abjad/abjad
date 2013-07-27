@@ -28,7 +28,7 @@ def test_Selection_detach_spanners_01():
     }
     '''
 
-    assert wellformednesstools.is_well_formed_component(staff)
+    assert select(staff).is_well_formed()
     assert staff.lilypond_format == "\\new Staff {\n\tc'4\n\tc'16\n\tc'4\n\tc'16\n}"
 
 

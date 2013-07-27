@@ -60,5 +60,5 @@ def test_Measure_number_03():
     assert t[1].measure_number == 2
     assert t[2].measure_number == 3
 
-    assert wellformednesstools.is_well_formed_component(t)
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n}"

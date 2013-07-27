@@ -88,7 +88,7 @@ def test_Component_get_effective_context_mark_06():
     }
     '''
 
-    assert wellformednesstools.is_well_formed_component(t)
+    assert select(t).is_well_formed()
     assert t.lilypond_format == '\\new Staff {\n\t\\clef "treble"\n\tc\'8\n\tcs\'8\n\td\'8\n\tef\'8\n\t\\clef "treble"\n\te\'8\n\tf\'8\n\tfs\'8\n\tg\'8\n}'
 
 
@@ -116,7 +116,7 @@ def test_Component_get_effective_context_mark_07():
     }
     '''
 
-    assert wellformednesstools.is_well_formed_component(t)
+    assert select(t).is_well_formed()
     assert t.lilypond_format == '\\new Staff {\n\t\\clef "treble_8"\n\tc\'8\n\tcs\'8\n\td\'8\n\tef\'8\n\t\\clef "treble"\n\te\'8\n\tf\'8\n\tfs\'8\n\tg\'8\n}'
 
 
@@ -196,7 +196,7 @@ def test_Component_get_effective_context_mark_11():
     '''
 
     assert t.get_effective_context_mark(contexttools.KeySignatureMark) == contexttools.KeySignatureMark('c', 'major')
-    assert wellformednesstools.is_well_formed_component(t)
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\t\\key c \\major\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
@@ -227,7 +227,7 @@ def test_Component_get_effective_context_mark_13():
     }
     '''
 
-    assert wellformednesstools.is_well_formed_component(t)
+    assert select(t).is_well_formed()
     assert t[0].get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 38)
     assert t[1].get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 38)
     assert t[2].get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 42)

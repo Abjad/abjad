@@ -14,7 +14,7 @@ def test_Measure_empty_02():
     assert len(t) == 0
     assert t.preprolated_duration == 0
     assert t.duration == 0
-    assert not wellformednesstools.is_well_formed_component(t)
+    assert not select(t).is_well_formed()
 
 
 def test_Measure_empty_03():
@@ -25,4 +25,4 @@ def test_Measure_empty_03():
     assert len(t) == 0
     assert t.preprolated_duration == 0
     assert t.duration == 0
-    assert not wellformednesstools.is_well_formed_component(t)
+    assert not select(t).is_well_formed()

@@ -23,5 +23,5 @@ def test_tuplettools_change_augmented_tuplets_in_expr_to_diminished_01():
     }
     '''
 
-    assert wellformednesstools.is_well_formed_component(tuplet)
+    assert select(tuplet).is_well_formed()
     assert tuplet.lilypond_format == "\\times 2/3 {\n\tc'4\n\td'4\n\te'4\n}"

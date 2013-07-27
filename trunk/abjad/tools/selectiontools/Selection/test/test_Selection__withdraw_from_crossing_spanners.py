@@ -125,4 +125,4 @@ def test_Selection__withdraw_from_crossing_spanners_03():
     "Operation leaves score tree in weird state."
     "Both slur and trill are now discontiguous."
 
-    assert not wellformednesstools.is_well_formed_component(t)
+    assert not select(t).is_well_formed()

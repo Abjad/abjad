@@ -10,7 +10,7 @@ from abjad.tools import selectiontools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
 from abjad.tools import tuplettools
-from abjad.tools import wellformednesstools
+from abjad.tools.selectiontools import select
 from experimental.tools.musicexpressiontools.CounttimeComponentSelectExpressionSetMethodMixin \
     import CounttimeComponentSelectExpressionSetMethodMixin
 from experimental.tools.musicexpressiontools.SelectExpression \
@@ -172,7 +172,7 @@ class CounttimeComponentSelectExpression(
             start_offset=anchor_timespan.start_offset)
         for rhythm_payload_expression in rhythm_payload_expressions:
             expression.payload.extend(rhythm_payload_expression.payload)
-        assert wellformednesstools.is_well_formed_component(expression.payload)
+        assert select(expression.payload).is_well_formed()
         # TODO: eventually make this be able to work
         #callback_cache = self.score_specification.interpreter.callback_cache
         #expression = expression.get_elements_that_satisfy_time_relation(
