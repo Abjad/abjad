@@ -433,6 +433,7 @@ class Selection(AbjadObject):
             }
 
         ::
+
             >>> staff[:].get_badly_formed_components()
             [Note("d'4")]
 
