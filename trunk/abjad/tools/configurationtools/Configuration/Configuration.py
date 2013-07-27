@@ -1,5 +1,4 @@
 import abc
-import collections
 import configobj
 import os
 import time
@@ -7,7 +6,7 @@ import validate
 from abjad.tools import abctools
 
 
-class Configuration(collections.MutableMapping, abctools.AbjadObject):
+class Configuration(abctools.AbjadObject):
     '''Abjad configuration object.
     '''
 
