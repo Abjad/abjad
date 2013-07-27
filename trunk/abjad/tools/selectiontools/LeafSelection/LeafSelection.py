@@ -27,7 +27,7 @@ class LeafSelection(HorizontalSelection):
             >>> grace_container(staff[1])
             Note("d'8")
 
-        ..  lilypond
+        .. doctest::
 
             >>> f(staff)
             \new Staff {
@@ -50,7 +50,7 @@ class LeafSelection(HorizontalSelection):
             >>> leaves.detach_grace_containers()
             (GraceContainer(),)
 
-        ..  lilypond
+        .. doctest::
 
             >>> f(staff)
             \new Staff {
@@ -73,13 +73,13 @@ class LeafSelection(HorizontalSelection):
         return tuple(result)
 
     def replace_with(self, leaf_class):
-        '''Replace leaves in selection with `leaf_class` instances.
+        r'''Replace leaves in selection with `leaf_class` instances.
 
         ::
 
             >>> staff = Staff(2 * Measure((2, 8), "c'8 d'8"))
 
-        ..  lilypond
+        .. doctest::
 
             >>> f(staff)
             \new Staff {
@@ -105,7 +105,7 @@ class LeafSelection(HorizontalSelection):
             >>> selection = staff[0].select_leaves()
             >>> selection.replace_with(Rest)
 
-        ..  lilypond
+        .. doctest::
 
             >>> f(staff)
             \new Staff {
