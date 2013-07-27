@@ -703,6 +703,434 @@ class LilyPondParser(abctools.Parser):
 
     ### PUBLIC METHODS ###
 
+    @staticmethod
+    def list_known_contexts():
+        '''List all LilyPond contexts recognized by ``LilyPondParser``:
+
+        ::
+
+            >>> for x in lilypondparsertools.LilyPondParser.list_known_contexts():
+            ...     print x
+            ...
+            ChoirStaff
+            ChordNames
+            CueVoice
+            Devnull
+            DrumStaff
+            DrumVoice
+            Dynamics
+            FiguredBass
+            FretBoards
+            Global
+            GrandStaff
+            GregorianTranscriptionStaff
+            GregorianTranscriptionVoice
+            KievanStaff
+            KievanVoice
+            Lyrics
+            MensuralStaff
+            MensuralVoice
+            NoteNames
+            PetrucciStaff
+            PetrucciVoice
+            PianoStaff
+            RhythmicStaff
+            Score
+            Staff
+            StaffGroup
+            TabStaff
+            TabVoice
+            VaticanaStaff
+            VaticanaVoice
+            Voice
+
+        Return list.
+        '''
+        from abjad.ly import contexts
+        return sorted(contexts.keys())
+        
+    @staticmethod
+    def list_known_grobs():
+        '''List all LilyPond grobs recognized by ``LilyPondParser``:
+
+        ::
+
+            >>> for x in lilypondparsertools.LilyPondParser.list_known_grobs():
+            ...     print x
+            ...
+            Accidental
+            AccidentalCautionary
+            AccidentalPlacement
+            AccidentalSuggestion
+            Ambitus
+            AmbitusAccidental
+            AmbitusLine
+            AmbitusNoteHead
+            Arpeggio
+            BalloonTextItem
+            BarLine
+            BarNumber
+            BassFigure
+            BassFigureAlignment
+            BassFigureAlignmentPositioning
+            BassFigureBracket
+            BassFigureContinuation
+            BassFigureLine
+            Beam
+            BendAfter
+            BreakAlignGroup
+            BreakAlignment
+            BreathingSign
+            ChordName
+            Clef
+            ClusterSpanner
+            ClusterSpannerBeacon
+            CombineTextScript
+            CueClef
+            CueEndClef
+            Custos
+            DotColumn
+            Dots
+            DoublePercentRepeat
+            DoublePercentRepeatCounter
+            DoubleRepeatSlash
+            DynamicLineSpanner
+            DynamicText
+            DynamicTextSpanner
+            Episema
+            Fingering
+            FingeringColumn
+            Flag
+            FootnoteItem
+            FootnoteSpanner
+            FretBoard
+            Glissando
+            GraceSpacing
+            GridLine
+            GridPoint
+            Hairpin
+            HorizontalBracket
+            InstrumentName
+            InstrumentSwitch
+            KeyCancellation
+            KeySignature
+            LaissezVibrerTie
+            LaissezVibrerTieColumn
+            LedgerLineSpanner
+            LeftEdge
+            LigatureBracket
+            LyricExtender
+            LyricHyphen
+            LyricSpace
+            LyricText
+            MeasureCounter
+            MeasureGrouping
+            MelodyItem
+            MensuralLigature
+            MetronomeMark
+            MultiMeasureRest
+            MultiMeasureRestNumber
+            MultiMeasureRestText
+            NonMusicalPaperColumn
+            NoteCollision
+            NoteColumn
+            NoteHead
+            NoteName
+            NoteSpacing
+            OctavateEight
+            OttavaBracket
+            PaperColumn
+            ParenthesesItem
+            PercentRepeat
+            PercentRepeatCounter
+            PhrasingSlur
+            PianoPedalBracket
+            RehearsalMark
+            RepeatSlash
+            RepeatTie
+            RepeatTieColumn
+            Rest
+            RestCollision
+            Script
+            ScriptColumn
+            ScriptRow
+            Slur
+            SostenutoPedal
+            SostenutoPedalLineSpanner
+            SpacingSpanner
+            SpanBar
+            SpanBarStub
+            StaffGrouper
+            StaffSpacing
+            StaffSymbol
+            StanzaNumber
+            Stem
+            StemStub
+            StemTremolo
+            StringNumber
+            StrokeFinger
+            SustainPedal
+            SustainPedalLineSpanner
+            System
+            SystemStartBar
+            SystemStartBrace
+            SystemStartBracket
+            SystemStartSquare
+            TabNoteHead
+            TextScript
+            TextSpanner
+            Tie
+            TieColumn
+            TimeSignature
+            TrillPitchAccidental
+            TrillPitchGroup
+            TrillPitchHead
+            TrillSpanner
+            TupletBracket
+            TupletNumber
+            UnaCordaPedal
+            UnaCordaPedalLineSpanner
+            VaticanaLigature
+            VerticalAlignment
+            VerticalAxisGroup
+            VoiceFollower
+            VoltaBracket
+            VoltaBracketSpanner
+
+        Return tuple.
+        '''
+        from abjad.ly import grob_interfaces
+        return sorted(grob_interfaces.keys())
+
+    @staticmethod
+    def list_known_languages():
+        '''List all note-input languages recognized by ``LilyPondParser``:
+
+        ::
+
+            >>> for x in lilypondparsertools.LilyPondParser.list_known_languages():
+            ...     print x
+            ...
+            catalan
+            deutsch
+            english
+            espanol
+            español
+            français
+            italiano
+            nederlands
+            norsk
+            portugues
+            suomi
+            svenska
+            vlaams
+
+        Return list.
+        '''
+        from abjad.ly import language_pitch_names
+        return sorted(language_pitch_names.keys())
+
+    @staticmethod
+    def list_known_markup_functions():
+        '''List all markup functions recognized by ``LilyPondParser``:
+
+        ::
+
+            >>> for x in lilypondparsertools.LilyPondParser.list_known_markup_functions():
+            ...     print x
+            ...
+            abs-fontsize
+            arrow-head
+            auto-footnote
+            backslashed-digit
+            beam
+            bold
+            box
+            bracket
+            caps
+            center-align
+            center-column
+            char
+            circle
+            column
+            column-lines
+            combine
+            concat
+            customTabClef
+            dir-column
+            doubleflat
+            doublesharp
+            draw-circle
+            draw-hline
+            draw-line
+            dynamic
+            epsfile
+            eyeglasses
+            fill-line
+            fill-with-pattern
+            filled-box
+            finger
+            flat
+            fontCaps
+            fontsize
+            footnote
+            fraction
+            fret-diagram
+            fret-diagram-terse
+            fret-diagram-verbose
+            fromproperty
+            general-align
+            halign
+            harp-pedal
+            hbracket
+            hcenter-in
+            hspace
+            huge
+            italic
+            justified-lines
+            justify
+            justify-field
+            justify-string
+            large
+            larger
+            left-align
+            left-brace
+            left-column
+            line
+            lookup
+            lower
+            magnify
+            markalphabet
+            markletter
+            medium
+            musicglyph
+            natural
+            normal-size-sub
+            normal-size-super
+            normal-text
+            normalsize
+            note
+            note-by-number
+            null
+            number
+            on-the-fly
+            override
+            override-lines
+            pad
+            pad-around
+            pad-to-box
+            pad-x
+            page-link
+            page-ref
+            parenthesize
+            path
+            pattern
+            postscript
+            property-recursive
+            put-adjacent
+            raise
+            replace
+            rest
+            rest-by-number
+            right-align
+            right-brace
+            right-column
+            roman
+            rotate
+            rounded-box
+            sans
+            scale
+            score
+            semiflat
+            semisharp
+            sesquiflat
+            sesquisharp
+            sharp
+            simple
+            slashed-digit
+            small
+            smallCaps
+            smaller
+            stencil
+            strut
+            sub
+            super
+            table-of-contents
+            teeny
+            text
+            tied-lyric
+            tiny
+            translate
+            translate-scaled
+            transparent
+            triangle
+            typewriter
+            underline
+            upright
+            vcenter
+            verbatim-file
+            vspace
+            whiteout
+            with-color
+            with-dimensions
+            with-link
+            with-url
+            woodwind-diagram
+            wordwrap
+            wordwrap-field
+            wordwrap-internal
+            wordwrap-lines
+            wordwrap-string
+            wordwrap-string-internal
+
+        Return list.
+        '''
+        from abjad.ly import markup_functions
+        from abjad.ly import markup_list_functions
+        return sorted(markup_functions.keys() + markup_list_functions.keys())
+
+    @staticmethod
+    def list_known_music_functions():
+        '''List all music functions recognized by ``LilyPondParser``:
+
+        ::
+
+            >>> for x in lilypondparsertools.LilyPondParser.list_known_music_functions():
+            ...     print x
+            ...
+            acciaccatura
+            appoggiatura
+            bar
+            breathe
+            clef
+            grace
+            key
+            language
+            makeClusters
+            mark
+            relative
+            skip
+            time
+            times
+            transpose
+
+        Return list.
+        '''
+        from abjad.ly import current_module
+        from abjad.tools import lilypondparsertools
+        music_functions = []
+        for name in current_module:
+            if not isinstance(current_module[name], dict):
+                continue
+            if not 'type' in current_module[name]:
+                continue
+            if not current_module[name]['type'] == 'ly:music-function?':
+                continue
+            if not hasattr(lilypondparsertools.GuileProxy, name):
+                continue
+            music_functions.append(name)
+        return sorted(music_functions)
+
     @classmethod
     def register_markup_function(cls, name, signature):
         r'''Register a custom markup function globally with LilyPondParser:
