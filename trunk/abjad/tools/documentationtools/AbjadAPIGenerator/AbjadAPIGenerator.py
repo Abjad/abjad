@@ -1,5 +1,6 @@
 import importlib
 import os
+import shutil
 from abjad.tools import abctools
 
 
@@ -59,6 +60,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
                 os.makedirs(code_path)
             if not os.path.exists(docs_path):
                 os.makedirs(docs_path)
+            self._prune_obsolete_documents(code_path, docs_path)
             for name in os.listdir(code_path):
                 if name in ignored_directory_names:
                     continue
@@ -114,6 +116,38 @@ class AbjadAPIGenerator(abctools.AbjadObject):
             print ''
 
     ### PRIVATE METHODS ###
+
+    def _prune_obsolete_documents(self, code_path, docs_path):
+        for directory_path, directory_names, file_names in os.walk(docs_path):
+            path_suffix = os.path.relpath(directory_path, docs_path)
+            for file_name in file_names:
+                if not file_name.endswith('.rst') or file_name == 'index.rst':
+                    continue
+                code_file_path = os.path.join(
+                    code_path,
+                    path_suffix,
+                    file_name.replace('.rst', '.py'),
+                    )
+                if not os.path.exists(code_file_path):
+                    docs_file_path = os.path.join(
+                        directory_path,
+                        file_name,
+                        )
+                    os.remove(docs_file_path)
+                    print 'PRUNING', os.path.relpath(docs_file_path)
+            for directory_name in directory_names:
+                code_directory_path = os.path.join(
+                    code_path,
+                    path_suffix,
+                    directory_name,
+                    )
+                if not os.path.exists(code_directory_path):
+                    docs_directory_path = os.path.join(
+                        directory_path,
+                        directory_name,
+                        )
+                    shutil.rmtree(docs_directory_path)
+                    print 'PRUNING', os.path.relpath(docs_directory_path)
 
     def _write_document(self, documenter, code_path, docs_path, package_prefix):
         from abjad.tools import documentationtools
