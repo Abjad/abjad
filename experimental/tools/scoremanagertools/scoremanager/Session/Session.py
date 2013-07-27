@@ -168,7 +168,7 @@ class Session(abctools.AbjadObject):
         ::
 
             >>> session.current_materials_directory_path
-            '.../abjad/experimental/tools/scoremanagertools/materialpackages'
+            '.../experimental/tools/scoremanagertools/materialpackages'
 
         Session in score:
 
