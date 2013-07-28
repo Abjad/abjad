@@ -86,6 +86,56 @@ class TonalAnalysisSelection(Selection):
             inversion,
             )
 
+    @staticmethod
+    def _analyze_incomplete_chord(expr):
+        from abjad.tools import tonalanalysistools
+        pitches = pitchtools.list_named_chromatic_pitches_in_expr(expr)
+        npcset = pitchtools.NamedChromaticPitchClassSet(pitches)
+        dicv = npcset.inversion_equivalent_diatonic_interval_class_vector
+        # TODO: eliminate code duplication #
+        if dicv == TonalAnalysisSelection._make_dicv('c', 'ef'):
+            model_npcs = ['c', 'ef']
+            quality, extent = 'minor', 'triad'
+        elif dicv == TonalAnalysisSelection._make_dicv('c', 'e'):
+            model_npcs = ['c', 'e']
+            quality, extent = 'major', 'triad'
+        elif dicv == TonalAnalysisSelection._make_dicv('c', 'ef', 'bff'):
+            model_npcs = ['c', 'ef', 'bff']
+            quality, extent = 'diminished', 'seventh'
+        elif dicv == TonalAnalysisSelection._make_dicv('c', 'ef', 'bf'):
+            model_npcs = ['c', 'ef', 'bf']
+            quality, extent = 'minor', 'seventh'
+        elif dicv == TonalAnalysisSelection._make_dicv('c', 'e', 'bf'):
+            model_npcs = ['c', 'e', 'bf']
+            quality, extent = 'dominant', 'seventh'
+        elif dicv == TonalAnalysisSelection._make_dicv('c', 'e', 'b'):
+            model_npcs = ['c', 'e', 'b']
+            quality, extent = 'major', 'seventh'
+        else:
+            message = 'can not identify incomplete tertian chord.'
+            raise TonalHarmonyError(message)
+        bass = min(pitches).named_chromatic_pitch_class
+        try:
+            npcseg = npcset.order_by(
+                pitchtools.NamedChromaticPitchClassSegment(model_npcs))
+        except ValueError:
+            message = 'can not identify incomplete tertian chord.'
+            raise TonalHarmonyError(message)
+        inversion = npcseg.index(bass)
+        root = npcseg[0]
+        return tonalanalysistools.ChordClass(
+            root,
+            quality,
+            extent,
+            inversion,
+            )
+
+    @staticmethod
+    def _make_dicv(*named_chromatic_pitch_classes):
+        npcset = pitchtools.NamedChromaticPitchClassSet(
+            named_chromatic_pitch_classes)
+        return npcset.inversion_equivalent_diatonic_interval_class_vector
+
     ### PUBLIC METHODS ###
 
     def analyze_chords(self):
@@ -109,11 +159,38 @@ class TonalAnalysisSelection(Selection):
 
         Raise tonal harmony error when chord can not analyze.
 
-        Return list of elements equal to chord classes or none.
+        Return list with elements each equal to chord class or none.
         '''
         result = []
         for component in self:
             chord_class = self._analyze_chord(component)
+            result.append(chord_class)
+        return result
+
+    def analyze_incomplete_chords(self):
+        '''Analyze incomplete chords in selection:
+
+        ::
+
+            >>> chord = Chord("<g' b'>4")
+            >>> selection = tonalanalysistools.select(chord)
+            >>> selection.analyze_incomplete_chords()
+            [GMajorTriadInRootPosition]
+
+        ::
+
+            >>> chord = Chord("<fs g b>4")
+            >>> selection = tonalanalysistools.select(chord)
+            >>> selection.analyze_incomplete_chords()
+            [GMajorSeventhInSecondInversion]
+
+        Raise tonal harmony error when chord can not analyze.
+
+        Return list with elements each equal to chord class or none.
+        '''
+        result = []
+        for component in self:
+            chord_class = self._analyze_incomplete_chord(component)
             result.append(chord_class)
         return result
 

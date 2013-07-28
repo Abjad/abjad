@@ -18,7 +18,10 @@ def analyze_incomplete_tonal_function(expr, key_signature):
     if isinstance(expr, tonalanalysistools.ChordClass):
         chord_class = expr
     else:
-        chord_class = tonalanalysistools.analyze_incomplete_chord(expr)
+        selection = tonalanalysistools.select(expr)
+        chord_classes = selection.analyze_incomplete_chords()
+        assert len(chord_classes) == 1
+        chord_class = chord_classes[0]
     root = chord_class.root
     scale = tonalanalysistools.Scale(key_signature)
     scale_degree = scale.named_chromatic_pitch_class_to_scale_degree(root)
