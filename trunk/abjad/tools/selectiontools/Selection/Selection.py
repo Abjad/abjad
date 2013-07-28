@@ -1,10 +1,10 @@
 import copy
 import itertools
 import types
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.selectiontools.MinimalSelection import MinimalSelection
 
 
-class Selection(AbjadObject):
+class Selection(MinimalSelection):
     '''Selection of components taken from a single score:
 
     ::

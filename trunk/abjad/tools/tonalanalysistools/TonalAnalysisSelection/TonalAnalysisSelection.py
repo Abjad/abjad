@@ -2,10 +2,10 @@ from abjad.tools import iterationtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
-from abjad.tools.selectiontools.Selection import Selection
+from abjad.tools.selectiontools.MinimalSelection import MinimalSelection
 
 
-class TonalAnalysisSelection(Selection):
+class TonalAnalysisSelection(MinimalSelection):
     r'''Tonal analysis selection.
 
     ::
@@ -25,6 +25,8 @@ class TonalAnalysisSelection(Selection):
     ::
 
         >>> show(staff) # doctest: +SKIP
+
+    Example 1. Conjunt selection:
 
     ::
 
