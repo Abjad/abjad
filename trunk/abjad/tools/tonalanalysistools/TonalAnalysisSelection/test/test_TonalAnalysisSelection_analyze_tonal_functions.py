@@ -1,14 +1,13 @@
 from abjad import *
-from abjad.tools import tonalanalysistools
 
 
-def test_tonalitytools_analyze_tonal_function_01():
+def test_TonalAnalysisSelection_analyze_tonal_functions_01():
 
     key_signature = contexttools.KeySignatureMark('c', 'major')
-    chord = Chord(['c', 'e', 'g'], (1, 4))
-    tonal_function = tonalanalysistools.analyze_tonal_function(chord, key_signature)
-    correct_tonal_function = tonalanalysistools.TonalFunction(1, 'major', 5, 0)
-    assert tonal_function == correct_tonal_function
+    chord = Chord('<c e g>4')
+    tonal_function = tonalanalysistools.TonalFunction(1, 'major', 5, 0)
+    selection = tonalanalysistools.select(chord)
+    assert selection.analyze_tonal_functions(key_signature) == [tonal_function]
 
     chord = Chord(['e', 'g', "c'"], (1, 4))
     tonal_function = tonalanalysistools.analyze_tonal_function(chord, key_signature)
@@ -21,7 +20,7 @@ def test_tonalitytools_analyze_tonal_function_01():
     assert tonal_function == correct_tonal_function
 
 
-def test_tonalitytools_analyze_tonal_function_02():
+def test_TonalAnalysisSelection_analyze_tonal_functions_02():
 
     key_signature = contexttools.KeySignatureMark('c', 'major')
     chord = Chord(['c', 'ef', 'g'], (1, 4))
@@ -40,7 +39,7 @@ def test_tonalitytools_analyze_tonal_function_02():
     assert tonal_function == correct_tonal_function
 
 
-def test_tonalitytools_analyze_tonal_function_03():
+def test_TonalAnalysisSelection_analyze_tonal_functions_03():
 
     key_signature = contexttools.KeySignatureMark('c', 'major')
     chord = Chord(['c', 'e', 'g', 'bf'], (1, 4))
@@ -64,7 +63,7 @@ def test_tonalitytools_analyze_tonal_function_03():
     assert tonal_function == correct_tonal_function
 
 
-def test_tonalitytools_analyze_tonal_function_04():
+def test_TonalAnalysisSelection_analyze_tonal_functions_04():
 
     key_signature = contexttools.KeySignatureMark('c', 'major')
     chord = Chord(['c', 'cs', 'd'], (1, 4))

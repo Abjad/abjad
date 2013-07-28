@@ -131,6 +131,31 @@ class TonalAnalysisSelection(Selection):
             )
 
     @staticmethod
+    def _analyze_tonal_function(expr, key_signature):
+        from abjad.tools import tonalanalysistools
+        if isinstance(expr, tonalanalysistools.ChordClass):
+            chord_class = expr
+        else:
+            selection = tonalanalysistools.select(expr)
+            chord_classes = selection.analyze_chords()
+            assert len(chord_classes) == 1
+            chord_class = chord_classes[0]
+        if chord_class is None:
+            return None
+        root = chord_class.root
+        scale = tonalanalysistools.Scale(key_signature)
+        scale_degree = scale.named_chromatic_pitch_class_to_scale_degree(root)
+        quality = chord_class.quality_indicator.quality_string
+        extent = chord_class.extent
+        inversion = chord_class.inversion
+        return tonalanalysistools.TonalFunction(
+            scale_degree,
+            quality,
+            extent,
+            inversion,
+            )
+
+    @staticmethod
     def _make_dicv(*named_chromatic_pitch_classes):
         npcset = pitchtools.NamedChromaticPitchClassSet(
             named_chromatic_pitch_classes)
@@ -157,7 +182,7 @@ class TonalAnalysisSelection(Selection):
             >>> selection.analyze_chords()
             [None]
 
-        Raise tonal harmony error when chord can not analyze.
+        Raise tonal harmony error when chord in selection can not analyze.
 
         Return list with elements each equal to chord class or none.
         '''
@@ -184,7 +209,7 @@ class TonalAnalysisSelection(Selection):
             >>> selection.analyze_incomplete_chords()
             [GMajorSeventhInSecondInversion]
 
-        Raise tonal harmony error when chord can not analyze.
+        Raise tonal harmony error when chord in selection can not analyze.
 
         Return list with elements each equal to chord class or none.
         '''
@@ -192,6 +217,39 @@ class TonalAnalysisSelection(Selection):
         for component in self:
             chord_class = self._analyze_incomplete_chord(component)
             result.append(chord_class)
+        return result
+
+    def analyze_tonal_functions(self, key_signature):
+        '''Analyze tonal function of chords in selection 
+        according to `key_signature`:
+
+        ::
+
+            >>> chord = Chord('<ef g bf>4')
+            >>> key_signature = contexttools.KeySignatureMark('c', 'major')
+            >>> selection = tonalanalysistools.select(chord)
+            >>> selection.analyze_tonal_functions(key_signature)
+            [FlatIIIMajorTriadInRootPosition]
+
+        Return none when no tonal function is understood:
+
+        ::
+
+            >>> chord = Chord('<c cs d>4')
+            >>> key_signature = contexttools.KeySignatureMark('c', 'major')
+            >>> selection = tonalanalysistools.select(chord)
+            >>> selection.analyze_tonal_functions(key_signature)
+            [None]
+
+        Raise tonal harmony error when chord in selection can not analyze.
+
+        Return list with elements each equal to tonal function or none.
+        '''
+        result = []
+        for component in self:
+            tonal_function = self._analyze_tonal_function(
+                component, key_signature)
+            result.append(tonal_function)
         return result
 
     def are_scalar_notes(self):
