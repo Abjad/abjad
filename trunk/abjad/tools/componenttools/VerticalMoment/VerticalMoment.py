@@ -100,7 +100,7 @@ class VerticalMoment(Selection):
 
     def __repr__(self):
         return '%s(%s, <<%s>>)' % (
-            self._class_name,
+            self.__class__.__name__,
             self.offset,
             len(self.leaves),
             )

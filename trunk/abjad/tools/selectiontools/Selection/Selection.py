@@ -98,9 +98,6 @@ class Selection(MinimalSelection):
             music = tuple(expr) + self._music
         return Selection(music)
 
-    def __repr__(self):
-        return '{}{!r}'.format(self._class_name, self._music)
-
     ### PRIVATE PROPERTIES ###
 
     @property

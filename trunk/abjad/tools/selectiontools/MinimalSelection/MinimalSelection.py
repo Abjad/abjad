@@ -1,8 +1,9 @@
 import types
-from abjad.tools.abctools.AbjadObject import AbjadObject
+#from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class MinimalSelection(AbjadObject):
+#class MinimalSelection(AbjadObject):
+class MinimalSelection(object):
     '''Selection of components taken from a single score:
 
     ::
@@ -130,7 +131,7 @@ class MinimalSelection(AbjadObject):
 
         Return string.
         '''
-        return '{}{!r}'.format(self._class_name, self._music)
+        return '{}{!r}'.format(self.__class__.__name__, self._music)
 
     ### PRIVATE METHODS ###
 
