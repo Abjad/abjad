@@ -131,6 +131,10 @@ class Spanner(AbjadObject):
             return left + middle + right
 
     @property
+    def _preprolated_duration(self):
+        return sum([component._preprolated_duration for component in self])
+
+    @property
     def _summary(self):
         if 0 < len(self):
             return ', '.join([str(x) for x in self])
@@ -425,12 +429,6 @@ class Spanner(AbjadObject):
             self._override = \
                 lilypondproxytools.LilyPondGrobOverrideComponentPlugIn()
         return self._override
-
-    @property
-    def preprolated_duration(self):
-        '''Sum of preprolated duration of all components in spanner.
-        '''
-        return sum([component._preprolated_duration for component in self])
 
     @property
     def set(self):

@@ -7,6 +7,12 @@ class HorizontalSelection(Selection):
     Horizontal selections implement duration properties.
     '''
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _preprolated_duration(self):
+        return sum(component._preprolated_duration for component in self)
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -24,14 +30,6 @@ class HorizontalSelection(Selection):
         Return duration.
         '''
         return sum(component.duration_in_seconds for component in self)
-
-    @property
-    def preprolated_duration(self):
-        '''Preprolated duration of components in selection.
-
-        Return duration.
-        '''
-        return sum(component._preprolated_duration for component in self)
 
     @property
     def timespan(self):

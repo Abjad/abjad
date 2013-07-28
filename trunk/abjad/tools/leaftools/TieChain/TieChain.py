@@ -19,6 +19,12 @@ class TieChain(HorizontalSelection):
     Tie chains are immutable score selections.
     '''
 
+#    ### PRIVATE PROPERTIES ###
+#
+#    @property
+#    def _preprolated_duration(self):
+#        return sum([x._preprolated_duration for x in self])
+
     ### PRIVATE METHODS ###
 
     def _add_or_remove_notes_to_achieve_written_duration(
@@ -66,7 +72,7 @@ class TieChain(HorizontalSelection):
             assert isinstance(durations[0], tuplettools.Tuplet)
             fmtuplet = durations[0]
             new_chain_written = \
-                fmtuplet[0].select_tie_chain().preprolated_duration
+                fmtuplet[0].select_tie_chain()._preprolated_duration
             self._add_or_remove_notes_to_achieve_written_duration(
                 new_chain_written)
             multiplier = fmtuplet.multiplier
@@ -155,14 +161,6 @@ class TieChain(HorizontalSelection):
         for key, values_generator in pairs_generator:
             result.append(list(values_generator))
         return result
-
-    @property
-    def preprolated_duration(self):
-        '''Sum of preprolated durations of all components in tie chain.
-
-        Return duration.
-        '''
-        return sum([x._preprolated_duration for x in self])
 
     @property
     def tie_spanner(self):
@@ -319,7 +317,7 @@ class TieChain(HorizontalSelection):
         proportions = mathtools.Ratio(proportions)
 
         # find target duration of fixed-duration tuplet
-        target_duration = self.preprolated_duration
+        target_duration = self._preprolated_duration
 
         # find prolated duration of each note in tuplet
         prolated_duration = target_duration / sum(proportions)

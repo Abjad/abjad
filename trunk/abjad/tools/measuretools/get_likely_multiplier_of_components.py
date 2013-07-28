@@ -83,7 +83,7 @@ def get_likely_multiplier_of_components(components):
         iterationtools.iterate_topmost_tie_chains_and_components_in_expr(
         components):
         if isinstance(expr, leaftools.TieChain):
-            chain_duration = expr.preprolated_duration
+            chain_duration = expr._preprolated_duration
             chain_duration_numerators.append(chain_duration.numerator)
 
     if len(sequencetools.truncate_runs_in_sequence(

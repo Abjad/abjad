@@ -587,8 +587,6 @@ class MetricalHierarchy(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _get_recurser(self):
-
-
         return recurse
 
     ### PUBLIC METHODS ###

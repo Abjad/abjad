@@ -101,6 +101,12 @@ class Selection(MinimalSelection):
     def __repr__(self):
         return '{}{!r}'.format(self._class_name, self.music)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _preprolated_duration(self):
+        return sum(component._preprolated_duration for component in self)
+
     ### PRIVATE METHODS ###
 
     def _attach_tie_spanner_to_leaf_pair(self):
@@ -249,14 +255,6 @@ class Selection(MinimalSelection):
         '''Tuple of components in selection.
         '''
         return self._music
-
-    @property
-    def preprolated_duration(self):
-        '''Preprolated duration of components in selection.
-
-        Return duration.
-        '''
-        return sum(component._preprolated_duration for component in self)
 
     @property
     def timespan(self):

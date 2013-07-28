@@ -83,7 +83,7 @@ def replace_container_slice_with_rests(
     if elements_to_replace:
 
         # find preprolated duration of elements to replace
-        duration = elements_to_replace.preprolated_duration
+        duration = elements_to_replace._preprolated_duration
 
         # construct rests equal in preprolated duration to replace
         rests = resttools.make_rests(

@@ -770,7 +770,7 @@ def establish_metrical_hierarchy(
         offsets = get_offsets_at_depth(depth)
         #print 'DEPTH:', depth
 
-        tie_chain_duration = tie_chain.preprolated_duration
+        tie_chain_duration = tie_chain._preprolated_duration
         tie_chain_start_offset = tie_chain.timespan.start_offset
         tie_chain_stop_offset = tie_chain.timespan.stop_offset
         tie_chain_starts_in_offsets = tie_chain_start_offset in offsets
