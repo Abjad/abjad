@@ -4,7 +4,9 @@ from abjad.tools import mathtools
 def truncate_sequence_to_weight(sequence, weight):
     '''.. versionadded:: 1.1
 
-    Truncate `sequence` to `weight`::
+    Truncate `sequence` to `weight`:
+
+    ::
 
         >>> l = [-1, 2, -3, 4, -5, 6, -7, 8, -9, 10]
         >>> for x in range(10):
@@ -21,7 +23,9 @@ def truncate_sequence_to_weight(sequence, weight):
         8 [-1, 2, -3, 2]
         9 [-1, 2, -3, 3]
 
-    Return empty list when `weight` is ``0``::
+    Return empty list when `weight` is ``0``:
+
+    ::
 
         >>> sequencetools.truncate_sequence_to_weight([1, 2, 3, 4, 5], 0)
         []

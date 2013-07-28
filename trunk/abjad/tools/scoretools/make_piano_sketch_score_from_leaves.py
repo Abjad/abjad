@@ -1,7 +1,9 @@
 def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch=None):
     r'''.. versionadded:: 2.0
 
-    Make piano sketch score from `leaves`::
+    Make piano sketch score from `leaves`:
+
+    ::
 
         >>> notes = notetools.make_notes([-12, -10, -8, -7, -5, 0, 2, 4, 5, 7], [(1, 4)])
         >>> score, treble_staff, bass_staff = scoretools.make_piano_sketch_score_from_leaves(notes)

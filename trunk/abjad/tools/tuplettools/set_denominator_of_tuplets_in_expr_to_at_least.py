@@ -5,7 +5,9 @@ from abjad.tools import mathtools
 def set_denominator_of_tuplets_in_expr_to_at_least(expr, n):
     r'''.. versionadded:: 2.0
 
-    Set denominator of tuplets in `expr` to at least `n`::
+    Set denominator of tuplets in `expr` to at least `n`:
+
+    ::
 
         >>> tuplet = Tuplet(Fraction(3, 5), "c'4 d'8 e'8 f'4 g'2")
 

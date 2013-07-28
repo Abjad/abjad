@@ -4,7 +4,9 @@ from abjad.tools import durationtools
 def copy_written_duration_and_multiplier_from_leaf_to_leaf(source_leaf, target_leaf):
     r'''.. versionadded:: 2.0
 
-    Copy written duration and multiplier from `source_leaf` to `target_leaf`::
+    Copy written duration and multiplier from `source_leaf` to `target_leaf`:
+
+    ::
 
         >>> note = Note("c'4")
         >>> note.duration_multiplier = Multiplier(1, 2)

@@ -1,7 +1,9 @@
 def is_pair(expr):
     r'''.. versionadded:: 2.9
 
-    True when `expr` is a tuple of length ``2``::
+    True when `expr` is a tuple of length ``2``:
+
+    ::
 
         >>> sequencetools.is_pair((19, 20))
         True

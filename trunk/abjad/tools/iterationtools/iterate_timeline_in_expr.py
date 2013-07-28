@@ -46,7 +46,9 @@ def iterate_timeline_in_expr(expr, component_class=None, reverse=False):
         Note("e'4")
         Note("f'4")
 
-    Iterate timeline backward in `expr`::
+    Iterate timeline backward in `expr`:
+
+    ::
 
     ::
 

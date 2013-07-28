@@ -1,7 +1,9 @@
 def iterate_semantic_voices_in_expr(expr, reverse=False, start=0, stop=None):
     r'''.. versionadded:: 2.0
 
-    Iterate semantic voices forward in `expr`::
+    Iterate semantic voices forward in `expr`:
+
+    ::
 
         >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(
         ...     [(3, 8), (5, 16), (5, 16)])
@@ -43,7 +45,9 @@ def iterate_semantic_voices_in_expr(expr, reverse=False, start=0, stop=None):
         ...   voice
         Voice-"MusicVoice"{5}
 
-    Iterate semantic voices backward in `expr`::
+    Iterate semantic voices backward in `expr`:
+
+    ::
 
         >>> for voice in iterationtools.iterate_semantic_voices_in_expr(staff, reverse=True):
         ...   voice

@@ -1,7 +1,9 @@
 def list_durations_of_leaves_in_expr(expr):
     '''.. versionadded:: 2.0
 
-    List prolated durations of leaves in `expr`::
+    List prolated durations of leaves in `expr`:
+
+    ::
 
         >>> staff = Staff(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { c'8 d'8 e'8 }")
 

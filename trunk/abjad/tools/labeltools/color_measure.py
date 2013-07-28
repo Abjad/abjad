@@ -4,7 +4,9 @@ from abjad.tools import measuretools
 def color_measure(measure, color='red'):
     r'''.. versionadded:: 2.0
 
-    Color `measure` with `color`::
+    Color `measure` with `color`:
+
+    ::
 
         >>> measure = Measure((2, 8), "c'8 d'8")
 

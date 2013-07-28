@@ -1,7 +1,9 @@
 def is_singleton(expr):
     r'''.. versionadded:: 2.9
 
-    True when `expr` is a tuple of length ``1``::
+    True when `expr` is a tuple of length ``1``:
+
+    ::
 
         >>> sequencetools.is_singleton((19,))
         True

@@ -4,21 +4,27 @@ from abjad.tools import mathtools
 
 
 def duration_and_possible_denominators_to_time_signature(preprolated_duration, denominators=None, factor=None):
-    '''Make new time signature equal to `preprolated_duration`::
+    '''Make new time signature equal to `preprolated_duration`:
+
+    ::
 
         >>> timesignaturetools.duration_and_possible_denominators_to_time_signature(
         ...     Duration(3, 2))
         TimeSignatureMark((3, 2))
 
     Make new time signature equal to `preprolated_duration` with denominator equal to the
-    first possible element in `denominators`::
+    first possible element in `denominators`:
+
+    ::
 
         >>> timesignaturetools.duration_and_possible_denominators_to_time_signature(
         ...     Duration(3, 2), denominators=[5, 6, 7, 8])
         TimeSignatureMark((9, 6))
 
     Make new time signature equal to `preprolated_duration` with denominator divisible by
-    `factor`::
+    `factor`:
+
+    ::
 
         >>> timesignaturetools.duration_and_possible_denominators_to_time_signature(
         ...     Duration(3, 2), factor=5)

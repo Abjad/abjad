@@ -4,7 +4,9 @@ from abjad.tools import sequencetools
 def list_inversion_equivalent_chromatic_interval_classes_pairwise(pitch_carriers, wrap=False):
     r'''.. versionadded:: 2.0
 
-    List inversion-equivalent chromatic interval-classes pairwise between `pitch_carriers`::
+    List inversion-equivalent chromatic interval-classes pairwise between `pitch_carriers`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
 

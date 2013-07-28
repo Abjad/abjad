@@ -1,7 +1,9 @@
 def is_n_tuple(expr, n):
     r'''.. versionadded 2.9
 
-    True when `expr` is a tuple of length `n`::
+    True when `expr` is a tuple of length `n`:
+
+    ::
 
         >>> sequencetools.is_n_tuple((19, 20, 21), 3)
         True

@@ -1,7 +1,9 @@
 def append_spacer_skips_to_underfull_measures_in_expr(expr):
     r'''.. versionadded:: 1.1
 
-    Append spacer skips to underfull measures in `expr`::
+    Append spacer skips to underfull measures in `expr`:
+
+    ::
 
         >>> staff = Staff(Measure((3, 8), "c'8 d'8 e'8") * 3)
         >>> staff[1].select().detach_marks(contexttools.TimeSignatureMark)

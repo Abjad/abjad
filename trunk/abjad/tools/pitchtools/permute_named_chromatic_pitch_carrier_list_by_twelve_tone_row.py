@@ -1,7 +1,9 @@
 def permute_named_chromatic_pitch_carrier_list_by_twelve_tone_row(pitches, row):
     '''.. versionadded:: 2.0
 
-    Permute named chromatic pitch carrier list by twelve-tone `row`::
+    Permute named chromatic pitch carrier list by twelve-tone `row`:
+
+    ::
 
         >>> notes = notetools.make_notes([17, -10, -2, 11], [Duration(1, 4)])
         >>> row = pitchtools.TwelveToneRow([10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11])

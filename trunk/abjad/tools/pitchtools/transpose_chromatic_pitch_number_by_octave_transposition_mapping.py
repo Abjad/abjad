@@ -49,7 +49,9 @@ def transpose_chromatic_pitch_number_by_octave_transposition_mapping(chromatic_p
     defined by `mapping` from ``-39`` to ``-13`` and then noting
     that `mapping` sends pitches with that subrange to the octave
     rooted at pitch ``0``. The octave transposition of ``-30`` that
-    falls within the octave rooted at ``0`` is ``6``::
+    falls within the octave rooted at ``0`` is ``6``:
+
+    ::
 
         >>> pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(
         ...     -18, mapping)
@@ -61,7 +63,9 @@ def transpose_chromatic_pitch_number_by_octave_transposition_mapping(chromatic_p
     the octave rooted at ``0``.
 
     In this way we can map all f-sharps from ``-39`` to ``48`` according
-    to `mapping`::
+    to `mapping`:
+
+    ::
 
         >>> pitch_numbers = [-30, -18, -6, 6, 18, 30, 42]
         >>> for n in pitch_numbers:

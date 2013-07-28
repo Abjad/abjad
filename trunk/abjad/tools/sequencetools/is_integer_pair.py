@@ -1,7 +1,9 @@
 def is_integer_pair(expr):
     r'''.. versionadded:: 2.9
 
-    True when `expr` is an integer tuple of length ``2``::
+    True when `expr` is an integer tuple of length ``2``:
+
+    ::
 
         >>> sequencetools.is_integer_pair((19, 20))
         True

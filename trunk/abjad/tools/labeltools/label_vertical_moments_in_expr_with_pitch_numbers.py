@@ -7,7 +7,9 @@ def label_vertical_moments_in_expr_with_pitch_numbers(
     expr, markup_direction=Down):
     r'''.. versionadded:: 2.0
 
-    Label pitch numbers of every vertical moment in `expr`::
+    Label pitch numbers of every vertical moment in `expr`:
+
+    ::
 
         >>> score = Score([])
         >>> staff = Staff("c'8 d'8 e'8 f'8")

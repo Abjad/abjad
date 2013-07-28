@@ -2,7 +2,9 @@
 def iterate_vertical_moments_in_expr(expr, reverse=False):
     r'''.. versionadded:: 2.10
 
-    Iterate vertical moments forward in `expr`::
+    Iterate vertical moments forward in `expr`:
+
+    ::
 
         >>> score = Score([])
         >>> staff = Staff(r"\times 4/3 { d''8 c''8 b'8 }")
@@ -65,7 +67,9 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
         (Note("g'4"), Note("d'8"))
         (Note("g'4"), Note("c'8"))
 
-    Iterate vertical moments backward in `expr`::
+    Iterate vertical moments backward in `expr`:
+
+    ::
 
     ::
 

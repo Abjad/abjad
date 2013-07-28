@@ -4,7 +4,9 @@ from abjad.tools import mathtools
 def spell_chromatic_interval_number(diatonic_interval_number, chromatic_interval_number):
     '''.. versionadded:: 2.0
 
-    Spell `chromatic_interval_number` according to `diatonic_interval_number`::
+    Spell `chromatic_interval_number` according to `diatonic_interval_number`:
+
+    ::
 
         >>> pitchtools.spell_chromatic_interval_number(2, 1)
         MelodicDiatonicInterval('+m2')

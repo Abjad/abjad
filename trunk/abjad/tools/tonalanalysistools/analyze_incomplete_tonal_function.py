@@ -2,7 +2,9 @@
 def analyze_incomplete_tonal_function(expr, key_signature):
     '''.. versionadded:: 2.0
 
-    Analyze tonal function of `expr` according to `key_signature`::
+    Analyze tonal function of `expr` according to `key_signature`:
+
+    ::
 
         >>> chord = Chord("<c' e'>4")
         >>> key_signature = contexttools.KeySignatureMark('g', 'major')

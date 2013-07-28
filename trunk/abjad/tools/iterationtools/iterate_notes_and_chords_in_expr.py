@@ -5,7 +5,9 @@ from abjad.tools import notetools
 def iterate_notes_and_chords_in_expr(expr, reverse=False, start=0, stop=None):
     r'''.. versionadded:: 2.10
 
-    Iterate notes and chords forward in `expr`::
+    Iterate notes and chords forward in `expr`:
+
+    ::
 
         >>> staff = Staff("<e' g' c''>8 a'8 r8 <d' f' b'>8 r2")
 
@@ -28,7 +30,9 @@ def iterate_notes_and_chords_in_expr(expr, reverse=False, start=0, stop=None):
         Note("a'8")
         Chord("<d' f' b'>8")
 
-    Iterate notes and chords backward in `expr`::
+    Iterate notes and chords backward in `expr`:
+
+    ::
 
         >>> for leaf in iterationtools.iterate_notes_and_chords_in_expr(staff, reverse=True):
         ...   leaf

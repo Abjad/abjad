@@ -1,7 +1,9 @@
 def truncate_sequence_to_sum(sequence, target_sum):
     '''.. versionadded:: 1.1
 
-    Truncate `sequence` to `target_sum`::
+    Truncate `sequence` to `target_sum`:
+
+    ::
 
         >>> sequence = [-1, 2, -3, 4, -5, 6, -7, 8, -9, 10]
 
@@ -21,7 +23,9 @@ def truncate_sequence_to_sum(sequence, target_sum):
         8 [-1, 2, -3, 4, -5, 6, -7, 8, -9, 10]
         9 [-1, 2, -3, 4, -5, 6, -7, 8, -9, 10]
 
-    Return empty list when `target_sum` is ``0``::
+    Return empty list when `target_sum` is ``0``:
+
+    ::
 
         >>> sequencetools.truncate_sequence_to_sum([1, 2, 3, 4, 5], 0)
         []

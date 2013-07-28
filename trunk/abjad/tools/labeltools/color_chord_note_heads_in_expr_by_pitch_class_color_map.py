@@ -6,7 +6,9 @@ from abjad.tools import notetools
 def color_chord_note_heads_in_expr_by_pitch_class_color_map(chord, color_map):
     r'''.. versionadded:: 2.0
 
-    Color `chord` note heads by pitch-class `color_map`::
+    Color `chord` note heads by pitch-class `color_map`:
+
+    ::
 
         >>> chord = Chord([12, 14, 18, 21, 23], (1, 4))
 

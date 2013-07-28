@@ -1,7 +1,9 @@
 def remove_outer_rests_from_sequence(sequence):
     r'''.. versionadded:: 2.0
 
-    Remove outer rests from `sequence`::
+    Remove outer rests from `sequence`:
+
+    ::
 
         >>> staff = Staff("r8 r8 c'8 d'8 r4 r4")
 

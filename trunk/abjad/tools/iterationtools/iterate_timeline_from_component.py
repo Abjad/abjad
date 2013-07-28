@@ -5,7 +5,9 @@ from abjad.tools import leaftools
 def iterate_timeline_from_component(expr, component_class=None, reverse=False):
     r'''.. versionadded:: 2.10
 
-    Iterate timeline forward from `component`::
+    Iterate timeline forward from `component`:
+
+    ::
 
         >>> score = Score([])
         >>> score.append(Staff(notetools.make_repeated_notes(4, Duration(1, 4))))
@@ -41,7 +43,9 @@ def iterate_timeline_from_component(expr, component_class=None, reverse=False):
         Note("e'4")
         Note("f'4")
 
-    Iterate timeline backward from `component`::
+    Iterate timeline backward from `component`:
+
+    ::
 
     ::
 

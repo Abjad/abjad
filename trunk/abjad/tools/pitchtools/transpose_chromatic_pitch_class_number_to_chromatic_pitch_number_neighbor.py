@@ -3,7 +3,9 @@ def transpose_chromatic_pitch_class_number_to_chromatic_pitch_number_neighbor(
     '''.. versionadded:: 1.1
 
     Transpose `chromatic_pitch_class_number` by octaves to nearest neighbor
-    of `chromatic_pitch_number`::
+    of `chromatic_pitch_number`:
+
+    ::
 
         >>> pitchtools.transpose_chromatic_pitch_class_number_to_chromatic_pitch_number_neighbor(
         ...     12, 4)

@@ -3,7 +3,9 @@
 def overwrite_sequence_elements_at_indices(sequence, pairs):
     '''.. versionadded:: 1.1
 
-    Overwrite `sequence` elements at indices according to `pairs`::
+    Overwrite `sequence` elements at indices according to `pairs`:
+
+    ::
 
         >>> sequencetools.overwrite_sequence_elements_at_indices(range(10), [(0, 3), (5, 3)])
         [0, 0, 0, 3, 4, 5, 5, 5, 8, 9]

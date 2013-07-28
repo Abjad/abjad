@@ -2,7 +2,9 @@ def calculate_harmonic_chromatic_interval(pitch_carrier_1, pitch_carrier_2):
     '''.. versionadded:: 2.0
 
     Calculate harmonic chromatic interval from `pitch_carrier_1` to
-    `pitch_carrier_2`::
+    `pitch_carrier_2`:
+
+    ::
 
         >>> pitchtools.calculate_harmonic_chromatic_interval(
         ... pitchtools.NamedChromaticPitch(-2), pitchtools.NamedChromaticPitch(12))

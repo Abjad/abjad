@@ -4,7 +4,9 @@ from abjad.tools import sequencetools
 def list_ordered_named_chromatic_pitch_pairs_from_expr_1_to_expr_2(expr_1, expr_2):
     '''.. versionadded:: 2.0
 
-    List ordered named chromatic pitch pairs from `expr_1` to `expr_2`::
+    List ordered named chromatic pitch pairs from `expr_1` to `expr_2`:
+
+    ::
 
         >>> chord_1 = Chord([0, 1, 2], (1, 4))
         >>> chord_2 = Chord([3, 4], (1, 4))

@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def iterate_thread_from_component(component, component_class=None, reverse=False):
     r'''.. versionadded:: 2.10
 
-    Itearte thread forward from `component` and yield instances of `component_class`::
+    Itearte thread forward from `component` and yield instances of `component_class`:
+
+    ::
 
         >>> container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
         >>> container.is_parallel = True

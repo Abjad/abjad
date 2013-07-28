@@ -4,7 +4,9 @@ from abjad.tools import measuretools
 def iterate_measures_in_expr(expr, reverse=False, start=0, stop=None):
     r'''.. versionadded:: 2.10
 
-    Iterate measures forward in `expr`::
+    Iterate measures forward in `expr`:
+
+    ::
 
         >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
 
@@ -55,7 +57,9 @@ def iterate_measures_in_expr(expr, reverse=False, start=0, stop=None):
         Measure(2/8, [c'8, d'8])
         Measure(2/8, [e'8, f'8])
 
-    Iterate measures backward in `expr`::
+    Iterate measures backward in `expr`:
+
+    ::
 
         >>> for measure in iterationtools.iterate_measures_in_expr(
         ...     staff, reverse=True):

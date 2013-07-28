@@ -1,7 +1,9 @@
 def increase_sequence_elements_at_indices_by_addenda(sequence, addenda, indices):
     '''.. versionadded:: 1.1
 
-    Increase `sequence` by `addenda` at `indices`::
+    Increase `sequence` by `addenda` at `indices`:
+
+    ::
 
         >>> sequence = [1, 1, 2, 3, 5, 5, 1, 2, 5, 5, 6]
 

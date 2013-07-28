@@ -1,7 +1,9 @@
 def remove_terminal_rests_from_sequence(sequence):
     r'''.. versionadded:: 2.0
 
-    Remove terminal rests from `sequence`::
+    Remove terminal rests from `sequence`:
+
+    ::
 
         >>> staff = Staff("r8 r8 c'8 d'8 r4 r4")
 

@@ -4,7 +4,9 @@ from abjad.tools import sequencetools
 def iterate_leaf_pairs_in_expr(expr):
     r'''.. versionadded:: 2.0
 
-    Iterate leaf pairs forward in `expr`::
+    Iterate leaf pairs forward in `expr`:
+
+    ::
 
         >>> score = Score([])
         >>> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'4")]

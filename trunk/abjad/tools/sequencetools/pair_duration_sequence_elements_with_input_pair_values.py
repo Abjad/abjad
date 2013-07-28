@@ -4,7 +4,9 @@ from abjad.tools import mathtools
 def pair_duration_sequence_elements_with_input_pair_values(duration_sequence, input_pairs):
     r'''.. versionadded:: 2.10
 
-    Pair `duration_sequence` elements with the values of `input_pairs`::
+    Pair `duration_sequence` elements with the values of `input_pairs`:
+
+    ::
 
         >>> duration_sequence = [10, 10, 10, 10]
         >>> input_pairs = [('red', 1), ('orange', 18), ('yellow', 200)]

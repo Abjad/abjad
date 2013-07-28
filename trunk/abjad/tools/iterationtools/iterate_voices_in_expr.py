@@ -36,7 +36,9 @@ def iterate_voices_in_expr(expr, reverse=False, start=0, stop=None):
         Voice{4}
         Voice{2}
 
-    Iterate voices backward in `expr`::
+    Iterate voices backward in `expr`:
+
+    ::
 
     ::
 

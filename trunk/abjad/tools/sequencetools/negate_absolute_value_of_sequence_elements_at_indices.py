@@ -1,7 +1,9 @@
 def negate_absolute_value_of_sequence_elements_at_indices(sequence, indices):
     '''.. versionadded:: 1.1
 
-    Negate the absolute value of `sequence` elements at `indices`::
+    Negate the absolute value of `sequence` elements at `indices`:
+
+    ::
 
         >>> sequence = [1, 2, 3, 4, 5, -6, -7, -8, -9, -10]
 

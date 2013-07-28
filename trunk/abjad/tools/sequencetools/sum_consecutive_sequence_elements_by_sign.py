@@ -5,7 +5,9 @@ import itertools
 def sum_consecutive_sequence_elements_by_sign(sequence, sign=[-1, 0, 1]):
     '''.. versionadded:: 1.1
 
-    Sum consecutive `sequence` elements by `sign`::
+    Sum consecutive `sequence` elements by `sign`:
+
+    ::
 
         >>> sequence = [0, 0, -1, -1, 2, 3, -5, 1, 2, 5, -5, -6]
 

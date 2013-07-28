@@ -5,7 +5,9 @@ from abjad.tools import durationtools
 def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
     r'''.. versionadded:: 1.1
 
-    Change power-of-two `measure` to non-power-of-two measure with new denominator `factor`::
+    Change power-of-two `measure` to non-power-of-two measure with new denominator `factor`:
+
+    ::
 
         >>> measure = Measure((2, 8), "c'8 d'8")
         >>> spannertools.BeamSpanner(measure.select_leaves())

@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def make_basic_lilypond_file(music=None):
     r'''.. versionadded:: 2.0
 
-    Make basic LilyPond file with `music`::
+    Make basic LilyPond file with `music`:
+
+    ::
 
         >>> score = Score([Staff("c'8 d'8 e'8 f'8")])
         >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)

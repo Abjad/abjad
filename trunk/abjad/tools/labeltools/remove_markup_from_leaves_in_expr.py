@@ -5,7 +5,9 @@ from abjad.tools import markuptools
 def remove_markup_from_leaves_in_expr(expr):
     r'''.. versionadded:: 1.1
 
-    Remove markup from leaves in `expr`::
+    Remove markup from leaves in `expr`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> labeltools.label_leaves_in_expr_with_pitch_class_numbers(staff)

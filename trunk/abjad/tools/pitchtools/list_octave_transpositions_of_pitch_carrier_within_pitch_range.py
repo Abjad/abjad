@@ -6,7 +6,9 @@ import copy
 def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitch_carrier, pitch_range):
     r""".. versionadded:: 1.1
 
-    List octave transpositions of `pitch_carrier` in `pitch_range`::
+    List octave transpositions of `pitch_carrier` in `pitch_range`:
+
+    ::
 
         >>> chord = Chord("<c' d' e'>4")
         >>> pitch_range = pitchtools.PitchRange(0, 48)

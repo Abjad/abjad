@@ -2,7 +2,9 @@
 def suggest_clef_for_named_chromatic_pitches(pitches):
     '''.. versionadded:: 1.1
 
-    Suggest clef for named chromatic `pitches`::
+    Suggest clef for named chromatic `pitches`:
+
+    ::
 
         >>> staff = Staff(notetools.make_notes(range(-12, -6), [(1, 4)]))
         >>> pitchtools.suggest_clef_for_named_chromatic_pitches(staff)

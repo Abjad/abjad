@@ -1,7 +1,9 @@
 def scale_preprolated_leaf_duration(leaf, multiplier):
     r'''.. versionadded:: 1.1
 
-    Scale preprolated `leaf` leaf duration by dotted `multiplier`::
+    Scale preprolated `leaf` leaf duration by dotted `multiplier`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> spannertools.BeamSpanner(staff.select_leaves())
@@ -16,7 +18,9 @@ def scale_preprolated_leaf_duration(leaf, multiplier):
             f'8 ]
         }
 
-    Scale preprolated `leaf` duration by tied `multiplier`::
+    Scale preprolated `leaf` duration by tied `multiplier`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> spannertools.BeamSpanner(staff.select_leaves())

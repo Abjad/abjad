@@ -5,7 +5,9 @@ def iterate_skips_in_expr(expr, reverse=False, start=0, stop=None):
     r'''.. versionadded:: 2.10
 
 
-    Iterate skips forward in `expr`::
+    Iterate skips forward in `expr`:
+
+    ::
 
         >>> staff = Staff("<e' g' c''>8 a'8 s8 <d' f' b'>8 s2")
 

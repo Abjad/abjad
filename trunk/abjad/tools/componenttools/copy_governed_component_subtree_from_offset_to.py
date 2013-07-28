@@ -8,7 +8,9 @@ def copy_governed_component_subtree_from_offset_to(component, start=0, stop=None
     to `stop` prolated duration.
 
     Governed subtree refers to `component` together with the
-    children of `component`::
+    children of `component`:
+
+    ::
 
         >>> voice = Voice(r"c'8 d'8 \times 2/3 { e'8 f'8 g'8 }")
 

@@ -4,7 +4,9 @@ from abjad.tools import scoretools
 def iterate_scores_in_expr(expr, reverse=False, start=0, stop=None):
     '''.. versionadded:: 2.10
 
-    Iterate scores forward in `expr`::
+    Iterate scores forward in `expr`:
+
+    ::
 
         >>> score_1 = Score([Staff("c'8 d'8 e'8 f'8")])
         >>> score_2 = Score([Staff("c'1"), Staff("g'1")])
@@ -17,7 +19,9 @@ def iterate_scores_in_expr(expr, reverse=False, start=0, stop=None):
         Score<<1>>
         Score<<2>>
 
-    Iterate scores backward in `expr`::
+    Iterate scores backward in `expr`:
+
+    ::
 
     ::
 

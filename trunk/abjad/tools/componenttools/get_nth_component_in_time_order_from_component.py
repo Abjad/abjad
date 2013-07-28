@@ -28,7 +28,9 @@ def get_nth_component_in_time_order_from_component(component, n):
         >>> staff.select_leaves()[1]
         Note("d'8")
 
-    Return component right of `component` for positive `n`::
+    Return component right of `component` for positive `n`:
+
+    ::
 
         >>> componenttools.get_nth_component_in_time_order_from_component(
         ...     staff.select_leaves()[1], 1)
@@ -46,13 +48,17 @@ def get_nth_component_in_time_order_from_component(component, n):
         ...     staff.select_leaves()[1], 3)
         Note("g'2")
 
-    Return component left of `component` for negative `n`::
+    Return component left of `component` for negative `n`:
+
+    ::
 
         >>> componenttools.get_nth_component_in_time_order_from_component(
         ...     staff.select_leaves()[1], -1)
         Note("c'4")
 
-    Return `component` when `n` is ``0``::
+    Return `component` when `n` is ``0``:
+
+    ::
 
         >>> componenttools.get_nth_component_in_time_order_from_component(
         ...     staff.select_leaves()[1], 0)

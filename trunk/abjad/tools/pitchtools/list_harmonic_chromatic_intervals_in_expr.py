@@ -4,7 +4,9 @@ from abjad.tools import sequencetools
 def list_harmonic_chromatic_intervals_in_expr(expr):
     '''.. versionadded:: 2.0
 
-    List harmonic chromatic intervals in `expr`::
+    List harmonic chromatic intervals in `expr`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> for interval in sorted(pitchtools.list_harmonic_chromatic_intervals_in_expr(staff)):

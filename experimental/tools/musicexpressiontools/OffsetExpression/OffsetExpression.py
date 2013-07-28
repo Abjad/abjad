@@ -23,7 +23,9 @@ class OffsetExpression(
         >>> red_segment = score_specification.append_segment(name='red')
 
     Example. Symbolic offset indicating the right edge of voice ``1`` 
-    note ``10`` that starts during segment ``'red'``::
+    note ``10`` that starts during segment ``'red'``:
+
+    ::
 
         >>> notes = red_segment.select_notes_and_chords('Voice 1')
         >>> offset = notes.stop_offset

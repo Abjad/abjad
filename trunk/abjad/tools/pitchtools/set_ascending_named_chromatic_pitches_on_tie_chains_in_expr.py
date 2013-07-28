@@ -1,7 +1,9 @@
 def set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(expr):
     r'''.. versionadded:: 1.1
 
-    Set ascending named chromatic pitches on nontied pitched components in `expr`::
+    Set ascending named chromatic pitches on nontied pitched components in `expr`:
+
+    ::
 
         >>> voice = Voice(notetools.make_notes(0, [(5, 32)] * 4))
         >>> pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(voice)

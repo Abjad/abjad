@@ -1,7 +1,9 @@
 def set_written_pitch_of_pitched_components_in_expr(expr, written_pitch=0):
     r'''.. versionadded:: 2.9
 
-    Set written pitch of pitched components in `expr` to `written_pitch`::
+    Set written pitch of pitched components in `expr` to `written_pitch`:
+
+    ::
 
         >>> staff = Staff("c' d' e' f'")
 

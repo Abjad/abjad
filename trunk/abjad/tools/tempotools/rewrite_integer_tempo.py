@@ -9,7 +9,9 @@ def rewrite_integer_tempo(integer_tempo, maximum_numerator=None, maximum_denomin
 
     Rewrite `integer_tempo`.
 
-    Allow no tempo less than half `integer_tempo` or greater than double `integer_tempo`::
+    Allow no tempo less than half `integer_tempo` or greater than double `integer_tempo`:
+
+    ::
 
         >>> pairs = tempotools.rewrite_integer_tempo(
         ...     58, maximum_numerator=8, maximum_denominator=8)

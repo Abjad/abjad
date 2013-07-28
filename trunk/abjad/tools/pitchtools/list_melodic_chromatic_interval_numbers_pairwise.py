@@ -4,7 +4,9 @@ from abjad.tools import sequencetools
 def list_melodic_chromatic_interval_numbers_pairwise(pitch_carriers, wrap=False):
     r'''.. versionadded:: 1.1
 
-    List melodic chromatic interval numbers pairwise between `pitch_carriers`::
+    List melodic chromatic interval numbers pairwise between `pitch_carriers`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
 

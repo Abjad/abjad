@@ -1,7 +1,9 @@
 def list_time_signatures_of_measures_in_expr(components):
     r'''.. versionadded:: 2.0
 
-    List time signatures of measures in `expr`::
+    List time signatures of measures in `expr`:
+
+    ::
 
         >>> staff = Staff('abj: | 2/8 c8 d8 || 3/8 c8 d8 e8 || 4/8 c8 d8 e8 f8 |')
 

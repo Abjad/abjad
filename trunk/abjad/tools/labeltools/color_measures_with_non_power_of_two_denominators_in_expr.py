@@ -5,7 +5,9 @@ from abjad.tools import iterationtools
 def color_measures_with_non_power_of_two_denominators_in_expr(expr, color='red'):
     r'''.. versionadded:: 2.0
 
-    Color measures with non-power-of-two denominators in `expr` with `color`::
+    Color measures with non-power-of-two denominators in `expr` with `color`:
+
+    ::
 
         >>> staff = Staff(Measure((2, 8), "c'8 d'8") * 2)
         >>> measuretools.scale_measure_denominator_and_adjust_measure_contents(staff[1], 3)

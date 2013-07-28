@@ -1,7 +1,9 @@
 def move_component_subtree_to_right_in_immediate_parent_of_component(component):
     r'''.. versionadded:: 2.0
 
-    Move `component` subtree to right in immediate parent of `component`::
+    Move `component` subtree to right in immediate parent of `component`:
+
+    ::
 
         >>> voice = Voice("c'8 [ d'8 ] e'8 [ f'8 ]")
 

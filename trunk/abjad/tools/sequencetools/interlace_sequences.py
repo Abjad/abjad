@@ -6,7 +6,9 @@ from abjad.tools.sequencetools.zip_sequences_without_truncation \
 def interlace_sequences(*sequences):
     '''.. versionadded:: 1.1
 
-    Interlace `sequences`::
+    Interlace `sequences`:
+
+    ::
 
         >>> k = range(100, 103)
         >>> l = range(200, 201)

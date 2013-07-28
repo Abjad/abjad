@@ -1,7 +1,9 @@
 def is_null_tuple(expr):
     r'''.. versionadded:: 2.9
 
-    True when `expr` is a tuple of length ``0``::
+    True when `expr` is a tuple of length ``0``:
+
+    ::
 
         >>> sequencetools.is_null_tuple(())
         True

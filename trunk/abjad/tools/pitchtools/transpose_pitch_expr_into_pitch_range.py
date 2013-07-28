@@ -1,7 +1,9 @@
 def transpose_pitch_expr_into_pitch_range(pitch_expr, pitch_range):
     '''.. versionadded:: 2.0
 
-    Transpose `pitch_expr` into `pitch_range`::
+    Transpose `pitch_expr` into `pitch_range`:
+
+    ::
 
         >>> pitchtools.transpose_pitch_expr_into_pitch_range(
         ...     [-2, -1, 13, 14], pitchtools.PitchRange(0, 12))

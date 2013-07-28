@@ -6,7 +6,9 @@ from abjad.tools import mathtools
 def multiply_contents_of_measures_in_expr(expr, n):
     r'''.. versionadded:: 1.1
 
-    Multiply contents ``n - 1`` times and adjust time signature of every measure in `expr`::
+    Multiply contents ``n - 1`` times and adjust time signature of every measure in `expr`:
+
+    ::
 
         >>> measure = Measure((3, 8), "c'8 d'8 e'8")
         >>> spannertools.BeamSpanner(measure.select_leaves())

@@ -4,7 +4,9 @@ from abjad.tools import mathtools
 def get_sequence_element_at_cyclic_index(sequence, index):
     r'''.. versionadded:: 2.0
 
-    Get `sequence` element at nonnegative cyclic `index`::
+    Get `sequence` element at nonnegative cyclic `index`:
+
+    ::
 
         >>> for index in range(10):
         ...     print '%s\t%s' % (index, sequencetools.get_sequence_element_at_cyclic_index(
@@ -21,7 +23,9 @@ def get_sequence_element_at_cyclic_index(sequence, index):
         8  r
         9  i
 
-    Get `sequence` element at negative cyclic `index`::
+    Get `sequence` element at negative cyclic `index`:
+
+    ::
 
         >>> for index in range(1, 11):
         ...     print '%s\t%s' % (-index, sequencetools.get_sequence_element_at_cyclic_index(

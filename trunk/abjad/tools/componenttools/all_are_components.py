@@ -19,7 +19,9 @@ def all_are_components(expr, classes=None):
         >>> componenttools.all_are_components(['foo', 'bar'])
         False
 
-    True when elements in `expr` are all `classes`::
+    True when elements in `expr` are all `classes`:
+
+    ::
 
         >>> componenttools.all_are_components(3 * Note("c'4"), classes=Note)
         True

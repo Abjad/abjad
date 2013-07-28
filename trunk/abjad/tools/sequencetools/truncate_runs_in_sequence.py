@@ -4,7 +4,9 @@ import numbers
 def truncate_runs_in_sequence(sequence):
     '''.. versionadded:: 1.1
 
-    Truncate subruns of like elements in `sequence` to length ``1``::
+    Truncate subruns of like elements in `sequence` to length ``1``:
+
+    ::
 
         >>> sequencetools.truncate_runs_in_sequence([1, 1, 2, 3, 3, 3, 9, 4, 4, 4])
         [1, 2, 3, 9, 4]

@@ -5,7 +5,9 @@ import unicodedata
 def strip_diacritics_from_binary_string(binary_string):
     r'''.. versionadded:: 2.5
 
-    Strip diacritics from `binary_string`::
+    Strip diacritics from `binary_string`:
+
+    ::
 
         >>> binary_string = 'Dvo\xc5\x99\xc3\xa1k'
 

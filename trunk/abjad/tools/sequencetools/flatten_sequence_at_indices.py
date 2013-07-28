@@ -4,12 +4,16 @@ from abjad.tools.sequencetools.flatten_sequence import flatten_sequence
 def flatten_sequence_at_indices(sequence, indices, classes=None, depth=-1):
     '''.. versionadded:: 2.0
 
-    Flatten `sequence` at `indices`::
+    Flatten `sequence` at `indices`:
+
+    ::
 
         >>> sequencetools.flatten_sequence_at_indices([0, 1, [2, 3, 4], [5, 6, 7]], [3])
         [0, 1, [2, 3, 4], 5, 6, 7]
 
-    Flatten `sequence` at negative `indices`::
+    Flatten `sequence` at negative `indices`:
+
+    ::
 
         >>> sequencetools.flatten_sequence_at_indices([0, 1, [2, 3, 4], [5, 6, 7]], [-1])
         [0, 1, [2, 3, 4], 5, 6, 7]

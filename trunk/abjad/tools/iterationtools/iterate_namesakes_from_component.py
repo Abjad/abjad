@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def iterate_namesakes_from_component(component, reverse=False, start=0, stop=None):
     r'''.. versionadded:: 1.1
 
-    Iterate namesakes forward from `component`::
+    Iterate namesakes forward from `component`:
+
+    ::
 
         >>> container = Container(Staff(notetools.make_repeated_notes(2)) * 2)
         >>> container.is_parallel = True
@@ -55,7 +57,9 @@ def iterate_namesakes_from_component(component, reverse=False, start=0, stop=Non
             a'8
         }
 
-    Iterate namesakes backward from `component`::
+    Iterate namesakes backward from `component`:
+
+    ::
 
     ::
 

@@ -4,7 +4,9 @@ from abjad.tools import sequencetools
 def iterate_named_chromatic_pitch_pairs_in_expr(expr):
     r'''.. versionadded:: 2.0
 
-    Iterate left-to-right, top-to-bottom named chromatic pitch pairs in `expr`::
+    Iterate left-to-right, top-to-bottom named chromatic pitch pairs in `expr`:
+
+    ::
 
         >>> score = Score([])
         >>> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'4")]

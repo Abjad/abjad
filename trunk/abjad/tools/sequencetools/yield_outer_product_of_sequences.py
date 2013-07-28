@@ -1,7 +1,9 @@
 def yield_outer_product_of_sequences(sequences):
     '''.. versionadded:: 1.1
 
-    Yield outer product of `sequences`::
+    Yield outer product of `sequences`:
+
+    ::
 
         >>> list(sequencetools.yield_outer_product_of_sequences(
         ...     [[1, 2, 3], ['a', 'b']]))

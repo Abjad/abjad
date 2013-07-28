@@ -1,7 +1,9 @@
 def retain_sequence_elements_at_indices(sequence, indices):
     '''.. versionadded:: 2.0
 
-    Retain `sequence` elements at `indices`::
+    Retain `sequence` elements at `indices`:
+
+    ::
 
         >>> sequencetools.retain_sequence_elements_at_indices(range(20), [1, 16, 17, 18])
         [1, 16, 17, 18]

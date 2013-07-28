@@ -1,7 +1,9 @@
 def get_sequence_elements_at_indices(sequence, indices):
     '''.. versionadded:: 2.0
 
-    Get `sequence` elements at `indices`::
+    Get `sequence` elements at `indices`:
+
+    ::
 
         >>> sequencetools.get_sequence_elements_at_indices('string of text', (2, 3, 10, 12))
         ('r', 'i', 't', 'x')

@@ -1,7 +1,9 @@
 def is_integer_singleton(expr):
     r'''.. versionadded:: 2.9
 
-    True when `expr` is an integer tuple of of length ``1``::
+    True when `expr` is an integer tuple of of length ``1``:
+
+    ::
 
         >>> sequencetools.is_integer_singleton((19,))
         True

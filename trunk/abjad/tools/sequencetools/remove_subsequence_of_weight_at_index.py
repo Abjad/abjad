@@ -1,7 +1,9 @@
 def remove_subsequence_of_weight_at_index(sequence, weight, index):
     '''.. versionadded:: 1.1
 
-    Remove subsequence of `weight` at `index`::
+    Remove subsequence of `weight` at `index`:
+
+    ::
 
         >>> sequence = (1, 1, 2, 3, 5, 5, 1, 2, 5, 5, 6)
 

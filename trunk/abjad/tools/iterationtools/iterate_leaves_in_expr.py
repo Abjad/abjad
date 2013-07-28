@@ -4,7 +4,9 @@ from abjad.tools import leaftools
 def iterate_leaves_in_expr(expr, reverse=False, start=0, stop=None):
     r'''.. versionadded:: 2.10
 
-    Iterate leaves forward in `expr`::
+    Iterate leaves forward in `expr`:
+
+    ::
 
         >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
         >>> f(staff)

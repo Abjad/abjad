@@ -3,7 +3,9 @@ def change_augmented_tuplets_in_expr_to_diminished(tuplet):
     '''.. versionadded:: 2.0
 
     Multiply the written duration of the leaves in `tuplet`
-    by the least power of 2 necessary to diminshed `tuplet`::
+    by the least power of 2 necessary to diminshed `tuplet`:
+
+    ::
 
         >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
 

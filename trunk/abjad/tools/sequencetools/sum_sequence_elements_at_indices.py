@@ -4,12 +4,16 @@ import fractions
 def sum_sequence_elements_at_indices(sequence, pairs, period=None, overhang=True):
     '''.. versionadded:: 1.1
 
-    Sum `sequence` elements at indices according to `pairs`::
+    Sum `sequence` elements at indices according to `pairs`:
+
+    ::
 
         >>> sequencetools.sum_sequence_elements_at_indices(range(10), [(0, 3)])
         [3, 3, 4, 5, 6, 7, 8, 9]
 
-    Sum `sequence` elements cyclically at indices according to `pairs` and `period`::
+    Sum `sequence` elements cyclically at indices according to `pairs` and `period`:
+
+    ::
 
         >>> sequencetools.sum_sequence_elements_at_indices(range(10), [(0, 3)], period=4)
         [3, 3, 15, 7, 17]

@@ -5,7 +5,9 @@ import copy
 def permute_sequence(sequence, permutation):
     '''.. versionadded:: 2.0
 
-    Permute `sequence` by `permutation`::
+    Permute `sequence` by `permutation`:
+
+    ::
 
         >>> sequencetools.permute_sequence([10, 11, 12, 13, 14, 15], [5, 4, 0, 1, 2, 3])
         [15, 14, 10, 11, 12, 13]

@@ -5,7 +5,9 @@ from abjad.tools.sequencetools.iterate_sequence_pairwise_strict \
 def count_length_two_runs_in_sequence(sequence):
     '''.. versionadded:: 1.1
 
-    Count length-``2`` runs in `sequence`::
+    Count length-``2`` runs in `sequence`:
+
+    ::
 
         >>> sequencetools.count_length_two_runs_in_sequence([0, 0, 1, 1, 1, 2, 3, 4, 5])
         3

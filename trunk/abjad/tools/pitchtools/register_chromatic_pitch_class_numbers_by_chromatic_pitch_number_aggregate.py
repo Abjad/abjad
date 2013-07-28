@@ -5,7 +5,9 @@ def register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate(
     pitch_class_numbers, aggregate):
     '''.. versionadded:: 1.1
 
-    Register chromatic `pitch_class_numbers` by chromatic pitch-number `aggregate`::
+    Register chromatic `pitch_class_numbers` by chromatic pitch-number `aggregate`:
+
+    ::
 
         >>> pitchtools.register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate(
         ...     [10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11],

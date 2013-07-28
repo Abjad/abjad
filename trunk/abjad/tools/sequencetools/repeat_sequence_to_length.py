@@ -7,12 +7,16 @@ import math
 def repeat_sequence_to_length(sequence, length, start=0):
     '''.. versionadded:: 1.1
 
-    Repeat `sequence` to nonnegative integer `length`::
+    Repeat `sequence` to nonnegative integer `length`:
+
+    ::
 
         >>> sequencetools.repeat_sequence_to_length(range(5), 11)
         [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0]
 
-    Repeat `sequence` to nonnegative integer `length` from `start`::
+    Repeat `sequence` to nonnegative integer `length` from `start`:
+
+    ::
 
         >>> sequencetools.repeat_sequence_to_length(range(5), 11, start=2)
         [2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2]

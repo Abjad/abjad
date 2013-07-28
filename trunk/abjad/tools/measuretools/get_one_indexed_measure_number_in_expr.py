@@ -1,7 +1,9 @@
 def get_one_indexed_measure_number_in_expr(expr, measure_number):
     r'''.. versionadded:: 2.0
 
-    Get one-indexed `measure_number` in `expr`::
+    Get one-indexed `measure_number` in `expr`:
+
+    ::
 
         >>> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)

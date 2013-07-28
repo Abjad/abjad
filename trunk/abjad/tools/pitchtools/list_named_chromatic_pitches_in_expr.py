@@ -1,7 +1,9 @@
 def list_named_chromatic_pitches_in_expr(expr):
     '''.. versionadded:: 2.0
 
-    List named chromatic pitches in `expr`::
+    List named chromatic pitches in `expr`:
+
+    ::
 
         >>> staff = Staff("c'4 d'4 e'4 f'4")
         >>> beam_spanner = spannertools.BeamSpanner(staff[:])

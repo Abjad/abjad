@@ -4,7 +4,9 @@ from abjad.tools import mathtools
 def yield_all_partitions_of_sequence(sequence):
     '''.. versionadded:: 2.0
 
-    Yield all partitions of `sequence`::
+    Yield all partitions of `sequence`:
+
+    ::
 
         >>> for partition in sequencetools.yield_all_partitions_of_sequence([0, 1, 2, 3]):
         ...     partition

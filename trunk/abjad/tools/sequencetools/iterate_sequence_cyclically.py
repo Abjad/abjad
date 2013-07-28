@@ -6,7 +6,9 @@ import itertools
 def iterate_sequence_cyclically(sequence, step=1, start=0, length='inf'):
     '''.. versionadded:: 1.1
 
-    Iterate `sequence` cyclically according to `step`, `start` and `length`::
+    Iterate `sequence` cyclically according to `step`, `start` and `length`:
+
+    ::
 
         >>> sequence = [1, 2, 3, 4, 5, 6, 7]
 

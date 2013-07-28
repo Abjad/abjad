@@ -1,7 +1,9 @@
 def set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(expr, key_signature=None):
     r'''.. versionadded:: 1.1
 
-    Set ascending named diatonic pitches on nontied pitched components in `expr`::
+    Set ascending named diatonic pitches on nontied pitched components in `expr`:
+
+    ::
 
         >>> staff = Staff(notetools.make_notes(0, [(5, 32)] * 4))
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)

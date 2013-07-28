@@ -6,7 +6,9 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(not
     '''.. versionadded:: 1.1
 
     Insert and transpose nested subruns in `chromatic_pitch_class_number_list`
-    according to `subrun_indicators`::
+    according to `subrun_indicators`:
+
+    ::
 
         >>> notes = [Note(p, (1, 4)) for p in [0, 2, 7, 9, 5, 11, 4]]
         >>> subrun_indicators = [(0, [2, 4]), (4, [3, 1])]
@@ -37,7 +39,9 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(not
     to allow inspection of the structural changes to *notes*
     immediately after the function returns.
     For this reason most calls to this function will be followed
-    by ``notes = sequencetools.flatten_sequence(notes)``::
+    by ``notes = sequencetools.flatten_sequence(notes)``:
+
+    ::
 
         >>> for note in notes: note
         ...

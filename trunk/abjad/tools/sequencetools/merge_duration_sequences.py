@@ -4,7 +4,9 @@ from abjad.tools import mathtools
 def merge_duration_sequences(*sequences):
     r'''.. versionadded: 2.10
 
-    Merge duration `sequences`::
+    Merge duration `sequences`:
+
+    ::
 
         >>> sequencetools.merge_duration_sequences([10, 10, 10], [7])
         [7, 3, 10, 10]

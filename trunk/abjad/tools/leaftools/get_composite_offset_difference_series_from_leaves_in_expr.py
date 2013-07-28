@@ -4,7 +4,9 @@ from abjad.tools import mathtools
 def get_composite_offset_difference_series_from_leaves_in_expr(expr):
     r'''.. versionadded:: 2.0
 
-    Get composite offset difference series from leaves in `expr`::
+    Get composite offset difference series from leaves in `expr`:
+
+    ::
 
         >>> staff_1 = Staff(r"\times 4/3 { c'8 d'8 e'8 }")
         >>> staff_2 = Staff("f'8 g'8 a'8 b'8")

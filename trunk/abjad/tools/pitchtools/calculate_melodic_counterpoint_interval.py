@@ -2,7 +2,9 @@ def calculate_melodic_counterpoint_interval(pitch_carrier_1, pitch_carrier_2):
     '''.. versionadded:: 2.0
 
     Calculate melodic counterpoint interval `pitch_carrier_1` to
-    `pitch_carrier_2`::
+    `pitch_carrier_2`:
+
+    ::
 
         >>> pitchtools.calculate_melodic_counterpoint_interval(
         ... pitchtools.NamedChromaticPitch(-2), pitchtools.NamedChromaticPitch(12))

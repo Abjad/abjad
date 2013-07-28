@@ -5,7 +5,9 @@ import copy
 def partition_sequence_by_backgrounded_weights(sequence, weights):
     r'''.. versionadded:: 2.9
 
-    Partition `sequence` by backgrounded `weights`::
+    Partition `sequence` by backgrounded `weights`:
+
+    ::
 
         >>> sequencetools.partition_sequence_by_backgrounded_weights(
         ...     [-5, -15, -10], [20, 10])

@@ -4,7 +4,9 @@ from abjad.tools import stafftools
 def iterate_staves_in_expr(expr, reverse=False, start=0, stop=None):
     r'''.. versionadded:: 2.10
 
-    Iterate staves forward in `expr`::
+    Iterate staves forward in `expr`:
+
+    ::
 
         >>> score = Score(4 * Staff([]))
 
@@ -32,7 +34,9 @@ def iterate_staves_in_expr(expr, reverse=False, start=0, stop=None):
         Staff{}
         Staff{}
 
-    Iterate staves backward in `expr`::
+    Iterate staves backward in `expr`:
+
+    ::
 
     ::
 

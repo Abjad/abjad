@@ -1,7 +1,9 @@
 def remove_initial_rests_from_sequence(sequence):
     r'''.. versionadded:: 2.0
 
-    Remove initial rests from `sequence`::
+    Remove initial rests from `sequence`:
+
+    ::
 
         >>> staff = Staff("r8 r8 c'8 d'8 r4 r4")
 

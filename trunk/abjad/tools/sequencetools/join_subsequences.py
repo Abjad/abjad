@@ -4,7 +4,9 @@ from abjad.tools import mathtools
 def join_subsequences(sequence):
     '''.. versionadded:: 2.4
 
-    Join subsequences in `sequence`::
+    Join subsequences in `sequence`:
+
+    ::
 
         >>> sequencetools.join_subsequences([(1, 2, 3), (), (4, 5), (), (6,)])
         (1, 2, 3, 4, 5, 6)

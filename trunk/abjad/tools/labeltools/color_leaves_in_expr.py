@@ -4,7 +4,9 @@ from abjad.tools import iterationtools
 def color_leaves_in_expr(expr, color):
     r""".. versionadded:: 2.0
 
-    Color leaves in `expr`::
+    Color leaves in `expr`:
+
+    ::
 
         >>> staff = Staff("cs'8. [ r8. s8. <c' cs' a'>8. ]")
 

@@ -1,7 +1,9 @@
 def color_contents_of_container(container, color):
     r'''.. versionadded:: 2.0
 
-    Color contents of `container`::
+    Color contents of `container`:
+
+    ::
 
         >>> measure = Measure((2, 8), "c'8 d'8")
 

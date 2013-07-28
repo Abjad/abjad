@@ -1,7 +1,9 @@
 def list_written_durations_of_leaves_in_expr(expr):
     '''.. versionadded:: 2.0
 
-    List the written durations of leaves in `expr`::
+    List the written durations of leaves in `expr`:
+
+    ::
 
         >>> staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8") * 2)
 
