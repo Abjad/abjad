@@ -205,6 +205,20 @@ class TonalAnalysisSelection(Selection):
         return False
 
     @staticmethod
+    def _is_passing_tone(note):
+        from abjad.tools import notetools
+        from abjad.tools import tonalanalysistools
+        if not isinstance(note, notetools.Note):
+            raise TypeError('must be note: {!r}'.format(note))
+        previous_note = note._get_namesake(-1)
+        next_note = note._get_namesake(1)
+        if previous_note is None or next_note is None:
+            return False
+        notes = [previous_note, note, next_note]
+        selection = tonalanalysistools.select(notes)
+        return selection.are_scalar_notes()
+
+    @staticmethod
     def _make_dicv(*named_chromatic_pitch_classes):
         npcset = pitchtools.NamedChromaticPitchClassSet(
             named_chromatic_pitch_classes)
@@ -288,6 +302,25 @@ class TonalAnalysisSelection(Selection):
         for component in self:
             tonal_function = self._analyze_incomplete_tonal_function(
                 component, key_signature)
+            result.append(tonal_function)
+        return result
+
+    def analyze_passing_tones(self):
+        r'''True when `note` is both preceeded and followed by scalewise
+        sibling notes. Otherwise false:
+
+        ::
+
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> selection = tonalanalysistools.select(staff[:])
+            >>> selection.analyze_passing_tones()
+            [False, True, True, False]
+
+        Return list of boolean values.
+        '''
+        result = []
+        for component in self:
+            tonal_function = self._is_passing_tone(component)
             result.append(tonal_function)
         return result
 
