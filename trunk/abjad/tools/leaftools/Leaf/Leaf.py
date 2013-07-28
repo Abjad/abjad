@@ -84,6 +84,10 @@ class Leaf(Component):
         else:
             return duration_string
 
+    @property
+    def _preprolated_duration(self):
+        return self.multiplied_duration
+
     ### PRIVATE METHODS ###
 
     def _copy_override_and_set_from_leaf(self, leaf):
@@ -327,10 +331,6 @@ class Leaf(Component):
                 return durationtools.Duration(self.written_duration)
         else:
             return None
-
-    @property
-    def preprolated_duration(self):
-        return self.multiplied_duration
 
     @apply
     def written_duration():

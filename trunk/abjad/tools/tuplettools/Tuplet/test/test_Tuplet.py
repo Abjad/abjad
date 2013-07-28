@@ -10,7 +10,7 @@ def test_Tuplet_01():
     assert str(u) == "{* 3:2 c'8, c'8, c'8 *}"
     assert len(u) == 3
     assert u.multiplier == Duration(2, 3)
-    assert u.preprolated_duration == Duration(1, 4)
+    assert u._preprolated_duration == Duration(1, 4)
     assert u.duration == Duration(1, 4)
 
 
@@ -22,7 +22,7 @@ def test_Tuplet_02():
     assert repr(u) == 'Tuplet(2/3, [])'
     assert str(u) == '{* 2/3 *}'
     assert len(u) == 0
-    assert u.preprolated_duration == 0
+    assert u._preprolated_duration == 0
     assert u.multiplier == Duration(2, 3)
     assert u.duration == 0
 
@@ -38,13 +38,13 @@ def test_Tuplet_03():
     assert repr(u) == "Tuplet(2/3, [{* 5:4 c'16, c'16, c'16, c'16, c'16 *}, c'4, c'4])"
     assert str(u) == "{* 3:2 {* 5:4 c'16, c'16, c'16, c'16, c'16 *}, c'4, c'4 *}"
     assert len(u) == 3
-    assert u.preprolated_duration == Duration(1, 2)
+    assert u._preprolated_duration == Duration(1, 2)
     assert u.multiplier == Duration(2, 3)
     assert u.duration == Duration(1, 2)
     assert repr(u[0]) == "Tuplet(4/5, [c'16, c'16, c'16, c'16, c'16])"
     assert str(u[0]) == "{* 5:4 c'16, c'16, c'16, c'16, c'16 *}"
     assert len(u[0]) == 5
-    assert u[0].preprolated_duration == Duration(1, 4)
+    assert u[0]._preprolated_duration == Duration(1, 4)
     assert u[0].multiplier == Duration(4, 5)
     assert u[0].duration == Duration(1, 6)
 
@@ -60,12 +60,12 @@ def test_Tuplet_04():
     assert repr(u) == "Tuplet(2/3, [{* 4/5 *}, c'4, c'4])"
     assert str(u) == "{* 3:2 {* 4/5 *}, c'4, c'4 *}"
     assert len(u) == 3
-    assert u.preprolated_duration == Duration(1, 3)
+    assert u._preprolated_duration == Duration(1, 3)
     assert u.multiplier == Duration(2, 3)
     assert u.duration == Duration(1, 3)
     assert repr(u[0]) == 'Tuplet(4/5, [])'
     assert str(u[0]) == '{* 4/5 *}'
     assert len(u[0]) == 0
-    assert u[0].preprolated_duration == Duration(0)
+    assert u[0]._preprolated_duration == Duration(0)
     assert u[0].multiplier == Duration(4, 5)
     assert u[0].duration == Duration(0)

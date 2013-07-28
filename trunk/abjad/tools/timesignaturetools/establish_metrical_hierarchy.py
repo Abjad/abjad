@@ -845,7 +845,7 @@ def establish_metrical_hierarchy(
         timesignaturetools.MetricalHierarchy):
         metrical_hierarchy = \
             timesignaturetools.MetricalHierarchy(metrical_hierarchy)
-    assert sum([x.preprolated_duration for x in components]) == \
+    assert sum([x._preprolated_duration for x in components]) == \
         metrical_hierarchy.preprolated_duration
     if boundary_depth is not None:
         boundary_depth = int(boundary_depth)
@@ -873,7 +873,7 @@ def establish_metrical_hierarchy(
             recurse(item, depth=0)
         else:
             #print 'DESCENDING:', item
-            preprolated_duration = sum([x.preprolated_duration for x in item])
+            preprolated_duration = sum([x._preprolated_duration for x in item])
             sub_metrical_hierarchy = timesignaturetools.MetricalHierarchy(preprolated_duration)
             sub_boundary_depth = 1
             if boundary_depth is None:

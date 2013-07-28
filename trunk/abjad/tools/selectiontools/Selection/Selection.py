@@ -256,7 +256,7 @@ class Selection(MinimalSelection):
 
         Return duration.
         '''
-        return sum(component.preprolated_duration for component in self)
+        return sum(component._preprolated_duration for component in self)
 
     @property
     def timespan(self):

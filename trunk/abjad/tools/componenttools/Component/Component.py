@@ -501,7 +501,7 @@ class Component(AbjadObject):
 
     @property
     def duration(self):
-        return self.prolation * self.preprolated_duration
+        return self.prolation * self._preprolated_duration
 
     @abc.abstractproperty
     def duration_in_seconds(self):

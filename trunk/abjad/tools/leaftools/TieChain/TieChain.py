@@ -162,7 +162,7 @@ class TieChain(HorizontalSelection):
 
         Return duration.
         '''
-        return sum([x.preprolated_duration for x in self])
+        return sum([x._preprolated_duration for x in self])
 
     @property
     def tie_spanner(self):

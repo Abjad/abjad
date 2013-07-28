@@ -466,7 +466,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_08():
     leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[0])
     assert isinstance(t, Container)
     assert len(t) == 5
-    assert t.preprolated_duration == Duration(5, 4)
+    assert t._preprolated_duration == Duration(5, 4)
     assert t.duration == Duration(5, 4)
     assert isinstance(t[0], Note)
     assert t[0].written_duration == Duration(1, 4)
@@ -482,7 +482,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_09():
     leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[0])
     assert isinstance(t, Container)
     assert len(t) == 5
-    assert t.preprolated_duration == Duration(5, 4)
+    assert t._preprolated_duration == Duration(5, 4)
     assert t.duration == Duration(5, 4)
     assert isinstance(t[0], Note)
     assert t[0].written_duration == Duration(1, 4)
@@ -498,7 +498,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_10():
     leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[0])
     assert isinstance(t, Voice)
     assert len(t) == 5
-    assert t.preprolated_duration == Duration(5, 4)
+    assert t._preprolated_duration == Duration(5, 4)
     assert t.duration == Duration(5, 4)
     assert isinstance(t[0], Note)
     assert t[0].written_duration == Duration(1, 4)
@@ -514,7 +514,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_11():
     leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[0])
     assert isinstance(t, Staff)
     assert len(t) == 5
-    assert t.preprolated_duration == Duration(5, 4)
+    assert t._preprolated_duration == Duration(5, 4)
     assert t.duration == Duration(5, 4)
     assert isinstance(t[0], Note)
     assert t[0].written_duration == Duration(1, 4)
@@ -530,7 +530,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_12():
     leaftools.remove_leaf_and_shrink_durated_parent_containers(t[0])
     assert isinstance(t, Container)
     assert len(t) == 1
-    assert t.preprolated_duration == Duration(2, 4)
+    assert t._preprolated_duration == Duration(2, 4)
     assert t.duration == Duration(2, 4)
     assert isinstance(t[0], tuplettools.FixedDurationTuplet)
     assert t[0].target_duration == Duration(2, 4)
@@ -549,7 +549,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_13():
     leaftools.remove_leaf_and_shrink_durated_parent_containers(t[0])
     assert isinstance(t, Container)
     assert len(t) == 1
-    assert t.preprolated_duration == Duration(2, 4)
+    assert t._preprolated_duration == Duration(2, 4)
     assert t.duration == Duration(2, 4)
     assert isinstance(t[0], tuplettools.FixedDurationTuplet)
     assert t[0].target_duration == Duration(2, 4)
@@ -568,7 +568,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_14():
     leaftools.remove_leaf_and_shrink_durated_parent_containers(t[0])
     assert isinstance(t, Voice)
     assert len(t) == 1
-    assert t.preprolated_duration == Duration(2, 4)
+    assert t._preprolated_duration == Duration(2, 4)
     assert t.duration == Duration(2, 4)
     assert isinstance(t[0], tuplettools.FixedDurationTuplet)
     assert t[0].target_duration == Duration(2, 4)
@@ -587,7 +587,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_15():
     leaftools.remove_leaf_and_shrink_durated_parent_containers(t[0])
     assert isinstance(t, Staff)
     assert len(t) == 1
-    assert t.preprolated_duration == Duration(2, 4)
+    assert t._preprolated_duration == Duration(2, 4)
     assert t.duration == Duration(2, 4)
     assert isinstance(t[0], tuplettools.FixedDurationTuplet)
     assert t[0].target_duration == Duration(2, 4)
@@ -606,7 +606,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_16():
     leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[0])
     assert isinstance(t, Staff)
     assert len(t) == 2
-    assert t.preprolated_duration == Duration(5, 6)
+    assert t._preprolated_duration == Duration(5, 6)
     assert t.duration == Duration(5, 6)
     assert isinstance(t[0], tuplettools.FixedDurationTuplet)
     assert t[0].target_duration == Duration(2, 6)
@@ -625,7 +625,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_17():
     leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[0])
     assert isinstance(t, Container)
     assert len(t) == 2
-    assert t.preprolated_duration == Duration(5, 6)
+    assert t._preprolated_duration == Duration(5, 6)
     assert t.duration == Duration(5, 6)
     assert isinstance(t[0], tuplettools.FixedDurationTuplet)
     assert t[0].target_duration == Duration(2, 6)
@@ -644,7 +644,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_18():
     leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[0])
     assert isinstance(t, Voice)
     assert len(t) == 2
-    assert t.preprolated_duration == Duration(5, 6)
+    assert t._preprolated_duration == Duration(5, 6)
     assert t.duration == Duration(5, 6)
     assert isinstance(t[0], tuplettools.FixedDurationTuplet)
     assert t[0].target_duration == Duration(2, 6)
@@ -663,7 +663,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_19():
     leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[0])
     assert isinstance(t, Staff)
     assert len(t) == 2
-    assert t.preprolated_duration == Duration(5, 6)
+    assert t._preprolated_duration == Duration(5, 6)
     assert t.duration == Duration(5, 6)
     assert isinstance(t[0], tuplettools.FixedDurationTuplet)
     assert t[0].target_duration == Duration(2, 6)

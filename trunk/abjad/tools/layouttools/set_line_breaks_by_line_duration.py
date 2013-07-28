@@ -34,7 +34,7 @@ def set_line_breaks_by_line_duration(
         elif kind == 'prolated':
             current_duration = cur.duration
         elif kind == 'preprolated':
-            current_duration = cur.preprolated_duration
+            current_duration = cur._preprolated_duration
         else:
             current_duration = getattr(cur.duration, kind)
         candidate_duration = cum_duration + current_duration

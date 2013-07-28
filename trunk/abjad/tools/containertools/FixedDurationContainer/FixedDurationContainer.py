@@ -57,10 +57,10 @@ class FixedDurationContainer(Container):
 
     def _check_duration(self):
         from abjad.tools import contexttools
-        preprolatedg_duration = self.contents_duration
-        if preprolatedg_duration < self.target_duration:
+        preprolated_duration = self.contents_duration
+        if preprolated_duration < self.target_duration:
             raise UnderfullContainerError
-        if self.target_duration < preprolatedg_duration:
+        if self.target_duration < preprolated_duration:
             raise OverfullContainerError
 
     ### PUBLIC PROPERTIES ###
@@ -69,7 +69,7 @@ class FixedDurationContainer(Container):
     def is_full(self):
         '''True when preprolated duration equals target duration.
         '''
-        return self.preprolated_duration == self.target_duration
+        return self._preprolated_duration == self.target_duration
 
     @property
     def is_misfilled(self):
@@ -81,13 +81,13 @@ class FixedDurationContainer(Container):
     def is_overfull(self):
         '''True when preprolated duration is greater than target duration.
         '''
-        return self.target_duration < self.preprolated_duration
+        return self.target_duration < self._preprolated_duration
 
     @property
     def is_underfull(self):
         '''True when preprolated duration is less than target duration.
         '''
-        return self.preprolated_duration < self.target_duration
+        return self._preprolated_duration < self.target_duration
 
     @property
     def lilypond_format(self):

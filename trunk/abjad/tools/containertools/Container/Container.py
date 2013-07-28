@@ -157,6 +157,10 @@ class Container(Component):
             return '<<%s>>' % self._summary
 
     @property
+    def _preprolated_duration(self):
+        return self.contents_duration
+
+    @property
     def _space_delimited_summary(self):
         '''Formatted summary of container contents for string output.
         '''
@@ -371,11 +375,11 @@ class Container(Component):
     def contents_duration(self):
         if self.is_parallel:
             return max([durationtools.Duration(0)] + 
-                [x.preprolated_duration for x in self])
+                [x._preprolated_duration for x in self])
         else:
             duration = durationtools.Duration(0)
             for x in self:
-                duration += x.preprolated_duration
+                duration += x._preprolated_duration
             return duration
 
     @property
@@ -477,10 +481,6 @@ class Container(Component):
         Return tuple or zero or more components.
         '''
         return tuple(self._music)
-
-    @property
-    def preprolated_duration(self):
-        return self.contents_duration
 
     ### PRIVATE METHODS ###
 

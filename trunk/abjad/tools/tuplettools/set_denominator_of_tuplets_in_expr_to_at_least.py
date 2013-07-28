@@ -50,7 +50,7 @@ def set_denominator_of_tuplets_in_expr_to_at_least(expr, n):
         tuplet.force_fraction = True
         durations = [
             tuplet.contents_duration, 
-            tuplet.preprolated_duration, 
+            tuplet._preprolated_duration, 
             (1, n),
             ]
         duration_pairs = Duration.durations_to_nonreduced_fractions_with_common_denominator(

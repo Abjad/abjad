@@ -160,6 +160,13 @@ class Measure(FixedDurationContainer):
         new.is_parallel = self.is_parallel
         return new
 
+    @property
+    def _preprolated_duration(self):
+        from abjad.tools import contexttools
+        time_signature = self.get_effective_context_mark(
+            contexttools.TimeSignatureMark)
+        return time_signature.implied_prolation * self.contents_duration
+
     ### PRIVATE METHODS ###
 
     def _check_duration(self):
@@ -171,14 +178,14 @@ class Measure(FixedDurationContainer):
             message = 'Can not suppress time signature'
             message += ' with non-power of two denominator.'
             raise Exception(message)
-        if effective_time_signature.duration < self.preprolated_duration:
+        if effective_time_signature.duration < self._preprolated_duration:
             raise OverfullContainerError
-        if self.preprolated_duration < effective_time_signature.duration:
+        if self._preprolated_duration < effective_time_signature.duration:
             raise UnderfullContainerError
 
     def _conditionally_adjust_time_signature(self, old_denominator):
         if self.automatically_adjust_time_signature:
-            naive_time_signature = self.preprolated_duration
+            naive_time_signature = self._preprolated_duration
             better_time_signature = \
                 mathtools.NonreducedFraction(naive_time_signature)
             better_time_signature = \
@@ -493,28 +500,6 @@ class Measure(FixedDurationContainer):
         '''
         self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
         return self._measure_number
-
-    @property
-    def preprolated_duration(self):
-        '''Preprolated duration of measure:
-
-        ::
-
-            >>> measure = Measure((5, 12), "c'8 d' e' f' g'")
-
-        ::
-
-            >>> measure.preprolated_duration
-            Duration(5, 12)
-
-        Equal measure contents duration times time signature multiplier.
-
-        Return duration.
-        '''
-        from abjad.tools import contexttools
-        time_signature = self.get_effective_context_mark(
-            contexttools.TimeSignatureMark)
-        return time_signature.implied_prolation * self.contents_duration
 
     @property
     def target_duration(self):

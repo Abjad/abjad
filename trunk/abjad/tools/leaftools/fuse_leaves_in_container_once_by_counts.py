@@ -29,7 +29,7 @@ def fuse_leaves_in_container_once_by_counts(
     # find preprolated durations of glommed parts of container
     tokens = componenttools.copy_and_partition_governed_component_subtree_by_leaf_counts(
         container, counts)
-    durations = [sum([x.preprolated_duration for x in part]) 
+    durations = [sum([x._preprolated_duration for x in part]) 
         for part in tokens]
 
     # make new notes or rests

@@ -430,7 +430,7 @@ class Spanner(AbjadObject):
     def preprolated_duration(self):
         '''Sum of preprolated duration of all components in spanner.
         '''
-        return sum([component.preprolated_duration for component in self])
+        return sum([component._preprolated_duration for component in self])
 
     @property
     def set(self):

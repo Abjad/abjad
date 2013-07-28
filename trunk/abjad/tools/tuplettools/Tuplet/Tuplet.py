@@ -166,6 +166,10 @@ class Tuplet(Container):
         return '%s/%s' % (n, d)
 
     @property
+    def _preprolated_duration(self):
+        return self.multiplied_duration
+
+    @property
     def _summary(self):
         if 0 < len(self):
             return ', '.join([str(x) for x in self._music])
@@ -539,21 +543,6 @@ class Tuplet(Container):
                 raise TypeError(message % arg)
             self._preferred_denominator = arg
         return property(**locals())
-
-    @property
-    def preprolated_duration(self):
-        '''Duration prior to prolation:
-
-        ::
-
-            >>> t = tuplettools.FixedDurationTuplet(
-            ...     Duration(2, 8), "c'8 d'8 e'8")
-            >>> t.preprolated_duration
-            Duration(1, 4)
-
-        Return duration.
-        '''
-        return self.multiplied_duration
 
     @property
     def ratio_string(self):

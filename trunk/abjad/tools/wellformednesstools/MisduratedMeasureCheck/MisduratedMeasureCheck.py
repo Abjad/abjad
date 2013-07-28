@@ -15,7 +15,7 @@ class MisduratedMeasureCheck(Check):
             time_signature = measure.get_effective_context_mark(
                 contexttools.TimeSignatureMark)
             if time_signature is not None:
-                if measure.preprolated_duration != time_signature.duration:
+                if measure._preprolated_duration != time_signature.duration:
                     violators.append(measure)
                     bad += 1
             total += 1

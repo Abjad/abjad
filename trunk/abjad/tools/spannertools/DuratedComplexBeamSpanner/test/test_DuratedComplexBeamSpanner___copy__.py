@@ -8,7 +8,7 @@ def test_DuratedComplexBeamSpanner___copy___01():
         Container("f'32 g'32 a'32"),
         Container("b'32 c'32")
         ])
-    durations = [x.preprolated_duration for x in staff]
+    durations = [x._preprolated_duration for x in staff]
     beam = spannertools.DuratedComplexBeamSpanner(
         staff[:], durations=durations, span=2, direction=Down)
 

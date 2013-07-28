@@ -15,7 +15,7 @@ def change_written_leaf_duration_and_preserve_preprolated_leaf_duration(leaf, wr
 
         >>> note.written_duration
         Duration(1, 4)
-        >>> note.preprolated_duration
+        >>> note._preprolated_duration
         Duration(1, 4)
 
     ::
@@ -28,7 +28,7 @@ def change_written_leaf_duration_and_preserve_preprolated_leaf_duration(leaf, wr
 
         >>> note.written_duration
         Duration(3, 16)
-        >>> note.preprolated_duration
+        >>> note._preprolated_duration
         Duration(1, 4)
 
     Add LilyPond multiplier where necessary.

@@ -93,7 +93,7 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
                     x.target_duration *= adjusted_prolation
                 else:
                     if adjusted_prolation != 1:
-                        new_target = x.preprolated_duration * adjusted_prolation
+                        new_target = x._preprolated_duration * adjusted_prolation
                         tuplettools.FixedDurationTuplet(new_target, [x])
         parent = parent._parent
         i += 1

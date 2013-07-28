@@ -18,7 +18,7 @@ def test_Measure_duration_01():
     '''
 
     assert t.contents_duration == Duration(3, 8)
-    assert t.preprolated_duration == Duration(3, 8)
+    assert t._preprolated_duration == Duration(3, 8)
     assert t.duration == Duration(3, 8)
     assert t.prolation == 1
 
@@ -43,7 +43,7 @@ def test_Measure_duration_02():
     '''
 
     assert t.contents_duration == Duration(3, 8)
-    assert t.preprolated_duration == Duration(3, 10)
+    assert t._preprolated_duration == Duration(3, 10)
     assert t.duration == Duration(3, 10)
     assert t.prolation == 1
 
@@ -60,7 +60,7 @@ def test_Measure_duration_03():
     assert py.test.raises(OverfullContainerError, 't.lilypond_format')
 
     assert t.contents_duration == Duration(4, 8)
-    assert t.preprolated_duration == Duration(4, 8)
+    assert t._preprolated_duration == Duration(4, 8)
     assert t.duration == Duration(4, 8)
     assert t.prolation == 1
 
@@ -74,6 +74,6 @@ def test_Measure_duration_04():
     assert py.test.raises(OverfullContainerError, 't.lilypond_format')
 
     assert t.contents_duration == Duration(4, 8)
-    assert t.preprolated_duration == Duration(4, 10)
+    assert t._preprolated_duration == Duration(4, 10)
     assert t.duration == Duration(4, 10)
     assert t.prolation == 1
