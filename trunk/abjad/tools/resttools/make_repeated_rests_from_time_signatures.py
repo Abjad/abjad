@@ -1,7 +1,5 @@
 def make_repeated_rests_from_time_signatures(time_signatures):
-    '''.. versionadded 1.1.2
-
-    Make repated rests from `time_signatures`:
+    '''Make repeated rests from `time_signatures`:
 
     ::
 
@@ -24,6 +22,7 @@ def make_repeated_rests_from_time_signatures(time_signatures):
 
     # return result
     return result
+
 
 def _make_repeated_rests_from_time_signature(time_signature):
     from abjad.tools import contexttools
