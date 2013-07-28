@@ -34,10 +34,8 @@ class TonalAnalysisSelection(MinimalSelection):
 
     ::
 
-        >>> z(selection_1)
-        tonalanalysistools.TonalAnalysisSelection(
-            music=(Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4"))
-            )
+        >>> selection_1
+        TonalAnalysisSelection(Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4"))
 
     Example 2. Disjunct selection:
 
@@ -48,10 +46,8 @@ class TonalAnalysisSelection(MinimalSelection):
 
     ::
 
-        >>> z(selection_2)
-        tonalanalysistools.TonalAnalysisSelection(
-            music=(Note("c'4"), Note("f'4"))
-            )
+        >>> selection_2
+        TonalAnalysisSelection(Note("c'4"), Note("f'4"))
 
     '''
 

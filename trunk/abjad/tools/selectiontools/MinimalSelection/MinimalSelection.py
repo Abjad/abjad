@@ -57,12 +57,12 @@ class MinimalSelection(AbjadObject):
         '''
         assert isinstance(expr, (type(self), list, tuple))
         if isinstance(expr, type(self)):
-            music = self.music + expr.music
+            music = self._music + expr._music
             return type(self)(music)
         # eventually remove this permissive branch 
         # and force the use of selections only
         elif isinstance(expr, (tuple, list)):
-            music = self.music + tuple(expr)
+            music = self._music + tuple(expr)
         return type(self)(music)
 
     def __contains__(self, expr):
@@ -70,7 +70,7 @@ class MinimalSelection(AbjadObject):
 
         Return boolean.
         '''
-        return expr in self.music
+        return expr in self._music
 
     def __eq__(self, expr):
         '''True when selection and `expr` are of the same type
@@ -80,18 +80,18 @@ class MinimalSelection(AbjadObject):
         Return boolean.
         '''
         if isinstance(expr, type(self)):
-            return self.music == expr.music
+            return self._music == expr._music
         # eventually remove this permissive branch
         # and force the use of selections only
         elif isinstance(expr, (list, tuple)):
-            return self.music == tuple(expr)
+            return self._music == tuple(expr)
 
     def __getitem__(self, expr):
         '''Get item `expr` from selection.
 
         Return component from selection.
         '''
-        result = self.music.__getitem__(expr)
+        result = self._music.__getitem__(expr)
         if isinstance(result, tuple):
             selection = type(self)()
             selection._music = result[:]
@@ -103,10 +103,10 @@ class MinimalSelection(AbjadObject):
 
         Return nonnegative integer.
         '''
-        return len(self.music)
+        return len(self._music)
 
-#    def __ne__(self, expr):
-#        return not self == expr
+    def __ne__(self, expr):
+        return not self == expr
 
     def __radd__(self, expr):
         '''Concatenate selection to `expr`.
@@ -115,13 +115,13 @@ class MinimalSelection(AbjadObject):
         '''
         assert isinstance(expr, (type(self), list, tuple))
         if isinstance(expr, type(self)):
-            music = expr.music + self.music
+            music = expr._music + self._music
             #return Selection(music)
             return MinimalSelection(music)
         # eventually remove this permissive branch 
         # and force the use of selections only
         elif isinstance(expr, (tuple, list)):
-            music = tuple(expr) + self.music
+            music = tuple(expr) + self._music
         #return Selection(music)
         return MinimalSelection(music)
 
@@ -130,7 +130,7 @@ class MinimalSelection(AbjadObject):
 
         Return string.
         '''
-        return '{}{!r}'.format(self._class_name, self.music)
+        return '{}{!r}'.format(self._class_name, self._music)
 
     ### PRIVATE METHODS ###
 
@@ -234,7 +234,7 @@ class MinimalSelection(AbjadObject):
     def _set_parents(self, new_parent):
         '''Not composer-safe.
         '''
-        for component in self.music:
+        for component in self._music:
             component._set_parent(new_parent)
 
     # TODO: eventually migrate method to SliceSelection;
@@ -256,15 +256,3 @@ class MinimalSelection(AbjadObject):
                 if component in spanner_components:
                     crossing_spanner._components.remove(component)
                     component._spanners.discard(crossing_spanner)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def music(self):
-        '''Components in selection.
-
-        Return tuple.
-        '''
-        return self._music
-
-    ### PUBLIC METHODS ###

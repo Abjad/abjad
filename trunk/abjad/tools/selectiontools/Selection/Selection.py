@@ -54,27 +54,27 @@ class Selection(MinimalSelection):
     def __add__(self, expr):
         assert isinstance(expr, (type(self), list, tuple))
         if isinstance(expr, type(self)):
-            music = self.music + expr.music
+            music = self._music + expr._music
             return type(self)(music)
         # eventually remove this permissive branch 
         # and force the use of selections only
         elif isinstance(expr, (tuple, list)):
-            music = self.music + tuple(expr)
+            music = self._music + tuple(expr)
         return type(self)(music)
 
     def __contains__(self, expr):
-        return expr in self.music
+        return expr in self._music
 
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
-            return self.music == expr.music
+            return self._music == expr._music
         # eventually remove this permissive branch
         # and force the use of selections only
         elif isinstance(expr, (list, tuple)):
-            return self.music == tuple(expr)
+            return self._music == tuple(expr)
 
     def __getitem__(self, expr):
-        result = self.music.__getitem__(expr)
+        result = self._music.__getitem__(expr)
         if isinstance(result, tuple):
             selection = type(self)()
             selection._music = result[:]
@@ -82,7 +82,7 @@ class Selection(MinimalSelection):
         return result
 
     def __len__(self):
-        return len(self.music)
+        return len(self._music)
 
     def __ne__(self, expr):
         return not self == expr
@@ -90,16 +90,16 @@ class Selection(MinimalSelection):
     def __radd__(self, expr):
         assert isinstance(expr, (type(self), list, tuple))
         if isinstance(expr, type(self)):
-            music = expr.music + self.music
+            music = expr._music + self._music
             return Selection(music)
         # eventually remove this permissive branch 
         # and force the use of selections only
         elif isinstance(expr, (tuple, list)):
-            music = tuple(expr) + self.music
+            music = tuple(expr) + self._music
         return Selection(music)
 
     def __repr__(self):
-        return '{}{!r}'.format(self._class_name, self.music)
+        return '{}{!r}'.format(self._class_name, self._music)
 
     ### PRIVATE PROPERTIES ###
 
@@ -209,7 +209,7 @@ class Selection(MinimalSelection):
     def _set_parents(self, new_parent):
         '''Not composer-safe.
         '''
-        for component in self.music:
+        for component in self._music:
             component._set_parent(new_parent)
 
     # TODO: eventually migrate method to SliceSelection;
@@ -249,12 +249,6 @@ class Selection(MinimalSelection):
         Return duration.
         '''
         return sum(component.duration_in_seconds for component in self)
-
-    @property
-    def music(self):
-        '''Tuple of components in selection.
-        '''
-        return self._music
 
     @property
     def timespan(self):
@@ -396,7 +390,7 @@ class Selection(MinimalSelection):
                 components = iterationtools.iterate_components_in_expr(
                     self, component_classes)
             else:
-                components = self.music
+                components = self._music
             for i, x in enumerate(components):
                 if i == n:
                     return x
@@ -405,7 +399,7 @@ class Selection(MinimalSelection):
                 components = iterationtools.iterate_components_in_expr(
                     self, component_classes, reverse=True)
             else:
-                components = reversed(self.music)
+                components = reversed(self._music)
             for i, x in enumerate(components):
                 if i == abs(n) - 1:
                     return x
