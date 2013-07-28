@@ -305,6 +305,26 @@ class TonalAnalysisSelection(Selection):
             result.append(tonal_function)
         return result
 
+    def analyze_neighbor_notes(self):
+        r'''True when `note` is preceeded by a stepwise interval 
+        in one direction and followed by a stepwise interval in 
+        the other direction. Otherwise false:
+
+        ::
+
+            >>> t = Staff("c'8 d'8 e'8 f'8")
+            >>> selection = tonalanalysistools.select(t[:])
+            >>> selection.analyze_neighbor_notes()
+            [False, False, False, False]
+
+        Return list of boolean values.
+        '''
+        result = []
+        for component in self:
+            tonal_function = self._is_neighbor_note(component)
+            result.append(tonal_function)
+        return result
+
     def analyze_passing_tones(self):
         r'''True when `note` is both preceeded and followed by scalewise
         sibling notes. Otherwise false:
@@ -354,26 +374,6 @@ class TonalAnalysisSelection(Selection):
         for component in self:
             tonal_function = self._analyze_tonal_function(
                 component, key_signature)
-            result.append(tonal_function)
-        return result
-
-    def are_neighbor_notes(self):
-        r'''True when `note` is preceeded by a stepwise interval 
-        in one direction and followed by a stepwise interval in 
-        the other direction. Otherwise false:
-
-        ::
-
-            >>> t = Staff("c'8 d'8 e'8 f'8")
-            >>> selection = tonalanalysistools.select(t[:])
-            >>> selection.are_neighbor_notes()
-            [False, False, False, False]
-
-        Return boolean.
-        '''
-        result = []
-        for component in self:
-            tonal_function = self._is_neighbor_note(component)
             result.append(tonal_function)
         return result
 
