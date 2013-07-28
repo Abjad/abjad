@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_LeafSelection_replace_with_01():
-    '''Works on Abjad components.
+    '''Replace with rests.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -20,3 +20,24 @@ def test_LeafSelection_replace_with_01():
 
     assert select(t).is_well_formed()
     assert t.lilypond_format == '\\new Staff {\n\tr8\n\tr8\n\tr8\n\tr8\n}'
+
+
+def test_LeafSelection_replace_with_02():
+    '''Replace with skips.
+    '''
+
+    t = Staff("c'8 d'8 e'8 f'8")
+    selection = t.select_leaves()
+    selection.replace_with(skiptools.Skip)
+
+    r'''
+    \new Staff {
+        s8
+        s8
+        s8
+        s8
+    }
+    '''
+
+    assert select(t).is_well_formed()
+    assert t.lilypond_format == '\\new Staff {\n\ts8\n\ts8\n\ts8\n\ts8\n}'
