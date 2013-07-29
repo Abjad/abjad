@@ -38,7 +38,6 @@ class Selection(object):
             music = ()
         elif isinstance(music, (tuple, list)):
             music = tuple(music)
-        #elif isinstance(music, SequentialSelection):
         elif isinstance(music, Selection):
             music = tuple(music)
         elif isinstance(music, types.GeneratorType):
@@ -132,35 +131,6 @@ class Selection(object):
         return '{}{!r}'.format(self.__class__.__name__, self._music)
 
     ### PRIVATE METHODS ###
-
-    def _attach_tie_spanner_to_leaf_pair(self):
-        from abjad.tools import leaftools
-        from abjad.tools import spannertools
-        assert len(self) == 2
-        left_leaf, right_leaf = self
-        assert isinstance(left_leaf, leaftools.Leaf)
-        assert isinstance(right_leaf, leaftools.Leaf)
-        left_tie_chain = left_leaf.select_tie_chain()
-        right_tie_chain = right_leaf.select_tie_chain()
-        spanner_classes = (spannertools.TieSpanner,)
-        if left_tie_chain == right_tie_chain:
-            return
-        try:
-            left_tie_spanner = left_leaf._get_spanner(spanner_classes)
-        except MissingSpannerError:
-            left_tie_spanner = None
-        try:
-            right_tie_spanner = right_leaf._get_spanner(spanner_classes)
-        except MissingSpannerError:
-            right_tie_spanner = None
-        if left_tie_spanner is not None and right_tie_spanner is not None:
-            left_tie_spanner.fuse(right_tie_spanner)
-        elif left_tie_spanner is not None and right_tie_spanner is None:
-            left_tie_spanner.append(right_leaf)
-        elif left_tie_spanner is None and right_tie_spanner is not None:
-            right_tie_spanner.append_left(left_leaf)
-        elif left_tie_spanner is None and right_tie_spanner is None:
-            spannertools.TieSpanner([left_leaf, right_leaf])
 
     def _get_marks(self, mark_classes=None, recurse=True):
         result = []

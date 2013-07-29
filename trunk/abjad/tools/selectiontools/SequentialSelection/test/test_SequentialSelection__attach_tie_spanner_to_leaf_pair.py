@@ -17,7 +17,7 @@ def test_SequentialSelection__attach_tie_spanner_to_leaf_pair_01():
     }
     '''
 
-    t[1:3]._attach_tie_spanner_to_leaf_pair()
+    t.select_leaves()[1:3]._attach_tie_spanner_to_leaf_pair()
 
     r'''
     \new Voice {
@@ -49,7 +49,7 @@ def test_SequentialSelection__attach_tie_spanner_to_leaf_pair_02():
     }
     '''
 
-    t[1:3]._attach_tie_spanner_to_leaf_pair()
+    t.select_leaves()[1:3]._attach_tie_spanner_to_leaf_pair()
 
     r'''
     \new Voice {
@@ -79,7 +79,7 @@ def test_SequentialSelection__attach_tie_spanner_to_leaf_pair_03():
     }
     '''
 
-    t[1:3]._attach_tie_spanner_to_leaf_pair()
+    t.select_leaves()[1:3]._attach_tie_spanner_to_leaf_pair()
 
     r'''
     \new Voice {

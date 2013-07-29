@@ -178,7 +178,7 @@ def split_leaf_at_offset(
     # tie split notes, rests and chords as specified
     if  (pitchtools.is_pitch_carrier(leaf) and tie_split_notes) or \
         (not pitchtools.is_pitch_carrier(leaf) and tie_split_rests):
-        selection = selectiontools.SequentialSelection(leaves_around_split)
+        selection = selectiontools.SequentialLeafSelection(leaves_around_split)
         selection._attach_tie_spanner_to_leaf_pair()
 
     return left_leaf_list, right_leaf_list

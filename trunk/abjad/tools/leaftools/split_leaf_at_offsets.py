@@ -257,7 +257,7 @@ def split_leaf_at_offsets(
         # TODO: implement SequentialSelection._attach_tie_spanner_to_leaves()
         for leaf_pair in sequencetools.iterate_sequence_pairwise_strict(
             flattened_result_leaves):
-            selection = selectiontools.SequentialSelection(leaf_pair)
+            selection = selectiontools.SequentialLeafSelection(leaf_pair)
             selection._attach_tie_spanner_to_leaf_pair()
 
     # return result
