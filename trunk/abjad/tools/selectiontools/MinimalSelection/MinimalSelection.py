@@ -21,6 +21,8 @@ class MinimalSelection(object):
     eventually be returned as output from most functions in the API.
 
     Selections are immutable and never change after instantiation.
+
+    Selections mimic the immutability of built-in tuples.
     '''
 
     ### CLASS VARIABLES ###

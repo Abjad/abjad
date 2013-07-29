@@ -263,6 +263,7 @@ class InheritanceGraph(AbjadObject):
                 if parent in invalid_classes:
                     invalid_classes.remove(parent)
                     recurse_upward(parent, invalid_classes)
+        # TODO: change nested helper to private static method
         def recurse_downward(current_class, invalid_classes):
             if current_class not in parent_children_mapping:
                 return
@@ -314,6 +315,7 @@ class InheritanceGraph(AbjadObject):
     def graphviz_graph(self):
         from abjad.tools import documentationtools
 
+        # TODO: change nested helper to private static method
         def get_class_name_pieces(current_class):
             parts = (current_class.__module__ + '.' + current_class.__name__).split('.')
             name = [parts[0]]
@@ -367,7 +369,8 @@ class InheritanceGraph(AbjadObject):
             node = documentationtools.GraphvizNode(
                 name='.'.join(pieces),
                 )
-            node.attributes['label'] = '\\n'.join(pieces)
+            #node.attributes['label'] = '\\n'.join(pieces)
+            node.attributes['label'] = pieces[-1]
 
             if current_class in self.immediate_classes:
                 pass
