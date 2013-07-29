@@ -1,7 +1,7 @@
-from abjad.tools.selectiontools.FreeSelection import FreeSelection
+from abjad.tools.selectiontools.BaseSelection import BaseSelection
 
 
-class TupletSelection(FreeSelection):
+class TupletSelection(BaseSelection):
     '''Free selection of tuplets.
     '''
 

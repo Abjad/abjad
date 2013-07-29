@@ -1,10 +1,10 @@
 import copy
 import itertools
 import types
-from abjad.tools.selectiontools.FreeSelection import FreeSelection
+from abjad.tools.selectiontools.BaseSelection import BaseSelection
 
 
-class SequentialSelection(FreeSelection):
+class SequentialSelection(BaseSelection):
     '''SequentialSelection of components taken from a single score:
 
     ::
