@@ -333,6 +333,7 @@ class InheritanceGraph(AbjadObject):
             attributes={
                 'color': 'lightslategrey',
                 'fontname': 'Arial',
+                'outputorder': 'edgesfirst',
                 'overlap': 'prism',
                 'penwidth': 2,
                 #'ranksep': 0.5,
@@ -340,6 +341,7 @@ class InheritanceGraph(AbjadObject):
                 'style': ('dotted', 'rounded'),
             },
             edge_attributes={
+                'color': 'lightsteelblue2',
                 'penwidth': 2,
             },
             node_attributes={
