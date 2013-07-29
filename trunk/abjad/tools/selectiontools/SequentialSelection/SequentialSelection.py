@@ -2,9 +2,9 @@ from abjad.tools.selectiontools.Selection import Selection
 
 
 class SequentialSelection(Selection):
-    '''Selection of components taken horizontally.
+    '''Selection of components taken sequentially.
 
-    Horizontal selections implement duration properties.
+    Sequential selections implement duration properties.
     '''
 
     ### PRIVATE PROPERTIES ###
