@@ -1,7 +1,7 @@
 from abjad.tools.selectiontools.FreeSelection import FreeSelection
 
 
-class Inspector(FreeSelection):
+class ComponentSelection(FreeSelection):
     '''Selection of components grouped together for inspection.
     '''
 
@@ -46,12 +46,12 @@ class Inspector(FreeSelection):
     def inspect(expr):
         from abjad.tools import componenttools
         if isinstance(expr, componenttools.Component):
-            return Inspector(expr)
+            return ComponentSelection(expr)
         elif hasattr(expr, '_music'):
             music = expr._music
-            return Inspector(music)
+            return ComponentSelection(music)
         else:
-            return Inspector(expr)
+            return ComponentSelection(expr)
 
     def is_well_formed(self, allow_empty_containers=True):
         from abjad.tools import wellformednesstools
