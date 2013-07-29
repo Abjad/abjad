@@ -1,8 +1,6 @@
 import types
-#from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-#class MinimalSelection(AbjadObject):
 class MinimalSelection(object):
     '''Selection of components taken from a single score:
 
@@ -19,10 +17,6 @@ class MinimalSelection(object):
     This means that selection objects will eventually serve as input
     to most functions in the API. Selection objects will also
     eventually be returned as output from most functions in the API.
-
-    Selections are immutable and never change after instantiation.
-
-    Selections mimic the immutability of built-in tuples.
     '''
 
     ### CLASS VARIABLES ###

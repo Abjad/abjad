@@ -1,8 +1,8 @@
-from abjad.tools.selectiontools.Selection import Selection
+from abjad.tools.selectiontools.MinimalSelection import MinimalSelection
 
 
-class TupletSelection(Selection):
-    '''Selection of tuplets.
+class TupletSelection(MinimalSelection):
+    '''Free selection of tuplets.
     '''
 
     pass
