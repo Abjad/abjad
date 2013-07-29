@@ -5,7 +5,7 @@ from abjad.tools.selectiontools.Selection import Selection
 
 
 class SequentialSelection(Selection):
-    '''SequentialSelection of components taken from a single score:
+    '''Selection of components taken sequentially:
 
     ::
 
@@ -14,23 +14,7 @@ class SequentialSelection(Selection):
         >>> selection
         SequentialSelection(Note("c'4"), Note("d'4"))
 
-    SequentialSelection objects will eventually pervade the system and 
-    model all user selections.
-
-    This means that selection objects will eventually serve as input
-    to most functions in the API. SequentialSelection objects will also
-    eventually be returned as output from most functions in the API.
     '''
-
-#    ### CLASS VARIABLES ###
-#
-#    __slots__ = (
-#        '_music',
-#        )
-#
-#    _default_positional_input_arguments = (
-#        [],
-#        )
 
     ### INITIALIZER ###
 
@@ -80,8 +64,6 @@ class SequentialSelection(Selection):
 
     ### PRIVATE METHODS ###
 
-    # TODO: eventually migrate method to SliceSelection;
-    #       then remove explicit contiguity check.
     def _give_dominant_spanners_to_components(self, recipients):
         '''Find all spanners dominating music.
         Insert each component in recipients into each dominant spanner.
@@ -100,8 +82,6 @@ class SequentialSelection(Selection):
             for component in self:
                 spanner._remove(component)
 
-    # TODO: eventually migrate method to SliceSelection;
-    #       then remove explicit contiguity check.
     def _give_music_to_empty_container(self, container):
         '''Not composer-safe.
         '''
@@ -117,8 +97,6 @@ class SequentialSelection(Selection):
         container._music.extend(music)
         container[:]._set_parents(container)
 
-    # TODO: eventually migrate method to SliceSelection;
-    #       then remove explicit contiguity check.
     def _give_position_in_parent_to_container(self, container):
         '''Not composer-safe.
         '''
@@ -133,29 +111,12 @@ class SequentialSelection(Selection):
             container._set_parent(parent)
             self._set_parents(None)
 
-    def _iterate_components(self, recurse=True, reverse=False):
-        from abjad.tools import iterationtools
-        if recurse:
-            return iterationtools.iterate_components_in_expr(self)
-        else:
-            return self._iterate_top_level_components(reverse=reverse)
-
-    def _iterate_top_level_components(self, reverse=False):
-        if reverse:
-            for component in reversed(self):
-                yield component
-        else:
-            for component in self:
-                yield component
-
     def _set_parents(self, new_parent):
         '''Not composer-safe.
         '''
         for component in self._music:
             component._set_parent(new_parent)
 
-    # TODO: eventually migrate method to SliceSelection;
-    #       then remove explicit contiguity check.
     def _withdraw_from_crossing_spanners(self):
         '''Not composer-safe.
         '''

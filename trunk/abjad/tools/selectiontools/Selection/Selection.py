@@ -2,23 +2,12 @@ import types
 
 
 class Selection(object):
-    '''SequentialSelection of components taken from a single score:
+    '''Selection of components taken from a single score.
 
-    ::
+    Selections will eventually model all user selections.
 
-        >>> staff = Staff("c'4 d'4 e'4 f'4")
-        >>> selection = staff[:2]
-        >>> selection
-        SequentialSelection(Note("c'4"), Note("d'4"))
-
-    SequentialSelection objects will eventually pervade the system and 
-    model all user selections.
-
-    This means that selection objects will eventually serve as input
-    to most functions in the API. SequentialSelection objects will also
-    eventually be returned as output from most functions in the API.
-
-    Selections are immutable.
+    This means that selections will eventually serve as input
+    to and output from most functions in the API.
     '''
 
     ### CLASS VARIABLES ###
@@ -139,59 +128,6 @@ class Selection(object):
             result.extend(marks)
         return tuple(result)
 
-    # TODO: eventually migrate method to SliceSelection;
-    #       then remove explicit contiguity check.
-    def _give_dominant_spanners_to_components(self, recipients):
-        '''Find all spanners dominating music.
-        Insert each component in recipients into each dominant spanner.
-        Remove music from each dominating spanner.
-        Return none.
-        Not composer-safe.
-        '''
-        from abjad.tools import componenttools
-        from abjad.tools import spannertools
-        assert componenttools.all_are_thread_contiguous_components(self)
-        assert componenttools.all_are_thread_contiguous_components(recipients)
-        receipt = spannertools.get_spanners_that_dominate_components(self)
-        for spanner, index in receipt:
-            for recipient in reversed(recipients):
-                spanner._insert(index, recipient)
-            for component in self:
-                spanner._remove(component)
-
-    # TODO: eventually migrate method to SliceSelection;
-    #       then remove explicit contiguity check.
-    def _give_music_to_empty_container(self, container):
-        '''Not composer-safe.
-        '''
-        from abjad.tools import componenttools
-        from abjad.tools import containertools
-        assert componenttools.all_are_contiguous_components_in_same_parent(
-            self)
-        assert isinstance(container, containertools.Container)
-        assert not container
-        music = []
-        for component in self:
-            music.extend(getattr(component, 'music', ()))
-        container._music.extend(music)
-        container[:]._set_parents(container)
-
-    # TODO: eventually migrate method to SliceSelection;
-    #       then remove explicit contiguity check.
-    def _give_position_in_parent_to_container(self, container):
-        '''Not composer-safe.
-        '''
-        from abjad.tools import componenttools
-        from abjad.tools import containertools
-        assert componenttools.all_are_contiguous_components_in_same_parent(
-            self)
-        assert isinstance(container, containertools.Container)
-        parent, start, stop = self.get_parent_and_start_stop_indices()
-        if parent is not None:
-            parent._music.__setitem__(slice(start, start), [container])
-            container._set_parent(parent)
-            self._set_parents(None)
-
     def _iterate_components(self, recurse=True, reverse=False):
         from abjad.tools import iterationtools
         if recurse:
@@ -206,29 +142,3 @@ class Selection(object):
         else:
             for component in self:
                 yield component
-
-    def _set_parents(self, new_parent):
-        '''Not composer-safe.
-        '''
-        for component in self._music:
-            component._set_parent(new_parent)
-
-    # TODO: eventually migrate method to SliceSelection;
-    #       then remove explicit contiguity check.
-    def _withdraw_from_crossing_spanners(self):
-        '''Not composer-safe.
-        '''
-        from abjad.tools import componenttools
-        from abjad.tools import iterationtools
-        from abjad.tools import spannertools
-        assert componenttools.all_are_thread_contiguous_components(self)
-        crossing_spanners = \
-            spannertools.get_spanners_that_cross_components(self)
-        components_including_children = \
-            list(iterationtools.iterate_components_in_expr(self))
-        for crossing_spanner in list(crossing_spanners):
-            spanner_components = crossing_spanner._components[:]
-            for component in components_including_children:
-                if component in spanner_components:
-                    crossing_spanner._components.remove(component)
-                    component._spanners.discard(crossing_spanner)
