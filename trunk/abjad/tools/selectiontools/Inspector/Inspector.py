@@ -1,7 +1,7 @@
 from abjad.tools.selectiontools.Selection import Selection
 
 
-class Inspection(Selection):
+class Inspector(Selection):
     '''Selection of components grouped together for inspection.
     '''
 
@@ -29,7 +29,7 @@ class Inspection(Selection):
 
         ::
 
-            >>> staff[:].get_badly_formed_components()
+            >>> inspect(staff).get_badly_formed_components()
             [Note("d'4")]
 
         (Beamed quarter notes are not well formed.)
@@ -75,7 +75,7 @@ class Inspection(Selection):
 
         ::
 
-            >>> result =  select(staff).tabulate_well_formedness_violations()
+            >>> result =  inspect(staff).tabulate_well_formedness_violations()
 
         ::
 

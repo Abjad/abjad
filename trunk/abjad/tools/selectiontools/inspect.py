@@ -6,9 +6,9 @@ def inspect(expr):
     from abjad.tools import componenttools
     from abjad.tools import selectiontools
     if isinstance(expr, componenttools.Component):
-        return selectiontools.Inspection(expr)
+        return selectiontools.Inspector(expr)
     elif hasattr(expr, '_music'):
         music = expr._music
-        return selectiontools.Inspection(music)
+        return selectiontools.Inspector(music)
     else:
-        return selectiontools.Inspection(expr)
+        return selectiontools.Inspector(expr)
