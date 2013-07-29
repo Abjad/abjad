@@ -1,5 +1,6 @@
 import copy
 from ply import lex
+from abjad.tools import chordtools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -454,7 +455,10 @@ class LilyPondLexicalDefinition(AbjadObject):
             t.type = 'RESTNAME'
         elif t.value == 'R':
             t.type = 'MULTI_MEASURE_REST'
-        elif t.value == 'q' and self.client._last_chord:
+        elif t.value == 'q':
+            if self.client._last_chord is None:
+                self.client._last_chord = chordtools.Chord(
+                    ['c', 'g', "c'"], (1, 4))
             t.type = 'CHORD_REPETITION'
         else:
             t.type = 'STRING'
