@@ -466,11 +466,7 @@ class Selection(FreeSelection):
 
         Return tuple.
         '''
-        result = []
-        for component in self._iterate_components(recurse=recurse):
-            marks = component.get_marks(mark_classes=mark_classes)
-            result.extend(marks)
-        return tuple(result)
+        return self._get_marks(mark_classes=mark_classes, recurse=recurse)
 
     def get_parent_and_start_stop_indices(self):
         if self:

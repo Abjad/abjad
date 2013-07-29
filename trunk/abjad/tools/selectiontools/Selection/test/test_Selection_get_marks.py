@@ -8,7 +8,7 @@ def test_Selection_get_marks_01():
     dynamic = contexttools.DynamicMark('f')(staff[0])
 
     parentage = staff[0].select_parentage(include_self=True)
-    context_marks = parentage.get_marks(
+    context_marks = parentage._get_marks(
         mark_classes=contexttools.ContextMark,
         recurse=False,
         )

@@ -17,6 +17,8 @@ class FreeSelection(object):
     This means that selection objects will eventually serve as input
     to most functions in the API. Selection objects will also
     eventually be returned as output from most functions in the API.
+
+    Selections are immutable.
     '''
 
     ### CLASS VARIABLES ###
@@ -159,6 +161,13 @@ class FreeSelection(object):
             right_tie_spanner.append_left(left_leaf)
         elif left_tie_spanner is None and right_tie_spanner is None:
             spannertools.TieSpanner([left_leaf, right_leaf])
+
+    def _get_marks(self, mark_classes=None, recurse=True):
+        result = []
+        for component in self._iterate_components(recurse=recurse):
+            marks = component.get_marks(mark_classes=mark_classes)
+            result.extend(marks)
+        return tuple(result)
 
     # TODO: eventually migrate method to SliceSelection;
     #       then remove explicit contiguity check.
