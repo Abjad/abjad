@@ -60,36 +60,12 @@ class SequentialSelection(BaseSelection):
             music = self._music + tuple(expr)
         return type(self)(music)
 
-    def __contains__(self, expr):
-        return expr in self._music
-
-    def __eq__(self, expr):
-        if isinstance(expr, type(self)):
-            return self._music == expr._music
-        # eventually remove this permissive branch
-        # and force the use of selections only
-        elif isinstance(expr, (list, tuple)):
-            return self._music == tuple(expr)
-
-    def __getitem__(self, expr):
-        result = self._music.__getitem__(expr)
-        if isinstance(result, tuple):
-            selection = type(self)()
-            selection._music = result[:]
-            result = selection
-        return result
-
-    def __len__(self):
-        return len(self._music)
-
-    def __ne__(self, expr):
-        return not self == expr
-
     def __radd__(self, expr):
         assert isinstance(expr, (type(self), list, tuple))
         if isinstance(expr, type(self)):
             music = expr._music + self._music
-            return SequentialSelection(music)
+            #return SequentialSelection(music)
+            return type(self)(music)
         # eventually remove this permissive branch 
         # and force the use of selections only
         elif isinstance(expr, (tuple, list)):
