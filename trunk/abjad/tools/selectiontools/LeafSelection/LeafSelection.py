@@ -1,7 +1,7 @@
-from abjad.tools.selectiontools.HorizontalSelection import HorizontalSelection
+from abjad.tools.selectiontools.SequentialSelection import SequentialSelection
 
 
-class LeafSelection(HorizontalSelection):
+class LeafSelection(SequentialSelection):
     '''Selection of leaves.
     '''
 
@@ -9,7 +9,7 @@ class LeafSelection(HorizontalSelection):
 
     def __init__(self, music=None):
         from abjad.tools import leaftools
-        HorizontalSelection.__init__(self, music=music)
+        SequentialSelection.__init__(self, music=music)
         assert all(isinstance(x, leaftools.Leaf) for x in self)
 
     ### PUBLIC METHODS ###

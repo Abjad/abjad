@@ -1,7 +1,7 @@
 from abjad.tools.selectiontools.Selection import Selection
 
 
-class HorizontalSelection(Selection):
+class SequentialSelection(Selection):
     '''Selection of components taken horizontally.
 
     Horizontal selections implement duration properties.
