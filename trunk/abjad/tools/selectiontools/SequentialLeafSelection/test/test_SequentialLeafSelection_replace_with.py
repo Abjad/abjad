@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_LeafSelection_replace_with_01():
+def test_SequentialLeafSelection_replace_with_01():
     '''Replace with rests.
     '''
 
@@ -22,7 +22,7 @@ def test_LeafSelection_replace_with_01():
     assert t.lilypond_format == '\\new Staff {\n\tr8\n\tr8\n\tr8\n\tr8\n}'
 
 
-def test_LeafSelection_replace_with_02():
+def test_SequentialLeafSelection_replace_with_02():
     '''Replace with skips.
     '''
 

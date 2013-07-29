@@ -1,7 +1,7 @@
 from abjad.tools.selectiontools.SequentialSelection import SequentialSelection
 
 
-class LeafSelection(SequentialSelection):
+class SequentialLeafSelection(SequentialSelection):
     '''SequentialSelection of leaves.
     '''
 

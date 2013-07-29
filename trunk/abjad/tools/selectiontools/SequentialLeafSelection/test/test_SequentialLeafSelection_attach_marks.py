@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_LeafSelection_attach_marks_01():
+def test_SequentialLeafSelection_attach_marks_01():
 
     staff = Staff("c'8 d'8 r8 f'8")
     selection = staff.select_notes_and_chords()
@@ -20,7 +20,7 @@ def test_LeafSelection_attach_marks_01():
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 -\\marcato -\\staccato\n\td'8 -\\marcato -\\staccato\n\tr8\n\tf'8 -\\marcato -\\staccato\n}"
 
 
-def test_LeafSelection_attach_marks_02():
+def test_SequentialLeafSelection_attach_marks_02():
 
     staff = Staff("c'8 d'8 r8 f'8")
     selection = staff.select_notes_and_chords()

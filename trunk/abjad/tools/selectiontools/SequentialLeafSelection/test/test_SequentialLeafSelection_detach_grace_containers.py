@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_LeafSelection_detach_grace_containers_01():
+def test_SequentialLeafSelection_detach_grace_containers_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
 

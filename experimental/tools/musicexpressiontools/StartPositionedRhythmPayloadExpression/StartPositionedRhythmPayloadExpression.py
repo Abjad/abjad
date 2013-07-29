@@ -389,7 +389,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         ::
 
             >>> expression.elements
-            LeafSelection(Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"))
+            SequentialLeafSelection(Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"))
 
         Return leaf selection.
         '''

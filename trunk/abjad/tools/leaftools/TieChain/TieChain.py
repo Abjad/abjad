@@ -1,10 +1,10 @@
 import itertools
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
-from abjad.tools.selectiontools.LeafSelection import LeafSelection
+from abjad.tools.selectiontools.SequentialLeafSelection import SequentialLeafSelection
 
 
-class TieChain(LeafSelection):
+class TieChain(SequentialLeafSelection):
     '''All the notes in a tie chain:
 
     ::

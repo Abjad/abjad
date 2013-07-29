@@ -51,7 +51,7 @@ def copy_components_and_detach_spanners(components, n=1):
     ::
 
         >>> result
-        LeafSelection(Note("d'4"), Note("e'4"))
+        SequentialLeafSelection(Note("d'4"), Note("e'4"))
 
     ::
 
