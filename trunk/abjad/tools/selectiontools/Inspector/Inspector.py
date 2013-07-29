@@ -1,7 +1,7 @@
-from abjad.tools.selectiontools.Selection import Selection
+from abjad.tools.selectiontools.FreeSelection import FreeSelection
 
 
-class Inspector(Selection):
+class Inspector(FreeSelection):
     '''Selection of components grouped together for inspection.
     '''
 

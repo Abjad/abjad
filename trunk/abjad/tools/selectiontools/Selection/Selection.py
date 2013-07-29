@@ -8,7 +8,6 @@ class Selection(object):
 
     This means that selections will eventually serve as input
     to and output from most functions in the API.
-
     '''
 
     ### CLASS VARIABLES ###
