@@ -67,7 +67,7 @@ def test_Leaf_number_05():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\te'8\n\tf'8\n\tc'8\n\td'8\n}"
 
     assert t[0].leaf_index == 0

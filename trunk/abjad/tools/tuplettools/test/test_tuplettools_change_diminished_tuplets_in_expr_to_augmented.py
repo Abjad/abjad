@@ -24,5 +24,5 @@ def test_tuplettools_change_diminished_tuplets_in_expr_to_augmented_01():
     }
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert tuplet.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 4/3 {\n\tc'16\n\td'16\n\te'16\n}"

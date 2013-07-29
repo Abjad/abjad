@@ -11,5 +11,5 @@ def test_labeltools_color_note_head_by_numbered_chromatic_pitch_class_color_map_
     c''4
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\once \\override NoteHead #'color = #(x11-color 'red)\nc''4"

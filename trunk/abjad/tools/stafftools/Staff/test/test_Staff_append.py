@@ -7,7 +7,7 @@ def test_Staff_append_01():
     '''
     t = Staff(Note("c'4") * 4)
     t.append(Note("c'4"))
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert len(t) == 5
     assert t.contents_duration == Duration(5, 4)
 
@@ -17,7 +17,7 @@ def test_Staff_append_02():
     '''
     t = Staff(Note("c'4") * 4)
     t.append(Chord([2, 3, 4], (1, 4)))
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert len(t) == 5
     assert t.contents_duration == Duration(5, 4)
 
@@ -27,7 +27,7 @@ def test_Staff_append_03():
     '''
     t = Staff(Note("c'4") * 4)
     t.append(tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3))
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert len(t) == 5
     assert t.contents_duration == Duration(5, 4)
 

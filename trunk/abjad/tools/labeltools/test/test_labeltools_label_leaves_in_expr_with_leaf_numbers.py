@@ -33,7 +33,7 @@ def test_labeltools_label_leaves_in_expr_with_leaf_numbers_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\tc'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t1\n\t\t\t}\n\td'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t2\n\t\t\t}\n\te'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t3\n\t\t\t}\n\tf'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t4\n\t\t\t}\n}"
 
 
@@ -69,5 +69,5 @@ def test_labeltools_label_leaves_in_expr_with_leaf_numbers_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\tc'8\n\t\t^ \\markup {\n\t\t\t\\small\n\t\t\t\t1\n\t\t\t}\n\td'8\n\t\t^ \\markup {\n\t\t\t\\small\n\t\t\t\t2\n\t\t\t}\n\te'8\n\t\t^ \\markup {\n\t\t\t\\small\n\t\t\t\t3\n\t\t\t}\n\tf'8\n\t\t^ \\markup {\n\t\t\t\\small\n\t\t\t\t4\n\t\t\t}\n}"

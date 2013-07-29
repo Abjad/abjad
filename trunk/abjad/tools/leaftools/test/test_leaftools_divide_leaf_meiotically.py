@@ -30,5 +30,5 @@ def test_leaftools_divide_leaf_meiotically_01():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert staff.lilypond_format == "\\new Staff {\n\tc'32 [\n\tc'32\n\tc'32\n\tc'32\n\td'8\n\te'8\n\tf'8 ]\n}"

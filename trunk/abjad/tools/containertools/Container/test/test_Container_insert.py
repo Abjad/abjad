@@ -25,7 +25,7 @@ def test_Container_insert_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\tr8\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
@@ -47,7 +47,7 @@ def test_Container_insert_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\tcs'8\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
@@ -70,7 +70,7 @@ def test_Container_insert_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
 
 
@@ -92,7 +92,7 @@ def test_Container_insert_04():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
 
 
@@ -114,7 +114,7 @@ def test_Container_insert_05():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\teqs'8\n\tf'8 ]\n}"
 
 
@@ -136,7 +136,7 @@ def test_Container_insert_06():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\tr8\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
@@ -150,7 +150,7 @@ def test_Container_insert_07():
     note = v[0]
     t.insert(1, v[0])
 
-    assert select(v).is_well_formed()
-    assert select(t).is_well_formed()
+    assert inspect(v).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert not note in v
     assert note._parent is t

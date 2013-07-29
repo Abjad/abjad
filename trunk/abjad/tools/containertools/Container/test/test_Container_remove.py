@@ -35,13 +35,13 @@ def test_Container_remove_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\tc'8 (\n\te'8\n\tf'8 )\n}"
 
     "Note is now d'8 [ ]"
 
-    #assert select(result).is_well_formed()
-    assert select(note).is_well_formed()
+    #assert inspect(result).is_well_formed()
+    assert inspect(note).is_well_formed()
     #assert result.lilypond_format == "d'8 [ ]"
     assert note.lilypond_format == "d'8 [ ]"
 
@@ -83,7 +83,7 @@ def test_Container_remove_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n}"
 
     r'''
@@ -93,7 +93,7 @@ def test_Container_remove_02():
     }
     '''
 
-    assert select(sequential).is_well_formed()
+    assert inspect(sequential).is_well_formed()
     assert sequential.lilypond_format == "{\n\tc'8\n\td'8\n}"
 
 

@@ -15,7 +15,7 @@ def test_Measure_empty_02():
     assert len(t) == 0
     assert t._preprolated_duration == 0
     assert t.duration == 0
-    assert not select(t).is_well_formed()
+    assert not inspect(t).is_well_formed()
 
 
 def test_Measure_empty_03():
@@ -26,4 +26,4 @@ def test_Measure_empty_03():
     assert len(t) == 0
     assert t._preprolated_duration == 0
     assert t.duration == 0
-    assert not select(t).is_well_formed()
+    assert not inspect(t).is_well_formed()

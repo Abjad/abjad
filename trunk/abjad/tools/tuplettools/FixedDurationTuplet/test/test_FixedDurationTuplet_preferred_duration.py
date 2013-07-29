@@ -17,5 +17,5 @@ def test_FixedDurationTuplet_preferred_duration_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\times 4/6 {\n\tc'8\n\td'8\n\te'8\n\tf'8\n\tg'8\n\ta'8\n}"

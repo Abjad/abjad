@@ -37,7 +37,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\tc'8 [ ] \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\tf'8 [ ] \\!\n}"
 
 
@@ -78,7 +78,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\tc''16 [ \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\td'8 ]\n\te'8 [\n\tf'8 ] \\!\n}"
 
 
@@ -118,7 +118,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\tc''16 [ \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16 ]\n\te'8 [\n\tf'8 ] \\!\n}"
 
 
@@ -157,7 +157,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\tc''16 \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\tf'8 [ ] \\!\n}"
 
 
@@ -195,7 +195,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\tc''16 \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16 \\!\n}"
 
 
@@ -234,6 +234,6 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
     assert len(voice) == 0

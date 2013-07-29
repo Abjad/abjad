@@ -26,6 +26,6 @@ def test_tuplettools_remove_trivial_tuplets_in_expr_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert len(t) == 4
     assert t.lilypond_format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"

@@ -19,7 +19,7 @@ def test_Container___setitem___slice_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\tc'8\n\td'8\n\tg'8\n\te'8\n\tf'8\n}"
 
 
@@ -42,7 +42,7 @@ def test_Container___setitem___slice_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\td'8\n\tg'8\n\te'8\n\tf'8 ]\n}"
 
 
@@ -81,7 +81,7 @@ def test_Container___setitem___slice_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\td'8\n\te'8\n\tf'8\n\tg'8\n\ta'8 ]\n}"
 
 
@@ -102,7 +102,7 @@ def test_Container___setitem___slice_04():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\tc''8\n\tf'8 ]\n}"
 
 
@@ -125,7 +125,7 @@ def test_Container___setitem___slice_05():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\tb'8\n\ta'8\n\tg'8\n\tf'8 ]\n}"
 
 
@@ -164,7 +164,7 @@ def test_Container___setitem___slice_06():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert len(sequential) == 0
     assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\td'8\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
@@ -206,7 +206,7 @@ def test_Container___setitem___slice_07():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\tc'8\n\t{\n\t\td'8 [\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
@@ -287,7 +287,7 @@ def test_Container___setitem___slice_09():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\tc'8\n\td'8\n\t{\n\t\te'8\n\t}\n\t{\n\t\tf'8 [ ]\n\t}\n}"
 
 
@@ -328,7 +328,7 @@ def test_Container___setitem___slice_10():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\tc'8\n\t{\n\t\td'8 [\n\t}\n\t{\n\t\te'8 ]\n\t}\n\tf'8\n}"
 
 
@@ -350,7 +350,7 @@ def test_Container___setitem___slice_11():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\tr8\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
@@ -372,7 +372,7 @@ def test_Container___setitem___slice_12():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\tr8\n}"
 
 

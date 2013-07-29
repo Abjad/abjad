@@ -20,7 +20,7 @@ def test_componenttools_copy_and_partition_governed_component_subtree_by_leaf_co
     }
     '''
 
-    assert select(left).is_well_formed()
+    assert inspect(left).is_well_formed()
     assert left.lilypond_format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [ ]\n\t}\n}"
 
     r'''
@@ -32,7 +32,7 @@ def test_componenttools_copy_and_partition_governed_component_subtree_by_leaf_co
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert right.lilypond_format == "\\new Voice {\n\t\\times 2/3 {\n\t\td'8 [\n\t\te'8 ]\n\t}\n}"
 
 
@@ -52,7 +52,7 @@ def test_componenttools_copy_and_partition_governed_component_subtree_by_leaf_co
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8 ]\n}"
 
     r'''
@@ -61,7 +61,7 @@ def test_componenttools_copy_and_partition_governed_component_subtree_by_leaf_co
     }
     '''
 
-    assert select(result[0]).is_well_formed()
+    assert inspect(result[0]).is_well_formed()
     assert result[0].lilypond_format == "\\new Voice {\n\tc'8 [ ]\n}"
 
     r'''
@@ -71,5 +71,5 @@ def test_componenttools_copy_and_partition_governed_component_subtree_by_leaf_co
     }
     '''
 
-    assert select(result[-1]).is_well_formed()
+    assert inspect(result[-1]).is_well_formed()
     assert result[-1].lilypond_format == "\\new Voice {\n\td'8 [\n\te'8 ]\n}"

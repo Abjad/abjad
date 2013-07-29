@@ -49,7 +49,7 @@ def test_SequentialSelection__give_dominant_spanners_to_components_01():
 
     "Both crescendo and beam are now discontiguous."
 
-    assert not select(t).is_well_formed()
+    assert not inspect(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\tc'8 [ \\<\n\td'8 ]\n\te'8\n\tf'8 \\!\n}"
 
     "Recipient is now ..."
@@ -64,7 +64,7 @@ def test_SequentialSelection__give_dominant_spanners_to_components_01():
 
     "Slur is contiguous but recipient participates in discont. cresc."
 
-    assert not select(recipient).is_well_formed()
+    assert not inspect(recipient).is_well_formed()
     assert recipient.lilypond_format == "\\new Voice {\n\tc'16 [ (\n\tc'16\n\tc'16 ] )\n}"
 
 
@@ -125,5 +125,5 @@ def test_SequentialSelection__give_dominant_spanners_to_components_02():
 
     "Both container t and recipient container carry discontiguous spanners."
 
-    assert not select(t).is_well_formed()
-    assert not select(recipient).is_well_formed()
+    assert not inspect(t).is_well_formed()
+    assert not inspect(recipient).is_well_formed()

@@ -28,7 +28,7 @@ def test_SequentialSelection_detach_spanners_01():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert staff.lilypond_format == "\\new Staff {\n\tc'4\n\tc'16\n\tc'4\n\tc'16\n}"
 
 
