@@ -1,10 +1,10 @@
 import itertools
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
-from abjad.tools.selectiontools.HorizontalSelection import HorizontalSelection
+from abjad.tools.selectiontools.LeafSelection import LeafSelection
 
 
-class TieChain(HorizontalSelection):
+class TieChain(LeafSelection):
     '''All the notes in a tie chain:
 
     ::
@@ -18,12 +18,6 @@ class TieChain(HorizontalSelection):
 
     Tie chains are immutable score selections.
     '''
-
-#    ### PRIVATE PROPERTIES ###
-#
-#    @property
-#    def _preprolated_duration(self):
-#        return sum([x._preprolated_duration for x in self])
 
     ### PRIVATE METHODS ###
 
