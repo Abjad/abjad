@@ -34,6 +34,7 @@ from abjad.tools.measuretools import Measure
 from abjad.tools.notetools import Note
 from abjad.tools.resttools import Rest
 from abjad.tools.scoretools import Score
+from abjad.tools.selectiontools import inspect
 from abjad.tools.selectiontools import select
 from abjad.tools.stafftools import Staff
 from abjad.tools.tuplettools import Tuplet
