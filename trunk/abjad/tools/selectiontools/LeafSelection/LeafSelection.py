@@ -1,7 +1,7 @@
-from abjad.tools.selectiontools.SequentialSelection import SequentialSelection
+from abjad.tools.selectiontools.Selection import Selection
 
 
-class LeafSelection(SequentialSelection):
+class LeafSelection(Selection):
     '''Selection of leaves.
     '''
 
@@ -9,7 +9,7 @@ class LeafSelection(SequentialSelection):
 
     def __init__(self, music=None):
         from abjad.tools import leaftools
-        SequentialSelection.__init__(self, music=music)
+        Selection.__init__(self, music=music)
         assert all(isinstance(x, leaftools.Leaf) for x in self)
 
     ### PUBLIC METHODS ###
