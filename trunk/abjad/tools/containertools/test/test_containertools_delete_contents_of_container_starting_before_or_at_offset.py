@@ -14,7 +14,7 @@ def test_containertools_delete_contents_of_container_starting_before_or_at_offse
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert staff.lilypond_format == "\\new Staff {\n\te'8 [\n\tf'8 ]\n}"
 
 
@@ -31,7 +31,7 @@ def test_containertools_delete_contents_of_container_starting_before_or_at_offse
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert staff.lilypond_format == "\\new Staff {\n\te'8 [\n\tf'8 ]\n}"
 
 
@@ -52,7 +52,7 @@ def test_containertools_delete_contents_of_container_starting_before_or_at_offse
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
@@ -69,5 +69,5 @@ def test_containertools_delete_contents_of_container_starting_before_or_at_offse
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert staff.lilypond_format == '\\new Staff {\n}'

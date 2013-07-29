@@ -30,12 +30,12 @@ def test_Container_pop_01():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\tc'8 (\n\te'8\n\tf'8 )\n}"
 
     "Result is now d'8 [ ]"
 
-    assert inspect(result).is_well_formed()
+    assert select(result).is_well_formed()
     assert result.lilypond_format == "d'8 [ ]"
 
 
@@ -72,7 +72,7 @@ def test_Container_pop_02():
     '''
 
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\td'8 ]\n\t}\n}"
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
 
     r'''
     {
@@ -82,4 +82,4 @@ def test_Container_pop_02():
     '''
 
     assert sequential.lilypond_format == "{\n\te'8\n\tf'8\n}"
-    assert inspect(sequential).is_well_formed()
+    assert select(sequential).is_well_formed()

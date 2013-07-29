@@ -118,7 +118,7 @@ def test_BeamSpanner_fracture_05():
     assert staff[2]._get_spanner(spannertools.BeamSpanner) != \
         staff[3]._get_spanner(spannertools.BeamSpanner)
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 [\n\tcs'8 ]\n\td'8 [ ]\n\tef'8 [\n\te'8 ]\n\tf'8\n\tfs'8\n\tg'8\n}"
 
 
@@ -156,7 +156,7 @@ def test_BeamSpanner_fracture_06():
     assert staff[0]._get_spanner(spannertools.BeamSpanner) != \
         staff[1]._get_spanner(spannertools.BeamSpanner)
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 [ ]\n\tcs'8 [\n\td'8\n\tef'8\n\te'8 ]\n\tf'8\n\tfs'8\n\tg'8\n}"
 
 
@@ -193,7 +193,7 @@ def test_BeamSpanner_fracture_07():
     assert staff[0]._get_spanner(spannertools.BeamSpanner) != \
         staff[4]._get_spanner(spannertools.BeamSpanner)
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\te'8 [ ]\n\tf'8\n\tfs'8\n\tg'8\n}"
 
 
@@ -230,5 +230,5 @@ def test_BeamSpanner_fracture_08():
     assert staff[0]._get_spanner(spannertools.BeamSpanner) != \
         staff[4]._get_spanner(spannertools.BeamSpanner)
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\te'8 [ ]\n\tf'8\n\tfs'8\n\tg'8\n}"

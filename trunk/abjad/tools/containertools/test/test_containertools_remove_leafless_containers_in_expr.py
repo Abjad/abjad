@@ -41,5 +41,5 @@ def test_containertools_remove_leafless_containers_in_expr_01():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"

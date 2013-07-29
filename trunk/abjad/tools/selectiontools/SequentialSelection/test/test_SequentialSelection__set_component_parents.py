@@ -9,7 +9,7 @@ def test_SequentialSelection__set_component_parents_01():
     selection = u[:]
     selection._set_parents(t)
 
-    assert inspect(u).is_well_formed()
+    assert select(u).is_well_formed()
     assert len(u) == 0
 
     "Container t now assigned to selection."
@@ -22,6 +22,6 @@ def test_SequentialSelection__set_component_parents_01():
 
     "SequentialSelection now in container t."
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert selection[0]._parent is t
     assert selection[0] in t

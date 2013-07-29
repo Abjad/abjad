@@ -20,7 +20,7 @@ def test_spannertools_fracture_spanners_that_cross_components_01():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\tc'8 [ ]\n\td'8 [\n\te'8 ]\n\tf'8 [ ]\n}"
 
 
@@ -41,7 +41,7 @@ def test_spannertools_fracture_spanners_that_cross_components_02():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\tc'8 [ ]\n\td'8 [ ]\n\te'8 [\n\tf'8 ]\n}"
 
 
@@ -98,7 +98,7 @@ def test_spannertools_fracture_spanners_that_cross_components_04():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8 [ \\<\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8 [\n\t\ta'8 ] \\!\n\t}\n}"
 
 
@@ -148,5 +148,5 @@ def test_spannertools_fracture_spanners_that_cross_components_05():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8 [ \\< \\startTrillSpan\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8 [\n\t\ta'8 ] \\! \\stopTrillSpan\n\t}\n}"

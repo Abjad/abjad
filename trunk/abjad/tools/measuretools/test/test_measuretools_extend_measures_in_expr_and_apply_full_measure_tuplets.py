@@ -46,5 +46,5 @@ def test_measuretools_extend_measures_in_expr_and_apply_full_measure_tuplets_01(
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\t\\times 4/5 {\n\t\t\tc'8\n\t\t\td'8\n\t\t\tr16\n\t\t}\n\t}\n\t{\n\t\t\\time 3/8\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 6/7 {\n\t\t\te'8\n\t\t\tf'8\n\t\t\tg'8\n\t\t\tr16\n\t\t}\n\t}\n}"

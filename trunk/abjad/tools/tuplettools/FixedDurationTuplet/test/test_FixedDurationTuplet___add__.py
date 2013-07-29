@@ -29,7 +29,7 @@ def test_FixedDurationTuplet___add___01():
 
     new = t1 + t2
 
-    assert inspect(new).is_well_formed()
+    assert select(new).is_well_formed()
     assert len(t1) == 0
     assert len(t2) == 0
     assert new is not t1 and new is not t2
@@ -88,7 +88,7 @@ def test_FixedDurationTuplet___add___02():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8 ]\n\t\tc'16 (\n\t\td'16\n\t\te'16 )\n\t}\n}"
 
 

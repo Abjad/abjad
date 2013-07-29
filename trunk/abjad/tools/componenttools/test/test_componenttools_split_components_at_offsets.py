@@ -46,7 +46,7 @@ def test_componenttools_split_components_at_offsets_01():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(parts) == 3
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32. ~\n\t\td'32. ~\n\t\td'32 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
@@ -96,7 +96,7 @@ def test_componenttools_split_components_at_offsets_02():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(parts) == 6
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16. [ ( ~\n\t\tc'32\n\t\td'16 ~\n\t\td'16 ]\n\t}\n\t{\n\t\te'32 [ ~\n\t\te'16.\n\t\tf'16. ~\n\t\tf'32 ] )\n\t}\n}"
 
@@ -148,7 +148,7 @@ def test_componenttools_split_components_at_offsets_03():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(parts) == 3
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ (\n\t}\n\t{\n\t\tc'32\n\t\td'16\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
@@ -210,7 +210,7 @@ def test_componenttools_split_components_at_offsets_04():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(parts) == 6
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ (\n\t}\n\t{\n\t\tc'32\n\t\td'16\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16.\n\t}\n\t{\n\t\tf'16.\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 ] )\n\t}\n}"
 
@@ -261,7 +261,7 @@ def test_componenttools_split_components_at_offsets_05():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(parts) == 6
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [\n\t}\n\t{\n\t\tc'32\n\t\td'16\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16.\n\t}\n\t{\n\t\tf'16.\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 ]\n\t}\n}"
 
@@ -308,7 +308,7 @@ def test_componenttools_split_components_at_offsets_06():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(parts) == 4
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32 ~\n\t\td'32 ~\n\t\td'32 ~\n\t\td'32 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
@@ -356,7 +356,7 @@ def test_componenttools_split_components_at_offsets_07():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(parts) == 8
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16 [ ( ~\n\t\tc'16\n\t\td'16 ~\n\t\td'16 ]\n\t}\n\t{\n\t\te'16 [ ~\n\t\te'16\n\t\tf'16 ~\n\t\tf'16 ] )\n\t}\n}"
 
@@ -409,7 +409,7 @@ def test_componenttools_split_components_at_offsets_08():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(parts) == 4
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/16\n\t\tc'16 [ ( ~\n\t}\n\t{\n\t\tc'16\n\t}\n\t{\n\t\td'16 ~\n\t}\n\t{\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
@@ -471,7 +471,7 @@ def test_componenttools_split_components_at_offsets_09():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(parts) == 6
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ( ~\n\t}\n\t{\n\t\tc'32\n\t\td'16 ~\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ~\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16.\n\t}\n\t{\n\t\tf'16. ~\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 ] )\n\t}\n}"
 
@@ -522,7 +522,7 @@ def test_componenttools_split_components_at_offsets_10():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(parts) == 3
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32. ) ~\n\t\td'32. ( ) ~\n\t\td'32 ] (\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
@@ -570,7 +570,7 @@ def test_componenttools_split_components_at_offsets_11():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(parts) == 6
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16. [ ( ) ~\n\t\tc'32 (\n\t\td'16 ) ~\n\t\td'16 ] (\n\t}\n\t{\n\t\te'32 [ ) ~\n\t\te'16. (\n\t\tf'16. ) ~\n\t\tf'32 ] ( )\n\t}\n}"
 
@@ -622,7 +622,7 @@ def test_componenttools_split_components_at_offsets_12():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(parts) == 3
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\tc'32 [ (\n\t\td'16 ] )\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
@@ -684,7 +684,7 @@ def test_componenttools_split_components_at_offsets_13():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(parts) == 6
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\tc'32 [ (\n\t\td'16 ] )\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ] )\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16. [ ] ( )\n\t}\n\t{\n\t\tf'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ] ( )\n\t}\n}"
 
@@ -714,7 +714,7 @@ def test_componenttools_split_components_at_offsets_14():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(parts) == 6
     assert staff.lilypond_format == "\\new Staff {\n\tc'16. ~\n\tc'32\n\td'16 ~\n\td'16\n\te'32 ~\n\te'16.\n\tf'16. ~\n\tf'32\n}"
 
@@ -765,7 +765,7 @@ def test_componenttools_split_components_at_offsets_15():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(parts) == 6
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ]\n\t}\n\t{\n\t\tc'32 [\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ]\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16. [ ]\n\t}\n\t{\n\t\tf'16. [ ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ]\n\t}\n}"
 
@@ -812,7 +812,7 @@ def test_componenttools_split_components_at_offsets_16():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(parts) == 4
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32 ) ~\n\t\td'32 ( ) ~\n\t\td'32 ( ) ~\n\t\td'32 ] (\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
@@ -860,7 +860,7 @@ def test_componenttools_split_components_at_offsets_17():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(parts) == 8
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16 [ ( ) ~\n\t\tc'16 (\n\t\td'16 ) ~\n\t\td'16 ] (\n\t}\n\t{\n\t\te'16 [ ) ~\n\t\te'16 (\n\t\tf'16 ) ~\n\t\tf'16 ] ( )\n\t}\n}"
 
@@ -913,7 +913,7 @@ def test_componenttools_split_components_at_offsets_18():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(parts) == 4
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/16\n\t\tc'16 [ ] ( ) ~\n\t}\n\t{\n\t\tc'16 [ ] ( )\n\t}\n\t{\n\t\td'16 [ ] ( ) ~\n\t}\n\t{\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
@@ -975,7 +975,7 @@ def test_componenttools_split_components_at_offsets_19():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(parts) == 6
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( ) ~\n\t}\n\t{\n\t\tc'32 [ (\n\t\td'16 ] ) ~\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ] ) ~\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16. [ ] ( )\n\t}\n\t{\n\t\tf'16. [ ] ( ) ~\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ] ( )\n\t}\n}"
 
@@ -1028,7 +1028,7 @@ def test_componenttools_split_components_at_offsets_20():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(parts) == 3
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ (\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16.\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
@@ -1084,7 +1084,7 @@ def test_componenttools_split_components_at_offsets_21():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(parts) == 4
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ (\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16.\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [\n\t}\n\t{\n\t\t\\time 7/32\n\t\te'16.\n\t\tf'8 ] )\n\t}\n}"
 
@@ -1137,7 +1137,7 @@ def test_componenttools_split_components_at_offsets_22():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(parts) == 3
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
@@ -1194,7 +1194,7 @@ def test_componenttools_split_components_at_offsets_23():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(parts) == 4
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 [ ] (\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ] )\n\t}\n\t{\n\t\t\\time 7/32\n\t\te'16. [ (\n\t\tf'8 ] )\n\t}\n}"
 
@@ -1221,7 +1221,7 @@ def test_componenttools_split_components_at_offsets_24():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(parts) == 3
     assert staff.lilypond_format == "\\new Staff {\n\tc'32 ~\n\tc'8 ~\n\tc'32 ~\n\tc'16\n}"
 
@@ -1251,5 +1251,5 @@ def test_componenttools_split_components_at_offsets_25():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert staff.lilypond_format == "\\new Staff {\n\tc'64 [ ] ~\n\tc'16 [ ~\n\tc'64 ] ~\n\tc'32 [ ]\n}"

@@ -17,7 +17,7 @@ def test_TimeSignatureMark_partial_01():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\t\\partial 8\n\t\\time 2/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 

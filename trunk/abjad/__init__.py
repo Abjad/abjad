@@ -41,8 +41,6 @@ from abjad.tools.voicetools import Voice
 from fractions import Fraction
 import os
 
-inspect = selectiontools.ComponentSelection.inspect
-
 
 from abjad.tools.importtools.import_public_names_from_filesystem_path_into_namespace \
     import import_public_names_from_filesystem_path_into_namespace

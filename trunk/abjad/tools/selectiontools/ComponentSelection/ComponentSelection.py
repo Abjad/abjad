@@ -55,7 +55,7 @@ class ComponentSelection(FreeSelection):
 
         ::
 
-            >>> inspect(staff).get_badly_formed_components()
+            >>> select(staff).get_badly_formed_components()
             [Note("d'4")]
 
         (Beamed quarter notes are not well formed.)
@@ -76,15 +76,17 @@ class ComponentSelection(FreeSelection):
         return self._get_marks(mark_classes=mark_classes, recurse=recurse)
 
     @staticmethod
-    def inspect(expr):
-        from abjad.tools import componenttools
-        if isinstance(expr, componenttools.Component):
-            return ComponentSelection(expr)
-        elif hasattr(expr, '_music'):
-            music = expr._music
-            return ComponentSelection(music)
-        else:
-            return ComponentSelection(expr)
+    def select(expr):
+#        from abjad.tools import componenttools
+#        if isinstance(expr, componenttools.Component):
+#            return ComponentSelection(expr)
+#        elif hasattr(expr, '_music'):
+#            music = expr._music
+#            return ComponentSelection(music)
+#        else:
+#            return ComponentSelection(expr)
+        from abjad.tools import selectiontools
+        return selectiontools.select(expr)
 
     def is_well_formed(self, allow_empty_containers=True):
         from abjad.tools import wellformednesstools
@@ -119,7 +121,7 @@ class ComponentSelection(FreeSelection):
 
         ::
 
-            >>> result =  inspect(staff).tabulate_well_formedness_violations()
+            >>> result =  select(staff).tabulate_well_formedness_violations()
 
         ::
 

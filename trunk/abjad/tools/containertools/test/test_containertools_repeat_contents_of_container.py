@@ -20,7 +20,7 @@ def test_containertools_repeat_contents_of_container_01():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\tc'8 [\n\td'8 ]\n\tc'8 [\n\td'8 ]\n}"
 
 
@@ -39,7 +39,7 @@ def test_containertools_repeat_contents_of_container_02():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
 
 
@@ -56,5 +56,5 @@ def test_containertools_repeat_contents_of_container_03():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == '\\new Voice {\n}'

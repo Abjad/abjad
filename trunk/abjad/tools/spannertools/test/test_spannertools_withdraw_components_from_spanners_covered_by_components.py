@@ -29,5 +29,5 @@ def test_spannertools_withdraw_components_from_spanners_covered_by_components_01
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"

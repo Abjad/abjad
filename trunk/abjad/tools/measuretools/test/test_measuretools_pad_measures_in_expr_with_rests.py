@@ -40,7 +40,7 @@ def test_measuretools_pad_measures_in_expr_with_rests_01():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 19/64\n\t\tr32\n\t\tc'8\n\t\td'8\n\t\tr64\n\t}\n\t{\n\t\tr32\n\t\tc'8\n\t\td'8\n\t\tr64\n\t}\n}"
 
 
@@ -118,7 +118,7 @@ def test_measuretools_pad_measures_in_expr_with_rests_02():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\t<<\n\t\t\\time 19/64\n\t\t\\new Voice {\n\t\t\tr32\n\t\t\tc'8\n\t\t\td'8\n\t\t\tr64\n\t\t}\n\t\t\\new Voice {\n\t\t\tr32\n\t\t\te'8\n\t\t\tf'8\n\t\t\tr64\n\t\t}\n\t>>\n\t<<\n\t\t\\time 19/64\n\t\t\\new Voice {\n\t\t\tr32\n\t\t\tg'8\n\t\t\ta'8\n\t\t\tr64\n\t\t}\n\t\t\\new Voice {\n\t\t\tr32\n\t\t\tb'8\n\t\t\tc''8\n\t\t\tr64\n\t\t}\n\t>>\n}"
 
 
@@ -140,5 +140,5 @@ def test_measuretools_pad_measures_in_expr_with_rests_03():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "{\n\t\\time 19/64\n\tr32 [\n\tc'8\n\td'8\n\tr64 ]\n}"

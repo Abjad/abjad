@@ -16,7 +16,7 @@ def test_PianoPedalSpanner_01():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert p.kind == 'sustain'
     assert p.style == 'mixed'
     assert t.lilypond_format == "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'mixed\n\tc'8 \\sustainOn\n\tc'8\n\tc'8\n\tc'8 \\sustainOff\n}"
@@ -40,7 +40,7 @@ def test_PianoPedalSpanner_02():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'mixed\n\tc'8 \\sostenutoOn\n\tc'8\n\tc'8\n\tc'8 \\sostenutoOff\n}"
 
 
@@ -62,7 +62,7 @@ def test_PianoPedalSpanner_03():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'mixed\n\tc'8 \\unaCorda\n\tc'8\n\tc'8\n\tc'8 \\treCorde\n}"
 
 
@@ -85,7 +85,7 @@ def test_PianoPedalSpanner_04():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'text\n\tc'8 \\sustainOn\n\tc'8\n\tc'8\n\tc'8 \\sustainOff\n}"
 
 
@@ -108,7 +108,7 @@ def test_PianoPedalSpanner_05():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'bracket\n\tc'8 \\sustainOn\n\tc'8\n\tc'8\n\tc'8 \\sustainOff\n}"
 
 
@@ -135,7 +135,7 @@ def test_PianoPedalSpanner_06():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'mixed\n\tc'8 \\sustainOn\n\tc'8\n\tc'8\n\t\\set Staff.pedalSustainStyle = #'mixed\n\tc'8 \\sustainOff \\sustainOn\n\tc'8\n\tc'8\n\tc'8\n\tc'8 \\sustainOff\n}"
 
 

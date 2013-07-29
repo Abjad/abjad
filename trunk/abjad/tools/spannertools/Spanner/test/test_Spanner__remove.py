@@ -36,7 +36,7 @@ def test_Spanner__remove_01():
     }
     '''
 
-    assert not inspect(t).is_well_formed()
+    assert not select(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
@@ -89,7 +89,7 @@ def test_Spanner__remove_02():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8\n\t\ta'8\n\t}\n}"
 
 

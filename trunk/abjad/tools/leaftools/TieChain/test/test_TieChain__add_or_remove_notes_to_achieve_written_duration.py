@@ -16,7 +16,7 @@ def test_TieChain__add_or_remove_notes_to_achieve_written_duration_01():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 [ ~\n\tc'32 ]\n}"
 
 
@@ -34,5 +34,5 @@ def test_TieChain__add_or_remove_notes_to_achieve_written_duration_02():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 [ ]\n}"

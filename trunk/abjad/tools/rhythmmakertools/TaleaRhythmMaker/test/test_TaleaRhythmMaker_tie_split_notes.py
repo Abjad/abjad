@@ -33,7 +33,7 @@ def test_TaleaRhythmMaker_tie_split_notes_01():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'4 ~\n\t}\n\t{\n\t\tc'16\n\t\tc'8. ~\n\t}\n\t{\n\t\tc'8\n\t\tc'8 ~\n\t}\n\t{\n\t\tc'8.\n\t\tc'16\n\t}\n}"
 
 
@@ -76,5 +76,5 @@ def test_TaleaRhythmMaker_tie_split_notes_02():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/16\n\t\tc'8. ~\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'8\n\t\tc'4 ~\n\t\tc'16\n\t\tc'8. ~\n\t}\n\t{\n\t\t\\time 4/8\n\t\tc'8\n\t\tc'4 ~\n\t\tc'16\n\t\tc'16 ~\n\t}\n\t{\n\t\t\\time 7/16\n\t\tc'4\n\t\tc'8.\n\t}\n}"

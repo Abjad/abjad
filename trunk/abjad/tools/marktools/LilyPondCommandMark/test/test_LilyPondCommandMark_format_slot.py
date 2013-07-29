@@ -16,5 +16,5 @@ def test_LilyPondCommandMark_format_slot_01():
     }
     '''
 
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()
     assert staff.lilypond_format == "\\new Staff {\n\tc'8\n\t\\break\n\td'8\n\te'8\n\tf'8\n}"

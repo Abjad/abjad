@@ -16,7 +16,7 @@ def test_Container___imul___01():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\tc'8 [\n\td'8 ]\n}"
 
 
@@ -33,7 +33,7 @@ def test_Container___imul___02():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
 
 
@@ -48,5 +48,5 @@ def test_Container___imul___03():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == '\\new Voice {\n}'

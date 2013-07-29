@@ -9,7 +9,7 @@ from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import timespantools
-inspect = selectiontools.ComponentSelection.inspect
+from abjad.tools.selectiontools import select
 from experimental.tools.musicexpressiontools.StartPositionedPayloadExpression \
     import StartPositionedPayloadExpression
 
@@ -376,7 +376,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             [music], offsets, cyclic=False, fracture_spanners=True)
         shards = [shard[0] for shard in shards]
         for shard in shards:
-            if not inspect(shard).is_well_formed():
+            if not select(shard).is_well_formed():
                 wellformednesstools.tabulate_well_formedness_violations_in_expr(shard)
         return shards
 
@@ -895,7 +895,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             payload = containertools.Container()
             payload.extend(right_half)
             payload.extend(left_half)
-            assert inspect(payload).is_well_formed()
+            assert select(payload).is_well_formed()
             self._payload = payload
         else:
             result = componenttools.split_components_at_offsets(
@@ -931,7 +931,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                     self.payload):
                 spanner._components.sort(
                     lambda x, y: cmp(x.select_parentage().score_index, y.select_parentage().score_index))
-            assert inspect(self.payload).is_well_formed()
+            assert select(self.payload).is_well_formed()
         return self
 
     def translate(self, translation):

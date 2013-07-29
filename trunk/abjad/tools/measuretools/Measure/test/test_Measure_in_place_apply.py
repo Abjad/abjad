@@ -107,5 +107,5 @@ def test_Measure_in_place_apply_04():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/1\n\t\tc'1\n\t}\n\t{\n\t\t\\time 1/1\n\t\tcs'1\n\t}\n\t{\n\t\t\\time 1/1\n\t\td'1\n\t}\n\t{\n\t\t\\time 1/1\n\t\tef'1\n\t}\n}"

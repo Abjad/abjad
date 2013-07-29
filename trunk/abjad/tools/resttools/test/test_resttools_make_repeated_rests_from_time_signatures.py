@@ -23,4 +23,4 @@ def test_resttools_make_repeated_rests_from_time_signatures_01():
     '''
 
     assert staff.lilypond_format == '\\new Staff {\n\tr8\n\tr8\n\tr32\n\tr32\n\tr32\n}'
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()

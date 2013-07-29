@@ -9,7 +9,7 @@ def test_Staff___setitem___01():
             skiptools.Skip((1, 4)),
             tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(t) == 5
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert isinstance(t[0], Note)
     assert isinstance(t[1], Rest)
     assert isinstance(t[2], Chord)
@@ -17,7 +17,7 @@ def test_Staff___setitem___01():
     assert isinstance(t[4], tuplettools.FixedDurationTuplet)
     t[1] = Chord([12, 13, 15], (1, 4))
     assert len(t) == 5
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert isinstance(t[0], Note)
     assert isinstance(t[1], Chord)
     assert isinstance(t[2], Chord)
@@ -25,7 +25,7 @@ def test_Staff___setitem___01():
     assert isinstance(t[4], tuplettools.FixedDurationTuplet)
     t[0] = Rest((1, 4))
     assert len(t) == 5
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert isinstance(t[0], Rest)
     assert isinstance(t[1], Chord)
     assert isinstance(t[2], Chord)
@@ -33,7 +33,7 @@ def test_Staff___setitem___01():
     assert isinstance(t[4], tuplettools.FixedDurationTuplet)
     t[-2] = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
     assert len(t) == 5
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert isinstance(t[0], Rest)
     assert isinstance(t[1], Chord)
     assert isinstance(t[2], Chord)
@@ -41,7 +41,7 @@ def test_Staff___setitem___01():
     assert isinstance(t[4], tuplettools.FixedDurationTuplet)
     t[-1] = Note(13, (1, 4))
     assert len(t) == 5
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert isinstance(t[0], Rest)
     assert isinstance(t[1], Chord)
     assert isinstance(t[2], Chord)
@@ -49,7 +49,7 @@ def test_Staff___setitem___01():
     assert isinstance(t[4], Note)
     t[-3] = skiptools.Skip((1, 4))
     assert len(t) == 5
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert isinstance(t[0], Rest)
     assert isinstance(t[1], Chord)
     assert isinstance(t[2], skiptools.Skip)
@@ -108,7 +108,7 @@ def test_Staff___setitem___07():
         assert x.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 2
     for x in t[4:8]:
         assert x.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 0
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
 
 
 def test_Staff___setitem___08():
@@ -121,7 +121,7 @@ def test_Staff___setitem___08():
         assert x.written_duration == Duration(1, 4)
     for x in t[4:8]:
         assert x.written_duration == Duration(1, 8)
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
 
 
 def test_Staff___setitem___09():
@@ -135,7 +135,7 @@ def test_Staff___setitem___09():
             assert isinstance(x, tuplettools.FixedDurationTuplet)
         else:
             assert isinstance(x, Note)
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
 
 
 def test_Staff___setitem___10():
@@ -149,4 +149,4 @@ def test_Staff___setitem___10():
             assert isinstance(x, Measure)
         else:
             assert isinstance(x, Note)
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()

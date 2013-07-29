@@ -23,4 +23,4 @@ def test_notetools_make_repeated_notes_from_time_signatures_01():
     '''
 
     assert staff.lilypond_format == "\\new Staff {\n\td''8\n\td''8\n\td''32\n\td''32\n\td''32\n}"
-    assert inspect(staff).is_well_formed()
+    assert select(staff).is_well_formed()

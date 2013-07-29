@@ -37,7 +37,7 @@ def test_tuplettools_move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_t
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Staff {\n\tc'8. [\n\td'8.\n\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\\times 3/2 {\n\t\tc'8\n\t\td'8 ]\n\t}\n}"
 
 
@@ -84,5 +84,5 @@ def test_tuplettools_move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_t
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8\n\t}\n\t\\times 2/3 {\n\t\td'8\n\t}\n\t\\times 2/3 {\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t}\n}"

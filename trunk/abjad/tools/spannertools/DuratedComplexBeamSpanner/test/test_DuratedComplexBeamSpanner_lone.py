@@ -16,7 +16,7 @@ def test_DuratedComplexBeamSpanner_lone_01():
     }
     '''
 
-    assert inspect(voice).is_well_formed()
+    assert select(voice).is_well_formed()
     assert voice.lilypond_format == "\\new Voice {\n\t\\set stemLeftBeamCount = #1\n\t\\set stemRightBeamCount = #1\n\tc'8 [ ]\n}"
 
 
@@ -33,7 +33,7 @@ def test_DuratedComplexBeamSpanner_lone_02():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\tc'8\n}"
 
 
@@ -55,5 +55,5 @@ def test_DuratedComplexBeamSpanner_lone_03():
     }
     '''
 
-    assert inspect(t).is_well_formed()
+    assert select(t).is_well_formed()
     assert t.lilypond_format == "\\new Voice {\n\t\\set stemLeftBeamCount = #0\n\t\\set stemRightBeamCount = #1\n\tc'8 [\n\t\\set stemLeftBeamCount = #1\n\t\\set stemRightBeamCount = #0\n\td'8 ]\n}"
