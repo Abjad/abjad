@@ -1,7 +1,7 @@
 import types
 
 
-class BaseSelection(object):
+class Selection(object):
     '''SequentialSelection of components taken from a single score:
 
     ::
@@ -39,7 +39,7 @@ class BaseSelection(object):
         elif isinstance(music, (tuple, list)):
             music = tuple(music)
         #elif isinstance(music, SequentialSelection):
-        elif isinstance(music, BaseSelection):
+        elif isinstance(music, Selection):
             music = tuple(music)
         elif isinstance(music, types.GeneratorType):
             music = tuple(music)
@@ -116,13 +116,13 @@ class BaseSelection(object):
         if isinstance(expr, type(self)):
             music = expr._music + self._music
             #return SequentialSelection(music)
-            return BaseSelection(music)
+            return Selection(music)
         # eventually remove this permissive branch 
         # and force the use of selections only
         elif isinstance(expr, (tuple, list)):
             music = tuple(expr) + self._music
         #return SequentialSelection(music)
-        return BaseSelection(music)
+        return Selection(music)
 
     def __repr__(self):
         '''Representation of selection in Python interpreter.

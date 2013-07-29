@@ -1,7 +1,7 @@
-from abjad.tools.selectiontools.BaseSelection import BaseSelection
+from abjad.tools.selectiontools.Selection import Selection
 
 
-class FreeSelection(BaseSelection):
+class FreeSelection(Selection):
     '''Free selection of components.
     '''
 
