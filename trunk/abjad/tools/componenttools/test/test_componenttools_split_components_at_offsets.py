@@ -220,7 +220,7 @@ def test_componenttools_split_components_at_offsets_05():
     '''
 
     measures = [Measure((2, 8), "c'8 d'8"), Measure((2, 8), "e'8 f'8")]
-    measures = selectiontools.Selection(measures)
+    measures = selectiontools.SequentialSelection(measures)
     measures.attach_spanners(spannertools.BeamSpanner)
 
     parts = componenttools.split_components_at_offsets(measures, [(3, 32)],
@@ -724,7 +724,7 @@ def test_componenttools_split_components_at_offsets_15():
     '''
 
     measures = [Measure((2, 8), "c'8 d'8"), Measure((2, 8), "e'8 f'8")]
-    measures = selectiontools.Selection(measures)
+    measures = selectiontools.SequentialSelection(measures)
     measures.attach_spanners(spannertools.BeamSpanner)
 
     parts = componenttools.split_components_at_offsets(measures, [(3, 32)],

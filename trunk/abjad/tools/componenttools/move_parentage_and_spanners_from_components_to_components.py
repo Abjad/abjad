@@ -24,8 +24,8 @@ def move_parentage_and_spanners_from_components_to_components(
         recipients)
 
     # coerce input
-    if not isinstance(donors, selectiontools.Selection):
-        donors = selectiontools.Selection(donors)
+    if not isinstance(donors, selectiontools.SequentialSelection):
+        donors = selectiontools.SequentialSelection(donors)
 
     # return donors unaltered when donors are empty
     if len(donors) == 0:

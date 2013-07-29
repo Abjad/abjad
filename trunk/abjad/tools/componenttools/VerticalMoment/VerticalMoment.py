@@ -139,7 +139,7 @@ class VerticalMoment(SimultaneousSelection):
         governors = []
         if isinstance(expr, componenttools.Component):
             governors.append(expr)
-        elif isinstance(expr, (list, tuple, selectiontools.Selection)):
+        elif isinstance(expr, (list, tuple, selectiontools.SequentialSelection)):
             for x in expr:
                 if isinstance(x, componenttools.Component):
                     governors.append(x)

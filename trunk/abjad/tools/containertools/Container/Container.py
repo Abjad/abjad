@@ -82,8 +82,8 @@ class Container(Component):
         Preserve spanners that component(s) cover(s).
         '''
         components = self[i]
-        if not isinstance(components, selectiontools.Selection):
-            components = selectiontools.Selection([components])
+        if not isinstance(components, selectiontools.SequentialSelection):
+            components = selectiontools.SequentialSelection([components])
         components._withdraw_from_crossing_spanners()
         components._set_parents(None)
 
@@ -94,7 +94,7 @@ class Container(Component):
         if isinstance(i, int):
             return self._music[i]
         elif isinstance(i, slice):
-            return selectiontools.Selection(self._music[i])
+            return selectiontools.SequentialSelection(self._music[i])
         elif isinstance(i, str):
             if i not in self._named_children:
                 raise MissingNamedComponentError(repr(i))
@@ -322,7 +322,7 @@ class Container(Component):
             # must withdraw from spanners before parentage!
             # otherwise begin / end assessments don't work!
             if withdraw_components_in_expr_from_crossing_spanners:
-                selection = selectiontools.Selection([expr])
+                selection = selectiontools.SequentialSelection([expr])
                 selection._withdraw_from_crossing_spanners()
             expr._set_parent(self)
             self._music.insert(i, expr)
@@ -357,7 +357,7 @@ class Container(Component):
             # must withdraw before setting in self!
             # otherwise circular withdraw ensues!
             if withdraw_components_in_expr_from_crossing_spanners:
-                selection = selectiontools.Selection(expr)
+                selection = selectiontools.SequentialSelection(expr)
                 selection._withdraw_from_crossing_spanners()
             self._music.__setitem__(slice(start, start), expr)
             for component in expr:
@@ -489,7 +489,7 @@ class Container(Component):
         if music is None:
             music = []
         if componenttools.all_are_contiguous_components_in_same_thread(music):
-            music = selectiontools.Selection(music)
+            music = selectiontools.SequentialSelection(music)
             parent, start, stop = music.get_parent_and_start_stop_indices()
             self._music = list(music)
             self[:]._set_parents(self)

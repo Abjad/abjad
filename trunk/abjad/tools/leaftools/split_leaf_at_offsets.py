@@ -211,7 +211,7 @@ def split_leaf_at_offsets(
         result.append(shard)
 
     flattened_result = sequencetools.flatten_sequence(result)
-    flattened_result = selectiontools.Selection(flattened_result)
+    flattened_result = selectiontools.SequentialSelection(flattened_result)
     spanner_classes = (spannertools.TieSpanner,)
     if spannertools.get_spanners_attached_to_any_improper_parent_of_component(
         leaf, spanner_classes=spanner_classes):
@@ -254,10 +254,10 @@ def split_leaf_at_offsets(
         (not pitchtools.is_pitch_carrier(leaf) and tie_split_rests):
         flattened_result_leaves = iterationtools.iterate_leaves_in_expr(
             flattened_result)
-        # TODO: implement Selection._attach_tie_spanner_to_leaves()
+        # TODO: implement SequentialSelection._attach_tie_spanner_to_leaves()
         for leaf_pair in sequencetools.iterate_sequence_pairwise_strict(
             flattened_result_leaves):
-            selection = selectiontools.Selection(leaf_pair)
+            selection = selectiontools.SequentialSelection(leaf_pair)
             selection._attach_tie_spanner_to_leaf_pair()
 
     # return result

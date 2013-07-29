@@ -39,7 +39,7 @@ def timespan_2_starts_during_timespan_1(timespan_1=None, timespan_2=None, hold=F
 
         >>> selected_notes = staff_1[start_index:stop_index]
         >>> selected_notes
-        Selection(Note("d'4"), Note("e'4"), Note("f'4"), Note("g'2"))
+        SequentialSelection(Note("d'4"), Note("e'4"), Note("f'4"), Note("g'2"))
 
     ::
 

@@ -133,7 +133,7 @@ def remove_component_subtree_from_score_and_spanners(components):
 
         >>> componenttools.remove_component_subtree_from_score_and_spanners(
         ...     voice[1:2])
-        Selection({d'8, e'8},)
+        SequentialSelection({d'8, e'8},)
 
     ::
 

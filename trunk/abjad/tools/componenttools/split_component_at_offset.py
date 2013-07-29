@@ -278,7 +278,7 @@ def split_component_at_offset(
             if leaf_left_of_split.select_parentage().root is \
                 leaf_right_of_split.select_parentage().root:
                 leaves_around_split = (leaf_left_of_split, leaf_right_of_split)
-                selection = selectiontools.Selection(leaves_around_split)
+                selection = selectiontools.SequentialSelection(leaves_around_split)
                 selection._attach_tie_spanner_to_leaf_pair()
 
     # return pair of left and right list-wrapped halves of container

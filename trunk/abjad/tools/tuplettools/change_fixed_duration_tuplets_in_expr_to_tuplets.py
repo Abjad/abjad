@@ -27,7 +27,7 @@ def change_fixed_duration_tuplets_in_expr_to_tuplets(expr):
     ::
 
         >>> staff[:]
-        Selection(Tuplet(2/3, [c'8, d'8, e'8]), Tuplet(2/3, [c'8, d'8, e'8]))
+        SequentialSelection(Tuplet(2/3, [c'8, d'8, e'8]), Tuplet(2/3, [c'8, d'8, e'8]))
 
     Return tuplets.
     '''

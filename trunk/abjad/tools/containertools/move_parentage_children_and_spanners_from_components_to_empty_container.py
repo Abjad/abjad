@@ -64,8 +64,8 @@ def move_parentage_children_and_spanners_from_components_to_empty_container(
     assert not container, repr(container)
 
     # coerce input
-    if not isinstance(components, selectiontools.Selection):
-        components = selectiontools.Selection(components)
+    if not isinstance(components, selectiontools.SequentialSelection):
+        components = selectiontools.SequentialSelection(components)
 
     # give parentage, children and spanners to container
     components._give_music_to_empty_container(container)

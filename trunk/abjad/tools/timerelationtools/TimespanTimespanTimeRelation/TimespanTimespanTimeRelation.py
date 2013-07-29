@@ -352,7 +352,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         # check input
         assert isinstance(counttime_components, (
-            list, selectiontools.Selection)), repr(counttime_components)
+            list, selectiontools.SequentialSelection)), repr(counttime_components)
         assert self.timespan_1 is not None
 
         # iterate counttime components
@@ -362,7 +362,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
                 result.append(counttime_component)
 
         # return result
-        return selectiontools.Selection(result)
+        return selectiontools.SequentialSelection(result)
 
     def get_offset_indices(
         self, timespan_2_start_offsets, timespan_2_stop_offsets):

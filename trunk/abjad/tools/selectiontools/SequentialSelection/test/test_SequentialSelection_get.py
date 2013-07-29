@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Selection_get_01():
+def test_SequentialSelection_get_01():
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
@@ -32,7 +32,7 @@ def test_Selection_get_01():
     assert staff[:].get(Measure, 2) is staff[2]
 
 
-def test_Selection_get_02():
+def test_SequentialSelection_get_02():
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
@@ -43,7 +43,7 @@ def test_Selection_get_02():
     assert staff[:].get(Measure, -3) is staff[0]
 
 
-def test_Selection_get_03():
+def test_SequentialSelection_get_03():
     '''Read forwards for positive n.
     '''
 
@@ -78,7 +78,7 @@ def test_Selection_get_03():
     assert staff[:].get(leaftools.Leaf, 5) is staff[2][1]
 
 
-def test_Selection_get_04():
+def test_SequentialSelection_get_04():
     '''Read backwards for negative n.
     '''
 
@@ -113,7 +113,7 @@ def test_Selection_get_04():
     assert staff[:].get(leaftools.Leaf, -6) is staff[0][0]
 
 
-def test_Selection_get_05():
+def test_SequentialSelection_get_05():
 
     staff = Staff([])
     durations = [Duration(n, 16) for n in range(1, 5)]
@@ -148,7 +148,7 @@ def test_Selection_get_05():
     assert staff.select().get(Staff, 0) is staff
 
 
-def test_Selection_get_06():
+def test_SequentialSelection_get_06():
     '''Iterates backwards with negative values of n.
     '''
 

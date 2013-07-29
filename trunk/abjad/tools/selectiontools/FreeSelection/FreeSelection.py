@@ -2,21 +2,23 @@ import types
 
 
 class FreeSelection(object):
-    '''Selection of components taken from a single score:
+    '''SequentialSelection of components taken from a single score:
 
     ::
 
         >>> staff = Staff("c'4 d'4 e'4 f'4")
         >>> selection = staff[:2]
         >>> selection
-        Selection(Note("c'4"), Note("d'4"))
+        SequentialSelection(Note("c'4"), Note("d'4"))
 
-    Selection objects will eventually pervade the system and 
+    SequentialSelection objects will eventually pervade the system and 
     model all user selections.
 
     This means that selection objects will eventually serve as input
-    to most functions in the API. Selection objects will also
+    to most functions in the API. SequentialSelection objects will also
     eventually be returned as output from most functions in the API.
+
+    Selections are immutable.
     '''
 
     ### CLASS VARIABLES ###
@@ -36,7 +38,7 @@ class FreeSelection(object):
             music = ()
         elif isinstance(music, (tuple, list)):
             music = tuple(music)
-        #elif isinstance(music, Selection):
+        #elif isinstance(music, SequentialSelection):
         elif isinstance(music, FreeSelection):
             music = tuple(music)
         elif isinstance(music, types.GeneratorType):
@@ -113,13 +115,13 @@ class FreeSelection(object):
         assert isinstance(expr, (type(self), list, tuple))
         if isinstance(expr, type(self)):
             music = expr._music + self._music
-            #return Selection(music)
+            #return SequentialSelection(music)
             return FreeSelection(music)
         # eventually remove this permissive branch 
         # and force the use of selections only
         elif isinstance(expr, (tuple, list)):
             music = tuple(expr) + self._music
-        #return Selection(music)
+        #return SequentialSelection(music)
         return FreeSelection(music)
 
     def __repr__(self):

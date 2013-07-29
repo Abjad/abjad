@@ -33,7 +33,7 @@ def all_are_contiguous_components(
         list,
         tuple,
         types.GeneratorType,
-        selectiontools.Selection,
+        selectiontools.SequentialSelection,
         )
 
     if not isinstance(expr, allowable_types):

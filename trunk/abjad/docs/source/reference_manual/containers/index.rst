@@ -50,7 +50,7 @@ Or with a special call to ``__getslice__``:
 ::
 
    >>> container[:]
-   Selection(Note("ds'16"), Note("cs'16"), Note("e'16"), Note("c'16"), Note("d'2"), Note("d'8"))
+   SequentialSelection(Note("ds'16"), Note("cs'16"), Note("e'16"), Note("c'16"), Note("d'2"), Note("d'8"))
 
 
 Inspecting length

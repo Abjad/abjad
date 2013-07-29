@@ -20,7 +20,7 @@ def delete_contents_of_container(container):
     ::
 
         >>> containertools.delete_contents_of_container(staff)
-        Selection(Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"))
+        SequentialSelection(Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"))
 
     ::
 

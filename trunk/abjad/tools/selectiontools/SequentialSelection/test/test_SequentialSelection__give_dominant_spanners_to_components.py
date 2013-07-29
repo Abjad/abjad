@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Selection__give_dominant_spanners_to_components_01():
+def test_SequentialSelection__give_dominant_spanners_to_components_01():
     '''Find spanners that dominate donor_components.
     Apply dominant spanners to recipient_components.
     Withdraw donor_components from spanners.
@@ -68,7 +68,7 @@ def test_Selection__give_dominant_spanners_to_components_01():
     assert recipient.lilypond_format == "\\new Voice {\n\tc'16 [ (\n\tc'16\n\tc'16 ] )\n}"
 
 
-def test_Selection__give_dominant_spanners_to_components_02():
+def test_SequentialSelection__give_dominant_spanners_to_components_02():
     '''Not composer-safe.
     '''
 

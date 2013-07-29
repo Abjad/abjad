@@ -6,9 +6,9 @@ def select(expr):
     from abjad.tools import componenttools
     from abjad.tools import selectiontools
     if isinstance(expr, componenttools.Component):
-        return selectiontools.Selection(expr)
+        return selectiontools.SequentialSelection(expr)
     elif hasattr(expr, '_music'):
         music = expr._music
-        return selectiontools.Selection(music)
+        return selectiontools.SequentialSelection(music)
     else:
-        return selectiontools.Selection(expr)
+        return selectiontools.SequentialSelection(expr)

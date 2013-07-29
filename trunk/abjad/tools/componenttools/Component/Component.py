@@ -862,7 +862,7 @@ class Component(AbjadObject):
         Return selection.
         '''
         from abjad.tools import selectiontools
-        return selectiontools.Selection(music=self)
+        return selectiontools.SequentialSelection(music=self)
 
     def select_components(self, component_classes=None, include_self=True):
         '''Select `component_classes` in component.
@@ -876,7 +876,7 @@ class Component(AbjadObject):
             expr = [self]
         components = iterationtools.iterate_components_in_expr(
             expr, component_class=component_classes)
-        return selectiontools.Selection(components)
+        return selectiontools.SequentialSelection(components)
 
     def select_contents(self, include_self=True):
         '''Select contents of component.
@@ -888,7 +888,7 @@ class Component(AbjadObject):
         if include_self:
             result.append(self)
         result.extend(getattr(self, 'music', []))
-        result = selectiontools.Selection(result)
+        result = selectiontools.SequentialSelection(result)
         return result
 
     def select_descendants(

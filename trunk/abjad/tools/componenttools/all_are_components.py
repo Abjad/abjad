@@ -37,7 +37,7 @@ def all_are_components(expr, classes=None):
     '''
     from abjad.tools import componenttools
 
-    allowable = (list, tuple, types.GeneratorType, selectiontools.Selection)
+    allowable = (list, tuple, types.GeneratorType, selectiontools.SequentialSelection)
     if not isinstance(expr, allowable):
         return False
 

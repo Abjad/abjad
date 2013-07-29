@@ -1,15 +1,15 @@
-from abjad.tools.selectiontools.Selection import Selection
+from abjad.tools.selectiontools.SequentialSelection import SequentialSelection
 
 
-class LeafSelection(Selection):
-    '''Selection of leaves.
+class LeafSelection(SequentialSelection):
+    '''SequentialSelection of leaves.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, music=None):
         from abjad.tools import leaftools
-        Selection.__init__(self, music=music)
+        SequentialSelection.__init__(self, music=music)
         assert all(isinstance(x, leaftools.Leaf) for x in self)
 
     ### PUBLIC METHODS ###

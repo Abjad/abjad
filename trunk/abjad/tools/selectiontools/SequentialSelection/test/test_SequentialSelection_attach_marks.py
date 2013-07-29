@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Selection_attach_marks_01():
+def test_SequentialSelection_attach_marks_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     annotation = marktools.Annotation('foo', 'bar')
@@ -13,7 +13,7 @@ def test_Selection_attach_marks_01():
         assert new_annotation is not annotation
 
 
-def test_Selection_attach_marks_02():
+def test_SequentialSelection_attach_marks_02():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     lilypond_comment = marktools.LilyPondComment('foo', 'right')
@@ -31,7 +31,7 @@ def test_Selection_attach_marks_02():
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 % foo\n\td'8 % foo\n\te'8 % foo\n\tf'8 % foo\n}"
 
 
-def test_Selection_attach_marks_03():
+def test_SequentialSelection_attach_marks_03():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     lilypond_command_mark = marktools.LilyPondCommandMark('stemUp')

@@ -352,8 +352,8 @@ def split_components_at_offsets(components, offsets,
 
     # check input
     assert componenttools.all_are_components(components), repr(components)
-    if not isinstance(components, selectiontools.Selection):
-        components = selectiontools.Selection(components)
+    if not isinstance(components, selectiontools.SequentialSelection):
+        components = selectiontools.SequentialSelection(components)
     offsets = [durationtools.Offset(offset) for offset in offsets]
 
     # calculate total component duration
