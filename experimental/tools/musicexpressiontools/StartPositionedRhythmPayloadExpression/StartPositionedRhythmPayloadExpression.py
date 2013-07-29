@@ -9,7 +9,7 @@ from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import timespantools
-from abjad.tools.selectiontools import inspect
+inspect = selectiontools.Inspector.inspect
 from experimental.tools.musicexpressiontools.StartPositionedPayloadExpression \
     import StartPositionedPayloadExpression
 

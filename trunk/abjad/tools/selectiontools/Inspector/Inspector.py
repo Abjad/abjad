@@ -42,6 +42,17 @@ class Inspector(Selection):
             badly_formed_components.extend(checker.violators(self))
         return badly_formed_components
 
+    @staticmethod
+    def inspect(expr):
+        from abjad.tools import componenttools
+        if isinstance(expr, componenttools.Component):
+            return Inspector(expr)
+        elif hasattr(expr, '_music'):
+            music = expr._music
+            return Inspector(music)
+        else:
+            return Inspector(expr)
+
     def is_well_formed(self, allow_empty_containers=True):
         from abjad.tools import wellformednesstools
         results = []

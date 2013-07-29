@@ -10,7 +10,7 @@ from abjad.tools import selectiontools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
 from abjad.tools import tuplettools
-from abjad.tools.selectiontools import inspect
+inspect = selectiontools.Inspector.inspect
 from experimental.tools.musicexpressiontools.CounttimeComponentSelectExpressionSetMethodMixin \
     import CounttimeComponentSelectExpressionSetMethodMixin
 from experimental.tools.musicexpressiontools.SelectExpression \

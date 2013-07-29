@@ -1,7 +1,7 @@
 import doctest
 import importlib
 import os
-#import pytest
+import pytest
 from abjad.tools import iotools
 from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 
@@ -106,7 +106,6 @@ class TestAndRebuildScript(DeveloperScript):
         return False
 
     def run_pytest(self, args):
-        import pytest
         options = ['-x', '-rf', '.']
         return pytest.main(options)
 

@@ -34,13 +34,15 @@ from abjad.tools.measuretools import Measure
 from abjad.tools.notetools import Note
 from abjad.tools.resttools import Rest
 from abjad.tools.scoretools import Score
-from abjad.tools.selectiontools import inspect
 from abjad.tools.selectiontools import select
 from abjad.tools.stafftools import Staff
 from abjad.tools.tuplettools import Tuplet
 from abjad.tools.voicetools import Voice
 from fractions import Fraction
 import os
+
+inspect = selectiontools.Inspector.inspect
+
 
 from abjad.tools.importtools.import_public_names_from_filesystem_path_into_namespace \
     import import_public_names_from_filesystem_path_into_namespace
