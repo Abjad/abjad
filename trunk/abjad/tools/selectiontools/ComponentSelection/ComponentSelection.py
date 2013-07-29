@@ -1,3 +1,4 @@
+import copy
 from abjad.tools.selectiontools.FreeSelection import FreeSelection
 
 
@@ -7,6 +8,31 @@ class ComponentSelection(FreeSelection):
 
     ### PUBLIC METHODS ###
 
+    def attach_marks(self, marks, recurse=False):
+        '''Attach copy of each mark in `marks` 
+        to each component in selection.
+
+        Return tuple of marks created.
+        '''
+        from abjad.tools import marktools
+        if not isinstance(marks, (list, tuple)):
+            marks = (marks,)
+        instantiated_marks = []
+        for mark in marks:
+            if not isinstance(mark, marktools.Mark):
+                if issubclass(mark, marktools.Mark):
+                    mark = mark()
+            assert isinstance(mark, marktools.Mark)
+            instantiated_marks.append(mark)
+        marks = instantiated_marks
+        result = []
+        for component in self._iterate_components(recurse=recurse):
+            for mark in marks:
+                copied_mark = copy.copy(mark)
+                copied_mark.attach(component)
+                result.append(copied_mark)
+        return tuple(result)
+        
     def get_badly_formed_components(self):
         r'''Get badly formed components in selection:
 
@@ -41,6 +67,13 @@ class ComponentSelection(FreeSelection):
         for checker in wellformednesstools.Check.list_checks():
             badly_formed_components.extend(checker.violators(self))
         return badly_formed_components
+
+    def get_marks(self, mark_classes=None, recurse=True):
+        '''Get `mark_classes` attached to components in selection.
+
+        Return tuple.
+        '''
+        return self._get_marks(mark_classes=mark_classes, recurse=recurse)
 
     @staticmethod
     def inspect(expr):
