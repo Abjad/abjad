@@ -1,7 +1,8 @@
-from abjad.tools.selectiontools.Selection import Selection
+from abjad.tools.selectiontools.SimultaneousSelection \
+    import SimultaneousSelection
 
 
-class Descendants(Selection):
+class Descendants(SimultaneousSelection):
     r'''Abjad model of Component descendants:
 
     ::
@@ -87,7 +88,7 @@ class Descendants(Selection):
                     append_x = False
                 if append_x:
                     result.append(x)
-        Selection.__init__(self, result)
+        SimultaneousSelection.__init__(self, result)
         self._component = component
 
     ### PUBLIC PROPERTIES ###

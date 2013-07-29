@@ -1,7 +1,8 @@
-from abjad.tools.selectiontools.Selection import Selection
+from abjad.tools.selectiontools.SimultaneousSelection \
+    import SimultaneousSelection
 
 
-class Lineage(Selection):
+class Lineage(SimultaneousSelection):
     r'''Abjad model of Component lineage:
 
     ::
@@ -67,7 +68,7 @@ class Lineage(Selection):
         music.extend(reversed(component.select_parentage(include_self=False)))
         music.append(component)
         music.extend(component.select_descendants(include_self=False))
-        Selection.__init__(self, music)
+        SimultaneousSelection.__init__(self, music)
         self._component = component
 
     ### PUBLIC PROPERTIES ###

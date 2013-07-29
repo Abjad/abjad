@@ -1,7 +1,8 @@
-from abjad.tools.selectiontools.Selection import Selection
+from abjad.tools.selectiontools.SimultaneousSelection \
+    import SimultaneousSelection
 
 
-class Parentage(Selection):
+class Parentage(SimultaneousSelection):
     r'''Abjad model of component parentage:
 
     ::
@@ -72,7 +73,7 @@ class Parentage(Selection):
                 music.append(parent)
                 parent = parent.parent
             music = tuple(music)
-        Selection.__init__(self, music)
+        SimultaneousSelection.__init__(self, music)
         self._component = component
 
     ### PRIVATE METHODS ###

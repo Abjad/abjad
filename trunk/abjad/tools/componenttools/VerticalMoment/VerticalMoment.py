@@ -1,11 +1,9 @@
 from abjad.tools import durationtools
-from abjad.tools.selectiontools import Selection
+from abjad.tools.selectiontools import SimultaneousSelection
 
 
-class VerticalMoment(Selection):
-    r'''.. versionadded: 1.1.2
-
-    Everything happening at a single moment in musical time:
+class VerticalMoment(SimultaneousSelection):
+    r'''Everything happening at a single moment in musical time:
 
     ::
 
