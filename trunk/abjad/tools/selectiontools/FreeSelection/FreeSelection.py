@@ -1,7 +1,7 @@
 import types
 
 
-class MinimalSelection(object):
+class FreeSelection(object):
     '''Selection of components taken from a single score:
 
     ::
@@ -37,7 +37,7 @@ class MinimalSelection(object):
         elif isinstance(music, (tuple, list)):
             music = tuple(music)
         #elif isinstance(music, Selection):
-        elif isinstance(music, MinimalSelection):
+        elif isinstance(music, FreeSelection):
             music = tuple(music)
         elif isinstance(music, types.GeneratorType):
             music = tuple(music)
@@ -114,13 +114,13 @@ class MinimalSelection(object):
         if isinstance(expr, type(self)):
             music = expr._music + self._music
             #return Selection(music)
-            return MinimalSelection(music)
+            return FreeSelection(music)
         # eventually remove this permissive branch 
         # and force the use of selections only
         elif isinstance(expr, (tuple, list)):
             music = tuple(expr) + self._music
         #return Selection(music)
-        return MinimalSelection(music)
+        return FreeSelection(music)
 
     def __repr__(self):
         '''Representation of selection in Python interpreter.
