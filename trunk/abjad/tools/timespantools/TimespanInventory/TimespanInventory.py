@@ -1,3 +1,4 @@
+import collections
 import copy
 import math
 from abjad.tools import durationtools
@@ -838,6 +839,57 @@ class TimespanInventory(ObjectInventory):
         self[:] = all_fragments
         self.sort()
         return self
+
+    def count_offsets(self):
+        '''Count offsets in inventory:
+
+        ::
+
+            >>> for offset, count in sorted(
+            ...     timespan_inventory_1.count_offsets().iteritems()):
+            ...     offset, count
+            ...
+            (Offset(0, 1), 1)
+            (Offset(3, 1), 2)
+            (Offset(6, 1), 2)
+            (Offset(10, 1), 1)
+
+        ::
+
+            >>> for offset, count in sorted(
+            ...     timespan_inventory_2.count_offsets().iteritems()):
+            ...     offset, count
+            ...
+            (Offset(0, 1), 1)
+            (Offset(3, 1), 1)
+            (Offset(6, 1), 1)
+            (Offset(10, 1), 1)
+            (Offset(15, 1), 1)
+            (Offset(20, 1), 1)
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 3),
+            ...     timespantools.Timespan(0, 6),
+            ...     timespantools.Timespan(0, 9),
+            ...     ])
+            >>> for offset, count in sorted(
+            ...     timespan_inventory.count_offsets().iteritems()):
+            ...     offset, count
+            ...
+            (Offset(0, 1), 3)
+            (Offset(3, 1), 1)
+            (Offset(6, 1), 1)
+            (Offset(9, 1), 1)
+
+        Return counter.
+        '''
+        counter = collections.Counter() 
+        for timespan in self:
+            counter[timespan.start_offset] += 1
+            counter[timespan.stop_offset] += 1
+        return counter
 
     def get_timespan_that_satisfies_time_relation(self, time_relation):
         r'''Get timespan that satisifies `time_relation`:
