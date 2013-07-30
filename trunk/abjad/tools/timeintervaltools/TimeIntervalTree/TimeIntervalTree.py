@@ -1391,11 +1391,9 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
         Return time interval tree.
         '''
         from abjad.tools import timeintervaltools
-        procedure = timeintervaltools.group_overlapping_intervals_and_yield_groups
-        if include_tangent_intervals:
-            procedure = timeintervaltools.group_tangent_or_overlapping_intervals_and_yield_groups
         trees = [timeintervaltools.TimeIntervalTree(group) for group in
-            procedure(self)]
+            self.partition(
+                include_tangent_intervals=include_tangent_intervals)]
         return timeintervaltools.TimeIntervalTree([
             timeintervaltools.TimeInterval(
                 tree.earliest_start,

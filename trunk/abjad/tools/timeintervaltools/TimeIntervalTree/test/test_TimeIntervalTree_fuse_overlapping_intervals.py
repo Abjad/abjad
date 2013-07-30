@@ -1,6 +1,8 @@
 from abjad import *
+import py.test
 
 
+@py.test.skip()
 def test_TimeIntervalTree_fuse_overlapping_intervals_01():
     tree = timeintervaltools.TimeIntervalTree(
         timeintervaltools.make_test_intervals())
@@ -11,6 +13,7 @@ def test_TimeIntervalTree_fuse_overlapping_intervals_01():
     assert tree.duration == fused_tree.duration
 
 
+@py.test.skip()
 def test_TimeIntervalTree_fuse_overlapping_intervals_02():
     tree = timeintervaltools.TimeIntervalTree(
         timeintervaltools.make_test_intervals())
