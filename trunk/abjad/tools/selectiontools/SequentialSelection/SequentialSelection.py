@@ -359,9 +359,3 @@ class SequentialSelection(Selection):
             selection = tuple(generator)
             result.append(selection)
         return result
-
-    def select_vertical_moment_at(self, offset):
-        '''Select vertical moment at `offset`.
-        '''
-        from abjad.tools import componenttools
-        return componenttools.VerticalMoment(self, offset)

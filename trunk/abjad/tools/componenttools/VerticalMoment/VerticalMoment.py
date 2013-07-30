@@ -137,15 +137,16 @@ class VerticalMoment(SimultaneousSelection):
         from abjad.tools import selectiontools
         offset = durationtools.Offset(offset)
         governors = []
+        message = 'must be Abjad component or tuple of Abjad components.'
         if isinstance(expr, componenttools.Component):
             governors.append(expr)
-        elif isinstance(expr, (list, tuple, selectiontools.SequentialSelection)):
+        #elif isinstance(expr, (list, tuple, selectiontools.SequentialSelection)):
+        elif isinstance(
+            expr, (list, tuple, selectiontools.SimultaneousSelection)):
             for x in expr:
                 if isinstance(x, componenttools.Component):
                     governors.append(x)
                 else:
-                    message = 'must be Abjad component'
-                    message += ' or tuple of Abjad components.'
                     raise TypeError(message)
         else:
             raise TypeError(message)

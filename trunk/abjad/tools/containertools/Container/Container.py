@@ -93,8 +93,10 @@ class Container(Component):
         '''
         if isinstance(i, int):
             return self._music[i]
-        elif isinstance(i, slice):
+        elif isinstance(i, slice) and not self.is_parallel:
             return selectiontools.SequentialSelection(self._music[i])
+        elif isinstance(i, slice) and self.is_parallel:
+            return selectiontools.SimultaneousSelection(self._music[i])
         elif isinstance(i, str):
             if i not in self._named_children:
                 raise MissingNamedComponentError(repr(i))
@@ -287,13 +289,17 @@ class Container(Component):
                 (contributor, tuple(['\t' + x for x in contributions])))
         return tuple(result)
 
-    def _set_item(self, i, expr, 
-        withdraw_components_in_expr_from_crossing_spanners=True):
+    def _set_item(
+        self, 
+        i, 
+        expr, 
+        withdraw_components_in_expr_from_crossing_spanners=True,
+        ):
         '''This method exists beacuse __setitem__ can not accept keywords.
         Note that setting 
         withdraw_components_in_expr_from_crossing_spanners=False
         constitutes a composer-unsafe use of this method.
-        Only pivate methods should set this keyword.
+        Only private methods should set this keyword.
         '''
         from abjad.tools import componenttools
         from abjad.tools import contexttools

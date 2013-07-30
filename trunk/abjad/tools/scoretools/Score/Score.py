@@ -152,7 +152,8 @@ class Score(Context):
         '''
         from abjad.tools import markuptools
         from abjad.tools import leaftools
-        last_leaf = self[:].get(leaftools.Leaf, -1)
+        # TODO: port get() to wider range of selection classes
+        last_leaf = self[-1][:].get(leaftools.Leaf, -1)
         # TODO: copy markup direction from markup input
         markup = markuptools.Markup(markup, Down)(last_leaf)
         if extra_offset is not None:

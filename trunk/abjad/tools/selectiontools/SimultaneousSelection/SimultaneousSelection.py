@@ -1,4 +1,3 @@
-#from abjad.tools.selectiontools.SequentialSelection import SequentialSelection
 from abjad.tools.selectiontools.Selection import Selection
 
 
@@ -8,4 +7,10 @@ class SimultaneousSelection(Selection):
     Simultaneously selections implement no duration properties.
     '''
 
-    pass
+    ### PUBLIC METHODS ###
+
+    def select_vertical_moment_at(self, offset):
+        '''Select vertical moment at `offset`.
+        '''
+        from abjad.tools import componenttools
+        return componenttools.VerticalMoment(self, offset)
