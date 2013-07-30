@@ -1,7 +1,8 @@
 from abjad import *
 
 
-def test_tuplettools_remove_trivial_tuplets_in_expr_01():
+def test_TupletSelection_remove_01():
+
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     assert len(t) == 2
@@ -15,7 +16,12 @@ def test_tuplettools_remove_trivial_tuplets_in_expr_01():
     }
     '''
 
-    tuplettools.remove_trivial_tuplets_in_expr(t)
+    tuplets = selectiontools.select_tuplets(
+        t,
+        include_augmented_tuplets=False,
+        include_diminished_tuplets=False,
+        )
+    tuplets.remove()
 
     r'''
     \new Staff {

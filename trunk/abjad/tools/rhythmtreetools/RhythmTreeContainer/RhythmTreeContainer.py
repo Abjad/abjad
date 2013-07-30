@@ -1,6 +1,7 @@
 from abjad.tools import documentationtools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
+from abjad.tools import selectiontools
 from abjad.tools import spannertools
 from abjad.tools import tuplettools
 from abjad.tools.datastructuretools.TreeContainer import TreeContainer
@@ -217,7 +218,13 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
                 return tuplet[:]
             return [tuplet]
         result = recurse(self, pulse_duration * self.preprolated_duration)
-        tuplettools.remove_trivial_tuplets_in_expr(result)
+        tuplets = selectiontools.select_tuplets(
+            result,
+            include_augmented_tuplets=False,
+            include_diminished_tuplets=False,
+            include_trivial_tuplets=True,
+            )
+        tuplets.remove()
         return result
 
     def __eq__(self, expr):

@@ -65,8 +65,8 @@ def select_tuplets(
         expr = iterationtools.iterate_tuplets_in_expr(expr)
     tuplets = []
     for tuplet in expr:
-        if (not include_augmented_tuplets and tuplet.is_augmented) or \
-        (not include_diminished_tuplets and tuplet.is_diminished) or \
+        if (not include_augmented_tuplets and tuplet.is_augmentation) or \
+        (not include_diminished_tuplets and tuplet.is_diminution) or \
         (not include_trivial_tuplets and tuplet.is_trivial) or \
         not isinstance(tuplet, tuplet_classes):
             continue
