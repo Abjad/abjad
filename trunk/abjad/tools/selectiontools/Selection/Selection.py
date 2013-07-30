@@ -108,13 +108,11 @@ class Selection(object):
         assert isinstance(expr, (type(self), list, tuple))
         if isinstance(expr, type(self)):
             music = expr._music + self._music
-            #return SequentialSelection(music)
             return Selection(music)
         # eventually remove this permissive branch 
         # and force the use of selections only
         elif isinstance(expr, (tuple, list)):
             music = tuple(expr) + self._music
-        #return SequentialSelection(music)
         return Selection(music)
 
     def __repr__(self):
@@ -125,6 +123,12 @@ class Selection(object):
         return '{}{!r}'.format(self.__class__.__name__, self._music)
 
     ### PRIVATE METHODS ###
+
+    def _detach_marks(self, mark_classes=None, recurse=True):
+        marks = []
+        for component in self._iterate_components(recurse=recurse):
+            marks.extend(component._detach_marks(mark_classes=mark_classes))
+        return tuple(marks)
 
     def _get_component(self, component_classes=None, n=0, recurse=True):
         from abjad.tools import componenttools

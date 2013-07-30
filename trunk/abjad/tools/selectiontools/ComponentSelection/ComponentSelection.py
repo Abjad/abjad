@@ -33,6 +33,9 @@ class ComponentSelection(FreeSelection):
                 result.append(copied_mark)
         return tuple(result)
         
+    def detach_marks(self, mark_classes=None, recurse=True):
+        return self._detach_marks(mark_classes=mark_classes, recurse=recurse)
+
     def get_badly_formed_components(self):
         r'''Get badly formed components in selection:
 

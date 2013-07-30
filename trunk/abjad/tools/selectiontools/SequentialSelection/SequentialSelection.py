@@ -164,6 +164,7 @@ class SequentialSelection(Selection):
 
     ### PUBLIC METHODS ###
 
+    # TODO: migrate to ComponentSelection
     def attach_marks(self, marks, recurse=False):
         '''Attach copy of each mark in `marks` 
         to each component in selection.
@@ -189,6 +190,7 @@ class SequentialSelection(Selection):
                 result.append(copied_mark)
         return tuple(result)
 
+    # TODO: migrate to ComponentSelection
     def attach_spanners(self, spanner, recurse=False):
         '''Attach shallow copy of `spanner` 
         to each component in selection.
@@ -206,12 +208,14 @@ class SequentialSelection(Selection):
             spanners.append(copied_spanner)
         return tuple(spanners)
 
+    # TODO: migrate to ComponentSelection
     def detach_marks(self, mark_classes=None, recurse=True):
         marks = []
         for component in self._iterate_components(recurse=recurse):
             marks.extend(component._detach_marks(mark_classes=mark_classes))
         return tuple(marks)
 
+    # TODO: migrate to ComponentSelection
     def detach_spanners(self, spanner_classes=None, recurse=True):
         r'''Detach `spanner_classes` from components in selection.
 
@@ -280,33 +284,6 @@ class SequentialSelection(Selection):
                 component._detach_spanners(spanner_classes=spanner_classes))
         return tuple(spanners)
 
-#    def get_component(self, component_classes=None, n=0, recurse=True):
-#        '''Get instance `n` of `component_classes` in selection.
-#        '''
-#        from abjad.tools import componenttools
-#        from abjad.tools import iterationtools
-#        component_classes = component_classes or (componenttools.Component,)
-#        if not isinstance(component_classes, tuple):
-#            component_classes = (component_classes,)
-#        if 0 <= n:
-#            if recurse:
-#                components = iterationtools.iterate_components_in_expr(
-#                    self, component_classes)
-#            else:
-#                components = self._music
-#            for i, x in enumerate(components):
-#                if i == n:
-#                    return x
-#        else:
-#            if recurse:
-#                components = iterationtools.iterate_components_in_expr(
-#                    self, component_classes, reverse=True)
-#            else:
-#                components = reversed(self._music)
-#            for i, x in enumerate(components):
-#                if i == abs(n) - 1:
-#                    return x
-
     def get_offset_lists(self):
         '''Get offset lists of components in selection:
 
@@ -334,6 +311,7 @@ class SequentialSelection(Selection):
             stop_offsets.append(component.timespan.stop_offset)
         return start_offsets, stop_offsets
 
+    # TODO: migrate to ComponentSelection
     def get_marks(self, mark_classes=None, recurse=True):
         '''Get `mark_classes` attached to components in selection.
 

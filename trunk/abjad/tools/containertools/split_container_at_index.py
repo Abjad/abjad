@@ -182,10 +182,11 @@ def split_container_at_index(component, i, fracture_spanners=False):
     nonempty_halves = [half for half in halves if len(half)]
 
     # give attached spanners to children
-    spannertools.move_spanners_from_component_to_children_of_component(component)
+    spannertools.move_spanners_from_component_to_children_of_component(
+        component)
 
     # incorporate left and right parents in score, if possible
-    selection = component.select()
+    selection = component.select(sequential=True)
     parent, start, stop = selection.get_parent_and_start_stop_indices()
     if parent is not None:
         # to avoid pychecker slice assignment error

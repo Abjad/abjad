@@ -575,6 +575,7 @@ class Component(AbjadObject):
         grow_spanners=True,
         ):
         from abjad.tools import componenttools
+        from abjad.tools import selectiontools
         from abjad.tools import spannertools
         assert componenttools.all_are_components(new_components)
         if direction == Right:
@@ -593,7 +594,7 @@ class Component(AbjadObject):
                     for new_component in reversed(new_components):
                         spanner._insert(insert_index, new_component)
                         new_component._spanners.add(spanner)
-            selection = self.select()
+            selection = self.select(sequential=True)
             parent, start, stop = selection.get_parent_and_start_stop_indices()
             if parent is not None:
                 if grow_spanners:
@@ -616,7 +617,7 @@ class Component(AbjadObject):
                     for new_component in reversed(new_components):
                         spanner._insert(index, new_component)
                         new_component._spanners.add(spanner)
-            selection = self.select()
+            selection = self.select(sequential=True)
             parent, start, stop = selection.get_parent_and_start_stop_indices()
             if parent is not None:
                 if grow_spanners:
@@ -856,13 +857,18 @@ class Component(AbjadObject):
             return tuple(x for x in markup if x.direction is Down)
         return markup
 
-    def select(self):
+    def select(self, sequential=False):
         '''Select component.
 
-        Return selection.
+        Return component selection when `sequential` is false.
+
+        Return sequential selection when `sequential` is true.
         '''
         from abjad.tools import selectiontools
-        return selectiontools.SequentialSelection(music=self)
+        if not sequential:
+            return selectiontools.ComponentSelection(music=self)
+        else:
+            return selectiontools.SequentialSelection(music=self)
 
     def select_components(self, component_classes=None, include_self=True):
         '''Select `component_classes` in component.
