@@ -63,10 +63,10 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
         self._sentinel.right = self._sentinel
         self._sentinel.parent = self._sentinel
         self._root = self._sentinel
+        self._start = None
+        self._stop = None
         if intervals is not None:
             self._insert(intervals)
-        self._start = self.earliest_start
-        self._stop = self.latest_stop
 
     ### SPECIAL METHODS ###
 
@@ -549,6 +549,8 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
                 node.parent = self._sentinel
                 self._insert_node(node)
         self._update_stop_extrema()
+        self._start = self.earliest_start
+        self._stop = self.latest_stop
 
     def _update_stop_extrema(self):
         def recurse(node):
