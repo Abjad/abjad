@@ -48,7 +48,6 @@ class SequentialSelection(Selection):
         assert isinstance(expr, (type(self), list, tuple))
         if isinstance(expr, type(self)):
             music = expr._music + self._music
-            #return SequentialSelection(music)
             return type(self)(music)
         # eventually remove this permissive branch 
         # and force the use of selections only
@@ -164,126 +163,6 @@ class SequentialSelection(Selection):
 
     ### PUBLIC METHODS ###
 
-    # TODO: migrate to ComponentSelection
-    def attach_marks(self, marks, recurse=False):
-        '''Attach copy of each mark in `marks` 
-        to each component in selection.
-
-        Return tuple of marks created.
-        '''
-        from abjad.tools import marktools
-        if not isinstance(marks, (list, tuple)):
-            marks = (marks,)
-        instantiated_marks = []
-        for mark in marks:
-            if not isinstance(mark, marktools.Mark):
-                if issubclass(mark, marktools.Mark):
-                    mark = mark()
-            assert isinstance(mark, marktools.Mark)
-            instantiated_marks.append(mark)
-        marks = instantiated_marks
-        result = []
-        for component in self._iterate_components(recurse=recurse):
-            for mark in marks:
-                copied_mark = copy.copy(mark)
-                copied_mark.attach(component)
-                result.append(copied_mark)
-        return tuple(result)
-
-    # TODO: migrate to ComponentSelection
-    def attach_spanners(self, spanner, recurse=False):
-        '''Attach shallow copy of `spanner` 
-        to each component in selection.
-
-        Return list of spanners created.
-        '''
-        from abjad.tools import spannertools
-        if issubclass(spanner, spannertools.Spanner):
-            spanner = spanner()
-        assert isinstance(spanner, spannertools.Spanner)
-        spanners = []
-        for component in self._iterate_components(recurse=recurse):
-            copied_spanner = copy.copy(spanner)
-            copied_spanner.attach([component])
-            spanners.append(copied_spanner)
-        return tuple(spanners)
-
-    # TODO: migrate to ComponentSelection
-    def detach_marks(self, mark_classes=None, recurse=True):
-        marks = []
-        for component in self._iterate_components(recurse=recurse):
-            marks.extend(component._detach_marks(mark_classes=mark_classes))
-        return tuple(marks)
-
-    # TODO: migrate to ComponentSelection
-    def detach_spanners(self, spanner_classes=None, recurse=True):
-        r'''Detach `spanner_classes` from components in selection.
-
-        Example 1. Detach tie spanners from components in selection:
-
-        ::
-
-            >>> staff = Staff("e'4 ( ~ e'16 fs'8 ~ fs'16 )")
-            >>> time_signature = contexttools.TimeSignatureMark((2, 4))
-            >>> time_signature.attach(staff)
-            TimeSignatureMark((2, 4))(Staff{4})
-
-        ::
-
-            >>> f(staff)
-            \new Staff {
-                \time 2/4
-                e'4 ( ~
-                e'16
-                fs'8 ~
-                fs'16 )
-            }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
-            >>> selection = staff[:]
-            >>> selection.detach_spanners(
-            ...     spanner_classes=(spannertools.TieSpanner,))
-            (TieSpanner(), TieSpanner())
-
-        ::
-
-            >>> f(staff)
-            \new Staff {
-                \time 2/4
-                e'4 (
-                e'16
-                fs'8
-                fs'16 )
-            }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
-        Detach spanners from components at all levels
-        of selection when `recurse` is true.
-
-        Detach spanners at only top level of selection
-        when `recurse` is false.
-
-        Detach all spanners when `spanner_classes` is none.
-
-        Detach spanners of only `spanner_classes` when
-        `spanners_classes` is not none.
-
-        Return none.
-        '''
-        spanners = []
-        for component in self._iterate_components(recurse=recurse):
-            spanners.extend(
-                component._detach_spanners(spanner_classes=spanner_classes))
-        return tuple(spanners)
-
     def get_offset_lists(self):
         '''Get offset lists of components in selection:
 
@@ -310,14 +189,6 @@ class SequentialSelection(Selection):
             start_offsets.append(component.timespan.start_offset)
             stop_offsets.append(component.timespan.stop_offset)
         return start_offsets, stop_offsets
-
-    # TODO: migrate to ComponentSelection
-    def get_marks(self, mark_classes=None, recurse=True):
-        '''Get `mark_classes` attached to components in selection.
-
-        Return tuple.
-        '''
-        return self._get_marks(mark_classes=mark_classes, recurse=recurse)
 
     def get_parent_and_start_stop_indices(self):
         if self:

@@ -873,7 +873,7 @@ class Component(AbjadObject):
     def select_components(self, component_classes=None, include_self=True):
         '''Select `component_classes` in component.
 
-        Return selection.
+        Return component selection.
         '''
         from abjad.tools import iterationtools
         from abjad.tools import selectiontools
@@ -882,7 +882,7 @@ class Component(AbjadObject):
             expr = [self]
         components = iterationtools.iterate_components_in_expr(
             expr, component_class=component_classes)
-        return selectiontools.SequentialSelection(components)
+        return selectiontools.ComponentSelection(components)
 
     def select_contents(self, include_self=True):
         '''Select contents of component.

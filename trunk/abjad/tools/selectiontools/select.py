@@ -1,4 +1,4 @@
-def select(expr):
+def select(expr=None):
     '''Select `expr`.
 
     Return selection.
@@ -10,5 +10,7 @@ def select(expr):
     elif hasattr(expr, '_music'):
         music = expr._music
         return selectiontools.ComponentSelection(music)
+    elif expr is None:
+        return selectiontools.ComponentSelection()
     else:
         return selectiontools.ComponentSelection(expr)

@@ -14,27 +14,84 @@ class ComponentSelection(FreeSelection):
 
         Return tuple of marks created.
         '''
-        from abjad.tools import marktools
-        if not isinstance(marks, (list, tuple)):
-            marks = (marks,)
-        instantiated_marks = []
-        for mark in marks:
-            if not isinstance(mark, marktools.Mark):
-                if issubclass(mark, marktools.Mark):
-                    mark = mark()
-            assert isinstance(mark, marktools.Mark)
-            instantiated_marks.append(mark)
-        marks = instantiated_marks
-        result = []
-        for component in self._iterate_components(recurse=recurse):
-            for mark in marks:
-                copied_mark = copy.copy(mark)
-                copied_mark.attach(component)
-                result.append(copied_mark)
-        return tuple(result)
+        return self._attach_marks(marks, recurse=recurse)
+
+    def attach_spanners(self, spanner, recurse=False):
+        '''Attach shallow copy of `spanner` 
+        to each component in selection.
+
+        Return list of spanners created.
+        '''
+        return self._attach_spanners(spanner, recurse=recurse)
         
     def detach_marks(self, mark_classes=None, recurse=True):
         return self._detach_marks(mark_classes=mark_classes, recurse=recurse)
+
+    def detach_spanners(self, spanner_classes=None, recurse=True):
+        r'''Detach `spanner_classes` from components in selection.
+
+        Example 1. Detach tie spanners from components in selection:
+
+        ::
+
+            >>> staff = Staff("e'4 ( ~ e'16 fs'8 ~ fs'16 )")
+            >>> time_signature = contexttools.TimeSignatureMark((2, 4))
+            >>> time_signature.attach(staff)
+            TimeSignatureMark((2, 4))(Staff{4})
+
+        ::
+
+            >>> f(staff)
+            \new Staff {
+                \time 2/4
+                e'4 ( ~
+                e'16
+                fs'8 ~
+                fs'16 )
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        ::
+
+            >>> select(staff).detach_spanners(
+            ...     spanner_classes=(spannertools.TieSpanner,))
+            (TieSpanner(), TieSpanner())
+
+        ::
+
+            >>> f(staff)
+            \new Staff {
+                \time 2/4
+                e'4 (
+                e'16
+                fs'8
+                fs'16 )
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        Detach spanners from components at all levels
+        of selection when `recurse` is true.
+
+        Detach spanners at only top level of selection
+        when `recurse` is false.
+
+        Detach all spanners when `spanner_classes` is none.
+
+        Detach spanners of only `spanner_classes` when
+        `spanners_classes` is not none.
+
+        Return none.
+        '''
+        return self._detach_spanners(
+            spanner_classes=spanner_classes, 
+            recurse=recurse,
+            )
 
     def get_badly_formed_components(self):
         r'''Get badly formed components in selection:

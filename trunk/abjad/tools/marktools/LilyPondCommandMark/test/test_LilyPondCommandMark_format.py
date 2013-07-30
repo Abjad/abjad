@@ -136,19 +136,19 @@ def test_LilyPondCommandMark_format_10():
     marktools.LilyPondCommandMark('voiceOne')(t[0])
     assert t.lilypond_format == "\\new Voice {\n\t\\voiceOne\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
-    t[:1].detach_marks()
+    select(t[0]).detach_marks()
     marktools.LilyPondCommandMark('voiceTwo')(t[0])
     assert t.lilypond_format == "\\new Voice {\n\t\\voiceTwo\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
-    t[:1].detach_marks()
+    select(t[0]).detach_marks()
     marktools.LilyPondCommandMark('voiceThree')(t[0])
     assert t.lilypond_format == "\\new Voice {\n\t\\voiceThree\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
-    t[:1].detach_marks()
+    select(t[0]).detach_marks()
     marktools.LilyPondCommandMark('voiceFour')(t[0])
     assert t.lilypond_format == "\\new Voice {\n\t\\voiceFour\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
-    t[:1].detach_marks()
+    select(t[0]).detach_marks()
     assert t.lilypond_format == "\\new Voice {\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
 

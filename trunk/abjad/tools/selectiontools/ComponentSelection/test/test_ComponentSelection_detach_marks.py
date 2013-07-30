@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_SequentialSelection_detach_spanners_01():
+def test_ComponentSelection_detach_marks_01():
     '''Detach tie spanners.
     '''
 
@@ -17,7 +17,7 @@ def test_SequentialSelection_detach_spanners_01():
     '''
 
     spanner_classes = (spannertools.TieSpanner,)
-    staff[:].detach_spanners(spanner_classes=spanner_classes)
+    select(staff).detach_spanners(spanner_classes=spanner_classes)
 
     r'''
     \new Staff {
@@ -32,9 +32,8 @@ def test_SequentialSelection_detach_spanners_01():
     assert staff.lilypond_format == "\\new Staff {\n\tc'4\n\tc'16\n\tc'4\n\tc'16\n}"
 
 
-def test_SequentialSelection_detach_spanners_02():
+def test_ComponentSelection_detach_marks_02():
     '''Handles empty selection without exception.
     '''
 
-    selection = selectiontools.SequentialSelection()
-    selection.detach_spanners()
+    select().detach_spanners()

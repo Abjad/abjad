@@ -17,7 +17,7 @@ def test_Component_detach_marks_01():
     }
     '''
 
-    staff[:1].detach_marks()
+    select(staff[0]).detach_marks()
 
     r'''
     \new Staff {
@@ -40,7 +40,7 @@ def test_Component_detach_marks_02():
     instrument_mark.attach(staff)
 
     detached_instrument_marks = \
-        staff.select().detach_marks(contexttools.InstrumentMark)
+        select(staff).detach_marks(contexttools.InstrumentMark)
 
     r'''
     \new Staff {
@@ -60,7 +60,7 @@ def test_Component_detach_marks_03():
     staff = Staff("c'4 d'4 e'4 f'4")
     time_signature_mark = contexttools.TimeSignatureMark((4, 4))(staff[0])
 
-    result = staff[:1].detach_marks(contexttools.TimeSignatureMark)
+    result = select(staff[0]).detach_marks(contexttools.TimeSignatureMark)
 
     r'''
     \new Staff {
@@ -84,7 +84,7 @@ def test_Component_detach_marks_04():
     annotations = staff[0].get_marks(marktools.Annotation)
     assert len(annotations) == 2
 
-    staff[:1].detach_marks(marktools.Annotation)
+    select(staff[0]).detach_marks(marktools.Annotation)
     annotations = staff[0].get_marks(marktools.Annotation)
     assert len(annotations) == 0
 
@@ -99,7 +99,7 @@ def test_Component_detach_marks_05():
     articulations = staff[0].get_marks(marktools.Articulation)
     assert len(articulations) == 2
 
-    staff[:1].detach_marks(marktools.Articulation)
+    select(staff[0]).detach_marks(marktools.Articulation)
     articulations = staff[0].get_marks(marktools.Articulation)
     assert len(articulations) == 0
 
@@ -122,7 +122,7 @@ def test_Component_detach_marks_06():
     }
     '''
 
-    staff[:1].detach_marks(marktools.LilyPondCommandMark)
+    select(staff[0]).detach_marks(marktools.LilyPondCommandMark)
 
     r'''
     \new Staff {
@@ -155,7 +155,7 @@ def test_Component_detach_marks_07():
     }
     '''
 
-    staff[:1].detach_marks(marktools.LilyPondComment)
+    select(staff[0]).detach_marks(marktools.LilyPondComment)
 
     r'''
     \new Staff {
@@ -180,7 +180,7 @@ def test_Component_detach_marks_08():
     marks = staff[0].get_marks()
     assert len(marks) == 3
 
-    staff[:1].detach_marks()
+    select(staff[0]).detach_marks()
     marks = staff[0].get_marks()
     assert len(marks) == 0
 
@@ -190,7 +190,7 @@ def test_Component_detach_marks_09():
     staff = Staff("c'4 \staccato d' \marcato e' \staccato f' \marcato")
     assert len(select(staff).get_marks()) == 4
 
-    marks = staff[:].detach_marks()
+    marks = select(staff).detach_marks()
     assert marks == (
         marktools.Articulation('staccato'),
         marktools.Articulation('marcato'),
@@ -208,6 +208,6 @@ def test_Component_detach_marks_10():
     attached_stem_tremolo = note.get_mark(marktools.StemTremolo)
     assert attached_stem_tremolo is stem_tremolo
 
-    stem_tremolos = note.select().detach_marks(marktools.StemTremolo)
+    stem_tremolos = select(note).detach_marks(marktools.StemTremolo)
     assert len(stem_tremolos) == 1
     assert stem_tremolos[0] is stem_tremolo

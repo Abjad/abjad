@@ -196,7 +196,7 @@ class BurnishedRhythmMaker(RhythmMaker):
             tie_spanner = spannertools.TieSpanner()
             # this is voodoo to temporarily neuter the contiguity constraint
             tie_spanner._contiguity_constraint = None
-            part.detach_spanners(spanner_classes=spanner_classes)
+            part._detach_spanners(spanner_classes=spanner_classes)
             tie_spanner.extend(part)
 
     def _burnish_division_part(self, division_part, indicator):
