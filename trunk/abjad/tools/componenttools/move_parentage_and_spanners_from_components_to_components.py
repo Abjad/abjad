@@ -32,7 +32,7 @@ def move_parentage_and_spanners_from_components_to_components(
         return donors
 
     # give parentage and spanners to recipients
-    parent, start, stop = donors.get_parent_and_start_stop_indices()
+    parent, start, stop = donors._get_parent_and_start_stop_indices()
     if parent:
         parent.__setitem__(slice(start, stop + 1), recipients)
     else:

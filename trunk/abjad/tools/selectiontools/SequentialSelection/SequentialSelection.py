@@ -63,6 +63,23 @@ class SequentialSelection(Selection):
 
     ### PRIVATE METHODS ###
 
+    def _get_offset_lists(self):
+        start_offsets, stop_offsets = [], []
+        for component in self:
+            start_offsets.append(component.timespan.start_offset)
+            stop_offsets.append(component.timespan.stop_offset)
+        return start_offsets, stop_offsets
+
+    def _get_parent_and_start_stop_indices(self):
+        if self:
+            first, last = self[0], self[-1]
+            parent = first.parent
+            if parent is not None:
+                first_index = parent.index(first)
+                last_index = parent.index(last)
+                return parent, first_index, last_index
+        return None, None, None
+
     def _give_dominant_spanners_to_components(self, recipients):
         '''Find all spanners dominating music.
         Insert each component in recipients into each dominant spanner.
@@ -104,7 +121,7 @@ class SequentialSelection(Selection):
         assert componenttools.all_are_contiguous_components_in_same_parent(
             self)
         assert isinstance(container, containertools.Container)
-        parent, start, stop = self.get_parent_and_start_stop_indices()
+        parent, start, stop = self._get_parent_and_start_stop_indices()
         if parent is not None:
             parent._music.__setitem__(slice(start, start), [container])
             container._set_parent(parent)
@@ -162,43 +179,6 @@ class SequentialSelection(Selection):
         return timespantools.Timespan(start_offset, stop_offset)
 
     ### PUBLIC METHODS ###
-
-    def get_offset_lists(self):
-        '''Get offset lists of components in selection:
-
-            >>> staff = Staff("c'4 d'4 e'4 f'4")
-            >>> selection = staff[:2]
-            >>> selection
-            SequentialSelection(Note("c'4"), Note("d'4"))
-
-        ::
-
-            >>> start_offsets, stop_offsets = selection.get_offset_lists()
-            >>> start_offsets
-            [Offset(0, 1), Offset(1, 4)]
-
-        ::
-
-            >>> stop_offsets
-            [Offset(1, 4), Offset(1, 2)]
-
-        Return list of start offsets together with list of stop offsets.
-        '''
-        start_offsets, stop_offsets = [], []
-        for component in self:
-            start_offsets.append(component.timespan.start_offset)
-            stop_offsets.append(component.timespan.stop_offset)
-        return start_offsets, stop_offsets
-
-    def get_parent_and_start_stop_indices(self):
-        if self:
-            first, last = self[0], self[-1]
-            parent = first.parent
-            if parent is not None:
-                first_index = parent.index(first)
-                last_index = parent.index(last)
-                return parent, first_index, last_index
-        return None, None, None
 
     def group_by(self, predicate):
         result = []

@@ -187,7 +187,7 @@ def split_container_at_index(component, i, fracture_spanners=False):
 
     # incorporate left and right parents in score, if possible
     selection = component.select(sequential=True)
-    parent, start, stop = selection.get_parent_and_start_stop_indices()
+    parent, start, stop = selection._get_parent_and_start_stop_indices()
     if parent is not None:
         # to avoid pychecker slice assignment error
         #parent._music[start:stop+1] = nonempty_halves

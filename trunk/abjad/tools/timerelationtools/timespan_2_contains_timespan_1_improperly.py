@@ -24,7 +24,7 @@ def timespan_2_contains_timespan_1_improperly(timespan_1=None, timespan_2=None, 
 
     ::
 
-        >>> offset_lists = staff[:].get_offset_lists()
+        >>> offset_lists = staff[:]._get_offset_lists()
         >>> time_relation = timerelationtools.timespan_2_contains_timespan_1_improperly(timespan_1=timespan_1)
         >>> start_index, stop_index = time_relation.get_offset_indices(*offset_lists)
         >>> selected_notes = staff[start_index:stop_index]

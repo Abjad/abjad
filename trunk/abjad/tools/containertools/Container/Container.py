@@ -496,7 +496,7 @@ class Container(Component):
             music = []
         if componenttools.all_are_contiguous_components_in_same_thread(music):
             music = selectiontools.SequentialSelection(music)
-            parent, start, stop = music.get_parent_and_start_stop_indices()
+            parent, start, stop = music._get_parent_and_start_stop_indices()
             self._music = list(music)
             self[:]._set_parents(self)
             if parent is not None:

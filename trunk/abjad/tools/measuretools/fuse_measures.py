@@ -92,7 +92,7 @@ def fuse_measures(measures):
     if len(measures) == 1:
         return measures[0]
 
-    parent, start, stop = measures.get_parent_and_start_stop_indices()
+    parent, start, stop = measures._get_parent_and_start_stop_indices()
     old_denominators = []
     new_duration = durationtools.Duration(0)
     for measure in measures:
