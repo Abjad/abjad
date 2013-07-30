@@ -43,4 +43,4 @@ def get_one_indexed_measure_number_in_expr(expr, measure_number):
 
     # return measure
     selection = selectiontools.SequentialSelection(expr)
-    return selection.get(measuretools.Measure, measure_index)
+    return selection.get_component(measuretools.Measure, measure_index)

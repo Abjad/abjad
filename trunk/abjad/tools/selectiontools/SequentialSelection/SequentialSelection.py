@@ -280,7 +280,7 @@ class SequentialSelection(Selection):
                 component._detach_spanners(spanner_classes=spanner_classes))
         return tuple(spanners)
 
-    def get(self, component_classes=None, n=0, recurse=True):
+    def get_component(self, component_classes=None, n=0, recurse=True):
         '''Get instance `n` of `component_classes` in selection.
         '''
         from abjad.tools import componenttools

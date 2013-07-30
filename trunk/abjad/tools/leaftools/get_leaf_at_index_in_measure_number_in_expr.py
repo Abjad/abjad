@@ -37,4 +37,4 @@ def get_leaf_at_index_in_measure_number_in_expr(expr, measure_number, leaf_index
     # return leaf in measure
     measure = measuretools.get_one_indexed_measure_number_in_expr(
         expr, measure_number)
-    return measure[:].get(leaftools.Leaf, leaf_index)
+    return measure[:].get_component(leaftools.Leaf, leaf_index)
