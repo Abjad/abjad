@@ -218,6 +218,41 @@ class TimespanInventory(ObjectInventory):
         return True
 
     @property
+    def all_are_nonoverlapping(self):
+        '''True when all timespans are non-overlapping:
+
+        ::
+
+            >>> timespan_inventory_1.all_are_nonoverlapping
+            True
+
+        False when timespans are overlapping:
+
+        ::
+        
+            >>> timespan_inventory_2.all_are_nonoverlapping
+            False
+
+        True when empty:
+
+        ::
+
+            >>> timespan_inventory_3.all_are_nonoverlapping
+            True
+
+        Return boolean.
+        '''
+        if len(self) <= 1:
+            return True
+        last_stop_offset = self[0].stop_offset
+        for timespan in self[1:]:
+            if timespan.start_offset < last_stop_offset:
+                return False
+            if last_stop_offset < timespan.stop_offset:
+                last_stop_offset = timespan.stop_offset
+        return True
+
+    @property
     def all_are_well_formed(self):
         '''True when all timespans are well-formed:
 
