@@ -350,6 +350,101 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
     def fuse_overlapping_intervals(self, include_tangent_intervals=False):
         raise NotImplementedError
 
+    def partition(self, include_tangent_intervals=False):
+        '''Partition aggregate into groups of overlapping intervals:
+
+        ::
+
+            >>> tree = timeintervaltools.TimeIntervalTree(
+            ...     timeintervaltools.make_test_intervals)
+            >>> tree
+
+        ::
+
+            >>> for group in tree.partition():
+            ...     group
+            ...
+            TimeIntervalTree([
+                TimeInterval(Offset(0, 1), Offset(3, 1), {'name': 'a'})
+            ])
+            TimeIntervalTree([
+                TimeInterval(Offset(5, 1), Offset(13, 1), {'name': 'b'}),
+                TimeInterval(Offset(6, 1), Offset(10, 1), {'name': 'c'}),
+                TimeInterval(Offset(8, 1), Offset(9, 1), {'name': 'd'})
+            ])
+            TimeIntervalTree([
+                TimeInterval(Offset(15, 1), Offset(23, 1), {'name': 'e'}),
+                TimeInterval(Offset(16, 1), Offset(21, 1), {'name': 'f'}),
+                TimeInterval(Offset(17, 1), Offset(19, 1), {'name': 'g'})
+            ])
+            TimeIntervalTree([
+                TimeInterval(Offset(19, 1), Offset(20, 1), {'name': 'h'})
+            ])
+            TimeIntervalTree([
+                TimeInterval(Offset(25, 1), Offset(30, 1), {'name': 'i'}),
+                TimeInterval(Offset(26, 1), Offset(29, 1), {'name': 'j'})
+            ])
+            TimeIntervalTree([
+                TimeInterval(Offset(32, 1), Offset(34, 1), {'name': 'k'})
+            ])
+            TimeIntervalTree([
+                TimeInterval(Offset(34, 1), Offset(37, 1), {'name': 'l'})
+            ])
+
+        If `include_tangent_intervals` is true, treat tangent intervals as
+        part of the same group:
+
+        ::
+
+            >>> for group in tree.partition(include_tangent_intervals=True):
+            ...     group
+            ...
+            TimeIntervalTree([
+                TimeInterval(Offset(0, 1), Offset(3, 1), {'name': 'a'})
+            ])
+            TimeIntervalTree([
+                TimeInterval(Offset(5, 1), Offset(13, 1), {'name': 'b'}),
+                TimeInterval(Offset(6, 1), Offset(10, 1), {'name': 'c'}),
+                TimeInterval(Offset(8, 1), Offset(9, 1), {'name': 'd'})
+            ])
+            TimeIntervalTree([
+                TimeInterval(Offset(15, 1), Offset(23, 1), {'name': 'e'}),
+                TimeInterval(Offset(16, 1), Offset(21, 1), {'name': 'f'}),
+                TimeInterval(Offset(17, 1), Offset(19, 1), {'name': 'g'}),
+                TimeInterval(Offset(19, 1), Offset(20, 1), {'name': 'h'})
+            ])
+            TimeIntervalTree([
+                TimeInterval(Offset(25, 1), Offset(30, 1), {'name': 'i'}),
+                TimeInterval(Offset(26, 1), Offset(29, 1), {'name': 'j'})
+            ])
+            TimeIntervalTree([
+                TimeInterval(Offset(32, 1), Offset(34, 1), {'name': 'k'}),
+                TimeInterval(Offset(34, 1), Offset(37, 1), {'name': 'l'})
+            ])
+            
+        Return 0 or more trees.
+        '''
+        from abjad.tools import timeintervaltools
+        groups = []
+        current_group = []
+        intervals = self.intervals
+        for current_interval in intervals:
+            if not current_group:
+                current_group.append(current_interval)
+                continue
+            if current_interval.start_offset < current_group[-1].stop_offset:
+                current_group.append(current_interval)
+            elif include_tangent_intervals and \
+                current_interval.start_offset == current_group[-1].stop_offset:
+                current_group.append(current_interval)
+            else:
+                groups.append(timeintervaltools.TimeIntervalTree(
+                    current_group))
+                current_group = [current_interval]
+        if current_group:
+            groups.append(timeintervaltools.TimeIntervalTree(current_group))
+        return tuple(groups)
+
     @abc.abstractmethod
     def scale_interval_durations_by_rational(self, rational):
         raise NotImplementedError
