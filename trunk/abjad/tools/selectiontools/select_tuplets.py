@@ -1,4 +1,11 @@
-def select_tuplets(expr=None):
+def select_tuplets(
+    expr=None,
+    include_augmented_tuplets=True,
+    include_diminished_tuplets=True,
+    include_trivial_tuplets=True,
+    recurse=True,
+    tuplet_classes=None,
+    ):
     r'''Select tuplets in `expr`.
 
         >>> staff = Staff()
@@ -51,7 +58,19 @@ def select_tuplets(expr=None):
     from abjad.tools import componenttools
     from abjad.tools import iterationtools
     from abjad.tools import selectiontools
+    from abjad.tools import tuplettools
     expr = expr or []
-    tuplets = iterationtools.iterate_tuplets_in_expr(expr)
+    tuplet_classes = tuplet_classes or (tuplettools.Tuplet,)
+    if recurse:
+        expr = iterationtools.iterate_tuplets_in_expr(expr)
+    tuplets = []
+    for tuplet in expr:
+        if (not include_augmented_tuplets and tuplet.is_augmented) or \
+        (not include_diminished_tuplets and tuplet.is_diminished) or \
+        (not include_trivial_tuplets and tuplet.is_trivial) or \
+        not isinstance(tuplet, tuplet_classes):
+            continue
+        else:
+            tuplets.append(tuplet)
     selection = selectiontools.TupletSelection(music=tuplets)
     return selection
