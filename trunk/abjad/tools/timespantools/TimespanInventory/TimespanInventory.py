@@ -211,8 +211,9 @@ class TimespanInventory(ObjectInventory):
         '''
         if len(self) <= 1:
             return True
-        last_stop_offset = self[0].stop_offset
-        for timespan in self[1:]:
+        timespans = sorted(self[:])
+        last_stop_offset = timespans[0].stop_offset
+        for timespan in timespans[1:]:
             if timespan.start_offset != last_stop_offset:
                 return False
             last_stop_offset = timespan.stop_offset
@@ -245,8 +246,9 @@ class TimespanInventory(ObjectInventory):
         '''
         if len(self) <= 1:
             return True
-        last_stop_offset = self[0].stop_offset
-        for timespan in self[1:]:
+        timespans = sorted(self[:])
+        last_stop_offset = timespans[0].stop_offset
+        for timespan in timespans[1:]:
             if timespan.start_offset < last_stop_offset:
                 return False
             if last_stop_offset < timespan.stop_offset:
