@@ -1,12 +1,13 @@
 from abjad import *
 
 
-def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_01():
+def test_TupletSelection_scale_contents_01():
     '''Double tuplet.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Fraction(2))
+    selection = selectiontools.select_tuplets(t)
+    selection.scale_contents(Multiplier(2))
 
     r'''
     \times 2/3 {
@@ -20,12 +21,13 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_01():
     assert t.lilypond_format == "\\times 2/3 {\n\tc'4\n\td'4\n\te'4\n}"
 
 
-def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_02():
+def test_TupletSelection_scale_contents_02():
     '''Halve tuplet.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Fraction(1, 2))
+    selection = selectiontools.select_tuplets(t)
+    selection.scale_contents(Multiplier(1, 2))
 
     r'''
     \times 2/3 {
@@ -39,12 +41,13 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_02():
     assert t.lilypond_format == "\\times 2/3 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
-def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_03():
+def test_TupletSelection_scale_contents_03():
     '''Quadruple tuplet.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Fraction(4))
+    selection = selectiontools.select_tuplets(t)
+    selection.scale_contents(Multiplier(4))
 
     r'''
     \times 2/3 {
@@ -58,12 +61,13 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_03():
     assert t.lilypond_format == "\\times 2/3 {\n\tc'2\n\td'2\n\te'2\n}"
 
 
-def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_04():
+def test_TupletSelection_scale_contents_04():
     '''Quarter tuplet.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Fraction(1, 4))
+    selection = selectiontools.select_tuplets(t)
+    selection.scale_contents(Multiplier(1, 4))
 
     r'''
     \times 2/3 {
@@ -77,12 +81,13 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_04():
     assert t.lilypond_format == "\\times 2/3 {\n\tc'32\n\td'32\n\te'32\n}"
 
 
-def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_05():
+def test_TupletSelection_scale_contents_05():
     '''Multiply tuplet by 3/2.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Fraction(3, 2))
+    selection = selectiontools.select_tuplets(t)
+    selection.scale_contents(Multiplier(3, 2))
 
     r'''
     \times 2/3 {
@@ -96,12 +101,13 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_05():
     assert t.lilypond_format == "\\times 2/3 {\n\tc'8.\n\td'8.\n\te'8.\n}"
 
 
-def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_06():
+def test_TupletSelection_scale_contents_06():
     '''Multiply tuplet by 2/3.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Fraction(2, 3))
+    selection = selectiontools.select_tuplets(t)
+    selection.scale_contents(Multiplier(2, 3))
 
     r'''
     \times 8/9 {
@@ -115,12 +121,13 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_06():
     assert t.lilypond_format == "\\times 8/9 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
-def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_07():
+def test_TupletSelection_scale_contents_07():
     '''Multiply tuplet by 3/5.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Fraction(3, 5))
+    selection = selectiontools.select_tuplets(t)
+    selection.scale_contents(Multiplier(3, 5))
 
     r'''
     \times 4/5 {
@@ -134,12 +141,13 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_07():
     assert t.lilypond_format == "\\times 4/5 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
-def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_08():
+def test_TupletSelection_scale_contents_08():
     '''Multiply undotted, unbracketted notes by 3/2; ie, add a single dot.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(3, 8), "c'8 d'8 e'8")
-    tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Fraction(3, 2))
+    selection = selectiontools.select_tuplets(t)
+    selection.scale_contents(Multiplier(3, 2))
 
     r'''
     {
@@ -153,7 +161,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_08():
     assert t.lilypond_format == "{\n\tc'8.\n\td'8.\n\te'8.\n}"
 
 
-def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_09():
+def test_TupletSelection_scale_contents_09():
     '''Binary target duration.
     '''
 
@@ -167,7 +175,8 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_09():
     }
     '''
 
-    tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Fraction(2, 3))
+    selection = selectiontools.select_tuplets(t)
+    selection.scale_contents(Multiplier(2, 3))
 
     r'''
     \times 4/5 {
@@ -180,7 +189,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_09():
     assert t.lilypond_format == "\\times 4/5 {\n\tc'8\n\tc'8.\n}"
 
 
-def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_10():
+def test_TupletSelection_scale_contents_10():
     '''Target duration without power-of-two denominator.
     '''
 
@@ -193,7 +202,8 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_10():
     }
     '''
 
-    tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(t, Fraction(2, 3))
+    selection = selectiontools.select_tuplets(t)
+    selection.scale_contents(Multiplier(2, 3))
 
     r'''
     \times 8/15 {

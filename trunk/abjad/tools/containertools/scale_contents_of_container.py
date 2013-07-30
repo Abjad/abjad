@@ -1,7 +1,5 @@
 def scale_contents_of_container(container, multiplier):
-    r'''.. versionadded:: 1.1
-
-    Scale contents of `container` by dot `multiplier`:
+    r'''Scale contents of `container` by dot `multiplier`:
 
     ::
 
@@ -100,20 +98,22 @@ def scale_contents_of_container(container, multiplier):
     from abjad.tools import iterationtools
     from abjad.tools import leaftools
     from abjad.tools import measuretools
+    from abjad.tools import selectiontools
     from abjad.tools import tuplettools
 
-    for expr in iterationtools.iterate_topmost_tie_chains_and_components_in_expr(
+    for expr in \
+        iterationtools.iterate_topmost_tie_chains_and_components_in_expr(
         container[:]):
         if isinstance(expr, leaftools.TieChain):
             new_written_duration = multiplier * expr.written_duration
             expr._add_or_remove_notes_to_achieve_written_duration(
                 new_written_duration)
         elif isinstance(expr, tuplettools.FixedDurationTuplet):
-            tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(
-                expr, multiplier)
+            selection = selectiontools.select_tuplets(expr)
+            selection.scale_contents(multiplier)
         elif isinstance(expr, measuretools.Measure):
             measuretools.scale_contents_of_measures_in_expr(expr, multiplier)
         else:
-            raise NotImplementedError
+            raise NotImplementedError(expr)
 
     return container

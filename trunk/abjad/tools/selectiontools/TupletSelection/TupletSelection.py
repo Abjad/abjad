@@ -81,6 +81,83 @@ class TupletSelection(FreeSelection):
             componenttools.move_parentage_and_spanners_from_components_to_components(
                 [tuplet], tuplet[:])
 
+    def scale_contents(self, multiplier):
+        r'''Scale contents of fixed-duration tuplets in selection
+        by `multiplier`.
+
+        Example 1. Double duration of tuplets in selection:
+        ::
+
+            >>> tuplet = tuplettools.FixedDurationTuplet((3, 8), [])
+            >>> tuplet.extend("c'8 d'8 e'8 f'8 g'8")
+
+        ..  doctest::
+
+            >>> f(tuplet)
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 3/5 {
+                c'8
+                d'8
+                e'8
+                f'8
+                g'8
+            }
+
+        ::
+
+            >>> show(tuplet) # doctest: +SKIP
+
+        ::
+
+            >>> selection = selectiontools.select_tuplets(tuplet)
+            >>> selection.scale_contents(Multiplier(2))
+
+        ..  doctest::
+
+            >>> f(tuplet)
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 3/5 {
+                c'4
+                d'4
+                e'4
+                f'4
+                g'4
+            }
+
+        ::
+
+            >>> show(tuplet) # doctest: +SKIP
+
+        Preserve tuplet multipliers.
+
+        Return none.
+        '''
+        from abjad.tools import leaftools
+        from abjad.tools import tuplettools
+        multiplier = durationtools.Multiplier(multiplier)
+        for tuplet in self:
+            if isinstance(tuplet, tuplettools.FixedDurationTuplet):
+                # find new target duration
+                old_target_duration = tuplet.target_duration
+                new_target_duration = multiplier * old_target_duration
+                # change tuplet target duration
+                tuplet.target_duration = new_target_duration
+                # if multiplier is note head assignable, 
+                # scale contents graphically
+                if multiplier.is_assignable:
+                    for component in tuplet[:]:
+                        if isinstance(component, leaftools.Leaf):
+                            leaftools.scale_preprolated_leaf_duration(
+                                component, multiplier)
+                # otherwise doctor up tuplet multiplier, if necessary
+                elif not tuplet.multiplier.is_proper_tuplet_multiplier:
+                    tuplettools.fix_contents_of_tuplets_in_expr(tuplet)
+            else:
+                for component in tuplet[:]:
+                    if isinstance(component, leaftools.Leaf):
+                        leaftools.scale_preprolated_leaf_duration(
+                            component, multiplier)
+
     def set_denominator_to_at_least(self, n):
         r'''Set denominator of tuplets in selection to at least `n`.
 
