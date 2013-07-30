@@ -68,25 +68,27 @@ class ComponentSelection(FreeSelection):
             badly_formed_components.extend(checker.violators(self))
         return badly_formed_components
 
+    def get_component(self, component_classes=None, n=0, recurse=True):
+        '''Get component `n` of `component_classes` in selection.
+
+        Iterate only top level when `recurse` is false.
+
+        Iterate depth-first when `recurse` is true.
+
+        Return component or none.
+        '''
+        return self._get_component(
+            component_classes=component_classes,
+            n=n,
+            recurse=recurse,
+            )
+
     def get_marks(self, mark_classes=None, recurse=True):
         '''Get `mark_classes` attached to components in selection.
 
         Return tuple.
         '''
         return self._get_marks(mark_classes=mark_classes, recurse=recurse)
-
-    @staticmethod
-    def select(expr):
-#        from abjad.tools import componenttools
-#        if isinstance(expr, componenttools.Component):
-#            return ComponentSelection(expr)
-#        elif hasattr(expr, '_music'):
-#            music = expr._music
-#            return ComponentSelection(music)
-#        else:
-#            return ComponentSelection(expr)
-        from abjad.tools import selectiontools
-        return selectiontools.select(expr)
 
     def is_well_formed(self, allow_empty_containers=True):
         from abjad.tools import wellformednesstools

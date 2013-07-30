@@ -94,6 +94,10 @@ class Selection(object):
         return len(self._music)
 
     def __ne__(self, expr):
+        '''True when selection does not equal `expr`. Otherwise false.
+
+        Return boolean.
+        '''
         return not self == expr
 
     def __radd__(self, expr):
@@ -114,13 +118,38 @@ class Selection(object):
         return Selection(music)
 
     def __repr__(self):
-        '''Representation of selection in Python interpreter.
+        '''Selection interpreter representation.
 
         Return string.
         '''
         return '{}{!r}'.format(self.__class__.__name__, self._music)
 
     ### PRIVATE METHODS ###
+
+    def _get_component(self, component_classes=None, n=0, recurse=True):
+        from abjad.tools import componenttools
+        from abjad.tools import iterationtools
+        component_classes = component_classes or (componenttools.Component,)
+        if not isinstance(component_classes, tuple):
+            component_classes = (component_classes,)
+        if 0 <= n:
+            if recurse:
+                components = iterationtools.iterate_components_in_expr(
+                    self, component_classes)
+            else:
+                components = self._music
+            for i, x in enumerate(components):
+                if i == n:
+                    return x
+        else:
+            if recurse:
+                components = iterationtools.iterate_components_in_expr(
+                    self, component_classes, reverse=True)
+            else:
+                components = reversed(self._music)
+            for i, x in enumerate(components):
+                if i == abs(n) - 1:
+                    return x
 
     def _get_marks(self, mark_classes=None, recurse=True):
         result = []
