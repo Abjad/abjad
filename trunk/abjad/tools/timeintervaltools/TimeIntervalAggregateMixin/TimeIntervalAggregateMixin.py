@@ -389,9 +389,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
             TimeIntervalTree([
                 TimeInterval(Offset(15, 1), Offset(23, 1), {'name': 'e'}),
                 TimeInterval(Offset(16, 1), Offset(21, 1), {'name': 'f'}),
-                TimeInterval(Offset(17, 1), Offset(19, 1), {'name': 'g'})
-            ])
-            TimeIntervalTree([
+                TimeInterval(Offset(17, 1), Offset(19, 1), {'name': 'g'}),
                 TimeInterval(Offset(19, 1), Offset(20, 1), {'name': 'h'})
             ])
             TimeIntervalTree([
@@ -440,21 +438,21 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
         '''
         from abjad.tools import timeintervaltools
         groups = []
-        current_group = []
         intervals = self.intervals
-        for current_interval in intervals:
-            if not current_group:
-                current_group.append(current_interval)
-                continue
-            if current_interval.start_offset < current_group[-1].stop_offset:
+        current_group = [intervals[0]]
+        latest_stop_offset = current_group[0].stop_offset
+        for current_interval in intervals[1:]:
+            if current_interval.start_offset < latest_stop_offset:
                 current_group.append(current_interval)
             elif include_tangent_intervals and \
-                current_interval.start_offset == current_group[-1].stop_offset:
+                current_interval.start_offset == latest_stop_offset:
                 current_group.append(current_interval)
             else:
                 groups.append(timeintervaltools.TimeIntervalTree(
                     current_group))
                 current_group = [current_interval]
+            if latest_stop_offset < current_interval.stop_offset:
+                latest_stop_offset = current_interval.stop_offset
         if current_group:
             groups.append(timeintervaltools.TimeIntervalTree(current_group))
         return tuple(groups)
