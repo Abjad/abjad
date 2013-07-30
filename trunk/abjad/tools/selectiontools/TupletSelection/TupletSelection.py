@@ -9,6 +9,71 @@ class TupletSelection(FreeSelection):
 
     ### PUBLIC METHODS ###
 
+    # TODO: reimplement as a keyword variation on self.remove()
+    def move_prolation_to_contents_and_remove(self):
+        r'''Move prolation of tupets in selection to contents of 
+        of tuplets in selection and then remove tuplets in selection.
+
+        Example 1.
+
+        ::
+
+            >>> staff = Staff(
+            ...     r"\times 3/2 { c'8 [ d'8 } \times 3/2 { c'8 d'8 ] }"
+            ...     )
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 3/2 {
+                    c'8 [
+                    d'8
+                }
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 3/2 {
+                    c'8
+                    d'8 ]
+                }
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        ::
+
+            >>> selection = selectiontools.select_tuplets(staff[0])
+            >>> selection.move_prolation_to_contents_and_remove()
+
+        ::
+
+            >>> f(staff)
+            \new Staff {
+                c'8. [
+                d'8.
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 3/2 {
+                    c'8
+                    d'8 ]
+                }
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        Return none.
+        '''
+        from abjad.tools import componenttools
+        from abjad.tools import containertools
+        for tuplet in self:
+            containertools.scale_contents_of_container(
+                tuplet, tuplet.multiplier)
+            componenttools.move_parentage_and_spanners_from_components_to_components(
+                [tuplet], tuplet[:])
+        
     def remove(self):
         r'''Remove tuplets in selection.
 

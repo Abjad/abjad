@@ -1,9 +1,10 @@
 from abjad import *
 
 
-def test_tuplettools_move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet_01():
+def test_TupletSelection_move_prolation_to_contents_and_remove_01():
     '''Scale tuplet contents and then bequeath in-score position
-        of tuplet to contents.'''
+    of tuplet to contents.
+    '''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(3, 8), "c'8 d'8") * 2)
     spannertools.BeamSpanner(t.select_leaves())
@@ -23,7 +24,8 @@ def test_tuplettools_move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_t
     }
     '''
 
-    tuplettools.move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet(t[0])
+    selection = selectiontools.select_tuplets(t[0])
+    selection.move_prolation_to_contents_and_remove()
 
     r'''
     \new Staff {
@@ -41,9 +43,10 @@ def test_tuplettools_move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_t
     assert t.lilypond_format == "\\new Staff {\n\tc'8. [\n\td'8.\n\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\\times 3/2 {\n\t\tc'8\n\t\td'8 ]\n\t}\n}"
 
 
-def test_tuplettools_move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet_02():
+def test_TupletSelection_move_prolation_to_contents_and_remove_02():
     '''Scale tuplet contents and then bequeath in-score position
-        of tuplet to contents.'''
+    of tuplet to contents.
+    '''
 
     t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -63,7 +66,8 @@ def test_tuplettools_move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_t
     }
     '''
 
-    tuplettools.move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet(t[0])
+    selection = selectiontools.select_tuplets(t[0])
+    selection.move_prolation_to_contents_and_remove()
 
     r'''
     \new Voice {
