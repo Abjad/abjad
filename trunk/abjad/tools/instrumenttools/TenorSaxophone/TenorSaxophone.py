@@ -48,7 +48,7 @@ class TenorSaxophone(Saxophone):
         self._default_performer_names.extend(['saxophonist'])
         self._default_short_instrument_name = 'ten. sax.'
         self._is_primary_instrument = False
-        self.sounding_pitch_of_fingered_middle_c = \
+        self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedChromaticPitch('bf,')
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()

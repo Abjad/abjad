@@ -48,7 +48,7 @@ class Contrabassoon(Bassoon):
         self._default_instrument_name = 'contrabassoon'
         self._default_short_instrument_name = 'contrabsn.'
         self._is_primary_instrument = False
-        self.sounding_pitch_of_fingered_middle_c = \
+        self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedChromaticPitch('c')
         self.primary_clefs = [contexttools.ClefMark('bass')]
         self._copy_primary_clefs_to_all_clefs()

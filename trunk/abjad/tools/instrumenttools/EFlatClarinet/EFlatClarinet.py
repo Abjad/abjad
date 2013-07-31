@@ -45,7 +45,7 @@ class EFlatClarinet(Clarinet):
         self._default_instrument_name = 'clarinet in E-flat'
         self._default_short_instrument_name = 'cl. E-flat'
         self._is_primary_instrument = False
-        self.sounding_pitch_of_fingered_middle_c = \
+        self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedChromaticPitch("ef'")
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()

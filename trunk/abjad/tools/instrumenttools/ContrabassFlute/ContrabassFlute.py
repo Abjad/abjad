@@ -44,6 +44,6 @@ class ContrabassFlute(Flute):
         self._default_instrument_name = 'contrabass flute'
         self._default_short_instrument_name = 'cbass. fl.'
         self._is_primary_instrument = False
-        self.sounding_pitch_of_fingered_middle_c = \
+        self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedChromaticPitch('g,')
         self._traditional_pitch_range = pitchtools.PitchRange(-17, 19)

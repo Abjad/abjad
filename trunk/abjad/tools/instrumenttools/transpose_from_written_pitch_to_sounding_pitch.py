@@ -9,7 +9,7 @@ from abjad.tools import pitchtools
 def transpose_from_written_pitch_to_sounding_pitch(expr):
     r'''.. versionadded:: 2.0
 
-    Transpose notes and chords in `expr` from sounding pitch to fingered pitch:
+    Transpose notes and chords in `expr` from sounding pitch to written pitch:
 
     ::
 

@@ -21,7 +21,7 @@ class Instrument(contexttools.InstrumentMark):
         short_instrument_name_markup=None,
         target_context=None,
         ):
-        self.sounding_pitch_of_fingered_middle_c = \
+        self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedChromaticPitch("c'")
         contexttools.InstrumentMark.__init__(
             self,
@@ -69,7 +69,7 @@ class Instrument(contexttools.InstrumentMark):
         Return melodic diatonic interval.
         '''
         return pitchtools.NamedChromaticPitch("c'") - \
-            self.sounding_pitch_of_fingered_middle_c
+            self.sounding_pitch_of_written_middle_c
 
     @property
     def is_primary_instrument(self):
@@ -85,7 +85,7 @@ class Instrument(contexttools.InstrumentMark):
 
         Return boolean.
         '''
-        return not self.sounding_pitch_of_fingered_middle_c == \
+        return not self.sounding_pitch_of_written_middle_c == \
             pitchtools.NamedChromaticPitch("c'")
 
     @apply
@@ -117,16 +117,16 @@ class Instrument(contexttools.InstrumentMark):
         return property(**locals())
 
     @apply
-    def sounding_pitch_of_fingered_middle_c():
+    def sounding_pitch_of_written_middle_c():
         def fset(self, pitch):
-            r'''Read / write sounding pitch of fingered middle C.
+            r'''Read / write sounding pitch of written middle C.
 
             Return named chromatic pitch.
             '''
             pitch = pitchtools.NamedChromaticPitch(pitch)
-            self._sounding_pitch_of_fingered_middle_c = pitch
+            self._sounding_pitch_of_written_middle_c = pitch
         def fget(self):
-            return self._sounding_pitch_of_fingered_middle_c
+            return self._sounding_pitch_of_written_middle_c
         return property(**locals())
 
     ### PUBLIC METHODS ###

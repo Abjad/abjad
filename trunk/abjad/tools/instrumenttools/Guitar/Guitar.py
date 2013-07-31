@@ -46,7 +46,7 @@ class Guitar(StringInstrument):
         self._default_performer_names.append('guitarist')
         self._default_short_instrument_name = 'gt.'
         self._is_primary_instrument = True
-        self.sounding_pitch_of_fingered_middle_c = \
+        self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedChromaticPitch('c')
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()

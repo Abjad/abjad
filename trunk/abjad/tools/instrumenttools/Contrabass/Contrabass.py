@@ -49,7 +49,7 @@ class Contrabass(StringInstrument):
         self._default_performer_names.extend(['contrabassist', 'bassist'])
         self._default_short_instrument_name = 'vb.'
         self._is_primary_instrument = True
-        self.sounding_pitch_of_fingered_middle_c = \
+        self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedChromaticPitch('c')
         self.primary_clefs = [contexttools.ClefMark('bass')]
         self.all_clefs = [
