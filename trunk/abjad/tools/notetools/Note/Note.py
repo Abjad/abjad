@@ -121,7 +121,7 @@ class Note(Leaf):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def fingered_pitch(self):
+    def written_pitch(self):
         r'''Fingered pitch of note:
 
         ::
@@ -145,7 +145,7 @@ class Note(Leaf):
 
         ::
 
-            >>> staff[0].fingered_pitch
+            >>> staff[0].written_pitch
             NamedChromaticPitch("d'")
 
         Return named chromatic pitch.
@@ -160,10 +160,10 @@ class Note(Leaf):
                 raise InstrumentError(message)
             t_n = instrument.interval_of_transposition
             t_n *= -1
-            fingered_pitch = \
+            written_pitch = \
                 pitchtools.transpose_pitch_carrier_by_melodic_interval(
                     self.written_pitch, t_n)
-            return fingered_pitch
+            return written_pitch
         else:
             return self.written_pitch
 

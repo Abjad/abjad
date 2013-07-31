@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_Note_fingered_pitch_01():
+def test_Note_written_pitch_01():
 
 
     staff = Staff("d''8 e''8 f''8 g''8")
@@ -20,7 +20,7 @@ def test_Note_fingered_pitch_01():
     }
     '''
 
-    assert staff[0].fingered_pitch == "d'"
-    assert staff[1].fingered_pitch == "e'"
-    assert staff[2].fingered_pitch == "f'"
-    assert staff[3].fingered_pitch == "g'"
+    assert staff[0].written_pitch == "d'"
+    assert staff[1].written_pitch == "e'"
+    assert staff[2].written_pitch == "f'"
+    assert staff[3].written_pitch == "g'"

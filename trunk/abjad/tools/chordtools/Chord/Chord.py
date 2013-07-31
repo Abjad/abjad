@@ -146,7 +146,7 @@ class Chord(Leaf):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def fingered_pitches(self):
+    def written_pitches(self):
         r"""Fingered pitches:
 
         ::
@@ -168,7 +168,7 @@ class Chord(Leaf):
 
         ::
 
-            >>> staff[0].fingered_pitches
+            >>> staff[0].written_pitches
             (NamedChromaticPitch("c'"), NamedChromaticPitch("e'"))
 
         Return tuple of named chromatic pitches.
@@ -183,11 +183,11 @@ class Chord(Leaf):
                 raise InstrumentError(message)
             t_n = instrument.interval_of_transposition
             t_n *= -1
-            fingered_pitches = [
+            written_pitches = [
                 pitchtools.transpose_pitch_carrier_by_melodic_interval(
                 pitch, t_n)
                 for pitch in self.written_pitches]
-            return tuple(fingered_pitches)
+            return tuple(written_pitches)
         else:
             return self.written_pitches
 

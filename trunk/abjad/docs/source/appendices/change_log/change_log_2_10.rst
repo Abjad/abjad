@@ -505,7 +505,7 @@ Changes to the ``instrumenttools`` package:
 
 - Renamed::
 
-    instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch()
+    instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_written_pitch()
 
   ::
 
@@ -513,7 +513,7 @@ Changes to the ``instrumenttools`` package:
 
 - Renamed::
 
-    instrumenttools.transpose_notes_and_chords_in_expr_from_fingered_pitch_to_sounding_pitch()
+    instrumenttools.transpose_notes_and_chords_in_expr_from_written_pitch_to_sounding_pitch()
 
   ::
 

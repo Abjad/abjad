@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_Chord_fingered_pitches_01():
+def test_Chord_written_pitches_01():
 
     staff = Staff("<c''' e'''>4 <d''' fs'''>4")
     glockenspiel = instrumenttools.Glockenspiel()(staff)
@@ -17,5 +17,5 @@ def test_Chord_fingered_pitches_01():
     }
     '''
 
-    assert staff[0].fingered_pitches == (
+    assert staff[0].written_pitches == (
         pitchtools.NamedChromaticPitch("c'"), pitchtools.NamedChromaticPitch("e'"))
