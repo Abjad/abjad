@@ -23,7 +23,8 @@ class SequentialSelection(Selection):
             music = ()
         elif isinstance(music, (tuple, list)):
             music = tuple(music)
-        elif isinstance(music, SequentialSelection):
+        #elif isinstance(music, SequentialSelection):
+        elif isinstance(music, Selection):
             music = tuple(music)
         elif isinstance(music, types.GeneratorType):
             music = tuple(music)
