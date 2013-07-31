@@ -18,14 +18,14 @@ class StatalServerExpression(Expression, IterablePayloadCallbackMixin):
     ### SPECIAL METHODS ###
 
     def __call__(self):
-        '''Evaluate statal server expression.
+        r'''Evaluate statal server expression.
         '''
         return self.statal_server(self)
 
     ### PRIVATE METHODS ###
 
     def evaluate(self):
-        '''Evaluate statal server expression.
+        r'''Evaluate statal server expression.
         '''
         raise NotImplementedError
 
@@ -33,7 +33,7 @@ class StatalServerExpression(Expression, IterablePayloadCallbackMixin):
 
     @property
     def statal_server(self):
-        '''Statal server expression statal server.
+        r'''Statal server expression statal server.
 
         Return statal server.
         '''

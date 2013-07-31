@@ -61,7 +61,7 @@ class SetExpressionLookupExpression(
 
     @property
     def attribute(self):
-        '''Set expression lookup expression attribute.
+        r'''Set expression lookup expression attribute.
 
         Return string.
         '''
@@ -69,7 +69,7 @@ class SetExpressionLookupExpression(
 
     @property
     def offset(self):
-        '''Set expression lookup expression offset.
+        r'''Set expression lookup expression offset.
 
         Return offset expression.
         '''
@@ -77,7 +77,7 @@ class SetExpressionLookupExpression(
 
     @property
     def voice_name(self):
-        '''Set expression lookup expression voice name.
+        r'''Set expression lookup expression voice name.
 
         Return string.
         '''
@@ -87,7 +87,7 @@ class SetExpressionLookupExpression(
 
     @abc.abstractmethod
     def evaluate(self):
-        '''Evaluate set expression lookup expression.
+        r'''Evaluate set expression lookup expression.
 
         Return payload expression.
         '''

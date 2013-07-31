@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_MaterialPackageProxy_screenscrapes_01():
-    '''Score material run from home.
+    r'''Score material run from home.
     '''
     py.test.skip('TODO: add Red Example Score time signatures.')
 
@@ -30,7 +30,7 @@ def test_MaterialPackageProxy_screenscrapes_01():
 
 
 def test_MaterialPackageProxy_screenscrapes_02():
-    '''Score material run independently.
+    r'''Score material run independently.
     '''
     py.test.skip('TODO: add Red Example Score time signatures.')
 

@@ -5,7 +5,7 @@ import py
 
 
 def test_PerformerEditor_move_instrument_01():
-    '''Quit, back, home, score & junk all work.
+    r'''Quit, back, home, score & junk all work.
     '''
     py.test.skip('remove custom score name.')
 
@@ -27,7 +27,7 @@ def test_PerformerEditor_move_instrument_01():
 
 
 def test_PerformerEditor_move_instrument_02():
-    '''Add two instruments. Move them.
+    r'''Add two instruments. Move them.
     '''
 
     editor = scoremanagertools.editors.PerformerEditor()

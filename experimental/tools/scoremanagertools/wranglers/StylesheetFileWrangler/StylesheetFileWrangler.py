@@ -6,7 +6,7 @@ from experimental.tools.scoremanagertools.wranglers.FileWrangler import \
 
 
 class StylesheetFileWrangler(FileWrangler):
-    '''Stylesheet file wrangler.
+    r'''Stylesheet file wrangler.
 
         >>> wrangler = scoremanagertools.wranglers.StylesheetFileWrangler()
         >>> wrangler
@@ -94,7 +94,7 @@ class StylesheetFileWrangler(FileWrangler):
 
     @property
     def asset_proxy_class(self):
-        '''Stylesheet file wrangler asset class:
+        r'''Stylesheet file wrangler asset class:
 
         ::
 
@@ -108,7 +108,7 @@ class StylesheetFileWrangler(FileWrangler):
 
     @property
     def storage_format(self):
-        '''Stylesheet file wrangler storage format:
+        r'''Stylesheet file wrangler storage format:
 
         ::
 
@@ -169,7 +169,7 @@ class StylesheetFileWrangler(FileWrangler):
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
         head=None):
-        '''Stylesheet file wrangler list asset filesystem paths.
+        r'''Stylesheet file wrangler list asset filesystem paths.
 
         Example. List built-in stylesheet filesystem paths:
 
@@ -199,7 +199,7 @@ class StylesheetFileWrangler(FileWrangler):
         in_user_score_packages=True, 
         head=None, 
         include_extension=False):
-        '''Stylesheet file wrangler list asset names.
+        r'''Stylesheet file wrangler list asset names.
 
         Example. List built-in stylesheet names:
 
@@ -231,7 +231,7 @@ class StylesheetFileWrangler(FileWrangler):
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
         head=None):
-        '''Stylesheet file wrangler list asset proxies.
+        r'''Stylesheet file wrangler list asset proxies.
 
         Example. List built-in stylesheet proxies:
 
@@ -260,7 +260,7 @@ class StylesheetFileWrangler(FileWrangler):
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True):
-        '''Stylesheet file wrangler list storehouse filesystem paths.
+        r'''Stylesheet file wrangler list storehouse filesystem paths.
 
         Example. List built-in storehouse filesystem paths:
 

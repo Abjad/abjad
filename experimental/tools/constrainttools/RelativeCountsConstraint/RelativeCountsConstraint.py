@@ -3,7 +3,7 @@ from experimental.tools.constrainttools._RelativeConstraint._RelativeConstraint 
 
 
 class RelativeCountsConstraint(_RelativeConstraint):
-    '''A constraint which is applied against a dictionary whose keys are the
+    r'''A constraint which is applied against a dictionary whose keys are the
     values in a set of items from a given solution, and whose values are the
     counts of those keys.  The constraint is always applied against the last
     possible group of items, and returns True automatically if the solution

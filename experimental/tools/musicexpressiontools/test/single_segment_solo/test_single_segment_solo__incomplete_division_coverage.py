@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_single_segment_solo__incomplete_division_coverage_01():
-    '''Divisions cover only middle measure.
+    r'''Divisions cover only middle measure.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -20,7 +20,7 @@ def test_single_segment_solo__incomplete_division_coverage_01():
 
 
 def test_single_segment_solo__incomplete_division_coverage_02():
-    '''Divisions cover only first and last measures.
+    r'''Divisions cover only first and last measures.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -40,7 +40,7 @@ def test_single_segment_solo__incomplete_division_coverage_02():
 
 
 def test_single_segment_solo__incomplete_division_coverage_03():
-    '''Contexts and select expression work together.
+    r'''Contexts and select expression work together.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -59,7 +59,7 @@ def test_single_segment_solo__incomplete_division_coverage_03():
 
 
 def test_single_segment_solo__incomplete_division_coverage_04():
-    '''Contexts and select expression work together.
+    r'''Contexts and select expression work together.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -79,7 +79,7 @@ def test_single_segment_solo__incomplete_division_coverage_04():
 
 
 def test_single_segment_solo__incomplete_division_coverage_05():
-    '''One select expression partially covers the other.
+    r'''One select expression partially covers the other.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -99,7 +99,7 @@ def test_single_segment_solo__incomplete_division_coverage_05():
 
 
 def test_single_segment_solo__incomplete_division_coverage_06():
-    '''One select expression partially covers the other. Works with contexts.
+    r'''One select expression partially covers the other. Works with contexts.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -119,7 +119,7 @@ def test_single_segment_solo__incomplete_division_coverage_06():
 
 
 def test_single_segment_solo__incomplete_division_coverage_07():
-    '''One select expression more important than the other.
+    r'''One select expression more important than the other.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -139,7 +139,7 @@ def test_single_segment_solo__incomplete_division_coverage_07():
 
 
 def test_single_segment_solo__incomplete_division_coverage_08():
-    '''Division select expression cuts fractional chunks out of time signatures.
+    r'''Division select expression cuts fractional chunks out of time signatures.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

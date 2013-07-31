@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_SargassoMeasureMaterialPackageMaker_01():
-    '''Empty wrapper.
+    r'''Empty wrapper.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -33,7 +33,7 @@ def test_SargassoMeasureMaterialPackageMaker_01():
 
 
 def test_SargassoMeasureMaterialPackageMaker_02():
-    '''Load demo values.
+    r'''Load demo values.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -66,7 +66,7 @@ def test_SargassoMeasureMaterialPackageMaker_02():
 
 
 def test_SargassoMeasureMaterialPackageMaker_03():
-    '''Load demo values and then clear all.
+    r'''Load demo values and then clear all.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -98,7 +98,7 @@ def test_SargassoMeasureMaterialPackageMaker_03():
 
 
 def test_SargassoMeasureMaterialPackageMaker_04():
-    '''Edit one value.
+    r'''Edit one value.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -130,7 +130,7 @@ def test_SargassoMeasureMaterialPackageMaker_04():
 
 
 def test_SargassoMeasureMaterialPackageMaker_05():
-    '''Populate wrapper.
+    r'''Populate wrapper.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -163,7 +163,7 @@ def test_SargassoMeasureMaterialPackageMaker_05():
 
 
 def test_SargassoMeasureMaterialPackageMaker_06():
-    '''Partial population.
+    r'''Partial population.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -196,7 +196,7 @@ def test_SargassoMeasureMaterialPackageMaker_06():
 
 
 def test_SargassoMeasureMaterialPackageMaker_07():
-    '''Set some values to none.
+    r'''Set some values to none.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -228,7 +228,7 @@ def test_SargassoMeasureMaterialPackageMaker_07():
 
 
 def test_SargassoMeasureMaterialPackageMaker_08():
-    '''Make output from demo values.
+    r'''Make output from demo values.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()

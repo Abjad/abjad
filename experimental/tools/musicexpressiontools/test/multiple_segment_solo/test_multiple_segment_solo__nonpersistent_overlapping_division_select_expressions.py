@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_multiple_segment_solo__nonpersistent_overlapping_division_select_expressions_01():
-    '''Nonpersistent overlapping measure division select expression.
+    r'''Nonpersistent overlapping measure division select expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -23,7 +23,7 @@ def test_multiple_segment_solo__nonpersistent_overlapping_division_select_expres
 
 
 def test_multiple_segment_solo__nonpersistent_overlapping_division_select_expressions_02():
-    '''Nonpersistent overlapping measures ratio part division select expression.
+    r'''Nonpersistent overlapping measures ratio part division select expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -45,7 +45,7 @@ def test_multiple_segment_solo__nonpersistent_overlapping_division_select_expres
 
 
 def test_multiple_segment_solo__nonpersistent_overlapping_division_select_expressions_03():
-    '''Nonpersistent overlapping segment offsets division select expression.
+    r'''Nonpersistent overlapping segment offsets division select expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -66,7 +66,7 @@ def test_multiple_segment_solo__nonpersistent_overlapping_division_select_expres
 
 
 def test_multiple_segment_solo__nonpersistent_overlapping_division_select_expressions_04():
-    '''Nonpersistent overlapping segment ratio part division select expression.
+    r'''Nonpersistent overlapping segment ratio part division select expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

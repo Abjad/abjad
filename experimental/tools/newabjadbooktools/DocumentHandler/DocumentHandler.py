@@ -6,7 +6,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class DocumentHandler(AbjadObject):
-    '''Abstract base class of all document handlers.
+    r'''Abstract base class of all document handlers.
     '''
 
     ### INITIALIZER ###
@@ -43,7 +43,7 @@ class DocumentHandler(AbjadObject):
 
     @property
     def asset_output_proxies(self):
-        '''All asset output proxies.
+        r'''All asset output proxies.
         '''
         result = []
         for code_block in self.source_to_code_block_mapping.iteritems():
@@ -59,7 +59,7 @@ class DocumentHandler(AbjadObject):
 
     @property
     def console(self):
-        '''Interactive console.
+        r'''Interactive console.
         '''
         return self._console
 

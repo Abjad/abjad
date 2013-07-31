@@ -39,7 +39,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
 
     @property
     def score_specification(self):
-        '''Score specification interface score specification.
+        r'''Score specification interface score specification.
 
         ::
 
@@ -52,7 +52,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
 
     @property
     def score_template(self):
-        '''Score specification interface score template.
+        r'''Score specification interface score template.
 
         ::
 
@@ -65,7 +65,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
 
     @property
     def specification(self):
-        '''Score specification interface specification.
+        r'''Score specification interface specification.
 
         ::
 
@@ -78,7 +78,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
 
     @property
     def specification_name(self):
-        '''Score specification interface specification name.
+        r'''Score specification interface specification name.
 
         ::
 
@@ -91,7 +91,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
 
     @property
     def storage_format(self):
-        '''Score specification interface storage format.
+        r'''Score specification interface storage format.
 
         ::
 
@@ -108,7 +108,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
 
     @property
     def timespan(self):
-        '''Score specification interface timespan.
+        r'''Score specification interface timespan.
 
         ::
 
@@ -122,7 +122,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
     ### PUBLIC METHODS ###
 
     def append_segment(self, name=None):
-        '''Append segment to score specification.
+        r'''Append segment to score specification.
 
         ::
 
@@ -134,7 +134,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
         return self.score_specification.append_segment(name=name)
 
     def get_offset(self, offset):
-        '''Get score specification offset.
+        r'''Get score specification offset.
 
         ::
 
@@ -157,14 +157,14 @@ class ScoreSpecificationInterface(SpecificationInterface):
         return offset
 
     def interpret(self):
-        '''Interpret score specification.
+        r'''Interpret score specification.
 
         Return score.
         '''
         return self.score_specification.interpret()
 
     def pop(self, n=None):
-        '''Pop segment specification off of score specification.
+        r'''Pop segment specification off of score specification.
 
         Return segment specification.
         '''
@@ -174,7 +174,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
             return self.score_specification.segment_specifications.pop(n)
 
     def select_segments(self, voice_name):
-        '''Select voice ``1`` segments in score:
+        r'''Select voice ``1`` segments in score:
 
         ::
 

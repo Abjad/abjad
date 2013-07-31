@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__set_divisions_01():
-    '''Set divisions from time signatures.
+    r'''Set divisions from time signatures.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)

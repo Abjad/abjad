@@ -16,7 +16,7 @@ class RhythmMakerExpression(PayloadExpression):
     ### PUBLIC METHODS ###
 
     def reflect(self):
-        '''Reflect rhythm maker payload expression.
+        r'''Reflect rhythm maker payload expression.
 
         ::
 

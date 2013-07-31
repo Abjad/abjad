@@ -48,7 +48,7 @@ class IterablePayloadExpression(PayloadExpression):
     ### SPECIAL METHODS ###
 
     def __and__(self, timespan):
-        '''Logical AND of payload expression and `timespan`.
+        r'''Logical AND of payload expression and `timespan`.
 
         ::
 
@@ -84,7 +84,7 @@ class IterablePayloadExpression(PayloadExpression):
         return result
 
     def __getitem__(self, expr):
-        '''Payload expression get item.
+        r'''Payload expression get item.
 
         ::
 
@@ -117,7 +117,7 @@ class IterablePayloadExpression(PayloadExpression):
 
     @staticmethod
     def _durations_to_integers(durations):
-        '''Change `durations` to integers:
+        r'''Change `durations` to integers:
 
         ::
 
@@ -157,7 +157,7 @@ class IterablePayloadExpression(PayloadExpression):
 
     @property
     def elements(self):
-        '''Payload expression elements.
+        r'''Payload expression elements.
 
         ::
 
@@ -170,7 +170,7 @@ class IterablePayloadExpression(PayloadExpression):
 
     @property
     def payload(self):
-        '''Payload expression payload:
+        r'''Payload expression payload:
 
         ::
 
@@ -183,7 +183,7 @@ class IterablePayloadExpression(PayloadExpression):
 
     @property
     def storage_format(self):
-        '''Payload expression storage format:
+        r'''Payload expression storage format:
 
         ::
 
@@ -199,7 +199,7 @@ class IterablePayloadExpression(PayloadExpression):
     ### PUBLIC METHODS ###
 
     def evaluate(self):
-        '''Evaluate payload expression.
+        r'''Evaluate payload expression.
 
             >>> payload_expression.evaluate()
             IterablePayloadExpression(payload=((4, 16), (2, 16)))
@@ -209,7 +209,7 @@ class IterablePayloadExpression(PayloadExpression):
         return PayloadExpression.evaluate(self)
 
     def partition_by_ratio(self, ratio):
-        '''Partition payload expression by ratio.
+        r'''Partition payload expression by ratio.
 
         ::
 
@@ -237,7 +237,7 @@ class IterablePayloadExpression(PayloadExpression):
         return result
 
     def partition_by_ratio_of_durations(self, ratio):
-        '''Partition payload expression by ratio of durations.
+        r'''Partition payload expression by ratio of durations.
 
         ::
 
@@ -273,7 +273,7 @@ class IterablePayloadExpression(PayloadExpression):
         return result
 
     def reflect(self):
-        '''Reflect payload expression.
+        r'''Reflect payload expression.
 
         ::
 
@@ -294,7 +294,7 @@ class IterablePayloadExpression(PayloadExpression):
         return result
 
     def repeat_to_duration(self, duration):
-        '''Repeat payload expression to duration.
+        r'''Repeat payload expression to duration.
 
         ::
 
@@ -324,7 +324,7 @@ class IterablePayloadExpression(PayloadExpression):
         return result
 
     def repeat_to_length(self, length):
-        '''Repeat payload expression to length.
+        r'''Repeat payload expression to length.
 
         ::
 
@@ -345,7 +345,7 @@ class IterablePayloadExpression(PayloadExpression):
         return result
 
     def rotate(self, n):
-        '''Rotate payload expression.
+        r'''Rotate payload expression.
 
         ::
 

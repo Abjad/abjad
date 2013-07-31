@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_MaterialPackageProxy_read_only_attributes_01():
-    '''Data-only package.
+    r'''Data-only package.
     '''
 
     mpp = scoremanagertools.proxies.MaterialPackageProxy(
@@ -66,7 +66,7 @@ def test_MaterialPackageProxy_read_only_attributes_01():
 
 
 def test_MaterialPackageProxy_read_only_attributes_02():
-    '''Makermade material.
+    r'''Makermade material.
     '''
 
     mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
@@ -134,7 +134,7 @@ def test_MaterialPackageProxy_read_only_attributes_02():
 
 
 def test_MaterialPackageProxy_read_only_attributes_03():
-    '''Handmade material.
+    r'''Handmade material.
     '''
 
     mpp = scoremanagertools.proxies.MaterialPackageProxy(

@@ -6,7 +6,7 @@ from experimental.tools.scoremanagertools.wranglers.PackageWrangler \
 
 
 class ScorePackageWrangler(PackageWrangler):
-    '''Score package wrangler:
+    r'''Score package wrangler:
 
     ::
 
@@ -88,7 +88,7 @@ class ScorePackageWrangler(PackageWrangler):
 
     @property
     def asset_proxy_class(self):
-        '''Score package wrangler asset proxy class:
+        r'''Score package wrangler asset proxy class:
 
         ::
 
@@ -102,7 +102,7 @@ class ScorePackageWrangler(PackageWrangler):
 
     @property
     def storage_format(self):
-        '''Score package wrangler storage format:
+        r'''Score package wrangler storage format:
 
         ::
 
@@ -151,7 +151,7 @@ class ScorePackageWrangler(PackageWrangler):
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
         head=None):
-        '''List asset filesystem paths.
+        r'''List asset filesystem paths.
 
         Example. List built-in score package filesystem paths:
 
@@ -180,7 +180,7 @@ class ScorePackageWrangler(PackageWrangler):
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
         head=None):
-        '''List asset names.
+        r'''List asset names.
 
         Example. List built-in score package names:
 
@@ -209,7 +209,7 @@ class ScorePackageWrangler(PackageWrangler):
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
         head=None):
-        '''List asset packagesystem paths.
+        r'''List asset packagesystem paths.
 
         Example. List built-in score package paths:
 
@@ -238,7 +238,7 @@ class ScorePackageWrangler(PackageWrangler):
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
         head=None):
-        '''List asset proxies.
+        r'''List asset proxies.
 
         Example. List built-in score package proxies:
 
@@ -266,7 +266,7 @@ class ScorePackageWrangler(PackageWrangler):
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True):
-        '''List asset storehouse filesystem paths.
+        r'''List asset storehouse filesystem paths.
 
         Example. List built-in score storehouse:
 
@@ -292,7 +292,7 @@ class ScorePackageWrangler(PackageWrangler):
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
         head=None):
-        '''List visible asset filesystem paths.
+        r'''List visible asset filesystem paths.
 
         Example. List visible built-in score package filesystem paths:
 
@@ -324,7 +324,7 @@ class ScorePackageWrangler(PackageWrangler):
         in_built_in_score_packages=True, 
         in_user_score_packages=True,
         head=None):
-        '''List visible asset package path and score title pairs.
+        r'''List visible asset package path and score title pairs.
 
         Example. List visible built-in score package path and title pairs:
 
@@ -367,7 +367,7 @@ class ScorePackageWrangler(PackageWrangler):
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
         head=None):
-        '''List visible asset packagesystem paths.
+        r'''List visible asset packagesystem paths.
 
         Example. List visible built-in score package packagesystem paths:
 
@@ -400,7 +400,7 @@ class ScorePackageWrangler(PackageWrangler):
         in_built_in_score_packages=True, 
         in_user_score_packages=True,
         head=None):
-        '''List visible asset proxies.
+        r'''List visible asset proxies.
 
         Example. List visible score package proxies:
 

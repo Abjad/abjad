@@ -3,7 +3,7 @@ import py
 
 
 def test_ScorePackageWrangler_run_01():
-    '''Create score package. Remove score package.
+    r'''Create score package. Remove score package.
     '''
     py.test.skip('unskip after deciding about cache.')
 

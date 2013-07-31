@@ -3,7 +3,7 @@ import py
 
 
 def test_multiple_segment_solo__incomplete_division_coverage_01():
-    '''Divisions specified for one measure and one measure only.
+    r'''Divisions specified for one measure and one measure only.
     Other regions default to full-measure divisions.
     '''
 
@@ -23,7 +23,7 @@ def test_multiple_segment_solo__incomplete_division_coverage_01():
 
 
 def test_multiple_segment_solo__incomplete_division_coverage_02():
-    '''Divisions specified for persistent measure.
+    r'''Divisions specified for persistent measure.
     Other regions default to full-measure divisions.
     '''
 
@@ -43,7 +43,7 @@ def test_multiple_segment_solo__incomplete_division_coverage_02():
 
 
 def test_multiple_segment_solo__incomplete_division_coverage_03():
-    '''Divisions specified for two measures separately.
+    r'''Divisions specified for two measures separately.
     One measure persists while the other does not.
     '''
 

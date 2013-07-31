@@ -11,7 +11,7 @@ class ConcreteInterpreter(Interpreter):
     ### SPECIAL METHODS ###
 
     def __call__(self, score_specification):
-        '''Interpret `score_specification`:
+        r'''Interpret `score_specification`:
 
             * interpret all time signatures scorewide
             * interpret all divisions scorewide

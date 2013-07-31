@@ -54,7 +54,7 @@ class DivisionSelectExpression(SelectExpression):
     ### PUBLIC METHODS ###
 
     def evaluate(self):
-        '''Evaluate division select expression.
+        r'''Evaluate division select expression.
 
         Return none when nonevaluable.
 

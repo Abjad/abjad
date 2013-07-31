@@ -4,13 +4,13 @@ from experimental.tools.musicexpressiontools.CounttimeComponentSelectExpressionS
 
 
 class DynamicHandlerSetExpression(CounttimeComponentSelectExpressionSetExpression):
-    '''Dynamic handler set expression.
+    r'''Dynamic handler set expression.
     '''
 
     ### PUBLIC METHODS ###
 
     def execute_against_score(self, score):
-        '''Execute dynamic handler set expression against `score`.
+        r'''Execute dynamic handler set expression against `score`.
         '''
         handler = self.source_expression.payload
         result = \

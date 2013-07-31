@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_ScoreSpecification__set_tempo_01():
-    '''Set tempo on first and second half of leaves.
+    r'''Set tempo on first and second half of leaves.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

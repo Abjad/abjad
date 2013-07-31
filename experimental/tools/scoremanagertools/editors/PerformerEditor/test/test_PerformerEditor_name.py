@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_PerformerEditor_name_01():
-    '''Quit, back and home all work.
+    r'''Quit, back and home all work.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -18,7 +18,7 @@ def test_PerformerEditor_name_01():
 
 
 def test_PerformerEditor_name_02():
-    '''String input only.
+    r'''String input only.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -27,7 +27,7 @@ def test_PerformerEditor_name_02():
 
 
 def test_PerformerEditor_name_03():
-    '''Create, name and rename performer.
+    r'''Create, name and rename performer.
     '''
 
     editor = scoremanagertools.editors.PerformerEditor()

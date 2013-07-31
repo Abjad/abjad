@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_ModuleProxy_public_attributes_01():
-    '''Without path.
+    r'''Without path.
     '''
 
     proxy = scoremanagertools.proxies.ModuleProxy()
@@ -27,7 +27,7 @@ def test_ModuleProxy_public_attributes_01():
 
 
 def test_ModuleProxy_public_attributes_02():
-    '''With path.
+    r'''With path.
     '''
 
     configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()

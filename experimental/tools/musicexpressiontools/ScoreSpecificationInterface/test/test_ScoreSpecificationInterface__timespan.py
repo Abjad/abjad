@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_ScoreSpecificationInterface__timespan_01():
-    '''Score start-offset lookup.
+    r'''Score start-offset lookup.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -23,7 +23,7 @@ def test_ScoreSpecificationInterface__timespan_01():
 
 
 def test_ScoreSpecificationInterface__timespan_02():
-    '''Score start-offset lookup with translation.
+    r'''Score start-offset lookup with translation.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -45,7 +45,7 @@ def test_ScoreSpecificationInterface__timespan_02():
 
 
 def test_ScoreSpecificationInterface__timespan_03():
-    '''Score stop-offset lookup with translation.
+    r'''Score stop-offset lookup with translation.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

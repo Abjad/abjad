@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_MaterialPackageProxy_run_01():
-    '''Global materials: quit, back, home, score & junk all work.
+    r'''Global materials: quit, back, home, score & junk all work.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -25,7 +25,7 @@ def test_MaterialPackageProxy_run_01():
 
 
 def test_MaterialPackageProxy_run_02():
-    '''Global materials: breadcrumbs work.
+    r'''Global materials: breadcrumbs work.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -34,7 +34,7 @@ def test_MaterialPackageProxy_run_02():
 
 
 def test_MaterialPackageProxy_run_03():
-    '''Score materials: quit, back, home, score & junk all work.
+    r'''Score materials: quit, back, home, score & junk all work.
     '''
     py.test.skip('TODO: add Red Example Score time signatures.')
 
@@ -56,7 +56,7 @@ def test_MaterialPackageProxy_run_03():
 
 
 def test_MaterialPackageProxy_run_04():
-    '''Score materials: breadcrumbs work.
+    r'''Score materials: breadcrumbs work.
     '''
     py.test.skip('TODO: add Red Example Score time signatures.')
 

@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_multiple_segment_solo__persistent_overlapping_division_select_expressions_01():
-    '''Persistent overlapping measure division select expression.
+    r'''Persistent overlapping measure division select expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -23,7 +23,7 @@ def test_multiple_segment_solo__persistent_overlapping_division_select_expressio
 
 
 def test_multiple_segment_solo__persistent_overlapping_division_select_expressions_02():
-    '''Persistent overlapping measures ratio part division select expression.
+    r'''Persistent overlapping measures ratio part division select expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -45,7 +45,7 @@ def test_multiple_segment_solo__persistent_overlapping_division_select_expressio
 
 
 def test_multiple_segment_solo__persistent_overlapping_division_select_expressions_03():
-    '''Persistent overlapping segment offsets division select expression.
+    r'''Persistent overlapping segment offsets division select expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -67,7 +67,7 @@ def test_multiple_segment_solo__persistent_overlapping_division_select_expressio
 
 
 def test_multiple_segment_solo__persistent_overlapping_division_select_expressions_04():
-    '''Persistent overlapping segment ratio part division select expression.
+    r'''Persistent overlapping segment ratio part division select expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -88,7 +88,7 @@ def test_multiple_segment_solo__persistent_overlapping_division_select_expressio
 
 
 def test_multiple_segment_solo__persistent_overlapping_division_select_expressions_05():
-    '''Persistent overlapping measure division select expression can be overwritten.
+    r'''Persistent overlapping measure division select expression can be overwritten.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

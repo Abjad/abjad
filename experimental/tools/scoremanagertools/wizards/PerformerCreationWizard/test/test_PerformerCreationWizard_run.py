@@ -22,7 +22,7 @@ def test_PerformerCreationWizard_run_02():
 
 
 def test_PerformerCreationWizard_run_03():
-    '''Ranged.
+    r'''Ranged.
     '''
 
     wizard = scoremanagertools.wizards.PerformerCreationWizard(is_ranged=True)
@@ -32,7 +32,7 @@ def test_PerformerCreationWizard_run_03():
 
 
 def test_PerformerCreationWizard_run_04():
-    '''Skipping instruments.
+    r'''Skipping instruments.
     '''
 
     wizard = scoremanagertools.wizards.PerformerCreationWizard(is_ranged=True)
@@ -42,7 +42,7 @@ def test_PerformerCreationWizard_run_04():
 
 
 def test_PerformerCreationWizard_run_05():
-    '''More instruments.
+    r'''More instruments.
     '''
 
     wizard = scoremanagertools.wizards.PerformerCreationWizard(is_ranged=True)
@@ -52,7 +52,7 @@ def test_PerformerCreationWizard_run_05():
 
 
 def test_PerformerCreationWizard_run_06():
-    '''Auxiliary percussion.
+    r'''Auxiliary percussion.
     '''
 
     wizard = scoremanagertools.wizards.PerformerCreationWizard(is_ranged=True)

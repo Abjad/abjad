@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_CounttimeComponentSelectExpression__set_spanner_01():
-    '''Set crescendo spanner.
+    r'''Set crescendo spanner.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)

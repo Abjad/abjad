@@ -29,7 +29,7 @@ class SingleContextRhythmSetExpression(SingleContextSetExpression):
     ### PUBLIC METHODS ###
 
     def evaluate(self):
-        '''Evaluate single-context rhythm set expression.
+        r'''Evaluate single-context rhythm set expression.
 
         Return timespan-scoped single-context rhythm set expression.
         '''

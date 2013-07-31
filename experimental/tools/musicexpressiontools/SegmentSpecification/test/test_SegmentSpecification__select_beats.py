@@ -3,7 +3,7 @@ import py
 
 
 def test_SegmentSpecification__select_beats_01():
-    '''Set red segment divisions to red segment beats.
+    r'''Set red segment divisions to red segment beats.
     Set blue segment divisions to blue segment beats.
     '''
 
@@ -26,7 +26,7 @@ def test_SegmentSpecification__select_beats_01():
 
 
 def test_SegmentSpecification__select_beats_02():
-    '''Set both segments' divisions to red segment beats.
+    r'''Set both segments' divisions to red segment beats.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -47,7 +47,7 @@ def test_SegmentSpecification__select_beats_02():
 
 
 def test_SegmentSpecification__select_beats_03():
-    '''Set both segments' divisions to blue segment beats.
+    r'''Set both segments' divisions to blue segment beats.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -68,7 +68,7 @@ def test_SegmentSpecification__select_beats_03():
 
 
 def test_SegmentSpecification__select_beats_04():
-    '''Single-integer positive beat getitem index.
+    r'''Single-integer positive beat getitem index.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -92,7 +92,7 @@ def test_SegmentSpecification__select_beats_04():
 
 
 def test_SegmentSpecification__select_beats_05():
-    '''Single-integer negative beat getitem index.
+    r'''Single-integer negative beat getitem index.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -116,7 +116,7 @@ def test_SegmentSpecification__select_beats_05():
 
 
 def test_SegmentSpecification__select_beats_06():
-    '''Select beats that start during explicit timespan.
+    r'''Select beats that start during explicit timespan.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -138,7 +138,7 @@ def test_SegmentSpecification__select_beats_06():
 
 
 def test_SegmentSpecification__select_beats_07():
-    '''Select beats that stop during explicit timespan.
+    r'''Select beats that stop during explicit timespan.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

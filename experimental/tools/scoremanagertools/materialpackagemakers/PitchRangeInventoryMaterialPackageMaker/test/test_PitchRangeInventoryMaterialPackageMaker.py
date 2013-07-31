@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_PitchRangeInventoryMaterialPackageMaker_01():
-    '''Stub material package.
+    r'''Stub material package.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -22,7 +22,7 @@ def test_PitchRangeInventoryMaterialPackageMaker_01():
 
 
 def test_PitchRangeInventoryMaterialPackageMaker_02():
-    '''Populate output material module.
+    r'''Populate output material module.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()

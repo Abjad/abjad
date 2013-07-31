@@ -8,7 +8,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class SetMethodMixin(AbjadObject):
-    '''Set method mixin.
+    r'''Set method mixin.
     '''
 
     ### PRIVATE PROPERTIES ###

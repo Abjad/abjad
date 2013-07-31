@@ -5,13 +5,13 @@ from experimental.tools.musicexpressiontools.CounttimeComponentSelectExpressionS
 
 
 class SpannerSetExpression(CounttimeComponentSelectExpressionSetExpression):
-    '''Spanner set expression.
+    r'''Spanner set expression.
     '''
 
     ### PUBLIC METHODS ###
 
     def execute_against_score(self, score):
-        '''Execute spanner set expression against `score`.
+        r'''Execute spanner set expression against `score`.
         '''
         spanner = self.source_expression.payload
         assert isinstance(spanner, spannertools.Spanner), repr(spanner)

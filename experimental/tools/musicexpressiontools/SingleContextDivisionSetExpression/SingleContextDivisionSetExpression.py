@@ -32,7 +32,7 @@ class SingleContextDivisionSetExpression(SingleContextSetExpression):
     ### PUBLIC METHODS ###
 
     def evaluate(self):
-        '''Evaluate single-context division set expression.
+        r'''Evaluate single-context division set expression.
 
         Return timespan-scoped single-context division set expression.
         '''

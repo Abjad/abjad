@@ -4,7 +4,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class MenuSection(AbjadObject):
-    '''Menu section.
+    r'''Menu section.
 
     ::
 
@@ -67,14 +67,14 @@ class MenuSection(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __len__(self):
-        '''Number of menu entries in menu section:
+        r'''Number of menu entries in menu section:
 
         Return nonnegative integer.
         '''
         return len(self.menu_entries)
 
     def __repr__(self):
-        '''Menu section interpreter representation.
+        r'''Menu section interpreter representation.
 
         Return string.
         '''
@@ -188,7 +188,7 @@ class MenuSection(AbjadObject):
     @apply
     def default_index():
         def fget(self):
-            '''Menu section default index:
+            r'''Menu section default index:
 
             ::
 
@@ -216,7 +216,7 @@ class MenuSection(AbjadObject):
     @apply
     def display_prepopulated_values():
         def fget(self):
-            '''True when menu section should show prepopulated values.
+            r'''True when menu section should show prepopulated values.
             Otherwise false:
 
             ::
@@ -235,7 +235,7 @@ class MenuSection(AbjadObject):
     @apply
     def indent_level():
         def fget(self):
-            '''Menu section indent level:
+            r'''Menu section indent level:
 
             ::
 
@@ -253,7 +253,7 @@ class MenuSection(AbjadObject):
     @apply
     def is_hidden():
         def fget(self):
-            '''True when menu section is hidden. Otherwise false:
+            r'''True when menu section is hidden. Otherwise false:
 
             ::
 
@@ -271,7 +271,7 @@ class MenuSection(AbjadObject):
     @apply
     def is_numbered():
         def fget(self):
-            '''True when menu section is numbered. Otherwise false:
+            r'''True when menu section is numbered. Otherwise false:
 
             ::
 
@@ -289,7 +289,7 @@ class MenuSection(AbjadObject):
     @apply
     def is_ranged():
         def fget(self):
-            '''True when menu section is ranged. Otherwise false:
+            r'''True when menu section is ranged. Otherwise false:
 
             ::
 
@@ -307,7 +307,7 @@ class MenuSection(AbjadObject):
     @apply
     def menu_entries():
         def fget(self):
-            '''Menu section menu entries:
+            r'''Menu section menu entries:
 
             ::
 
@@ -335,7 +335,7 @@ class MenuSection(AbjadObject):
     @apply
     def return_value_attribute():
         def fget(self):
-            '''Menu section return value attribute:
+            r'''Menu section return value attribute:
 
             ::
 
@@ -361,7 +361,7 @@ class MenuSection(AbjadObject):
     
     @property
     def storage_format(self):
-        '''Menu section storage format:
+        r'''Menu section storage format:
 
         ::
 
@@ -382,7 +382,7 @@ class MenuSection(AbjadObject):
     @apply
     def title():
         def fget(self):
-            '''Menu section title:
+            r'''Menu section title:
 
             ::
 
@@ -400,7 +400,7 @@ class MenuSection(AbjadObject):
     ### PUBLIC METHODS ###
 
     def append(self, expr):
-        '''Append `expr` to menu section:
+        r'''Append `expr` to menu section:
 
         ::
 

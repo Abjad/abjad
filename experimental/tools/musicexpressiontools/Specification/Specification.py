@@ -96,7 +96,7 @@ class Specification(AbjadObject):
 
     @property
     def context_name_abbreviations(self):
-        '''Specification context name abbreviations.
+        r'''Specification context name abbreviations.
 
         Return tuple.
         '''
@@ -104,7 +104,7 @@ class Specification(AbjadObject):
 
     @property
     def context_names(self):
-        '''Specification context names.
+        r'''Specification context names.
 
         Return tuple.
         '''
@@ -112,7 +112,7 @@ class Specification(AbjadObject):
 
     @property
     def fresh_single_context_set_expressions(self):
-        '''Specification fresh single-context set expressions.
+        r'''Specification fresh single-context set expressions.
 
         Return timespan inventory.
         '''
@@ -120,7 +120,7 @@ class Specification(AbjadObject):
 
     @property
     def score_model(self):
-        '''Specification score model.
+        r'''Specification score model.
 
         Return score.
         '''
@@ -128,7 +128,7 @@ class Specification(AbjadObject):
 
     @property
     def score_name(self):
-        '''Specification score name.
+        r'''Specification score name.
 
         Return string or none.
         '''
@@ -136,7 +136,7 @@ class Specification(AbjadObject):
 
     @property
     def score_template(self):
-        '''Specification score template.
+        r'''Specification score template.
 
         Return score template.
         '''
@@ -144,7 +144,7 @@ class Specification(AbjadObject):
 
     @property
     def single_context_set_expressions_by_context(self):
-        '''Specification single-context set expressions by context.
+        r'''Specification single-context set expressions by context.
 
         Return context dictionary.
         '''
@@ -152,7 +152,7 @@ class Specification(AbjadObject):
 
     @property
     def timespan(self):
-        '''Specification timespan.
+        r'''Specification timespan.
 
         Return timespan.
         '''
@@ -161,7 +161,7 @@ class Specification(AbjadObject):
     ### PUBLIC METHODS ###
 
     def compare_context_names(self, x, y):
-        '''Compare context names.
+        r'''Compare context names.
 
         Root context sorts first and voice contexts sort last.
 
@@ -194,7 +194,7 @@ class Specification(AbjadObject):
         return cmp(x_depth, y_depth)
 
     def context_name_to_depth(self, context_name):
-        '''Context name to context depth.
+        r'''Context name to context depth.
 
         Score context evaluates to ``0``.
         Nonscore contexts evaluate to greater than ``0``.
@@ -247,7 +247,7 @@ class Specification(AbjadObject):
 
     def get_single_context_set_expressions_rooted_to_specification_that_govern_context_name(
         self, attribute, context_name):
-        '''Get single-context set expressions rooted to specification 
+        r'''Get single-context set expressions rooted to specification 
         that govern `context_name`.
 
         Return list such that highest level (most general) context 

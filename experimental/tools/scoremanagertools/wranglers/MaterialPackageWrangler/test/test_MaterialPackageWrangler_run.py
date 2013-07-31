@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_MaterialPackageWrangler_run_01():
-    '''Quit, back, home, score & junk all work.
+    r'''Quit, back, home, score & junk all work.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -23,7 +23,7 @@ def test_MaterialPackageWrangler_run_01():
 
 
 def test_MaterialPackageWrangler_run_02():
-    '''Breadcrumbs work.
+    r'''Breadcrumbs work.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -33,7 +33,7 @@ def test_MaterialPackageWrangler_run_02():
 
 
 def test_MaterialPackageWrangler_run_03():
-    '''Menu displays at least one test material.
+    r'''Menu displays at least one test material.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()

@@ -9,7 +9,7 @@ from experimental.tools.musicexpressiontools.CallbackMixin \
 
 
 class TimespanCallbackMixin(CallbackMixin):
-    '''Timespan callback mixin.
+    r'''Timespan callback mixin.
 
     Example specifiction:
 
@@ -132,7 +132,7 @@ class TimespanCallbackMixin(CallbackMixin):
     ### PUBLIC METHODS ###
 
     def divide_by_ratio(self, ratio):
-        '''Divide timespan expression by `ratio`:
+        r'''Divide timespan expression by `ratio`:
 
         ::
 
@@ -207,7 +207,7 @@ class TimespanCallbackMixin(CallbackMixin):
         return tuple(result)
 
     def scale(self, multiplier):
-        '''Scale timespan expression duration by `multiplier`.
+        r'''Scale timespan expression duration by `multiplier`.
 
         ::
 
@@ -232,7 +232,7 @@ class TimespanCallbackMixin(CallbackMixin):
         return self._copy_and_append_callback(callback)
 
     def set_duration(self, duration):
-        '''Set timespan expression duration to `duration`:
+        r'''Set timespan expression duration to `duration`:
 
         ::
 
@@ -258,7 +258,7 @@ class TimespanCallbackMixin(CallbackMixin):
         return self._copy_and_append_callback(callback)
 
     def set_offsets(self, start_offset=None, stop_offset=None):
-        '''Set timespan expression start offset to `start_offset`
+        r'''Set timespan expression start offset to `start_offset`
         and stop offset to `stop_offset`:
 
         ::
@@ -288,7 +288,7 @@ class TimespanCallbackMixin(CallbackMixin):
         return self._copy_and_append_callback(callback)
 
     def translate(self, translation=None):
-        '''Translate timespan expression by `translation`:
+        r'''Translate timespan expression by `translation`:
 
         ::
 
@@ -317,7 +317,7 @@ class TimespanCallbackMixin(CallbackMixin):
         start_offset_translation=None,
         stop_offset_translation=None,
         ):
-        '''Translate timespan expression start offset by 
+        r'''Translate timespan expression start offset by 
         `start_offset_translation` and stop offset by 
         `stop_offset_translation`:
 

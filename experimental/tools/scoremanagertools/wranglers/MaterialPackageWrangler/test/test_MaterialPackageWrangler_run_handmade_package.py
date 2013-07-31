@@ -3,7 +3,7 @@ import py
 
 
 def test_MaterialPackageWrangler_run_handmade_package_01():
-    '''Make handmade package. Delete package.
+    r'''Make handmade package. Delete package.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -25,7 +25,7 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
 
 
 def test_MaterialPackageWrangler_run_handmade_package_02():
-    '''Make handmade package. Corrupt initializer.
+    r'''Make handmade package. Corrupt initializer.
     Verify invalid initializer. Remove package.
     '''
 
@@ -50,7 +50,7 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
 
 
 def test_MaterialPackageWrangler_run_handmade_package_03():
-    '''Make handmade package. Corrupt initializer. Restore initializer.
+    r'''Make handmade package. Corrupt initializer. Restore initializer.
     Verify initializer. Remove package.
     '''
 
@@ -76,7 +76,7 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
 
 
 def test_MaterialPackageWrangler_run_handmade_package_04():
-    '''Make handmade package. Create output material.
+    r'''Make handmade package. Create output material.
     Delete package."
     '''
 
@@ -105,7 +105,7 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
 
 
 def test_MaterialPackageWrangler_run_handmade_package_05():
-    '''Make handmade package. Delete material definition module.
+    r'''Make handmade package. Delete material definition module.
     Remove package.
     '''
 
@@ -131,7 +131,7 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
 
 
 def test_MaterialPackageWrangler_run_handmade_package_06():
-    '''Make handmade package. Overwrite material definition module with stub.
+    r'''Make handmade package. Overwrite material definition module with stub.
     Delete package.
     '''
 
@@ -156,7 +156,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
 
 
 def test_MaterialPackageWrangler_run_handmade_package_07():
-    '''Make handmade package. Copy canned material definition. Make output material. Remove output material.
+    r'''Make handmade package. Copy canned material definition. Make output material. Remove output material.
     Remove package.
     '''
 
@@ -185,7 +185,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
 
 
 def test_MaterialPackageWrangler_run_handmade_package_08():
-    '''Make handmade package. Copy canned material definition with exception.
+    r'''Make handmade package. Copy canned material definition with exception.
     Examine package state. Remove package.
     '''
 
@@ -210,7 +210,7 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
 
 
 def test_MaterialPackageWrangler_run_handmade_package_09():
-    '''Make handmade package. Copy canned material definition module. Make output data. Corrupt output data.
+    r'''Make handmade package. Copy canned material definition module. Make output data. Corrupt output data.
     Verify invalid output material module. Remove package.
     '''
 
@@ -239,7 +239,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
 
 
 def test_MaterialPackageWrangler_run_handmade_package_10():
-    '''Make handmade package. Copy canned material definition module.
+    r'''Make handmade package. Copy canned material definition module.
     Make output data. Make PDF. Remove package.
     '''
     py.test.skip('skip this one during day-to-day development and before build only.')

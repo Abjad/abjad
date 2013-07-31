@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_DivisionSelectExpression__callbacks_01():
-    '''Division get item.
+    r'''Division get item.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -22,7 +22,7 @@ def test_DivisionSelectExpression__callbacks_01():
 
 
 def test_DivisionSelectExpression__callbacks_02():
-    '''Partition divisions by ratio.
+    r'''Partition divisions by ratio.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -43,7 +43,7 @@ def test_DivisionSelectExpression__callbacks_02():
 
 
 def test_DivisionSelectExpression__callbacks_03():
-    '''Partition divisions by ratio of durations.
+    r'''Partition divisions by ratio of durations.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -64,7 +64,7 @@ def test_DivisionSelectExpression__callbacks_03():
 
 
 def test_DivisionSelectExpression__callbacks_04():
-    '''Repeat divisions to length.
+    r'''Repeat divisions to length.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -85,7 +85,7 @@ def test_DivisionSelectExpression__callbacks_04():
 
 
 def test_DivisionSelectExpression__callbacks_05():
-    '''Repeat divisions to duration.
+    r'''Repeat divisions to duration.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -106,7 +106,7 @@ def test_DivisionSelectExpression__callbacks_05():
 
 
 def test_DivisionSelectExpression__callbacks_06():
-    '''Reflect divisions.
+    r'''Reflect divisions.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -127,7 +127,7 @@ def test_DivisionSelectExpression__callbacks_06():
 
 
 def test_DivisionSelectExpression__callbacks_07():
-    '''Rotate divisions.
+    r'''Rotate divisions.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -148,7 +148,7 @@ def test_DivisionSelectExpression__callbacks_07():
 
 
 def test_DivisionSelectExpression__callbacks_08():
-    '''Logical AND of divisions and timespan.
+    r'''Logical AND of divisions and timespan.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

@@ -89,7 +89,7 @@ class ModuleProxy(FileProxy):
 
     # TODO: remove entirely
     def remove_package_path_from_sys_modules(self, package_path):
-        '''Total hack. Should be eliminated entirely.
+        r'''Total hack. Should be eliminated entirely.
         '''
         command = "if '{}' in sys.modules: del(sys.modules['{}'])".format(
             package_path, package_path)

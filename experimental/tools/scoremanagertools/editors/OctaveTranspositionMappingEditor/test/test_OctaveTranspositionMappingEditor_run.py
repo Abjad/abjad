@@ -12,7 +12,7 @@ def test_OctaveTranspositionMappingEditor_run_01():
 
 
 def test_OctaveTranspositionMappingEditor_run_02():
-    '''Named mapping.
+    r'''Named mapping.
     '''
 
     editor = scoremanagertools.editors.OctaveTranspositionMappingEditor()
@@ -28,7 +28,7 @@ def test_OctaveTranspositionMappingEditor_run_02():
 
 
 def test_OctaveTranspositionMappingEditor_run_03():
-    '''Name only.
+    r'''Name only.
     '''
 
     editor = scoremanagertools.editors.OctaveTranspositionMappingEditor()

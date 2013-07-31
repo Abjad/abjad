@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_multiple_segment_quartet_01():
-    '''Create 4-staff score S with sections red, blue.
+    r'''Create 4-staff score S with sections red, blue.
     Set red time signatures equal to [(3, 8), (3, 8), (2, 8), (2, 8)].
     Set red 1 & 2 divisions equal to a repeating pattern of [(3, 16)].
     Set red 1 & 2 rhythm equal to running 32nd notes.
@@ -38,7 +38,7 @@ def test_multiple_segment_quartet_01():
 
 
 def test_multiple_segment_quartet_02():
-    '''As above with different divisions.
+    r'''As above with different divisions.
 
     Tests for spanning divisions in 1 & 2 and also in 3 & 4.
     '''
@@ -66,7 +66,7 @@ def test_multiple_segment_quartet_02():
 
 
 def test_multiple_segment_quartet_03():
-    '''Voices 1 & 2 set divisions according to ratio of measures.
+    r'''Voices 1 & 2 set divisions according to ratio of measures.
     Voices 3 & 4 set divisions according to ratio of segment duration.
     '''
 
@@ -95,7 +95,7 @@ def test_multiple_segment_quartet_03():
 
 
 def test_multiple_segment_quartet_04():
-    '''F1 divisions truncated in F1. F2, F3, F4 divisions with rotation.
+    r'''F1 divisions truncated in F1. F2, F3, F4 divisions with rotation.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)

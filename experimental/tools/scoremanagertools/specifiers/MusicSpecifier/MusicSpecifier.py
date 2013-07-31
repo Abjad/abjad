@@ -42,7 +42,7 @@ class MusicSpecifier(Specifier, ObjectInventory):
 
     @property
     def _keyword_argument_names(self):
-        '''Is there a way to do this programmatically?
+        r'''Is there a way to do this programmatically?
         '''
         return tuple(sorted([
             'description',

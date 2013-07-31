@@ -3,11 +3,11 @@ from experimental.tools.newabjadbooktools.TextualDocumentHandler \
 
 
 class ReSTDocumentHandler(TextualDocumentHandler):
-    """A document handler for ReST documents:
+    r"""A document handler for ReST documents:
 
     ::
 
-        >>> document = '''Let's print something:
+        >>> document = r'''Let's print something:
         ...
         ... <abjad>
         ... print "hello, world!"

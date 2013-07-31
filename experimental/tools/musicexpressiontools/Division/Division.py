@@ -116,7 +116,7 @@ class Division(NonreducedFraction, BoundedObject):
 
     @property
     def duration(self):
-        '''Division duration.
+        r'''Division duration.
 
         Return duration.
         '''
@@ -125,7 +125,7 @@ class Division(NonreducedFraction, BoundedObject):
     # TODO: remove in favor of self.timespan
     @property
     def start_offset(self):
-        '''Division start offset specified at initialization.
+        r'''Division start offset specified at initialization.
 
         .. note:: remove in favor of ``self.timespan``.
 
@@ -136,7 +136,7 @@ class Division(NonreducedFraction, BoundedObject):
     # TODO: remove in favor of self.timespan
     @property
     def stop_offset(self):
-        '''Division stop offset defined equal to start offset plus duration
+        r'''Division stop offset defined equal to start offset plus duration
         when start offset is not none.
 
         .. note:: remove in favor of ``self.timespan``.
@@ -150,7 +150,7 @@ class Division(NonreducedFraction, BoundedObject):
 
     @property
     def timespan(self):
-        '''Division timespan.
+        r'''Division timespan.
 
         Return timespan.
         '''

@@ -19,7 +19,7 @@ class HandlerExpression(Expression, IterablePayloadCallbackMixin):
     ### PRIVATE METHODS ###
 
     def evaluate(self):
-        '''Evaluate handler expression.
+        r'''Evaluate handler expression.
         '''
         raise NotImplementedError
 
@@ -27,6 +27,6 @@ class HandlerExpression(Expression, IterablePayloadCallbackMixin):
 
     @property
     def handler(self):
-        '''Handler expression handler.
+        r'''Handler expression handler.
         '''
         return self._handler

@@ -5,13 +5,13 @@ from experimental.tools.musicexpressiontools.LeafSetExpression \
 
 
 class PitchClassTransformSetExpression(LeafSetExpression):
-    '''Pitch-class transform set expression.
+    r'''Pitch-class transform set expression.
     '''
 
     ### PUBLIC METHODS ###
 
     def execute_against_score(self, score):
-        '''Execute pitch-class transform expression against `score`.
+        r'''Execute pitch-class transform expression against `score`.
         '''
         pitch_class_transform_expression = self.source_expression.payload
         for leaf in self._iterate_selected_leaves_in_score(score):

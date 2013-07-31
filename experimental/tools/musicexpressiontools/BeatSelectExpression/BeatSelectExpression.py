@@ -8,7 +8,7 @@ from experimental.tools.musicexpressiontools.SelectExpression \
 
 
 class BeatSelectExpression(SelectExpression):
-    '''Beat select expression.
+    r'''Beat select expression.
 
     Preparatory definitions:
 
@@ -65,7 +65,7 @@ class BeatSelectExpression(SelectExpression):
     ### PUBLIC METHODS ###
 
     def evaluate(self):
-        '''Evaluate beat select expression.
+        r'''Evaluate beat select expression.
 
         Return none when nonevaluable.
 

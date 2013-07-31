@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_single_segment_solo__fancy_rhythm_and_divisions_01():
-    '''Rhythm and divisions carve out same partial time signature select expression.
+    r'''Rhythm and divisions carve out same partial time signature select expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -20,7 +20,7 @@ def test_single_segment_solo__fancy_rhythm_and_divisions_01():
 
 
 def test_single_segment_solo__fancy_rhythm_and_divisions_02():
-    '''Incomplete rhythm and division select expressions overlap.
+    r'''Incomplete rhythm and division select expressions overlap.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -39,7 +39,7 @@ def test_single_segment_solo__fancy_rhythm_and_divisions_02():
 
 
 def test_single_segment_solo__fancy_rhythm_and_divisions_03():
-    '''Several different types of select expression.
+    r'''Several different types of select expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

@@ -3,7 +3,7 @@ from experimental.tools.musicexpressiontools.MeasureSelectExpression \
 
 
 class TimeSignatureSelectExpression(MeasureSelectExpression):
-    '''Time signature select expression.
+    r'''Time signature select expression.
     '''
 
     pass

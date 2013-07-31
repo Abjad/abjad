@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_DivisionSelectExpression__select_leaves_01():
-    '''Select divisions and then select leaves.
+    r'''Select divisions and then select leaves.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

@@ -68,7 +68,7 @@ class ScoreSpecification(Specification):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        '''Score specification interpreter representation.
+        r'''Score specification interpreter representation.
 
         ::
 
@@ -127,7 +127,7 @@ class ScoreSpecification(Specification):
 
     @property
     def fresh_single_context_set_expressions(self):
-        '''Score specification fresh single-context set expressions.
+        r'''Score specification fresh single-context set expressions.
 
         ::
 
@@ -140,7 +140,7 @@ class ScoreSpecification(Specification):
 
     @property
     def interface(self):
-        '''Score specification interface.
+        r'''Score specification interface.
 
         ::
 
@@ -153,7 +153,7 @@ class ScoreSpecification(Specification):
 
     @property
     def multiple_context_set_expressions(self):
-        '''Score specification multiple-context set expressions.
+        r'''Score specification multiple-context set expressions.
 
         ::
 
@@ -207,7 +207,7 @@ class ScoreSpecification(Specification):
 
     @property
     def postrhythm_set_expressions(self):
-        '''Score specification generalized set expressions.
+        r'''Score specification generalized set expressions.
 
         ::
 
@@ -220,7 +220,7 @@ class ScoreSpecification(Specification):
 
     @property
     def region_expressions_by_attribute(self):
-        '''Score specification region expressions by attribute.
+        r'''Score specification region expressions by attribute.
 
         ::
 
@@ -299,7 +299,7 @@ class ScoreSpecification(Specification):
 
     @property
     def score_model(self):
-        '''Score specification score model.
+        r'''Score specification score model.
 
         ::
 
@@ -404,7 +404,7 @@ class ScoreSpecification(Specification):
 
     @property
     def single_context_time_signature_set_expressions(self):
-        '''Score specification single-context time signature set expressions.
+        r'''Score specification single-context time signature set expressions.
 
         ::
 
@@ -442,7 +442,7 @@ class ScoreSpecification(Specification):
 
     @property
     def specification_name(self):
-        '''Score specification specification name.
+        r'''Score specification specification name.
 
         ::
 
@@ -498,7 +498,7 @@ class ScoreSpecification(Specification):
 
     @property
     def timespan(self):
-        '''Score specification timespan.
+        r'''Score specification timespan.
 
         ::
 
@@ -511,7 +511,7 @@ class ScoreSpecification(Specification):
 
     @property
     def voice_data_structures_by_voice(self):
-        '''Score specification payload expressions by voice.
+        r'''Score specification payload expressions by voice.
 
         ::
 
@@ -605,7 +605,7 @@ class ScoreSpecification(Specification):
         return segment_specification_interface
 
     def get_segment_specification(self, expr):
-        '''Get segment specification from segment name:
+        r'''Get segment specification from segment name:
 
         ::
 
@@ -650,7 +650,7 @@ class ScoreSpecification(Specification):
             return self.segment_specifications[segment_index]
 
     def get_time_signature_slice(self, timespan):
-        '''Get time signature slice:
+        r'''Get time signature slice:
 
         ::
 

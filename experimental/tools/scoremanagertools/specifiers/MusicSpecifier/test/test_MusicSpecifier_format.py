@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_MusicSpecifier_format_01():
-    '''Empty. No keywords.
+    r'''Empty. No keywords.
     '''
 
     specifier = scoremanagertools.specifiers.MusicSpecifier([])
@@ -13,7 +13,7 @@ def test_MusicSpecifier_format_01():
 
 
 def test_MusicSpecifier_format_02():
-    '''Empty. With keywords.
+    r'''Empty. With keywords.
     '''
 
     specifier = scoremanagertools.specifiers.MusicSpecifier([], name='foo')
@@ -23,7 +23,7 @@ def test_MusicSpecifier_format_02():
 
 
 def test_MusicSpecifier_format_03():
-    '''Populated. Without keywords.
+    r'''Populated. Without keywords.
     '''
 
     mcs_1 = scoremanagertools.specifiers.MusicContributionSpecifier([])
@@ -53,7 +53,7 @@ def test_MusicSpecifier_format_03():
 
 
 def test_MusicSpecifier_format_04():
-    '''Populated. With keywords.
+    r'''Populated. With keywords.
     '''
 
     mcs_1 = scoremanagertools.specifiers.MusicContributionSpecifier([])

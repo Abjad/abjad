@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_ScoreManager_manage_svn_01():
-    '''Ignore score backtracking.
+    r'''Ignore score backtracking.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()

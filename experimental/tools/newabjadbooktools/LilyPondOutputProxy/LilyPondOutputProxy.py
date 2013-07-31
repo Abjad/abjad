@@ -7,7 +7,7 @@ from experimental.tools.newabjadbooktools.ImageOutputProxy \
 
 
 class LilyPondOutputProxy(ImageOutputProxy):
-    '''Output proxy for LilyPond notation:
+    r'''Output proxy for LilyPond notation:
 
     ::
 
@@ -39,7 +39,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
     ### PUBLIC METHODS ###
 
     def handle_html_document_environment(self, document_handler):
-        '''Handle an HTML document environment:
+        r'''Handle an HTML document environment:
 
         ::
 
@@ -55,7 +55,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
             )
 
     def handle_latex_document_environment(self, document_handler):
-        '''Handle a LaTeX document environment:
+        r'''Handle a LaTeX document environment:
 
         ::
 
@@ -71,7 +71,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
             )
 
     def handle_rest_document_environment(self, document_handler):
-        '''Handle an ReST document environment:
+        r'''Handle an ReST document environment:
 
         ::
 

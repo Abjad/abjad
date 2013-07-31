@@ -5,7 +5,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class SelectMethodMixin(AbjadObject):
-    '''Select-method mix-in.
+    r'''Select-method mix-in.
 
     Definitions for examples, below:
 
@@ -25,7 +25,7 @@ class SelectMethodMixin(AbjadObject):
     ### PUBLIC METHODS ###
 
     def select_beats(self, voice_name, time_relation=None):
-        '''Select voice ``1`` beats that start during segment ``'red'``:
+        r'''Select voice ``1`` beats that start during segment ``'red'``:
 
         ::
 
@@ -51,7 +51,7 @@ class SelectMethodMixin(AbjadObject):
         return select_expression
 
     def select_divisions(self, voice_name, time_relation=None):
-        '''Select voice ``1`` divisions that start during segment ``'red'``:
+        r'''Select voice ``1`` divisions that start during segment ``'red'``:
 
         ::
 
@@ -78,7 +78,7 @@ class SelectMethodMixin(AbjadObject):
         return select_expression
 
     def select_leaves(self, voice_name, time_relation=None):
-        '''Select voice ``1`` leaves that start during segment ``'red'``:
+        r'''Select voice ``1`` leaves that start during segment ``'red'``:
 
         ::
 
@@ -109,7 +109,7 @@ class SelectMethodMixin(AbjadObject):
         return select_expression
 
     def select_measures(self, voice_name, time_relation=None):
-        '''Select voice ``1`` measures that start during segment ``'red'``:
+        r'''Select voice ``1`` measures that start during segment ``'red'``:
 
         ::
 
@@ -136,7 +136,7 @@ class SelectMethodMixin(AbjadObject):
         return select_expression
 
     def select_notes_and_chords(self, voice_name, time_relation=None):
-        '''Select voice ``1`` notes and chords that start during segment 
+        r'''Select voice ``1`` notes and chords that start during segment 
         ``'red'``:
 
         ::
@@ -169,7 +169,7 @@ class SelectMethodMixin(AbjadObject):
         return select_expression
 
 #    def select_segments(self, voice_name):
-#        '''Select voice ``1`` segments in score:
+#        r'''Select voice ``1`` segments in score:
 #
 #        ::
 #
@@ -190,7 +190,7 @@ class SelectMethodMixin(AbjadObject):
 #        return select_expression
 
     def select_time_signatures(self, voice_name, time_relation=None):
-        '''Select voice ``1`` time signatures that start during segment 
+        r'''Select voice ``1`` time signatures that start during segment 
         ``'red'``:
 
         ::

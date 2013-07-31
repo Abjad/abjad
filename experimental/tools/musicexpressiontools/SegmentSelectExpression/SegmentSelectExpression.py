@@ -120,7 +120,7 @@ class SegmentSelectExpression(SelectExpression):
     ### PUBLIC METHODS ###
 
     def evaluate(self):
-        '''Evaluate segment select expression.
+        r'''Evaluate segment select expression.
 
         Return none when nonevaluable.
 

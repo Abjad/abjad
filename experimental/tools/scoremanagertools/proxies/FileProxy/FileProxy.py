@@ -4,7 +4,7 @@ from experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy \
 
 
 class FileProxy(FilesystemAssetProxy):
-    '''File proxy.
+    r'''File proxy.
     '''
 
     ### CLASS VARIABLES ###

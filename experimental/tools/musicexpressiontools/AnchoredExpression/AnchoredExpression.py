@@ -4,7 +4,7 @@ from experimental.tools.musicexpressiontools.Expression import Expression
 
 
 class AnchoredExpression(Expression):
-    '''Anchored expression.
+    r'''Anchored expression.
     '''
 
     ### INITIALIZER ###
@@ -19,7 +19,7 @@ class AnchoredExpression(Expression):
     ### SPECIAL METHODS ###
 
     def __deepcopy__(self, memo):
-        '''Remove score specification and then reattach score specification.
+        r'''Remove score specification and then reattach score specification.
         '''
         result = type(self)(*self._input_argument_values)
         result._score_specification = self.score_specification
@@ -31,7 +31,7 @@ class AnchoredExpression(Expression):
 
     @property
     def _expression_abbreviation(self):
-        '''Form of anchored expression suitable for inclusion in 
+        r'''Form of anchored expression suitable for inclusion in 
         storage format.
         '''
         return self
@@ -39,7 +39,7 @@ class AnchoredExpression(Expression):
     ### PRIVATE METHODS ###
 
     def _evaluate_anchor_timespan(self):
-        '''Evaluate anchor timespan.
+        r'''Evaluate anchor timespan.
 
         Return timespan when anchor timespan is evaluable.
 
@@ -82,7 +82,7 @@ class AnchoredExpression(Expression):
 
     @property
     def anchor(self):
-        '''Anchored expression anchor.
+        r'''Anchored expression anchor.
 
         Return none when anchored expression anchors to the entire score.
 
@@ -96,7 +96,7 @@ class AnchoredExpression(Expression):
 
     @property
     def is_score_rooted(self):
-        '''True when anchored expression is score-rooted.
+        r'''True when anchored expression is score-rooted.
         Otherwise false.
 
         Return boolean.
@@ -105,7 +105,7 @@ class AnchoredExpression(Expression):
 
     @property
     def is_segment_rooted(self):
-        '''True when anchored expression is segment-rooted.
+        r'''True when anchored expression is segment-rooted.
         Otherwise false.
 
         Return boolean.
@@ -114,7 +114,7 @@ class AnchoredExpression(Expression):
 
     @property
     def root_specification(self):
-        '''Anchored expression root specification.
+        r'''Anchored expression root specification.
 
         Return specification.
         '''
@@ -126,7 +126,7 @@ class AnchoredExpression(Expression):
 
     @property
     def root_specification_identifier(self):
-        '''Anchored expression root identifier.
+        r'''Anchored expression root identifier.
 
         Segment-rooted expressions return string.
 
@@ -139,7 +139,7 @@ class AnchoredExpression(Expression):
 
     @property
     def score_specification(self):
-        '''Anchored expression score specification.
+        r'''Anchored expression score specification.
 
         Return score specification.
         '''
@@ -147,7 +147,7 @@ class AnchoredExpression(Expression):
 
     @property
     def start_offset(self):
-        '''Anchored expression start offset.
+        r'''Anchored expression start offset.
 
         Return offset expression.
         '''
@@ -159,7 +159,7 @@ class AnchoredExpression(Expression):
 
     @property
     def stop_offset(self):
-        '''Anchored expression stop offset.
+        r'''Anchored expression stop offset.
 
         Return offset expression.
         '''

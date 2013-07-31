@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_single_segment_quartet_01():
-    '''Single-segment test in preparation for exemplum [X3].
+    r'''Single-segment test in preparation for exemplum [X3].
     Quartet in 2 segments red, blue. Red time signatures 6/8 3/8.
     F1 1:1 of measures then left part 3/16 and right part 5/16 divisions.
     F2 1:1 of meaures then [5/16, 3/16]

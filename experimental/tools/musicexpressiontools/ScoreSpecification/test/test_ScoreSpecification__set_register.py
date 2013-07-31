@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_ScoreSpecification__set_register_01():
-    '''Transpose pitches from aggregate 0.
+    r'''Transpose pitches from aggregate 0.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
@@ -21,7 +21,7 @@ def test_ScoreSpecification__set_register_01():
 
 
 def test_ScoreSpecification__set_register_02():
-    '''Transpose pitches from aggregate 1.
+    r'''Transpose pitches from aggregate 1.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)

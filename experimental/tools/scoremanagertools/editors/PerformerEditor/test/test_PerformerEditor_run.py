@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_PerformerEditor_run_01():
-    '''Quit, back, home and junk all work.
+    r'''Quit, back, home and junk all work.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()

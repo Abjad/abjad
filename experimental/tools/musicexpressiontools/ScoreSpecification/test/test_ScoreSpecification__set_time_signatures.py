@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_ScoreSpecification__set_time_signatures_01():
-    '''Works without segment specification.
+    r'''Works without segment specification.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -18,7 +18,7 @@ def test_ScoreSpecification__set_time_signatures_01():
 
 
 def test_ScoreSpecification__set_time_signatures_02():
-    '''Works without division specification.
+    r'''Works without division specification.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

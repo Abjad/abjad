@@ -6,7 +6,7 @@ from experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject \
 
 
 class ScoreManager(ScoreManagerObject):
-    '''Score manager.
+    r'''Score manager.
 
     ::
 
@@ -77,7 +77,7 @@ class ScoreManager(ScoreManagerObject):
                 self.interactively_edit_score(result)
 
     def _handle_svn_menu_result(self, result):
-        '''Return true to exit the svn menu.
+        r'''Return true to exit the svn menu.
         '''
         this_result = False
         if result == 'add':
@@ -186,7 +186,7 @@ class ScoreManager(ScoreManagerObject):
 
     @property
     def material_package_maker_wrangler(self):
-        '''Score manager material package maker wrangler:
+        r'''Score manager material package maker wrangler:
 
         ::
 
@@ -199,7 +199,7 @@ class ScoreManager(ScoreManagerObject):
 
     @property
     def material_package_wrangler(self):
-        '''Score manager material package wrangler:
+        r'''Score manager material package wrangler:
 
         ::
 
@@ -212,7 +212,7 @@ class ScoreManager(ScoreManagerObject):
 
     @property
     def score_package_wrangler(self):
-        '''Score manager score package wrangler:
+        r'''Score manager score package wrangler:
 
         ::
 
@@ -225,7 +225,7 @@ class ScoreManager(ScoreManagerObject):
 
     @property
     def segment_package_wrangler(self):
-        '''Score manager segment package wrangler:
+        r'''Score manager segment package wrangler:
 
         ::
 
@@ -238,7 +238,7 @@ class ScoreManager(ScoreManagerObject):
 
     @property
     def storage_format(self):
-        '''Score manager storage format:
+        r'''Score manager storage format:
 
         ::
 
@@ -251,7 +251,7 @@ class ScoreManager(ScoreManagerObject):
 
     @property
     def stylesheet_file_wrangler(self):
-        '''Score manager stylesheet file wrangler:
+        r'''Score manager stylesheet file wrangler:
 
         ::
 

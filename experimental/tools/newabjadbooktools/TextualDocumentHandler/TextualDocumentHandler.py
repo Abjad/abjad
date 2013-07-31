@@ -5,7 +5,7 @@ from experimental.tools.newabjadbooktools.DocumentHandler \
 
 
 class TextualDocumentHandler(DocumentHandler):
-    """Abstract base class for handlers of text-based documents containing
+    r"""Abstract base class for handlers of text-based documents containing
     <abjad></abjad> tags:
     
     ::
@@ -94,7 +94,7 @@ class TextualDocumentHandler(DocumentHandler):
 
     @property
     def asset_output_directory_name(self):
-        '''Textual document handler asset output directory name:
+        r'''Textual document handler asset output directory name:
 
         ::
 
@@ -107,7 +107,7 @@ class TextualDocumentHandler(DocumentHandler):
 
     @property
     def document_file_name(self):
-        '''Textual document handler document file name:
+        r'''Textual document handler document file name:
 
         ::
 
@@ -121,7 +121,7 @@ class TextualDocumentHandler(DocumentHandler):
     ### PUBLIC METHODS ###
 
     def extract_code_block_options(self, source_line):
-        '''Extract code block options:
+        r'''Extract code block options:
 
         ::
 

@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_InstrumentSpecifierEditor_run_01():
-    '''In score.
+    r'''In score.
     '''
 
     editor = scoremanagertools.editors.InstrumentSpecifierEditor()
@@ -20,7 +20,7 @@ def test_InstrumentSpecifierEditor_run_01():
 
 
 def test_InstrumentSpecifierEditor_run_02():
-    '''Home.
+    r'''Home.
     '''
 
     editor = scoremanagertools.editors.InstrumentSpecifierEditor()

@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_MeasureSelectExpression__callbacks_01():
-    '''Measures __getitem__().
+    r'''Measures __getitem__().
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -21,7 +21,7 @@ def test_MeasureSelectExpression__callbacks_01():
 
 
 def test_MeasureSelectExpression__callbacks_02():
-    '''Partition measures by ratio of counts.
+    r'''Partition measures by ratio of counts.
     '''
 
     template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -40,7 +40,7 @@ def test_MeasureSelectExpression__callbacks_02():
 
 
 def test_MeasureSelectExpression__callbacks_03():
-    '''Partition measures by ratio of durations.
+    r'''Partition measures by ratio of durations.
     '''
 
     template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -59,7 +59,7 @@ def test_MeasureSelectExpression__callbacks_03():
 
 
 def test_MeasureSelectExpression__callbacks_04():
-    '''Repeat measures to length.
+    r'''Repeat measures to length.
     '''
 
     template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -79,7 +79,7 @@ def test_MeasureSelectExpression__callbacks_04():
 
 
 def test_MeasureSelectExpression__callbacks_05():
-    '''Repeat measures to duration.
+    r'''Repeat measures to duration.
     '''
 
     template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -99,7 +99,7 @@ def test_MeasureSelectExpression__callbacks_05():
 
 
 def test_MeasureSelectExpression__callbacks_06():
-    '''Reflect measures.
+    r'''Reflect measures.
     '''
 
     template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -119,7 +119,7 @@ def test_MeasureSelectExpression__callbacks_06():
 
 
 def test_MeasureSelectExpression__callbacks_07():
-    '''Rotate measures.
+    r'''Rotate measures.
     '''
 
     template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -139,7 +139,7 @@ def test_MeasureSelectExpression__callbacks_07():
 
 
 def test_MeasureSelectExpression__callbacks_08():
-    '''Logical AND of measures and timespan.
+    r'''Logical AND of measures and timespan.
     '''
 
     template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

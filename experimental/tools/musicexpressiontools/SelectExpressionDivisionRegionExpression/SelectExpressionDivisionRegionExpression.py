@@ -4,7 +4,7 @@ from experimental.tools.musicexpressiontools.DivisionRegionExpression \
 
 
 class SelectExpressionDivisionRegionExpression(DivisionRegionExpression):
-    '''Select expression division region expression.
+    r'''Select expression division region expression.
     '''
 
     ### INITIALIZER ###
@@ -30,7 +30,7 @@ class SelectExpressionDivisionRegionExpression(DivisionRegionExpression):
     ### PRIVATE METHODS ###
 
     def evaluate(self):
-        '''Evaluate select expression division region expression.
+        r'''Evaluate select expression division region expression.
 
         Return none when nonevaluable.
 

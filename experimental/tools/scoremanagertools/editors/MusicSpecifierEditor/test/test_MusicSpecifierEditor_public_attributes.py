@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_MusicSpecifierEditor_public_attributes_01():
-    '''Without target.
+    r'''Without target.
     '''
 
     editor = scoremanagertools.editors.MusicSpecifierEditor()
@@ -17,7 +17,7 @@ def test_MusicSpecifierEditor_public_attributes_01():
 
 
 def test_MusicSpecifierEditor_public_attributes_02():
-    '''With target.
+    r'''With target.
     '''
 
     mcs_1 = scoremanagertools.specifiers.MusicContributionSpecifier([])

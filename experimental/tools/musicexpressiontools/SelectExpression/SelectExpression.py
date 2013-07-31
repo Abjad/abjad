@@ -59,7 +59,7 @@ class SelectExpression(
 
     @property
     def time_relation(self):
-        '''Select expression time relation.
+        r'''Select expression time relation.
 
         Return time relation or none.
         '''
@@ -67,7 +67,7 @@ class SelectExpression(
 
     @property
     def timespan(self):
-        '''Select expression timespan.
+        r'''Select expression timespan.
 
         Return timespan expression.
         '''
@@ -78,7 +78,7 @@ class SelectExpression(
 
     @property
     def voice_name(self):
-        '''Select expression voice name.
+        r'''Select expression voice name.
 
         Return string.
         '''

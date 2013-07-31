@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_MenuSection__menu_entry_display_strings_01():
-    '''Menu entry display_strings equal menu entry menu_entries 
+    r'''Menu entry display_strings equal menu entry menu_entries 
     when menu entry menu_entries are strings.
     True whether menu_section is numbered or not.
     '''
@@ -31,7 +31,7 @@ def test_MenuSection__menu_entry_display_strings_01():
 
 
 def test_MenuSection__menu_entry_display_strings_02():
-    '''Menu entry display_strings equal index 1 of menu entry 
+    r'''Menu entry display_strings equal index 1 of menu entry 
     menu_entries when menu entry menu_entries are tuples.
     True whether menu_section is numbered or not.
     '''

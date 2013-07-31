@@ -4,7 +4,7 @@ from experimental import *
 
 locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 def test_optimization_targets_01():
-    '''Score with 1 voice, 50 measures, 100 divisions, 300 notes.
+    r'''Score with 1 voice, 50 measures, 100 divisions, 300 notes.
 
     2.12 (r9746) 1,307,616 function calls.
     '''
@@ -23,7 +23,7 @@ def test_optimization_targets_01():
 
 
 def test_optimization_targets_02():
-    '''Score with 1 voice, 50 measures, 100 divisions, 300 notes.
+    r'''Score with 1 voice, 50 measures, 100 divisions, 300 notes.
     Set color of all leaves.
 
     2.12 (r9746) 1,341,529 function calls.
@@ -44,7 +44,7 @@ def test_optimization_targets_02():
 
 
 def test_optimization_targets_03():
-    '''Score with 1 voice, 50 measures, 100 divisions, 300 notes.
+    r'''Score with 1 voice, 50 measures, 100 divisions, 300 notes.
     Set color of all leaves via division select expression.
 
     2.12 (r9746) 1,425,846 function calls.
@@ -66,7 +66,7 @@ def test_optimization_targets_03():
 
 
 def test_optimization_targets_04():
-    '''Score with 1 voice, 50 measures, 100 divisions, 300 notes.
+    r'''Score with 1 voice, 50 measures, 100 divisions, 300 notes.
     Partition *leaves* in 16 parts and then set leaf color of each part.
 
     TODO: partition_by_ratio() is called 16 times (r9746) and should only be called *once*.
@@ -95,7 +95,7 @@ def test_optimization_targets_04():
 
 
 def test_optimization_targets_05():
-    '''Score with 1 voice, 50 measures, 100 divisions, 300 notes.
+    r'''Score with 1 voice, 50 measures, 100 divisions, 300 notes.
     Partition *divisions* in 16 parts and then set leaf color of each part.
 
     2.12 (r9746) 2,444,770 function calls.

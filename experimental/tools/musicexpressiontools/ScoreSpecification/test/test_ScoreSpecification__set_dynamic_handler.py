@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_ScoreSpecification__set_dynamic_handler_01():
-    '''Set handler on all leaves in voice.
+    r'''Set handler on all leaves in voice.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
@@ -21,7 +21,7 @@ def test_ScoreSpecification__set_dynamic_handler_01():
 
 
 def test_ScoreSpecification__set_dynamic_handler_02():
-    '''Set handler on leaf slice.
+    r'''Set handler on leaf slice.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
@@ -40,7 +40,7 @@ def test_ScoreSpecification__set_dynamic_handler_02():
 
 
 def test_ScoreSpecification__set_dynamic_handler_03():
-    '''Set handler on division slice.
+    r'''Set handler on division slice.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)

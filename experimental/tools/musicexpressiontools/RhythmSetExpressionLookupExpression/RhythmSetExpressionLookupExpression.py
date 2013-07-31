@@ -7,7 +7,7 @@ from experimental.tools.musicexpressiontools.SetExpressionLookupExpression \
 
 
 class RhythmSetExpressionLookupExpression(SetExpressionLookupExpression):
-    '''Rhythm set expression lookup expression
+    r'''Rhythm set expression lookup expression
     '''
 
     ### INITIALIZER ###
@@ -19,7 +19,7 @@ class RhythmSetExpressionLookupExpression(SetExpressionLookupExpression):
     ### PUBLIC METHODS ###
 
     def evaluate(self):
-        '''Evaluate rhythm set expression lookup expression.
+        r'''Evaluate rhythm set expression lookup expression.
 
         Return none when nonevaluable.
 

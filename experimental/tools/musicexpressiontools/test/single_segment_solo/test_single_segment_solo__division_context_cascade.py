@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_single_segment_solo__division_context_cascade_01():
-    '''4/16 overrides 3/16.
+    r'''4/16 overrides 3/16.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -20,7 +20,7 @@ def test_single_segment_solo__division_context_cascade_01():
 
 
 def test_single_segment_solo__division_context_cascade_02():
-    '''4/16 overrides 3/16.
+    r'''4/16 overrides 3/16.
     Then 2/16 overrides 3/16.
     '''
 
@@ -40,7 +40,7 @@ def test_single_segment_solo__division_context_cascade_02():
 
 
 def test_single_segment_solo__division_context_cascade_03():
-    '''4/16 overrides 3/16.
+    r'''4/16 overrides 3/16.
     Then 2/16 overrides 3/16.
     Then 5/16 overrides 2/16.
     '''
@@ -62,7 +62,7 @@ def test_single_segment_solo__division_context_cascade_03():
 
 
 def test_single_segment_solo__division_context_cascade_04():
-    '''Context order supersedes lexical order.
+    r'''Context order supersedes lexical order.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

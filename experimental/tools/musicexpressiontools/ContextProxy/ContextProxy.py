@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class ContextProxy(AbjadObject):
-    '''Context proxy.
+    r'''Context proxy.
     '''
 
     ### INITIALIZER ###
@@ -24,7 +24,7 @@ class ContextProxy(AbjadObject):
 
     @property
     def single_context_set_expressions_by_attribute(self):
-        '''Context proxy single-context set expressions by attribute.
+        r'''Context proxy single-context set expressions by attribute.
 
         Return attribute dictionary.
         '''
@@ -32,7 +32,7 @@ class ContextProxy(AbjadObject):
 
     @property
     def timespan_scoped_single_context_set_expressions_by_attribute(self):
-        '''Context proxy timespan-scoped
+        r'''Context proxy timespan-scoped
         single-context set expressions by attribute.
 
         Return attribute dictionary.

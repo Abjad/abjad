@@ -2,7 +2,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class LookupMethodMixin(AbjadObject):
-    '''Lookup method mixin.
+    r'''Lookup method mixin.
 
     Definitions for examples:
 

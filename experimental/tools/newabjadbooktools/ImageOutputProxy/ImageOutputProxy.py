@@ -5,7 +5,7 @@ from experimental.tools.newabjadbooktools.AssetOutputProxy \
 
 
 class ImageOutputProxy(AssetOutputProxy):
-    '''Abstract base class of output proxies which represent images.
+    r'''Abstract base class of output proxies which represent images.
     '''
 
     ### PUBLIC METHODS ###

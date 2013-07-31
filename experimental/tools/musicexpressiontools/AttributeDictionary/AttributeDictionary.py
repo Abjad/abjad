@@ -6,7 +6,7 @@ from experimental.tools.musicexpressiontools.AttributeNameEnumeration \
 
 
 class AttributeDictionary(AbjadObject, collections.OrderedDict):
-    '''Attribute dictionary.
+    r'''Attribute dictionary.
     '''
 
     ### CLASS VARIABLES ##

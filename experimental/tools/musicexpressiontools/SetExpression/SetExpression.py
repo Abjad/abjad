@@ -4,7 +4,7 @@ from experimental.tools.musicexpressiontools.Expression import Expression
 
 
 class SetExpression(Expression):
-    '''Set expression.
+    r'''Set expression.
     '''
 
     ### CLASS VARIABLES ##
@@ -35,7 +35,7 @@ class SetExpression(Expression):
 
     @property
     def attribute(self):
-        '''Set expression attribute.
+        r'''Set expression attribute.
 
         Return string.
         '''
@@ -43,7 +43,7 @@ class SetExpression(Expression):
 
     @property
     def source_expression(self):
-        '''Set expression source expression.
+        r'''Set expression source expression.
 
         Return expression.
         '''
@@ -51,7 +51,7 @@ class SetExpression(Expression):
 
     @property
     def target_timespan(self):
-        '''Set expression target timespan.
+        r'''Set expression target timespan.
 
         Return timespan or timespan expression.
         '''
@@ -59,7 +59,7 @@ class SetExpression(Expression):
 
     @property
     def timespan(self):
-        '''Alias of set expression target timespan.
+        r'''Alias of set expression target timespan.
 
         Return timespan or timespan expression.
         '''

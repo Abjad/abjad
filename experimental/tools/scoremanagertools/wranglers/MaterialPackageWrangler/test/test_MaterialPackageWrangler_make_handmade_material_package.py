@@ -38,7 +38,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_02():
 
 
 def test_MaterialPackageWrangler_make_handmade_material_package_03():
-    '''Interactively.
+    r'''Interactively.
     '''
 
     wrangler = scoremanagertools.wranglers.MaterialPackageWrangler()
@@ -61,7 +61,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_03():
 
 
 def test_MaterialPackageWrangler_make_handmade_material_package_04():
-    '''With custom tags.
+    r'''With custom tags.
     '''
 
     wrangler = scoremanagertools.wranglers.MaterialPackageWrangler()

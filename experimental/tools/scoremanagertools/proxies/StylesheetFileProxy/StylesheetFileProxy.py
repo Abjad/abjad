@@ -2,7 +2,7 @@ from experimental.tools.scoremanagertools.proxies.FileProxy import FileProxy
 
 
 class StylesheetFileProxy(FileProxy):
-    '''Stylesheet file proxy:
+    r'''Stylesheet file proxy:
 
     ::
 

@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_ScoreSpecification__interpret_01():
-    '''Empty score specification interprets.
+    r'''Empty score specification interprets.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -28,7 +28,7 @@ def test_ScoreSpecification__interpret_01():
 
 
 def test_ScoreSpecification__interpret_02():
-    '''Empty score specification with empty segment specification interprets.
+    r'''Empty score specification with empty segment specification interprets.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -44,7 +44,7 @@ def test_ScoreSpecification__interpret_02():
 
 
 def test_ScoreSpecification__interpret_03():
-    '''Time signatures only.
+    r'''Time signatures only.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

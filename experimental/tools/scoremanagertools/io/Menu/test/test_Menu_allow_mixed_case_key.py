@@ -3,7 +3,7 @@ import py
 
 
 def test_Menu_allow_mixed_case_key_01():
-    '''Allow mixed case 'home' key.
+    r'''Allow mixed case 'home' key.
     '''
     py.test.skip('remove custom score name.')
 

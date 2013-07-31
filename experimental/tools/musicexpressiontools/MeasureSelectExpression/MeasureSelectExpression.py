@@ -78,7 +78,7 @@ class MeasureSelectExpression(SelectExpression):
     ### PRIVATE METHODS ###
 
     def evaluate(self):
-        '''Evaluate measure select expression.
+        r'''Evaluate measure select expression.
 
         Return none when nonevaluable.
 
@@ -104,7 +104,7 @@ class MeasureSelectExpression(SelectExpression):
         return expression
 
     def evaluate_early(self):
-        '''Evaluate measure select expression early.
+        r'''Evaluate measure select expression early.
 
         Special definition because time signatures can be evaluated
         without knowing the timespan they occupy.

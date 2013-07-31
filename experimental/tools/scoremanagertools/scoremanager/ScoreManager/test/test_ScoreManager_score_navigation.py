@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_ScoreManager_score_navigation_01():
-    '''Score does nothing.
+    r'''Score does nothing.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -11,7 +11,7 @@ def test_ScoreManager_score_navigation_01():
 
 
 def test_ScoreManager_score_navigation_02():
-    '''Session-initial next and prev both work.
+    r'''Session-initial next and prev both work.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -25,7 +25,7 @@ def test_ScoreManager_score_navigation_02():
 
 
 def test_ScoreManager_score_navigation_03():
-    '''Successive next.
+    r'''Successive next.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -35,7 +35,7 @@ def test_ScoreManager_score_navigation_03():
 
 
 def test_ScoreManager_score_navigation_04():
-    '''Successive prev.
+    r'''Successive prev.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()

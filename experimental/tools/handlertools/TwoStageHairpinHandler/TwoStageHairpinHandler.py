@@ -9,7 +9,7 @@ from experimental.tools.handlertools.DynamicHandler import DynamicHandler
 
 
 class TwoStageHairpinHandler(DynamicHandler):
-    '''Note and chord swell handler.
+    r'''Note and chord swell handler.
     '''
 
     ### INITIALIZER ###

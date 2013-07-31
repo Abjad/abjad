@@ -6,14 +6,14 @@ wrangler = score_manager.score_package_wrangler
 
 
 def test_ScorePackageWrangler_read_only_attributes_01():
-    '''Breadcrumb.
+    r'''Breadcrumb.
     '''
 
     assert wrangler._breadcrumb == 'scores'
 
 
 def test_ScorePackageWrangler_read_only_attributes_02():
-    '''Current storehouse.
+    r'''Current storehouse.
     '''
 
     assert wrangler._current_storehouse_packagesystem_path == ''
@@ -21,7 +21,7 @@ def test_ScorePackageWrangler_read_only_attributes_02():
 
 
 def test_ScorePackageWrangler_read_only_attributes_03():
-    '''Temporary asset.
+    r'''Temporary asset.
     '''
 
     assert wrangler._temporary_asset_package_path == '__temporary_package'

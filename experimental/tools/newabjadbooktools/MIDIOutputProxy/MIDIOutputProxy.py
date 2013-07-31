@@ -7,7 +7,7 @@ from experimental.tools.newabjadbooktools.AssetOutputProxy \
 
 
 class MIDIOutputProxy(AssetOutputProxy):
-    '''Output proxy for LilyPond MIDI files"
+    r'''Output proxy for LilyPond MIDI files"
 
     ::
 
@@ -53,7 +53,7 @@ class MIDIOutputProxy(AssetOutputProxy):
             )
 
     def handle_html_document_environment(self, document_handler):
-        '''Handle an HTML document environment:
+        r'''Handle an HTML document environment:
 
         ::
 
@@ -80,7 +80,7 @@ class MIDIOutputProxy(AssetOutputProxy):
         return result
 
     def handle_latex_document_environment(self, document_handler):
-        '''Handle a LaTeX document environment:
+        r'''Handle a LaTeX document environment:
 
         ::
 
@@ -96,7 +96,7 @@ class MIDIOutputProxy(AssetOutputProxy):
         return result
 
     def handle_rest_document_environment(self, document_handler):
-        '''Handle an ReST document environment:
+        r'''Handle an ReST document environment:
 
         ::
 

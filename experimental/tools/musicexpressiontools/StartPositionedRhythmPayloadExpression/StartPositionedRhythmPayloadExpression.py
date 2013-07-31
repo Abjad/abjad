@@ -46,7 +46,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
     ### SPECIAL METHODS ###
 
     def __and__(self, timespan):
-        '''Intersection start-positioned rhythm payload expression 
+        r'''Intersection start-positioned rhythm payload expression 
         and `timespan`.
 
         Example 1. Intersection on the left:
@@ -133,7 +133,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         return StartPositionedPayloadExpression.__and__(self, timespan)
 
     def __getitem__(self, expr):
-        '''Get start-positioned rhythm payload expression item.
+        r'''Get start-positioned rhythm payload expression item.
 
         ::
 
@@ -163,7 +163,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         return result
 
     def __len__(self):
-        '''Start-positioned rhythm payload expression length.
+        r'''Start-positioned rhythm payload expression length.
 
         ::
 
@@ -182,7 +182,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         return len(self.payload.select_leaves())
 
     def __or__(self, expr):
-        '''Logical OR of two start-positioned rhythm payload expressions:
+        r'''Logical OR of two start-positioned rhythm payload expressions:
 
         ::
 
@@ -248,7 +248,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         return StartPositionedPayloadExpression.__or__(self, expr)
 
     def __sub__(self, timespan):
-        '''Subtract `timespan` from start-positioned rhythm payload 
+        r'''Subtract `timespan` from start-positioned rhythm payload 
         expression.
 
         Example 1. Subtract from left:
@@ -384,7 +384,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
     @property
     def elements(self):
-        '''Start-positioned rhythm payload expression elements.
+        r'''Start-positioned rhythm payload expression elements.
 
         ::
 
@@ -397,7 +397,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
     @property
     def elements_are_time_contiguous(self):
-        '''True when start-positioned rhythm payload expression
+        r'''True when start-positioned rhythm payload expression
         elements are time-contiguous. Otherwise false:
 
         ::
@@ -411,7 +411,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
     @property
     def payload(self):
-        '''Start-positioned rhythm payload expression payload.
+        r'''Start-positioned rhythm payload expression payload.
 
         ::
 
@@ -424,7 +424,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
     @property
     def start_offset(self):
-        '''Start-positioned rhythm payload expression start offset.
+        r'''Start-positioned rhythm payload expression start offset.
 
         ::
 
@@ -437,7 +437,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
     @property
     def stop_offset(self):
-        '''Start-positioned rhythm payload expression stop offset.
+        r'''Start-positioned rhythm payload expression stop offset.
 
         ::
 
@@ -450,7 +450,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
     @property
     def storage_format(self):
-        '''Start-positioned rhythm payload expression storage format.
+        r'''Start-positioned rhythm payload expression storage format.
 
         ::
 
@@ -468,7 +468,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
     @property
     def timespan(self):
-        '''Start-positioned rhythm payload expression timespan.
+        r'''Start-positioned rhythm payload expression timespan.
 
         ::
 
@@ -481,7 +481,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
     @property
     def voice_name(self):
-        '''Start-positioned rhythm payload expression voice name.
+        r'''Start-positioned rhythm payload expression voice name.
 
         ::
 
@@ -495,7 +495,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
     ### PUBLIC METHODS ###
 
     def partition_by_ratio(self, ratio):
-        '''Partition start-positioned rhythm payload expression by `ratio`:
+        r'''Partition start-positioned rhythm payload expression by `ratio`:
 
         ::
 
@@ -537,7 +537,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         return StartPositionedPayloadExpression.partition_by_ratio(self, ratio)
 
     def partition_by_ratio_of_durations(self, ratio):
-        '''Partition start-positioned rhythm payload expression 
+        r'''Partition start-positioned rhythm payload expression 
         by `ratio` of durations.
 
         ::
@@ -576,7 +576,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             self, ratio)
 
     def reflect(self):
-        '''Reflect start-positioned rhythm payload expression about axis.
+        r'''Reflect start-positioned rhythm payload expression about axis.
 
         ::
 
@@ -611,7 +611,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         return self
 
     def repeat_to_duration(self, duration):
-        '''Repeat start-positioned rhythm payload expression to `duration`.
+        r'''Repeat start-positioned rhythm payload expression to `duration`.
 
         Example 1. Repeat to duration less than start-positioned 
         rhythm payload expression:
@@ -678,7 +678,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             return self
 
     def repeat_to_length(self, length):
-        '''Repeat start-positioned rhythm payload expression to `length`.
+        r'''Repeat start-positioned rhythm payload expression to `length`.
 
         Example 1. Repeat to `length` less than start-positioned 
         rhythm payload expression:
@@ -737,7 +737,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         return self.repeat_to_duration(duration)
 
     def repeat_to_stop_offset(self, stop_offset):
-        '''Repeat start-positioned rhythm payload expression to `stop_offset`.
+        r'''Repeat start-positioned rhythm payload expression to `stop_offset`.
 
         ::
 
@@ -785,7 +785,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         return self
 
     def rotate(self, n, fracture_spanners=True):
-        '''Rotate start-positioned rhythm payload expression.
+        r'''Rotate start-positioned rhythm payload expression.
 
         Example 1. Rotate by count:
 
@@ -935,7 +935,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         return self
 
     def translate(self, translation):
-        '''Translate start-positioned rhythm payload expression by `translation`.
+        r'''Translate start-positioned rhythm payload expression by `translation`.
 
         ::
 

@@ -36,7 +36,7 @@ class RotationIndicator(abctools.AbjadObject):
 
     @property
     def fracture_spanners(self):
-        '''Fracture spanners when true.
+        r'''Fracture spanners when true.
         Otherwise do not fracture spanners.
 
         ::
@@ -50,7 +50,7 @@ class RotationIndicator(abctools.AbjadObject):
 
     @property
     def index(self):
-        '''Rotation indicator index.
+        r'''Rotation indicator index.
 
         ::
 
@@ -63,7 +63,7 @@ class RotationIndicator(abctools.AbjadObject):
 
     @property
     def level(self):
-        '''Rotation indicator level.
+        r'''Rotation indicator level.
 
         ::
 

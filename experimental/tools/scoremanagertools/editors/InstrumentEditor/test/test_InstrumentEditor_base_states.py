@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_InstrumentEditor_base_states_01():
-    '''Start-up, select instrument, main menu.
+    r'''Start-up, select instrument, main menu.
     '''
 
     editor = scoremanagertools.editors.InstrumentEditor()
@@ -22,7 +22,7 @@ def test_InstrumentEditor_base_states_01():
 
 
 def test_InstrumentEditor_base_states_02():
-    '''Start-up values without target.
+    r'''Start-up values without target.
     '''
 
     editor = scoremanagertools.editors.InstrumentEditor()
@@ -31,7 +31,7 @@ def test_InstrumentEditor_base_states_02():
 
 
 def test_InstrumentEditor_base_states_03():
-    '''Start-up values with target.
+    r'''Start-up values with target.
     '''
 
     accordion = instrumenttools.Accordion()

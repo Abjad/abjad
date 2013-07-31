@@ -53,7 +53,7 @@ class OutputProxy(AbjadObject):
 
     @property
     def payload(self):
-        '''The document-environment-agnostic payload of an output proxy.
+        r'''The document-environment-agnostic payload of an output proxy.
         '''
         return self._payload
 

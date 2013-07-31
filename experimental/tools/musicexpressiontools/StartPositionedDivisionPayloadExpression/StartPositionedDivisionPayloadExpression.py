@@ -51,7 +51,7 @@ class StartPositionedDivisionPayloadExpression(
     ### SPECIAL METHODS ###
 
     def __and__(self, timespan):
-        '''Keep intersection of start-positioned
+        r'''Keep intersection of start-positioned
         division payload expression and `timespan`.
 
         Example 1. Intersection on the left:
@@ -141,7 +141,7 @@ class StartPositionedDivisionPayloadExpression(
         return StartPositionedPayloadExpression.__and__(self, timespan)
 
     def __getitem__(self, expr):
-        '''Get start-positioned division payload expression item.
+        r'''Get start-positioned division payload expression item.
 
         ::
 
@@ -182,7 +182,7 @@ class StartPositionedDivisionPayloadExpression(
         return result
 
     def __or__(self, expr):
-        '''Logical OR of two start-positioned division payload expressions:
+        r'''Logical OR of two start-positioned division payload expressions:
 
         ::
 
@@ -222,7 +222,7 @@ class StartPositionedDivisionPayloadExpression(
         return StartPositionedPayloadExpression.__or__(self, expr)
 
     def __sub__(self, timespan):
-        '''Subtract `timespan` from start-positioned division 
+        r'''Subtract `timespan` from start-positioned division 
         payload expression.
 
         Example 1. Subtract from left:
@@ -351,7 +351,7 @@ class StartPositionedDivisionPayloadExpression(
 
     @property
     def elements(self):
-        '''Start-positioned division payload expression elements.
+        r'''Start-positioned division payload expression elements.
 
         ::
 
@@ -366,7 +366,7 @@ class StartPositionedDivisionPayloadExpression(
 
     @property
     def elements_are_time_contiguous(self):
-        '''True when start-positioned division payload expression elements
+        r'''True when start-positioned division payload expression elements
         are time-contiguous. False otherwise:
 
         ::
@@ -380,7 +380,7 @@ class StartPositionedDivisionPayloadExpression(
 
     @property
     def payload(self):
-        '''Start-positioned division payload expression payload.
+        r'''Start-positioned division payload expression payload.
 
         ::
 
@@ -393,7 +393,7 @@ class StartPositionedDivisionPayloadExpression(
 
     @property
     def start_offset(self):
-        '''Start-positioned division payload expression start offset.
+        r'''Start-positioned division payload expression start offset.
 
         ::
 
@@ -406,7 +406,7 @@ class StartPositionedDivisionPayloadExpression(
 
     @property
     def stop_offset(self):
-        '''Start-positioned division payload expression stop offset.
+        r'''Start-positioned division payload expression stop offset.
 
         ::
 
@@ -419,7 +419,7 @@ class StartPositionedDivisionPayloadExpression(
 
     @property
     def storage_format(self):
-        '''Start-positioned division payload expression storage format.
+        r'''Start-positioned division payload expression storage format.
 
         ::
 
@@ -440,7 +440,7 @@ class StartPositionedDivisionPayloadExpression(
 
     @property
     def timespan(self):
-        '''Start-positioned division payload expression timespan.
+        r'''Start-positioned division payload expression timespan.
 
         ::
 
@@ -453,7 +453,7 @@ class StartPositionedDivisionPayloadExpression(
 
     @property
     def voice_name(self):
-        '''Start-positioned division payload expression voice name.
+        r'''Start-positioned division payload expression voice name.
 
         ::
 
@@ -467,7 +467,7 @@ class StartPositionedDivisionPayloadExpression(
     ### PUBLIC METHODS ###
 
     def partition_by_ratio(self, ratio):
-        '''Partition start-positioned division payload expression by `ratio`.
+        r'''Partition start-positioned division payload expression by `ratio`.
 
         ::
 
@@ -508,7 +508,7 @@ class StartPositionedDivisionPayloadExpression(
         return StartPositionedPayloadExpression.partition_by_ratio(self, ratio)
 
     def partition_by_ratio_of_durations(self, ratio):
-        '''Partition start-positioned division payload expression by 
+        r'''Partition start-positioned division payload expression by 
         `ratio` of durations.
 
         ::
@@ -550,7 +550,7 @@ class StartPositionedDivisionPayloadExpression(
         return StartPositionedPayloadExpression.partition_by_ratio_of_durations(self, ratio)
 
     def reflect(self):
-        '''Reflect start-positioned division payload expression about axis.
+        r'''Reflect start-positioned division payload expression about axis.
 
         ::
 
@@ -580,7 +580,7 @@ class StartPositionedDivisionPayloadExpression(
         return StartPositionedPayloadExpression.reflect(self)
 
     def repeat_to_duration(self, duration):
-        '''Repeat start-positioned division payload expression to `duration`.
+        r'''Repeat start-positioned division payload expression to `duration`.
 
         ::
 
@@ -614,7 +614,7 @@ class StartPositionedDivisionPayloadExpression(
         return result
 
     def repeat_to_length(self, length):
-        '''Repeat start-positioned division payload expression to `length`.
+        r'''Repeat start-positioned division payload expression to `length`.
 
         ::
 
@@ -648,7 +648,7 @@ class StartPositionedDivisionPayloadExpression(
         return result
 
     def rotate(self, rotation):
-        '''Rotate start-positioned division payload expression by `rotation`.
+        r'''Rotate start-positioned division payload expression by `rotation`.
 
         ::
 
@@ -678,7 +678,7 @@ class StartPositionedDivisionPayloadExpression(
         return StartPositionedPayloadExpression.rotate(self, rotation)
 
     def translate(self, translation):
-        '''Translate division payload expression by `translation`.
+        r'''Translate division payload expression by `translation`.
 
         ::
 

@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_schematic_example_X_01():
-    '''Schematic example X1.
+    r'''Schematic example X1.
     Quartet in two segments.
     First segment [4/8, 3/8] time signatures.
     Staff 1 [3/16] divisions truncated at end of segment.
@@ -34,7 +34,7 @@ def test_schematic_example_X_01():
 
 
 def test_schematic_example_X_02():
-    '''Schematic example X2.
+    r'''Schematic example X2.
     Quartet in two segments.
     Segment 1 time signatures [4/8, 3/8].
     Staff 1 [3/16] divisions and staff 2 [4/16] divisions.
@@ -67,7 +67,7 @@ def test_schematic_example_X_02():
 
 
 def test_schematic_example_X_03():
-    '''Schematic example X3.
+    r'''Schematic example X3.
     Quartet in 2 segments.
     First segment time signatures [6/8, 3/8].
     First staff 1:1 of measures then [3/16, 5/16] divisions.
@@ -130,7 +130,7 @@ def test_schematic_example_X_03():
 
 @py.test.skip('FIX: Failing due to recent changes to tuplet formatting.')
 def test_schematic_example_X_04():
-    '''Schematic example X4.
+    r'''Schematic example X4.
     Quartet in two segments.
     First segment time signatures [4/8, 3/8, 2/8].
     First staff 1:1:1 total time then thirty-seconds then sixteenths then eighths.
@@ -180,7 +180,7 @@ def test_schematic_example_X_04():
 
 
 def test_schematic_example_X_05():
-    '''Schematic example X5.
+    r'''Schematic example X5.
     Quartet in two segments.
     First segment time signatures [4/8, 3/8].
     F1 rhythm 1, 2, 3 thirty-seconds.
@@ -215,7 +215,7 @@ def test_schematic_example_X_05():
 
 
 def test_schematic_example_X_06():
-    '''Schematic example X6.
+    r'''Schematic example X6.
     Quartet in two segments.
     First segment time signatures [4/8, 3/8].
     F1 rhythm 1, 2, 3, 4 thirty-seconds.
@@ -258,7 +258,7 @@ def test_schematic_example_X_06():
 
 
 def test_schematic_example_X_07():
-    '''Schematic example X7.
+    r'''Schematic example X7.
     Quartet in two segments.
     First segment time signatures [4/8, 3/8].
     Rhythm of each staff specified separately for first and second measures.
@@ -304,7 +304,7 @@ def test_schematic_example_X_07():
 
 
 def test_schematic_example_X_08():
-    '''Schematic example X8.
+    r'''Schematic example X8.
     Quartet in two segments.
     First segment time signatures [4/8, 3/8, 2/8].
     Rhythm of each staff specified separately for each measure.
@@ -350,7 +350,7 @@ def test_schematic_example_X_08():
 
 
 def test_schematic_example_X_09():
-    '''Schematic example X9.
+    r'''Schematic example X9.
     Quartet in two segments.
     First segment time signatures [4/8, 3/8].
     F1 with [1, 2, 3, 4] thirty-seconds.

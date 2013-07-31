@@ -3,7 +3,7 @@ from experimental.tools.scoremanagertools import getters
 
 
 def test_getters_01():
-    '''Regression test.
+    r'''Regression test.
     '''
 
     getter = getters.get_duration('foo bar')
@@ -11,7 +11,7 @@ def test_getters_01():
 
 
 def test_getters_02():
-    '''Allow none.
+    r'''Allow none.
     '''
 
     getter = getters.get_duration('foo bar')

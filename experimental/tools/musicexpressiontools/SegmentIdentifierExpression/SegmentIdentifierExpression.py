@@ -28,7 +28,7 @@ class SegmentIdentifierExpression(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        '''True when mandatory and keyword arguments compare equal.
+        r'''True when mandatory and keyword arguments compare equal.
         Otherwise false.
 
         Return boolean.
@@ -52,7 +52,7 @@ class SegmentIdentifierExpression(AbjadObject):
 
     @property
     def string(self):
-        '''Segment identifier expresion string.
+        r'''Segment identifier expresion string.
 
         ::
 

@@ -4,7 +4,7 @@ from experimental import *
 
 def test_TextualDocumentHandler_01():
 
-    document = '''Let's print something:
+    document = r'''Let's print something:
 
     <abjad>
     print "hello, world!"

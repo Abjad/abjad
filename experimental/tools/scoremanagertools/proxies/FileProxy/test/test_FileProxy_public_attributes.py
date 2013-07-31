@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_FileProxy_public_attributes_01():
-    '''Without path.
+    r'''Without path.
     '''
 
     file_proxy = scoremanagertools.proxies.FileProxy()
@@ -20,7 +20,7 @@ def test_FileProxy_public_attributes_01():
 
 
 def test_FileProxy_public_attributes_02():
-    '''With path.
+    r'''With path.
     '''
 
     file_name = 'clean-letter-14.ly'

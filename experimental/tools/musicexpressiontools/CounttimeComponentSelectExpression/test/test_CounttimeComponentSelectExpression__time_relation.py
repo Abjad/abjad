@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_CounttimeComponentSelectExpression__time_relation_01():
-    '''Red starts during blue.
+    r'''Red starts during blue.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -26,7 +26,7 @@ def test_CounttimeComponentSelectExpression__time_relation_01():
 
 
 def test_CounttimeComponentSelectExpression__time_relation_02():
-    '''Red stops during blue.
+    r'''Red stops during blue.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -50,7 +50,7 @@ def test_CounttimeComponentSelectExpression__time_relation_02():
 
 
 def test_CounttimeComponentSelectExpression__time_relation_03():
-    '''Red intersects blue.
+    r'''Red intersects blue.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -74,7 +74,7 @@ def test_CounttimeComponentSelectExpression__time_relation_03():
 
 
 def test_CounttimeComponentSelectExpression__time_relation_04():
-    '''Red overlaps start of blue.
+    r'''Red overlaps start of blue.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -98,7 +98,7 @@ def test_CounttimeComponentSelectExpression__time_relation_04():
 
 
 def test_CounttimeComponentSelectExpression__time_relation_05():
-    '''Red overlaps stop of blue.
+    r'''Red overlaps stop of blue.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -122,7 +122,7 @@ def test_CounttimeComponentSelectExpression__time_relation_05():
 
 
 def test_CounttimeComponentSelectExpression__time_relation_06():
-    '''Red trisects blue.
+    r'''Red trisects blue.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)

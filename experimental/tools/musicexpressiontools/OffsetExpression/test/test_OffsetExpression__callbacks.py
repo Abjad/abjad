@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_OffsetExpression__callbacks_01():
-    '''Translate offset expression.
+    r'''Translate offset expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -24,7 +24,7 @@ def test_OffsetExpression__callbacks_01():
 
 
 def test_OffsetExpression__callbacks_02():
-    '''Scale offset expression.
+    r'''Scale offset expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

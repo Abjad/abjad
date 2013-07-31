@@ -6,7 +6,7 @@ from experimental.tools.musicexpressiontools.AttributeNameEnumeration \
 
 
 class CallbackMixin(AbjadObject):
-    '''Callback mixin.
+    r'''Callback mixin.
     '''
 
     ### CLASS VARIABLES ###
@@ -38,7 +38,7 @@ class CallbackMixin(AbjadObject):
 
     @property
     def callbacks(self):
-        '''Read-only list of callbacks to be applied during evaluation.
+        r'''Read-only list of callbacks to be applied during evaluation.
 
         Return callback inventory.
         '''

@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_ScoreSpecification__set_pitch_class_transform_01():
-    '''Transpose second half up a semitone.
+    r'''Transpose second half up a semitone.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
@@ -24,7 +24,7 @@ def test_ScoreSpecification__set_pitch_class_transform_01():
 
 
 def test_ScoreSpecification__set_pitch_class_transform_02():
-    '''Transpose second half by nothing (but drop into octave above middle C).
+    r'''Transpose second half by nothing (but drop into octave above middle C).
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
@@ -46,7 +46,7 @@ def test_ScoreSpecification__set_pitch_class_transform_02():
 
 
 def test_ScoreSpecification__set_pitch_class_transform_03():
-    '''Invert second half.
+    r'''Invert second half.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
@@ -68,7 +68,7 @@ def test_ScoreSpecification__set_pitch_class_transform_03():
 
 
 def test_ScoreSpecification__set_pitch_class_transform_04():
-    '''Invert second half and then transpose up 1 semitone.
+    r'''Invert second half and then transpose up 1 semitone.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
@@ -90,7 +90,7 @@ def test_ScoreSpecification__set_pitch_class_transform_04():
 
 
 def test_ScoreSpecification__set_pitch_class_transform_05():
-    '''Tranpose second half up 1 semitone and then invert.
+    r'''Tranpose second half up 1 semitone and then invert.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
@@ -112,7 +112,7 @@ def test_ScoreSpecification__set_pitch_class_transform_05():
 
 
 def test_ScoreSpecification__set_pitch_class_transform_06():
-    '''Multiply second half by 7.
+    r'''Multiply second half by 7.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
@@ -134,7 +134,7 @@ def test_ScoreSpecification__set_pitch_class_transform_06():
 
 
 def test_ScoreSpecification__set_pitch_class_transform_07():
-    '''Invert second half twice.
+    r'''Invert second half twice.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
@@ -156,7 +156,7 @@ def test_ScoreSpecification__set_pitch_class_transform_07():
 
 
 def test_ScoreSpecification__set_pitch_class_transform_08():
-    '''Transpose second half up by 1 semitone and then up by 3 semitones.
+    r'''Transpose second half up by 1 semitone and then up by 3 semitones.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)

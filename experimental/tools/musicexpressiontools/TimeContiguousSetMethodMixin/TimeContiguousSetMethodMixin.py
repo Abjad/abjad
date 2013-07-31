@@ -5,7 +5,7 @@ from experimental.tools.musicexpressiontools.SetMethodMixin \
 
 
 class TimeContiguousSetMethodMixin(SetMethodMixin):
-    '''Set method mixin.
+    r'''Set method mixin.
 
     Segment definition for examples:
 

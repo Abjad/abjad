@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class VoiceProxy(AbjadObject):
-    '''Voice proxy.
+    r'''Voice proxy.
     '''
 
     ### INITIALIZER ###
@@ -24,7 +24,7 @@ class VoiceProxy(AbjadObject):
 
     @property
     def leaf_start_offsets(self):
-        '''Voice proxy leaf start offsets.
+        r'''Voice proxy leaf start offsets.
 
         Return list of offsets.
         '''
@@ -32,7 +32,7 @@ class VoiceProxy(AbjadObject):
 
     @property
     def leaf_stop_offsets(self):
-        '''Voice proxy leaf stop offsets.
+        r'''Voice proxy leaf stop offsets.
 
         Return list of offsets.
         '''
@@ -40,7 +40,7 @@ class VoiceProxy(AbjadObject):
 
     @property
     def leaves(self):
-        '''Voice proxy leaves.
+        r'''Voice proxy leaves.
 
         Return list of leaves.
         '''
@@ -48,7 +48,7 @@ class VoiceProxy(AbjadObject):
 
     @property
     def payload_expressions_by_attribute(self):
-        '''Voice proxy payload expressions by attribute.
+        r'''Voice proxy payload expressions by attribute.
 
         Return attribute dictionary.
         '''
@@ -56,7 +56,7 @@ class VoiceProxy(AbjadObject):
 
     @property
     def voice_division_list(self):
-        '''Voice proxy voice division list.
+        r'''Voice proxy voice division list.
 
         Return voice division list.
         '''

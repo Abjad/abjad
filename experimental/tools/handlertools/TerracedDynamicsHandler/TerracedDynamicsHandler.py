@@ -6,7 +6,7 @@ from experimental.tools.handlertools.DynamicHandler import DynamicHandler
 
 
 class TerracedDynamicsHandler(DynamicHandler):
-    '''Terraced dynamics.
+    r'''Terraced dynamics.
     '''
 
     def __init__(self, dynamics=None, minimum_duration=None):

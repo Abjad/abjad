@@ -7,7 +7,7 @@ from experimental.tools.scoremanagertools.scoremanager.ScoreManagerConfiguration
 
 
 class Session(abctools.AbjadObject):
-    '''Score manager session.
+    r'''Score manager session.
 
         >>> session = scoremanagertools.scoremanager.Session()
 
@@ -80,7 +80,7 @@ class Session(abctools.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        '''Session repr.
+        r'''Session repr.
 
         Return string.
         '''
@@ -98,7 +98,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def backtracking_stack(self):
-        '''Session backtracking stack:
+        r'''Session backtracking stack:
 
         ::
 
@@ -111,7 +111,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def breadcrumb_cache_stack(self):
-        '''Session breadcrumb cache stack:
+        r'''Session breadcrumb cache stack:
 
         ::
 
@@ -124,7 +124,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def breadcrumb_stack(self):
-        '''Session breadcrumb stack:
+        r'''Session breadcrumb stack:
 
         ::
 
@@ -137,7 +137,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def command_history(self):
-        '''Session command history:
+        r'''Session command history:
 
         ::
 
@@ -150,7 +150,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def command_history_string(self):
-        '''Session command history string:
+        r'''Session command history string:
 
         ::
 
@@ -163,7 +163,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_materials_directory_path(self):
-        '''Session current materials directory path:
+        r'''Session current materials directory path:
 
         ::
 
@@ -194,7 +194,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_materials_package_path(self):
-        '''Session current materials package path:
+        r'''Session current materials package path:
 
         ::
 
@@ -222,7 +222,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_score_directory_path(self):
-        '''Session current score directory path:
+        r'''Session current score directory path:
 
         .. note:: add example.
 
@@ -241,7 +241,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_score_package_path(self):
-        '''Session current score package path:
+        r'''Session current score package path:
 
         .. note:: add example.
 
@@ -258,7 +258,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_score_package_proxy(self):
-        '''Session current score package proxy:
+        r'''Session current score package proxy:
 
         ::
 
@@ -285,7 +285,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_segments_directory_path(self):
-        '''Session current segments directory path:
+        r'''Session current segments directory path:
 
         ::
 
@@ -316,7 +316,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_segments_package_path(self):
-        '''Session current segments package path.
+        r'''Session current segments package path.
 
         Session out of score:
 
@@ -353,7 +353,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def explicit_command_history(self):
-        '''Session explicit command history:
+        r'''Session explicit command history:
 
         ::
 
@@ -422,7 +422,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def is_complete(self):
-        '''True when session is complete. Otherwise false:
+        r'''True when session is complete. Otherwise false:
 
         ::
 
@@ -435,7 +435,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def is_displayable(self):
-        '''True when session is displayable. Otherwise false:
+        r'''True when session is displayable. Otherwise false:
 
         ::
 
@@ -448,7 +448,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def is_in_score(self):
-        '''True when session is in score. Otherwise false:
+        r'''True when session is in score. Otherwise false:
 
         ::
 
@@ -461,7 +461,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def is_navigating_to_sibling_score(self):
-        '''True when session is navigating to sibling score.
+        r'''True when session is navigating to sibling score.
         Otherwise false:
 
         ::
@@ -479,7 +479,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def last_semantic_command(self):
-        '''Session last semantic command:
+        r'''Session last semantic command:
 
         ::
 
@@ -494,7 +494,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def menu_header(self):
-        '''Session menu header:
+        r'''Session menu header:
 
         ::
 
@@ -517,7 +517,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def scores_to_show(self):
-        '''Session scores to show:
+        r'''Session scores to show:
 
         ::
 
@@ -530,7 +530,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def session_once_had_user_input(self):
-        '''True when session once had user input. Otherwise false:
+        r'''True when session once had user input. Otherwise false:
 
         ::
 
@@ -553,7 +553,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def testable_command_history_string(self):
-        '''Session testable command history string:
+        r'''Session testable command history string:
 
         ::
 
@@ -580,7 +580,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def io_transcript(self):
-        '''Session io_transcript:
+        r'''Session io_transcript:
 
         ::
 
@@ -614,7 +614,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def user_input_is_consumed(self):
-        '''True when session user input is consumed.
+        r'''True when session user input is consumed.
         Otherwise false:
 
         ::

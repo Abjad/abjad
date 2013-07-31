@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_BeatSelectExpression__callbacks_01():
-    '''Slice beats.
+    r'''Slice beats.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -21,7 +21,7 @@ def test_BeatSelectExpression__callbacks_01():
 
 
 def test_BeatSelectExpression__callbacks_02():
-    '''Partition beats by ratio.
+    r'''Partition beats by ratio.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -41,7 +41,7 @@ def test_BeatSelectExpression__callbacks_02():
 
 
 def test_BeatSelectExpression__callbacks_03():
-    '''Partition beats by ratio of durations.
+    r'''Partition beats by ratio of durations.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -61,7 +61,7 @@ def test_BeatSelectExpression__callbacks_03():
 
 
 def test_BeatSelectExpression__callbacks_04():
-    '''Repeat to duration.
+    r'''Repeat to duration.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -80,7 +80,7 @@ def test_BeatSelectExpression__callbacks_04():
 
 
 def test_BeatSelectExpression__callbacks_05():
-    '''Repeat to length.
+    r'''Repeat to length.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -99,7 +99,7 @@ def test_BeatSelectExpression__callbacks_05():
 
 
 def test_BeatSelectExpression__callbacks_06():
-    '''Reflect beats.
+    r'''Reflect beats.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -118,7 +118,7 @@ def test_BeatSelectExpression__callbacks_06():
 
 
 def test_BeatSelectExpression__callbacks_07():
-    '''Rotate beats.
+    r'''Rotate beats.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -137,7 +137,7 @@ def test_BeatSelectExpression__callbacks_07():
 
 
 def test_BeatSelectExpression__callbacks_08():
-    '''Logical AND of beats and timespan.
+    r'''Logical AND of beats and timespan.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

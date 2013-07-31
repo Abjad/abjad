@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_MaterialPackageWrangler_run_data_only_package_01():
-    '''Make data package. Delete package.
+    r'''Make data package. Delete package.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -27,7 +27,7 @@ def test_MaterialPackageWrangler_run_data_only_package_01():
 
 
 def test_MaterialPackageWrangler_run_data_only_package_02():
-    '''Make data package. Invalidate initializer.
+    r'''Make data package. Invalidate initializer.
     Verify invalid initializer. Remove package.
     '''
 
@@ -55,7 +55,7 @@ def test_MaterialPackageWrangler_run_data_only_package_02():
 
 
 def test_MaterialPackageWrangler_run_data_only_package_03():
-    '''Make data package. Corrupt initializer. Restore initializer.
+    r'''Make data package. Corrupt initializer. Restore initializer.
     Verify initializer. Remove package.
     '''
 
@@ -84,7 +84,7 @@ def test_MaterialPackageWrangler_run_data_only_package_03():
 
 
 def test_MaterialPackageWrangler_run_data_only_package_04():
-    '''Make data package. Create output material.
+    r'''Make data package. Create output material.
     Delete package."
     '''
 
@@ -114,7 +114,7 @@ def test_MaterialPackageWrangler_run_data_only_package_04():
 
 
 def test_MaterialPackageWrangler_run_data_only_package_05():
-    '''Make data package. Delete material definition module.
+    r'''Make data package. Delete material definition module.
     Remove package.
     '''
 
@@ -143,7 +143,7 @@ def test_MaterialPackageWrangler_run_data_only_package_05():
 
 
 def test_MaterialPackageWrangler_run_data_only_package_06():
-    '''Make data package. Overwrite material definition module with stub.
+    r'''Make data package. Overwrite material definition module with stub.
     Delete package.
     '''
 
@@ -171,7 +171,7 @@ def test_MaterialPackageWrangler_run_data_only_package_06():
 
 
 def test_MaterialPackageWrangler_run_data_only_package_07():
-    '''Make data package. Copy canned material definition. Make output material. Remove output material.
+    r'''Make data package. Copy canned material definition. Make output material. Remove output material.
     Remove package.
     '''
 
@@ -202,7 +202,7 @@ def test_MaterialPackageWrangler_run_data_only_package_07():
 
 
 def test_MaterialPackageWrangler_run_data_only_package_08():
-    '''Make data package. Copy canned material definition with exception.
+    r'''Make data package. Copy canned material definition with exception.
     Examine package state. Remove package.
     '''
 
@@ -230,7 +230,7 @@ def test_MaterialPackageWrangler_run_data_only_package_08():
 
 
 def test_MaterialPackageWrangler_run_data_only_package_09():
-    '''Make data package. Copy canned material definition module. Make output data. Corrupt output data.
+    r'''Make data package. Copy canned material definition module. Make output data. Corrupt output data.
     Verify invalid output material module. Remove package.
     '''
 

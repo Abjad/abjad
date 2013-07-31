@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_MeasureSelectExpression__select_leaves_01():
-    '''Select measures and then select leaves.
+    r'''Select measures and then select leaves.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

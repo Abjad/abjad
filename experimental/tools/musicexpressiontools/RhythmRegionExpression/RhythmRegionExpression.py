@@ -3,13 +3,13 @@ from experimental.tools.musicexpressiontools.RegionExpression \
 
 
 class RhythmRegionExpression(RegionExpression):
-    '''Rhythm region expression.
+    r'''Rhythm region expression.
     '''
 
     ### PUBLIC METHODS ###
 
     def prolongs_expr(self, expr):
-        '''True when `expr` is a rhythm region expression
+        r'''True when `expr` is a rhythm region expression
         and `expr` source_expression equals rhythm region 
         expression source_expression.
         Otherwise false.

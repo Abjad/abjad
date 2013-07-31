@@ -36,7 +36,7 @@ def test_SegmentSelectExpression__divide_by_ratio_02():
 
 
 def test_SegmentSelectExpression__divide_by_ratio_03():
-    '''One-segment score.
+    r'''One-segment score.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -54,7 +54,7 @@ def test_SegmentSelectExpression__divide_by_ratio_03():
 
 
 def test_SegmentSelectExpression__divide_by_ratio_04():
-    '''Two-segment score.
+    r'''Two-segment score.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

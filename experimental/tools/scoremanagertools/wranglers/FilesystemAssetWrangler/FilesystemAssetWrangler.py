@@ -7,7 +7,7 @@ from experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject \
 
 
 class FilesystemAssetWrangler(ScoreManagerObject):
-    '''Filesystem asset wrangler.
+    r'''Filesystem asset wrangler.
 
     Return filesystem asset wrangler.
     '''
@@ -28,7 +28,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        '''True when types are the same. Otherwise false.
+        r'''True when types are the same. Otherwise false.
 
         Return boolean.
         '''

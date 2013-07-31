@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_TimespanExpression__callbacks_01():
-    '''Scale timespan.
+    r'''Scale timespan.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -22,7 +22,7 @@ def test_TimespanExpression__callbacks_01():
 
 
 def test_TimespanExpression__callbacks_02():
-    '''Set timespan duration.
+    r'''Set timespan duration.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -42,7 +42,7 @@ def test_TimespanExpression__callbacks_02():
 
 
 def test_TimespanExpression__callbacks_03():
-    '''Set timespan start offset.
+    r'''Set timespan start offset.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -62,7 +62,7 @@ def test_TimespanExpression__callbacks_03():
 
 
 def test_TimespanExpression__callbacks_04():
-    '''Set timespan stop offset.
+    r'''Set timespan stop offset.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -82,7 +82,7 @@ def test_TimespanExpression__callbacks_04():
 
 
 def test_TimespanExpression__callbacks_05():
-    '''Translate timespan.
+    r'''Translate timespan.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -102,7 +102,7 @@ def test_TimespanExpression__callbacks_05():
 
 
 def test_TimespanExpression__callbacks_06():
-    '''Translate timespan start offset.
+    r'''Translate timespan start offset.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -122,7 +122,7 @@ def test_TimespanExpression__callbacks_06():
 
 
 def test_TimespanExpression__callbacks_07():
-    '''Translate timespan stop offset.
+    r'''Translate timespan stop offset.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -142,7 +142,7 @@ def test_TimespanExpression__callbacks_07():
 
 
 def test_TimespanExpression__callbacks_08():
-    '''Stacked timespan callbacks applied in composition.
+    r'''Stacked timespan callbacks applied in composition.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

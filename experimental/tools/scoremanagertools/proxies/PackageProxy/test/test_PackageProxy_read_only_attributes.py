@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_PackageProxy_read_only_attributes_01():
-    '''Stub package.
+    r'''Stub package.
     '''
 
     package_proxy = scoremanagertools.proxies.PackageProxy(

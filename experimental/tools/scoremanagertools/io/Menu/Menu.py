@@ -9,7 +9,7 @@ from experimental.tools.scoremanagertools.io.MenuSection \
 
 
 class Menu(ScoreManagerObject):
-    '''Menu:
+    r'''Menu:
 
     ::
 
@@ -39,14 +39,14 @@ class Menu(ScoreManagerObject):
     ### SPECIAL METHODS ###
 
     def __len__(self):
-        '''Number of menu sections in menu.
+        r'''Number of menu sections in menu.
 
         Return nonnegative integer.
         '''
         return len(self.menu_sections)
 
     def __repr__(self):
-        '''Interpreter representation of menu.
+        r'''Interpreter representation of menu.
 
         Return string.
         '''
@@ -246,7 +246,7 @@ class Menu(ScoreManagerObject):
 
     @property
     def hidden_section(self):
-        '''Menu hidden section:
+        r'''Menu hidden section:
 
         ::
 
@@ -279,7 +279,7 @@ class Menu(ScoreManagerObject):
 
     @property
     def menu_sections(self):
-        '''Menu sections:
+        r'''Menu sections:
 
         ::
 
@@ -295,7 +295,7 @@ class Menu(ScoreManagerObject):
     @apply
     def should_clear_terminal():
         def fget(self):
-            '''True when menu should clear terminal. Otherwise false:
+            r'''True when menu should clear terminal. Otherwise false:
     
             ::
 
@@ -312,7 +312,7 @@ class Menu(ScoreManagerObject):
 
     @property
     def storage_format(self):
-        '''Menu storage format:
+        r'''Menu storage format:
 
         ::
     
@@ -328,7 +328,7 @@ class Menu(ScoreManagerObject):
     @apply
     def title():
         def fget(self):
-            '''Menu title:
+            r'''Menu title:
 
             ::
 

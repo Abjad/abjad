@@ -48,7 +48,7 @@ class TimespanExpression(
     ### PRIVATE METHODS ###
 
     def evaluate(self):
-        '''Evaluate timespan expression.
+        r'''Evaluate timespan expression.
 
         Return none when nonevaluable.
 

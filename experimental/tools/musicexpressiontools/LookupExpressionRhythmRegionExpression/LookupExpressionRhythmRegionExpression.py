@@ -7,7 +7,7 @@ from experimental.tools.musicexpressiontools.RhythmRegionExpression \
 
 
 class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
-    '''Lookup expression rhythm region expression.
+    r'''Lookup expression rhythm region expression.
     '''
 
     ### INITIALIZER ###
@@ -34,7 +34,7 @@ class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
     ### PRIVATE METHODS ###
 
     def evaluate(self):
-        '''Evaluate lookup expression rhythm region expression.
+        r'''Evaluate lookup expression rhythm region expression.
 
         Return none when nonevaluable.
 
@@ -77,7 +77,7 @@ class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
 
     @property
     def division_list(self):
-        '''Lookup expression rhythm region expression division list.
+        r'''Lookup expression rhythm region expression division list.
 
         Return division list.
         '''
@@ -85,7 +85,7 @@ class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
 
     @property
     def region_start_offset(self):
-        '''Lookup expression rhythm region expression region start offset.
+        r'''Lookup expression rhythm region expression region start offset.
 
         Return offset.
         '''

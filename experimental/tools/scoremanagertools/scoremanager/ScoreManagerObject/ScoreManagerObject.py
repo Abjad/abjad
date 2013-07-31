@@ -45,7 +45,7 @@ class ScoreManagerObject(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        '''Score manager object repr.
+        r'''Score manager object repr.
 
         Return string.
         '''

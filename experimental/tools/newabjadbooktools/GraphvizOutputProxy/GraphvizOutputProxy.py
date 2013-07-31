@@ -3,7 +3,7 @@ from experimental.tools.newabjadbooktools.ImageOutputProxy \
 
 
 class GraphvizOutputProxy(ImageOutputProxy):
-    '''Output proxy for Graphviz images of Abjad datastructures:
+    r'''Output proxy for Graphviz images of Abjad datastructures:
 
     ::
 
@@ -47,7 +47,7 @@ class GraphvizOutputProxy(ImageOutputProxy):
     ### PUBLIC METHODS ###
 
     def handle_html_document_environment(self, document_handler):
-        '''Handle an HTML document environment:
+        r'''Handle an HTML document environment:
 
         ::
 
@@ -63,7 +63,7 @@ class GraphvizOutputProxy(ImageOutputProxy):
             )
 
     def handle_latex_document_environment(self, document_handler):
-        '''Handle a LaTeX document environment:
+        r'''Handle a LaTeX document environment:
 
         ::
 
@@ -79,7 +79,7 @@ class GraphvizOutputProxy(ImageOutputProxy):
             )
 
     def handle_rest_document_environment(self, document_handler):
-        '''Handle an ReST document environment:
+        r'''Handle an ReST document environment:
 
         ::
 

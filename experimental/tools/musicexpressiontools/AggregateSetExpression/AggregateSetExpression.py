@@ -5,13 +5,13 @@ from experimental.tools.musicexpressiontools.LeafSetExpression \
 
 
 class AggregateSetExpression(LeafSetExpression):
-    '''Aggregate set expression.
+    r'''Aggregate set expression.
     '''
 
     ### PUBLIC METHODS ###
 
     def execute_against_score(self, score):
-        '''Execute aggregate set expression against `score`.
+        r'''Execute aggregate set expression against `score`.
         '''
         aggregate = self.source_expression.payload
         for leaf in self._iterate_selected_leaves_in_score(score):

@@ -7,7 +7,7 @@ from experimental.tools.scoremanagertools.proxies.PackageProxy \
 
 
 class MaterialPackageProxy(PackageProxy):
-    '''Material package proxy:
+    r'''Material package proxy:
 
     ::
 

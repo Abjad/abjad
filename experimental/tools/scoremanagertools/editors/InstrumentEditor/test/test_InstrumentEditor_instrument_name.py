@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_InstrumentEditor_instrument_name_01():
-    '''Quit, back & home all work.
+    r'''Quit, back & home all work.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -18,7 +18,7 @@ def test_InstrumentEditor_instrument_name_01():
 
 
 def test_InstrumentEditor_instrument_name_02():
-    '''String only.
+    r'''String only.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -27,7 +27,7 @@ def test_InstrumentEditor_instrument_name_02():
 
 
 def test_InstrumentEditor_instrument_name_03():
-    '''Instrument name changes instrument name markup.
+    r'''Instrument name changes instrument name markup.
     Unless instrument name markup is set explicitly.
     '''
 

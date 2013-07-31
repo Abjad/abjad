@@ -4,7 +4,7 @@ from experimental.tools.musicexpressiontools.SetExpressionLookupExpression \
 
 class TimeSignatureSetExpressionLookupExpression(
     SetExpressionLookupExpression):
-    '''Time signature set expression lookup expression.
+    r'''Time signature set expression lookup expression.
     '''
 
     ### INITIALIZER ###
@@ -21,7 +21,7 @@ class TimeSignatureSetExpressionLookupExpression(
     ### PUBLIC METHODS ###
 
     def evaluate(self):
-        '''Evaluate time signature set expression lookup expression.
+        r'''Evaluate time signature set expression lookup expression.
 
         Return payload expression.
         '''

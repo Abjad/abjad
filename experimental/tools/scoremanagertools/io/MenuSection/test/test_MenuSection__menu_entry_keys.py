@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_MenuSection__menu_entry_keys_01():
-    '''Menu entry keys equal none when menu entry menu_entries are strings.
+    r'''Menu entry keys equal none when menu entry menu_entries are strings.
     True whether menu_section is numbered or not.
     '''
 
@@ -28,7 +28,7 @@ def test_MenuSection__menu_entry_keys_01():
 
 
 def test_MenuSection__menu_entry_keys_02():
-    '''Menu entry keys equal index 0 of menu entry 
+    r'''Menu entry keys equal index 0 of menu entry 
     menu_entries when menu entry menu_entries are tuples.
     True whether menu_section is numbered or not.
     '''

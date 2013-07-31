@@ -58,7 +58,7 @@ class SegmentSpecification(Specification):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        '''Segment specification interpreter representation.
+        r'''Segment specification interpreter representation.
 
         ::
 
@@ -93,7 +93,7 @@ class SegmentSpecification(Specification):
 
     @property
     def fresh_single_context_set_expressions(self):
-        '''Segment specification fresh single-context set expressions.
+        r'''Segment specification fresh single-context set expressions.
 
         ::
 
@@ -131,7 +131,7 @@ class SegmentSpecification(Specification):
 
     @property
     def score_model(self):
-        '''Segment specification score model.
+        r'''Segment specification score model.
 
         ::
 
@@ -170,7 +170,7 @@ class SegmentSpecification(Specification):
 
     @property
     def segment_name(self):
-        '''Segment specification name.
+        r'''Segment specification name.
 
         ::
 
@@ -205,7 +205,7 @@ class SegmentSpecification(Specification):
 
     @property
     def specification_name(self):
-        '''Segment specification specification name.
+        r'''Segment specification specification name.
 
         ::
 
@@ -236,7 +236,7 @@ class SegmentSpecification(Specification):
 
     @property
     def time_signatures(self):
-        '''Segment specification time signatures.
+        r'''Segment specification time signatures.
 
         ::
 
@@ -249,7 +249,7 @@ class SegmentSpecification(Specification):
 
     @property
     def timespan(self):
-        '''Segment specification timespan.
+        r'''Segment specification timespan.
 
         ::
 

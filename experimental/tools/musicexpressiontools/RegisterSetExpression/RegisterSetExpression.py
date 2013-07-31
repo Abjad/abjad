@@ -5,13 +5,13 @@ from experimental.tools.musicexpressiontools.LeafSetExpression \
 
 
 class RegisterSetExpression(LeafSetExpression):
-    '''Register set expression.
+    r'''Register set expression.
     '''
 
     ### PUBLIC METHODS ###
 
     def execute_against_score(self, score):
-        '''Execute register set expression against `score`.
+        r'''Execute register set expression against `score`.
         '''
         octave_transposition_mapping = self.source_expression.payload
         for leaf in self._iterate_selected_leaves_in_score(score):

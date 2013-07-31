@@ -2,7 +2,7 @@ from experimental.tools.musicexpressiontools.Division import Division
 
 
 def test_Division___init___01():
-    '''Initialize from other division.
+    r'''Initialize from other division.
     '''
 
     division_1 = Division((4, 8))
@@ -13,7 +13,7 @@ def test_Division___init___01():
 
 
 def test_Division___init___02():
-    '''Initialize from other division.
+    r'''Initialize from other division.
     '''
 
     division_1 = Division((4, 8), is_left_open=True)

@@ -7,13 +7,13 @@ from experimental.tools.musicexpressiontools.CallbackMixin \
 
 
 class IterablePayloadCallbackMixin(CallbackMixin):
-    '''Payload callback mixin.
+    r'''Payload callback mixin.
     '''
 
     ### SPECIAL METHODS ###
 
     def __and__(self, timespan):
-        '''Logical AND of payload and `timespan`.
+        r'''Logical AND of payload and `timespan`.
 
         Return copy of expression with callback.
         '''
@@ -23,7 +23,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         return self._copy_and_append_callback(callback)
 
     def __getitem__(self, payload_expression):
-        '''Get payload item.
+        r'''Get payload item.
 
         Return copy of expression with callback.
         '''
@@ -119,7 +119,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
     ### PUBLIC METHODS ###
 
     def map_to_each(self):
-        '''Map to each element in payload.
+        r'''Map to each element in payload.
 
         Return copy of expression with callback.
         '''
@@ -127,7 +127,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         return self._copy_and_append_callback(callback)
 
     def partition_by_ratio(self, ratio):
-        '''Partition payload by `ratio`.
+        r'''Partition payload by `ratio`.
 
         Return tuple of newly constructed expressions with callbacks.
         '''
@@ -141,7 +141,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         return tuple(result)
 
     def partition_by_ratio_of_durations(self, ratio):
-        '''Partition payload by `ratio` of durations.
+        r'''Partition payload by `ratio` of durations.
 
         Return tuple of newly constructed expressions with callbacks.
         '''
@@ -155,7 +155,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         return tuple(result)
 
     def reflect(self):
-        '''Reflect payload.
+        r'''Reflect payload.
 
         Return copy of expression with callback.
         '''
@@ -163,7 +163,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         return self._copy_and_append_callback(callback)
 
     def repeat_to_duration(self, duration):
-        '''Repeat payload to `duration`.
+        r'''Repeat payload to `duration`.
 
         Return copy of expression with callback.
         '''
@@ -173,7 +173,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         return self._copy_and_append_callback(callback)
 
     def repeat_to_length(self, length):
-        '''Repeat payload to `length`.
+        r'''Repeat payload to `length`.
 
         Return copy of expression with callback.
         '''
@@ -183,7 +183,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         return self._copy_and_append_callback(callback)
 
     def rotate(self, index):
-        '''Rotate payload.
+        r'''Rotate payload.
 
         Return copy of expression with callback.
         '''

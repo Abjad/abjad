@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_IterablePayloadExpression__callbacks_01():
-    '''Slice payload expression.
+    r'''Slice payload expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -22,7 +22,7 @@ def test_IterablePayloadExpression__callbacks_01():
 
 
 def test_IterablePayloadExpression__callbacks_02():
-    '''Partition payload expression elements by ratio.
+    r'''Partition payload expression elements by ratio.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -42,7 +42,7 @@ def test_IterablePayloadExpression__callbacks_02():
 
 
 def test_IterablePayloadExpression__callbacks_03():
-    '''Partition payload expression elements by ratio of durations.
+    r'''Partition payload expression elements by ratio of durations.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -62,7 +62,7 @@ def test_IterablePayloadExpression__callbacks_03():
 
 
 def test_IterablePayloadExpression__callbacks_04():
-    '''Repeat divisions to truncating duration.
+    r'''Repeat divisions to truncating duration.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -82,7 +82,7 @@ def test_IterablePayloadExpression__callbacks_04():
 
 
 def test_IterablePayloadExpression__callbacks_05():
-    '''Repeat divisions to extended duration.
+    r'''Repeat divisions to extended duration.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -102,7 +102,7 @@ def test_IterablePayloadExpression__callbacks_05():
 
 
 def test_IterablePayloadExpression__callbacks_06():
-    '''Repeat divisions to truncating length.
+    r'''Repeat divisions to truncating length.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -122,7 +122,7 @@ def test_IterablePayloadExpression__callbacks_06():
 
 
 def test_IterablePayloadExpression__callbacks_07():
-    '''Repeat divisions to extended length.
+    r'''Repeat divisions to extended length.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -142,7 +142,7 @@ def test_IterablePayloadExpression__callbacks_07():
 
 
 def test_IterablePayloadExpression__callbacks_08():
-    '''Reflect divisions.
+    r'''Reflect divisions.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -162,7 +162,7 @@ def test_IterablePayloadExpression__callbacks_08():
 
 
 def test_IterablePayloadExpression__callbacks_09():
-    '''Rotate divisions.
+    r'''Rotate divisions.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -182,7 +182,7 @@ def test_IterablePayloadExpression__callbacks_09():
 
 
 def test_IterablePayloadExpression__callbacks_10():
-    '''Logical AND of divisions and timespan.
+    r'''Logical AND of divisions and timespan.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

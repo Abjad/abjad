@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__select_divisions_time_relation_01():
-    '''Stop-based time relation.
+    r'''Stop-based time relation.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

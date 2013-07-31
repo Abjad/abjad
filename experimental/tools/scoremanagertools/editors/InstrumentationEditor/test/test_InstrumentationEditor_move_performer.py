@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_InstrumentationEditor_move_performer_01():
-    '''Quit, back, home, score & junk all work.
+    r'''Quit, back, home, score & junk all work.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -24,7 +24,7 @@ def test_InstrumentationEditor_move_performer_01():
 
 
 def test_InstrumentationEditor_move_performer_02():
-    '''Add three performers. Make two moves.
+    r'''Add three performers. Make two moves.
     '''
 
     editor = scoremanagertools.editors.InstrumentationEditor()

@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class ImageFormat(AbjadObject):
-    '''An image format encapsulates the logic for saving and converting an
+    r'''An image format encapsulates the logic for saving and converting an
     image into its associated filetype.
     '''
 

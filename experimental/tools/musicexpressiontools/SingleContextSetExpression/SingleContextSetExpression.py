@@ -92,7 +92,7 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
     ### PRIVATE METHODS ###
 
     def _copy_and_set_root_specification(self, root):
-        '''Copy single-context set expression.
+        r'''Copy single-context set expression.
 
         Set copy root specification to `root`.
 
@@ -110,7 +110,7 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
 
     @property
     def fresh(self):
-        '''True when single-context set expression results 
+        r'''True when single-context set expression results 
         from explicit composer input.
         Otherwise false.
 
@@ -120,7 +120,7 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
 
     @property
     def target_context_name(self):
-        '''Single-context set expression context name.
+        r'''Single-context set expression context name.
 
         Return string or none.
         '''
@@ -130,14 +130,14 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
 
     @abc.abstractmethod
     def evaluate(self):
-        '''Evaluate single-context set expression.
+        r'''Evaluate single-context set expression.
 
         Return timespan-scoped single-context set expression.
         '''
         pass
 
     def store_in_root_specification_by_context_and_attribute(self):
-        '''Store single-context set expression in root specification 
+        r'''Store single-context set expression in root specification 
         by context and attribute.
         '''
         target_context_name = self.target_context_name or \

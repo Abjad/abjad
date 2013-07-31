@@ -5,7 +5,7 @@ from experimental.tools.musicexpressiontools.PayloadExpression \
 
 
 class PitchClassTransformExpression(PayloadExpression):
-    '''Pitch-class transform expression.
+    r'''Pitch-class transform expression.
     '''
 
     ### INITIALIZER ###
@@ -52,7 +52,7 @@ class PitchClassTransformExpression(PayloadExpression):
 
     @property
     def transform_functions(self):
-        '''Pitch-class transform expression transform functions.
+        r'''Pitch-class transform expression transform functions.
 
         Return list.
         '''

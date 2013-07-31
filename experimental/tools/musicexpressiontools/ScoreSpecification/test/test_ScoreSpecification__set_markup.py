@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_ScoreSpecification__set_markup_01():
-    '''Set markup.
+    r'''Set markup.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
@@ -20,7 +20,7 @@ def test_ScoreSpecification__set_markup_01():
 
 
 def test_ScoreSpecification__set_markup_02():
-    '''Set markup from string.
+    r'''Set markup from string.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)

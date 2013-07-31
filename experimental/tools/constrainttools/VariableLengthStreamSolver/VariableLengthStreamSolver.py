@@ -8,7 +8,7 @@ from experimental.tools.constrainttools._Solver._Solver import _Solver
 
 
 class VariableLengthStreamSolver(_Solver):
-    '''A solver which behaves similarly to the ``FiniteStreamSolver`` 
+    r'''A solver which behaves similarly to the ``FiniteStreamSolver`` 
     except that it can produce solutions of variable rather than fixed 
     lengths.
 

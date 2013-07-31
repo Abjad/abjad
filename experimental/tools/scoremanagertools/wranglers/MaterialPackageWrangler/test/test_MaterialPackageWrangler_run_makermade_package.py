@@ -3,7 +3,7 @@ import py
 
 
 def test_MaterialPackageWrangler_run_makermade_package_01():
-    '''Make makermade package. Delete package.
+    r'''Make makermade package. Delete package.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -26,7 +26,7 @@ def test_MaterialPackageWrangler_run_makermade_package_01():
 
 
 def test_MaterialPackageWrangler_run_makermade_package_02():
-    '''Make score-resident makermade package. Delete package.
+    r'''Make score-resident makermade package. Delete package.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -52,7 +52,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 
 
 #def test_MaterialPackageWrangler_run_makermade_package_03():
-#    '''Make makermade package. Corrupt initializer.
+#    r'''Make makermade package. Corrupt initializer.
 #    Verify invalid initializer. Remove package.
 #    '''
 #
@@ -78,7 +78,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #
 #
 #def test_MaterialPackageWrangler_run_makermade_package_04():
-#    '''Make makermade package. Corrupt initializer. Restore initializer.
+#    r'''Make makermade package. Corrupt initializer. Restore initializer.
 #    Verify initializer. Remove package.
 #    '''
 #
@@ -104,7 +104,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #
 #
 #def test_MaterialPackageWrangler_run_makermade_package_05():
-#    '''Make makermade package. Create output material.
+#    r'''Make makermade package. Create output material.
 #    Delete package."
 #    '''
 #
@@ -133,7 +133,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #
 #
 #def test_MaterialPackageWrangler_run_makermade_package_06():
-#    '''Make makermade package. Delete material definition module.
+#    r'''Make makermade package. Delete material definition module.
 #    Remove package.
 #    '''
 #
@@ -159,7 +159,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #
 #
 #def test_MaterialPackageWrangler_run_makermade_package_07():
-#    '''Make makermade package. Overwrite material definition module with stub.
+#    r'''Make makermade package. Overwrite material definition module with stub.
 #    Delete package.
 #    '''
 #
@@ -184,7 +184,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #
 #
 #def test_MaterialPackageWrangler_run_makermade_package_08():
-#    '''Make makermade package. Copy canned material definition. Make output material. Remove output material.
+#    r'''Make makermade package. Copy canned material definition. Make output material. Remove output material.
 #    Remove package.
 #    '''
 #
@@ -213,7 +213,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #
 #
 #def test_MaterialPackageWrangler_run_makermade_package_09():
-#    '''Make makermade package. Copy canned material definition with exception.
+#    r'''Make makermade package. Copy canned material definition with exception.
 #    Examine package state. Remove package.
 #    '''
 #
@@ -238,7 +238,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #
 #
 #def test_MaterialPackageWrangler_run_makermade_package_10():
-#    '''Make makermade package. Copy canned material definition module. Make output data. Corrupt output data.
+#    r'''Make makermade package. Copy canned material definition module. Make output data. Corrupt output data.
 #    Verify invalid output material module. Remove package.
 #    '''
 #
@@ -267,7 +267,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #
 #
 #def test_MaterialPackageWrangler_run_makermade_package_11():
-#    '''Make makermade package. Copy canned material definition module.
+#    r'''Make makermade package. Copy canned material definition module.
 #    Make output data. Make PDF. Remove package.
 #    '''
 #

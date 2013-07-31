@@ -2,7 +2,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class StatalServerCursor(AbjadObject):
-    '''Statal server cursor.
+    r'''Statal server cursor.
     '''
 
     ### INITIALIZER ###
@@ -25,7 +25,7 @@ class StatalServerCursor(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, n=1, level=-1):
-        '''Get manifest payload of next `n` nodes at `level`.
+        r'''Get manifest payload of next `n` nodes at `level`.
 
         Return list of arbitrary values.
         '''
@@ -33,7 +33,7 @@ class StatalServerCursor(AbjadObject):
             n, level=level)
 
     def __eq__(self, expr):
-        '''True `expr` is a statal server cursor and keyword 
+        r'''True `expr` is a statal server cursor and keyword 
         argument values are equal. Otherwise false.
 
         Return boolean.
@@ -62,7 +62,7 @@ class StatalServerCursor(AbjadObject):
 
     @property
     def position(self):
-        '''Statal server cursor position.
+        r'''Statal server cursor position.
 
         Return tuple.
         '''
@@ -70,7 +70,7 @@ class StatalServerCursor(AbjadObject):
 
     @property
     def reverse(self):
-        '''Statal server cursor reverse.
+        r'''Statal server cursor reverse.
 
         False when cursor reads from left to right.
         True when cursor reads from right to left.
@@ -81,7 +81,7 @@ class StatalServerCursor(AbjadObject):
 
     @property
     def statal_server(self):
-        '''Statal server cursor statal server.
+        r'''Statal server cursor statal server.
 
         Return statal server.
         '''

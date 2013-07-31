@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_ScorePackageProxy_01():
-    '''Main menu.
+    r'''Main menu.
     '''
 
     red_example_score = scoremanagertools.proxies.ScorePackageProxy(
@@ -21,7 +21,7 @@ def test_ScorePackageProxy_01():
 
 
 def test_ScorePackageProxy_02():
-    '''Manage tags menu.
+    r'''Manage tags menu.
     '''
 
     red_example_score = scoremanagertools.proxies.ScorePackageProxy(
@@ -32,7 +32,7 @@ def test_ScorePackageProxy_02():
 
 
 def test_ScorePackageProxy_03():
-    '''Add and delete tag interactively.
+    r'''Add and delete tag interactively.
     '''
 
     red_example_score = scoremanagertools.proxies.ScorePackageProxy(
@@ -49,7 +49,7 @@ def test_ScorePackageProxy_03():
 
 
 def test_ScorePackageProxy_04():
-    '''User 'home' input results in return home.
+    r'''User 'home' input results in return home.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -62,7 +62,7 @@ def test_ScorePackageProxy_04():
 
 
 def test_ScorePackageProxy_05():
-    '''User 'home' input terminates execution (when score not managed from home).
+    r'''User 'home' input terminates execution (when score not managed from home).
     '''
 
     red_example_score = scoremanagertools.proxies.ScorePackageProxy(
@@ -75,7 +75,7 @@ def test_ScorePackageProxy_05():
 
 
 def test_ScorePackageProxy_06():
-    '''User 'b' input returns home.
+    r'''User 'b' input returns home.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -88,7 +88,7 @@ def test_ScorePackageProxy_06():
 
 
 def test_ScorePackageProxy_07():
-    '''Shared session.
+    r'''Shared session.
     '''
 
     spp = scoremanagertools.proxies.ScorePackageProxy(

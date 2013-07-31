@@ -4,7 +4,7 @@ from experimental.tools.musicexpressiontools.CallbackMixin \
 
 
 class OffsetCallbackMixin(CallbackMixin):
-    '''Offset callback mixin.
+    r'''Offset callback mixin.
 
     Score for examples:
 
@@ -64,7 +64,7 @@ class OffsetCallbackMixin(CallbackMixin):
     ### PUBLIC METHODS ###
 
     def scale(self, multiplier):
-        '''Scale offset expression by `multiplier`.
+        r'''Scale offset expression by `multiplier`.
 
         ::
 
@@ -91,7 +91,7 @@ class OffsetCallbackMixin(CallbackMixin):
         return self._copy_and_append_callback(callback)
 
     def translate(self, translation):
-        '''Translate offset expression by `translation`.
+        r'''Translate offset expression by `translation`.
 
         ::
 

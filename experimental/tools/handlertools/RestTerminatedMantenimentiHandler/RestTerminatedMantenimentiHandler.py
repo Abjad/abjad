@@ -10,7 +10,7 @@ from experimental.tools.handlertools.DynamicHandler import DynamicHandler
 
 
 class RestTerminatedMantenimentiHandler(DynamicHandler):
-    '''Rest-terminated mantenimenti handler.
+    r'''Rest-terminated mantenimenti handler.
     '''
 
     ### INITIALIZER ###

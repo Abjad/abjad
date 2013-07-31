@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__select_leaves_01():
-    '''Select leaves composited on leaf select expression.
+    r'''Select leaves composited on leaf select expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -20,7 +20,7 @@ def test_SegmentSpecification__select_leaves_01():
 
 
 def test_SegmentSpecification__select_leaves_02():
-    '''Rotate leaf select expression.
+    r'''Rotate leaf select expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -45,7 +45,7 @@ def test_SegmentSpecification__select_leaves_02():
 
 
 def test_SegmentSpecification__select_leaves_03():
-    '''Leaves select correctly across rhythm payload expression boundaries.
+    r'''Leaves select correctly across rhythm payload expression boundaries.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -69,7 +69,7 @@ def test_SegmentSpecification__select_leaves_03():
 
 
 def test_SegmentSpecification__select_leaves_04():
-    '''Select one division's leaves.
+    r'''Select one division's leaves.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -92,7 +92,7 @@ def test_SegmentSpecification__select_leaves_04():
 
 
 def test_SegmentSpecification__select_leaves_05():
-    '''Select leaves that start during measure 1 + 1.
+    r'''Select leaves that start during measure 1 + 1.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -111,7 +111,7 @@ def test_SegmentSpecification__select_leaves_05():
 
 
 def test_SegmentSpecification__select_leaves_06():
-    '''Select leaves that stop during measure 1 + 1.
+    r'''Select leaves that stop during measure 1 + 1.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -131,7 +131,7 @@ def test_SegmentSpecification__select_leaves_06():
 
 
 def test_SegmentSpecification__select_leaves_07():
-    '''Select leaves that intersect measure 1 + 1.
+    r'''Select leaves that intersect measure 1 + 1.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

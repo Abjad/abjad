@@ -5,7 +5,7 @@ from abjad.tools.configurationtools.AbjadConfiguration \
 
 
 class ScoreManagerConfiguration(Configuration):
-    '''Score manager configuration.
+    r'''Score manager configuration.
 
         >>> configuration = \
         ...     scoremanagertools.scoremanager.ScoreManagerConfiguration()
@@ -230,7 +230,7 @@ class ScoreManagerConfiguration(Configuration):
     ### PUBLIC METHODS ###
 
     def filesystem_path_to_packagesystem_path(self, filesystem_path):
-        '''Change `filesystem_path` to package path.
+        r'''Change `filesystem_path` to package path.
 
         Return string.
         '''
@@ -292,7 +292,7 @@ class ScoreManagerConfiguration(Configuration):
 
     def list_score_directory_paths(
         self, built_in=False, user=False, head=None):
-        '''List score directory paths.
+        r'''List score directory paths.
 
         Example. List built-in score directory paths:
 
@@ -335,7 +335,7 @@ class ScoreManagerConfiguration(Configuration):
         return result
 
     def packagesystem_path_exists(self, packagesystem_path):
-        '''True when `packagesystem_path` exists. Otherwise false.
+        r'''True when `packagesystem_path` exists. Otherwise false.
 
         Return boolean.
         '''
@@ -346,7 +346,7 @@ class ScoreManagerConfiguration(Configuration):
 
     def packagesystem_path_to_filesystem_path(
         self, package_path, is_module=False):
-        '''Change `package_path` to directory path.
+        r'''Change `package_path` to directory path.
 
         Return string.
         '''

@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__look_up_time_signature_set_expression_from_past_01():
-    '''From-past time signature set expression lookup expression.
+    r'''From-past time signature set expression lookup expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -21,7 +21,7 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_past_0
 
 
 def test_SegmentSpecification__look_up_time_signature_set_expression_from_past_02():
-    '''From-past time signature set expression lookup expression with reverse callback.
+    r'''From-past time signature set expression lookup expression with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -41,7 +41,7 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_past_0
 
 
 def test_SegmentSpecification__look_up_time_signature_set_expression_from_past_03():
-    '''From-past time signature set expression lookup expression with reverse callback.
+    r'''From-past time signature set expression lookup expression with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -61,7 +61,7 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_past_0
 
 
 def test_SegmentSpecification__look_up_time_signature_set_expression_from_past_04():
-    '''From-past time signature set expression lookup expression with reverse callbacks.
+    r'''From-past time signature set expression lookup expression with reverse callbacks.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_InstrumentEditor_add_untuned_percussion_01():
-    '''Quit, back, score, home & junk all work.
+    r'''Quit, back, score, home & junk all work.
     '''
 
     editor = scoremanagertools.editors.InstrumentEditor()

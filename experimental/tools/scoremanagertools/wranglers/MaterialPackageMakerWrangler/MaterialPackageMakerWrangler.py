@@ -8,7 +8,7 @@ from experimental.tools.scoremanagertools.wranglers.PackageWrangler \
 
 
 class MaterialPackageMakerWrangler(PackageWrangler):
-    '''Material package maker wrangler.
+    r'''Material package maker wrangler.
 
     ::
 
@@ -99,7 +99,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     @property
     def asset_proxy_class(self):
-        '''Asset proxy class:
+        r'''Asset proxy class:
 
         ::
 
@@ -113,7 +113,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     @property
     def storage_format(self):
-        '''Material package maker wrangler storage format:
+        r'''Material package maker wrangler storage format:
 
         ::
 
@@ -151,7 +151,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
         head=None):
-        '''List asset filesystem paths.
+        r'''List asset filesystem paths.
 
         Example. List built-in material package maker filesystem paths:
 
@@ -186,7 +186,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
         head=None):
-        '''List asset names.
+        r'''List asset names.
 
         Example. List built-in material package maker names:
 
@@ -221,7 +221,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
         head=None):
-        '''List asset packagesystem_paths.
+        r'''List asset packagesystem_paths.
 
         Example. List built-in material package maker package paths:
 
@@ -256,7 +256,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
         head=None):
-        '''List asset proxies.
+        r'''List asset proxies.
 
         Example. List built-in material package maker proxies:
 
@@ -290,7 +290,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True):
-        '''List asset storehouse filesystem paths.
+        r'''List asset storehouse filesystem paths.
 
         Example. List built-in material package maker storehouses:
 

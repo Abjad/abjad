@@ -5,7 +5,7 @@ from experimental.tools.musicexpressiontools.SetExpressionLookupExpression \
 
 
 class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
-    '''Division set expression lookup expression.
+    r'''Division set expression lookup expression.
 
     Definitions:
 
@@ -56,7 +56,7 @@ class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
     ### PUBLIC METHODS ###
 
     def evaluate(self):
-        '''Evaluate division set expression lookup expression.
+        r'''Evaluate division set expression lookup expression.
 
         Return payload expression.
         '''

@@ -7,7 +7,7 @@ from experimental.tools.musicexpressiontools.RhythmRegionExpression \
 
 
 class LiteralRhythmRegionExpression(RhythmRegionExpression):
-    '''Literal rhythm region expression.
+    r'''Literal rhythm region expression.
     '''
 
     ### PRIVATE METHODS ###

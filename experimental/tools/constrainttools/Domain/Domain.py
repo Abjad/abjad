@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Domain(AbjadObject):
-    '''A two-dimensional constraints search domain:
+    r'''A two-dimensional constraints search domain:
 
     ::
 
@@ -64,7 +64,7 @@ class Domain(AbjadObject):
     ### PUBLIC METHODS ###
 
     def randomized(self):
-        '''Create a new Domain containing the same values, but with every
+        r'''Create a new Domain containing the same values, but with every
         column randomly reordered:
 
         ::

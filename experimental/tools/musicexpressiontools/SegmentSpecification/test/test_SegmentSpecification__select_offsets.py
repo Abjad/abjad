@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__select_offsets_01():
-    '''Explicit offsets.
+    r'''Explicit offsets.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -21,7 +21,7 @@ def test_SegmentSpecification__select_offsets_01():
 
 
 def test_SegmentSpecification__select_offsets_02():
-    '''Implicit start-offset.
+    r'''Implicit start-offset.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -40,7 +40,7 @@ def test_SegmentSpecification__select_offsets_02():
 
 
 def test_SegmentSpecification__select_offsets_03():
-    '''Implicit stop-offset.
+    r'''Implicit stop-offset.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -59,7 +59,7 @@ def test_SegmentSpecification__select_offsets_03():
 
 
 def test_SegmentSpecification__select_offsets_04():
-    '''Implicit start- and stop-offsets.
+    r'''Implicit start- and stop-offsets.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -78,7 +78,7 @@ def test_SegmentSpecification__select_offsets_04():
 
 
 def test_SegmentSpecification__select_offsets_05():
-    '''Negative start-offset.
+    r'''Negative start-offset.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -97,7 +97,7 @@ def test_SegmentSpecification__select_offsets_05():
 
 
 def test_SegmentSpecification__select_offsets_06():
-    '''Negative stop-offset.
+    r'''Negative stop-offset.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -116,7 +116,7 @@ def test_SegmentSpecification__select_offsets_06():
 
 
 def test_SegmentSpecification__select_offsets_07():
-    '''Negative start and stop-offsets.
+    r'''Negative start and stop-offsets.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_single_segment_solo__overlapping_division_select_expressions_01():
-    '''Second division set expression overwrites first division set expression.
+    r'''Second division set expression overwrites first division set expression.
     Settings stop and start at same time.
     '''
 
@@ -21,7 +21,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_01():
 
 
 def test_single_segment_solo__overlapping_division_select_expressions_02():
-    '''Second division set expression overrides first division set expression.
+    r'''Second division set expression overrides first division set expression.
     First set expression smaller than second set expression.
     Settings start at same time.
     '''
@@ -42,7 +42,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_02():
 
 
 def test_single_segment_solo__overlapping_division_select_expressions_03():
-    '''Second division set expression overrides first division set expression.
+    r'''Second division set expression overrides first division set expression.
     First set expression smaller than second set expression.
     First set expression starts after second set expression.
     '''
@@ -63,7 +63,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_03():
 
 
 def test_single_segment_solo__overlapping_division_select_expressions_04():
-    '''Second division overlaps and shortens the first.
+    r'''Second division overlaps and shortens the first.
     Result is two separate division regions that both express in score.
     Both the (compositional) order of specification
     and the (temporal) order of performance matter in this example.
@@ -85,7 +85,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_04():
 
 
 def test_single_segment_solo__overlapping_division_select_expressions_05():
-    '''Second division sits in the middle of the first.
+    r'''Second division sits in the middle of the first.
     Three division regions result.
     '''
 
@@ -105,7 +105,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_05():
 
 
 def test_single_segment_solo__overlapping_division_select_expressions_06():
-    '''Second division sits in the middle of the first.
+    r'''Second division sits in the middle of the first.
     Three division regions result.
     Same as above but with a different select expression.
     '''
@@ -126,7 +126,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_06():
 
 
 def test_single_segment_solo__overlapping_division_select_expressions_07():
-    '''Three division select expressions sitting exactly on top of each other.
+    r'''Three division select expressions sitting exactly on top of each other.
     Only the topmost (ie, lexically last) is expressed.
     '''
 
@@ -146,7 +146,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_07():
 
 
 def test_single_segment_solo__overlapping_division_select_expressions_08():
-    '''Two fractional division select expressions sitting exactly on top of each other.
+    r'''Two fractional division select expressions sitting exactly on top of each other.
     Only the topmost is expressed.
     '''
 
@@ -167,7 +167,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_08():
 
 
 def test_single_segment_solo__overlapping_division_select_expressions_09():
-    '''Two fractional division select expressions partially overlapping.
+    r'''Two fractional division select expressions partially overlapping.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

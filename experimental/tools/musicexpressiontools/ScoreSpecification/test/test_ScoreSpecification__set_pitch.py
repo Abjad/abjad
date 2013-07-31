@@ -3,7 +3,7 @@ import copy
 
 
 def test_ScoreSpecification__set_pitch_01():
-    '''Read from server over all leaves in voice.
+    r'''Read from server over all leaves in voice.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
@@ -22,7 +22,7 @@ def test_ScoreSpecification__set_pitch_01():
 
 
 def test_ScoreSpecification__set_pitch_02():
-    '''Read from server over contiguous leaves in one voice.
+    r'''Read from server over contiguous leaves in one voice.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
@@ -41,7 +41,7 @@ def test_ScoreSpecification__set_pitch_02():
 
 
 def test_ScoreSpecification__set_pitch_03():
-    '''Read from server over discontiguous leaves in same voice.
+    r'''Read from server over discontiguous leaves in same voice.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
@@ -61,7 +61,7 @@ def test_ScoreSpecification__set_pitch_03():
 
 
 def test_ScoreSpecification__set_pitch_04():
-    '''Read from server over discontiguous leaves in different voices.
+    r'''Read from server over discontiguous leaves in different voices.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=2)
@@ -82,7 +82,7 @@ def test_ScoreSpecification__set_pitch_04():
 
 
 def test_ScoreSpecification__set_pitch_05():
-    '''Read from server over overlaid pitches in discontiguous select expression.
+    r'''Read from server over overlaid pitches in discontiguous select expression.
     Earlier pitch assignments are simply overwritten by later pitch assignments.
     '''
 
@@ -104,7 +104,7 @@ def test_ScoreSpecification__set_pitch_05():
 
 
 def test_ScoreSpecification__set_pitch_06():
-    '''Read from server over synchronous discontiguous selection.
+    r'''Read from server over synchronous discontiguous selection.
     Voice 1 before voice 2.
     '''
 
@@ -125,7 +125,7 @@ def test_ScoreSpecification__set_pitch_06():
 
 
 def test_ScoreSpecification__set_pitch_07():
-    '''Read from server over synchronous discontiguous selection.
+    r'''Read from server over synchronous discontiguous selection.
     Voice 2 before voice 1.
     '''
 
@@ -146,7 +146,7 @@ def test_ScoreSpecification__set_pitch_07():
 
 
 def test_ScoreSpecification__set_pitch_08():
-    '''Two cursors open against the same server.
+    r'''Two cursors open against the same server.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=2)
@@ -167,7 +167,7 @@ def test_ScoreSpecification__set_pitch_08():
 
 
 def test_ScoreSpecification__set_pitch_09():
-    '''One cursor read three times.
+    r'''One cursor read three times.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
@@ -188,7 +188,7 @@ def test_ScoreSpecification__set_pitch_09():
 
 
 def test_ScoreSpecification__set_pitch_10():
-    '''One cursor initialized from the position of another.
+    r'''One cursor initialized from the position of another.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=2)
@@ -209,7 +209,7 @@ def test_ScoreSpecification__set_pitch_10():
 
 
 def test_ScoreSpecification__set_pitch_11():
-    '''Copied cursor preserves state.
+    r'''Copied cursor preserves state.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=2)
@@ -230,7 +230,7 @@ def test_ScoreSpecification__set_pitch_11():
 
 
 def test_ScoreSpecification__set_pitch_12():
-    '''Reverse cursor.
+    r'''Reverse cursor.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
@@ -249,7 +249,7 @@ def test_ScoreSpecification__set_pitch_12():
 
 
 def test_ScoreSpecification__set_pitch_13():
-    '''Limit to first 4 nodes at level -1.
+    r'''Limit to first 4 nodes at level -1.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
@@ -268,7 +268,7 @@ def test_ScoreSpecification__set_pitch_13():
 
 
 def test_ScoreSpecification__set_pitch_14():
-    '''Limit to first 4 nodes after position (2, 0) at level -1.
+    r'''Limit to first 4 nodes after position (2, 0) at level -1.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
@@ -287,7 +287,7 @@ def test_ScoreSpecification__set_pitch_14():
 
 
 def test_ScoreSpecification__set_pitch_15():
-    '''Limit to first 2 nodes at level -2.
+    r'''Limit to first 2 nodes at level -2.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
@@ -306,7 +306,7 @@ def test_ScoreSpecification__set_pitch_15():
 
 
 def test_ScoreSpecification__set_pitch_16():
-    '''Limit to first 2 nodes after (2, ) at level -2.
+    r'''Limit to first 2 nodes after (2, ) at level -2.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)

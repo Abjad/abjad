@@ -5,13 +5,13 @@ from experimental.tools.musicexpressiontools.LeafSetExpression \
 
 
 class MarkSetExpression(LeafSetExpression):
-    '''Mark set expression.
+    r'''Mark set expression.
     '''
 
     ### PUBLIC METHODS ###
 
     def execute_against_score(self, score):
-        '''Execute mark set expression against `score`.
+        r'''Execute mark set expression against `score`.
         '''
         mark = self.source_expression.payload
         assert isinstance(mark, marktools.Mark), repr(mark)

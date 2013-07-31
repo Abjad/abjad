@@ -18,7 +18,7 @@ def test_ScoreSpecification__append_segment_01():
 
 
 def test_ScoreSpecification__append_segment_02():
-    '''Error on duplicate segment name.
+    r'''Error on duplicate segment name.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_ScoreSpecification__set_spanner_01():
-    '''Set spanner on divisions' leaves.
+    r'''Set spanner on divisions' leaves.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
@@ -24,7 +24,7 @@ def test_ScoreSpecification__set_spanner_01():
 
 
 def test_ScoreSpecification__set_spanner_02():
-    '''Use spanner to set grob overrides and subsequent reverts.
+    r'''Use spanner to set grob overrides and subsequent reverts.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)

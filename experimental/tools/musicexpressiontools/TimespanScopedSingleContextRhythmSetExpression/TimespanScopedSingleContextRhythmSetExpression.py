@@ -36,7 +36,7 @@ class TimespanScopedSingleContextRhythmSetExpression(
     ### SPECIAL METHODS ###
 
     def __sub__(self, timespan):
-        '''Subtract `timespan` from timespan-scoped single-context 
+        r'''Subtract `timespan` from timespan-scoped single-context 
         rhythm set expression.
 
             >>> source_expression = \
@@ -104,7 +104,7 @@ class TimespanScopedSingleContextRhythmSetExpression(
     ### PUBLIC METHODS ###
 
     def evaluate(self, division_list, start_offset, voice_name):
-        '''Evaluate timespan-scoped single-context rhythm set expression.
+        r'''Evaluate timespan-scoped single-context rhythm set expression.
 
         Return rhythm region expression.
         '''

@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_InstrumentEditor_instrument_name_markup_01():
-    '''Quit, back & home all work.
+    r'''Quit, back & home all work.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()

@@ -3,7 +3,7 @@ from experimental.tools.musicexpressiontools.PayloadExpression \
 
 
 class StatalServerCursorExpression(PayloadExpression):
-    '''Statal server cursor expression.
+    r'''Statal server cursor expression.
     '''
 
     ### INITIALIZER ###

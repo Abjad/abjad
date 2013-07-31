@@ -131,7 +131,7 @@ class CounttimeComponentSelectExpression(
 
     @property
     def classes(self):
-        '''Counttime component select expression classes.
+        r'''Counttime component select expression classes.
 
         Return class inventory or none.
         '''
@@ -140,7 +140,7 @@ class CounttimeComponentSelectExpression(
     ### PUBLIC METHODS ###
 
     def evaluate(self):
-        '''Evaluate counttime component select expression.
+        r'''Evaluate counttime component select expression.
 
         Return none when nonevaluable.
 
@@ -182,7 +182,7 @@ class CounttimeComponentSelectExpression(
         return expression
 
     def evaluate_against_score(self, score):
-        '''Evaluate counttime component select expression against `score`.
+        r'''Evaluate counttime component select expression against `score`.
 
         Return iterable payload expression.
         '''

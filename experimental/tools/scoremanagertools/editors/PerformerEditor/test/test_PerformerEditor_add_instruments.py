@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_PerformerEditor_add_instruments_01():
-    '''Quit, back, home, score & junk all work.
+    r'''Quit, back, home, score & junk all work.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -24,7 +24,7 @@ def test_PerformerEditor_add_instruments_01():
 
 
 def test_PerformerEditor_add_instruments_02():
-    '''Add two instruments.
+    r'''Add two instruments.
     '''
 
     editor = scoremanagertools.editors.PerformerEditor()
@@ -34,7 +34,7 @@ def test_PerformerEditor_add_instruments_02():
 
 
 def test_PerformerEditor_add_instruments_03():
-    '''Range handling.
+    r'''Range handling.
     '''
 
     editor = scoremanagertools.editors.PerformerEditor()

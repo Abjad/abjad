@@ -2,7 +2,7 @@ from abjad.tools.abctools import Parser
 
 
 class ENPParser(Parser):
-    '''Parses a subset of PWGL's ENP syntax:
+    r'''Parses a subset of PWGL's ENP syntax:
 
     ::
 
@@ -132,51 +132,51 @@ class ENPParser(Parser):
             print("Syntax error at EOF")
 
     def p_list__PAREN_L__list_body__PAREN_R(self, p):
-        '''list : PAREN_L list_body PAREN_R
+        r'''list : PAREN_L list_body PAREN_R
         '''
         p[0] = p[2]
 
     def p_list_body__list_body__list_body_element(self, p):
-        '''list_body : list_body list_body_element
+        r'''list_body : list_body list_body_element
         '''
         p[0] = p[1] + [p[2]]
 
     def p_list_body__list_body_element(self, p):
-        '''list_body : list_body_element
+        r'''list_body : list_body_element
         '''
         p[0] = [p[1]]
 
     def p_list_body_element__FLOAT(self, p):
-        '''list_body_element : FLOAT
+        r'''list_body_element : FLOAT
         '''
         p[0] = p[1]
 
     def p_list_body_element__INTEGER(self, p):
-        '''list_body_element : INTEGER
+        r'''list_body_element : INTEGER
         '''
         p[0] = p[1]
 
     def p_list_body_element__KEYWORD(self, p):
-        '''list_body_element : KEYWORD
+        r'''list_body_element : KEYWORD
         '''
         p[0] = p[1]
 
     def p_list_body_element__STRING(self, p):
-        '''list_body_element : STRING
+        r'''list_body_element : STRING
         '''
         p[0] = p[1]
 
     def p_list_body_element__list(self, p):
-        '''list_body_element : list
+        r'''list_body_element : list
         '''
         p[0] = p[1]
 
     def p_toplevel__EMPTY(self, p):
-        '''toplevel : 
+        r'''toplevel : 
         '''
         p[0] = []
 
     def p_toplevel__list(self, p):
-        '''toplevel : toplevel list
+        r'''toplevel : toplevel list
         '''
         p[0] = p[1] + [p[2]]

@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_PerformerCreationWizard_make_performer_configuration_menu_01():
-    '''Clarinetist configuration menu contains exactly one default entry.
+    r'''Clarinetist configuration menu contains exactly one default entry.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()

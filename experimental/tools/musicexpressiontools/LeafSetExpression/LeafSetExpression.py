@@ -2,7 +2,7 @@ from experimental.tools.musicexpressiontools.Expression import Expression
 
 
 class LeafSetExpression(Expression):
-    '''Leaf set expression.
+    r'''Leaf set expression.
     '''
 
     ### INITIALIZER ###
@@ -36,7 +36,7 @@ class LeafSetExpression(Expression):
 
     @property
     def source_expression(self):
-        '''Leaf set expression source expression.
+        r'''Leaf set expression source expression.
 
         Return expression.
         '''
@@ -44,7 +44,7 @@ class LeafSetExpression(Expression):
 
     @property
     def target_select_expression_inventory(self):
-        '''Leaf set expression target select expression inventory.
+        r'''Leaf set expression target select expression inventory.
 
         Return select expression inventory.
         '''

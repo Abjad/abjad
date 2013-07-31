@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_Session___init___01():
-    '''Attributes assigned at initialization time.
+    r'''Attributes assigned at initialization time.
     '''
 
     session = scoremanagertools.scoremanager.Session()

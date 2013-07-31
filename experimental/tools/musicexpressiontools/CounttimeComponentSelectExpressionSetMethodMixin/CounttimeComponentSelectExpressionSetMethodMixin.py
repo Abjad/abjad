@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class CounttimeComponentSelectExpressionSetMethodMixin(AbjadObject):
-    '''Counttime component set method mixin.
+    r'''Counttime component set method mixin.
     '''
 
     ### PRIVATE METHODS ###

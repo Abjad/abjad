@@ -38,7 +38,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_03():
 
 
 def test_StartPositionedRhythmPayloadExpression_rotate_04():
-    '''Do not fracture beam.
+    r'''Do not fracture beam.
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
@@ -52,7 +52,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_04():
 
 
 def test_StartPositionedRhythmPayloadExpression_rotate_05():
-    '''Do not fracture beam.
+    r'''Do not fracture beam.
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
@@ -66,7 +66,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_05():
 
 
 def test_StartPositionedRhythmPayloadExpression_rotate_06():
-    '''Do not fracture beam.
+    r'''Do not fracture beam.
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
@@ -80,7 +80,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_06():
 
 
 def test_StartPositionedRhythmPayloadExpression_rotate_07():
-    '''Do not fracture beam. Zero effective rotation.
+    r'''Do not fracture beam. Zero effective rotation.
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
@@ -94,7 +94,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_07():
 
 
 def test_StartPositionedRhythmPayloadExpression_rotate_08():
-    '''Rotation greater than component count.
+    r'''Rotation greater than component count.
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
@@ -108,7 +108,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_08():
 
 
 def test_StartPositionedRhythmPayloadExpression_rotate_09():
-    '''Identity (zero) rotation.
+    r'''Identity (zero) rotation.
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
@@ -122,7 +122,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_09():
 
 
 def test_StartPositionedRhythmPayloadExpression_rotate_10():
-    '''Internal node zero-rotation.
+    r'''Internal node zero-rotation.
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
@@ -137,7 +137,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_10():
 
 
 def test_StartPositionedRhythmPayloadExpression_rotate_11():
-    '''Internal node left rotation.
+    r'''Internal node left rotation.
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
@@ -152,7 +152,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_11():
 
 
 def test_StartPositionedRhythmPayloadExpression_rotate_12():
-    '''Internal node left rotation.
+    r'''Internal node left rotation.
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
@@ -167,7 +167,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_12():
 
 
 def test_StartPositionedRhythmPayloadExpression_rotate_13():
-    '''Internal node right rotation.
+    r'''Internal node right rotation.
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
@@ -182,7 +182,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_13():
 
 
 def test_StartPositionedRhythmPayloadExpression_rotate_14():
-    '''Internal node right rotation.
+    r'''Internal node right rotation.
     '''
 
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")

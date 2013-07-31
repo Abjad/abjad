@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__select_divisions_01():
-    '''Divisions are interpreted for the entire score duration of a voice.
+    r'''Divisions are interpreted for the entire score duration of a voice.
     Divisions are not interpreted segment by segment for a voice.
     '''
 
@@ -24,7 +24,7 @@ def test_SegmentSpecification__select_divisions_01():
 
 
 def test_SegmentSpecification__select_divisions_02():
-    '''Overlapping division select expressions work across segment boundary.
+    r'''Overlapping division select expressions work across segment boundary.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -44,7 +44,7 @@ def test_SegmentSpecification__select_divisions_02():
 
 
 def test_SegmentSpecification__select_divisions_03():
-    '''Negative index.
+    r'''Negative index.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -63,7 +63,7 @@ def test_SegmentSpecification__select_divisions_03():
 
 
 def test_SegmentSpecification__select_divisions_04():
-    '''Positive integer index.
+    r'''Positive integer index.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -81,7 +81,7 @@ def test_SegmentSpecification__select_divisions_04():
 
 
 def test_SegmentSpecification__select_divisions_05():
-    '''Negative integer index.
+    r'''Negative integer index.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -99,7 +99,7 @@ def test_SegmentSpecification__select_divisions_05():
 
 
 def test_SegmentSpecification__select_divisions_06():
-    '''Index equal to zero.
+    r'''Index equal to zero.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -117,7 +117,7 @@ def test_SegmentSpecification__select_divisions_06():
 
 
 def test_SegmentSpecification__select_divisions_07():
-    '''Empty slice indices.
+    r'''Empty slice indices.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -135,7 +135,7 @@ def test_SegmentSpecification__select_divisions_07():
 
 
 def test_SegmentSpecification__select_divisions_08():
-    '''Set spanner on each division's leaves.
+    r'''Set spanner on each division's leaves.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -154,7 +154,7 @@ def test_SegmentSpecification__select_divisions_08():
 
 
 def test_SegmentSpecification__select_divisions_09():
-    '''Set handler on each division's leaves.
+    r'''Set handler on each division's leaves.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

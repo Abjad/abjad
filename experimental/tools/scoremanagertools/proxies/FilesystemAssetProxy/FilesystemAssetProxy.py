@@ -8,7 +8,7 @@ from experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject \
 
 
 class FilesystemAssetProxy(ScoreManagerObject):
-    '''Asset proxy.
+    r'''Asset proxy.
     '''
 
     ### CLASS VARIABLES ###
@@ -31,7 +31,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        '''True when filesystem path properties are equal.
+        r'''True when filesystem path properties are equal.
         Otherwise false.
 
         Return boolean.
@@ -42,7 +42,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
         return False
 
     def __repr__(self):
-        '''Filesystem asset proxy repr.
+        r'''Filesystem asset proxy repr.
 
         Return string.
         '''

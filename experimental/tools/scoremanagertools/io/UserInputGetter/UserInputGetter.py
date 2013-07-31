@@ -9,7 +9,7 @@ from experimental.tools.scoremanagertools.io.PromptMakerMixin \
 
 
 class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
-    '''User input getter menu.
+    r'''User input getter menu.
 
     .. note:: add docstring.
 
@@ -33,14 +33,14 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
     ### SPECIAL METHODS ###
 
     def __len__(self):
-        '''Number of prompts in user input getter menu.
+        r'''Number of prompts in user input getter menu.
 
         Return nonnegative integer.
         '''
         return len(self.prompts)
         
     def __repr__(self):
-        '''Interpreter representation of user input getter.
+        r'''Interpreter representation of user input getter.
 
         Return string.
         '''

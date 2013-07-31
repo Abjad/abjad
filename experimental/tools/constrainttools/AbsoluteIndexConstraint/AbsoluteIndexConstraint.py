@@ -3,7 +3,7 @@ from experimental.tools.constrainttools._AbsoluteConstraint._AbsoluteConstraint 
 
 
 class AbsoluteIndexConstraint(_AbsoluteConstraint):
-    '''A constraint for an absolutely positioned item or group of items in a
+    r'''A constraint for an absolutely positioned item or group of items in a
     solution:
 
     ::

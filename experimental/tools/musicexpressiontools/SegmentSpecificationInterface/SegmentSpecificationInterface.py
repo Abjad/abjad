@@ -36,7 +36,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        '''Segment specification interface interpreter representation.
+        r'''Segment specification interface interpreter representation.
 
             >>> red_segment
             SegmentSpecificationInterface('red')
@@ -49,7 +49,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
 
     @property
     def score_specification(self):
-        '''Segment specification interface score specification.
+        r'''Segment specification interface score specification.
 
         ::
 
@@ -66,7 +66,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
 
     @property
     def segment_name(self):
-        '''Segment specification segment name.
+        r'''Segment specification segment name.
 
         ::
 
@@ -79,7 +79,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
 
     @property
     def specification(self):
-        '''Segment specification interface specification.
+        r'''Segment specification interface specification.
 
         ::
 
@@ -92,7 +92,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
 
     @property
     def specification_name(self):
-        '''Segment specification interface specification name.
+        r'''Segment specification interface specification name.
 
         ::
 
@@ -105,7 +105,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
 
     @property
     def storage_format(self):
-        '''Segment specification interface storage format.
+        r'''Segment specification interface storage format.
 
         ::
 
@@ -125,7 +125,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
 
     @property
     def timespan(self):
-        '''Segment specification interface timespan.
+        r'''Segment specification interface timespan.
 
         ::
 

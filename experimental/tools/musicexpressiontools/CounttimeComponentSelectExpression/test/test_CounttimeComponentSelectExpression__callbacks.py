@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_CounttimeComponentSelectExpression__callbacks_01():
-    '''Slice leaves.
+    r'''Slice leaves.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -22,7 +22,7 @@ def test_CounttimeComponentSelectExpression__callbacks_01():
 
 
 def test_CounttimeComponentSelectExpression__callbacks_02():
-    '''Partition rhythm by ratio.
+    r'''Partition rhythm by ratio.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -42,7 +42,7 @@ def test_CounttimeComponentSelectExpression__callbacks_02():
 
 
 def test_CounttimeComponentSelectExpression__callbacks_03():
-    '''Partition rhythm by ratio of durations.
+    r'''Partition rhythm by ratio of durations.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -62,7 +62,7 @@ def test_CounttimeComponentSelectExpression__callbacks_03():
 
 
 def test_CounttimeComponentSelectExpression__callbacks_04():
-    '''Repeat to duration.
+    r'''Repeat to duration.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -82,7 +82,7 @@ def test_CounttimeComponentSelectExpression__callbacks_04():
 
 
 def test_CounttimeComponentSelectExpression__callbacks_05():
-    '''Repeat to length.
+    r'''Repeat to length.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -102,7 +102,7 @@ def test_CounttimeComponentSelectExpression__callbacks_05():
 
 
 def test_CounttimeComponentSelectExpression__callbacks_06():
-    '''Reflect rhythm.
+    r'''Reflect rhythm.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -122,7 +122,7 @@ def test_CounttimeComponentSelectExpression__callbacks_06():
 
 
 def test_CounttimeComponentSelectExpression__callbacks_07():
-    '''Rotate rhythm by count.
+    r'''Rotate rhythm by count.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -142,7 +142,7 @@ def test_CounttimeComponentSelectExpression__callbacks_07():
 
 
 def test_CounttimeComponentSelectExpression__callbacks_08():
-    '''Rotate rhythm by duration.
+    r'''Rotate rhythm by duration.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -162,7 +162,7 @@ def test_CounttimeComponentSelectExpression__callbacks_08():
 
 
 def test_CounttimeComponentSelectExpression__callbacks_09():
-    '''Logical AND of rhythm and timespan.
+    r'''Logical AND of rhythm and timespan.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

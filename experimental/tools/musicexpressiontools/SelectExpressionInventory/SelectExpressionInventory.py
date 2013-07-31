@@ -5,14 +5,14 @@ from experimental.tools.musicexpressiontools.SetMethodMixin \
 
 
 class SelectExpressionInventory(ExpressionInventory, SetMethodMixin):
-    '''Select expression inventory.
+    r'''Select expression inventory.
     '''
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def score_specification(self):
-        '''Select expression inventory score specification.
+        r'''Select expression inventory score specification.
 
         Return score specification.
         '''

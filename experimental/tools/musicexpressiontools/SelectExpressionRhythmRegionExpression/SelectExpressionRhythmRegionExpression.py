@@ -6,13 +6,13 @@ from experimental.tools.musicexpressiontools.RhythmRegionExpression \
 
 
 class SelectExpressionRhythmRegionExpression(RhythmRegionExpression):
-    '''Select expression rhythm region expression.
+    r'''Select expression rhythm region expression.
     '''
 
     ### PRIVATE METHODS ###
 
     def evaluate(self):
-        '''Evaluate select expression rhythm region expression.
+        r'''Evaluate select expression rhythm region expression.
 
         Return none when nonevaluable.
 

@@ -7,7 +7,7 @@ from experimental.tools.musicexpressiontools.LeafSetExpression \
 
 
 class PitchSetExpression(LeafSetExpression):
-    '''Pitch set expression.
+    r'''Pitch set expression.
     '''
 
     ### INITIALIZER ###
@@ -35,7 +35,7 @@ class PitchSetExpression(LeafSetExpression):
 
     @property
     def level(self):
-        '''Pitch set expression level.
+        r'''Pitch set expression level.
 
         Return integer or none.
         '''
@@ -43,7 +43,7 @@ class PitchSetExpression(LeafSetExpression):
 
     @property
     def node_count(self):
-        '''Pitch set expression node count.
+        r'''Pitch set expression node count.
 
         Return nonnegative integer or none.
         '''
@@ -51,14 +51,14 @@ class PitchSetExpression(LeafSetExpression):
 
     @property
     def trope(self):
-        '''Pitch set expression trope.
+        r'''Pitch set expression trope.
         '''
         return self._trope
 
     ### PUBLIC METHODS ###
 
     def execute_against_score(self, score):
-        '''Execute pitch set expression against `score`.
+        r'''Execute pitch set expression against `score`.
         '''
         statal_server_cursor = self.source_expression.payload
         leaves = list(self._iterate_selected_leaves_in_score(score))

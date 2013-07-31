@@ -5,13 +5,13 @@ from experimental.tools.musicexpressiontools.LeafSetExpression \
 
 
 class ArticulationSetExpression(LeafSetExpression):
-    '''Articulation set expression.
+    r'''Articulation set expression.
     '''
 
     ### PUBLIC METHODS ###
 
     def execute_against_score(self, score):
-        '''Execute articulation set expression against `score`.
+        r'''Execute articulation set expression against `score`.
         '''
         articulation_list = self.source_expression.payload
         leaves = self._iterate_selected_leaves_in_score(score)

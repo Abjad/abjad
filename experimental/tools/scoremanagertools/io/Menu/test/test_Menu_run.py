@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_Menu_run_01():
-    '''String menu_entry defaults.
+    r'''String menu_entry defaults.
     '''
 
     menu = scoremanagertools.io.Menu()
@@ -46,7 +46,7 @@ def test_Menu_run_01():
 
 
 def test_Menu_run_02():
-    '''Hidden menu section.
+    r'''Hidden menu section.
     '''
 
     menu = scoremanagertools.io.Menu()
@@ -83,7 +83,7 @@ def test_Menu_run_02():
 
 
 def test_Menu_run_03():
-    '''Numbered menu section.
+    r'''Numbered menu section.
     '''
 
     menu = scoremanagertools.io.Menu()
@@ -127,7 +127,7 @@ def test_Menu_run_03():
 
 
 def test_Menu_run_04():
-    '''Menu section with range selection turned on.
+    r'''Menu section with range selection turned on.
     '''
 
     menu = scoremanagertools.io.Menu()
@@ -172,7 +172,7 @@ def test_Menu_run_04():
 
 
 def test_Menu_run_05():
-    '''Keyed menu section with key returned.
+    r'''Keyed menu section with key returned.
     '''
 
     menu = scoremanagertools.io.Menu()
@@ -230,7 +230,7 @@ def test_Menu_run_05():
 
 
 def test_Menu_run_06():
-    '''Keyed menu section with display string returned.
+    r'''Keyed menu section with display string returned.
     '''
 
     menu = scoremanagertools.io.Menu()
@@ -278,7 +278,7 @@ def test_Menu_run_06():
 
 
 def test_Menu_run_07():
-    '''Hidden keyed menu section with key returned.
+    r'''Hidden keyed menu section with key returned.
     '''
 
     menu = scoremanagertools.io.Menu()
@@ -330,7 +330,7 @@ def test_Menu_run_07():
 
 
 def test_Menu_run_08():
-    '''Hidden keyed menu section with display string returned.
+    r'''Hidden keyed menu section with display string returned.
     '''
 
     menu = scoremanagertools.io.Menu()
@@ -378,7 +378,7 @@ def test_Menu_run_08():
 
 
 def test_Menu_run_09():
-    '''Numbered keyed menu section with key returned.
+    r'''Numbered keyed menu section with key returned.
     '''
 
     menu = scoremanagertools.io.Menu()
@@ -436,7 +436,7 @@ def test_Menu_run_09():
 
 
 def test_Menu_run_10():
-    '''Ranged keyed menu section with with key returned.
+    r'''Ranged keyed menu section with with key returned.
     '''
 
     menu = scoremanagertools.io.Menu()
@@ -494,7 +494,7 @@ def test_Menu_run_10():
 
 
 def test_Menu_run_11():
-    '''RK menu section with display string returned.
+    r'''RK menu section with display string returned.
     '''
 
     menu = scoremanagertools.io.Menu()

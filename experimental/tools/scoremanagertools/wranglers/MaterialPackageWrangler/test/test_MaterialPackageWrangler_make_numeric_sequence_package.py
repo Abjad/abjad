@@ -20,7 +20,7 @@ def test_MaterialPackageWrangler_make_numeric_sequence_package_01():
 
 
 def test_MaterialPackageWrangler_make_numeric_sequence_package_02():
-    '''Interactively.
+    r'''Interactively.
     '''
 
     wrangler = scoremanagertools.wranglers.MaterialPackageWrangler()

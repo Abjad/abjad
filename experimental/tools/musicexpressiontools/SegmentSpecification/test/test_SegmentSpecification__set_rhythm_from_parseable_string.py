@@ -17,7 +17,7 @@ def test_SegmentSpecification__set_rhythm_from_parseable_string_01():
 
 
 def test_SegmentSpecification__set_rhythm_from_parseable_string_02():
-    '''Reflect material.
+    r'''Reflect material.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

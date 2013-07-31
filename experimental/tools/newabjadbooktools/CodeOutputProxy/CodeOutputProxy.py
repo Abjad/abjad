@@ -2,7 +2,7 @@ from experimental.tools.newabjadbooktools.OutputProxy import OutputProxy
 
 
 class CodeOutputProxy(OutputProxy):
-    '''Output proxy for a block of code:
+    r'''Output proxy for a block of code:
 
     ::
 
@@ -40,7 +40,7 @@ class CodeOutputProxy(OutputProxy):
     ### PUBLIC METHODS ###
 
     def handle_html_document_environment(self, document_handler):
-        '''Handle an HTML document environment:
+        r'''Handle an HTML document environment:
 
         ::
 
@@ -64,7 +64,7 @@ class CodeOutputProxy(OutputProxy):
         return result
 
     def handle_latex_document_environment(self, document_handler):
-        '''Handle a LaTeX document environment:
+        r'''Handle a LaTeX document environment:
 
         ::
         
@@ -100,7 +100,7 @@ class CodeOutputProxy(OutputProxy):
         return result
 
     def handle_rest_document_environment(self, document_handler):
-        '''Handle an ReST document environment:
+        r'''Handle an ReST document environment:
 
         ::
 

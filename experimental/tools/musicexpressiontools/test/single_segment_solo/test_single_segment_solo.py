@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_single_segment_solo_01():
-    '''Single division with duration less than segment.
+    r'''Single division with duration less than segment.
     Division interprets cyclically.
     Division truncates at end of score.
     '''
@@ -21,7 +21,7 @@ def test_single_segment_solo_01():
 
 
 def test_single_segment_solo_02():
-    '''Single division with duration equal to segment.
+    r'''Single division with duration equal to segment.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -38,7 +38,7 @@ def test_single_segment_solo_02():
 
 
 def test_single_segment_solo_03():
-    '''Single division with duration greater than segment.
+    r'''Single division with duration greater than segment.
     Division truncates at end of score.
     '''
 

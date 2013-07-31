@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_ScorePackageProxy_interactively_edit_forces_tagline_01():
-    '''Quit, back, score & home all work.
+    r'''Quit, back, score & home all work.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()

@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_ScoreManager_01():
-    '''Main menu to mothballed scores.
+    r'''Main menu to mothballed scores.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -11,7 +11,7 @@ def test_ScoreManager_01():
 
 
 def test_ScoreManager_02():
-    '''Main menu to score menu to tags menu.
+    r'''Main menu to score menu to tags menu.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -20,7 +20,7 @@ def test_ScoreManager_02():
 
 
 def test_ScoreManager_03():
-    '''Main menu to svn menu.
+    r'''Main menu to svn menu.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -29,7 +29,7 @@ def test_ScoreManager_03():
 
 
 def test_ScoreManager_04():
-    '''Main menu header is the same even after state change to secondary menu.
+    r'''Main menu header is the same even after state change to secondary menu.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -44,7 +44,7 @@ def test_ScoreManager_04():
 
 
 def test_ScoreManager_05():
-    '''Junk works.
+    r'''Junk works.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -56,7 +56,7 @@ def test_ScoreManager_05():
 
 
 def test_ScoreManager_06():
-    '''Back is handled correctly.
+    r'''Back is handled correctly.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -65,7 +65,7 @@ def test_ScoreManager_06():
 
 
 def test_ScoreManager_07():
-    '''Exec works.
+    r'''Exec works.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -78,7 +78,7 @@ def test_ScoreManager_07():
 
 
 def test_ScoreManager_08():
-    '''Exec protects against senseless input.
+    r'''Exec protects against senseless input.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -91,7 +91,7 @@ def test_ScoreManager_08():
 
 
 def test_ScoreManager_09():
-    '''Shared session.
+    r'''Shared session.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -100,7 +100,7 @@ def test_ScoreManager_09():
 
 
 def test_ScoreManager_10():
-    '''Backtracking stu* shortcut.
+    r'''Backtracking stu* shortcut.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -115,7 +115,7 @@ def test_ScoreManager_10():
 
 
 def test_ScoreManager_11():
-    '''Backtracking sco* shortcut.
+    r'''Backtracking sco* shortcut.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()

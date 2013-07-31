@@ -4,13 +4,13 @@ from experimental.tools.musicexpressiontools.DivisionRegionExpression \
 
 
 class LiteralDivisionRegionExpression(DivisionRegionExpression):
-    '''Literal division region expression.
+    r'''Literal division region expression.
     '''
 
     ### PRIVATE METHODS ###
 
     def evaluate(self):
-        '''Evaluate literal division region expression.
+        r'''Evaluate literal division region expression.
 
         Return start-positioned division payload expression.
         '''

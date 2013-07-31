@@ -5,13 +5,13 @@ from abjad.tools.timespantools.TimespanInventory import TimespanInventory
 
 
 class TimespanScopedSingleContextSetExpressionInventory(TimespanInventory):
-    '''Timespan-scoped single-context set expression inventory.
+    r'''Timespan-scoped single-context set expression inventory.
     '''
 
     ### PUBLIC METHODS ###
 
     def sort_and_split_set_expressions(self):
-        '''Operate in place and return inventory.
+        r'''Operate in place and return inventory.
         '''
         cooked_set_expressions = []
         for raw_set_expression in self[:]:
@@ -77,7 +77,7 @@ class TimespanScopedSingleContextSetExpressionInventory(TimespanInventory):
 
     def supply_missing_set_expressions(
         self, attribute, score_specification, voice_name):
-        '''Operate in place and return inventory.
+        r'''Operate in place and return inventory.
         '''
         assert self.is_sorted
         if not self and not score_specification.time_signatures:

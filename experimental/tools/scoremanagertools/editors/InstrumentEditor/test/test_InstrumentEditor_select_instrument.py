@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_InstrumentEditor_select_instrument_01():
-    '''Quit, back, home, score & junk all work.
+    r'''Quit, back, home, score & junk all work.
     '''
 
     editor = scoremanagertools.editors.InstrumentEditor()

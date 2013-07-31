@@ -13,7 +13,7 @@ class ConcreteSpecifier(Specifier):
 
 
 def test_Specifier_format_01():
-    '''No keywords.
+    r'''No keywords.
     '''
 
     specifier = ConcreteSpecifier()
@@ -23,7 +23,7 @@ def test_Specifier_format_01():
 
 
 def test_Specifier_format_02():
-    '''With keywords.
+    r'''With keywords.
     '''
 
     specifier = ConcreteSpecifier(name='foo')

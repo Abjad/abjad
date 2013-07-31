@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_ScoreSpecification__select_segments_01():
-    '''Rhythm set expression anchored to segment select expression.
+    r'''Rhythm set expression anchored to segment select expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -22,7 +22,7 @@ def test_ScoreSpecification__select_segments_01():
 
 
 def test_ScoreSpecification__select_segments_02():
-    '''Score-rooted set expression and segment-rooted set expression made at same context.
+    r'''Score-rooted set expression and segment-rooted set expression made at same context.
 
     Score-rooted set expression occurs lexically later than segment-rooted set expression.
 
@@ -46,7 +46,7 @@ def test_ScoreSpecification__select_segments_02():
 
 
 def test_ScoreSpecification__select_segments_03():
-    '''Two score-rooted rhythm set expressions made at same context.
+    r'''Two score-rooted rhythm set expressions made at same context.
 
     Lexically later set expression overrides lexically earlier set expression.
     '''
@@ -69,7 +69,7 @@ def test_ScoreSpecification__select_segments_03():
 
 
 def test_ScoreSpecification__select_segments_04():
-    '''Two score-rooted rhythm set expressions made at different contexts.
+    r'''Two score-rooted rhythm set expressions made at different contexts.
 
     Lexically later set expression is also made at closer context.
 
@@ -93,7 +93,7 @@ def test_ScoreSpecification__select_segments_04():
 
 
 def test_ScoreSpecification__select_segments_05():
-    '''Two score-rooted rhythm set expressions made at different contexts.
+    r'''Two score-rooted rhythm set expressions made at different contexts.
 
     Lexically later set expression is also made at more distant context.
 
@@ -117,7 +117,7 @@ def test_ScoreSpecification__select_segments_05():
 
 
 def test_ScoreSpecification__select_segments_06():
-    '''Single-integer positive getitem index.
+    r'''Single-integer positive getitem index.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -137,7 +137,7 @@ def test_ScoreSpecification__select_segments_06():
 
 
 def test_ScoreSpecification__select_segments_07():
-    '''Single-integer negative getitem index.
+    r'''Single-integer negative getitem index.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

@@ -4,7 +4,7 @@ from experimental.tools.scoremanagertools.wranglers.PackageWrangler import \
 
 
 class SegmentPackageWrangler(PackageWrangler):
-    '''Segment package wrangler.
+    r'''Segment package wrangler.
 
     ::
 
@@ -52,7 +52,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
     @property
     def asset_proxy_class(self):
-        '''Segment package wrangler asset proxy class:
+        r'''Segment package wrangler asset proxy class:
 
         ::
 
@@ -66,7 +66,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
     @property
     def storage_format(self):
-        '''Segment package wrangler storage format:
+        r'''Segment package wrangler storage format:
 
         ::
 
@@ -89,7 +89,7 @@ class SegmentPackageWrangler(PackageWrangler):
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
         head=None):
-        '''List asset filesystem paths.
+        r'''List asset filesystem paths.
 
         Example. List built-in segment package filesystem paths:
 
@@ -120,7 +120,7 @@ class SegmentPackageWrangler(PackageWrangler):
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
         head=None):
-        '''List asset names.
+        r'''List asset names.
 
         Example. List built-in segment package names:
 
@@ -160,7 +160,7 @@ class SegmentPackageWrangler(PackageWrangler):
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
         head=None):
-        '''List asset packagesystem paths.
+        r'''List asset packagesystem paths.
 
         Example. List built-in segment package paths:
 
@@ -191,7 +191,7 @@ class SegmentPackageWrangler(PackageWrangler):
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
         head=None):
-        '''List asset proxies.
+        r'''List asset proxies.
 
         Example. List built-in segment package proxies:
 
@@ -230,7 +230,7 @@ class SegmentPackageWrangler(PackageWrangler):
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True):
-        '''List asset storehouse filesystem paths.
+        r'''List asset storehouse filesystem paths.
 
         Example. List built-in segment package storehouse filesystem paths:
 

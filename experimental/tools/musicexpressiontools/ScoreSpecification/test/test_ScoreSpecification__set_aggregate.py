@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_ScoreSpecification__set_aggregate_01():
-    '''Register according to example aggregate 0.
+    r'''Register according to example aggregate 0.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
@@ -21,7 +21,7 @@ def test_ScoreSpecification__set_aggregate_01():
 
 
 def test_ScoreSpecification__set_aggregate_02():
-    '''Register according to example aggregate 1.
+    r'''Register according to example aggregate 1.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)

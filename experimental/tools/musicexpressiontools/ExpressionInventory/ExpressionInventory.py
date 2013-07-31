@@ -5,7 +5,7 @@ from experimental.tools.musicexpressiontools.IterablePayloadExpression \
 
 
 class ExpressionInventory(ObjectInventory, IterablePayloadExpression):
-    '''Expression inventory.
+    r'''Expression inventory.
     '''
 
     ### SPECIAL METHODS ###
@@ -20,7 +20,7 @@ class ExpressionInventory(ObjectInventory, IterablePayloadExpression):
 
     @property
     def elements(self):
-        '''Expression inventory elements.
+        r'''Expression inventory elements.
         '''
         result = []
         for expression in self:
@@ -31,7 +31,7 @@ class ExpressionInventory(ObjectInventory, IterablePayloadExpression):
     ### PRIVATE METHODS ###
 
     def evaluate(self):
-        '''Evaluate expression inventory.
+        r'''Evaluate expression inventory.
 
         Return newly constructed expression inventory.
         '''

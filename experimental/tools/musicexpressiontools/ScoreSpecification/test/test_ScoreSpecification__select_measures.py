@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_ScoreSpecification__select_measures_01():
-    '''Measure select expression dependent on segment select expression.
+    r'''Measure select expression dependent on segment select expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

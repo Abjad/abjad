@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_single_segment_solo__nonbinary_01():
-    '''Nonbinary division.
+    r'''Nonbinary division.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

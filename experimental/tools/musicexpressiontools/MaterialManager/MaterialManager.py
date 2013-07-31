@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class MaterialManager(AbjadObject):
-    '''Material manager.
+    r'''Material manager.
     '''
 
     ### INITIALIZER ###
@@ -14,7 +14,7 @@ class MaterialManager(AbjadObject):
     ### PUBLIC METHODS ###
 
     def register_material(self, material):
-        '''Register `material`.
+        r'''Register `material`.
 
         Change tuple or list to payload expression.
 

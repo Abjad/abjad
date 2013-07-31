@@ -3,7 +3,7 @@ import py
 
 
 def test_SegmentSpecification__select_measures_01():
-    '''Negative start.
+    r'''Negative start.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -22,7 +22,7 @@ def test_SegmentSpecification__select_measures_01():
 
 
 def test_SegmentSpecification__select_measures_02():
-    '''Negative stop.
+    r'''Negative stop.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -41,7 +41,7 @@ def test_SegmentSpecification__select_measures_02():
 
 
 def test_SegmentSpecification__select_measures_03():
-    '''Negative start and stop.
+    r'''Negative start and stop.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -60,7 +60,7 @@ def test_SegmentSpecification__select_measures_03():
 
 
 def test_SegmentSpecification__select_measures_04():
-    '''Negative slice index.
+    r'''Negative slice index.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -79,7 +79,7 @@ def test_SegmentSpecification__select_measures_04():
 
 
 def test_SegmentSpecification__select_measures_05():
-    '''Positive slice indices.
+    r'''Positive slice indices.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -98,7 +98,7 @@ def test_SegmentSpecification__select_measures_05():
 
 
 def test_SegmentSpecification__select_measures_06():
-    '''Measure select expression dependent on divided timespan.
+    r'''Measure select expression dependent on divided timespan.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -116,7 +116,7 @@ def test_SegmentSpecification__select_measures_06():
 
 
 def test_SegmentSpecification__select_measures_07():
-    '''Measure select expression dependent on divided timespan.
+    r'''Measure select expression dependent on divided timespan.
     Order of set expressions matters.
     First measure of right set expression covers last measure of left set expression.
     '''
@@ -138,7 +138,7 @@ def test_SegmentSpecification__select_measures_07():
 
 
 def test_SegmentSpecification__select_measures_08():
-    '''Measure select expression dependent on divided timespan.
+    r'''Measure select expression dependent on divided timespan.
     Order of set expressions matters.
     Last measure of left set expression covers first measure of right set expression.
     '''
@@ -160,7 +160,7 @@ def test_SegmentSpecification__select_measures_08():
 
 
 def test_SegmentSpecification__select_measures_09():
-    '''Measure select expression dependent on divided timespan.
+    r'''Measure select expression dependent on divided timespan.
     With explicit time-relation.
     '''
 
@@ -180,7 +180,7 @@ def test_SegmentSpecification__select_measures_09():
 
 
 def test_SegmentSpecification__select_measures_10():
-    '''Measure select expression dependent on divided timespan.
+    r'''Measure select expression dependent on divided timespan.
     With explicit time-relation.
     '''
 
@@ -200,7 +200,7 @@ def test_SegmentSpecification__select_measures_10():
 
 
 def test_SegmentSpecification__select_measures_11():
-    '''Measure select expression with composed getitem callbacks.
+    r'''Measure select expression with composed getitem callbacks.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -218,7 +218,7 @@ def test_SegmentSpecification__select_measures_11():
 
 
 def test_SegmentSpecification__select_measures_12():
-    '''Measure select expression with composed getitem and partition callbacks.
+    r'''Measure select expression with composed getitem and partition callbacks.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -238,7 +238,7 @@ def test_SegmentSpecification__select_measures_12():
 
 
 def test_SegmentSpecification__select_measures_13():
-    '''Measure select expression with composed partition and getitem callbacks.
+    r'''Measure select expression with composed partition and getitem callbacks.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -258,7 +258,7 @@ def test_SegmentSpecification__select_measures_13():
 
 
 def test_SegmentSpecification__select_measures_14():
-    '''Positive integer index.
+    r'''Positive integer index.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -277,7 +277,7 @@ def test_SegmentSpecification__select_measures_14():
 
 
 def test_SegmentSpecification__select_measures_15():
-    '''Negative integer index.
+    r'''Negative integer index.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

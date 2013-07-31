@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_single_segment_solo__rhythm_context_cascade_01():
-    '''Settings made against lower-level contexts override
+    r'''Settings made against lower-level contexts override
     set expressions made against higher-level contexts.
     '''
 
@@ -21,7 +21,7 @@ def test_single_segment_solo__rhythm_context_cascade_01():
 
 
 def test_single_segment_solo__rhythm_context_cascade_02():
-    '''Thirty-seconds override sixteenths.
+    r'''Thirty-seconds override sixteenths.
     Then division-durated notes override thirty-seconds.
     '''
 
@@ -41,7 +41,7 @@ def test_single_segment_solo__rhythm_context_cascade_02():
 
 
 def test_single_segment_solo__rhythm_context_cascade_03():
-    '''Thirty-seconds override sixteenths.
+    r'''Thirty-seconds override sixteenths.
     Then division-durated notes override thirty-seconds.
     Then division-durated rests override division-durated notes.
     '''
@@ -63,7 +63,7 @@ def test_single_segment_solo__rhythm_context_cascade_03():
 
 
 def test_single_segment_solo__rhythm_context_cascade_04():
-    '''Lexically later set expressions don't matter if they
+    r'''Lexically later set expressions don't matter if they
     are made against a higher-level context.
     '''
 
@@ -84,7 +84,7 @@ def test_single_segment_solo__rhythm_context_cascade_04():
 
 
 def test_single_segment_solo__rhythm_context_cascade_05():
-    '''SelectExpression and contexts work together.
+    r'''SelectExpression and contexts work together.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

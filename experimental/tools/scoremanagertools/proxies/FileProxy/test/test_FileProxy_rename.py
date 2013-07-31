@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_FileProxy_rename_01():
-    '''Nonversioned file.
+    r'''Nonversioned file.
     '''
 
     score_manager_configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
@@ -32,7 +32,7 @@ def test_FileProxy_rename_01():
 
 
 def test_FileProxy_rename_02():
-    '''Versioned file.
+    r'''Versioned file.
     '''
 
     score_manager_configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()

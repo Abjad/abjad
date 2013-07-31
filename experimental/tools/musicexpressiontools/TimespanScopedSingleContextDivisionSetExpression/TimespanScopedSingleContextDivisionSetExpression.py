@@ -49,7 +49,7 @@ class TimespanScopedSingleContextDivisionSetExpression(
 
     @property
     def truncate(self):
-        '''True when timespan-scoped single-context division set expression
+        r'''True when timespan-scoped single-context division set expression
         should truncate at segment boundaries.
         Otherwise false.
 
@@ -59,7 +59,7 @@ class TimespanScopedSingleContextDivisionSetExpression(
 
     @property
     def voice_name(self):
-        '''Aliased to `target_context_name`.
+        r'''Aliased to `target_context_name`.
 
         Return string.
         '''
@@ -68,7 +68,7 @@ class TimespanScopedSingleContextDivisionSetExpression(
     ### PUBLIC METHODS ###
 
     def evaluate(self, voice_name):
-        '''Evaluate timespan-scoped single-context division set expression.
+        r'''Evaluate timespan-scoped single-context division set expression.
 
         Return division region expression.
         '''

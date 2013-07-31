@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_ScoreSpecification__set_articulation_01():
-    '''Set articulations from list of strings.
+    r'''Set articulations from list of strings.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
@@ -20,7 +20,7 @@ def test_ScoreSpecification__set_articulation_01():
 
 
 def test_ScoreSpecification__set_articulation_02():
-    '''Set from articulation abbreviation.
+    r'''Set from articulation abbreviation.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
@@ -38,7 +38,7 @@ def test_ScoreSpecification__set_articulation_02():
 
 
 def test_ScoreSpecification__set_articulation_03():
-    '''Set from articulation name.
+    r'''Set from articulation name.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
@@ -56,7 +56,7 @@ def test_ScoreSpecification__set_articulation_03():
 
 
 def test_ScoreSpecification__set_articulation_04():
-    '''Set from articulation.
+    r'''Set from articulation.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)

@@ -4,13 +4,13 @@ from experimental.tools.musicexpressiontools.LeafSetExpression \
 
 
 class LeafColorSetExpression(LeafSetExpression):
-    '''Leaf color set expression.
+    r'''Leaf color set expression.
     '''
 
     ### PUBLIC METHODS ###
 
     def execute_against_score(self, score):
-        '''Execute note head color set expression against `score`.
+        r'''Execute note head color set expression against `score`.
         '''
         color = self.source_expression.payload
         for leaf in self._iterate_selected_leaves_in_score(score):

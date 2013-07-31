@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__select_divisions_between_voices_01():
-    '''Division select expression between voices.
+    r'''Division select expression between voices.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -21,7 +21,7 @@ def test_SegmentSpecification__select_divisions_between_voices_01():
 
 
 def test_SegmentSpecification__select_divisions_between_voices_02():
-    '''Division select expression between voices with reverse callback.
+    r'''Division select expression between voices with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -41,7 +41,7 @@ def test_SegmentSpecification__select_divisions_between_voices_02():
 
 
 def test_SegmentSpecification__select_divisions_between_voices_03():
-    '''Division select expression between voices with reverse callback.
+    r'''Division select expression between voices with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -61,7 +61,7 @@ def test_SegmentSpecification__select_divisions_between_voices_03():
 
 
 def test_SegmentSpecification__select_divisions_between_voices_04():
-    '''Division select expression between voices with reverse callbacks.
+    r'''Division select expression between voices with reverse callbacks.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)

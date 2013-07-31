@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_single_segment_solo__overlapping_rhythm_select_expressions_01():
-    '''Second select expression equals first.
+    r'''Second select expression equals first.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -20,7 +20,7 @@ def test_single_segment_solo__overlapping_rhythm_select_expressions_01():
 
 
 def test_single_segment_solo__overlapping_rhythm_select_expressions_02():
-    '''Second select expression delays the first.
+    r'''Second select expression delays the first.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -39,7 +39,7 @@ def test_single_segment_solo__overlapping_rhythm_select_expressions_02():
 
 
 def test_single_segment_solo__overlapping_rhythm_select_expressions_03():
-    '''Second select expression curtails the first.
+    r'''Second select expression curtails the first.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -58,7 +58,7 @@ def test_single_segment_solo__overlapping_rhythm_select_expressions_03():
 
 
 def test_single_segment_solo__overlapping_rhythm_select_expressions_04():
-    '''First select expression properly contains the second.
+    r'''First select expression properly contains the second.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -77,7 +77,7 @@ def test_single_segment_solo__overlapping_rhythm_select_expressions_04():
 
 
 def test_single_segment_solo__overlapping_rhythm_select_expressions_05():
-    '''With rhythm select expression.
+    r'''With rhythm select expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

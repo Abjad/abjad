@@ -59,7 +59,7 @@ def test_MenuSection__menu_entry_return_values_01():
 
 
 def test_MenuSection__menu_entry_return_values_02():
-    '''Menu entry return values vary when menu entry 
+    r'''Menu entry return values vary when menu entry 
     menu_entries are tuples.
     You can explicitly demand a return value equal 
     either to the menu entry key or display_string.
@@ -122,7 +122,7 @@ def test_MenuSection__menu_entry_return_values_02():
 
 
 def test_MenuSection__menu_entry_return_values_03():
-    '''Length-4 tuples include prepopulated return values.
+    r'''Length-4 tuples include prepopulated return values.
     You must still set return_value_attribute to 'explicit'.
     '''
 

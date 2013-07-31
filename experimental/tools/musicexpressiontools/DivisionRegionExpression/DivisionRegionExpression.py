@@ -7,7 +7,7 @@ from experimental.tools.musicexpressiontools.RegionExpression \
 
 
 class DivisionRegionExpression(RegionExpression):
-    '''Division region expression.
+    r'''Division region expression.
     '''
 
     ### CLASS VARIABLES ###
@@ -17,7 +17,7 @@ class DivisionRegionExpression(RegionExpression):
     ### PRIVATE METHODS ###
 
     def evaluate(self):
-        '''Evaluate division region expression.
+        r'''Evaluate division region expression.
 
         Return start-positioned division payload expression.
         '''

@@ -33,7 +33,7 @@ def test_MaterialPackageWrangler_make_makermade_material_package_02():
 
 
 def test_MaterialPackageWrangler_make_makermade_material_package_03():
-    '''Interactively.
+    r'''Interactively.
     '''
 
     wrangler = scoremanagertools.wranglers.MaterialPackageWrangler()

@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_MusicContributionSpecifier_format_01():
-    '''Empty.
+    r'''Empty.
     '''
 
     specifier = scoremanagertools.specifiers.MusicContributionSpecifier([])
@@ -12,7 +12,7 @@ def test_MusicContributionSpecifier_format_01():
 
 
 def test_MusicContributionSpecifier_format_02():
-    '''Populated.
+    r'''Populated.
     '''
 
     specifier = scoremanagertools.specifiers.MusicContributionSpecifier([])

@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class MenuEntry(AbjadObject):
-    '''Menu entry.
+    r'''Menu entry.
 
         >>> score_manager = scoremanagertools.scoremanager.ScoreManager()
         >>> menu = score_manager._make_svn_menu()
@@ -46,7 +46,7 @@ class MenuEntry(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        '''Menu entry interpreter representation.
+        r'''Menu entry interpreter representation.
 
         Return string.
         '''
@@ -56,7 +56,7 @@ class MenuEntry(AbjadObject):
 
     @property
     def display_string(self):
-        '''Menu entry display string:
+        r'''Menu entry display string:
 
         ::
 
@@ -69,7 +69,7 @@ class MenuEntry(AbjadObject):
 
     @property
     def explicit_return_value(self):
-        '''Menu entry prepopulated return value:
+        r'''Menu entry prepopulated return value:
 
         ::
 
@@ -82,7 +82,7 @@ class MenuEntry(AbjadObject):
 
     @property
     def key(self):
-        '''Menu entry key:
+        r'''Menu entry key:
 
         ::
 
@@ -99,7 +99,7 @@ class MenuEntry(AbjadObject):
 
     @property
     def number(self):
-        '''Menu entry number:
+        r'''Menu entry number:
 
         ::
 
@@ -113,7 +113,7 @@ class MenuEntry(AbjadObject):
 
     @property
     def prepopulated_value(self):
-        '''Menu entry existing value:
+        r'''Menu entry existing value:
 
         ::
 
@@ -126,7 +126,7 @@ class MenuEntry(AbjadObject):
 
     @property
     def return_value(self):
-        '''Menu entry return value:
+        r'''Menu entry return value:
 
         ::
 
@@ -152,7 +152,7 @@ class MenuEntry(AbjadObject):
 
     @property
     def storage_format(self):
-        '''Menu entry storage format:
+        r'''Menu entry storage format:
 
             >>> z(menu_entry)
             io.MenuEntry(
@@ -175,7 +175,7 @@ class MenuEntry(AbjadObject):
     ### PUBLIC METHODS ###
 
     def matches(self, user_input):
-        '''True when menu entry matches `user_input` string:
+        r'''True when menu entry matches `user_input` string:
 
         ::
 

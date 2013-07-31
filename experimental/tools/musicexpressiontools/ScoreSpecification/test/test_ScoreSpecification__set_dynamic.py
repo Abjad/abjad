@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_ScoreSpecification__set_dynamic_01():
-    '''Reiterated dynamic from string.
+    r'''Reiterated dynamic from string.
     '''
 
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)

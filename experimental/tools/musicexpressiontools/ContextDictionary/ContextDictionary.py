@@ -5,7 +5,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class ContextDictionary(AbjadObject, collections.OrderedDict):
-    '''Context dictionary.
+    r'''Context dictionary.
     '''
 
     ### INITIALIZER ###
@@ -51,7 +51,7 @@ class ContextDictionary(AbjadObject, collections.OrderedDict):
 
     @property
     def score(self):
-        '''Context dictionary score.
+        r'''Context dictionary score.
 
         Return score.
         '''
@@ -59,7 +59,7 @@ class ContextDictionary(AbjadObject, collections.OrderedDict):
 
     @property
     def score_name(self):
-        '''Context dictionary score name.
+        r'''Context dictionary score name.
 
         Return string or none.
         '''
@@ -69,7 +69,7 @@ class ContextDictionary(AbjadObject, collections.OrderedDict):
 
     @property
     def score_proxy(self):
-        '''Context dictionary score proxy.
+        r'''Context dictionary score proxy.
 
         Return context proxy.
         '''

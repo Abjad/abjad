@@ -101,7 +101,7 @@ class DivisionList(BoundedObject):
     ### SPECIAL METHODS ###
 
     def __add__(self, expr):
-        '''Concatenate division lists.
+        r'''Concatenate division lists.
 
             >>> left = musicexpressiontools.DivisionList([(1, 16), (2, 16)])
             >>> right = musicexpressiontools.DivisionList([(3, 16), (4, 16)])
@@ -122,21 +122,21 @@ class DivisionList(BoundedObject):
             raise ValueError
 
     def __getitem__(self, expr):
-        '''Get division list item.
+        r'''Get division list item.
 
         Return division.
         '''
         return self.divisions.__getitem__(expr)
 
     def __len__(self):
-        '''Division list length.
+        r'''Division list length.
 
         Return nonnegative integer.
         '''
         return len(self.divisions)
 
     def __repr__(self):
-        '''Division list interpreter representation.
+        r'''Division list interpreter representation.
 
         Return string.
         '''
@@ -169,7 +169,7 @@ class DivisionList(BoundedObject):
 
     @property
     def divisions(self):
-        '''Division list divisions.
+        r'''Division list divisions.
 
             >>> for division in division_list.divisions: division
             Division('[3, 16]', start_offset=Offset(0, 1))
@@ -193,7 +193,7 @@ class DivisionList(BoundedObject):
 
     @property
     def duration(self):
-        '''Division list duration.
+        r'''Division list duration.
 
         ::
 
@@ -206,7 +206,7 @@ class DivisionList(BoundedObject):
 
     @property
     def is_left_closed(self):
-        '''True when first division in division is left closed.
+        r'''True when first division in division is left closed.
 
         ::
 
@@ -219,7 +219,7 @@ class DivisionList(BoundedObject):
 
     @property
     def is_left_open(self):
-        '''True when first division in division is left open.
+        r'''True when first division in division is left open.
 
         ::
 
@@ -232,7 +232,7 @@ class DivisionList(BoundedObject):
 
     @property
     def is_right_closed(self):
-        '''True when first division in division is right closed.
+        r'''True when first division in division is right closed.
 
         ::
 
@@ -245,7 +245,7 @@ class DivisionList(BoundedObject):
 
     @property
     def is_right_open(self):
-        '''True when first division in division is right open.
+        r'''True when first division in division is right open.
 
         ::
 
@@ -258,7 +258,7 @@ class DivisionList(BoundedObject):
 
     @property
     def is_well_formed(self):
-        '''True when division list is well-formed.
+        r'''True when division list is well-formed.
         Otherwise false.
 
         ::
@@ -276,7 +276,7 @@ class DivisionList(BoundedObject):
 
     @property
     def pairs(self):
-        '''Division list pairs.
+        r'''Division list pairs.
 
         ::
 
@@ -302,7 +302,7 @@ class DivisionList(BoundedObject):
 
     @property
     def start_offset(self):
-        '''Division list start offset.
+        r'''Division list start offset.
 
         ::
 
@@ -316,7 +316,7 @@ class DivisionList(BoundedObject):
 
     @property
     def voice_name(self):
-        '''Division list voice name.
+        r'''Division list voice name.
 
         ::
 
@@ -330,7 +330,7 @@ class DivisionList(BoundedObject):
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
-        '''Initialize new division list with ``kwargs``.
+        r'''Initialize new division list with ``kwargs``.
 
         Return newly constructed division list.
         '''
@@ -353,7 +353,7 @@ class DivisionList(BoundedObject):
         return result
 
     def reflect(self):
-        '''Reflect division list about axis.
+        r'''Reflect division list about axis.
 
         ::
 
@@ -382,7 +382,7 @@ class DivisionList(BoundedObject):
         return self.new(divisions=reversed(self.divisions))
 
     def rotate(self, rotation):
-        '''Rotate division list by `rotation`.
+        r'''Rotate division list by `rotation`.
 
         ::
 

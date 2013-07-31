@@ -2,7 +2,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class UserInputGetterPrompt(AbjadObject):
-    '''User input getter prompt.
+    r'''User input getter prompt.
 
     .. note:: add doctests.
 

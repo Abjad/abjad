@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class StatalServer(AbjadObject):
-    '''Statal server.
+    r'''Statal server.
     '''
 
     ### INITIALIZER ###
@@ -15,7 +15,7 @@ class StatalServer(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, position=None, reverse=False):
-        '''Return statal server cursor.
+        r'''Return statal server cursor.
         '''
         from experimental.tools import musicexpressiontools
         cursor = musicexpressiontools.StatalServerCursor(
@@ -35,12 +35,12 @@ class StatalServer(AbjadObject):
 
     @property
     def cyclic_tree(self):
-        '''Statal server cyclic tree.
+        r'''Statal server cyclic tree.
         '''
         return self._cyclic_tree
 
     @property
     def last_node(self):
-        '''Statal server last node.
+        r'''Statal server last node.
         '''
         return self.last_nodes[-1]

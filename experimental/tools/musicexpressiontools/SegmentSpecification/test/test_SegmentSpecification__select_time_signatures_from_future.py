@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__select_time_signatures_from_future_01():
-    '''From-future time signature select expression.
+    r'''From-future time signature select expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -22,7 +22,7 @@ def test_SegmentSpecification__select_time_signatures_from_future_01():
 
 
 def test_SegmentSpecification__select_time_signatures_from_future_02():
-    '''From-future time signature select expression with reverse callback.
+    r'''From-future time signature select expression with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -43,7 +43,7 @@ def test_SegmentSpecification__select_time_signatures_from_future_02():
 
 
 def test_SegmentSpecification__select_time_signatures_from_future_03():
-    '''From-future time signature select expression with reverse callback.
+    r'''From-future time signature select expression with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -64,7 +64,7 @@ def test_SegmentSpecification__select_time_signatures_from_future_03():
 
 
 def test_SegmentSpecification__select_time_signatures_from_future_04():
-    '''From-future time signature select expression with reverse callbacks.
+    r'''From-future time signature select expression with reverse callbacks.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

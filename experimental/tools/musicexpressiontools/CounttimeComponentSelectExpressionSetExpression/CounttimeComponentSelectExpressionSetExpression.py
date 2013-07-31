@@ -2,7 +2,7 @@ from experimental.tools.musicexpressiontools.Expression import Expression
 
 
 class CounttimeComponentSelectExpressionSetExpression(Expression):
-    '''Counttime component select expression set expression.
+    r'''Counttime component select expression set expression.
     '''
 
     ### INITIALIZER ###
@@ -27,7 +27,7 @@ class CounttimeComponentSelectExpressionSetExpression(Expression):
 
     @property
     def source_expression(self):
-        '''Counttime component select expression set expression 
+        r'''Counttime component select expression set expression 
         source expression.
 
         Return expression.
@@ -36,7 +36,7 @@ class CounttimeComponentSelectExpressionSetExpression(Expression):
 
     @property
     def target_counttime_component_select_expression(self):
-        '''Counttime component select expression set expression
+        r'''Counttime component select expression set expression
         target select expression inventory.
 
         Return counttime component select expression.

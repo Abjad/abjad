@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_SegmentSpecification__select_rhythm_between_voices_01():
-    '''Rhythm select expression between voices.
+    r'''Rhythm select expression between voices.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -21,7 +21,7 @@ def test_SegmentSpecification__select_rhythm_between_voices_01():
 
 
 def test_SegmentSpecification__select_rhythm_between_voices_02():
-    '''Rhythm select expression between voices with reverse callback.
+    r'''Rhythm select expression between voices with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -41,7 +41,7 @@ def test_SegmentSpecification__select_rhythm_between_voices_02():
 
 
 def test_SegmentSpecification__select_rhythm_between_voices_03():
-    '''Rhythm select expression between voices with reverse callback.
+    r'''Rhythm select expression between voices with reverse callback.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -61,7 +61,7 @@ def test_SegmentSpecification__select_rhythm_between_voices_03():
 
 
 def test_SegmentSpecification__select_rhythm_between_voices_04():
-    '''Rhythm select expression between voices with reverse callbacks.
+    r'''Rhythm select expression between voices with reverse callbacks.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -82,7 +82,7 @@ def test_SegmentSpecification__select_rhythm_between_voices_04():
 
 
 def test_SegmentSpecification__select_rhythm_between_voices_05():
-    '''Rhythm select expression between voices with multiple in-voice application.
+    r'''Rhythm select expression between voices with multiple in-voice application.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
@@ -104,7 +104,7 @@ def test_SegmentSpecification__select_rhythm_between_voices_05():
 
 
 def test_SegmentSpecification__select_rhythm_between_voices_06():
-    '''Voice 2 rhythms interpret incorrectly.
+    r'''Voice 2 rhythms interpret incorrectly.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)

@@ -4,7 +4,7 @@ from experimental import *
 
 
 def test_ScorePackageProxy_read_only_attributes_01():
-    '''Read-only public attributes.
+    r'''Read-only public attributes.
     '''
 
     score_proxy = scoremanagertools.proxies.ScorePackageProxy(

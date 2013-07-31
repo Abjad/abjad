@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_MeasureSelectExpression__select_divisions_01():
-    '''Select divisions from measure select expression.
+    r'''Select divisions from measure select expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

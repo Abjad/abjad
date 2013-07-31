@@ -75,7 +75,7 @@ class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
 
     @property
     def target_context_names(self):
-        '''Multiple-context set expression target context names.
+        r'''Multiple-context set expression target context names.
 
         Return list or none.
         '''
@@ -84,7 +84,7 @@ class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
     ### PUBLIC METHODS ###
 
     def evaluate(self):
-        '''Evaluate multiple-context set expression.
+        r'''Evaluate multiple-context set expression.
 
         Return list of single-context set expressions.
         '''
@@ -117,7 +117,7 @@ class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
         return single_context_set_expressions
 
     def evaluate_and_store_in_root_specification(self):
-        '''Evaluate multiple-context set expression 
+        r'''Evaluate multiple-context set expression 
         and store in root specification.
 
         Return none.

@@ -85,7 +85,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
     ### PRIVATE METHODS ###
 
     def evaluate(self):
-        '''Evaluate mixed-suorce timespan expression.
+        r'''Evaluate mixed-suorce timespan expression.
 
         Not yet implemented.
         '''
@@ -95,7 +95,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
 
     @property
     def start_offset(self):
-        '''Mixed-source timespan expression start offset.
+        r'''Mixed-source timespan expression start offset.
 
         Return offset expression.
         '''
@@ -103,7 +103,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
 
     @property
     def stop_offset(self):
-        '''Mixed-source timespan expression stop offset.
+        r'''Mixed-source timespan expression stop offset.
 
         Return offset expression.
         '''

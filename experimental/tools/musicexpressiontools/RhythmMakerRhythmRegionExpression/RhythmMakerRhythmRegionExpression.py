@@ -8,7 +8,7 @@ from experimental.tools.musicexpressiontools.RhythmRegionExpression import \
 
 
 class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
-    '''Rhythm-maker rhythm region expression.
+    r'''Rhythm-maker rhythm region expression.
     '''
 
     ### INITIALIZER ###
@@ -56,7 +56,7 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
 
     @property
     def division_list(self):
-        '''Rhythm-maker rhythm region expression division list.
+        r'''Rhythm-maker rhythm region expression division list.
 
         Return division list.
         '''
@@ -65,7 +65,7 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
     ### PUBLIC METHODS ###
 
     def evaluate(self):
-        '''Evaluate rhythm-maker rhythm region expression.
+        r'''Evaluate rhythm-maker rhythm region expression.
 
         Return none when nonevaluable.
 

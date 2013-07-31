@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_ScoreSpecification__set_divisions_01():
-    '''Score-rooted division set expression.
+    r'''Score-rooted division set expression.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

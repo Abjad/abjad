@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_OctaveTranspositionMappingInventoryEditor_run_01():
-    '''Empty inventories.
+    r'''Empty inventories.
     '''
 
     editor = scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor()
@@ -24,7 +24,7 @@ def test_OctaveTranspositionMappingInventoryEditor_run_01():
 
 
 def test_OctaveTranspositionMappingInventoryEditor_run_02():
-    '''Empty named inventory.
+    r'''Empty named inventory.
     '''
 
     editor = scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor()
@@ -33,7 +33,7 @@ def test_OctaveTranspositionMappingInventoryEditor_run_02():
 
 
 def test_OctaveTranspositionMappingInventoryEditor_run_03():
-    '''Named inventory with named mapping.
+    r'''Named inventory with named mapping.
     '''
 
     editor = scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor()

@@ -61,7 +61,7 @@ class OffsetExpression(
 
     @property
     def edge(self):
-        '''Offset expression edge.
+        r'''Offset expression edge.
 
         Return boolean or none.
         '''
@@ -70,7 +70,7 @@ class OffsetExpression(
     ### PUBLIC METHODS ##
 
     def evaluate(self):
-        '''Evaluate offset expression.
+        r'''Evaluate offset expression.
 
         Return none when nonevaluable.
 

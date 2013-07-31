@@ -10,7 +10,7 @@ from experimental.tools.handlertools.DynamicHandler import DynamicHandler
 
 
 class NoteAndChordHairpinHandler(DynamicHandler):
-    '''Note and chord hairpin handler.
+    r'''Note and chord hairpin handler.
     '''
 
     ### INITIALIZER ###

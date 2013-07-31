@@ -25,7 +25,7 @@ class PayloadExpression(Expression):
 
     @property
     def payload(self):
-        '''Payload expression payload:
+        r'''Payload expression payload:
 
         ::
 
@@ -39,7 +39,7 @@ class PayloadExpression(Expression):
     ### PUBLIC METHODS ###
 
     def evaluate(self):
-        '''Evaluate payload expression.
+        r'''Evaluate payload expression.
 
             >>> payload_expression.evaluate()
             PayloadExpression('foo')

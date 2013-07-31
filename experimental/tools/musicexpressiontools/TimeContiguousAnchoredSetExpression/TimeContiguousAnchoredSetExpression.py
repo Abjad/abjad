@@ -7,7 +7,7 @@ from experimental.tools.musicexpressiontools.SetExpression \
 
 
 class TimeContiguousAnchoredSetExpression(SetExpression, AnchoredExpression):
-    '''Anchored set expression.
+    r'''Anchored set expression.
     '''
 
     ### CLASS VARIABLES ##
@@ -42,7 +42,7 @@ class TimeContiguousAnchoredSetExpression(SetExpression, AnchoredExpression):
 
     @property
     def persist(self):
-        '''True when set expression should persist.
+        r'''True when set expression should persist.
 
         Return boolean.
         '''
@@ -50,7 +50,7 @@ class TimeContiguousAnchoredSetExpression(SetExpression, AnchoredExpression):
 
     @property
     def target_timespan(self):
-        '''Anchored set expression target timespan.
+        r'''Anchored set expression target timespan.
 
         Return timespan expression.
         '''
@@ -58,7 +58,7 @@ class TimeContiguousAnchoredSetExpression(SetExpression, AnchoredExpression):
 
     @property
     def truncate(self):
-        '''True when set expression should truncate.
+        r'''True when set expression should truncate.
 
         Return boolean.
         '''

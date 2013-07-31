@@ -4,7 +4,7 @@ from experimental.tools.musicexpressiontools.Expression import Expression
 
 
 class RegionExpression(Expression):
-    '''Region expression.
+    r'''Region expression.
     '''
 
     ### CLASS VARIABLES ###
@@ -32,7 +32,7 @@ class RegionExpression(Expression):
 
     @property
     def source_expression(self):
-        '''Region expression source expression.
+        r'''Region expression source expression.
 
         Return expression.
         '''
@@ -40,7 +40,7 @@ class RegionExpression(Expression):
 
     @property
     def start_offset(self):
-        '''Region expression start offset.
+        r'''Region expression start offset.
 
         Return offset.
         '''
@@ -48,7 +48,7 @@ class RegionExpression(Expression):
 
     @property
     def total_duration(self):
-        '''Region expression total duration.
+        r'''Region expression total duration.
 
         Return duration.
         '''
@@ -56,7 +56,7 @@ class RegionExpression(Expression):
 
     @property
     def voice_name(self):
-        '''Region expression voice name.
+        r'''Region expression voice name.
 
         Return string.
         '''

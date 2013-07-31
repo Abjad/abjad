@@ -6,7 +6,7 @@ from experimental.tools.scoremanagertools.proxies.ParseableModuleMixin \
 
 
 class OutputMaterialModuleProxy(ModuleProxy, ParseableModuleMixin):
-    '''Output material module proxy:
+    r'''Output material module proxy:
 
     ::
 
@@ -31,7 +31,7 @@ class OutputMaterialModuleProxy(ModuleProxy, ParseableModuleMixin):
 
     @property
     def filesystem_basename(self):
-        '''Output material module proxy filesystem basename:
+        r'''Output material module proxy filesystem basename:
 
         ::
 
@@ -44,7 +44,7 @@ class OutputMaterialModuleProxy(ModuleProxy, ParseableModuleMixin):
 
     @property
     def filesystem_path(self):
-        '''Output material module proxy filesystem path:
+        r'''Output material module proxy filesystem path:
 
         ::
 
@@ -61,7 +61,7 @@ class OutputMaterialModuleProxy(ModuleProxy, ParseableModuleMixin):
 
     @property
     def packagesystem_basename(self):
-        '''Output material module proxy module name:
+        r'''Output material module proxy module name:
 
         ::
 
@@ -74,7 +74,7 @@ class OutputMaterialModuleProxy(ModuleProxy, ParseableModuleMixin):
 
     @property
     def packagesystem_path(self):
-        '''Output material module proxy module path:
+        r'''Output material module proxy module path:
 
         ::
 
@@ -87,7 +87,7 @@ class OutputMaterialModuleProxy(ModuleProxy, ParseableModuleMixin):
 
     @property
     def parent_directory_filesystem_path(self):
-        '''Output material module proxy filesystem directory_name:
+        r'''Output material module proxy filesystem directory_name:
 
         ::
 

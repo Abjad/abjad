@@ -4,7 +4,7 @@ from experimental.tools.newabjadbooktools.OutputProxy import OutputProxy
 
 
 class AssetOutputProxy(OutputProxy):
-    '''Abstract base class for all abjad-book asset output proxies.
+    r'''Abstract base class for all abjad-book asset output proxies.
 
     An asset output proxy is an output proxy with both a textual 
     representation in a document, and a filesystem representation on disk.
@@ -16,7 +16,7 @@ class AssetOutputProxy(OutputProxy):
 
     @property
     def file_name_prefix(self):
-        '''Prefix for files generated from an output proxy.
+        r'''Prefix for files generated from an output proxy.
 
         Based on the name of the output proxy's class.
 
@@ -26,7 +26,7 @@ class AssetOutputProxy(OutputProxy):
 
     @property
     def file_name_without_extension(self):
-        '''File name without extension for files generated from an output
+        r'''File name without extension for files generated from an output
         proxy.
 
         Based on the class of the output proxy and a hash of the textual
