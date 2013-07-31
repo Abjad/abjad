@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def make_blank_line_markup():
     r'''.. versionadded:: 2.9
 

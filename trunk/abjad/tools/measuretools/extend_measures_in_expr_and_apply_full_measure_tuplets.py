@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def extend_measures_in_expr_and_apply_full_measure_tuplets(expr, supplement):
     r'''.. versionadded:: 2.0
 

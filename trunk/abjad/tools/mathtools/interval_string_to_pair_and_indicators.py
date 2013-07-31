@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 # probably better with regular expression handling
 def interval_string_to_pair_and_indicators(interval_string):
     r'''.. versionadded:: 1.0

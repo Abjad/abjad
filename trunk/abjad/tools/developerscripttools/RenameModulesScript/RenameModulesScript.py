@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import abc
 import os
 from abjad.tools import documentationtools

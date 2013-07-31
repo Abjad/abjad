@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def import_structured_package(path, namespace, package_root_name='abjad'):
     r'''.. versionadded:: 2.9
 

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 # TODO: make public and move to bound method of some class
 def _format_lilypond_context_setting_in_with_block(name, value):
     from _format_lilypond_value import _format_lilypond_value

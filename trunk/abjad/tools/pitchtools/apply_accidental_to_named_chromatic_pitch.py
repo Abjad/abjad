@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def apply_accidental_to_named_chromatic_pitch(named_chromatic_pitch, accidental=None):
     '''.. versionadded:: 2.0
 

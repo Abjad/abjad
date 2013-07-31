@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.sequencetools.CyclicList import CyclicList
 from abjad.tools.sequencetools.Tree import Tree
 

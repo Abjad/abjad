@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def comment_measures_in_container_with_measure_numbers(container):
     r'''.. versionadded:: 1.1
 

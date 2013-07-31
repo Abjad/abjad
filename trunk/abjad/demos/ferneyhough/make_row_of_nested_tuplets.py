@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.demos.ferneyhough.make_nested_tuplet import make_nested_tuplet
 
 

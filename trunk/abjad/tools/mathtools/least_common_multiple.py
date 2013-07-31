@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def least_common_multiple(*integers):
     r'''Least common multiple of positive `integers`:
 

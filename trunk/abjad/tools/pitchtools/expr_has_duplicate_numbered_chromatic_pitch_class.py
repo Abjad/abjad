@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def expr_has_duplicate_numbered_chromatic_pitch_class(expr):
     '''.. versionadded:: 2.0
 

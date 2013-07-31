@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.sequencetools.is_permutation import is_permutation
 import copy
 

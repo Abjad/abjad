@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.importtools.get_public_function_names_in_module \
     import get_public_function_names_in_module
 from abjad.tools.importtools.import_contents_of_public_packages_in_path_into_namespace \

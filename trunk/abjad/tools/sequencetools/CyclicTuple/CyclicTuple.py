@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 class CyclicTuple(tuple):
     '''.. versionadded:: 2.0
 

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from experimental.tools import handlertools
 from experimental.tools.musicexpressiontools.Expression import Expression
 from experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin \

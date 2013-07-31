@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import marktools
 from abjad.tools.selectiontools import select
 from experimental.tools.musicexpressiontools.LeafSetExpression \

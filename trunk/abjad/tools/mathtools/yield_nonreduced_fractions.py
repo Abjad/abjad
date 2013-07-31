@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def yield_nonreduced_fractions():
     '''.. versionadded:: 2.0
 

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import abc
 import hashlib
 from experimental.tools.newabjadbooktools.OutputProxy import OutputProxy

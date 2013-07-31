@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def is_null_tuple(expr):
     r'''.. versionadded:: 2.9
 

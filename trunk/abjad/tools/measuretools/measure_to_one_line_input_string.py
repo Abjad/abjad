@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def measure_to_one_line_input_string(measure):
     r'''.. versionadded:: 2.6
 

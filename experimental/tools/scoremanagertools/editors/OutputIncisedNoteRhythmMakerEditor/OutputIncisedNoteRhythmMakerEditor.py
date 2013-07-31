@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import rhythmmakertools
 from experimental.tools.scoremanagertools.editors.RhythmMakerEditor \
     import RhythmMakerEditor

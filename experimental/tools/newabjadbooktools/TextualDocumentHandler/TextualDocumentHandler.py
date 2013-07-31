@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import collections
 import os
 from experimental.tools.newabjadbooktools.DocumentHandler \

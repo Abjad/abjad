@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def chromatic_pitch_name_to_chromatic_pitch_class_name(chromatic_pitch_name):
     '''.. versionadded:: 2.0
 

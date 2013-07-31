@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def negate_sequence_elements_cyclically(sequence, indices, period):
     '''.. versionadded:: 2.0
 

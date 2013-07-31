@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad import *
 from built_in_materials.red_notes.output_material import red_notes
 

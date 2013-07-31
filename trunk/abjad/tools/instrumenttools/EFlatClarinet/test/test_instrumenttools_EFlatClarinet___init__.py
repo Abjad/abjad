@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad import *
 
 def test_instrumenttools_EFlatClarinet___init___01():

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from experimental.tools.scoremanagertools.wizards.Wizard import Wizard
 from experimental.tools.scoremanagertools import selectors
 

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def get_leaf_in_expr_with_maximum_duration(expr):
     r'''.. versionadded:: 2.5
 

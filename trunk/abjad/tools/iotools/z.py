@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def z(expr):
     r'''Print the storage format of `expr`.
     '''

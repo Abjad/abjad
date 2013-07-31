@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def make_repeated_notes_from_time_signatures(time_signatures, pitch="c'"):
     '''.. versionadded 1.1.2
 

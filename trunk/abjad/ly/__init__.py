@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from context_properties import context_properties
 from contexts import contexts
 from current_module import current_module

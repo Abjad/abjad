@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def get_markup_format_contributions(component):
     '''.. versionadded:: 2.0
 

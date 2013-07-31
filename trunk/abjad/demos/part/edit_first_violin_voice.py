@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import componenttools
 from abjad.tools import notetools
 from abjad.tools import spannertools

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.contexttools.TempoMark import TempoMark
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 

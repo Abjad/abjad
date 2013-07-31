@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def is_positive_integer_power_of_two(expr):
     r'''True when `expr` is a positive integer power of ``2``:
 

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def eject_contents_of_container(container):
     '''.. versionadded:: 2.0
 

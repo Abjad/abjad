@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import importlib
 import inspect
 import os

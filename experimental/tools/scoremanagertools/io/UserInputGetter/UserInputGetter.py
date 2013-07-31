@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import types
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools import predicates

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def is_positive_integer_equivalent_number(expr):
     '''.. versionadded:: 2.0
 

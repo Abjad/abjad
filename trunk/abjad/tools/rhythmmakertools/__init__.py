@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 r'''Module: rhythmmakertools.
 
 The following name changes were made when migrating into Abjad for initial check-in:

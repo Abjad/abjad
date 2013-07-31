@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad import *
 from experimental.tools import handlertools
 from experimental import *

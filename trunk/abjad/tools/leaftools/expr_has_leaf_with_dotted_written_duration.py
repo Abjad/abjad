@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def expr_has_leaf_with_dotted_written_duration(expr):
     '''.. versionadded:: 2.0
 

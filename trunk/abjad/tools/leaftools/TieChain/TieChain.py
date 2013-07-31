@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import itertools
 from abjad.tools import durationtools
 from abjad.tools import sequencetools

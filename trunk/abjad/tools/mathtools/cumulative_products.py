@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def cumulative_products(sequence):
     r'''Cumulative products of `sequence`:
 

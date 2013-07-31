@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import collections
 from abjad.tools import timespantools
 from abjad.tools.abctools.AbjadObject import AbjadObject

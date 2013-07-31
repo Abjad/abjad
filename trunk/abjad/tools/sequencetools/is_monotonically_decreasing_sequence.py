@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def is_monotonically_decreasing_sequence(expr):
     r'''.. versionadded:: 2.0
 

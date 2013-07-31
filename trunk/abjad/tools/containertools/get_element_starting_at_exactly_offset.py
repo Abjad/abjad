@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def get_element_starting_at_exactly_offset(container, prolated_offset):
     '''.. versionadded:: 2.0
 

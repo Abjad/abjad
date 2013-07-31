@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def is_restricted_growth_function(expr):
     '''.. versionadded:: 2.0
 

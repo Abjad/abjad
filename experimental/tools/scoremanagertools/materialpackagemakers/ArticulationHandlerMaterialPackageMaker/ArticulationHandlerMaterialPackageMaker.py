@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from experimental.tools.handlertools.ArticulationHandler \
     import ArticulationHandler
 from experimental.tools.scoremanagertools.materialpackagemakers.MaterialPackageMaker \

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def timespan_2_contains_timespan_1_improperly(timespan_1=None, timespan_2=None, hold=False):
     r'''.. versionadded:: 2.11
 

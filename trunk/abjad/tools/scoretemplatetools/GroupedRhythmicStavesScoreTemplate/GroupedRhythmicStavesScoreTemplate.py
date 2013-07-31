@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import collections
 from abjad.tools import contexttools
 from abjad.tools import instrumenttools

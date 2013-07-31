@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler \
     import FilesystemAssetWrangler
 

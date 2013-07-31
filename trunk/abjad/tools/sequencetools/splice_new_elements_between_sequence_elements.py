@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def splice_new_elements_between_sequence_elements(sequence, new_elements, overhang=(0, 0)):
     '''.. versionadded:: 1.1
 

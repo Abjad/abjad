@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import importtools
 
 importtools.import_structured_package(

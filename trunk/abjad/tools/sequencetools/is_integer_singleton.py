@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def is_integer_singleton(expr):
     r'''.. versionadded:: 2.9
 

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from __future__ import division
 from abjad.tools import mathtools
 import copy

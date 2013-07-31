@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def iterate_sequence_nwise_wrapped(sequence, n):
     '''.. versionadded:: 2.0
 

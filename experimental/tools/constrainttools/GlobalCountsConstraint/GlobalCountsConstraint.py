@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from experimental.tools.constrainttools._GlobalConstraint._GlobalConstraint \
     import _GlobalConstraint
 

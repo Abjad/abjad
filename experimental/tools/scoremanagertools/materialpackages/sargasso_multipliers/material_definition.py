@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import fractions
 from abjad.tools import mathtools
 

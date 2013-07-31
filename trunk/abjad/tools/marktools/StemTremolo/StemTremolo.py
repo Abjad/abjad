@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.componenttools.Component import Component
 from abjad.tools import mathtools
 from abjad.tools.marktools.Mark import Mark

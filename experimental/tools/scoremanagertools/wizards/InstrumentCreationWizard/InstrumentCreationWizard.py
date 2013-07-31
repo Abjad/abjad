@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import instrumenttools
 from experimental.tools.scoremanagertools import selectors
 from experimental.tools.scoremanagertools.wizards.Wizard import Wizard

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import types
 from abjad.tools.documentationtools.Documenter import Documenter
 

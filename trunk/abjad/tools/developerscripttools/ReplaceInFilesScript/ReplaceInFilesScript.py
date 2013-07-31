@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import fnmatch
 import os
 import re

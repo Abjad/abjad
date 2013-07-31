@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def add_terminal_newlines(lines):
     r'''.. versionadded:: 2.13
 

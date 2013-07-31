@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.sequencetools.CyclicTuple import CyclicTuple
 from abjad.tools.sequencetools.Matrix import Matrix
 

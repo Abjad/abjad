@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import sievetools
 from abjad.tools.sievetools.ResidueClass import ResidueClass
 from abjad.tools.sievetools.Sieve import Sieve

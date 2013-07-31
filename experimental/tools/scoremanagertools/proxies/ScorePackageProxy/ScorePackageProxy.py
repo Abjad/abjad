@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import os
 from experimental.tools.scoremanagertools.proxies.PackageProxy \
     import PackageProxy

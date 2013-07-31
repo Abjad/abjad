@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad import *
 from experimental.tools.scoremanagertools.materialpackages.green_music_specifier.output_material \
 	import green_music_specifier

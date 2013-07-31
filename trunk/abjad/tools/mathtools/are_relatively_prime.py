@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def are_relatively_prime(expr):
     '''.. versionadded:: 2.5
 

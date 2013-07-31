@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import select
 import subprocess
 import time

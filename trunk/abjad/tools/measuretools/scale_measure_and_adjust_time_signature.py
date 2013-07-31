@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import durationtools

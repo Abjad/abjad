@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import abctools
 from abjad.tools import schemetools
 from abjad.tools import stringtools

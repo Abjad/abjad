@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 # TODO: implement corresponding function with durations that increase monotonically
 def fuse_leaves_in_tie_chain_by_immediate_parent(tie_chain):
     r'''.. versionadded:: 1.1

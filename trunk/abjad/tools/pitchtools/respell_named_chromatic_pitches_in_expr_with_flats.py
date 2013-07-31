@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def respell_named_chromatic_pitches_in_expr_with_flats(expr):
     r'''.. versionadded:: 1.1
 

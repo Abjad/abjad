@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def reverse_contents_of_container(container):
     r'''.. versionadded:: 1.1
 

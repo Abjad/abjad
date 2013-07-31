@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def spell_chromatic_pitch_number(chromatic_pitch_number, diatonic_pitch_class_name):
     '''.. versionadded:: 1.1
 

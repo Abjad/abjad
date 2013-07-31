@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def is_pitch_carrier(expr):
     '''.. versionadded:: 1.1
 

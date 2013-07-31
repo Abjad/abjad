@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.markuptools import MarkupCommand
 from abjad.tools.markuptools import combine_markup_commands
 from abjad.tools.schemetools import SchemePair

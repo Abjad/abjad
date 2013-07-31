@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import abjad
 from abjad import *
 import py

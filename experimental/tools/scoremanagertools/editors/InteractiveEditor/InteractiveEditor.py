@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject \
     import ScoreManagerObject

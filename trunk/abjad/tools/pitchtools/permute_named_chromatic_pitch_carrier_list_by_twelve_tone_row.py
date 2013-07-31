@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def permute_named_chromatic_pitch_carrier_list_by_twelve_tone_row(pitches, row):
     '''.. versionadded:: 2.0
 

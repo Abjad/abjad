@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.pitchtools.DiatonicIntervalClass import DiatonicIntervalClass
 import numbers
 

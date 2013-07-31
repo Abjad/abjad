@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def inventory_inversion_equivalent_diatonic_interval_classes():
     '''.. versionadded:: 2.0
 

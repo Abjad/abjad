@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import contexttools
 from abjad.tools import notetools
 from abjad.tools import sequencetools

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def get_articulation_format_contributions(component):
     '''.. versionadded:: 2.0
 

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import re
 from abjad.tools.pitchtools.is_alphabetic_accidental_abbreviation \
 	import alphabetic_accidental_regex_body

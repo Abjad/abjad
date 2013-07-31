@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import copy
 import itertools
 import types

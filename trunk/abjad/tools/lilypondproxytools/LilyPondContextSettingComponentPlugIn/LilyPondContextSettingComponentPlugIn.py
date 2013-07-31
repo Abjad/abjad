@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import stringtools
 from abjad.tools.lilypondproxytools.LilyPondContextProxy.LilyPondContextProxy \
 	import LilyPondContextProxy

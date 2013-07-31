@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.sequencetools.rotate_sequence import rotate_sequence
 
 

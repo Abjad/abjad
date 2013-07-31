@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.spannertools.DirectedSpanner.DirectedSpanner \
 	import DirectedSpanner
 

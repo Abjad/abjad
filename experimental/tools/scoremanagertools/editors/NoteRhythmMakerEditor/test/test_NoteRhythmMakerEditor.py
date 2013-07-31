@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import rhythmmakertools
 from experimental.tools import handlertools
 from experimental import *

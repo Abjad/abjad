@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from experimental import *
 from abjad.tools.scoretemplatetools.ScoreTemplate import ScoreTemplate
 

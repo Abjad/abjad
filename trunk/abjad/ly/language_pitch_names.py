@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-
 from abjad.tools.pitchtools import NamedChromaticPitchClass
 
 

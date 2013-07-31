@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import os
 from abjad import abjad_configuration
 from experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector \

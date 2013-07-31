@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.DiatonicInterval import DiatonicInterval
 from abjad.tools.pitchtools.MelodicInterval import MelodicInterval

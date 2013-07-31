@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def scale_preprolated_leaf_duration(leaf, multiplier):
     r'''.. versionadded:: 1.1
 

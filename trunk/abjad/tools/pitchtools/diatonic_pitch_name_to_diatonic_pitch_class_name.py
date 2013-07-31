@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def diatonic_pitch_name_to_diatonic_pitch_class_name(diatonic_pitch_name):
     '''.. versionadded:: 2.0
 

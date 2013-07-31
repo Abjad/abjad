@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def make_reference_manual_graphviz_graph(graph):
     r'''Make a GraphvizGraph instance suitable for use in the
     Abjad reference manual.

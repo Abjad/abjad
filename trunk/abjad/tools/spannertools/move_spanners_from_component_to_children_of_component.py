@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def move_spanners_from_component_to_children_of_component(donor):
     r'''Give spanners attaching directly to donor to recipients.
     Usual use is to give attached spanners from parent to children,

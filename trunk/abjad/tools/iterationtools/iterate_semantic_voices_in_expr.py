@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def iterate_semantic_voices_in_expr(expr, reverse=False, start=0, stop=None):
     r'''.. versionadded:: 2.0
 

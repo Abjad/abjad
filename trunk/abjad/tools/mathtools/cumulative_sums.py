@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def cumulative_sums(sequence):
     r'''Cumulative sums of `sequence`:
 

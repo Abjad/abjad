@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 
 

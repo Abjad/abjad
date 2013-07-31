@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def get_numbered_chromatic_pitch_class_from_pitch_carrier(pitch_carrier):
     '''.. versionadded:: 2.0
 

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import fractions
 import numbers
 from abjad.tools import durationtools

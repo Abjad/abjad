@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import markuptools
 from abjad.tools import schemetools
 from abjad.tools.spannertools.TextSpanner import TextSpanner

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def remove_component_subtree_from_score_and_spanners(components):
     r'''.. versionadded:: 1.1
 

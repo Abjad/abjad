@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def iterate_sequence_forward_and_backward_overlapping(sequence):
     '''.. versionadded:: 2.0
 

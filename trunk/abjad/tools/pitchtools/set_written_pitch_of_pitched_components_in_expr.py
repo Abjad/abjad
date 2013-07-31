@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def set_written_pitch_of_pitched_components_in_expr(expr, written_pitch=0):
     r'''.. versionadded:: 2.9
 

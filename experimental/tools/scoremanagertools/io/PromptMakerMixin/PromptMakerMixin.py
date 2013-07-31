@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import functools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools

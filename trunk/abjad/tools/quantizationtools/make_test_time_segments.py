@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def make_test_time_segments():
     r'''Make test time segments.
     '''

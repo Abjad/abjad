@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import sequencetools
 output_material_module_import_statements = []
 

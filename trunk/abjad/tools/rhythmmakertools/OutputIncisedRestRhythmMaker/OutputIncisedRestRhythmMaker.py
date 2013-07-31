@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass \
 	import InversionEquivalentDiatonicIntervalClass
 from abjad.tools.pitchtools.IntervalSegment import IntervalSegment

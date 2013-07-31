@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import abc
 from abjad.tools.pitchtools.NumberedObject import NumberedObject
 from abjad.tools.pitchtools.PitchClass import PitchClass

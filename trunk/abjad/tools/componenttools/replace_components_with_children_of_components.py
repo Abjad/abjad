@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def replace_components_with_children_of_components(components):
     r'''.. versionadded:: 1.1
 

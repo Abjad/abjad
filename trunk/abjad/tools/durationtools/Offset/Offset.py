@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.durationtools.Duration import Duration
 
 

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def all_are_equal(expr):
     '''.. versionadded:: 2.0
 

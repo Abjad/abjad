@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def get_all_format_contributions(component):
     r'''Get all format contributions for `component`.
 

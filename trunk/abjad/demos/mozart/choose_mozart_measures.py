@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import random
 from abjad.demos.mozart.make_mozart_measure_corpus import make_mozart_measure_corpus
 

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def replace_contents_of_target_container_with_contents_of_source_container(target_container, source_container):
     r'''.. versionadded:: 2.0
 

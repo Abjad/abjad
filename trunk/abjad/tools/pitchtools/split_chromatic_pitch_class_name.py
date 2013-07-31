@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def split_chromatic_pitch_class_name(chromatic_pitch_class_name):
     '''.. versionadded:: 1.1
 

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def calculate_harmonic_chromatic_interval(pitch_carrier_1, pitch_carrier_2):
     '''.. versionadded:: 2.0
 

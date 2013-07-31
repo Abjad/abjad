@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import re
 import numbers
 from experimental.tools.musicexpressiontools.PayloadExpression \

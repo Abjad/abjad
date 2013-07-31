@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 # use this in temporary test files while working on musicexpressiontools tests
 
 lilypond_file = lilypondfiletools.make_floating_time_signature_lilypond_file(score)

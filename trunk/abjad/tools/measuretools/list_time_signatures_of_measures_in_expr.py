@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def list_time_signatures_of_measures_in_expr(components):
     r'''.. versionadded:: 2.0
 

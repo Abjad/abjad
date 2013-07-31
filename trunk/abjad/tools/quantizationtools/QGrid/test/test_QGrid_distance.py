@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.durationtools import Offset
 from abjad.tools.quantizationtools import *
 

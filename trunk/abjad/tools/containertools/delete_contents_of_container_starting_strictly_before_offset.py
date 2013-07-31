@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def delete_contents_of_container_starting_strictly_before_offset(container, prolated_offset):
     r'''.. versionadded:: 2.0
 

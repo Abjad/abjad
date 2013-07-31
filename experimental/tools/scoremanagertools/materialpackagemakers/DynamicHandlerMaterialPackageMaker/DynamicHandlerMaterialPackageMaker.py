@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from experimental.tools.scoremanagertools.materialpackagemakers.MaterialPackageMaker \
     import MaterialPackageMaker
 from experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard \

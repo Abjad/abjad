@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from __future__ import division
 import numbers
 from abjad.tools import durationtools

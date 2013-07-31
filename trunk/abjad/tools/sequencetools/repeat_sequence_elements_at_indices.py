@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def repeat_sequence_elements_at_indices(sequence, indices, total):
     '''.. versionadded:: 2.0
 

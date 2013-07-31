@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.tools.leaftools.Leaf import Leaf
 import py.test

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from experimental.tools.musicexpressiontools.ExpressionInventory \
     import ExpressionInventory
 from experimental.tools.musicexpressiontools.SetMethodMixin \

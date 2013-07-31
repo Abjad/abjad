@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def snake_case_to_upper_camel_case(string):
     '''.. versionadded:: 2.0
 

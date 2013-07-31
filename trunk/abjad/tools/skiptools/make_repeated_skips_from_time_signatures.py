@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def make_repeated_skips_from_time_signatures(time_signatures):
     r'''Make repeated skips from `time_signatures`:
 

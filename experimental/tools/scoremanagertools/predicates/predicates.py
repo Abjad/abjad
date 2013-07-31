@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import re
 from abjad import *
 from experimental.tools.scoremanagertools.scoremanager.ScoreManagerConfiguration \

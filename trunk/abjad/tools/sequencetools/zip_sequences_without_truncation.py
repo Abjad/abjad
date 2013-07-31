@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def zip_sequences_without_truncation(*sequences):
     '''.. versionadded:: 1.1
 

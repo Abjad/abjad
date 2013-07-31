@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.notetools.Note import Note
 from abjad.tools.notetools._Flageolet._Flageolet import _Flageolet
 

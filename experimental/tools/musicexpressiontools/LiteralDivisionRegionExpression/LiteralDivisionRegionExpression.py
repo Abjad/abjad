@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import sequencetools
 from experimental.tools.musicexpressiontools.DivisionRegionExpression \
     import DivisionRegionExpression

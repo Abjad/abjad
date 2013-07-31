@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def capitalize_string_start(string):
     r'''.. versionadded:: 2.5
 

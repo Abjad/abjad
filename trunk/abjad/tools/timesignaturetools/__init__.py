@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 '''Time signature manipulation tools.
 
    Modules in this package depend on, may freely import from, the following:

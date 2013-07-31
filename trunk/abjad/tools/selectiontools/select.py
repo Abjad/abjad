@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def select(expr=None):
     r'''Select `expr`.
 

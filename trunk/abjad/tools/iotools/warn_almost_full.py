@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def warn_almost_full(last_number):
     from abjad import abjad_configuration
     ABJADOUTPUT = abjad_configuration['abjad_output']

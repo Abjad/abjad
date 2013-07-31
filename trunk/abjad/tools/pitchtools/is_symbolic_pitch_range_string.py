@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import re
 from abjad.tools.pitchtools.is_chromatic_pitch_name \
 	import chromatic_pitch_name_regex_body

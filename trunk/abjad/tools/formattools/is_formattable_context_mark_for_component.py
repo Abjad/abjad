@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def is_formattable_context_mark_for_component(mark, component):
     r'''Return True if ContextMark `mark` can format for `component`.
     '''

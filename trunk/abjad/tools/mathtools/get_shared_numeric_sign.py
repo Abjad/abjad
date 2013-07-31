@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def get_shared_numeric_sign(sequence):
     r'''Return ``1`` when all `sequence` elements are positive:
 

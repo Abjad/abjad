@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 from abjad.tools.pitchtools.OctaveTranspositionMappingComponent \
 	import OctaveTranspositionMappingComponent

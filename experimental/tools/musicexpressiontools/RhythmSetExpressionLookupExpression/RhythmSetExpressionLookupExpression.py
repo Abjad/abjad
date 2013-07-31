@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import copy
 from abjad.tools import rhythmmakertools
 from abjad.tools import timerelationtools

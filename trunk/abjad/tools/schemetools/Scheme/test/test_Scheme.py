@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.schemetools import Scheme
 from abjad.tools.schemetools import SchemePair
 

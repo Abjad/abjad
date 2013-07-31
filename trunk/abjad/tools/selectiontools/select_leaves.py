@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def select_leaves(expr=None):
     from abjad.tools import iterationtools
     from abjad.tools import selectiontools

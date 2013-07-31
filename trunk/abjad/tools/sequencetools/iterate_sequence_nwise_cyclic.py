@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def iterate_sequence_nwise_cyclic(sequence, n):
     '''.. versionadded:: 2.0
 

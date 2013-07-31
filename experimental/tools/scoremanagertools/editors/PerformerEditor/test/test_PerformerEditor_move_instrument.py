@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from experimental import *
 from abjad.tools.scoretools import Performer
 from abjad.tools.instrumenttools import *

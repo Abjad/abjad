@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def make_repeated_rests_from_time_signatures(time_signatures):
     r'''Make repeated rests from `time_signatures`:
 

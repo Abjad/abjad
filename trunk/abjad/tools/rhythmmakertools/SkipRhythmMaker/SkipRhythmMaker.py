@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import skiptools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker

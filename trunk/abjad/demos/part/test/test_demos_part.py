@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.demos.part.make_part_lilypond_file import make_part_lilypond_file
 
 

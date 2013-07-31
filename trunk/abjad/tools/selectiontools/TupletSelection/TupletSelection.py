@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools.selectiontools.FreeSelection import FreeSelection

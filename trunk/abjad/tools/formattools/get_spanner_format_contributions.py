@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def get_spanner_format_contributions(component):
     r'''Get spanner format contributions for `component`.
 

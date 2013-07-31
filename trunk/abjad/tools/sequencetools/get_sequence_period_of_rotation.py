@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import mathtools
 from abjad.tools.sequencetools.get_sequence_degree_of_rotational_symmetry import \
     get_sequence_degree_of_rotational_symmetry

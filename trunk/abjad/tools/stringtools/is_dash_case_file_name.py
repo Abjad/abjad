@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.stringtools.is_dash_case_string \
 	import hyphen_delimited_lowercase_regex_body
 import re

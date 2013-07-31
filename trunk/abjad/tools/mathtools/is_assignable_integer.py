@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def is_assignable_integer(expr):
     r'''.. versionadded:: 2.0
 

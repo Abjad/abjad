@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import math
 import numbers
 from abjad.tools import mathtools

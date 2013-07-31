@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def delete_contents_of_container(container):
     r'''Delete contents of `container`:
 

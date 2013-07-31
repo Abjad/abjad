@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.stringtools.is_snake_case_string \
 	import underscore_delimited_lowercase_regex_body
 import re

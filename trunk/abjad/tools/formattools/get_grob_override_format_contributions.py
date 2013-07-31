@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def get_grob_override_format_contributions(component):
     r'''.. versionadded:: 2.0
 

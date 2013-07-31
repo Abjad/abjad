@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def arg_to_bidirectional_direction_string(arg):
     r'''Convert `arg` to bidirectional direction string:
 

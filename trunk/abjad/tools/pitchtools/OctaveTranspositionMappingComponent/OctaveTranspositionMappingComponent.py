@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.pitchtools.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.pitchtools.NumberedChromaticPitch \

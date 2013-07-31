@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def negate_sequence_elements_at_indices(sequence, indices):
     '''.. versionadded:: 1.1
 

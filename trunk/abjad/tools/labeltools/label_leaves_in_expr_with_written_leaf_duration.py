@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def label_leaves_in_expr_with_written_leaf_duration(
     expr, markup_direction=Down):
     r'''.. versionadded:: 1.1

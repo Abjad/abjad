@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import abc
 from abjad.tools import timespantools
 from experimental.tools.musicexpressiontools.Expression import Expression

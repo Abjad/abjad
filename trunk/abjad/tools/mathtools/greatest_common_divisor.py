@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def greatest_common_divisor(*integers):
     '''.. versionadded:: 2.0
 

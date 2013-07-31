@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def report_container_modifications(container):
     r'''Report `container` modifications as string:
 

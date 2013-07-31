@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def arg_to_tridirectional_ordinal_constant(arg):
     r'''Convert `arg` to tridirectional ordinal constant:
 

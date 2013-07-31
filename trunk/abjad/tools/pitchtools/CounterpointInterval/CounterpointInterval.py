@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import abc
 from abjad.tools.pitchtools.CounterpointObject import CounterpointObject
 from abjad.tools.pitchtools.Interval import Interval

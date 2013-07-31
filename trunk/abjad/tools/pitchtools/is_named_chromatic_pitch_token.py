@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 # TODO: extend with strings like "c" and "A4"
 def is_named_chromatic_pitch_token(pitch_token):
     '''.. versionadded:: 1.1

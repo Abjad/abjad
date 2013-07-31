@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def pluralize_string(string):
     r'''.. versionadded:: 2.13
 

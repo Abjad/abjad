@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def make_spanner_schema(components):
     r'''.. versionadded:: 2.0
 

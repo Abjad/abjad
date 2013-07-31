@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def get_leaf_at_index_in_measure_number_in_expr(
     expr, measure_number, leaf_index):
     r'''Get leaf at `leaf_index` in `measure_number` in `expr`:

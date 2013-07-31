@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad import Duration
 from abjad import Multiplier
 from abjad.tools import durationtools

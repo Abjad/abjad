@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.pitchtools.IntervalClass import IntervalClass
 import numbers
 

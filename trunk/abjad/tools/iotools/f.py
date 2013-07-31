@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def f(expr):
     r'''Format `expr` and print to standard out:
 

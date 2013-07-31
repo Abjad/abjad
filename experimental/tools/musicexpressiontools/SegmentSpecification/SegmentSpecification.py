@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import *
 from experimental.tools.musicexpressiontools.Specification \
 	import Specification

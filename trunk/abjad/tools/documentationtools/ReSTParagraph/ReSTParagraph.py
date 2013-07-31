@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import textwrap
 from abjad.tools.datastructuretools.TreeNode import TreeNode
 

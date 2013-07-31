@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import componenttools
 from experimental.tools.handlertools.PitchHandler import PitchHandler
 

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
 from abjad.tools.mathtools.BoundedObject import BoundedObject

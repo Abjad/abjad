@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def is_chromatic_pitch_class_number(expr):
     '''.. versionadded:: 2.0
 

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import mathtools
 from experimental.tools.musicexpressiontools.SingleContextSetExpression \
     import SingleContextSetExpression

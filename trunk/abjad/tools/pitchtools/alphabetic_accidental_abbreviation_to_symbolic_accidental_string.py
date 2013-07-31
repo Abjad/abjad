@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def alphabetic_accidental_abbreviation_to_symbolic_accidental_string(alphabetic_accidental_abbreviation):
     '''.. versionadded:: 2.5
 

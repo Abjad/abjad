@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import copy
 import re
 from abjad.tools.leaftools.Leaf import Leaf

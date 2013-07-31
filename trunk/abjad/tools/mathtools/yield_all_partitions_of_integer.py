@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def yield_all_partitions_of_integer(n):
     r'''.. versionadded:: 2.0
 

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import instrumenttools
 from abjad.tools import scoretools
 from abjad.tools.instrumenttools.Instrument import Instrument

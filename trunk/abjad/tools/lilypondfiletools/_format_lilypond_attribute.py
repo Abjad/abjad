@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 # TODO: make public and move somewhere, perhaps to stringtools
 def _format_lilypond_attribute(attribute):
     r'''Return Scheme-formatted attribute.

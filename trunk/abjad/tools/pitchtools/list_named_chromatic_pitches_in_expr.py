@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def list_named_chromatic_pitches_in_expr(expr):
     '''.. versionadded:: 2.0
 

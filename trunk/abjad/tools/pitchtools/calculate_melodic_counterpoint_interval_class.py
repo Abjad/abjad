@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def calculate_melodic_counterpoint_interval_class(pitch_carrier_1, pitch_carrier_2):
     '''.. versionadded:: 2.0
 

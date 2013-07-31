@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.demos.mozart.choose_mozart_measures import choose_mozart_measures
 from abjad.demos.mozart.make_mozart_measure import make_mozart_measure

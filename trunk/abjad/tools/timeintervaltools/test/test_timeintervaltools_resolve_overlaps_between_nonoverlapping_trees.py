@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.timeintervaltools import TimeInterval
 from abjad.tools.timeintervaltools import TimeIntervalTree
 from abjad.tools.timeintervaltools \

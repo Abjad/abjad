@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import copy
 import time
 from abjad.tools import *

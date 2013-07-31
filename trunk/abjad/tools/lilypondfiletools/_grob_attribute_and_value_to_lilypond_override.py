@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 # TODO: make public and move to bound method of some class
 def _grob_attribute_and_value_to_lilypond_override(grob, attribute, value):
     from abjad.tools.lilypondfiletools._format_lilypond_attribute import _format_lilypond_attribute

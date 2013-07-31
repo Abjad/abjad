@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from experimental.tools import timerelationtools
 from experimental.tools import timespantools
 from experimental.tools.musicexpressiontools.SetExpressionLookupExpression \

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.markuptools.Markup import Markup
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from experimental.tools.scoremanagertools.selectors.Selector import Selector
 
 

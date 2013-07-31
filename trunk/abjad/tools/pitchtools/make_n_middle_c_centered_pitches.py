@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def make_n_middle_c_centered_pitches(n):
     '''.. versionadded:: 2.0
 

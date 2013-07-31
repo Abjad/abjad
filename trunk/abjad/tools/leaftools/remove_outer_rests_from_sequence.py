@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def remove_outer_rests_from_sequence(sequence):
     r'''.. versionadded:: 2.0
 

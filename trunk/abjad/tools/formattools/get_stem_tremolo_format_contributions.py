@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def get_stem_tremolo_format_contributions(component):
     '''.. versionadded:: 2.0
 

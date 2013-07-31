@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import os
 import subprocess
 from experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy \

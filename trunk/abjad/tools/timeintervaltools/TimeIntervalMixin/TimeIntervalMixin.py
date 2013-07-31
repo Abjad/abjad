@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import abc
 from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadObject

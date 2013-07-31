@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def is_chromatic_pitch_class_name_octave_number_pair(expr):
     '''.. versionadded:: 1.1
 

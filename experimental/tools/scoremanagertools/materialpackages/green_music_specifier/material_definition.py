@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad import *
 from experimental.tools.scoremanagertools import specifiers
 output_material_module_import_statements = [

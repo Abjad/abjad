@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def select_tuplets(
     expr=None,
     include_augmented_tuplets=True,

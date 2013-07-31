@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def transpose_chromatic_pitch_by_melodic_chromatic_interval_segment(pitch, segment):
     '''.. versionadded:: 2.0
 

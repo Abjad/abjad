@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def transpose_pitch_expr_into_pitch_range(pitch_expr, pitch_range):
     '''.. versionadded:: 2.0
 

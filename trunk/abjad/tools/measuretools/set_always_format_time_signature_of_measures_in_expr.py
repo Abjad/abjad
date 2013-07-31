@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def set_always_format_time_signature_of_measures_in_expr(expr, value=True):
     '''.. versionadded:: 2.9
 

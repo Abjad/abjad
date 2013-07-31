@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def is_integer_n_tuple(expr, n):
     r'''.. versionadded:: 2.9
 

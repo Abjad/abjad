@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 # TODO: eliminate string-valued exp='cosine' keyword
 def interpolate_divide(total, start_fraction, stop_fraction, exp='cosine'):
     r'''Divide `total` into segments of sizes computed from interpolating

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def get_next_output_file_name(file_extension='ly', path=None):
     r'''Get next output file name like ``6223.ly``.
 

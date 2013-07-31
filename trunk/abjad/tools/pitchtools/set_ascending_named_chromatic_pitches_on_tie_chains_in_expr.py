@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(expr):
     r'''.. versionadded:: 1.1
 

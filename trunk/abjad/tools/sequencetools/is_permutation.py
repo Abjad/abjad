@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def is_permutation(expr, length=None):
     '''.. versionadded:: 2.0
 

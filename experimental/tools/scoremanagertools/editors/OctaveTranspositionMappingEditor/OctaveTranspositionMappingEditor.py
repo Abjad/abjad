@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import pitchtools
 from experimental.tools.scoremanagertools import getters
 from experimental.tools.scoremanagertools.editors.ObjectInventoryEditor \

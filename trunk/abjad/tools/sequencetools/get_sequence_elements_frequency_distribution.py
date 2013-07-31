@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def get_sequence_elements_frequency_distribution(sequence):
     '''.. versionadded:: 2.0
 

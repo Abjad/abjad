@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.sequencetools.iterate_sequence_pairwise_strict \
 	import iterate_sequence_pairwise_strict
 

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def iterate_sequence_pairwise_cyclic(sequence):
     '''.. versionadded:: 1.1
 

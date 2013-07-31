@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import platform
 
 _python_version = platform.python_version()

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def cumulative_signed_weights(sequence):
     r'''Cumulative signed weights of `sequence`:
 

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 # TODO: make work with nested tuplets
 def change_diminished_tuplets_in_expr_to_augmented(tuplet):
     '''.. versionadded:: 2.0

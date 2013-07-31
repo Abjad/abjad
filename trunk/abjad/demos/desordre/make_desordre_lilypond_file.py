@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import documentationtools
 from abjad.demos.desordre.make_desordre_pitches import make_desordre_pitches
 from abjad.demos.desordre.make_desordre_score import make_desordre_score

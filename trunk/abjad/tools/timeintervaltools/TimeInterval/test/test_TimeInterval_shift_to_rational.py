@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.tools.timeintervaltools.TimeInterval import TimeInterval
 

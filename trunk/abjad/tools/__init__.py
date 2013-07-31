@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 # load constants into __builtins__ namespace
 from abjad.tools import datastructuretools
 from abjad.tools import mathtools

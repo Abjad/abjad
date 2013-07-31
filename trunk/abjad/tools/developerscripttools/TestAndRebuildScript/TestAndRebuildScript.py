@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import doctest
 import importlib
 import os

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def list_written_durations_of_leaves_in_expr(expr):
     '''.. versionadded:: 2.0
 

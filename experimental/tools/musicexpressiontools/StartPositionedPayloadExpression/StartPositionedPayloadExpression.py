@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import copy
 import numbers
 from abjad.tools import componenttools

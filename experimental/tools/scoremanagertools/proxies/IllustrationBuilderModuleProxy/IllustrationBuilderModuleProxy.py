@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import markuptools
 from experimental.tools.scoremanagertools.proxies.ModuleProxy \
     import ModuleProxy

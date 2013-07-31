@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 # TODO: bind to GovernorSelection?
 #       it might make sense to force the composer to select
 #       from `component` up to the governor of component;

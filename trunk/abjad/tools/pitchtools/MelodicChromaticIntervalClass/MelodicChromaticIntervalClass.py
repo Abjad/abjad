@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.ChromaticIntervalClass \
 	import ChromaticIntervalClass

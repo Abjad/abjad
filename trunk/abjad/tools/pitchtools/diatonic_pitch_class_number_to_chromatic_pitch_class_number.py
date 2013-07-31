@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 _diatonic_pitch_class_number_to_chromatic_pitch_class_number = {
     0: 0, 1: 2, 2: 4, 3: 5, 4: 7, 5: 9, 6: 11 }
 

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.pitchtools.Vector import Vector
 from abjad.tools.pitchtools.inventory_inversion_equivalent_diatonic_interval_classes \
     import inventory_inversion_equivalent_diatonic_interval_classes

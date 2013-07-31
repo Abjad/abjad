@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from experimental.tools.newabjadbooktools.TextualDocumentHandler \
     import TextualDocumentHandler
 

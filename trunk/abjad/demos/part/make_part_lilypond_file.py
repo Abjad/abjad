@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.demos.part.PartCantusScoreTemplate import PartCantusScoreTemplate
 from abjad.demos.part.add_bell_music_to_score import add_bell_music_to_score

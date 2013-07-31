@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def repeat_runs_in_sequence_to_count(sequence, indicators):
     '''.. versionadded:: 1.1
 

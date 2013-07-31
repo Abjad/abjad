@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import abc
 from experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin \
     import TimeContiguousSetMethodMixin

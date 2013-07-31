@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def get_indices_of_sequence_elements_equal_to_true(sequence):
     '''.. versionadded:: 1.1
 

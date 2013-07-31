@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 lilypond_version = "2.17.9"
 
 music_glyphs = set([

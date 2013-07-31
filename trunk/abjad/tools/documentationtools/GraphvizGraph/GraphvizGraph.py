@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import copy
 import subprocess
 from abjad.tools.datastructuretools import TreeContainer

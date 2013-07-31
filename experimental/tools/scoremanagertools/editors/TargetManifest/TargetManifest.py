@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.tools.scoremanagertools.editors.AttributeDetail \
     import AttributeDetail

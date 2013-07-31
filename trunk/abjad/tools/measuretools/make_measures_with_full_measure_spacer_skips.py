@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def make_measures_with_full_measure_spacer_skips(time_signatures):
     r'''.. versionadded:: 1.1
 

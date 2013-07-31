@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def instantiate_pitch_and_interval_test_collection():
     r'''.. versionadded:: 2.0
 

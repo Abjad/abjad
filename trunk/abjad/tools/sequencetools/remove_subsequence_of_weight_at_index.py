@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def remove_subsequence_of_weight_at_index(sequence, weight, index):
     '''.. versionadded:: 1.1
 

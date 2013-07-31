@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from experimental.tools.musicexpressiontools.AnchoredExpression \
     import AnchoredExpression
 from experimental.tools.musicexpressiontools.LookupMethodMixin \

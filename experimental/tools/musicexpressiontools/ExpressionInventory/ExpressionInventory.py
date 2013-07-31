@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import copy
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 from experimental.tools.musicexpressiontools.IterablePayloadExpression \

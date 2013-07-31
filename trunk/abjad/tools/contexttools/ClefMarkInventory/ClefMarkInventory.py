@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.contexttools.ClefMark import ClefMark
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 

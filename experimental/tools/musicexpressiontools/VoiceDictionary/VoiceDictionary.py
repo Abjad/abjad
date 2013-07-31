@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import collections
 from abjad.tools import iterationtools
 from abjad.tools import scoretools

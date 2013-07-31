@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def next_integer_partition(integer_partition):
     r'''.. versionadded:: 2.0
 

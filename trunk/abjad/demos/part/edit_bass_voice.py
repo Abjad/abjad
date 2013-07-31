@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def edit_bass_voice(score, durated_reservoir):
 
     voice = score['Bass Voice']

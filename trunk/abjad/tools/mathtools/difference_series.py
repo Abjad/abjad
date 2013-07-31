@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def difference_series(sequence):
     r'''Difference series of `sequence`:
 

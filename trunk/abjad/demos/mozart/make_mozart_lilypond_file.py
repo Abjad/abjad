@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.demos.mozart.make_mozart_score import make_mozart_score
 

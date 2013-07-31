@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import os
 from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 from abjad.tools.developerscripttools.ReplaceInFilesScript \

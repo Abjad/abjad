@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.pitchtools import MelodicChromaticIntervalSegment
 from abjad.tools.pitchtools import NamedChromaticPitch
 from abjad.tools.pitchtools import NumberedChromaticPitch

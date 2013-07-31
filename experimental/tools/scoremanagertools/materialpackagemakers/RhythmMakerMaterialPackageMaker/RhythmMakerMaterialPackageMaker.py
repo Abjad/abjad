@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import os
 from abjad import *
 from experimental.tools.scoremanagertools.materialpackagemakers.MaterialPackageMaker \

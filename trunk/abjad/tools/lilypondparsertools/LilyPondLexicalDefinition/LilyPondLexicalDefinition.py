@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import copy
 from ply import lex
 from abjad.tools import chordtools

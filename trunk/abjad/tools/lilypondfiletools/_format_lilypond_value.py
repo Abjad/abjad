@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 # TODO: make public and move to bound method of some class.
 def _format_lilypond_value(value):
     r'''Format LilyPond value.

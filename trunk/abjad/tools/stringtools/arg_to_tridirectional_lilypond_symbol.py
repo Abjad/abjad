@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def arg_to_tridirectional_lilypond_symbol(arg):
     r'''Convert `arg` to tridirectional LilyPond symbol:
 

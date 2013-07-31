@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def clef_and_staff_position_number_to_named_chromatic_pitch(clef, staff_position_number):
     r'''.. versionadded:: 2.0
 

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def diatonic_pitch_name_to_chromatic_pitch_number(diatonic_pitch_name):
     '''.. versionadded:: 2.0
 

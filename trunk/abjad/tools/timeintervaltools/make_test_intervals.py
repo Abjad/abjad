@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def make_test_intervals():
     from abjad.tools import timeintervaltools
 

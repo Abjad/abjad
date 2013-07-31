@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.rhythmmakertools.DivisionIncisedRhythmMaker \
 	import DivisionIncisedRhythmMaker
 

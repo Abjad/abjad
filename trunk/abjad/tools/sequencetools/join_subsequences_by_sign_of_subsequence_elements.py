@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.mathtools.get_shared_numeric_sign \
 	import get_shared_numeric_sign
 

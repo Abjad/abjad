@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def scale_contents_of_container(container, multiplier):
     r'''Scale contents of `container` by dot `multiplier`:
 

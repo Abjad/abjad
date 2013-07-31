@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad import abjad_configuration
 from abjad.demos import desordre
 import os

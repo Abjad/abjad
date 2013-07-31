@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def report_spanner_format_contributions(spanner):
     r'''.. versionadded:: 2.9
 

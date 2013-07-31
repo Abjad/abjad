@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def get_the_only_spanner_attached_to_component(
     component, spanner_classes=None):
     r'''.. versionadded:: 1.1

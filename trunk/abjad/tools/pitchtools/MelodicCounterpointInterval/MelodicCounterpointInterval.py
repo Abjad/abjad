@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.pitchtools.CounterpointInterval import CounterpointInterval
 from abjad.tools.pitchtools.MelodicInterval import MelodicInterval
 

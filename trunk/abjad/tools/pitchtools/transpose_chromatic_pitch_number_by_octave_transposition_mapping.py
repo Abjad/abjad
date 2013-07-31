@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 # TODO: remove in favor of OctaveTranspositionMapping.__call__()
 def transpose_chromatic_pitch_number_by_octave_transposition_mapping(chromatic_pitch_number, mapping):
     '''.. versionadded:: 1.1

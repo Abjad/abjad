@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 # TODO: fix bug in function that causes tied notes to become untied
 def replace_contents_of_measures_in_expr(expr, new_contents):
     r'''.. versionadded:: 1.1

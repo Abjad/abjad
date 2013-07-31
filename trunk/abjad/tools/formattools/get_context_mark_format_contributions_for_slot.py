@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.formattools.get_context_mark_format_pieces \
 	import get_context_mark_format_pieces
 from abjad.tools.formattools.is_formattable_context_mark_for_component \

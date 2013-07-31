@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.tools.contexttools import TempoMark
 from abjad.tools.layouttools import SpacingIndication

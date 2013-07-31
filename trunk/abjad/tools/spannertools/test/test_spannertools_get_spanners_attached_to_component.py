@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad import *
 
 def test_spannertools_get_spanners_attached_to_component_01():

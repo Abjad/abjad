@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import abc
 from abjad.tools.pitchtools.ChromaticObject import ChromaticObject
 from abjad.tools.pitchtools.Pitch import Pitch

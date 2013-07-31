@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def make_big_centered_page_number_markup(text=None):
     r'''.. versionadded:: 1.1
 

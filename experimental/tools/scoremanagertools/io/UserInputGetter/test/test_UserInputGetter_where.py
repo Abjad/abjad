@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from experimental import *
 import py
 py.test.skip('unskip after where automatically toggles where-tracking.')

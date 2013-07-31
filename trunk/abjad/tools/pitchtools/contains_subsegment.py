@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 # TODO: implement subsegment containment on pitchtools Segment classes
 def contains_subsegment(chromatic_pitch_class_numbers, chromatic_pitch_numbers):
     '''.. versionadded:: 1.1

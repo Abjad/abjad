@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import abc
 from abjad.tools import stringtools
 from abjad.tools.spannertools.Spanner import Spanner

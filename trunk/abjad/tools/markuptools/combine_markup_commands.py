@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def combine_markup_commands(*commands):
     r'''Combine MarkupCommand and/or string objects.
 

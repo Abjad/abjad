@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import operator
 from abjad.tools import mathtools
 from abjad.tools.sievetools.BaseResidueClass import BaseResidueClass

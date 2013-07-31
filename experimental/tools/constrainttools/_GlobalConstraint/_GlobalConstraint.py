@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from experimental.tools.constrainttools._Constraint._Constraint \
 	import _Constraint
 

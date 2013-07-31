@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import os
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.editors.MusicSpecifierEditor \

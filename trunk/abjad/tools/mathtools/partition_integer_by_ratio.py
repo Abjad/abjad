@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def partition_integer_by_ratio(n, ratio):
     r'''Partition positive integer-equivalent `n` by `ratio`:
 

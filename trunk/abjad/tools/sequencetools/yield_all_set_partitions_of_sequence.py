@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def yield_all_set_partitions_of_sequence(sequence):
     '''.. versionadded:: 2.0
 

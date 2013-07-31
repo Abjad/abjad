@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 def report_component_format_contributions(component, verbose=False):
     r'''.. versionadded:: 1.1
 

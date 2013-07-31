@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from experimental.tools.scoremanagertools import getters
 from experimental.tools.scoremanagertools import specifiers
 from experimental.tools.scoremanagertools.editors.ObjectInventoryEditor \
