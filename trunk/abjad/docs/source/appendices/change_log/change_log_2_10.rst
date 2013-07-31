@@ -509,7 +509,7 @@ Changes to the ``instrumenttools`` package:
 
   ::
 
-    instrumenttools.transpose_from_sounding_pitch_to_fingered_pitch()
+    instrumenttools.transpose_from_sounding_pitch_to_written_pitch()
 
 - Renamed::
 
@@ -517,7 +517,7 @@ Changes to the ``instrumenttools`` package:
 
   ::
 
-    instrumenttools.transpose_from_fingered_pitch_to_sounding_pitch()
+    instrumenttools.transpose_from_written_pitch_to_sounding_pitch()
 
 Chnages to the ``leaftools`` package:
 

@@ -6,7 +6,7 @@ from abjad.tools import notetools
 from abjad.tools import pitchtools
 
 
-def transpose_from_fingered_pitch_to_sounding_pitch(expr):
+def transpose_from_written_pitch_to_sounding_pitch(expr):
     r'''.. versionadded:: 2.0
 
     Transpose notes and chords in `expr` from sounding pitch to fingered pitch:
@@ -34,7 +34,7 @@ def transpose_from_fingered_pitch_to_sounding_pitch(expr):
         >>> for leaf in staff.select_leaves():
         ...   leaf.written_pitch_indication_is_at_sounding_pitch = False
 
-        >>> instrumenttools.transpose_from_fingered_pitch_to_sounding_pitch(staff)
+        >>> instrumenttools.transpose_from_written_pitch_to_sounding_pitch(staff)
 
     ::
 

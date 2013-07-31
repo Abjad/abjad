@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_instrumenttools_transpose_from_sounding_pitch_to_fingered_pitch_01():
+def test_instrumenttools_transpose_from_sounding_pitch_to_written_pitch_01():
 
     staff = Staff("<c' e' g'>4 d'4 r4 e'4")
     clarinet = instrumenttools.BFlatClarinet()(staff)
@@ -13,7 +13,7 @@ def test_instrumenttools_transpose_from_sounding_pitch_to_fingered_pitch_01():
         if isinstance(leaf, (Note, Chord)):
             assert leaf.written_pitch_indication_is_at_sounding_pitch
 
-    instrumenttools.transpose_from_sounding_pitch_to_fingered_pitch(staff)
+    instrumenttools.transpose_from_sounding_pitch_to_written_pitch(staff)
 
     r'''
     \new Staff {
