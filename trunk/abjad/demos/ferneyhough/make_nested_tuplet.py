@@ -6,7 +6,7 @@ def make_nested_tuplet(
     outer_tuplet_proportions,
     inner_tuplet_subdivision_count,
     ):
-    outer_tuplet = tuplettools.make_tuplet_from_duration_and_ratio(
+    outer_tuplet = Tuplet.from_duration_and_ratio(
         tuplet_duration, outer_tuplet_proportions)
     inner_tuplet_proportions = inner_tuplet_subdivision_count * [1]
     right_tie_chain = outer_tuplet.select_leaves()[-1].select_tie_chain()

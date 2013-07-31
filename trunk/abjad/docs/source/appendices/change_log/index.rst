@@ -342,7 +342,7 @@ Renamed the four ratio-related API functions::
 
     tietools.tie_chain_to_tuplet_with_ratio()
     tuplettools.leaf_to_tuplet_with_ratio()
-    tuplettools.make_tuplet_from_duration_and_ratio()
+    Tuplet.from_duration_and_ratio()
     tuplettools.from_ratio_and_nonreduced_fraction()
 
 Added four new public properties to ``Duration`` that replace functions::

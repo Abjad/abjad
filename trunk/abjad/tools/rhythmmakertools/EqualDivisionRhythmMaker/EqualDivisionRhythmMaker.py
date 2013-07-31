@@ -78,7 +78,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
         numerator, talea_denominator = division
         division_duration = durationtools.Duration(division)
         ratio = self.leaf_count * [1]
-        tuplet = tuplettools.make_tuplet_from_duration_and_ratio(
+        tuplet = tuplettools.Tuplet.from_duration_and_ratio(
             division_duration,
             ratio,
             avoid_dots=True,

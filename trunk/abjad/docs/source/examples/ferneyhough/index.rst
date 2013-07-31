@@ -65,7 +65,7 @@ And then we make the rhythms:
    >>> for proportion in proportions:
    ...     tuplets = []
    ...     for n in range(1, 6 + 1):
-   ...         tuplet = tuplettools.make_tuplet_from_duration_and_ratio(duration, proportion)
+   ...         tuplet = Tuplet.from_duration_and_ratio(duration, proportion)
    ...         divide_tuplet(tuplet, n)
    ...         tuplets.append(tuplet)
    ...     music.extend(tuplets)
