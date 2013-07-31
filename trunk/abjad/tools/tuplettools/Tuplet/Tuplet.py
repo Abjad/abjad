@@ -1,4 +1,5 @@
 import fractions
+import math
 from abjad.tools import durationtools
 from abjad.tools import formattools
 from abjad.tools import mathtools
@@ -561,3 +562,96 @@ class Tuplet(Container):
             return '%s:%s' % (multiplier.denominator, multiplier.numerator)
         else:
             return None
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def from_ratio_and_nonreduced_fraction(proportions, (n, d)):
+        '''Divide nonreduced fraction `(n, d)` according to `proportions`.
+
+        Example 1. Make container when no prolation is necessary:
+
+        ::
+
+            >>> ratio = [1]
+            >>> Tuplet.from_ratio_and_nonreduced_fraction(ratio, (7, 16))
+            {c'4..}
+
+        Example 2. Make fixed-duration tuplet when prolation is necessary:
+
+        ::
+
+            >>> ratio = [1, 2]
+            >>> Tuplet.from_ratio_and_nonreduced_fraction(ratio, (7, 16))
+            FixedDurationTuplet(7/16, [c'8, c'4])
+
+        ::
+
+            >>> ratio = [1, 2, 4]
+            >>> Tuplet.from_ratio_and_nonreduced_fraction(ratio, (7, 16))
+            FixedDurationTuplet(7/16, [c'16, c'8, c'4])
+
+        ::
+
+            >>> ratio = [1, 2, 4, 1]
+            >>> Tuplet.from_ratio_and_nonreduced_fraction(ratio, (7, 16))
+            FixedDurationTuplet(7/16, [c'16, c'8, c'4, c'16])
+
+        ::
+
+            >>> ratio = [1, 2, 4, 1, 2]
+            >>> Tuplet.from_ratio_and_nonreduced_fraction(ratio, (7, 16))
+            FixedDurationTuplet(7/16, [c'16, c'8, c'4, c'16, c'8])
+
+        ::
+
+            >>> ratio = [1, 2, 4, 1, 2, 4]
+            >>> Tuplet.from_ratio_and_nonreduced_fraction(ratio, (7, 16))
+            FixedDurationTuplet(7/16, [c'16, c'8, c'4, c'16, c'8, c'4])
+
+        Note that method interprets `d` as tuplet denominator.
+
+        Return tuplet or container.
+        '''
+        from abjad.tools import containertools
+        from abjad.tools import notetools
+        from abjad.tools import resttools
+        from abjad.tools import tuplettools
+        proportions = mathtools.NonreducedRatio(proportions)
+        duration = durationtools.Duration(n, d)
+        if len(proportions) == 1:
+            if 0 < proportions[0]:
+                try:
+                    note = notetools.Note(0, duration)
+                    return containertools.Container([note])
+                except AssignabilityError:
+                    notes = notetools.make_notes(0, duration)
+                    return containertools.Container(notes)
+            elif proportions[0] < 0:
+                try:
+                    rest = resttools.Rest(duration)
+                    return containertools.Container([rest])
+                except AssignabilityError:
+                    rests = resttools.make_rests(duration)
+                    return containertools.Container(rests)
+            else:
+                raise ValueError('no divide zero values.')
+        if 1 < len(proportions):
+            exponent = int(
+                math.log(mathtools.weight(proportions), 2) - math.log(n, 2))
+            denominator = int(d * 2 ** exponent)
+            music = []
+            for x in proportions:
+                if not x:
+                    raise ValueError('no divide zero values.')
+                if 0 < x:
+                    try:
+                        note = notetools.Note(0, (x, denominator))
+                        music.append(note)
+                    except AssignabilityError:
+                        notes = notetools.make_notes(0, (x, denominator))
+                        music.extend(notes)
+                else:
+                    rests = resttools.Rest((-x, denominator))
+                    music.append(rests)
+            return tuplettools.FixedDurationTuplet(duration, music)
