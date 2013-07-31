@@ -3,13 +3,13 @@ from abjad.tools.selectiontools.FreeSelection import FreeSelection
 
 
 class ComponentSelection(FreeSelection):
-    '''Selection of components grouped together for inspection.
+    r'''Selection of components grouped together for inspection.
     '''
 
     ### PUBLIC METHODS ###
 
     def attach_marks(self, marks, recurse=False):
-        '''Attach copy of each mark in `marks` 
+        r'''Attach copy of each mark in `marks` 
         to each component in selection.
 
         Return tuple of marks created.
@@ -17,7 +17,7 @@ class ComponentSelection(FreeSelection):
         return self._attach_marks(marks, recurse=recurse)
 
     def attach_spanners(self, spanner, recurse=False):
-        '''Attach shallow copy of `spanner` 
+        r'''Attach shallow copy of `spanner` 
         to each component in selection.
 
         Return list of spanners created.
@@ -129,7 +129,7 @@ class ComponentSelection(FreeSelection):
         return badly_formed_components
 
     def get_component(self, component_classes=None, n=0, recurse=True):
-        '''Get component `n` of `component_classes` in selection.
+        r'''Get component `n` of `component_classes` in selection.
 
         Iterate only top level when `recurse` is false.
 
@@ -144,7 +144,7 @@ class ComponentSelection(FreeSelection):
             )
 
     def get_marks(self, mark_classes=None, recurse=True):
-        '''Get `mark_classes` attached to components in selection.
+        r'''Get `mark_classes` attached to components in selection.
 
         Return tuple.
         '''

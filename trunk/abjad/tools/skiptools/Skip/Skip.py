@@ -3,7 +3,7 @@ from abjad.tools.leaftools.Leaf import Leaf
 
 
 class Skip(Leaf):
-    '''Abjad model of a LilyPond skip:
+    r'''Abjad model of a LilyPond skip:
 
     ::
 

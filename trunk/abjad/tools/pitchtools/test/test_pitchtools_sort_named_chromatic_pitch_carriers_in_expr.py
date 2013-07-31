@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_pitchtools_sort_named_chromatic_pitch_carriers_in_expr_01():
-    '''Works on notes.
+    r'''Works on notes.
     '''
 
     chord = Chord([-12, -10, -2, 4, 8, 11, 17, 19, 27, 30, 33, 37], (1, 4))

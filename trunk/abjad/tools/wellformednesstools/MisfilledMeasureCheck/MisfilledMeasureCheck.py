@@ -4,7 +4,7 @@ from abjad.tools.wellformednesstools.Check import Check
 
 
 class MisfilledMeasureCheck(Check):
-    '''Check that time signature duration equals measure contents 
+    r'''Check that time signature duration equals measure contents 
     duration for every measure.
     '''
 

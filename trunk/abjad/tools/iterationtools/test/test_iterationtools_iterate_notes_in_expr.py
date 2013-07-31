@@ -38,7 +38,7 @@ def test_iterationtools_iterate_notes_in_expr_01():
 
 
 def test_iterationtools_iterate_notes_in_expr_02():
-    '''Optional start and stop keyword parameters.
+    r'''Optional start and stop keyword parameters.
     '''
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
@@ -99,7 +99,7 @@ def test_iterationtools_iterate_notes_in_expr_03():
 
 
 def test_iterationtools_iterate_notes_in_expr_04():
-    '''Optional start and stop keyword parameters.
+    r'''Optional start and stop keyword parameters.
     '''
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)

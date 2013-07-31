@@ -3,7 +3,7 @@ from abjad.tools import layouttools
 
 
 def test_SpacingIndication_normalized_spacing_duration_01():
-    '''LilyPond proportionalNotationDuration setting required
+    r'''LilyPond proportionalNotationDuration setting required
     for this spacing indication at quarter equals 60.'''
 
     tempo_indication = contexttools.TempoMark(Duration(1, 4), 120)
@@ -12,7 +12,7 @@ def test_SpacingIndication_normalized_spacing_duration_01():
 
 
 def test_SpacingIndication_normalized_spacing_duration_02():
-    '''LilyPond proportionalNotationDuration setting required
+    r'''LilyPond proportionalNotationDuration setting required
     for this spacing indication at quarter equals 60
     is the same as the proportional notation duration set
     on this spacing indication when tempo indication set

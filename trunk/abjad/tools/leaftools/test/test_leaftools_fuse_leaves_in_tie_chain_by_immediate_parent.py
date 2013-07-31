@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_01():
-    '''Fuse leaves in tie chain with same immediate parent.
+    r'''Fuse leaves in tie chain with same immediate parent.
     '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
@@ -46,7 +46,7 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_01():
 
 
 def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_02():
-    '''Fuse leaves in tie chain with same immediate parent.
+    r'''Fuse leaves in tie chain with same immediate parent.
     '''
 
     t = Staff(notetools.make_repeated_notes(4))
@@ -70,7 +70,7 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_02():
 
 
 def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_03():
-    '''Fuse leaves in tie chain with same immediate parent.
+    r'''Fuse leaves in tie chain with same immediate parent.
     '''
 
     t = Note("c'4")

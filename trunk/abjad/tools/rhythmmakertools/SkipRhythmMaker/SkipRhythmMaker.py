@@ -47,7 +47,7 @@ class SkipRhythmMaker(RhythmMaker):
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):
-        '''Call skip rhythm-maker on `divisions`.
+        r'''Call skip rhythm-maker on `divisions`.
 
         Return list of skips.
         '''
@@ -64,7 +64,7 @@ class SkipRhythmMaker(RhythmMaker):
 
     @property
     def storage_format(self):
-        '''Skip rhythm-maker storage format:
+        r'''Skip rhythm-maker storage format:
 
         ::
 
@@ -78,7 +78,7 @@ class SkipRhythmMaker(RhythmMaker):
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
-        '''Create new skip rhythm-maker with `kwargs`:
+        r'''Create new skip rhythm-maker with `kwargs`:
 
         ::
 
@@ -110,7 +110,7 @@ class SkipRhythmMaker(RhythmMaker):
         return RhythmMaker.new(self, **kwargs)
 
     def reverse(self):
-        '''Reverse skip rhythm-maker:
+        r'''Reverse skip rhythm-maker:
 
         ::
 

@@ -99,7 +99,7 @@ class ContextMark(Mark):
         self._effective_context = None
 
     def _update_effective_context(self):
-        '''This function is designed to be called by score components 
+        r'''This function is designed to be called by score components 
         during score update.
         '''
         #print '\tupdating effective context of %s ...' % self._class_name
@@ -112,7 +112,7 @@ class ContextMark(Mark):
 
     @property
     def effective_context(self):
-        '''Reference to effective context of context mark:
+        r'''Reference to effective context of context mark:
 
         ::
 
@@ -132,7 +132,7 @@ class ContextMark(Mark):
 
     @property
     def target_context(self):
-        '''Reference to target context of context mark:
+        r'''Reference to target context of context mark:
 
         ::
 
@@ -151,7 +151,7 @@ class ContextMark(Mark):
     ### PUBLIC METHODS ###
 
     def attach(self, start_component):
-        '''Make sure no context mark of same type is already attached 
+        r'''Make sure no context mark of same type is already attached 
         to score component that starts with start component.
         '''
         from abjad.tools import contexttools
@@ -167,7 +167,7 @@ class ContextMark(Mark):
         return Mark.attach(self, start_component)
 
     def detach(self):
-        '''Detach mark:
+        r'''Detach mark:
 
         ::
 

@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 
 
 def test_mathtools_is_nonnegative_integer_power_of_two_01():
-    '''Return True when expr is an integer or Duration power of two,
+    r'''Return True when expr is an integer or Duration power of two,
         otherwise False.'''
 
     assert mathtools.is_nonnegative_integer_power_of_two(0)
@@ -22,7 +22,7 @@ def test_mathtools_is_nonnegative_integer_power_of_two_01():
 
 
 def test_mathtools_is_nonnegative_integer_power_of_two_02():
-    '''Return True when expr is an integer or Duration power of two,
+    r'''Return True when expr is an integer or Duration power of two,
         otherwise False.'''
 
     assert mathtools.is_nonnegative_integer_power_of_two(0)
@@ -41,7 +41,7 @@ def test_mathtools_is_nonnegative_integer_power_of_two_02():
 
 
 def test_mathtools_is_nonnegative_integer_power_of_two_03():
-    '''Return True when expr is an integer or Duration power of two,
+    r'''Return True when expr is an integer or Duration power of two,
         otherwise False.'''
 
     assert mathtools.is_nonnegative_integer_power_of_two(Duration(0))
@@ -60,7 +60,7 @@ def test_mathtools_is_nonnegative_integer_power_of_two_03():
 
 
 def test_mathtools_is_nonnegative_integer_power_of_two_04():
-    '''Return True when expr is an integer or Duration power of two,
+    r'''Return True when expr is an integer or Duration power of two,
         otherwise False.'''
 
     assert mathtools.is_nonnegative_integer_power_of_two(Duration(1, 1))

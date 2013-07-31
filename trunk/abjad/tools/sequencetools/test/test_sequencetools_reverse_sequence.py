@@ -4,7 +4,7 @@ import py.test
 
 
 def test_sequencetools_reverse_sequence_01():
-    '''Reverse sequence.
+    r'''Reverse sequence.
     '''
 
     assert sequencetools.reverse_sequence((1, 2, 3, 4, 5)) == (5, 4, 3, 2, 1)
@@ -12,7 +12,7 @@ def test_sequencetools_reverse_sequence_01():
 
 
 def test_sequencetools_reverse_sequence_02():
-    '''Reverse sequence.
+    r'''Reverse sequence.
     '''
 
     segment = pitchtools.NumberedChromaticPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
@@ -22,7 +22,7 @@ def test_sequencetools_reverse_sequence_02():
 
 
 def test_sequencetools_reverse_sequence_03():
-    '''Raise exception on nonsequence.
+    r'''Raise exception on nonsequence.
     '''
 
     assert py.test.raises(TypeError, 'sequencetools.reverse_sequence(17)')

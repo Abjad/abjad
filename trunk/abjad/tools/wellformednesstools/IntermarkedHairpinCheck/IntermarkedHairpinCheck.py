@@ -5,7 +5,7 @@ from abjad.tools.wellformednesstools.Check import Check
 
 
 class IntermarkedHairpinCheck(Check):
-    '''Are there any dynamic marks in the middle of a hairpin?
+    r'''Are there any dynamic marks in the middle of a hairpin?
     '''
 
     def _run(self, expr):

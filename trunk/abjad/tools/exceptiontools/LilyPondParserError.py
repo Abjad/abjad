@@ -1,4 +1,4 @@
 class LilyPondParserError(Exception):
-    '''Can not parse input.
+    r'''Can not parse input.
     '''
     pass

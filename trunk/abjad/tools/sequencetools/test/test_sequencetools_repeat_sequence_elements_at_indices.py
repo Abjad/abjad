@@ -3,7 +3,7 @@ from abjad.tools import sequencetools
 
 
 def test_sequencetools_repeat_sequence_elements_at_indices_01():
-    '''Excepted case.
+    r'''Excepted case.
     '''
 
     t = list(sequencetools.repeat_sequence_elements_at_indices(range(10), [6, 7, 8], 3))
@@ -11,7 +11,7 @@ def test_sequencetools_repeat_sequence_elements_at_indices_01():
 
 
 def test_sequencetools_repeat_sequence_elements_at_indices_02():
-    '''Boundary cases.
+    r'''Boundary cases.
     '''
 
     t = list(sequencetools.repeat_sequence_elements_at_indices(range(10), [], 99))

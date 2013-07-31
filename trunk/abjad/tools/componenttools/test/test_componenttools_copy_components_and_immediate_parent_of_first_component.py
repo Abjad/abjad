@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_componenttools_copy_components_and_immediate_parent_of_first_component_01():
-    '''Copy adjacent notes in staff.
+    r'''Copy adjacent notes in staff.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -21,7 +21,7 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
 
 
 def test_componenttools_copy_components_and_immediate_parent_of_first_component_02():
-    '''Copy adjacent notes in staff.
+    r'''Copy adjacent notes in staff.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -41,7 +41,7 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
 
 
 def test_componenttools_copy_components_and_immediate_parent_of_first_component_03():
-    '''Copy notes from tuplet and adjust tuplet target duration
+    r'''Copy notes from tuplet and adjust tuplet target duration
     in order to preserve tuplet multiplier.'''
 
     t = tuplettools.FixedDurationTuplet(Duration(4, 8), "c'8 d'8 e'8 f'8 g'8")
@@ -63,7 +63,7 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
 
 
 def test_componenttools_copy_components_and_immediate_parent_of_first_component_04():
-    '''Copy adjacent, whole tuplets from staff.
+    r'''Copy adjacent, whole tuplets from staff.
     '''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 3)

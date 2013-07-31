@@ -2,7 +2,7 @@ import math
 
 
 def divisors(n):
-    '''Positive divisors of integer `n` in increasing order:
+    r'''Positive divisors of integer `n` in increasing order:
 
     ::
 

@@ -5,7 +5,7 @@ from abjad.tools.selectiontools.SequentialLeafSelection import SequentialLeafSel
 
 
 class TieChain(SequentialLeafSelection):
-    '''All the notes in a tie chain:
+    r'''All the notes in a tie chain:
 
     ::
 
@@ -77,7 +77,7 @@ class TieChain(SequentialLeafSelection):
 
     @property
     def all_leaves_are_in_same_parent(self):
-        '''True when all leaves in tie chain are in same parent.
+        r'''True when all leaves in tie chain are in same parent.
 
         Return boolean.
         '''
@@ -86,7 +86,7 @@ class TieChain(SequentialLeafSelection):
 
     @property
     def duration(self):
-        '''Sum of durations of all components in tie chain.
+        r'''Sum of durations of all components in tie chain.
 
         Return duration.
         '''
@@ -94,7 +94,7 @@ class TieChain(SequentialLeafSelection):
 
     @property
     def duration_in_seconds(self):
-        '''Sum of duration in seconds of components in tie chain.
+        r'''Sum of duration in seconds of components in tie chain.
 
         Return duration.
         '''
@@ -102,7 +102,7 @@ class TieChain(SequentialLeafSelection):
 
     @property
     def head(self):
-        '''Reference to element ``0`` in tie chain.
+        r'''Reference to element ``0`` in tie chain.
 
         Return component.
         '''
@@ -111,7 +111,7 @@ class TieChain(SequentialLeafSelection):
 
     @property
     def is_pitched(self):
-        '''True when tie chain head is a note or chord.
+        r'''True when tie chain head is a note or chord.
 
         Return boolean.
         '''
@@ -121,7 +121,7 @@ class TieChain(SequentialLeafSelection):
 
     @property
     def is_trivial(self):
-        '''True when length of tie chain is less than or equal to ``1``.
+        r'''True when length of tie chain is less than or equal to ``1``.
 
         Return boolean.
         '''
@@ -129,7 +129,7 @@ class TieChain(SequentialLeafSelection):
 
     @property
     def leaves(self):
-        '''Leaves in tie chain.
+        r'''Leaves in tie chain.
 
         Return tuple.
         '''
@@ -146,7 +146,7 @@ class TieChain(SequentialLeafSelection):
 
     @property
     def leaves_grouped_by_immediate_parents(self):
-        '''Leaves in tie chain grouped by immediate parents of leaves.
+        r'''Leaves in tie chain grouped by immediate parents of leaves.
 
         Return list of lists.
         '''
@@ -158,7 +158,7 @@ class TieChain(SequentialLeafSelection):
 
     @property
     def tie_spanner(self):
-        '''Tie spanner governing tie chain.
+        r'''Tie spanner governing tie chain.
 
         Return tie spanner.
         '''
@@ -175,7 +175,7 @@ class TieChain(SequentialLeafSelection):
 
     @property
     def written_duration(self):
-        '''Sum of written duration of all components in tie chain.
+        r'''Sum of written duration of all components in tie chain.
 
         Return duration.
         '''

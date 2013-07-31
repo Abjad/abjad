@@ -6,7 +6,7 @@ from abjad.tools.developerscripttools.CleanScript import CleanScript
 
 
 class AbjGrepScript(DirectoryScript):
-    '''Run `grep` against a path, ignoring `svn` and docs-related files:
+    r'''Run `grep` against a path, ignoring `svn` and docs-related files:
 
     ::
 

@@ -4,7 +4,7 @@ from abjad.tools.documentationtools.Documenter import Documenter
 
 
 class ToolsPackageDocumenter(Documenter):
-    '''Generates an index for every tools package.
+    r'''Generates an index for every tools package.
     '''
 
     ### INITIALIZER ###
@@ -22,7 +22,7 @@ class ToolsPackageDocumenter(Documenter):
     ### SPECIAL METHODS ###
 
     def __call__(self):
-        '''Generate documentation:
+        r'''Generate documentation:
 
         ::
 
@@ -126,7 +126,7 @@ class ToolsPackageDocumenter(Documenter):
     ### PUBLIC METHODS ###
 
     def create_api_toc_section(self):
-        '''Generate a TOC section to be included in the master API index:
+        r'''Generate a TOC section to be included in the master API index:
 
         ::
 

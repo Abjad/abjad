@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_componenttools_report_component_format_contributions_01():
-    '''You can report_component_format_contributions on a heavily tweaked leaf.
+    r'''You can report_component_format_contributions on a heavily tweaked leaf.
     '''
 
     t = Note("c'4")

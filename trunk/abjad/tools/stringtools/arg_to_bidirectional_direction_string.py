@@ -1,5 +1,5 @@
 def arg_to_bidirectional_direction_string(arg):
-    '''Convert `arg` to bidirectional direction string:
+    r'''Convert `arg` to bidirectional direction string:
 
         >>> stringtools.arg_to_bidirectional_direction_string('^')
         'up'

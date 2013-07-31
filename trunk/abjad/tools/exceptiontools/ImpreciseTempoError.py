@@ -1,4 +1,4 @@
 class ImpreciseTempoError(Exception):
-    '''TempoMark is imprecise.
+    r'''TempoMark is imprecise.
     '''
     pass

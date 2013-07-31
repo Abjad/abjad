@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_TupletSelection_move_prolation_to_contents_and_remove_01():
-    '''Scale tuplet contents and then bequeath in-score position
+    r'''Scale tuplet contents and then bequeath in-score position
     of tuplet to contents.
     '''
 
@@ -44,7 +44,7 @@ def test_TupletSelection_move_prolation_to_contents_and_remove_01():
 
 
 def test_TupletSelection_move_prolation_to_contents_and_remove_02():
-    '''Scale tuplet contents and then bequeath in-score position
+    r'''Scale tuplet contents and then bequeath in-score position
     of tuplet to contents.
     '''
 

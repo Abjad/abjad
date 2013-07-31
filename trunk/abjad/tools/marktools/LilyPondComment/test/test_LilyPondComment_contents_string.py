@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_LilyPondComment_contents_string_01():
-    '''LilyPondComment contents string is read / write.
+    r'''LilyPondComment contents string is read / write.
     '''
 
     comment = marktools.LilyPondComment('contents string')

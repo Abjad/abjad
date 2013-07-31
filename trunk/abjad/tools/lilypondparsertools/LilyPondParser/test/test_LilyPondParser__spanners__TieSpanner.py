@@ -22,7 +22,7 @@ def test_LilyPondParser__spanners__TieSpanner_03():
 
 
 def test_LilyPondParser__spanners__TieSpanner_04():
-    '''With direction.
+    r'''With direction.
     '''
     target = Container([Note(0, 1), Note(0, 1)])
     spannertools.TieSpanner(target[:], direction=Up)
@@ -32,7 +32,7 @@ def test_LilyPondParser__spanners__TieSpanner_04():
 
 
 def test_LilyPondParser__spanners__TieSpanner_05():
-    '''With direction.
+    r'''With direction.
     '''
     target = Container([Note(0, 1), Note(0, 1)])
     spannertools.TieSpanner(target[:], direction=Down)

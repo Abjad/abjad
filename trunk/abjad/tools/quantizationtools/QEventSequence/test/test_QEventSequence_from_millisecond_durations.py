@@ -5,7 +5,7 @@ from abjad.tools import quantizationtools
 
 
 def test_QEventSequence_from_millisecond_durations_01():
-    '''Test basic functionality.
+    r'''Test basic functionality.
     '''
 
     durations = mathtools.difference_series(
@@ -201,7 +201,7 @@ def test_QEventSequence_from_millisecond_durations_01():
 
 
 def test_QEventSequence_from_millisecond_durations_02():
-    '''Silences are not fused.
+    r'''Silences are not fused.
     '''
 
     durations = [100, -100, 100, -100, -100, 100]
@@ -237,7 +237,7 @@ def test_QEventSequence_from_millisecond_durations_02():
 
 
 def test_QEventSequence_from_millisecond_durations_03():
-    '''Silences are fused.
+    r'''Silences are fused.
     '''
 
     durations = [100, -100, 100, -100, -100, 100]

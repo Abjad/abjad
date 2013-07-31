@@ -3,7 +3,7 @@ from abjad.tools import sievetools
 
 
 def test_Sieve_is_congruent_base_01():
-    '''Works with negative integers.
+    r'''Works with negative integers.
     '''
 
     sieve = sievetools.Sieve.from_cycle_tokens((5, [0, 1]), (6, [0]))
@@ -23,7 +23,7 @@ def test_Sieve_is_congruent_base_01():
 
 
 def test_Sieve_is_congruent_base_02():
-    '''Works with zero.
+    r'''Works with zero.
     '''
 
     sieve = sievetools.Sieve.from_cycle_tokens((5, [0, 1]), (6, [0]))
@@ -34,7 +34,7 @@ def test_Sieve_is_congruent_base_02():
 
 
 def test_Sieve_is_congruent_base_03():
-    '''Works with positive integers.
+    r'''Works with positive integers.
     '''
 
     sieve = sievetools.Sieve.from_cycle_tokens((5, [0, 1]), (6, [0]))

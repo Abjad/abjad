@@ -24,28 +24,28 @@ def test_LilyPondParser__spanners__HorizontalBracketSpanner_01():
 
 
 def test_LilyPondParser__spanners__HorizontalBracketSpanner_02():
-    '''Starting and stopping on the same leaf.
+    r'''Starting and stopping on the same leaf.
     '''
     input = r'''{ c \startGroup \stopGroup c c c }'''
     assert py.test.raises(Exception, 'LilyPondParser()(input)')
 
 
 def test_LilyPondParser__spanners__HorizontalBracketSpanner_03():
-    '''One group stopping on a leaf, while another begins on the same leaf.
+    r'''One group stopping on a leaf, while another begins on the same leaf.
     '''
     input = r'''{ c \startGroup c \stopGroup \startGroup c c \stopGroup }'''
     assert py.test.raises(Exception, 'LilyPondParser()(input)')
 
 
 def test_LilyPondParser__spanners__HorizontalBracketSpanner_04():
-    '''Unterminated.
+    r'''Unterminated.
     '''
     input = r'''{ c \startGroup c c c }'''
     assert py.test.raises(Exception, 'LilyPondParser()(input)')
 
 
 def test_LilyPondParser__spanners__HorizontalBracketSpanner_05():
-    '''Unstarted.
+    r'''Unstarted.
     '''
     input = r'''{ c c c c \stopGroup }'''
     assert py.test.raises(Exception, 'LilyPondParser()(input)')

@@ -4,7 +4,7 @@ from abjad.tools.wellformednesstools.Check import Check
 
 
 class MisduratedMeasureCheck(Check):
-    '''Does the (pre)prolated duration of the measure match its 
+    r'''Does the (pre)prolated duration of the measure match its 
     time signature?
     '''
 

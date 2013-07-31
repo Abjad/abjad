@@ -56,7 +56,7 @@ class NumberedChromaticPitchClassSegment(PitchClassSegment):
 
     @property
     def inversion_equivalent_chromatic_interval_class_segment(self):
-        '''Inversion-equivalent chromatic interval-class segment:
+        r'''Inversion-equivalent chromatic interval-class segment:
 
         ::
 
@@ -73,7 +73,7 @@ class NumberedChromaticPitchClassSegment(PitchClassSegment):
 
     @property
     def numbered_chromatic_pitch_class_set(self):
-        '''Numbered chromatic pitch-class set from numbered 
+        r'''Numbered chromatic pitch-class set from numbered 
         chromatic pitch-class segment:
 
         ::
@@ -89,7 +89,7 @@ class NumberedChromaticPitchClassSegment(PitchClassSegment):
     ### PUBLIC METHODS ###
 
     def alpha(self):
-        '''Morris alpha transform of numbered chromatic pitch-class segment:
+        r'''Morris alpha transform of numbered chromatic pitch-class segment:
 
         ::
 
@@ -117,7 +117,7 @@ class NumberedChromaticPitchClassSegment(PitchClassSegment):
         return type(self)(numbers)
 
     def invert(self):
-        '''Invert numbered chromatic pitch-class segment:
+        r'''Invert numbered chromatic pitch-class segment:
 
         ::
 
@@ -129,7 +129,7 @@ class NumberedChromaticPitchClassSegment(PitchClassSegment):
         return type(self)([pc.invert() for pc in self])
 
     def multiply(self, n):
-        '''Multiply numbered chromatic pitch-class segment by `n`:
+        r'''Multiply numbered chromatic pitch-class segment by `n`:
 
         ::
 
@@ -141,7 +141,7 @@ class NumberedChromaticPitchClassSegment(PitchClassSegment):
         return type(self)([pc.multiply(n) for pc in self])
 
     def retrograde(self):
-        '''Retrograde of numbered chromatic pitch-class segment:
+        r'''Retrograde of numbered chromatic pitch-class segment:
 
         ::
 
@@ -153,7 +153,7 @@ class NumberedChromaticPitchClassSegment(PitchClassSegment):
         return type(self)(reversed(self))
 
     def rotate(self, n):
-        '''Rotate numbered chromatic pitch-class segment:
+        r'''Rotate numbered chromatic pitch-class segment:
 
         ::
 
@@ -167,7 +167,7 @@ class NumberedChromaticPitchClassSegment(PitchClassSegment):
         return type(self)(pitch_classes)
 
     def transpose(self, n):
-        '''Transpose numbered chromatic pitch-class segment:
+        r'''Transpose numbered chromatic pitch-class segment:
 
         ::
 

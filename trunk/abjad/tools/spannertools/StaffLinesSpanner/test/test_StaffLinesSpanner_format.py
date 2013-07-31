@@ -3,7 +3,7 @@ import py.test
 
 
 def test_StaffLinesSpanner_format_01():
-    '''StaffLinesSpanner with int argument overrides StaffSymbol's line-count property.
+    r'''StaffLinesSpanner with int argument overrides StaffSymbol's line-count property.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
@@ -32,7 +32,7 @@ def test_StaffLinesSpanner_format_01():
 
 
 def test_StaffLinesSpanner_format_02():
-    '''StaffLinesSpanner with list argument overrides StaffSymbol's line-positions property.
+    r'''StaffLinesSpanner with list argument overrides StaffSymbol's line-positions property.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
@@ -61,7 +61,7 @@ def test_StaffLinesSpanner_format_02():
 
 
 def test_StaffLinesSpanner_format_03():
-    '''StaffLinesSpanner's lines property can be changed.
+    r'''StaffLinesSpanner's lines property can be changed.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")

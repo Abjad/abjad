@@ -3,7 +3,7 @@ import shutil
 
 
 def write_expr_to_pdf(expr, file_name, print_status=False, tagline=False):
-    '''Write `expr` to pdf `file_name`:
+    r'''Write `expr` to pdf `file_name`:
 
     ::
 

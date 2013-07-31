@@ -1,5 +1,5 @@
 def sign(n):
-    '''Return ``-1`` on negative `n`:
+    r'''Return ``-1`` on negative `n`:
 
     ::
 

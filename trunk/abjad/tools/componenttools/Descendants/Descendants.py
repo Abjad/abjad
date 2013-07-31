@@ -95,6 +95,6 @@ class Descendants(SimultaneousSelection):
 
     @property
     def component(self):
-        '''The component from which the selection was derived.
+        r'''The component from which the selection was derived.
         '''
         return self._component

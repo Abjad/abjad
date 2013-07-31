@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Annotation___init___01():
-    '''Initialize annotation with dictionary.
+    r'''Initialize annotation with dictionary.
     '''
 
     annotation = marktools.Annotation('special dictionary', {})
@@ -10,7 +10,7 @@ def test_Annotation___init___01():
 
 
 def test_Annotation___init___02():
-    '''Initialize annotation with only one argument.
+    r'''Initialize annotation with only one argument.
     '''
 
     annotation = marktools.Annotation('foo')
@@ -18,7 +18,7 @@ def test_Annotation___init___02():
 
 
 def test_Annotation___init___03():
-    '''Initialize annotation from other annotation.
+    r'''Initialize annotation from other annotation.
     '''
 
     annotation_1 = marktools.Annotation('foo', 'bar')

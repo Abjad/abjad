@@ -3,7 +3,7 @@ import py.test
 
 
 def test_NumberedChromaticPitchClassSegment___slots___01():
-    '''Numbered chromatic pitch-class segments are immutable.
+    r'''Numbered chromatic pitch-class segments are immutable.
     '''
 
     cpns = [-2, -1.5, 6, 7, -1.5, 7]

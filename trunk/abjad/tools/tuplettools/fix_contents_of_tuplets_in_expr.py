@@ -5,7 +5,7 @@ from abjad.tools import durationtools
 
 
 def fix_contents_of_tuplets_in_expr(tuplet):
-    '''Scale `tuplet` contents by power of two
+    r'''Scale `tuplet` contents by power of two
     if tuplet multiplier less than ``1/2`` or greater than ``2``.
     Return tuplet. ::
 

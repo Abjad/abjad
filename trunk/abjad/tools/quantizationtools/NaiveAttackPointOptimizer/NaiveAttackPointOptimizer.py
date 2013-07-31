@@ -7,7 +7,7 @@ from abjad.tools.quantizationtools.AttackPointOptimizer \
 
 
 class NaiveAttackPointOptimizer(AttackPointOptimizer):
-    '''Concrete ``AttackPointOptimizer`` subclass which optimizes
+    r'''Concrete ``AttackPointOptimizer`` subclass which optimizes
     attack points by fusing tie leaves within tie chains with
     leaf durations decreasing monotonically.
 

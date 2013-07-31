@@ -1,3 +1,3 @@
 class SchemeParserFinishedException(Exception):
-    '''SchemeParser has finished parsing.'''
+    r'''SchemeParser has finished parsing.'''
     pass

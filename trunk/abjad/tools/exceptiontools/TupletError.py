@@ -1,4 +1,4 @@
 class TupletError(Exception):
-    '''Geneal tuplet error.
+    r'''Geneal tuplet error.
     '''
     pass

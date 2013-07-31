@@ -1,5 +1,5 @@
 def select(expr):
-    '''Select `expr` for tonal analysis.
+    r'''Select `expr` for tonal analysis.
 
     Return tonal analysis selection.
     '''

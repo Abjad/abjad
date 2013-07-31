@@ -8,7 +8,7 @@ from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
 class RhythmTreeNode(TreeNode):
-    '''Abstract base class of nodes in a rhythm tree structure.
+    r'''Abstract base class of nodes in a rhythm tree structure.
     '''
 
     ### INITIALIZER ###
@@ -68,7 +68,7 @@ class RhythmTreeNode(TreeNode):
 
     @property
     def duration(self):
-        '''The prolated preprolated_duration of the node:
+        r'''The prolated preprolated_duration of the node:
 
         ::
 
@@ -104,7 +104,7 @@ class RhythmTreeNode(TreeNode):
 
     @property
     def parentage_ratios(self):
-        '''A sequence describing the relative durations of the nodes in a
+        r'''A sequence describing the relative durations of the nodes in a
         node's improper parentage.
 
         The first item in the sequence is the preprolated_duration of 
@@ -165,7 +165,7 @@ class RhythmTreeNode(TreeNode):
     @apply
     def preprolated_duration():
         def fget(self):
-            '''The node's preprolated_duration in pulses:
+            r'''The node's preprolated_duration in pulses:
 
             ::
 
@@ -193,7 +193,7 @@ class RhythmTreeNode(TreeNode):
 
     @property
     def pretty_rtm_format(self):
-        '''The node's pretty-printed RTM format:
+        r'''The node's pretty-printed RTM format:
 
         ::
 
@@ -228,7 +228,7 @@ class RhythmTreeNode(TreeNode):
 
     @abc.abstractproperty
     def rtm_format(self):
-        '''The node's RTM format:
+        r'''The node's RTM format:
 
         ::
 
@@ -243,7 +243,7 @@ class RhythmTreeNode(TreeNode):
 
     @property
     def start_offset(self):
-        '''The starting offset of a node in a rhythm-tree relative the root:
+        r'''The starting offset of a node in a rhythm-tree relative the root:
 
         ::
 
@@ -272,6 +272,6 @@ class RhythmTreeNode(TreeNode):
 
     @property
     def stop_offset(self):
-        '''The stopping offset of a node in a rhythm-tree relative the root.
+        r'''The stopping offset of a node in a rhythm-tree relative the root.
         '''
         return self.start_offset + self.duration

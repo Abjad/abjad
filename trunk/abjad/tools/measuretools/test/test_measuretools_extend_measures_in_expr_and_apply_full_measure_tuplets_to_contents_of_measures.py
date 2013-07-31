@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_measuretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_contents_of_measures_01():
-    '''Tupletize one measure, supplement one note.
+    r'''Tupletize one measure, supplement one note.
     '''
 
     t = Measure((4, 8), notetools.make_repeated_notes(4))
@@ -27,7 +27,7 @@ def test_measuretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_
 
 
 def test_measuretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_contents_of_measures_02():
-    '''Tupletize one measure, supplement one rest.
+    r'''Tupletize one measure, supplement one rest.
     '''
 
     t = Measure((4, 8), notetools.make_repeated_notes(4))

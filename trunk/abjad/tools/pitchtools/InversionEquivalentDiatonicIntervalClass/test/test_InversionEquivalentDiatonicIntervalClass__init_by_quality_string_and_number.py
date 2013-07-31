@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_InversionEquivalentDiatonicIntervalClass__init_by_quality_string_and_number_01():
-    '''Init unison.
+    r'''Init unison.
     '''
 
     assert str(pitchtools.InversionEquivalentDiatonicIntervalClass('perfect', 1)) == 'P1'
@@ -14,7 +14,7 @@ def test_InversionEquivalentDiatonicIntervalClass__init_by_quality_string_and_nu
 
 
 def test_InversionEquivalentDiatonicIntervalClass__init_by_quality_string_and_number_02():
-    '''Init usual cases.
+    r'''Init usual cases.
     '''
 
     assert str(pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 2)) == 'm2'
@@ -26,7 +26,7 @@ def test_InversionEquivalentDiatonicIntervalClass__init_by_quality_string_and_nu
 
 
 def test_InversionEquivalentDiatonicIntervalClass__init_by_quality_string_and_number_03():
-    '''Init inverted cases less than one octave.
+    r'''Init inverted cases less than one octave.
     '''
 
     assert str(pitchtools.InversionEquivalentDiatonicIntervalClass('major', 7)) == 'm2'
@@ -38,7 +38,7 @@ def test_InversionEquivalentDiatonicIntervalClass__init_by_quality_string_and_nu
 
 
 def test_InversionEquivalentDiatonicIntervalClass__init_by_quality_string_and_number_04():
-    '''Init noninverted cases greater than one octave.
+    r'''Init noninverted cases greater than one octave.
     '''
 
     assert str(pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 9)) == 'm2'
@@ -50,7 +50,7 @@ def test_InversionEquivalentDiatonicIntervalClass__init_by_quality_string_and_nu
 
 
 def test_InversionEquivalentDiatonicIntervalClass__init_by_quality_string_and_number_05():
-    '''Init inverted cases greater than one octave.
+    r'''Init inverted cases greater than one octave.
     '''
 
     assert str(pitchtools.InversionEquivalentDiatonicIntervalClass('major', 14)) == 'm2'

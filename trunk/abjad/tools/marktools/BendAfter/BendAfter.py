@@ -68,7 +68,7 @@ class BendAfter(Mark):
     @apply
     def bend_amount():
         def fget(self):
-            '''Get bend amount:
+            r'''Get bend amount:
 
             ::
 

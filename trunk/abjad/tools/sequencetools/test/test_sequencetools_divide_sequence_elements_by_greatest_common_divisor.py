@@ -4,7 +4,7 @@ import py.test
 
 
 def test_sequencetools_divide_sequence_elements_by_greatest_common_divisor_01():
-    '''Divide sequence elements by greatest common divisor.
+    r'''Divide sequence elements by greatest common divisor.
     '''
 
     result = sequencetools.divide_sequence_elements_by_greatest_common_divisor([2, 2, -4, -16])
@@ -18,7 +18,7 @@ def test_sequencetools_divide_sequence_elements_by_greatest_common_divisor_01():
 
 
 def test_sequencetools_divide_sequence_elements_by_greatest_common_divisor_02():
-    '''Raise exception on noninteger input.
+    r'''Raise exception on noninteger input.
     '''
 
     assert py.test.raises(TypeError,
@@ -26,7 +26,7 @@ def test_sequencetools_divide_sequence_elements_by_greatest_common_divisor_02():
 
 
 def test_sequencetools_divide_sequence_elements_by_greatest_common_divisor_03():
-    '''Raise exception when zero in input.
+    r'''Raise exception when zero in input.
     '''
 
     assert py.test.raises(NotImplementedError,

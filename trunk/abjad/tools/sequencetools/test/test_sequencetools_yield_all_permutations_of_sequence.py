@@ -3,7 +3,7 @@ from abjad.tools import sequencetools
 
 
 def test_sequencetools_yield_all_permutations_of_sequence_01():
-    '''Yield all permtuations of tuple.
+    r'''Yield all permtuations of tuple.
     '''
 
     sequence = (1, 2, 3)
@@ -13,7 +13,7 @@ def test_sequencetools_yield_all_permutations_of_sequence_01():
 
 
 def test_sequencetools_yield_all_permutations_of_sequence_02():
-    '''Yield all permtuations of Abjad container.
+    r'''Yield all permtuations of Abjad container.
     '''
 
     container = Container("c'8 d'8 e'8")

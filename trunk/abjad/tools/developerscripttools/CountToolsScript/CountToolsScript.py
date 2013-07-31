@@ -6,7 +6,7 @@ from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 
 
 class CountToolsScript(DirectoryScript):
-    '''Count public and private functions and classes in a path:
+    r'''Count public and private functions and classes in a path:
 
     ::
 

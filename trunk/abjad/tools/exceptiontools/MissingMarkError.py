@@ -1,4 +1,4 @@
 class MissingMarkError(Exception):
-    '''No mark found.
+    r'''No mark found.
     '''
     pass

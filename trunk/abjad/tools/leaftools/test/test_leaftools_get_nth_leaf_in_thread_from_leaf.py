@@ -38,7 +38,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_01():
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_02():
-    '''Voice.
+    r'''Voice.
     '''
 
     t = Voice([Note(i, (1,8)) for i in range(4)])
@@ -64,7 +64,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_02():
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_03():
-    '''Staff.
+    r'''Staff.
     '''
 
     t = Staff([Note(i, (1,8)) for i in range(4)])
@@ -90,7 +90,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_03():
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_04():
-    '''Container.
+    r'''Container.
     '''
 
     t = Container([Note(i, (1,8)) for i in range(4)])
@@ -116,7 +116,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_04():
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_05():
-    '''Fixed-duration tuplet.
+    r'''Fixed-duration tuplet.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2,8), [Note(i, (1,8)) for i in range(3)])
@@ -139,7 +139,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_05():
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_06():
-    '''Contiguous containers inside a voice.
+    r'''Contiguous containers inside a voice.
     '''
 
     s1 = Container([Note(i, (1,8)) for i in range(4)])
@@ -175,7 +175,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_06():
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_07():
-    '''Tuplets inside a voice.
+    r'''Tuplets inside a voice.
     '''
 
     t1 = tuplettools.FixedDurationTuplet(Duration(2,8), [Note(i, (1,8)) for i in range(3)])
@@ -207,7 +207,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_07():
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_08():
-    '''Does not continue across contiguous anonymous voices inside a staff.
+    r'''Does not continue across contiguous anonymous voices inside a staff.
     '''
 
     v1 = Voice([Note(i, (1,8)) for i in range(4)])
@@ -236,7 +236,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_08():
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_09():
-    '''Does cross contiguous equally named voices inside a staff.
+    r'''Does cross contiguous equally named voices inside a staff.
     '''
 
     v1 = Voice([Note(i, (1,8)) for i in range(4)])
@@ -274,7 +274,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_09():
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_10():
-    '''Does not connect through contiguous unequally named voices.
+    r'''Does not connect through contiguous unequally named voices.
     '''
 
     v1 = Voice([Note(i, (1,8)) for i in range(4)])
@@ -315,7 +315,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_10():
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_11():
-    '''Does not connect through unequally named staves.
+    r'''Does not connect through unequally named staves.
     '''
 
     v1 = Voice([Note(i, (1,8)) for i in range(4)])
@@ -356,7 +356,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_11():
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_12():
-    '''Does not connect through equally named staves.
+    r'''Does not connect through equally named staves.
     '''
 
     vl1 = Voice([Note(i, (1,8)) for i in range(4)])
@@ -418,7 +418,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_12():
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_13():
-    '''Does connect through symmetrical nested containers in a voice.
+    r'''Does connect through symmetrical nested containers in a voice.
     '''
 
     s1 = Container([Note(i, (1,8)) for i in range(4)])
@@ -460,7 +460,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_13():
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_14():
-    '''Tautological parentage asymmetries result in symmetric (balanced) threaded parentage.
+    r'''Tautological parentage asymmetries result in symmetric (balanced) threaded parentage.
     '''
 
     s1 = Container([Note(i, (1,8)) for i in range(4)])
@@ -502,7 +502,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_14():
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_15():
-    '''Tautological parentage asymmetries result in symmetric (balanced) threaded parentage.
+    r'''Tautological parentage asymmetries result in symmetric (balanced) threaded parentage.
     '''
 
     s1 = Container([Note(i, (1,8)) for i in range(4)])
@@ -544,7 +544,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_15():
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_16():
-    '''Does connect in sequence of alternating containers and notes.
+    r'''Does connect in sequence of alternating containers and notes.
     '''
 
     s1 = Container([Note(i, (1,8)) for i in range(2)])
@@ -573,7 +573,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_16():
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_17():
-    '''Does connect in sequence of alternating tuplets and notes.
+    r'''Does connect in sequence of alternating tuplets and notes.
     '''
 
     t1 = tuplettools.FixedDurationTuplet(Duration(1,4), [Note(i, (1,8)) for i in range(3)])
@@ -604,7 +604,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_17():
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_18():
-    '''Does connect through asymmetrically nested tuplets.
+    r'''Does connect through asymmetrically nested tuplets.
     '''
 
     tinner = tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
@@ -629,7 +629,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_18():
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_19():
-    '''Return none in asymmetric thread parentage structures.
+    r'''Return none in asymmetric thread parentage structures.
     '''
 
     v1 = Voice([Note(i , (1,8)) for i in range(3)])
@@ -662,7 +662,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_19():
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_20():
-    '''Non-contiguous or broken threads do not connect.
+    r'''Non-contiguous or broken threads do not connect.
     '''
 
     v1 = Voice([Note(i , (1,8)) for i in range(3)])
@@ -708,7 +708,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_20():
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_21():
-    '''Does not connect through nested anonymous voices.
+    r'''Does not connect through nested anonymous voices.
     '''
 
     vin = Voice([Note(i, (1,8)) for i in range(3)])
@@ -735,7 +735,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_21():
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_22():
-    '''Does not connect through nested anonymous voices.
+    r'''Does not connect through nested anonymous voices.
     '''
 
     vin = Voice([Note(i, (1,8)) for i in range(1,4)])
@@ -763,7 +763,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_22():
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_23():
-    '''Does connect through nested equally named voices.
+    r'''Does connect through nested equally named voices.
     '''
 
     vin = Voice([Note(i, (1,8)) for i in range(3)])
@@ -792,7 +792,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_23():
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_24():
-    '''Does connect through nested equally named voices.
+    r'''Does connect through nested equally named voices.
     '''
 
     vin = Voice([Note(i, (1,8)) for i in range(1,4)])
@@ -821,7 +821,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_24():
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_25():
-    '''Return none on nested *differently* named voices.
+    r'''Return none on nested *differently* named voices.
     '''
 
     vin = Voice([Note(i, (1,8)) for i in range(3)])
@@ -850,7 +850,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_25():
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_26():
-    '''Return none on nested *differently* named Voices.
+    r'''Return none on nested *differently* named Voices.
     '''
 
     vin = Voice([Note(i, (1,8)) for i in range(1, 4)])

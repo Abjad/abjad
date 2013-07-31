@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_labeltools_label_leaves_in_expr_with_leaf_numbers_01():
-    '''Leaf numbers start at 1.
+    r'''Leaf numbers start at 1.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -38,7 +38,7 @@ def test_labeltools_label_leaves_in_expr_with_leaf_numbers_01():
 
 
 def test_labeltools_label_leaves_in_expr_with_leaf_numbers_02():
-    '''Optional markup direction keyword.
+    r'''Optional markup direction keyword.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")

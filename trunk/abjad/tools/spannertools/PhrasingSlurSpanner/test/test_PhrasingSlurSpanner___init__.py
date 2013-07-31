@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_PhrasingSlurSpanner___init___01():
-    '''Init empty phrasing slur.
+    r'''Init empty phrasing slur.
     '''
 
     phrasing_slur = spannertools.PhrasingSlurSpanner()

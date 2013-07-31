@@ -9,7 +9,7 @@ def test_sequencetools_repeat_sequence_to_weight_exactly_01():
 
 
 def test_sequencetools_repeat_sequence_to_weight_exactly_02():
-    '''Works with nonreduced fractions.
+    r'''Works with nonreduced fractions.
     '''
 
     sequence = [NonreducedFraction(3, 16)]

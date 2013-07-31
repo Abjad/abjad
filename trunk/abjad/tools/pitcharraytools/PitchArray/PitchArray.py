@@ -17,7 +17,7 @@ from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch \
 
 
 class PitchArray(AbjadObject):
-    '''Two-dimensional array of pitches.
+    r'''Two-dimensional array of pitches.
     '''
 
     ### INITIALIZER ###
@@ -75,7 +75,7 @@ class PitchArray(AbjadObject):
         return self.rows[arg]
 
     def __iadd__(self, arg):
-        '''Add `arg` in place to self:
+        r'''Add `arg` in place to self:
 
             >>> array_1 = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
             >>> print array_1

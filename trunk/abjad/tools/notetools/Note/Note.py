@@ -169,7 +169,7 @@ class Note(Leaf):
     @apply
     def note_head():
         def fget(self):
-            '''Get note head of note:
+            r'''Get note head of note:
 
             ::
 
@@ -282,7 +282,7 @@ class Note(Leaf):
     @apply
     def written_pitch():
         def fget(self):
-            '''Get named pitch of note:
+            r'''Get named pitch of note:
 
             ::
 

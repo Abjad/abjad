@@ -1,5 +1,5 @@
 def get_context_mark_format_pieces(mark):
-    '''Get context mark format pieces for `mark`.
+    r'''Get context mark format pieces for `mark`.
 
     Return list.
     '''

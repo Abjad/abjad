@@ -2,7 +2,7 @@ from abjad.tools.mathtools.Ratio import Ratio
 
 
 def test_Ratio___repr___01():
-    '''Repr is evaluable.
+    r'''Repr is evaluable.
     '''
 
     ratio_1 = Ratio(1, 2, -1)

@@ -3,7 +3,7 @@ import sys
 
 
 def open_file(file_name, application=None):
-    '''Generic cross-platform file opener.
+    r'''Generic cross-platform file opener.
     '''
     from abjad.tools import iotools
 

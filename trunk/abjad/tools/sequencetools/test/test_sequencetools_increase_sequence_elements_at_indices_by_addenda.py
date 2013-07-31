@@ -3,7 +3,7 @@ from abjad.tools import sequencetools
 
 
 def test_sequencetools_increase_sequence_elements_at_indices_by_addenda_01():
-    '''Increase elements of list l by the elements of addenda
+    r'''Increase elements of list l by the elements of addenda
         at indices in l.'''
 
     l = [1, 1, 2, 3, 5, 5, 1, 2, 5, 5, 6]

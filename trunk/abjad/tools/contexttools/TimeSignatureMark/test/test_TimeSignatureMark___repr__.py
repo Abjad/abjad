@@ -3,7 +3,7 @@ from abjad.tools.contexttools import TimeSignatureMark
 
 
 def test_TimeSignatureMark___repr___01():
-    '''Time signature mark returns nonempty string repr.
+    r'''Time signature mark returns nonempty string repr.
     '''
 
     time_signature_repr = contexttools.TimeSignatureMark((3, 8)).__repr__()
@@ -11,7 +11,7 @@ def test_TimeSignatureMark___repr___01():
 
 
 def test_TimeSignatureMark___repr___02():
-    '''Repr is evaluable.
+    r'''Repr is evaluable.
     '''
 
     time_signature_1 = contexttools.TimeSignatureMark((3, 8), partial=Duration(1, 8))

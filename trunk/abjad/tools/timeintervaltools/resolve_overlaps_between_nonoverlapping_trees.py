@@ -3,7 +3,7 @@ from abjad.tools import durationtools
 
 
 def resolve_overlaps_between_nonoverlapping_trees(trees, minimum_duration=None):
-    '''Create a nonoverlapping TimeIntervalTree from `trees`.
+    r'''Create a nonoverlapping TimeIntervalTree from `trees`.
 
     Intervals in higher-indexed trees in `trees` only appear in part or whole 
     where they do not overlap intervals from starter-indexed trees:

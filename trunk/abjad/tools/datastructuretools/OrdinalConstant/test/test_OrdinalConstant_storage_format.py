@@ -2,7 +2,7 @@ from abjad.tools import *
 
 
 def test_OrdinalConstant_storage_format_01():
-    '''Storage format exists and is evaluable.
+    r'''Storage format exists and is evaluable.
     '''
 
     vector_constant_1 = datastructuretools.OrdinalConstant('x', -1, 'Left')

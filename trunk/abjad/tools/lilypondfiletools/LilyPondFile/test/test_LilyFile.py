@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_LilyFile_01():
-    '''LilyPondFile implements default paper size and global staff size attributes.
+    r'''LilyPondFile implements default paper size and global staff size attributes.
     '''
 
     t = Score([Staff("c'8 d'8 e'8 f'8")])

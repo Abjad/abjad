@@ -3,7 +3,7 @@ import py.test
 
 
 def test_NumberedChromaticPitch___slots___01():
-    '''Numbered chromatic pitches are immutable.
+    r'''Numbered chromatic pitches are immutable.
     '''
 
     numbered_chromatic_pitch = pitchtools.NumberedChromaticPitch(13)

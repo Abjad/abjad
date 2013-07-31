@@ -10,7 +10,7 @@ def test_sequencetools_count_length_two_runs_in_sequence_01():
 
 
 def test_sequencetools_count_length_two_runs_in_sequence_02():
-    '''Empty list and length-1 list boundary cases.
+    r'''Empty list and length-1 list boundary cases.
     '''
 
     assert sequencetools.count_length_two_runs_in_sequence([]) == 0

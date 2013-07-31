@@ -90,7 +90,7 @@ class EvenRunRhythmMaker(RhythmMaker):
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):
-        '''Call even-run rhythm-maker on `divisions`.
+        r'''Call even-run rhythm-maker on `divisions`.
 
         Return list of container lists.
         '''
@@ -121,7 +121,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     @property
     def denominator_multiplier_exponent(self):
-        '''Denominator multiplier exponent provided at initialization.
+        r'''Denominator multiplier exponent provided at initialization.
 
         ::
 
@@ -134,7 +134,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     @property
     def storage_format(self):
-        '''Even-run rhythm-maker storage format:
+        r'''Even-run rhythm-maker storage format:
 
         ::
 
@@ -152,7 +152,7 @@ class EvenRunRhythmMaker(RhythmMaker):
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
-        '''Create new even-run rhythm-maker with `kwargs`:
+        r'''Create new even-run rhythm-maker with `kwargs`:
 
         ::
 
@@ -188,7 +188,7 @@ class EvenRunRhythmMaker(RhythmMaker):
         return RhythmMaker.new(self, **kwargs)
 
     def reverse(self):
-        '''Reverse even-run rhythm-maker:
+        r'''Reverse even-run rhythm-maker:
 
         ::
 

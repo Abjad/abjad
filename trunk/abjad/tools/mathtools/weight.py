@@ -1,5 +1,5 @@
 def weight(sequence):
-    '''Sum of the absolute value of the elements in `sequence`:
+    r'''Sum of the absolute value of the elements in `sequence`:
 
     ::
 

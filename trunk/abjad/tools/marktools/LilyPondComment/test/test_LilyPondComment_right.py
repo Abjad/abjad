@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_LilyPondComment_right_01():
-    '''Context comments right.
+    r'''Context comments right.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -29,7 +29,7 @@ def test_LilyPondComment_right_01():
 
 
 def test_LilyPondComment_right_02():
-    '''Leaf comments right.
+    r'''Leaf comments right.
     '''
 
     t = Note(0, (1, 8))

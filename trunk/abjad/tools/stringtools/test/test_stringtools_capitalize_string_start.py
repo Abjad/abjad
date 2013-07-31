@@ -8,7 +8,7 @@ def test_stringtools_capitalize_string_start_01():
 
 
 def test_stringtools_capitalize_string_start_02():
-    '''Length-zero string returns unchanged.
+    r'''Length-zero string returns unchanged.
     '''
 
     assert stringtools.capitalize_string_start('') == ''

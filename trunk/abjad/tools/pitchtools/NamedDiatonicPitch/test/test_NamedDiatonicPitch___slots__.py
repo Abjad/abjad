@@ -3,7 +3,7 @@ import py.test
 
 
 def test_NamedDiatonicPitch___slots___01():
-    '''Named diatonic pitches are immutable.
+    r'''Named diatonic pitches are immutable.
     '''
 
     named_diatonic_pitch = pitchtools.NamedDiatonicPitch("c''")

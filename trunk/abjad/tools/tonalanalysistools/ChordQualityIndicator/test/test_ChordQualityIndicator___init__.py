@@ -3,7 +3,7 @@ from abjad.tools import tonalanalysistools
 
 
 def test_ChordQualityIndicator___init___01():
-    '''Init root position triad.
+    r'''Init root position triad.
     '''
 
     cqi = tonalanalysistools.ChordQualityIndicator('major', 'triad')
@@ -20,7 +20,7 @@ def test_ChordQualityIndicator___init___01():
 
 
 def test_ChordQualityIndicator___init___02():
-    '''Init seventh and ninth.
+    r'''Init seventh and ninth.
     '''
 
     cqi = tonalanalysistools.ChordQualityIndicator('dominant', 7, 'root')
@@ -31,7 +31,7 @@ def test_ChordQualityIndicator___init___02():
 
 
 def test_ChordQualityIndicator___init___03():
-    '''Init with quality string and integer cardinality indicator.
+    r'''Init with quality string and integer cardinality indicator.
     '''
 
     cqi = tonalanalysistools.ChordQualityIndicator('dominant', 7)

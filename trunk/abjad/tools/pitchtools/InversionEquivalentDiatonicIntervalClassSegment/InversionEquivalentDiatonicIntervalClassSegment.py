@@ -35,7 +35,7 @@ class InversionEquivalentDiatonicIntervalClassSegment(IntervalSegment):
 
     @property
     def is_tertian(self):
-        '''True when all diatonic interval-classes in segment are tertian.
+        r'''True when all diatonic interval-classes in segment are tertian.
         Otherwise false:
 
         ::

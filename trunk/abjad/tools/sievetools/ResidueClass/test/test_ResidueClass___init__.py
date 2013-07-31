@@ -3,7 +3,7 @@ from abjad.tools import sievetools
 
 
 def test_ResidueClass___init___01():
-    '''Init from modulo and residue.
+    r'''Init from modulo and residue.
     '''
 
     rc = sievetools.ResidueClass(6, 0)
@@ -14,7 +14,7 @@ def test_ResidueClass___init___01():
 
 
 def test_ResidueClass___init___02():
-    '''Init from other rc instance.
+    r'''Init from other rc instance.
     '''
 
     rc = sievetools.ResidueClass(sievetools.ResidueClass(6, 0))

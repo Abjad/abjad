@@ -2,7 +2,7 @@ from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
 class ReSTHorizontalRule(TreeNode):
-    '''An ReST horizontal rule:
+    r'''An ReST horizontal rule:
 
     ::
 

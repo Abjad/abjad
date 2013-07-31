@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Parentage_containment_signature_01():
-    '''An anonymous staff and its contained unvoiced leaves share the same signature.
+    r'''An anonymous staff and its contained unvoiced leaves share the same signature.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -14,7 +14,7 @@ def test_Parentage_containment_signature_01():
 
 
 def test_Parentage_containment_signature_02():
-    '''A named staff and its contained unvoiced leaves share the same signature.
+    r'''A named staff and its contained unvoiced leaves share the same signature.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -25,7 +25,7 @@ def test_Parentage_containment_signature_02():
         assert component.select_parentage().containment_signature == containment
 
 def test_Parentage_containment_signature_03():
-    '''Leaves inside equally named sequential voices inside a staff
+    r'''Leaves inside equally named sequential voices inside a staff
     share the same signature.
     '''
 
@@ -39,7 +39,7 @@ def test_Parentage_containment_signature_03():
 
 
 def test_Parentage_containment_signature_04():
-    '''Return ContainmentSignature giving the root and
+    r'''Return ContainmentSignature giving the root and
     first voice, staff and score in the parentage of component.
     '''
 
@@ -83,7 +83,7 @@ def test_Parentage_containment_signature_04():
 
 
 def test_Parentage_containment_signature_05():
-    '''Return ContainmentSignature giving the root and
+    r'''Return ContainmentSignature giving the root and
     first voice, staff and score in parentage of component.
     '''
 
@@ -136,7 +136,7 @@ def test_Parentage_containment_signature_05():
 
 
 def test_Parentage_containment_signature_06():
-    '''Return ContainmentSignature giving the root and
+    r'''Return ContainmentSignature giving the root and
     first voice, staff and score in parentage of component.
     '''
 
@@ -178,7 +178,7 @@ def test_Parentage_containment_signature_06():
 
 
 def test_Parentage_containment_signature_07():
-    '''Return ContainmentSignature giving the root and
+    r'''Return ContainmentSignature giving the root and
     first voice, staff and score in parentage of component.
     '''
 
@@ -242,7 +242,7 @@ def test_Parentage_containment_signature_07():
 
 
 def test_Parentage_containment_signature_08():
-    '''Unicorporated leaves carry different containment signatures.
+    r'''Unicorporated leaves carry different containment signatures.
     '''
 
     t1 = Note(0, (1, 8))
@@ -253,7 +253,7 @@ def test_Parentage_containment_signature_08():
 
 
 def test_Parentage_containment_signature_09():
-    '''Components here carry the same containment signature EXCEPT FOR root.
+    r'''Components here carry the same containment signature EXCEPT FOR root.
     Component containment signatures do not compare True.
     '''
 
@@ -271,7 +271,7 @@ def test_Parentage_containment_signature_09():
 
 
 def test_Parentage_containment_signature_10():
-    '''Measure and leaves must carry same thread signature.
+    r'''Measure and leaves must carry same thread signature.
     '''
 
     t = Staff([Measure((2, 8), "c'8 d'8")] + notetools.make_repeated_notes(2))
@@ -296,7 +296,7 @@ def test_Parentage_containment_signature_10():
 
 
 def test_Parentage_containment_signature_11():
-    '''Leaves inside different staves have different thread signatures,
+    r'''Leaves inside different staves have different thread signatures,
     even when the staves have the same name.
     '''
 

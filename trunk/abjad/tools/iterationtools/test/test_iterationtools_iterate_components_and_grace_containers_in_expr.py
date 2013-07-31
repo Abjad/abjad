@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_iterationtools_iterate_components_and_grace_containers_in_expr_01():
-    '''Yield before-gracenotes and after-gracenotes.
+    r'''Yield before-gracenotes and after-gracenotes.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")

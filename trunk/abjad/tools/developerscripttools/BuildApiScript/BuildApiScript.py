@@ -6,7 +6,7 @@ from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 
 
 class BuildApiScript(DeveloperScript):
-    '''Build the Abjad APIs:
+    r'''Build the Abjad APIs:
 
     ::
 

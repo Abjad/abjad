@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Chord_get_note_head_01():
-    '''Get note head.
+    r'''Get note head.
     '''
 
     chord = Chord([0, 2, 11], Duration(1, 4))
@@ -19,7 +19,7 @@ def test_Chord_get_note_head_01():
 
 
 def test_Chord_get_note_head_02():
-    '''Exceptions.
+    r'''Exceptions.
     '''
 
     chord = Chord([0, 2, 2], Duration(1, 4))

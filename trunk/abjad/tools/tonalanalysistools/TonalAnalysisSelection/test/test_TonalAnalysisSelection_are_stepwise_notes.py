@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_TonalAnalysisSelection_are_stepwise_notes_01():
-    '''Notes with the same pitch name are stepwise so long
+    r'''Notes with the same pitch name are stepwise so long
     as pitch numbers differ.
     '''
 
@@ -12,7 +12,7 @@ def test_TonalAnalysisSelection_are_stepwise_notes_01():
 
 
 def test_TonalAnalysisSelection_are_stepwise_notes_02():
-    '''Notes with the different pitch name are stepwise so long
+    r'''Notes with the different pitch name are stepwise so long
     as they differ by exactly one staff space.
     '''
 
@@ -34,7 +34,7 @@ def test_TonalAnalysisSelection_are_stepwise_notes_02():
 
 
 def test_TonalAnalysisSelection_are_stepwise_notes_03():
-    '''Notes with the same pitch are not stepwise.
+    r'''Notes with the same pitch are not stepwise.
     '''
 
     notes = [Note('c', (1, 4)), Note('c', (1, 4))]
@@ -43,7 +43,7 @@ def test_TonalAnalysisSelection_are_stepwise_notes_03():
 
 
 def test_TonalAnalysisSelection_are_stepwise_notes_04():
-    '''Notes separated by more than 1 staff space are not stepwise.
+    r'''Notes separated by more than 1 staff space are not stepwise.
     '''
 
     notes = [Note('c', (1, 4)), Note('e', (1, 4))]
@@ -52,7 +52,7 @@ def test_TonalAnalysisSelection_are_stepwise_notes_04():
 
 
 def test_TonalAnalysisSelection_are_stepwise_notes_05():
-    '''Contour changes in note sequence qualifies as tepwise.
+    r'''Contour changes in note sequence qualifies as tepwise.
     '''
 
     notes = notetools.make_notes([0, 2, 4, 5, 4, 2, 0], [(1, 4)])

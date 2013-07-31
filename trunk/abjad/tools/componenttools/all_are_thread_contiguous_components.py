@@ -116,7 +116,7 @@ def all_are_thread_contiguous_components(
 
 
 def _are_thread_proper(component_1, component_2, component_classes=None):
-    '''True when
+    r'''True when
 
         1. component_1 and component_2 are both Abjad components,
         2. component_1 and component_2 share the same thread,

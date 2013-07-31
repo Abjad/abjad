@@ -69,7 +69,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
             bounding_interval)) / bounding_interval.duration
 
     def calculate_depth_centroid(self, bounding_interval=None):
-        '''Calculate the weighted mean offset of `intervals`, such that the
+        r'''Calculate the weighted mean offset of `intervals`, such that the
         centroids of each interval in the depth tree of `intervals` make up
         the values of the mean, and the depth of each interval in the depth
         tree of `intervals` make up the weights.
@@ -87,7 +87,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
         return durationtools.Offset(weighted_centroids) / sum_of_weights
 
     def calculate_depth_density(self, bounding_interval=None):
-        '''Return a fraction, of the duration of each interval in the
+        r'''Return a fraction, of the duration of each interval in the
         depth tree of `intervals`, multiplied by the depth at that interval,
         divided by the overall duration of `intervals`.
 
@@ -126,7 +126,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
             for interval in self)) / len(self.intervals)
 
     def calculate_minimum_mean_and_maximum_depths(self):
-        '''Return a 3-tuple of the minimum, mean and maximum depth of 
+        r'''Return a 3-tuple of the minimum, mean and maximum depth of 
         `intervals`.
 
         If `intervals` is empty, return None.
@@ -142,7 +142,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
         return min(depths), mean, max(depths)
 
     def calculate_minimum_mean_and_maximum_durations(self):
-        '''Return a 3-tuple of the minimum, mean and maximum duration of all 
+        r'''Return a 3-tuple of the minimum, mean and maximum duration of all 
         intervals in `intervals`.
 
         If `intervals` is empty, return None.
@@ -162,7 +162,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
             bounding_interval)) / bounding_interval.duration
 
     def calculate_sustain_centroid(self):
-        '''Return a weighted mean, such that the centroid of each interval
+        r'''Return a weighted mean, such that the centroid of each interval
         in `intervals` are the values, and the weights are their durations.
         '''
         if not self:
@@ -177,7 +177,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
         raise NotImplementedError
 
     def compute_depth(self, bounding_interval=None):
-        '''Compute a tree whose intervals represent the level of overlap
+        r'''Compute a tree whose intervals represent the level of overlap
         of the time interval aggregate:
 
         ::
@@ -259,7 +259,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
         return timeintervaltools.TimeIntervalTree(depth_intervals)
 
     def compute_logical_and(self, bounding_interval=None):
-        '''Compute logical AND of intervals.
+        r'''Compute logical AND of intervals.
 
         Return time interval tree.
         '''
@@ -269,7 +269,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
             if 1 < x['depth']))
 
     def compute_logical_not(self, bounding_interval=None):
-        '''Compute logical NOT of intervals.
+        r'''Compute logical NOT of intervals.
 
         Return time interval tree.
         '''
@@ -279,7 +279,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
             if x['depth'] == 0))
 
     def compute_logical_or(self, bounding_interval=None):
-        '''Compute logical OR of intervals.
+        r'''Compute logical OR of intervals.
 
         Return time interval tree.
         '''
@@ -289,7 +289,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
             if 1 <= x['depth']))
 
     def compute_logical_xor(self, bounding_interval=None):
-        '''Compute logical XOR of intervals.
+        r'''Compute logical XOR of intervals.
 
         Return time interval tree.
         '''
@@ -351,7 +351,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
         raise NotImplementedError
 
     def partition(self, include_tangent_intervals=False):
-        '''Partition aggregate into groups of overlapping intervals:
+        r'''Partition aggregate into groups of overlapping intervals:
 
         ::
 

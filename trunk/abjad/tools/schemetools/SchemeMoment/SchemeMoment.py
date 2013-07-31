@@ -3,7 +3,7 @@ from abjad.tools.schemetools.Scheme import Scheme
 
 
 class SchemeMoment(Scheme):
-    '''Abjad model of LilyPond moment:
+    r'''Abjad model of LilyPond moment:
 
     ::
 
@@ -92,7 +92,7 @@ class SchemeMoment(Scheme):
 
     @property
     def duration(self):
-        '''Duration of scheme moment:
+        r'''Duration of scheme moment:
 
         ::
 

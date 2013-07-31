@@ -3,7 +3,7 @@ from abjad.tools import datastructuretools
 
 
 def test_ObjectInventory_storage_format_01():
-    '''Empty inventory. No keywords.
+    r'''Empty inventory. No keywords.
     '''
 
     inventory = datastructuretools.ObjectInventory()
@@ -13,7 +13,7 @@ def test_ObjectInventory_storage_format_01():
 
 
 def test_ObjectInventory_storage_format_02():
-    '''Empty inventory. With keywords.
+    r'''Empty inventory. With keywords.
     '''
 
     inventory = datastructuretools.ObjectInventory(name='foo')
@@ -23,7 +23,7 @@ def test_ObjectInventory_storage_format_02():
 
 
 def test_ObjectInventory_storage_format_03():
-    '''Populated inventory. Without keywords.
+    r'''Populated inventory. Without keywords.
     '''
 
     inventory = datastructuretools.ObjectInventory([
@@ -51,7 +51,7 @@ def test_ObjectInventory_storage_format_03():
 
 
 def test_ObjectInventory_storage_format_04():
-    '''Populated inventory. With keywords.
+    r'''Populated inventory. With keywords.
     '''
 
     inventory = datastructuretools.ObjectInventory([

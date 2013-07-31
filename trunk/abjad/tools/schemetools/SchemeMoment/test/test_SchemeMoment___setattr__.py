@@ -3,7 +3,7 @@ import py.test
 
 
 def test_SchemeMoment___setattr___01():
-    '''Scheme moments are immutable.
+    r'''Scheme moments are immutable.
     '''
 
     scheme_moment = schemetools.SchemeMoment((1, 64))

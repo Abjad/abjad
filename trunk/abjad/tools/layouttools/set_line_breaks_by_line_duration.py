@@ -13,7 +13,7 @@ def set_line_breaks_by_line_duration(
     adjust_eol=False,
     add_empty_bars=False,
     ):
-    '''Iterate `line_break_class` instances in `expr` 
+    r'''Iterate `line_break_class` instances in `expr` 
     and accumulate `kind` duration.
 
     Add line break after every total less than or equal to `line_duration`.

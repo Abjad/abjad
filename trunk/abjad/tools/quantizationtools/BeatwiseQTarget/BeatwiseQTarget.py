@@ -7,7 +7,7 @@ from abjad.tools.quantizationtools.QTarget import QTarget
 
 
 class BeatwiseQTarget(QTarget):
-    '''A beat-wise quantization target.
+    r'''A beat-wise quantization target.
 
     Not composer-safe.
 

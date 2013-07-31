@@ -6,7 +6,7 @@ from abjad.tools.timeintervaltools.TimeIntervalMixin import TimeIntervalMixin
 
 
 class TimeInterval(TimeIntervalMixin, collections.MutableMapping):
-    '''A start_offset / stop_offset pair, carrying some metadata.
+    r'''A start_offset / stop_offset pair, carrying some metadata.
     '''
 
     ### CLASS VARIABLES ###
@@ -77,31 +77,31 @@ class TimeInterval(TimeIntervalMixin, collections.MutableMapping):
 
     @property
     def center(self):
-        '''Center point of start_offset and stop_offset bounds.
+        r'''Center point of start_offset and stop_offset bounds.
         '''
         return durationtools.Offset(self.stop_offset + self.start_offset) / 2
 
     @property
     def duration(self):
-        '''stop_offset bound minus start_offset bound.
+        r'''stop_offset bound minus start_offset bound.
         '''
         return durationtools.Duration(self.stop_offset - self.start_offset)
 
     @property
     def signature(self):
-        '''Tuple of start_offset bound and stop_offset bound.
+        r'''Tuple of start_offset bound and stop_offset bound.
         '''
         return (self.start_offset, self.stop_offset)
 
     @property
     def start_offset(self):
-        '''start_offset bound.
+        r'''start_offset bound.
         '''
         return self._start
 
     @property
     def stop_offset(self):
-        '''stop_offset bound.
+        r'''stop_offset bound.
         '''
         return self._stop
 

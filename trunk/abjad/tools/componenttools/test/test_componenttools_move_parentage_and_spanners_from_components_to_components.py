@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_componenttools_move_parentage_and_spanners_from_components_to_components_01():
-    '''Move parentage and spanners from two old notes to five new notes.
+    r'''Move parentage and spanners from two old notes to five new notes.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -42,7 +42,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
 
 
 def test_componenttools_move_parentage_and_spanners_from_components_to_components_02():
-    '''Move parentage and spanners from one old note to five new notes.
+    r'''Move parentage and spanners from one old note to five new notes.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -83,7 +83,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
 
 
 def test_componenttools_move_parentage_and_spanners_from_components_to_components_03():
-    '''Move parentage and spanners from two old notes to five new notes.
+    r'''Move parentage and spanners from two old notes to five new notes.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -123,7 +123,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
 
 
 def test_componenttools_move_parentage_and_spanners_from_components_to_components_04():
-    '''Move parentage and spanners from three old notes to five new notes.
+    r'''Move parentage and spanners from three old notes to five new notes.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -162,7 +162,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
 
 
 def test_componenttools_move_parentage_and_spanners_from_components_to_components_05():
-    '''Move parentage and spanners from four old notes to five new notes.
+    r'''Move parentage and spanners from four old notes to five new notes.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -200,7 +200,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
 
 
 def test_componenttools_move_parentage_and_spanners_from_components_to_components_06():
-    '''Move parentage and spanners from container to children of container.
+    r'''Move parentage and spanners from container to children of container.
     '''
 
     t = Staff([Voice("c'8 d'8 e'8 f'8")])

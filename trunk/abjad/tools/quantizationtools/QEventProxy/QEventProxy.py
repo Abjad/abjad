@@ -5,7 +5,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class QEventProxy(AbjadObject):
-    '''Proxies a `QEvent`, mapping that QEvent's offset with the range of 
+    r'''Proxies a `QEvent`, mapping that QEvent's offset with the range of 
     its beatspan to the range 0-1:
 
     ::

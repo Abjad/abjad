@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Scale_make_notes_01():
-    '''Allow nonassignable durations.
+    r'''Allow nonassignable durations.
     '''
 
     scale = tonalanalysistools.Scale('c', 'major')

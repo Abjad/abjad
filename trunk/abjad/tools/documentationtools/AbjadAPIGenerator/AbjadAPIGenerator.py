@@ -5,7 +5,7 @@ from abjad.tools import abctools
 
 
 class AbjadAPIGenerator(abctools.AbjadObject):
-    '''Creates Abjad's API ReST:
+    r'''Creates Abjad's API ReST:
 
         * writes ReST pages for individual classes and functions
         * writes the API index ReST
@@ -176,7 +176,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
     @property
     def docs_api_index_path(self):
-        '''Path to index.rst for Abjad API.
+        r'''Path to index.rst for Abjad API.
         '''
         from abjad import abjad_configuration
         return os.path.join(
@@ -189,7 +189,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
     @property
     def path_definitions(self):
-        '''Code path / docs path / package prefix triples.
+        r'''Code path / docs path / package prefix triples.
         '''
         from abjad import abjad_configuration
         return (

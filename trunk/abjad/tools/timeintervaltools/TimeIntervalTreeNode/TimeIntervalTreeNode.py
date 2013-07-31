@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class TimeIntervalTreeNode(AbjadObject):
-    '''A red-black node in an TimeIntervalTree.
+    r'''A red-black node in an TimeIntervalTree.
 
     Duplicate payloads are supported by maintaining a list of TimeIntervals.
     

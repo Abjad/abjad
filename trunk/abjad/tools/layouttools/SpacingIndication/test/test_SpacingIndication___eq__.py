@@ -3,7 +3,7 @@ from abjad.tools import layouttools
 
 
 def test_SpacingIndication___eq___01():
-    '''Spacing indications compare equal when
+    r'''Spacing indications compare equal when
         normalized spacing durations compare equal.'''
 
     tempo_indication = contexttools.TempoMark(Duration(1, 8), 38)
@@ -16,7 +16,7 @@ def test_SpacingIndication___eq___01():
 
 
 def test_SpacingIndication___eq___02():
-    '''Spacing indications compare not equal when
+    r'''Spacing indications compare not equal when
         normalized spacing durations compare not equal.'''
 
     tempo_indication = contexttools.TempoMark(Duration(1, 8), 38)

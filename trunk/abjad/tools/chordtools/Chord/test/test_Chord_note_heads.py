@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Chord_note_heads_01():
-    '''Returns immutable tuple of note_heads in chord.
+    r'''Returns immutable tuple of note_heads in chord.
     '''
 
     t = Chord([2, 4, 5], (1, 4))
@@ -16,7 +16,7 @@ def test_Chord_note_heads_01():
 
 
 def test_Chord_note_heads_02():
-    '''Chords with equivalent pitch numbers *do* carry equivalent note_head instances.
+    r'''Chords with equivalent pitch numbers *do* carry equivalent note_head instances.
     '''
 
     t1 = Chord([2, 4, 5], (1, 4))
@@ -26,7 +26,7 @@ def test_Chord_note_heads_02():
 
 
 def test_Chord_note_heads_03():
-    '''Note head can be assigned with a LilyPond-style note name.
+    r'''Note head can be assigned with a LilyPond-style note name.
     '''
 
     t = Chord([0], (1, 4))
@@ -36,7 +36,7 @@ def test_Chord_note_heads_03():
 
 
 def test_Chord_note_heads_04():
-    '''Set chord with tweaked note heads.
+    r'''Set chord with tweaked note heads.
     '''
 
     chord = Chord([3, 13, 17], (1, 4))

@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_InversionEquivalentChromaticIntervalClassVector___init___01():
-    '''Init inversion-equivalent chromatic interval-class vector from list of numbers.
+    r'''Init inversion-equivalent chromatic interval-class vector from list of numbers.
     '''
 
     iecicv = pitchtools.InversionEquivalentChromaticIntervalClassVector([1, 1, 6, 2, 2, 2])
@@ -13,7 +13,7 @@ def test_InversionEquivalentChromaticIntervalClassVector___init___01():
 
 
 def test_InversionEquivalentChromaticIntervalClassVector___init___02():
-    '''Init inversion-equivalent chromatic interval-class vector from interval-class counts.
+    r'''Init inversion-equivalent chromatic interval-class vector from interval-class counts.
     '''
 
     iecicv = pitchtools.InversionEquivalentChromaticIntervalClassVector(

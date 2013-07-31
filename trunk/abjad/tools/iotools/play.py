@@ -3,7 +3,7 @@ from abjad.tools import lilypondfiletools
 
 
 def play(expr):
-    '''Play `expr`:
+    r'''Play `expr`:
 
     ::
 

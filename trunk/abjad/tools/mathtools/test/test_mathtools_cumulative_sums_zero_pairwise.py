@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 
 
 def test_mathtools_cumulative_sums_zero_pairwise_01():
-    '''Yield pairwise cumulative sums of l from 0.
+    r'''Yield pairwise cumulative sums of l from 0.
     '''
 
     l = [3, 1, 2, 1, 3, 3, 1]
@@ -14,7 +14,7 @@ def test_mathtools_cumulative_sums_zero_pairwise_01():
 
 
 def test_mathtools_cumulative_sums_zero_pairwise_02():
-    '''Yield pairwise cumulative sums of l from 0.
+    r'''Yield pairwise cumulative sums of l from 0.
     '''
 
     l = [1, 2, 3, 4, 5, 6]

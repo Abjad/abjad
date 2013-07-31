@@ -30,21 +30,21 @@ class AbjadObject(object):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        '''True when ``id(self)`` equals ``id(expr)``.
+        r'''True when ``id(self)`` equals ``id(expr)``.
 
         Return boolean.
         '''
         return id(self) == id(expr)
 
     def __ne__(self, expr):
-        '''Defined equal to the opposite of equality.
+        r'''Defined equal to the opposite of equality.
 
         Return boolean.
         '''
         return not self == expr
 
     def __repr__(self):
-        '''Interpreter representation of Abjad object.
+        r'''Interpreter representation of Abjad object.
 
         Return string.
         '''
@@ -330,7 +330,7 @@ class AbjadObject(object):
 
     @property
     def storage_format(self):
-        '''Storage format of Abjad object.
+        r'''Storage format of Abjad object.
 
         Return string.
         '''

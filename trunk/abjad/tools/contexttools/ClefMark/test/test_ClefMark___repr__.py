@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_ClefMark___repr___01():
-    '''Clef returns a nonempty repr string.
+    r'''Clef returns a nonempty repr string.
     '''
 
     repr = contexttools.ClefMark('treble').__repr__()

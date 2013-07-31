@@ -35,7 +35,7 @@ def test_Component_start_offset_05():
 
 
 def test_Component_start_offset_06():
-    '''Offset works with voices.
+    r'''Offset works with voices.
     '''
 
     v1 = Voice(notetools.make_repeated_notes(16))
@@ -62,7 +62,7 @@ def test_Component_start_offset_08():
 
 
 def test_Component_start_offset_09():
-    '''Offset works on nested tuplets.
+    r'''Offset works on nested tuplets.
     '''
 
     tp = tuplettools.FixedDurationTuplet(Duration(1, 4), notetools.make_repeated_notes(3))
@@ -74,7 +74,7 @@ def test_Component_start_offset_09():
 
 
 def test_Component_start_offset_10():
-    '''Offset works with parallel structures.
+    r'''Offset works with parallel structures.
     '''
 
     v1 = Voice(notetools.make_repeated_notes(16))
@@ -88,7 +88,7 @@ def test_Component_start_offset_10():
 
 
 def test_Component_start_offset_11():
-    '''Offset on leaves works in nested contexts.
+    r'''Offset on leaves works in nested contexts.
     '''
 
     v = Voice(notetools.make_repeated_notes(4))
@@ -100,7 +100,7 @@ def test_Component_start_offset_11():
 
 
 def test_Component_start_offset_12():
-    '''Offset on leaves works in sequential contexts.
+    r'''Offset on leaves works in sequential contexts.
     '''
 
     v1 = Voice(notetools.make_repeated_notes(4))
@@ -113,7 +113,7 @@ def test_Component_start_offset_12():
 
 
 def test_Component_start_offset_13():
-    '''Offset on leaves works in nested parallel contexts.
+    r'''Offset on leaves works in nested parallel contexts.
     '''
 
     v1 = Voice(notetools.make_repeated_notes(4))
@@ -127,7 +127,7 @@ def test_Component_start_offset_13():
 
 
 def test_Component_start_offset_14():
-    '''Offset on leaves works in nested parallel and sequential contexts.
+    r'''Offset on leaves works in nested parallel and sequential contexts.
     '''
 
     v1 = Voice(notetools.make_repeated_notes(4))
@@ -140,7 +140,7 @@ def test_Component_start_offset_14():
 
 
 def test_Component_start_offset_15():
-    '''Offset on leaves works in nested parallel and sequential contexts.
+    r'''Offset on leaves works in nested parallel and sequential contexts.
     '''
 
     v1 = Voice(notetools.make_repeated_notes(4))
@@ -155,7 +155,7 @@ def test_Component_start_offset_15():
 
 
 def test_Component_start_offset_16():
-    '''Offsets works on sequential voices.
+    r'''Offsets works on sequential voices.
     '''
 
     t = Staff([Voice(notetools.make_repeated_notes(4)), Voice(notetools.make_repeated_notes(4))])
@@ -165,7 +165,7 @@ def test_Component_start_offset_16():
 
 
 def test_Component_start_offset_17():
-    '''Prolated offset does NOT go across sequential staves.
+    r'''Prolated offset does NOT go across sequential staves.
     '''
 
     t = Container([Staff(notetools.make_repeated_notes(4)), Staff(notetools.make_repeated_notes(4))])
@@ -175,7 +175,7 @@ def test_Component_start_offset_17():
 
 
 def test_Component_start_offset_18():
-    '''Offsets works with nested voices.
+    r'''Offsets works with nested voices.
     '''
 
     t = Staff([Voice(notetools.make_repeated_notes(4)), Voice(notetools.make_repeated_notes(4))])
@@ -184,7 +184,7 @@ def test_Component_start_offset_18():
 
 
 def test_Component_start_offset_19():
-    '''Offsets works on sequential tuplets.
+    r'''Offsets works on sequential tuplets.
     '''
 
     t = Voice(tuplettools.FixedDurationTuplet(Duration(1, 4), notetools.make_repeated_notes(3)) * 3)
@@ -194,7 +194,7 @@ def test_Component_start_offset_19():
 
 
 def test_Component_start_offset_20():
-    '''Offsets work on tuplets between notes.
+    r'''Offsets work on tuplets between notes.
     '''
 
     tp = tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
@@ -205,7 +205,7 @@ def test_Component_start_offset_20():
 
 
 def test_Component_start_offset_21():
-    '''Offsets work on nested tuplets.
+    r'''Offsets work on nested tuplets.
     '''
 
     tp = tuplettools.FixedDurationTuplet(Duration(1, 4), notetools.make_repeated_notes(3))
@@ -216,7 +216,7 @@ def test_Component_start_offset_21():
 
 
 def test_Component_start_offset_22():
-    '''Offsets work on nested contexts.
+    r'''Offsets work on nested contexts.
     '''
 
     vin = Voice(notetools.make_repeated_notes(4))
@@ -228,7 +228,7 @@ def test_Component_start_offset_22():
 
 
 def test_Component_start_offset_23():
-    '''Offsets work on nested parallel contexts.
+    r'''Offsets work on nested parallel contexts.
      '''
 
     v1 = Voice(notetools.make_repeated_notes(4))
@@ -240,7 +240,7 @@ def test_Component_start_offset_23():
 
 
 def test_Component_start_offset_24():
-    '''Offsets works in nested parallel and sequential contexts.
+    r'''Offsets works in nested parallel and sequential contexts.
     '''
 
     v1 = Voice(notetools.make_repeated_notes(4))

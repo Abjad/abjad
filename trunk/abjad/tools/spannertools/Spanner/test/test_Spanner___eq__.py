@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Spanner___eq___01():
-    '''Spanner is strict comparator.
+    r'''Spanner is strict comparator.
     '''
 
     class MockSpanner(spannertools.Spanner):

@@ -77,7 +77,7 @@ def test_TextSpanner_position_04():
 
 
 def test_TextSpanner_position_05():
-    '''TextSpanner attaching to container formats correctly.
+    r'''TextSpanner attaching to container formats correctly.
     '''
 
     t = Staff(notetools.make_repeated_notes(4))

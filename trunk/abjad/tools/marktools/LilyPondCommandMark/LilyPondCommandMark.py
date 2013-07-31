@@ -90,7 +90,7 @@ class LilyPondCommandMark(Mark):
     @apply
     def command_name():
         def fget(self):
-            '''Get command name of LilyPond command mark:
+            r'''Get command name of LilyPond command mark:
 
             ::
 
@@ -156,7 +156,7 @@ class LilyPondCommandMark(Mark):
 
     @property
     def lilypond_format(self):
-        '''LilyPond input format of LilyPond command mark:
+        r'''LilyPond input format of LilyPond command mark:
 
         ::
 

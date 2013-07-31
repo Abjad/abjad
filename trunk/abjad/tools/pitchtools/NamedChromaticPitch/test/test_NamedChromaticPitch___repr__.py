@@ -3,13 +3,13 @@ from abjad.tools.pitchtools import NamedChromaticPitch
 
 
 def test_NamedChromaticPitch___repr___01():
-    '''Named chromatic pitch repr is evaluable.
+    r'''Named chromatic pitch repr is evaluable.
     '''
 
     named_chromatic_pitch_1 = pitchtools.NamedChromaticPitch("cs''")
     named_chromatic_pitch_2 = eval(repr(named_chromatic_pitch_1))
 
-    '''NamedChromaticPitch("cs''")
+    r'''NamedChromaticPitch("cs''")
     '''
 
     assert isinstance(named_chromatic_pitch_1, pitchtools.NamedChromaticPitch)
@@ -17,7 +17,7 @@ def test_NamedChromaticPitch___repr___01():
 
 
 def test_NamedChromaticPitch___repr___02():
-    '''Repr values.
+    r'''Repr values.
     '''
 
     named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")

@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class CounterpointObject(AbjadObject):
-    '''Counterpoint object base class.
+    r'''Counterpoint object base class.
     '''
 
     ### CLASS VARIABLES ###

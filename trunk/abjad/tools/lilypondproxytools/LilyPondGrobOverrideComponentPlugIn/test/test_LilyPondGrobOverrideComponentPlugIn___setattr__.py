@@ -3,7 +3,7 @@ import py.test
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___01():
-    '''Override LilyPond Accidental grob.
+    r'''Override LilyPond Accidental grob.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -24,7 +24,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___01():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___02():
-    '''Override LilyPond Accidental grob.
+    r'''Override LilyPond Accidental grob.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -44,7 +44,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___02():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___03():
-    '''Override LilyPond BarNumber grob.
+    r'''Override LilyPond BarNumber grob.
     '''
 
     score = Score([Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
@@ -71,7 +71,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___03():
     assert score.lilypond_format == "\\new Score \\with {\n\t\\override BarNumber #'break-visibility = #end-of-line-invisible\n} <<\n\t\\new Staff {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t\tb'8\n\t\tc''8\n\t}\n>>"
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___04():
-    '''Override LilyPond BarNumber grob.
+    r'''Override LilyPond BarNumber grob.
     '''
 
     t = Score([Staff("c'8 d'8 e'8 f'8")])
@@ -95,7 +95,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___04():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___05():
-    '''Override LilyPond Beam grob.
+    r'''Override LilyPond Beam grob.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -116,7 +116,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___05():
     assert t.lilypond_format == "\\new Voice {\n\t\\override Beam #'positions = #'(4 . 4)\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\t\\revert Beam #'positions\n}"
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___06():
-    '''Override LilyPond Clef grob.
+    r'''Override LilyPond Clef grob.
     '''
 
     t = Note("c'4")
@@ -131,7 +131,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___06():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___07():
-    '''Override LilyPond Clef grob.
+    r'''Override LilyPond Clef grob.
     '''
 
     t = Note("c'4")
@@ -145,7 +145,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___07():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___08():
-    '''Override LilyPond Clef grob.
+    r'''Override LilyPond Clef grob.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -166,7 +166,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___08():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___09():
-    '''Override LilyPond ClusterSpanner grob.
+    r'''Override LilyPond ClusterSpanner grob.
     '''
 
     t = containertools.Cluster(Note(1, (1, 4)) * 4)
@@ -203,7 +203,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___09():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___10():
-    '''Override LilyPond DynamicLineSpanner grob.
+    r'''Override LilyPond DynamicLineSpanner grob.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -225,7 +225,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___10():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___11():
-    '''Override LilyPond DynamicLineSpanner grob.
+    r'''Override LilyPond DynamicLineSpanner grob.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -248,7 +248,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___11():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___12():
-    '''Override LilyPond DynamicText grob.
+    r'''Override LilyPond DynamicText grob.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -272,7 +272,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___12():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___13():
-    '''Override LilyPond DynamicText grob.
+    r'''Override LilyPond DynamicText grob.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -295,7 +295,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___13():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___14():
-    '''Override LilyPond DynamicTextSpanner grob.
+    r'''Override LilyPond DynamicTextSpanner grob.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -318,7 +318,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___14():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___15():
-    '''Override LilyPond Glissando grob.
+    r'''Override LilyPond Glissando grob.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -340,7 +340,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___15():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___16():
-    '''Override LilyPond Hairpin grob.
+    r'''Override LilyPond Hairpin grob.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -363,7 +363,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___16():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___17():
-    '''Override LilyPond InstrumentName grob.
+    r'''Override LilyPond InstrumentName grob.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -387,7 +387,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___17():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___18():
-    '''Override LilyPond MetronomeMark grob.
+    r'''Override LilyPond MetronomeMark grob.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
@@ -414,7 +414,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___18():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___19():
-    '''Override LilyPond MultiMeasureRestGrob.
+    r'''Override LilyPond MultiMeasureRestGrob.
     '''
 
     staff = Staff([Note("c'4")])
@@ -432,7 +432,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___19():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___20():
-    '''Override LilyPond NonMusicalPaperColumn grob.
+    r'''Override LilyPond NonMusicalPaperColumn grob.
     '''
 
     t = Score([Staff("c'8 d'8 e'8 f'8")])
@@ -458,7 +458,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___20():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___21():
-    '''Override LilyPond NoteColumn grob.
+    r'''Override LilyPond NoteColumn grob.
     '''
 
     t = Note("c'4")
@@ -474,7 +474,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___21():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___22():
-    '''Override LilyPond NoteColumn grob.
+    r'''Override LilyPond NoteColumn grob.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -496,7 +496,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___22():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___23():
-    '''Override LilyPond NoteHead grob.
+    r'''Override LilyPond NoteHead grob.
     '''
 
     t = Note(1, (1, 4))
@@ -510,7 +510,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___23():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___24():
-    '''Notehead styles are handled just like all other grob overrides.
+    r'''Notehead styles are handled just like all other grob overrides.
     '''
 
     t = Note(1, (1, 4))
@@ -524,7 +524,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___24():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___25():
-    '''Notehead style overrides are handled just like all other
+    r'''Notehead style overrides are handled just like all other
     note_head grob overrides, even for note_heads in chords.'''
 
     t = Chord([1, 2, 3], (1, 4))
@@ -543,7 +543,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___25():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___26():
-    '''Notehead shape style overrides are just normal grob overrides.
+    r'''Notehead shape style overrides are just normal grob overrides.
     '''
 
     t = Note(1, (1, 4))
@@ -557,7 +557,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___26():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___27():
-    '''Notehead solfege style overrides are just normal grob overrides.
+    r'''Notehead solfege style overrides are just normal grob overrides.
     Modern versions of LilyPond now handles solfege overrides correctly.'''
 
     t = Note(1, (1, 4))
@@ -571,7 +571,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___27():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___28():
-    '''Override LilyPond NoteHead grob.
+    r'''Override LilyPond NoteHead grob.
     '''
 
     t = Note(13, (1, 4))
@@ -585,7 +585,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___28():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___29():
-    '''Override LilyPond NoteHead grob.
+    r'''Override LilyPond NoteHead grob.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -607,7 +607,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___29():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___30():
-    '''Override LilyPond OctavationBracket grob.
+    r'''Override LilyPond OctavationBracket grob.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -631,7 +631,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___30():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___31():
-    '''Override LilyPond RehearsalMark grob.
+    r'''Override LilyPond RehearsalMark grob.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -654,7 +654,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___31():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___32():
-    '''Override LilyPond Rest grob.
+    r'''Override LilyPond Rest grob.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -675,7 +675,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___32():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___33():
-    '''Override LilyPond Script grob.
+    r'''Override LilyPond Script grob.
     '''
 
     t = Note("c'4")
@@ -691,7 +691,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___33():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___34():
-    '''Override LilyPond Script grob.
+    r'''Override LilyPond Script grob.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -714,7 +714,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___34():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___35():
-    '''Override LilyPond SpacingSpanner grob.
+    r'''Override LilyPond SpacingSpanner grob.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -743,7 +743,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___35():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___36():
-    '''Override LilyPond SpacingSpanner grob on Abjad containers.
+    r'''Override LilyPond SpacingSpanner grob on Abjad containers.
     LilyPond SpacingSpanner lives at Score by default.
     Abjad SpacingSpanner overrides usually
     require context promotion.
@@ -783,7 +783,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___36():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___37():
-    '''Override LilyPond SpacingSpanner grob.
+    r'''Override LilyPond SpacingSpanner grob.
     '''
 
     t = Score([])
@@ -805,7 +805,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___37():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___38():
-    '''Override LilyPond SpanBar grob.
+    r'''Override LilyPond SpanBar grob.
     '''
 
     score, treble, bass = scoretools.make_empty_piano_score()
@@ -843,7 +843,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___38():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___39():
-    '''Override LilyPond StaffSymbol grob.
+    r'''Override LilyPond StaffSymbol grob.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -864,7 +864,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___39():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___40():
-    '''Override LilyPond StaffSymbol grob.
+    r'''Override LilyPond StaffSymbol grob.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -884,7 +884,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___40():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___41():
-    '''Override LilyPond StaffSymbol grob.
+    r'''Override LilyPond StaffSymbol grob.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
@@ -905,7 +905,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___41():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___42():
-    '''Override LilyPond Stem grob.
+    r'''Override LilyPond Stem grob.
     '''
 
     t = Note(0, (1, 16))
@@ -920,7 +920,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___42():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___43():
-    '''Override LilyPond StemTremolo grob.
+    r'''Override LilyPond StemTremolo grob.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
@@ -943,7 +943,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___43():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___44():
-    '''Override LilyPond SystemStartBar grob.
+    r'''Override LilyPond SystemStartBar grob.
     '''
 
     score = Score([scoretools.StaffGroup([Staff(notetools.make_repeated_notes(8))])])
@@ -974,7 +974,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___44():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___45():
-    '''Override LilyPond TextScript grob.
+    r'''Override LilyPond TextScript grob.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -997,7 +997,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___45():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___46():
-    '''Override LilyPond TextSpanner grob.
+    r'''Override LilyPond TextSpanner grob.
     '''
 
     t = Staff(notetools.make_repeated_notes(4))
@@ -1020,7 +1020,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___46():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___47():
-    '''Override LilyPond Tie grob.
+    r'''Override LilyPond Tie grob.
     '''
 
     t = Note("c'4")
@@ -1029,7 +1029,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___47():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___48():
-    '''Override LilyPond TimeSignature grob.
+    r'''Override LilyPond TimeSignature grob.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -1050,7 +1050,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___48():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___49():
-    '''Override LilyPond TimeSignature grob.
+    r'''Override LilyPond TimeSignature grob.
     '''
 
     t = Measure((4, 8), "c'8 d'8 e'8 f'8")
@@ -1072,7 +1072,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___49():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___50():
-    '''Override LilyPond TimeSignature grob.
+    r'''Override LilyPond TimeSignature grob.
     '''
 
     t = Measure((4, 8), "c'8 d'8 e'8 f'8")
@@ -1094,7 +1094,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___50():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___51():
-    '''Override LilyPond TrillPitchAccidental grob.
+    r'''Override LilyPond TrillPitchAccidental grob.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -1117,7 +1117,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___51():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___52():
-    '''Override LilyPond TrillSpanner grob.
+    r'''Override LilyPond TrillSpanner grob.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -1139,7 +1139,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___52():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___53():
-    '''Override LilyPond TupletBracket grob.
+    r'''Override LilyPond TupletBracket grob.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -1162,7 +1162,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___53():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___54():
-    '''Override LilyPond TupletBracket grob.
+    r'''Override LilyPond TupletBracket grob.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -1184,7 +1184,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___54():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___55():
-    '''Override LilyPond TupletNumber grob.
+    r'''Override LilyPond TupletNumber grob.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -1205,7 +1205,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___55():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___56():
-    '''Override LilyPond TupletNumber grob.
+    r'''Override LilyPond TupletNumber grob.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -1228,7 +1228,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___56():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___57():
-    '''Override LilyPond TupletNumber grob.
+    r'''Override LilyPond TupletNumber grob.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -1250,7 +1250,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___57():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___58():
-    '''Override LilyPond TupletNumber grob.
+    r'''Override LilyPond TupletNumber grob.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -1273,7 +1273,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___58():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___59():
-    '''Override LilyPond VerticalAlignment grob.
+    r'''Override LilyPond VerticalAlignment grob.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -1296,7 +1296,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___59():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___60():
-    '''Override LilyPond VerticalAxis grob.
+    r'''Override LilyPond VerticalAxis grob.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -1319,7 +1319,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___60():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___61():
-    '''InputSetExpression attribute on erroneous grob name raises exception.
+    r'''InputSetExpression attribute on erroneous grob name raises exception.
     '''
 
     note = Note("c'8")

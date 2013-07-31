@@ -3,7 +3,7 @@ from abjad.tools.marktools import LilyPondComment
 
 
 def test_LilyPondComment___repr___01():
-    '''Repr of unattached comment is evaluable.
+    r'''Repr of unattached comment is evaluable.
     '''
 
     comment_1 = marktools.LilyPondComment('foo')

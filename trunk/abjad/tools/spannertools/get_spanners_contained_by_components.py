@@ -2,7 +2,7 @@ from abjad.tools import componenttools
 
 
 def get_spanners_contained_by_components(components):
-    '''Return unordered set of spanners contained within
+    r'''Return unordered set of spanners contained within
     any component in list of thread-contiguous components.
     Getter for t.spanners.contained across thread-contiguous components.
     '''

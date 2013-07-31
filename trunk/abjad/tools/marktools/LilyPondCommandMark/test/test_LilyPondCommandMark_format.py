@@ -38,7 +38,7 @@ def test_LilyPondCommandMark_format_02():
 
 
 def test_LilyPondCommandMark_format_03():
-    '''Barline after leaf.
+    r'''Barline after leaf.
     '''
 
     t = Note("c'4")
@@ -53,7 +53,7 @@ def test_LilyPondCommandMark_format_03():
 
 
 def test_LilyPondCommandMark_format_04():
-    '''Barline at container closing.
+    r'''Barline at container closing.
     '''
 
     t = Staff()
@@ -69,7 +69,7 @@ def test_LilyPondCommandMark_format_04():
 
 
 def test_LilyPondCommandMark_format_05():
-    '''Add a natural harmonic.
+    r'''Add a natural harmonic.
     '''
 
     t = Note("c'4")
@@ -78,7 +78,7 @@ def test_LilyPondCommandMark_format_05():
 
 
 def test_LilyPondCommandMark_format_06():
-    '''Add and then remove natural harmonic.
+    r'''Add and then remove natural harmonic.
     '''
 
     t = Note("c'4")
@@ -118,7 +118,7 @@ def test_LilyPondCommandMark_format_08():
 
 
 def test_LilyPondCommandMark_format_09():
-    '''Voice number can be set on leaves.
+    r'''Voice number can be set on leaves.
     '''
 
     t = Voice(notetools.make_repeated_notes(4))
@@ -128,7 +128,7 @@ def test_LilyPondCommandMark_format_09():
 
 
 def test_LilyPondCommandMark_format_10():
-    '''Voice number can be set to 1, 2, 3, 4, or None.
+    r'''Voice number can be set to 1, 2, 3, 4, or None.
     Anyhing else will throw a ValueError exception.
     '''
 
@@ -153,7 +153,7 @@ def test_LilyPondCommandMark_format_10():
 
 
 def test_LilyPondCommandMark_format_11():
-    '''Voice number can be set on a Voice container and on one of the leaves contained in it.
+    r'''Voice number can be set on a Voice container and on one of the leaves contained in it.
     '''
 
     t = Voice(notetools.make_repeated_notes(4))

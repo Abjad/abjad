@@ -3,7 +3,7 @@ import copy
 
 
 def test_GraceContainer___copy___01():
-    '''Grace containers copy kind.
+    r'''Grace containers copy kind.
     '''
 
     grace_container_1 = leaftools.GraceContainer([Note("d'32")], kind = 'after')

@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Voice___setattr___01():
-    '''Slots constrain voice attributes.
+    r'''Slots constrain voice attributes.
     '''
 
     voice = Voice([])

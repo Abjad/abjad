@@ -4,7 +4,7 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 
 
 def test_LilyPondParser__spanners__PhrasingSlurSpanner_01():
-    '''Successful slurs, showing single leaf overlap.
+    r'''Successful slurs, showing single leaf overlap.
     '''
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
     spannertools.PhrasingSlurSpanner(target[2:])
@@ -25,7 +25,7 @@ def test_LilyPondParser__spanners__PhrasingSlurSpanner_01():
 
 
 def test_LilyPondParser__spanners__PhrasingSlurSpanner_02():
-    '''Swapped start and stop.
+    r'''Swapped start and stop.
     '''
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
     spannertools.PhrasingSlurSpanner(target[2:])
@@ -48,28 +48,28 @@ def test_LilyPondParser__spanners__PhrasingSlurSpanner_02():
 
 
 def test_LilyPondParser__spanners__PhrasingSlurSpanner_03():
-    '''Single leaf.
+    r'''Single leaf.
     '''
     input = '{ c \( \) c c c }'
     assert py.test.raises(Exception, 'LilyPondParser()(input)')
 
 
 def test_LilyPondParser__spanners__PhrasingSlurSpanner_04():
-    '''Unterminated.
+    r'''Unterminated.
     '''
     input = '{ c \( c c c }'
     assert py.test.raises(Exception, 'LilyPondParser()(input)')
 
 
 def test_LilyPondParser__spanners__PhrasingSlurSpanner_05():
-    '''Unstarted.
+    r'''Unstarted.
     '''
     input = '{ c c c c \) }'
     assert py.test.raises(Exception, 'LilyPondParser()(input)')
 
 
 def test_LilyPondParser__spanners__PhrasingSlurSpanner_06():
-    '''Nested.
+    r'''Nested.
     '''
     input = '{ c \( c \( c \) c \) }'
     assert py.test.raises(Exception, 'LilyPondParser()(input)')

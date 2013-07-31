@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Measure_parallel_01():
-    '''Rigid measures may be hold parallel contents.
+    r'''Rigid measures may be hold parallel contents.
     '''
 
     measure = Measure((2, 8), Voice(notetools.make_repeated_notes(2)) * 2)

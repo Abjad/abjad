@@ -2,7 +2,7 @@ from abjad.tools.mathtools.Infinity import Infinity
 
 
 class NegativeInfinity(Infinity):
-    '''Object-oriented negative infinity.
+    r'''Object-oriented negative infinity.
 
     All numbers compare greater than negative infinity:
 

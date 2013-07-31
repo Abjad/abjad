@@ -2,7 +2,7 @@ import inspect
 
 
 def get_all_mark_format_contributions(component):
-    '''Get all mark format contributions as nested dictionaries.
+    r'''Get all mark format contributions as nested dictionaries.
 
     The first level of keys represent format slots.
 

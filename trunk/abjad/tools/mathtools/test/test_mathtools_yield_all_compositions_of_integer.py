@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 
 
 def test_mathtools_yield_all_compositions_of_integer_01():
-    '''Yield all compositions (that is, ordered partitions)
+    r'''Yield all compositions (that is, ordered partitions)
     of positive integer n, in descending lex order.'''
 
 

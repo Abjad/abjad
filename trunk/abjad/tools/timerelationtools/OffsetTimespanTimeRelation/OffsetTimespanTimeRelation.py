@@ -68,7 +68,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
         return truth_value
 
     def __eq__(self, expr):
-        '''True when `expr` equals time relation. Otherwise false:
+        r'''True when `expr` equals time relation. Otherwise false:
 
         ::
 
@@ -101,7 +101,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
     @property
     def is_fully_loaded(self):
-        '''True when `timespan` and `offset` are both not none.
+        r'''True when `timespan` and `offset` are both not none.
         Otherwise false:
 
         ::
@@ -115,7 +115,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
     @property
     def is_fully_unloaded(self):
-        '''True when `timespan` and `offset` are both none.
+        r'''True when `timespan` and `offset` are both none.
         Otherwise false:
 
         ::
@@ -129,7 +129,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
     @property
     def offset(self):
-        '''Time relation offset:
+        r'''Time relation offset:
 
         ::
 
@@ -142,7 +142,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
     @property
     def storage_format(self):
-        '''Time relation storage format:
+        r'''Time relation storage format:
 
         ::
 
@@ -167,7 +167,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
     @property
     def timespan(self):
-        '''Time relation timepsan:
+        r'''Time relation timepsan:
 
         ::
 

@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Heuristic(AbjadObject):
-    '''Abstract base class from which concrete ``Heuristic`` 
+    r'''Abstract base class from which concrete ``Heuristic`` 
     subclases inherit.
 
     ``Heuristics`` rank ``QGrids`` according to the criteria they 

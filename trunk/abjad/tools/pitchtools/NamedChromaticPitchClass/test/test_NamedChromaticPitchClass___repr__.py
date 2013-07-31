@@ -3,7 +3,7 @@ from abjad.tools.pitchtools import NamedChromaticPitchClass
 
 
 def test_NamedChromaticPitchClass___repr___01():
-    '''Named chromatic pitch-class repr is evaluable.
+    r'''Named chromatic pitch-class repr is evaluable.
     '''
 
     named_chromatic_pitch_class_1 = pitchtools.NamedChromaticPitchClass('cs')

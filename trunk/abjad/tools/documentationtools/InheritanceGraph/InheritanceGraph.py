@@ -5,7 +5,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class InheritanceGraph(AbjadObject):
-    '''Generates a graph of a class or collection of
+    r'''Generates a graph of a class or collection of
     classes as a dictionary of parent-children relationships:
 
     ::

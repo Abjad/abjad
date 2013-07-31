@@ -3,7 +3,7 @@ import copy
 
 
 def test_Staff___copy___01():
-    '''Staves (shallow) copy grob overrides and context settings but not musical content.
+    r'''Staves (shallow) copy grob overrides and context settings but not musical content.
     '''
 
     staff_1 = Staff("c'8 d'8 e'8 f'8")

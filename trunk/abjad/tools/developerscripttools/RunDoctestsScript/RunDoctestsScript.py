@@ -6,7 +6,7 @@ from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 
 
 class RunDoctestsScript(DirectoryScript):
-    '''Run doctests on all Python files in current directory recursively:
+    r'''Run doctests on all Python files in current directory recursively:
 
     ::
 

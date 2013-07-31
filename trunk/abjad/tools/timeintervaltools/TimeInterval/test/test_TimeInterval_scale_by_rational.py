@@ -4,7 +4,7 @@ import py.test
 
 
 def test_TimeInterval_scale_by_rational_01():
-    '''TimeInterval.scale_by_rational returns a new TimeInterval instance unless offset is 1.
+    r'''TimeInterval.scale_by_rational returns a new TimeInterval instance unless offset is 1.
     '''
 
     i1 = TimeInterval(3, 23)
@@ -15,7 +15,7 @@ def test_TimeInterval_scale_by_rational_01():
 
 
 def test_TimeInterval_scale_by_rational_02():
-    '''TimeInterval duration can be scaled with ints.
+    r'''TimeInterval duration can be scaled with ints.
     '''
 
     i1 = TimeInterval(3, 23)
@@ -25,7 +25,7 @@ def test_TimeInterval_scale_by_rational_02():
 
 
 def test_TimeInterval_scale_by_rational_03():
-    '''TimeInterval duration can be scaled with Fractions.
+    r'''TimeInterval duration can be scaled with Fractions.
     '''
 
     i1 = TimeInterval(3, 23)
@@ -35,7 +35,7 @@ def test_TimeInterval_scale_by_rational_03():
 
 
 def test_TimeInterval_scale_by_rational_04():
-    '''TimeInterval duration cannot be scaled to zero.
+    r'''TimeInterval duration cannot be scaled to zero.
     '''
 
     i1 = TimeInterval(3, 23)
@@ -44,7 +44,7 @@ def test_TimeInterval_scale_by_rational_04():
 
 
 def test_TimeInterval_scale_by_rational_05():
-    '''TimeInterval duration cannot be scaled with negatives.
+    r'''TimeInterval duration cannot be scaled with negatives.
     '''
 
     i1 = TimeInterval(3, 23)

@@ -3,7 +3,7 @@ from abjad.tools.leaftools.Leaf import Leaf
 
 
 class Rest(Leaf):
-    '''Abjad model of a rest:
+    r'''Abjad model of a rest:
 
     ::
 
@@ -67,7 +67,7 @@ class Rest(Leaf):
 
     @property
     def _body(self):
-        '''Body of rest.
+        r'''Body of rest.
         '''
         result = ''
         vertical_positioning_pitch = getattr(

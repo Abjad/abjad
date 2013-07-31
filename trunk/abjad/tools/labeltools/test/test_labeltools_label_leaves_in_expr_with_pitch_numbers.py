@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_labeltools_label_leaves_in_expr_with_pitch_numbers_01():
-    '''Works on notes, rests and chords.
+    r'''Works on notes, rests and chords.
     '''
 
     leaves = leaftools.make_leaves([None, 12, (13, 14, 15), None], [(1, 4)])

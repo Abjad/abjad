@@ -2,7 +2,7 @@ from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
 class ReSTTOCItem(TreeNode):
-    '''An ReST TOC item:
+    r'''An ReST TOC item:
 
     ::
 

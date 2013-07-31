@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_GraceContainer_parentage_01():
-    '''Lone grace container carrier is none.
+    r'''Lone grace container carrier is none.
     '''
 
     t = leaftools.GraceContainer(notetools.make_repeated_notes(4))
@@ -10,7 +10,7 @@ def test_GraceContainer_parentage_01():
 
 
 def test_GraceContainer_parentage_02():
-    '''Grace containers bound to leaf do have parent.
+    r'''Grace containers bound to leaf do have parent.
     '''
 
     t = Note(1, (1, 4))
@@ -21,7 +21,7 @@ def test_GraceContainer_parentage_02():
 
 
 def test_GraceContainer_parentage_03():
-    '''Grace containers bound to leaf have their correct carrier after assignment.
+    r'''Grace containers bound to leaf have their correct carrier after assignment.
     '''
 
     t = Note(1, (1, 4))

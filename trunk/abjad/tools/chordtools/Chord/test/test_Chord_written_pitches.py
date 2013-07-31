@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Chord_written_pitches_01():
-    '''Returns immutable tuple of pitches in chord.
+    r'''Returns immutable tuple of pitches in chord.
     '''
 
     t = Chord([2, 4, 5], (1, 4))
@@ -16,7 +16,7 @@ def test_Chord_written_pitches_01():
 
 
 def test_Chord_written_pitches_02():
-    '''Chords with equivalent numbers carry equivalent pitches.
+    r'''Chords with equivalent numbers carry equivalent pitches.
     '''
 
     t1 = Chord([2, 4, 5], (1, 4))

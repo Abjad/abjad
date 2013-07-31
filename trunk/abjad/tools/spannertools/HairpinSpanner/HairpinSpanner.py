@@ -142,7 +142,7 @@ class HairpinSpanner(DirectedSpanner):
         return result
 
     def _parse_descriptor(self, descriptor):
-        '''Example descriptors:
+        r'''Example descriptors:
 
         ::
 
@@ -299,7 +299,7 @@ class HairpinSpanner(DirectedSpanner):
 
     @staticmethod
     def is_hairpin_shape_string(arg):
-        '''True when `arg` is a hairpin shape string. Otherwise false:
+        r'''True when `arg` is a hairpin shape string. Otherwise false:
 
         ::
 
@@ -312,7 +312,7 @@ class HairpinSpanner(DirectedSpanner):
 
     @staticmethod
     def is_hairpin_token(arg):
-        '''True when `arg` is a hairpin token. Otherwise false:
+        r'''True when `arg` is a hairpin token. Otherwise false:
 
         ::
 

@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_HarmonicChromaticIntervalSet___init___01():
-    '''Works with interval numbers.
+    r'''Works with interval numbers.
     '''
 
     numbers = [0, 1, 14, 15, 28]
@@ -13,7 +13,7 @@ def test_HarmonicChromaticIntervalSet___init___01():
 
 
 def test_HarmonicChromaticIntervalSet___init___02():
-    '''Works with interval instances.
+    r'''Works with interval instances.
     '''
 
     numbers = [0, 1, 14, 15, 28]

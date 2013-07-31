@@ -108,7 +108,7 @@ class NamedChromaticPitchClass(PitchClass):
 
     @property
     def _accidental(self):
-        '''Accidental string of pitch-class name.
+        r'''Accidental string of pitch-class name.
         '''
         from abjad.tools import pitchtools
         return pitchtools.Accidental(str(self)[1:])
@@ -119,7 +119,7 @@ class NamedChromaticPitchClass(PitchClass):
 
     @property
     def _diatonic_pitch_class_name(self):
-        '''First letter of pitch-class name.
+        r'''First letter of pitch-class name.
         '''
         return str(self)[0]
 
@@ -129,7 +129,7 @@ class NamedChromaticPitchClass(PitchClass):
 
     @property
     def _symbolic_name(self):
-        '''Letter plus punctuation of pitch name.
+        r'''Letter plus punctuation of pitch name.
         '''
         accidental_to_symbol = {
             '': '', 
@@ -167,7 +167,7 @@ class NamedChromaticPitchClass(PitchClass):
 
     @property
     def numbered_chromatic_pitch_class(self):
-        '''Numbered chromatic pitch-class:
+        r'''Numbered chromatic pitch-class:
 
         ::
 
@@ -183,7 +183,7 @@ class NamedChromaticPitchClass(PitchClass):
     ### PUBLIC METHODS ###
 
     def apply_accidental(self, accidental):
-        '''Apply `accidental`:
+        r'''Apply `accidental`:
 
         ::
 
@@ -200,7 +200,7 @@ class NamedChromaticPitchClass(PitchClass):
         return type(self)(new_name)
 
     def transpose(self, melodic_diatonic_interval):
-        '''Transpose named chromatic pitch-class by 
+        r'''Transpose named chromatic pitch-class by 
         `melodic_diatonic_interval`:
 
         ::

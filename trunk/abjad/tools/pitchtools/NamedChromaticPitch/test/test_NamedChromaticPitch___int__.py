@@ -3,7 +3,7 @@ import py.test
 
 
 def test_NamedChromaticPitch___int___01():
-    '''Return chromatic pitch number of 12-ET named chromatic pitch as int.
+    r'''Return chromatic pitch number of 12-ET named chromatic pitch as int.
     '''
 
     named_chromatic_pitch = pitchtools.NamedChromaticPitch(13)
@@ -12,7 +12,7 @@ def test_NamedChromaticPitch___int___01():
 
 
 def test_NamedChromaticPitch___int___02():
-    '''Raise type error on non-12-ET named chromatic pitch.
+    r'''Raise type error on non-12-ET named chromatic pitch.
     '''
 
     named_chromatic_pitch = pitchtools.NamedChromaticPitch(13.5)

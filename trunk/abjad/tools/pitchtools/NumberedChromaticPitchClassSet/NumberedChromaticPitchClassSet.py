@@ -88,7 +88,7 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
 
     @property
     def inversion_equivalent_chromatic_interval_class_set(self):
-        '''Inversion-equivalent chromatic interval-class set:
+        r'''Inversion-equivalent chromatic interval-class set:
 
         ::
 
@@ -110,7 +110,7 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
 
     @property
     def inversion_equivalent_chromatic_interval_class_vector(self):
-        '''Inversion-equivalent chromatic interval-class vector:
+        r'''Inversion-equivalent chromatic interval-class vector:
 
         ::
 
@@ -130,7 +130,7 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
 
     @property
     def numbered_chromatic_pitch_classes(self):
-        '''Numbered chromatic pitch-classes:
+        r'''Numbered chromatic pitch-classes:
 
         ::
 
@@ -153,14 +153,14 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
 
     @property
     def prime_form(self):
-        '''To be implemented.
+        r'''To be implemented.
         '''
         return None
 
     ### PUBLIC METHODS ###
 
     def invert(self):
-        '''Invert numbered chromatic pitch-class set:
+        r'''Invert numbered chromatic pitch-class set:
 
         ::
 
@@ -172,7 +172,7 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
         return type(self)([pc.invert() for pc in self])
 
     def is_transposed_subset(self, pcset):
-        '''True when self is transposed subset of `pcset`.
+        r'''True when self is transposed subset of `pcset`.
         False otherwise:
 
         ::
@@ -195,7 +195,7 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
         return False
 
     def is_transposed_superset(self, pcset):
-        '''True when self is transposed superset of `pcset`.
+        r'''True when self is transposed superset of `pcset`.
         False otherwise:
 
         ::
@@ -218,7 +218,7 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
         return False
 
     def multiply(self, n):
-        '''Multiply numbered chromatic pitch-class set by `n`:
+        r'''Multiply numbered chromatic pitch-class set by `n`:
 
         ::
 
@@ -230,7 +230,7 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
         return type(self)([pc.multiply(n) for pc in self])
 
     def transpose(self, n):
-        '''Transpose numbered chromatic pitch-class set by `n`:
+        r'''Transpose numbered chromatic pitch-class set by `n`:
 
         ::
 

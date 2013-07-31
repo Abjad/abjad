@@ -4,7 +4,7 @@ from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 
 
 class SvnMessageScript(DeveloperScript):
-    '''Edit a temporary `svn` commit message, stored in the `.abjad` 
+    r'''Edit a temporary `svn` commit message, stored in the `.abjad` 
     directory:
 
     ::

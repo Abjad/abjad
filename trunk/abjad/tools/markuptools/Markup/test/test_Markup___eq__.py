@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Markup___eq___01():
-    '''No keywords.
+    r'''No keywords.
     '''
 
     markup_1 = markuptools.Markup('foo')
@@ -20,7 +20,7 @@ def test_Markup___eq___01():
 
 
 def test_Markup___eq___02():
-    '''With keywords.
+    r'''With keywords.
     '''
 
     markup_1 = markuptools.Markup('foo')

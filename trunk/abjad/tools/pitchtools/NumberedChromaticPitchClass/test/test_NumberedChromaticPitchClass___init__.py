@@ -3,7 +3,7 @@ import py.test
 
 
 def test_NumberedChromaticPitchClass___init___01():
-    '''Pitch class initialization works with numbers.
+    r'''Pitch class initialization works with numbers.
     '''
 
     assert isinstance(pitchtools.NumberedChromaticPitchClass(0),
@@ -21,7 +21,7 @@ def test_NumberedChromaticPitchClass___init___01():
 
 
 def test_NumberedChromaticPitchClass___init___02():
-    '''Pitch class initialization works with other pitch-classes.
+    r'''Pitch class initialization works with other pitch-classes.
     '''
 
     pc = pitchtools.NumberedChromaticPitchClass(pitchtools.NumberedChromaticPitchClass(0))
@@ -32,7 +32,7 @@ def test_NumberedChromaticPitchClass___init___02():
 
 
 def test_NumberedChromaticPitchClass___init___03():
-    '''PitchClass initialization works with pitches.
+    r'''PitchClass initialization works with pitches.
     '''
 
     pc = pitchtools.NumberedChromaticPitchClass(pitchtools.NamedChromaticPitch(0))
@@ -43,7 +43,7 @@ def test_NumberedChromaticPitchClass___init___03():
 
 
 def test_NumberedChromaticPitchClass___init___04():
-    '''Pitch class initialization works with notes.
+    r'''Pitch class initialization works with notes.
     '''
 
     note = Note(13, (1, 4))
@@ -52,7 +52,7 @@ def test_NumberedChromaticPitchClass___init___04():
 
 
 def test_NumberedChromaticPitchClass___init___05():
-    '''Pitch class initialization works with one-note chords.
+    r'''Pitch class initialization works with one-note chords.
     '''
 
     chord = Chord([13], (1, 4))
@@ -61,7 +61,7 @@ def test_NumberedChromaticPitchClass___init___05():
 
 
 def test_NumberedChromaticPitchClass___init___06():
-    '''Init with named pitch-class instance.
+    r'''Init with named pitch-class instance.
     '''
 
     npc = pitchtools.NamedChromaticPitchClass('cs')
@@ -70,14 +70,14 @@ def test_NumberedChromaticPitchClass___init___06():
 
 
 def test_NumberedChromaticPitchClass___init___07():
-    '''PitchClass initialization raises ValueError.
+    r'''PitchClass initialization raises ValueError.
     '''
 
     assert py.test.raises(Exception, "pitchtools.NumberedChromaticPitchClass('foo')")
 
 
 def test_NumberedChromaticPitchClass___init___08():
-    '''PitchClass initialization raises TypeError on rest.
+    r'''PitchClass initialization raises TypeError on rest.
     '''
 
     rest = Rest((1, 4))
@@ -85,7 +85,7 @@ def test_NumberedChromaticPitchClass___init___08():
 
 
 def test_NumberedChromaticPitchClass___init___09():
-    '''PitchClass initialization raises MissingPitchError on empty chord.
+    r'''PitchClass initialization raises MissingPitchError on empty chord.
     '''
 
     chord = Chord([], (1, 4))
@@ -93,7 +93,7 @@ def test_NumberedChromaticPitchClass___init___09():
 
 
 def test_NumberedChromaticPitchClass___init___10():
-    '''Init from named pitch-class string.
+    r'''Init from named pitch-class string.
     '''
 
     assert pitchtools.NumberedChromaticPitchClass('c') == 0

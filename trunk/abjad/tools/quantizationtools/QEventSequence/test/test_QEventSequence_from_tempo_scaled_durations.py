@@ -6,7 +6,7 @@ from abjad.tools import quantizationtools
 
 
 def test_QEventSequence_from_tempo_scaled_durations_01():
-    '''Test basic functionality.
+    r'''Test basic functionality.
     '''
 
     durations = [durationtools.Duration(x) for x in 
@@ -43,7 +43,7 @@ def test_QEventSequence_from_tempo_scaled_durations_01():
 
 
 def test_QEventSequence_from_tempo_scaled_durations_02():
-    '''Silences are fused.
+    r'''Silences are fused.
     '''
 
     durations = [durationtools.Duration(x) for x in

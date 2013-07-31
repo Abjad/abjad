@@ -5,7 +5,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class LilyPondLexicalDefinition(AbjadObject):
-    '''The lexical definition of LilyPond's syntax.
+    r'''The lexical definition of LilyPond's syntax.
 
     Effectively equivalent to LilyPond's ``lexer.ll`` file.
 

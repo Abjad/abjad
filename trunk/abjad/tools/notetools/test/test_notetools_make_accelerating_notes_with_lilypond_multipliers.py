@@ -3,7 +3,7 @@ import py.test
 
 
 def test_notetools_make_accelerating_notes_with_lilypond_multipliers_01():
-    '''Pitches can be a list of any length greater than 1.
+    r'''Pitches can be a list of any length greater than 1.
     '''
 
     t = notetools.make_accelerating_notes_with_lilypond_multipliers(
@@ -14,7 +14,7 @@ def test_notetools_make_accelerating_notes_with_lilypond_multipliers_01():
 
 
 def test_notetools_make_accelerating_notes_with_lilypond_multipliers_02():
-    '''Pitches can be a list of any length greater than 1.
+    r'''Pitches can be a list of any length greater than 1.
     '''
 
     t = notetools.make_accelerating_notes_with_lilypond_multipliers(
@@ -28,7 +28,7 @@ def test_notetools_make_accelerating_notes_with_lilypond_multipliers_02():
 
 
 def test_notetools_make_accelerating_notes_with_lilypond_multipliers_03():
-    '''Start and stop fractions must be smaller than durations.
+    r'''Start and stop fractions must be smaller than durations.
     '''
     code = 't = notetools.make_accelerating_notes_with_lilypond_multipliers([1, 2], Duration(2), Duration(4), Duration(1, 2))'
     assert py.test.raises(ValueError, code)

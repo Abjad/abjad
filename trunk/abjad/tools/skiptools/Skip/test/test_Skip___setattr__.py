@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Skip___setattr___01():
-    '''Slots constrain skip attributes.
+    r'''Slots constrain skip attributes.
     '''
 
     skip = skiptools.Skip((1, 4))

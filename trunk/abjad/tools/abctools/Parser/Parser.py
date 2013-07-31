@@ -7,7 +7,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Parser(AbjadObject):
-    '''Abstract base class for Abjad parsers.
+    r'''Abstract base class for Abjad parsers.
 
     Rules objects for lexing and parsing must be defined by overriding the
     abstract properties `lexer_rules_object` and `parser_rules_object`.
@@ -61,7 +61,7 @@ class Parser(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, input_string):
-        '''Parse `input_string` and return result.
+        r'''Parse `input_string` and return result.
         '''
 
         if hasattr(self, '_setup'):
@@ -86,63 +86,63 @@ class Parser(AbjadObject):
 
     @property
     def debug(self):
-        '''True if the parser runs in debugging mode.
+        r'''True if the parser runs in debugging mode.
         '''
         return self._debug
 
     @property
     def lexer(self):
-        '''The parser's PLY Lexer instance.
+        r'''The parser's PLY Lexer instance.
         '''
         return self._lexer
 
     @abc.abstractproperty
     def lexer_rules_object(self):
-        '''The object containing the parser's lexical rule definitions.
+        r'''The object containing the parser's lexical rule definitions.
         '''
         raise NotImplemented
 
     @property
     def logger(self):
-        '''The parser's Logger instance.
+        r'''The parser's Logger instance.
         '''
         return self._logger
 
     @property
     def logger_path(self):
-        '''The output path for the parser's logfile.
+        r'''The output path for the parser's logfile.
         '''
         return os.path.join(self.output_path, 'parselog.txt')
 
     @property
     def output_path(self):
-        '''The output path for files associated with the parser.
+        r'''The output path for files associated with the parser.
         '''
         class_path = inspect.getfile(self.__class__)
         return class_path.rpartition(os.path.sep)[0]
 
     @property
     def parser(self):
-        '''The parser's PLY LRParser instance.
+        r'''The parser's PLY LRParser instance.
         '''
         return self._parser
 
     @abc.abstractproperty
     def parser_rules_object(self):
-        '''The object containing the parser's syntactical rule definitions.
+        r'''The object containing the parser's syntactical rule definitions.
         '''
         raise NotImplemented
 
     @property
     def pickle_path(self):
-        '''The output path for the parser's pickled parsing tables.
+        r'''The output path for the parser's pickled parsing tables.
         '''
         return os.path.join(self.output_path, '_parsetab.pkl')
 
     ### PUBLIC METHODS ###
 
     def tokenize(self, input_string):
-        '''Tokenize `input string` and print results.
+        r'''Tokenize `input string` and print results.
         '''
         self.lexer.input(input_string)
         for token in self.lexer:

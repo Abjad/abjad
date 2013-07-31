@@ -3,7 +3,7 @@ import py.test
 
 
 def test_notetools_make_repeated_notes_with_shorter_notes_at_end_01():
-    '''Make train of 1/16th notes equal to 1/4 total duration.
+    r'''Make train of 1/16th notes equal to 1/4 total duration.
     '''
 
     t = Voice(notetools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(1, 4)))
@@ -22,7 +22,7 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_01():
 
 
 def test_notetools_make_repeated_notes_with_shorter_notes_at_end_02():
-    '''Make train of 1/16th notes equal to 9/32 total duration.
+    r'''Make train of 1/16th notes equal to 9/32 total duration.
     '''
 
     t = Voice(notetools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(9, 32)))
@@ -42,7 +42,7 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_02():
 
 
 def test_notetools_make_repeated_notes_with_shorter_notes_at_end_03():
-    '''Make train of 1/16th notes equal to only 1/128 total duration.
+    r'''Make train of 1/16th notes equal to only 1/128 total duration.
     '''
 
     t = Voice(notetools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(1, 128)))
@@ -58,7 +58,7 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_03():
 
 
 def test_notetools_make_repeated_notes_with_shorter_notes_at_end_04():
-    '''Make train of 1/16th notes equal to 4/10 total duration.
+    r'''Make train of 1/16th notes equal to 4/10 total duration.
     '''
 
     t = Voice(notetools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(4, 10)))
@@ -82,7 +82,7 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_04():
 
 
 def test_notetools_make_repeated_notes_with_shorter_notes_at_end_05():
-    '''Make train of written 1/16th notes within measure of 5/18.
+    r'''Make train of written 1/16th notes within measure of 5/18.
     '''
 
     t = Measure((5, 18), notetools.make_repeated_notes_with_shorter_notes_at_end(

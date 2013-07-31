@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_sequencetools_CyclicTree___init___01():
-    '''Initialize cyclic tree from other cyclic tree.
+    r'''Initialize cyclic tree from other cyclic tree.
     '''
 
     tree_1 = sequencetools.CyclicTree([[4, 5], [6, 7]])

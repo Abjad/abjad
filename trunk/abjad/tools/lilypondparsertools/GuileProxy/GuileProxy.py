@@ -11,7 +11,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class GuileProxy(AbjadObject):
-    '''Emulates LilyPond music functions.
+    r'''Emulates LilyPond music functions.
 
     Used internally by LilyPondParser.
 

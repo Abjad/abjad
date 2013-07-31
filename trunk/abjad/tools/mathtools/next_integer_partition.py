@@ -42,7 +42,7 @@ def next_integer_partition(integer_partition):
 
 
 def _split_into_left_and_right_halves(integer_partition):
-    '''split not-1s (left half) from 1s (right half):
+    r'''split not-1s (left half) from 1s (right half):
 
     _split_into_left_and_right_halves((8, 3))
     [8, 3], []
@@ -65,7 +65,7 @@ def _split_into_left_and_right_halves(integer_partition):
 
 
 def _validate_input(integer_partition):
-    '''Must be monotonically decreasing iterable of positive integers.
+    r'''Must be monotonically decreasing iterable of positive integers.
 
     (8, 2, 2, 1) is OK.
     (8, 1, 2, 2) is not.
@@ -83,7 +83,7 @@ def _validate_input(integer_partition):
 
 
 def _as_special_sequence(n, m):
-    '''Write positive integer n as the sum of many m in a row,
+    r'''Write positive integer n as the sum of many m in a row,
     followed either by nothing or by a final positive integer
     p such that p is strictly less than m.
 

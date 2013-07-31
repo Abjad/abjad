@@ -3,7 +3,7 @@ from abjad.tools.lilypondproxytools import LilyPondGrobOverrideComponentPlugIn
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___repr___01():
-    '''LilyPond grob override component plug-in repr is evaluable.
+    r'''LilyPond grob override component plug-in repr is evaluable.
     '''
 
     note = Note("c'4")
@@ -17,7 +17,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___repr___01():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___repr___02():
-    '''LilyPond grob override component plug-in repr does not truncate override strings.
+    r'''LilyPond grob override component plug-in repr does not truncate override strings.
     '''
 
     note = Note("c'8")

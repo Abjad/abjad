@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Spanner_append_left_01():
-    '''Append container to the left.
+    r'''Append container to the left.
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
@@ -50,7 +50,7 @@ def test_Spanner_append_left_01():
 
 
 def test_Spanner_append_left_02():
-    '''Spanner appends one leaf to the right.
+    r'''Spanner appends one leaf to the right.
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)

@@ -4,7 +4,7 @@ from abjad.tools.quantizationtools.AttackPointOptimizer \
 
 
 class NullAttackPointOptimizer(AttackPointOptimizer):
-    '''Concrete ``AttackPointOptimizer`` subclass which performs
+    r'''Concrete ``AttackPointOptimizer`` subclass which performs
     no attack point optimization.
 
     Return ``NullAttackPointOptimizer`` instance.

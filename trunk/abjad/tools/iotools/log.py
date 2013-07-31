@@ -2,7 +2,7 @@ import os
 
 
 def log():
-    '''Open the LilyPond log file in operating system-specific text editor:
+    r'''Open the LilyPond log file in operating system-specific text editor:
 
     ::
 

@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_measuretools_fuse_contiguous_measures_in_container_cyclically_by_counts_01():
-    '''Docs.
+    r'''Docs.
     '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 5)
@@ -70,7 +70,7 @@ def test_measuretools_fuse_contiguous_measures_in_container_cyclically_by_counts
 
 
 def test_measuretools_fuse_contiguous_measures_in_container_cyclically_by_counts_02():
-    '''Docs.
+    r'''Docs.
     '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 5)

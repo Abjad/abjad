@@ -1,4 +1,4 @@
 class SpacingError(Exception):
-    '''General spacing error.
+    r'''General spacing error.
     '''
     pass

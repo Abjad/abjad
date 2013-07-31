@@ -113,7 +113,7 @@ class VerticalMoment(SimultaneousSelection):
 
     @staticmethod
     def _find_index(container, offset):
-        '''Based off of Python's bisect.bisect() function.
+        r'''Based off of Python's bisect.bisect() function.
         '''
         lo = 0
         hi = len(container)
@@ -179,7 +179,7 @@ class VerticalMoment(SimultaneousSelection):
 
     @property
     def attack_count(self):
-        '''Positive integer number of pitch carriers
+        r'''Positive integer number of pitch carriers
         starting at vertical moment.
         '''
         from abjad.tools import chordtools
@@ -192,7 +192,7 @@ class VerticalMoment(SimultaneousSelection):
 
     @property
     def components(self):
-        '''Tuple of zero or more components
+        r'''Tuple of zero or more components
         happening at vertical moment.
 
         It is always the case that ``self.components =
@@ -202,14 +202,14 @@ class VerticalMoment(SimultaneousSelection):
 
     @property
     def governors(self):
-        '''Tuple of one or more containers
+        r'''Tuple of one or more containers
         in which vertical moment is evaluated.
         '''
         return self._governors
 
     @property
     def leaves(self):
-        '''Tuple of zero or more leaves
+        r'''Tuple of zero or more leaves
         at vertical moment.
         '''
         from abjad.tools import leaftools
@@ -222,7 +222,7 @@ class VerticalMoment(SimultaneousSelection):
 
     @property
     def measures(self):
-        '''Tuplet of zero or more measures
+        r'''Tuplet of zero or more measures
         at vertical moment.
         '''
         from abjad.tools import measuretools
@@ -235,7 +235,7 @@ class VerticalMoment(SimultaneousSelection):
 
     @property
     def next_vertical_moment(self):
-        '''Reference to next vertical moment forward in time.
+        r'''Reference to next vertical moment forward in time.
         '''
         from abjad.tools import componenttools
         candidate_shortest_leaf = self.leaves[0]
@@ -248,7 +248,7 @@ class VerticalMoment(SimultaneousSelection):
 
     @property
     def next_vertical_moment(self):
-        '''Reference to next vertical moment forward in time.
+        r'''Reference to next vertical moment forward in time.
         '''
         from abjad.tools import componenttools
         candidate_shortest_leaf = self.leaves[0]
@@ -262,7 +262,7 @@ class VerticalMoment(SimultaneousSelection):
 
     @property
     def notes(self):
-        '''Tuple of zero or more notes
+        r'''Tuple of zero or more notes
         at vertical moment.
         '''
         from abjad.tools import notetools
@@ -275,14 +275,14 @@ class VerticalMoment(SimultaneousSelection):
 
     @property
     def offset(self):
-        '''Rational-valued score offset
+        r'''Rational-valued score offset
         at which vertical moment is evaluated.
         '''
         return self._offset
 
     @property
     def overlap_components(self):
-        '''Tuple of components in vertical moment
+        r'''Tuple of components in vertical moment
         starting before vertical moment, ordered by score index.
         '''
         result = []
@@ -294,7 +294,7 @@ class VerticalMoment(SimultaneousSelection):
 
     @property
     def overlap_leaves(self):
-        '''Tuple of leaves in vertical moment
+        r'''Tuple of leaves in vertical moment
         starting before vertical moment, ordered by score index.
         '''
         from abjad.tools import leaftools
@@ -305,7 +305,7 @@ class VerticalMoment(SimultaneousSelection):
 
     @property
     def overlap_measures(self):
-        '''Tuple of measures in vertical moment
+        r'''Tuple of measures in vertical moment
         starting before vertical moment, ordered by score index.
         '''
         from abjad.tools import measuretools
@@ -316,7 +316,7 @@ class VerticalMoment(SimultaneousSelection):
 
     @property
     def overlap_notes(self):
-        '''Tuple of notes in vertical moment
+        r'''Tuple of notes in vertical moment
         starting before vertical moment, ordered by score index.
         '''
         from abjad.tools import notetools
@@ -327,7 +327,7 @@ class VerticalMoment(SimultaneousSelection):
 
     @property
     def previous_vertical_moment(self):
-        '''Reference to prev vertical moment backward in time.
+        r'''Reference to prev vertical moment backward in time.
         '''
         from abjad.tools import componenttools
         if self.offset == 0:
@@ -363,7 +363,7 @@ class VerticalMoment(SimultaneousSelection):
 
     @property
     def start_components(self):
-        '''Tuple of components in vertical moment
+        r'''Tuple of components in vertical moment
         starting with at vertical moment, ordered by score index.
         '''
         result = []
@@ -375,7 +375,7 @@ class VerticalMoment(SimultaneousSelection):
 
     @property
     def start_leaves(self):
-        '''Tuple of leaves in vertical moment
+        r'''Tuple of leaves in vertical moment
         starting with vertical moment, ordered by score index.
         '''
         from abjad.tools import leaftools
@@ -386,7 +386,7 @@ class VerticalMoment(SimultaneousSelection):
 
     @property
     def start_notes(self):
-        '''Tuple of notes in vertical moment
+        r'''Tuple of notes in vertical moment
         starting with vertical moment, ordered by score index.
         '''
         from abjad.tools import notetools

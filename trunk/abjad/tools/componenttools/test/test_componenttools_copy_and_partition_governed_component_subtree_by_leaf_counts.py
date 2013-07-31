@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_componenttools_copy_and_partition_governed_component_subtree_by_leaf_counts_01():
-    '''Partition tuplet in voice.
+    r'''Partition tuplet in voice.
     The helper wraps lcopy().
     This means that the original structure remains unchanged.
     Also that resulting parts cut all the way up into voice.
@@ -37,7 +37,7 @@ def test_componenttools_copy_and_partition_governed_component_subtree_by_leaf_co
 
 
 def test_componenttools_copy_and_partition_governed_component_subtree_by_leaf_counts_02():
-    '''Partition voice.
+    r'''Partition voice.
     '''
 
     t = Voice("c'8 d'8 e'8")

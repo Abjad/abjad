@@ -67,31 +67,31 @@ class FixedDurationContainer(Container):
 
     @property
     def is_full(self):
-        '''True when preprolated duration equals target duration.
+        r'''True when preprolated duration equals target duration.
         '''
         return self._preprolated_duration == self.target_duration
 
     @property
     def is_misfilled(self):
-        '''True when preprolated duration does not equal target duration.
+        r'''True when preprolated duration does not equal target duration.
         '''
         return not self.is_full
 
     @property
     def is_overfull(self):
-        '''True when preprolated duration is greater than target duration.
+        r'''True when preprolated duration is greater than target duration.
         '''
         return self.target_duration < self._preprolated_duration
 
     @property
     def is_underfull(self):
-        '''True when preprolated duration is less than target duration.
+        r'''True when preprolated duration is less than target duration.
         '''
         return self._preprolated_duration < self.target_duration
 
     @property
     def lilypond_format(self):
-        '''LilyPond format of fixed-duration container.
+        r'''LilyPond format of fixed-duration container.
         '''
         self._check_duration()
         return self._format_component()
@@ -99,7 +99,7 @@ class FixedDurationContainer(Container):
     @apply
     def target_duration():
         def fget(self):
-            '''Read / write target duration of fixed-duration container.
+            r'''Read / write target duration of fixed-duration container.
             '''
             return self._target_duration
         def fset(self, target_duration):

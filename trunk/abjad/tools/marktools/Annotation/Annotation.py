@@ -93,7 +93,7 @@ class Annotation(Mark):
     @apply
     def name():
         def fget(self):
-            '''Get name of annotation:
+            r'''Get name of annotation:
 
             ::
 
@@ -121,7 +121,7 @@ class Annotation(Mark):
     @apply
     def value():
         def fget(self):
-            '''Get value of annotation:
+            r'''Get value of annotation:
 
             ::
 

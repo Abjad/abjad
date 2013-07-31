@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Container___init___01():
-    '''Init empty container.
+    r'''Init empty container.
     '''
 
     container = Container([])
@@ -17,7 +17,7 @@ def test_Container___init___01():
 
 
 def test_Container___init___02():
-    '''Init container with LilyPond note-entry string.
+    r'''Init container with LilyPond note-entry string.
     '''
 
     container = Container("c'8 d'8 e'8")
@@ -35,7 +35,7 @@ def test_Container___init___02():
 
 
 def test_Container___init___03():
-    '''Init container with RTM-syntax string.
+    r'''Init container with RTM-syntax string.
     '''
 
     container = Container('rtm: (1 (1 1 1)) (2 (2 (1 (1 1 1)) 2))')
@@ -63,7 +63,7 @@ def test_Container___init___03():
     assert container.lilypond_format == "{\n\t\\times 2/3 {\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\t\\times 4/5 {\n\t\tc'4\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\tc'16\n\t\t\tc'16\n\t\t}\n\t\tc'4\n\t}\n}"
 
 def test_Container___init___04():
-    '''Init container with "reduced ly" syntax string.
+    r'''Init container with "reduced ly" syntax string.
     '''
 
     container = Container('abj: 2/3 { 8 8 8 }')

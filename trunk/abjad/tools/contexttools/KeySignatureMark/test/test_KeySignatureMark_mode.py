@@ -3,7 +3,7 @@ from abjad.tools import tonalanalysistools
 
 
 def test_KeySignatureMark_mode_01():
-    '''Key signature mode is read / write.
+    r'''Key signature mode is read / write.
     '''
 
     key_signature = contexttools.KeySignatureMark('e', 'major')

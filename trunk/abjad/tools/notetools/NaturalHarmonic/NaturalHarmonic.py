@@ -3,7 +3,7 @@ from abjad.tools.notetools._Flageolet._Flageolet import _Flageolet
 
 
 class NaturalHarmonic(Note, _Flageolet):
-    '''Abjad model of natural harmonic.
+    r'''Abjad model of natural harmonic.
 
     Initialize natural harmonic by hand:
 

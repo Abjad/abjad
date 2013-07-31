@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_01():
-    '''Populate non-power-of-two measure with time-scaled skip.
+    r'''Populate non-power-of-two measure with time-scaled skip.
     '''
 
     t = Measure((5, 18), [])
@@ -22,7 +22,7 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_01():
 
 
 def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_02():
-    '''Populate measures conditionally.
+    r'''Populate measures conditionally.
 
     Iteration control tests index of iteration.
     '''
@@ -89,7 +89,7 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_02():
 
 
 def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_03():
-    '''Populate measures conditionally.
+    r'''Populate measures conditionally.
 
     Iteration control tests measure length.
     '''

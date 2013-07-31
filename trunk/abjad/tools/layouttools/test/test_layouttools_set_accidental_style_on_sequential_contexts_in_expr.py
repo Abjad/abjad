@@ -26,7 +26,7 @@ def test_layouttools_set_accidental_style_on_sequential_contexts_in_expr_01():
 
 
 def test_layouttools_set_accidental_style_on_sequential_contexts_in_expr_02():
-    '''Skip nonsemantic contexts.
+    r'''Skip nonsemantic contexts.
     '''
 
     score = Score(Staff("c'8 d'8") * 2)

@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_notetools_make_repeated_notes_01():
-    '''Allow nonassignable durations.
+    r'''Allow nonassignable durations.
     '''
 
     t = Voice(notetools.make_repeated_notes(2, (5, 16)))

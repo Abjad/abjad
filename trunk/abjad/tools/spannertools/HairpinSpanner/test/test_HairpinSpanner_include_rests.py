@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_HairpinSpanner_include_rests_01():
-    '''Hairpin spanner avoids rests.
+    r'''Hairpin spanner avoids rests.
     '''
 
     t = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
@@ -26,7 +26,7 @@ def test_HairpinSpanner_include_rests_01():
 
 
 def test_HairpinSpanner_include_rests_02():
-    '''Hairpin spanner avoids rests.
+    r'''Hairpin spanner avoids rests.
     '''
 
     t = Staff([Note(n, (1, 8)) for n in range(4)] + Rest((1, 8)) * 4)

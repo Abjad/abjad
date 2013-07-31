@@ -3,7 +3,7 @@ import py.test
 
 
 def test_containertools_set_container_multiplier_01():
-    '''Set multiplier on fixed-duration tuplet
+    r'''Set multiplier on fixed-duration tuplet
     by adjusting target duration.
     '''
 
@@ -17,7 +17,7 @@ def test_containertools_set_container_multiplier_01():
 
 
 def test_containertools_set_container_multiplier_02():
-    '''Set multiplier on rigid measure by adjusting time signature.
+    r'''Set multiplier on rigid measure by adjusting time signature.
     '''
 
     t = Measure((3, 8), "c'8 d'8 e'8")

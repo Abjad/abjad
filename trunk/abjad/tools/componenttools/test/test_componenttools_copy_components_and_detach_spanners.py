@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_componenttools_copy_components_and_detach_spanners_01():
-    '''Withdraw components from spanners.
+    r'''Withdraw components from spanners.
         Deepcopy unspanned components.
         Reapply spanners to components.
         Return unspanned copy.'''
@@ -73,7 +73,7 @@ def test_componenttools_copy_components_and_detach_spanners_01():
 
 
 def test_componenttools_copy_components_and_detach_spanners_02():
-    '''Withdraw components from spanners.
+    r'''Withdraw components from spanners.
         Deepcopy unspanned components.
         Reapply spanners to components.
         Return unspanned copy.'''
@@ -139,7 +139,7 @@ def test_componenttools_copy_components_and_detach_spanners_02():
 
 
 def test_componenttools_copy_components_and_detach_spanners_03():
-    '''Withdraw components from spanners.
+    r'''Withdraw components from spanners.
     Deepcopy unspanned components.
     Reapply spanners to components.
     Return unspanned copy.
@@ -197,7 +197,7 @@ def test_componenttools_copy_components_and_detach_spanners_03():
 
 
 def test_componenttools_copy_components_and_detach_spanners_04():
-    '''Withdraw components from spanners.
+    r'''Withdraw components from spanners.
     Deepcopy unspanned components.
     Reapply spanners to components.
     Return unspanned copy.
@@ -259,7 +259,7 @@ def test_componenttools_copy_components_and_detach_spanners_04():
 
 
 def test_componenttools_copy_components_and_detach_spanners_05():
-    '''Withdraw components from spanners.
+    r'''Withdraw components from spanners.
     Deepcopy unspanned components.
     Reapply spanners to components.
     Return unspanned copy.

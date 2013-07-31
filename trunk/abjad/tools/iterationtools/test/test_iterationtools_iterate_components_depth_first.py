@@ -85,7 +85,7 @@ def test_iterationtools_iterate_components_depth_first_01():
 
 
 def test_iterationtools_iterate_components_depth_first_02():
-    '''Uncapped depth-first search: uncapped iteration returns
+    r'''Uncapped depth-first search: uncapped iteration returns
     all elements above self._client
     '''
 
@@ -149,7 +149,7 @@ def test_iterationtools_iterate_components_depth_first_02():
 
 
 def test_iterationtools_iterate_components_depth_first_03():
-    '''Duplicates-allowed depth-first search: nodes yield every time they are traversed.
+    r'''Duplicates-allowed depth-first search: nodes yield every time they are traversed.
     '''
 
     # LEFT-TO-RIGHT #
@@ -224,7 +224,7 @@ def test_iterationtools_iterate_components_depth_first_03():
 
 
 def test_iterationtools_iterate_components_depth_first_04():
-    '''Restricted depth-first search: iteration will yield -- but will not
+    r'''Restricted depth-first search: iteration will yield -- but will not
     enter -- forbidden classes.
     '''
 
@@ -272,7 +272,7 @@ def test_iterationtools_iterate_components_depth_first_04():
 
 
 def test_iterationtools_iterate_components_depth_first_05():
-    '''Uncapped depth-first search with duplicates allowed.
+    r'''Uncapped depth-first search with duplicates allowed.
     '''
 
     # LEFT-TO-RIGHT #
@@ -368,7 +368,7 @@ def test_iterationtools_iterate_components_depth_first_05():
 
 
 def test_iterationtools_iterate_components_depth_first_06():
-    '''Uncapped and restricted depth-first search.
+    r'''Uncapped and restricted depth-first search.
     '''
 
     # LEFT-TO-RIGHT #
@@ -406,7 +406,7 @@ def test_iterationtools_iterate_components_depth_first_06():
 
 
 def test_iterationtools_iterate_components_depth_first_07():
-    '''Restricted depth-first search with duplicates allowed.
+    r'''Restricted depth-first search with duplicates allowed.
     '''
 
     # LEFT-TO-RIGHT
@@ -474,7 +474,7 @@ def test_iterationtools_iterate_components_depth_first_07():
 
 
 def test_iterationtools_iterate_components_depth_first_08():
-    '''Uncapped but restricted depth-first serach with duplicates allowed.
+    r'''Uncapped but restricted depth-first serach with duplicates allowed.
     '''
 
     # LEFT-TO-RIGHT #

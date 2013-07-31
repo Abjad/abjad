@@ -11,7 +11,7 @@ def test_Component__get_sibling_01():
 
 
 def test_Component__get_sibling_02():
-    '''Return none when index is out of range.
+    r'''Return none when index is out of range.
     '''
 
     staff = Staff("c' d' e' f'")
@@ -19,7 +19,7 @@ def test_Component__get_sibling_02():
 
 
 def test_Component__get_sibling_03():
-    '''Return none when component has no parent.
+    r'''Return none when component has no parent.
     '''
 
     staff = Staff("c' d' e' f'")

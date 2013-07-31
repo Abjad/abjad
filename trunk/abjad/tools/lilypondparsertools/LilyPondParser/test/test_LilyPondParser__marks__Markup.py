@@ -46,7 +46,7 @@ def test_LilyPondParser__marks__Markup_02():
 
 
 def test_LilyPondParser__marks__Markup_03():
-    '''Articulations following markup block are (re)lexed correctly after
+    r'''Articulations following markup block are (re)lexed correctly after
     returning to the "notes" lexical state after popping the "markup lexical state.
     '''
 

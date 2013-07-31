@@ -3,7 +3,7 @@ from py.test import raises
 
 
 def test_Note___init___01():
-    '''Init note with pitch in octave zero.
+    r'''Init note with pitch in octave zero.
     '''
 
     t = Note(-37, (1, 4))
@@ -11,14 +11,14 @@ def test_Note___init___01():
 
 
 def test_Note___init___02():
-    '''Init note with non-assignable duration.
+    r'''Init note with non-assignable duration.
     '''
 
     raises(AssignabilityError, 'Note(0, (5, 8))')
 
 
 def test_Note___init___03():
-    '''Init note with LilyPond-style pitch string.
+    r'''Init note with LilyPond-style pitch string.
     '''
 
     t = Note('c,,', (1, 4))
@@ -26,7 +26,7 @@ def test_Note___init___03():
 
 
 def test_Note___init___04():
-    '''Init note with complete LilyPond-style note string.
+    r'''Init note with complete LilyPond-style note string.
     '''
 
     t = Note('cs8.')
@@ -34,7 +34,7 @@ def test_Note___init___04():
 
 
 def test_Note___init___05():
-    '''Init note with pitch, written duration and LilyPond multiplier.
+    r'''Init note with pitch, written duration and LilyPond multiplier.
     '''
 
     note = Note(12, (1, 4), (1, 2))
@@ -42,7 +42,7 @@ def test_Note___init___05():
 
 
 def test_Note___init___06():
-    '''Init note from chord.
+    r'''Init note from chord.
     '''
 
     c = Chord([2, 3, 4], (1, 4))
@@ -57,7 +57,7 @@ def test_Note___init___06():
 
 
 def test_Note___init___07():
-    '''Init note from tupletized chord.
+    r'''Init note from tupletized chord.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), Chord([2, 3, 4], (1, 4)) * 3)
@@ -70,7 +70,7 @@ def test_Note___init___07():
 
 
 def test_Note___init___08():
-    '''Init note from beamed chord.
+    r'''Init note from beamed chord.
     '''
 
     t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
@@ -82,7 +82,7 @@ def test_Note___init___08():
 
 
 def test_Note___init___09():
-    '''Init note from rest.
+    r'''Init note from rest.
     '''
 
     r = Rest((1, 8))
@@ -98,7 +98,7 @@ def test_Note___init___09():
 
 
 def test_Note___init___10():
-    '''Init note from tupletized rest.
+    r'''Init note from tupletized rest.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), Rest((1, 8)) * 3)
@@ -112,7 +112,7 @@ def test_Note___init___10():
 
 
 def test_Note___init___11():
-    '''Init note from beamed rest.
+    r'''Init note from beamed rest.
     '''
 
     t = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
@@ -125,7 +125,7 @@ def test_Note___init___11():
 
 
 def test_Note___init___12():
-    '''Cast skip as note.
+    r'''Cast skip as note.
     '''
     s = skiptools.Skip((1, 8))
     d = s.written_duration
@@ -138,7 +138,7 @@ def test_Note___init___12():
 
 
 def test_Note___init___13():
-    '''Init note from tupletized skip.
+    r'''Init note from tupletized skip.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), skiptools.Skip((1, 8)) * 3)
@@ -152,7 +152,7 @@ def test_Note___init___13():
 
 
 def test_Note___init___14():
-    '''Init note from beamed skip.
+    r'''Init note from beamed skip.
     '''
 
     t = Staff([Note(0, (1, 8)), skiptools.Skip((1, 8)), Note(0, (1, 8))])
@@ -165,7 +165,7 @@ def test_Note___init___14():
 
 
 def test_Note___init___15():
-    '''Init note with cautionary accidental.
+    r'''Init note with cautionary accidental.
     '''
 
     t = Note("c'?4")
@@ -173,7 +173,7 @@ def test_Note___init___15():
 
 
 def test_Note___init___16():
-    '''Init note with forced accidental.
+    r'''Init note with forced accidental.
     '''
 
     t = Note("c'!4")
@@ -181,7 +181,7 @@ def test_Note___init___16():
 
 
 def test_Note___init___17():
-    '''Init note with both forced and cautionary accidental.
+    r'''Init note with both forced and cautionary accidental.
     '''
 
     t = Note("c'!?4")
@@ -189,7 +189,7 @@ def test_Note___init___17():
 
 
 def test_Note___init___18():
-    '''Init note from chord with forced and cautionary accidental.
+    r'''Init note from chord with forced and cautionary accidental.
     '''
 
     c = Chord("<c'!? e' g'>4")

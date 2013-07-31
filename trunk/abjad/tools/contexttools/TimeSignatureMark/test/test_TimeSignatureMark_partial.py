@@ -22,7 +22,7 @@ def test_TimeSignatureMark_partial_01():
 
 
 def test_TimeSignatureMark_partial_02():
-    '''Time signature partial is read / write.
+    r'''Time signature partial is read / write.
     '''
 
     time_signature = contexttools.TimeSignatureMark((3, 8), partial = Duration(1, 8))
@@ -33,7 +33,7 @@ def test_TimeSignatureMark_partial_02():
 
 
 def test_TimeSignatureMark_partial_03():
-    '''Time signature partial can be cleared with none.
+    r'''Time signature partial can be cleared with none.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8")

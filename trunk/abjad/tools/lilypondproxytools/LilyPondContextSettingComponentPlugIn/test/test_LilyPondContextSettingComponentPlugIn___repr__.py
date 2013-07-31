@@ -4,7 +4,7 @@ from abjad.tools.lilypondproxytools \
 
 
 def test_LilyPondContextSettingComponentPlugIn___repr___01():
-    '''LilyPond context setting component plug-in repr is evaluable.
+    r'''LilyPond context setting component plug-in repr is evaluable.
     '''
 
     note = Note("c'4")
@@ -18,7 +18,7 @@ def test_LilyPondContextSettingComponentPlugIn___repr___01():
 
 
 def test_LilyPondContextSettingComponentPlugIn___repr___02():
-    '''LilyPond context setting component plug-in looks like this.
+    r'''LilyPond context setting component plug-in looks like this.
     '''
 
     note = Note("c'4")

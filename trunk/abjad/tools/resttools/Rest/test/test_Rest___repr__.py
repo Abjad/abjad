@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Rest___repr___01():
-    '''Rest repr is evaluable.
+    r'''Rest repr is evaluable.
     '''
 
     rest_1 = Rest((1, 4))

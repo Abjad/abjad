@@ -97,7 +97,7 @@ class Accordion(KeyboardInstrument, ReedInstrument):
 
     @property
     def default_instrument_name(self):
-        '''Default instrument name:
+        r'''Default instrument name:
 
         ::
 
@@ -110,7 +110,7 @@ class Accordion(KeyboardInstrument, ReedInstrument):
 
     @property
     def default_performer_names(self):
-        '''Default instrument name:
+        r'''Default instrument name:
 
         ::
 
@@ -126,7 +126,7 @@ class Accordion(KeyboardInstrument, ReedInstrument):
 
     @property
     def default_pitch_range(self):
-        '''Primary clefs:
+        r'''Primary clefs:
 
         ::
 
@@ -139,7 +139,7 @@ class Accordion(KeyboardInstrument, ReedInstrument):
 
     @property
     def default_short_instrument_name(self):
-        '''Default short instrument name:
+        r'''Default short instrument name:
 
         ::
 
@@ -152,7 +152,7 @@ class Accordion(KeyboardInstrument, ReedInstrument):
 
     @property
     def is_primary_instrument(self):
-        '''True when instrument is primary.
+        r'''True when instrument is primary.
         Otherwise false:
 
         ::
@@ -166,7 +166,7 @@ class Accordion(KeyboardInstrument, ReedInstrument):
 
 #    @property
 #    def primary_clefs(self):
-#        '''Primary clefs:
+#        r'''Primary clefs:
 #
 #        ::
 #

@@ -3,7 +3,7 @@ import py
 
 
 def test_leaftools_split_leaf_at_offset_01():
-    '''Split note into assignable notes.
+    r'''Split note into assignable notes.
     Don't fracture spanners. Don't tie split notes.
     '''
 
@@ -37,7 +37,7 @@ def test_leaftools_split_leaf_at_offset_01():
 
 
 def test_leaftools_split_leaf_at_offset_02():
-    '''Split note into assignable notes.
+    r'''Split note into assignable notes.
     Fracture spanners. But don't tie split notes.
     '''
 
@@ -72,7 +72,7 @@ def test_leaftools_split_leaf_at_offset_02():
 
 
 def test_leaftools_split_leaf_at_offset_03():
-    '''Split note into assignable notes.
+    r'''Split note into assignable notes.
     Don't fracture spanners. But do tie split notes.
     '''
 
@@ -106,7 +106,7 @@ def test_leaftools_split_leaf_at_offset_03():
 
 
 def test_leaftools_split_leaf_at_offset_04():
-    '''Split note into assignable notes.
+    r'''Split note into assignable notes.
     Fracture spanners and tie split notes.
     '''
 
@@ -137,7 +137,7 @@ def test_leaftools_split_leaf_at_offset_04():
 
 
 def test_leaftools_split_leaf_at_offset_05():
-    '''Split note into tuplet monads.
+    r'''Split note into tuplet monads.
     Don't fracture spanners. Don't tie split notes.
     '''
 
@@ -172,7 +172,7 @@ def test_leaftools_split_leaf_at_offset_05():
 
 
 def test_leaftools_split_leaf_at_offset_06():
-    '''Notehead-assignable duration produces two notes.
+    r'''Notehead-assignable duration produces two notes.
     This test comes from a container-crossing spanner bug.
     '''
 
@@ -210,7 +210,7 @@ def test_leaftools_split_leaf_at_offset_06():
 
 
 def test_leaftools_split_leaf_at_offset_07():
-    '''Split duration equal to zero produces no change.
+    r'''Split duration equal to zero produces no change.
     '''
 
     t = Note("c'4")
@@ -226,7 +226,7 @@ def test_leaftools_split_leaf_at_offset_07():
 
 
 def test_leaftools_split_leaf_at_offset_08():
-    '''Leaf duration less than split duration produces no change.
+    r'''Leaf duration less than split duration produces no change.
     '''
 
     t = Note("c'4")
@@ -242,7 +242,7 @@ def test_leaftools_split_leaf_at_offset_08():
 
 
 def test_leaftools_split_leaf_at_offset_09():
-    '''Split returns two lists of zero or more leaves.
+    r'''Split returns two lists of zero or more leaves.
     '''
 
     t = Note("c'4")
@@ -263,7 +263,7 @@ def test_leaftools_split_leaf_at_offset_09():
 
 
 def test_leaftools_split_leaf_at_offset_10():
-    '''Split returns two lists of zero or more.
+    r'''Split returns two lists of zero or more.
     '''
 
     t = Note("c'4")
@@ -280,7 +280,7 @@ def test_leaftools_split_leaf_at_offset_10():
 
 
 def test_leaftools_split_leaf_at_offset_11():
-    '''Nonassignable split duration with power-of-two denominator
+    r'''Nonassignable split duration with power-of-two denominator
     produces two lists.
     Left list contains two notes tied together.
     Right list contains only one note.
@@ -305,7 +305,7 @@ def test_leaftools_split_leaf_at_offset_11():
 
 
 def test_leaftools_split_leaf_at_offset_12():
-    '''Lone spanned Leaf results in two spanned leaves.
+    r'''Lone spanned Leaf results in two spanned leaves.
     '''
 
     t = Staff([Note("c'4")])
@@ -321,7 +321,7 @@ def test_leaftools_split_leaf_at_offset_12():
 
 
 def test_leaftools_split_leaf_at_offset_13():
-    '''Spanners are unaffected by leaf split.
+    r'''Spanners are unaffected by leaf split.
     '''
 
     t = Staff(notetools.make_repeated_notes(4))
@@ -338,7 +338,7 @@ def test_leaftools_split_leaf_at_offset_13():
 
 
 def test_leaftools_split_leaf_at_offset_14():
-    '''Split returns three leaves, two are tied.
+    r'''Split returns three leaves, two are tied.
     Spanner is shared by all 3 leaves.
     '''
 
@@ -357,7 +357,7 @@ def test_leaftools_split_leaf_at_offset_14():
 
 
 def test_leaftools_split_leaf_at_offset_15():
-    '''Split leaf is not tied again when a container containing it is already tie-spanned.
+    r'''Split leaf is not tied again when a container containing it is already tie-spanned.
     '''
 
     t = Staff(notetools.make_repeated_notes(4))
@@ -372,7 +372,7 @@ def test_leaftools_split_leaf_at_offset_15():
 
 
 def test_leaftools_split_leaf_at_offset_16():
-    '''Split leaf is not tied again when a container containing it is already tie-spanned.
+    r'''Split leaf is not tied again when a container containing it is already tie-spanned.
     '''
 
     t = Staff(Container(notetools.make_repeated_notes(4)) * 2)
@@ -389,7 +389,7 @@ def test_leaftools_split_leaf_at_offset_16():
 
 
 def test_leaftools_split_leaf_at_offset_17():
-    '''After grace notes are removed from first leaf in bipartition.
+    r'''After grace notes are removed from first leaf in bipartition.
     '''
 
     t = Note("c'4")
@@ -401,7 +401,7 @@ def test_leaftools_split_leaf_at_offset_17():
 
 
 def test_leaftools_split_leaf_at_offset_18():
-    '''After grace notes are removed from first tied leaves in bipartition.
+    r'''After grace notes are removed from first tied leaves in bipartition.
     '''
 
     t = Note("c'4")
@@ -416,7 +416,7 @@ def test_leaftools_split_leaf_at_offset_18():
 
 
 def test_leaftools_split_leaf_at_offset_19():
-    '''Grace notes are removed from second leaf in bipartition.
+    r'''Grace notes are removed from second leaf in bipartition.
     '''
 
     t = Note("c'4")

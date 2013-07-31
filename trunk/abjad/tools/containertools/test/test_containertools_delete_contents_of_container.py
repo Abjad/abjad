@@ -3,7 +3,7 @@ import py.test
 
 
 def test_containertools_delete_contents_of_container_01():
-    '''Eject container contents.
+    r'''Eject container contents.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -17,7 +17,7 @@ def test_containertools_delete_contents_of_container_01():
 
 
 def test_containertools_delete_contents_of_container_02():
-    '''Eject container contents.
+    r'''Eject container contents.
     '''
 
     t = Staff([])
@@ -28,7 +28,7 @@ def test_containertools_delete_contents_of_container_02():
 
 
 def test_containertools_delete_contents_of_container_03():
-    '''Raise type error on noncontainer.
+    r'''Raise type error on noncontainer.
     '''
 
-    assert py.test.raises(TypeError, '''containertools.delete_contents_of_container(Note("c'4"))''')
+    assert py.test.raises(TypeError, r'''containertools.delete_contents_of_container(Note("c'4"))''')

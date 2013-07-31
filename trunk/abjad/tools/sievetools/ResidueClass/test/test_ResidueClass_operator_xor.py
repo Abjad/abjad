@@ -4,7 +4,7 @@ import py.test
 
 
 def test_ResidueClass_operator_xor_01():
-    '''ResidueClass XOR ResidueClass returns a sieve.
+    r'''ResidueClass XOR ResidueClass returns a sieve.
     '''
 
     rc1 = ResidueClass(4, 0)
@@ -17,7 +17,7 @@ def test_ResidueClass_operator_xor_01():
 
 
 def test_ResidueClass_operator_xor_02():
-    '''xor-sieve XOR ResidueClass returns a flat xor-sieve.
+    r'''xor-sieve XOR ResidueClass returns a flat xor-sieve.
     '''
 
     rcexpression = ResidueClass(4, 0) ^ ResidueClass(4, 1)
@@ -33,7 +33,7 @@ def test_ResidueClass_operator_xor_02():
 
 
 def test_ResidueClass_operator_xor_03():
-    '''ResidueClass XOR xor-sieve returns a flat xor-sieve.
+    r'''ResidueClass XOR xor-sieve returns a flat xor-sieve.
     '''
 
     rcexpression = ResidueClass(4, 0) ^ ResidueClass(4, 1)
@@ -49,7 +49,7 @@ def test_ResidueClass_operator_xor_03():
 
 
 def test_ResidueClass_operator_xor_04():
-    '''xor-sieve XOR xor-sieve returns a flat xor-sieve.
+    r'''xor-sieve XOR xor-sieve returns a flat xor-sieve.
     '''
 
     rc1 = ResidueClass(4, 0)
@@ -70,7 +70,7 @@ def test_ResidueClass_operator_xor_04():
 
 
 def test_ResidueClass_operator_xor_05():
-    '''XOR.
+    r'''XOR.
     '''
 
     t = ResidueClass(2, 0) ^ ResidueClass(3, 0)
@@ -82,7 +82,7 @@ def test_ResidueClass_operator_xor_05():
 
 
 def test_ResidueClass_operator_xor_06():
-    '''XOR.
+    r'''XOR.
     '''
 
     t = ResidueClass(2, 1) ^ ResidueClass(3, 0)

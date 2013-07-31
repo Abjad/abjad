@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Leaf_duration_assign_01():
-    '''Written duration can be assigned a Duration.
+    r'''Written duration can be assigned a Duration.
     '''
     t = Note(1, (1, 4))
     t.written_duration = Duration(1, 8)
@@ -11,7 +11,7 @@ def test_Leaf_duration_assign_01():
 
 
 def test_Leaf_duration_assign_02():
-    '''Written duration can be assigned an int.
+    r'''Written duration can be assigned an int.
     '''
     t = Note(1, (1, 4))
     t.written_duration = 2
@@ -19,7 +19,7 @@ def test_Leaf_duration_assign_02():
 
 
 def test_Leaf_duration_assign_03():
-    '''Written duration can be assigned an tuple.
+    r'''Written duration can be assigned an tuple.
     '''
     t = Note(1, (1, 4))
     t.written_duration = (1, 2)
@@ -27,7 +27,7 @@ def test_Leaf_duration_assign_03():
 
 
 def test_Leaf_duration_assign_04():
-    '''Multiplier duration can be assigned a Duration.
+    r'''Multiplier duration can be assigned a Duration.
     '''
     t = Note(1, (1, 4))
     t.duration_multiplier = Duration(1, 8)
@@ -35,7 +35,7 @@ def test_Leaf_duration_assign_04():
 
 
 def test_Leaf_duration_assign_05():
-    '''Multiplier duration can be assigned an int.
+    r'''Multiplier duration can be assigned an int.
     '''
     t = Note(1, (1, 4))
     t.duration_multiplier = 2

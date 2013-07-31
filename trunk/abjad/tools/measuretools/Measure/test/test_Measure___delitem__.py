@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Measure___delitem___01():
-    '''Nonnegative indices work.
+    r'''Nonnegative indices work.
 
     Automatically update time signature.
     '''
@@ -16,7 +16,7 @@ def test_Measure___delitem___01():
 
 
 def test_Measure___delitem___02():
-    '''Negative indices work.
+    r'''Negative indices work.
 
     Automatically update time signatures.
     '''
@@ -30,7 +30,7 @@ def test_Measure___delitem___02():
 
 
 def test_Measure___delitem___03():
-    '''Denominator preservation in time signature.
+    r'''Denominator preservation in time signature.
 
     Automatically update time signature.
     '''
@@ -44,7 +44,7 @@ def test_Measure___delitem___03():
 
 
 def test_Measure___delitem___04():
-    '''Denominator changes from 8 to 16.
+    r'''Denominator changes from 8 to 16.
 
     Automatically update time signature.
     '''
@@ -58,7 +58,7 @@ def test_Measure___delitem___04():
 
 
 def test_Measure___delitem___05():
-    '''Trim non-power-of-two measure.
+    r'''Trim non-power-of-two measure.
 
     Automatically update time signature.
     '''
@@ -83,7 +83,7 @@ def test_Measure___delitem___05():
 
 
 def test_Measure___delitem___06():
-    '''Trim non-power-of-two measure, with denominator change.
+    r'''Trim non-power-of-two measure, with denominator change.
 
     Automatically update time signature.
     '''
@@ -121,7 +121,7 @@ def test_Measure___delitem___06():
 
 
 def test_Measure___delitem___07():
-    '''Nonnegative indices work.
+    r'''Nonnegative indices work.
 
     Do NOT automatically update time signature.
     '''
@@ -135,7 +135,7 @@ def test_Measure___delitem___07():
 
 
 def test_Measure___delitem___08():
-    '''Non-power-of-two measure.
+    r'''Non-power-of-two measure.
 
     Do NOT automatically update time signature.
     '''

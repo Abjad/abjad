@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_NamedChromaticPitchSet_chromatic_pitch_numbers_01():
-    '''Works with multi-pitch pitch sets.
+    r'''Works with multi-pitch pitch sets.
     '''
 
     pitch_set = pitchtools.NamedChromaticPitchSet([-10, 2, 9, 11])
@@ -10,7 +10,7 @@ def test_NamedChromaticPitchSet_chromatic_pitch_numbers_01():
 
 
 def test_NamedChromaticPitchSet_chromatic_pitch_numbers_02():
-    '''Works with other pitch sets.
+    r'''Works with other pitch sets.
     '''
 
     pitch_set = pitchtools.NamedChromaticPitchSet([])

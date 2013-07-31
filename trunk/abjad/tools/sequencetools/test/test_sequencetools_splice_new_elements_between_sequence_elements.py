@@ -3,7 +3,7 @@ from abjad.tools import sequencetools
 
 
 def test_sequencetools_splice_new_elements_between_sequence_elements_01():
-    '''Insert a copy of the elements of s between
+    r'''Insert a copy of the elements of s between
         each of the elements of l.'''
 
     l = [0, 1, 2, 3, 4]

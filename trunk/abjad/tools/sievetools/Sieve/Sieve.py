@@ -90,13 +90,13 @@ class Sieve(BaseResidueClass):
 
     @property
     def logical_operator(self):
-        '''Residue class expression logical operator.
+        r'''Residue class expression logical operator.
         '''
         return self._logical_operator
 
     @property
     def period(self):
-        '''Residue class expression period.
+        r'''Residue class expression period.
         '''
         rc_periods = []
         for rc in self.rcs:
@@ -109,19 +109,19 @@ class Sieve(BaseResidueClass):
 
     @property
     def rcs(self):
-        '''Residue class expression residue classes.
+        r'''Residue class expression residue classes.
         '''
         return self._rcs
 
     @property
     def representative_boolean_train(self):
-        '''Residue class expression representative boolean train.
+        r'''Residue class expression representative boolean train.
         '''
         return self.get_boolean_train(self.period)
 
     @property
     def representative_congruent_bases(self):
-        '''Residue class expression representative congruent bases.
+        r'''Residue class expression representative congruent bases.
         '''
         congruent_bases = self.get_congruent_bases(self.period)
         # remove redundant last element from get_congruent_bases()
@@ -163,7 +163,7 @@ class Sieve(BaseResidueClass):
         return current_sieve
 
     def get_boolean_train(self, *min_max):
-        '''Returns a boolean train with 0s mapped to the integers
+        r'''Returns a boolean train with 0s mapped to the integers
         that are not congruent bases of the residue class expression
         and 1s mapped to those that are.
         The method takes one or two integer arguments.
@@ -197,7 +197,7 @@ class Sieve(BaseResidueClass):
         return result
 
     def get_congruent_bases(self, *min_max):
-        '''Returns all the congruent bases of this residue class expression
+        r'''Returns all the congruent bases of this residue class expression
         within the given range.
         The method takes one or two integer arguments.
         If only one it given, it is taken as the max range

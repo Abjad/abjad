@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_Note___copy___01():
-    '''Copy note.
+    r'''Copy note.
     '''
 
     note_1 = Note(12, (1, 4))
@@ -16,7 +16,7 @@ def test_Note___copy___01():
 
 
 def test_Note___copy___02():
-    '''Copy note with LilyPond multiplier.
+    r'''Copy note with LilyPond multiplier.
     '''
 
     note_1 = Note(12, (1, 4), (1, 2))
@@ -29,7 +29,7 @@ def test_Note___copy___02():
 
 
 def test_Note___copy___03():
-    '''Copy note with LilyPond grob overrides and LilyPond context settings.
+    r'''Copy note with LilyPond grob overrides and LilyPond context settings.
     '''
 
     note_1 = Note(12, (1, 4))
@@ -45,7 +45,7 @@ def test_Note___copy___03():
 
 
 def test_Note___copy___04():
-    '''Copy note with grace container.
+    r'''Copy note with grace container.
     '''
 
     note_1 = Note("c'4")
@@ -79,7 +79,7 @@ def test_Note___copy___04():
 
 
 def test_Note___copy___05():
-    '''Deepcopy orphan note.
+    r'''Deepcopy orphan note.
     '''
 
     note = Note("c'4")
@@ -102,7 +102,7 @@ def test_Note___copy___05():
 
 
 def test_Note___copy___06():
-    '''Deepcopy note in score.
+    r'''Deepcopy note in score.
     '''
 
     staff = Staff("c'8 [ c'8 e'8 f'8 ]")

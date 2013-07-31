@@ -251,18 +251,18 @@ class SchemeParser(abctools.Parser):
     '''
 
     def p_program__forms(self, p):
-        '''program : forms
+        r'''program : forms
         '''
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
 
     def p_forms__EMPTY(self, p):
-        '''forms : 
+        r'''forms : 
         '''
         p[0] = []
 
     def p_forms__forms__form(self, p):
-        '''forms : forms form
+        r'''forms : forms form
         '''
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1] + [p[2]]
@@ -273,7 +273,7 @@ class SchemeParser(abctools.Parser):
     '''
 
     def p_form__expression(self, p):
-        '''form : expression
+        r'''form : expression
         '''
         #print 'form : expression'
         #print p[1]
@@ -308,7 +308,7 @@ class SchemeParser(abctools.Parser):
     '''
 
     def p_variable__IDENTIFIER(self, p):
-        '''variable : IDENTIFIER
+        r'''variable : IDENTIFIER
         '''
         #print 'variable : IDENTIFIER'
         #print p[1]
@@ -350,7 +350,7 @@ class SchemeParser(abctools.Parser):
     '''
 
     def p_expression__variable(self, p):
-        '''expression : variable
+        r'''expression : variable
         '''
         #print 'expression : variable'
         #print p[1]
@@ -358,7 +358,7 @@ class SchemeParser(abctools.Parser):
         p[0] = p[1]
 
     def p_expression__QUOTE__datum(self, p):
-        '''expression : QUOTE datum
+        r'''expression : QUOTE datum
         '''
         #print 'expression : QUOTE datum'
         #print p[2]
@@ -374,7 +374,7 @@ class SchemeParser(abctools.Parser):
             p[0] = schemetools.Scheme(datum, quoting="'")
 
     def p_expression__constant(self, p):
-        '''expression : constant
+        r'''expression : constant
         '''
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
@@ -385,7 +385,7 @@ class SchemeParser(abctools.Parser):
     '''
 
     def p_constant__boolean(self, p):
-        '''constant : boolean
+        r'''constant : boolean
         '''
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
@@ -397,7 +397,7 @@ class SchemeParser(abctools.Parser):
             raise SchemeParserFinishedException
 
     def p_constant__number(self, p):
-        '''constant : number
+        r'''constant : number
         '''
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
@@ -409,7 +409,7 @@ class SchemeParser(abctools.Parser):
             raise SchemeParserFinishedException
 
     def p_constant__string(self, p):
-        '''constant : string
+        r'''constant : string
         '''
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
@@ -461,48 +461,48 @@ class SchemeParser(abctools.Parser):
     '''
 
     def p_datum__constant(self, p):
-        '''datum : constant
+        r'''datum : constant
         '''
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
 
     def p_datum__symbol(self, p):
-        '''datum : symbol
+        r'''datum : symbol
         '''
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
 
     #def p_datum__boolean(self, p):
-    #    '''datum : boolean'''
+    #    r'''datum : boolean'''
     #    p[0] = p[1]
 
     #def p_datum__number(self, p):
-    #    '''datum : number'''
+    #    r'''datum : number'''
     #    p[0] = p[1]
 
     #def p_datum__string(self, p):
-    #    '''datum : string'''
+    #    r'''datum : string'''
     #    p[0] = p[1]
 
     def p_datum__list(self, p):
-        '''datum : list
+        r'''datum : list
         '''
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
 
     def p_datum__vector(self, p):
-        '''datum : vector
+        r'''datum : vector
         '''
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
 
     def p_data__EMPTY(self, p):
-        '''data : 
+        r'''data : 
         '''
         p[0] = []
 
     def p_data__data__datum(self, p):
-        '''data : data datum
+        r'''data : data datum
         '''
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1] + [p[2]]
@@ -513,7 +513,7 @@ class SchemeParser(abctools.Parser):
     '''
 
     def p_boolean__BOOLEAN(self, p):
-        '''boolean : BOOLEAN
+        r'''boolean : BOOLEAN
         '''
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
@@ -524,19 +524,19 @@ class SchemeParser(abctools.Parser):
     '''
 
     def p_number__DECIMAL(self, p):
-        '''number : DECIMAL
+        r'''number : DECIMAL
         '''
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
 
     def p_number__HEXADECIMAL(self, p):
-        '''number : HEXADECIMAL
+        r'''number : HEXADECIMAL
         '''
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
 
     def p_number__INTEGER(self, p):
-        '''number : INTEGER
+        r'''number : INTEGER
         '''
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
@@ -552,7 +552,7 @@ class SchemeParser(abctools.Parser):
     '''
 
     def p_string__STRING(self, p):
-        '''string : STRING
+        r'''string : STRING
         '''
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
@@ -568,7 +568,7 @@ class SchemeParser(abctools.Parser):
     '''
 
     def p_symbol__IDENTIFIER(self, p):
-        '''symbol : IDENTIFIER
+        r'''symbol : IDENTIFIER
         '''
         #print 'symbol : IDENTIFIER'
         #print p[1]
@@ -581,7 +581,7 @@ class SchemeParser(abctools.Parser):
     '''
 
     def p_vector__HASH__L_PAREN__data__R_PAREN(self, p):
-        '''vector : HASH L_PAREN data R_PAREN
+        r'''vector : HASH L_PAREN data R_PAREN
         '''
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[3]
@@ -593,14 +593,14 @@ class SchemeParser(abctools.Parser):
     '''
 
     def p_list__L_PAREN__data__R_PAREN(self, p):
-        '''list : L_PAREN data R_PAREN
+        r'''list : L_PAREN data R_PAREN
         '''
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[2]
         self.expression_depth -= 1
 
     def p_list__L_PAREN__data__datum__PERIOD__datum__R_PAREN(self, p):
-        '''list : L_PAREN data datum PERIOD datum R_PAREN
+        r'''list : L_PAREN data datum PERIOD datum R_PAREN
         '''
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         result = p[2] + [p[3]] + [p[5]]

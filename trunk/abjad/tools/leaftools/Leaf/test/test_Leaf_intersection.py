@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Leaf_intersection_01():
-    '''Chords completely disjunct; empty set returned as skip.
+    r'''Chords completely disjunct; empty set returned as skip.
     '''
     t = Chord([0, 1, 2], (1, 4))
     u = Chord([3, 4, 5], (1, 4))
@@ -13,7 +13,7 @@ def test_Leaf_intersection_01():
 
 
 def test_Leaf_intersection_02():
-    '''Partially intersecting chords; multiple shared pitches return as chord.
+    r'''Partially intersecting chords; multiple shared pitches return as chord.
     '''
     t = Chord([0, 1, 2], (1, 4))
     u = Chord([1, 2, 3], (1, 4))
@@ -24,7 +24,7 @@ def test_Leaf_intersection_02():
 
 
 def test_Leaf_intersection_03():
-    '''Wholly intersecting chords; shared pitches appear only once.
+    r'''Wholly intersecting chords; shared pitches appear only once.
     '''
     t = Chord([0, 1, 2], (1, 4))
     u = Chord([0, 1, 2], (1, 4))
@@ -35,7 +35,7 @@ def test_Leaf_intersection_03():
 
 
 def test_Leaf_intersection_04():
-    '''Enharmonically disjunct; enharmonic equivalents do not appear.
+    r'''Enharmonically disjunct; enharmonic equivalents do not appear.
     '''
     t = Chord([0, ('cs', 4), 2], (1, 4))
     u = Chord([0, ('df', 4), 2], (1, 4))
@@ -46,7 +46,7 @@ def test_Leaf_intersection_04():
 
 
 def test_Leaf_intersection_05():
-    '''Differing durations; noncommutative union takes from LHS.
+    r'''Differing durations; noncommutative union takes from LHS.
     '''
     t = Chord([0, 1, 2], (1, 4))
     u = Chord([1, 2, 3], (1, 8))
@@ -58,7 +58,7 @@ def test_Leaf_intersection_05():
 
 
 def test_Leaf_intersection_06():
-    '''Differing durations; noncommutative union takes from LHS.
+    r'''Differing durations; noncommutative union takes from LHS.
     '''
     t = Chord([0, 1, 2], (1, 8))
     u = Chord([1, 2, 3], (1, 4))
@@ -70,7 +70,7 @@ def test_Leaf_intersection_06():
 
 
 def test_Leaf_intersection_07():
-    '''Partially intersecting chords; one shared pitch returns as note.
+    r'''Partially intersecting chords; one shared pitch returns as note.
     '''
     t = Chord([0, 1, 2], (1, 4))
     u = Chord([2, 3, 4], (1, 4))

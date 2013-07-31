@@ -3,7 +3,7 @@ import py.test
 
 
 def test_measuretools_fuse_measures_01():
-    '''Fuse unicorporated measures carrying
+    r'''Fuse unicorporated measures carrying
     time signatures with power-of-two denominators.
     '''
     
@@ -50,7 +50,7 @@ def test_measuretools_fuse_measures_01():
 
 
 def test_measuretools_fuse_measures_02():
-    '''Fuse measures carrying time signatures with differing power-of-two denominators.
+    r'''Fuse measures carrying time signatures with differing power-of-two denominators.
     Helpers selects minimum of two denominators.
     Beams are OK because they attach to leaves rather than containers.
     '''
@@ -94,7 +94,7 @@ def test_measuretools_fuse_measures_02():
 
 
 def test_measuretools_fuse_measures_03():
-    '''Fuse measures with differing power-of-two denominators.
+    r'''Fuse measures with differing power-of-two denominators.
     Helpers selects minimum of two denominators.
     Beam attaches to container rather than leaves.
     '''
@@ -138,7 +138,7 @@ def test_measuretools_fuse_measures_03():
 
 
 def test_measuretools_fuse_measures_04():
-    '''Fuse measures with power-of-two-denominators together with measures
+    r'''Fuse measures with power-of-two-denominators together with measures
     without power-of-two denominators.
     Helpers selects least common multiple of denominators.
     Beams are OK because they attach to leaves rather than containers.
@@ -184,7 +184,7 @@ def test_measuretools_fuse_measures_04():
 
 
 def test_measuretools_fuse_measures_05():
-    '''Fusing empty selection returns none.
+    r'''Fusing empty selection returns none.
     '''
 
     staff = Staff()
@@ -193,7 +193,7 @@ def test_measuretools_fuse_measures_05():
 
 
 def test_measuretools_fuse_measures_06():
-    '''Fusing selection of only one measure returns measure unaltered.
+    r'''Fusing selection of only one measure returns measure unaltered.
     '''
 
     measure = Measure((3, 8), "c'8 d'8 e'8")
@@ -204,7 +204,7 @@ def test_measuretools_fuse_measures_06():
 
 
 def test_measuretools_fuse_measures_07():
-    '''Fuse three measures.
+    r'''Fuse three measures.
     '''
 
     t = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (1, 8), (1, 8)]))
@@ -253,7 +253,7 @@ def test_measuretools_fuse_measures_07():
 
 
 def test_measuretools_fuse_measures_08():
-    '''Measure fusion across intervening container boundaries is undefined.
+    r'''Measure fusion across intervening container boundaries is undefined.
     '''
 
     t = Voice(Container(Measure((2, 8), notetools.make_repeated_notes(2)) * 2) * 2)
@@ -292,7 +292,7 @@ def test_measuretools_fuse_measures_08():
 
 
 def test_measuretools_fuse_measures_09():
-    '''Fusing measures with power-of-two denominators
+    r'''Fusing measures with power-of-two denominators
     to measures without power-of-two denominators.
     With change in number of note heads because of non-power-of-two multiplier.
     '''

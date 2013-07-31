@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_NamedChromaticPitch_numbered_diatonic_pitch_01():
-    '''Pitches referentially equal.
+    r'''Pitches referentially equal.
     '''
 
     p1 = pitchtools.NamedChromaticPitch('fs', 4)
@@ -16,7 +16,7 @@ def test_NamedChromaticPitch_numbered_diatonic_pitch_01():
 
 
 def test_NamedChromaticPitch_numbered_diatonic_pitch_02():
-    '''Pitches by name, accidental and octave.
+    r'''Pitches by name, accidental and octave.
     '''
 
     p1, p2 = pitchtools.NamedChromaticPitch('fs', 4), pitchtools.NamedChromaticPitch('fs', 4)
@@ -30,7 +30,7 @@ def test_NamedChromaticPitch_numbered_diatonic_pitch_02():
 
 
 def test_NamedChromaticPitch_numbered_diatonic_pitch_03():
-    '''Pitches enharmonically equal.
+    r'''Pitches enharmonically equal.
     '''
 
     p1, p2 = pitchtools.NamedChromaticPitch('fs', 4), pitchtools.NamedChromaticPitch('gf', 4)
@@ -44,7 +44,7 @@ def test_NamedChromaticPitch_numbered_diatonic_pitch_03():
 
 
 def test_NamedChromaticPitch_numbered_diatonic_pitch_04():
-    '''Pitches manifestly different.
+    r'''Pitches manifestly different.
     '''
 
     p1, p2 = pitchtools.NamedChromaticPitch('f', 4), pitchtools.NamedChromaticPitch('g', 4)
@@ -58,7 +58,7 @@ def test_NamedChromaticPitch_numbered_diatonic_pitch_04():
 
 
 def test_NamedChromaticPitch_numbered_diatonic_pitch_05():
-    '''Pitches typographically crossed.
+    r'''Pitches typographically crossed.
     '''
 
     p1, p2 = pitchtools.NamedChromaticPitch('fss', 4), pitchtools.NamedChromaticPitch('gff', 4)

@@ -7,7 +7,7 @@ from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 
 
 class PyTestScript(DirectoryScript):
-    '''Run `py.test` on various Abjad paths:
+    r'''Run `py.test` on various Abjad paths:
 
     ::
 

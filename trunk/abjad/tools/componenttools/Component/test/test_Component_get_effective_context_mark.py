@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Component_get_effective_context_mark_01():
-    '''Clef defaults to none.
+    r'''Clef defaults to none.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
@@ -12,7 +12,7 @@ def test_Component_get_effective_context_mark_01():
 
 
 def test_Component_get_effective_context_mark_02():
-    '''Clefs carry over to notes following.
+    r'''Clefs carry over to notes following.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
@@ -23,7 +23,7 @@ def test_Component_get_effective_context_mark_02():
 
 
 def test_Component_get_effective_context_mark_03():
-    '''Clef defaults to none.
+    r'''Clef defaults to none.
     Clefs carry over to notes following.
     '''
 
@@ -38,7 +38,7 @@ def test_Component_get_effective_context_mark_03():
 
 
 def test_Component_get_effective_context_mark_04():
-    '''Clefs carry over to notes following.
+    r'''Clefs carry over to notes following.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
@@ -51,7 +51,7 @@ def test_Component_get_effective_context_mark_04():
 
 
 def test_Component_get_effective_context_mark_05():
-    '''None cancels an explicit clef.
+    r'''None cancels an explicit clef.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
@@ -65,7 +65,7 @@ def test_Component_get_effective_context_mark_05():
 
 
 def test_Component_get_effective_context_mark_06():
-    '''Redudant clefs are allowed.
+    r'''Redudant clefs are allowed.
     '''
 
     t = Staff(notetools.make_repeated_notes(8))
@@ -93,7 +93,7 @@ def test_Component_get_effective_context_mark_06():
 
 
 def test_Component_get_effective_context_mark_07():
-    '''Clefs with transposition are allowed and work as expected.
+    r'''Clefs with transposition are allowed and work as expected.
     '''
 
     t = Staff(notetools.make_repeated_notes(8))
@@ -121,7 +121,7 @@ def test_Component_get_effective_context_mark_07():
 
 
 def test_Component_get_effective_context_mark_08():
-    '''InputSetExpression and then clearing works as expected.
+    r'''InputSetExpression and then clearing works as expected.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -179,7 +179,7 @@ def test_Component_get_effective_context_mark_10():
 
 
 def test_Component_get_effective_context_mark_11():
-    '''Apply key signature mark.
+    r'''Apply key signature mark.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -201,7 +201,7 @@ def test_Component_get_effective_context_mark_11():
 
 
 def test_Component_get_effective_context_mark_12():
-    '''There is no default key signature.
+    r'''There is no default key signature.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -209,7 +209,7 @@ def test_Component_get_effective_context_mark_12():
 
 
 def test_Component_get_effective_context_mark_13():
-    '''Tempo interface works on staves.
+    r'''Tempo interface works on staves.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -237,7 +237,7 @@ def test_Component_get_effective_context_mark_13():
 
 
 def test_Component_get_effective_context_mark_14():
-    '''Tempo interface works on chords.
+    r'''Tempo interface works on chords.
     '''
 
     t = Staff([Chord([2, 3, 4], (1, 4))])
@@ -254,7 +254,7 @@ def test_Component_get_effective_context_mark_14():
 
 
 def test_Component_get_effective_context_mark_15():
-    '''Tempo interface accepts durations.
+    r'''Tempo interface accepts durations.
     '''
 
     staff = Staff([Note("c'4")])
@@ -271,7 +271,7 @@ def test_Component_get_effective_context_mark_15():
 
 
 def test_Component_get_effective_context_mark_16():
-    '''Detach tempo mark.
+    r'''Detach tempo mark.
     '''
 
     staff = Staff([Note("c'4")])
@@ -289,7 +289,7 @@ def test_Component_get_effective_context_mark_16():
 
 
 def test_Component_get_effective_context_mark_17():
-    '''The default effective time signature is none.
+    r'''The default effective time signature is none.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -309,7 +309,7 @@ def test_Component_get_effective_context_mark_17():
 
 
 def test_Component_get_effective_context_mark_18():
-    '''Forced time signature settings propagate to later leaves.
+    r'''Forced time signature settings propagate to later leaves.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -332,7 +332,7 @@ def test_Component_get_effective_context_mark_18():
 
 
 def test_Component_get_effective_context_mark_19():
-    '''InputSetExpression and then clearing works as expected.
+    r'''InputSetExpression and then clearing works as expected.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")

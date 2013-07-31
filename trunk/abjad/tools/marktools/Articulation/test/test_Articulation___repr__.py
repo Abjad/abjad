@@ -3,7 +3,7 @@ from abjad.tools.marktools import Articulation
 
 
 def test_Articulation___repr___01():
-    '''Repr of unattached articulation is evaluable.
+    r'''Repr of unattached articulation is evaluable.
     '''
 
     articulation_1 = marktools.Articulation('staccato')

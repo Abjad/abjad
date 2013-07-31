@@ -3,7 +3,7 @@ import py.test
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___getattr___01():
-    '''Getting unknown grob name raises exception.
+    r'''Getting unknown grob name raises exception.
     '''
 
     note = Note("c'8")

@@ -3,7 +3,7 @@ import py.test
 
 
 def test_pitchtools_get_numbered_chromatic_pitch_class_from_pitch_carrier_01():
-    '''Works on notes.
+    r'''Works on notes.
     '''
 
     note = Note(13, (1, 4))
@@ -11,7 +11,7 @@ def test_pitchtools_get_numbered_chromatic_pitch_class_from_pitch_carrier_01():
 
 
 def test_pitchtools_get_numbered_chromatic_pitch_class_from_pitch_carrier_02():
-    '''Works on one-note chords.
+    r'''Works on one-note chords.
     '''
 
     chord = Chord([13], (1, 4))
@@ -19,7 +19,7 @@ def test_pitchtools_get_numbered_chromatic_pitch_class_from_pitch_carrier_02():
 
 
 def test_pitchtools_get_numbered_chromatic_pitch_class_from_pitch_carrier_03():
-    '''Raises exception on empty chord.
+    r'''Raises exception on empty chord.
     '''
 
     chord = Chord([], (1, 4))
@@ -28,7 +28,7 @@ def test_pitchtools_get_numbered_chromatic_pitch_class_from_pitch_carrier_03():
 
 
 def test_pitchtools_get_numbered_chromatic_pitch_class_from_pitch_carrier_04():
-    '''Raises exception on multiple-note chord.
+    r'''Raises exception on multiple-note chord.
     '''
 
     chord = Chord([13, 14, 15], (1, 4))

@@ -19,7 +19,7 @@ def test_sequencetools_map_sequence_elements_to_canonic_tuples_02():
 
 
 def test_sequencetools_map_sequence_elements_to_canonic_tuples_03():
-    '''Raise TypeError when l is not a list.
+    r'''Raise TypeError when l is not a list.
     Raise ValueError on noninteger elements in l.
     '''
 

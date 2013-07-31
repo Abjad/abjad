@@ -1,4 +1,4 @@
 class PartitionError(Exception):
-    '''General partition error.
+    r'''General partition error.
     '''
     pass

@@ -25,7 +25,7 @@ def test_Component__get_namesake_02():
 
 
 def test_Component__get_namesake_03():
-    '''Leaves within different anonymous parents have different
+    r'''Leaves within different anonymous parents have different
     parentage signatures and thus have no _next_namesake.
     '''
 
@@ -37,7 +37,7 @@ def test_Component__get_namesake_03():
 
 
 def test_Component__get_namesake_04():
-    '''Anonymous containers with the same parentage structure have
+    r'''Anonymous containers with the same parentage structure have
     different parentage signatures and thus have no _next_namesake.
     '''
 
@@ -47,7 +47,7 @@ def test_Component__get_namesake_04():
 
 
 def test_Component__get_namesake_05():
-    '''Differently named containers have a different parentage signature
+    r'''Differently named containers have a different parentage signature
     and thus do not _next_namesake.
     '''
 
@@ -61,7 +61,7 @@ def test_Component__get_namesake_05():
 
 
 def test_Component__get_namesake_06():
-    '''Calling _next_namesake on a named component when another component
+    r'''Calling _next_namesake on a named component when another component
     with the same type and name exists after the caller returns the first
     next namesake Component found.
     '''
@@ -76,7 +76,7 @@ def test_Component__get_namesake_06():
 
 
 def test_Component__get_namesake_07():
-    '''Components need not be strictly contiguous.
+    r'''Components need not be strictly contiguous.
     '''
 
     t = Container(Voice(notetools.make_repeated_notes(2)) * 2)
@@ -89,7 +89,7 @@ def test_Component__get_namesake_07():
 
 
 def test_Component__get_namesake_08():
-    '''Components need not thread (Staves don't thread).
+    r'''Components need not thread (Staves don't thread).
     '''
 
     t = Container(Staff(notetools.make_repeated_notes(2)) * 2)
@@ -101,7 +101,7 @@ def test_Component__get_namesake_08():
 
 
 def test_Component__get_namesake_09():
-    '''_next_namesake works on parallel structures.
+    r'''_next_namesake works on parallel structures.
     '''
 
     a = Container(Voice(notetools.make_repeated_notes(2)) * 2)

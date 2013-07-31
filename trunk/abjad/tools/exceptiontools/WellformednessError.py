@@ -1,4 +1,4 @@
 class WellFormednessError(Exception):
-    '''Score not well formed.
+    r'''Score not well formed.
     '''
     pass

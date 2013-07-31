@@ -3,7 +3,7 @@ from abjad.tools import durationtools
 
 
 def leaf_to_tuplet_with_n_notes_of_equal_written_duration(leaf, n, is_diminution=True):
-    '''Change `leaf` to tuplet `n` notes of equal written duration.
+    r'''Change `leaf` to tuplet `n` notes of equal written duration.
 
     Example 1. Change leaf to augmented tuplet:
 

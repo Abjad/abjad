@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_DecrescendoSpanner___init___01():
-    '''Init empty decrescendo spanner.
+    r'''Init empty decrescendo spanner.
     '''
 
     decrescendo = spannertools.DecrescendoSpanner()

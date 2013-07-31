@@ -1,4 +1,4 @@
 class InstrumentError(Exception):
-    '''General instrument error.
+    r'''General instrument error.
     '''
     pass

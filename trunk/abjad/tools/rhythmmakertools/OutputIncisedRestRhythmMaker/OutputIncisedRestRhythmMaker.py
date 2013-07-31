@@ -53,7 +53,7 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
 
     @property
     def storage_format(self):
-        '''Output-incised rest rhythm-maker storage format:
+        r'''Output-incised rest rhythm-maker storage format:
 
         ::
 
@@ -79,7 +79,7 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
-        '''Create new output-incised rest rhythm-maker with `kwargs`:
+        r'''Create new output-incised rest rhythm-maker with `kwargs`:
 
         ::
 
@@ -123,7 +123,7 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
         return OutputIncisedRhythmMaker.new(self, **kwargs)
 
     def reverse(self):
-        '''Reverse output-incised rest rhythm-maker:
+        r'''Reverse output-incised rest rhythm-maker:
 
         ::
 

@@ -1,5 +1,5 @@
 def get_all_format_contributions(component):
-    '''Get all format contributions for `component`.
+    r'''Get all format contributions for `component`.
 
     Return nested dictionary.
     '''

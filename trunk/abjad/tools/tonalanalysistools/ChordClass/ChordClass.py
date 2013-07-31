@@ -220,7 +220,7 @@ class ChordClass(NamedChromaticPitchClassSet):
 
     @staticmethod
     def cardinality_to_extent(cardinality):
-        '''Change `cardinality` to extent.
+        r'''Change `cardinality` to extent.
 
         Example: tertian chord with four pitch classes
         qualifies as a seventh chord:
@@ -236,7 +236,7 @@ class ChordClass(NamedChromaticPitchClassSet):
 
     @staticmethod
     def extent_to_cardinality(extent):
-        '''Change `extent` to cardinality.
+        r'''Change `extent` to cardinality.
 
         Example: tertian chord with extent of seven
         comprises four pitch-clases:
@@ -252,7 +252,7 @@ class ChordClass(NamedChromaticPitchClassSet):
 
     @staticmethod
     def extent_to_extent_name(extent):
-        '''Change `extent` to extent name.
+        r'''Change `extent` to extent name.
 
         Example: extent of seven is a seventh:
 

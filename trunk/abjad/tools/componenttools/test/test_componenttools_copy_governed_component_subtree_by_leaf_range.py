@@ -3,7 +3,7 @@ import py.test
 
 
 def test_componenttools_copy_governed_component_subtree_by_leaf_range_01():
-    '''Copy consecutive notes across tuplet boundary, in staff.
+    r'''Copy consecutive notes across tuplet boundary, in staff.
     '''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
@@ -45,7 +45,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_01():
 
 
 def test_componenttools_copy_governed_component_subtree_by_leaf_range_02():
-    '''Copy consecutive notes across tuplet boundary, in voice and staff.
+    r'''Copy consecutive notes across tuplet boundary, in voice and staff.
     '''
 
     t = Staff([Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)])
@@ -91,7 +91,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_02():
 
 
 def test_componenttools_copy_governed_component_subtree_by_leaf_range_03():
-    '''Copy leaves from sequential containers only.
+    r'''Copy leaves from sequential containers only.
     '''
 
     t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
@@ -104,7 +104,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_03():
 
 
 def test_componenttools_copy_governed_component_subtree_by_leaf_range_04():
-    '''Works fine on voices nested inside parallel context.
+    r'''Works fine on voices nested inside parallel context.
     '''
 
     t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
@@ -143,7 +143,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_04():
 
 
 def test_componenttools_copy_governed_component_subtree_by_leaf_range_05():
-    '''Copy consecutive notes in measure with power-of-two time signature denominator.
+    r'''Copy consecutive notes in measure with power-of-two time signature denominator.
     '''
 
     t = Measure((4, 8), "c'8 d'8 e'8 f'8")
@@ -162,7 +162,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_05():
 
 
 def test_componenttools_copy_governed_component_subtree_by_leaf_range_06():
-    '''Copy consecutive notes in staff and score.
+    r'''Copy consecutive notes in staff and score.
     '''
 
     score = Score([Staff("c'8 d'8 e'8 f'8")])
@@ -182,7 +182,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_06():
 
 
 def test_componenttools_copy_governed_component_subtree_by_leaf_range_07():
-    '''Copy consecutive leaves from tuplet in measure with power-of-two time signature denominator.
+    r'''Copy consecutive leaves from tuplet in measure with power-of-two time signature denominator.
     Measure without power-of-two time signature denominator results.
     '''
 
@@ -222,7 +222,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_07():
 
 
 def test_componenttools_copy_governed_component_subtree_by_leaf_range_08():
-    '''Copy consecutive leaves from tuplet in measure and voice.
+    r'''Copy consecutive leaves from tuplet in measure and voice.
     Measure without power-of-two time signature denominator results.
     '''
 
@@ -267,7 +267,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_08():
 
 
 def test_componenttools_copy_governed_component_subtree_by_leaf_range_09():
-    '''Measures shrink down when we copy a partial tuplet.
+    r'''Measures shrink down when we copy a partial tuplet.
     '''
 
     t = Measure((4, 8),
@@ -315,7 +315,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_09():
 
 
 def test_componenttools_copy_governed_component_subtree_by_leaf_range_10():
-    '''Copy consecutive leaves across measure boundary.
+    r'''Copy consecutive leaves across measure boundary.
     '''
 
     t = Staff(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
@@ -361,7 +361,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_10():
 
 
 def test_componenttools_copy_governed_component_subtree_by_leaf_range_11():
-    '''Copy consecutive leaves from tuplet in staff;
+    r'''Copy consecutive leaves from tuplet in staff;
         pass start and stop indices local to tuplet.
     '''
 
@@ -400,7 +400,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_11():
 
 
 def test_componenttools_copy_governed_component_subtree_by_leaf_range_12():
-    '''Copy consecutive leaves from measure in staff;
+    r'''Copy consecutive leaves from measure in staff;
     pass start and stop indices local to measure.
     '''
 
@@ -444,7 +444,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_12():
 
 
 def test_componenttools_copy_governed_component_subtree_by_leaf_range_13():
-    '''Copy consecutive leaves from in-staff measure without power-of-two time signature denominator.
+    r'''Copy consecutive leaves from in-staff measure without power-of-two time signature denominator.
     Pass start and stop indices local to measure.
     '''
 

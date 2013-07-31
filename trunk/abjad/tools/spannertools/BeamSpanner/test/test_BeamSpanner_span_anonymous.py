@@ -3,7 +3,7 @@ import py.test
 
 
 def test_BeamSpanner_span_anonymous_01():
-    '''Empty container.
+    r'''Empty container.
     '''
 
     container = Container([])
@@ -21,7 +21,7 @@ def test_BeamSpanner_span_anonymous_01():
 
 
 def test_BeamSpanner_span_anonymous_02():
-    '''Nonempty container.
+    r'''Nonempty container.
     '''
 
     container = Container("c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8")
@@ -47,7 +47,7 @@ def test_BeamSpanner_span_anonymous_02():
 
 
 def test_BeamSpanner_span_anonymous_03():
-    '''Nested nonempty containers.
+    r'''Nested nonempty containers.
     '''
 
     staff = Staff("{ c'8 c'8 c'8 c'8 } { c'8 c'8 c'8 c'8 }")
@@ -79,7 +79,7 @@ def test_BeamSpanner_span_anonymous_03():
 
 
 def test_BeamSpanner_span_anonymous_04():
-    '''Beamed staff with container and top-level leaves.
+    r'''Beamed staff with container and top-level leaves.
     '''
 
     staff = Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
@@ -106,7 +106,7 @@ def test_BeamSpanner_span_anonymous_04():
 
 
 def test_BeamSpanner_span_anonymous_05():
-    '''Beamed container and top-level leaves housed in staff.
+    r'''Beamed container and top-level leaves housed in staff.
     '''
 
     staff = Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
@@ -135,7 +135,7 @@ def test_BeamSpanner_span_anonymous_05():
 
 
 def test_BeamSpanner_span_anonymous_06():
-    '''Beamed leaves housed in staff and container.
+    r'''Beamed leaves housed in staff and container.
     '''
 
     staff = Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
@@ -162,7 +162,7 @@ def test_BeamSpanner_span_anonymous_06():
 
 
 def test_BeamSpanner_span_anonymous_07():
-    '''Staff with empty containers.
+    r'''Staff with empty containers.
     '''
 
     staff = Staff("{} {} {}")
@@ -187,7 +187,7 @@ def test_BeamSpanner_span_anonymous_07():
 
 
 def test_BeamSpanner_span_anonymous_08():
-    '''Staff with empty containers in the middle.
+    r'''Staff with empty containers in the middle.
     '''
 
     staff = Staff("{ c'8 c'8 c'8 c'8 } {} { c'8 c'8 c'8 c'8 }")
@@ -220,7 +220,7 @@ def test_BeamSpanner_span_anonymous_08():
 
 
 def test_BeamSpanner_span_anonymous_09():
-    '''Staff with empty containers at the edges.
+    r'''Staff with empty containers at the edges.
     '''
 
     t = Staff(Container([]) * 2)
@@ -251,7 +251,7 @@ def test_BeamSpanner_span_anonymous_09():
 
 
 def test_BeamSpanner_span_anonymous_10():
-    '''Deeply nested containers of equal depth.
+    r'''Deeply nested containers of equal depth.
     '''
 
     s1 = Container([Note(i, (1,8)) for i in range(4)])
@@ -306,7 +306,7 @@ def test_BeamSpanner_span_anonymous_10():
 
 
 def test_BeamSpanner_span_anonymous_11():
-    '''Deeply nested containers of unequal depth.
+    r'''Deeply nested containers of unequal depth.
     '''
 
     s1 = Container([Note(i, (1,8)) for i in range(4)])
@@ -358,7 +358,7 @@ def test_BeamSpanner_span_anonymous_11():
 
 
 def test_BeamSpanner_span_anonymous_12():
-    '''Voice with containers and top-level leaves.
+    r'''Voice with containers and top-level leaves.
     '''
 
     s1 = Container([Note(i, (1, 8)) for i in range(2)])
@@ -391,7 +391,7 @@ def test_BeamSpanner_span_anonymous_12():
 
 
 def test_BeamSpanner_span_anonymous_13():
-    '''Voice with tuplets and top-level leaves.
+    r'''Voice with tuplets and top-level leaves.
     '''
 
     t1 = tuplettools.FixedDurationTuplet(Duration(1,4), [Note(i, (1,8)) for i in range(3)])
@@ -426,7 +426,7 @@ def test_BeamSpanner_span_anonymous_13():
 
 
 def test_BeamSpanner_span_anonymous_14():
-    '''Nested tuplets.
+    r'''Nested tuplets.
     '''
 
     tinner = tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
@@ -455,7 +455,7 @@ def test_BeamSpanner_span_anonymous_14():
 
 
 def test_BeamSpanner_span_anonymous_15():
-    '''Beams cannot cross voice boundaries.
+    r'''Beams cannot cross voice boundaries.
     '''
 
     v1 = Voice([Note(i , (1, 8)) for i in range(3)])

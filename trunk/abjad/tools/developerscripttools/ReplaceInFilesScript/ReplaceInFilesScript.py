@@ -5,7 +5,7 @@ from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 
 
 class ReplaceInFilesScript(DirectoryScript):
-    '''Replace text in files recursively:
+    r'''Replace text in files recursively:
 
     ::
 

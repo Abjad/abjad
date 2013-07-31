@@ -4,7 +4,7 @@ from abjad.tools.documentationtools.Documenter import Documenter
 
 
 class ClassDocumenter(Documenter):
-    '''Generates an ReST API entry for a given class:
+    r'''Generates an ReST API entry for a given class:
 
     ::
 
@@ -207,7 +207,7 @@ class ClassDocumenter(Documenter):
     ### SPECIAL METHODS ###
 
     def __call__(self):
-        '''Generate documentation.
+        r'''Generate documentation.
 
         Return string.
         '''

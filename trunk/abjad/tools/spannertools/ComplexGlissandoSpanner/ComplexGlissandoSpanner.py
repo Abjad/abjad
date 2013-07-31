@@ -70,7 +70,7 @@ class ComplexGlissandoSpanner(Spanner):
         return result
 
     def _format_right_of_leaf(self, leaf):
-        '''Spanner contribution to right of leaf.
+        r'''Spanner contribution to right of leaf.
         '''
         result = []
         if not self._is_my_last_leaf(leaf) and \

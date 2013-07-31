@@ -58,7 +58,7 @@ class Measure(FixedDurationContainer):
     ### SPECIAL METHODS ###
 
     def __add__(self, arg):
-        '''Add two measures together in-score or outside-of-score.
+        r'''Add two measures together in-score or outside-of-score.
 
         Wrapper around ``measuretools.fuse_measures()``.
         '''
@@ -70,7 +70,7 @@ class Measure(FixedDurationContainer):
         return new
 
     def __delitem__(self, i):
-        '''Container item deletion with optional time signature adjustment.
+        r'''Container item deletion with optional time signature adjustment.
         '''
         old_time_signature = self.get_effective_context_mark(
             contexttools.TimeSignatureMark)
@@ -84,7 +84,7 @@ class Measure(FixedDurationContainer):
         return (time_signature.pair, )
 
     def __repr__(self):
-        '''String form of measure with parentheses for interpreter display.
+        r'''String form of measure with parentheses for interpreter display.
         '''
         class_name = self._class_name
         forced_time_signature = self.get_mark(contexttools.TimeSignatureMark)
@@ -101,7 +101,7 @@ class Measure(FixedDurationContainer):
             return '%s()' % class_name
 
     def __setitem__(self, i, expr):
-        '''Container setitem logic with optional time signature adjustment.
+        r'''Container setitem logic with optional time signature adjustment.
 
         Measure setitem logic now adjusts time signatue automatically
         when ``adjust_time_signature_automatically`` is true.
@@ -113,7 +113,7 @@ class Measure(FixedDurationContainer):
         self._conditionally_adjust_time_signature(old_denominator)
 
     def __str__(self):
-        '''String form of measure with pipes for single string display.
+        r'''String form of measure with pipes for single string display.
         '''
         forced_time_signature = self.get_effective_context_mark(
             contexttools.TimeSignatureMark)
@@ -132,7 +132,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def _compact_representation(self):
-        '''Display form of measure used for spanners to display
+        r'''Display form of measure used for spanners to display
         potentially many spanned measures one after the other.
         '''
         return '|{}({})|'.format(
@@ -288,7 +288,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def has_non_power_of_two_denominator(self):
-        '''True when measure time signature denominator 
+        r'''True when measure time signature denominator 
         is not an integer power of 2:
 
         ::
@@ -313,7 +313,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def has_power_of_two_denominator(self):
-        '''True when measure time signature denominator 
+        r'''True when measure time signature denominator 
         is an integer power of 2:
 
         ::
@@ -336,7 +336,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def implied_prolation(self):
-        '''Implied prolation of measure time signature:
+        r'''Implied prolation of measure time signature:
 
         ::
 
@@ -355,7 +355,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def is_full(self):
-        '''True when prolated duration equals time signature duration:
+        r'''True when prolated duration equals time signature duration:
 
         ::
 

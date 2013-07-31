@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_measuretools_multiply_contents_of_measures_in_expr_01():
-    '''Multiply contents of measure 3 times.
+    r'''Multiply contents of measure 3 times.
     '''
 
     t = Measure((3, 8), "c'8 d'8 e'8")
@@ -28,7 +28,7 @@ def test_measuretools_multiply_contents_of_measures_in_expr_01():
 
 
 def test_measuretools_multiply_contents_of_measures_in_expr_02():
-    '''Multiply contents of each measure 3 times.
+    r'''Multiply contents of each measure 3 times.
     '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)

@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class ModuleCrawler(AbjadObject):
-    '''Crawls `code_root`, yielding all module objects whose name begins with
+    r'''Crawls `code_root`, yielding all module objects whose name begins with
     `root_package_name`.
 
     Return `ModuleCrawler` instance.

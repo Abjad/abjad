@@ -8,7 +8,7 @@ from abjad.tools.wellformednesstools.Check import Check
 class MispitchedTieCheck(Check):
 
     def _run(self, expr):
-        '''Check for mispitched notes.
+        r'''Check for mispitched notes.
         Do not check tied rests or skips.
         Implement chord-checking later.
         '''

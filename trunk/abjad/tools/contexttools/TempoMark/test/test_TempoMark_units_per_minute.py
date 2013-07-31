@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_TempoMark_units_per_minute_01():
-    '''Tempo mark units per minute is read / write.
+    r'''Tempo mark units per minute is read / write.
     '''
 
     tempo = contexttools.TempoMark(Duration(1, 8), 52)

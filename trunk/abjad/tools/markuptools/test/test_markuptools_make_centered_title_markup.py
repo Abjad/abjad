@@ -11,7 +11,7 @@ def test_markuptools_make_centered_title_markup_01():
 
 
 def test_markuptools_make_centered_title_markup_02():
-    '''List of multiple title lines.
+    r'''List of multiple title lines.
     '''
 
     markup = markuptools.make_centered_title_markup(['String Quartet', 'for the JACK Quartet'])

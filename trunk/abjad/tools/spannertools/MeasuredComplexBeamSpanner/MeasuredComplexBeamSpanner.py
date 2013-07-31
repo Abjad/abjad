@@ -109,7 +109,7 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
     @apply
     def span():
         def fget(self):
-            '''Get top-level beam count:
+            r'''Get top-level beam count:
 
             ::
 

@@ -4,7 +4,7 @@ import py.test
 
 
 def test_mathtools_divisors_01():
-    '''Positive divisors of integer n.
+    r'''Positive divisors of integer n.
     '''
 
     assert mathtools.divisors(1) == [1]
@@ -20,14 +20,14 @@ def test_mathtools_divisors_01():
 
 
 def test_mathtools_divisors_02():
-    '''Raise not implemented error on zero.
+    r'''Raise not implemented error on zero.
     '''
 
     assert py.test.raises(NotImplementedError, 'mathtools.divisors(0)')
 
 
 def test_mathtools_divisors_03():
-    '''Raise exception on noninteger n.
+    r'''Raise exception on noninteger n.
     '''
 
     assert py.test.raises(TypeError, 'mathtools.divisors(7.5)')

@@ -24,7 +24,7 @@ def test_pitchtools_calculate_melodic_chromatic_interval_01():
 
 
 def test_pitchtools_calculate_melodic_chromatic_interval_02():
-    '''Works with quartertones.
+    r'''Works with quartertones.
     '''
 
     mci = pitchtools.calculate_melodic_chromatic_interval(

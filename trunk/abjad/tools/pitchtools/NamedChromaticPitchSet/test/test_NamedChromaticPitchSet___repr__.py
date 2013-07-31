@@ -3,7 +3,7 @@ from abjad.tools.pitchtools import NamedChromaticPitchSet
 
 
 def test_NamedChromaticPitchSet___repr___01():
-    '''Named chromatic pitch set repr is evaluable.
+    r'''Named chromatic pitch set repr is evaluable.
     '''
 
     ncps =['bf', 'bqf', "fs'", "g'", 'bqf', "g'"]

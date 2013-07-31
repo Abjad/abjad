@@ -1,4 +1,4 @@
 class TimeSignatureError(Exception):
-    '''General time signature error.
+    r'''General time signature error.
     '''
     pass

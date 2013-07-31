@@ -3,7 +3,7 @@ import py.test
 
 
 def test_componenttools_all_are_thread_contiguous_components_01():
-    '''True for thread contiguous components even when
+    r'''True for thread contiguous components even when
         components are not strictly contiguous.'''
 
     t = Voice(notetools.make_repeated_notes(4))
@@ -28,7 +28,7 @@ def test_componenttools_all_are_thread_contiguous_components_01():
 
 
 def test_componenttools_all_are_thread_contiguous_components_02():
-    '''Temporal gaps between components are OK.
+    r'''Temporal gaps between components are OK.
         So long as gaps are filled with foreign components
         that do not belong to thread.'''
 
@@ -62,7 +62,7 @@ def test_componenttools_all_are_thread_contiguous_components_02():
 
 
 def test_componenttools_all_are_thread_contiguous_components_03():
-    '''Components that start at the same moment are bad.
+    r'''Components that start at the same moment are bad.
         Even if components are all part of the same thread.'''
 
     t = Voice(notetools.make_repeated_notes(4))
@@ -94,7 +94,7 @@ def test_componenttools_all_are_thread_contiguous_components_03():
 
 
 def test_componenttools_all_are_thread_contiguous_components_04():
-    '''True for strictly contiguous leaves in same staff.
+    r'''True for strictly contiguous leaves in same staff.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -102,7 +102,7 @@ def test_componenttools_all_are_thread_contiguous_components_04():
 
 
 def test_componenttools_all_are_thread_contiguous_components_05():
-    '''True for orphan components when allow_orphans is True.
+    r'''True for orphan components when allow_orphans is True.
         False for orphan components when allow_orphans is False.'''
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
@@ -111,7 +111,7 @@ def test_componenttools_all_are_thread_contiguous_components_05():
 
 
 def test_componenttools_all_are_thread_contiguous_components_06():
-    '''False for time reordered leaves in staff.
+    r'''False for time reordered leaves in staff.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -119,21 +119,21 @@ def test_componenttools_all_are_thread_contiguous_components_06():
 
 
 def test_componenttools_all_are_thread_contiguous_components_07():
-    '''True for unincorporated component.
+    r'''True for unincorporated component.
     '''
 
     assert componenttools.all_are_thread_contiguous_components([Staff("c'8 d'8 e'8 f'8")])
 
 
 def test_componenttools_all_are_thread_contiguous_components_08():
-    '''True for empty list.
+    r'''True for empty list.
     '''
 
     assert componenttools.all_are_thread_contiguous_components([])
 
 
 def test_componenttools_all_are_thread_contiguous_components_09():
-    '''False when components belonging to same thread are ommitted.
+    r'''False when components belonging to same thread are ommitted.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8 g'8 a'8")
@@ -154,7 +154,7 @@ def test_componenttools_all_are_thread_contiguous_components_09():
 
 
 def test_componenttools_all_are_thread_contiguous_components_10():
-    '''False when components belonging to same thread are ommitted.
+    r'''False when components belonging to same thread are ommitted.
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)

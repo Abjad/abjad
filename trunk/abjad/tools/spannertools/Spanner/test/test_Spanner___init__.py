@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Spanner___init___01():
-    '''Init empty spanner.
+    r'''Init empty spanner.
     '''
 
     p = spannertools.BeamSpanner()
@@ -12,7 +12,7 @@ def test_Spanner___init___01():
 
 
 def test_Spanner___init___02():
-    '''Init nonempty spanner.
+    r'''Init nonempty spanner.
     '''
 
     t = Container("c'8 d'8 e'8 f'8")
@@ -32,7 +32,7 @@ def test_Spanner___init___02():
 
 
 def test_Spanner___init___03():
-    '''Spanner is abstract.
+    r'''Spanner is abstract.
     '''
 
     assert py.test.raises(TypeError, 'p = spannertools.Spanner()')

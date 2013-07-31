@@ -6,7 +6,7 @@ import subprocess
 
 
 class SvnAddAllScript(DirectoryScript):
-    '''Run `svn add` on all unversioned files in path:
+    r'''Run `svn add` on all unversioned files in path:
 
     ::
 

@@ -1,4 +1,4 @@
 class MissingNamedComponentError(Exception):
-    '''No named component found.
+    r'''No named component found.
     '''
     pass

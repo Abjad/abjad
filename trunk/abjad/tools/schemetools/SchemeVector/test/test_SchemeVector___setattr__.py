@@ -3,7 +3,7 @@ import py.test
 
 
 def test_SchemeVector___setattr___01():
-    '''Scheme vectors are immutable.
+    r'''Scheme vectors are immutable.
     '''
 
     scheme_vector = schemetools.SchemeVector(True, True, False)

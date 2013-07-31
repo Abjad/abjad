@@ -3,7 +3,7 @@ from abjad.tools.quantizationtools.QEvent import QEvent
 
 
 class SilentQEvent(QEvent):
-    '''A ``QEvent`` which indicates the onset of a period of silence
+    r'''A ``QEvent`` which indicates the onset of a period of silence
     in a ``QEventSequence``:
 
         >>> q_event = quantizationtools.SilentQEvent(1000)

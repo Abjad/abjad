@@ -3,7 +3,7 @@ import py.test
 
 
 def test_lily_voice_resolution_01():
-    '''Anonymous voice with a sequence of leaves,
+    r'''Anonymous voice with a sequence of leaves,
     in the middle of which there is a parallel,
     which in turn contains two anonymous voices.
     How does LilyPond resolve voices?
@@ -35,7 +35,7 @@ def test_lily_voice_resolution_01():
         c''8
     }'''
 
-    '''LilyPond identifies three separate voices.
+    r'''LilyPond identifies three separate voices.
     LilyPond colors the outer four notes (c'8 d'8 b'8 c''8) red.
     LilyPond colors the inner four notes black.
     LilyPond issues clashing note column warnings for the inner notes.
@@ -44,7 +44,7 @@ def test_lily_voice_resolution_01():
 
 
 def test_lily_voice_resolution_02():
-    '''Named voice with  with a sequence of leaves,
+    r'''Named voice with  with a sequence of leaves,
     in the middle of which there is a parallel,
     which in turn contains one like-named and one differently named voice.
     How does LilyPond resolve voices?
@@ -79,13 +79,13 @@ def test_lily_voice_resolution_02():
     }
     '''
 
-    '''LilyPond colors six notes red and two notes black.
+    r'''LilyPond colors six notes red and two notes black.
     LilyPond identifies two voices.
     '''
 
 
 def test_lily_voice_resolution_03():
-    '''Two like-named voices in two differently named staves.
+    r'''Two like-named voices in two differently named staves.
     '''
 
     t = Container(Staff([Voice("c'8 d'8")]) * 2)
@@ -96,7 +96,7 @@ def test_lily_voice_resolution_03():
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     py.test.raises(AssertionError, 'spannertools.BeamSpanner(t.select_leaves())')
 
-    '''LilyPond gives unterminated beam warnings.
+    r'''LilyPond gives unterminated beam warnings.
     LilyPond gives grob direction programming errors.
     We conclude that LilyPond identifies two separate voices.
     Good example for Abjad voice resolution.
@@ -104,7 +104,7 @@ def test_lily_voice_resolution_03():
 
 
 def test_lily_voice_resolution_04():
-    '''Container containing a run of leaves.
+    r'''Container containing a run of leaves.
     Two like-structured parallels in the middle of the run.
     '''
 
@@ -151,7 +151,7 @@ def test_lily_voice_resolution_04():
     }
     '''
 
-    '''LilyPond handles this example perfectly.
+    r'''LilyPond handles this example perfectly.
     LilyPond colors the four note_heads of the soprano voice red.
     LilyPond colors all other note_heads black.
     '''

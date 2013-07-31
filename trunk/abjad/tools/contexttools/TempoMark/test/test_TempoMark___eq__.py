@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_TempoMark___eq___01():
-    '''Tempo indications compare equal when duration and mark match.
+    r'''Tempo indications compare equal when duration and mark match.
     '''
 
     t1 = contexttools.TempoMark(Duration(3, 32), 52)
@@ -11,7 +11,7 @@ def test_TempoMark___eq___01():
 
 
 def test_TempoMark___eq___02():
-    '''Tempo indications do not compare equal
+    r'''Tempo indications do not compare equal
     when mathematically equal.
     '''
 
@@ -21,7 +21,7 @@ def test_TempoMark___eq___02():
 
 
 def test_TempoMark___eq___03():
-    '''Tempo indications also compare textual indications.
+    r'''Tempo indications also compare textual indications.
     '''
 
     t1 = contexttools.TempoMark('Langsam', Duration(3, 32), 52)

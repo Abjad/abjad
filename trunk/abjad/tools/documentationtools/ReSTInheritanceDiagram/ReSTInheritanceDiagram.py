@@ -3,7 +3,7 @@ from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 
 
 class ReSTInheritanceDiagram(ReSTDirective):
-    '''An ReST inheritance diagram directive:
+    r'''An ReST inheritance diagram directive:
 
     ::
 

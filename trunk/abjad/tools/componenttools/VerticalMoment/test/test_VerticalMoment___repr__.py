@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_VerticalMoment___repr___01():
-    '''Vertical moment repr returns a nonempty string.
+    r'''Vertical moment repr returns a nonempty string.
     '''
 
     vertical_moment = Note('c4').select_vertical_moment()

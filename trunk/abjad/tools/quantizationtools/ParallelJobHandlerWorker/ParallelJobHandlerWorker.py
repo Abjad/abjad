@@ -5,7 +5,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class ParallelJobHandlerWorker(multiprocessing.Process, AbjadObject):
-    '''Worker process which runs ``QuantizationJobs``.
+    r'''Worker process which runs ``QuantizationJobs``.
 
     Not composer-safe.
 

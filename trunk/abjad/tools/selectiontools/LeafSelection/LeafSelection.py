@@ -2,7 +2,7 @@ from abjad.tools.selectiontools.FreeSelection import FreeSelection
 
 
 class LeafSelection(FreeSelection):
-    '''Free selection of leaves.
+    r'''Free selection of leaves.
     '''
 
     ### PUBLIC METHODS ###

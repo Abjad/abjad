@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_instrumenttools_EFlatClarinet_instrument_name_markup_01():
-    '''By default instrument name markup equals instrument name
+    r'''By default instrument name markup equals instrument name
     with first character capitalized.
     '''
 
@@ -14,7 +14,7 @@ def test_instrumenttools_EFlatClarinet_instrument_name_markup_01():
 
 
 def test_instrumenttools_EFlatClarinet_instrument_name_markup_02():
-    '''When user has not set instrument name markup explicitly,
+    r'''When user has not set instrument name markup explicitly,
     instrument name changes effect instrument name markup changes
     '''
 
@@ -26,7 +26,7 @@ def test_instrumenttools_EFlatClarinet_instrument_name_markup_02():
 
 
 def test_instrumenttools_EFlatClarinet_instrument_name_markup_03():
-    '''When user has set instrument name markup explicitly,
+    r'''When user has set instrument name markup explicitly,
     instrument name changes do NOT effect instrument name markup.
     '''
 

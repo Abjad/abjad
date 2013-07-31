@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class _Flageolet(AbjadObject):
-    '''Abjad model of both natural and artificial harmonics.
+    r'''Abjad model of both natural and artificial harmonics.
     Abstract base class.
     '''
 
@@ -14,6 +14,6 @@ class _Flageolet(AbjadObject):
 
     @property
     def suono_reale(self):
-        '''Actual sound of the harmonic when played.
+        r'''Actual sound of the harmonic when played.
         '''
         raise Exception('Not Implemented')

@@ -3,7 +3,7 @@ import py.test
 
 
 def test_TimeSignatureMark_suppress_01():
-    '''Suppress time signature with power-of-two denominator at format-time.
+    r'''Suppress time signature with power-of-two denominator at format-time.
     '''
 
     t = Measure((7, 8), "c'8 d'8 e'8 f'8 g'8 a'8 b'8")
@@ -26,7 +26,7 @@ def test_TimeSignatureMark_suppress_01():
 
 
 def test_TimeSignatureMark_suppress_02():
-    '''Suppressing time signature without power-of-two denominator raises exception.
+    r'''Suppressing time signature without power-of-two denominator raises exception.
     '''
 
     t = Measure((8, 9), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")

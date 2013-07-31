@@ -1,5 +1,5 @@
 def arg_to_tridirectional_lilypond_symbol(arg):
-    '''Convert `arg` to tridirectional LilyPond symbol:
+    r'''Convert `arg` to tridirectional LilyPond symbol:
 
         >>> stringtools.arg_to_tridirectional_lilypond_symbol(Up)
         '^'

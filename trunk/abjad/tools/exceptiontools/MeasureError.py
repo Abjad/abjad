@@ -1,4 +1,4 @@
 class MeasureError(Exception):
-    '''General measure error.
+    r'''General measure error.
     '''
     pass

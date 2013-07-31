@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Leaf_written_duration_01():
-    '''Leaf durations can go up to 'maxima...': duration < (16, 1).
+    r'''Leaf durations can go up to 'maxima...': duration < (16, 1).
     '''
 
     t = Note(1, 2)

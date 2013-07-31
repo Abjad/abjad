@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_componenttools_copy_components_and_fracture_crossing_spanners_01():
-    '''Deep copy components in 'components'.
+    r'''Deep copy components in 'components'.
     Deep copy spanners that attach to any component in 'components'.
     Fracture spanners that attach to components not in 'components'.
     Return Python list of copied components.'''
@@ -43,7 +43,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_01():
 
 
 def test_componenttools_copy_components_and_fracture_crossing_spanners_02():
-    '''Copy one measure and fracture spanners.
+    r'''Copy one measure and fracture spanners.
     '''
 
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
@@ -91,7 +91,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_02():
 
 
 def test_componenttools_copy_components_and_fracture_crossing_spanners_03():
-    '''Three notes crossing measure boundaries.
+    r'''Three notes crossing measure boundaries.
     '''
 
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
@@ -137,7 +137,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_03():
 
 
 def test_componenttools_copy_components_and_fracture_crossing_spanners_04():
-    '''Optional 'n' argument for multiple copies.
+    r'''Optional 'n' argument for multiple copies.
     '''
 
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)

@@ -6,7 +6,7 @@ from abjad.tools.rhythmtreetools.RhythmTreeNode import RhythmTreeNode
 
 
 class RhythmTreeLeaf(RhythmTreeNode):
-    '''A leaf node in a rhythm tree:
+    r'''A leaf node in a rhythm tree:
 
     ::
 
@@ -55,7 +55,7 @@ class RhythmTreeLeaf(RhythmTreeNode):
     ### SPECIAL METHODS ###
 
     def __call__(self, pulse_duration):
-        '''Generate Abjad score components:
+        r'''Generate Abjad score components:
 
         ::
 
@@ -100,7 +100,7 @@ class RhythmTreeLeaf(RhythmTreeNode):
 
     @property
     def rtm_format(self):
-        '''The node's RTM format:
+        r'''The node's RTM format:
 
         ::
 
@@ -120,7 +120,7 @@ class RhythmTreeLeaf(RhythmTreeNode):
     @apply
     def is_pitched():
         def fget(self):
-            '''True if leaf is pitched:
+            r'''True if leaf is pitched:
 
             ::
 

@@ -3,7 +3,7 @@ from abjad.tools import iotools
 
 
 def test_scoretools_make_piano_score_from_leaves_01():
-    '''Works with notes.
+    r'''Works with notes.
     '''
 
     pitches = [-12, 37, -10, 27, 4, 17]
@@ -40,7 +40,7 @@ def test_scoretools_make_piano_score_from_leaves_01():
 
 
 def test_scoretools_make_piano_score_from_leaves_02():
-    '''Works with explicit lowest treble pitch.
+    r'''Works with explicit lowest treble pitch.
     '''
 
     container = iotools.p("{ g4 a4 b4 c'4 d'4 r4 a4 g4 }")

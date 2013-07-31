@@ -53,7 +53,7 @@ def test_labeltools_label_vertical_moments_in_expr_with_interval_class_vectors_0
 
 
 def test_labeltools_label_vertical_moments_in_expr_with_interval_class_vectors_02():
-    '''Vertical moments with quartertones format with a two-row
+    r'''Vertical moments with quartertones format with a two-row
     interval-class vector. Top for 12-ET, bottom for 24-ET.'''
 
     chord = Chord([-2, -1.5, 9], (1, 4))

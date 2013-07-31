@@ -2,7 +2,7 @@ from abjad.tools.datastructuretools.TreeContainer import TreeContainer
 
 
 class ReSTDocument(TreeContainer):
-    '''An ReST document tree:
+    r'''An ReST document tree:
 
     ::
 

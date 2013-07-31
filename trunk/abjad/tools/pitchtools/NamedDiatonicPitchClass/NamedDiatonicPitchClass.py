@@ -72,7 +72,7 @@ class NamedDiatonicPitchClass(DiatonicPitchClass):
 
     @property
     def numbered_diatonic_pitch_class(self):
-        '''Numbered diatonic pitch-class from named 
+        r'''Numbered diatonic pitch-class from named 
         diatonic pitch-class:
 
         ::

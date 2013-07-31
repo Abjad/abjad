@@ -29,7 +29,7 @@ class DateTimeToken(AbjadObject):
 
     @property
     def lilypond_format(self):
-        '''Format contribution of date time token:
+        r'''Format contribution of date time token:
 
         ::
 

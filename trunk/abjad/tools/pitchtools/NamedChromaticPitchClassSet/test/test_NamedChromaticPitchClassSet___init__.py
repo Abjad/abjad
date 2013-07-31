@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_NamedChromaticPitchClassSet___init___01():
-    '''Init with named pitch-classes.
+    r'''Init with named pitch-classes.
     '''
 
     npc_set = pitchtools.NamedChromaticPitchClassSet([
@@ -14,7 +14,7 @@ def test_NamedChromaticPitchClassSet___init___01():
 
 
 def test_NamedChromaticPitchClassSet___init___02():
-    '''Works with chords.
+    r'''Works with chords.
     '''
 
     chord = Chord([12, 14, 16], (1, 4))
@@ -29,7 +29,7 @@ def test_NamedChromaticPitchClassSet___init___02():
 
 
 def test_NamedChromaticPitchClassSet___init___03():
-    '''Works with notes.
+    r'''Works with notes.
     '''
 
     note = Note(13, (1, 4))

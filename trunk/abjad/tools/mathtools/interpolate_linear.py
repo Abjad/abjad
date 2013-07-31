@@ -1,5 +1,5 @@
 def interpolate_linear(y1, y2, mu):
-    '''Linear interpolate `y1` and `y2` with `mu` normalized ``[0, 1]``:
+    r'''Linear interpolate `y1` and `y2` with `mu` normalized ``[0, 1]``:
 
     ::
 

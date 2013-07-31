@@ -3,7 +3,7 @@ import py.test
 
 
 def test_spannertools_get_the_only_spanner_attached_to_any_improper_parent_of_component_01():
-    '''Without spanner classes filter.
+    r'''Without spanner classes filter.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")

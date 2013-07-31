@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Cluster___init___01():
-    '''Cluster can be empty.
+    r'''Cluster can be empty.
     '''
     t = containertools.Cluster([])
     assert not t.is_parallel

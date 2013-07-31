@@ -2,7 +2,7 @@ from abjad.tools import componenttools
 
 
 def get_spanners_that_dominate_components(components):
-    '''Return Python list of (spanner, index) pairs.
+    r'''Return Python list of (spanner, index) pairs.
     Each (spanner, index) pair gives a spanner which dominates
     all components in 'components' together with the start-index
     at which spanner first encounters 'components'.

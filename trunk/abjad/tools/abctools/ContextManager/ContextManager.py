@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class ContextManager(AbjadObject):
-    '''An abstract context manager class.
+    r'''An abstract context manager class.
     '''
 
     ### INTIALIZER ###

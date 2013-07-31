@@ -6,7 +6,7 @@ from abjad.tools import stringtools
 
 
 class DeveloperScript(abctools.AbjadObject):
-    '''Abjad object-oriented model of a developer script.
+    r'''Abjad object-oriented model of a developer script.
 
     `DeveloperScript` is the abstract parent from which concrete developer
     scripts inherit.
@@ -49,14 +49,14 @@ class DeveloperScript(abctools.AbjadObject):
 
     @property
     def alias(self):
-        '''The alias to use for the script, useful only if the script defines
+        r'''The alias to use for the script, useful only if the script defines
         an abj-dev scripting group as well.
         '''
         return None
 
     @property
     def argument_parser(self):
-        '''The script's instance of argparse.ArgumentParser.
+        r'''The script's instance of argparse.ArgumentParser.
         '''
         return self._argument_parser
 
@@ -74,13 +74,13 @@ class DeveloperScript(abctools.AbjadObject):
 
     @abc.abstractproperty
     def long_description(self):
-        '''The long description, printed after arguments explanations.
+        r'''The long description, printed after arguments explanations.
         '''
         raise NotImplemented
 
     @property
     def program_name(self):
-        '''The name of the script, callable from the command line.
+        r'''The name of the script, callable from the command line.
         '''
         name = self._class_name[:self._class_name.rfind('Script')]
         return stringtools.upper_camel_case_to_space_delimited_lowercase(
@@ -88,13 +88,13 @@ class DeveloperScript(abctools.AbjadObject):
 
     @property
     def scripting_group(self):
-        '''The script's scripting subcommand group.
+        r'''The script's scripting subcommand group.
         '''
         return None
 
     @abc.abstractproperty
     def short_description(self):
-        '''The short description of the script, printed before arguments
+        r'''The short description of the script, printed before arguments
         explanations.
 
         Also used as a summary in other contexts.
@@ -103,7 +103,7 @@ class DeveloperScript(abctools.AbjadObject):
 
     @abc.abstractproperty
     def version(self):
-        '''The version number of the script.
+        r'''The version number of the script.
         '''
         raise NotImplemented
 

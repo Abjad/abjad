@@ -219,133 +219,133 @@ class ReducedLyParser(abctools.Parser):
     ### YACC METHODS ###
 
     def p_apostrophes__APOSTROPHE(self, p):
-        '''apostrophes : APOSTROPHE
+        r'''apostrophes : APOSTROPHE
         '''
         p[0] = 1
 
     def p_apostrophes__apostrophes__APOSTROPHE(self, p):
-        '''apostrophes : apostrophes APOSTROPHE
+        r'''apostrophes : apostrophes APOSTROPHE
         '''
         p[0] = p[1] + 1
 
     def p_beam__BRACKET_L(self, p):
-        '''beam : BRACKET_L
+        r'''beam : BRACKET_L
         '''
         p[0] = (spannertools.BeamSpanner, Left)
 
     def p_beam__BRACKET_R(self, p):
-        '''beam : BRACKET_R
+        r'''beam : BRACKET_R
         '''
         p[0] = (spannertools.BeamSpanner, Right)
 
     def p_chord_body__chord_pitches(self, p):
-        '''chord_body : chord_pitches
+        r'''chord_body : chord_pitches
         '''
         p[0] = chordtools.Chord(p[1], self._default_duration)
 
     def p_chord_body__chord_pitches__positive_leaf_duration(self, p):
-        '''chord_body : chord_pitches positive_leaf_duration
+        r'''chord_body : chord_pitches positive_leaf_duration
         '''
         p[0] = chordtools.Chord(p[1], p[2])
 
     def p_chord_pitches__CARAT_L__pitches__CARAT_R(self, p):
-        '''chord_pitches : CARAT_L pitches CARAT_R
+        r'''chord_pitches : CARAT_L pitches CARAT_R
         '''
         p[0] = p[2]
 
     def p_commas__COMMA(self, p):
-        '''commas : COMMA
+        r'''commas : COMMA
         '''
         p[0] = 1
 
     def p_commas__commas__commas(self, p):
-        '''commas : commas COMMA
+        r'''commas : commas COMMA
         '''
         p[0] = p[1] + 1
 
     def p_component__container(self, p):
-        '''component : container
+        r'''component : container
         '''
         p[0] = p[1]
 
     def p_component__fixed_duration_container(self, p):
-        '''component : fixed_duration_container
+        r'''component : fixed_duration_container
         '''
         p[0] = p[1]
 
     def p_component__leaf(self, p):
-        '''component : leaf
+        r'''component : leaf
         '''
         p[0] = p[1]
 
     def p_component__tuplet(self, p):
-        '''component : tuplet
+        r'''component : tuplet
         '''
         p[0] = p[1]
 
     def p_component_list__EMPTY(self, p):
-        '''component_list : 
+        r'''component_list : 
         '''
         p[0] = []
 
     def p_component_list__component_list__component(self, p):
-        '''component_list : component_list component
+        r'''component_list : component_list component
         '''
         p[0] = p[1] + [p[2]]
 
     def p_container__BRACE_L__component_list__BRACE_R(self, p):
-        '''container : BRACE_L component_list BRACE_R
+        r'''container : BRACE_L component_list BRACE_R
         '''
         p[0] = containertools.Container()
         for component in p[2]:
             p[0].append(component)
 
     def p_dots__dots__DOT(self, p):
-        '''dots : dots DOT
+        r'''dots : dots DOT
         '''
         p[0] = p[1] + 1
 
     def p_dots__EMPTY(self, p):
-        '''dots : 
+        r'''dots : 
         '''
         p[0] = 0
 
     def p_fixed_duration_container__BRACE_L__FRACTION__BRACE_R(self, p):
-        '''fixed_duration_container : BRACE_L FRACTION BRACE_R
+        r'''fixed_duration_container : BRACE_L FRACTION BRACE_R
         '''
         p[0] = containertools.FixedDurationContainer(durationtools.Duration(p[2]))
 
     def p_leaf__leaf_body__post_events(self, p):
-        '''leaf : leaf_body post_events
+        r'''leaf : leaf_body post_events
         '''
         p[0] = p[1]
         if p[2]:
             marktools.Annotation('post events', p[2])(p[0])
 
     def p_leaf_body__chord_body(self, p):
-        '''leaf_body : chord_body
+        r'''leaf_body : chord_body
         '''
         p[0] = p[1]
 
     def p_leaf_body__note_body(self, p):
-        '''leaf_body : note_body
+        r'''leaf_body : note_body
         '''
         p[0] = p[1]
 
     def p_leaf_body__rest_body(self, p):
-        '''leaf_body : rest_body
+        r'''leaf_body : rest_body
         '''
         p[0] = p[1]
 
     def p_measure__PIPE__FRACTION__component_list__PIPE(self, p):
-        '''measure : PIPE FRACTION component_list PIPE
+        r'''measure : PIPE FRACTION component_list PIPE
         '''
         p[0] = measuretools.Measure(p[2].pair)
         for x in p[3]:
             p[0].append(x)
 
     def p_negative_leaf_duration__INTEGER_N__dots(self, p):
-        '''negative_leaf_duration : INTEGER_N dots
+        r'''negative_leaf_duration : INTEGER_N dots
         '''
         duration_log = p[1]
         dots = '.' * p[2]
@@ -355,47 +355,47 @@ class ReducedLyParser(abctools.Parser):
         p[0] = duration
 
     def p_note_body__pitch(self, p):
-        '''note_body : pitch
+        r'''note_body : pitch
         '''
         p[0] = notetools.Note(p[1], self._default_duration)
 
     def p_note_body__pitch__positive_leaf_duration(self, p):
-        '''note_body : pitch positive_leaf_duration
+        r'''note_body : pitch positive_leaf_duration
         '''
         p[0] = notetools.Note(p[1], p[2])
 
     def p_note_body__positive_leaf_duration(self, p):
-        '''note_body : positive_leaf_duration
+        r'''note_body : positive_leaf_duration
         '''
         p[0] = notetools.Note(0, p[1])
 
     def p_pitch__PITCHNAME(self, p):
-        '''pitch : PITCHNAME
+        r'''pitch : PITCHNAME
         '''
         p[0] = pitchtools.NamedChromaticPitch(str(p[1]))
 
     def p_pitch__PITCHNAME__apostrophes(self, p):
-        '''pitch : PITCHNAME apostrophes
+        r'''pitch : PITCHNAME apostrophes
         '''
         p[0] = pitchtools.NamedChromaticPitch(str(p[1]) + "'" * p[2])
 
     def p_pitch__PITCHNAME__commas(self, p):
-        '''pitch : PITCHNAME commas
+        r'''pitch : PITCHNAME commas
         '''
         p[0] = pitchtools.NamedChromaticPitch(str(p[1]) + ',' * p[2])
 
     def p_pitches__pitch(self, p):
-        '''pitches : pitch
+        r'''pitches : pitch
         '''
         p[0] = [p[1]]
 
     def p_pitches__pitches__pitch(self, p):
-        '''pitches : pitches pitch
+        r'''pitches : pitches pitch
         '''
         p[0] = p[1] + [p[2]]
 
     def p_positive_leaf_duration__INTEGER_P__dots(self, p):
-        '''positive_leaf_duration : INTEGER_P dots
+        r'''positive_leaf_duration : INTEGER_P dots
         '''
         duration_log = p[1]
         dots = '.' * p[2]
@@ -405,27 +405,27 @@ class ReducedLyParser(abctools.Parser):
         p[0] = duration
 
     def p_post_event__beam(self, p):
-        '''post_event : beam
+        r'''post_event : beam
         '''
         p[0] = p[1]
 
     def p_post_event__slur(self, p):
-        '''post_event : slur
+        r'''post_event : slur
         '''
         p[0] = p[1]
 
     def p_post_event__tie(self, p):
-        '''post_event : tie
+        r'''post_event : tie
         '''
         p[0] = p[1]
 
     def p_post_events__EMPTY(self, p):
-        '''post_events : 
+        r'''post_events : 
         '''
         p[0] = {}
 
     def p_post_events__post_events__post_event(self, p):
-        '''post_events : post_events post_event
+        r'''post_events : post_events post_event
         '''
         kind, direction = p[2]
         if kind in p[1]:
@@ -435,55 +435,55 @@ class ReducedLyParser(abctools.Parser):
         p[0] = p[1]
 
     def p_rest_body__negative_leaf_duration(self, p):
-        '''rest_body : negative_leaf_duration
+        r'''rest_body : negative_leaf_duration
         '''
         p[0] = resttools.Rest(p[1])
 
     def p_rest_body__RESTNAME(self, p):
-        '''rest_body : RESTNAME
+        r'''rest_body : RESTNAME
         '''
         p[0] = resttools.Rest(self._default_duration)
 
     def p_rest_body__RESTNAME__positive_leaf_duration(self, p):
-        '''rest_body : RESTNAME positive_leaf_duration
+        r'''rest_body : RESTNAME positive_leaf_duration
         '''
         p[0] = resttools.Rest(p[2])
 
     def p_slur__PAREN_L(self, p):
-        '''slur : PAREN_L
+        r'''slur : PAREN_L
         '''
         p[0] = (spannertools.SlurSpanner, Left)
 
     def p_slur__PAREN_R(self, p):
-        '''slur : PAREN_R
+        r'''slur : PAREN_R
         '''
         p[0] = (spannertools.SlurSpanner, Right)
 
     def p_start__EMPTY(self, p):
-        '''start : 
+        r'''start : 
         '''
         self._toplevel_component_count = 0
         p[0] = []
 
     def p_start__start__component(self, p):
-        '''start : start component
+        r'''start : start component
         '''
         self._toplevel_component_count += 1
         p[0] = p[1] + [p[2]]
 
     def p_start__start__measure(self, p):
-        '''start : start measure
+        r'''start : start measure
         '''
         self._toplevel_component_count += 1
         p[0] = p[1] + [p[2]]
 
     def p_tie__TILDE(self, p):
-        '''tie : TILDE
+        r'''tie : TILDE
         '''
         p[0] = (spannertools.TieSpanner, Left)
 
     def p_tuplet__FRACTION__container(self, p):
-        '''tuplet : FRACTION container
+        r'''tuplet : FRACTION container
         '''
         p[0] = tuplettools.Tuplet(p[1], p[2][:])
 

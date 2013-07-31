@@ -10,7 +10,7 @@ from abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell \
 
 
 class PitchArrayRow(AbjadObject):
-    '''One row in pitch arra:
+    r'''One row in pitch arra:
 
     ::
 

@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_iterationtools_iterate_tie_chains_in_expr_01():
-    '''Yield successive tie chains.
+    r'''Yield successive tie chains.
     '''
 
     t = Staff(notetools.make_repeated_notes(4))
@@ -25,7 +25,7 @@ def test_iterationtools_iterate_tie_chains_in_expr_01():
 
 
 def test_iterationtools_iterate_tie_chains_in_expr_02():
-    '''Yield successive tie chains.
+    r'''Yield successive tie chains.
     '''
 
     t = Staff(notetools.make_repeated_notes(4))
@@ -48,7 +48,7 @@ def test_iterationtools_iterate_tie_chains_in_expr_02():
 
 
 def test_iterationtools_iterate_tie_chains_in_expr_03():
-    '''Yield successive tie chains.
+    r'''Yield successive tie chains.
     '''
 
     t = Staff(notetools.make_repeated_notes(4))
@@ -71,7 +71,7 @@ def test_iterationtools_iterate_tie_chains_in_expr_03():
 
 
 def test_iterationtools_iterate_tie_chains_in_expr_04():
-    '''Yield successive tie chains.
+    r'''Yield successive tie chains.
     '''
 
     t = Staff(notetools.make_repeated_notes(4))

@@ -5,7 +5,7 @@ from abjad.tools.developerscripttools.ReplaceInFilesScript \
 
 
 class ReplacePromptsScript(DirectoryScript):
-    '''Replace prompts in code examples recursively:
+    r'''Replace prompts in code examples recursively:
 
     ::
 

@@ -36,7 +36,7 @@ def test_containertools_delete_contents_of_container_starting_strictly_after_off
 
 
 def test_containertools_delete_contents_of_container_starting_strictly_after_offset_03():
-    '''Delete nothing when no contents start after prolated offset.
+    r'''Delete nothing when no contents start after prolated offset.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
@@ -57,7 +57,7 @@ def test_containertools_delete_contents_of_container_starting_strictly_after_off
 
 
 def test_containertools_delete_contents_of_container_starting_strictly_after_offset_04():
-    '''Delete all contents when all elements start after prolated offset.
+    r'''Delete all contents when all elements start after prolated offset.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")

@@ -6,7 +6,7 @@ from abjad.tools.developerscripttools.CleanScript import CleanScript
 
 
 class SvnUpdateScript(DirectoryScript):
-    '''Run `svn up` on various Abjad paths:
+    r'''Run `svn up` on various Abjad paths:
 
     ::
 

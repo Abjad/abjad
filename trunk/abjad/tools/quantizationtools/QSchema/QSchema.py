@@ -8,7 +8,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class QSchema(AbjadObject):
-    '''The *schema* for a quantization run.
+    r'''The *schema* for a quantization run.
 
     ``QSchema`` allows for the specification of quantization settings
     diachronically, at any time-step of the quantization process.
@@ -140,37 +140,37 @@ class QSchema(AbjadObject):
 
     @abc.abstractproperty
     def item_class(self):
-        '''The schema's item class.
+        r'''The schema's item class.
         '''
         raise NotImplemented
 
     @property
     def items(self):
-        '''The item dictionary.
+        r'''The item dictionary.
         '''
         return self._items
 
     @property
     def search_tree(self):
-        '''The default search tree.
+        r'''The default search tree.
         '''
         return self._search_tree
 
     @abc.abstractproperty
     def target_item_class(self):
-        '''The schema's target class' item class.
+        r'''The schema's target class' item class.
         '''
         raise NotImplemented
 
     @abc.abstractproperty
     def target_class(self):
-        '''The schema's target class.
+        r'''The schema's target class.
         '''
         raise NotImplemented
 
     @property
     def tempo(self):
-        '''The default tempo.
+        r'''The default tempo.
         '''
         return self._tempo
 

@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Leaf___or___01():
-    '''Chords completely disjunct; all pitches preserved.
+    r'''Chords completely disjunct; all pitches preserved.
     '''
     t = Chord([0, 1, 2], (1, 4))
     u = Chord([3, 4, 5], (1, 4))
@@ -13,7 +13,7 @@ def test_Leaf___or___01():
 
 
 def test_Leaf___or___02():
-    '''Partially intersecting chords; shared pitches appear only once.
+    r'''Partially intersecting chords; shared pitches appear only once.
     '''
     t = Chord([0, 1, 2], (1, 4))
     u = Chord([1, 2, 3], (1, 4))
@@ -24,7 +24,7 @@ def test_Leaf___or___02():
 
 
 def test_Leaf___or___03():
-    '''Wholly intersecting chords; shared pitches appear only once.
+    r'''Wholly intersecting chords; shared pitches appear only once.
     '''
     t = Chord([0, 1, 2], (1, 4))
     u = Chord([0, 1, 2], (1, 4))
@@ -35,7 +35,7 @@ def test_Leaf___or___03():
 
 
 def test_Leaf___or___04():
-    '''Enharmonically disjunct; enharmonic equivalents both appear.
+    r'''Enharmonically disjunct; enharmonic equivalents both appear.
     '''
     t = Chord([0, ('cs', 4), 2], (1, 4))
     u = Chord([0, ('df', 4), 2], (1, 4))
@@ -46,7 +46,7 @@ def test_Leaf___or___04():
 
 
 def test_Leaf___or___05():
-    '''Differing durations; noncommutative union takes from LHS.
+    r'''Differing durations; noncommutative union takes from LHS.
     '''
     t = Chord([0, 1, 2], (1, 4))
     u = Chord([3, 4, 5], (1, 8))
@@ -58,7 +58,7 @@ def test_Leaf___or___05():
 
 
 def test_Leaf___or___06():
-    '''Differing durations; noncommutative union takes from LHS.
+    r'''Differing durations; noncommutative union takes from LHS.
     '''
     t = Chord([0, 1, 2], (1, 8))
     u = Chord([3, 4, 5], (1, 4))
@@ -69,7 +69,7 @@ def test_Leaf___or___06():
 
 
 def test_Leaf___or___07():
-    '''Rest in union with note produces note.
+    r'''Rest in union with note produces note.
     '''
     t = Rest((1, 4))
     u = Note("c'4")
@@ -80,7 +80,7 @@ def test_Leaf___or___07():
 
 
 def test_Leaf___or___08():
-    '''Note in union with like pitched note produces note.
+    r'''Note in union with like pitched note produces note.
     '''
     t = Note("c'4")
     u = Note("c'4")
@@ -91,7 +91,7 @@ def test_Leaf___or___08():
 
 
 def test_Leaf___or___09():
-    '''Note in union with differently pitched note produces chord.
+    r'''Note in union with differently pitched note produces chord.
     '''
     t = Note("c'4")
     u = Note(2, (1, 4))
@@ -102,7 +102,7 @@ def test_Leaf___or___09():
 
 
 def test_Leaf___or___10():
-    '''Chord in union with differently pitched note produces chord.
+    r'''Chord in union with differently pitched note produces chord.
     '''
     t = Chord([0, 2], (1, 4))
     u = Note(4, (1, 4))
@@ -113,7 +113,7 @@ def test_Leaf___or___10():
 
 
 def test_Leaf___or___11():
-    '''Chord in union with like pitched note produces chord.
+    r'''Chord in union with like pitched note produces chord.
     '''
     t = Chord([0, 2], (1, 4))
     u = Note("c'4")

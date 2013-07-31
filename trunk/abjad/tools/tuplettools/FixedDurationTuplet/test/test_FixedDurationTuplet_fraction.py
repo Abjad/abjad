@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_FixedDurationTuplet_fraction_01():
-    '''Fraction format tuplets with non-power of two denominators.
+    r'''Fraction format tuplets with non-power of two denominators.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(3, 8), "c'8 d'8 e'8 f'8")
@@ -22,7 +22,7 @@ def test_FixedDurationTuplet_fraction_01():
 
 
 def test_FixedDurationTuplet_fraction_02():
-    '''Fraction format all augmentations, even ones with power-of-two denominator.
+    r'''Fraction format all augmentations, even ones with power-of-two denominator.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(4, 8), "c'8 d'8 e'8")
@@ -42,7 +42,7 @@ def test_FixedDurationTuplet_fraction_02():
 
 
 def test_FixedDurationTuplet_fraction_03():
-    '''Do not fraction format trivial tuplets.
+    r'''Do not fraction format trivial tuplets.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(3, 8), "c'8 d'8 e'8")

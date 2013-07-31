@@ -3,7 +3,7 @@ import types
 
 
 class Selection(object):
-    '''Selection of components taken from a single score.
+    r'''Selection of components taken from a single score.
 
     Selections will eventually model all user selections.
 
@@ -40,7 +40,7 @@ class Selection(object):
     ### SPECIAL METHODS ###
 
     def __add__(self, expr):
-        '''Cocatenate `expr` to selection.
+        r'''Cocatenate `expr` to selection.
 
         Return new selection.
         '''
@@ -55,14 +55,14 @@ class Selection(object):
         return type(self)(music)
 
     def __contains__(self, expr):
-        '''True when `expr` is in selection. Otherwise false.
+        r'''True when `expr` is in selection. Otherwise false.
 
         Return boolean.
         '''
         return expr in self._music
 
     def __eq__(self, expr):
-        '''True when selection and `expr` are of the same type
+        r'''True when selection and `expr` are of the same type
         and when music of selection equals music of `expr`.
         Otherwise false.
 
@@ -76,7 +76,7 @@ class Selection(object):
             return self._music == tuple(expr)
 
     def __getitem__(self, expr):
-        '''Get item `expr` from selection.
+        r'''Get item `expr` from selection.
 
         Return component from selection.
         '''
@@ -88,21 +88,21 @@ class Selection(object):
         return result
 
     def __len__(self):
-        '''Number of components in selection.
+        r'''Number of components in selection.
 
         Return nonnegative integer.
         '''
         return len(self._music)
 
     def __ne__(self, expr):
-        '''True when selection does not equal `expr`. Otherwise false.
+        r'''True when selection does not equal `expr`. Otherwise false.
 
         Return boolean.
         '''
         return not self == expr
 
     def __radd__(self, expr):
-        '''Concatenate selection to `expr`.
+        r'''Concatenate selection to `expr`.
 
         Return newly created selection.
         '''
@@ -117,7 +117,7 @@ class Selection(object):
         return Selection(music)
 
     def __repr__(self):
-        '''Selection interpreter representation.
+        r'''Selection interpreter representation.
 
         Return string.
         '''

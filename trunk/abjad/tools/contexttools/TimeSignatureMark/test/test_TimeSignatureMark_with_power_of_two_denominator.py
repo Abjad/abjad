@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_TimeSignatureMark_with_power_of_two_denominator_01():
-    '''Make n/12 time_signatures into n/8 time_signatures, where possible.
+    r'''Make n/12 time_signatures into n/8 time_signatures, where possible.
     '''
 
     assert contexttools.TimeSignatureMark((1, 12)).with_power_of_two_denominator() == (1, 12)
@@ -14,7 +14,7 @@ def test_TimeSignatureMark_with_power_of_two_denominator_01():
 
 
 def test_TimeSignatureMark_with_power_of_two_denominator_02():
-    '''Make n/14 time_signatures into n/8 time_signatures, where possible.
+    r'''Make n/14 time_signatures into n/8 time_signatures, where possible.
     '''
 
     assert contexttools.TimeSignatureMark((1, 14)).with_power_of_two_denominator() == (1, 14)
@@ -27,7 +27,7 @@ def test_TimeSignatureMark_with_power_of_two_denominator_02():
 
 
 def test_TimeSignatureMark_with_power_of_two_denominator_03():
-    '''Make n/24 time_signatures into n/16 time_signatures, where possible.
+    r'''Make n/24 time_signatures into n/16 time_signatures, where possible.
     '''
 
     assert contexttools.TimeSignatureMark((1, 24)).with_power_of_two_denominator() == (1, 24)
@@ -41,7 +41,7 @@ def test_TimeSignatureMark_with_power_of_two_denominator_03():
 
 
 def test_TimeSignatureMark_with_power_of_two_denominator_04():
-    '''Make n/24 time_signatures into n/8 time_signatures, where possible.
+    r'''Make n/24 time_signatures into n/8 time_signatures, where possible.
     '''
 
     assert contexttools.TimeSignatureMark((1, 24)).with_power_of_two_denominator(Multiplier(99)) == (1, 24)

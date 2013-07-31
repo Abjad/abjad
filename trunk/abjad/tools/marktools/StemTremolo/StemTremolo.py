@@ -51,7 +51,7 @@ class StemTremolo(Mark):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        '''Copy stem tremolo:
+        r'''Copy stem tremolo:
 
         ::
 
@@ -76,7 +76,7 @@ class StemTremolo(Mark):
         return new
 
     def __eq__(self, expr):
-        '''True when `expr` is a stem tremolo with equal tremolo flags:
+        r'''True when `expr` is a stem tremolo with equal tremolo flags:
         Otherwise false:
 
         ::
@@ -126,7 +126,7 @@ class StemTremolo(Mark):
 
     @property
     def lilypond_format(self):
-        '''LilyPond format string:
+        r'''LilyPond format string:
 
         ::
 
@@ -141,7 +141,7 @@ class StemTremolo(Mark):
     @apply
     def tremolo_flags():
         def fget(self):
-            '''Get tremolo flags:
+            r'''Get tremolo flags:
 
             ::
 

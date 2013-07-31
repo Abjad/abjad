@@ -7,7 +7,7 @@ from abjad.tools import sequencetools
 
 
 def make_notes(pitches, durations, decrease_durations_monotonically=True):
-    '''Make notes according to `pitches` and `durations`.
+    r'''Make notes according to `pitches` and `durations`.
 
     Cycle through `pitches` when the length of `pitches` is less than the
     length of `durations`:

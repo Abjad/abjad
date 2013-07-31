@@ -3,7 +3,7 @@ from abjad.tools import sequencetools
 
 
 def test_sequencetools_iterate_sequence_cyclically_01():
-    '''Defaults step to 1 and start to 0.
+    r'''Defaults step to 1 and start to 0.
     '''
 
     l = [1, 2, 3, 4, 5, 6, 7]
@@ -13,7 +13,7 @@ def test_sequencetools_iterate_sequence_cyclically_01():
 
 
 def test_sequencetools_iterate_sequence_cyclically_02():
-    '''Step can be greater than 1.
+    r'''Step can be greater than 1.
     '''
 
     l = [1, 2, 3, 4, 5, 6, 7]
@@ -23,7 +23,7 @@ def test_sequencetools_iterate_sequence_cyclically_02():
 
 
 def test_sequencetools_iterate_sequence_cyclically_03():
-    '''Start can be greater than 0.
+    r'''Start can be greater than 0.
     '''
 
     l = [1, 2, 3, 4, 5, 6, 7]
@@ -33,7 +33,7 @@ def test_sequencetools_iterate_sequence_cyclically_03():
 
 
 def test_sequencetools_iterate_sequence_cyclically_04():
-    '''Step can be negative.
+    r'''Step can be negative.
     '''
 
     l = [1, 2, 3, 4, 5, 6, 7]
@@ -43,7 +43,7 @@ def test_sequencetools_iterate_sequence_cyclically_04():
 
 
 def test_sequencetools_iterate_sequence_cyclically_05():
-    '''Works on generator input.
+    r'''Works on generator input.
     '''
 
     t = list(sequencetools.iterate_sequence_cyclically(xrange(1, 8), length=20))

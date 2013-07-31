@@ -2,7 +2,7 @@ from abjad.tools.schemetools.Scheme import Scheme
 
 
 class SchemeColor(Scheme):
-    '''Abjad model of Scheme color:
+    r'''Abjad model of Scheme color:
 
     ::
 

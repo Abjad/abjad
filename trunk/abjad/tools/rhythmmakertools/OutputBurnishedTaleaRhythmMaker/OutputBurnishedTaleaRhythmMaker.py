@@ -122,7 +122,7 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
 
     @property
     def storage_format(self):
-        '''Output-burnished talea rhythm-maker storage format:
+        r'''Output-burnished talea rhythm-maker storage format:
 
         ::
 
@@ -151,7 +151,7 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
-        '''Create new output-burnished talea rhythm-maker with `kwargs`:
+        r'''Create new output-burnished talea rhythm-maker with `kwargs`:
 
         ::
 
@@ -198,7 +198,7 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
         return BurnishedRhythmMaker.new(self, **kwargs)
 
     def reverse(self):
-        '''Reverse output-burnished talea rhythm-maker:
+        r'''Reverse output-burnished talea rhythm-maker:
 
         ::
 

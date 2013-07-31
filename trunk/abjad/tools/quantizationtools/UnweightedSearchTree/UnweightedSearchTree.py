@@ -5,7 +5,7 @@ from abjad.tools.quantizationtools.SearchTree import SearchTree
 
 
 class UnweightedSearchTree(SearchTree):
-    '''Concrete ``SearchTree`` subclass, based on Paul Nauert's search 
+    r'''Concrete ``SearchTree`` subclass, based on Paul Nauert's search 
     tree model:
 
     ::
@@ -88,7 +88,7 @@ class UnweightedSearchTree(SearchTree):
 
     @property
     def default_definition(self):
-        '''The default search tree definition, based on the search tree given
+        r'''The default search tree definition, based on the search tree given
         by Paul Nauert:
 
         ::

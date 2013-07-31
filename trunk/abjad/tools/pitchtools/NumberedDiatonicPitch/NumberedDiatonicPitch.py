@@ -62,7 +62,7 @@ class NumberedDiatonicPitch(DiatonicPitch, NumberedPitch):
 
     @property
     def chromatic_pitch_number(self):
-        '''Chromatic pitch number:
+        r'''Chromatic pitch number:
 
         ::
 
@@ -77,7 +77,7 @@ class NumberedDiatonicPitch(DiatonicPitch, NumberedPitch):
 
     @property
     def diatonic_pitch_number(self):
-        '''Diatonic pitch number:
+        r'''Diatonic pitch number:
 
         ::
 
@@ -90,7 +90,7 @@ class NumberedDiatonicPitch(DiatonicPitch, NumberedPitch):
 
     @property
     def named_diatonic_pitch(self):
-        '''Named diatonic pitch:
+        r'''Named diatonic pitch:
 
         ::
 
@@ -106,7 +106,7 @@ class NumberedDiatonicPitch(DiatonicPitch, NumberedPitch):
 
     @property
     def named_diatonic_pitch_class(self):
-        '''Named diatonic pitch-class:
+        r'''Named diatonic pitch-class:
 
         ::
 
@@ -122,7 +122,7 @@ class NumberedDiatonicPitch(DiatonicPitch, NumberedPitch):
 
     @property
     def numbered_diatonic_pitch_class(self):
-        '''Numbered diatonic pitch-class:
+        r'''Numbered diatonic pitch-class:
 
         ::
 

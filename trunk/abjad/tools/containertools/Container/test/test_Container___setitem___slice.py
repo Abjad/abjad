@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Container___setitem___slice_01():
-    '''Containers set single leaves correctly in an unspanned structure.
+    r'''Containers set single leaves correctly in an unspanned structure.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -24,7 +24,7 @@ def test_Container___setitem___slice_01():
 
 
 def test_Container___setitem___slice_02():
-    '''Set single leaf between spanned components.
+    r'''Set single leaf between spanned components.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -47,7 +47,7 @@ def test_Container___setitem___slice_02():
 
 
 def test_Container___setitem___slice_03():
-    '''Containers set sequence of leaves
+    r'''Containers set sequence of leaves
         between spanned components.'''
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'8"), Note("a'8")]
@@ -86,7 +86,7 @@ def test_Container___setitem___slice_03():
 
 
 def test_Container___setitem___slice_04():
-    '''Replace sequence of spanned components with a single leaf.
+    r'''Replace sequence of spanned components with a single leaf.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -107,7 +107,7 @@ def test_Container___setitem___slice_04():
 
 
 def test_Container___setitem___slice_05():
-    '''Replace a sequence of multiple components with
+    r'''Replace a sequence of multiple components with
         a different sequence of multiple components.'''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -130,7 +130,7 @@ def test_Container___setitem___slice_05():
 
 
 def test_Container___setitem___slice_06():
-    '''Donor and recipient container are the same.
+    r'''Donor and recipient container are the same.
     '''
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
@@ -170,7 +170,7 @@ def test_Container___setitem___slice_06():
 
 
 def test_Container___setitem___slice_07():
-    '''Donor and recipient container are the same.
+    r'''Donor and recipient container are the same.
     '''
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
@@ -211,7 +211,7 @@ def test_Container___setitem___slice_07():
 
 
 def test_Container___setitem___slice_08():
-    '''Donor and recipient container are the same.
+    r'''Donor and recipient container are the same.
     '''
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
@@ -250,7 +250,7 @@ def test_Container___setitem___slice_08():
 
 
 def test_Container___setitem___slice_09():
-    '''Donor and recipient container are the same.
+    r'''Donor and recipient container are the same.
     '''
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
@@ -292,7 +292,7 @@ def test_Container___setitem___slice_09():
 
 
 def test_Container___setitem___slice_10():
-    '''Donor and recipient container are the same.
+    r'''Donor and recipient container are the same.
     '''
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
@@ -333,7 +333,7 @@ def test_Container___setitem___slice_10():
 
 
 def test_Container___setitem___slice_11():
-    '''Extremely small coequal indices act as zero.
+    r'''Extremely small coequal indices act as zero.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -355,7 +355,7 @@ def test_Container___setitem___slice_11():
 
 
 def test_Container___setitem___slice_12():
-    '''Extremely large, coequal indices work correctly.
+    r'''Extremely large, coequal indices work correctly.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -377,7 +377,7 @@ def test_Container___setitem___slice_12():
 
 
 def test_Container___setitem___slice_13():
-    '''You can use the slice for of setitem to empty the contents
+    r'''You can use the slice for of setitem to empty the contents
     of a container. When you do this, emptied components withdraw
     from absolutely all spanners.
 

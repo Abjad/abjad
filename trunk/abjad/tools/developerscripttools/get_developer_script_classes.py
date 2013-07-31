@@ -4,7 +4,7 @@ from abjad.tools import documentationtools
 
 
 def get_developer_script_classes():
-    '''Return a list of all developer script classes.
+    r'''Return a list of all developer script classes.
     '''
     from abjad.tools import developerscripttools
     from abjad.tools import abjadbooktools

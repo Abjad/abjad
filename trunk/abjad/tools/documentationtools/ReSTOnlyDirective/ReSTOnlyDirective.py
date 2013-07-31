@@ -2,7 +2,7 @@ from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 
 
 class ReSTOnlyDirective(ReSTDirective):
-    '''An ReST `only` directive:
+    r'''An ReST `only` directive:
 
     ::
 

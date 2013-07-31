@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_BracketSpanner___init___01():
-    '''Init empty bracket spanner.
+    r'''Init empty bracket spanner.
     '''
 
     bracket = spannertools.BracketSpanner()
@@ -10,7 +10,7 @@ def test_BracketSpanner___init___01():
 
 
 def test_BracketSpanner___init___02():
-    '''Bracket defaults to solid red line with left and right nibs
+    r'''Bracket defaults to solid red line with left and right nibs
     and with no nibs at left and right broken edges.
     '''
 

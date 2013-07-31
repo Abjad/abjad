@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_NaturalHarmonic___init___01():
-    '''Init natural harmonic from note.
+    r'''Init natural harmonic from note.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")

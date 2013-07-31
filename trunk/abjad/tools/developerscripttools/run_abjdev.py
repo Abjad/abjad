@@ -1,5 +1,5 @@
 def run_abjdev():
-    '''Entry point for setuptools.
+    r'''Entry point for setuptools.
 
     One-line wrapper around AbjDevScript.
     '''

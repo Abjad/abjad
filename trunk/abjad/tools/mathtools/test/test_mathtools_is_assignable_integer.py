@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 
 
 def test_mathtools_is_assignable_integer_01():
-    '''True when integer n can be written without
+    r'''True when integer n can be written without
     recourse to ties. Otherwise false.
     '''
 

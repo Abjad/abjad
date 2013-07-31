@@ -17,7 +17,7 @@ def test_sequencetools_yield_all_combinations_of_sequence_elements_02():
 
 
 def test_sequencetools_yield_all_combinations_of_sequence_elements_03():
-    '''Yield all combinations of iterable at least minimum length
+    r'''Yield all combinations of iterable at least minimum length
     and with at most maximum length.
     '''
 

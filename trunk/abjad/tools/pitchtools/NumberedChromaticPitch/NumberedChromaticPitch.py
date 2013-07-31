@@ -94,7 +94,7 @@ class NumberedChromaticPitch(ChromaticPitch, NumberedPitch):
 
     @property
     def chromatic_pitch_number(self):
-        '''Chromatic pitch-class number:
+        r'''Chromatic pitch-class number:
 
         ::
 
@@ -107,7 +107,7 @@ class NumberedChromaticPitch(ChromaticPitch, NumberedPitch):
 
     @property
     def diatonic_pitch_class_number(self):
-        '''Diatonic pitch-class number:
+        r'''Diatonic pitch-class number:
 
         ::
 
@@ -122,7 +122,7 @@ class NumberedChromaticPitch(ChromaticPitch, NumberedPitch):
 
     @property
     def diatonic_pitch_number(self):
-        '''Diatonic pitch-class number:
+        r'''Diatonic pitch-class number:
 
         ::
 
@@ -138,7 +138,7 @@ class NumberedChromaticPitch(ChromaticPitch, NumberedPitch):
     ### PUBLIC METHODS ###
 
     def apply_accidental(self, accidental=None):
-        '''Apply `accidental`:
+        r'''Apply `accidental`:
 
         ::
 
@@ -153,7 +153,7 @@ class NumberedChromaticPitch(ChromaticPitch, NumberedPitch):
         return type(self)(semitones)
 
     def transpose(self, n=0):
-        '''Tranpose by `n` semitones:
+        r'''Tranpose by `n` semitones:
 
         ::
 

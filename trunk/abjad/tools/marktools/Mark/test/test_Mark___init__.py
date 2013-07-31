@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Mark___init___01():
-    '''Initialize mark from empty argument list.
+    r'''Initialize mark from empty argument list.
     '''
 
     mark = marktools.Mark()
@@ -10,7 +10,7 @@ def test_Mark___init___01():
 
 
 def test_Mark___init___02():
-    '''Initialize mark from other mark.
+    r'''Initialize mark from other mark.
     '''
 
     mark_1 = marktools.Mark()

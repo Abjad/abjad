@@ -3,7 +3,7 @@ from abjad.tools.notetools import NoteHead
 
 
 def test_NoteHead___repr___01():
-    '''Note head repr is evaluable.
+    r'''Note head repr is evaluable.
     '''
 
     note_head_1 = notetools.NoteHead("cs''")

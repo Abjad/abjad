@@ -2,7 +2,7 @@ from abjad.tools import durationtools
 
 
 def concatenate_trees(trees, padding=0):
-    '''Merge all trees in `trees`, offsetting each subsequent tree
+    r'''Merge all trees in `trees`, offsetting each subsequent tree
     to start_offset after the previous.
 
     Return TimeIntervalTree.

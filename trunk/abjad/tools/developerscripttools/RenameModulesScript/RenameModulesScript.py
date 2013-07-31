@@ -8,7 +8,7 @@ from abjad.tools.developerscripttools.ReplaceInFilesScript \
 
 
 class RenameModulesScript(DeveloperScript):
-    '''Rename classes and functions.
+    r'''Rename classes and functions.
 
     Handle renaming the module and package, as well as any tests, 
     documentation or mentions of the class throughout the Abjad codebase:

@@ -1,4 +1,4 @@
 class LineBreakError(Exception):
-    '''General link break error.
+    r'''General link break error.
     '''
     pass

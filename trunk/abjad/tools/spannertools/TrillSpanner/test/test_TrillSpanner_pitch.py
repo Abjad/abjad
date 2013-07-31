@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_TrillSpanner_pitch_01():
-    '''Assign Abjad pitch instance to create a pitched trill.
+    r'''Assign Abjad pitch instance to create a pitched trill.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -24,7 +24,7 @@ def test_TrillSpanner_pitch_01():
 
 
 def test_TrillSpanner_pitch_02():
-    '''Any pitch init value will work.
+    r'''Any pitch init value will work.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -46,7 +46,7 @@ def test_TrillSpanner_pitch_02():
 
 
 def test_TrillSpanner_pitch_03():
-    '''Clear with None.
+    r'''Clear with None.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")

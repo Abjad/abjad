@@ -2,7 +2,7 @@ import math
 
 
 def interpolate_cosine(y1, y2, mu):
-    '''Cosine interpolate `y1` and `y2` with `mu` normalized ``[0, 1]``:
+    r'''Cosine interpolate `y1` and `y2` with `mu` normalized ``[0, 1]``:
 
     ::
 

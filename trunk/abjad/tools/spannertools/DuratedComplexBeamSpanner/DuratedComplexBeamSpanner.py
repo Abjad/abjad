@@ -145,7 +145,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
     @apply
     def durations():
         def fget(self):
-            '''Get spanner leaf group durations:
+            r'''Get spanner leaf group durations:
 
             ::
 

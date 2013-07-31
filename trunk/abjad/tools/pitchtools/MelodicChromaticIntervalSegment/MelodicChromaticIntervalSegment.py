@@ -54,7 +54,7 @@ class MelodicChromaticIntervalSegment(IntervalSegment):
 
     @property
     def slope(self):
-        '''The slope of a melodic interval segment is the sum of its 
+        r'''The slope of a melodic interval segment is the sum of its 
         intervals divided by its length:
 
         ::
@@ -69,7 +69,7 @@ class MelodicChromaticIntervalSegment(IntervalSegment):
 
     @property
     def spread(self):
-        '''The maximum harmonic interval spanned by any combination of 
+        r'''The maximum harmonic interval spanned by any combination of 
         the intervals within a harmonic chromatic interval segment:
 
         ::

@@ -2,7 +2,7 @@ from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
 class ReSTHeading(TreeNode):
-    '''An ReST Heading:
+    r'''An ReST Heading:
 
     ::
 

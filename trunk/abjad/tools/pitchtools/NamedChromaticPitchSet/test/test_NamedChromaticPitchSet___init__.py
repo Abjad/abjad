@@ -2,21 +2,21 @@ from abjad import *
 
 
 def test_NamedChromaticPitchSet___init___01():
-    '''Works with numbers.
+    r'''Works with numbers.
     '''
 
     assert len(pitchtools.NamedChromaticPitchSet([12, 14, 18, 19])) == 4
 
 
 def test_NamedChromaticPitchSet___init___02():
-    '''Works with pitches.
+    r'''Works with pitches.
     '''
 
     assert len(pitchtools.NamedChromaticPitchSet([pitchtools.NamedChromaticPitch(x) for x in [12, 14, 18, 19]])) == 4
 
 
 def test_NamedChromaticPitchSet___init___03():
-    '''Works with notes.
+    r'''Works with notes.
     '''
 
     note = Note(13, (1, 4))
@@ -25,7 +25,7 @@ def test_NamedChromaticPitchSet___init___03():
 
 
 def test_NamedChromaticPitchSet___init___04():
-    '''Works with chords.
+    r'''Works with chords.
     '''
 
     chord = Chord([13, 14, 15], (1, 4))
@@ -34,7 +34,7 @@ def test_NamedChromaticPitchSet___init___04():
 
 
 def test_NamedChromaticPitchSet___init___05():
-    '''Works with chords with duplicate pitches.
+    r'''Works with chords with duplicate pitches.
     '''
 
     chord = Chord([13, 13, 13, 14], (1, 4))
@@ -43,7 +43,7 @@ def test_NamedChromaticPitchSet___init___05():
 
 
 def test_NamedChromaticPitchSet___init___06():
-    '''Works with empty chords.
+    r'''Works with empty chords.
     '''
 
     chord = Chord([], (1, 4))
@@ -52,7 +52,7 @@ def test_NamedChromaticPitchSet___init___06():
 
 
 def test_NamedChromaticPitchSet___init___07():
-    '''Works with chords.
+    r'''Works with chords.
     '''
 
     assert len(pitchtools.NamedChromaticPitchSet(Chord([12, 14, 18, 19], (1, 4)))) == 4

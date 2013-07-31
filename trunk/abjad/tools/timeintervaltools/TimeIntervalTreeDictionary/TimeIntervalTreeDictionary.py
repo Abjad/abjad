@@ -8,7 +8,7 @@ from abjad.tools.timeintervaltools.TimeIntervalAggregateMixin \
 
 class TimeIntervalTreeDictionary(
     TimeIntervalAggregateMixin, ImmutableDictionary):
-    '''A dictionary of `TimeIntervalTrees`:
+    r'''A dictionary of `TimeIntervalTrees`:
 
     ::
 
@@ -146,7 +146,7 @@ class TimeIntervalTreeDictionary(
 
     @property
     def composite_tree(self):
-        '''The `TimeIntervalTree` composed of all the intervals in all 
+        r'''The `TimeIntervalTree` composed of all the intervals in all 
         trees in self:
 
         ::
@@ -174,7 +174,7 @@ class TimeIntervalTreeDictionary(
 
     @property
     def earliest_start(self):
-        '''The earliest start_offset offset of all intervals in all trees in self:
+        r'''The earliest start_offset offset of all intervals in all trees in self:
 
         ::
 
@@ -196,7 +196,7 @@ class TimeIntervalTreeDictionary(
 
     @property
     def earliest_stop(self):
-        '''The earliest stop_offset offset of all intervals in all trees in self:
+        r'''The earliest stop_offset offset of all intervals in all trees in self:
 
         ::
 
@@ -222,7 +222,7 @@ class TimeIntervalTreeDictionary(
 
     @property
     def latest_start(self):
-        '''The latest start_offset offset of all intervals in all trees in self:
+        r'''The latest start_offset offset of all intervals in all trees in self:
 
         ::
 
@@ -244,7 +244,7 @@ class TimeIntervalTreeDictionary(
 
     @property
     def latest_stop(self):
-        '''The latest stop_offset offset of all intervals in all trees in self:
+        r'''The latest stop_offset offset of all intervals in all trees in self:
 
         ::
 
@@ -317,7 +317,7 @@ class TimeIntervalTreeDictionary(
         return type(self)(result)
 
     def find_intervals_intersecting_or_tangent_to_interval(self, *args):
-        '''Find all intervals in dictionary intersecting or tangent 
+        r'''Find all intervals in dictionary intersecting or tangent 
         to the interval defined in `args`:
 
         ::
@@ -387,7 +387,7 @@ class TimeIntervalTreeDictionary(
         return type(self)(result)
 
     def find_intervals_intersecting_or_tangent_to_offset(self, offset):
-        '''Find all intervals in dictionary intersecting or tangent 
+        r'''Find all intervals in dictionary intersecting or tangent 
         to `offset`:
 
         ::
@@ -457,7 +457,7 @@ class TimeIntervalTreeDictionary(
         return type(self)(result)
 
     def find_intervals_starting_after_offset(self, offset):
-        '''Find all intervals in dictionary starting after `offset`:
+        r'''Find all intervals in dictionary starting after `offset`:
 
         ::
 
@@ -517,7 +517,7 @@ class TimeIntervalTreeDictionary(
         return type(self)(result)
 
     def find_intervals_starting_and_stopping_within_interval(self, *args):
-        '''Find all intervals in dictionary starting and stopping within 
+        r'''Find all intervals in dictionary starting and stopping within 
         the interval defined by `args`:
 
         ::
@@ -584,7 +584,7 @@ class TimeIntervalTreeDictionary(
         return type(self)(result)
 
     def find_intervals_starting_at_offset(self, offset):
-        '''Find all intervals in dictionary starting at `offset`:
+        r'''Find all intervals in dictionary starting at `offset`:
 
         ::
 
@@ -644,7 +644,7 @@ class TimeIntervalTreeDictionary(
         return type(self)(result)
 
     def find_intervals_starting_before_offset(self, offset):
-        '''Find all intervals in dictionary starting before `offset`:
+        r'''Find all intervals in dictionary starting before `offset`:
 
         ::
 
@@ -710,7 +710,7 @@ class TimeIntervalTreeDictionary(
         return type(self)(result)
 
     def find_intervals_starting_or_stopping_at_offset(self, offset):
-        '''Find all intervals in dictionary starting or stopping at `offset`:
+        r'''Find all intervals in dictionary starting or stopping at `offset`:
 
         ::
 
@@ -773,7 +773,7 @@ class TimeIntervalTreeDictionary(
         return type(self)(result)
 
     def find_intervals_starting_within_interval(self, *args):
-        '''Find all intervals in dictionary starting within the interval 
+        r'''Find all intervals in dictionary starting within the interval 
         defined by `args`:
 
         ::
@@ -837,7 +837,7 @@ class TimeIntervalTreeDictionary(
         return type(self)(result)
 
     def find_intervals_stopping_after_offset(self, offset):
-        '''Find all intervals in dictionary stopping after `offset`:
+        r'''Find all intervals in dictionary stopping after `offset`:
 
         ::
 
@@ -903,7 +903,7 @@ class TimeIntervalTreeDictionary(
         return type(self)(result)
 
     def find_intervals_stopping_at_offset(self, offset):
-        '''Find all intervals in dictionary stopping at `offset`:
+        r'''Find all intervals in dictionary stopping at `offset`:
 
         ::
 
@@ -963,7 +963,7 @@ class TimeIntervalTreeDictionary(
         return type(self)(result)
 
     def find_intervals_stopping_before_offset(self, offset):
-        '''Find all intervals in dictionary stopping before `offset`:
+        r'''Find all intervals in dictionary stopping before `offset`:
 
         ::
 
@@ -1032,7 +1032,7 @@ class TimeIntervalTreeDictionary(
         return type(self)(result)
 
     def find_intervals_stopping_within_interval(self, *args):
-        '''Find all intervals in dictionary stopping within the interval
+        r'''Find all intervals in dictionary stopping within the interval
         defined by `args`:
 
         ::
@@ -1099,7 +1099,7 @@ class TimeIntervalTreeDictionary(
         return type(self)(result)
 
     def quantize_to_rational(self, rational):
-        '''Quantize all intervals in dictionary to a multiple (1 or more)
+        r'''Quantize all intervals in dictionary to a multiple (1 or more)
         of `rational`:
 
         ::
@@ -1177,7 +1177,7 @@ class TimeIntervalTreeDictionary(
         return type(self)(result)
 
     def scale_by_rational(self, rational):
-        '''Scale aggregate duration of dictionary by `rational`:
+        r'''Scale aggregate duration of dictionary by `rational`:
 
         ::
 
@@ -1311,7 +1311,7 @@ class TimeIntervalTreeDictionary(
         return type(self)(result)
 
     def scale_to_rational(self, rational):
-        '''Scale aggregate duration of dictionary to `rational`:
+        r'''Scale aggregate duration of dictionary to `rational`:
 
         ::
 
@@ -1408,7 +1408,7 @@ class TimeIntervalTreeDictionary(
         return type(self)(result)
 
     def shift_by_rational(self, rational):
-        '''Shift aggregate offset of dictionary by `rational`:
+        r'''Shift aggregate offset of dictionary by `rational`:
 
         ::
 
@@ -1473,7 +1473,7 @@ class TimeIntervalTreeDictionary(
         return type(self)(result)
 
     def shift_to_rational(self, rational):
-        '''Shift aggregate offset of dictionary to `rational`:
+        r'''Shift aggregate offset of dictionary to `rational`:
 
         ::
 
@@ -1524,7 +1524,7 @@ class TimeIntervalTreeDictionary(
         return type(self)(result)
 
     def split_at_rationals(self, *rationals):
-        '''Split dictionary at each rational in `rationals`:
+        r'''Split dictionary at each rational in `rationals`:
 
         ::
 

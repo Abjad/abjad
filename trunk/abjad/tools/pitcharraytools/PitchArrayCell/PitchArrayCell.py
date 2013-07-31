@@ -219,7 +219,7 @@ class PitchArrayCell(AbjadObject):
 
     @property
     def column_indices(self):
-        '''Tuple of one or more nonnegative integer indices.
+        r'''Tuple of one or more nonnegative integer indices.
         '''
         parent_row = self.parent_row
         if parent_row is not None:

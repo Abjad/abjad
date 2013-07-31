@@ -54,7 +54,7 @@ class BFlatClarinet(Clarinet):
     ### PUBLIC METHODS ###
 
     def get_performer_names(self):
-        '''Get performer names:
+        r'''Get performer names:
 
         ::
 

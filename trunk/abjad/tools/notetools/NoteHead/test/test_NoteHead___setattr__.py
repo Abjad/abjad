@@ -3,7 +3,7 @@ import py.test
 
 
 def test_NoteHead___setattr___01():
-    '''Slots constrain note head attributes.
+    r'''Slots constrain note head attributes.
     '''
 
     note_head = notetools.NoteHead("cs''")

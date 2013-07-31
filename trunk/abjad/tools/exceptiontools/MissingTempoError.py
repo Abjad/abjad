@@ -1,4 +1,4 @@
 class MissingTempoError(Exception):
-    '''No tempo found.
+    r'''No tempo found.
     '''
     pass

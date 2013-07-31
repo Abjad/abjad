@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Container_insert_01():
-    '''Insert component into container at index i.
+    r'''Insert component into container at index i.
     Fracture spanners to the left of index i.
     Fracture spanners to the right of index i.
     Return Python list of fractured spanners.
@@ -30,7 +30,7 @@ def test_Container_insert_01():
 
 
 def test_Container_insert_02():
-    '''Insert works inside a spanner.
+    r'''Insert works inside a spanner.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -53,7 +53,7 @@ def test_Container_insert_02():
 
 
 def test_Container_insert_03():
-    '''Insert works just after a spanner.
+    r'''Insert works just after a spanner.
     '''
 
     t = Staff([Note(n, (1, 8)) for n in range(4)])
@@ -75,7 +75,7 @@ def test_Container_insert_03():
 
 
 def test_Container_insert_04():
-    '''Insert works with really big positive values.
+    r'''Insert works with really big positive values.
     '''
 
     t = Staff([Note(n, (1, 8)) for n in range(4)])
@@ -97,7 +97,7 @@ def test_Container_insert_04():
 
 
 def test_Container_insert_05():
-    '''Insert works with negative values.
+    r'''Insert works with negative values.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -119,7 +119,7 @@ def test_Container_insert_05():
 
 
 def test_Container_insert_06():
-    '''Insert works with really big negative values.
+    r'''Insert works with really big negative values.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -141,7 +141,7 @@ def test_Container_insert_06():
 
 
 def test_Container_insert_07():
-    '''Inserting a note from one container into another container
+    r'''Inserting a note from one container into another container
     changes note parent from first container to second.
     '''
 

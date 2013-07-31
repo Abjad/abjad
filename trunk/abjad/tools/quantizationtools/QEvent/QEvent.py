@@ -6,7 +6,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class QEvent(AbjadObject):
-    '''Abstract base class from which concrete ``QEvent`` subclasses 
+    r'''Abstract base class from which concrete ``QEvent`` subclasses 
     inherit.
 
     Represents an attack point to be quantized.
@@ -59,12 +59,12 @@ class QEvent(AbjadObject):
 
     @property
     def index(self):
-        '''The optional index, for sorting QEvents with identical offsets.
+        r'''The optional index, for sorting QEvents with identical offsets.
         '''
         return self._index
 
     @property
     def offset(self):
-        '''The offset in milliseconds of the event.
+        r'''The offset in milliseconds of the event.
         '''
         return self._offset

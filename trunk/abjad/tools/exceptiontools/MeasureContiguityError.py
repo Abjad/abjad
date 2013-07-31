@@ -1,4 +1,4 @@
 class MeasureContiguityError(Exception):
-    '''Measures must be contiguous.
+    r'''Measures must be contiguous.
     '''
     pass

@@ -5,7 +5,7 @@ from abjad.tools.quantizationtools.QSchema import QSchema
 
 
 class MeasurewiseQSchema(QSchema):
-    '''Concrete QSchema subclass which treats "measures" as 
+    r'''Concrete QSchema subclass which treats "measures" as 
     its time-step unit:
 
     ::
@@ -264,7 +264,7 @@ class MeasurewiseQSchema(QSchema):
 
     @property
     def item_class(self):
-        '''The schema's item class.
+        r'''The schema's item class.
         '''
         from abjad.tools import quantizationtools
         return quantizationtools.MeasurewiseQSchemaItem
@@ -281,12 +281,12 @@ class MeasurewiseQSchema(QSchema):
 
     @property
     def time_signature(self):
-        '''The default time signature.
+        r'''The default time signature.
         '''
         return self._time_signature
 
     @property
     def use_full_measure(self):
-        '''The full-measure-as-beatspan default.
+        r'''The full-measure-as-beatspan default.
         '''
         return self._use_full_measure

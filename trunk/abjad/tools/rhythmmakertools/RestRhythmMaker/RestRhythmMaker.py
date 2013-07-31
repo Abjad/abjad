@@ -113,7 +113,7 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
 
     @property
     def storage_format(self):
-        '''Rest rhythm-maker storage format:
+        r'''Rest rhythm-maker storage format:
 
         ::
 
@@ -129,7 +129,7 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
-        '''Create new rest rhythm-maker with `kwargs`:
+        r'''Create new rest rhythm-maker with `kwargs`:
 
         ::
 
@@ -163,7 +163,7 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
         return DivisionIncisedRestRhythmMaker.new(self, **kwargs)
 
     def reverse(self):
-        '''Reverse rest rhythm-maker:
+        r'''Reverse rest rhythm-maker:
 
         ::
 

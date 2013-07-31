@@ -3,7 +3,7 @@ import py.test
 
 
 def test_NamedChromaticPitchSet___slots___01():
-    '''Named chromatic pitch sets are immutable.
+    r'''Named chromatic pitch sets are immutable.
     '''
 
     ncps = ['bf', 'bqf', "fs'", "g'", 'bqf', "g'"]

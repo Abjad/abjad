@@ -1,5 +1,5 @@
 def difference_series(sequence):
-    '''Difference series of `sequence`:
+    r'''Difference series of `sequence`:
 
     ::
 

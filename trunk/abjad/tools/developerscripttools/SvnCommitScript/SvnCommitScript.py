@@ -5,7 +5,7 @@ from abjad.tools.developerscripttools.SvnMessageScript import SvnMessageScript
 
 
 class SvnCommitScript(DirectoryScript):
-    '''Run `svn commit`, using the commit message stored in the 
+    r'''Run `svn commit`, using the commit message stored in the 
     `.abjad` directory.
 
     The commit message will be printed to the terminal, and must be manually

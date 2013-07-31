@@ -69,7 +69,7 @@ def test_QGrid___call___02():
 
 
 def test_QGrid___call___03():
-    '''Non-binary works too.
+    r'''Non-binary works too.
     '''
 
     q_grid = QGrid()

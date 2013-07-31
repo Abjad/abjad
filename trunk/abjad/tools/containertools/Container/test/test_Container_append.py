@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Container_append_01():
-    '''Append sequential to voice.
+    r'''Append sequential to voice.
     '''
 
     t = Voice(notetools.make_repeated_notes(2))
@@ -27,7 +27,7 @@ def test_Container_append_01():
 
 
 def test_Container_append_02():
-    '''Append leaf to tuplet.
+    r'''Append leaf to tuplet.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -48,7 +48,7 @@ def test_Container_append_02():
 
 
 def test_Container_append_03():
-    '''Trying to append noncomponent to container
+    r'''Trying to append noncomponent to container
         raises TypeError.'''
 
     t = Voice("c'8 d'8 e'8")
@@ -61,7 +61,7 @@ def test_Container_append_03():
 
 
 def test_Container_append_04():
-    '''Append spanned leaf from donor container to recipient container.
+    r'''Append spanned leaf from donor container to recipient container.
     '''
 
     t = Voice("c'8 d'8 e'8")
@@ -118,7 +118,7 @@ def test_Container_append_04():
 
 
 def test_Container_append_05():
-    '''Append spanned leaf from donor container to recipient container.
+    r'''Append spanned leaf from donor container to recipient container.
         Donor and recipient containers are the same.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -149,7 +149,7 @@ def test_Container_append_05():
 
 
 def test_Container_append_06():
-    '''Can not insert grace container into container.
+    r'''Can not insert grace container into container.
     '''
 
     staff = Staff("c' d' e'")

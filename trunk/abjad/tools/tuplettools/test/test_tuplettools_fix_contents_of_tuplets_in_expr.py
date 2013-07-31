@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_tuplettools_fix_contents_of_tuplets_in_expr_01():
-    '''Halve note durations.
+    r'''Halve note durations.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'4 d'4 e'4")
@@ -32,7 +32,7 @@ def test_tuplettools_fix_contents_of_tuplets_in_expr_01():
 
 
 def test_tuplettools_fix_contents_of_tuplets_in_expr_02():
-    '''Double note duration.
+    r'''Double note duration.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'32 d'32 e'32")
@@ -63,7 +63,7 @@ def test_tuplettools_fix_contents_of_tuplets_in_expr_02():
 
 
 def test_tuplettools_fix_contents_of_tuplets_in_expr_03():
-    '''Halve note durations.
+    r'''Halve note durations.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(5, 16), "c'4 d'4 e'4")

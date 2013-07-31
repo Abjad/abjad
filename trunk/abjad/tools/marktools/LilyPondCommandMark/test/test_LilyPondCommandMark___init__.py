@@ -3,7 +3,7 @@ import py.test
 
 
 def test_LilyPondCommandMark___init___01():
-    '''Initialize LilyPond command mark from command name.
+    r'''Initialize LilyPond command mark from command name.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
@@ -26,7 +26,7 @@ def test_LilyPondCommandMark___init___01():
 
 
 def test_LilyPondCommandMark___init___02():
-    '''Set LilyPond command mark from command name.
+    r'''Set LilyPond command mark from command name.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
@@ -49,7 +49,7 @@ def test_LilyPondCommandMark___init___02():
 
 
 def test_LilyPondCommandMark___init___03():
-    '''Initialize LilyPond command mark from string and format slot.
+    r'''Initialize LilyPond command mark from string and format slot.
     '''
 
     lilypond_command_mark = marktools.LilyPondCommandMark('break', 'closing')
@@ -57,7 +57,7 @@ def test_LilyPondCommandMark___init___03():
 
 
 def test_LilyPondCommandMark___init___04():
-    '''Initialize LilyPondCommand mark from other LilyPond command mark.
+    r'''Initialize LilyPondCommand mark from other LilyPond command mark.
     '''
 
     lilypond_command_mark_1 = marktools.LilyPondCommandMark('break', 'closing')

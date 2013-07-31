@@ -4,7 +4,7 @@ from abjad.tools.lilypondproxytools.LilyPondContextProxy \
 
 
 def test_LilypondContextProxy___repr___01():
-    '''LilyPond component proxy repr is evaluable.
+    r'''LilyPond component proxy repr is evaluable.
     '''
 
     note = Note("c'4")

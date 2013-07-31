@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.OctaveTranspositionMappingComponent \
 
 
 def test_OctaveTranspositionMappingComponent___repr___01():
-    '''Reprs are evaluable.
+    r'''Reprs are evaluable.
     '''
 
     component_1 = pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', 15)

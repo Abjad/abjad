@@ -23,7 +23,7 @@ def test_PianoPedalSpanner_01():
 
 
 def test_PianoPedalSpanner_02():
-    '''PianoPedal spanner supports sostenuto pedal.
+    r'''PianoPedal spanner supports sostenuto pedal.
     '''
 
     t = Staff(notetools.make_repeated_notes(4))
@@ -45,7 +45,7 @@ def test_PianoPedalSpanner_02():
 
 
 def test_PianoPedalSpanner_03():
-    '''PianoPedal spanner supports una corda pedal.
+    r'''PianoPedal spanner supports una corda pedal.
     '''
 
     t = Staff(notetools.make_repeated_notes(4))
@@ -67,7 +67,7 @@ def test_PianoPedalSpanner_03():
 
 
 def test_PianoPedalSpanner_04():
-    '''PianoPedal spanner supports text style.
+    r'''PianoPedal spanner supports text style.
     '''
 
     t = Staff(notetools.make_repeated_notes(4))
@@ -90,7 +90,7 @@ def test_PianoPedalSpanner_04():
 
 
 def test_PianoPedalSpanner_05():
-    '''PianoPedal spanner supports bracket style.
+    r'''PianoPedal spanner supports bracket style.
     '''
 
     t = Staff(notetools.make_repeated_notes(4))
@@ -113,7 +113,7 @@ def test_PianoPedalSpanner_05():
 
 
 def test_PianoPedalSpanner_06():
-    '''Consecutive dovetailing PianoPedal spanners format correctly.
+    r'''Consecutive dovetailing PianoPedal spanners format correctly.
     '''
 
     t = Staff(notetools.make_repeated_notes(8))
@@ -140,7 +140,7 @@ def test_PianoPedalSpanner_06():
 
 
 def test_PianoPedalSpanner_07():
-    '''The 'kind' and 'style' attributes raise ValueError as needed.
+    r'''The 'kind' and 'style' attributes raise ValueError as needed.
     '''
 
     t = Staff(notetools.make_repeated_notes(4))

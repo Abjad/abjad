@@ -12,7 +12,7 @@ class Multiplier(Duration):
     ### SPECIAL METHODS ###
 
     def __mul__(self, *args):
-        '''Multiplier times duration gives duration.
+        r'''Multiplier times duration gives duration.
 
         Return duration.
         '''

@@ -5,7 +5,7 @@ import py.test
 
 
 def test_HairpinSpanner_01():
-    '''Hairpins span adjacent leaves.
+    r'''Hairpins span adjacent leaves.
     '''
 
     t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -29,7 +29,7 @@ def test_HairpinSpanner_01():
 
 
 def test_HairpinSpanner_02():
-    '''Hairpins spanning a single leaf are allowed but not well-formed.
+    r'''Hairpins spanning a single leaf are allowed but not well-formed.
     '''
 
     t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -54,7 +54,7 @@ def test_HairpinSpanner_02():
 
 
 def test_HairpinSpanner_03():
-    '''Hairpins and dynamics apply separately.
+    r'''Hairpins and dynamics apply separately.
     '''
 
     t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -80,7 +80,7 @@ def test_HairpinSpanner_03():
 
 
 def test_HairpinSpanner_04():
-    '''Internal marks raise well-formedness error.
+    r'''Internal marks raise well-formedness error.
     '''
 
     t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -89,7 +89,7 @@ def test_HairpinSpanner_04():
 
 
 def test_HairpinSpanner_05():
-    '''Apply back-to-back hairpins separately.
+    r'''Apply back-to-back hairpins separately.
     '''
 
     t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -119,7 +119,7 @@ def test_HairpinSpanner_05():
 
 
 def test_HairpinSpanner_06():
-    '''Hairpins format rests.
+    r'''Hairpins format rests.
     '''
 
     t = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
@@ -144,7 +144,7 @@ def test_HairpinSpanner_06():
 
 
 def test_HairpinSpanner_07():
-    '''Trim hairpins with dynamic marks behave as expected.
+    r'''Trim hairpins with dynamic marks behave as expected.
     '''
 
     t = Staff([Note(n, (1, 8)) for n in range(8)])

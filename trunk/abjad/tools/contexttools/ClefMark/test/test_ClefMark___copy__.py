@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_ClefMark___copy___01():
-    '''Clef marks copy.
+    r'''Clef marks copy.
     '''
 
     t = Staff(notetools.make_repeated_notes(8))
@@ -45,7 +45,7 @@ def test_ClefMark___copy___01():
 
 
 def test_ClefMark___copy___02():
-    '''Implicit clefs do not copy.
+    r'''Implicit clefs do not copy.
     '''
 
     t = Staff(notetools.make_repeated_notes(8))

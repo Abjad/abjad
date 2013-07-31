@@ -3,7 +3,7 @@ from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 
 
 class ReSTLineageDirective(ReSTDirective):
-    '''An ReST Abjad lineage diagram directive:
+    r'''An ReST Abjad lineage diagram directive:
 
     ::
 

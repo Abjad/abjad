@@ -1,4 +1,4 @@
 class TonalHarmonyError(Exception):
-    '''General tonal harmony error.
+    r'''General tonal harmony error.
     '''
     pass

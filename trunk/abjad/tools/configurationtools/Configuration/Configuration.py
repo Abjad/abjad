@@ -7,7 +7,7 @@ from abjad.tools import abctools
 
 
 class Configuration(abctools.AbjadObject):
-    '''Abjad configuration object.
+    r'''Abjad configuration object.
     '''
 
     ### INITIALIZER ###

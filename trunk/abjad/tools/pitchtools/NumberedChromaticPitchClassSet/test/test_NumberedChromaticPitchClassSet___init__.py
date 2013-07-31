@@ -2,14 +2,14 @@ from abjad import *
 
 
 def test_NumberedChromaticPitchClassSet___init___01():
-    '''Works with numbers.
+    r'''Works with numbers.
     '''
 
     assert len(pitchtools.NumberedChromaticPitchClassSet([0, 2, 6, 7])) == 4
 
 
 def test_NumberedChromaticPitchClassSet___init___02():
-    '''Works with pitch-classes.
+    r'''Works with pitch-classes.
     '''
 
     assert len(pitchtools.NumberedChromaticPitchClassSet(
@@ -17,7 +17,7 @@ def test_NumberedChromaticPitchClassSet___init___02():
 
 
 def test_NumberedChromaticPitchClassSet___init___03():
-    '''Works with chords.
+    r'''Works with chords.
     '''
 
     chord = Chord([13, 14, 15], (1, 4))
@@ -26,7 +26,7 @@ def test_NumberedChromaticPitchClassSet___init___03():
 
 
 def test_NumberedChromaticPitchClassSet___init___04():
-    '''Works with notes.
+    r'''Works with notes.
     '''
 
     note = Note(13, (1, 4))

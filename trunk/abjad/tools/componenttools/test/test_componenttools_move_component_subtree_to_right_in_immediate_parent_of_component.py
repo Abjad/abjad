@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_component_01():
-    '''Flip leaf under continuous spanner.
+    r'''Flip leaf under continuous spanner.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -33,7 +33,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
 
 
 def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_component_02():
-    '''Flip leaf across spanner boundaries.
+    r'''Flip leaf across spanner boundaries.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -65,7 +65,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
 
 
 def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_component_03():
-    '''Flip leaf from within to without spanner.
+    r'''Flip leaf from within to without spanner.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -96,7 +96,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
 
 
 def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_component_04():
-    '''Donate from empty container to leaf.
+    r'''Donate from empty container to leaf.
     '''
 
     t = Voice([Container("c'8 d'8"), Container([])])
@@ -133,7 +133,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
 
 
 def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_component_05():
-    '''Donate from empty container to nonempty container.
+    r'''Donate from empty container to nonempty container.
     '''
 
     t = Voice([Container("c'8 d'8"), Container([])])
@@ -174,7 +174,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
 
 
 def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_component_06():
-    '''Donate from note to rest.
+    r'''Donate from note to rest.
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
@@ -225,7 +225,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
 
 
 def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_component_07():
-    '''Donate from note to tuplet.
+    r'''Donate from note to tuplet.
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)

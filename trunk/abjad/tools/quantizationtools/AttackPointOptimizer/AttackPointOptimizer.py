@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class AttackPointOptimizer(AbjadObject):
-    '''Abstract attack-point optimizer class from which concrete 
+    r'''Abstract attack-point optimizer class from which concrete 
     attack-point optimizer classes inherit.
 
     Attack-point optimizers may alter the number, order, and individual 

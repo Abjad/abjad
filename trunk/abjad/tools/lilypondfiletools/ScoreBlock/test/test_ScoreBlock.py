@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_ScoreBlock_01():
-    '''Midi block is formatted when empty by default.
+    r'''Midi block is formatted when empty by default.
     Layout block must be explicitly set to format when empty.
     '''
 
@@ -35,7 +35,7 @@ def test_ScoreBlock_01():
 
 
 def test_ScoreBlock_02():
-    '''ScoreBlock does not format when empty by default.
+    r'''ScoreBlock does not format when empty by default.
     '''
 
     score_block = lilypondfiletools.ScoreBlock()

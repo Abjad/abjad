@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_ClefMark_clef_name_01():
-    '''Clef name is read / write.
+    r'''Clef name is read / write.
     '''
 
     clef = contexttools.ClefMark('treble')

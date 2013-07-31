@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Articulation___setattr___01():
-    '''Slots constrain articulation attributes.
+    r'''Slots constrain articulation attributes.
     '''
 
     articulation = marktools.Articulation('staccato')

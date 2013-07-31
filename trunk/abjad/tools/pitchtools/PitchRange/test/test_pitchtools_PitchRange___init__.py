@@ -2,7 +2,7 @@ from abjad import *
 
 
 #def test_pitchtools_PitchRange___init___01():
-#    '''Init infinite pitch range.'''
+#    r'''Init infinite pitch range.'''
 #
 #    pr = pitchtools.PitchRange()
 #    assert pr._start is None
@@ -10,7 +10,7 @@ from abjad import *
 
 
 def test_pitchtools_PitchRange___init___02():
-    '''Init stop-specified pitch range.
+    r'''Init stop-specified pitch range.
     '''
 
     pr = pitchtools.PitchRange((-39, 'inclusive'), None)
@@ -23,7 +23,7 @@ def test_pitchtools_PitchRange___init___02():
 
 
 def test_pitchtools_PitchRange___init___03():
-    '''Init start-specified pitch range.
+    r'''Init start-specified pitch range.
     '''
 
     pr = pitchtools.PitchRange(None, (48, 'inclusive'))
@@ -36,7 +36,7 @@ def test_pitchtools_PitchRange___init___03():
 
 
 def test_pitchtools_PitchRange___init___04():
-    '''Init start- and stop-specified pitch range.
+    r'''Init start- and stop-specified pitch range.
     '''
 
     pr = pitchtools.PitchRange((-39, 'inclusive'), (48, 'inclusive'))
@@ -45,7 +45,7 @@ def test_pitchtools_PitchRange___init___04():
 
 
 def test_pitchtools_PitchRange___init___05():
-    '''Short-form init with only integers.
+    r'''Short-form init with only integers.
     '''
 
     pr = pitchtools.PitchRange(-39, 48)
@@ -54,7 +54,7 @@ def test_pitchtools_PitchRange___init___05():
 
 
 def test_pitchtools_PitchRange___init___06():
-    '''Init from pitch names.
+    r'''Init from pitch names.
     '''
 
     pr = pitchtools.PitchRange("c'", ("c''", 'exclusive'))
@@ -63,7 +63,7 @@ def test_pitchtools_PitchRange___init___06():
 
 
 def test_pitchtools_PitchRange___init___07():
-    '''Init from pitch-class / octave number strings.
+    r'''Init from pitch-class / octave number strings.
     '''
 
     pr = pitchtools.PitchRange('A0', 'C8')
@@ -72,7 +72,7 @@ def test_pitchtools_PitchRange___init___07():
 
 
 def test_pitchtools_PitchRange___init___08():
-    '''Init pitch range from other pitch range.
+    r'''Init pitch range from other pitch range.
     '''
 
     pitch_range_1 = pitchtools.PitchRange(-39, 48)
@@ -85,7 +85,7 @@ def test_pitchtools_PitchRange___init___08():
 
 
 def test_pitchtools_PitchRange___init___09():
-    '''Init pitch range from pair.
+    r'''Init pitch range from pair.
     '''
 
     pitch_range_1 = pitchtools.PitchRange(-39, 48)
@@ -95,7 +95,7 @@ def test_pitchtools_PitchRange___init___09():
 
 
 def test_pitchtools_PitchRange___init___10():
-    '''Init from symbolic pitch range string.
+    r'''Init from symbolic pitch range string.
     '''
 
     assert pitchtools.PitchRange('[A0, C8]') == pitchtools.PitchRange(

@@ -3,7 +3,7 @@ import py.test
 
 
 def test_BeamSpanner_span_parallel_container_01():
-    '''Abjad spanners will not inspect the contents of parallel containers.
+    r'''Abjad spanners will not inspect the contents of parallel containers.
     '''
 
     t = Container([])
@@ -17,7 +17,7 @@ def test_BeamSpanner_span_parallel_container_01():
 
 
 def test_BeamSpanner_span_parallel_container_02():
-    '''Nonempty spanned parallel container.
+    r'''Nonempty spanned parallel container.
     '''
 
     t = Container(Voice(notetools.make_repeated_notes(4)) * 2)
@@ -48,7 +48,7 @@ def test_BeamSpanner_span_parallel_container_02():
 
 
 def test_BeamSpanner_span_parallel_container_03():
-    '''Voice accepts spanner,
+    r'''Voice accepts spanner,
         even lodged within parallel parent container.'''
 
     t = Container(Voice(notetools.make_repeated_notes(4)) * 2)
@@ -78,7 +78,7 @@ def test_BeamSpanner_span_parallel_container_03():
     '''
 
 def test_BeamSpanner_span_parallel_container_04():
-    '''Abjad forbids but LilyPond is happy.
+    r'''Abjad forbids but LilyPond is happy.
     '''
 
     t = Staff(notetools.make_repeated_notes(4))
@@ -91,7 +91,7 @@ def test_BeamSpanner_span_parallel_container_04():
 
 
 def test_BeamSpanner_span_parallel_container_05():
-    '''Abjad ignores empty parallel containers with no leaves.
+    r'''Abjad ignores empty parallel containers with no leaves.
         LilyPond is happy here.'''
 
     t = Staff(notetools.make_repeated_notes(4))
@@ -118,7 +118,7 @@ def test_BeamSpanner_span_parallel_container_05():
 
 
 def test_BeamSpanner_span_parallel_container_06():
-    '''This is the proper way to 'thread through' parallel containers.
+    r'''This is the proper way to 'thread through' parallel containers.
         LilyPond is happy here again.'''
 
     t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)

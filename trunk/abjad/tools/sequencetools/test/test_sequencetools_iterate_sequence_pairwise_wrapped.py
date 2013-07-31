@@ -3,7 +3,7 @@ from abjad.tools import sequencetools
 
 
 def test_sequencetools_iterate_sequence_pairwise_wrapped_01():
-    '''Wrapped pairwise.
+    r'''Wrapped pairwise.
     '''
 
     t = range(6)

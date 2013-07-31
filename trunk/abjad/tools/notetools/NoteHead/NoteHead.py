@@ -83,7 +83,7 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
     @apply
     def is_cautionary():
         def fget(self):
-            '''Get cautionary accidental flag:
+            r'''Get cautionary accidental flag:
 
             ::
 
@@ -107,7 +107,7 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
 
     @apply
     def is_forced():
-        '''Get forced accidental flag:
+        r'''Get forced accidental flag:
 
         ::
 
@@ -132,7 +132,7 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
 
     @property
     def lilypond_format(self):
-        '''LilyPond input format of note head:
+        r'''LilyPond input format of note head:
 
         ::
 
@@ -170,7 +170,7 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
 
     @property
     def named_chromatic_pitch(self):
-        '''Named chromatic pitch equal to note head:
+        r'''Named chromatic pitch equal to note head:
 
         ::
 
@@ -184,7 +184,7 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
 
     @property
     def tweak(self):
-        '''LilyPond tweak reservoir:
+        r'''LilyPond tweak reservoir:
 
         ::
 
@@ -201,7 +201,7 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
     @apply
     def written_pitch():
         def fget(self):
-            '''Get named pitch of note head:
+            r'''Get named pitch of note head:
 
             ::
 

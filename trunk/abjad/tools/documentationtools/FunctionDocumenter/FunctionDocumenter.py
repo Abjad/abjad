@@ -3,7 +3,7 @@ from abjad.tools.documentationtools.Documenter import Documenter
 
 
 class FunctionDocumenter(Documenter):
-    '''FunctionDocumenter generates an ReST entry for a given function:
+    r'''FunctionDocumenter generates an ReST entry for a given function:
 
     ::
 
@@ -29,7 +29,7 @@ class FunctionDocumenter(Documenter):
     ### SPECIAL METHODS ###
 
     def __call__(self):
-        '''Generate documentation.
+        r'''Generate documentation.
 
         Returns string.
         '''

@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_pitchtools_calculate_harmonic_chromatic_interval_01():
-    '''Ascending intervals greater than an octave.
+    r'''Ascending intervals greater than an octave.
     '''
 
     hci = pitchtools.calculate_harmonic_chromatic_interval(
@@ -19,7 +19,7 @@ def test_pitchtools_calculate_harmonic_chromatic_interval_01():
 
 
 def test_pitchtools_calculate_harmonic_chromatic_interval_02():
-    '''Ascending octave.
+    r'''Ascending octave.
     '''
 
     hci = pitchtools.calculate_harmonic_chromatic_interval(
@@ -28,7 +28,7 @@ def test_pitchtools_calculate_harmonic_chromatic_interval_02():
 
 
 def test_pitchtools_calculate_harmonic_chromatic_interval_03():
-    '''Ascending intervals less than an octave.
+    r'''Ascending intervals less than an octave.
     '''
 
     hci = pitchtools.calculate_harmonic_chromatic_interval(
@@ -45,7 +45,7 @@ def test_pitchtools_calculate_harmonic_chromatic_interval_03():
 
 
 def test_pitchtools_calculate_harmonic_chromatic_interval_04():
-    '''Unison.
+    r'''Unison.
     '''
 
     hci = pitchtools.calculate_harmonic_chromatic_interval(
@@ -54,7 +54,7 @@ def test_pitchtools_calculate_harmonic_chromatic_interval_04():
 
 
 def test_pitchtools_calculate_harmonic_chromatic_interval_05():
-    '''Descending intervals greater than an octave.
+    r'''Descending intervals greater than an octave.
     '''
 
     hci = pitchtools.calculate_harmonic_chromatic_interval(
@@ -71,7 +71,7 @@ def test_pitchtools_calculate_harmonic_chromatic_interval_05():
 
 
 def test_pitchtools_calculate_harmonic_chromatic_interval_06():
-    '''Descending octave.
+    r'''Descending octave.
     '''
 
     hci = pitchtools.calculate_harmonic_chromatic_interval(
@@ -80,7 +80,7 @@ def test_pitchtools_calculate_harmonic_chromatic_interval_06():
 
 
 def test_pitchtools_calculate_harmonic_chromatic_interval_07():
-    '''Descending intervals less than an octave.
+    r'''Descending intervals less than an octave.
     '''
 
     hci = pitchtools.calculate_harmonic_chromatic_interval(
@@ -97,7 +97,7 @@ def test_pitchtools_calculate_harmonic_chromatic_interval_07():
 
 
 def test_pitchtools_calculate_harmonic_chromatic_interval_08():
-    '''Works with quartertones.
+    r'''Works with quartertones.
     '''
 
     hci = pitchtools.calculate_harmonic_chromatic_interval(

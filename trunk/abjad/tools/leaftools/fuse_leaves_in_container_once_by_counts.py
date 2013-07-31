@@ -7,7 +7,7 @@ def fuse_leaves_in_container_once_by_counts(
     leaf_class=None,
     decrease_durations_monotonically=True,
     ):
-    '''Fuse leaves in `container` once by `counts` into 
+    r'''Fuse leaves in `container` once by `counts` into 
     instances of `leaf_class`.
 
     .. note:: add example.

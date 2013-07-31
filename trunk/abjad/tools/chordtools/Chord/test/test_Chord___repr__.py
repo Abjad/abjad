@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Chord___repr___01():
-    '''Chord repr is evaluable.
+    r'''Chord repr is evaluable.
     '''
 
     chord_1 = Chord([3, 13, 17], (1, 4))

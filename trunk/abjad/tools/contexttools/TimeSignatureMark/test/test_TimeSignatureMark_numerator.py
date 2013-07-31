@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_TimeSignatureMark_numerator_01():
-    '''Time signature numerator is read / write.
+    r'''Time signature numerator is read / write.
     '''
 
     time_signature = contexttools.TimeSignatureMark((3, 8))
@@ -14,7 +14,7 @@ def test_TimeSignatureMark_numerator_01():
 
 
 def test_TimeSignatureMark_numerator_02():
-    '''Time signature formats correctly after numerator change.
+    r'''Time signature formats correctly after numerator change.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")

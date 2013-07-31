@@ -4,7 +4,7 @@ from abjad.tools.layouttools import SpacingIndication
 
 
 def test_SpacingIndication___repr___01():
-    '''Repr is evaluable.
+    r'''Repr is evaluable.
     '''
 
     indication_1 = SpacingIndication(TempoMark(Duration(1, 8), 44), Duration(1, 68))

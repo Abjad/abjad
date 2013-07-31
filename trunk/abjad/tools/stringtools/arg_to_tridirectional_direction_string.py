@@ -1,5 +1,5 @@
 def arg_to_tridirectional_direction_string(arg):
-    '''Convert `arg` to tridirectional direction string:
+    r'''Convert `arg` to tridirectional direction string:
 
         >>> stringtools.arg_to_tridirectional_direction_string('^')
         'up'

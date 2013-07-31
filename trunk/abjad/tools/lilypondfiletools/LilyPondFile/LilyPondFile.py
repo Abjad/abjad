@@ -198,7 +198,7 @@ class LilyPondFile(list):
     @apply
     def default_paper_size():
         def fget(self):
-            '''LilyPond default paper size.
+            r'''LilyPond default paper size.
             '''
             return self._default_paper_size
         def fset(self, args):
@@ -210,7 +210,7 @@ class LilyPondFile(list):
     @apply
     def file_initial_system_comments():
         def fget(self):
-            '''List of file-initial system comments.
+            r'''List of file-initial system comments.
             '''
             return self._file_initial_system_comments
         def fset(self, arg):
@@ -223,7 +223,7 @@ class LilyPondFile(list):
     @apply
     def file_initial_system_includes():
         def fget(self):
-            '''List of file-initial system include commands.
+            r'''List of file-initial system include commands.
             '''
             return self._file_initial_system_includes
         def fset(self, arg):
@@ -236,7 +236,7 @@ class LilyPondFile(list):
     @apply
     def file_initial_user_comments():
         def fget(self):
-            '''List of file-initial user comments.
+            r'''List of file-initial user comments.
             '''
             return self._file_initial_user_comments
         def fset(self, arg):
@@ -249,7 +249,7 @@ class LilyPondFile(list):
     @apply
     def file_initial_user_includes():
         def fget(self):
-            '''List of file-initial user include commands.
+            r'''List of file-initial user include commands.
             '''
             return self._file_initial_user_includes
         def fset(self, arg):
@@ -262,7 +262,7 @@ class LilyPondFile(list):
     @apply
     def global_staff_size():
         def fget(self):
-            '''LilyPond global staff size.
+            r'''LilyPond global staff size.
             '''
             return self._global_staff_size
         def fset(self, arg):
@@ -272,6 +272,6 @@ class LilyPondFile(list):
 
     @property
     def lilypond_format(self):
-        '''Format-time contribution of LilyPond file.
+        r'''Format-time contribution of LilyPond file.
         '''
         return '\n\n'.join(self._format_pieces)

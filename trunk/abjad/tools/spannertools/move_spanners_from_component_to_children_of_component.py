@@ -1,5 +1,5 @@
 def move_spanners_from_component_to_children_of_component(donor):
-    '''Give spanners attaching directly to donor to recipients.
+    r'''Give spanners attaching directly to donor to recipients.
     Usual use is to give attached spanners from parent to children,
     which is a composer-safe operation.
 

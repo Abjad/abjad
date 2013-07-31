@@ -27,7 +27,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___delattr___01():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___delattr___02():
-    '''Delete LilyPond Rest grob override.
+    r'''Delete LilyPond Rest grob override.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -47,7 +47,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___delattr___02():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___delattr___03():
-    '''Delete LilyPond TimeSignature grob override.
+    r'''Delete LilyPond TimeSignature grob override.
     '''
 
     t = Note("c'4")

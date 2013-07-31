@@ -1,4 +1,4 @@
 class ClefError(Exception):
-    '''General clef error.
+    r'''General clef error.
     '''
     pass

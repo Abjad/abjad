@@ -392,7 +392,7 @@ class Leaf(Component):
     @apply
     def written_pitch_indication_is_at_sounding_pitch():
         def fset(self, arg):
-            '''Read / write flag to be set to false when pitch indication 
+            r'''Read / write flag to be set to false when pitch indication 
             is transposed.
             '''
             if not isinstance(arg, bool):
@@ -405,7 +405,7 @@ class Leaf(Component):
     @apply
     def written_pitch_indication_is_nonsemantic():
         def fset(self, arg):
-            '''Read / write flag to be set when using leaves only graphically.
+            r'''Read / write flag to be set when using leaves only graphically.
 
             setting this value to true sets sounding pitch indicator to false.
             '''
@@ -421,7 +421,7 @@ class Leaf(Component):
     ### PUBLIC METHODS ###
 
     def detach_grace_containers(self, kind=None):
-        '''Detach grace containers attached to leaf.
+        r'''Detach grace containers attached to leaf.
 
         Return tuple of detached grace containers.
         '''
@@ -501,7 +501,7 @@ class Leaf(Component):
         return tuple(result)
 
     def select_tie_chain(self):
-        '''Select tie chain.
+        r'''Select tie chain.
         '''
         from abjad.tools import leaftools
         from abjad.tools import spannertools
@@ -517,7 +517,7 @@ class Leaf(Component):
             return leaftools.TieChain(music=self)
 
     def shorten(self, duration):
-        '''Shorten leaf by `duration`.
+        r'''Shorten leaf by `duration`.
         '''
         from abjad.tools import leaftools
         duration = self.duration - duration

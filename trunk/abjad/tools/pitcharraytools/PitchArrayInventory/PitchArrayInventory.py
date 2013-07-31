@@ -5,7 +5,7 @@ from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 
 
 class PitchArrayInventory(ObjectInventory):
-    '''Ordered collection of pitch arrays:
+    r'''Ordered collection of pitch arrays:
 
         >>> array_1 = pitcharraytools.PitchArray([
         ...   [1, (2, 1), ([-2, -1.5], 2)],

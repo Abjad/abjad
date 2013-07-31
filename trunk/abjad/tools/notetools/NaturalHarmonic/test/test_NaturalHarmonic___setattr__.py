@@ -3,7 +3,7 @@ import py.test
 
 
 def test_NaturalHarmonic___setattr___01():
-    '''Natural harmonics are immutable.
+    r'''Natural harmonics are immutable.
     '''
 
     natural_harmonic = notetools.NaturalHarmonic("cs'8.")

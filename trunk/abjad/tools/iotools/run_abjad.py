@@ -15,6 +15,6 @@ def run_abjad():
         "print abjad_configuration.get_abjad_startup_string();",
     ]
 
-    command = '''python -i {} -c "{}"'''.format(file, ' '.join(commands))
+    command = r'''python -i {} -c "{}"'''.format(file, ' '.join(commands))
 
     iotools.spawn_subprocess(command)

@@ -4,7 +4,7 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class DirectedSpanner(Spanner):
-    '''Abstract Spanner subclass for spanners which may take an 
+    r'''Abstract Spanner subclass for spanners which may take an 
     "up" or "down" indication.
     '''
 

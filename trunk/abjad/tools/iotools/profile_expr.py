@@ -13,7 +13,7 @@ def profile_expr(
     local_context=None,
     print_to_terminal=True,
     ):
-    '''Profile `expr`:
+    r'''Profile `expr`:
 
     ::
 

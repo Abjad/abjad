@@ -3,7 +3,7 @@ import py.test
 
 
 def test_spannertools_get_spanners_covered_by_components_01():
-    '''Return unordered set of spanners completely covered
+    r'''Return unordered set of spanners completely covered
         by the time bounds of thread-contiguous components.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)

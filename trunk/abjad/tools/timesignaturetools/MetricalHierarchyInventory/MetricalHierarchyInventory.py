@@ -2,7 +2,7 @@ from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 
 
 class MetricalHierarchyInventory(ObjectInventory):
-    '''Abjad model of an ordered list of metrical hierarchies:
+    r'''Abjad model of an ordered list of metrical hierarchies:
 
     ::
 

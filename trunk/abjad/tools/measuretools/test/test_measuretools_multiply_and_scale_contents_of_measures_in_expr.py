@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_measuretools_multiply_and_scale_contents_of_measures_in_expr_01():
-    '''Concentrate one measure three times.
+    r'''Concentrate one measure three times.
         Time signature 3/8 goes to 9/24.
         Numerator and denominator both triple.'''
 
@@ -32,7 +32,7 @@ def test_measuretools_multiply_and_scale_contents_of_measures_in_expr_01():
 
 
 def test_measuretools_multiply_and_scale_contents_of_measures_in_expr_02():
-    '''Concentrate one measure four times over five.
+    r'''Concentrate one measure four times over five.
     Time signature 3/16 goes to 12/80.
     Numerator quadruples and denominator quintuples.
     '''
@@ -66,7 +66,7 @@ def test_measuretools_multiply_and_scale_contents_of_measures_in_expr_02():
 
 
 def test_measuretools_multiply_and_scale_contents_of_measures_in_expr_03():
-    '''Concentrate one measure four times over four.
+    r'''Concentrate one measure four times over four.
         Time signature 3/16 goes to 12/64.
         Numerator and denominator both quadruple.'''
 
@@ -97,7 +97,7 @@ def test_measuretools_multiply_and_scale_contents_of_measures_in_expr_03():
 
 
 def test_measuretools_multiply_and_scale_contents_of_measures_in_expr_04():
-    '''Concentrate one measure two times over four.
+    r'''Concentrate one measure two times over four.
         Time signature 3/16 goes to 6/64.
         Numerator doubles and denominator quadruples.'''
 

@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_instrumenttools_UntunedPercussion___repr___01():
-    '''Without instrument name.
+    r'''Without instrument name.
     '''
 
     instrument = instrumenttools.UntunedPercussion()
@@ -12,7 +12,7 @@ def test_instrumenttools_UntunedPercussion___repr___01():
 
 
 def test_instrumenttools_UntunedPercussion___repr___02():
-    '''With instrument name and short instrument name.
+    r'''With instrument name and short instrument name.
     '''
 
     instrument = instrumenttools.UntunedPercussion()

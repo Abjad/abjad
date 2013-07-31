@@ -116,7 +116,7 @@ class NamedChromaticPitchClassSet(PitchClassSet):
 
     @property
     def named_chromatic_pitch_classes(self):
-        '''Named chromatic pitch-classes:
+        r'''Named chromatic pitch-classes:
 
         ::
 
@@ -161,6 +161,6 @@ class NamedChromaticPitchClassSet(PitchClassSet):
         raise ValueError(message % (self, npc_seg))
 
     def transpose(self, melodic_diatonic_interval):
-        '''Transpose all npcs in self by melodic diatonic interval.
+        r'''Transpose all npcs in self by melodic diatonic interval.
         '''
         return type(self)([npc + melodic_diatonic_interval for npc in self])

@@ -1,4 +1,4 @@
 class MissingInstrumentError(Exception):
-    '''No instrument found.
+    r'''No instrument found.
     '''
     pass

@@ -10,7 +10,7 @@ def partition_components_by_durations(
     in_seconds=False,
     overhang=False,
     ):
-    '''Partition `components` according to `durations`.
+    r'''Partition `components` according to `durations`.
 
     When `fill` is ``'exact'`` then parts must equal `durations` exactly.
 

@@ -6,14 +6,14 @@ import py.test
 RC = ResidueClass
 
 def test_ResidueClass_01():
-    '''modulo must be positive.
+    r'''modulo must be positive.
     '''
 
     py.test.raises(ValueError, 't = RC(0, 1)')
 
 
 def test_ResidueClass_02():
-    '''residue must be non-negative and < modulo.
+    r'''residue must be non-negative and < modulo.
     '''
 
     py.test.raises(ValueError, 't = RC(2, 13)')
@@ -22,7 +22,7 @@ def test_ResidueClass_02():
 
 
 def test_ResidueClass_03():
-    '''modulo may be 1.
+    r'''modulo may be 1.
     '''
 
     t = RC(1, 0)
@@ -72,7 +72,7 @@ def test_ResidueClass_07():
 
 
 def test_ResidueClass_08():
-    '''get_congruent_bases() and get_boolean_train() must take
+    r'''get_congruent_bases() and get_boolean_train() must take
     range parameters.'''
 
     t = RC(1, 0)

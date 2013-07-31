@@ -2,7 +2,7 @@ from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 
 
 class AbjUpScript(DeveloperScript):
-    '''Run `ajv svn up -R -C`:
+    r'''Run `ajv svn up -R -C`:
 
     ::
 

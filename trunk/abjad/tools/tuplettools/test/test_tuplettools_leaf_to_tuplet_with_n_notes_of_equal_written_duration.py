@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_tuplettools_leaf_to_tuplet_with_n_notes_of_equal_written_duration_01():
-    '''Divide a leaf of 3/16 into 1, ..., 5 parts.
+    r'''Divide a leaf of 3/16 into 1, ..., 5 parts.
     '''
 
     t = tuplettools.leaf_to_tuplet_with_n_notes_of_equal_written_duration(Note("c'8."), 1, is_diminution=False)
@@ -22,7 +22,7 @@ def test_tuplettools_leaf_to_tuplet_with_n_notes_of_equal_written_duration_01():
 
 
 def test_tuplettools_leaf_to_tuplet_with_n_notes_of_equal_written_duration_02():
-    '''Divide a leaf of 3/16 into 1, ..., 5 parts.
+    r'''Divide a leaf of 3/16 into 1, ..., 5 parts.
     '''
 
     t = tuplettools.leaf_to_tuplet_with_n_notes_of_equal_written_duration(Note("c'8."), 1, is_diminution=True)

@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Spanner_extend_left_01():
-    '''Extend spanner to the left.
+    r'''Extend spanner to the left.
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
@@ -50,7 +50,7 @@ def test_Spanner_extend_left_01():
 
 
 def test_Spanner_extend_left_02():
-    '''Extend spanner to the left.
+    r'''Extend spanner to the left.
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)

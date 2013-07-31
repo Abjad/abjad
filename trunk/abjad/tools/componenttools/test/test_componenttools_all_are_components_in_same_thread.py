@@ -4,7 +4,7 @@ import py.test
 
 
 def test_componenttools_all_are_components_in_same_thread_01():
-    '''Unincorporated leaves do not thread.
+    r'''Unincorporated leaves do not thread.
     Unicorporated leaves do not share a root component.
     False if not allow orphans; True if allow orphans.
     '''
@@ -15,7 +15,7 @@ def test_componenttools_all_are_components_in_same_thread_01():
 
 
 def test_componenttools_all_are_components_in_same_thread_02():
-    '''Container and leaves all thread.
+    r'''Container and leaves all thread.
     '''
 
     t = Container("c'8 d'8 e'8 f'8")
@@ -33,7 +33,7 @@ def test_componenttools_all_are_components_in_same_thread_02():
 
 
 def test_componenttools_all_are_components_in_same_thread_03():
-    '''Tuplet and leaves all thread.
+    r'''Tuplet and leaves all thread.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -50,7 +50,7 @@ def test_componenttools_all_are_components_in_same_thread_03():
 
 
 def test_componenttools_all_are_components_in_same_thread_04():
-    '''Voice and leaves all thread.
+    r'''Voice and leaves all thread.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -69,7 +69,7 @@ def test_componenttools_all_are_components_in_same_thread_04():
 
 
 def test_componenttools_all_are_components_in_same_thread_05():
-    '''Anonymous staff and leaves all thread.
+    r'''Anonymous staff and leaves all thread.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -87,7 +87,7 @@ def test_componenttools_all_are_components_in_same_thread_05():
 
 
 def test_componenttools_all_are_components_in_same_thread_06():
-    '''Voice, sequential and leaves all thread.
+    r'''Voice, sequential and leaves all thread.
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(4)) * 2)
@@ -115,7 +115,7 @@ def test_componenttools_all_are_components_in_same_thread_06():
 
 
 def test_componenttools_all_are_components_in_same_thread_07():
-    '''Anonymous voice, tuplets and leaves all thread.
+    r'''Anonymous voice, tuplets and leaves all thread.
     '''
 
     t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
@@ -140,7 +140,7 @@ def test_componenttools_all_are_components_in_same_thread_07():
 
 
 def test_componenttools_all_are_components_in_same_thread_08():
-    '''Can not thread across anonymous voices.
+    r'''Can not thread across anonymous voices.
     '''
 
     t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
@@ -170,7 +170,7 @@ def test_componenttools_all_are_components_in_same_thread_08():
 
 
 def test_componenttools_all_are_components_in_same_thread_09():
-    '''Can thread across like-named voices.
+    r'''Can thread across like-named voices.
     '''
 
     t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
@@ -199,7 +199,7 @@ def test_componenttools_all_are_components_in_same_thread_09():
 
 
 def test_componenttools_all_are_components_in_same_thread_10():
-    '''Can not thread across differently named voices.
+    r'''Can not thread across differently named voices.
     '''
 
     t = Staff(Voice(notetools.make_repeated_notes(2)) * 2)
@@ -224,7 +224,7 @@ def test_componenttools_all_are_components_in_same_thread_10():
 
 
 def test_componenttools_all_are_components_in_same_thread_11():
-    '''Can not thread across anonymous voices.
+    r'''Can not thread across anonymous voices.
     Can not thread across anonymous staves.
     '''
 
@@ -252,7 +252,7 @@ def test_componenttools_all_are_components_in_same_thread_11():
 
 
 def test_componenttools_all_are_components_in_same_thread_12():
-    '''Can not thread across anonymous voices.
+    r'''Can not thread across anonymous voices.
     Can not thread across anonymous staves.
     '''
 
@@ -290,7 +290,7 @@ def test_componenttools_all_are_components_in_same_thread_12():
 
 
 def test_componenttools_all_are_components_in_same_thread_13():
-    '''Anonymous voice, sequentials and leaves all thread.
+    r'''Anonymous voice, sequentials and leaves all thread.
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
@@ -313,7 +313,7 @@ def test_componenttools_all_are_components_in_same_thread_13():
 
 
 def test_componenttools_all_are_components_in_same_thread_14():
-    '''Can thread across like-named staves.
+    r'''Can thread across like-named staves.
     Can not thread across differently named IMPLICIT voices.
     '''
 
@@ -344,7 +344,7 @@ def test_componenttools_all_are_components_in_same_thread_14():
 
 
 def test_componenttools_all_are_components_in_same_thread_15():
-    '''Can not thread across differently named IMPLICIT voices.
+    r'''Can not thread across differently named IMPLICIT voices.
     '''
 
     t = Container([Container(notetools.make_repeated_notes(4)), Voice(notetools.make_repeated_notes(4))])
@@ -373,7 +373,7 @@ def test_componenttools_all_are_components_in_same_thread_15():
 
 
 def test_componenttools_all_are_components_in_same_thread_16():
-    '''Can not thread across differently named IMPLICIT voices.
+    r'''Can not thread across differently named IMPLICIT voices.
     '''
 
     t = Container([Voice(notetools.make_repeated_notes(4)), Container(notetools.make_repeated_notes(4))])
@@ -402,7 +402,7 @@ def test_componenttools_all_are_components_in_same_thread_16():
 
 
 def test_componenttools_all_are_components_in_same_thread_17():
-    '''Can not thread across differently named IMPLICIT voices.
+    r'''Can not thread across differently named IMPLICIT voices.
     '''
 
     t = Container([Container(notetools.make_repeated_notes(4)), Voice(notetools.make_repeated_notes(4))])
@@ -432,7 +432,7 @@ def test_componenttools_all_are_components_in_same_thread_17():
 
 
 def test_componenttools_all_are_components_in_same_thread_18():
-    '''Can not thread over differently named IMPLICIT voices.
+    r'''Can not thread over differently named IMPLICIT voices.
     '''
 
     t = Container([Voice(notetools.make_repeated_notes(4)), Container(notetools.make_repeated_notes(4))])
@@ -462,7 +462,7 @@ def test_componenttools_all_are_components_in_same_thread_18():
 
 
 def test_componenttools_all_are_components_in_same_thread_19():
-    '''Can not thread across differently named IMPLICIT voices.
+    r'''Can not thread across differently named IMPLICIT voices.
     '''
 
     t = Container([Container(notetools.make_repeated_notes(4)), Staff(notetools.make_repeated_notes(4))])
@@ -491,7 +491,7 @@ def test_componenttools_all_are_components_in_same_thread_19():
 
 
 def test_componenttools_all_are_components_in_same_thread_20():
-    '''Can not thread across differently named IMPLICIT voices.
+    r'''Can not thread across differently named IMPLICIT voices.
     '''
 
     t = Container([Staff(Note(0, (1, 8)) * 4), Container(Note(0, (1, 8)) * 4)])
@@ -520,7 +520,7 @@ def test_componenttools_all_are_components_in_same_thread_20():
 
 
 def test_componenttools_all_are_components_in_same_thread_21():
-    '''Can not thread across differently named IMPLICIT voices.
+    r'''Can not thread across differently named IMPLICIT voices.
     '''
 
     t = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
@@ -547,7 +547,7 @@ def test_componenttools_all_are_components_in_same_thread_21():
 
 
 def test_componenttools_all_are_components_in_same_thread_22():
-    '''Can not thread across differently named IMPLICIT voices.
+    r'''Can not thread across differently named IMPLICIT voices.
     '''
 
     t = Container([Voice(Note(0, (1, 8)) * 4)] + Note(0, (1, 8)) * 4)
@@ -575,7 +575,7 @@ def test_componenttools_all_are_components_in_same_thread_22():
 
 
 def test_componenttools_all_are_components_in_same_thread_23():
-    '''Can not thread across differently named IMPLICIT voices.
+    r'''Can not thread across differently named IMPLICIT voices.
     '''
 
     t = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
@@ -603,7 +603,7 @@ def test_componenttools_all_are_components_in_same_thread_23():
 
 
 def test_componenttools_all_are_components_in_same_thread_24():
-    '''Can not thread across differently named IMPLICIT voices.
+    r'''Can not thread across differently named IMPLICIT voices.
     NOTE: THIS IS THE LILYPOND LACUNA.
     LilyPond *does* thread in this case.
     Abjad does not.
@@ -634,7 +634,7 @@ def test_componenttools_all_are_components_in_same_thread_24():
 
 
 def test_componenttools_all_are_components_in_same_thread_25():
-    '''Can not thread across differently named IMPLICIT voices.
+    r'''Can not thread across differently named IMPLICIT voices.
     '''
 
     t = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
@@ -661,7 +661,7 @@ def test_componenttools_all_are_components_in_same_thread_25():
 
 
 def test_componenttools_all_are_components_in_same_thread_26():
-    '''Can not thread across differently named IMPLICIT voices.
+    r'''Can not thread across differently named IMPLICIT voices.
     '''
 
     t = Container(notetools.make_repeated_notes(4))
@@ -689,7 +689,7 @@ def test_componenttools_all_are_components_in_same_thread_26():
 
 
 def test_componenttools_all_are_components_in_same_thread_27():
-    '''Can not thread across differently named IMPLICIT voices.
+    r'''Can not thread across differently named IMPLICIT voices.
     '''
 
     v = Voice([Note(n, (1, 8)) for n in range(4)])
@@ -720,7 +720,7 @@ def test_componenttools_all_are_components_in_same_thread_27():
 
 
 def test_componenttools_all_are_components_in_same_thread_28():
-    '''Can not thread across differently named IMPLICIT voices.
+    r'''Can not thread across differently named IMPLICIT voices.
     '''
 
     v = Voice([Note(n, (1, 8)) for n in range(4)])
@@ -752,7 +752,7 @@ def test_componenttools_all_are_components_in_same_thread_28():
 
 
 def test_componenttools_all_are_components_in_same_thread_29():
-    '''Can not thread across differently named IMPLICIT voices.
+    r'''Can not thread across differently named IMPLICIT voices.
     '''
 
     v1 = Voice([Note(n, (1, 8)) for n in range(4)])
@@ -785,7 +785,7 @@ def test_componenttools_all_are_components_in_same_thread_29():
 
 
 def test_componenttools_all_are_components_in_same_thread_30():
-    '''Can not thread across differently named IMPLICIT voices.
+    r'''Can not thread across differently named IMPLICIT voices.
     '''
 
     v1 = Voice([Note(n, (1, 8)) for n in range(4)])
@@ -816,7 +816,7 @@ def test_componenttools_all_are_components_in_same_thread_30():
 
 
 def test_componenttools_all_are_components_in_same_thread_31():
-    '''Can not thread across differently named IMPLICIT voices.
+    r'''Can not thread across differently named IMPLICIT voices.
     '''
 
     notes = [Note(n, (1, 8)) for n in range(4)]
@@ -854,7 +854,7 @@ def test_componenttools_all_are_components_in_same_thread_31():
 
 
 def test_componenttools_all_are_components_in_same_thread_32():
-    '''Can not thread across differently named IMPLICIT voices.
+    r'''Can not thread across differently named IMPLICIT voices.
     '''
 
     t = Container([Container(Voice(Note(0, (1, 8)) * 4) * 2)] + Note(0, (1, 8)) * 4)
@@ -889,7 +889,7 @@ def test_componenttools_all_are_components_in_same_thread_32():
 
 
 def test_componenttools_all_are_components_in_same_thread_33():
-    '''Can thread across gaps.
+    r'''Can thread across gaps.
     Can not thread across differently named voices.
     '''
 
@@ -931,7 +931,7 @@ def test_componenttools_all_are_components_in_same_thread_33():
 
 
 def test_componenttools_all_are_components_in_same_thread_34():
-    '''Can thread across gaps.
+    r'''Can thread across gaps.
     Can not thread across differently named IMPLICIT voices.
     '''
 
@@ -973,7 +973,7 @@ def test_componenttools_all_are_components_in_same_thread_34():
 
 
 def test_componenttools_all_are_components_in_same_thread_35():
-    '''Containers and leaves all thread.
+    r'''Containers and leaves all thread.
     '''
 
     a, b, t = Container(Note(0, (1, 8)) * 4) * 3
@@ -1006,7 +1006,7 @@ def test_componenttools_all_are_components_in_same_thread_35():
 
 
 def test_componenttools_all_are_components_in_same_thread_36():
-    '''Tuplets and leaves all thread.
+    r'''Tuplets and leaves all thread.
     '''
 
     a, b, t = tuplettools.FixedDurationTuplet(Duration(3, 8), Note(0, (1, 8)) * 4) * 3
@@ -1044,7 +1044,7 @@ def test_componenttools_all_are_components_in_same_thread_36():
 
 
 def test_componenttools_all_are_components_in_same_thread_37():
-    '''Can not thread across differently named voices.
+    r'''Can not thread across differently named voices.
     '''
 
     t = Container(Note(0, (1, 8)) * 4)
@@ -1080,7 +1080,7 @@ def test_componenttools_all_are_components_in_same_thread_37():
 
 
 def test_componenttools_all_are_components_in_same_thread_38():
-    '''Can not thread over differently named voices.
+    r'''Can not thread over differently named voices.
     '''
 
     t = Container(Note(0, (1, 8)) * 4)
@@ -1113,7 +1113,7 @@ def test_componenttools_all_are_components_in_same_thread_38():
 
 
 def test_componenttools_all_are_components_in_same_thread_39():
-    '''Can not nest across differently named implicit voices.
+    r'''Can not nest across differently named implicit voices.
     '''
 
     t = Container(Note(0, (1, 8)) * 4)
@@ -1153,7 +1153,7 @@ def test_componenttools_all_are_components_in_same_thread_39():
 
 
 def test_componenttools_all_are_components_in_same_thread_40():
-    '''Can not thread across differently named voices.
+    r'''Can not thread across differently named voices.
     '''
 
     v = Voice(Note(0, (1, 8)) * 4)
@@ -1203,7 +1203,7 @@ def test_componenttools_all_are_components_in_same_thread_40():
 
 
 def test_componenttools_all_are_components_in_same_thread_41():
-    '''Can not thread across differently named anonymous voices.
+    r'''Can not thread across differently named anonymous voices.
     '''
 
     t = Container(notetools.make_repeated_notes(4))
@@ -1240,7 +1240,7 @@ def test_componenttools_all_are_components_in_same_thread_41():
 
 
 def test_componenttools_all_are_components_in_same_thread_42():
-    '''Can not thread across differently named anonymous voices.
+    r'''Can not thread across differently named anonymous voices.
     '''
 
     p = Container(Voice(Note(0, (1, 8)) * 4) * 2)

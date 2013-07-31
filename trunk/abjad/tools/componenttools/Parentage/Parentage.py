@@ -109,7 +109,7 @@ class Parentage(SimultaneousSelection):
 
     @property
     def component(self):
-        '''The component from which the selection was derived.
+        r'''The component from which the selection was derived.
         '''
         return self._component
 
@@ -179,7 +179,7 @@ class Parentage(SimultaneousSelection):
 
     @property
     def depth(self):
-        '''Length of proper parentage of component.
+        r'''Length of proper parentage of component.
 
         Return nonnegative integer.
         '''
@@ -187,7 +187,7 @@ class Parentage(SimultaneousSelection):
 
     @property
     def is_orphan(self):
-        '''True when component has no parent.
+        r'''True when component has no parent.
         Otherwise false.
 
         Return boolean.
@@ -196,7 +196,7 @@ class Parentage(SimultaneousSelection):
 
     @property
     def parent(self):
-        '''Parent of component or none when component is orphan.
+        r'''Parent of component or none when component is orphan.
 
         Return component or none.
         '''
@@ -248,7 +248,7 @@ class Parentage(SimultaneousSelection):
 
     @property
     def root(self):
-        '''Last element in parentage.
+        r'''Last element in parentage.
         '''
         return self[-1]
 
@@ -316,7 +316,7 @@ class Parentage(SimultaneousSelection):
 
     @property
     def tuplet_depth(self):
-        '''Tuplet-depth of component:
+        r'''Tuplet-depth of component:
 
         ::
 
@@ -357,7 +357,7 @@ class Parentage(SimultaneousSelection):
     ### PUBLIC METHODS ###
 
     def get_first(self, component_classes=None):
-        '''Get first instance of `component_classes` in parentage.
+        r'''Get first instance of `component_classes` in parentage.
 
         Return component or none.
         '''

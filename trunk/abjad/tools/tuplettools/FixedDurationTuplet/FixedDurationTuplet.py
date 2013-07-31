@@ -94,7 +94,7 @@ class FixedDurationTuplet(Tuplet):
 
     @property
     def multiplied_duration(self):
-        '''Multiplied duration of tuplet:
+        r'''Multiplied duration of tuplet:
 
         ::
 
@@ -109,7 +109,7 @@ class FixedDurationTuplet(Tuplet):
     @apply
     def multiplier():
         def fget(self):
-            '''Multiplier of tuplet:
+            r'''Multiplier of tuplet:
 
             ::
 
@@ -173,7 +173,7 @@ class FixedDurationTuplet(Tuplet):
     ### PUBLIC METHODS ###
 
     def trim(self, start, stop='unused'):
-        '''Trim fixed-duration tuplet elements from `start` to `stop`:
+        r'''Trim fixed-duration tuplet elements from `start` to `stop`:
 
         ::
 

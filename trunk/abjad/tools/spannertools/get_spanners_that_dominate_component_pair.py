@@ -2,7 +2,7 @@ from abjad.tools import componenttools
 
 
 def get_spanners_that_dominate_component_pair(left, right):
-    '''Return Python list of (spanner, index) pairs.
+    r'''Return Python list of (spanner, index) pairs.
     'left' must be either an Abjad component or None.
     'right' must be either an Abjad component or None.
 

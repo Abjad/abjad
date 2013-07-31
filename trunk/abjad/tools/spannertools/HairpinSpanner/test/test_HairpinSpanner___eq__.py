@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_HairpinSpanner___eq___01():
-    '''Spanner is strict comparator.
+    r'''Spanner is strict comparator.
     '''
 
     spanner_1 = spannertools.HairpinSpanner()

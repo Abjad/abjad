@@ -45,7 +45,7 @@ def test_measuretools_get_next_measure_from_component_01():
 
 
 def test_measuretools_get_next_measure_from_component_02():
-    '''Can retrieve first measure in a Python list.
+    r'''Can retrieve first measure in a Python list.
     '''
 
     t = [Note("c'4"), Measure((2, 8), "c'8 d'8")]

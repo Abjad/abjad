@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_leaftools_is_bar_line_crossing_leaf_01():
-    '''Works with partial.
+    r'''Works with partial.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -27,7 +27,7 @@ def test_leaftools_is_bar_line_crossing_leaf_01():
 
 
 def test_leaftools_is_bar_line_crossing_leaf_02():
-    '''Works when no explicit time signature is attached.
+    r'''Works when no explicit time signature is attached.
     '''
 
     t = Staff("c'2 d'1 e'2")

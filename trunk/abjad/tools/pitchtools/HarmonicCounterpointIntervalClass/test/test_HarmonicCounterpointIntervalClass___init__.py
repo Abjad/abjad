@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_HarmonicCounterpointIntervalClass___init___01():
-    '''Works with numbers from 1 - 8.
+    r'''Works with numbers from 1 - 8.
     '''
 
     hcpic = pitchtools.HarmonicCounterpointIntervalClass(1)
@@ -31,7 +31,7 @@ def test_HarmonicCounterpointIntervalClass___init___01():
 
 
 def test_HarmonicCounterpointIntervalClass___init___02():
-    '''Works with numbers greater than 8.
+    r'''Works with numbers greater than 8.
     '''
 
     hcpic = pitchtools.HarmonicCounterpointIntervalClass(9)
@@ -57,7 +57,7 @@ def test_HarmonicCounterpointIntervalClass___init___02():
 
 
 def test_HarmonicCounterpointIntervalClass___init___03():
-    '''Works with numbers from -1 to -8.
+    r'''Works with numbers from -1 to -8.
     '''
 
     hcpic = pitchtools.HarmonicCounterpointIntervalClass(-1)
@@ -86,7 +86,7 @@ def test_HarmonicCounterpointIntervalClass___init___03():
 
 
 def test_HarmonicCounterpointIntervalClass___init___04():
-    '''Works with less than -8.
+    r'''Works with less than -8.
     '''
 
     hcpic = pitchtools.HarmonicCounterpointIntervalClass(-9)

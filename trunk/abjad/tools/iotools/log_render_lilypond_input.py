@@ -4,7 +4,7 @@ from abjad.tools import documentationtools
 
 
 def log_render_lilypond_input(expr, tagline=False, docs=False):
-    '''Write both .ly and .pdf files to the ``abjad_output`` directory.
+    r'''Write both .ly and .pdf files to the ``abjad_output`` directory.
     '''
     from abjad import abjad_configuration
     from abjad.tools import iotools

@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_OctaveTranspositionMappingInventory_append_01():
-    '''Append named item.
+    r'''Append named item.
     '''
 
     inventory = pitchtools.OctaveTranspositionMappingInventory()

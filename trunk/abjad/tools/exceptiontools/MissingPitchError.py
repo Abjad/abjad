@@ -1,4 +1,4 @@
 class MissingPitchError(Exception):
-    '''No pitch found.
+    r'''No pitch found.
     '''
     pass

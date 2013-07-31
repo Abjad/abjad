@@ -2,7 +2,7 @@ from abjad.tools.datastructuretools import ObjectInventory
 
 
 class SelectionInventory(ObjectInventory):
-    '''An inventory of component selections:
+    r'''An inventory of component selections:
 
     ::
 

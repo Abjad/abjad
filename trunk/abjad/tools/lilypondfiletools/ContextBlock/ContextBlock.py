@@ -105,7 +105,7 @@ class ContextBlock(AttributedBlock):
 
     @property
     def override(self):
-        '''Reference to LilyPond grob override component plug-in.
+        r'''Reference to LilyPond grob override component plug-in.
         '''
         if not hasattr(self, '_override'):
             self._override = \
@@ -114,7 +114,7 @@ class ContextBlock(AttributedBlock):
 
     @property
     def set(self):
-        '''Reference LilyPond context setting component plug-in.
+        r'''Reference LilyPond context setting component plug-in.
         '''
         if not hasattr(self, '_set'):
             self._set = \

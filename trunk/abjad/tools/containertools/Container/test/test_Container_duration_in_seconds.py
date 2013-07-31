@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Container_duration_in_seconds_01():
-    '''Container duration in seconds equals
+    r'''Container duration in seconds equals
     sum of leaf durations in seconds.
     '''
 
@@ -29,7 +29,7 @@ def test_Container_duration_in_seconds_01():
 
 
 def test_Container_duration_in_seconds_02():
-    '''Container can not calculate duration in seconds
+    r'''Container can not calculate duration in seconds
         without tempo indication.'''
 
     t = Container("c'8 d'8 e'8 f'8")

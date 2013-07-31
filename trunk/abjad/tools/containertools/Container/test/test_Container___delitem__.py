@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_Container___delitem___01():
-    '''Delete spanned component.
+    r'''Delete spanned component.
     Component withdraws crossing spanners.
     Component carries covered spanners forward.
     Operation always leaves all expressions in tact.
@@ -59,7 +59,7 @@ def test_Container___delitem___01():
 
 
 def test_Container___delitem___02():
-    '''Delete 1 leaf in container.
+    r'''Delete 1 leaf in container.
     Spanner structure is preserved.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -80,7 +80,7 @@ def test_Container___delitem___02():
 
 
 def test_Container___delitem___03():
-    '''Delete slice in middle of container.
+    r'''Delete slice in middle of container.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -100,7 +100,7 @@ def test_Container___delitem___03():
 
 
 def test_Container___delitem___04():
-    '''Delete slice from beginning to middle of container.
+    r'''Delete slice from beginning to middle of container.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -120,7 +120,7 @@ def test_Container___delitem___04():
 
 
 def test_Container___delitem___05():
-    '''Delete slice from middle to end of container.
+    r'''Delete slice from middle to end of container.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -140,7 +140,7 @@ def test_Container___delitem___05():
 
 
 def test_Container___delitem___06():
-    '''Delete slice from beginning to end of container.
+    r'''Delete slice from beginning to end of container.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -158,7 +158,7 @@ def test_Container___delitem___06():
 
 
 def test_Container___delitem___07():
-    '''Detach leaf from tuplet and spanner.
+    r'''Detach leaf from tuplet and spanner.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")

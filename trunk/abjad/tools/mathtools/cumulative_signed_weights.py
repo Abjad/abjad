@@ -1,5 +1,5 @@
 def cumulative_signed_weights(sequence):
-    '''Cumulative signed weights of `sequence`:
+    r'''Cumulative signed weights of `sequence`:
 
     ::
 

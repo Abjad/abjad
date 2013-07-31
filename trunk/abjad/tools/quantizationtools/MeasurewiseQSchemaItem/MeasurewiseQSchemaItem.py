@@ -87,7 +87,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
     @property
     def beatspan(self):
-        '''The beatspan duration, if a time signature was defined.
+        r'''The beatspan duration, if a time signature was defined.
 
         Return `Duration` or `None`.
         '''
@@ -101,7 +101,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
     @property
     def search_tree(self):
-        '''The optionally defined search tree.
+        r'''The optionally defined search tree.
 
         Return `OldSearchTree` or `None`.
         '''
@@ -109,7 +109,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
     @property
     def tempo(self):
-        '''The optionally defined `TempoMark`.
+        r'''The optionally defined `TempoMark`.
 
         Return `TempoMark` or `None`.
         '''
@@ -117,7 +117,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
     @property
     def time_signature(self):
-        '''The optionally defined TimeSignatureMark.
+        r'''The optionally defined TimeSignatureMark.
 
         Return `TimeSignatureMark` or None.
         '''
@@ -125,7 +125,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
     @property
     def use_full_measure(self):
-        '''If True, use the full measure as the beatspan.
+        r'''If True, use the full measure as the beatspan.
 
         Return bool or None.
         '''

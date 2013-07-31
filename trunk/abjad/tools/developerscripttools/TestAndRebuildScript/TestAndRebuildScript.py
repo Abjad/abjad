@@ -33,7 +33,7 @@ class TestAndRebuildScript(DeveloperScript):
     ### PUBLIC PROPERTIES ###
 
     def get_terminal_width(self):
-        """Borrowed from the py lib."""
+        r"""Borrowed from the py lib."""
         try:
             import termios, fcntl, struct
             call = fcntl.ioctl(0, termios.TIOCGWINSZ,

@@ -2,7 +2,7 @@ from abjad.tools.sievetools.BaseResidueClass import BaseResidueClass
 
 
 class ResidueClass(BaseResidueClass):
-    '''Residue class (or congruence class).
+    r'''Residue class (or congruence class).
 
     Residue classes form the basis of Xenakis sieves. They can be used to
     make any complex periodic integer or boolean sequence as a
@@ -123,20 +123,20 @@ class ResidueClass(BaseResidueClass):
 
     @property
     def modulo(self):
-        '''Period of residue class.
+        r'''Period of residue class.
         '''
         return self._modulo
 
     @property
     def residue(self):
-        '''Residue of residue class.
+        r'''Residue of residue class.
         '''
         return self._residue
 
     ### PUBLIC METHODS ###
 
     def get_boolean_train(self, *min_max):
-        '''Returns a boolean train with 0s mapped to the integers
+        r'''Returns a boolean train with 0s mapped to the integers
         that are not congruent bases of the residue class and 1s mapped
         to those that are.
         The method takes one or two integer arguments. If only one is given,
@@ -164,7 +164,7 @@ class ResidueClass(BaseResidueClass):
         return result
 
     def get_congruent_bases(self, *min_max):
-        '''Returns all the congruent bases of this residue class
+        r'''Returns all the congruent bases of this residue class
         within the given range.
         The method takes one or two integer arguments.
         If only one it given, it is taken as the max range and

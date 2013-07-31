@@ -3,7 +3,7 @@ from abjad.tools.quantizationtools.QEvent import QEvent
 
 
 class TerminalQEvent(QEvent):
-    '''The terminal event in a series of ``QEvents``:
+    r'''The terminal event in a series of ``QEvents``:
 
         >>> q_event = quantizationtools.TerminalQEvent(1000)
         >>> q_event

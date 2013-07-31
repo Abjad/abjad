@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_SequentialLeafSelection__attach_tie_spanner_to_leaf_pair_01():
-    '''Span left leaf with spanner and right leaf without spanner.
+    r'''Span left leaf with spanner and right leaf without spanner.
     '''
 
     t = Voice(notetools.make_repeated_notes(4))
@@ -33,7 +33,7 @@ def test_SequentialLeafSelection__attach_tie_spanner_to_leaf_pair_01():
 
 
 def test_SequentialLeafSelection__attach_tie_spanner_to_leaf_pair_02():
-    '''Span left leaf with spanner and right leaf with spanner.
+    r'''Span left leaf with spanner and right leaf with spanner.
     '''
 
     t = Voice(notetools.make_repeated_notes(4))
@@ -65,7 +65,7 @@ def test_SequentialLeafSelection__attach_tie_spanner_to_leaf_pair_02():
 
 
 def test_SequentialLeafSelection__attach_tie_spanner_to_leaf_pair_03():
-    '''Span left leaves with no spanner.
+    r'''Span left leaves with no spanner.
     '''
 
     t = Voice(notetools.make_repeated_notes(4))

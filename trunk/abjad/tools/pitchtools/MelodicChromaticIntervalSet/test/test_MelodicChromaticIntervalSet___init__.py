@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_MelodicChromaticIntervalSet___init___01():
-    '''Works with interval numbers.
+    r'''Works with interval numbers.
     '''
 
     mcis = pitchtools.MelodicChromaticIntervalSet([-13, -12, -11, 0, 1, 19])
@@ -13,7 +13,7 @@ def test_MelodicChromaticIntervalSet___init___01():
 
 
 def test_MelodicChromaticIntervalSet___init___02():
-    '''Works with interval instances.
+    r'''Works with interval instances.
     '''
 
     numbers = [-13, -12, -11, 0, 1, 19]

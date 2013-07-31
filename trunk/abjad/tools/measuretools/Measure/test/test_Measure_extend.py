@@ -3,7 +3,7 @@ import py
 
 
 def test_Measure_extend_01():
-    '''Do not adjust time signature automatically.
+    r'''Do not adjust time signature automatically.
     '''
 
     measure = Measure((3, 4), "c' d' e'")
@@ -14,7 +14,7 @@ def test_Measure_extend_01():
 
 
 def test_Measure_extend_02():
-    '''Adjust time signature automatically.
+    r'''Adjust time signature automatically.
     '''
 
     measure = Measure((3, 4), "c' d' e'")

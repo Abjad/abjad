@@ -2,7 +2,7 @@ from abjad.tools import componenttools
 
 
 def get_spanners_on_components_or_component_children(components):
-    '''Return unordered set of all spanners attaching to any
+    r'''Return unordered set of all spanners attaching to any
     component in `components` or attaching to any of the children
     of any of the components in `components`.
     '''

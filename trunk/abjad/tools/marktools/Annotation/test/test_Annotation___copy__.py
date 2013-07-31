@@ -3,7 +3,7 @@ import copy
 
 
 def test_Annotation___copy___01():
-    '''Annotation copy copies annotation contents.
+    r'''Annotation copy copies annotation contents.
     '''
 
     dictionary = {}

@@ -3,7 +3,7 @@ from abjad.tools.contexttools import InstrumentMark
 
 
 def test_InstrumentMark___repr___01():
-    '''Instrument mark returns nonempty string repr.
+    r'''Instrument mark returns nonempty string repr.
     '''
 
     repr = contexttools.InstrumentMark('Flute', 'Fl.').__repr__()
@@ -11,7 +11,7 @@ def test_InstrumentMark___repr___01():
 
 
 def test_InstrumentMark___repr___02():
-    '''Instrument mark repr is evaluable.
+    r'''Instrument mark repr is evaluable.
     '''
 
     instrument_mark_1 = contexttools.InstrumentMark('Flute', 'Fl.')

@@ -351,7 +351,7 @@ class TimeSignatureMark(ContextMark):
     @apply
     def numerator():
         def fget(self):
-            '''Get numerator of time signature mark:
+            r'''Get numerator of time signature mark:
 
             ::
 
@@ -393,7 +393,7 @@ class TimeSignatureMark(ContextMark):
     @apply
     def partial():
         def fget(self):
-            '''Get partial measure pick-up of time signature mark:
+            r'''Get partial measure pick-up of time signature mark:
 
             ::
 

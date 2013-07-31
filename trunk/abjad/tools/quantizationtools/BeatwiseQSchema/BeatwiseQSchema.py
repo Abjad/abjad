@@ -5,7 +5,7 @@ from abjad.tools.quantizationtools.QSchema import QSchema
 
 
 class BeatwiseQSchema(QSchema):
-    '''Concrete ``QSchema`` subclass which treats "beats" as its 
+    r'''Concrete ``QSchema`` subclass which treats "beats" as its 
     time-step unit:
 
     ::
@@ -243,13 +243,13 @@ class BeatwiseQSchema(QSchema):
 
     @property
     def beatspan(self):
-        '''The default beatspan.
+        r'''The default beatspan.
         '''
         return self._beatspan
 
     @property
     def item_class(self):
-        '''The schema's item class.
+        r'''The schema's item class.
         '''
         from abjad.tools import quantizationtools
         return quantizationtools.BeatwiseQSchemaItem

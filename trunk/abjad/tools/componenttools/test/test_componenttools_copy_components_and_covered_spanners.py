@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_componenttools_copy_components_and_covered_spanners_01():
-    '''Withdraw components in 'components' from crossing spanners.
+    r'''Withdraw components in 'components' from crossing spanners.
     Preserve spanners covered by 'components'.
     Deep copy 'components'.
     Reapply crossing spanners to 'components'.
@@ -123,7 +123,7 @@ def test_componenttools_copy_components_and_covered_spanners_02():
 
 
 def test_componenttools_copy_components_and_covered_spanners_03():
-    '''With optional 'n' argument for multiple copies.
+    r'''With optional 'n' argument for multiple copies.
     '''
 
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)

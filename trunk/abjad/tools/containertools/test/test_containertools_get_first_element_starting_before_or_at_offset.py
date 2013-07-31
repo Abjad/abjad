@@ -27,7 +27,7 @@ def test_containertools_get_first_element_starting_before_or_at_offset_03():
 
 
 def test_containertools_get_first_element_starting_before_or_at_offset_04():
-    '''Return none when no element in container starts not after
+    r'''Return none when no element in container starts not after
     prolated offset.'''
 
     staff = Staff("c'8 d'8 e'8 f'8")

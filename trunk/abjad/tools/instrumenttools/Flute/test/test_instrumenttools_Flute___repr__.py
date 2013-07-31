@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_instrumenttools_Flute___repr___01():
-    '''Unmodified.
+    r'''Unmodified.
     '''
 
     flute = instrumenttools.Flute()
@@ -10,7 +10,7 @@ def test_instrumenttools_Flute___repr___01():
 
 
 def test_instrumenttools_Flute___repr___02():
-    '''Initializer combinations.
+    r'''Initializer combinations.
     '''
 
     flute = instrumenttools.Flute(instrument_name='foo')
@@ -27,7 +27,7 @@ def test_instrumenttools_Flute___repr___02():
 
 
 def test_instrumenttools_Flute___repr___03():
-    '''InputSetExpression combinations.
+    r'''InputSetExpression combinations.
     '''
 
     flute = instrumenttools.Flute()

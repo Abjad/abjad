@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Skip___init___01():
-    '''Init skip from LilyPond input string.
+    r'''Init skip from LilyPond input string.
     '''
 
     skip = skiptools.Skip('s8.')
@@ -10,7 +10,7 @@ def test_Skip___init___01():
 
 
 def test_Skip___init___02():
-    '''Init skip from written duration and LilyPond multiplier.
+    r'''Init skip from written duration and LilyPond multiplier.
     '''
 
     skip = skiptools.Skip((1, 4), (1, 2))
@@ -19,7 +19,7 @@ def test_Skip___init___02():
 
 
 def test_Skip___init___03():
-    '''Init skip from containerize note.
+    r'''Init skip from containerize note.
     '''
 
     c = Chord([2, 3, 4], (1, 4))
@@ -34,7 +34,7 @@ def test_Skip___init___03():
 
 
 def test_Skip___init___04():
-    '''Init skip from tupletized note.
+    r'''Init skip from tupletized note.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), Chord([2, 3, 4], (1, 4)) * 3)
@@ -48,7 +48,7 @@ def test_Skip___init___04():
 
 
 def test_Skip___init___05():
-    '''Init skip from beamed chord.
+    r'''Init skip from beamed chord.
     '''
 
     t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
@@ -84,7 +84,7 @@ def test_Skip___init___07():
 
 
 def test_Skip___init___08():
-    '''Init skip from beamed note.
+    r'''Init skip from beamed note.
     '''
 
     t = Staff(Note(0, (1, 8)) * 3)
@@ -96,7 +96,7 @@ def test_Skip___init___08():
 
 
 def test_Skip___init___09():
-    '''Init skip from unincorporaed rest.
+    r'''Init skip from unincorporaed rest.
     '''
 
     r = Rest((1, 8))
@@ -111,7 +111,7 @@ def test_Skip___init___09():
 
 
 def test_Skip___init___10():
-    '''Init skip from tupletized rest.
+    r'''Init skip from tupletized rest.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), Rest((1, 8)) * 3)
@@ -125,7 +125,7 @@ def test_Skip___init___10():
 
 
 def test_Skip___init___11():
-    '''Init skip from spanned rest.
+    r'''Init skip from spanned rest.
     '''
 
     t = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])

@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Chord___init___01():
-    '''Init empty chord.
+    r'''Init empty chord.
     '''
 
     t = Chord([], (1, 4))
@@ -10,7 +10,7 @@ def test_Chord___init___01():
 
 
 def test_Chord___init___02():
-    '''Init chord with numbers.
+    r'''Init chord with numbers.
     '''
 
     t = Chord([2, 4, 5], (1, 4))
@@ -18,7 +18,7 @@ def test_Chord___init___02():
 
 
 def test_Chord___init___03():
-    '''Init chord with pitch tokens.
+    r'''Init chord with pitch tokens.
     '''
 
     t = Chord([('ds', 4), ('ef', 4)], (1, 4))
@@ -26,7 +26,7 @@ def test_Chord___init___03():
 
 
 def test_Chord___init___04():
-    '''Init chord with pitches.
+    r'''Init chord with pitches.
     '''
 
     t = Chord([pitchtools.NamedChromaticPitch('ds', 4), pitchtools.NamedChromaticPitch('ef', 4)], (1, 4))
@@ -34,7 +34,7 @@ def test_Chord___init___04():
 
 
 def test_Chord___init___05():
-    '''Init chord with pitch token and pitch together.
+    r'''Init chord with pitch token and pitch together.
     '''
 
     t = Chord([2, ('ef', 4), pitchtools.NamedChromaticPitch(4)], (1, 4))
@@ -42,7 +42,7 @@ def test_Chord___init___05():
 
 
 def test_Chord___init___06():
-    '''Init chord with list of pitch names.
+    r'''Init chord with list of pitch names.
     '''
 
     t = Chord(["d'", "ef'", "e'"], (1, 4))
@@ -50,7 +50,7 @@ def test_Chord___init___06():
 
 
 def test_Chord___init___07():
-    '''Init chord with LilyPond input string.
+    r'''Init chord with LilyPond input string.
     '''
 
     t = Chord("<d' ef' e'>4")
@@ -58,7 +58,7 @@ def test_Chord___init___07():
 
 
 def test_Chord___init___08():
-    '''Init chord from skip.
+    r'''Init chord from skip.
     '''
 
     s = skiptools.Skip((1, 8))
@@ -72,7 +72,7 @@ def test_Chord___init___08():
 
 
 def test_Chord___init___09():
-    '''Init chord from skip.
+    r'''Init chord from skip.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), skiptools.Skip((1, 8)) * 3)
@@ -86,7 +86,7 @@ def test_Chord___init___09():
 
 
 def test_Chord___init___10():
-    '''Init chord from containerized skip.
+    r'''Init chord from containerized skip.
     '''
 
     v = Voice(skiptools.Skip((1, 8)) * 3)
@@ -100,7 +100,7 @@ def test_Chord___init___10():
 
 
 def test_Chord___init___11():
-    '''Init chord from beamed skip.
+    r'''Init chord from beamed skip.
     '''
 
     t = Staff([Note(0, (1, 8)), skiptools.Skip((1, 8)), Note(0, (1, 8))])
@@ -112,7 +112,7 @@ def test_Chord___init___11():
 
 
 def test_Chord___init___12():
-    '''Init chord from rest.
+    r'''Init chord from rest.
     '''
 
     r = Rest((1, 8))
@@ -126,7 +126,7 @@ def test_Chord___init___12():
 
 
 def test_Chord___init___13():
-    '''Init chord from tupletized rest.
+    r'''Init chord from tupletized rest.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), Rest((1, 8)) * 3)
@@ -140,7 +140,7 @@ def test_Chord___init___13():
 
 
 def test_Chord___init___14():
-    '''Init chord from rest.
+    r'''Init chord from rest.
     '''
 
     t = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
@@ -153,7 +153,7 @@ def test_Chord___init___14():
 
 
 def test_Chord___init___15():
-    '''Init chord from note.
+    r'''Init chord from note.
     '''
 
     n = Note(2, (1, 8))
@@ -170,7 +170,7 @@ def test_Chord___init___15():
 
 
 def test_Chord___init___16():
-    '''Init chord from tupletized note.
+    r'''Init chord from tupletized note.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
@@ -186,7 +186,7 @@ def test_Chord___init___16():
 
 
 def test_Chord___init___17():
-    '''Init chord from beamed note.
+    r'''Init chord from beamed note.
     '''
 
     t = Staff(Note(0, (1, 8)) * 3)
@@ -198,7 +198,7 @@ def test_Chord___init___17():
 
 
 def test_Chord___init___18():
-    '''Init empty chord from LilyPond input string.
+    r'''Init empty chord from LilyPond input string.
     '''
 
     chord = Chord('<>8.')
@@ -207,7 +207,7 @@ def test_Chord___init___18():
 
 
 def test_Chord___init___19():
-    '''Init with forced and cautionary accidentals.
+    r'''Init with forced and cautionary accidentals.
     '''
 
     chord = Chord('<c!? e? g! b>4')
@@ -215,7 +215,7 @@ def test_Chord___init___19():
 
 
 def test_Chord___init___20():
-    '''Init from Note with forced and cautionary accidentals.
+    r'''Init from Note with forced and cautionary accidentals.
     '''
 
     note = Note("c'!?4")

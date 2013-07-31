@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Parentage__get_governor_01( ):
-    '''Return the last sequential container in the parentage of client
+    r'''Return the last sequential container in the parentage of client
     such that the next element in the parentage of client is
     either a parallel container or None.
     '''
@@ -35,7 +35,7 @@ def test_Parentage__get_governor_01( ):
 
 
 def test_Parentage__get_governor_02( ):
-    '''Unicorporated leaves have no governor.
+    r'''Unicorporated leaves have no governor.
     '''
 
     t = Note(0, (1, 8))
@@ -43,7 +43,7 @@ def test_Parentage__get_governor_02( ):
 
 
 def test_Parentage__get_governor_03( ):
-    '''Return the last sequential container in the parentage of client
+    r'''Return the last sequential container in the parentage of client
         such that the next element in the parentage of client is
         either a parallel container or None.'''
 
@@ -69,7 +69,7 @@ def test_Parentage__get_governor_03( ):
 
 
 def test_Parentage__get_governor_04( ):
-    '''Return the last sequential container in the parentage of client
+    r'''Return the last sequential container in the parentage of client
     such that the next element in the parentage of client is
     either a parallel container or None.
     '''

@@ -2,7 +2,7 @@ from abjad.tools import componenttools
 
 
 def get_spanners_that_cross_components(components):
-    '''Assert thread-contiguous components.
+    r'''Assert thread-contiguous components.
     Collect spanners that attach to any component in 'components'.
     Return unordered set of crossing spanners.
     A spanner P crosses a list of thread-contiguous components C

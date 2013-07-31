@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_resttools_make_rests_01():
-    '''Make rest.
+    r'''Make rest.
     '''
 
     t = resttools.make_rests((1, 4))
@@ -14,7 +14,7 @@ def test_resttools_make_rests_01():
 
 
 def test_resttools_make_rests_02():
-    '''Do not tie rests.
+    r'''Do not tie rests.
     '''
 
     t = resttools.make_rests((5, 8))
@@ -27,7 +27,7 @@ def test_resttools_make_rests_02():
 
 
 def test_resttools_make_rests_03():
-    '''Do tie rests.
+    r'''Do tie rests.
     '''
 
     t = resttools.make_rests((5, 8), tie_parts=True)
@@ -35,7 +35,7 @@ def test_resttools_make_rests_03():
 
 
 def test_resttools_make_rests_04():
-    '''Make rests.
+    r'''Make rests.
     '''
 
     t = resttools.make_rests([(1, 4), Duration(1, 8)])

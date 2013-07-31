@@ -3,7 +3,7 @@ from abjad.tools.mathtools import NonreducedFraction
 
 
 def test_Duration___div___01():
-    '''Dividing duration by nonreduced fraction gives nonreduced fraction.
+    r'''Dividing duration by nonreduced fraction gives nonreduced fraction.
     '''
 
     result = Duration(1) / NonreducedFraction(3, 3)

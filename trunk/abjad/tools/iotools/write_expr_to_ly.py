@@ -9,7 +9,7 @@ def write_expr_to_ly(
     tagline=False,
     docs=False,
     ):
-    '''Write `expr` to `file_name`:
+    r'''Write `expr` to `file_name`:
 
     ::
 

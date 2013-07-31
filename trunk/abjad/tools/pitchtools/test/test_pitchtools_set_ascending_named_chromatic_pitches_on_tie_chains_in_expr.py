@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_pitchtools_set_ascending_named_chromatic_pitches_on_tie_chains_in_expr_01():
-    '''Appictation works on tie chains.
+    r'''Appictation works on tie chains.
     '''
 
     t = Voice(notetools.make_notes(0, [(5, 32)] * 4))

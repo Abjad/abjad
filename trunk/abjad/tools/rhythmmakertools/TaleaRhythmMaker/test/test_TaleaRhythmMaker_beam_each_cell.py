@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_TaleaRhythmMaker_beam_each_cell_01():
-    '''Beam each cell with a multipart beam spanner.
+    r'''Beam each cell with a multipart beam spanner.
     '''
 
     talea, talea_denominator, prolation_addenda = [1, 1, 1, -1, 2, 2], 32, [3, 4]

@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_sequencetools_partition_sequence_by_counts_01():
-    '''Partition sequence by positive counts.
+    r'''Partition sequence by positive counts.
     '''
 
     parts = sequencetools.partition_sequence_by_counts(range(16), [4, 6], cyclic=True, overhang=True)
@@ -10,7 +10,7 @@ def test_sequencetools_partition_sequence_by_counts_01():
 
 
 def test_sequencetools_partition_sequence_by_counts_02():
-    '''Partition sequence by nonnegative counts.
+    r'''Partition sequence by nonnegative counts.
     '''
 
     counts = (0, 2, 0, 0, 4)
@@ -20,7 +20,7 @@ def test_sequencetools_partition_sequence_by_counts_02():
 
 
 def test_sequencetools_partition_sequence_by_counts_03():
-    '''Partition sequence by positive counts.
+    r'''Partition sequence by positive counts.
     '''
 
     parts = sequencetools.partition_sequence_by_counts(range(16), [4, 6], cyclic=True, overhang=False)
@@ -28,7 +28,7 @@ def test_sequencetools_partition_sequence_by_counts_03():
 
 
 def test_sequencetools_partition_sequence_by_counts_04():
-    '''Partition sequence by nonnegative counts.
+    r'''Partition sequence by nonnegative counts.
     '''
 
     counts = (0, 2, 0, 0, 4)
@@ -38,7 +38,7 @@ def test_sequencetools_partition_sequence_by_counts_04():
 
 
 def test_sequencetools_partition_sequence_by_counts_05():
-    '''Partition sequence by positive counts.
+    r'''Partition sequence by positive counts.
     '''
 
     parts = sequencetools.partition_sequence_by_counts(range(16), [4, 6], cyclic=False, overhang=True)
@@ -46,7 +46,7 @@ def test_sequencetools_partition_sequence_by_counts_05():
 
 
 def test_sequencetools_partition_sequence_by_counts_06():
-    '''Partition sequence by nonnegative counts.
+    r'''Partition sequence by nonnegative counts.
     '''
 
     counts = (0, 2, 0, 0, 4)
@@ -55,7 +55,7 @@ def test_sequencetools_partition_sequence_by_counts_06():
 
 
 def test_sequencetools_partition_sequence_by_counts_07():
-    '''Partition list by positive counts.
+    r'''Partition list by positive counts.
     '''
 
     parts = sequencetools.partition_sequence_by_counts(range(16), [4, 6], cyclic=False, overhang=False)
@@ -63,7 +63,7 @@ def test_sequencetools_partition_sequence_by_counts_07():
 
 
 def test_sequencetools_partition_sequence_by_counts_08():
-    '''Partition list by nonnegative counts.
+    r'''Partition list by nonnegative counts.
     '''
 
     counts = (0, 2, 0, 0, 4)
@@ -72,7 +72,7 @@ def test_sequencetools_partition_sequence_by_counts_08():
 
 
 def test_sequencetools_partition_sequence_by_counts_09():
-    '''Partition Abjad container.
+    r'''Partition Abjad container.
     '''
 
     container = Container("c'8 d'8 e'8 f'8 g'8 a'8")
@@ -89,7 +89,7 @@ def test_sequencetools_partition_sequence_by_counts_09():
 
 
 def test_sequencetools_partition_sequence_by_counts_10():
-    '''Partition list of arbitrary objects instead of just integers.
+    r'''Partition list of arbitrary objects instead of just integers.
     '''
 
     parts = sequencetools.partition_sequence_by_counts('this is text', [1, 3], cyclic=True, overhang=True)

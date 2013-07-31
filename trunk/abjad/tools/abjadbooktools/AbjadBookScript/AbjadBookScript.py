@@ -15,7 +15,7 @@ class AbjadBookScript(DeveloperScript):
 
     @property
     def long_description(self):
-        return '''DESCRIPTION
+        return r'''DESCRIPTION
 
     abjad-book processes Abjad snippets embedded in HTML, LaTeX, or ReST
     documents. All Abjad code placed between the <abjad> </abjad> tags in 

@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_TempoMark___init___01():
-    '''Init tempo mark with integer-valued mark.
+    r'''Init tempo mark with integer-valued mark.
     '''
 
     t = contexttools.TempoMark(Duration(3, 32), 52)
@@ -10,7 +10,7 @@ def test_TempoMark___init___01():
 
 
 def test_TempoMark___init___02():
-    '''Init tempo mark with float-valued mark.
+    r'''Init tempo mark with float-valued mark.
     '''
 
     t = contexttools.TempoMark(Duration(3, 32), 52.5)
@@ -18,7 +18,7 @@ def test_TempoMark___init___02():
 
 
 def test_TempoMark___init___03():
-    '''Init tempo mark from tempo mark.
+    r'''Init tempo mark from tempo mark.
     '''
 
     t = contexttools.TempoMark(Duration(3, 32), 52)
@@ -32,7 +32,7 @@ def test_TempoMark___init___03():
 
 
 def test_TempoMark___init___04():
-    '''Init tempo mark from integer pair.
+    r'''Init tempo mark from integer pair.
     '''
 
     t = contexttools.TempoMark((3, 32), 52.5)
@@ -40,7 +40,7 @@ def test_TempoMark___init___04():
 
 
 def test_TempoMark___init___05():
-    '''Init tempo mark from textual indication.
+    r'''Init tempo mark from textual indication.
     '''
 
     t = contexttools.TempoMark('Langsam')
@@ -48,7 +48,7 @@ def test_TempoMark___init___05():
 
 
 def test_TempoMark___init___06():
-    '''Init tempo mark with tempo range.
+    r'''Init tempo mark with tempo range.
     '''
 
     t = contexttools.TempoMark((1, 8), (52, 57.5))
@@ -56,7 +56,7 @@ def test_TempoMark___init___06():
 
 
 def test_TempoMark___init___07():
-    '''Init tempo mark from text, duration and range.
+    r'''Init tempo mark from text, duration and range.
     '''
 
     t = contexttools.TempoMark('Quick', Duration(1, 4), (120, 133))
@@ -64,7 +64,7 @@ def test_TempoMark___init___07():
 
 
 def test_TempoMark___init___08():
-    '''Init tempo mark from length-2 tuple.
+    r'''Init tempo mark from length-2 tuple.
     '''
 
     t = contexttools.TempoMark((Duration(1, 4), (120, 133)))
@@ -72,7 +72,7 @@ def test_TempoMark___init___08():
 
 
 def test_TempoMark___init___09():
-    '''Init tempo mark from length-3 tuple.
+    r'''Init tempo mark from length-3 tuple.
     '''
 
     t = contexttools.TempoMark(('Quick', Duration(1, 4), (120, 133)))

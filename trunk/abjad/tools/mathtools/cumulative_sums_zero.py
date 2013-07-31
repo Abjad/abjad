@@ -1,5 +1,5 @@
 def cumulative_sums_zero(sequence):
-    '''Cumulative sums of `sequence` starting from ``0``:
+    r'''Cumulative sums of `sequence` starting from ``0``:
 
     ::
 

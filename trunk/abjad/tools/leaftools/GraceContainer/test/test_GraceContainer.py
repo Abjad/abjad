@@ -3,7 +3,7 @@ import py.test
 
 
 def test_GraceContainer_01():
-    '''Grace music is a container.
+    r'''Grace music is a container.
     '''
 
     t = leaftools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])
@@ -22,7 +22,7 @@ def test_GraceContainer_01():
 
 
 def test_GraceContainer_02():
-    '''GraceContainer.kind is managed attribute.
+    r'''GraceContainer.kind is managed attribute.
         GraceContainer.kind knows about "after", "grace",
         "acciaccatura", "appoggiatura"'''
 
@@ -39,7 +39,7 @@ def test_GraceContainer_02():
 
 
 def test_GraceContainer_03():
-    '''Grace formats correctly as grace.
+    r'''Grace formats correctly as grace.
     '''
 
     t = leaftools.GraceContainer(notetools.make_repeated_notes(3))
@@ -56,7 +56,7 @@ def test_GraceContainer_03():
 
 
 def test_GraceContainer_04():
-    '''Grace formats correctly as acciaccatura.
+    r'''Grace formats correctly as acciaccatura.
     '''
 
     t = leaftools.GraceContainer(notetools.make_repeated_notes(3))
@@ -73,7 +73,7 @@ def test_GraceContainer_04():
 
 
 def test_GraceContainer_05():
-    '''Grace formats correctly as appoggiatura.
+    r'''Grace formats correctly as appoggiatura.
     '''
 
     t = leaftools.GraceContainer(notetools.make_repeated_notes(3))
@@ -90,7 +90,7 @@ def test_GraceContainer_05():
 
 
 def test_GraceContainer_06():
-    '''Grace formats correctly as after grace.
+    r'''Grace formats correctly as after grace.
     '''
 
     t = leaftools.GraceContainer(notetools.make_repeated_notes(3))
@@ -107,7 +107,7 @@ def test_GraceContainer_06():
 
 
 def test_GraceContainer_07():
-    '''Grace containers can be appended.
+    r'''Grace containers can be appended.
     '''
 
     t = leaftools.GraceContainer(notetools.make_repeated_notes(2))
@@ -118,7 +118,7 @@ def test_GraceContainer_07():
 
 
 def test_GraceContainer_08():
-    '''Grace containers can be extended.
+    r'''Grace containers can be extended.
     '''
 
     t = leaftools.GraceContainer(notetools.make_repeated_notes(2))

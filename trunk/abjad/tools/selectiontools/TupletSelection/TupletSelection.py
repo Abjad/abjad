@@ -4,7 +4,7 @@ from abjad.tools.selectiontools.FreeSelection import FreeSelection
 
 
 class TupletSelection(FreeSelection):
-    '''Free selection of tuplets.
+    r'''Free selection of tuplets.
     '''
 
     ### PUBLIC METHODS ###

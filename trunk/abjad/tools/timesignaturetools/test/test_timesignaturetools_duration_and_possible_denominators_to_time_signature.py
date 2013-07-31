@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_timesignaturetools_duration_and_possible_denominators_to_time_signature_01():
-    '''Find only feasible denominator in denominators list.
+    r'''Find only feasible denominator in denominators list.
     '''
 
     t = timesignaturetools.duration_and_possible_denominators_to_time_signature(
@@ -11,7 +11,7 @@ def test_timesignaturetools_duration_and_possible_denominators_to_time_signature
 
 
 def test_timesignaturetools_duration_and_possible_denominators_to_time_signature_02():
-    '''Use least feasible denominator in denominators list.
+    r'''Use least feasible denominator in denominators list.
     '''
 
     t = timesignaturetools.duration_and_possible_denominators_to_time_signature(
@@ -20,7 +20,7 @@ def test_timesignaturetools_duration_and_possible_denominators_to_time_signature
 
 
 def test_timesignaturetools_duration_and_possible_denominators_to_time_signature_03():
-    '''Make time signature literally from duration.
+    r'''Make time signature literally from duration.
     '''
 
     t = timesignaturetools.duration_and_possible_denominators_to_time_signature(
@@ -29,7 +29,7 @@ def test_timesignaturetools_duration_and_possible_denominators_to_time_signature
 
 
 def test_timesignaturetools_duration_and_possible_denominators_to_time_signature_04():
-    '''Make time signature literally from duration
+    r'''Make time signature literally from duration
     because no feasible denomiantors in denominators list.
     '''
 

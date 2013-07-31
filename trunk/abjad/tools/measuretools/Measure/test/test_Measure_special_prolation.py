@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Measure_special_prolation_01():
-    '''Measures with power-of-two time signature denominator
+    r'''Measures with power-of-two time signature denominator
     contribute trivially to contents prolation.
     '''
 
@@ -12,7 +12,7 @@ def test_Measure_special_prolation_01():
 
 
 def test_Measure_special_prolation_02():
-    '''Measures with power-of-two time signature denominator
+    r'''Measures with power-of-two time signature denominator
     contribute trivially to contents prolation.
     '''
 
@@ -27,7 +27,7 @@ def test_Measure_special_prolation_02():
 
 
 def test_Measure_special_prolation_03():
-    '''Measures with power-of-two time signature denominator
+    r'''Measures with power-of-two time signature denominator
     contribute trivially to contents prolation.
     '''
 
@@ -44,7 +44,7 @@ def test_Measure_special_prolation_03():
 
 
 def test_Measure_special_prolation_04():
-    '''Measures without power-of-two time signature denominators
+    r'''Measures without power-of-two time signature denominators
     contribute nontrivially to prolation.
     '''
 
@@ -54,7 +54,7 @@ def test_Measure_special_prolation_04():
 
 
 def test_Measure_special_prolation_05():
-    '''Measures without power-of-two time signature denominators
+    r'''Measures without power-of-two time signature denominators
     contribute nontrivially to prolation.
     '''
 
@@ -69,7 +69,7 @@ def test_Measure_special_prolation_05():
 
 
 def test_Measure_special_prolation_06():
-    '''Measures without power-of-two time signature denominators
+    r'''Measures without power-of-two time signature denominators
     contribute nontrivially to prolation.
     '''
 

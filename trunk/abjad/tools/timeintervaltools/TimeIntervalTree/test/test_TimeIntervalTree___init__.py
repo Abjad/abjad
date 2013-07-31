@@ -2,13 +2,13 @@ from abjad.tools.timeintervaltools import *
 
 
 def test_TimeIntervalTree___init___01():
-    '''TimeIntervalTree can be initialized without arguments.
+    r'''TimeIntervalTree can be initialized without arguments.
     '''
     tree = TimeIntervalTree([])
 
 
 def tree_TimeIntervalTree___init___02():
-    '''TimeIntervalTree can be instantiated from a single TimeInterval.
+    r'''TimeIntervalTree can be instantiated from a single TimeInterval.
     '''
     a = TimeInterval(0, 10)
     tree = TimeIntervalTree(a)
@@ -16,7 +16,7 @@ def tree_TimeIntervalTree___init___02():
 
 
 def tree_TimeIntervalTree___init___03():
-    '''TimeIntervalTree can be instantiated from a single TimeIntervalTree.
+    r'''TimeIntervalTree can be instantiated from a single TimeIntervalTree.
     '''
     a = TimeInterval(0, 10)
     t = TimeIntervalTree(a)
@@ -25,7 +25,7 @@ def tree_TimeIntervalTree___init___03():
 
 
 def test_TimeIntervalTree___init___02():
-    '''TimeIntervalTree can be initialized from a list of TimeIntervals.
+    r'''TimeIntervalTree can be initialized from a list of TimeIntervals.
     '''
     a = TimeInterval(0, 10, {'a': 1})
     b = TimeInterval(5, 15, {'b': 2})
@@ -35,7 +35,7 @@ def test_TimeIntervalTree___init___02():
 
 
 def test_TimeIntervalTree___init___03():
-    '''TimeIntervalTree can be initialized from a list of TimeIntervals.
+    r'''TimeIntervalTree can be initialized from a list of TimeIntervals.
     '''
     a = TimeInterval(0, 10, {'a': 1})
     b = TimeInterval(5, 15, {'b': 2})
@@ -44,7 +44,7 @@ def test_TimeIntervalTree___init___03():
 
 
 def test_TimeIntervalTree___init___04():
-    '''TimeIntervalTree recursively flattens its input argument,
+    r'''TimeIntervalTree recursively flattens its input argument,
     allowinging instantiation from any nested collection of
     TimeIntervals and / or trees.'''
     a = TimeInterval(0, 10)

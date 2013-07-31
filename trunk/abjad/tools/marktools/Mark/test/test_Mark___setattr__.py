@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Mark___setattr___01():
-    '''Slots constraint mark attributes.
+    r'''Slots constraint mark attributes.
     '''
 
     mark = marktools.Mark()

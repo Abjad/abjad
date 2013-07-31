@@ -3,7 +3,7 @@ from abjad.tools.mathtools import NonreducedFraction
 
 
 def test_Duration___add___01():
-    '''Adding two durations returns a third duration.
+    r'''Adding two durations returns a third duration.
     '''
 
     duration = Duration(1, 2) + Duration(1, 3)
@@ -11,7 +11,7 @@ def test_Duration___add___01():
 
 
 def test_Duration___add___02():
-    '''Adding a duration and nonreduced fraction returns a nonreduced fraction.
+    r'''Adding a duration and nonreduced fraction returns a nonreduced fraction.
     '''
 
     result = Duration(1, 4) + NonreducedFraction(2, 8)

@@ -2,7 +2,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class LilyPondEvent(AbjadObject):
-    '''Model of an arbitrary event in LilyPond.
+    r'''Model of an arbitrary event in LilyPond.
 
     Not composer-safe.
 

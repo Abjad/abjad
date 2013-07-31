@@ -114,7 +114,7 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        '''Note rhythm-maker interpreter representation.
+        r'''Note rhythm-maker interpreter representation.
 
         Return string.
         '''
@@ -124,7 +124,7 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
 
     @property
     def storage_format(self):
-        '''Note rhythm-maker storage format:
+        r'''Note rhythm-maker storage format:
 
         ::
 
@@ -141,7 +141,7 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
-        '''Create new note rhythm-maker:
+        r'''Create new note rhythm-maker:
 
         ::
 
@@ -177,7 +177,7 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
         return DivisionIncisedNoteRhythmMaker.new(self, **kwargs)
 
     def reverse(self):
-        '''Reverse note rhythm-maker:
+        r'''Reverse note rhythm-maker:
 
         ::
 

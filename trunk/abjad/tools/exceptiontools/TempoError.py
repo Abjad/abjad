@@ -1,4 +1,4 @@
 class TempoError(Exception):
-    '''General tempo error.
+    r'''General tempo error.
     '''
     pass

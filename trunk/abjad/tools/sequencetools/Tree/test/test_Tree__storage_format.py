@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Tree__storage_format_01():
-    '''Placeholder test to remind that tree storage format should recursively indent.
+    r'''Placeholder test to remind that tree storage format should recursively indent.
     '''
 
     tree = sequencetools.Tree([[0, 1, 2], [3], [4, 5]])

@@ -3,7 +3,7 @@ from py.test import raises
 
 
 def test_FixedDurationTuplet_trim_01():
-    '''1-element index.
+    r'''1-element index.
     '''
     t = tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 8)) * 3)
     for i, leaf in enumerate(t.select_leaves()):
@@ -15,7 +15,7 @@ def test_FixedDurationTuplet_trim_01():
 
 
 def test_FixedDurationTuplet_trim_02():
-    '''1-element index.
+    r'''1-element index.
     '''
     t = tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 8)) * 3)
     for i, leaf in enumerate(t.select_leaves()):
@@ -27,7 +27,7 @@ def test_FixedDurationTuplet_trim_02():
 
 
 def test_FixedDurationTuplet_trim_03():
-    '''1-element index.
+    r'''1-element index.
     '''
     t = tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 8)) * 3)
     for i, leaf in enumerate(t.select_leaves()):
@@ -39,7 +39,7 @@ def test_FixedDurationTuplet_trim_03():
 
 
 def test_FixedDurationTuplet_trim_04():
-    '''Raises IndexError.
+    r'''Raises IndexError.
     '''
     t = tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 8)) * 3)
     for i, leaf in enumerate(t.select_leaves()):
@@ -48,7 +48,7 @@ def test_FixedDurationTuplet_trim_04():
 
 
 def test_FixedDurationTuplet_trim_05():
-    '''0-element slice.
+    r'''0-element slice.
     '''
     t = tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 8)) * 3)
     for i, leaf in enumerate(t.select_leaves()):
@@ -61,7 +61,7 @@ def test_FixedDurationTuplet_trim_05():
 
 
 def test_FixedDurationTuplet_trim_06():
-    '''1-element slice.
+    r'''1-element slice.
     '''
     t = tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 8)) * 3)
     for i, leaf in enumerate(t.select_leaves()):
@@ -73,7 +73,7 @@ def test_FixedDurationTuplet_trim_06():
 
 
 def test_FixedDurationTuplet_trim_07():
-    '''1-element slice.
+    r'''1-element slice.
     '''
     t = tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 8)) * 3)
     for i, leaf in enumerate(t.select_leaves()):
@@ -85,7 +85,7 @@ def test_FixedDurationTuplet_trim_07():
 
 
 def test_FixedDurationTuplet_trim_08():
-    '''1-element slice.
+    r'''1-element slice.
     '''
     t = tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 8)) * 3)
     for i, leaf in enumerate(t.select_leaves()):
@@ -97,7 +97,7 @@ def test_FixedDurationTuplet_trim_08():
 
 
 def test_FixedDurationTuplet_trim_09():
-    '''Trimming all leaves raises an exception.
+    r'''Trimming all leaves raises an exception.
     '''
     t = tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 8)) * 3)
     for i, leaf in enumerate(t.select_leaves()):

@@ -4,7 +4,7 @@ from abjad.tools.quantizationtools.SearchTree import SearchTree
 
 
 class WeightedSearchTree(SearchTree):
-    '''A search tree that allows for dividing nodes in a ``QGrid`` into
+    r'''A search tree that allows for dividing nodes in a ``QGrid`` into
     parts with unequal weights:
 
     ::

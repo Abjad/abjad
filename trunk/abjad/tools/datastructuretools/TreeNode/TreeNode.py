@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class TreeNode(AbjadObject):
-    '''A node in a generalized tree.
+    r'''A node in a generalized tree.
 
     Return `TreeNode` instance.
     '''
@@ -176,7 +176,7 @@ class TreeNode(AbjadObject):
 
     @property
     def depth(self):
-        '''The depth of a node in a rhythm-tree structure:
+        r'''The depth of a node in a rhythm-tree structure:
 
         ::
 
@@ -212,7 +212,7 @@ class TreeNode(AbjadObject):
 
     @property
     def depthwise_inventory(self):
-        '''A dictionary of all nodes in a rhythm-tree, organized by their
+        r'''A dictionary of all nodes in a rhythm-tree, organized by their
         depth relative the root node:
 
         ::
@@ -273,7 +273,7 @@ class TreeNode(AbjadObject):
 
     @property
     def improper_parentage(self):
-        '''The improper parentage of a node in a rhythm-tree, being the
+        r'''The improper parentage of a node in a rhythm-tree, being the
         sequence of node beginning with itself and ending with the root node
         of the tree:
 
@@ -314,7 +314,7 @@ class TreeNode(AbjadObject):
 
     @property
     def parent(self):
-        '''The node's parent node:
+        r'''The node's parent node:
 
         ::
 
@@ -348,7 +348,7 @@ class TreeNode(AbjadObject):
 
     @property
     def proper_parentage(self):
-        '''The proper parentage of a node in a rhythm-tree, being the
+        r'''The proper parentage of a node in a rhythm-tree, being the
         sequence of node beginning with the node's immediate parent and
         ending with the root node of the tree:
 
@@ -384,7 +384,7 @@ class TreeNode(AbjadObject):
 
     @property
     def root(self):
-        '''The root node of the tree: that node in the tree which has
+        r'''The root node of the tree: that node in the tree which has
         no parent:
 
         ::

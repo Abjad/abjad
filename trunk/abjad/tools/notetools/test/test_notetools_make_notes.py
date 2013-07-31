@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_notetools_make_notes_01():
-    '''Can take a single pitch and a single duration.
+    r'''Can take a single pitch and a single duration.
     '''
 
     t = notetools.make_notes(1, (1,4))
@@ -14,7 +14,7 @@ def test_notetools_make_notes_01():
 
 
 def test_notetools_make_notes_02():
-    '''Tied durations result in more than one tied note.
+    r'''Tied durations result in more than one tied note.
     '''
 
     t = notetools.make_notes(1, (5, 8))
@@ -27,7 +27,7 @@ def test_notetools_make_notes_02():
 
 
 def test_notetools_make_notes_03():
-    '''May take a list of pitches and a single duration.
+    r'''May take a list of pitches and a single duration.
     '''
 
     t = notetools.make_notes([1, 2], (1, 4))
@@ -37,7 +37,7 @@ def test_notetools_make_notes_03():
 
 
 def test_notetools_make_notes_04():
-    '''May take a single pitch and a list of duration.
+    r'''May take a single pitch and a list of duration.
     '''
 
     t = notetools.make_notes(1, [(1, 8), (1, 4)])
@@ -49,7 +49,7 @@ def test_notetools_make_notes_04():
 
 
 def test_notetools_make_notes_05():
-    '''May take a list of pitches and list of durations.
+    r'''May take a list of pitches and list of durations.
     '''
 
     t = notetools.make_notes([0, 1], [(1, 8), (1, 4)])
@@ -61,7 +61,7 @@ def test_notetools_make_notes_05():
 
 
 def test_notetools_make_notes_06():
-    '''Durations can be durations.
+    r'''Durations can be durations.
     '''
 
     t = notetools.make_notes(1, Duration(1, 4))
@@ -70,7 +70,7 @@ def test_notetools_make_notes_06():
 
 
 def test_notetools_make_notes_07():
-    '''Durations can be a list of durations.
+    r'''Durations can be a list of durations.
     '''
 
     t = notetools.make_notes(1, [Duration(1, 4)])
@@ -79,7 +79,7 @@ def test_notetools_make_notes_07():
 
 
 def test_notetools_make_notes_08():
-    '''Decrease durations monotonically.
+    r'''Decrease durations monotonically.
     '''
 
     t = notetools.make_notes(1, (5, 16), 
@@ -90,7 +90,7 @@ def test_notetools_make_notes_08():
 
 
 def test_notetools_make_notes_09():
-    '''Increase durations monotonically.
+    r'''Increase durations monotonically.
     '''
 
     t = notetools.make_notes(1, (5, 16), 
@@ -101,7 +101,7 @@ def test_notetools_make_notes_09():
 
 
 def test_notetools_make_notes_10():
-    '''Make non-power-of-two duration.
+    r'''Make non-power-of-two duration.
     '''
 
     t = notetools.make_notes(1, (1, 36))
@@ -114,7 +114,7 @@ def test_notetools_make_notes_10():
 
 
 def test_notetools_make_notes_11():
-    '''Make multiple non-power-or-two durations.
+    r'''Make multiple non-power-or-two durations.
     '''
 
     t = notetools.make_notes(1, [(1, 12), (1, 6), (1, 8)])

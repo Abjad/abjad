@@ -114,11 +114,11 @@ class NamedChromaticPitchSet(PitchSet):
     # TODO: Implement pitch set (axis) inversion.
 
     #def invert(self):
-    #    '''Transpose all pcs in self by n.'''
+    #    r'''Transpose all pcs in self by n.'''
     #    return PCSet([pc.invert() for pc in self])
 
     def transpose(self, n):
-        '''Transpose all pcs in self by n.
+        r'''Transpose all pcs in self by n.
         '''
         from abjad.tools import pitchtools
         interval = pitchtools.MelodicChromaticInterval(n)

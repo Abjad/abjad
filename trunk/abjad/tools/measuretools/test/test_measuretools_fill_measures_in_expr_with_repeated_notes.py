@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_measuretools_fill_measures_in_expr_with_repeated_notes_01():
-    '''Populate non-power-of-two measure with note train.
+    r'''Populate non-power-of-two measure with note train.
     '''
 
     t = Measure((5, 18), [])

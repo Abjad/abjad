@@ -3,7 +3,7 @@ from abjad.tools.skiptools import Skip
 
 
 def test_Skip___repr___01():
-    '''Skip repr is evaluable.
+    r'''Skip repr is evaluable.
     '''
 
     skip_1 = Skip('s8.')

@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Chord___setitem___01():
-    '''Set chord item with tweaked note head.
+    r'''Set chord item with tweaked note head.
     '''
 
     chord = Chord([3, 13, 17], (1, 4))

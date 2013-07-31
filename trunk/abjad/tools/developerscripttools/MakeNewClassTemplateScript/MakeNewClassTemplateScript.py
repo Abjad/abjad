@@ -4,7 +4,7 @@ from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 
 
 class MakeNewClassTemplateScript(DeveloperScript):
-    '''Create class stubs, complete with test subdirectory:
+    r'''Create class stubs, complete with test subdirectory:
 
     ::
 

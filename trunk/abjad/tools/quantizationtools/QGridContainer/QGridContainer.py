@@ -3,7 +3,7 @@ from abjad.tools.rhythmtreetools import RhythmTreeContainer
 
 
 class QGridContainer(RhythmTreeContainer):
-    '''A container in a ``QGrid`` structure:
+    r'''A container in a ``QGrid`` structure:
 
     ::
 

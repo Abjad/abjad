@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Spanner___getitem___01():
-    '''Get at nonnegative index in spanner.
+    r'''Get at nonnegative index in spanner.
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
@@ -30,7 +30,7 @@ def test_Spanner___getitem___01():
 
 
 def test_Spanner___getitem___02():
-    '''Get at negative index in spanner.
+    r'''Get at negative index in spanner.
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
@@ -58,7 +58,7 @@ def test_Spanner___getitem___02():
 
 
 def test_Spanner___getitem___03():
-    '''Get slice from spanner.
+    r'''Get slice from spanner.
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
@@ -86,7 +86,7 @@ def test_Spanner___getitem___03():
 
 
 def test_Spanner___getitem___04():
-    '''Get all spanner components.
+    r'''Get all spanner components.
         Equivalent to p.clear().'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)

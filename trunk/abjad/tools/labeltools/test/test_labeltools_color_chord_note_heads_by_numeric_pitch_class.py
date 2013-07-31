@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_labeltools_color_chord_note_heads_by_numeric_pitch_class_01():
-    '''Works on chords.
+    r'''Works on chords.
     '''
 
     pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]]
@@ -32,7 +32,7 @@ def test_labeltools_color_chord_note_heads_by_numeric_pitch_class_01():
 
 
 def test_labeltools_color_chord_note_heads_by_numeric_pitch_class_02():
-    '''Works on notes.
+    r'''Works on notes.
     '''
 
     pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]]

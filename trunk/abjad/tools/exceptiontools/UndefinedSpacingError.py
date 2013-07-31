@@ -1,4 +1,4 @@
 class UndefinedSpacingError(Exception):
-    '''No spacing value found.
+    r'''No spacing value found.
     '''
     pass

@@ -1,5 +1,5 @@
 def make_reference_manual_graphviz_graph(graph):
-    '''Make a GraphvizGraph instance suitable for use in the
+    r'''Make a GraphvizGraph instance suitable for use in the
     Abjad reference manual.
 
     Return GraphvizGraph instance.

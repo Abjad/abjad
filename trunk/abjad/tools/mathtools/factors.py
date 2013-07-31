@@ -1,5 +1,5 @@
 def factors(n):
-    '''Integer factors of positive integer `n` in increasing order:
+    r'''Integer factors of positive integer `n` in increasing order:
 
     ::
 

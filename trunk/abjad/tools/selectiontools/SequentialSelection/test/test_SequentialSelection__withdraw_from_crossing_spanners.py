@@ -3,7 +3,7 @@ import py.test
 
 
 def test_SequentialSelection__withdraw_from_crossing_spanners_01():
-    '''Withdraw thread-contiguous components from crossing spanners.
+    r'''Withdraw thread-contiguous components from crossing spanners.
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
@@ -40,7 +40,7 @@ def test_SequentialSelection__withdraw_from_crossing_spanners_01():
 
 
 def test_SequentialSelection__withdraw_from_crossing_spanners_02():
-    '''Withdraw thread-contiguous components from crossing spanners.
+    r'''Withdraw thread-contiguous components from crossing spanners.
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
@@ -90,7 +90,7 @@ def test_SequentialSelection__withdraw_from_crossing_spanners_02():
 
 
 def test_SequentialSelection__withdraw_from_crossing_spanners_03():
-    '''Withdraw thread-contiguous components from crossing spanners.
+    r'''Withdraw thread-contiguous components from crossing spanners.
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)

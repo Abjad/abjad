@@ -6,7 +6,7 @@ from abjad.tools.componenttools.Component import Component
 
 
 class Container(Component):
-    '''Abjad model of a music container:
+    r'''Abjad model of a music container:
 
     ::
 
@@ -47,7 +47,7 @@ class Container(Component):
     ### SPECIAL METHODS ###
 
     def __add__(self, expr):
-        '''Concatenate containers self and expr.
+        r'''Concatenate containers self and expr.
         The operation c = a + b returns a new Container c with
         the content of both a and b.
         The operation is non-commutative: the content of the first
@@ -67,7 +67,7 @@ class Container(Component):
             return result
 
     def __contains__(self, expr):
-        '''True if expr is in container, otherwise False.
+        r'''True if expr is in container, otherwise False.
         '''
         for x in self._music:
             if x is expr:
@@ -76,7 +76,7 @@ class Container(Component):
             return False
 
     def __delitem__(self, i):
-        '''Find component(s) at index or slice 'i' in container.
+        r'''Find component(s) at index or slice 'i' in container.
         Detach component(s) from parentage.
         Withdraw component(s) from crossing spanners.
         Preserve spanners that component(s) cover(s).
@@ -88,7 +88,7 @@ class Container(Component):
         components._set_parents(None)
 
     def __getitem__(self, i):
-        '''Return component at index i in container.
+        r'''Return component at index i in container.
         Shallow traversal of container for numeric indices only.
         '''
         if isinstance(i, int):
@@ -106,7 +106,7 @@ class Container(Component):
         raise ValueError(repr(i))
 
     def __iadd__(self, expr):
-        '''__iadd__ avoids unnecessary copying of structures.
+        r'''__iadd__ avoids unnecessary copying of structures.
         '''
         from abjad.tools import componenttools
         from abjad.tools import containertools
@@ -116,29 +116,29 @@ class Container(Component):
             [expr])[0]])
 
     def __imul__(self, total):
-        '''Multiply contents of container 'total' times.
+        r'''Multiply contents of container 'total' times.
         Return multiplied container.
         '''
         from abjad.tools import containertools
         return containertools.repeat_contents_of_container(self, total=total)
 
     def __len__(self):
-        '''Return nonnegative integer number of components in container.
+        r'''Return nonnegative integer number of components in container.
         '''
         return len(self._music)
 
     def __radd__(self, expr):
-        '''Extend container by contents of expr to the right.
+        r'''Extend container by contents of expr to the right.
         '''
         return self + expr
 
     def __repr__(self):
-        '''String format of container for interpreter display.
+        r'''String format of container for interpreter display.
         '''
         return self._compact_representation
 
     def __setitem__(self, i, expr):
-        '''Set 'expr' in self at nonnegative integer index i.
+        r'''Set 'expr' in self at nonnegative integer index i.
         Or, set 'expr' in self at slice i.
         Find spanners that dominate self[i] and children of self[i].
         Replace contents at self[i] with 'expr'.
@@ -151,7 +151,7 @@ class Container(Component):
 
     @property
     def _compact_representation(self):
-        '''Compact form used in spanner display.
+        r'''Compact form used in spanner display.
         '''
         if not self.is_parallel:
             return '{%s}' % self._summary
@@ -164,7 +164,7 @@ class Container(Component):
 
     @property
     def _space_delimited_summary(self):
-        '''Formatted summary of container contents for string output.
+        r'''Formatted summary of container contents for string output.
         '''
         if 0 < len(self):
             result = []
@@ -179,7 +179,7 @@ class Container(Component):
 
     @property
     def _summary(self):
-        '''Formatted summary of container contents for repr output.
+        r'''Formatted summary of container contents for repr output.
         '''
         if 0 < len(self):
             return ', '.join([str(x) for x in self._music])
@@ -295,7 +295,7 @@ class Container(Component):
         expr, 
         withdraw_components_in_expr_from_crossing_spanners=True,
         ):
-        '''This method exists beacuse __setitem__ can not accept keywords.
+        r'''This method exists beacuse __setitem__ can not accept keywords.
         Note that setting 
         withdraw_components_in_expr_from_crossing_spanners=False
         constitutes a composer-unsafe use of this method.
@@ -473,7 +473,7 @@ class Container(Component):
 
     @property
     def music(self):
-        '''Tuple of components in container:
+        r'''Tuple of components in container:
 
         ::
 
@@ -591,7 +591,7 @@ class Container(Component):
         self.__setitem__(slice(len(self), len(self)), [component])
 
     def extend(self, expr):
-        '''Extend `expr` against container:
+        r'''Extend `expr` against container:
 
         ::
 
@@ -644,7 +644,7 @@ class Container(Component):
             expr.__getitem__(slice(0, len(expr))))
 
     def index(self, component):
-        '''Index `component` in container:
+        r'''Index `component` in container:
 
         ::
 
@@ -672,7 +672,7 @@ class Container(Component):
             raise ValueError(message)
 
     def insert(self, i, component):
-        '''Insert `component` in container at index `i`:
+        r'''Insert `component` in container at index `i`:
 
         ::
 
@@ -717,7 +717,7 @@ class Container(Component):
         self.__setitem__(slice(i, i), [component])
 
     def pop(self, i=-1):
-        '''Pop component at index `i` from container:
+        r'''Pop component at index `i` from container:
 
         ::
 
@@ -761,7 +761,7 @@ class Container(Component):
         return component
 
     def remove(self, component):
-        '''Remove `component` from container:
+        r'''Remove `component` from container:
 
         ::
 
@@ -809,7 +809,7 @@ class Container(Component):
         del(self[i])
 
     def select_leaves(self):
-        '''Select leaves in container:
+        r'''Select leaves in container:
 
         ::
 
@@ -828,7 +828,7 @@ class Container(Component):
         return selectiontools.SequentialLeafSelection(generator)
 
     def select_notes_and_chords(self):
-        '''Select notes and chords in container:
+        r'''Select notes and chords in container:
 
         ::
 
@@ -843,7 +843,7 @@ class Container(Component):
         return selectiontools.SequentialLeafSelection(generator)
 
     def shorten(self, duration):
-        '''Shorten container by `duration`.
+        r'''Shorten container by `duration`.
         '''
         accumulated_duration = durationtools.Duration(0)
         components = []

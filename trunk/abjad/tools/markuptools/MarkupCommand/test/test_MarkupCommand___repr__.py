@@ -3,7 +3,7 @@ from abjad.tools.markuptools.MarkupCommand import MarkupCommand
 
 
 def test_MarkupCommand___repr___01():
-    '''Repr is evaluable.
+    r'''Repr is evaluable.
     '''
 
     markup_command_1 = markuptools.MarkupCommand('hspace', 0)

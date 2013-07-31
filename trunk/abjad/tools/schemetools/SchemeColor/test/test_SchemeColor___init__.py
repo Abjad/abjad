@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_SchemeColor___init___01():
-    '''Init scheme color with string.
+    r'''Init scheme color with string.
     '''
 
     t = Note("c'4")
@@ -17,7 +17,7 @@ def test_SchemeColor___init___01():
 
 
 def test_SchemeColor___init___02():
-    '''Normal (non-X11) color names specify with a string.
+    r'''Normal (non-X11) color names specify with a string.
     '''
 
     t = Note("c'4")

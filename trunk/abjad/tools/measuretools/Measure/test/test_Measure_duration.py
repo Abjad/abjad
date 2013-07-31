@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Measure_duration_01():
-    '''Properly filled Measure with power-of-two time signature denominator.
+    r'''Properly filled Measure with power-of-two time signature denominator.
     '''
 
     t = Measure((3, 8), "c'8 d'8 e'8")
@@ -26,7 +26,7 @@ def test_Measure_duration_01():
 
 
 def test_Measure_duration_02():
-    '''Properly filled measure without power-of-two time signature denominator.
+    r'''Properly filled measure without power-of-two time signature denominator.
     '''
 
     t = Measure((3, 10), "c'8 d'8 e'8")
@@ -52,7 +52,7 @@ def test_Measure_duration_02():
 
 
 def test_Measure_duration_03():
-    '''Improperly filled measure without power-of-two time signature denominator.
+    r'''Improperly filled measure without power-of-two time signature denominator.
     '''
 
     t = Measure((3, 8), "c'8 d'8 e'8 f'8")
@@ -66,7 +66,7 @@ def test_Measure_duration_03():
 
 
 def test_Measure_duration_04():
-    '''Impropely filled measure without power-of-two time signature denominator.
+    r'''Impropely filled measure without power-of-two time signature denominator.
     '''
 
     t = Measure((3, 10), "c'8 d'8 e'8 f'8")

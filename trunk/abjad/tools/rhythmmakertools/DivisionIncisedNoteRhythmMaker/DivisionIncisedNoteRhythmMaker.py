@@ -136,7 +136,7 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
-        '''Create new division-incised note rhythm-maker with `kwargs`:
+        r'''Create new division-incised note rhythm-maker with `kwargs`:
 
         ::
 
@@ -199,7 +199,7 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
         return DivisionIncisedRhythmMaker.new(self, **kwargs)
 
     def reverse(self):
-        '''Reverse division-incised note rhythm-maker.
+        r'''Reverse division-incised note rhythm-maker.
 
         Nonreversed output:
 
@@ -280,7 +280,7 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
         return DivisionIncisedRhythmMaker.reverse(self)
 
     def storage_format(self):
-        '''Division-incised note rhythm-maker storage format:
+        r'''Division-incised note rhythm-maker storage format:
 
         ::
 

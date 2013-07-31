@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Container_is_parallel_01():
-    '''True when container encloses contents in LilyPond << >> brackets,
+    r'''True when container encloses contents in LilyPond << >> brackets,
         otherwise False.'''
 
     assert not Container([]).is_parallel
@@ -21,7 +21,7 @@ def test_Container_is_parallel_01():
 
 
 def test_Container_is_parallel_02():
-    '''True when container encloses contents in LilyPond << >> brackets,
+    r'''True when container encloses contents in LilyPond << >> brackets,
         otherwise False.'''
 
     t = Container([])
@@ -30,7 +30,7 @@ def test_Container_is_parallel_02():
 
 
 def test_Container_is_parallel_03():
-    '''Container 'parallel' is settable.
+    r'''Container 'parallel' is settable.
     '''
 
     t = Container([])
@@ -41,7 +41,7 @@ def test_Container_is_parallel_03():
 
 
 def test_Container_is_parallel_04():
-    '''A parallel container can hold Contexts.
+    r'''A parallel container can hold Contexts.
     '''
     t = Container(Voice(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
@@ -65,7 +65,7 @@ def test_Container_is_parallel_04():
 # Parallel Errors #
 
 def test_Container_is_parallel_05():
-    '''Parallel containers must contain only Contexts.
+    r'''Parallel containers must contain only Contexts.
     It cannot take leaves.'''
 
     t = Container(notetools.make_repeated_notes(4))
@@ -73,7 +73,7 @@ def test_Container_is_parallel_05():
 
 
 def test_Container_is_parallel_06():
-    '''Parallel containers must contain only Contexts.
+    r'''Parallel containers must contain only Contexts.
     It cannot take Containers.'''
 
     t = Container(Container(notetools.make_repeated_notes(4)) * 2)

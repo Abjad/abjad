@@ -14,7 +14,7 @@ from abjad.tools.abctools import ImmutableAbjadObject
 
 
 class QEventSequence(tuple, ImmutableAbjadObject):
-    '''A well-formed sequence of 
+    r'''A well-formed sequence of 
     :class:`~abjad.tools.quantizationtools.QEvent.QEvent.QEvent`
     instances, containing only 
     :class:`~abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent` 
@@ -103,7 +103,7 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
     @property
     def duration_in_ms(self):
-        '''The total duration in milliseconds of the ``QEventSequence``:
+        r'''The total duration in milliseconds of the ``QEventSequence``:
 
         ::
 
@@ -118,7 +118,7 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
     @classmethod
     def from_millisecond_durations(cls, milliseconds, fuse_silences=False):
-        '''Convert a sequence of millisecond durations ``durations`` into
+        r'''Convert a sequence of millisecond durations ``durations`` into
         a ``QEventSequence``:
 
         ::
@@ -184,7 +184,7 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
     @classmethod
     def from_millisecond_offsets(cls, offsets):
-        '''Convert millisecond offsets ``offsets`` into a ``QEventSequence``:
+        r'''Convert millisecond offsets ``offsets`` into a ``QEventSequence``:
 
         ::
 
@@ -239,7 +239,7 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
     @classmethod
     def from_millisecond_pitch_pairs(cls, pairs):
-        '''Convert millisecond-duration:pitch pairs ``pairs`` into a ``QEventSequence``:
+        r'''Convert millisecond-duration:pitch pairs ``pairs`` into a ``QEventSequence``:
 
         ::
 
@@ -325,7 +325,7 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
     @classmethod
     def from_tempo_scaled_durations(cls, durations, tempo=None):
-        '''Convert ``durations``, scaled by ``tempo`` 
+        r'''Convert ``durations``, scaled by ``tempo`` 
         into a ``QEventSequence``:
 
         ::
@@ -393,7 +393,7 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
     @classmethod
     def from_tempo_scaled_leaves(cls, leaves, tempo=None):
-        '''Convert ``leaves``, optionally with ``tempo`` 
+        r'''Convert ``leaves``, optionally with ``tempo`` 
         into a ``QEventSequence``:
 
         ::

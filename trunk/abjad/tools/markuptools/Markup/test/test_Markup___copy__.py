@@ -3,7 +3,7 @@ import copy
 
 
 def test_Markup___copy___01():
-    '''Copy keywords.
+    r'''Copy keywords.
     '''
 
     markup_1 = markuptools.Markup('foo bar', direction=Up, markup_name='foo')

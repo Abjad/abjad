@@ -212,7 +212,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
         return truth_value
 
     def __eq__(self, expr):
-        '''True when `expr` equals time relation. Otherwise false:
+        r'''True when `expr` equals time relation. Otherwise false:
 
         ::
 
@@ -245,7 +245,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     @property
     def is_fully_loaded(self):
-        '''True when `timespan_1` and `timespan_2` are both not none.
+        r'''True when `timespan_1` and `timespan_2` are both not none.
         Otherwise false:
 
         ::
@@ -267,7 +267,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     @property
     def is_fully_unloaded(self):
-        '''True when `timespan_1` and `timespan_2` are both none.
+        r'''True when `timespan_1` and `timespan_2` are both none.
         Otherwise false.
 
             >>> time_relation.is_fully_unloaded
@@ -279,7 +279,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     @property
     def timespan_1(self):
-        '''Time relation timespan ``1``:
+        r'''Time relation timespan ``1``:
 
         ::
 
@@ -292,7 +292,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     @property
     def timespan_2(self):
-        '''Time relation timespan ``2``:
+        r'''Time relation timespan ``2``:
 
         ::
 
@@ -306,7 +306,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
     ### PUBLIC METHODS ###
 
     def get_counttime_components(self, counttime_components):
-        '''Get `counttime_components` that satisfy `time_relation`:
+        r'''Get `counttime_components` that satisfy `time_relation`:
 
         ::
 
@@ -366,7 +366,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     def get_offset_indices(
         self, timespan_2_start_offsets, timespan_2_stop_offsets):
-        '''Get offset indices that satisfy time relation:
+        r'''Get offset indices that satisfy time relation:
 
         ::
 

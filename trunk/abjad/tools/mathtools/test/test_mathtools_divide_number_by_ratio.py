@@ -4,7 +4,7 @@ import py.test
 
 
 def test_mathtools_divide_number_by_ratio_01():
-    '''Divide int by ratio.
+    r'''Divide int by ratio.
     '''
 
     t = mathtools.divide_number_by_ratio(1, [1, 1, 2])
@@ -16,7 +16,7 @@ def test_mathtools_divide_number_by_ratio_01():
 
 
 def test_mathtools_divide_number_by_ratio_02():
-    '''Divide fraction by ratio.
+    r'''Divide fraction by ratio.
     '''
 
     t = mathtools.divide_number_by_ratio(Duration(1, 2), [1, 1, 2])
@@ -28,14 +28,14 @@ def test_mathtools_divide_number_by_ratio_02():
 
 
 def test_mathtools_divide_number_by_ratio_03():
-    '''Raise type error on nonnumber.
+    r'''Raise type error on nonnumber.
     '''
 
     assert py.test.raises(Exception, "mathtools.divide_number_by_ratio('foo', [1, 1, 3])")
 
 
 def test_mathtools_divide_number_by_ratio_04():
-    '''Duration returns durations.
+    r'''Duration returns durations.
     '''
 
     result = mathtools.divide_number_by_ratio(Duration(1, 4), [1, 1, 1])

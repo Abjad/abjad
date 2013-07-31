@@ -5,7 +5,7 @@ from abjad.tools.documentationtools.GraphvizObject import GraphvizObject
 
 
 class GraphvizGraph(TreeContainer, GraphvizObject):
-    '''Abjad model of a Graphviz graph:
+    r'''Abjad model of a Graphviz graph:
 
     ::
 

@@ -4,7 +4,7 @@ from abjad.tools.leaftools.Leaf import Leaf
 
 
 class Chord(Leaf):
-    '''Abjad model of a chord:
+    r'''Abjad model of a chord:
 
     ::
 
@@ -117,7 +117,7 @@ class Chord(Leaf):
 
     @property
     def _summary(self):
-        '''String summary of noteh eads in chord.
+        r'''String summary of noteh eads in chord.
         '''
         return ' '.join([str(x) for x in self.note_heads])
 
@@ -193,7 +193,7 @@ class Chord(Leaf):
     @apply
     def note_heads():
         def fget(self):
-            '''Get read-only tuple of note heads in chord:
+            r'''Get read-only tuple of note heads in chord:
 
             ::
 
@@ -266,7 +266,7 @@ class Chord(Leaf):
     @apply
     def written_pitches():
         def fget(self):
-            '''Get read-only tuple of pitches in chord:
+            r'''Get read-only tuple of pitches in chord:
 
             ::
 
@@ -295,7 +295,7 @@ class Chord(Leaf):
     ### PUBLIC METHODS ###
 
     def append(self, note_head):
-        '''Append `note_head` to chord:
+        r'''Append `note_head` to chord:
 
         ::
 
@@ -371,7 +371,7 @@ class Chord(Leaf):
         return treble, bass
 
     def extend(self, note_heads):
-        '''Extend chord with `note_heads`:
+        r'''Extend chord with `note_heads`:
 
         ::
 
@@ -391,7 +391,7 @@ class Chord(Leaf):
             self.append(note_head)
 
     def get_note_head(self, pitch):
-        '''Get note head from chord by `pitch`.
+        r'''Get note head from chord by `pitch`.
 
         Raise missing note head error when chord contains no
         note head with pitch.
@@ -422,7 +422,7 @@ class Chord(Leaf):
             raise ExtraNoteHeadError
 
     def pop(self, i=-1):
-        '''Remove note head at index `i` in chord:
+        r'''Remove note head at index `i` in chord:
 
         ::
 
@@ -447,7 +447,7 @@ class Chord(Leaf):
         return note_head
 
     def remove(self, note_head):
-        '''Remove `note_head` from chord:
+        r'''Remove `note_head` from chord:
 
         ::
 

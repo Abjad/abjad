@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_NamedChromaticPitch___float___01():
-    '''Return chromatic pitch number of 12-ET named chromatic pitch as float.
+    r'''Return chromatic pitch number of 12-ET named chromatic pitch as float.
     '''
 
     named_chromatic_pitch = pitchtools.NamedChromaticPitch(13)
@@ -11,7 +11,7 @@ def test_NamedChromaticPitch___float___01():
 
 
 def test_NamedChromaticPitch___float___02():
-    '''Return chromatic pitch number of 24-ET named chromatic pitch as float.
+    r'''Return chromatic pitch number of 24-ET named chromatic pitch as float.
     '''
 
     named_chromatic_pitch = pitchtools.NamedChromaticPitch(13.5)

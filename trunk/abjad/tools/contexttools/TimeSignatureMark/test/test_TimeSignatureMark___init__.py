@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_TimeSignatureMark___init___01():
-    '''Initialize time signature mark from integer pair.
+    r'''Initialize time signature mark from integer pair.
     '''
 
     time_signature = contexttools.TimeSignatureMark((9, 32))
@@ -11,7 +11,7 @@ def test_TimeSignatureMark___init___01():
 
 
 def test_TimeSignatureMark___init___02():
-    '''Initialize time signature mark from other time signature instance.
+    r'''Initialize time signature mark from other time signature instance.
     '''
 
     time_signature_1 = contexttools.TimeSignatureMark((9, 32))
@@ -25,7 +25,7 @@ def test_TimeSignatureMark___init___02():
 
 
 def test_TimeSignatureMark___init___03():
-    '''Initialize time signature mark from other time signature instance with partial.
+    r'''Initialize time signature mark from other time signature instance with partial.
     '''
 
     time_signature_1 = contexttools.TimeSignatureMark((9, 32), partial=Duration(1, 32))

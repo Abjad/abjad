@@ -86,7 +86,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
 
     @property
     def storage_format(self):
-        '''Division-burnished talea rhythm-maker storage format:
+        r'''Division-burnished talea rhythm-maker storage format:
 
         ::
 
@@ -115,7 +115,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
-        '''Create new rhythm-maker with `kwargs`:
+        r'''Create new rhythm-maker with `kwargs`:
 
         ::
 
@@ -182,7 +182,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
         return BurnishedRhythmMaker.new(self, **kwargs)
 
     def reverse(self):
-        '''Reverse division-burnished talea rhythm-maker.
+        r'''Reverse division-burnished talea rhythm-maker.
 
         Nonreversed output:
 

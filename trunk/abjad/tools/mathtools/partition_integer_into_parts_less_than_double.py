@@ -1,5 +1,5 @@
 def partition_integer_into_parts_less_than_double(n, m):
-    '''Partition integer `n` into parts less than double integer `m`.
+    r'''Partition integer `n` into parts less than double integer `m`.
 
     Example:
 

@@ -3,7 +3,7 @@ from abjad.tools import pitcharraytools
 
 
 def test_PitchArrayRow_append_01():
-    '''Append cell by positive integer width.
+    r'''Append cell by positive integer width.
     '''
 
     array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])

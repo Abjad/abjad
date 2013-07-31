@@ -196,7 +196,7 @@ class DynamicMark(ContextMark):
 
     @property
     def lilypond_format(self):
-        '''LilyPond input format of dynamic mark:
+        r'''LilyPond input format of dynamic mark:
 
         ::
 
@@ -212,7 +212,7 @@ class DynamicMark(ContextMark):
 
     @staticmethod
     def composite_dynamic_name_to_steady_state_dynamic_name(dynamic_name):
-        '''Change composite `dynamic_name` to steady state dynamic name:
+        r'''Change composite `dynamic_name` to steady state dynamic name:
 
         ::
 
@@ -225,7 +225,7 @@ class DynamicMark(ContextMark):
 
     @staticmethod
     def dynamic_name_to_dynamic_ordinal(dynamic_name):
-        '''Change `dynamic_name` to dynamic ordinal:
+        r'''Change `dynamic_name` to dynamic ordinal:
 
         ::
 
@@ -243,7 +243,7 @@ class DynamicMark(ContextMark):
 
     @staticmethod
     def dynamic_ordinal_to_dynamic_name(dynamic_ordinal):
-        '''Change `dynamic_ordinal` to dynamic name:
+        r'''Change `dynamic_ordinal` to dynamic name:
 
         ::
 
@@ -256,7 +256,7 @@ class DynamicMark(ContextMark):
 
     @staticmethod
     def is_dynamic_name(arg):
-        '''True when `arg` is dynamic name. False otherwise:
+        r'''True when `arg` is dynamic name. False otherwise:
 
         ::
 

@@ -3,7 +3,7 @@ from abjad.tools.marktools.DirectedMark.DirectedMark import DirectedMark
 
 
 class Articulation(DirectedMark):
-    '''Abjad model of musical articulation.
+    r'''Abjad model of musical articulation.
 
     Initialize from articulation name:
 
@@ -203,7 +203,7 @@ class Articulation(DirectedMark):
 
     @property
     def lilypond_format(self):
-        '''LilyPond format string of articulation:
+        r'''LilyPond format string of articulation:
 
         ::
 
@@ -218,7 +218,7 @@ class Articulation(DirectedMark):
     @apply
     def name():
         def fget(self):
-            '''Get name of articulation:
+            r'''Get name of articulation:
 
             ::
 

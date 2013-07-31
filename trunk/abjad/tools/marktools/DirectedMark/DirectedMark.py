@@ -4,7 +4,7 @@ from abjad.tools.marktools.Mark import Mark
 
 
 class DirectedMark(Mark):
-    '''Abstract base class of Marks which possess a vertical, 
+    r'''Abstract base class of Marks which possess a vertical, 
     typographic direction, i.e. above or below the staff.
     '''
 

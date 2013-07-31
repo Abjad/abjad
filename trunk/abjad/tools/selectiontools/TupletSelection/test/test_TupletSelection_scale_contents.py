@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_TupletSelection_scale_contents_01():
-    '''Double tuplet.
+    r'''Double tuplet.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -22,7 +22,7 @@ def test_TupletSelection_scale_contents_01():
 
 
 def test_TupletSelection_scale_contents_02():
-    '''Halve tuplet.
+    r'''Halve tuplet.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -42,7 +42,7 @@ def test_TupletSelection_scale_contents_02():
 
 
 def test_TupletSelection_scale_contents_03():
-    '''Quadruple tuplet.
+    r'''Quadruple tuplet.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -62,7 +62,7 @@ def test_TupletSelection_scale_contents_03():
 
 
 def test_TupletSelection_scale_contents_04():
-    '''Quarter tuplet.
+    r'''Quarter tuplet.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -82,7 +82,7 @@ def test_TupletSelection_scale_contents_04():
 
 
 def test_TupletSelection_scale_contents_05():
-    '''Multiply tuplet by 3/2.
+    r'''Multiply tuplet by 3/2.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -102,7 +102,7 @@ def test_TupletSelection_scale_contents_05():
 
 
 def test_TupletSelection_scale_contents_06():
-    '''Multiply tuplet by 2/3.
+    r'''Multiply tuplet by 2/3.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -122,7 +122,7 @@ def test_TupletSelection_scale_contents_06():
 
 
 def test_TupletSelection_scale_contents_07():
-    '''Multiply tuplet by 3/5.
+    r'''Multiply tuplet by 3/5.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -142,7 +142,7 @@ def test_TupletSelection_scale_contents_07():
 
 
 def test_TupletSelection_scale_contents_08():
-    '''Multiply undotted, unbracketted notes by 3/2; ie, add a single dot.
+    r'''Multiply undotted, unbracketted notes by 3/2; ie, add a single dot.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(3, 8), "c'8 d'8 e'8")
@@ -162,7 +162,7 @@ def test_TupletSelection_scale_contents_08():
 
 
 def test_TupletSelection_scale_contents_09():
-    '''Binary target duration.
+    r'''Binary target duration.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(3, 8), [Note(0, (2, 8)), Note(0, (3, 8))])
@@ -190,7 +190,7 @@ def test_TupletSelection_scale_contents_09():
 
 
 def test_TupletSelection_scale_contents_10():
-    '''Target duration without power-of-two denominator.
+    r'''Target duration without power-of-two denominator.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(4, 8), [Note(0, (2, 8)), Note(0, (3, 8))])

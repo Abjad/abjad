@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Chord_divide_01():
-    '''Divide at D4.
+    r'''Divide at D4.
     '''
 
     staff = Staff("<d' ef' e'>4")
@@ -24,7 +24,7 @@ def test_Chord_divide_01():
 
 
 def test_Chord_divide_02():
-    '''Divide at Eb4.
+    r'''Divide at Eb4.
     '''
 
     staff = Staff("<d' ef' e'>4")
@@ -45,7 +45,7 @@ def test_Chord_divide_02():
 
 
 def test_Chord_divide_03():
-    '''Divide at E4.
+    r'''Divide at E4.
     '''
 
     staff = Staff("<d' ef' e'>4")

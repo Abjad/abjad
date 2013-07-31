@@ -4,7 +4,7 @@ from abjad.tools import tempotools
 
 
 class SpacingIndication(AbjadObject):
-    '''Spacing indication token.
+    r'''Spacing indication token.
 
     LilyPond ``Score.proportionalNotationDuration``
     will equal ``proportional_notation_duration`` when tempo
@@ -78,7 +78,7 @@ class SpacingIndication(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        '''Spacing indications compare equal when normalized 
+        r'''Spacing indications compare equal when normalized 
         spacing durations compare equal.
         '''
         if isinstance(expr, SpacingIndication):
@@ -97,7 +97,7 @@ class SpacingIndication(AbjadObject):
 
     @property
     def normalized_spacing_duration(self):
-        '''Proportional notation duration at 60 MM.
+        r'''Proportional notation duration at 60 MM.
         '''
         indication = self.tempo_indication
         duration = self.proportional_notation_duration
@@ -107,12 +107,12 @@ class SpacingIndication(AbjadObject):
 
     @property
     def proportional_notation_duration(self):
-        '''LilyPond proportional notation duration context setting.
+        r'''LilyPond proportional notation duration context setting.
         '''
         return self._proportional_notation_duration
 
     @property
     def tempo_indication(self):
-        '''Abjad tempo indication object.
+        r'''Abjad tempo indication object.
         '''
         return self._tempo_indication

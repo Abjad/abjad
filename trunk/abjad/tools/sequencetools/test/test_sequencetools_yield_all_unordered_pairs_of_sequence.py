@@ -3,7 +3,7 @@ from abjad.tools import sequencetools
 
 
 def test_sequencetools_yield_all_unordered_pairs_of_sequence_01():
-    '''Handles input of length greater than 2.
+    r'''Handles input of length greater than 2.
     '''
 
     t = list(sequencetools.yield_all_unordered_pairs_of_sequence([1, 2, 3, 4]))
@@ -11,14 +11,14 @@ def test_sequencetools_yield_all_unordered_pairs_of_sequence_01():
 
 
 def test_sequencetools_yield_all_unordered_pairs_of_sequence_02():
-    '''Handles input of length 2.
+    r'''Handles input of length 2.
     '''
 
     assert list(sequencetools.yield_all_unordered_pairs_of_sequence([1, 2])) == [(1, 2)]
 
 
 def test_sequencetools_yield_all_unordered_pairs_of_sequence_03():
-    '''Handles input of length less than 2.
+    r'''Handles input of length less than 2.
     '''
 
     assert list(sequencetools.yield_all_unordered_pairs_of_sequence([1])) == []
@@ -26,7 +26,7 @@ def test_sequencetools_yield_all_unordered_pairs_of_sequence_03():
 
 
 def test_sequencetools_yield_all_unordered_pairs_of_sequence_04():
-    '''Handles set input. Note that we can't control
+    r'''Handles set input. Note that we can't control
     the order in which the elements in set are iterated.
     So we must test result as an unordered set rather
     than an ordered list.'''
@@ -37,7 +37,7 @@ def test_sequencetools_yield_all_unordered_pairs_of_sequence_04():
 
 
 def test_sequencetools_yield_all_unordered_pairs_of_sequence_05():
-    '''Handles duplicate input values.
+    r'''Handles duplicate input values.
     '''
 
     assert list(sequencetools.yield_all_unordered_pairs_of_sequence([1, 1])) == [(1, 1)]

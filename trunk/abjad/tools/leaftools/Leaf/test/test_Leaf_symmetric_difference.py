@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Leaf_symmetric_difference_01():
-    '''Chords completely disjunct; all pitches preserved.
+    r'''Chords completely disjunct; all pitches preserved.
     '''
     t = Chord([0, 1, 2], (1, 4))
     u = Chord([3, 4, 5], (1, 4))
@@ -14,7 +14,7 @@ def test_Leaf_symmetric_difference_01():
 
 
 def test_Leaf_symmetric_difference_02():
-    '''Partially intersecting chords; shared pitches do not appear at all.
+    r'''Partially intersecting chords; shared pitches do not appear at all.
     '''
     t = Chord([0, 1, 2], (1, 4))
     u = Chord([1, 2, 3], (1, 4))
@@ -26,7 +26,7 @@ def test_Leaf_symmetric_difference_02():
 
 
 def test_Leaf_symmetric_difference_03():
-    '''Wholly intersecting chords; returns no pitches at all.
+    r'''Wholly intersecting chords; returns no pitches at all.
     '''
     t = Chord([0, 1, 2], (1, 4))
     u = Chord([0, 1, 2], (1, 4))
@@ -37,7 +37,7 @@ def test_Leaf_symmetric_difference_03():
 
 
 def test_Leaf_symmetric_difference_04():
-    '''Enharmonically disjunct; enharmonic equivalents both appear.
+    r'''Enharmonically disjunct; enharmonic equivalents both appear.
     '''
     t = Chord([0, ('cs', 4), 2], (1, 4))
     u = Chord([0, ('df', 4), 2], (1, 4))
@@ -49,7 +49,7 @@ def test_Leaf_symmetric_difference_04():
 
 
 def test_Leaf_symmetric_difference_05():
-    '''Differing durations; noncommutative operation takes duration from LHS.
+    r'''Differing durations; noncommutative operation takes duration from LHS.
     '''
     t = Chord([0, 1, 2], (1, 4))
     u = Chord([3, 4, 5], (1, 8))
@@ -61,7 +61,7 @@ def test_Leaf_symmetric_difference_05():
 
 
 def test_Leaf_symmetric_difference_06():
-    '''Differing durations; noncommutative operation takes duration from LHS.
+    r'''Differing durations; noncommutative operation takes duration from LHS.
     '''
     t = Chord([0, 1, 2], (1, 8))
     u = Chord([3, 4, 5], (1, 4))
@@ -73,7 +73,7 @@ def test_Leaf_symmetric_difference_06():
 
 
 def test_Leaf_symmetric_difference_07():
-    '''Rest in symmetric difference with rest produces rest.
+    r'''Rest in symmetric difference with rest produces rest.
     '''
     t = Rest((1, 4))
     u = Rest((1, 4))
@@ -84,7 +84,7 @@ def test_Leaf_symmetric_difference_07():
 
 
 def test_Leaf_symmetric_difference_08():
-    '''Rest in symmetric difference with note produces note.
+    r'''Rest in symmetric difference with note produces note.
     '''
     t = Rest((1, 4))
     u = Note("c'4")
@@ -96,7 +96,7 @@ def test_Leaf_symmetric_difference_08():
 
 
 def test_Leaf_symmetric_difference_09():
-    '''Note in symmetric difference with like pitched note produces rest.
+    r'''Note in symmetric difference with like pitched note produces rest.
     '''
     t = Note("c'4")
     u = Note("c'4")
@@ -107,7 +107,7 @@ def test_Leaf_symmetric_difference_09():
 
 
 def test_Leaf_symmetric_difference_10():
-    '''Note in symmetric difference with differently pitched note produces chord.
+    r'''Note in symmetric difference with differently pitched note produces chord.
     '''
     t = Note("c'4")
     u = Note(2, (1, 4))
@@ -119,7 +119,7 @@ def test_Leaf_symmetric_difference_10():
 
 
 def test_Leaf_symmetric_difference_11():
-    '''Chord in symmetric difference with differently pitched note produces chord.
+    r'''Chord in symmetric difference with differently pitched note produces chord.
     '''
     t = Chord([0, 2], (1, 4))
     u = Note(4, (1, 4))
@@ -131,7 +131,7 @@ def test_Leaf_symmetric_difference_11():
 
 
 def test_Leaf_symmetric_difference_12():
-    '''Chord in symmetric difference with like pitched note removes shared note.
+    r'''Chord in symmetric difference with like pitched note removes shared note.
     '''
     t = Chord([0, 2], (1, 4))
     u = Note("c'4")

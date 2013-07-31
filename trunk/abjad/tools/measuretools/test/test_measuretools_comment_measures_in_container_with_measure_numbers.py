@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_measuretools_comment_measures_in_container_with_measure_numbers_01():
-    '''Label measure numbers with comments before and after each measure.
+    r'''Label measure numbers with comments before and after each measure.
     '''
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
@@ -41,7 +41,7 @@ def test_measuretools_comment_measures_in_container_with_measure_numbers_01():
 
 
 def test_measuretools_comment_measures_in_container_with_measure_numbers_02():
-    '''Works on measures, too, in addition to contexts.
+    r'''Works on measures, too, in addition to contexts.
     '''
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)

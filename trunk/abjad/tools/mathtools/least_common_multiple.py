@@ -1,5 +1,5 @@
 def least_common_multiple(*integers):
-    '''Least common multiple of positive `integers`:
+    r'''Least common multiple of positive `integers`:
 
     ::
 

@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Articulation_01():
-    '''Articulations can be initialized from zero, one or two arguments.
+    r'''Articulations can be initialized from zero, one or two arguments.
     '''
 
     a = marktools.Articulation()
@@ -18,7 +18,7 @@ def test_Articulation_01():
 
 
 def test_Articulation_02():
-    '''Articulations have string and direction.
+    r'''Articulations have string and direction.
     '''
 
     t = Note("c'4")
@@ -28,7 +28,7 @@ def test_Articulation_02():
 
 
 def test_Articulation_03():
-    '''Articulation name can be set to none.
+    r'''Articulation name can be set to none.
     '''
 
     t = Note("c'4")
@@ -38,7 +38,7 @@ def test_Articulation_03():
 
 
 def test_Articulation_04():
-    '''Direction can be set to None.
+    r'''Direction can be set to None.
     '''
 
     t = Note("c'4")
@@ -48,7 +48,7 @@ def test_Articulation_04():
 
 
 def test_Articulation_05():
-    '''Direction can be set to up.
+    r'''Direction can be set to up.
     '''
 
     t = Note("c'4")
@@ -62,7 +62,7 @@ def test_Articulation_05():
 
 
 def test_Articulation_06():
-    '''Direction can be set to down.
+    r'''Direction can be set to down.
     '''
 
     t = Note("c'4")
@@ -76,7 +76,7 @@ def test_Articulation_06():
 
 
 def test_Articulation_07():
-    '''Direction can be set to default.
+    r'''Direction can be set to default.
     '''
 
     t = Note("c'4")
@@ -91,7 +91,7 @@ def test_Articulation_07():
 
 
 def test_Articulation_08():
-    '''Shortcut strings are replaced with full word.
+    r'''Shortcut strings are replaced with full word.
     '''
 
     t = Note("c'4")

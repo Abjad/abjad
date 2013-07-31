@@ -4,7 +4,7 @@ import py.test
 
 
 def test_Leaf___setattr___01():
-    '''Slots constrain leaf attributes.
+    r'''Slots constrain leaf attributes.
     '''
 
     leaf = Leaf(Duration(1, 4))

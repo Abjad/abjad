@@ -1,5 +1,5 @@
 class SpannerPopulationError(Exception):
-    '''Spanner contents incorrect.
+    r'''Spanner contents incorrect.
 
     Spanner may be missing component it is assumed to have.
 

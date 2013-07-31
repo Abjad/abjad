@@ -2,7 +2,7 @@ from abjad.tools.selectiontools.SequentialSelection import SequentialSelection
 
 
 class SequentialLeafSelection(SequentialSelection):
-    '''SequentialSelection of leaves.
+    r'''SequentialSelection of leaves.
     '''
 
     ### INITIALIZER ###

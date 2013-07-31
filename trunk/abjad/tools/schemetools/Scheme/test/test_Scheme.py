@@ -3,7 +3,7 @@ from abjad.tools.schemetools import SchemePair
 
 
 def test_Scheme_01():
-    '''Scheme can be initialized from any value.
+    r'''Scheme can be initialized from any value.
     '''
     s = Scheme(True)
     s = Scheme(False)
@@ -15,14 +15,14 @@ def test_Scheme_01():
 
 
 def test_Scheme_02():
-    '''Scheme takes an optional `quoting` keyword, for prepending quote/unquote ticks.
+    r'''Scheme takes an optional `quoting` keyword, for prepending quote/unquote ticks.
     '''
     s = Scheme(('fus', 'ro', 'dah'), quoting = "',")
     assert str(s) == "',(fus ro dah)"
 
 
 def test_Scheme_03():
-    '''__str__ of Scheme returns the Scheme formatted value without the hash mark,
+    r'''__str__ of Scheme returns the Scheme formatted value without the hash mark,
     while Scheme.lilypond_format returns the formatted value with the hash mark,
     allowing for nested Scheme expressions.'''
     s = Scheme(('fus', 'ro', 'dah'), quoting = "'")
@@ -31,7 +31,7 @@ def test_Scheme_03():
 
 
 def test_Scheme_04():
-    '''Scheme attempts to format Python values into Scheme equivalents.
+    r'''Scheme attempts to format Python values into Scheme equivalents.
     '''
     assert Scheme(True).lilypond_format == '##t'
     assert Scheme(False).lilypond_format == '##f'
@@ -43,6 +43,6 @@ def test_Scheme_04():
 
 
 def test_Scheme_05():
-    '''Scheme wraps variable-length arguments into a tuple.
+    r'''Scheme wraps variable-length arguments into a tuple.
     '''
     assert Scheme(1, 2, 3).lilypond_format == Scheme((1, 2, 3)).lilypond_format

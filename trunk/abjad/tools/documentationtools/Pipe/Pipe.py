@@ -5,7 +5,7 @@ from abjad.tools import abctools
 
 
 class Pipe(abctools.AbjadObject, subprocess.Popen):
-    '''A two-way, non-blocking pipe for interprocess communication:
+    r'''A two-way, non-blocking pipe for interprocess communication:
 
     ::
 
@@ -66,13 +66,13 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
     ### PUBLIC METHODS ###
 
     def close(self):
-        '''Close the pipe.
+        r'''Close the pipe.
         '''
         self.terminate()
         self.wait()
 
     def read(self):
-        '''Read from the pipe.
+        r'''Read from the pipe.
         '''
         c = self._readbyte()
         string = ""
@@ -82,7 +82,7 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
         return string
 
     def read_wait(self, seconds=0.01):
-        '''Try to read from the pipe.  Wait `seconds` 
+        r'''Try to read from the pipe.  Wait `seconds` 
         if nothing comes out, and repeat.
 
         Should be used with caution, as this may loop forever.
@@ -94,7 +94,7 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
             time.sleep(seconds)
 
     def write(self, data):
-        '''Write `data` into the pipe.
+        r'''Write `data` into the pipe.
         '''
         poll = select.poll()
         poll.register(self.stdin.fileno(), select.POLLOUT)
@@ -105,6 +105,6 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
                 self.stdin.write(data)
 
     def write_line(self, data):
-        '''Write `data` into the pipe, terminated by a newline.
+        r'''Write `data` into the pipe, terminated by a newline.
         '''
         self.write('%s\n' % data)

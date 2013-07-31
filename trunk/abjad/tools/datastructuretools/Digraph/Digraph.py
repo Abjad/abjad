@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Digraph(AbjadObject):
-    '''A digraph, built out of edges - pairs of hashable objects:
+    r'''A digraph, built out of edges - pairs of hashable objects:
 
     ::
 
@@ -93,20 +93,20 @@ class Digraph(AbjadObject):
 
     @property
     def child_graph(self):
-        '''A dictionary representation of the digraph where the keys are
+        r'''A dictionary representation of the digraph where the keys are
         child nodes, and where each value is the set of that child's parents.
         '''
         return self._child_graph
 
     @property
     def cyclic_nodes(self):
-        '''A tuple of those nodes which partake in a cycle.
+        r'''A tuple of those nodes which partake in a cycle.
         '''
         return self._cyclic_nodes
 
     @property
     def edges(self):
-        '''A tuple of all edges in the graph.
+        r'''A tuple of all edges in the graph.
         '''
         edges = []
         for node in self.nodes:
@@ -116,7 +116,7 @@ class Digraph(AbjadObject):
 
     @property
     def is_cyclic(self):
-        '''Return True if the digraph contains any cycles.
+        r'''Return True if the digraph contains any cycles.
         '''
         if self.cyclic_nodes:
             return True
@@ -124,13 +124,13 @@ class Digraph(AbjadObject):
 
     @property
     def nodes(self):
-        '''A tuple of all nodes in the graph.
+        r'''A tuple of all nodes in the graph.
         '''
         return tuple(sorted(self.parent_graph.keys()))
 
     @property
     def parent_graph(self):
-        '''A dictionary representation of the digraph where the keys are
+        r'''A dictionary representation of the digraph where the keys are
         parent nodes, and where each value is the set of that 
         parent's children.
         '''
@@ -138,13 +138,13 @@ class Digraph(AbjadObject):
 
     @property
     def root_nodes(self):
-        '''A tuple of those nodes which have no parents.
+        r'''A tuple of those nodes which have no parents.
         '''
         return self._root_nodes
 
     @property
     def terminal_nodes(self):
-        '''A tuple of those nodes which have no children.
+        r'''A tuple of those nodes which have no children.
         '''
         return self._terminal_nodes
 
@@ -195,7 +195,7 @@ class Digraph(AbjadObject):
     ### PUBLIC METHODS ###
 
     def partition(self):
-        '''Partition the digraph into a list of digraphs according 
+        r'''Partition the digraph into a list of digraphs according 
         to connectivity:
 
         ::
@@ -240,7 +240,7 @@ class Digraph(AbjadObject):
         return graphs
 
     def reverse(self):
-        '''Reverse all edges in the graph:
+        r'''Reverse all edges in the graph:
 
         ::
 

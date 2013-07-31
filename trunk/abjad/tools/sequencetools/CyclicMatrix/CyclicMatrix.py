@@ -126,7 +126,7 @@ class CyclicMatrix(Matrix):
 
     @property
     def columns(self):
-        '''Columns:
+        r'''Columns:
 
         ::
 
@@ -144,7 +144,7 @@ class CyclicMatrix(Matrix):
 
     @property
     def rows(self):
-        '''Rows:
+        r'''Rows:
 
         ::
 

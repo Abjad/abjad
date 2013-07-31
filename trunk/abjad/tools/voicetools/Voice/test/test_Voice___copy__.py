@@ -3,7 +3,7 @@ import copy
 
 
 def test_Voice___copy___01():
-    '''Voices copy name, engraver removals, engraver consists,
+    r'''Voices copy name, engraver removals, engraver consists,
     grob overrides and context settings. Voices do not copy musical
     content.
     '''
@@ -45,7 +45,7 @@ def test_Voice___copy___01():
 
 
 def test_Voice___copy___02():
-    '''Voice copies semanticity indicator.
+    r'''Voice copies semanticity indicator.
     '''
 
     voice_1 = Voice("s8 s8 s8 s8")

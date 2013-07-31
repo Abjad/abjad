@@ -1,4 +1,4 @@
 class MissingComponentError(Exception):
-    '''No component found.
+    r'''No component found.
     '''
     pass

@@ -74,7 +74,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
 
     @property
     def beatspan(self):
-        '''The optionally defined beatspan duration.
+        r'''The optionally defined beatspan duration.
 
         Return `Duration` or `None`.
         '''
@@ -82,7 +82,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
 
     @property
     def search_tree(self):
-        '''The optionally defined search tree.
+        r'''The optionally defined search tree.
 
         Return `OldSearchTree` or `None`.
         '''
@@ -90,7 +90,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
 
     @property
     def tempo(self):
-        '''The optionally defined `TempoMark`.
+        r'''The optionally defined `TempoMark`.
 
         Return `TempoMark` or `None`.
         '''

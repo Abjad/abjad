@@ -6,7 +6,7 @@ from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 
 
 class CountLinewidthsScript(DirectoryScript):
-    '''Tabulate the linewidths of modules in a path:
+    r'''Tabulate the linewidths of modules in a path:
 
     ::
 

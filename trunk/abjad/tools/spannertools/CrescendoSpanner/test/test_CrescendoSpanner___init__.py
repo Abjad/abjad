@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_CrescendoSpanner___init___01():
-    '''Init empty crescendo spanner.
+    r'''Init empty crescendo spanner.
     '''
 
     crescendo = spannertools.CrescendoSpanner()

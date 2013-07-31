@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_pitchtools_set_ascending_named_diatonic_pitches_on_tie_chains_in_expr_01():
-    '''Diatonicize notes in staff.
+    r'''Diatonicize notes in staff.
     '''
 
     t = Staff(notetools.make_repeated_notes(4))
@@ -22,7 +22,7 @@ def test_pitchtools_set_ascending_named_diatonic_pitches_on_tie_chains_in_expr_0
 
 
 def test_pitchtools_set_ascending_named_diatonic_pitches_on_tie_chains_in_expr_02():
-    '''Diatonicize tie chains in staff.
+    r'''Diatonicize tie chains in staff.
     '''
 
     t = Staff(notetools.make_notes(0, [(5, 32)] * 4))
@@ -46,7 +46,7 @@ def test_pitchtools_set_ascending_named_diatonic_pitches_on_tie_chains_in_expr_0
 
 
 def test_pitchtools_set_ascending_named_diatonic_pitches_on_tie_chains_in_expr_03():
-    '''Diatonicize tie chains in staff according to key signature.
+    r'''Diatonicize tie chains in staff according to key signature.
     '''
 
     t = Staff(notetools.make_notes(0, [(5, 32)] * 4))

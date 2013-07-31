@@ -82,7 +82,7 @@ class CompoundInequality(ObjectInventory):
 
     @property
     def logical_operator(self):
-        '''Compound inequality logical operator.
+        r'''Compound inequality logical operator.
         '''
         return self._logical_operator
 

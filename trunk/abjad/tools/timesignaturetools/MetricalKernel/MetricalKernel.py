@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class MetricalKernel(AbjadObject):
-    '''A metrical kernel, or offset-impulse-response-filter:
+    r'''A metrical kernel, or offset-impulse-response-filter:
 
     ::
 
@@ -80,7 +80,7 @@ class MetricalKernel(AbjadObject):
 
     @property
     def kernel(self):
-        '''The kernel datastructure.
+        r'''The kernel datastructure.
 
         Return dict.
         '''

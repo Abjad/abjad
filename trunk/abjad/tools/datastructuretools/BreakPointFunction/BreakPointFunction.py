@@ -7,7 +7,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class BreakPointFunction(AbjadObject):
-    '''A break-point function:
+    r'''A break-point function:
 
     ::
 
@@ -70,7 +70,7 @@ class BreakPointFunction(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __add__(self, expr):
-        '''Add `expr` to all y-values in self:
+        r'''Add `expr` to all y-values in self:
 
         ::
 
@@ -100,7 +100,7 @@ class BreakPointFunction(AbjadObject):
         return self._operate(expr, operator.add)
 
     def __div__(self, expr):
-        '''Divide y-values in self by `expr`:
+        r'''Divide y-values in self by `expr`:
 
         ::
 
@@ -120,12 +120,12 @@ class BreakPointFunction(AbjadObject):
         return self._operate(expr, operator.div)
 
     def __getitem__(self, item):
-        '''Aliases BreakPointFunction.get_y_at_x().
+        r'''Aliases BreakPointFunction.get_y_at_x().
         '''
         return self.get_y_at_x(item)
 
     def __mul__(self, expr):
-        '''Multiply y-values in self by `expr`:
+        r'''Multiply y-values in self by `expr`:
 
         ::
 
@@ -155,7 +155,7 @@ class BreakPointFunction(AbjadObject):
         return '\n'.join(result)
 
     def __sub__(self, expr):
-        '''Subtract `expr` from all y-values in self:
+        r'''Subtract `expr` from all y-values in self:
 
         ::
 
@@ -189,7 +189,7 @@ class BreakPointFunction(AbjadObject):
 
     @property
     def bpf(self):
-        '''A copy of the BreakPointFunction's internal data-structure:
+        r'''A copy of the BreakPointFunction's internal data-structure:
 
         ::
 
@@ -203,7 +203,7 @@ class BreakPointFunction(AbjadObject):
 
     @property
     def dc_bias(self):
-        '''The mean y-value of a BreakPointFunction:
+        r'''The mean y-value of a BreakPointFunction:
 
         ::
 
@@ -236,7 +236,7 @@ class BreakPointFunction(AbjadObject):
 
     @property
     def x_center(self):
-        '''The arithmetic mean of a BreakPointFunction's x-range:
+        r'''The arithmetic mean of a BreakPointFunction's x-range:
 
         ::
 
@@ -250,7 +250,7 @@ class BreakPointFunction(AbjadObject):
 
     @property
     def x_range(self):
-        '''The minimum and maximum x-values of a BreakPointFunction:
+        r'''The minimum and maximum x-values of a BreakPointFunction:
 
         ::
 
@@ -264,7 +264,7 @@ class BreakPointFunction(AbjadObject):
 
     @property
     def x_values(self):
-        '''The sorted x-values of a BreakPointFunction:
+        r'''The sorted x-values of a BreakPointFunction:
 
         ::
 
@@ -278,7 +278,7 @@ class BreakPointFunction(AbjadObject):
 
     @property
     def y_center(self):
-        '''The arithmetic mean of a BreakPointFunction's y-range:
+        r'''The arithmetic mean of a BreakPointFunction's y-range:
 
         ::
 
@@ -292,7 +292,7 @@ class BreakPointFunction(AbjadObject):
 
     @property
     def y_range(self):
-        '''The minimum and maximum y-values of a BreakPointFunction:
+        r'''The minimum and maximum y-values of a BreakPointFunction:
 
         ::
 
@@ -359,7 +359,7 @@ class BreakPointFunction(AbjadObject):
     ### PUBLIC METHODS ###
 
     def clip_x_axis(self, minimum=0, maximum=1):
-        '''Clip x-axis between `minimum` and `maximum`:
+        r'''Clip x-axis between `minimum` and `maximum`:
 
         ::
 
@@ -388,7 +388,7 @@ class BreakPointFunction(AbjadObject):
         return type(self)(bpf)
 
     def clip_y_axis(self, minimum=0, maximum=1):
-        '''Clip y-axis between `minimum` and `maximum`:
+        r'''Clip y-axis between `minimum` and `maximum`:
 
         ::
 
@@ -421,7 +421,7 @@ class BreakPointFunction(AbjadObject):
         return type(self)(bpf)
 
     def concatenate(self, expr):
-        '''Concatenate self with `expr`:
+        r'''Concatenate self with `expr`:
 
         ::
 
@@ -455,7 +455,7 @@ class BreakPointFunction(AbjadObject):
         return type(self)(new_bpf_dict)
 
     def get_y_at_x(self, x):
-        '''Get `y`-value at `x`:
+        r'''Get `y`-value at `x`:
 
         ::
 
@@ -522,7 +522,7 @@ class BreakPointFunction(AbjadObject):
         return (x * m) + b
 
     def invert(self, y_center=None):
-        '''Invert self:
+        r'''Invert self:
 
         ::
 
@@ -566,7 +566,7 @@ class BreakPointFunction(AbjadObject):
         return type(self)(bpf)
 
     def normalize_axes(self):
-        '''Scale both x and y axes between 0 and 1:
+        r'''Scale both x and y axes between 0 and 1:
 
         ::
 
@@ -582,7 +582,7 @@ class BreakPointFunction(AbjadObject):
         return self.scale_x_axis().scale_y_axis()
 
     def reflect(self, x_center=None):
-        '''Reflect x values of a `BreakPointFunction`:
+        r'''Reflect x values of a `BreakPointFunction`:
 
         ::
 
@@ -620,7 +620,7 @@ class BreakPointFunction(AbjadObject):
         return type(self)(bpf)
 
     def remove_dc_bias(self):
-        '''Remove dc-bias from a `BreakPointFunction`:
+        r'''Remove dc-bias from a `BreakPointFunction`:
 
         ::
 
@@ -636,7 +636,7 @@ class BreakPointFunction(AbjadObject):
         return self - self.dc_bias
 
     def scale_x_axis(self, minimum=0, maximum=1):
-        '''Scale x-axis between `minimum` and `maximum`:
+        r'''Scale x-axis between `minimum` and `maximum`:
 
         ::
 
@@ -661,7 +661,7 @@ class BreakPointFunction(AbjadObject):
         return type(self)(bpf)
 
     def scale_y_axis(self, minimum=0, maximum=1):
-        '''Scale y-axis between `minimum` and `maximum`:
+        r'''Scale y-axis between `minimum` and `maximum`:
 
         ::
 
@@ -687,7 +687,7 @@ class BreakPointFunction(AbjadObject):
         return type(self)(bpf)
 
     def set_y_at_x(self, x, y):
-        '''Set `y`-value at `x`:
+        r'''Set `y`-value at `x`:
 
         ::
 
@@ -756,7 +756,7 @@ class BreakPointFunction(AbjadObject):
         reflect_on_negative=False,
         y_center=None,
         ):
-        '''Concatenate copies of a BreakPointFunction, stretched by 
+        r'''Concatenate copies of a BreakPointFunction, stretched by 
         the weights in `ratio`:
 
         ::

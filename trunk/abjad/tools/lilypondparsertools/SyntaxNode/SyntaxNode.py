@@ -2,7 +2,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class SyntaxNode(AbjadObject):
-    '''A node in an abstract syntax tree (AST).
+    r'''A node in an abstract syntax tree (AST).
 
     Not composer-safe.
 

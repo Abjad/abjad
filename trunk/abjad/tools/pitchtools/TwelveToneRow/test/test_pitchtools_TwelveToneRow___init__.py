@@ -3,7 +3,7 @@ import py.test
 
 
 def test_pitchtools_TwelveToneRow___init___01():
-    '''Rows initialize with nonnegative integers.
+    r'''Rows initialize with nonnegative integers.
     '''
 
     numbers = [10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]
@@ -11,7 +11,7 @@ def test_pitchtools_TwelveToneRow___init___01():
 
 
 def test_pitchtools_TwelveToneRow___init___02():
-    '''Rows initialize with pitch-classes.
+    r'''Rows initialize with pitch-classes.
     '''
 
     numbers = [10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]
@@ -20,7 +20,7 @@ def test_pitchtools_TwelveToneRow___init___02():
 
 
 def test_pitchtools_TwelveToneRow___init___03():
-    '''Rows initialize from other rows.
+    r'''Rows initialize from other rows.
     '''
 
     numbers = [10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]
@@ -29,7 +29,7 @@ def test_pitchtools_TwelveToneRow___init___03():
 
 
 def test_pitchtools_TwelveToneRow___init___04():
-    '''Rows do not initialize with defective pitch-class content.
+    r'''Rows do not initialize with defective pitch-class content.
     '''
 
     assert py.test.raises(ValueError, 'pitchtools.TwelveToneRow([0, 1, 2, 3])')

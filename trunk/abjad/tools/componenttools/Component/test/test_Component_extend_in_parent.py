@@ -28,7 +28,7 @@ def test_Component_extend_in_parent_01():
 
 
 def test_Component_extend_in_parent_02():
-    '''Splice leaf after interior leaf.
+    r'''Splice leaf after interior leaf.
     '''
 
     t = Voice("c'8 d'8 e'8")
@@ -50,7 +50,7 @@ def test_Component_extend_in_parent_02():
 
 
 def test_Component_extend_in_parent_03():
-    '''Splice tuplet after tuplet.
+    r'''Splice tuplet after tuplet.
     '''
 
     t = Voice([tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
@@ -82,7 +82,7 @@ def test_Component_extend_in_parent_03():
 
 
 def test_Component_extend_in_parent_04():
-    '''Splice after container with underspanners.
+    r'''Splice after container with underspanners.
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
@@ -110,7 +110,7 @@ def test_Component_extend_in_parent_04():
 
 
 def test_Component_extend_in_parent_05():
-    '''Extend leaves rightwards after leaf.
+    r'''Extend leaves rightwards after leaf.
     '''
 
     t = Voice("c'8 d'8 e'8")
@@ -138,7 +138,7 @@ def test_Component_extend_in_parent_05():
 
 
 def test_Component_extend_in_parent_06():
-    '''Extend leaf rightwards after interior leaf.
+    r'''Extend leaf rightwards after interior leaf.
     '''
 
     t = Voice("c'8 d'8 e'8")
@@ -163,7 +163,7 @@ def test_Component_extend_in_parent_06():
 ### FIX FROM HERE DOWN ###
 
 def test_Component_extend_in_parent_07():
-    '''Splice leaves left of leaf.
+    r'''Splice leaves left of leaf.
     '''
 
     t = Voice("c'8 d'8 e'8")
@@ -189,7 +189,7 @@ def test_Component_extend_in_parent_07():
 
 
 def test_Component_extend_in_parent_08():
-    '''Splice leaf left of interior leaf.
+    r'''Splice leaf left of interior leaf.
     '''
 
     t = Voice("c'8 d'8 e'8")
@@ -216,7 +216,7 @@ def test_Component_extend_in_parent_08():
 
 
 def test_Component_extend_in_parent_09():
-    '''Splice tuplet left of tuplet.
+    r'''Splice tuplet left of tuplet.
     '''
 
     t = Voice([tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
@@ -249,7 +249,7 @@ def test_Component_extend_in_parent_09():
 
 
 def test_Component_extend_in_parent_10():
-    '''Splice left of container with underspanners.
+    r'''Splice left of container with underspanners.
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
@@ -282,7 +282,7 @@ def test_Component_extend_in_parent_10():
 
 
 def test_Component_extend_in_parent_11():
-    '''Extend leaves leftwards of leaf. Do not extend edge spanners.
+    r'''Extend leaves leftwards of leaf. Do not extend edge spanners.
     '''
 
     t = Voice("c'8 d'8 e'8")
@@ -311,7 +311,7 @@ def test_Component_extend_in_parent_11():
 
 
 def test_Component_extend_in_parent_12():
-    '''Extend leaf leftwards of interior leaf. Do extend interior spanners.
+    r'''Extend leaf leftwards of interior leaf. Do extend interior spanners.
     '''
 
     t = Voice("c'8 d'8 e'8")

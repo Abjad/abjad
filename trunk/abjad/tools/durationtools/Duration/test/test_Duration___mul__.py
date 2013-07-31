@@ -3,7 +3,7 @@ from abjad.tools.mathtools import NonreducedFraction
 
 
 def test_Duration___mul___01():
-    '''Multiplying duration by nonreduced fraction gives nonreduced fraction.
+    r'''Multiplying duration by nonreduced fraction gives nonreduced fraction.
     '''
 
     result = Duration(1) * NonreducedFraction(3, 3)

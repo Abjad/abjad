@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_SchemePair_lilypond_format_01():
-    '''Right-hand side string forces quotes.
+    r'''Right-hand side string forces quotes.
     '''
 
     scheme_pair = schemetools.SchemePair('font-name', 'Times')
@@ -10,7 +10,7 @@ def test_SchemePair_lilypond_format_01():
 
 
 def test_SchemePair_lilypond_format_02():
-    '''Right-hand side nonstring does not force quotes.
+    r'''Right-hand side nonstring does not force quotes.
     '''
 
     scheme_pair = schemetools.SchemePair('spacing', 4)

@@ -5,7 +5,7 @@ from abjad.tools.configurationtools.Configuration import Configuration
 
 
 class AbjadConfiguration(Configuration):
-    '''Abjad configuration object:
+    r'''Abjad configuration object:
 
     ::
 
@@ -169,7 +169,7 @@ class AbjadConfiguration(Configuration):
 
     @classmethod
     def get_lilypond_minimum_version_string(cls):
-        '''Get the x.x.0 version of LilyPond:
+        r'''Get the x.x.0 version of LilyPond:
 
         ::
 
@@ -261,7 +261,7 @@ class AbjadConfiguration(Configuration):
 
     @staticmethod
     def get_text_editor():
-        '''Get OS-appropriate text editor.
+        r'''Get OS-appropriate text editor.
         '''
         from abjad import abjad_configuration
         text_editor = abjad_configuration['text_editor']
@@ -274,7 +274,7 @@ class AbjadConfiguration(Configuration):
 
     @staticmethod
     def list_abjad_environment_variables():
-        '''List Abjad environment variables.
+        r'''List Abjad environment variables.
 
         Return tuple of zero or more environment variable / setting pairs.
 

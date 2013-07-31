@@ -3,7 +3,7 @@ import copy
 
 
 def test_Container___copy___01():
-    '''Containes copy parallel indicator.
+    r'''Containes copy parallel indicator.
     '''
 
     container_1 = Container([Voice("c'8 d'8"), Voice("c''8 b'8")])

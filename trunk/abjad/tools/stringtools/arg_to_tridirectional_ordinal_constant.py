@@ -1,5 +1,5 @@
 def arg_to_tridirectional_ordinal_constant(arg):
-    '''Convert `arg` to tridirectional ordinal constant:
+    r'''Convert `arg` to tridirectional ordinal constant:
 
         >>> stringtools.arg_to_tridirectional_ordinal_constant('^')
         Up

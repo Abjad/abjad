@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Note_grace_01():
-    '''Attach one grace note.
+    r'''Attach one grace note.
     '''
 
     note = Note("c'4")
@@ -19,7 +19,7 @@ def test_Note_grace_01():
 
 
 def test_Note_grace_02():
-    '''Attach several grace notes.
+    r'''Attach several grace notes.
     '''
 
     note = Note("c'4")
@@ -38,7 +38,7 @@ def test_Note_grace_02():
 
 
 def test_Note_grace_03():
-    '''Attach one appoggiatura.
+    r'''Attach one appoggiatura.
     '''
 
     note = Note("c'4")
@@ -55,7 +55,7 @@ def test_Note_grace_03():
 
 
 def test_Note_grace_04():
-    '''Attach one acciaccatura.
+    r'''Attach one acciaccatura.
     '''
 
     note = Note("c'4")
@@ -72,7 +72,7 @@ def test_Note_grace_04():
 
 
 def test_Note_grace_05():
-    '''Attach one after grace note.
+    r'''Attach one after grace note.
     '''
 
     note = Note("c'4")
@@ -90,7 +90,7 @@ def test_Note_grace_05():
 
 
 def test_Note_grace_06():
-    '''Attach several after grace notes.
+    r'''Attach several after grace notes.
     '''
 
     note = Note("c'4")

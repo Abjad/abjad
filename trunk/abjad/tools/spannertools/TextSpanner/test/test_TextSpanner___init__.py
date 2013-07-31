@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_TextSpanner___init___01():
-    '''Init empty text spanner.
+    r'''Init empty text spanner.
     '''
 
     spanner = spannertools.TextSpanner()

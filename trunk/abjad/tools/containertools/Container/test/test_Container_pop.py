@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Container_pop_01():
-    '''Containers pop leaves correctly.
+    r'''Containers pop leaves correctly.
         Popped leaves detach from parent.
         Popped leaves withdraw from crossing spanners.
         Popped leaves carry covered spanners forward.'''
@@ -40,7 +40,7 @@ def test_Container_pop_01():
 
 
 def test_Container_pop_02():
-    '''Containers pop nested containers correctly.
+    r'''Containers pop nested containers correctly.
         Popped containers detach from both parent and spanners.'''
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)

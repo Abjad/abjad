@@ -5,7 +5,7 @@ from abjad.tools.rhythmtreetools import RhythmTreeNode
 
 
 class QGridLeaf(RhythmTreeNode):
-    '''A leaf in a ``QGrid`` structure:
+    r'''A leaf in a ``QGrid`` structure:
 
     ::
 
@@ -86,7 +86,7 @@ class QGridLeaf(RhythmTreeNode):
     @apply
     def is_divisible():
         def fget(self):
-            '''Flag for whether the node may be further divided 
+            r'''Flag for whether the node may be further divided 
             under some search tree.
             '''
             return self._is_divisible

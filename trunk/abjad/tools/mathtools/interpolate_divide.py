@@ -1,6 +1,6 @@
 # TODO: eliminate string-valued exp='cosine' keyword
 def interpolate_divide(total, start_fraction, stop_fraction, exp='cosine'):
-    '''Divide `total` into segments of sizes computed from interpolating
+    r'''Divide `total` into segments of sizes computed from interpolating
     between `start_fraction` and `stop_fraction`:
 
     ::

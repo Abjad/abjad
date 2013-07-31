@@ -22,7 +22,7 @@ def test_AbjadObject___repr___01():
 
 
 def test_AbjadObject___repr___02():
-    '''Repr suppresses class methods to avoid recursive repr.
+    r'''Repr suppresses class methods to avoid recursive repr.
     '''
 
     class Foo(abctools.AbjadObject):

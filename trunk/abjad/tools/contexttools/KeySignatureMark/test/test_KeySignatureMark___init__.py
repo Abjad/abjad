@@ -3,7 +3,7 @@ from abjad.tools import tonalanalysistools
 
 
 def test_KeySignatureMark___init___01():
-    '''Initialize with pitch-class letter string and mode string.
+    r'''Initialize with pitch-class letter string and mode string.
     '''
 
     ks = contexttools.KeySignatureMark('g', 'major')

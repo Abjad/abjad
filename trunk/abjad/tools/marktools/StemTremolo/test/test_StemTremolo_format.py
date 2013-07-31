@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_StemTremolo_format_01():
-    '''Tremolo formats correctly on notes.
+    r'''Tremolo formats correctly on notes.
     '''
 
     t = Note("cs'4")
@@ -13,7 +13,7 @@ def test_StemTremolo_format_01():
 
 
 def test_StemTremolo_format_02():
-    '''Tremolo formats correctly on chords.
+    r'''Tremolo formats correctly on chords.
     '''
 
     t = Chord([1, 2, 3], (1, 4))
@@ -24,7 +24,7 @@ def test_StemTremolo_format_02():
 
 
 def test_StemTremolo_format_03():
-    '''Tremolo formats correctly on rests.
+    r'''Tremolo formats correctly on rests.
     '''
 
     t = Rest((1, 4))

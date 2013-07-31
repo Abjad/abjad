@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_MultipartBeamSpanner___init___01():
-    '''Init empty multipart beam spanner.
+    r'''Init empty multipart beam spanner.
     '''
 
     beam = spannertools.MultipartBeamSpanner()

@@ -1,5 +1,5 @@
 def partition_integer_into_units(n):
-    '''Partition positive integer into units:
+    r'''Partition positive integer into units:
 
     ::
 

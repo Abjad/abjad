@@ -28,7 +28,7 @@ class AbjadRevisionToken(AbjadObject):
 
     @property
     def lilypond_format(self):
-        '''Format contribution of Abjad version token:
+        r'''Format contribution of Abjad version token:
 
         ::
 

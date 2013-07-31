@@ -3,7 +3,7 @@ import py.test
 
 
 def test_sequencetools_truncate_sequence_to_sum_01():
-    '''truncate_to_sum can take a list.
+    r'''truncate_to_sum can take a list.
     '''
 
     t = sequencetools.truncate_sequence_to_sum([2, 2, 2], 0)
@@ -14,21 +14,21 @@ def test_sequencetools_truncate_sequence_to_sum_01():
 
 
 #def test_sequencetools_truncate_sequence_to_sum_02():
-#   '''truncate_to_sum can take a tuple.'''
+#   r'''truncate_to_sum can take a tuple.'''
 #   t = sequencetools.truncate_sequence_to_sum((2, 2, 2), 0)
 #   assert t == (0, )
 #   assert isinstance(t, tuple)
 
 
 def test_sequencetools_truncate_sequence_to_sum_03():
-    '''Raise TypeError when l is not a list.
+    r'''Raise TypeError when l is not a list.
     '''
 
     assert py.test.raises(TypeError, "sequencetools.truncate_sequence_to_sum('foo')")
 
 
 def test_sequencetools_truncate_sequence_to_sum_04():
-    '''truncate_to_sum does work :-).
+    r'''truncate_to_sum does work :-).
     '''
 
     ls = [2, 2, 1]
@@ -50,7 +50,7 @@ def test_sequencetools_truncate_sequence_to_sum_04():
 # ERRORS #
 
 def test_sequencetools_truncate_sequence_to_sum_05():
-    '''Raise ValueError on negative total.
+    r'''Raise ValueError on negative total.
     '''
 
     assert py.test.raises(ValueError,

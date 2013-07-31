@@ -1,4 +1,4 @@
 class TieChainError(Exception):
-    '''General tie chain error.
+    r'''General tie chain error.
     '''
     pass

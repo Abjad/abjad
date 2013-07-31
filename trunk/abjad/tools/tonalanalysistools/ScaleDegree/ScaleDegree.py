@@ -166,13 +166,13 @@ class ScaleDegree(AbjadObject):
 
     @property
     def accidental(self):
-        '''Accidental applied to scale degree.
+        r'''Accidental applied to scale degree.
         '''
         return self._accidental
 
     @property
     def name(self):
-        '''Name of scale degree.
+        r'''Name of scale degree.
         '''
         if not self.accidental.is_adjusted:
             return self._scale_degree_number_to_scale_degree_name[self.number]
@@ -181,7 +181,7 @@ class ScaleDegree(AbjadObject):
 
     @property
     def number(self):
-        '''Number of diatonic scale degree from 1 to 7, inclusive.
+        r'''Number of diatonic scale degree from 1 to 7, inclusive.
         '''
         return self._number
 
@@ -207,7 +207,7 @@ class ScaleDegree(AbjadObject):
     ### PUBLIC METHODS ###
 
     def apply_accidental(self, accidental):
-        '''Apply accidental to self and emit new instance.
+        r'''Apply accidental to self and emit new instance.
         '''
         accidental = pitchtools.Accidental(accidental)
         new_accidental = self.accidental + accidental

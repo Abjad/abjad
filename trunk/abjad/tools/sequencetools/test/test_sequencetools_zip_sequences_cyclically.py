@@ -3,7 +3,7 @@ from abjad.tools import sequencetools
 
 
 def test_sequencetools_zip_sequences_cyclically_01():
-    '''zip_cyclic can take two non-iterables.
+    r'''zip_cyclic can take two non-iterables.
     '''
 
     t = sequencetools.zip_sequences_cyclically(1, 2)
@@ -11,7 +11,7 @@ def test_sequencetools_zip_sequences_cyclically_01():
 
 
 def test_sequencetools_zip_sequences_cyclically_02():
-    '''zip_cyclic can take a list of length 1 and a non-iterables.
+    r'''zip_cyclic can take a list of length 1 and a non-iterables.
     '''
 
     t = sequencetools.zip_sequences_cyclically([1], 2)
@@ -21,7 +21,7 @@ def test_sequencetools_zip_sequences_cyclically_02():
 
 
 def test_sequencetools_zip_sequences_cyclically_03():
-    '''zip_cyclic can take two lists of the same size.
+    r'''zip_cyclic can take two lists of the same size.
     '''
 
     t = sequencetools.zip_sequences_cyclically([1, 2], ['a', 'b'])
@@ -29,7 +29,7 @@ def test_sequencetools_zip_sequences_cyclically_03():
 
 
 def test_sequencetools_zip_sequences_cyclically_04():
-    '''zip_cyclic can take two lists of the different sizes.
+    r'''zip_cyclic can take two lists of the different sizes.
         The list with the shortest size is cycled through.'''
 
     t = sequencetools.zip_sequences_cyclically([1, 2, 3], ['a', 'b'])
@@ -39,7 +39,7 @@ def test_sequencetools_zip_sequences_cyclically_04():
 
 
 def test_sequencetools_zip_sequences_cyclically_05():
-    '''Handle more than two iterables.
+    r'''Handle more than two iterables.
     '''
 
     a = [10, 11, 12]

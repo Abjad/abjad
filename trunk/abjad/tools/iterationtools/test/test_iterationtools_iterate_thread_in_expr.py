@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_iterationtools_iterate_thread_in_expr_01():
-    '''Yield nothing when class not present.
+    r'''Yield nothing when class not present.
     '''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
@@ -12,7 +12,7 @@ def test_iterationtools_iterate_thread_in_expr_01():
 
 
 def test_iterationtools_iterate_thread_in_expr_02():
-    '''Yield internal nodes only.
+    r'''Yield internal nodes only.
     '''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
@@ -22,7 +22,7 @@ def test_iterationtools_iterate_thread_in_expr_02():
 
 
 def test_iterationtools_iterate_thread_in_expr_03():
-    '''Yield exact leaves.
+    r'''Yield exact leaves.
     '''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
@@ -32,7 +32,7 @@ def test_iterationtools_iterate_thread_in_expr_03():
 
 
 def test_iterationtools_iterate_thread_in_expr_04():
-    '''Yield leaves based on names higher in inheritence hierarchy.
+    r'''Yield leaves based on names higher in inheritence hierarchy.
     '''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
@@ -43,7 +43,7 @@ def test_iterationtools_iterate_thread_in_expr_04():
 
 
 def test_iterationtools_iterate_thread_in_expr_05():
-    '''Yield Notes in two contiguous Voices with the same name.
+    r'''Yield Notes in two contiguous Voices with the same name.
     '''
 
     v1 = Voice(Note("c'4") * 2)
@@ -60,7 +60,7 @@ def test_iterationtools_iterate_thread_in_expr_05():
 
 
 def test_iterationtools_iterate_thread_in_expr_06():
-    '''Yield only Notes matching the given thread signature.
+    r'''Yield only Notes matching the given thread signature.
     '''
 
     v1 = Voice(Note("c'4") * 2)
@@ -77,7 +77,7 @@ def test_iterationtools_iterate_thread_in_expr_06():
 
 
 def test_iterationtools_iterate_thread_in_expr_07():
-    '''Yield only Notes matching the given thread signature.
+    r'''Yield only Notes matching the given thread signature.
     '''
 
     v1 = Voice(Note("c'4") * 2)
@@ -96,7 +96,7 @@ def test_iterationtools_iterate_thread_in_expr_07():
 
 
 def test_iterationtools_iterate_thread_in_expr_08():
-    '''Yield nothing when class not present.
+    r'''Yield nothing when class not present.
     '''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
@@ -106,7 +106,7 @@ def test_iterationtools_iterate_thread_in_expr_08():
 
 
 def test_iterationtools_iterate_thread_in_expr_09():
-    '''Yield internal nodes only.
+    r'''Yield internal nodes only.
     '''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
@@ -116,7 +116,7 @@ def test_iterationtools_iterate_thread_in_expr_09():
 
 
 def test_iterationtools_iterate_thread_in_expr_10():
-    '''Yield exact leaves.
+    r'''Yield exact leaves.
     '''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
@@ -126,7 +126,7 @@ def test_iterationtools_iterate_thread_in_expr_10():
 
 
 def test_iterationtools_iterate_thread_in_expr_11():
-    '''Yield leaves based on names higher in inheritence hierarchy.
+    r'''Yield leaves based on names higher in inheritence hierarchy.
     '''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
@@ -137,7 +137,7 @@ def test_iterationtools_iterate_thread_in_expr_11():
 
 
 def test_iterationtools_iterate_thread_in_expr_12():
-    '''Yield Notes in two contiguous Voices with the same name.
+    r'''Yield Notes in two contiguous Voices with the same name.
     '''
 
     v1 = Voice(Note("c'4") * 2)
@@ -154,7 +154,7 @@ def test_iterationtools_iterate_thread_in_expr_12():
 
 
 def test_iterationtools_iterate_thread_in_expr_13():
-    '''Yield only Notes matching the given thread signature.
+    r'''Yield only Notes matching the given thread signature.
     '''
 
     v1 = Voice(Note("c'4") * 2)
@@ -171,7 +171,7 @@ def test_iterationtools_iterate_thread_in_expr_13():
 
 
 def test_iterationtools_iterate_thread_in_expr_14():
-    '''Yield only Notes matching the given thread signature.
+    r'''Yield only Notes matching the given thread signature.
     '''
 
     v1 = Voice(Note("c'4") * 2)

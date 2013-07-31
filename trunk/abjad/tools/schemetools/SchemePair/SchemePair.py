@@ -2,7 +2,7 @@ from abjad.tools.schemetools.Scheme import Scheme
 
 
 class SchemePair(Scheme):
-    '''Abjad model of Scheme pair:
+    r'''Abjad model of Scheme pair:
 
     ::
 

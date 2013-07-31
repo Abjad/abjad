@@ -22,7 +22,7 @@ def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_02():
 
 
 def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_03():
-    '''Transpose pitch.
+    r'''Transpose pitch.
     '''
 
     pitch = pitchtools.NamedChromaticPitch(12)
@@ -33,7 +33,7 @@ def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_03():
 
 
 def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_04():
-    '''Transpose note.
+    r'''Transpose note.
     '''
 
     note = Note(12, (1, 4))
@@ -44,7 +44,7 @@ def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_04():
 
 
 def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_05():
-    '''Transpose chord.
+    r'''Transpose chord.
     '''
 
     chord = Chord([12, 13, 14], (1, 4))
@@ -64,7 +64,7 @@ def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_06():
 
 
 def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_07():
-    '''Retun non-pitch-carrying input changed.
+    r'''Retun non-pitch-carrying input changed.
     '''
 
     rest = Rest('r4')

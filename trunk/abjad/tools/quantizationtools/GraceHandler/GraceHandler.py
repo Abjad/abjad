@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class GraceHandler(AbjadObject):
-    '''Abstract base class from which concrete ``GraceHandler`` 
+    r'''Abstract base class from which concrete ``GraceHandler`` 
     subclasses inherit.
 
     Determines what pitch, if any, will be selected from a list of 

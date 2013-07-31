@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Note___setattr___01():
-    '''Slots constrain note attributes.
+    r'''Slots constrain note attributes.
     '''
 
     note = Note("c'4")

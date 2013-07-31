@@ -12,7 +12,7 @@ def test_MelodicDiatonicInterval___mul___01():
 
 
 def test_MelodicDiatonicInterval___mul___02():
-    '''Negative multiplicands work correctly.
+    r'''Negative multiplicands work correctly.
     '''
 
     ascending_major_second = pitchtools.MelodicDiatonicInterval('+m2')

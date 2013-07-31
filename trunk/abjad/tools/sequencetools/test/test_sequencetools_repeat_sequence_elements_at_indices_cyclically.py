@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_sequencetools_repeat_sequence_elements_at_indices_cyclically_01():
-    '''Raw cycle token.
+    r'''Raw cycle token.
     '''
 
     t = list(sequencetools.repeat_sequence_elements_at_indices_cyclically(
@@ -11,7 +11,7 @@ def test_sequencetools_repeat_sequence_elements_at_indices_cyclically_01():
 
 
 def test_sequencetools_repeat_sequence_elements_at_indices_cyclically_02():
-    '''Cycle token may be a sieve.
+    r'''Cycle token may be a sieve.
     '''
 
     sieve = sievetools.Sieve.from_cycle_tokens((5, [1, 2]))

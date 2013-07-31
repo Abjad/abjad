@@ -4,7 +4,7 @@ import py.test
 
 
 def test_Sieve_01():
-    '''Boolean operator defaults to OR.
+    r'''Boolean operator defaults to OR.
     '''
 
     t = sievetools.Sieve([ResidueClass(2, 0), ResidueClass(3, 0)])
@@ -13,7 +13,7 @@ def test_Sieve_01():
 
 
 def test_Sieve_02():
-    '''Logical OR.
+    r'''Logical OR.
     '''
 
     t = sievetools.Sieve([ResidueClass(2, 0), ResidueClass(3, 0)])
@@ -23,7 +23,7 @@ def test_Sieve_02():
 
 
 def test_Sieve_03():
-    '''Logical OR.
+    r'''Logical OR.
     '''
 
     t = sievetools.Sieve([ResidueClass(2, 1), ResidueClass(3, 0)])
@@ -33,7 +33,7 @@ def test_Sieve_03():
 
 
 def test_Sieve_04():
-    '''Logical AND.
+    r'''Logical AND.
     '''
 
     t = sievetools.Sieve([ResidueClass(2, 0), ResidueClass(3, 0)], 'and')
@@ -44,7 +44,7 @@ def test_Sieve_04():
 
 
 def test_Sieve_05():
-    '''Logical AND.
+    r'''Logical AND.
     '''
 
     t = sievetools.Sieve([ResidueClass(2, 1), ResidueClass(3, 0)], 'and')
@@ -54,7 +54,7 @@ def test_Sieve_05():
 
 
 def test_Sieve_06():
-    '''Logical XOR.
+    r'''Logical XOR.
     '''
 
     t = sievetools.Sieve([ResidueClass(2, 0), ResidueClass(3, 0)], 'xor')
@@ -65,7 +65,7 @@ def test_Sieve_06():
 
 
 def test_Sieve_07():
-    '''Logical XOR.
+    r'''Logical XOR.
     '''
 
     t = sievetools.Sieve([ResidueClass(2, 1), ResidueClass(3, 0)], 'xor')

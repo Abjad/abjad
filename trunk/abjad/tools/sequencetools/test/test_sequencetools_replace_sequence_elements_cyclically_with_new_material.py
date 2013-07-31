@@ -4,7 +4,7 @@ import py.test
 
 
 def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_01():
-    '''Overwrite elements in l at cyclic indices with cyclic material.
+    r'''Overwrite elements in l at cyclic indices with cyclic material.
     Here replace at every index equal to 0 % 2 and read ['A', 'B'] % 3.'''
 
     l = range(20)
@@ -18,7 +18,7 @@ def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_01
 
 
 def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_02():
-    '''Overwrite elements in l at cyclic indices with cyclic material.
+    r'''Overwrite elements in l at cyclic indices with cyclic material.
     Here replace at indices equal to 0 % 2 and read ['*'] % 1.'''
 
     l = range(20)
@@ -31,7 +31,7 @@ def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_02
 
 
 def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_03():
-    '''Overwrite elements in l at cyclic indices with cyclic material.
+    r'''Overwrite elements in l at cyclic indices with cyclic material.
     Here replace at indices equal to 0 % 2 and read material only once.'''
 
     l = range(20)
@@ -44,7 +44,7 @@ def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_03
 
 
 def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_04():
-    '''Overwrite elements in l at cyclic indices with cyclic material.
+    r'''Overwrite elements in l at cyclic indices with cyclic material.
     Here replace at indices 0, 1, 8, 13 only and read material only once.'''
 
     l = range(20)
@@ -57,7 +57,7 @@ def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_04
 
 
 def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_05():
-    '''Raise TypeError when l is not a list.
+    r'''Raise TypeError when l is not a list.
     '''
 
     assert py.test.raises(TypeError,

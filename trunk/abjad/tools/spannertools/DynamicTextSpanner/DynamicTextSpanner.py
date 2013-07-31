@@ -54,7 +54,7 @@ class DynamicTextSpanner(Spanner):
     @apply
     def mark():
         def fget(self):
-            '''Get dynamic string:
+            r'''Get dynamic string:
 
             ::
 

@@ -3,7 +3,7 @@ from abjad.tools import sievetools
 
 
 def test_Sieve__sort_rcs_01():
-    '''Unsorted RCs are sorted on RC expression initialization.
+    r'''Unsorted RCs are sorted on RC expression initialization.
     '''
 
     RC = sievetools.ResidueClass
@@ -12,7 +12,7 @@ def test_Sieve__sort_rcs_01():
 
 
 def test_Sieve__sort_rcs_02():
-    '''Unsorted RCs are sorted on RC expression initialization.
+    r'''Unsorted RCs are sorted on RC expression initialization.
     '''
 
     RC = sievetools.ResidueClass

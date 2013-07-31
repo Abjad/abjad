@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_NamedChromaticPitchSet___eq___01():
-    '''Pitch set equality works as expected.
+    r'''Pitch set equality works as expected.
     '''
 
     pset1 = pitchtools.NamedChromaticPitchSet([12, 14, 18, 19])

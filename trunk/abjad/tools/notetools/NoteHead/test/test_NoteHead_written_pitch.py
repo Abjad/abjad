@@ -3,7 +3,7 @@ import py.test
 
 
 def test_NoteHead_written_pitch_01():
-    '''Set Note head pitch with integer.
+    r'''Set Note head pitch with integer.
     '''
 
     t = Note(13, (1, 4))
@@ -16,7 +16,7 @@ def test_NoteHead_written_pitch_01():
 
 
 def test_NoteHead_written_pitch_02():
-    '''Set Note head pitch with pitch.
+    r'''Set Note head pitch with pitch.
     '''
 
     t = Note(13, (1, 4))
@@ -29,7 +29,7 @@ def test_NoteHead_written_pitch_02():
 
 
 def test_NoteHead_written_pitch_03():
-    '''Can not set note head pitch to none.
+    r'''Can not set note head pitch to none.
     '''
 
     t = Note(13, (1, 4))
@@ -38,7 +38,7 @@ def test_NoteHead_written_pitch_03():
 
 
 def test_NoteHead_written_pitch_04():
-    '''Set note head pitch from another note or note head.
+    r'''Set note head pitch from another note or note head.
     Make sure this does not cause reference problems.
     '''
 

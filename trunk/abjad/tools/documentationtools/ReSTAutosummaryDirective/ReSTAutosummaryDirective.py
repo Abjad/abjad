@@ -3,7 +3,7 @@ from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 
 
 class ReSTAutosummaryDirective(ReSTDirective):
-    '''An ReST AutosummaryTree directive:
+    r'''An ReST AutosummaryTree directive:
 
     ::
 

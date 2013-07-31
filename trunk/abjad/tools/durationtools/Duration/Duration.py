@@ -764,7 +764,7 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
 
     @staticmethod
     def durations_to_nonreduced_fractions_with_common_denominator(durations):
-        '''Change `durations` to nonreduced fractions with 
+        r'''Change `durations` to nonreduced fractions with 
         least common denominator:
 
         ::
@@ -792,7 +792,7 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
 
     @staticmethod
     def from_lilypond_duration_string(lilypond_duration_string):
-        '''Initialize from LilyPond duration string:
+        r'''Initialize from LilyPond duration string:
 
         ::
 
@@ -864,7 +864,7 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
         return clock_string
 
     def with_denominator(self, denominator):
-        '''Duration with `denominator`:
+        r'''Duration with `denominator`:
 
         ::
 

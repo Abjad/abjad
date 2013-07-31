@@ -4,7 +4,7 @@ import numbers
 
 
 def divide_number_by_ratio(number, ratio):
-    '''Divide integer by `ratio`:
+    r'''Divide integer by `ratio`:
 
     ::
 

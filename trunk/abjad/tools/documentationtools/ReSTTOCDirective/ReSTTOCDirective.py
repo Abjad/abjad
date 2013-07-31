@@ -3,7 +3,7 @@ from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 
 
 class ReSTTOCDirective(ReSTDirective):
-    '''An ReST TOCTree directive:
+    r'''An ReST TOCTree directive:
 
     ::
 

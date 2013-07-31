@@ -3,7 +3,7 @@ import py.test
 
 
 def test_BeamSpanner_span_differently_named_01():
-    '''Abjad does NOT let you span across differently named Voices.
+    r'''Abjad does NOT let you span across differently named Voices.
     '''
 
     v1 = Voice(notetools.make_repeated_notes(4))
@@ -56,7 +56,7 @@ def test_BeamSpanner_span_differently_named_01():
 
 
 def test_BeamSpanner_span_differently_named_02():
-    '''Abjad does NOT let you span across Staves, even if they and
+    r'''Abjad does NOT let you span across Staves, even if they and
     all its sub-contexts are equally named.'''
 
     t = Container(Staff(Voice(notetools.make_repeated_notes(4)) * 2) * 2)

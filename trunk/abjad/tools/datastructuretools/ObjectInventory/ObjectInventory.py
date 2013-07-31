@@ -85,7 +85,7 @@ class ObjectInventory(list, AbjadObject):
     @apply
     def name():
         def fget(self):
-            '''Read / write name of inventory.
+            r'''Read / write name of inventory.
             '''
             return self._name
         def fset(self, _name):
@@ -143,13 +143,13 @@ class ObjectInventory(list, AbjadObject):
     ### PUBLIC METHODS ###
 
     def append(self, token):
-        '''Change `token` to item and append.
+        r'''Change `token` to item and append.
         '''
         item = self._item_callable(token)
         list.append(self, item)
 
     def extend(self, tokens):
-        '''Change `tokens` to items and extend.
+        r'''Change `tokens` to items and extend.
         '''
         for token in tokens:
             self.append(token)

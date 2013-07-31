@@ -3,7 +3,7 @@ import py.test
 
 
 def test_measuretools_scale_measure_and_adjust_time_signature_01():
-    '''Scale power-of-two to non-power-of-two.
+    r'''Scale power-of-two to non-power-of-two.
     No note head rewriting necessary.
     '''
 
@@ -27,7 +27,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_01():
 
 
 def test_measuretools_scale_measure_and_adjust_time_signature_02():
-    '''Scale non-power-of-two time signature to power-of-two.
+    r'''Scale non-power-of-two time signature to power-of-two.
     No note head rewriting necessary.
     '''
 
@@ -48,7 +48,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_02():
 
 
 def test_measuretools_scale_measure_and_adjust_time_signature_03():
-    '''Scale power-of-two time signature to power-of-two time signature.
+    r'''Scale power-of-two time signature to power-of-two time signature.
     Noteheads rewrite with dots.
     '''
 
@@ -69,7 +69,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_03():
 
 
 def test_measuretools_scale_measure_and_adjust_time_signature_04():
-    '''Scale power-of-two time signature to power-of-two time signature.
+    r'''Scale power-of-two time signature to power-of-two time signature.
     Noteheads rewrite without dots.
     '''
 
@@ -90,7 +90,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_04():
 
 
 def test_measuretools_scale_measure_and_adjust_time_signature_05():
-    '''Scale power-of-two time signature to non-power-of-two time signature.
+    r'''Scale power-of-two time signature to non-power-of-two time signature.
     No note head rewriting necessary.
     '''
 
@@ -119,7 +119,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_05():
 
 
 def test_measuretools_scale_measure_and_adjust_time_signature_06():
-    '''Scale non-power-of-two time signature to power-of-two time signature.
+    r'''Scale non-power-of-two time signature to power-of-two time signature.
     Noteheads rewrite with double duration.
     '''
 
@@ -140,7 +140,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_06():
 
 
 def test_measuretools_scale_measure_and_adjust_time_signature_07():
-    '''Scale power-of-two time signature by one half.
+    r'''Scale power-of-two time signature by one half.
     Noteheads rewrite with half duration.
     Time signature rewrites with double denominator.
     '''
@@ -165,7 +165,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_07():
 
 
 def test_measuretools_scale_measure_and_adjust_time_signature_08():
-    '''Scale power-of-two time signature by one quarter.
+    r'''Scale power-of-two time signature by one quarter.
     Noteheads rewrite with quarter duration.
     Time signature rewrites with quadruple denominator.
     '''
@@ -190,7 +190,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_08():
 
 
 def test_measuretools_scale_measure_and_adjust_time_signature_09():
-    '''Scale power-of-two time signature by two.
+    r'''Scale power-of-two time signature by two.
     Noteheads rewrite with double duration.
     Time signature rewrites with half denominator.
     '''
@@ -215,7 +215,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_09():
 
 
 def test_measuretools_scale_measure_and_adjust_time_signature_10():
-    '''Scale power-of-two time signature by four.
+    r'''Scale power-of-two time signature by four.
     Noteheads rewrite with quadruple duration.
     Time signature rewrites with quarter denominator.
     '''
@@ -240,7 +240,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_10():
 
 
 def test_measuretools_scale_measure_and_adjust_time_signature_11():
-    '''Raise ZeroDivisionError when multiplier equals zero.
+    r'''Raise ZeroDivisionError when multiplier equals zero.
     '''
 
     t = Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")

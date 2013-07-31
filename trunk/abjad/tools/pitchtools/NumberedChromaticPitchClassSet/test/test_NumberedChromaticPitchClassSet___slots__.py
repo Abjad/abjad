@@ -3,7 +3,7 @@ import py.test
 
 
 def test_NumberedChromaticPitchClassSet___slots___01():
-    '''Numbered chromatic pitch-class sets are immutable.
+    r'''Numbered chromatic pitch-class sets are immutable.
     '''
 
     numbered_chromatic_pitch_class_set = pitchtools.NumberedChromaticPitchClassSet([6, 7, 10, 10.5])

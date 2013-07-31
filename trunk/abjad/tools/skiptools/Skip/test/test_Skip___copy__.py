@@ -3,7 +3,7 @@ import copy
 
 
 def test_Skip___copy___01():
-    '''Copy skip.
+    r'''Copy skip.
     '''
 
     skip_1 = skiptools.Skip((1, 4))
@@ -16,7 +16,7 @@ def test_Skip___copy___01():
 
 
 def test_Skip___copy___02():
-    '''Copy skip with LilyPond multiplier.
+    r'''Copy skip with LilyPond multiplier.
     '''
 
     skip_1 = skiptools.Skip((1, 4), (1, 2))
@@ -29,7 +29,7 @@ def test_Skip___copy___02():
 
 
 def test_Skip___copy___03():
-    '''Copy skip with LilyPond grob overrides and LilyPond context settings.
+    r'''Copy skip with LilyPond grob overrides and LilyPond context settings.
     '''
 
     skip_1 = skiptools.Skip((1, 4))

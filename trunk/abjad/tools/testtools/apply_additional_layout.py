@@ -4,7 +4,7 @@ from abjad.tools import stafftools
 
 
 def apply_additional_layout(lilypond_file):
-    '''Configure multiple-voice rhythmic staves in `lilypond_file`.
+    r'''Configure multiple-voice rhythmic staves in `lilypond_file`.
 
     Operate in place and return none.
     '''

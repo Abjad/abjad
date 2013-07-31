@@ -105,7 +105,7 @@ class Spanner(AbjadObject):
         return self._components.__len__()
 
     def __lt__(self, expr):
-        '''Trivial comparison to allow doctests to work.
+        r'''Trivial comparison to allow doctests to work.
         '''
         if not isinstance(expr, Spanner):
             raise TypeError
@@ -144,18 +144,18 @@ class Spanner(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _block_all_components(self):
-        '''Not composer-safe.
+        r'''Not composer-safe.
         '''
         for component in self:
             self._block_component(component)
 
     def _block_component(self, component):
-        '''Not composer-safe.
+        r'''Not composer-safe.
         '''
         component._spanners.remove(self)
 
     def _copy(self, components):
-        '''Return copy of spanner with components.
+        r'''Return copy of spanner with components.
         Components must be an iterable of components already 
         contained in spanner.
         '''
@@ -240,14 +240,14 @@ class Spanner(AbjadObject):
         self.extend(components)
 
     def _insert(self, i, component):
-        '''Insert component in spanner at index i.
+        r'''Insert component in spanner at index i.
         Not composer-safe and may mangle spanners.
         '''
         component._spanners.add(self)
         self._components.insert(i, component)
 
     def _is_exterior_leaf(self, leaf):
-        '''True if leaf is first or last in spanner.
+        r'''True if leaf is first or last in spanner.
         True if next leaf or prev leaf is none.
         False otherwise.
         '''
@@ -309,14 +309,14 @@ class Spanner(AbjadObject):
         return self._is_my_first_leaf(leaf) and self._is_my_last_leaf(leaf)
 
     def _remove(self, component):
-        '''Remove 'component' from spanner.
+        r'''Remove 'component' from spanner.
         Remove spanner from component's aggregator.
         Not composer-safe and may leave discontiguous spanners.
         '''
         self._sever_component(component)
 
     def _remove_component(self, component):
-        '''Not composer-safe.
+        r'''Not composer-safe.
         '''
         for i, x in enumerate(self._components):
             if x is component:
@@ -342,26 +342,26 @@ class Spanner(AbjadObject):
         self._components.reverse()
 
     def _sever_all_components(self):
-        '''Not composer-safe.
+        r'''Not composer-safe.
         '''
         for n in reversed(range(len(self))):
             component = self[n]
             self._sever_component(component)
 
     def _sever_component(self, component):
-        '''Not composer-safe.
+        r'''Not composer-safe.
         '''
         self._block_component(component)
         self._remove_component(component)
 
     def _unblock_all_components(self):
-        '''Not composer-safe.
+        r'''Not composer-safe.
         '''
         for component in self:
             self._unblock_component(component)
 
     def _unblock_component(self, component):
-        '''Not composer-safe.
+        r'''Not composer-safe.
         '''
         component._spanners.add(self)
 
@@ -369,7 +369,7 @@ class Spanner(AbjadObject):
 
     @property
     def components(self):
-        '''Return read-only tuple of components in spanner:
+        r'''Return read-only tuple of components in spanner:
 
         ::
 
@@ -384,13 +384,13 @@ class Spanner(AbjadObject):
 
     @property
     def duration(self):
-        '''Sum of prolated duration of all components in spanner.
+        r'''Sum of prolated duration of all components in spanner.
         '''
         return sum([component.duration for component in self])
 
     @property
     def duration_in_seconds(self):
-        '''Sum of duration of all leaves in spanner, in seconds.
+        r'''Sum of duration of all leaves in spanner, in seconds.
         '''
         duration = durationtools.Duration(0)
         for leaf in self.leaves:
@@ -399,7 +399,7 @@ class Spanner(AbjadObject):
 
     @property
     def leaves(self):
-        '''Return read-only tuple of leaves in spanner:
+        r'''Return read-only tuple of leaves in spanner:
 
         ::
 
@@ -423,7 +423,7 @@ class Spanner(AbjadObject):
 
     @property
     def override(self):
-        '''LilyPond grob override component plug-in.
+        r'''LilyPond grob override component plug-in.
         '''
         if not hasattr(self, '_override'):
             self._override = \
@@ -432,7 +432,7 @@ class Spanner(AbjadObject):
 
     @property
     def set(self):
-        '''LilyPond context setting component plug-in.
+        r'''LilyPond context setting component plug-in.
         '''
         if not hasattr(self, '_set'):
             self._set = \
@@ -441,7 +441,7 @@ class Spanner(AbjadObject):
 
     @property
     def timespan(self):
-        '''Timespan of spanner.
+        r'''Timespan of spanner.
         '''
         if len(self):
             start_offset = self[0].timespan.start_offset
@@ -456,14 +456,14 @@ class Spanner(AbjadObject):
 
     @property
     def written_duration(self):
-        '''Sum of written duration of all components in spanner.
+        r'''Sum of written duration of all components in spanner.
         '''
         return sum([component.written_duration for component in self])
 
     ### PUBLIC METHODS ###
 
     def append(self, component):
-        '''Add `component` to right of spanner.
+        r'''Add `component` to right of spanner.
 
         ::
 
@@ -488,7 +488,7 @@ class Spanner(AbjadObject):
         self._components.append(component)
 
     def append_left(self, component):
-        '''Add `component` to left of spanner.
+        r'''Add `component` to left of spanner.
 
         ::
 
@@ -511,7 +511,7 @@ class Spanner(AbjadObject):
         self._components.insert(0, component)
 
     def attach(self, components):
-        '''Attach spanner to `components`.
+        r'''Attach spanner to `components`.
 
         Spanner must be empty.
 
@@ -541,7 +541,7 @@ class Spanner(AbjadObject):
         self._sever_all_components()
 
     def extend(self, components):
-        '''Add iterable `components` to right of spanner:
+        r'''Add iterable `components` to right of spanner:
 
         ::
 
@@ -567,7 +567,7 @@ class Spanner(AbjadObject):
             self.append(component)
 
     def extend_left(self, components):
-        '''Add iterable `components` to left of spanner:
+        r'''Add iterable `components` to left of spanner:
 
         ::
 
@@ -702,7 +702,7 @@ class Spanner(AbjadObject):
         return self._fuse_by_reference(spanner)
 
     def index(self, component):
-        '''Return nonnegative integer index of `component` in spanner:
+        r'''Return nonnegative integer index of `component` in spanner:
 
         ::
 

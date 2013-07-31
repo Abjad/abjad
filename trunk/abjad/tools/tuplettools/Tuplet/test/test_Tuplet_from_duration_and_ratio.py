@@ -52,7 +52,7 @@ def test_Tuplet_from_duration_and_ratio_02():
 
 
 def test_Tuplet_from_duration_and_ratio_03():
-    '''Interpret negative proportions as rests.
+    r'''Interpret negative proportions as rests.
     '''
 
     duration = Fraction(3, 16)
@@ -63,7 +63,7 @@ def test_Tuplet_from_duration_and_ratio_03():
 
 
 def test_Tuplet_from_duration_and_ratio_04():
-    '''Reduce proportions relative to each other.
+    r'''Reduce proportions relative to each other.
     '''
 
     duration = Fraction(3, 16)
@@ -130,7 +130,7 @@ def test_Tuplet_from_duration_and_ratio_06():
 
 
 def test_Tuplet_from_duration_and_ratio_07():
-    '''Reduce proportions relative to each other.
+    r'''Reduce proportions relative to each other.
     '''
 
     duration = Fraction(3, 16)
@@ -197,7 +197,7 @@ def test_Tuplet_from_duration_and_ratio_09():
 
 
 def test_Tuplet_from_duration_and_ratio_10():
-    '''Interpret negative proportions as rests.
+    r'''Interpret negative proportions as rests.
     '''
 
     duration = Fraction(3, 16)
@@ -208,7 +208,7 @@ def test_Tuplet_from_duration_and_ratio_10():
 
 
 def test_Tuplet_from_duration_and_ratio_11():
-    '''Reduce propotions relative to each other.
+    r'''Reduce propotions relative to each other.
     '''
 
     duration = Fraction(3, 16)
@@ -275,7 +275,7 @@ def test_Tuplet_from_duration_and_ratio_13():
 
 
 def test_Tuplet_from_duration_and_ratio_14():
-    '''Reduce proportions relative to each other.
+    r'''Reduce proportions relative to each other.
     '''
 
     duration = Fraction(3, 16)
@@ -292,7 +292,7 @@ def test_Tuplet_from_duration_and_ratio_14():
 
 
 def test_Tuplet_from_duration_and_ratio_15():
-    '''Coerce duration.
+    r'''Coerce duration.
     '''
 
     tuplet = Tuplet.from_duration_and_ratio(

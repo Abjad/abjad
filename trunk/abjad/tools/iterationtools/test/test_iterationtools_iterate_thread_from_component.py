@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_iterationtools_iterate_thread_from_component_01():
-    '''Iterate only notes.
+    r'''Iterate only notes.
     '''
 
     container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
@@ -50,7 +50,7 @@ def test_iterationtools_iterate_thread_from_component_01():
 
 
 def test_iterationtools_iterate_thread_from_component_02():
-    '''Iterate all components.
+    r'''Iterate all components.
     '''
 
     container = Container(Voice(notetools.make_repeated_notes(2)) * 2)

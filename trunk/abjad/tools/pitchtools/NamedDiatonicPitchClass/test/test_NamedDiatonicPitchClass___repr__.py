@@ -3,7 +3,7 @@ from abjad.tools.pitchtools import NamedDiatonicPitchClass
 
 
 def test_NamedDiatonicPitchClass___repr___01():
-    '''Named diatonic pitch-class repr is evaluable.
+    r'''Named diatonic pitch-class repr is evaluable.
     '''
 
     named_diatonic_pitch_class_1 = pitchtools.NamedDiatonicPitchClass('c')

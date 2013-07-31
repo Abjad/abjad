@@ -126,7 +126,7 @@ class Tree(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __contains__(self, expr):
-        '''True when tree contains `expr`:
+        r'''True when tree contains `expr`:
 
         ::
 
@@ -148,7 +148,7 @@ class Tree(AbjadObject):
         return expr in self._children
 
     def __eq__(self, expr):
-        '''True when `expr` is the same type as tree
+        r'''True when `expr` is the same type as tree
         and when the payload of all subtrees are equal:
 
         ::
@@ -196,7 +196,7 @@ class Tree(AbjadObject):
         return False
 
     def __getitem__(self, expr):
-        '''Get item from tree:
+        r'''Get item from tree:
 
         ::
 
@@ -220,7 +220,7 @@ class Tree(AbjadObject):
         return self._children[expr]
 
     def __len__(self):
-        '''Return the number of children in tree:
+        r'''Return the number of children in tree:
 
         ::
 
@@ -237,7 +237,7 @@ class Tree(AbjadObject):
         return len(self._children)
 
     def __repr__(self):
-        '''Interpreter representation of tree:
+        r'''Interpreter representation of tree:
 
         ::
 
@@ -254,7 +254,7 @@ class Tree(AbjadObject):
         return '%s(%s)' % (self._class_name, self)
 
     def __str__(self):
-        '''String representation of tree:
+        r'''String representation of tree:
 
         ::
 
@@ -314,7 +314,7 @@ class Tree(AbjadObject):
 
     @property
     def children(self):
-        '''Children of node:
+        r'''Children of node:
 
         ::
 
@@ -332,7 +332,7 @@ class Tree(AbjadObject):
 
     @property
     def depth(self):
-        '''Depth of subtree:
+        r'''Depth of subtree:
 
         ::
 
@@ -357,7 +357,7 @@ class Tree(AbjadObject):
 
     @property
     def graphviz_graph(self):
-        '''The GraphvizGraph representation of the Tree:
+        r'''The GraphvizGraph representation of the Tree:
 
         ::
 
@@ -394,7 +394,7 @@ class Tree(AbjadObject):
 
     @property
     def improper_parentage(self):
-        '''Improper parentage of node:
+        r'''Improper parentage of node:
 
         ::
 
@@ -417,7 +417,7 @@ class Tree(AbjadObject):
 
     @property
     def index_in_parent(self):
-        '''Index of node in parent of node:
+        r'''Index of node in parent of node:
 
         ::
 
@@ -439,7 +439,7 @@ class Tree(AbjadObject):
 
     @property
     def level(self):
-        '''Level of node:
+        r'''Level of node:
 
         ::
 
@@ -457,7 +457,7 @@ class Tree(AbjadObject):
 
     @property
     def manifest_payload(self):
-        '''Manifest payload of tree:
+        r'''Manifest payload of tree:
 
         ::
 
@@ -488,7 +488,7 @@ class Tree(AbjadObject):
 
     @property
     def negative_level(self):
-        '''Negative level of node:
+        r'''Negative level of node:
 
         ::
 
@@ -506,7 +506,7 @@ class Tree(AbjadObject):
 
     @property
     def payload(self):
-        '''Payload of node:
+        r'''Payload of node:
 
         ::
 
@@ -536,7 +536,7 @@ class Tree(AbjadObject):
 
     @property
     def position(self):
-        '''Position of node relative to root:
+        r'''Position of node relative to root:
 
         ::
 
@@ -559,7 +559,7 @@ class Tree(AbjadObject):
 
     @property
     def proper_parentage(self):
-        '''Proper parentage of node:
+        r'''Proper parentage of node:
 
         ::
 
@@ -578,7 +578,7 @@ class Tree(AbjadObject):
 
     @property
     def root(self):
-        '''Root of tree:
+        r'''Root of tree:
 
         ::
 
@@ -596,7 +596,7 @@ class Tree(AbjadObject):
 
     @property
     def storage_format(self):
-        '''Tree storage format:
+        r'''Tree storage format:
 
         ::
 
@@ -616,7 +616,7 @@ class Tree(AbjadObject):
 
     @property
     def width(self):
-        '''Number of leaves in subtree:
+        r'''Number of leaves in subtree:
 
         ::
 
@@ -941,7 +941,7 @@ class Tree(AbjadObject):
             n, level, nodes_must_be_complete=False)
 
     def get_node_at_position(self, position):
-        '''Get node at `position`:
+        r'''Get node at `position`:
 
         ::
 
@@ -982,7 +982,7 @@ class Tree(AbjadObject):
             return descendant.position[len(self.position):]
 
     def index(self, node):
-        '''Index of `node`:
+        r'''Index of `node`:
 
         ::
 
@@ -1172,7 +1172,7 @@ class Tree(AbjadObject):
                     yield x
 
     def iterate_depth_first(self, reverse=False):
-        '''Iterate tree depth-first:
+        r'''Iterate tree depth-first:
 
         Example 1. Iterate tree depth-first from left to right:
 

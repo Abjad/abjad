@@ -84,7 +84,7 @@ class HarmonicDiatonicIntervalClass(
     ### PUBLIC METHODS ###
 
     def invert(self):
-        '''Inversion of harmonic diatonic interval-class:
+        r'''Inversion of harmonic diatonic interval-class:
 
         ::
 

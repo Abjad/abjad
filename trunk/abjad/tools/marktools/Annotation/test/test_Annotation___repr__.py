@@ -3,7 +3,7 @@ from abjad.tools.marktools import Annotation
 
 
 def test_Annotation___repr___01():
-    '''Repr of unattached annotation is evaluable.
+    r'''Repr of unattached annotation is evaluable.
     '''
 
     annotation_1 = marktools.Annotation('foo')

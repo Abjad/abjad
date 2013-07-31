@@ -3,7 +3,7 @@ import copy
 
 
 def test_Rest___copy___01():
-    '''Copy rest.
+    r'''Copy rest.
     '''
 
     rest_1 = Rest((1, 4))
@@ -16,7 +16,7 @@ def test_Rest___copy___01():
 
 
 def test_Rest___copy___02():
-    '''Copy rest with LilyPond multiplier.
+    r'''Copy rest with LilyPond multiplier.
     '''
 
     rest_1 = Rest((1, 4), (1, 2))
@@ -29,7 +29,7 @@ def test_Rest___copy___02():
 
 
 def test_Rest___copy___03():
-    '''Copy rest with LilyPond grob overrides and LilyPond context settings.
+    r'''Copy rest with LilyPond grob overrides and LilyPond context settings.
     '''
 
     rest_1 = Rest((1, 4))

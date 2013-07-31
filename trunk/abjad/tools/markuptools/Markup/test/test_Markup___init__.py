@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Markup___init___01():
-    '''Init markup with string.
+    r'''Init markup with string.
     '''
 
     markup = markuptools.Markup('foo')
@@ -10,7 +10,7 @@ def test_Markup___init___01():
 
 
 def test_Markup___init___02():
-    '''Init markup with other markup instance.
+    r'''Init markup with other markup instance.
     '''
 
     markup_1 = markuptools.Markup('foo')
@@ -21,7 +21,7 @@ def test_Markup___init___02():
 
 
 def test_Markup___init___03():
-    '''Init markup with nonstring and nonmarkup instance.
+    r'''Init markup with nonstring and nonmarkup instance.
     '''
 
     markup = markuptools.Markup(27)
@@ -30,7 +30,7 @@ def test_Markup___init___03():
 
 
 def test_Markup___init___04():
-    '''Init markup from MarkupCommand.
+    r'''Init markup from MarkupCommand.
     '''
 
     command = markuptools.MarkupCommand('flat')
@@ -39,7 +39,7 @@ def test_Markup___init___04():
 
 
 def test_Markup___init___05():
-    '''Init markup from sequence of strings or MarkupCommands.
+    r'''Init markup from sequence of strings or MarkupCommands.
     '''
 
     command_1 = markuptools.MarkupCommand('flat')
@@ -49,7 +49,7 @@ def test_Markup___init___05():
 
 
 def test_Markup___init___06():
-    '''Preserve all keywords when initializing from other markup instance.
+    r'''Preserve all keywords when initializing from other markup instance.
     '''
 
     markup_1 = markuptools.Markup(
@@ -63,7 +63,7 @@ def test_Markup___init___06():
 
 
 def test_Markup___init___07():
-    '''Preserve keywords when initializing from other markup instance
+    r'''Preserve keywords when initializing from other markup instance
     but also overwrite keywords specified anew.
     '''
 

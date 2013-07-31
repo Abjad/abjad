@@ -11,7 +11,7 @@ def test_sequencetools_split_sequence_by_weights_01():
 
 
 def test_sequencetools_split_sequence_by_weights_02():
-    '''Even split with overhang produces no terminal empty piece.
+    r'''Even split with overhang produces no terminal empty piece.
     '''
 
     sequence = (10, -10, 10, -10)
@@ -40,7 +40,7 @@ def test_sequencetools_split_sequence_by_weights_04():
 
 
 def test_sequencetools_split_sequence_by_weights_05():
-    '''Even split with overhang produces no terminal empty piece.
+    r'''Even split with overhang produces no terminal empty piece.
     '''
 
     sequence = (10, -10, 10, -10)

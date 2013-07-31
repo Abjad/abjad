@@ -8,7 +8,7 @@ from abjad.tools.timeintervaltools.TimeIntervalAggregateMixin \
 
 
 class TimeIntervalTree(TimeIntervalAggregateMixin):
-    '''An augmented red-black tree for storing and searching for intervals of
+    r'''An augmented red-black tree for storing and searching for intervals of
     time (rather than pitch).
 
     This allows for the arbitrary placement of blocks of material along a
@@ -158,7 +158,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
 
     @property
     def duration(self):
-        '''Absolute difference of the stop_offset and start_offset values of the tree:
+        r'''Absolute difference of the stop_offset and start_offset values of the tree:
 
         ::
 
@@ -180,7 +180,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
 
     @property
     def earliest_start(self):
-        '''The minimum start_offset value of all intervals in the tree:
+        r'''The minimum start_offset value of all intervals in the tree:
 
         ::
 
@@ -199,7 +199,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
 
     @property
     def earliest_stop(self):
-        '''The minimum stop_offset value of all intervals in the tree:
+        r'''The minimum stop_offset value of all intervals in the tree:
 
         ::
 
@@ -222,7 +222,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
     
     @property
     def intervals_are_contiguous(self):
-        '''True when all intervals are contiguous and non-overlapping,
+        r'''True when all intervals are contiguous and non-overlapping,
         otherwise False.
 
         Return boolean.
@@ -235,7 +235,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
 
     @property
     def intervals_are_nonoverlapping(self):
-        '''True when all intervals are non-overlapping, otherwise False.
+        r'''True when all intervals are non-overlapping, otherwise False.
 
         Return boolean.
         '''
@@ -247,7 +247,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
 
     @property
     def latest_start(self):
-        '''The maximum start_offset value of all intervals in the tree:
+        r'''The maximum start_offset value of all intervals in the tree:
 
         ::
 
@@ -266,7 +266,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
 
     @property
     def latest_stop(self):
-        '''The maximum stop_offset value of all intervals in the tree:
+        r'''The maximum stop_offset value of all intervals in the tree:
 
         ::
 
@@ -603,7 +603,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
         return timeintervaltools.TimeIntervalTree(intervals)
 
     def explode_intervals(self, aggregate_count=None):
-        '''Explode intervals into trees, avoiding overlap and distributing
+        r'''Explode intervals into trees, avoiding overlap and distributing
         density.
 
         Example 1. Explode intervals into optimal number of non-overlapping trees:
@@ -778,7 +778,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
         return tuple(exploded_trees)
         
     def find_intervals_intersecting_or_tangent_to_interval(self, *args):
-        '''Find all intervals in tree intersecting or tangent to the interval
+        r'''Find all intervals in tree intersecting or tangent to the interval
         defined in `args`:
 
         ::
@@ -839,7 +839,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
         return type(self)(recurse(self._root, start_offset, stop_offset))
 
     def find_intervals_intersecting_or_tangent_to_offset(self, offset):
-        '''Find all intervals in tree intersecting or tangent to `offset`:
+        r'''Find all intervals in tree intersecting or tangent to `offset`:
 
         ::
 
@@ -890,7 +890,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
         return type(self)(recurse(self._root, offset))
 
     def find_intervals_starting_after_offset(self, offset):
-        '''Find all intervals in tree starting after `offset`:
+        r'''Find all intervals in tree starting after `offset`:
 
         ::
 
@@ -932,7 +932,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
         return type(self)(recurse(self._root, offset))
 
     def find_intervals_starting_and_stopping_within_interval(self, *args):
-        '''Find all intervals in tree starting and stopping within the interval
+        r'''Find all intervals in tree starting and stopping within the interval
         defined by `args`:
 
         ::
@@ -993,7 +993,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
         return type(self)(recurse(self._root, start_offset, stop_offset))
 
     def find_intervals_starting_at_offset(self, offset):
-        '''Find all intervals in tree starting at `offset`:
+        r'''Find all intervals in tree starting at `offset`:
 
         ::
 
@@ -1027,7 +1027,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
         return type(self)(intervals)
 
     def find_intervals_starting_before_offset(self, offset):
-        '''Find all intervals in tree starting before `offset`:
+        r'''Find all intervals in tree starting before `offset`:
 
         ::
 
@@ -1069,7 +1069,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
         return type(self)(recurse(self._root, offset))
 
     def find_intervals_starting_or_stopping_at_offset(self, offset):
-        '''Find all intervals in tree starting or stopping at `offset`:
+        r'''Find all intervals in tree starting or stopping at `offset`:
 
         ::
 
@@ -1117,7 +1117,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
         return type(self)(recurse(self._root, offset))
 
     def find_intervals_starting_within_interval(self, *args):
-        '''Find all intervals in tree starting within the interval defined 
+        r'''Find all intervals in tree starting within the interval defined 
         by `args`:
 
         ::
@@ -1172,7 +1172,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
         return type(self)(recurse(self._root, start_offset, stop_offset))
 
     def find_intervals_stopping_after_offset(self, offset):
-        '''Find all intervals in tree stopping after `offset`:
+        r'''Find all intervals in tree stopping after `offset`:
 
         ::
 
@@ -1217,7 +1217,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
         return type(self)(recurse(self._root, offset))
 
     def find_intervals_stopping_at_offset(self, offset):
-        '''Find all intervals in tree stopping at `offset`:
+        r'''Find all intervals in tree stopping at `offset`:
 
         ::
 
@@ -1262,7 +1262,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
         return type(self)(recurse(self._root, offset))
 
     def find_intervals_stopping_before_offset(self, offset):
-        '''Find all intervals in tree stopping before `offset`:
+        r'''Find all intervals in tree stopping before `offset`:
 
         ::
 
@@ -1308,7 +1308,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
         return type(self)(recurse(self._root, offset))
 
     def find_intervals_stopping_within_interval(self, *args):
-        '''Find all intervals in tree stopping within the interval 
+        r'''Find all intervals in tree stopping within the interval 
         defined by `args`:
 
         ::
@@ -1367,7 +1367,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
         return type(self)(recurse(self._root, start_offset, stop_offset))
 
     def fuse_overlapping_intervals(self, include_tangent_intervals=False):
-        '''Fuse overlapping intervals:
+        r'''Fuse overlapping intervals:
 
         ::
 
@@ -1403,7 +1403,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
             ])
 
     def quantize_to_rational(self, rational):
-        '''Quantize all intervals in tree to a multiple (1 or more) 
+        r'''Quantize all intervals in tree to a multiple (1 or more) 
         of `rational`:
 
         ::
@@ -1461,7 +1461,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
         return type(self)(intervals)
 
     def scale_by_rational(self, rational):
-        '''Scale aggregate duration of tree by `rational`:
+        r'''Scale aggregate duration of tree by `rational`:
 
         ::
 
@@ -1529,7 +1529,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
         ])
 
     def scale_interval_durations_by_rational(self, rational):
-        '''Scale the duration of each interval by
+        r'''Scale the duration of each interval by
         `rational`, maintaining their start_offset offsets:
 
         ::
@@ -1558,7 +1558,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
             ])
 
     def scale_interval_durations_to_rational(self, rational):
-        '''Scale the duration of each interval to
+        r'''Scale the duration of each interval to
         `rational`, maintaining their start_offset offsets:
 
         ::
@@ -1587,7 +1587,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
             ])
 
     def scale_interval_offsets_by_rational(self, rational):
-        '''Scale the starting offset of each interval by
+        r'''Scale the starting offset of each interval by
         `rational`, maintaining the earliest startest offset:
 
         ::
@@ -1618,7 +1618,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
             ])
 
     def scale_to_rational(self, rational):
-        '''Scale aggregate duration of tree to `rational`:
+        r'''Scale aggregate duration of tree to `rational`:
 
         ::
 
@@ -1687,7 +1687,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
                 for x in self])
 
     def shift_by_rational(self, rational):
-        '''Shift aggregate offset of tree by `rational`:
+        r'''Shift aggregate offset of tree by `rational`:
 
         ::
 
@@ -1726,7 +1726,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
         ])
 
     def shift_to_rational(self, rational):
-        '''Shift aggregate offset of tree to `rational`:
+        r'''Shift aggregate offset of tree to `rational`:
 
         ::
 
@@ -1759,7 +1759,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
         ])
 
     def split_at_rationals(self, *rationals):
-        '''Split tree at each rational in `rationals`:
+        r'''Split tree at each rational in `rationals`:
 
         ::
 

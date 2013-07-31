@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_BeamSpanner___init___01():
-    '''Init empty beam spanner.
+    r'''Init empty beam spanner.
     '''
 
     beam = spannertools.BeamSpanner()

@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_OctaveTranspositionMapping___contains___01():
-    '''Works with components.
+    r'''Works with components.
     '''
 
     mapping = pitchtools.OctaveTranspositionMapping([('[A0, C4)', 15), ('[C4, C8)', 27)])
@@ -10,7 +10,7 @@ def test_OctaveTranspositionMapping___contains___01():
 
 
 def test_OctaveTranspositionMapping___contains___02():
-    '''Works with component tokens.
+    r'''Works with component tokens.
     '''
 
     mapping = pitchtools.OctaveTranspositionMapping([('[A0, C4)', 15), ('[C4, C8)', 27)])

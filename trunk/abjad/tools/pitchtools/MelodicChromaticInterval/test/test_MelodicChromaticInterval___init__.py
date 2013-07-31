@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_MelodicChromaticInterval___init___01():
-    '''Init from positive number.
+    r'''Init from positive number.
     '''
 
     i = pitchtools.MelodicChromaticInterval(3)
@@ -10,7 +10,7 @@ def test_MelodicChromaticInterval___init___01():
 
 
 def test_MelodicChromaticInterval___init___02():
-    '''Init from negative number.
+    r'''Init from negative number.
     '''
 
     i = pitchtools.MelodicChromaticInterval(-3)
@@ -18,7 +18,7 @@ def test_MelodicChromaticInterval___init___02():
 
 
 def test_MelodicChromaticInterval___init___03():
-    '''Init from other chromatic interval.
+    r'''Init from other chromatic interval.
     '''
 
     i = pitchtools.MelodicChromaticInterval(3)
@@ -28,7 +28,7 @@ def test_MelodicChromaticInterval___init___03():
 
 
 def test_MelodicChromaticInterval___init___04():
-    '''Init from melodic diatonic interval.
+    r'''Init from melodic diatonic interval.
     '''
 
     diatonic_interval = pitchtools.MelodicDiatonicInterval('perfect', 4)

@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_notetools_make_percussion_note_01():
-    '''tied total_duration < max_note_duration.
+    r'''tied total_duration < max_note_duration.
     '''
 
     t = notetools.make_percussion_note(1, (5, 64), (1, 1))
@@ -17,7 +17,7 @@ def test_notetools_make_percussion_note_01():
 
 
 def test_notetools_make_percussion_note_02():
-    '''max_note_duration < tied total_duration.
+    r'''max_note_duration < tied total_duration.
     '''
 
     t = notetools.make_percussion_note(1, (5, 64), (1, 64))
@@ -31,7 +31,7 @@ def test_notetools_make_percussion_note_02():
 
 
 def test_notetools_make_percussion_note_03():
-    '''non-tied total_duration < max_note_duration.
+    r'''non-tied total_duration < max_note_duration.
     '''
 
     t = notetools.make_percussion_note(1, (3, 64), (1, 1))
@@ -42,7 +42,7 @@ def test_notetools_make_percussion_note_03():
 
 
 def test_notetools_make_percussion_note_04():
-    '''max_note_duration < non-tied total_duration.
+    r'''max_note_duration < non-tied total_duration.
     '''
 
     t = notetools.make_percussion_note(1, (3, 64), (1, 64))

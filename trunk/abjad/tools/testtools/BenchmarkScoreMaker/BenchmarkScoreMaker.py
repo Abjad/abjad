@@ -32,7 +32,7 @@ class BenchmarkScoreMaker(AbjadObject):
     ### PUBLIC METHODS ###
 
     def make_bound_hairpin_score_01(self):
-        '''Make 200-note voice with p-to-f bound crescendo spanner 
+        r'''Make 200-note voice with p-to-f bound crescendo spanner 
         on every 4 notes.
 
         ::
@@ -50,7 +50,7 @@ class BenchmarkScoreMaker(AbjadObject):
         return voice
 
     def make_bound_hairpin_score_02(self):
-        '''Make 200-note voice with p-to-f bound crescendo spanner 
+        r'''Make 200-note voice with p-to-f bound crescendo spanner 
         on every 20 notes.
 
         ::
@@ -68,7 +68,7 @@ class BenchmarkScoreMaker(AbjadObject):
         return voice
 
     def make_bound_hairpin_score_03(self):
-        '''Make 200-note voice with p-to-f bound crescendo spanner 
+        r'''Make 200-note voice with p-to-f bound crescendo spanner 
         on every 100 notes.
 
         ::
@@ -86,7 +86,7 @@ class BenchmarkScoreMaker(AbjadObject):
         return voice
 
     def make_context_mark_score_01(self):
-        '''Make 200-note voice with dynamic mark on every 20th note:
+        r'''Make 200-note voice with dynamic mark on every 20th note:
 
         ::
 
@@ -105,7 +105,7 @@ class BenchmarkScoreMaker(AbjadObject):
         return staff
 
     def make_context_mark_score_02(self):
-        '''Make 200-note staff with dynamic mark on every 4th note.
+        r'''Make 200-note staff with dynamic mark on every 4th note.
 
         ::
 
@@ -124,7 +124,7 @@ class BenchmarkScoreMaker(AbjadObject):
         return staff
 
     def make_context_mark_score_03(self):
-        '''Make 200-note staff with dynamic mark on every note.
+        r'''Make 200-note staff with dynamic mark on every note.
 
         ::
 
@@ -142,7 +142,7 @@ class BenchmarkScoreMaker(AbjadObject):
         return staff
 
     def make_hairpin_score_01(self):
-        '''Make 200-note voice with crescendo spanner on every 4 notes.
+        r'''Make 200-note voice with crescendo spanner on every 4 notes.
 
         ::
 
@@ -159,7 +159,7 @@ class BenchmarkScoreMaker(AbjadObject):
         return voice
 
     def make_hairpin_score_02(self):
-        '''Make 200-note voice with crescendo spanner on every 20 notes.
+        r'''Make 200-note voice with crescendo spanner on every 20 notes.
 
         ::
 
@@ -176,7 +176,7 @@ class BenchmarkScoreMaker(AbjadObject):
         return voice
 
     def make_hairpin_score_03(self):
-        '''Make 200-note voice with crescendo spanner on every 100 notes.
+        r'''Make 200-note voice with crescendo spanner on every 100 notes.
 
         ::
 
@@ -193,7 +193,7 @@ class BenchmarkScoreMaker(AbjadObject):
         return voice
 
     def make_score_00(self):
-        '''Make 200-note voice (with nothing else).
+        r'''Make 200-note voice (with nothing else).
 
         ::
 
@@ -208,7 +208,7 @@ class BenchmarkScoreMaker(AbjadObject):
         return voice
 
     def make_spanner_score_01(self):
-        '''Make 200-note voice with durated complex beam spanner 
+        r'''Make 200-note voice with durated complex beam spanner 
         on every 4 notes.
 
         ::
@@ -227,7 +227,7 @@ class BenchmarkScoreMaker(AbjadObject):
         return voice
 
     def make_spanner_score_02(self):
-        '''Make 200-note voice with durated complex beam spanner 
+        r'''Make 200-note voice with durated complex beam spanner 
         on every 20 notes.
 
         ::
@@ -246,7 +246,7 @@ class BenchmarkScoreMaker(AbjadObject):
         return voice
 
     def make_spanner_score_03(self):
-        '''Make 200-note voice with durated complex beam spanner 
+        r'''Make 200-note voice with durated complex beam spanner 
         on every 100 notes.
 
         ::
@@ -265,7 +265,7 @@ class BenchmarkScoreMaker(AbjadObject):
         return voice
 
     def make_spanner_score_04(self):
-        '''Make 200-note voice with slur spanner on every 4 notes.
+        r'''Make 200-note voice with slur spanner on every 4 notes.
 
         ::
 
@@ -281,7 +281,7 @@ class BenchmarkScoreMaker(AbjadObject):
         return voice
 
     def make_spanner_score_05(self):
-        '''Make 200-note voice with slur spanner on every 20 notes.
+        r'''Make 200-note voice with slur spanner on every 20 notes.
 
         ::
 
@@ -297,7 +297,7 @@ class BenchmarkScoreMaker(AbjadObject):
         return voice
 
     def make_spanner_score_06(self):
-        '''Make 200-note voice with slur spanner on every 100 notes.
+        r'''Make 200-note voice with slur spanner on every 100 notes.
 
         ::
 
@@ -313,7 +313,7 @@ class BenchmarkScoreMaker(AbjadObject):
         return voice
 
     def make_spanner_score_07(self):
-        '''Make 200-note voice with (vanilla) beam spanner on every 4 notes.
+        r'''Make 200-note voice with (vanilla) beam spanner on every 4 notes.
 
         ::
 
@@ -329,7 +329,7 @@ class BenchmarkScoreMaker(AbjadObject):
         return voice
 
     def make_spanner_score_08(self):
-        '''Make 200-note voice with (vanilla) beam spanner on every 20 notes.
+        r'''Make 200-note voice with (vanilla) beam spanner on every 20 notes.
 
         ::
 
@@ -345,7 +345,7 @@ class BenchmarkScoreMaker(AbjadObject):
         return voice
 
     def make_spanner_score_09(self):
-        '''Make 200-note voice with (vanilla) beam spanner on every 100 notes.
+        r'''Make 200-note voice with (vanilla) beam spanner on every 100 notes.
 
         ::
 

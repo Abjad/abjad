@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class BaseResidueClass(AbjadObject):
-    '''Abstract base class for ResidueClass and Sieve.
+    r'''Abstract base class for ResidueClass and Sieve.
     '''
 
     ### CLASS VARIABLES ###
@@ -44,7 +44,7 @@ class BaseResidueClass(AbjadObject):
 
     @staticmethod
     def _process_min_max_attribute(*min_max):
-        '''Process minimum and maximum attributes.
+        r'''Process minimum and maximum attributes.
         The function expects at least one and at most two attributes.
         Lone argument taken as range maximum.
         '''

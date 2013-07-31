@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_measuretools_scale_contents_of_measures_in_expr_01():
-    '''Quadruple time signature with power-of-two denominator.
+    r'''Quadruple time signature with power-of-two denominator.
     Time siganture denominator adjusts appropriately.
     '''
 
@@ -25,7 +25,7 @@ def test_measuretools_scale_contents_of_measures_in_expr_01():
 
 
 def test_measuretools_scale_contents_of_measures_in_expr_02():
-    '''Triple time signature with power-of-two denominator.
+    r'''Triple time signature with power-of-two denominator.
     '''
 
     t = Measure((3, 32), "c'32 d'32 e'32")
@@ -47,7 +47,7 @@ def test_measuretools_scale_contents_of_measures_in_expr_02():
 
 
 def test_measuretools_scale_contents_of_measures_in_expr_03():
-    '''Multiply measure with power-of-two time signature denomiantor by 2/3.
+    r'''Multiply measure with power-of-two time signature denomiantor by 2/3.
     '''
 
     t = Measure((3, 8), "c'8 d'8 e'8")

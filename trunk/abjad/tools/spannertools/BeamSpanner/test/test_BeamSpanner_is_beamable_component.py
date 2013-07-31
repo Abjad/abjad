@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_BeamSpanner_is_beamable_component_01():
-    '''Eighth notes are beamable.
+    r'''Eighth notes are beamable.
     Quarter notes are not beamable.
     '''
 
@@ -11,7 +11,7 @@ def test_BeamSpanner_is_beamable_component_01():
 
 
 def test_BeamSpanner_is_beamable_component_02():
-    '''Containers are not beamable.
+    r'''Containers are not beamable.
     '''
 
     assert not spannertools.BeamSpanner.is_beamable_component(Staff([]))

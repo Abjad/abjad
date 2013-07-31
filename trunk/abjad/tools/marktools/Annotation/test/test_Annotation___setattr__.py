@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Annotation___setattr___01():
-    '''Slots constrain annotation attributes.
+    r'''Slots constrain annotation attributes.
     '''
 
     annotation = marktools.Annotation('foo')

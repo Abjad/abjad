@@ -4,7 +4,7 @@ import py.test
 
 
 def test_Context___setattr___01():
-    '''Slots constrain context attributes.
+    r'''Slots constrain context attributes.
     '''
 
     context = Context([])

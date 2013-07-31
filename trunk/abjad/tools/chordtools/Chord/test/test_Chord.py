@@ -13,7 +13,7 @@ def test_Chord_01():
 
 
 def test_Chord_02():
-    '''Chord with tweaked note head.
+    r'''Chord with tweaked note head.
     '''
 
     t = Chord([2, 3, 4], (1, 4))
@@ -27,7 +27,7 @@ def test_Chord_03():
 
 
 def test_Chord_04():
-    '''Format one-note chord as chord.
+    r'''Format one-note chord as chord.
     '''
 
     t = Chord([0.5], (1, 4))
@@ -39,7 +39,7 @@ def test_Chord_04():
 
 
 def test_Chord_05():
-    '''Format chord with LilyPond command mark on right.
+    r'''Format chord with LilyPond command mark on right.
     '''
 
     chord = Chord([2, 3, 4], (1, 4))
@@ -53,7 +53,7 @@ def test_Chord_05():
 
 
 def test_Chord_06():
-    '''Format tweaked chord with LilyPond command mark on right.
+    r'''Format tweaked chord with LilyPond command mark on right.
     '''
 
     chord = Chord([2, 3, 4], (1, 4))
@@ -73,7 +73,7 @@ def test_Chord_06():
 
 
 def test_Chord_07():
-    '''Set chord pitches to numbers.
+    r'''Set chord pitches to numbers.
     '''
 
     t = Chord([], (1,4))
@@ -87,7 +87,7 @@ def test_Chord_07():
 
 
 def test_Chord_08():
-    '''Set chord pitches to pitches.
+    r'''Set chord pitches to pitches.
     '''
 
     t = Chord([], (1,4))
@@ -98,7 +98,7 @@ def test_Chord_08():
 
 
 def test_Chord_09():
-    '''Set chord pitches to mixed numbers and pitches.
+    r'''Set chord pitches to mixed numbers and pitches.
     '''
 
     t = Chord([], (1,4))
@@ -108,7 +108,7 @@ def test_Chord_09():
 
 
 def test_Chord_10():
-    '''Set chord note heads to numbers.
+    r'''Set chord note heads to numbers.
     '''
 
     t = Chord([], (1,4))
@@ -118,7 +118,7 @@ def test_Chord_10():
 
 
 def test_Chord_11():
-    '''Set chord note heads to pitches.
+    r'''Set chord note heads to pitches.
     '''
 
     t = Chord([], (1,4))
@@ -128,7 +128,7 @@ def test_Chord_11():
 
 
 def test_Chord_12():
-    '''Set chord note heads to mixed numbers and pitches.
+    r'''Set chord note heads to mixed numbers and pitches.
     '''
 
     t = Chord([], (1,4))
@@ -138,7 +138,7 @@ def test_Chord_12():
 
 
 def test_Chord_13():
-    '''Set chord item to pitch or number.
+    r'''Set chord item to pitch or number.
     '''
 
     t = Chord([2, 4], (1,4))

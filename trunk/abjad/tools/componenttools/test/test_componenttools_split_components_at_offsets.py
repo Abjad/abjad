@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_componenttools_split_components_at_offsets_01():
-    '''Cyclically split note in score. Don't fracture spanners.
+    r'''Cyclically split note in score. Don't fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -52,7 +52,7 @@ def test_componenttools_split_components_at_offsets_01():
 
 
 def test_componenttools_split_components_at_offsets_02():
-    '''Cyclically split consecutive notes in score. Don't fracture spanners.
+    r'''Cyclically split consecutive notes in score. Don't fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -102,7 +102,7 @@ def test_componenttools_split_components_at_offsets_02():
 
 
 def test_componenttools_split_components_at_offsets_03():
-    '''Cyclically split measure in score. Don't fracture spanners.
+    r'''Cyclically split measure in score. Don't fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -154,7 +154,7 @@ def test_componenttools_split_components_at_offsets_03():
 
 
 def test_componenttools_split_components_at_offsets_04():
-    '''Cyclically split consecutive measures in score. Don't fracture spanners.
+    r'''Cyclically split consecutive measures in score. Don't fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -216,7 +216,7 @@ def test_componenttools_split_components_at_offsets_04():
 
 
 def test_componenttools_split_components_at_offsets_05():
-    '''Cyclically split orphan measures. Don't fracture spanners.
+    r'''Cyclically split orphan measures. Don't fracture spanners.
     '''
 
     measures = [Measure((2, 8), "c'8 d'8"), Measure((2, 8), "e'8 f'8")]
@@ -266,7 +266,7 @@ def test_componenttools_split_components_at_offsets_05():
 
 
 def test_componenttools_split_components_at_offsets_06():
-    '''Cyclically split note in score. Don't fracture spanners.
+    r'''Cyclically split note in score. Don't fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -313,7 +313,7 @@ def test_componenttools_split_components_at_offsets_06():
 
 
 def test_componenttools_split_components_at_offsets_07():
-    '''Cyclically split consecutive notes in score. Don't fracture spanners.
+    r'''Cyclically split consecutive notes in score. Don't fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -361,7 +361,7 @@ def test_componenttools_split_components_at_offsets_07():
 
 
 def test_componenttools_split_components_at_offsets_08():
-    '''Cyclically split measure in score. Don't fracture spanners.
+    r'''Cyclically split measure in score. Don't fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -414,7 +414,7 @@ def test_componenttools_split_components_at_offsets_08():
 
 
 def test_componenttools_split_components_at_offsets_09():
-    '''Cyclically split consecutive measures in score. Don't fracture spanners.
+    r'''Cyclically split consecutive measures in score. Don't fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -476,7 +476,7 @@ def test_componenttools_split_components_at_offsets_09():
 
 
 def test_componenttools_split_components_at_offsets_10():
-    '''Cyclically split note in score. Fracture spanners.
+    r'''Cyclically split note in score. Fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -527,7 +527,7 @@ def test_componenttools_split_components_at_offsets_10():
 
 
 def test_componenttools_split_components_at_offsets_11():
-    '''Cyclically split consecutive notes in score. Fracture spanners.
+    r'''Cyclically split consecutive notes in score. Fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -575,7 +575,7 @@ def test_componenttools_split_components_at_offsets_11():
 
 
 def test_componenttools_split_components_at_offsets_12():
-    '''Cyclically split measure in score. Fracture spanners.
+    r'''Cyclically split measure in score. Fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -627,7 +627,7 @@ def test_componenttools_split_components_at_offsets_12():
 
 
 def test_componenttools_split_components_at_offsets_13():
-    '''Cyclically split consecutive measures in score. Fracture spanners.
+    r'''Cyclically split consecutive measures in score. Fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -689,7 +689,7 @@ def test_componenttools_split_components_at_offsets_13():
 
 
 def test_componenttools_split_components_at_offsets_14():
-    '''Cyclically split orphan notes.
+    r'''Cyclically split orphan notes.
     '''
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
@@ -719,7 +719,7 @@ def test_componenttools_split_components_at_offsets_14():
 
 
 def test_componenttools_split_components_at_offsets_15():
-    '''Cyclically split orphan measures. Fracture spanners.
+    r'''Cyclically split orphan measures. Fracture spanners.
     '''
 
     measures = [Measure((2, 8), "c'8 d'8"), Measure((2, 8), "e'8 f'8")]
@@ -769,7 +769,7 @@ def test_componenttools_split_components_at_offsets_15():
 
 
 def test_componenttools_split_components_at_offsets_16():
-    '''Cyclically split note in score. Fracture spanners.
+    r'''Cyclically split note in score. Fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -816,7 +816,7 @@ def test_componenttools_split_components_at_offsets_16():
 
 
 def test_componenttools_split_components_at_offsets_17():
-    '''Cyclically split consecutive notes in score. Fracture spanners.
+    r'''Cyclically split consecutive notes in score. Fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -864,7 +864,7 @@ def test_componenttools_split_components_at_offsets_17():
 
 
 def test_componenttools_split_components_at_offsets_18():
-    '''Cyclically split measure in score. Fracture spanners.
+    r'''Cyclically split measure in score. Fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -917,7 +917,7 @@ def test_componenttools_split_components_at_offsets_18():
 
 
 def test_componenttools_split_components_at_offsets_19():
-    '''Cyclically split consecutive measures in score. Fracture spanners.
+    r'''Cyclically split consecutive measures in score. Fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -979,7 +979,7 @@ def test_componenttools_split_components_at_offsets_19():
 
 
 def test_componenttools_split_components_at_offsets_20():
-    '''Force split measure in score. Do not fracture spanners.
+    r'''Force split measure in score. Do not fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -1032,7 +1032,7 @@ def test_componenttools_split_components_at_offsets_20():
 
 
 def test_componenttools_split_components_at_offsets_21():
-    '''Force split consecutive measures in score. Do not fracture spanners.
+    r'''Force split consecutive measures in score. Do not fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -1088,7 +1088,7 @@ def test_componenttools_split_components_at_offsets_21():
 
 
 def test_componenttools_split_components_at_offsets_22():
-    '''Force split measure in score. Fracture spanners.
+    r'''Force split measure in score. Fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -1141,7 +1141,7 @@ def test_componenttools_split_components_at_offsets_22():
 
 
 def test_componenttools_split_components_at_offsets_23():
-    '''Force split consecutive measures in score. Fracture spanners.
+    r'''Force split consecutive measures in score. Fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -1198,7 +1198,7 @@ def test_componenttools_split_components_at_offsets_23():
 
 
 def test_componenttools_split_components_at_offsets_24():
-    '''Force split orphan note. Offsets sum to less than note duration.
+    r'''Force split orphan note. Offsets sum to less than note duration.
     '''
 
     note = Note("c'4")
@@ -1225,7 +1225,7 @@ def test_componenttools_split_components_at_offsets_24():
 
 
 def test_componenttools_split_components_at_offsets_25():
-    '''Force split note in score. Fracture spanners.
+    r'''Force split note in score. Fracture spanners.
     '''
 
     staff = Staff("c'8 [ ]")

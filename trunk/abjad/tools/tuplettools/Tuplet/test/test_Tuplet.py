@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Tuplet_01():
-    '''Init typical fmtuplet.
+    r'''Init typical fmtuplet.
     '''
 
     u = Tuplet(Fraction(2, 3), Note(0, (1, 8)) * 3)
@@ -15,7 +15,7 @@ def test_Tuplet_01():
 
 
 def test_Tuplet_02():
-    '''Init empty fmtuplet.
+    r'''Init empty fmtuplet.
     '''
 
     u = Tuplet(Fraction(2, 3), [])
@@ -28,7 +28,7 @@ def test_Tuplet_02():
 
 
 def test_Tuplet_03():
-    '''Nest fmtuplet.
+    r'''Nest fmtuplet.
     '''
 
     u = Tuplet(Fraction(2, 3), [
@@ -50,7 +50,7 @@ def test_Tuplet_03():
 
 
 def test_Tuplet_04():
-    '''Nest empty fmtuplet.
+    r'''Nest empty fmtuplet.
     '''
 
     u = Tuplet(Fraction(2, 3), [

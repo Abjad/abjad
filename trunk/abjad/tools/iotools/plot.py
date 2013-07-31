@@ -3,7 +3,7 @@ import subprocess
 
 
 def plot(expr, image_format='png', width=640, height=320):
-    '''Plot `expr` with gnuplot, and open resulting image in 
+    r'''Plot `expr` with gnuplot, and open resulting image in 
     the default image viewer.
 
     Return None.

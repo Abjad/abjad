@@ -180,7 +180,7 @@ class Context(Container):
     @apply
     def context_name():
         def fget(self):
-            '''Read / write name of context as a string.
+            r'''Read / write name of context as a string.
             '''
             return self._context_name
         def fset(self, arg):
@@ -307,7 +307,7 @@ class Context(Container):
     @apply
     def name():
         def fget(self):
-            '''Read-write name of context. Must be string or none.
+            r'''Read-write name of context. Must be string or none.
             '''
             return self._name
         def fset(self, arg):

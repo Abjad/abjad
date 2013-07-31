@@ -39,7 +39,7 @@ class Mark(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, *args):
-        '''Detach mark from component when called with no arguments.
+        r'''Detach mark from component when called with no arguments.
 
         Attach mark to component when called with one argument.
 
@@ -53,7 +53,7 @@ class Mark(AbjadObject):
             raise ValueError('must call mark with at most 1 argument.')
 
     def __copy__(self, *args):
-        '''Copy mark.
+        r'''Copy mark.
             
         Return new mark.
         '''
@@ -62,7 +62,7 @@ class Mark(AbjadObject):
         return new
 
     def __eq__(self, expr):
-        '''True when `expr` is the same type as self.
+        r'''True when `expr` is the same type as self.
         Otherwise false.
 
         Return boolean.
@@ -72,7 +72,7 @@ class Mark(AbjadObject):
         return False
 
     def __repr__(self):
-        '''Mark interpreter representation.
+        r'''Mark interpreter representation.
 
         Return string.
         '''
@@ -118,7 +118,7 @@ class Mark(AbjadObject):
 
     @property
     def start_component(self):
-        '''Reference to mark start component:
+        r'''Reference to mark start component:
 
         ::
 
@@ -132,7 +132,7 @@ class Mark(AbjadObject):
     ### PUBLIC METHODS ###
 
     def attach(self, start_component):
-        '''Attach mark to `start_component`:
+        r'''Attach mark to `start_component`:
 
         ::
 
@@ -152,7 +152,7 @@ class Mark(AbjadObject):
         return self
 
     def detach(self):
-        '''Detach mark from start component:
+        r'''Detach mark from start component:
 
         ::
 

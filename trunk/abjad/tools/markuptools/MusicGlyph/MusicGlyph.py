@@ -3,7 +3,7 @@ from abjad.tools.markuptools.MarkupCommand import MarkupCommand
 
 
 class MusicGlyph(MarkupCommand):
-    '''Abjad model of a LilyPond \musicglyph command:
+    r'''Abjad model of a LilyPond \musicglyph command:
 
     ::
 

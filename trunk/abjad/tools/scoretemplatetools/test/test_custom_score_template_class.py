@@ -3,7 +3,7 @@ from abjad.tools.scoretemplatetools.ScoreTemplate import ScoreTemplate
 
 
 def test_custom_score_template_class_01():
-    '''Score template with named contexts.
+    r'''Score template with named contexts.
     '''
 
     class NamedContextScoreTemplate(ScoreTemplate):
@@ -39,7 +39,7 @@ def test_custom_score_template_class_01():
 
 
 def test_custom_score_template_class_02():
-    '''Score template with custom (voice and staff) contexts.
+    r'''Score template with custom (voice and staff) contexts.
 
     CAUTION: always use built-in LilyPond score context; do not rename.
     '''

@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Leaf_set_minus_01():
-    '''Chords completely disjunct; all RH pitches preserved.
+    r'''Chords completely disjunct; all RH pitches preserved.
     '''
     t = Chord([0, 1, 2], (1, 4))
     u = Chord([3, 4, 5], (1, 4))
@@ -13,7 +13,7 @@ def test_Leaf_set_minus_01():
 
 
 def test_Leaf_set_minus_02():
-    '''Partially intersecting chords; shared pitches removed from RHS.
+    r'''Partially intersecting chords; shared pitches removed from RHS.
     '''
     t = Chord([0, 1, 2], (1, 4))
     u = Chord([1, 2, 3], (1, 4))
@@ -24,7 +24,7 @@ def test_Leaf_set_minus_02():
 
 
 def test_Leaf_set_minus_03():
-    '''Wholly intersecting chords; all pitches removed and rest returns.
+    r'''Wholly intersecting chords; all pitches removed and rest returns.
     '''
     t = Chord([0, 1, 2], (1, 4))
     u = Chord([0, 1, 2], (1, 4))
@@ -35,7 +35,7 @@ def test_Leaf_set_minus_03():
 
 
 def test_Leaf_set_minus_04():
-    '''Enharmonically disjunct; enharmonic RHS equivalent appears;
+    r'''Enharmonically disjunct; enharmonic RHS equivalent appears;
         shared pitches disappear.'''
     t = Chord([0, ('cs', 4), 2], (1, 4))
     u = Chord([0, ('df', 4), 2], (1, 4))
@@ -46,7 +46,7 @@ def test_Leaf_set_minus_04():
 
 
 def test_Leaf_set_minus_05():
-    '''Differing durations; noncommutative operation takes duration from LHS.
+    r'''Differing durations; noncommutative operation takes duration from LHS.
     '''
     t = Chord([0, 1, 2], (1, 4))
     u = Chord([3, 4, 5], (1, 8))
@@ -58,7 +58,7 @@ def test_Leaf_set_minus_05():
 
 
 def test_Leaf_set_minus_06():
-    '''Differing durations; noncommutative operation takes duration from LHS.
+    r'''Differing durations; noncommutative operation takes duration from LHS.
     '''
     t = Chord([0, 1, 2], (1, 8))
     u = Chord([3, 4, 5], (1, 4))
@@ -70,7 +70,7 @@ def test_Leaf_set_minus_06():
 
 
 def test_Leaf_set_minus_07():
-    '''Rest from from produces rest.
+    r'''Rest from from produces rest.
     '''
     t = Rest((1, 4))
     u = Rest((1, 4))
@@ -81,7 +81,7 @@ def test_Leaf_set_minus_07():
 
 
 def test_Leaf_set_minus_08():
-    '''Note from rest produces rest.
+    r'''Note from rest produces rest.
     '''
     t = Rest((1, 4))
     u = Note("c'4")
@@ -92,7 +92,7 @@ def test_Leaf_set_minus_08():
 
 
 def test_Leaf_set_minus_09():
-    '''Note from like pitched note produces rest.
+    r'''Note from like pitched note produces rest.
     '''
     t = Note("c'4")
     u = Note("c'4")
@@ -103,7 +103,7 @@ def test_Leaf_set_minus_09():
 
 
 def test_Leaf_set_minus_10():
-    '''Note from differently pitched note produces note.
+    r'''Note from differently pitched note produces note.
     '''
     t = Note("c'4")
     u = Note(2, (1, 4))
@@ -114,7 +114,7 @@ def test_Leaf_set_minus_10():
 
 
 def test_Leaf_set_minus_11():
-    '''Differently pitched note from chord produces chord.
+    r'''Differently pitched note from chord produces chord.
     '''
     t = Chord([0, 2], (1, 4))
     u = Note(4, (1, 4))
@@ -125,7 +125,7 @@ def test_Leaf_set_minus_11():
 
 
 def test_Leaf_set_minus_12():
-    '''Like pitched note from chord removes pitch.
+    r'''Like pitched note from chord removes pitch.
     '''
     t = Chord([0, 2], (1, 4))
     u = Note("c'4")

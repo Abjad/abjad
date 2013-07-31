@@ -3,7 +3,7 @@ import py.test
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_01():
-    '''Move parentage, children and spanners from multiple containers 
+    r'''Move parentage, children and spanners from multiple containers 
     to empty tuplet.
     '''
 
@@ -52,7 +52,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_02():
-    '''Move parentage, children and spanners from container to empty voice.
+    r'''Move parentage, children and spanners from container to empty voice.
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
@@ -104,7 +104,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_03():
-    '''Move parentage, children and spanners from container to empty tuplet.
+    r'''Move parentage, children and spanners from container to empty tuplet.
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
@@ -156,7 +156,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_04():
-    '''Trying to move parentage, children and spanners to noncontainer 
+    r'''Trying to move parentage, children and spanners to noncontainer 
     raises exception.
     '''
 
@@ -170,7 +170,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_05():
-    '''Trying to move parentage, children and spanners from nonempty container
+    r'''Trying to move parentage, children and spanners from nonempty container
     to nonempty container raises exception.
     '''
 
@@ -185,7 +185,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_06():
-    '''Trying to move parentage, children and spanners from components 
+    r'''Trying to move parentage, children and spanners from components 
     that are not parent-contiguous raises exception.
     '''
 
@@ -217,7 +217,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_07():
-    '''Move parentage, children and spanners from multiple dynamic measure 
+    r'''Move parentage, children and spanners from multiple dynamic measure 
     to empty measure.
     '''
 

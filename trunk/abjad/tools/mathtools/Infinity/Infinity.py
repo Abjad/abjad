@@ -2,7 +2,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Infinity(AbjadObject):
-    '''Object-oriented infinity.
+    r'''Object-oriented infinity.
 
     All numbers compare less than infinity:
 

@@ -36,7 +36,7 @@ class Check(AbjadObject):
 
     @staticmethod
     def list_checks():
-        '''List checks:
+        r'''List checks:
 
         ::
 

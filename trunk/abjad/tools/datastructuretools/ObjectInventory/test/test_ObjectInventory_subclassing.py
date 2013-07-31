@@ -21,7 +21,7 @@ class SpecialObjectInventory(ObjectInventory):
 
 
 def test_ObjectInventory_subclassing_01():
-    '''Inherited keyword argument names.
+    r'''Inherited keyword argument names.
     '''
 
     foo = SpecialObjectInventory([])
@@ -29,7 +29,7 @@ def test_ObjectInventory_subclassing_01():
 
 
 def test_ObjectInventory_subclassing_02():
-    '''Empty inventory. No keywords.
+    r'''Empty inventory. No keywords.
     '''
 
     foo = SpecialObjectInventory([])
@@ -39,7 +39,7 @@ def test_ObjectInventory_subclassing_02():
 
 
 def test_ObjectInventory_subclassing_03():
-    '''Empty inventory. With keywords.
+    r'''Empty inventory. With keywords.
     '''
 
     foo = SpecialObjectInventory(name='foo', color='red')
@@ -49,7 +49,7 @@ def test_ObjectInventory_subclassing_03():
 
 
 def test_ObjectInventory_subclassing_04():
-    '''Populated inventory. No keywords.
+    r'''Populated inventory. No keywords.
     '''
 
     foo = SpecialObjectInventory(['foo', 99])
@@ -59,7 +59,7 @@ def test_ObjectInventory_subclassing_04():
 
 
 def test_ObjectInventory_subclassing_05():
-    '''Populated inventory. With keywords.
+    r'''Populated inventory. With keywords.
     '''
 
     foo = SpecialObjectInventory(['foo', 99], name='foo', color='red')

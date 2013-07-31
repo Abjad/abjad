@@ -44,7 +44,7 @@ def test_ComponentSelection_get_component_02():
 
 
 def test_ComponentSelection_get_component_03():
-    '''Read forwards for positive n.
+    r'''Read forwards for positive n.
     '''
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
@@ -79,7 +79,7 @@ def test_ComponentSelection_get_component_03():
 
 
 def test_ComponentSelection_get_component_04():
-    '''Read backwards for negative n.
+    r'''Read backwards for negative n.
     '''
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
@@ -149,7 +149,7 @@ def test_ComponentSelection_get_component_05():
 
 
 def test_ComponentSelection_get_component_06():
-    '''Iterates backwards with negative values of n.
+    r'''Iterates backwards with negative values of n.
     '''
 
     staff = Staff([])

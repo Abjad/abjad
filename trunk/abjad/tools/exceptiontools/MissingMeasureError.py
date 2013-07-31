@@ -1,4 +1,4 @@
 class MissingMeasureError(Exception):
-    '''No measure found.
+    r'''No measure found.
     '''
     pass

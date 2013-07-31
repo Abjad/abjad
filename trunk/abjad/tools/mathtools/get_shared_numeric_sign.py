@@ -1,5 +1,5 @@
 def get_shared_numeric_sign(sequence):
-    '''Return ``1`` when all `sequence` elements are positive:
+    r'''Return ``1`` when all `sequence` elements are positive:
 
     ::
 

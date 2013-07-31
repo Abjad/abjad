@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_spannertools_detach_spanners_attached_to_component_01():
-    '''Destory all spanners attached to component.
+    r'''Destory all spanners attached to component.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
@@ -35,7 +35,7 @@ def test_spannertools_detach_spanners_attached_to_component_01():
 
 
 def test_spannertools_detach_spanners_attached_to_component_02():
-    '''Destroy all spanners of class attached to component.
+    r'''Destroy all spanners of class attached to component.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")

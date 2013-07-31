@@ -7,7 +7,7 @@ from abjad.tools.quantizationtools.QTarget import QTarget
 
 
 class MeasurewiseQTarget(QTarget):
-    '''A measure-wise quantization target.
+    r'''A measure-wise quantization target.
 
     Not composer-safe.
 

@@ -192,13 +192,13 @@ class TempoMark(ContextMark):
 
     @property
     def _dotted(self):
-        '''Dotted numeral representation of duration.
+        r'''Dotted numeral representation of duration.
         '''
         return self.duration.lilypond_duration_string
 
     @property
     def _equation(self):
-        '''Dotted numeral and units per minute together around equal sign.
+        r'''Dotted numeral and units per minute together around equal sign.
         '''
         if isinstance(self.units_per_minute, tuple):
             return '%s=%s~%s' % (
@@ -227,7 +227,7 @@ class TempoMark(ContextMark):
     @apply
     def duration():
         def fget(self):
-            '''Get duration of tempo mark:
+            r'''Get duration of tempo mark:
 
             ::
 
@@ -406,7 +406,7 @@ class TempoMark(ContextMark):
     ### PUBLIC METHODS ###
 
     def duration_to_milliseconds(self, duration):
-        '''Return the millisecond value of `duration` under a given tempo:
+        r'''Return the millisecond value of `duration` under a given tempo:
 
         ::
 
@@ -430,7 +430,7 @@ class TempoMark(ContextMark):
         return durationtools.Duration(duration * whole_note_duration)
 
     def is_tempo_mark_token(self, expr):
-        '''True when `expr` has the form of a tempo mark initializer:
+        r'''True when `expr` has the form of a tempo mark initializer:
 
         ::
 

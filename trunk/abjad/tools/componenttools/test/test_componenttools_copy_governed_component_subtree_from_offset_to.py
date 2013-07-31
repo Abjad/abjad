@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_componenttools_copy_governed_component_subtree_from_offset_to_01():
-    '''Container.
+    r'''Container.
     '''
 
     t = Container("c'8 d'8 e'8")
@@ -19,7 +19,7 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_01():
 
 
 def test_componenttools_copy_governed_component_subtree_from_offset_to_02():
-    '''Container with rest.
+    r'''Container with rest.
     '''
 
     t = Container("c'8 d'8 e'8")
@@ -38,7 +38,7 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_02():
 
 
 def test_componenttools_copy_governed_component_subtree_from_offset_to_03():
-    '''Copy measure.
+    r'''Copy measure.
     '''
 
     t = Measure((3, 8), "c'8 d'8 e'8")
@@ -56,7 +56,7 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_03():
 
 
 def test_componenttools_copy_governed_component_subtree_from_offset_to_04():
-    '''Fixed duration tuplet.
+    r'''Fixed duration tuplet.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(1, 4), "c'8 d'8 e'8")
@@ -73,7 +73,7 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_04():
 
 
 def test_componenttools_copy_governed_component_subtree_from_offset_to_05():
-    '''Fixed multiplier tuplet.
+    r'''Fixed multiplier tuplet.
     '''
 
     t = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
@@ -90,7 +90,7 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_05():
 
 
 def test_componenttools_copy_governed_component_subtree_from_offset_to_06():
-    '''Voice.
+    r'''Voice.
     '''
 
     t = Voice("c'8 d'8 e'8")
@@ -107,7 +107,7 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_06():
 
 
 def test_componenttools_copy_governed_component_subtree_from_offset_to_07():
-    '''Staff.
+    r'''Staff.
     '''
 
     t = Staff("c'8 d'8 e'8")
@@ -124,7 +124,7 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_07():
 
 
 def test_componenttools_copy_governed_component_subtree_from_offset_to_08():
-    '''Start-to-mid clean cut.
+    r'''Start-to-mid clean cut.
     '''
 
     t = Note("c'4")
@@ -133,7 +133,7 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_08():
 
 
 def test_componenttools_copy_governed_component_subtree_from_offset_to_09():
-    '''Start-to-mid jagged cut.
+    r'''Start-to-mid jagged cut.
     '''
 
     t = Note("c'4")
@@ -150,7 +150,7 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_09():
 
 
 def test_componenttools_copy_governed_component_subtree_from_offset_to_10():
-    '''Mid-mid jagged cut.
+    r'''Mid-mid jagged cut.
     '''
 
     t = Note("c'4")
@@ -167,7 +167,7 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_10():
 
 
 def test_componenttools_copy_governed_component_subtree_from_offset_to_11():
-    '''Mid-to-stop jagged cut.
+    r'''Mid-to-stop jagged cut.
     '''
 
     t = Note("c'4")
@@ -184,7 +184,7 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_11():
 
 
 def test_componenttools_copy_governed_component_subtree_from_offset_to_12():
-    '''Start-to-after clean cut.
+    r'''Start-to-after clean cut.
     '''
     t = Note("c'4")
     new = componenttools.copy_governed_component_subtree_from_offset_to(t, 0, (1, 2))
@@ -192,7 +192,7 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_12():
 
 
 def test_componenttools_copy_governed_component_subtree_from_offset_to_13():
-    '''Mid-to-after clean cut.
+    r'''Mid-to-after clean cut.
     '''
 
     t = Note("c'4")
@@ -201,7 +201,7 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_13():
 
 
 def test_componenttools_copy_governed_component_subtree_from_offset_to_14():
-    '''Mid-to-after jagged cut.
+    r'''Mid-to-after jagged cut.
     '''
 
     t = Note("c'4")
@@ -218,7 +218,7 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_14():
 
 
 def test_componenttools_copy_governed_component_subtree_from_offset_to_15():
-    '''Before-to-after.
+    r'''Before-to-after.
     '''
 
     t = Note("c'4")
@@ -227,7 +227,7 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_15():
 
 
 def test_componenttools_copy_governed_component_subtree_from_offset_to_16():
-    '''Start-to-mid jagged.
+    r'''Start-to-mid jagged.
     '''
 
     t = Note("c'4")
@@ -245,7 +245,7 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_16():
 
 
 def test_componenttools_copy_governed_component_subtree_from_offset_to_17():
-    '''Start-to-mid jagged.
+    r'''Start-to-mid jagged.
     '''
 
     t = Note("c'4")

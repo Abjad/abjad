@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Container___setitem___integer_01():
-    '''Spanned leaves exchange correctly.
+    r'''Spanned leaves exchange correctly.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -35,7 +35,7 @@ def test_Container___setitem___integer_01():
 
 
 def test_Container___setitem___integer_02():
-    '''Spanned leaf hands position over to container correctly.
+    r'''Spanned leaf hands position over to container correctly.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -71,7 +71,7 @@ def test_Container___setitem___integer_02():
 
 
 def test_Container___setitem___integer_03():
-    '''Directly spanned contains hand over correctly to a single leaf.
+    r'''Directly spanned contains hand over correctly to a single leaf.
         Note here that only the sequentials are initially spanned.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
@@ -109,7 +109,7 @@ def test_Container___setitem___integer_03():
 
 
 def test_Container___setitem___integer_04():
-    '''Indirectly spanned containers hand over correctly to a single leaf.
+    r'''Indirectly spanned containers hand over correctly to a single leaf.
         Notice here that only LEAVES are initially spanned.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
@@ -147,7 +147,7 @@ def test_Container___setitem___integer_04():
 
 
 def test_Container___setitem___integer_05():
-    '''Directly spanned containers hand over to other containers correctly.
+    r'''Directly spanned containers hand over to other containers correctly.
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
@@ -189,7 +189,7 @@ def test_Container___setitem___integer_05():
 
 
 def test_Container___setitem___integer_06():
-    '''Indirectly spanned containers hand over correctly to a single leaf.
+    r'''Indirectly spanned containers hand over correctly to a single leaf.
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
@@ -227,7 +227,7 @@ def test_Container___setitem___integer_06():
 
 
 def test_Container___setitem___integer_07():
-    '''Indirectly HALF-spanned containers hand over correctly to a
+    r'''Indirectly HALF-spanned containers hand over correctly to a
     single leaf. WOW!'''
 
     t = Voice(Container(notetools.make_repeated_notes(4)) * 2)
@@ -269,7 +269,7 @@ def test_Container___setitem___integer_07():
 
 
 def test_Container___setitem___integer_08():
-    '''Take spanned leaf from donor container
+    r'''Take spanned leaf from donor container
         and insert into recipient container.
         Both donor and recipient check after set item.'''
 
@@ -326,7 +326,7 @@ def test_Container___setitem___integer_08():
 
 
 def test_Container___setitem___integer_09():
-    '''Take down-spanned container with completely covered spanner
+    r'''Take down-spanned container with completely covered spanner
         from donor container and insert into recipient container.
         Both donor and recipient check after set item.'''
 

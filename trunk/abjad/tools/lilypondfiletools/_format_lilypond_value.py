@@ -1,6 +1,6 @@
 # TODO: make public and move to bound method of some class.
 def _format_lilypond_value(value):
-    '''Format LilyPond value.
+    r'''Format LilyPond value.
     '''
 
     if 'lilypond_format' in dir(value) and not isinstance(value, str):
@@ -34,7 +34,7 @@ def _format_lilypond_value(value):
 
 
 def _is_lilypond_constant(value):
-    '''True if value is constant.  Otherwise false.
+    r'''True if value is constant.  Otherwise false.
     '''
     if isinstance(value, int) or isinstance(value, float) or value in [
         'up', 'down', 'left', 'center', 'right',
@@ -48,5 +48,5 @@ def _is_lilypond_constant(value):
 
 
 def _is_lilypond_function_name(arg):
-    '''True if arg contains '::'. Otherwise false.'''
+    r'''True if arg contains '::'. Otherwise false.'''
     return isinstance(arg, str) and '::' in arg

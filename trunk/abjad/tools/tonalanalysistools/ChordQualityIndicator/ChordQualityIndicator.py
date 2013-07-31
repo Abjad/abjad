@@ -5,7 +5,7 @@ from abjad.tools.pitchtools import HarmonicDiatonicInterval
 
 
 class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
-    '''Chord quality indicator.
+    r'''Chord quality indicator.
     '''
 
     ### CLASS VARIABLES ###

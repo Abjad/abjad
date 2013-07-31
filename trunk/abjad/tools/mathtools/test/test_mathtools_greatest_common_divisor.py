@@ -4,7 +4,7 @@ import py
 
 
 def test_mathtools_greatest_common_divisor_01():
-    '''Greatest common integer divisor of integers.
+    r'''Greatest common integer divisor of integers.
     '''
 
     assert mathtools.greatest_common_divisor(84, -96, -144) == 12
@@ -16,7 +16,7 @@ def test_mathtools_greatest_common_divisor_01():
 
 
 def test_mathtools_greatest_common_divisor_02():
-    '''Raise exception on noninteger input.
+    r'''Raise exception on noninteger input.
     '''
 
     assert py.test.raises(TypeError, "mathtools.greatest_common_divisor('foo')")

@@ -3,7 +3,7 @@ import py.test
 
 
 def test_NumberedChromaticPitchClass___sub___01():
-    '''Subtracting one pitch-class from another.
+    r'''Subtracting one pitch-class from another.
     '''
 
     pc1 = pitchtools.NumberedChromaticPitchClass(6)
@@ -14,7 +14,7 @@ def test_NumberedChromaticPitchClass___sub___01():
 
 
 def test_NumberedChromaticPitchClass___sub___02():
-    '''Subtracting an interval-class from a pitch-class.
+    r'''Subtracting an interval-class from a pitch-class.
     '''
 
     pc = pitchtools.NumberedChromaticPitchClass(0)

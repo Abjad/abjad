@@ -4,7 +4,7 @@ from abjad.tools.leaftools.Leaf import Leaf
 
 
 def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_01():
-    '''Iterate classes in expr and accumulate prolated duration.
+    r'''Iterate classes in expr and accumulate prolated duration.
     Add line break after every total le line duration.
     '''
 
@@ -45,7 +45,7 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_01():
 
 
 def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_02():
-    '''Iterate classes in expr and accumulate prolated duration.
+    r'''Iterate classes in expr and accumulate prolated duration.
     Add line break after every total le line duration.
     '''
 

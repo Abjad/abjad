@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_HiddenStaffSpanner___init___01():
-    '''Init empty hidden staff spanner.
+    r'''Init empty hidden staff spanner.
     '''
 
     spanner = spannertools.HiddenStaffSpanner()
@@ -10,7 +10,7 @@ def test_HiddenStaffSpanner___init___01():
 
 
 def test_HiddenStaffSpanner___init___02():
-    '''Hide staff around one measure.
+    r'''Hide staff around one measure.
     '''
 
     t = Staff(Measure((2, 8), "c'8 d'8") * 3)
@@ -66,7 +66,7 @@ def test_HiddenStaffSpanner___init___02():
 
 
 def test_HiddenStaffSpanner___init___03():
-    '''Hide staff around one leaf.
+    r'''Hide staff around one leaf.
     '''
 
     t = Note(0, (1, 8))

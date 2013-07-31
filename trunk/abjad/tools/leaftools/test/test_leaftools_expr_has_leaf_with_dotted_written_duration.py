@@ -14,7 +14,7 @@ def test_leaftools_expr_has_leaf_with_dotted_written_duration_02():
 
 
 def test_leaftools_expr_has_leaf_with_dotted_written_duration_03():
-    '''Empty iterable boundary case.
+    r'''Empty iterable boundary case.
     '''
 
     assert not leaftools.expr_has_leaf_with_dotted_written_duration([])

@@ -29,7 +29,7 @@ class RhythmMaker(Maker):
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):
-        '''Cast `divisions` into duration pairs.
+        r'''Cast `divisions` into duration pairs.
         Reduce numerator and denominator relative to each other.
 
         Change none `seeds` into empty list.
@@ -41,7 +41,7 @@ class RhythmMaker(Maker):
         return duration_pairs, seeds
 
     def __eq__(self, expr):
-        '''True when `expr` is same type
+        r'''True when `expr` is same type
         with the equal public nonhelper properties.
         Otherwise false.
 
@@ -62,7 +62,7 @@ class RhythmMaker(Maker):
         return False
 
     def __repr__(self):
-        '''Rhythm-maker interpreter representation.
+        r'''Rhythm-maker interpreter representation.
 
         Return string.
         '''
@@ -200,7 +200,7 @@ class RhythmMaker(Maker):
         return new
 
     def reverse(self):
-        '''Reverse rhythm-maker.
+        r'''Reverse rhythm-maker.
 
         .. note:: method is provisional.
 

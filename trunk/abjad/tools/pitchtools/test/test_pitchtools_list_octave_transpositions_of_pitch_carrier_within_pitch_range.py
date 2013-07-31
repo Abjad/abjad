@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_pitchtools_list_octave_transpositions_of_pitch_carrier_within_pitch_range_01():
-    '''Works on chords.
+    r'''Works on chords.
     '''
 
     chord = Chord([0, 2, 4], (1, 4))
@@ -25,7 +25,7 @@ def test_pitchtools_list_octave_transpositions_of_pitch_carrier_within_pitch_ran
 
 
 def test_pitchtools_list_octave_transpositions_of_pitch_carrier_within_pitch_range_02():
-    '''Works on pitch numbers.
+    r'''Works on pitch numbers.
     '''
 
     pitch_numbers = [0, 2, 4]

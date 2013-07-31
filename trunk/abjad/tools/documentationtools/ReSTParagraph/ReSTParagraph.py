@@ -3,7 +3,7 @@ from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
 class ReSTParagraph(TreeNode):
-    '''An ReST paragraph:
+    r'''An ReST paragraph:
 
     ::
 

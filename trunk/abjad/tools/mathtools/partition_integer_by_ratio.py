@@ -1,5 +1,5 @@
 def partition_integer_by_ratio(n, ratio):
-    '''Partition positive integer-equivalent `n` by `ratio`:
+    r'''Partition positive integer-equivalent `n` by `ratio`:
 
     ::
 

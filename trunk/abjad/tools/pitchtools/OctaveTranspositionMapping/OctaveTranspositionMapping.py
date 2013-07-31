@@ -29,7 +29,7 @@ class OctaveTranspositionMapping(ObjectInventory):
     ### SPECIAL METHODS ###
 
     def __call__(self, pitches):
-        '''Call octave transposition mapping on `pitches`.
+        r'''Call octave transposition mapping on `pitches`.
 
             >>> mapping([-24, -22, -23, -21])
             [24, 26, 25, 15]
@@ -95,7 +95,7 @@ class OctaveTranspositionMapping(ObjectInventory):
 
     @property
     def storage_format(self):
-        '''Octave transposition mapping storage format.
+        r'''Octave transposition mapping storage format.
 
         ::
 

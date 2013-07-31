@@ -1,4 +1,4 @@
 class IntervalError(Exception):
-    '''General pitch interval error.
+    r'''General pitch interval error.
     '''
     pass

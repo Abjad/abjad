@@ -1,5 +1,5 @@
 def cumulative_products(sequence):
-    '''Cumulative products of `sequence`:
+    r'''Cumulative products of `sequence`:
 
     ::
 

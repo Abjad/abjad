@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01():
-    '''Project 3/12 time signature onto measure contents.
+    r'''Project 3/12 time signature onto measure contents.
     '''
 
     inner = tuplettools.FixedDurationTuplet(Duration(2, 16),
@@ -53,7 +53,7 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01():
 
 
 def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02():
-    '''Project time signature without power-of-two denominator
+    r'''Project time signature without power-of-two denominator
     onto measure with tied note values.
     '''
 

@@ -3,7 +3,7 @@ from abjad.tools.marktools import Mark
 
 
 def test_Mark___repr___01():
-    '''Repr of unattached mark is evaluable.
+    r'''Repr of unattached mark is evaluable.
     '''
 
     mark_1 = marktools.Mark()

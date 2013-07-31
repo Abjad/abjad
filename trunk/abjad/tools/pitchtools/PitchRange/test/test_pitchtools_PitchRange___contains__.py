@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_pitchtools_PitchRange___contains___01():
-    '''Closed / closed range.
+    r'''Closed / closed range.
     '''
 
     pr = pitchtools.PitchRange((-39, 'inclusive'), (48, 'inclusive'))
@@ -14,7 +14,7 @@ def test_pitchtools_PitchRange___contains___01():
 
 
 def test_pitchtools_PitchRange___contains___02():
-    '''Closed / open range.
+    r'''Closed / open range.
     '''
 
     pr = pitchtools.PitchRange((-39, 'inclusive'), (48, 'exclusive'))
@@ -26,7 +26,7 @@ def test_pitchtools_PitchRange___contains___02():
 
 
 def test_pitchtools_PitchRange___contains___03():
-    '''Closed / infinite range.
+    r'''Closed / infinite range.
     '''
 
     pr = pitchtools.PitchRange((-39, 'inclusive'), None)
@@ -38,7 +38,7 @@ def test_pitchtools_PitchRange___contains___03():
 
 
 def test_pitchtools_PitchRange___contains___04():
-    '''Open / closed range.
+    r'''Open / closed range.
     '''
 
     pr = pitchtools.PitchRange((-39, 'exclusive'), (48, 'inclusive'))
@@ -50,7 +50,7 @@ def test_pitchtools_PitchRange___contains___04():
 
 
 def test_pitchtools_PitchRange___contains___05():
-    '''Open / open range.
+    r'''Open / open range.
     '''
 
     pr = pitchtools.PitchRange((-39, 'exclusive'), (48, 'exclusive'))
@@ -62,7 +62,7 @@ def test_pitchtools_PitchRange___contains___05():
 
 
 def test_pitchtools_PitchRange___contains___06():
-    '''Open / infinite range.
+    r'''Open / infinite range.
     '''
 
     pr = pitchtools.PitchRange((-39, 'exclusive'), None)
@@ -74,7 +74,7 @@ def test_pitchtools_PitchRange___contains___06():
 
 
 def test_pitchtools_PitchRange___contains___07():
-    '''Infinite / closed range.
+    r'''Infinite / closed range.
     '''
 
     pr = pitchtools.PitchRange(None, (48, 'inclusive'))
@@ -86,7 +86,7 @@ def test_pitchtools_PitchRange___contains___07():
 
 
 def test_pitchtools_PitchRange___contains___08():
-    '''Infinite / open range.
+    r'''Infinite / open range.
     '''
 
     pr = pitchtools.PitchRange(None, (48, 'exclusive'))
@@ -98,7 +98,7 @@ def test_pitchtools_PitchRange___contains___08():
 
 
 def test_pitchtools_PitchRange___contains___09():
-    '''Infinite / infinite range.
+    r'''Infinite / infinite range.
     '''
 
     pr = pitchtools.PitchRange(None, None)
@@ -110,7 +110,7 @@ def test_pitchtools_PitchRange___contains___09():
 
 
 def test_pitchtools_PitchRange___contains___10():
-    '''Chord containement.
+    r'''Chord containement.
     '''
 
     pr = pitchtools.PitchRange((-39, 'inclusive'), (48, 'inclusive'))
@@ -122,7 +122,7 @@ def test_pitchtools_PitchRange___contains___10():
 
 
 def test_pitchtools_PitchRange___contains___11():
-    '''Note containement.
+    r'''Note containement.
     '''
 
     pr = pitchtools.PitchRange((-39, 'inclusive'), (48, 'inclusive'))
@@ -134,7 +134,7 @@ def test_pitchtools_PitchRange___contains___11():
 
 
 def test_pitchtools_PitchRange___contains___12():
-    '''Rest and skip containement.
+    r'''Rest and skip containement.
     '''
 
     pr = pitchtools.PitchRange((-39, 'inclusive'), (48, 'inclusive'))
@@ -143,7 +143,7 @@ def test_pitchtools_PitchRange___contains___12():
 
 
 def test_pitchtools_PitchRange___contains___13():
-    '''Iterable containment.
+    r'''Iterable containment.
     '''
 
     chromatic_pitch_numbers = range(10)
@@ -153,7 +153,7 @@ def test_pitchtools_PitchRange___contains___13():
 
 
 def test_pitchtools_PitchRange___contains___14():
-    '''Works with transposed pitches.
+    r'''Works with transposed pitches.
     '''
 
     staff = Staff("<c''' e'''>4 <d''' fs'''>4")
@@ -177,7 +177,7 @@ def test_pitchtools_PitchRange___contains___14():
 
 
 def test_pitchtools_PitchRange___contains___15():
-    '''Nonsemantic notes and chords are evaluated as in-range by definition.
+    r'''Nonsemantic notes and chords are evaluated as in-range by definition.
     '''
 
     staff = Staff("c'4 d'4 c4 d4")

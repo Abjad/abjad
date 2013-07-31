@@ -3,7 +3,7 @@ import py.test
 
 
 def test_SchemePair___setattr___01():
-    '''Scehem pairs are immutable.
+    r'''Scehem pairs are immutable.
     '''
 
     scheme_pair = schemetools.SchemePair('spacing', 4)

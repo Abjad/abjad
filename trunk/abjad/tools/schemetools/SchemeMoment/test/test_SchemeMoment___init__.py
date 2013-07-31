@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_SchemeMoment___init___01():
-    '''Initialize scheme moment from fraction.
+    r'''Initialize scheme moment from fraction.
     '''
 
     scheme_moment = schemetools.SchemeMoment(Fraction(1, 68))
@@ -10,7 +10,7 @@ def test_SchemeMoment___init___01():
 
 
 def test_SchemeMoment___init___02():
-    '''Initialize scheme moment from integer.
+    r'''Initialize scheme moment from integer.
     '''
 
     scheme_moment = schemetools.SchemeMoment(1)
@@ -18,7 +18,7 @@ def test_SchemeMoment___init___02():
 
 
 def test_SchemeMoment___init___03():
-    '''Initialize scheme moment from integer pair.
+    r'''Initialize scheme moment from integer pair.
     '''
 
     scheme_moment = schemetools.SchemeMoment((1, 68))
@@ -26,7 +26,7 @@ def test_SchemeMoment___init___03():
 
 
 def test_SchemeMoment___init___04():
-    '''Initialize scheme moment from two positive integers.
+    r'''Initialize scheme moment from two positive integers.
     '''
 
     scheme_moment = schemetools.SchemeMoment(1, 68)
@@ -34,7 +34,7 @@ def test_SchemeMoment___init___04():
 
 
 def test_SchemeMoment___init___05():
-    '''Initialize scheme moment from other scheme moment.
+    r'''Initialize scheme moment from other scheme moment.
     '''
 
     scheme_moment_1 = schemetools.SchemeMoment(Fraction(1, 68))

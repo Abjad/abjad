@@ -20,7 +20,7 @@ def test_Mode___eq___01():
 
 
 def test_Mode___eq___02():
-    '''Synonym modes do not compare equal, by definition.
+    r'''Synonym modes do not compare equal, by definition.
     '''
 
     major = tonalanalysistools.Mode('major')

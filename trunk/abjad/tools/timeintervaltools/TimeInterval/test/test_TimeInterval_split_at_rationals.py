@@ -3,7 +3,7 @@ from abjad.tools.timeintervaltools.TimeInterval import TimeInterval
 
 
 def test_TimeInterval_split_at_rationals_01():
-    '''TimeInterval.split_at_rational returns a new TimeInterval instance.
+    r'''TimeInterval.split_at_rational returns a new TimeInterval instance.
     '''
 
     i1 = TimeInterval(3, 23)
@@ -12,7 +12,7 @@ def test_TimeInterval_split_at_rationals_01():
     assert splits[1].signature == (13, 23)
 
 def test_TimeInterval_split_at_rationals_02():
-    '''A split point at or outside the TimeInterval bounds returns the original TimeInterval.
+    r'''A split point at or outside the TimeInterval bounds returns the original TimeInterval.
     '''
 
     i1 = TimeInterval(3, 23)
@@ -26,7 +26,7 @@ def test_TimeInterval_split_at_rationals_02():
     assert i1 == splits[0]
 
 def test_TimeInterval_split_at_rationals_03():
-    '''TimeIntervals can be split by Fractions.
+    r'''TimeIntervals can be split by Fractions.
     '''
 
     i1 = TimeInterval(3, 23)

@@ -4,7 +4,7 @@ import py.test
 
 
 def test_ResidueClass_operator_or_01():
-    '''ResidueClass OR ResidueClass returns a sieve.
+    r'''ResidueClass OR ResidueClass returns a sieve.
     '''
 
     rc1 = ResidueClass(4, 0)
@@ -17,7 +17,7 @@ def test_ResidueClass_operator_or_01():
 
 
 def test_ResidueClass_operator_or_02():
-    '''or-Sieve OR ResidueClass returns a flat or-sieve.
+    r'''or-Sieve OR ResidueClass returns a flat or-sieve.
     '''
 
     rcexpression = ResidueClass(4, 0) | ResidueClass(4, 1)
@@ -33,7 +33,7 @@ def test_ResidueClass_operator_or_02():
 
 
 def test_ResidueClass_operator_or_03():
-    '''ResidueClass OR or-sieve returns a flat or-sieve.
+    r'''ResidueClass OR or-sieve returns a flat or-sieve.
     '''
 
     rcexpression = ResidueClass(4, 0) | ResidueClass(4, 1)
@@ -49,7 +49,7 @@ def test_ResidueClass_operator_or_03():
 
 
 def test_ResidueClass_operator_or_04():
-    '''or-sieve OR or-Sieve returns a flat or-sieve.
+    r'''or-sieve OR or-Sieve returns a flat or-sieve.
     '''
 
     rc1 = ResidueClass(4, 0)
@@ -70,7 +70,7 @@ def test_ResidueClass_operator_or_04():
 
 
 def test_ResidueClass_operator_or_05():
-    '''OR.
+    r'''OR.
     '''
 
     t = ResidueClass(2, 0) | ResidueClass(3, 0)
@@ -82,7 +82,7 @@ def test_ResidueClass_operator_or_05():
 
 
 def test_ResidueClass_operator_or_06():
-    '''OR.
+    r'''OR.
     '''
 
     t = ResidueClass(2, 1) | ResidueClass(3, 0)

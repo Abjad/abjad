@@ -4,7 +4,7 @@ from abjad.tools import abctools
 
 
 class Documenter(abctools.Maker):
-    '''Documenter is an abstract base class for documentation classes.
+    r'''Documenter is an abstract base class for documentation classes.
     '''
 
     ### INITIALIZER ###

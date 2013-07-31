@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_BeamSpanner_detach_01():
-    '''Detach length-one spanner.
+    r'''Detach length-one spanner.
     '''
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
@@ -41,7 +41,7 @@ def test_BeamSpanner_detach_01():
 
 
 def test_BeamSpanner_detach_02():
-    '''Detach length-four spanner.
+    r'''Detach length-four spanner.
     '''
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")

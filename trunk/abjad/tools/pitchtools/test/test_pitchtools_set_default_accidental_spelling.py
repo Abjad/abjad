@@ -80,7 +80,7 @@ def test_pitchtools_set_default_accidental_spelling_03():
 
 
 def test_pitchtools_set_default_accidental_spelling_04():
-    '''Revert back to default mixed spelling.
+    r'''Revert back to default mixed spelling.
     '''
 
     pitchtools.set_default_accidental_spelling('mixed')

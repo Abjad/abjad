@@ -1,5 +1,5 @@
 def get_next_output_file_name(file_extension='ly', path=None):
-    '''Get next output file name like ``6223.ly``.
+    r'''Get next output file name like ``6223.ly``.
 
     Read Abjad output directory when `path` is none.
 

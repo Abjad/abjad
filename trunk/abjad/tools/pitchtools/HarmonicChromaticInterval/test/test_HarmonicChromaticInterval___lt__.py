@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_HarmonicChromaticInterval___lt___01():
-    '''Compare two ascending chromatic intervals.
+    r'''Compare two ascending chromatic intervals.
     '''
 
     interval_1 = pitchtools.HarmonicChromaticInterval(2)
@@ -13,7 +13,7 @@ def test_HarmonicChromaticInterval___lt___01():
 
 
 def test_HarmonicChromaticInterval___lt___02():
-    '''Compare two descending chromatic intervals.
+    r'''Compare two descending chromatic intervals.
     '''
 
     interval_1 = pitchtools.HarmonicChromaticInterval(-2)

@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_OctaveTranspositionMappingInventory___contains___01():
-    '''Work with mappings.
+    r'''Work with mappings.
     '''
 
     inventory = pitchtools.OctaveTranspositionMappingInventory([[('[A0, C8]', -18)]])
@@ -10,7 +10,7 @@ def test_OctaveTranspositionMappingInventory___contains___01():
 
 
 def test_OctaveTranspositionMappingInventory___contains___02():
-    '''Work with mapping tokens.
+    r'''Work with mapping tokens.
     '''
 
     inventory = pitchtools.OctaveTranspositionMappingInventory([[('[A0, C8]', -18)]])

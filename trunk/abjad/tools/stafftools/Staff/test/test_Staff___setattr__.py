@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Staff___setattr___01():
-    '''Slots constrain staff attributes.
+    r'''Slots constrain staff attributes.
     '''
 
     staff = Staff([])

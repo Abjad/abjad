@@ -28,7 +28,7 @@ class AttributeEqualityAbjadObject(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
-        '''Initialize new object from `arg` and evaluate 
+        r'''Initialize new object from `arg` and evaluate 
         comparison attributes.
 
         Return boolean.
@@ -37,7 +37,7 @@ class AttributeEqualityAbjadObject(AbjadObject):
         return arg and self._comparison_attribute == arg._comparison_attribute
 
     def __ne__(self, arg):
-        '''Initialize new object from `arg` and evaluate 
+        r'''Initialize new object from `arg` and evaluate 
         comparison attributes.
 
         Return boolean.
@@ -45,7 +45,7 @@ class AttributeEqualityAbjadObject(AbjadObject):
         return not self == arg
 
     def __repr__(self):
-        '''Interpreter representation of object defined equal 
+        r'''Interpreter representation of object defined equal 
         to class name and format string.
 
         Return string.

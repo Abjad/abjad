@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Spanner__is_my_first_leaf_01():
-    '''Spanner attached to flat container.
+    r'''Spanner attached to flat container.
     '''
 
     class MockSpanner(spannertools.Spanner):
@@ -36,7 +36,7 @@ def test_Spanner__is_my_first_leaf_01():
 
 
 def test_Spanner__is_my_first_leaf_02():
-    '''Spanner attached to container with nested contents.
+    r'''Spanner attached to container with nested contents.
     '''
 
     class MockSpanner(spannertools.Spanner):
@@ -68,7 +68,7 @@ def test_Spanner__is_my_first_leaf_02():
 
 # NONSTRUCTURAL in new parallel --> context model
 #def test_Spanner__is_my_first_leaf_03():
-#   '''Spanner attached to container with parallel nested contents.'''
+#   r'''Spanner attached to container with parallel nested contents.'''
 #
 #   t = Voice(notetools.make_repeated_notes(4))
 #   t.insert(2, Container(Container(notetools.make_repeated_notes(2)) * 2))

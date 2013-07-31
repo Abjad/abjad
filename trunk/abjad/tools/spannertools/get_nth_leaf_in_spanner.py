@@ -2,7 +2,7 @@ from abjad.tools import leaftools
 
 
 def get_nth_leaf_in_spanner(spanner, n):
-    '''Get leaf `n` in spanner.
+    r'''Get leaf `n` in spanner.
     
     Complexity of score tree nesting doesn't matter.  
 

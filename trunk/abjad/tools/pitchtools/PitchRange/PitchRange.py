@@ -383,7 +383,7 @@ class PitchRange(AbjadObject):
 
     @property
     def start_pitch_is_included_in_range(self):
-        '''Boolean true when start pitch is included in range. 
+        r'''Boolean true when start pitch is included in range. 
         Otherwise false:
 
         ::
@@ -414,7 +414,7 @@ class PitchRange(AbjadObject):
 
     @property
     def stop_pitch_is_included_in_range(self):
-        '''Boolean true when stop pitch is included in range. 
+        r'''Boolean true when stop pitch is included in range. 
         Otherwise false:
 
         ::

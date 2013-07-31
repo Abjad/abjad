@@ -27,7 +27,7 @@ class SortableAttributeEqualityAbjadObject(AttributeEqualityAbjadObject):
     ### SPECIAL METHODS ###
 
     def __ge__(self, arg):
-        '''Initialize new object from `arg` and evaluate 
+        r'''Initialize new object from `arg` and evaluate 
         comparison attributes.
 
         Return boolean.
@@ -36,7 +36,7 @@ class SortableAttributeEqualityAbjadObject(AttributeEqualityAbjadObject):
         return arg and self._comparison_attribute >= arg._comparison_attribute
 
     def __gt__(self, arg):
-        '''Initialize new object from `arg` and evaluate 
+        r'''Initialize new object from `arg` and evaluate 
         comparison attributes.
 
         Return boolean.
@@ -45,7 +45,7 @@ class SortableAttributeEqualityAbjadObject(AttributeEqualityAbjadObject):
         return arg and self._comparison_attribute > arg._comparison_attribute
 
     def __le__(self, arg):
-        '''Initialize new object from `arg` and evaluate 
+        r'''Initialize new object from `arg` and evaluate 
         comparison attributes.
 
         Return boolean.
@@ -54,7 +54,7 @@ class SortableAttributeEqualityAbjadObject(AttributeEqualityAbjadObject):
         return arg and self._comparison_attribute <= arg._comparison_attribute
 
     def __lt__(self, arg):
-        '''Initialize new object from `arg` and evaluate 
+        r'''Initialize new object from `arg` and evaluate 
         comparison attributes.
 
         Return boolean.

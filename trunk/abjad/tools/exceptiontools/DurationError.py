@@ -1,4 +1,4 @@
 class DurationError(Exception):
-    '''General duration error.
+    r'''General duration error.
     '''
     pass

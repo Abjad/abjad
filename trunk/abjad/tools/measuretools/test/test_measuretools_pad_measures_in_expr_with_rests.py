@@ -45,7 +45,7 @@ def test_measuretools_pad_measures_in_expr_with_rests_01():
 
 
 def test_measuretools_pad_measures_in_expr_with_rests_02():
-    '''Works when measures contain stacked voices.
+    r'''Works when measures contain stacked voices.
     '''
 
     measure = Measure((2, 8), 2 * Voice(notetools.make_repeated_notes(2)))
@@ -123,7 +123,7 @@ def test_measuretools_pad_measures_in_expr_with_rests_02():
 
 
 def test_measuretools_pad_measures_in_expr_with_rests_03():
-    '''Set splice to true to extend edge spanners over newly insert rests.
+    r'''Set splice to true to extend edge spanners over newly insert rests.
     '''
 
     t = Measure((2, 8), "c'8 d'8")

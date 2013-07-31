@@ -3,7 +3,7 @@ from abjad.tools.abctools import ContextManager
 
 
 class RedirectedStreams(ContextManager):
-    '''A context manager for capturing stdout and stderr output:
+    r'''A context manager for capturing stdout and stderr output:
 
     >>> import StringIO
     >>> string_io = StringIO.StringIO()

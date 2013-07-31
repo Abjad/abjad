@@ -1,4 +1,4 @@
 class OverfullContainerError(Exception):
-    '''Container contents duration is greater than container target duration.
+    r'''Container contents duration is greater than container target duration.
     '''
     pass

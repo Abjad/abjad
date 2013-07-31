@@ -4,7 +4,7 @@ import py.test
 
 
 def test_sequencetools_sum_sequence_elements_at_indices_01():
-    '''Sum slices cyclically at every fourth index.
+    r'''Sum slices cyclically at every fourth index.
     '''
 
     t = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
@@ -23,7 +23,7 @@ def test_sequencetools_sum_sequence_elements_at_indices_01():
 
 
 def test_sequencetools_sum_sequence_elements_at_indices_02():
-    '''Sum slice at only the zeroth index.
+    r'''Sum slice at only the zeroth index.
         Append overhang elements.'''
 
     t = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
@@ -42,7 +42,7 @@ def test_sequencetools_sum_sequence_elements_at_indices_02():
 
 
 def test_sequencetools_sum_sequence_elements_at_indices_03():
-    '''Sum every 5, 6, 7 or 8 elements together.
+    r'''Sum every 5, 6, 7 or 8 elements together.
         Do append incomplete final sums.'''
 
     t = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
@@ -61,7 +61,7 @@ def test_sequencetools_sum_sequence_elements_at_indices_03():
 
 
 def test_sequencetools_sum_sequence_elements_at_indices_04():
-    '''Sum every 5, 6, 7 or 8 elements together.
+    r'''Sum every 5, 6, 7 or 8 elements together.
         Do not append incomplete final sums.'''
 
     t = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
@@ -80,7 +80,7 @@ def test_sequencetools_sum_sequence_elements_at_indices_04():
 
 
 def test_sequencetools_sum_sequence_elements_at_indices_05():
-    '''Sum at multiple points in each period.
+    r'''Sum at multiple points in each period.
     '''
 
     t = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
@@ -90,7 +90,7 @@ def test_sequencetools_sum_sequence_elements_at_indices_05():
 
 
 def test_sequencetools_sum_sequence_elements_at_indices_06():
-    '''Affected indices must be less than period.
+    r'''Affected indices must be less than period.
     '''
 
     t = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]

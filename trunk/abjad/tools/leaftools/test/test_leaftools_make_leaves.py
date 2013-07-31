@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_leaftools_make_leaves_01():
-    '''Leaves constructor can create chords, notes and rests simultaneously.
+    r'''Leaves constructor can create chords, notes and rests simultaneously.
     '''
 
     leaves = leaftools.make_leaves([1, (1,2,3), None], [(1, 4)])
@@ -14,7 +14,7 @@ def test_leaftools_make_leaves_01():
 
 
 def test_leaftools_make_leaves_02():
-    '''Leaves constructor can create prolated chords, notes and rests
+    r'''Leaves constructor can create prolated chords, notes and rests
     simultaneously. Contiguous leaves with the same prolation are
     put together inside a tuplet.
     '''
@@ -38,7 +38,7 @@ def test_leaftools_make_leaves_02():
 
 
 def test_leaftools_make_leaves_03():
-    '''Leaves constructor can create prolated and unprolated chords,
+    r'''Leaves constructor can create prolated and unprolated chords,
     notes and rests simultaneously.
     '''
 
@@ -57,7 +57,7 @@ def test_leaftools_make_leaves_03():
 
 
 def test_leaftools_make_leaves_04():
-    '''Leaves constructor can take an optional tie_rests=False keyword argument.
+    r'''Leaves constructor can take an optional tie_rests=False keyword argument.
     '''
 
     leaves = leaftools.make_leaves([None], [(5, 32), (5, 32)], tie_rests=True)
@@ -75,7 +75,7 @@ def test_leaftools_make_leaves_04():
 
 
 def test_leaftools_make_leaves_05():
-    '''Do not tie rests unless specified.
+    r'''Do not tie rests unless specified.
     '''
 
     leaves = leaftools.make_leaves([None], [(5, 32), (5, 32)])
@@ -84,7 +84,7 @@ def test_leaftools_make_leaves_05():
 
 
 def test_leaftools_make_leaves_06():
-    '''Works with quarter-tone pitch numbers.
+    r'''Works with quarter-tone pitch numbers.
     '''
 
     leaves = leaftools.make_leaves([12, 12.5, 13, 13.5], [(1, 4)])
@@ -93,7 +93,7 @@ def test_leaftools_make_leaves_06():
 
 
 def test_leaftools_make_leaves_07():
-    '''Works with pitch instances.
+    r'''Works with pitch instances.
     '''
 
     leaves = leaftools.make_leaves([pitchtools.NamedChromaticPitch(0)], [(1, 8), (1, 8), (1, 4)])
@@ -101,7 +101,7 @@ def test_leaftools_make_leaves_07():
 
 
 def test_leaftools_make_leaves_08():
-    '''Chords work with pitch-class / octave strings.
+    r'''Chords work with pitch-class / octave strings.
     '''
 
     leaves = leaftools.make_leaves([('C#5', 'Db5')], [Duration(1, 4), Duration(1, 8)])
@@ -118,7 +118,7 @@ def test_leaftools_make_leaves_08():
 
 
 def test_leaftools_make_leaves_09():
-    '''Notes work with pitch-class / octave strings.
+    r'''Notes work with pitch-class / octave strings.
     '''
 
     leaves = leaftools.make_leaves(['C#5', 'Db5'], [Duration(1, 4)])
@@ -135,7 +135,7 @@ def test_leaftools_make_leaves_09():
 
 
 def test_leaftools_make_leaves_10():
-    '''Works with space-delimited string of chromatic pitch names.
+    r'''Works with space-delimited string of chromatic pitch names.
     '''
 
     leaves = leaftools.make_leaves("C#5 Db5 c'' fs''", [Duration(1, 4)])

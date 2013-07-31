@@ -228,7 +228,7 @@ class InstrumentMark(ContextMark):
 
     @property
     def lilypond_format(self):
-        '''LilyPond format:
+        r'''LilyPond format:
 
         ::
 

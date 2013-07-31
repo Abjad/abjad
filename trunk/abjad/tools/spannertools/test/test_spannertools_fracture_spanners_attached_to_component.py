@@ -33,7 +33,7 @@ def test_spannertools_fracture_spanners_attached_to_component_01():
 
 
 def test_spannertools_fracture_spanners_attached_to_component_02():
-    '''With spanner classes filter.
+    r'''With spanner classes filter.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")

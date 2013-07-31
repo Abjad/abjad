@@ -2,7 +2,7 @@ from abjad.tools.lilypondparsertools.Music import Music
 
 
 class ContextSpeccedMusic(Music):
-    '''Abjad model of the LilyPond AST context-specced music node.
+    r'''Abjad model of the LilyPond AST context-specced music node.
     '''
 
     ### CLASS VARIABLES ###

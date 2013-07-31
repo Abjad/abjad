@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Spanner_leaves_01():
-    '''Spanner attaching to container knows about both container and
+    r'''Spanner attaching to container knows about both container and
         also leaves in container.'''
 
     class MockSpanner(spannertools.Spanner):
@@ -25,7 +25,7 @@ def test_Spanner_leaves_01():
 
 
 def test_Spanner_leaves_02():
-    '''Spanner attaching only to leaves makes p.components and p.leaves
+    r'''Spanner attaching only to leaves makes p.components and p.leaves
         hold the same references.'''
 
     class MockSpanner(spannertools.Spanner):
@@ -46,7 +46,7 @@ def test_Spanner_leaves_02():
 
 
 def test_Spanner_leaves_03():
-    '''Spanner attaching to empty container knows about container
+    r'''Spanner attaching to empty container knows about container
         and also about empty leaves.'''
 
     class MockSpanner(spannertools.Spanner):
@@ -65,7 +65,7 @@ def test_Spanner_leaves_03():
 
 
 def test_Spanner_leaves_04():
-    '''Spanner attaching to container with multidimensional contents.
+    r'''Spanner attaching to container with multidimensional contents.
     '''
 
     class MockSpanner(spannertools.Spanner):
@@ -105,7 +105,7 @@ def test_Spanner_leaves_04():
 
 
 def test_Spanner_leaves_05():
-    '''Spanner spanning a mixture of containers and leaves.
+    r'''Spanner spanning a mixture of containers and leaves.
     '''
 
     class MockSpanner(spannertools.Spanner):
@@ -148,7 +148,7 @@ def test_Spanner_leaves_05():
 
 
 def test_Spanner_leaves_06():
-    '''Spanner attaching to container with some parallel contents.
+    r'''Spanner attaching to container with some parallel contents.
         Spanner absolutely does not descend into parallel container.
         Spanner duration does, however, account for parallel duration.'''
 
@@ -194,7 +194,7 @@ def test_Spanner_leaves_06():
 
 
 def test_Spanner_leaves_07():
-    '''Spanner attaching to mixture of parallel and leaf components.
+    r'''Spanner attaching to mixture of parallel and leaf components.
         Spanner absolutely does not descend into parallel container.
         Spanner duration does, however, account for parallel duration.'''
 

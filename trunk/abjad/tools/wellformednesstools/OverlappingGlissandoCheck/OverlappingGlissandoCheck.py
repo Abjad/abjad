@@ -4,7 +4,7 @@ from abjad.tools.wellformednesstools.Check import Check
 
 
 class OverlappingGlissandoCheck(Check):
-    '''Glissandi must not overlap.
+    r'''Glissandi must not overlap.
     Dove-tailed glissandi are OK.
     '''
 

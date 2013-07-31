@@ -2,7 +2,7 @@ from abjad.tools.lilypondparsertools.ReducedLyParser import ReducedLyParser
 
 
 def parse_reduced_ly_syntax(string):
-    '''Parse the reduced LilyPond rhythmic syntax:
+    r'''Parse the reduced LilyPond rhythmic syntax:
 
         >>> string = '4 -4. 8.. 5/3 { } 4'
         >>> result = lilypondparsertools.parse_reduced_ly_syntax(string)

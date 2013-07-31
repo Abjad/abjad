@@ -3,7 +3,7 @@ from abjad.tools.wellformednesstools.Check import Check
 
 
 class ShortHairpinCheck(Check):
-    '''Hairpins must span at least two leaves.
+    r'''Hairpins must span at least two leaves.
     '''
 
     def _run(self, expr):

@@ -117,7 +117,7 @@ class Matrix(AbjadObject):
 
     @property
     def columns(self):
-        '''Columns:
+        r'''Columns:
 
         ::
 
@@ -135,7 +135,7 @@ class Matrix(AbjadObject):
 
     @property
     def rows(self):
-        '''Rows:
+        r'''Rows:
 
         ::
 

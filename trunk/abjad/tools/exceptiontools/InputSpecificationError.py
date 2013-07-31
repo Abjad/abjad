@@ -1,4 +1,4 @@
 class InputSpecificationError(Exception):
-    '''Input is badly formed.
+    r'''Input is badly formed.
     '''
     pass

@@ -4,7 +4,7 @@ import py.test
 
 
 def test_ResidueClass_operator_and_01():
-    '''Residue class AND residue class returns a sieve.
+    r'''Residue class AND residue class returns a sieve.
     '''
 
     rc1 = ResidueClass(4, 0)
@@ -19,7 +19,7 @@ def test_ResidueClass_operator_and_01():
 
 
 def test_ResidueClass_operator_and_02():
-    '''and-sieve AND residue class returns a flat and-sieve.
+    r'''and-sieve AND residue class returns a flat and-sieve.
     '''
 
     rcexpression = ResidueClass(4, 0) & ResidueClass(4, 1)
@@ -35,7 +35,7 @@ def test_ResidueClass_operator_and_02():
 
 
 def test_ResidueClass_operator_and_03():
-    '''residue class AND and-sieve returns a flat and-sieve.
+    r'''residue class AND and-sieve returns a flat and-sieve.
     '''
 
     rcexpression = ResidueClass(4, 0) & ResidueClass(4, 1)
@@ -51,7 +51,7 @@ def test_ResidueClass_operator_and_03():
 
 
 def test_ResidueClass_operator_and_04():
-    '''and-sieve AND and-sieve returns a flat and-sieve.
+    r'''and-sieve AND and-sieve returns a flat and-sieve.
     '''
 
     rc1 = ResidueClass(4, 0)
@@ -72,7 +72,7 @@ def test_ResidueClass_operator_and_04():
 
 
 def test_ResidueClass_operator_and_05():
-    '''AND.
+    r'''AND.
     '''
 
     t = ResidueClass(2, 0) & ResidueClass(3, 0)
@@ -84,7 +84,7 @@ def test_ResidueClass_operator_and_05():
 
 
 def test_ResidueClass_operator_and_06():
-    '''AND.
+    r'''AND.
     '''
 
     t = ResidueClass(2, 1) & ResidueClass(3, 0)

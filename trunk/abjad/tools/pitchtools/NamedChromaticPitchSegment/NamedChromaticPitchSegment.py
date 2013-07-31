@@ -185,7 +185,7 @@ class NamedChromaticPitchSegment(PitchSegment):
     ### PUBLIC METHODS ###
 
     def transpose(self, melodic_interval):
-        '''Transpose pitches in pitch segment by melodic interval
+        r'''Transpose pitches in pitch segment by melodic interval
         and emit new pitch segment.
         '''
         pitches = [pitch + melodic_interval for pitch in self]

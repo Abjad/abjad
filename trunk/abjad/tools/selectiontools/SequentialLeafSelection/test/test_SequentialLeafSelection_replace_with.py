@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_SequentialLeafSelection_replace_with_01():
-    '''Replace with rests.
+    r'''Replace with rests.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -23,7 +23,7 @@ def test_SequentialLeafSelection_replace_with_01():
 
 
 def test_SequentialLeafSelection_replace_with_02():
-    '''Replace with skips.
+    r'''Replace with skips.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")

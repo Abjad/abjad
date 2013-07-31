@@ -4,7 +4,7 @@ from abjad.tools.lilypondproxytools.LilyPondTweakReservoir \
 
 
 def test_LilyPondTweaksReservoir___repr___01():
-    '''LilyPond grob proxy repr is evaluable.
+    r'''LilyPond grob proxy repr is evaluable.
     '''
 
     chord = Chord([0, 2, 10], (1, 4))

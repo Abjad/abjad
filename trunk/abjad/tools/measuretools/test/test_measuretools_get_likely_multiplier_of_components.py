@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_measuretools_get_likely_multiplier_of_components_01():
-    '''Components were likely multiplied by 5/4.
+    r'''Components were likely multiplied by 5/4.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -11,7 +11,7 @@ def test_measuretools_get_likely_multiplier_of_components_01():
 
 
 def test_measuretools_get_likely_multiplier_of_components_02():
-    '''Components were likely multiplied by 3/2.
+    r'''Components were likely multiplied by 3/2.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -20,7 +20,7 @@ def test_measuretools_get_likely_multiplier_of_components_02():
 
 
 def test_measuretools_get_likely_multiplier_of_components_03():
-    '''Components were likely multiplied by 7/4.
+    r'''Components were likely multiplied by 7/4.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -29,7 +29,7 @@ def test_measuretools_get_likely_multiplier_of_components_03():
 
 
 def test_measuretools_get_likely_multiplier_of_components_04():
-    '''Components likely multiplier not recoverable.
+    r'''Components likely multiplier not recoverable.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -38,7 +38,7 @@ def test_measuretools_get_likely_multiplier_of_components_04():
 
 
 def test_measuretools_get_likely_multiplier_of_components_05():
-    '''Components likely multiplier not recoverable.
+    r'''Components likely multiplier not recoverable.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -47,7 +47,7 @@ def test_measuretools_get_likely_multiplier_of_components_05():
 
 
 def test_measuretools_get_likely_multiplier_of_components_06():
-    '''Components multiplier recoverable only to within one power of two.
+    r'''Components multiplier recoverable only to within one power of two.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -57,7 +57,7 @@ def test_measuretools_get_likely_multiplier_of_components_06():
 
 
 def test_measuretools_get_likely_multiplier_of_components_07():
-    '''Return none when more than one likely multiplier.
+    r'''Return none when more than one likely multiplier.
     '''
 
     t = Staff(notetools.make_notes([0], [(1, 8), (7, 32)]))

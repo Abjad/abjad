@@ -14,7 +14,7 @@ def test_OctaveTranspositionMappingInventory___repr___01():
 
 
 def test_OctaveTranspositionMappingInventory___repr___02():
-    '''Kwargs appear in repr.
+    r'''Kwargs appear in repr.
     '''
 
     inventory = pitchtools.OctaveTranspositionMappingInventory(

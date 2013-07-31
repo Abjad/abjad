@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_LilyPondContextSettingComponentPlugIn___setattr___01():
-    '''Define LilyPond autoBeaming context setting.
+    r'''Define LilyPond autoBeaming context setting.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -24,7 +24,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___01():
 
 
 def test_LilyPondContextSettingComponentPlugIn___setattr___02():
-    '''Remove LilyPond autoBeaming context setting.
+    r'''Remove LilyPond autoBeaming context setting.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -45,7 +45,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___02():
 
 
 def test_LilyPondContextSettingComponentPlugIn___setattr___03():
-    '''Define LilyPond currentBarNumber context setting.
+    r'''Define LilyPond currentBarNumber context setting.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -66,7 +66,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___03():
 
 
 def test_LilyPondContextSettingComponentPlugIn___setattr___04():
-    '''Define LilyPond currentBarNumber context setting.
+    r'''Define LilyPond currentBarNumber context setting.
     '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
@@ -94,7 +94,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___04():
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\set Score.currentBarNumber = #12\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n}"
 
 def test_LilyPondContextSettingComponentPlugIn___setattr___05():
-    '''Define LilyPond fontSize context setting.
+    r'''Define LilyPond fontSize context setting.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -116,7 +116,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___05():
 
 
 def test_LilyPondContextSettingComponentPlugIn___setattr___06():
-    '''Define LilyPond instrumentName context setting.
+    r'''Define LilyPond instrumentName context setting.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -138,7 +138,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___06():
 
 
 def test_LilyPondContextSettingComponentPlugIn___setattr___07():
-    '''Define LilyPond instrumentName context setting.
+    r'''Define LilyPond instrumentName context setting.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -160,7 +160,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___07():
 
 
 def test_LilyPondContextSettingComponentPlugIn___setattr___08():
-    '''Define LilyPond proportionalNotationDuration context setting.
+    r'''Define LilyPond proportionalNotationDuration context setting.
     '''
 
     t = Score([Staff("c'8 d'8 e'8 f'8")])
@@ -184,7 +184,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___08():
 
 
 def test_LilyPondContextSettingComponentPlugIn___setattr___09():
-    '''Define LilyPond shortInstrumentName context setting.
+    r'''Define LilyPond shortInstrumentName context setting.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -206,7 +206,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___09():
 
 
 def test_LilyPondContextSettingComponentPlugIn___setattr___10():
-    '''Define LilyPond shortInstrumentName context setting.
+    r'''Define LilyPond shortInstrumentName context setting.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -228,7 +228,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___10():
 
 
 def test_LilyPondContextSettingComponentPlugIn___setattr___11():
-    '''Define LilyPond suggestAccidentals context setting.
+    r'''Define LilyPond suggestAccidentals context setting.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -250,7 +250,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___11():
 
 
 def test_LilyPondContextSettingComponentPlugIn___setattr___12():
-    '''Define LilyPond suggestAccidentals context setting.
+    r'''Define LilyPond suggestAccidentals context setting.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -271,7 +271,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___12():
 
 
 def test_LilyPondContextSettingComponentPlugIn___setattr___13():
-    '''Define LilyPond tupletFullLength context setting.
+    r'''Define LilyPond tupletFullLength context setting.
     '''
 
     t = Staff([])

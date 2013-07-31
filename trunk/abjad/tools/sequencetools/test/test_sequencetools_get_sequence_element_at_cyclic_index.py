@@ -3,7 +3,7 @@ from abjad.tools import sequencetools
 
 
 def test_sequencetools_get_sequence_element_at_cyclic_index_01():
-    '''Get element at nonnegative cyclic index.
+    r'''Get element at nonnegative cyclic index.
     '''
 
     iterable = 'string'
@@ -21,7 +21,7 @@ def test_sequencetools_get_sequence_element_at_cyclic_index_01():
 
 
 def test_sequencetools_get_sequence_element_at_cyclic_index_02():
-    '''Get element at negative cyclic index.
+    r'''Get element at negative cyclic index.
     '''
 
     iterable = 'string'

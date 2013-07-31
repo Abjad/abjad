@@ -62,7 +62,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):
-        '''Call equal-division rhythm-maker on `divisions`.
+        r'''Call equal-division rhythm-maker on `divisions`.
 
         Return list of tuplet lists.
         '''
@@ -90,7 +90,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
     @property
     def is_diminution(self):
-        '''True when output tuplets should be diminuted.
+        r'''True when output tuplets should be diminuted.
 
         False when output tuplets should be augmented:
 
@@ -105,7 +105,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
     @property
     def leaf_count(self):
-        '''Number of leaves per division:
+        r'''Number of leaves per division:
 
         ::
 
@@ -118,7 +118,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
     @property
     def storage_format(self):
-        '''Equal-division rhythm-maker storage format:
+        r'''Equal-division rhythm-maker storage format:
 
         ::
 
@@ -137,7 +137,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
-        '''Create new equal-division rhythm-maker with `kwargs`:
+        r'''Create new equal-division rhythm-maker with `kwargs`:
 
         ::
 
@@ -174,7 +174,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
         return RhythmMaker.new(self, **kwargs)
 
     def reverse(self):
-        '''Reverse equal-division rhythm-maker:
+        r'''Reverse equal-division rhythm-maker:
 
         ::
 

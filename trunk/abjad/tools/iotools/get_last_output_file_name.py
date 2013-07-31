@@ -3,7 +3,7 @@ import re
 
 
 def get_last_output_file_name(path=None):
-    '''Get last output file name like ``6222.ly``.
+    r'''Get last output file name like ``6222.ly``.
 
     Read Abajd output directory when `path` is none.
 

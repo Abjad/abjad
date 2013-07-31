@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 
 
 def test_mathtools_yield_all_partitions_of_integer_01():
-    '''Yield all integer partitions of positive integer n
+    r'''Yield all integer partitions of positive integer n
     in descending lex order.'''
 
     partitions = mathtools.yield_all_partitions_of_integer(7)

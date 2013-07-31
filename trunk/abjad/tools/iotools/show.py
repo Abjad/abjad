@@ -2,7 +2,7 @@ import os
 
 
 def show(expr, return_timing=False, suppress_pdf=False, docs=False):
-    '''Show `expr`:
+    r'''Show `expr`:
 
     ::
 

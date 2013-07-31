@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_LilyPondComment_after_01():
-    '''Test context comments after.
+    r'''Test context comments after.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -28,7 +28,7 @@ def test_LilyPondComment_after_01():
 
 
 def test_LilyPondComment_after_02():
-    '''Leaf comments after.
+    r'''Leaf comments after.
     '''
 
     t = Note(0, (1, 8))

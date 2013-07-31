@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_StaffChangeMark___repr___01():
-    '''Staff change mark returns nonempty string repr.
+    r'''Staff change mark returns nonempty string repr.
     '''
 
     staff = Staff([])

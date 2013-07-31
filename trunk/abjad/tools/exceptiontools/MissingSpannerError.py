@@ -1,4 +1,4 @@
 class MissingSpannerError(Exception):
-    '''No spanner found.
+    r'''No spanner found.
     '''
     pass

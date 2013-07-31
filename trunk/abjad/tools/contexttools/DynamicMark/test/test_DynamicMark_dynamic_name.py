@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_DynamicMark_dynamic_name_01():
-    '''Dynamic name is read / write.
+    r'''Dynamic name is read / write.
     '''
 
     dynamic = contexttools.DynamicMark('f')

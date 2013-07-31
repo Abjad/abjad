@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Component__is_immediate_temporal_successor_of_01():
-    '''The second of two leaves in the same voice is
+    r'''The second of two leaves in the same voice is
     the immediate temporal follower of the first.
     '''
 
@@ -23,7 +23,7 @@ def test_Component__is_immediate_temporal_successor_of_01():
 
 
 def test_Component__is_immediate_temporal_successor_of_02():
-    '''The second of two leaves in the same staff is
+    r'''The second of two leaves in the same staff is
     the immediate temporal follower of the first.
     '''
 
@@ -44,7 +44,7 @@ def test_Component__is_immediate_temporal_successor_of_02():
 
 
 def test_Component__is_immediate_temporal_successor_of_03():
-    '''The second of two leaves in the same sequential is
+    r'''The second of two leaves in the same sequential is
     the immediate temporal follower of the first.
     '''
 
@@ -65,7 +65,7 @@ def test_Component__is_immediate_temporal_successor_of_03():
 
 
 def test_Component__is_immediate_temporal_successor_of_04():
-    '''The second of two leaves in the same tuplet is
+    r'''The second of two leaves in the same tuplet is
     the immediate temporal follower of the first.
     '''
 
@@ -84,7 +84,7 @@ def test_Component__is_immediate_temporal_successor_of_04():
 
 
 def test_Component__is_immediate_temporal_successor_of_05():
-    '''The second sequential and the first note of the second sequential
+    r'''The second sequential and the first note of the second sequential
     both temporally follow the first sequential and the last
     note of the first sequential immediately.
     '''
@@ -117,7 +117,7 @@ def test_Component__is_immediate_temporal_successor_of_05():
 
 
 def test_Component__is_immediate_temporal_successor_of_06():
-    '''The second tuplet and the first note of the second tuplet
+    r'''The second tuplet and the first note of the second tuplet
     both temporally follow the first tuplet and the last
     note of the first tuplet immediately.
     '''
@@ -148,7 +148,7 @@ def test_Component__is_immediate_temporal_successor_of_06():
 
 
 def test_Component__is_immediate_temporal_successor_of_07():
-    '''The second (anonymous) voice and the first note of the
+    r'''The second (anonymous) voice and the first note of the
     second (anonymous) voice both temporally follow the
     first (anonymous) voice and the last note of the
     first (anonymous) voice immediately.
@@ -182,7 +182,7 @@ def test_Component__is_immediate_temporal_successor_of_07():
 
 
 def test_Component__is_immediate_temporal_successor_of_08():
-    '''The second (like-named) voice and the first note of the
+    r'''The second (like-named) voice and the first note of the
     second (like-named) voice both temporally follow the
     first (like-named) voice and the last note of the
     first (like-named) voice immediately.
@@ -217,7 +217,7 @@ def test_Component__is_immediate_temporal_successor_of_08():
 
 
 def test_Component__is_immediate_temporal_successor_of_09():
-    '''The second (differently named) voice and the first note of the
+    r'''The second (differently named) voice and the first note of the
     second (differently named) voice both temporally follow the
     first (differently named) voice and the last note of the
     first (differently named) voice immediately.
@@ -252,7 +252,7 @@ def test_Component__is_immediate_temporal_successor_of_09():
 
 
 def test_Component__is_immediate_temporal_successor_of_10():
-    '''Each of ...
+    r'''Each of ...
         * the first (anonymous) staff
         * the first (anonymous) voice
         * the last note in the first (anonymous) voice
@@ -303,7 +303,7 @@ def test_Component__is_immediate_temporal_successor_of_10():
 
 
 def test_Component__is_immediate_temporal_successor_of_11():
-    '''Everything at the beginning of the second staff temporally
+    r'''Everything at the beginning of the second staff temporally
     follows everything at the end of the first staff immediately.
     '''
 
@@ -382,7 +382,7 @@ def test_Component__is_immediate_temporal_successor_of_11():
 
 
 def test_Component__is_immediate_temporal_successor_of_12():
-    '''Everything at the beginning of the second sequential temporally
+    r'''Everything at the beginning of the second sequential temporally
     follows everything at the end of the first sequential immediately.
     '''
 

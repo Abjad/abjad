@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Container_remove_01():
-    '''Containers remove leaves correctly.
+    r'''Containers remove leaves correctly.
     Leaf detaches from parentage.
     Leaf withdraws from crossing spanners.
     Leaf carries covered spanners forward.
@@ -47,7 +47,7 @@ def test_Container_remove_01():
 
 
 def test_Container_remove_02():
-    '''Containers remove nested containers correctly.
+    r'''Containers remove nested containers correctly.
     Container detaches from parentage.
     Container withdraws from crossing spanners.
     Container carries covered spanners forward.
@@ -98,7 +98,7 @@ def test_Container_remove_02():
 
 
 def test_Container_remove_03():
-    '''Container remove works on identity and not equality.
+    r'''Container remove works on identity and not equality.
     '''
 
     note = Note("c'4")

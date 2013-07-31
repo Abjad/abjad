@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_LilyPondComment_closing_01():
-    '''Test container comments closing.
+    r'''Test container comments closing.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -26,7 +26,7 @@ def test_LilyPondComment_closing_01():
 
 
 def test_LilyPondComment_closing_02():
-    '''Test leaf comments closing.
+    r'''Test leaf comments closing.
     '''
 
     t = Note(0, (1, 8))

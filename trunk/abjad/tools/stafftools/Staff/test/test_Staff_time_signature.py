@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Staff_time_signature_01():
-    '''Force time signature on nonempty staff.
+    r'''Force time signature on nonempty staff.
     '''
 
     t = Staff(Note("c'4") * 8)
@@ -26,7 +26,7 @@ def test_Staff_time_signature_01():
 
 
 def test_Staff_time_signature_02():
-    '''Force time signature on empty staff.
+    r'''Force time signature on empty staff.
     '''
 
     t = Staff([])
@@ -42,7 +42,7 @@ def test_Staff_time_signature_02():
 
 
 def test_Staff_time_signature_03():
-    '''Staff time signature carries over to staff-contained leaves.
+    r'''Staff time signature carries over to staff-contained leaves.
     '''
 
     t = Staff(Note("c'4") * 8)
@@ -53,7 +53,7 @@ def test_Staff_time_signature_03():
 
 
 def test_Staff_time_signature_04():
-    '''Staff time signature set and then clear.
+    r'''Staff time signature set and then clear.
     '''
 
     t = Staff(Note("c'4") * 8)

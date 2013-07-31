@@ -5,7 +5,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class QTargetMeasure(AbjadObject):
-    '''Representation of a single "measure" in a measure-wise 
+    r'''Representation of a single "measure" in a measure-wise 
     quantization target:
 
     ::
@@ -153,7 +153,7 @@ class QTargetMeasure(AbjadObject):
 
     @property
     def beats(self):
-        '''The tuple of ``QTargetBeats`` contained by the ``QTargetMeasure``:
+        r'''The tuple of ``QTargetBeats`` contained by the ``QTargetMeasure``:
 
         ::
 
@@ -211,7 +211,7 @@ class QTargetMeasure(AbjadObject):
 
     @property
     def duration_in_ms(self):
-        '''The duration in milliseconds of the ``QTargetMeasure``:
+        r'''The duration in milliseconds of the ``QTargetMeasure``:
 
         ::
 
@@ -226,7 +226,7 @@ class QTargetMeasure(AbjadObject):
 
     @property
     def offset_in_ms(self):
-        '''The offset in milliseconds of the ``QTargetMeasure``:
+        r'''The offset in milliseconds of the ``QTargetMeasure``:
 
         ::
 
@@ -239,7 +239,7 @@ class QTargetMeasure(AbjadObject):
 
     @property
     def search_tree(self):
-        '''The search tree of the ``QTargetMeasure``:
+        r'''The search tree of the ``QTargetMeasure``:
 
         ::
 
@@ -254,7 +254,7 @@ class QTargetMeasure(AbjadObject):
 
     @property
     def tempo(self):
-        '''The tempo of the ``QTargetMeasure``:
+        r'''The tempo of the ``QTargetMeasure``:
 
         ::
 
@@ -267,7 +267,7 @@ class QTargetMeasure(AbjadObject):
 
     @property
     def time_signature(self):
-        '''The time signature of the ``QTargetMeasure``:
+        r'''The time signature of the ``QTargetMeasure``:
 
         ::
 
@@ -280,7 +280,7 @@ class QTargetMeasure(AbjadObject):
 
     @property
     def use_full_measure(self):
-        '''The ``use_full_measure`` flag of the ``QTargetMeasure``:
+        r'''The ``use_full_measure`` flag of the ``QTargetMeasure``:
 
         ::
 

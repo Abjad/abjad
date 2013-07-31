@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_NumberedDiatonicPitch___cmp___01():
-    '''Compare equal numbered diatonic pitches.
+    r'''Compare equal numbered diatonic pitches.
     '''
 
     numbered_diatonic_pitch_1 = pitchtools.NumberedDiatonicPitch(7)
@@ -17,7 +17,7 @@ def test_NumberedDiatonicPitch___cmp___01():
 
 
 def test_NumberedDiatonicPitch___cmp___02():
-    '''Compare numbered diatonic pitch to equivalent diatonic pitch number.
+    r'''Compare numbered diatonic pitch to equivalent diatonic pitch number.
     '''
 
     numbered_diatonic_pitch_1 = pitchtools.NumberedDiatonicPitch(7)
@@ -32,7 +32,7 @@ def test_NumberedDiatonicPitch___cmp___02():
 
 
 def test_NumberedDiatonicPitch___cmp___03():
-    '''Compare unequal numbered diatonic pitches.
+    r'''Compare unequal numbered diatonic pitches.
     '''
 
     numbered_diatonic_pitch_1 = pitchtools.NumberedDiatonicPitch(7)
@@ -47,7 +47,7 @@ def test_NumberedDiatonicPitch___cmp___03():
 
 
 def test_NumberedDiatonicPitch___cmp___04():
-    '''Compare numbered diatonic pitches to inequivalent diatonic pitch number.
+    r'''Compare numbered diatonic pitches to inequivalent diatonic pitch number.
     '''
 
     numbered_diatonic_pitch_1 = pitchtools.NumberedDiatonicPitch(7)

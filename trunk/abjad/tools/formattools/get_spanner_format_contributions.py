@@ -1,5 +1,5 @@
 def get_spanner_format_contributions(component):
-    '''Get spanner format contributions for `component`.
+    r'''Get spanner format contributions for `component`.
 
     Return dictionary with format slot keys and format contributions values.
     '''

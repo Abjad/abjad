@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_containertools_split_container_by_counts_01():
-    '''Partition container into parts of lengths equal to counts.
+    r'''Partition container into parts of lengths equal to counts.
     Read list of counts cyclically.
     Fracture spanners attaching directly to container.
     Leave spanner attaching to container contents untouched.
@@ -56,7 +56,7 @@ def test_containertools_split_container_by_counts_01():
 
 
 def test_containertools_split_container_by_counts_02():
-    '''Cyclic by [1] splits all elements in container.
+    r'''Cyclic by [1] splits all elements in container.
     '''
 
     t = Voice([Container("c'8 d'8 e'8 f'8")])
@@ -98,7 +98,7 @@ def test_containertools_split_container_by_counts_02():
 
 
 def test_containertools_split_container_by_counts_03():
-    '''Partition container into parts of lengths equal to counts.
+    r'''Partition container into parts of lengths equal to counts.
     Read list of counts cyclically.
     Fracture spanners attaching directly to container.
     Leave spanner attaching to container contents untouched.
@@ -152,7 +152,7 @@ def test_containertools_split_container_by_counts_03():
 
 
 def test_containertools_split_container_by_counts_04():
-    '''Cyclic by [1] splits all elements in container.
+    r'''Cyclic by [1] splits all elements in container.
     '''
 
     t = Voice([Container("c'8 d'8 e'8 f'8")])
@@ -195,7 +195,7 @@ def test_containertools_split_container_by_counts_04():
 
 
 def test_containertools_split_container_by_counts_05():
-    '''Partition by large part count.
+    r'''Partition by large part count.
         Input container cedes contents to new instance.
         Expression appears unaltered.'''
 
@@ -235,7 +235,7 @@ def test_containertools_split_container_by_counts_05():
 
 
 def test_containertools_split_container_by_counts_06():
-    '''Partition by large number of part counts.
+    r'''Partition by large number of part counts.
     First part counts apply and extra part counts do not apply.
     Result contains no empty parts.
     '''
@@ -276,7 +276,7 @@ def test_containertools_split_container_by_counts_06():
 
 
 def test_containertools_split_container_by_counts_07():
-    '''Partition by large empty part counts list.
+    r'''Partition by large empty part counts list.
     Empty list returns and expression remains unaltered.
     '''
 
@@ -314,7 +314,7 @@ def test_containertools_split_container_by_counts_07():
 
 
 def test_containertools_split_container_by_counts_08():
-    '''Partition container into parts of lengths equal to counts.
+    r'''Partition container into parts of lengths equal to counts.
         Read list of counts only once; do not cycle.
         Fracture spanners attaching directly to container.
         Leave spanner attaching to container contents untouched.'''
@@ -365,7 +365,7 @@ def test_containertools_split_container_by_counts_08():
 
 
 def test_containertools_split_container_by_counts_09():
-    '''Partition container into parts of lengths equal to counts.
+    r'''Partition container into parts of lengths equal to counts.
     Read list of counts only once; do not cycle.
     Fracture spanners attaching directly to container.
     Leave spanner attaching to container contents untouched.'''
@@ -416,7 +416,7 @@ def test_containertools_split_container_by_counts_09():
 
 
 def test_containertools_split_container_by_counts_10():
-    '''Partition by large part count.
+    r'''Partition by large part count.
     Input container cedes contents to new instance.
     Expression appears unaltered.'''
 
@@ -456,7 +456,7 @@ def test_containertools_split_container_by_counts_10():
 
 
 def test_containertools_split_container_by_counts_11():
-    '''Partition by large number of part counts.
+    r'''Partition by large number of part counts.
     First part counts apply and extra part counts do not apply.
     Result contains no empty parts.'''
 
@@ -496,7 +496,7 @@ def test_containertools_split_container_by_counts_11():
 
 
 def test_containertools_split_container_by_counts_12():
-    '''Partition by empty part counts list.
+    r'''Partition by empty part counts list.
     Input container returns within one-element result list.'''
 
     t = Voice([Container("c'8 d'8 e'8 f'8")])

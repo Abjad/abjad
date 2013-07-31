@@ -1,4 +1,4 @@
 class MissingNoteHeadError(Exception):
-    '''No note head found.
+    r'''No note head found.
     '''
     pass

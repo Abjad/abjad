@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Spanner_insert_01():
-    '''Insert component in spanner at index i.
+    r'''Insert component in spanner at index i.
         Add spanner to component's aggregator.
         Component then knows about spanner and vice versa.
         Not composer-safe.
@@ -28,7 +28,7 @@ def test_Spanner_insert_01():
 
 
 def test_Spanner_insert_02():
-    '''Insert component at index zero in spanner.
+    r'''Insert component at index zero in spanner.
         This operation does not mangle spanner.
         Operation is still not composer-safe, however.
         Note that p.append() and p.append_left() are composer-safe.'''

@@ -46,7 +46,7 @@ def test_LilyPondParser__spanners__HairpinSpanner_02():
 
 
 def test_LilyPondParser__spanners__HairpinSpanner_03():
-    '''Dynamic marks can terminate hairpins.
+    r'''Dynamic marks can terminate hairpins.
     '''
     target = Staff(notetools.make_notes([0] * 3, [(1, 4)]))
     spannertools.HairpinSpanner(target[0:2], '<')
@@ -69,28 +69,28 @@ def test_LilyPondParser__spanners__HairpinSpanner_03():
 
 
 def test_LilyPondParser__spanners__HairpinSpanner_04():
-    '''Unterminated.
+    r'''Unterminated.
     '''
     input = r'{ c \< c c c }'
     assert py.test.raises(Exception, 'LilyPondParser()(input)')
 
 
 def test_LilyPondParser__spanners__HairpinSpanner_05():
-    '''Unbegun is okay.
+    r'''Unbegun is okay.
     '''
     input = r'{ c c c c \! }'
     result = LilyPondParser()(input)
 
 
 def test_LilyPondParser__spanners__HairpinSpanner_06():
-    '''No double dynamic spans permitted.
+    r'''No double dynamic spans permitted.
     '''
     input = r'{ c \< \> c c c \! }'
     assert py.test.raises(Exception, 'LilyPondParser()(input)')
 
 
 def test_LilyPondParser__spanners__HairpinSpanner_07():
-    '''With direction.
+    r'''With direction.
     '''
     target = Staff(notetools.make_notes([0] * 5, [(1, 4)]))
     spannertools.HairpinSpanner(target[:3], '<', direction = Up)

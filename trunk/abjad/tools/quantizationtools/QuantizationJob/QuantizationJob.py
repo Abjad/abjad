@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class QuantizationJob(AbjadObject):
-    '''A copiable, picklable class for generating all ``QGrids`` which 
+    r'''A copiable, picklable class for generating all ``QGrids`` which 
     are valid under a given ``SearchTree`` for a sequence 
     of ``QEventProxies``:
 
@@ -117,7 +117,7 @@ class QuantizationJob(AbjadObject):
 
     @property
     def job_id(self):
-        '''The job id of the ``QuantizationJob``:
+        r'''The job id of the ``QuantizationJob``:
 
         ::
 
@@ -133,7 +133,7 @@ class QuantizationJob(AbjadObject):
 
     @property
     def q_event_proxies(self):
-        '''The ``QEventProxies`` the ``QuantizationJob`` was instantiated 
+        r'''The ``QEventProxies`` the ``QuantizationJob`` was instantiated 
         with:
 
         ::
@@ -170,7 +170,7 @@ class QuantizationJob(AbjadObject):
 
     @property
     def q_grids(self):
-        '''The generated ``QGrids``:
+        r'''The generated ``QGrids``:
 
         ::
 
@@ -188,7 +188,7 @@ class QuantizationJob(AbjadObject):
 
     @property
     def search_tree(self):
-        '''The search tree the ``QuantizationJob`` was instantiated with:
+        r'''The search tree the ``QuantizationJob`` was instantiated with:
 
         ::
 

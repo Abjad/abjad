@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Chord_extend_01():
-    '''Extend tweaked note heads.
+    r'''Extend tweaked note heads.
     '''
 
     chord = Chord([3], (1, 4))

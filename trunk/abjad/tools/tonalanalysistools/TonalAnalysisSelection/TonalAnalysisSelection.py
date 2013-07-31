@@ -225,7 +225,7 @@ class TonalAnalysisSelection(FreeSelection):
     ### PUBLIC METHODS ###
 
     def analyze_chords(self):
-        '''Analyze chords in selection:
+        r'''Analyze chords in selection:
 
         ::
 
@@ -254,7 +254,7 @@ class TonalAnalysisSelection(FreeSelection):
         return result
 
     def analyze_incomplete_chords(self):
-        '''Analyze incomplete chords in selection:
+        r'''Analyze incomplete chords in selection:
 
         ::
 
@@ -281,7 +281,7 @@ class TonalAnalysisSelection(FreeSelection):
         return result
 
     def analyze_incomplete_tonal_functions(self, key_signature):
-        '''Analyze incomplete tonal function of chords in selection
+        r'''Analyze incomplete tonal function of chords in selection
         according to `key_signature`:
 
         ::
@@ -343,7 +343,7 @@ class TonalAnalysisSelection(FreeSelection):
         return result
 
     def analyze_tonal_functions(self, key_signature):
-        '''Analyze tonal function of chords in selection 
+        r'''Analyze tonal function of chords in selection 
         according to `key_signature`:
 
         ::
@@ -376,7 +376,7 @@ class TonalAnalysisSelection(FreeSelection):
         return result
 
     def are_scalar_notes(self):
-        '''True when notes in selection are scalar:
+        r'''True when notes in selection are scalar:
 
         ::
 
@@ -409,7 +409,7 @@ class TonalAnalysisSelection(FreeSelection):
         return True
 
     def are_stepwise_ascending_notes(self):
-        '''True when notes in `expr` are stepwise ascending:
+        r'''True when notes in `expr` are stepwise ascending:
 
         ::
 
@@ -437,7 +437,7 @@ class TonalAnalysisSelection(FreeSelection):
         return True
 
     def are_stepwise_descending_notes(self):
-        '''True when notes in `expr` are stepwise descending.
+        r'''True when notes in `expr` are stepwise descending.
 
         ::
 
@@ -475,7 +475,7 @@ class TonalAnalysisSelection(FreeSelection):
         return True
 
     def are_stepwise_notes(self):
-        '''True when notes in selection are stepwise:
+        r'''True when notes in selection are stepwise:
 
         ::
 

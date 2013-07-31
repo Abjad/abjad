@@ -1,4 +1,4 @@
 class MarkError(Exception):
-    '''General mark error.
+    r'''General mark error.
     '''
     pass

@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class TimeIntervalMixin(AbjadObject):
-    '''Time-interval mixin.
+    r'''Time-interval mixin.
 
     For examples:
 
@@ -30,7 +30,7 @@ class TimeIntervalMixin(AbjadObject):
 
     @property
     def bounds(self):
-        '''Start and stop_offset of self returned as TimeInterval instance:
+        r'''Start and stop_offset of self returned as TimeInterval instance:
 
         ::
 
@@ -50,7 +50,7 @@ class TimeIntervalMixin(AbjadObject):
 
     @property
     def center(self):
-        '''Center offset of start_offset and stop_offset offsets:
+        r'''Center offset of start_offset and stop_offset offsets:
 
         ::
 
@@ -66,7 +66,7 @@ class TimeIntervalMixin(AbjadObject):
 
     @property
     def duration(self):
-        '''Duration of the time interval:
+        r'''Duration of the time interval:
 
         ::
 
@@ -82,7 +82,7 @@ class TimeIntervalMixin(AbjadObject):
 
     @property
     def signature(self):
-        '''Tuple of start_offset bound and stop_offset bound.
+        r'''Tuple of start_offset bound and stop_offset bound.
 
         ::
 
@@ -98,7 +98,7 @@ class TimeIntervalMixin(AbjadObject):
 
     @property
     def start_offset(self):
-        '''Starting offset of interval:
+        r'''Starting offset of interval:
 
         ::
 
@@ -112,7 +112,7 @@ class TimeIntervalMixin(AbjadObject):
 
     @property
     def stop_offset(self):
-        '''Stopping offset of interval:
+        r'''Stopping offset of interval:
 
         ::
 
@@ -127,7 +127,7 @@ class TimeIntervalMixin(AbjadObject):
     ### PUBLIC METHODS ###
 
     def get_overlap_with_interval(self, interval):
-        '''Return amount of overlap with `interval`.
+        r'''Return amount of overlap with `interval`.
         '''
         assert isinstance(interval, TimeIntervalMixin)
 
@@ -146,7 +146,7 @@ class TimeIntervalMixin(AbjadObject):
             return interval.stop_offset - self.start_offset
 
     def is_contained_by_interval(self, interval):
-        '''True if interval is contained by `interval`.
+        r'''True if interval is contained by `interval`.
         '''
         assert isinstance(interval, TimeIntervalMixin)
 
@@ -159,7 +159,7 @@ class TimeIntervalMixin(AbjadObject):
             return False
 
     def is_container_of_interval(self, interval):
-        '''True if interval contains `interval`.
+        r'''True if interval contains `interval`.
         '''
         assert isinstance(interval, TimeIntervalMixin)
 
@@ -172,7 +172,7 @@ class TimeIntervalMixin(AbjadObject):
             return False
 
     def is_overlapped_by_interval(self, interval):
-        '''True if interval is overlapped by `interval`.
+        r'''True if interval is overlapped by `interval`.
         '''
         assert isinstance(interval, TimeIntervalMixin)
 
@@ -194,7 +194,7 @@ class TimeIntervalMixin(AbjadObject):
         return False
 
     def is_tangent_to_interval(self, interval):
-        '''True if interval is tangent to `interval`.
+        r'''True if interval is tangent to `interval`.
         '''
         assert isinstance(interval, TimeIntervalMixin)
 

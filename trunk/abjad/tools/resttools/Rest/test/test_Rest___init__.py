@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Rest___init___01():
-    '''Init rest from LilyPond input string.
+    r'''Init rest from LilyPond input string.
     '''
 
     rest = Rest('r8.')
@@ -11,7 +11,7 @@ def test_Rest___init___01():
 
 
 def test_Rest___init___02():
-    '''Init rest from written duration and LilyPond multiplier.
+    r'''Init rest from written duration and LilyPond multiplier.
     '''
 
     rest = Rest(Duration(1, 4), Duration(1, 2))
@@ -20,7 +20,7 @@ def test_Rest___init___02():
 
 
 def test_Rest___init___03():
-    '''Init rest from other rest.
+    r'''Init rest from other rest.
     '''
 
     rest_1 = Rest((1, 4), (1, 2))
@@ -34,7 +34,7 @@ def test_Rest___init___03():
 
 
 def test_Rest___init___04():
-    '''Init rest from containerized chord.
+    r'''Init rest from containerized chord.
     '''
 
     c = Chord([2, 3, 4], (1, 4))
@@ -49,7 +49,7 @@ def test_Rest___init___04():
 
 
 def test_Rest___init___05():
-    '''Init rest from tupletized chord.
+    r'''Init rest from tupletized chord.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), Chord([2, 3, 4], (1, 4)) * 3)
@@ -62,7 +62,7 @@ def test_Rest___init___05():
 
 
 def test_Rest___init___06():
-    '''Init rest from beamed chord.
+    r'''Init rest from beamed chord.
     '''
 
     staff = Staff(Chord([2, 3, 4], (1, 4)) * 3)
@@ -75,7 +75,7 @@ def test_Rest___init___06():
 
 
 def test_Rest___init___07():
-    '''Init rest from skip.
+    r'''Init rest from skip.
     '''
 
     s = skiptools.Skip((1, 8))
@@ -89,7 +89,7 @@ def test_Rest___init___07():
 
 
 def test_Rest___init___08():
-    '''Init rest from tupletted skip.
+    r'''Init rest from tupletted skip.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), skiptools.Skip((1, 8)) * 3)
@@ -103,7 +103,7 @@ def test_Rest___init___08():
 
 
 def test_Rest___init___09():
-    '''Init rest from beamed skip.
+    r'''Init rest from beamed skip.
     '''
 
     t = Staff([Note(0, (1, 8)), skiptools.Skip((1, 8)), Note(0, (1, 8))])
@@ -116,7 +116,7 @@ def test_Rest___init___09():
 
 
 def test_Rest___init___10():
-    '''Init rest from unincorporated note.
+    r'''Init rest from unincorporated note.
     '''
 
     n = Note(2, (1, 8))
@@ -132,7 +132,7 @@ def test_Rest___init___10():
 
 
 def test_Rest___init___11():
-    '''Init rest from tupletized note.
+    r'''Init rest from tupletized note.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
@@ -146,7 +146,7 @@ def test_Rest___init___11():
 
 
 def test_Rest___init___12():
-    '''Init rest from beamed note.
+    r'''Init rest from beamed note.
     '''
 
     t = Staff(Note(0, (1, 8)) * 3)
@@ -159,7 +159,7 @@ def test_Rest___init___12():
 
 
 def test_Rest___init___13():
-    '''Init rest from spanned note.
+    r'''Init rest from spanned note.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -180,7 +180,7 @@ def test_Rest___init___13():
 
 
 def test_Rest___init___14():
-    '''Init multiple rests from spanned notes.
+    r'''Init multiple rests from spanned notes.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")

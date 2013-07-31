@@ -1,4 +1,4 @@
 class ParallelError(Exception):
-    '''Parallel containers must contain contexts only.
+    r'''Parallel containers must contain contexts only.
     '''
     pass

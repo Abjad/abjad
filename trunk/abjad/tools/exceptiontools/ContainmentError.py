@@ -1,4 +1,4 @@
 class ContainmentError(Exception):
-    '''General containment error.
+    r'''General containment error.
     '''
     pass

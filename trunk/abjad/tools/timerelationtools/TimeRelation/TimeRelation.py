@@ -55,7 +55,7 @@ class TimeRelation(AbjadObject):
 
     @abc.abstractmethod
     def __call__(self):
-        '''Evaluate time relation:
+        r'''Evaluate time relation:
 
         ::
 
@@ -68,7 +68,7 @@ class TimeRelation(AbjadObject):
 
     @abc.abstractmethod
     def __eq__(self, expr):
-        '''True when `expr` is a equal-valued time relation.
+        r'''True when `expr` is a equal-valued time relation.
         Otherwise false.
 
         Return boolean.
@@ -79,13 +79,13 @@ class TimeRelation(AbjadObject):
 
     @property
     def inequality(self):
-        '''Time relation inequality.
+        r'''Time relation inequality.
         '''
         return self._inequality
 
     @abc.abstractproperty
     def is_fully_loaded(self):
-        '''True when both time relation terms are not none.
+        r'''True when both time relation terms are not none.
         Otherwise false:
 
         ::
@@ -99,7 +99,7 @@ class TimeRelation(AbjadObject):
 
     @abc.abstractproperty
     def is_fully_unloaded(self):
-        '''True when both time relation terms are none.
+        r'''True when both time relation terms are none.
         Otherwise false:
 
         ::
@@ -113,7 +113,7 @@ class TimeRelation(AbjadObject):
 
     @property
     def storage_format(self):
-        '''Time relation storage format:
+        r'''Time relation storage format:
 
         ::
 
@@ -142,7 +142,7 @@ class TimeRelation(AbjadObject):
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
-        '''Inialize new time relation with keyword arguments optionally changed:
+        r'''Inialize new time relation with keyword arguments optionally changed:
 
         ::
 

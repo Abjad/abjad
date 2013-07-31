@@ -1,4 +1,4 @@
 class ExtraMarkError(Exception):
-    '''More than one mark is found for single-mark operation.
+    r'''More than one mark is found for single-mark operation.
     '''
     pass

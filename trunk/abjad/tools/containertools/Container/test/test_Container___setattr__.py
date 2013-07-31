@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Container___setattr___01():
-    '''Slots constrain container attributes.
+    r'''Slots constrain container attributes.
     '''
 
     container = Container([])

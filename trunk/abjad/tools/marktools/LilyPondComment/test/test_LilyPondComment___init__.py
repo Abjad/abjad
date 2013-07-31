@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_LilyPondComment___init___01():
-    '''Initialize LilyPond comment from contents string.
+    r'''Initialize LilyPond comment from contents string.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
@@ -24,7 +24,7 @@ def test_LilyPondComment___init___01():
 
 
 def test_LilyPondComment___init___02():
-    '''Initialize LilyPond comment from contents string and format slot.
+    r'''Initialize LilyPond comment from contents string and format slot.
     '''
 
     lilypond_comment = marktools.LilyPondComment('comment', 'right')
@@ -32,7 +32,7 @@ def test_LilyPondComment___init___02():
 
 
 def test_LilyPondComment___init___03():
-    '''Initialize LilyPond comment from other LilyPond comment.
+    r'''Initialize LilyPond comment from other LilyPond comment.
     '''
 
     lilypond_comment_1 = marktools.LilyPondComment('comment')
@@ -42,7 +42,7 @@ def test_LilyPondComment___init___03():
 
 
 def test_LilyPondComment___init___04():
-    '''Initialize LilyPond comment from other LilyPond comment and format slot.
+    r'''Initialize LilyPond comment from other LilyPond comment and format slot.
     '''
 
     lilypond_comment_1 = marktools.LilyPondComment('comment')

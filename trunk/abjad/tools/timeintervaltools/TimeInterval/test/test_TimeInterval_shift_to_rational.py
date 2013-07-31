@@ -3,7 +3,7 @@ from abjad.tools.timeintervaltools.TimeInterval import TimeInterval
 
 
 def test_TimeInterval_shift_to_rational_01():
-    '''TimeInterval.shift_to_rational returns a new TimeInterval instance
+    r'''TimeInterval.shift_to_rational returns a new TimeInterval instance
     unless offset is old start_offset offset.
     '''
 
@@ -14,7 +14,7 @@ def test_TimeInterval_shift_to_rational_01():
     assert i1 == i2
 
 def test_TimeInterval_shift_to_rational_02():
-    '''TimeIntervals can be shifted by ints.
+    r'''TimeIntervals can be shifted by ints.
     '''
 
     i1 = TimeInterval(3, 23)
@@ -23,7 +23,7 @@ def test_TimeInterval_shift_to_rational_02():
     assert i2.duration == i1.duration
 
 def test_TimeInterval_shift_to_rational_03():
-    '''TimeIntervals can be shifted by Fractions.
+    r'''TimeIntervals can be shifted by Fractions.
     '''
 
     i1 = TimeInterval(3, 23)

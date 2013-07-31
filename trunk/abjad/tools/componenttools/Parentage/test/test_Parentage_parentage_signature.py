@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Parentage_parentage_signature_01():
-    '''An anonymous staff and its contained unvoiced leaves share the
+    r'''An anonymous staff and its contained unvoiced leaves share the
     same parentage signature.
     '''
 
@@ -15,7 +15,7 @@ def test_Parentage_parentage_signature_01():
 
 
 def test_Parentage_parentage_signature_02():
-    '''A named staff and its contained unvoiced leaves share the
+    r'''A named staff and its contained unvoiced leaves share the
     same parentage signature.
     '''
 
@@ -28,7 +28,7 @@ def test_Parentage_parentage_signature_02():
 
 
 def test_Parentage_parentage_signature_03():
-    '''Leaves inside equally named sequential voices inside a Staff
+    r'''Leaves inside equally named sequential voices inside a Staff
     share the same parentage signature.
     '''
 
@@ -42,7 +42,7 @@ def test_Parentage_parentage_signature_03():
 
 
 def test_Parentage_parentage_signature_04():
-    '''Return ContainmentSignature giving the root and
+    r'''Return ContainmentSignature giving the root and
     first voice, staff and score in the parentage of component.
     '''
 
@@ -86,7 +86,7 @@ def test_Parentage_parentage_signature_04():
 
 
 def test_Parentage_parentage_signature_05():
-    '''Unicorporated leaves carry different parentage signatures.
+    r'''Unicorporated leaves carry different parentage signatures.
     '''
 
     t1 = Note(0, (1, 8))
@@ -97,7 +97,7 @@ def test_Parentage_parentage_signature_05():
 
 
 def test_Parentage_parentage_signature_06():
-    '''Leaves inside different Staves with the same name have the same
+    r'''Leaves inside different Staves with the same name have the same
     parentage signature.
     '''
 

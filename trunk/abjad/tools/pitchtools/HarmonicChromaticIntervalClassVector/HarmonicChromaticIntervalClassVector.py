@@ -83,7 +83,7 @@ class HarmonicChromaticIntervalClassVector(Vector):
     ### PUBLIC METHODS ###
 
     def has_none_of(self, chromatic_interval_numbers):
-        '''True when harmonic chromatic interval-class vector contains none of
+        r'''True when harmonic chromatic interval-class vector contains none of
         `chromatic_interval_numbers`. Otherwise false:
 
         ::

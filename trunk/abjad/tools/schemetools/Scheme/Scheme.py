@@ -109,7 +109,7 @@ class Scheme(AbjadObject):
 
     @classmethod
     def format_scheme_value(cls, value, force_quotes=False):
-        '''Format `value` as Scheme would:
+        r'''Format `value` as Scheme would:
 
         ::
 
@@ -169,7 +169,7 @@ class Scheme(AbjadObject):
 
     @property
     def lilypond_format(self):
-        '''Hash-mark-prepended format of Scheme:
+        r'''Hash-mark-prepended format of Scheme:
 
         ::
 

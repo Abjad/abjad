@@ -9,7 +9,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class SearchTree(AbjadObject):
-    '''Abstract base class from which concrete ``SearchTree`` subclasses 
+    r'''Abstract base class from which concrete ``SearchTree`` subclasses 
     inherit.
 
     ``SearchTrees`` encapsulate strategies for generating collections of 
@@ -86,7 +86,7 @@ class SearchTree(AbjadObject):
 
     @abc.abstractproperty
     def default_definition(self):
-        '''The default search tree definition.
+        r'''The default search tree definition.
 
         Return dictionary.
         '''
@@ -94,7 +94,7 @@ class SearchTree(AbjadObject):
 
     @property
     def definition(self):
-        '''The search tree definition.
+        r'''The search tree definition.
 
         Return dictionary.
         '''

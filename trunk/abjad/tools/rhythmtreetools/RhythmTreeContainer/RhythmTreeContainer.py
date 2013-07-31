@@ -118,7 +118,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
     ### SPECIAL METHODS ###
 
     def __add__(self, expr):
-        '''Concatenate containers self and expr. The operation c = a + b
+        r'''Concatenate containers self and expr. The operation c = a + b
         returns a new RhythmTreeContainer c with the content of both a and b,
         and a preprolated_duration equal to the sum of the durations 
         of a and b. The operation is non-commutative: the content of the 
@@ -183,7 +183,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         return container
 
     def __call__(self, pulse_duration):
-        '''Generate Abjad score components:
+        r'''Generate Abjad score components:
 
         ::
 
@@ -228,7 +228,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         return result
 
     def __eq__(self, expr):
-        '''True if type, preprolated_duration and children are equivalent.
+        r'''True if type, preprolated_duration and children are equivalent.
         Otherwise False.
 
         Return boolean.
@@ -240,7 +240,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         return False
 
     def __setitem__(self, i, expr):
-        '''Set `expr` in self at nonnegative integer index `i`, 
+        r'''Set `expr` in self at nonnegative integer index `i`, 
         or set `expr` in self at slice i.
         Replace contents of `self[i]` with `expr`.
         Attach parentage to contents of `expr`, 
@@ -348,7 +348,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
 
     @property
     def contents_duration(self):
-        '''The total preprolated_duration of the children 
+        r'''The total preprolated_duration of the children 
         of a `RhythmTreeContainer` instance:
 
         ::
@@ -372,7 +372,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
 
     @property
     def graphviz_graph(self):
-        '''The GraphvizGraph representation of the RhythmTreeContainer:
+        r'''The GraphvizGraph representation of the RhythmTreeContainer:
 
         ::
 
@@ -430,7 +430,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
 
     @property
     def rtm_format(self):
-        '''The node's RTM format:
+        r'''The node's RTM format:
 
         ::
 

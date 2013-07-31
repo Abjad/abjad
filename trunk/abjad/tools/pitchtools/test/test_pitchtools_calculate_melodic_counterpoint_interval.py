@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_pitchtools_calculate_melodic_counterpoint_interval_01():
-    '''Ascending intervals greater than an octave.
+    r'''Ascending intervals greater than an octave.
     '''
 
     mcpi = pitchtools.calculate_melodic_counterpoint_interval(
@@ -19,7 +19,7 @@ def test_pitchtools_calculate_melodic_counterpoint_interval_01():
 
 
 def test_pitchtools_calculate_melodic_counterpoint_interval_02():
-    '''Ascending octave.
+    r'''Ascending octave.
     '''
 
     mcpi = pitchtools.calculate_melodic_counterpoint_interval(
@@ -28,7 +28,7 @@ def test_pitchtools_calculate_melodic_counterpoint_interval_02():
 
 
 def test_pitchtools_calculate_melodic_counterpoint_interval_03():
-    '''Ascending intervals less than an octave.
+    r'''Ascending intervals less than an octave.
     '''
 
     mcpi = pitchtools.calculate_melodic_counterpoint_interval(
@@ -45,7 +45,7 @@ def test_pitchtools_calculate_melodic_counterpoint_interval_03():
 
 
 def test_pitchtools_calculate_melodic_counterpoint_interval_04():
-    '''Unison.
+    r'''Unison.
     '''
 
     mcpi = pitchtools.calculate_melodic_counterpoint_interval(
@@ -54,7 +54,7 @@ def test_pitchtools_calculate_melodic_counterpoint_interval_04():
 
 
 def test_pitchtools_calculate_melodic_counterpoint_interval_05():
-    '''Descending intervals greater than an octave.
+    r'''Descending intervals greater than an octave.
     '''
 
     mcpi = pitchtools.calculate_melodic_counterpoint_interval(
@@ -71,7 +71,7 @@ def test_pitchtools_calculate_melodic_counterpoint_interval_05():
 
 
 def test_pitchtools_calculate_melodic_counterpoint_interval_06():
-    '''Descending octave.
+    r'''Descending octave.
     '''
 
     mcpi = pitchtools.calculate_melodic_counterpoint_interval(
@@ -80,7 +80,7 @@ def test_pitchtools_calculate_melodic_counterpoint_interval_06():
 
 
 def test_pitchtools_calculate_melodic_counterpoint_interval_07():
-    '''Descending intervals less than an octave.
+    r'''Descending intervals less than an octave.
     '''
 
     mcpi = pitchtools.calculate_melodic_counterpoint_interval(

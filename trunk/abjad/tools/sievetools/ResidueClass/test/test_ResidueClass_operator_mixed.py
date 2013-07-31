@@ -3,7 +3,7 @@ from abjad.tools.sievetools import ResidueClass
 
 
 def test_ResidueClass_operator_mixed_01():
-    '''Mixed operators yield nested sieves.
+    r'''Mixed operators yield nested sieves.
     '''
 
     rc1 = ResidueClass(4, 0)
@@ -27,7 +27,7 @@ def test_ResidueClass_operator_mixed_01():
 
 
 def test_ResidueClass_operator_mixed_02():
-    '''Mixed operators yield nested sieves.
+    r'''Mixed operators yield nested sieves.
     Sieves with the same operator, merge.
     '''
 
@@ -53,7 +53,7 @@ def test_ResidueClass_operator_mixed_02():
 
 
 def test_ResidueClass_operator_mixed_03():
-    '''Operators combined.
+    r'''Operators combined.
     '''
 
     t = (ResidueClass(2, 0) ^ ResidueClass(3, 0)) | ResidueClass(3,0)
@@ -68,7 +68,7 @@ def test_ResidueClass_operator_mixed_03():
 
 
 def test_ResidueClass_operator_mixed_04():
-    '''Operators combined.
+    r'''Operators combined.
     '''
 
     t = (ResidueClass(2, 0) ^ ResidueClass(3, 0)) | ResidueClass(3,0)

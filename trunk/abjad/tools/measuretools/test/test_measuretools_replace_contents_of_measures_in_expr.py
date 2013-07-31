@@ -3,7 +3,7 @@ import py
 
 
 def test_measuretools_replace_contents_of_measures_in_expr_01():
-    '''Contents duration less than sum of duration of measures.
+    r'''Contents duration less than sum of duration of measures.
     Note spacer skip at end of second measure.
     '''
 
@@ -46,7 +46,7 @@ def test_measuretools_replace_contents_of_measures_in_expr_01():
 
 
 def test_measuretools_replace_contents_of_measures_in_expr_02():
-    '''Some contents too big for some measures.
+    r'''Some contents too big for some measures.
     Small measures skipped.
     '''
 
@@ -104,7 +104,7 @@ def test_measuretools_replace_contents_of_measures_in_expr_02():
 
 
 def test_measuretools_replace_contents_of_measures_in_expr_03():
-    '''Raise MissingMeasureError when input expression
+    r'''Raise MissingMeasureError when input expression
     contains no measures.
     '''
 
@@ -115,7 +115,7 @@ def test_measuretools_replace_contents_of_measures_in_expr_03():
 
 
 def test_measuretools_replace_contents_of_measures_in_expr_04():
-    '''Raise StopIteration when not enough measures.
+    r'''Raise StopIteration when not enough measures.
     '''
 
     t = Staff(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (1, 8)]))
@@ -126,7 +126,7 @@ def test_measuretools_replace_contents_of_measures_in_expr_04():
 
 
 def test_measuretools_replace_contents_of_measures_in_expr_05():
-    '''Populate measures even when not enough total measures.
+    r'''Populate measures even when not enough total measures.
     '''
 
     t = Staff(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (1, 8)]))
@@ -158,7 +158,7 @@ def test_measuretools_replace_contents_of_measures_in_expr_05():
 
 
 def test_measuretools_replace_contents_of_measures_in_expr_06():
-    '''Preserve ties.
+    r'''Preserve ties.
     '''
 
     maker = rhythmmakertools.NoteRhythmMaker()

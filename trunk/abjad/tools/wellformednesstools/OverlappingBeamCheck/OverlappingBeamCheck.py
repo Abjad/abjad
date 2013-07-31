@@ -4,7 +4,7 @@ from abjad.tools.wellformednesstools.Check import Check
 
 
 class OverlappingBeamCheck(Check):
-    '''Beams must not overlap.
+    r'''Beams must not overlap.
     '''
 
     def _run(self, expr):

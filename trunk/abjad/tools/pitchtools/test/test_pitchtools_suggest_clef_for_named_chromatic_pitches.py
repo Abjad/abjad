@@ -34,7 +34,7 @@ def test_pitchtools_suggest_clef_for_named_chromatic_pitches_04():
 
 
 def test_pitchtools_suggest_clef_for_named_chromatic_pitches_05():
-    '''Works with arbitrary expression.
+    r'''Works with arbitrary expression.
     '''
 
     staff = Staff(notetools.make_notes(range(-12, -6), [(1, 4)]))

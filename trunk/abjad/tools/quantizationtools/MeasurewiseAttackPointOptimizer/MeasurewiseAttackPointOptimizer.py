@@ -7,7 +7,7 @@ from abjad.tools.quantizationtools.AttackPointOptimizer \
 
 
 class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
-    '''Concrete ``AttackPointOptimizer`` instance which attempts to optimize
+    r'''Concrete ``AttackPointOptimizer`` instance which attempts to optimize
     attack points in an expression with regard to the effective time 
     signature of that expression.
 

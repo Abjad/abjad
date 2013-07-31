@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Component_start_offset_in_seconds_01():
-    '''Offset seconds can not calculate without excplit tempo indication.
+    r'''Offset seconds can not calculate without excplit tempo indication.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -22,7 +22,7 @@ def test_Component_start_offset_in_seconds_01():
 
 
 def test_Component_start_offset_in_seconds_02():
-    '''Offset seconds work with explicit tempo indication.
+    r'''Offset seconds work with explicit tempo indication.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")

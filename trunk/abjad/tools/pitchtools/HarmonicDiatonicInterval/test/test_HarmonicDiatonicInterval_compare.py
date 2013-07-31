@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_HarmonicDiatonicInterval_compare_01():
-    '''Compare on interval numbers when interval numbers differ.
+    r'''Compare on interval numbers when interval numbers differ.
     '''
 
     hdi_1 = pitchtools.HarmonicDiatonicInterval('major', 2)
@@ -15,7 +15,7 @@ def test_HarmonicDiatonicInterval_compare_01():
 
 
 def test_HarmonicDiatonicInterval_compare_02():
-    '''Compare on semitones numbers when interval numbers are equal.
+    r'''Compare on semitones numbers when interval numbers are equal.
     '''
 
     hdi_1 = pitchtools.HarmonicDiatonicInterval('augmented', 2)

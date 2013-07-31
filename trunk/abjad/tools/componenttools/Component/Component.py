@@ -344,7 +344,7 @@ class Component(AbjadObject):
             raise ValueError(message)
 
     def _set_parent(self, new_parent):
-        '''Not composer-safe.
+        r'''Not composer-safe.
         '''
         named_children = self._cache_named_children()
         self._remove_named_children_from_parentage(named_children)
@@ -394,7 +394,7 @@ class Component(AbjadObject):
         return components
 
     def _mark_entire_score_tree_for_later_update(self, value):
-        '''Call immediately after modifying score tree.
+        r'''Call immediately after modifying score tree.
 
         Only dynamic measures mark time signature for udpate.
         '''
@@ -409,7 +409,7 @@ class Component(AbjadObject):
                 component._time_signature_is_current = False
 
     def _update_leaf_indices_and_measure_numbers_in_score_tree(self):
-        '''Called only when updating prolated offset of score components.
+        r'''Called only when updating prolated offset of score components.
         No separate state flags for leaf indices or measure numbers.
         '''
         from abjad.tools import componenttools
@@ -439,7 +439,7 @@ class Component(AbjadObject):
                 measure._measure_number = measure_number
 
     def _update_marks_of_entire_score_tree(self):
-        '''Updating marks does not cause prolated offset values to update.
+        r'''Updating marks does not cause prolated offset values to update.
         On the other hand, getting effective mark causes prolated offset values
         to update when at least one mark of appropriate type attaches to score.
         '''
@@ -451,7 +451,7 @@ class Component(AbjadObject):
             component._marks_are_current = True
 
     def _update_marks_of_entire_score_tree_if_necessary(self):
-        '''Call immediately before reading effective mark.
+        r'''Call immediately before reading effective mark.
         '''
         if self._is_forbidden_to_update:
             return
@@ -478,7 +478,7 @@ class Component(AbjadObject):
             self._update_offset_values_in_seconds_of_entire_score_tree()
 
     def _update_prolated_offset_values_of_entire_score_tree(self):
-        '''Updating prolated offset values does NOT update marks.
+        r'''Updating prolated offset values does NOT update marks.
         Updating prolated offset values does NOT update offset values 
         in seconds.
         '''
@@ -514,7 +514,7 @@ class Component(AbjadObject):
 
     @property
     def override(self):
-        '''Reference to LilyPond grob override component plug-in.
+        r'''Reference to LilyPond grob override component plug-in.
         '''
         if not hasattr(self, '_override'):
             self._override = \
@@ -533,7 +533,7 @@ class Component(AbjadObject):
 
     @property
     def set(self):
-        '''Reference LilyPond context setting component plug-in.
+        r'''Reference LilyPond context setting component plug-in.
         '''
         if not hasattr(self, '_set'):
             self._set = \
@@ -542,21 +542,21 @@ class Component(AbjadObject):
 
     @property
     def spanners(self):
-        '''Reference to unordered set of spanners attached 
+        r'''Reference to unordered set of spanners attached 
         to component.
         '''
         return set(self._spanners)
 
     @property
     def timespan(self):
-        '''Timespan of component.
+        r'''Timespan of component.
         '''
         self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
         return self._timespan
 
     @property
     def timespan_in_seconds(self):
-        '''Timespan of component in seconds.
+        r'''Timespan of component in seconds.
         '''
         self._update_offset_values_in_seconds_of_entire_score_tree_if_necessary()
         if self._start_offset_in_seconds is None:
@@ -729,7 +729,7 @@ class Component(AbjadObject):
                 pass
 
     def get_effective_staff(self):
-        '''Get effective staff.
+        r'''Get effective staff.
 
         Return staff or none.
         '''
@@ -858,7 +858,7 @@ class Component(AbjadObject):
         return markup
 
     def select(self, sequential=False):
-        '''Select component.
+        r'''Select component.
 
         Return component selection when `sequential` is false.
 
@@ -871,7 +871,7 @@ class Component(AbjadObject):
             return selectiontools.SequentialSelection(music=self)
 
     def select_components(self, component_classes=None, include_self=True):
-        '''Select `component_classes` in component.
+        r'''Select `component_classes` in component.
 
         Return component selection.
         '''
@@ -885,7 +885,7 @@ class Component(AbjadObject):
         return selectiontools.ComponentSelection(components)
 
     def select_contents(self, include_self=True):
-        '''Select contents of component.
+        r'''Select contents of component.
 
         Return selection.
         '''
@@ -902,7 +902,7 @@ class Component(AbjadObject):
         cross_offset=None,
         include_self=True,
         ):
-        '''Select descendants.
+        r'''Select descendants.
         '''
         from abjad.tools import componenttools
         return componenttools.Descendants(
@@ -936,19 +936,19 @@ class Component(AbjadObject):
         return result
 
     def select_lineage(self):
-        '''Select lineage.
+        r'''Select lineage.
         '''
         from abjad.tools import componenttools
         return componenttools.Lineage(self)
 
     def select_parentage(self, include_self=True):
-        '''Select parentage.
+        r'''Select parentage.
         '''
         from abjad.tools import componenttools
         return componenttools.Parentage(self, include_self=include_self)
 
     def select_vertical_moment(self, governor=None):
-        '''Select vertical moment starting with component.
+        r'''Select vertical moment starting with component.
         '''
         from abjad.tools import componenttools
         offset = self.timespan.start_offset
@@ -957,7 +957,7 @@ class Component(AbjadObject):
         return componenttools.VerticalMoment(governor, offset)
 
     def select_vertical_moment_at(self, offset):
-        '''Select vertical moment at `offset`.
+        r'''Select vertical moment at `offset`.
         '''
         from abjad.tools import componenttools
         return componenttools.VerticalMoment(self, offset)

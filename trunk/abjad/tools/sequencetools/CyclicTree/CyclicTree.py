@@ -83,7 +83,7 @@ class CyclicTree(Tree):
     ### PUBLIC METHODS ###
 
     def get_next_n_nodes_at_level(self, n, level):
-        '''Get next `n` nodes at `level`:
+        r'''Get next `n` nodes at `level`:
 
         ::
 
@@ -145,7 +145,7 @@ class CyclicTree(Tree):
         return Tree.get_next_n_nodes_at_level(self, n, level)
 
     def get_node_at_position(self, position):
-        '''Get node at `position`:
+        r'''Get node at `position`:
 
         ::
 
@@ -177,7 +177,7 @@ class CyclicTree(Tree):
         return Tree.get_node_at_position(self, position)
 
     def iterate_forever_depth_first(self, reverse=False):
-        '''Iterate tree depth first.
+        r'''Iterate tree depth first.
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> cyclic_tree = sequencetools.CyclicTree(sequence)

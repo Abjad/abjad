@@ -20,7 +20,7 @@ def test_PaperBlock_01():
 
 
 def test_PaperBlock_02():
-    '''Make sure scheme vectors format correctly.
+    r'''Make sure scheme vectors format correctly.
     '''
 
     paper_block = lilypondfiletools.PaperBlock()

@@ -1,4 +1,4 @@
 class MusicContentsError(Exception):
-    '''General container contents error.
+    r'''General container contents error.
     '''
     pass

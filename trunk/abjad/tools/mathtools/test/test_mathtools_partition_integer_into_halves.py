@@ -16,7 +16,7 @@ def test_mathtools_partition_integer_into_halves_02():
 
 
 def test_mathtools_partition_integer_into_halves_03():
-    '''Partition zero into halves.
+    r'''Partition zero into halves.
     '''
 
     assert mathtools.partition_integer_into_halves(0, bigger='left') == (0, 0)
@@ -24,7 +24,7 @@ def test_mathtools_partition_integer_into_halves_03():
 
 
 def test_mathtools_partition_integer_into_halves_04():
-    '''Divide zero only into even halves.
+    r'''Divide zero only into even halves.
     '''
 
     assert py.test.raises(PartitionError,
@@ -32,7 +32,7 @@ def test_mathtools_partition_integer_into_halves_04():
 
 
 def test_mathtools_partition_integer_into_halves_05():
-    '''Raise TypeError on noninteger n.
+    r'''Raise TypeError on noninteger n.
         Raise ValueError on negative n.'''
 
     assert py.test.raises(

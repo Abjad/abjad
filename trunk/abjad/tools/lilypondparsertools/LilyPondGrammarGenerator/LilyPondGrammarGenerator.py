@@ -2,7 +2,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class LilyPondGrammarGenerator(AbjadObject):
-    '''Generate a syntax skeleton from LilyPond grammar files.'''
+    r'''Generate a syntax skeleton from LilyPond grammar files.'''
 
     ### SPECIAL METHODS ###
 

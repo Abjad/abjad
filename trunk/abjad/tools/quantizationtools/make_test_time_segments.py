@@ -1,5 +1,5 @@
 def make_test_time_segments():
-    '''Make test time segments.
+    r'''Make test time segments.
     '''
 
     test_time_segments = [

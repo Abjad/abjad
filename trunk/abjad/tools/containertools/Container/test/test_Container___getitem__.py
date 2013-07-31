@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Container___getitem___01():
-    '''Get one container component with positive index.
+    r'''Get one container component with positive index.
     '''
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
@@ -16,7 +16,7 @@ def test_Container___getitem___01():
 
 
 def test_Container___getitem___02():
-    '''Get one container component with negative index.
+    r'''Get one container component with negative index.
     '''
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
@@ -29,7 +29,7 @@ def test_Container___getitem___02():
 
 
 def test_Container___getitem___03():
-    '''Get slice from container.
+    r'''Get slice from container.
     '''
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
@@ -42,7 +42,7 @@ def test_Container___getitem___03():
 
 
 def test_Container___getitem___04():
-    '''Bad index raises IndexError.
+    r'''Bad index raises IndexError.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -51,7 +51,7 @@ def test_Container___getitem___04():
 
 
 def test_Container___getitem___05():
-    '''Get one named component in subtree rooted at container.
+    r'''Get one named component in subtree rooted at container.
     '''
 
     template = scoretemplatetools.StringQuartetScoreTemplate()
@@ -62,7 +62,7 @@ def test_Container___getitem___05():
 
 
 def test_Container___getitem___06():
-    '''Bad name raises exception.
+    r'''Bad name raises exception.
     '''
 
     template = scoretemplatetools.StringQuartetScoreTemplate()
@@ -72,7 +72,7 @@ def test_Container___getitem___06():
 
 
 def test_Container___getitem___07():
-    '''Duplicate named contexts raise exception.
+    r'''Duplicate named contexts raise exception.
     '''
 
     template = scoretemplatetools.StringQuartetScoreTemplate()

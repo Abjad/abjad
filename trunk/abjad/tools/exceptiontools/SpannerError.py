@@ -1,4 +1,4 @@
 class SpannerError(Exception):
-    '''General spanner error.
+    r'''General spanner error.
     '''
     pass

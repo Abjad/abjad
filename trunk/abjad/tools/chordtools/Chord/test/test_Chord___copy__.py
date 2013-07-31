@@ -3,7 +3,7 @@ import copy
 
 
 def test_Chord___copy___01():
-    '''Copy chord.
+    r'''Copy chord.
     '''
 
     chord_1 = Chord([3, 13, 17], (1, 4))
@@ -16,7 +16,7 @@ def test_Chord___copy___01():
 
 
 def test_Chord___copy___02():
-    '''Copy chord with LilyPond multiplier.
+    r'''Copy chord with LilyPond multiplier.
     '''
 
     chord_1 = Chord([3, 13, 17], (1, 4), (1, 2))
@@ -29,7 +29,7 @@ def test_Chord___copy___02():
 
 
 def test_Chord___copy___03():
-    '''Copy chord with LilyPond grob overrides and LilyPond context settings.
+    r'''Copy chord with LilyPond grob overrides and LilyPond context settings.
     '''
 
     chord_1 = Chord([3, 13, 17], (1, 4))
@@ -45,7 +45,7 @@ def test_Chord___copy___03():
 
 
 def test_Chord___copy___04():
-    '''Ensure deepcopied note heads attach correctly to chord.
+    r'''Ensure deepcopied note heads attach correctly to chord.
     '''
 
     chord_1 = Chord("<c' e' g'>4")
@@ -72,7 +72,7 @@ def test_Chord___copy___04():
 
 
 def test_Chord___copy___05():
-    '''Copy chord with articulations and markup.
+    r'''Copy chord with articulations and markup.
     '''
 
     chord_1 = Chord("<ef' cs'' f''>4")

@@ -3,7 +3,7 @@ import py.test
 
 
 def test_NamedChromaticPitch___init___01():
-    '''Init by name and octave.
+    r'''Init by name and octave.
     '''
 
     p = pitchtools.NamedChromaticPitch('df', 5)
@@ -23,7 +23,7 @@ def test_NamedChromaticPitch___init___02():
 
 
 def test_NamedChromaticPitch___init___03():
-    '''Init by number.
+    r'''Init by number.
     '''
 
     p = pitchtools.NamedChromaticPitch(13)
@@ -36,7 +36,7 @@ def test_NamedChromaticPitch___init___03():
 
 
 def test_NamedChromaticPitch___init___04():
-    '''Init by number and diatonic_pitch_class_name.
+    r'''Init by number and diatonic_pitch_class_name.
     '''
 
     p = pitchtools.NamedChromaticPitch(13, 'd')
@@ -49,7 +49,7 @@ def test_NamedChromaticPitch___init___04():
 
 
 def test_NamedChromaticPitch___init___05():
-    '''Init by pair.
+    r'''Init by pair.
     '''
 
     p = pitchtools.NamedChromaticPitch(('df', 5))
@@ -74,7 +74,7 @@ def test_NamedChromaticPitch___init___06():
 
 
 def test_NamedChromaticPitch___init___07():
-    '''Init by reference.
+    r'''Init by reference.
     '''
 
     r = pitchtools.NamedChromaticPitch('df', 5)
@@ -87,7 +87,7 @@ def test_NamedChromaticPitch___init___07():
 
 
 def test_NamedChromaticPitch___init___08():
-    '''Init by pitch-class / octave number string.
+    r'''Init by pitch-class / octave number string.
     '''
 
     assert pitchtools.NamedChromaticPitch('A4') == pitchtools.NamedChromaticPitch("a'")
@@ -97,7 +97,7 @@ def test_NamedChromaticPitch___init___08():
 
 
 def test_NamedChromaticPitch___init___09():
-    '''Empty pitches now allowed.
+    r'''Empty pitches now allowed.
     '''
 
     assert py.test.raises(Exception, 'pitchtools.NamedChromaticPitch()')

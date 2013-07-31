@@ -2,7 +2,7 @@ import subprocess
 
 
 def spawn_subprocess(command):
-    '''Spawn subprocess, run `command`, redirect stderr to stdout 
+    r'''Spawn subprocess, run `command`, redirect stderr to stdout 
     and print result:
 
     ::

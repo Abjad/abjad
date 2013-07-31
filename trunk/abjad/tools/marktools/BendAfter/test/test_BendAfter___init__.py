@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_BendAfter___init___01():
-    '''Initialize bend from bend amount.
+    r'''Initialize bend from bend amount.
     '''
 
     bend = marktools.BendAfter(16)
@@ -10,7 +10,7 @@ def test_BendAfter___init___01():
 
 
 def test_BendAfter___init___02():
-    '''Initialize bend from other bend.
+    r'''Initialize bend from other bend.
     '''
 
     bend_1 = marktools.BendAfter(16)

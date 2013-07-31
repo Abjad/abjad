@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_VerticalMoment___hash___01():
-    '''Vertical moments behave well when included in a set.
+    r'''Vertical moments behave well when included in a set.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")

@@ -3,7 +3,7 @@ from abjad.tools.wellformednesstools import OverlappingOctavationCheck
 
 
 def test_OctavationSpanner_01():
-    '''Octavation has default start and stop arguments set to 0.
+    r'''Octavation has default start and stop arguments set to 0.
     '''
 
     t = Staff(notetools.make_repeated_notes(4))
@@ -74,7 +74,7 @@ def test_OctavationSpanner_03():
 
 
 def test_OctavationSpanner_04():
-    '''One-note octavation changes are allowed.
+    r'''One-note octavation changes are allowed.
     '''
 
     t = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -100,7 +100,7 @@ def test_OctavationSpanner_04():
 
 
 def test_OctavationSpanner_05():
-    '''Adjacent one-note octavation changes are allowed;
+    r'''Adjacent one-note octavation changes are allowed;
         TODO - check for back-to-back set-octavation at format-
             time and compress to a single set-octavation.'''
 
@@ -130,7 +130,7 @@ def test_OctavationSpanner_05():
 
 
 def test_OctavationSpanner_06():
-    '''Overlapping octavation spanners are allowed but not well-formed.
+    r'''Overlapping octavation spanners are allowed but not well-formed.
     '''
 
     t = Staff([Note(n, (1, 8)) for n in range(8)])

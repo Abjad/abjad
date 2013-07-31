@@ -4,7 +4,7 @@ from abjad.tools.wellformednesstools.Check import Check
 
 
 class MissingParentCheck(Check):
-    '''Each node except the root needs a parent.
+    r'''Each node except the root needs a parent.
     '''
 
     def _run(self, expr):

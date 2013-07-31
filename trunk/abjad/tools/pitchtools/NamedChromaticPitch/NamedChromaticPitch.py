@@ -329,7 +329,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def accidental_spelling(self):
-        '''Accidental spelling:
+        r'''Accidental spelling:
 
         ::
 
@@ -343,7 +343,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def chromatic_pitch_class_name(self):
-        '''Chromatic pitch-class name:
+        r'''Chromatic pitch-class name:
 
         ::
 
@@ -356,7 +356,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def chromatic_pitch_class_number(self):
-        '''Chromatic pitch-class number:
+        r'''Chromatic pitch-class number:
 
         ::
 
@@ -369,7 +369,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def chromatic_pitch_name(self):
-        '''Chromatic pitch name:
+        r'''Chromatic pitch name:
 
         ::
 
@@ -382,7 +382,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def chromatic_pitch_number(self):
-        '''Chromatic pitch-class number:
+        r'''Chromatic pitch-class number:
 
         ::
 
@@ -395,7 +395,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def deviation_in_cents(self):
-        '''Deviation of named chromatic pitch in cents:
+        r'''Deviation of named chromatic pitch in cents:
 
         ::
 
@@ -408,7 +408,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def diatonic_pitch_class_name(self):
-        '''Diatonic pitch-class name:
+        r'''Diatonic pitch-class name:
 
         ::
 
@@ -421,7 +421,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def diatonic_pitch_class_number(self):
-        '''Diatonic pitch-class number:
+        r'''Diatonic pitch-class number:
 
         ::
 
@@ -434,7 +434,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def diatonic_pitch_name(self):
-        '''Diatonic pitch name:
+        r'''Diatonic pitch name:
 
         ::
 
@@ -447,7 +447,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def diatonic_pitch_number(self):
-        '''Diatonic pitch number:
+        r'''Diatonic pitch number:
 
         ::
 
@@ -460,7 +460,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def lilypond_format(self):
-        '''LilyPond input format of named chromatic pitch:
+        r'''LilyPond input format of named chromatic pitch:
 
         ::
 
@@ -473,7 +473,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def named_chromatic_pitch_class(self):
-        '''Named pitch-class:
+        r'''Named pitch-class:
 
         ::
 
@@ -487,7 +487,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def named_diatonic_pitch(self):
-        '''Named diatonic pitch:
+        r'''Named diatonic pitch:
 
         ::
 
@@ -503,7 +503,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def named_diatonic_pitch_class(self):
-        '''Named diatonic pitch-class:
+        r'''Named diatonic pitch-class:
 
         ::
 
@@ -517,7 +517,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def numbered_chromatic_pitch(self):
-        '''Numbered chromatic pitch from named chromatic pitch:
+        r'''Numbered chromatic pitch from named chromatic pitch:
 
         ::
 
@@ -531,7 +531,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def numbered_chromatic_pitch_class(self):
-        '''Numbered pitch-class:
+        r'''Numbered pitch-class:
 
         ::
 
@@ -545,7 +545,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def numbered_diatonic_pitch(self):
-        '''Numbered diatonic pitch:
+        r'''Numbered diatonic pitch:
 
         ::
 
@@ -559,7 +559,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def numbered_diatonic_pitch_class(self):
-        '''Numbered diatonic pitch:
+        r'''Numbered diatonic pitch:
 
         ::
 
@@ -573,7 +573,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def octave_number(self):
-        '''Integer octave number:
+        r'''Integer octave number:
 
         ::
 
@@ -594,7 +594,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def pitch_class_octave_label(self):
-        '''Pitch-class / octave label:
+        r'''Pitch-class / octave label:
 
         ::
 

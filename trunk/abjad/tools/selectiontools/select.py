@@ -1,5 +1,5 @@
 def select(expr=None):
-    '''Select `expr`.
+    r'''Select `expr`.
 
     Return selection.
     '''

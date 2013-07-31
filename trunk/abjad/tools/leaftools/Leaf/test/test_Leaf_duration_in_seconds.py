@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Leaf_duration_in_seconds_01():
-    '''Clock duration equals prolated duration divide by effective tempo.
+    r'''Clock duration equals prolated duration divide by effective tempo.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -29,7 +29,7 @@ def test_Leaf_duration_in_seconds_01():
 
 
 def test_Leaf_duration_in_seconds_02():
-    '''Clock duration can not calculate without tempo.
+    r'''Clock duration can not calculate without tempo.
     '''
 
     t = Note("c'4")

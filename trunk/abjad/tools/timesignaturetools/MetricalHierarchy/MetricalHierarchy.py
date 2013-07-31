@@ -253,7 +253,7 @@ class MetricalHierarchy(AbjadObject):
         return False
 
     def __iter__(self):
-        '''Iterate metrical hierarchy:
+        r'''Iterate metrical hierarchy:
 
         ::
 
@@ -310,7 +310,7 @@ class MetricalHierarchy(AbjadObject):
 
     @property
     def decrease_durations_monotonically(self):
-        '''True if the metrical hierarchy divides large primes into 
+        r'''True if the metrical hierarchy divides large primes into 
         collections of ``2`` and ``3`` that decrease monotonically.
 
         Example 1. Metrical hiearchy with durations that increase 
@@ -384,7 +384,7 @@ class MetricalHierarchy(AbjadObject):
 
     @property
     def depthwise_offset_inventory(self):
-        '''Depthwise inventory of offsets at each grouping level:
+        r'''Depthwise inventory of offsets at each grouping level:
 
         ::
 
@@ -410,7 +410,7 @@ class MetricalHierarchy(AbjadObject):
 
     @property
     def graphviz_format(self):
-        '''Graphviz format of hierarchy's root node:
+        r'''Graphviz format of hierarchy's root node:
 
         ::
 
@@ -451,7 +451,7 @@ class MetricalHierarchy(AbjadObject):
 
     @property
     def implied_time_signature(self):
-        '''Implied time signature:
+        r'''Implied time signature:
 
         ::
 
@@ -478,7 +478,7 @@ class MetricalHierarchy(AbjadObject):
 
     @property
     def preprolated_duration(self):
-        '''Beat hierarchy preprolated_duration:
+        r'''Beat hierarchy preprolated_duration:
 
         ::
 
@@ -491,7 +491,7 @@ class MetricalHierarchy(AbjadObject):
 
     @property
     def pretty_rtm_format(self):
-        '''Beat hiearchy pretty RTM format:
+        r'''Beat hiearchy pretty RTM format:
 
         ::
 
@@ -511,7 +511,7 @@ class MetricalHierarchy(AbjadObject):
 
     @property
     def root_node(self):
-        '''Beat hiearchy root node:
+        r'''Beat hiearchy root node:
 
         ::
 
@@ -558,7 +558,7 @@ class MetricalHierarchy(AbjadObject):
 
     @property
     def rtm_format(self):
-        '''Beat hierarchy RTM format:
+        r'''Beat hierarchy RTM format:
 
         ::
 
@@ -571,7 +571,7 @@ class MetricalHierarchy(AbjadObject):
 
     @property
     def storage_format(self):
-        '''Beat hierarchy storage format:
+        r'''Beat hierarchy storage format:
 
         ::
 

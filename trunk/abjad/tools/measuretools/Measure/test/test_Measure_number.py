@@ -3,7 +3,7 @@ from abjad.tools import sequencetools
 
 
 def test_Measure_number_01():
-    '''Measures in staff number correctly starting from 1.
+    r'''Measures in staff number correctly starting from 1.
     '''
 
     time_signature_pairs = [(3, 16), (5, 16), (5, 16)]
@@ -15,7 +15,7 @@ def test_Measure_number_01():
 
 
 def test_Measure_number_02():
-    '''Orphan measures number correctly starting from 1.
+    r'''Orphan measures number correctly starting from 1.
     '''
 
     t = Measure((3, 8), "c'8 d'8 e'8")
@@ -23,7 +23,7 @@ def test_Measure_number_02():
 
 
 def test_Measure_number_03():
-    '''Measure numbering works correctly after contents rotation.
+    r'''Measure numbering works correctly after contents rotation.
     '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)

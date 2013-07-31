@@ -2,7 +2,7 @@ import os
 
 
 def which(name, flags=os.X_OK):
-    '''Find executable ``name``, similar to Unix's ``which`` command:
+    r'''Find executable ``name``, similar to Unix's ``which`` command:
 
     ::
 

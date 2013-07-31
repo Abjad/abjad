@@ -163,7 +163,7 @@ class LilyPondParser(abctools.Parser):
 
     @property
     def available_languages(self):
-        '''Tuple of pitch-name languages supported by LilyPondParser:
+        r'''Tuple of pitch-name languages supported by LilyPondParser:
 
         ::
 
@@ -201,7 +201,7 @@ class LilyPondParser(abctools.Parser):
     @apply
     def default_language():
         def fget(self):
-            '''Read/write attribute to set parser's default pitch-name language:
+            r'''Read/write attribute to set parser's default pitch-name language:
 
             ::
 
@@ -706,7 +706,7 @@ class LilyPondParser(abctools.Parser):
 
     @staticmethod
     def _transpose_enharmonically(pitch_a, pitch_b, pitch_c):
-        '''Transpose `pitch_c` by the distance between `pitch_b` and `pitch_a`.
+        r'''Transpose `pitch_c` by the distance between `pitch_b` and `pitch_a`.
 
         This function was reverse-engineered from LilyPond's source code.
 
@@ -776,7 +776,7 @@ class LilyPondParser(abctools.Parser):
 
     @staticmethod
     def list_known_contexts():
-        '''List all LilyPond contexts recognized by ``LilyPondParser``:
+        r'''List all LilyPond contexts recognized by ``LilyPondParser``:
 
         ::
 
@@ -822,7 +822,7 @@ class LilyPondParser(abctools.Parser):
         
     @staticmethod
     def list_known_grobs():
-        '''List all LilyPond grobs recognized by ``LilyPondParser``:
+        r'''List all LilyPond grobs recognized by ``LilyPondParser``:
 
         ::
 
@@ -975,7 +975,7 @@ class LilyPondParser(abctools.Parser):
 
     @staticmethod
     def list_known_languages():
-        '''List all note-input languages recognized by ``LilyPondParser``:
+        r'''List all note-input languages recognized by ``LilyPondParser``:
 
         ::
 
@@ -1003,7 +1003,7 @@ class LilyPondParser(abctools.Parser):
 
     @staticmethod
     def list_known_markup_functions():
-        '''List all markup functions recognized by ``LilyPondParser``:
+        r'''List all markup functions recognized by ``LilyPondParser``:
 
         ::
 
@@ -1162,7 +1162,7 @@ class LilyPondParser(abctools.Parser):
 
     @staticmethod
     def list_known_music_functions():
-        '''List all music functions recognized by ``LilyPondParser``:
+        r'''List all music functions recognized by ``LilyPondParser``:
 
         ::
 

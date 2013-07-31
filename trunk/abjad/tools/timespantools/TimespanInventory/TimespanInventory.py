@@ -80,7 +80,7 @@ class TimespanInventory(ObjectInventory):
     ### SPECIAL METHODS ###
 
     def __and__(self, timespan):
-        '''Keep material that intersects `timespan`:
+        r'''Keep material that intersects `timespan`:
 
         ::
 
@@ -122,7 +122,7 @@ class TimespanInventory(ObjectInventory):
         return self
 
     def __sub__(self, timespan):
-        '''Delete material that intersects `timespan`:
+        r'''Delete material that intersects `timespan`:
 
         ::
 
@@ -186,7 +186,7 @@ class TimespanInventory(ObjectInventory):
 
     @property
     def all_are_contiguous(self):
-        '''True when all timespans are time-contiguous:
+        r'''True when all timespans are time-contiguous:
 
         ::
 
@@ -221,7 +221,7 @@ class TimespanInventory(ObjectInventory):
 
     @property
     def all_are_nonoverlapping(self):
-        '''True when all timespans are non-overlapping:
+        r'''True when all timespans are non-overlapping:
 
         ::
 
@@ -257,7 +257,7 @@ class TimespanInventory(ObjectInventory):
 
     @property
     def all_are_well_formed(self):
-        '''True when all timespans are well-formed:
+        r'''True when all timespans are well-formed:
 
         ::
 
@@ -284,7 +284,7 @@ class TimespanInventory(ObjectInventory):
 
     @property
     def axis(self):
-        '''Arithmetic mean of start- and stop-offsets.
+        r'''Arithmetic mean of start- and stop-offsets.
 
             >>> timespan_inventory_1.axis
             Offset(5, 1)
@@ -308,7 +308,7 @@ class TimespanInventory(ObjectInventory):
 
     @property
     def duration(self):
-        '''Time from start offset to stop offset:
+        r'''Time from start offset to stop offset:
 
         ::
 
@@ -337,7 +337,7 @@ class TimespanInventory(ObjectInventory):
 
     @property
     def is_sorted(self):
-        '''True when timespans are in time order:
+        r'''True when timespans are in time order:
 
         ::
 
@@ -380,7 +380,7 @@ class TimespanInventory(ObjectInventory):
 
     @property
     def start_offset(self):
-        '''Earliest start offset of any timespan:
+        r'''Earliest start offset of any timespan:
 
         ::
 
@@ -409,7 +409,7 @@ class TimespanInventory(ObjectInventory):
 
     @property
     def stop_offset(self):
-        '''Latest stop offset of any timespan:
+        r'''Latest stop offset of any timespan:
 
         ::
 
@@ -437,7 +437,7 @@ class TimespanInventory(ObjectInventory):
 
     @property
     def timespan(self):
-        '''Timespan inventory timespan:
+        r'''Timespan inventory timespan:
 
         ::
 
@@ -462,7 +462,7 @@ class TimespanInventory(ObjectInventory):
     ### PUBLIC METHODS ###
 
     def compute_logical_and(self):
-        '''Compute logical AND of timespans.
+        r'''Compute logical AND of timespans.
 
         Example 1:
 
@@ -547,7 +547,7 @@ class TimespanInventory(ObjectInventory):
         return self
 
     def compute_logical_or(self):
-        '''Compute logical OR of timespans.
+        r'''Compute logical OR of timespans.
 
         Example 1:
 
@@ -665,7 +665,7 @@ class TimespanInventory(ObjectInventory):
         return self
 
     def compute_logical_xor(self):
-        '''Compute logical XOR of timespans.
+        r'''Compute logical XOR of timespans.
 
         Example 1:
 
@@ -843,7 +843,7 @@ class TimespanInventory(ObjectInventory):
         return self
 
     def count_offsets(self):
-        '''Count offsets in inventory:
+        r'''Count offsets in inventory:
 
         ::
 
@@ -1014,7 +1014,7 @@ class TimespanInventory(ObjectInventory):
             self.get_timespans_that_satisfy_time_relation(time_relation))
 
     def partition(self, include_tangent_timespans=False):
-        '''Partition timespans into inventories:
+        r'''Partition timespans into inventories:
 
         ::
 
@@ -1110,7 +1110,7 @@ class TimespanInventory(ObjectInventory):
         return tuple(inventories)
 
     def reflect(self, axis=None):
-        '''Reflect timespans.
+        r'''Reflect timespans.
 
         Example 1. Reflect timespans about timespan inventory axis:
 
@@ -1187,7 +1187,7 @@ class TimespanInventory(ObjectInventory):
         return self
 
     def remove_degenerate_timespans(self):
-        '''Remove degenerate timespans:
+        r'''Remove degenerate timespans:
 
         ::
 
@@ -1221,7 +1221,7 @@ class TimespanInventory(ObjectInventory):
         return self
 
     def repeat_to_stop_offset(self, stop_offset):
-        '''Repeat timespans to `stop_offset`:
+        r'''Repeat timespans to `stop_offset`:
 
         ::
 
@@ -1278,7 +1278,7 @@ class TimespanInventory(ObjectInventory):
         return self
 
     def rotate(self, count):
-        '''Rotate by `count` contiguous timespans.
+        r'''Rotate by `count` contiguous timespans.
 
         Example 1. Rotate by one timespan to the left:
 
@@ -1370,7 +1370,7 @@ class TimespanInventory(ObjectInventory):
         return self
 
     def scale(self, multiplier, anchor=Left):
-        '''Scale timespan by `multiplier` relative to `anchor`.
+        r'''Scale timespan by `multiplier` relative to `anchor`.
 
         Example 1. Scale timespans relative to timespan inventory start offset:
 
@@ -1442,7 +1442,7 @@ class TimespanInventory(ObjectInventory):
         return self
 
     def stretch(self, multiplier, anchor=None):
-        '''Stretch timespans by `multiplier` relative to `anchor`.
+        r'''Stretch timespans by `multiplier` relative to `anchor`.
 
         Example 1: Stretch timespans relative to timespan inventory 
         start offset:
@@ -1520,7 +1520,7 @@ class TimespanInventory(ObjectInventory):
         return self
 
     def translate(self, translation=None):
-        '''Translate timespans by `translation`.
+        r'''Translate timespans by `translation`.
 
         Example 1. Translate timespan by offset ``50``:
 
@@ -1562,7 +1562,7 @@ class TimespanInventory(ObjectInventory):
         start_offset_translation=None,
         stop_offset_translation=None,
         ):
-        '''Translate timespans by `start_offset_translation`
+        r'''Translate timespans by `start_offset_translation`
         and `stop_offset_translation`.
 
         Example 1. Translate timespan start- and stop-offsets equally:

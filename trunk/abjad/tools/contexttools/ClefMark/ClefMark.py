@@ -177,7 +177,7 @@ class ClefMark(ContextMark):
 
     @property
     def middle_c_position(self):
-        '''Middle-C position of clef:
+        r'''Middle-C position of clef:
 
         ::
 

@@ -5,7 +5,7 @@ from abjad.tools.selectiontools.Selection import Selection
 
 
 class SequentialSelection(Selection):
-    '''Selection of components taken sequentially:
+    r'''Selection of components taken sequentially:
 
     ::
 
@@ -82,7 +82,7 @@ class SequentialSelection(Selection):
         return None, None, None
 
     def _give_dominant_spanners_to_components(self, recipients):
-        '''Find all spanners dominating music.
+        r'''Find all spanners dominating music.
         Insert each component in recipients into each dominant spanner.
         Remove music from each dominating spanner.
         Return none.
@@ -100,7 +100,7 @@ class SequentialSelection(Selection):
                 spanner._remove(component)
 
     def _give_music_to_empty_container(self, container):
-        '''Not composer-safe.
+        r'''Not composer-safe.
         '''
         from abjad.tools import componenttools
         from abjad.tools import containertools
@@ -115,7 +115,7 @@ class SequentialSelection(Selection):
         container[:]._set_parents(container)
 
     def _give_position_in_parent_to_container(self, container):
-        '''Not composer-safe.
+        r'''Not composer-safe.
         '''
         from abjad.tools import componenttools
         from abjad.tools import containertools
@@ -129,13 +129,13 @@ class SequentialSelection(Selection):
             self._set_parents(None)
 
     def _set_parents(self, new_parent):
-        '''Not composer-safe.
+        r'''Not composer-safe.
         '''
         for component in self._music:
             component._set_parent(new_parent)
 
     def _withdraw_from_crossing_spanners(self):
-        '''Not composer-safe.
+        r'''Not composer-safe.
         '''
         from abjad.tools import componenttools
         from abjad.tools import iterationtools
@@ -156,7 +156,7 @@ class SequentialSelection(Selection):
 
     @property
     def duration(self):
-        '''Duration of components in selection.
+        r'''Duration of components in selection.
 
         Return duration.
         '''
@@ -164,7 +164,7 @@ class SequentialSelection(Selection):
 
     @property
     def duration_in_seconds(self):
-        '''Duration in seconds of components in selection.
+        r'''Duration in seconds of components in selection.
 
         Return duration.
         '''
@@ -172,7 +172,7 @@ class SequentialSelection(Selection):
 
     @property
     def timespan(self):
-        '''Timespan of selection.
+        r'''Timespan of selection.
         '''
         from abjad.tools import timespantools
         start_offset = min(x.timespan.start_offset for x in self)

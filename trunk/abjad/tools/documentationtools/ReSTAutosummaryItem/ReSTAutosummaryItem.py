@@ -2,7 +2,7 @@ from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
 class ReSTAutosummaryItem(TreeNode):
-    '''An ReST Autosummary item:
+    r'''An ReST Autosummary item:
 
     ::
 

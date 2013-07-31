@@ -1,4 +1,4 @@
 class PitchError(Exception):
-    '''General pitch error.
+    r'''General pitch error.
     '''
     pass

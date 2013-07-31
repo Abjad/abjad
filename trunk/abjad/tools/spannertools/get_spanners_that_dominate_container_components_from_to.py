@@ -2,7 +2,7 @@ from abjad.tools import containertools
 
 
 def get_spanners_that_dominate_container_components_from_to(container, start, stop):
-    '''Return Python list of (spanner, index) pairs.
+    r'''Return Python list of (spanner, index) pairs.
     Each spanner dominates the components specified by slice
     with start index 'start' and stop index 'stop'.
     Generalization of dominant spanner-finding functions for slices.

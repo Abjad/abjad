@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_ComponentSelection_detach_marks_01():
-    '''Detach tie spanners.
+    r'''Detach tie spanners.
     '''
 
     staff = Staff(notetools.make_notes(0, [(5, 16), (5, 16)]))
@@ -33,7 +33,7 @@ def test_ComponentSelection_detach_marks_01():
 
 
 def test_ComponentSelection_detach_marks_02():
-    '''Handles empty selection without exception.
+    r'''Handles empty selection without exception.
     '''
 
     select().detach_spanners()

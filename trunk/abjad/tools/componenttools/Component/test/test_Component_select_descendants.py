@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_Component_select_descendants_01():
-    '''Staff and first measure cross offset at 1/8.
+    r'''Staff and first measure cross offset at 1/8.
     '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
@@ -26,7 +26,7 @@ def test_Component_select_descendants_01():
 
 
 def test_Component_select_descendants_02():
-    '''Staff, first measure and first note cross 1/16.
+    r'''Staff, first measure and first note cross 1/16.
     '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
@@ -50,7 +50,7 @@ def test_Component_select_descendants_02():
 
 
 def test_Component_select_descendants_03():
-    '''Nothing crosses 0.
+    r'''Nothing crosses 0.
     '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
@@ -74,7 +74,7 @@ def test_Component_select_descendants_03():
 
 
 def test_Component_select_descendants_04():
-    '''Nothing crosses 100.
+    r'''Nothing crosses 100.
     '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)

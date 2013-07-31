@@ -14,7 +14,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class LilyPondSyntacticalDefinition(AbjadObject):
-    '''The syntactical definition of LilyPond's syntax.
+    r'''The syntactical definition of LilyPond's syntax.
 
     Effectively equivalent to LilyPond's ``parser.yy`` file.
 

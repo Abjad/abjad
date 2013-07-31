@@ -3,7 +3,7 @@ from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 
 
 class MakeNewFunctionTemplateScript(DeveloperScript):
-    '''Create function stub files:
+    r'''Create function stub files:
 
     ::
 

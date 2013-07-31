@@ -1,5 +1,5 @@
 def is_positive_integer_power_of_two(expr):
-    '''True when `expr` is a positive integer power of ``2``:
+    r'''True when `expr` is a positive integer power of ``2``:
 
     ::
 

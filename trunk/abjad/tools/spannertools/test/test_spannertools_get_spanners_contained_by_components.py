@@ -3,7 +3,7 @@ import py.test
 
 
 def test_spannertools_get_spanners_contained_by_components_01():
-    '''Return unordered set of spanners contained
+    r'''Return unordered set of spanners contained
         within any of the list of thread-contiguous components.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)

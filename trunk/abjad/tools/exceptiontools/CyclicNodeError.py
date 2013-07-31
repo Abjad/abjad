@@ -1,4 +1,4 @@
 class CyclicNodeError(Exception):
-    '''Node is in cyclic relationship.
+    r'''Node is in cyclic relationship.
     '''
     pass

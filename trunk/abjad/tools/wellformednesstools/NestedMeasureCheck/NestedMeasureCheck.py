@@ -5,7 +5,7 @@ from abjad.tools.wellformednesstools.Check import Check
 
 
 class NestedMeasureCheck(Check):
-    '''Do we have any nested measures?
+    r'''Do we have any nested measures?
     '''
 
     def _run(self, expr):

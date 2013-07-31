@@ -3,7 +3,7 @@ import py.test
 
 
 def test_Spanner__remove_01():
-    '''Remove interior component from spanner.
+    r'''Remove interior component from spanner.
     Remove spanner from component's aggregator.
     Spanner is left discontiguous and score no longer checks.
     Not composer-safe.
@@ -41,7 +41,7 @@ def test_Spanner__remove_01():
 
 
 def test_Spanner__remove_02():
-    '''Remove last component from spanner.
+    r'''Remove last component from spanner.
     Remove spanner from component's aggregator.
     Here an end element removes from spanner.
     So spanner is not left discontiguous and score checks.
@@ -94,7 +94,7 @@ def test_Spanner__remove_02():
 
 
 def test_Spanner__remove_03():
-    '''Remove works only on references and not on equality.
+    r'''Remove works only on references and not on equality.
     '''
 
     class MockSpanner(spannertools.Spanner):

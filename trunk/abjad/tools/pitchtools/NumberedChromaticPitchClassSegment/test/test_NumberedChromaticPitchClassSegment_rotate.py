@@ -10,7 +10,7 @@ def test_NumberedChromaticPitchClassSegment_rotate_01():
 
 
 def test_NumberedChromaticPitchClassSegment_rotate_02():
-    '''Rotate right.
+    r'''Rotate right.
     '''
 
     pcseg = pitchtools.NumberedChromaticPitchClassSegment([0, 6, 10, 4, 9, 2])
@@ -25,7 +25,7 @@ def test_NumberedChromaticPitchClassSegment_rotate_02():
 
 
 def test_NumberedChromaticPitchClassSegment_rotate_03():
-    '''Rotate left.
+    r'''Rotate left.
     '''
 
     pcseg = pitchtools.NumberedChromaticPitchClassSegment([0, 6, 10, 4, 9, 2])
