@@ -1013,6 +1013,102 @@ class TimespanInventory(ObjectInventory):
         return bool(
             self.get_timespans_that_satisfy_time_relation(time_relation))
 
+    def partition(self, include_tangent_timespans=False):
+        '''Partition timespans into inventories:
+
+        ::
+
+            >>> for inventory in timespan_inventory_1.partition():
+            ...     z(inventory)
+            ...
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(3, 1)
+                    )
+                ])
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(3, 1),
+                    stop_offset=durationtools.Offset(6, 1)
+                    )
+                ])
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(6, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    )
+                ])
+
+        ::
+
+            >>> for inventory in timespan_inventory_2.partition():
+            ...     z(inventory)
+            ...
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(3, 1),
+                    stop_offset=durationtools.Offset(6, 1)
+                    )
+                ])
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(15, 1),
+                    stop_offset=durationtools.Offset(20, 1)
+                    )
+                ])
+
+        Treat tangent timespans as part of the same group with
+        include_tangent_timespans:
+
+        ::
+
+            >>> for inventory in timespan_inventory_1.partition(
+            ...     include_tangent_timespans=True):
+            ...     z(inventory)
+            ...
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(3, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(3, 1),
+                    stop_offset=durationtools.Offset(6, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(6, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    )
+                ])    
+
+        Return 0 or more inventories.
+        '''
+        if not self:
+            return []
+        inventories = []
+        timespans = sorted(self[:])
+        current_inventory = type(self)([timespans[0]])
+        latest_stop_offset = current_inventory[0].stop_offset
+        for current_timespan in timespans[1:]:
+            if current_timespan.start_offset < latest_stop_offset:
+                current_inventory.append(current_timespan)
+            elif include_tangent_timespans and \
+                current_timespan.start_offset == latest_stop_offset:
+                current_inventory.append(current_timespan)
+            else:
+                inventories.append(current_inventory)
+                current_inventory = type(self)([current_timespan])
+            if latest_stop_offset < current_timespan.stop_offset:
+                latest_stop_offset = current_timespan.stop_offset
+        if current_inventory:
+            inventories.append(current_inventory)
+        return tuple(inventories)
+
     def reflect(self, axis=None):
         '''Reflect timespans.
 
