@@ -34,7 +34,8 @@ def all_are_contiguous_components_in_same_thread(
         list,
         tuple,
         types.GeneratorType,
-        selectiontools.SequentialSelection,
+        selectiontools.Selection,
+        #selectiontools.SequentialSelection,
         )
 
     if not isinstance(expr, allowable_types):
