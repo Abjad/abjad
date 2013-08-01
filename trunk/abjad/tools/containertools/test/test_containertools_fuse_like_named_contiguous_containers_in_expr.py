@@ -324,7 +324,7 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_10():
     assert select(tadd).is_well_formed()
 
 
-def test_containertools_fuse_like_named_contiguous_containers_in_expr_13():
+def test_containertools_fuse_like_named_contiguous_containers_in_expr_11():
     r'''Fuse sequentially nested like-named voices.
     '''
 
@@ -352,7 +352,7 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_13():
     '''
 
 
-def test_containertools_fuse_like_named_contiguous_containers_in_expr_14():
+def test_containertools_fuse_like_named_contiguous_containers_in_expr_12():
     r'''Fuse matching parallel containers with like-named voices.
     '''
 
@@ -383,7 +383,7 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_14():
     assert len(tadd[0]) == 4
 
 
-def test_containertools_fuse_like_named_contiguous_containers_in_expr_15():
+def test_containertools_fuse_like_named_contiguous_containers_in_expr_13():
     r'''Fuse matching parallel containers with two like-named voices each.
     '''
 

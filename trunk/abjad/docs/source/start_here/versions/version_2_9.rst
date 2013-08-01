@@ -355,7 +355,7 @@ New functionality is available for working with ties.
 
     TieChain.preprolated_duration
     TieChain.prolated_duration
-    TieChain.duration_in_seconds
+    TieChain.get_duration(in_seconds=True)
     TieChain.written_duration
 
   The ``TieChain`` class inherits from the new ``SequentialSelection`` abstract base class.

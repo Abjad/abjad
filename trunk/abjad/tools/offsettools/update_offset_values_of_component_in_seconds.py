@@ -7,7 +7,7 @@ def update_offset_values_of_component_in_seconds(component):
     '''
     from abjad.tools import componenttools
     try:
-        current_duration_in_seconds = component.duration_in_seconds
+        current_duration_in_seconds = component.get_duration(in_seconds=True)
         prev = componenttools.get_nth_component_in_time_order_from_component(component, -1)
         if prev is not None:
             #component._start_offset_in_seconds = prev.stop_offset_in_seconds

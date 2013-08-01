@@ -62,6 +62,15 @@ class Leaf(Component):
         return '({})'.format(self._formatted_duration)
 
     @property
+    def _duration_in_seconds(self):
+        from abjad.tools import contexttools
+        tempo = self.get_effective_context_mark(contexttools.TempoMark)
+        if tempo is not None and not tempo.is_imprecise:
+            result = self.duration / tempo.duration / tempo.units_per_minute * 60
+            return durationtools.Duration(result)
+        raise MissingTempoError
+
+    @property
     def _format_pieces(self):
         return self.lilypond_format.split('\n')
 
@@ -310,15 +319,6 @@ class Leaf(Component):
         return tuplet
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def duration_in_seconds(self):
-        from abjad.tools import contexttools
-        tempo = self.get_effective_context_mark(contexttools.TempoMark)
-        if tempo is not None and not tempo.is_imprecise:
-            result = self.duration / tempo.duration / tempo.units_per_minute * 60
-            return durationtools.Duration(result)
-        raise MissingTempoError
 
     @apply
     def duration_multiplier():

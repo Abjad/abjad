@@ -31,7 +31,7 @@ def set_line_breaks_by_line_duration(
         expr, line_break_class):
         # compress these 4 lines to only the 4th line after duration migration
         if kind == 'seconds':
-            current_duration = cur.duration_in_seconds
+            current_duration = cur.get_duration(in_seconds=True)
         elif kind == 'prolated':
             current_duration = cur.duration
         elif kind == 'preprolated':

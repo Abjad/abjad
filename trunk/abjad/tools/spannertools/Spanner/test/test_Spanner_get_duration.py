@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_Spanner_duration_in_seconds_01():
+def test_Spanner_get_duration_01():
     r'''Spanner duration in seconds equals sum of duration
     of all leaves in spanner, in seconds.
     '''
@@ -29,6 +29,6 @@ def test_Spanner_duration_in_seconds_01():
     }
     '''
 
-    assert beam.duration_in_seconds == Duration(100, 21)
-    assert crescendo.duration_in_seconds == Duration(40, 21)
-    assert decrescendo.duration_in_seconds == Duration(20, 7)
+    assert beam.get_duration(in_seconds=True) == Duration(100, 21)
+    assert crescendo.get_duration(in_seconds=True) == Duration(40, 21)
+    assert decrescendo.get_duration(in_seconds=True) == Duration(20, 7)

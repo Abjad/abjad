@@ -540,10 +540,6 @@ class Component(AbjadObject):
     def duration(self):
         return self.prolation * self._preprolated_duration
 
-    @abc.abstractproperty
-    def duration_in_seconds(self):
-        pass
-
     @property
     def lilypond_format(self):
         '''Lilypond format.

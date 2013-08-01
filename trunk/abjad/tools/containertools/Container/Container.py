@@ -146,6 +146,17 @@ class Container(Component):
             return duration
 
     @property
+    def _duration_in_seconds(self):
+        if self.is_parallel:
+            return max([durationtools.Duration(0)] + 
+                [x.get_duration(in_seconds=True) for x in self])
+        else:
+            duration = durationtools.Duration(0)
+            for leaf in self.select_leaves():
+                duration += leaf.get_duration(in_seconds=True)
+            return duration
+
+    @property
     def _preprolated_duration(self):
         return self._contents_duration
 
@@ -363,17 +374,6 @@ class Container(Component):
             expr_context_mark._update_effective_context()
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def duration_in_seconds(self):
-        if self.is_parallel:
-            return max([durationtools.Duration(0)] + 
-                [x.duration_in_seconds for x in self])
-        else:
-            duration = durationtools.Duration(0)
-            for leaf in self.select_leaves():
-                duration += leaf.duration_in_seconds
-            return duration
 
     @apply
     def is_parallel():

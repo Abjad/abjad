@@ -164,14 +164,6 @@ class SequentialSelection(Selection):
         return sum(component.duration for component in self)
 
     @property
-    def duration_in_seconds(self):
-        r'''Duration in seconds of components in selection.
-
-        Return duration.
-        '''
-        return sum(component.duration_in_seconds for component in self)
-
-    @property
     def timespan(self):
         r'''Timespan of selection.
         '''
@@ -181,6 +173,16 @@ class SequentialSelection(Selection):
         return timespantools.Timespan(start_offset, stop_offset)
 
     ### PUBLIC METHODS ###
+
+    def get_duration(self, in_seconds=False):
+        r'''Get duration of components in selection.
+
+        Return duration.
+        '''
+        return sum(
+            component.get_duration(in_seconds=in_seconds) 
+            for component in self
+            )
 
     def group_by(self, predicate):
         result = []

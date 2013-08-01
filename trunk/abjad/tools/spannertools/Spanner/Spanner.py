@@ -128,6 +128,13 @@ class Spanner(AbjadObject):
             return left + middle + right
 
     @property
+    def _duration_in_seconds(self):
+        duration = durationtools.Duration(0)
+        for leaf in self.leaves:
+            duration += leaf.get_duration(in_seconds=True)
+        return duration
+
+    @property
     def _preprolated_duration(self):
         return sum([component._preprolated_duration for component in self])
 
@@ -384,15 +391,6 @@ class Spanner(AbjadObject):
         r'''Sum of prolated duration of all components in spanner.
         '''
         return sum([component.duration for component in self])
-
-    @property
-    def duration_in_seconds(self):
-        r'''Sum of duration of all leaves in spanner, in seconds.
-        '''
-        duration = durationtools.Duration(0)
-        for leaf in self.leaves:
-            duration += leaf.duration_in_seconds
-        return duration
 
     @property
     def leaves(self):
@@ -697,6 +695,16 @@ class Spanner(AbjadObject):
         Return list.
         '''
         return self._fuse_by_reference(spanner)
+
+    def get_duration(self, in_seconds=False):
+        '''Get duration.
+
+        Return duration.
+        '''
+        if in_seconds:
+            return self._duration_in_seconds
+        else:
+            return sum([component.duration for component in self])
 
     def index(self, component):
         r'''Return nonnegative integer index of `component` in spanner:

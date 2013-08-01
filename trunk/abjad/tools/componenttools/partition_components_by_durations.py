@@ -49,7 +49,7 @@ def partition_components_by_durations(
             break
         component_duration = component.duration
         if in_seconds:
-            component_duration = component.duration_in_seconds
+            component_duration = component.get_duration(in_seconds=True)
         candidate_duration = cumulative_duration + component_duration
         if candidate_duration < target_duration:
             part.append(component)
@@ -72,7 +72,7 @@ def partition_components_by_durations(
                 part = [component]
                 if in_seconds:
                     cumulative_duration = \
-                        sum([x.duration_in_seconds for x in part])
+                        sum([x.get_duration(in_seconds=True) for x in part])
                 else:
                     cumulative_duration = sum([x.duration for x in part])
                 current_duration_index += 1
