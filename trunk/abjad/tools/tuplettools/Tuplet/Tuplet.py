@@ -114,11 +114,6 @@ class Tuplet(Container):
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, arg):
-        r'''DEPRECATED: use tuplettools.fuse_tuplets() instead.
-        '''
-        raise Exception('use tuplettools.fuse_tuplets() instead.')
-
     def __getnewargs__(self):
         return (self.multiplier, )
 

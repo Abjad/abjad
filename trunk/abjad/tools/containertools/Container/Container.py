@@ -47,33 +47,6 @@ class Container(Component):
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, expr):
-        r'''DEPREACTED: use 
-        containertools.fuse_like_named_contiguous_containers_in_expr()
-        instead.
-
-        Concatenate containers self and expr.
-        The operation c = a + b returns a new Container c with
-        the content of both a and b.
-        The operation is non-commutative: the content of the first
-        operand will be placed before the content of the second operand.
-        '''
-        from abjad.tools import componenttools
-        from abjad.tools import containertools
-        left = componenttools.copy_components_and_fracture_crossing_spanners(
-            [self])[0]
-        right = componenttools.copy_components_and_fracture_crossing_spanners(
-            [expr])[0]
-        result = containertools.fuse_like_named_contiguous_containers_in_expr(
-            [left, right])
-        if result is None:
-            raise Exception('can not add: {!r}.'.format(expr))
-        else:
-            return result
-        #message = 'DEPRECATED: use containertools.fuse_like_named'
-        #message += '_contiguous_containers_in_expr() instead.'
-        #raise Exception(message)
-
     def __contains__(self, expr):
         r'''True if expr is in container, otherwise False.
         '''
@@ -134,12 +107,6 @@ class Container(Component):
         r'''Return nonnegative integer number of components in container.
         '''
         return len(self._music)
-
-    def __radd__(self, expr):
-        r'''Extend container by contents of expr to the right.
-        '''
-        #return self + expr
-        raise Exception('DEPRECATED radd.')
 
     def __repr__(self):
         r'''String format of container for interpreter display.

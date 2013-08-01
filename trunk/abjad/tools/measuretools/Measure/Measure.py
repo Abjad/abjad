@@ -58,6 +58,7 @@ class Measure(FixedDurationContainer):
 
     ### SPECIAL METHODS ###
 
+    # TODO: remove in favor of measuretools.fuse_measures()
     def __add__(self, arg):
         r'''Add two measures together in-score or outside-of-score.
 
