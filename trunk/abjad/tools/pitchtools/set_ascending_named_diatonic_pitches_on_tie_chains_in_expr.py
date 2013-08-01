@@ -23,8 +23,7 @@ def set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(expr, key_signatu
 
     Used primarily in generating test file examples.
 
-    .. versionadded:: 2.0
-        Optional `key_signature` keyword argument.
+    Optional `key_signature` keyword argument.
 
     Return none.
     '''

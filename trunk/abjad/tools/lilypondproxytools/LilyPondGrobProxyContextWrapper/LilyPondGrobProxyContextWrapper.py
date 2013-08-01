@@ -4,9 +4,7 @@ from abjad.tools.lilypondproxytools.LilyPondGrobProxy import LilyPondGrobProxy
 
 
 class LilyPondGrobProxyContextWrapper(object):
-    '''.. versionadded:: 2.0
-
-    Context wrapper for LilyPond grob overrides.
+    '''Context wrapper for LilyPond grob overrides.
     '''
 
     ### SPECIAL METHODS ###

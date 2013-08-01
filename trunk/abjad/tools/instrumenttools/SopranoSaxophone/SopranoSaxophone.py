@@ -6,9 +6,7 @@ from abjad.tools.instrumenttools.Saxophone.Saxophone import Saxophone
 
 
 class SopranoSaxophone(Saxophone):
-    r'''.. versionadded:: 2.6
-
-    Abjad model of the soprano saxophone:
+    r'''Abjad model of the soprano saxophone:
 
     ::
 

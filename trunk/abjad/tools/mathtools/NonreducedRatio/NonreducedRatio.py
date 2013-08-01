@@ -3,9 +3,7 @@ from abjad.tools.abctools.ImmutableAbjadObject import ImmutableAbjadObject
 
 
 class NonreducedRatio(ImmutableAbjadObject, tuple):
-    '''.. versionadded:: 2.11
-
-    Nonreduced ratio of one or more nonzero integers.
+    '''Nonreduced ratio of one or more nonzero integers.
 
     Initialize from one or more nonzero integers:
 

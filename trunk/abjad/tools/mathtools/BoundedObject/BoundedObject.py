@@ -4,9 +4,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class BoundedObject(AbjadObject):
-    r'''.. versionadded:: 2.10
-
-    Bounded object mix-in.
+    r'''Bounded object mix-in.
     '''
 
     ### CLASS VARIABLES ###

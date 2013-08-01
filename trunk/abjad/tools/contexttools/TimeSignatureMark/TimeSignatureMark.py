@@ -299,9 +299,7 @@ class TimeSignatureMark(ContextMark):
 
     @property
     def implied_prolation(self):
-        '''.. versionadded:: 2.11
-
-        Time signature mark implied prolation.
+        '''Time signature mark implied prolation.
 
         Example 1. Implied prolation of time signature 
         with power-of-two denominator:
@@ -376,9 +374,7 @@ class TimeSignatureMark(ContextMark):
 
     @property
     def pair(self):
-        '''.. versionadded:: 2.8
-
-        Time signature numerator / denominator pair:
+        '''Time signature numerator / denominator pair:
 
         ::
 

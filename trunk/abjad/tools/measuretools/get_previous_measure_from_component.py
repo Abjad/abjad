@@ -5,9 +5,7 @@ from abjad.tools import leaftools
 
 
 def get_previous_measure_from_component(component):
-    '''.. versionadded:: 1.1
-
-    Get previous measure from `component`.
+    '''Get previous measure from `component`.
 
     When `component` is voice, staff or other sequential context,
     and when `component` contains a measure, return last measure

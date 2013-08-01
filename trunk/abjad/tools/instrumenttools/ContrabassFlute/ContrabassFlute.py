@@ -5,9 +5,7 @@ from abjad.tools.instrumenttools.Flute import Flute
 
 
 class ContrabassFlute(Flute):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of the contrabass flute:
+    r'''Abjad model of the contrabass flute:
 
     ::
 

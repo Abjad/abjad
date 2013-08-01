@@ -3,9 +3,7 @@ from abjad.tools.lilypondfiletools.AttributedBlock import AttributedBlock
 
 
 class MIDIBlock(AttributedBlock):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of LilyPond input file MIDI block:
+    r'''Abjad model of LilyPond input file MIDI block:
 
     ::
 

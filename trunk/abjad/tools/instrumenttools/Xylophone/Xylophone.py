@@ -7,9 +7,7 @@ from abjad.tools.instrumenttools.PercussionInstrument \
 
 
 class Xylophone(PercussionInstrument):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of the xylphone:
+    r'''Abjad model of the xylphone:
 
     ::
 

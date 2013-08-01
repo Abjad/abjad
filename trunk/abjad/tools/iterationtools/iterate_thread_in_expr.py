@@ -3,9 +3,7 @@ from abjad.tools import componenttools
 
 
 def iterate_thread_in_expr(expr, component_class, containment_signature, reverse=False):
-    r'''.. versionadded:: 2.10
-
-    Yield left-to-right instances of `component_class` in `expr` 
+    r'''Yield left-to-right instances of `component_class` in `expr` 
     with `containment_signature`:
 
     ::

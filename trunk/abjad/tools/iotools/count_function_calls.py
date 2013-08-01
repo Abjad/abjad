@@ -5,9 +5,7 @@ def count_function_calls(
     local_context=None,
     fixed_point=True,
     ):
-    '''.. versionadded:: 2.12
-
-    Count function calls returned by ``iotools.profile_expr(expr)``.
+    '''Count function calls returned by ``iotools.profile_expr(expr)``.
 
     Example 1. Function calls required to initialize note from string:
 

@@ -3,9 +3,7 @@ from abjad.tools import durationtools
 
 
 def multiply_and_scale_contents_of_measures_in_expr(expr, multiplier_pairs):
-    '''.. versionadded:: 1.1
-
-    Multiply and scale contents of measures in `expr` by `multiplier_pairs`.
+    '''Multiply and scale contents of measures in `expr` by `multiplier_pairs`.
 
     The `multiplier_pairs` argument must be a list of
     ``(contents_multiplier, denominator_multiplier)`` pairs.

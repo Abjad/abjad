@@ -24,9 +24,7 @@ class Multiplier(Duration):
 
     @property
     def is_proper_tuplet_multiplier(self):
-        '''.. versionadded:: 2.11
-
-        True when mutliplier is greater than ``1/2`` and less than ``2``.
+        '''True when mutliplier is greater than ``1/2`` and less than ``2``.
         Otherwise false:
 
         ::

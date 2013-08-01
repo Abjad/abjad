@@ -7,9 +7,7 @@ from abjad.tools.instrumenttools.PercussionInstrument \
 
 
 class Marimba(PercussionInstrument):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of the marimba:
+    r'''Abjad model of the marimba:
 
     ::
 

@@ -3,9 +3,7 @@ import numbers
 
 
 def is_positive_integer(expr):
-    '''.. versionadded:: 2.0
-
-    True when `expr` equals a positive integer:
+    '''True when `expr` equals a positive integer:
 
     ::
 

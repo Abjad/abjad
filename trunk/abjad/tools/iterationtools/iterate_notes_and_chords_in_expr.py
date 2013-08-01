@@ -4,9 +4,7 @@ from abjad.tools import notetools
 
 
 def iterate_notes_and_chords_in_expr(expr, reverse=False, start=0, stop=None):
-    r'''.. versionadded:: 2.10
-
-    Iterate notes and chords forward in `expr`:
+    r'''Iterate notes and chords forward in `expr`:
 
     ::
 

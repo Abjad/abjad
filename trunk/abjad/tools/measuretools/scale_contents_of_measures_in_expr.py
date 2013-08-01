@@ -5,9 +5,7 @@ from abjad.tools import mathtools
 
 
 def scale_contents_of_measures_in_expr(expr, multiplier=1):
-    '''.. versionadded:: 2.0
-
-    Scale contents of measures in `expr` by `multiplier`.
+    '''Scale contents of measures in `expr` by `multiplier`.
 
     Iterate expr. For every measure in expr first multiply the measure
     time siganture by `multiplier` and then scale measure contents to fit

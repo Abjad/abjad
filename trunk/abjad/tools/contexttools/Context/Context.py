@@ -189,9 +189,7 @@ class Context(Container):
 
     @property
     def engraver_consists(self):
-        r'''.. versionadded:: 2.0
-
-        Unordered set of LilyPond engravers to include in context definition.
+        r'''Unordered set of LilyPond engravers to include in context definition.
 
         Manage with add, update, other standard set commands:
 
@@ -210,9 +208,7 @@ class Context(Container):
 
     @property
     def engraver_removals(self):
-        r'''.. versionadded:: 2.0
-
-        Unordered set of LilyPond engravers to remove from context.
+        r'''Unordered set of LilyPond engravers to remove from context.
 
         Manage with add, update, other standard set commands:
         

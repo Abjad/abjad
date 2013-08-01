@@ -3,9 +3,7 @@ from abjad.tools import notetools
 
 
 def fill_measures_in_expr_with_minimal_number_of_notes(expr, decrease_durations_monotonically=True, iterctrl=None):
-    '''.. versionadded:: 1.1
-
-    Fill measures in `expr` with minimal number of notes that decrease durations monotonically:
+    '''Fill measures in `expr` with minimal number of notes that decrease durations monotonically:
 
     ::
 

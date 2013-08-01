@@ -5,9 +5,7 @@ from abjad.tools.marktools.Mark import Mark
 
 # TODO: extend LilyPond command marks to attach to spanners.
 class LilyPondCommandMark(Mark):
-    r'''.. versionadded:: 2.0
-
-    LilyPond command mark:
+    r'''LilyPond command mark:
 
     ::
 
@@ -119,9 +117,7 @@ class LilyPondCommandMark(Mark):
     @apply
     def format_slot():
         def fget(self):
-            '''.. versionadded:: 2.3
-
-            Get format slot of LilyPond command mark:
+            '''Get format slot of LilyPond command mark:
 
             ::
 

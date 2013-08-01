@@ -3,9 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class LilyPondLanguageToken(AbjadObject):
-    r'''.. versionadded:: 2.0
-
-    LilyPond language token:
+    r'''LilyPond language token:
 
     ::
 

@@ -5,9 +5,7 @@ from abjad.tools import markuptools
 
 
 def label_leaves_in_expr_with_leaf_depth(expr, markup_direction=Down):
-    r'''.. versionadded:: 1.1
-
-    Label leaves in `expr` with leaf depth:
+    r'''Label leaves in `expr` with leaf depth:
 
     ::
 

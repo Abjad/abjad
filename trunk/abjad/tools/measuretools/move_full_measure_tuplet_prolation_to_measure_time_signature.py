@@ -5,9 +5,7 @@ from abjad.tools import mathtools
 
 
 def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
-    r'''.. versionadded:: 1.1
-
-    Move prolation of full-measure tuplet to time signature of measure.
+    r'''Move prolation of full-measure tuplet to time signature of measure.
 
     Measures usually become non-power-of-two as as result:
 

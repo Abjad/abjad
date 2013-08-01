@@ -6,9 +6,7 @@ from abjad.tools.instrumenttools.Bassoon import Bassoon
 
 
 class Contrabassoon(Bassoon):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of the contrabassoon:
+    r'''Abjad model of the contrabassoon:
 
     ::
 

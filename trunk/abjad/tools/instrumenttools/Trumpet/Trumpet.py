@@ -6,9 +6,7 @@ from abjad.tools.instrumenttools.BrassInstrument import BrassInstrument
 
 
 class Trumpet(BrassInstrument):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of the trumpet:
+    r'''Abjad model of the trumpet:
 
     ::
 

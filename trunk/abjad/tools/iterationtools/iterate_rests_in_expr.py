@@ -3,9 +3,7 @@ from abjad.tools import resttools
 
 
 def iterate_rests_in_expr(expr, reverse=False, start=0, stop=None):
-    r'''.. versionadded:: 2.10
-
-    Iterate rests forward in `expr`:
+    r'''Iterate rests forward in `expr`:
 
     ::
 

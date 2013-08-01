@@ -7,9 +7,7 @@ from abjad.tools.instrumenttools.PercussionInstrument \
 
 
 class UntunedPercussion(PercussionInstrument):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of untuned percussion:
+    r'''Abjad model of untuned percussion:
 
     ::
 

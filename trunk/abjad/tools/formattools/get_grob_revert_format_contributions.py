@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def get_grob_revert_format_contributions(component):
-    '''.. versionadded:: 2.0
-
-    Get grob revert format contributions.
+    '''Get grob revert format contributions.
 
     Return alphabetized list of LilyPond grob reverts.
     '''

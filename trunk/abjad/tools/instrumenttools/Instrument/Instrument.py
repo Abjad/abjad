@@ -6,9 +6,7 @@ from abjad.tools import pitchtools
 
 
 class Instrument(contexttools.InstrumentMark):
-    '''.. versionadded:: 2.0
-
-    Abjad model of the musical instrument.
+    '''Abjad model of the musical instrument.
     '''
 
     ### INITIALIZER ###
@@ -132,9 +130,7 @@ class Instrument(contexttools.InstrumentMark):
     ### PUBLIC METHODS ###
 
     def get_default_performer_name(self):
-        r'''.. versionadded:: 2.5
-
-        Get default player name.
+        r'''Get default player name.
         '''
         if self._default_performer_names is None:
             performer_name = '{} player'.format(self.default_instrument_name)
@@ -143,9 +139,7 @@ class Instrument(contexttools.InstrumentMark):
             return self._default_performer_names[-1]
 
     def get_performer_names(self):
-        r'''.. versionadded:: 2.5
-
-        Get performer names.
+        r'''Get performer names.
         '''
         if self._default_performer_names is None:
             performer_name = '{} player'.format(self.default_instrument_name)

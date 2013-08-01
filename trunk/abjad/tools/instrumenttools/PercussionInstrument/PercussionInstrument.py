@@ -4,9 +4,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class PercussionInstrument(Instrument):
-    '''.. versionadded:: 2.0
-
-    Abjad model of percussion instruments.
+    '''Abjad model of percussion instruments.
     '''
 
     ### INITIALIZER ###

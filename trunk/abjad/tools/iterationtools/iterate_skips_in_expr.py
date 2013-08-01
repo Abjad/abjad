@@ -3,10 +3,7 @@ from abjad.tools import skiptools
 
 
 def iterate_skips_in_expr(expr, reverse=False, start=0, stop=None):
-    r'''.. versionadded:: 2.10
-
-
-    Iterate skips forward in `expr`:
+    r'''Iterate skips forward in `expr`:
 
     ::
 

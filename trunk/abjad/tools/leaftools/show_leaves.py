@@ -3,9 +3,7 @@ from abjad.tools import iotools
 
 
 def show_leaves(leaves, suppress_pdf=False):
-    r""".. versionadded:: 2.0
-
-    Show `leaves` in temporary piano staff score:
+    r"""Show `leaves` in temporary piano staff score:
 
     ::
 

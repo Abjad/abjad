@@ -4,9 +4,7 @@ from abjad.tools.lilypondfiletools.NonattributedBlock \
 
 
 class ScoreBlock(NonattributedBlock):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of LilyPond input file score block:
+    r'''Abjad model of LilyPond input file score block:
 
     ::
 

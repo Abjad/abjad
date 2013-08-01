@@ -4,9 +4,7 @@ from abjad.tools.lilypondproxytools.LilyPondObjectProxy \
 
 
 class LilyPondTweakReservoir(LilyPondObjectProxy):
-    '''.. versionadded:: 2.0
-
-    LilyPond tweak reservoir.
+    '''LilyPond tweak reservoir.
     '''
 
     pass

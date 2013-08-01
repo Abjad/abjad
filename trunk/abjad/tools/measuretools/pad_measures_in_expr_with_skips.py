@@ -4,9 +4,7 @@ from abjad.tools import skiptools
 
 # TODO: remove in favor of measuretools.pad_measures_in_expr()
 def pad_measures_in_expr_with_skips(expr, front, back, splice=False):
-    r'''.. versionadded:: 2.0
-
-    Pad measures in `expr` with skips.
+    r'''Pad measures in `expr` with skips.
 
     Iterate all measures in `expr`. Insert skip with duration equal
     to `front` at beginning of each measure. Insert skip with

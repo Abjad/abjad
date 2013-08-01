@@ -5,9 +5,7 @@ from abjad.tools.marktools.Mark import Mark
 
 
 class Annotation(Mark):
-    r'''.. versionadded:: 2.0
-
-    User-defined annotation:
+    r'''User-defined annotation:
 
     ::
 

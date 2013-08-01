@@ -6,9 +6,7 @@ from abjad.tools.instrumenttools.StringInstrument import StringInstrument
 
 
 class Cello(StringInstrument):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of the cello:
+    r'''Abjad model of the cello:
 
     ::
 

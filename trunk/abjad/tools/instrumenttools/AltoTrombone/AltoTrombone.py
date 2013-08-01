@@ -6,9 +6,7 @@ from abjad.tools.instrumenttools.Trombone.Trombone import Trombone
 
 
 class AltoTrombone(Trombone):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of the alto trombone:
+    r'''Abjad model of the alto trombone:
 
     ::
 

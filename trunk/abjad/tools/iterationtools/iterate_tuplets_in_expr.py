@@ -3,9 +3,7 @@ from abjad.tools import tuplettools
 
 
 def iterate_tuplets_in_expr(expr, reverse=False, start=0, stop=None):
-    r'''.. versionadded:: 2.10
-
-    Iterate tuplets forward in `expr`:
+    r'''Iterate tuplets forward in `expr`:
 
     ::
 

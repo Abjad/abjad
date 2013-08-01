@@ -3,9 +3,7 @@ import math
 
 
 def binomial_coefficient(n, k):
-    r'''.. versionadded:: 2.0
-
-    Binomial coefficient of `n` choose `k`:
+    r'''Binomial coefficient of `n` choose `k`:
 
     ::
 

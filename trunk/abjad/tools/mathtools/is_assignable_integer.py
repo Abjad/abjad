@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def is_assignable_integer(expr):
-    r'''.. versionadded:: 2.0
-
-    True when `expr` is equivalent to an integer and
+    r'''True when `expr` is equivalent to an integer and
     can be written without recourse to ties:
 
     ::

@@ -231,9 +231,7 @@ class Measure(FixedDurationContainer):
     @apply
     def always_format_time_signature():
         def fget(self):
-            '''.. versionadded:: 2.9
-
-            Read / write flag to indicate whether time signature
+            '''Read / write flag to indicate whether time signature
             should appear in LilyPond format even when not expected.
 
             Set to true when necessary to print the same signature repeatedly.
@@ -251,9 +249,7 @@ class Measure(FixedDurationContainer):
     @apply
     def automatically_adjust_time_signature():
         def fget(self):
-            '''.. versionadded:: 2.9
-
-            Read / write flag to indicate whether time signature
+            '''Read / write flag to indicate whether time signature
             should update automatically following contents-changing 
             operations:
 
@@ -374,9 +370,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def is_misfilled(self):
-        '''.. versionadded:: 2.9
-
-        True when measure is either underfull or overfull:
+        '''True when measure is either underfull or overfull:
 
         ::
 
@@ -414,9 +408,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def is_overfull(self):
-        '''.. versionadded:: 1.1
-
-        True when prolated duration is greater than time signature duration:
+        '''True when prolated duration is greater than time signature duration:
 
         ::
 
@@ -435,9 +427,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def is_underfull(self):
-        '''.. versionadded:: 1.1
-
-        True when prolated duration is less than time signature duration:
+        '''True when prolated duration is less than time signature duration:
 
         ::
 
@@ -503,9 +493,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def target_duration(self):
-        r'''.. versionadded:: 2.9
-
-        Target duration of measure always equal to duration 
+        r'''Target duration of measure always equal to duration 
         of effective time signature.
 
         Return duration.

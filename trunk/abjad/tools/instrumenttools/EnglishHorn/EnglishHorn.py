@@ -6,9 +6,7 @@ from abjad.tools.instrumenttools.Oboe import Oboe
 
 
 class EnglishHorn(Oboe):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of the English horn:
+    r'''Abjad model of the English horn:
 
     ::
 

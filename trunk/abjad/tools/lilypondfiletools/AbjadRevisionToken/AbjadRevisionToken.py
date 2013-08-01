@@ -3,9 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class AbjadRevisionToken(AbjadObject):
-    '''.. versionadded:: 2.0
-
-    Abjad version token:
+    '''Abjad version token:
 
     ::
 

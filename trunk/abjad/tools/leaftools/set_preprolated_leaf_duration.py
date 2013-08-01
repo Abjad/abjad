@@ -4,9 +4,7 @@ from abjad.tools import durationtools
 
 
 def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
-    r'''.. versionadded:: 1.1
-
-    Set preprolated `leaf` duration:
+    r'''Set preprolated `leaf` duration:
 
     ::
 

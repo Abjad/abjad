@@ -4,9 +4,7 @@ from abjad.tools import leaftools
 
 
 def iterate_timeline_in_expr(expr, component_class=None, reverse=False):
-    r'''.. versionadded:: 2.10
-
-    Iterate timeline forward in `expr`:
+    r'''Iterate timeline forward in `expr`:
 
     ::
 

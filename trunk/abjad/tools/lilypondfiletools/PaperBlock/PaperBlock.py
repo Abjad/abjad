@@ -4,9 +4,7 @@ import types
 
 
 class PaperBlock(AttributedBlock):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of LilyPond input file paper block:
+    r'''Abjad model of LilyPond input file paper block:
 
     ::
 

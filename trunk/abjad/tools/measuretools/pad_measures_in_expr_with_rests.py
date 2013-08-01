@@ -5,9 +5,7 @@ from abjad.tools import resttools
 
 # TODO: remove in favor of measuretools.pad_measures_in_expr()
 def pad_measures_in_expr_with_rests(expr, front, back, splice=False):
-    r'''.. versionadded:: 1.1
-
-    Pad measures in `expr` with rests.
+    r'''Pad measures in `expr` with rests.
 
     Iterate all measures in `expr`. Insert rest with duration equal
     to `front` at beginning of each measure. Insert rest with

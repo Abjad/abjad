@@ -5,9 +5,7 @@ from abjad.tools.instrumenttools.SingleReedInstrument \
 
 
 class Clarinet(SingleReedInstrument):
-    r'''.. versionadded:: 2.6
-
-    Abjad model of the family of clarinets.
+    r'''Abjad model of the family of clarinets.
     '''
     
     ### CLASS VARIABLES ###

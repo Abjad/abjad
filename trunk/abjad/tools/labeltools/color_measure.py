@@ -3,9 +3,7 @@ from abjad.tools import measuretools
 
 
 def color_measure(measure, color='red'):
-    r'''.. versionadded:: 2.0
-
-    Color `measure` with `color`:
+    r'''Color `measure` with `color`:
 
     ::
 

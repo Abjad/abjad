@@ -7,9 +7,7 @@ from abjad.tools.instrumenttools.PercussionInstrument \
 
 
 class Vibraphone(PercussionInstrument):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of the vibraphone:
+    r'''Abjad model of the vibraphone:
 
     ::
 

@@ -512,9 +512,7 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
 
     @property
     def flag_count(self):
-        r'''.. versionadded:: 2.11
-
-        Nonnegative integer number of flags required to notate duration:
+        r'''Nonnegative integer number of flags required to notate duration:
 
         ::
 
@@ -549,9 +547,7 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
 
     @property
     def has_power_of_two_denominator(self):
-        r'''.. versionadded:: 2.11
-
-        True when duration is an integer power of ``2``.
+        r'''True when duration is an integer power of ``2``.
         Otherwise false:
 
         ::
@@ -585,9 +581,7 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
 
     @property
     def implied_prolation(self):
-        r'''.. versionadded:: 2.11
-
-        Implied prolation of multiplier:
+        r'''Implied prolation of multiplier:
 
         ::
 
@@ -622,9 +616,7 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
 
     @property
     def is_assignable(self):
-        r'''.. versionadded:: 2.11
-
-        True when assignable. Otherwise false:
+        r'''True when assignable. Otherwise false:
 
         ::
 
@@ -662,9 +654,7 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
 
     @property
     def lilypond_duration_string(self):
-        r'''.. versionadded:: 2.11
-
-        LilyPond duration string of assignable duration.
+        r'''LilyPond duration string of assignable duration.
 
             >>> Duration(3, 16).lilypond_duration_string
             '8.'
@@ -697,9 +687,7 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
 
     @property
     def pair(self):
-        '''.. versionadded:: 2.9
-
-        Pair of duration numerator and denominator:
+        '''Pair of duration numerator and denominator:
 
         ::
 
@@ -716,9 +704,7 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
 
     @property
     def prolation_string(self):
-        r'''.. versionadded:: 2.11
-
-        Prolation string:
+        r'''Prolation string:
 
         ::
 
@@ -751,9 +737,7 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
 
     @property
     def reciprocal(self):
-        '''.. versionadded:: 2.11
-
-        Reciprocal of duration.
+        '''Reciprocal of duration.
 
         Return newly constructed duration.
         '''
@@ -806,9 +790,7 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
 
     @staticmethod
     def is_token(expr):
-        '''.. versionadded:: 2.11
-
-        True if `expr` correctly initializes a duration.
+        '''True if `expr` correctly initializes a duration.
         Otherwise false.
 
             >>> Duration.is_token('8.')

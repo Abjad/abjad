@@ -3,9 +3,7 @@ from abjad.tools import voicetools
 
 
 def iterate_voices_in_expr(expr, reverse=False, start=0, stop=None):
-    r'''.. versionadded:: 2.0
-
-    Iterate voices forward in `expr`:
+    r'''Iterate voices forward in `expr`:
 
     ::
 

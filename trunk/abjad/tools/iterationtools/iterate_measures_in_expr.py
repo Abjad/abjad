@@ -3,9 +3,7 @@ from abjad.tools import measuretools
 
 
 def iterate_measures_in_expr(expr, reverse=False, start=0, stop=None):
-    r'''.. versionadded:: 2.10
-
-    Iterate measures forward in `expr`:
+    r'''Iterate measures forward in `expr`:
 
     ::
 

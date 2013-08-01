@@ -5,9 +5,7 @@ from abjad.tools import durationtools
 
 
 def fuse_measures(measures):
-    r'''.. versionadded:: 1.1
-
-    Fuse selection of `measures`:
+    r'''Fuse selection of `measures`:
 
     ::
 

@@ -5,9 +5,7 @@ from abjad.tools import leaftools
 
 
 def get_next_measure_from_component(component):
-    '''.. versionadded:: 1.1
-
-    Get next measure from `component`.
+    '''Get next measure from `component`.
 
     When `component` is a voice, staff or other sequential context,
     and when `component` contains a measure, return first measure

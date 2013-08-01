@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def class_to_tools_package_qualified_class_name(current_class):
-    r'''.. versionadded:: 2.10
-
-    Change `current_class` to tools package-qualified class name:
+    r'''Change `current_class` to tools package-qualified class name:
 
     ::
 

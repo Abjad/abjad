@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def remove_initial_rests_from_sequence(sequence):
-    r'''.. versionadded:: 2.0
-
-    Remove initial rests from `sequence`:
+    r'''Remove initial rests from `sequence`:
 
     ::
 

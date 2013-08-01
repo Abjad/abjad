@@ -7,9 +7,7 @@ from abjad.tools.instrumenttools.WindInstrument import WindInstrument
 
 
 class FrenchHorn(BrassInstrument, WindInstrument):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of the French horn:
+    r'''Abjad model of the French horn:
 
     ::
 

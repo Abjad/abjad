@@ -152,9 +152,7 @@ class AbjadConfiguration(Configuration):
 
     @staticmethod
     def get_abjad_version_string():
-        '''.. versionadded:: 2.0
-
-        Get Abjad version string:
+        '''Get Abjad version string:
 
         ::
 
@@ -188,9 +186,7 @@ class AbjadConfiguration(Configuration):
 
     @staticmethod
     def get_lilypond_version_string():
-        '''.. versionadded:: 2.0
-
-        Get LilyPond version string:
+        '''Get LilyPond version string:
 
         ::
 
@@ -220,9 +216,7 @@ class AbjadConfiguration(Configuration):
 
     @staticmethod
     def get_python_version_string():
-        '''.. versionadded:: 2.0
-
-        Get Python version string:
+        '''Get Python version string:
 
         ::
 
@@ -243,9 +237,7 @@ class AbjadConfiguration(Configuration):
         
     @staticmethod
     def get_tab_width():
-        r'''.. versionadded:: 2.9
-
-        Get system tab width:
+        r'''Get system tab width:
 
         ::
 

@@ -3,9 +3,7 @@ from abjad.tools import spannertools
 
 
 def iterate_pitched_tie_chains_in_expr(expr, reverse=False):
-    r'''.. versionadded:: 2.10
-
-    Iterate pitched tie chains forward in `expr`:
+    r'''Iterate pitched tie chains forward in `expr`:
 
     ::
 

@@ -4,9 +4,7 @@ from abjad.tools import notetools
 
 
 def fill_measures_in_expr_with_time_signature_denominator_notes(expr, iterctrl=None):
-    r'''.. versionadded:: 1.1
-
-    Fill measures in `expr` with time signature denominator notes:
+    r'''Fill measures in `expr` with time signature denominator notes:
 
     ::
 

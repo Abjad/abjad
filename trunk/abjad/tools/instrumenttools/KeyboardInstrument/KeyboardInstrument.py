@@ -4,9 +4,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class KeyboardInstrument(Instrument):
-    '''.. versionadded:: 2.0
-
-    Abjad model of keyboard instruments.
+    '''Abjad model of keyboard instruments.
     '''
 
     ### INITIALIZER ###

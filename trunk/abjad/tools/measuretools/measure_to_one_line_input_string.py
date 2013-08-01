@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def measure_to_one_line_input_string(measure):
-    r'''.. versionadded:: 2.6
-
-    Change `measure` to one-line input string:
+    r'''Change `measure` to one-line input string:
 
     ::
 

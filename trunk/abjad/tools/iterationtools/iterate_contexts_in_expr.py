@@ -3,9 +3,7 @@ from abjad.tools import contexttools
 
 
 def iterate_contexts_in_expr(expr, reverse=False, start=0, stop=None):
-    r'''.. versionadded:: 2.10
-
-    Iterate contexts forward in `expr`:
+    r'''Iterate contexts forward in `expr`:
 
     ::
 

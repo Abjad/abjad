@@ -5,9 +5,7 @@ from abjad.tools import sequencetools
 
 
 def get_likely_multiplier_of_components(components):
-    r'''.. versionadded:: 2.0
-
-    Get likely multiplier of `components`:
+    r'''Get likely multiplier of `components`:
 
     ::
 

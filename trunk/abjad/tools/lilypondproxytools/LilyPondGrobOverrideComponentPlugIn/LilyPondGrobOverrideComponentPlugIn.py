@@ -8,9 +8,7 @@ from abjad.tools.lilypondproxytools.LilyPondComponentPlugIn \
 
 
 class LilyPondGrobOverrideComponentPlugIn(LilyPondComponentPlugIn):
-    '''.. versionadded:: 2.0
-
-    LilyPond grob override component plug-in.
+    '''LilyPond grob override component plug-in.
     '''
 
     ### SPECIAL METHODS ###

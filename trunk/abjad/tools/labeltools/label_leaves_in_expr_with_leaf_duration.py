@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def label_leaves_in_expr_with_leaf_duration(expr, markup_direction=Down):
-    r'''.. versionadded:: 1.1
-
-    Label leaves in `expr` with prolated leaf duration:
+    r'''Label leaves in `expr` with prolated leaf duration:
 
     ::
 

@@ -5,9 +5,7 @@ from abjad.tools import mathtools
 
 
 def divide_leaf_meiotically(leaf, n=2):
-    r'''.. versionadded:: 1.1
-
-    Divide `leaf` meiotically `n` times:
+    r'''Divide `leaf` meiotically `n` times:
 
     ::
 

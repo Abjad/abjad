@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def get_leaf_in_expr_with_maximum_duration(expr):
-    r'''.. versionadded:: 2.5
-
-    Get leaf in `expr` with maximum prolated duration:
+    r'''Get leaf in `expr` with maximum prolated duration:
 
     ::
 

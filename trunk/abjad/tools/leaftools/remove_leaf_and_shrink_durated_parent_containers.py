@@ -5,9 +5,7 @@ from abjad.tools import mathtools
 
 
 def remove_leaf_and_shrink_durated_parent_containers(leaf):
-    r'''.. versionadded:: 1.1
-
-    Remove `leaf` and shrink durated parent containers:
+    r'''Remove `leaf` and shrink durated parent containers:
 
     ::
 

@@ -8,9 +8,7 @@ from abjad.tools.instrumenttools.KeyboardInstrument import KeyboardInstrument
 
 # TODO: extend class definition to allow for custom target context in repr
 class Piano(KeyboardInstrument):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of the piano:
+    r'''Abjad model of the piano:
 
     ::
 

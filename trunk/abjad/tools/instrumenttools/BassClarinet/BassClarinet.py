@@ -6,9 +6,7 @@ from abjad.tools.instrumenttools.Clarinet.Clarinet import Clarinet
 
 
 class BassClarinet(Clarinet):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of the bass clarinet:
+    r'''Abjad model of the bass clarinet:
 
     ::
 

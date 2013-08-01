@@ -5,9 +5,7 @@ from abjad.tools.instrumenttools.SingleReedInstrument \
 
 
 class Saxophone(SingleReedInstrument):
-    r'''.. versionadded:: 2.6
-
-    Abjad model of the family of saxophones.
+    r'''Abjad model of the family of saxophones.
     '''
 
     ### CLASS VARIABLES ###

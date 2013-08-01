@@ -4,9 +4,7 @@ from abjad.tools.lilypondproxytools.LilyPondObjectProxy \
 
 
 class LilyPondGrobProxy(LilyPondObjectProxy):
-    '''.. versionadded:: 2.0
-
-    LilyPond grob proxy.
+    '''LilyPond grob proxy.
     '''
 
     ### SPECIAL METHODS ###

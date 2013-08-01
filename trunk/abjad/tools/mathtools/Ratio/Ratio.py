@@ -3,9 +3,7 @@ from abjad.tools.mathtools.NonreducedRatio import NonreducedRatio
 
 
 class Ratio(NonreducedRatio):
-    '''.. versionadded:: 2.10
-
-    Ratio of one or more nonzero integers.
+    '''Ratio of one or more nonzero integers.
 
     Initialize from one or more nonzero integers:
 

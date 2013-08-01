@@ -3,9 +3,7 @@ from abjad.tools import componenttools
 
 
 def repeat_leaf(leaf, total=1):
-    r'''.. versionadded:: 1.1
-
-    Repeat `leaf` and extend spanners:
+    r'''Repeat `leaf` and extend spanners:
 
     ::
 

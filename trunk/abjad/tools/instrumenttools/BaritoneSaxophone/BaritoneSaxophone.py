@@ -6,9 +6,7 @@ from abjad.tools.instrumenttools.Saxophone.Saxophone import Saxophone
 
 
 class BaritoneSaxophone(Saxophone):
-    r'''.. versionadded:: 2.6
-
-    Abjad model of the baritone saxophone:
+    r'''Abjad model of the baritone saxophone:
 
     ::
 

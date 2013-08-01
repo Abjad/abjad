@@ -3,9 +3,7 @@ import types
 
 
 def iterate_runs_in_expr(sequence, classes):
-    r'''.. versionadded:: 2.0
-
-    Example 1. Iterate runs of notes and chords at only the 
+    r'''Example 1. Iterate runs of notes and chords at only the 
     top level of score:
 
     ::

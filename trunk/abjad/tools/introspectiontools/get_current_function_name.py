@@ -3,9 +3,7 @@ import inspect
 
 
 def get_current_function_name():
-    r'''.. versionadded:: 2.10
-
-    Get current function name:
+    r'''Get current function name:
 
     ::
 

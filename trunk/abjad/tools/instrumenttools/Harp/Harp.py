@@ -7,9 +7,7 @@ from abjad.tools.instrumenttools.StringInstrument import StringInstrument
 
 
 class Harp(StringInstrument):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of the harp:
+    r'''Abjad model of the harp:
 
     ::
 

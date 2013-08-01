@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def color_contents_of_container(container, color):
-    r'''.. versionadded:: 2.0
-
-    Color contents of `container`:
+    r'''Color contents of `container`:
 
     ::
 

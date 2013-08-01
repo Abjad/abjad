@@ -5,9 +5,7 @@ from abjad.tools import markuptools
 
 
 def label_leaves_in_expr_with_tuplet_depth(expr, markup_direction=Down):
-    r'''.. versionadded:: 1.1
-
-    Label leaves in `expr` with tuplet depth:
+    r'''Label leaves in `expr` with tuplet depth:
 
     ::
 

@@ -3,9 +3,7 @@ import copy
 
 
 def apply_full_measure_tuplets_to_contents_of_measures_in_expr(expr, supplement=None):
-    r'''.. versionadded:: 2.0
-
-    Apply full-measure tuplets to contents of measures in `expr`:
+    r'''Apply full-measure tuplets to contents of measures in `expr`:
 
     ::
 

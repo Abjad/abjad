@@ -14,9 +14,7 @@ def split_leaf_at_offsets(
     tie_split_notes=True,
     tie_split_rests=False,
     ):
-    r'''.. versionadded:: 2.10
-
-    Split `leaf` at `offsets`.
+    r'''Split `leaf` at `offsets`.
 
     Example 1. Split note once at `offsets` and tie split notes:
 

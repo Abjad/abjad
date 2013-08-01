@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def default_instrument_name_to_instrument_class(default_instrument_name):
-    r'''.. versionadded:: 2.5
-
-    Change `default_instrument_name` to class name:
+    r'''Change `default_instrument_name` to class name:
 
     ::
 

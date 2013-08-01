@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def import_structured_package(path, namespace, package_root_name='abjad'):
-    r'''.. versionadded:: 2.9
-
-    Import public names from `path` into `namespace`.
+    r'''Import public names from `path` into `namespace`.
 
     This is the custom function that all Abjad packages use to import
     public classes and functions on startup.

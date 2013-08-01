@@ -2,9 +2,7 @@
 # TODO: fix hyphen chains in API entry so Sphinx doesn't complain.
 # TODO: remove string-valued exp='cosine' keyword
 def interpolate_divide_multiple(totals, key_values, exp='cosine'):
-    '''.. versionadded:: 2.0
-
-    Interpolate `key_values` such that the sum of the
+    '''Interpolate `key_values` such that the sum of the
     resulting interpolated values equals the given `totals`:
 
     ::

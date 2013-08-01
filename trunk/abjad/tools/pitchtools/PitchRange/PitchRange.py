@@ -330,9 +330,7 @@ class PitchRange(AbjadObject):
 
     @property
     def pitch_range_name(self):
-        r'''.. versionadded:: 2.7
-
-        Name of pitch range:
+        r'''Name of pitch range:
 
         ::
 
@@ -345,9 +343,7 @@ class PitchRange(AbjadObject):
 
     @property
     def pitch_range_name_markup(self):
-        r'''.. versionadded:: 2.7
-
-        Markup of pitch range name:
+        r'''Markup of pitch range name:
 
         ::
 

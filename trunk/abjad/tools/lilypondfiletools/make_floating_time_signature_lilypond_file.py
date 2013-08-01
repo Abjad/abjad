@@ -4,9 +4,7 @@ from abjad.tools import schemetools
 
 
 def make_floating_time_signature_lilypond_file(music=None):
-    r'''.. versionadded:: 2.10
-
-    Make floating time signature LilyPond file from `music`.
+    r'''Make floating time signature LilyPond file from `music`.
 
     Function creates a basic LilyPond file.
 

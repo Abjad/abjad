@@ -5,9 +5,7 @@ from abjad.tools.instrumenttools.Flute import Flute
 
 
 class BassFlute(Flute):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of the bass flute:
+    r'''Abjad model of the bass flute:
 
     ::
 

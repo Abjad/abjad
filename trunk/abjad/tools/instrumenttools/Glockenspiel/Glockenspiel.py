@@ -7,9 +7,7 @@ from abjad.tools.instrumenttools.PercussionInstrument \
 
 
 class Glockenspiel(PercussionInstrument):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of the glockenspiel:
+    r'''Abjad model of the glockenspiel:
 
     ::
 

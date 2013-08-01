@@ -6,9 +6,7 @@ from abjad.tools import pitchtools
 
 def label_vertical_moments_in_expr_with_interval_class_vectors(
     expr, markup_direction=Down):
-    r'''.. versionadded:: 2.0
-
-    Label interval-class vector of every vertical moment in `expr`:
+    r'''Label interval-class vector of every vertical moment in `expr`:
 
     ::
 

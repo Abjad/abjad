@@ -7,9 +7,7 @@ from abjad.tools.instrumenttools.DoubleReedInstrument \
 
 
 class Bassoon(DoubleReedInstrument):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of the bassoon:
+    r'''Abjad model of the bassoon:
 
     ::
 

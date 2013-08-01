@@ -7,9 +7,7 @@ from abjad.tools import notetools
 
 def label_leaves_in_expr_with_pitch_class_numbers(expr, number=True, color=False,
     markup_direction=Down):
-    r'''.. versionadded:: 1.1
-
-    Label leaves in `expr` with pitch-class numbers:
+    r'''Label leaves in `expr` with pitch-class numbers:
 
     ::
 

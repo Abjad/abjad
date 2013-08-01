@@ -6,9 +6,7 @@ from abjad.tools.instrumenttools.WindInstrument import WindInstrument
 
 
 class Flute(WindInstrument):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of the flute:
+    r'''Abjad model of the flute:
 
     ::
 

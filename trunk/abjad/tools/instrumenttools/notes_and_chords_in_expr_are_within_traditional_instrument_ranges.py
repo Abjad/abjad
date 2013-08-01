@@ -6,9 +6,7 @@ from abjad.tools import voicetools
 
 
 def notes_and_chords_in_expr_are_within_traditional_instrument_ranges(expr):
-    '''.. versionadded:: 2.0
-
-    True when notes and chords in `expr` are within traditional instrument ranges:
+    '''True when notes and chords in `expr` are within traditional instrument ranges:
 
     ::
 

@@ -6,9 +6,7 @@ from abjad.tools import mathtools
 
 
 def scale_measure_and_adjust_time_signature(measure, multiplier=1):
-    r'''.. versionadded:: 2.0
-
-    Scale `measure` by `multiplier` and adjust time signature:
+    r'''Scale `measure` by `multiplier` and adjust time signature:
 
     ::
 

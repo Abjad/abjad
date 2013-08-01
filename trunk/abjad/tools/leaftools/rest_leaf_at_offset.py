@@ -5,9 +5,7 @@ from abjad.tools import durationtools
 
 # TODO: implement corresponding function to rest left half
 def rest_leaf_at_offset(leaf, offset):
-    r'''.. versionadded:: 1.1
-
-    Split `leaf` at `offset` and rest right half:
+    r'''Split `leaf` at `offset` and rest right half:
 
     ::
 

@@ -4,9 +4,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class AttributedBlock(list, AbjadObject):
-    '''.. versionadded:: 2.0
-
-    Abjad model of LilyPond input file block with attributes.
+    '''Abjad model of LilyPond input file block with attributes.
     '''
 
     ### CLASS VARIABLES ###

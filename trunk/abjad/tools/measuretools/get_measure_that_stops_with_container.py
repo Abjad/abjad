@@ -4,9 +4,7 @@ from abjad.tools import containertools
 
 
 def get_measure_that_stops_with_container(container):
-    '''.. versionadded:: 2.11
-
-    Get measure that stops with `container`.
+    '''Get measure that stops with `container`.
 
     Return measure or none.
     '''

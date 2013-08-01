@@ -6,9 +6,7 @@ from abjad.tools.instrumenttools.Voice import Voice
 
 
 class BassVoice(Voice):
-    r'''.. versionadded:: 2.8
-
-    Abjad model of the bass voice:
+    r'''Abjad model of the bass voice:
 
     ::
 

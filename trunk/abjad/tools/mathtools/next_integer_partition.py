@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def next_integer_partition(integer_partition):
-    r'''.. versionadded:: 2.0
-
-    Next integer partition following `integer_partition` in descending lex order:
+    r'''Next integer partition following `integer_partition` in descending lex order:
 
     ::
 

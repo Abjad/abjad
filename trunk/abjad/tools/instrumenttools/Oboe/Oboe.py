@@ -7,9 +7,7 @@ from abjad.tools.instrumenttools.DoubleReedInstrument \
 
 
 class Oboe(DoubleReedInstrument):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of the oboe:
+    r'''Abjad model of the oboe:
 
     ::
 

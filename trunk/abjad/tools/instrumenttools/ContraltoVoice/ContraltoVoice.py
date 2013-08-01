@@ -6,9 +6,7 @@ from abjad.tools.instrumenttools.Voice import Voice
 
 
 class ContraltoVoice(Voice):
-    r'''.. versionadded:: 2.8
-
-    Abjad model of the contralto voice:
+    r'''Abjad model of the contralto voice:
 
     ::
 

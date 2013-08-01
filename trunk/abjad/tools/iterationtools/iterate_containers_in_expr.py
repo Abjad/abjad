@@ -3,9 +3,7 @@ from abjad.tools import containertools
 
 
 def iterate_containers_in_expr(expr, reverse=False, start=0, stop=None):
-    r'''.. versionadded:: 2.10
-
-    Iterate containers forward in `expr`:
+    r'''Iterate containers forward in `expr`:
 
     ::
 

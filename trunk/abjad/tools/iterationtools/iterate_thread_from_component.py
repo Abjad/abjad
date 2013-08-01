@@ -3,9 +3,7 @@ from abjad.tools import componenttools
 
 
 def iterate_thread_from_component(component, component_class=None, reverse=False):
-    r'''.. versionadded:: 2.10
-
-    Itearte thread forward from `component` and yield instances of `component_class`:
+    r'''Itearte thread forward from `component` and yield instances of `component_class`:
 
     ::
 

@@ -5,9 +5,7 @@ from abjad.tools import voicetools
 
 
 def iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges(expr):
-    '''.. versionadded:: 2.0
-
-    Iterate notes and chords in `expr` outside traditional instrument ranges:
+    '''Iterate notes and chords in `expr` outside traditional instrument ranges:
 
     ::
 

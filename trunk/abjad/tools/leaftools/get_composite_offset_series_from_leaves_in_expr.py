@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def get_composite_offset_series_from_leaves_in_expr(expr):
-    r'''.. versionadded:: 2.0
-
-    Get composite offset series from leaves in `expr`:
+    r'''Get composite offset series from leaves in `expr`:
 
     ::
 

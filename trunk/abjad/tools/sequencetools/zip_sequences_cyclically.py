@@ -10,8 +10,7 @@ def zip_sequences_cyclically(*sequences):
         >>> sequencetools.zip_sequences_cyclically([1, 2, 3], ['a', 'b'])
         [(1, 'a'), (2, 'b'), (3, 'a')]
 
-    .. versionadded:: 1.1
-        Arbitrary number of input sequences now allowed.
+    Arbitrary number of input sequences now allowed.
 
     ::
 

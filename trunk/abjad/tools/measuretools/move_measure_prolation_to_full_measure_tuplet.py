@@ -5,9 +5,7 @@ from abjad.tools import mathtools
 
 
 def move_measure_prolation_to_full_measure_tuplet(expr):
-    '''.. versionadded:: 2.0
-
-    Move measure prolation to full-measure tuplet.
+    '''Move measure prolation to full-measure tuplet.
 
     Turn non-power-of-two measures into power-of-two measures containing
     a single fixed-duration tuplet.

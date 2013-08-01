@@ -3,9 +3,7 @@ from abjad.tools import skiptools
 
 
 def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl=None):
-    '''.. versionadded:: 1.1
-
-    Fill measures in `expr` with full-measure spacer skips.
+    '''Fill measures in `expr` with full-measure spacer skips.
     '''
     from abjad.tools import contexttools
     from abjad.tools import iterationtools

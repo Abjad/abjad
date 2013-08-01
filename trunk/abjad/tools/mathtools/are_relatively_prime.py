@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def are_relatively_prime(expr):
-    '''.. versionadded:: 2.5
-
-    True when `expr` is a sequence comprising zero or more numbers,
+    '''True when `expr` is a sequence comprising zero or more numbers,
     all of which are relatively prime:
 
     ::

@@ -6,9 +6,7 @@ from abjad.tools import mathtools
 
 # TODO: implement measuretools.set_measure_denominator_and_adjust_contents().
 def set_measure_denominator_and_adjust_numerator(measure, denominator):
-    r'''.. versionadded:: 1.1
-
-    Set `measure` time signature `denominator` and multiply time signature numerator accordingly:
+    r'''Set `measure` time signature `denominator` and multiply time signature numerator accordingly:
 
     ::
 

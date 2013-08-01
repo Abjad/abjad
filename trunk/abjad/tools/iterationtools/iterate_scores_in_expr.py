@@ -3,9 +3,7 @@ from abjad.tools import scoretools
 
 
 def iterate_scores_in_expr(expr, reverse=False, start=0, stop=None):
-    '''.. versionadded:: 2.10
-
-    Iterate scores forward in `expr`:
+    '''Iterate scores forward in `expr`:
 
     ::
 

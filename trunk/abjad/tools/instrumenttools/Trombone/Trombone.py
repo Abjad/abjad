@@ -4,9 +4,7 @@ from abjad.tools.instrumenttools.BrassInstrument import BrassInstrument
 
 
 class Trombone(BrassInstrument):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of the family of trombones.
+    r'''Abjad model of the family of trombones.
     '''
 
     ### CLASS VARIABLES ###

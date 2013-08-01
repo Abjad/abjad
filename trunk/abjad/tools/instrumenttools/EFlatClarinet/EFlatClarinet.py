@@ -6,9 +6,7 @@ from abjad.tools.instrumenttools.Clarinet.Clarinet import Clarinet
 
 
 class EFlatClarinet(Clarinet):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of the E-flat clarinet:
+    r'''Abjad model of the E-flat clarinet:
 
     ::
 

@@ -3,9 +3,7 @@ from abjad.tools import componenttools
 
 
 def iterate_namesakes_from_component(component, reverse=False, start=0, stop=None):
-    r'''.. versionadded:: 1.1
-
-    Iterate namesakes forward from `component`:
+    r'''Iterate namesakes forward from `component`:
 
     ::
 

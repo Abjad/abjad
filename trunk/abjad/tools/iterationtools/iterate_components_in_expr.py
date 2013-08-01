@@ -9,9 +9,7 @@ def iterate_components_in_expr(
     start=0,
     stop=None,
     ):
-    r'''.. versionadded:: 2.10
-
-    Iterate components forward in `expr`.
+    r'''Iterate components forward in `expr`.
     '''
 
     component_class = component_class or componenttools.Component

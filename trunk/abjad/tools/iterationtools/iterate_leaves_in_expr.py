@@ -3,9 +3,7 @@ from abjad.tools import leaftools
 
 
 def iterate_leaves_in_expr(expr, reverse=False, start=0, stop=None):
-    r'''.. versionadded:: 2.10
-
-    Iterate leaves forward in `expr`:
+    r'''Iterate leaves forward in `expr`:
 
     ::
 

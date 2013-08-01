@@ -4,9 +4,7 @@ from abjad.tools.lilypondproxytools.LilyPondObjectProxy \
 
 
 class LilyPondContextProxy(LilyPondObjectProxy):
-    '''.. versionadded:: 2.0
-
-    LilyPond context proxy.
+    '''LilyPond context proxy.
     '''
 
     pass

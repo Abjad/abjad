@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def report_spanner_format_contributions(spanner):
-    r'''.. versionadded:: 2.9
-
-    Report spanner format contributions for every leaf 
+    r'''Report spanner format contributions for every leaf 
     to which spanner attaches:
 
         >>> staff = Staff("c8 d e f")

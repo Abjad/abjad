@@ -3,9 +3,7 @@ import itertools
 
 
 def report_time_signature_distribution(expr):
-    r'''.. versionadded:: 2.0
-
-    Report time signature distribution of `expr`:
+    r'''Report time signature distribution of `expr`:
 
     ::
 

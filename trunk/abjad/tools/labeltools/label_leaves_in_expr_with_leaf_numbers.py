@@ -4,9 +4,7 @@ from abjad.tools import markuptools
 
 
 def label_leaves_in_expr_with_leaf_numbers(expr, markup_direction=Down):
-    r'''.. versionadded:: 1.1
-
-    Label leaves in `expr` with leaf numbers:
+    r'''Label leaves in `expr` with leaf numbers:
 
     ::
 

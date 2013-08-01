@@ -4,9 +4,7 @@ from abjad.tools import durationtools
 
 
 def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
-    r'''.. versionadded:: 1.1
-
-    Change power-of-two `measure` to non-power-of-two measure with new denominator `factor`:
+    r'''Change power-of-two `measure` to non-power-of-two measure with new denominator `factor`:
 
     ::
 

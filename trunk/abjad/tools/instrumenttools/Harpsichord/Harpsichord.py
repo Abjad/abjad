@@ -7,9 +7,7 @@ from abjad.tools.instrumenttools.KeyboardInstrument import KeyboardInstrument
 
 
 class Harpsichord(KeyboardInstrument):
-    r'''.. versionadded:: 2.5
-
-    Abjad model of the harpsichord:
+    r'''Abjad model of the harpsichord:
 
     ::
 

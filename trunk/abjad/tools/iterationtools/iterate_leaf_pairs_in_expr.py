@@ -3,9 +3,7 @@ from abjad.tools import sequencetools
 
 
 def iterate_leaf_pairs_in_expr(expr):
-    r'''.. versionadded:: 2.0
-
-    Iterate leaf pairs forward in `expr`:
+    r'''Iterate leaf pairs forward in `expr`:
 
     ::
 

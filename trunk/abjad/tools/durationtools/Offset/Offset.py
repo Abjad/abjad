@@ -16,9 +16,7 @@ class Offset(Duration):
     ### SPECIAL METHODS ###
 
     def __sub__(self, expr):
-        '''.. versionadded:: 2.10
-
-        Offset taken from offset returns duration:
+        '''Offset taken from offset returns duration:
 
         ::
 

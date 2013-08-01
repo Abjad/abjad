@@ -3,9 +3,7 @@ from abjad.tools import componenttools
 
 
 def make_basic_lilypond_file(music=None):
-    r'''.. versionadded:: 2.0
-
-    Make basic LilyPond file with `music`:
+    r'''Make basic LilyPond file with `music`:
 
     ::
 

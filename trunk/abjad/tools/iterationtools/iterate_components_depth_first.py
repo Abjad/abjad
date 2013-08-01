@@ -3,9 +3,7 @@ import collections
 
 
 def iterate_components_depth_first(component, capped=True, unique=True, forbid=None, direction=Left):
-    '''.. versionadded:: 1.1
-
-    Iterate components depth-first from `component`.
+    '''Iterate components depth-first from `component`.
 
     .. todo:: Add usage examples.
     '''

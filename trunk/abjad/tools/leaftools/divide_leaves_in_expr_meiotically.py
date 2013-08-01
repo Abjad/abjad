@@ -3,9 +3,7 @@ from abjad.tools import componenttools
 
 
 def divide_leaves_in_expr_meiotically(expr, n=2):
-    r'''.. versionadded:: 1.1
-
-    Divide leaves meiotically in `expr` `n` times:
+    r'''Divide leaves meiotically in `expr` `n` times:
 
     ::
 

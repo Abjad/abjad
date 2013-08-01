@@ -3,9 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Mark(AbjadObject):
-    r'''.. versionadded:: 2.0
-
-    Abstract base class from which concrete marks inherit:
+    r'''Abstract base class from which concrete marks inherit:
 
         >>> mark = marktools.Mark()
         >>> mark

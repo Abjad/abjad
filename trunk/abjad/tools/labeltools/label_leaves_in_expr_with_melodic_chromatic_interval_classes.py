@@ -7,9 +7,7 @@ from abjad.tools import notetools
 
 
 def label_leaves_in_expr_with_melodic_chromatic_interval_classes(expr, markup_direction=Up):
-    r""".. versionadded:: 2.0
-
-    Label leaves in `expr` with melodic chromatic interval classes:
+    r"""Label leaves in `expr` with melodic chromatic interval classes:
 
     ::
 

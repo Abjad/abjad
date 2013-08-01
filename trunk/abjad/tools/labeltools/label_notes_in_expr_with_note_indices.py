@@ -4,9 +4,7 @@ from abjad.tools import iterationtools
 
 
 def label_notes_in_expr_with_note_indices(expr, markup_direction=Down):
-    r'''.. versionadded:: 2.0
-
-    Label notes in `expr` with note indices:
+    r'''Label notes in `expr` with note indices:
 
     ::
 

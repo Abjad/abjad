@@ -10,9 +10,7 @@ from abjad.tools.lilypondfiletools.LilyPondVersionToken \
 
 
 class LilyPondFile(list):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of LilyPond input file:
+    r'''Abjad model of LilyPond input file:
 
     ::
 

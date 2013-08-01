@@ -6,9 +6,7 @@ from abjad.tools.instrumenttools.Clarinet.Clarinet import Clarinet
 
 
 class ClarinetInA(Clarinet):
-    r'''.. versionadded:: 2.6
-
-    Abjad model of the clarinet in A:
+    r'''Abjad model of the clarinet in A:
 
     ::
 

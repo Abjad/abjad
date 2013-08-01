@@ -46,9 +46,7 @@ class Spanner(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
-        r'''.. versionadded:: 2.9
-
-        Call spanner on `expr` as a shortcut to extend spanner:
+        r'''Call spanner on `expr` as a shortcut to extend spanner:
 
         ::
 

@@ -4,9 +4,7 @@ from abjad.tools.abctools.ImmutableAbjadObject import ImmutableAbjadObject
 
 
 class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
-    r'''.. versionadded:: 2.9
-
-    Initialize with an integer numerator and integer denominator:
+    r'''Initialize with an integer numerator and integer denominator:
 
     ::
 
@@ -493,9 +491,7 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
     ### PUBLIC METHODS ###
 
     def multiply_with_cross_cancelation(self, multiplier):
-        '''.. versionadded:: 2.11
-
-        Multiply nonreduced fraction by `expr` with cross-cancelation:
+        '''Multiply nonreduced fraction by `expr` with cross-cancelation:
 
         ::
 

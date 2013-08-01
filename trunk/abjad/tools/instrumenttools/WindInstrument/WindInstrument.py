@@ -4,9 +4,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class WindInstrument(Instrument):
-    '''.. versionadded:: 2.0
-
-    Abjad model of the wind instrument.
+    '''Abjad model of the wind instrument.
     '''
 
     ### INITIALIZER ###

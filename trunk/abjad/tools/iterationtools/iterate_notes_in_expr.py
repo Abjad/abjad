@@ -3,9 +3,7 @@ from abjad.tools import notetools
 
 
 def iterate_notes_in_expr(expr, reverse=False, start=0, stop=None):
-    r'''.. versionadded:: 2.10
-
-    Yield left-to-right notes in `expr`:
+    r'''Yield left-to-right notes in `expr`:
 
     ::
 

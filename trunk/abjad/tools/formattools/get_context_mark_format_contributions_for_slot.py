@@ -6,9 +6,7 @@ from abjad.tools.formattools.is_formattable_context_mark_for_component \
 
 
 def get_context_mark_format_contributions_for_slot(component, slot):
-    r'''.. versionadded:: 2.0
-
-    Get context mark format contributions for `component` at `slot`.
+    r'''Get context mark format contributions for `component` at `slot`.
 
     Return list.
     '''

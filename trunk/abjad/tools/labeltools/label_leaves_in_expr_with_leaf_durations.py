@@ -10,9 +10,7 @@ def label_leaves_in_expr_with_leaf_durations(
     label_written_durations=True,
     markup_direction=Down,
     ):
-    r'''.. versionadded:: 1.1
-
-    Example 1. Label leaves with written durations:
+    r'''Example 1. Label leaves with written durations:
 
     ::
 

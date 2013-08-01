@@ -6,9 +6,7 @@ from abjad.tools.instrumenttools.Voice import Voice
 
 
 class BaritoneVoice(Voice):
-    r'''.. versionadded:: 2.8
-
-    Abjad model of the baritone voice:
+    r'''Abjad model of the baritone voice:
 
     ::
 

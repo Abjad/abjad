@@ -5,9 +5,7 @@ from abjad.tools.instrumenttools.Flute import Flute
 
 
 class AltoFlute(Flute):
-    r'''.. versionadded 1.1.2
-
-    Abjad model of the alto flute:
+    r'''Abjad model of the alto flute:
 
     ::
 

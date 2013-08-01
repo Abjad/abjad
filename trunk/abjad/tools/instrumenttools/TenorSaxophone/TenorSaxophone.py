@@ -6,9 +6,7 @@ from abjad.tools.instrumenttools.Saxophone.Saxophone import Saxophone
 
 
 class TenorSaxophone(Saxophone):
-    r'''.. versionadded:: 2.6
-
-    Abjad model of the tenor saxophone:
+    r'''Abjad model of the tenor saxophone:
 
     ::
 

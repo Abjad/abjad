@@ -215,9 +215,7 @@ class Performer(AbjadObject):
 
     @property
     def likely_instruments_based_on_performer_name(self):
-        r'''.. versionadded:: 2.5
-
-        Likely instruments based on performer name:
+        r'''Likely instruments based on performer name:
 
         ::
 
@@ -242,9 +240,7 @@ class Performer(AbjadObject):
 
     @property
     def most_likely_instrument_based_on_performer_name(self):
-        r'''.. versionadded:: 2.5
-
-        Most likely instrument based on performer name:
+        r'''Most likely instrument based on performer name:
 
         ::
 
@@ -280,9 +276,7 @@ class Performer(AbjadObject):
     ### PUBLIC METHODS ###
 
     def make_performer_name_instrument_dictionary(self):
-        r'''.. versionadded:: 2.5
-
-        Make performer name / instrument dictionary:
+        r'''Make performer name / instrument dictionary:
 
         ::
 

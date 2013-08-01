@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def remove_terminal_rests_from_sequence(sequence):
-    r'''.. versionadded:: 2.0
-
-    Remove terminal rests from `sequence`:
+    r'''Remove terminal rests from `sequence`:
 
     ::
 

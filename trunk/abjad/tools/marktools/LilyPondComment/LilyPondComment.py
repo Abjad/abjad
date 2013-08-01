@@ -5,9 +5,7 @@ from abjad.tools.marktools.Mark import Mark
 
 
 class LilyPondComment(Mark):
-    r'''.. versionadded:: 2.0
-
-    User-defined LilyPond comment:
+    r'''User-defined LilyPond comment:
 
     ::
 
@@ -109,9 +107,7 @@ class LilyPondComment(Mark):
     @apply
     def format_slot():
         def fget(self):
-            '''.. versionadded:: 2.3
-
-            Get format slot of LilyPond comment:
+            '''Get format slot of LilyPond comment:
 
             ::
 

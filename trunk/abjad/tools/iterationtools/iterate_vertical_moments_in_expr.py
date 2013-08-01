@@ -1,9 +1,7 @@
 # -*- encoding: utf-8 -*-
 # TODO: optimize without multiple full-component traversal.
 def iterate_vertical_moments_in_expr(expr, reverse=False):
-    r'''.. versionadded:: 2.10
-
-    Iterate vertical moments forward in `expr`:
+    r'''Iterate vertical moments forward in `expr`:
 
     ::
 

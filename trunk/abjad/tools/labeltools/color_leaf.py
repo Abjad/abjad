@@ -5,9 +5,7 @@ from abjad.tools import resttools
 
 
 def color_leaf(leaf, color):
-    r'''.. versionadded:: 2.0
-
-    Color note:
+    r'''Color note:
 
     ::
 

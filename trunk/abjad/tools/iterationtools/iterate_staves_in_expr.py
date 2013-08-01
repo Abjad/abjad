@@ -3,9 +3,7 @@ from abjad.tools import stafftools
 
 
 def iterate_staves_in_expr(expr, reverse=False, start=0, stop=None):
-    r'''.. versionadded:: 2.10
-
-    Iterate staves forward in `expr`:
+    r'''Iterate staves forward in `expr`:
 
     ::
 

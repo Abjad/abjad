@@ -204,9 +204,7 @@ class Parentage(SimultaneousSelection):
 
     @property
     def parentage_signature(self):
-        r'''.. versionadded:: 1.1
-
-        Parentage signature of component:
+        r'''Parentage signature of component:
 
         ::
 

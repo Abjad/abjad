@@ -4,9 +4,7 @@ import time
 
 
 class DateTimeToken(AbjadObject):
-    '''.. versionadded:: 2.0
-
-    Date time token:
+    '''Date time token:
 
     ::
 

@@ -6,9 +6,7 @@ from abjad.tools import mathtools
 
 
 def pad_measures_in_expr(expr, front, back, pad_class, splice=False):
-    r'''.. versionadded:: 2.0
-
-    Pad measures in `expr`.
+    r'''Pad measures in `expr`.
     '''
     from abjad.tools import iterationtools
     from abjad.tools import leaftools

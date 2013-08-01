@@ -4,9 +4,7 @@ from abjad.tools.instrumenttools.ReedInstrument import ReedInstrument
 
 
 class DoubleReedInstrument(ReedInstrument):
-    '''.. versionadded:: 2.0
-
-    Abjad model of double-reed instruments.
+    '''Abjad model of double-reed instruments.
     '''
 
     ### INITIALIZER ###

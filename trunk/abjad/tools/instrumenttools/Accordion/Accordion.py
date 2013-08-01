@@ -7,9 +7,7 @@ from abjad.tools.instrumenttools.ReedInstrument import ReedInstrument
 
 
 class Accordion(KeyboardInstrument, ReedInstrument):
-    r'''.. versionadded 1.1.2
-
-    Abjad model of the accordion:
+    r'''Abjad model of the accordion:
 
     ::
 

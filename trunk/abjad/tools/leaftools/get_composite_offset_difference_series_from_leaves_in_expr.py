@@ -3,9 +3,7 @@ from abjad.tools import mathtools
 
 
 def get_composite_offset_difference_series_from_leaves_in_expr(expr):
-    r'''.. versionadded:: 2.0
-
-    Get composite offset difference series from leaves in `expr`:
+    r'''Get composite offset difference series from leaves in `expr`:
 
     ::
 

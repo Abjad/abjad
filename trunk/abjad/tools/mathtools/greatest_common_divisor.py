@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def greatest_common_divisor(*integers):
-    '''.. versionadded:: 2.0
-
-    Calculate greatest common divisor of `integers`:
+    '''Calculate greatest common divisor of `integers`:
 
     ::
 
