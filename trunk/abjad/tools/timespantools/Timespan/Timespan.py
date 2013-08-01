@@ -1232,6 +1232,58 @@ class Timespan(BoundedObject):
         new_stop_offset = axis - start_distance
         return self.set_offsets(new_start_offset, new_stop_offset)
 
+    def round_offsets(self, multiplier, anchor=Left, must_be_well_formed=True):
+        '''Round timespan offsets to multiple of `multiplier`:
+
+        ::
+
+            >>> timespan = timespantools.Timespan((1, 5), (4, 5))
+            
+        ::
+        
+            >>> timespan.round_offsets(1)
+            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(1, 1))
+
+        ::
+
+            >>> timespan.round_offsets(2)
+            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(2, 1))
+
+        ::
+
+            >>> timespan.round_offsets(
+            ...     2, 
+            ...     anchor=Right,
+            ...     )
+            Timespan(start_offset=Offset(-2, 1), stop_offset=Offset(0, 1))
+
+        ::
+
+            >>> timespan.round_offsets(
+            ...     2,
+            ...     anchor=Right, 
+            ...     must_be_well_formed=False,
+            ...     )
+            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(0, 1))
+
+        Emit newly constructed timespan.
+        '''
+        multiplier = abs(durationtools.Multiplier(multiplier))
+        assert 0 < multiplier
+        new_start_offset = durationtools.Offset(
+            int(round(self.start_offset / multiplier)) * multiplier)
+        new_stop_offset = durationtools.Offset(
+            int(round(self.stop_offset / multiplier)) * multiplier)
+        if (new_start_offset == new_stop_offset) and must_be_well_formed:
+            if anchor is Left:
+                new_stop_offset = new_stop_offset + multiplier
+            else:
+                new_start_offset = new_start_offset - multiplier
+        return self.new(
+            start_offset=new_start_offset,
+            stop_offset=new_stop_offset,
+            )
+
     def scale(self, multiplier, anchor=Left):
         r'''Scale timespan by `multiplier`.
 
