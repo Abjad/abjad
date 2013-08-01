@@ -71,7 +71,7 @@ Contents duration equals the sum of the duration of everything inside the contai
 
 ::
 
-   >>> container.contents_duration
+   >>> container._contents_duration
    Duration(7, 8)
 
 

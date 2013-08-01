@@ -165,7 +165,7 @@ class Measure(FixedDurationContainer):
         from abjad.tools import contexttools
         time_signature = self.get_effective_context_mark(
             contexttools.TimeSignatureMark)
-        return time_signature.implied_prolation * self.contents_duration
+        return time_signature.implied_prolation * self._contents_duration
 
     ### PRIVATE METHODS ###
 

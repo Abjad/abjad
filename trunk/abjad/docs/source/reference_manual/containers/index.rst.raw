@@ -56,7 +56,7 @@ Inspecting duration
 Contents duration equals the sum of the duration of everything inside the container:
 
 <abjad>
-container.contents_duration
+container._contents_duration
 </abjad>
 
 Adding one component to the end of a container

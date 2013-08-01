@@ -98,7 +98,7 @@ show(staff)
 </abjad>
 
 <abjad>
-measure.contents_duration
+measure._contents_duration
 </abjad>
 
 The contents duration of the measure here equals ``1/8 + 1/8 + 2/8 = 4/8``.

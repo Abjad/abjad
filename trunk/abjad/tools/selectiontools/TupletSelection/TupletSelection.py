@@ -280,7 +280,7 @@ class TupletSelection(FreeSelection):
         for tuplet in self:
             tuplet.force_fraction = True
             durations = [
-                tuplet.contents_duration, 
+                tuplet._contents_duration, 
                 tuplet._preprolated_duration, 
                 (1, n),
                 ]

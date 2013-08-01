@@ -125,7 +125,7 @@ tuplet.multiplier
 The contents durations of a tuplet equals the sum of written durations of the components in the tuplet:
 
 <abjad>
-tuplet.contents_duration
+tuplet._contents_duration
 </abjad>
 
 The multiplied duration of a tuplet equals the product of the tuplet's multiplier

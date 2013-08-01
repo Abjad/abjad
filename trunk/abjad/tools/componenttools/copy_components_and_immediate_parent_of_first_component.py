@@ -111,9 +111,9 @@ def copy_components_and_immediate_parent_of_first_component(components):
     # TODO: change hard-coded class name testing to isinstance testing instead
     # new: resize result to match parent_multiplier, if resizable
     if type(result) is tuplettools.FixedDurationTuplet:
-        result.target_duration = parent_multiplier * result.contents_duration
+        result.target_duration = parent_multiplier * result._contents_duration
     elif type(result) is measuretools.Measure:
-        new_duration = parent_multiplier * result.contents_duration
+        new_duration = parent_multiplier * result._contents_duration
         new_time_signature = contexttools.TimeSignatureMark(new_duration)
         result.select().detach_marks(contexttools.TimeSignatureMark)
         new_time_signature.attach(result)

@@ -62,9 +62,9 @@ def test_Staff___setitem___02():
     r'''Reassign the *entire* contents of t.
     '''
     t = Staff(Note("c'4") * 4)
-    assert t.contents_duration == Duration(4, 4)
+    assert t._contents_duration == Duration(4, 4)
     t[:] = Note(0, (1, 8)) * 4
-    assert t.contents_duration == Duration(4, 8)
+    assert t._contents_duration == Duration(4, 8)
 
 
 def test_Staff___setitem___03():

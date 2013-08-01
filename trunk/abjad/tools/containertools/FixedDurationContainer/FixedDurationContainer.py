@@ -56,7 +56,7 @@ class FixedDurationContainer(Container):
 
     def _check_duration(self):
         from abjad.tools import contexttools
-        preprolated_duration = self.contents_duration
+        preprolated_duration = self._contents_duration
         if preprolated_duration < self.target_duration:
             raise UnderfullContainerError
         if self.target_duration < preprolated_duration:

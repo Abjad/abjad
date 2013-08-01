@@ -36,7 +36,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
             power_of_two_time_signature.attach(measure)
 
             # find target duration and create tuplet
-            target_duration = time_signature_multiplier * measure.contents_duration
+            target_duration = time_signature_multiplier * measure._contents_duration
             tuplet = tuplettools.FixedDurationTuplet(target_duration, measure[:])
 
             # scale tuplet contents, if helpful

@@ -44,11 +44,11 @@ def set_container_multiplier(container, multiplier):
         multiplier = durationtools.Multiplier(multiplier)
 
     if isinstance(container, tuplettools.FixedDurationTuplet):
-        container.target_duration = multiplier * container.contents_duration
+        container.target_duration = multiplier * container._contents_duration
     elif isinstance(container, tuplettools.Tuplet):
         container.multiplier = multiplier
     elif isinstance(container, measuretools.Measure):
-        new_duration = multiplier * container.contents_duration
+        new_duration = multiplier * container._contents_duration
         new_time_signature = contexttools.TimeSignatureMark(new_duration)
         container.select().detach_marks(contexttools.TimeSignatureMark)
         new_time_signature.attach(container)

@@ -123,7 +123,7 @@ class FixedDurationTuplet(Tuplet):
             '''
             if 0 < len(self):
                 return durationtools.Multiplier(
-                    self.target_duration / self.contents_duration)
+                    self.target_duration / self._contents_duration)
             else:
                 return None
         def fset(self, expr):
@@ -202,4 +202,4 @@ class FixedDurationTuplet(Tuplet):
             del(self[start])
         else:
             del(self[start:stop])
-        self.target_duration = old_multiplier * self.contents_duration
+        self.target_duration = old_multiplier * self._contents_duration

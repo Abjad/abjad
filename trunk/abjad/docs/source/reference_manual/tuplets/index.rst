@@ -155,7 +155,7 @@ The contents durations of a tuplet equals the sum of written durations of the co
 
 ::
 
-   >>> tuplet.contents_duration
+   >>> tuplet._contents_duration
    Duration(3, 8)
 
 

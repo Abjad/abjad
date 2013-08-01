@@ -158,7 +158,7 @@ class RhythmTreeNode(TreeNode):
         node = self
         while node.parent is not None:
             result.append(
-                (node.preprolated_duration, node.parent.contents_duration))
+                (node.preprolated_duration, node.parent._contents_duration))
             node = node.parent
         result.append(node.preprolated_duration)
         return tuple(reversed(result))
@@ -224,7 +224,7 @@ class RhythmTreeNode(TreeNode):
         for child, parent in \
             sequencetools.iterate_sequence_pairwise_strict(improper_parentage):
             prolations.append(durationtools.Multiplier(
-                parent.preprolated_duration, parent.contents_duration))
+                parent.preprolated_duration, parent._contents_duration))
         return tuple(prolations)
 
     @abc.abstractproperty

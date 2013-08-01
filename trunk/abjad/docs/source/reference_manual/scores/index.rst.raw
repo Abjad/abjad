@@ -43,7 +43,7 @@ Inspecting score duration
 Score contents duration is equal to the duration of the longest component in score:
 
 <abjad>
-score.contents_duration
+score._contents_duration
 </abjad>
 
 Adding one component to the bottom of a score

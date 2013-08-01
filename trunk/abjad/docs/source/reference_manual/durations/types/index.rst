@@ -115,7 +115,7 @@ These elements carry preprolated durations equal to ``1/8``, ``1/8`` and ``2/8``
 
 ::
 
-   >>> measure.contents_duration
+   >>> measure._contents_duration
    Duration(1, 2)
 
 

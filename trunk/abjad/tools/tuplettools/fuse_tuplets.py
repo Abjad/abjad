@@ -79,7 +79,7 @@ def fuse_tuplets(tuplets):
             raise TupletFuseError('tuplets must be same type.')
 
     if isinstance(first, tuplettools.FixedDurationTuplet):
-        total_contents_duration = sum([x.contents_duration for x in tuplets])
+        total_contents_duration = sum([x._contents_duration for x in tuplets])
         new_target_duration = first_multiplier * total_contents_duration
         new_tuplet = tuplettools.FixedDurationTuplet(new_target_duration, [])
     elif isinstance(first, tuplettools.Tuplet):

@@ -53,7 +53,7 @@ Score contents duration is equal to the duration of the longest component in sco
 
 ::
 
-   >>> score.contents_duration
+   >>> score._contents_duration
    Duration(2, 1)
 
 

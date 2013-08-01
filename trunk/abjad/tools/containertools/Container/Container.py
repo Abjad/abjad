@@ -135,8 +135,19 @@ class Container(Component):
             return '<<%s>>' % self._summary
 
     @property
+    def _contents_duration(self):
+        if self.is_parallel:
+            return max([durationtools.Duration(0)] + 
+                [x._preprolated_duration for x in self])
+        else:
+            duration = durationtools.Duration(0)
+            for x in self:
+                duration += x._preprolated_duration
+            return duration
+
+    @property
     def _preprolated_duration(self):
-        return self.contents_duration
+        return self._contents_duration
 
     @property
     def _space_delimited_summary(self):
@@ -352,17 +363,6 @@ class Container(Component):
             expr_context_mark._update_effective_context()
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def contents_duration(self):
-        if self.is_parallel:
-            return max([durationtools.Duration(0)] + 
-                [x._preprolated_duration for x in self])
-        else:
-            duration = durationtools.Duration(0)
-            for x in self:
-                duration += x._preprolated_duration
-            return duration
 
     @property
     def duration_in_seconds(self):

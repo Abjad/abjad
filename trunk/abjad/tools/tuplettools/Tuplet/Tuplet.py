@@ -479,7 +479,7 @@ class Tuplet(Container):
 
         Return duration.
         '''
-        return self.multiplier * self.contents_duration
+        return self.multiplier * self._contents_duration
 
     @apply
     def multiplier():

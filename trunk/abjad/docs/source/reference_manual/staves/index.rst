@@ -47,7 +47,7 @@ Staff contents durations equals the sum of staff components' duration:
 
 ::
 
-   >>> staff.contents_duration
+   >>> staff._contents_duration
    Duration(2, 1)
 
 

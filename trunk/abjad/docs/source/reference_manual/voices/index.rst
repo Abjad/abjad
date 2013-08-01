@@ -133,7 +133,7 @@ The contents durations of a voice equals the sum of durations of the components 
 
 ::
 
-   >>> voice.contents_duration
+   >>> voice._contents_duration
    Duration(2, 1)
 
 

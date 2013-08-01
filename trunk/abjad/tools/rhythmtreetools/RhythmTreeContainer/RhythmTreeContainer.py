@@ -201,7 +201,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         pulse_duration = durationtools.Duration(pulse_duration)
         assert 0 < pulse_duration
         def recurse(node, tuplet_duration):
-            basic_prolated_duration = tuplet_duration / node.contents_duration
+            basic_prolated_duration = tuplet_duration / node._contents_duration
             basic_written_duration = \
                 basic_prolated_duration.equal_or_greater_power_of_two
             tuplet = tuplettools.FixedDurationTuplet(tuplet_duration, [])
@@ -328,6 +328,30 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _contents_duration(self):
+        r'''The total preprolated_duration of the children 
+        of a `RhythmTreeContainer` instance:
+
+        ::
+
+            >>> rtm = '(1 (1 (2 (1 1 1)) 2))'
+            >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
+
+        ::
+
+            >>> tree._contents_duration
+            Duration(5, 1)
+
+        ::
+
+            >>> tree[1]._contents_duration
+            Duration(3, 1)
+
+        Return int.
+        '''
+        return sum([x.preprolated_duration for x in self])
+
+    @property
     def _leaf_class(self):
         from abjad.tools import rhythmtreetools
         return rhythmtreetools.RhythmTreeLeaf
@@ -346,30 +370,6 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         return result
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def contents_duration(self):
-        r'''The total preprolated_duration of the children 
-        of a `RhythmTreeContainer` instance:
-
-        ::
-
-            >>> rtm = '(1 (1 (2 (1 1 1)) 2))'
-            >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
-
-        ::
-
-            >>> tree.contents_duration
-            Duration(5, 1)
-
-        ::
-
-            >>> tree[1].contents_duration
-            Duration(3, 1)
-
-        Return int.
-        '''
-        return sum([x.preprolated_duration for x in self])
 
     @property
     def graphviz_graph(self):

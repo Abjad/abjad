@@ -12,5 +12,5 @@ def test_RhythmTreeContainer_contents_duration_01():
 
     container = rhythmtreetools.RhythmTreeContainer(preprolated_duration=1, children=[leaf_a, subcontainer, leaf_d])
 
-    assert container.contents_duration == 6
-    assert subcontainer.contents_duration == 5
+    assert container._contents_duration == 6
+    assert subcontainer._contents_duration == 5
