@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 import abc
 import copy
-import operator
 from abjad.tools import durationtools
 from abjad.tools import formattools
 from abjad.tools import mathtools
@@ -40,9 +39,6 @@ class Leaf(Component):
 
     ### SPECIAL METHODS ###
 
-    def __and__(self, arg):
-        return self._operate(arg, operator.__and__)
-
     def __copy__(self, *args):
         return self._copy_with_marks_but_without_children_or_spanners()
 
@@ -53,20 +49,11 @@ class Leaf(Component):
             result.append(self.duration_multiplier)
         return tuple(result)
 
-    def __or__(self, arg):
-        return self._operate(arg, operator.__or__)
-
     def __repr__(self):
         return '%s(%r)' % (self._class_name, self._compact_representation)
 
     def __str__(self):
         return self._compact_representation
-
-    def __sub__(self, arg):
-        return self._operate(arg, operator.__sub__)
-
-    def __xor__(self, arg):
-        return self._operate(arg, operator.__xor__)
 
     ### PRIVATE PROPERTIES ###
 
@@ -242,23 +229,6 @@ class Leaf(Component):
             format_contributions.get('opening', {}).get('spanners', [])))
         result.append(leaf._format_agrace_opening())
         return result
-
-    def _operate(self, arg, operator):
-        assert isinstance(arg, Leaf)
-        from abjad.tools import leaftools
-        from abjad.tools import pitchtools
-        self_pairs = set(pitchtools.list_named_chromatic_pitches_in_expr(self))
-        arg_pairs = set(pitchtools.list_named_chromatic_pitches_in_expr(arg))
-        pairs = operator(self_pairs, arg_pairs)
-        if len(pairs) == 0:
-            pairs = [None]
-        elif len(pairs) == 1:
-            pairs = list(pairs)
-        else:
-            pairs = [tuple(pairs)]
-        leaves = leaftools.make_leaves(pairs, self.written_duration)
-        leaf = leaves[0]
-        return leaf
 
     def _process_contribution_packet(self, contribution_packet):
         result = ''
