@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import componenttools
 from abjad.tools import durationtools
+from abjad.tools import selectiontools
 
 
 def leaf_to_tuplet_with_n_notes_of_equal_written_duration(leaf, n, is_diminution=True):
@@ -53,26 +54,35 @@ def leaf_to_tuplet_with_n_notes_of_equal_written_duration(leaf, n, is_diminution
     from abjad.tools import notetools
     from abjad.tools import tuplettools
 
-    # find target duration of fixed-duration tuplet
-    target_duration = leaf.written_duration
+#    # find target duration of fixed-duration tuplet
+#    target_duration = leaf.written_duration
+#
+#    # find prolated duration of each note in tuplet
+#    duration = target_duration / n
+#
+#    # find written duration of each note in tuplet
+#    if is_diminution:
+#        written_duration = duration.equal_or_greater_assignable
+#    else:
+#        written_duration = duration.equal_or_lesser_assignable
+#
+#    # make tuplet notes
+#    notes = n * notetools.Note(0, written_duration)
+#
+#    # make tuplet
+#    tuplet = tuplettools.FixedDurationTuplet(target_duration, notes)
+#
+#    # give leaf position in score structure to tuplet
+#    componenttools.move_parentage_and_spanners_from_components_to_components([leaf], [tuplet])
+#
+#    # return tuplet
+#    return tuplet
 
-    # find prolated duration of each note in tuplet
-    duration = target_duration / n
-
-    # find written duration of each note in tuplet
-    if is_diminution:
-        written_duration = duration.equal_or_greater_assignable
-    else:
-        written_duration = duration.equal_or_lesser_assignable
-
-    # make tuplet notes
-    notes = n * notetools.Note(0, written_duration)
-
-    # make tuplet
-    tuplet = tuplettools.FixedDurationTuplet(target_duration, notes)
-
-    # give leaf position in score structure to tuplet
-    componenttools.move_parentage_and_spanners_from_components_to_components([leaf], [tuplet])
-
-    # return tuplet
-    return tuplet
+    ratio = n * [1]
+    selection = selectiontools.select_leaves(leaf)
+    tuplets = selection.to_tuplets_with_ratio(
+        ratio, 
+        is_diminution=is_diminution,
+        )
+    assert len(tuplets) == 1
+    return tuplets[0]
