@@ -75,7 +75,7 @@ class SequentialSelection(Selection):
     def _get_parent_and_start_stop_indices(self):
         if self:
             first, last = self[0], self[-1]
-            parent = first.parent
+            parent = first._parent
             if parent is not None:
                 first_index = parent.index(first)
                 last_index = parent.index(last)

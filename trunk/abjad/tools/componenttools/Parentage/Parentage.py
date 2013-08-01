@@ -69,10 +69,10 @@ class Parentage(SimultaneousSelection):
             if include_self:
                 parent = component
             else:
-                parent = component.parent
+                parent = component._parent
             while parent is not None:
                 music.append(parent)
-                parent = parent.parent
+                parent = parent._parent
             music = tuple(music)
         SimultaneousSelection.__init__(self, music)
         self._component = component
@@ -85,10 +85,10 @@ class Parentage(SimultaneousSelection):
         for component in self:
             if isinstance(component, containertools.Container) and \
                 not component.is_parallel:
-                if component.parent is None:
+                if component._parent is None:
                     return component
-                if isinstance(component.parent, containertools.Container) and \
-                    component.parent.is_parallel:
+                if isinstance(component._parent, containertools.Container) and \
+                    component._parent.is_parallel:
                     return component
 
     def _get_spanner(self, spanner_classes=None):

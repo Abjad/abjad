@@ -2,7 +2,8 @@
 from abjad.tools import durationtools
 
 
-def copy_governed_component_subtree_from_offset_to(component, start=0, stop=None):
+def copy_governed_component_subtree_from_offset_to(
+    component, start=0, stop=None):
     r'''Copy governed `component` subtree from `start` prolated duration
     to `stop` prolated duration.
 
@@ -122,7 +123,7 @@ def copy_governed_component_subtree_from_offset_to(component, start=0, stop=None
 
     ::
 
-        >>> new_leaf.parent is None
+        >>> new_leaf.select_parentage().parent is None
         True
 
     Return ``(untrimmed_copy, first_dif, second_dif)``.

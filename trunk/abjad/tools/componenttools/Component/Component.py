@@ -96,11 +96,11 @@ class Component(AbjadObject):
     @property
     def _prolations(self):
         result = []
-        parent = self.parent
+        parent = self._parent
         while parent is not None:
             result.append(getattr(
                 parent, 'implied_prolation', fractions.Fraction(1)))
-            parent = parent.parent
+            parent = parent._parent
         return result
 
     ### PRIVATE METHODS ###
@@ -228,17 +228,17 @@ class Component(AbjadObject):
         if n == 0:
             return self
         elif 0 < n:
-            if self.parent is not None:
-                if not self.parent.is_parallel:
-                    index = self.parent.index(self)
-                    if index + n < len(self.parent):
-                        return self.parent[index + n]
+            if self._parent is not None:
+                if not self._parent.is_parallel:
+                    index = self._parent.index(self)
+                    if index + n < len(self._parent):
+                        return self._parent[index + n]
         elif n < 0:
-            if self.parent is not None:
-                if not self.parent.is_parallel:
-                    index = self.parent.index(self)
+            if self._parent is not None:
+                if not self._parent.is_parallel:
+                    index = self._parent.index(self)
                     if 0 <= index + n:
-                        return self.parent[index + n]
+                        return self._parent[index + n]
 
     def _get_spanner(self, spanner_classes=None):
         spanners = self._get_spanners(spanner_classes=spanner_classes)
@@ -279,7 +279,7 @@ class Component(AbjadObject):
         while current is not None:
             next_sibling = current._get_sibling(1)
             if next_sibling is None:
-                current = current.parent
+                current = current._parent
             else:
                 temporal_successors = \
                     next_sibling._select_descendants_starting_with()
@@ -294,8 +294,8 @@ class Component(AbjadObject):
 
     def _remove_from_parent(self):
         self._mark_entire_score_tree_for_later_update('prolated')
-        if self.parent is not None:
-            self.parent._music.remove(self)
+        if self._parent is not None:
+            self._parent._music.remove(self)
         self._parent = None
 
     def _remove_named_children_from_parentage(self, name_dictionary):
@@ -561,10 +561,6 @@ class Component(AbjadObject):
             self._override = \
                 lilypondproxytools.LilyPondGrobOverrideComponentPlugIn()
         return self._override
-
-    @property
-    def parent(self):
-        return self._parent
 
     @property
     def prolation(self):

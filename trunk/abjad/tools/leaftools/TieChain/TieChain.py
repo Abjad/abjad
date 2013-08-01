@@ -2,7 +2,8 @@
 import itertools
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
-from abjad.tools.selectiontools.SequentialLeafSelection import SequentialLeafSelection
+from abjad.tools.selectiontools.SequentialLeafSelection \
+    import SequentialLeafSelection
 
 
 class TieChain(SequentialLeafSelection):
@@ -83,7 +84,7 @@ class TieChain(SequentialLeafSelection):
         Return boolean.
         '''
         return sequencetools.all_are_equal(
-            [leaf.parent for leaf in self.leaves])
+            [leaf._parent for leaf in self.leaves])
 
     @property
     def duration(self):
@@ -152,7 +153,7 @@ class TieChain(SequentialLeafSelection):
         Return list of lists.
         '''
         result = []
-        pairs_generator = itertools.groupby(self, lambda x: id(x.parent))
+        pairs_generator = itertools.groupby(self, lambda x: id(x._parent))
         for key, values_generator in pairs_generator:
             result.append(list(values_generator))
         return result

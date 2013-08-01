@@ -16,7 +16,7 @@ class MissingParentCheck(Check):
             #total += 1
             #if component is not expr:
             if 0 < i:
-                if component.parent is None:
+                if component._parent is None:
                     violators.append(component)
         total = i + 1
         return violators, total
