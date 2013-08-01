@@ -20,7 +20,7 @@ class Tuplet(Container):
         >>> tuplet
         Tuplet(2/3, [c'8, d'8, e'8])
 
-    ::
+    ..  doctest::
 
         >>> f(tuplet)
         \times 2/3 {
@@ -40,7 +40,7 @@ class Tuplet(Container):
         >>> second_tuplet = Tuplet((4, 7), "g'4. ( a'16 )")
         >>> tuplet.insert(1, second_tuplet)
 
-    ::
+    ..  doctest::
 
         >>> f(tuplet)
         \times 2/3 {
@@ -64,7 +64,7 @@ class Tuplet(Container):
         ...     (4, 5), "e''32 [ ef''32 d''32 cs''32 cqs''32 ]")
         >>> second_tuplet.insert(1, third_tuplet)
 
-    ::
+    ..  doctest::
 
         >>> f(tuplet)
         \times 2/3 {
@@ -88,7 +88,6 @@ class Tuplet(Container):
 
         >>> show(tuplet) # doctest: +SKIP
 
-    Return tuplet object.
     '''
 
     ### CLASS VARIABLES ###

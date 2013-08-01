@@ -270,7 +270,7 @@ class Component(AbjadObject):
                 current = current.parent
             else:
                 temporal_successors = \
-                    next_sibling.select_descendants_starting_with()
+                    next_sibling._select_descendants_starting_with()
                 break
         return component in temporal_successors
 
@@ -307,6 +307,30 @@ class Component(AbjadObject):
                         named_children[name].extend(name_dictionary[name])
                     else:
                         named_children[name] = copy.copy(name_dictionary[name])
+
+    def _select_descendants_starting_with(self):
+        from abjad.tools import containertools
+        result = []
+        result.append(self)
+        if isinstance(self, containertools.Container):
+            if self.is_parallel:
+                for x in self:
+                    result.extend(x._select_descendants_starting_with())
+            elif self:
+                result.extend(self[0]._select_descendants_starting_with())
+        return result
+
+    def _select_descendants_stopping_with(self):
+        from abjad.tools import containertools
+        result = []
+        result.append(self)
+        if isinstance(self, containertools.Container):
+            if self.is_parallel:
+                for x in self:
+                    result.extend(x._select_descendants_stopping_with())
+            elif self:
+                result.extend(self[-1]._select_descendants_stopping_with())
+        return result
 
     def _set_keyword_value(self, key, value):
         attribute_chain = key.split('__')
@@ -911,30 +935,6 @@ class Component(AbjadObject):
             cross_offset=cross_offset,
             include_self=include_self,
             )
-
-    def select_descendants_starting_with(self):
-        from abjad.tools import containertools
-        result = []
-        result.append(self)
-        if isinstance(self, containertools.Container):
-            if self.is_parallel:
-                for x in self:
-                    result.extend(x.select_descendants_starting_with())
-            elif self:
-                result.extend(self[0].select_descendants_starting_with())
-        return result
-
-    def select_descendants_stopping_with(self):
-        from abjad.tools import containertools
-        result = []
-        result.append(self)
-        if isinstance(self, containertools.Container):
-            if self.is_parallel:
-                for x in self:
-                    result.extend(x.select_descendants_stopping_with())
-            elif self:
-                result.extend(self[-1].select_descendants_stopping_with())
-        return result
 
     def select_lineage(self):
         r'''Select lineage.

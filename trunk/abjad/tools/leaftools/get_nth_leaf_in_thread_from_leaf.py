@@ -53,7 +53,7 @@ def get_nth_leaf_in_thread_from_leaf(leaf, n=0):
         new_component = componenttools.get_nth_component_in_time_order_from_component(component, 1)
         if new_component is None:
             return
-        candidates = new_component.select_descendants_starting_with()
+        candidates = new_component._select_descendants_starting_with()
         candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
         for candidate in candidates:
             if componenttools.all_are_components_in_same_thread([component, candidate]):
@@ -63,7 +63,7 @@ def get_nth_leaf_in_thread_from_leaf(leaf, n=0):
         new_component = componenttools.get_nth_component_in_time_order_from_component(component, -1)
         if new_component is None:
             return
-        candidates = new_component.select_descendants_stopping_with()
+        candidates = new_component._select_descendants_stopping_with()
         candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
         for candidate in candidates:
             if componenttools.all_are_components_in_same_thread([component, candidate]):

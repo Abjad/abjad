@@ -11,7 +11,7 @@ def get_measure_that_stops_with_container(container):
     from abjad.tools import measuretools
 
     if isinstance(container, containertools.Container):
-        contents = container.select_descendants_stopping_with()
+        contents = container._select_descendants_stopping_with()
         contents = [x for x in contents if isinstance(x, measuretools.Measure)]
         if contents:
             return contents[0]

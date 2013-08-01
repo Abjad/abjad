@@ -31,7 +31,7 @@ def pad_measures_in_expr(expr, front, back, pad_class, splice=False):
 
     for measure in iterationtools.iterate_measures_in_expr(expr):
         if front is not None:
-            start_components = measure.select_descendants_starting_with()
+            start_components = measure._select_descendants_starting_with()
             start_leaves = \
                 [x for x in start_components if isinstance(x, leaftools.Leaf)]
             for start_leaf in start_leaves:
@@ -48,7 +48,7 @@ def pad_measures_in_expr(expr, front, back, pad_class, splice=False):
                         grow_spanners=False,
                         )
         if back is not None:
-            stop_components = measure.select_descendants_stopping_with()
+            stop_components = measure._select_descendants_stopping_with()
             stop_leaves = \
                 [x for x in stop_components if isinstance(x, leaftools.Leaf)]
             for stop_leaf in stop_leaves:

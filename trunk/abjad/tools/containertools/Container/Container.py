@@ -495,10 +495,10 @@ class Container(Component):
             raise TypeError(message)
 
     def _is_one_of_my_first_leaves(self, leaf):
-        return leaf in self.select_descendants_starting_with()
+        return leaf in self._select_descendants_starting_with()
 
     def _is_one_of_my_last_leaves(self, leaf):
-        return leaf in self.select_descendants_stopping_with()
+        return leaf in self._select_descendants_stopping_with()
 
     def _parse_string(self, string):
         from abjad.tools import lilypondparsertools
