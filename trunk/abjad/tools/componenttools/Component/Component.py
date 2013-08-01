@@ -705,6 +705,16 @@ class Component(AbjadObject):
         annotation_value = with_correct_name[0].value
         return annotation_value
 
+    def get_duration(self, in_seconds=False):
+        '''Get duration.
+
+        Return duration.
+        '''
+        if in_seconds:
+            return self._duration_in_seconds
+        else:
+            return self.prolation * self._preprolated_duration
+
     def get_effective_context_mark(
         self,
         context_mark_classes=None,
