@@ -4,6 +4,7 @@ import copy
 import math
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
+from abjad.tools import timerelationtools
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 
 
@@ -1441,6 +1442,149 @@ class TimespanInventory(ObjectInventory):
             timespans.append(timespan)
         self[:] = timespans
         return self
+
+    def split_at_offset(self, offset):
+        '''Split inventory at `offset`:
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 3),
+            ...     timespantools.Timespan(3, 6),
+            ...     timespantools.Timespan(6, 10),
+            ...     ])
+
+        Example 1:
+
+        ::
+
+            >>> left, right = timespan_inventory.split_at_offset(4)
+
+        ::
+
+            >>> z(left)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(3, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(3, 1),
+                    stop_offset=durationtools.Offset(4, 1)
+                    )
+                ])
+
+        ::
+
+            >>> z(right)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(4, 1),
+                    stop_offset=durationtools.Offset(6, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(6, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    )
+                ])
+                
+        Example 2:
+
+        ::
+
+            >>> left, right = timespan_inventory.split_at_offset(6)
+
+        ::
+
+            >>> z(left)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(3, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(3, 1),
+                    stop_offset=durationtools.Offset(6, 1)
+                    )
+                ])
+
+        ::
+
+            >>> z(right)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(6, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    )
+                ])
+
+        Example 3:
+
+        ::
+
+            >>> left, right = timespan_inventory.split_at_offset(-1)
+
+        ::
+
+            >>> z(left)
+            timespantools.TimespanInventory([])
+
+        ::
+
+            >>> z(right)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(3, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(3, 1),
+                    stop_offset=durationtools.Offset(6, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(6, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    )
+                ])
+
+        Return inventories.
+        '''
+        offset = durationtools.Offset(offset) 
+        during_time_relation = timerelationtools.OffsetTimespanTimeRelation(
+            timerelationtools.CompoundInequality([
+                'timespan.start < offset',
+                'offset < timespan.stop'],
+                logical_operator='and',
+                ),
+            offset=offset,
+            )
+        during_timespans = self.get_timespans_that_satisfy_time_relation(
+            during_time_relation)
+        before_time_relation = timerelationtools.OffsetTimespanTimeRelation(
+            timerelationtools.CompoundInequality([
+                'timespan.stop <= offset'],
+                ),
+            offset=offset,
+            )
+        before_timespans = self.get_timespans_that_satisfy_time_relation(
+            before_time_relation)
+        after_time_relation = timerelationtools.OffsetTimespanTimeRelation(
+            timerelationtools.CompoundInequality([
+                'offset <= timespan.start'],
+                ),
+            offset=offset,
+            )
+        after_timespans = self.get_timespans_that_satisfy_time_relation(
+            after_time_relation)
+        before_inventory = type(self)(before_timespans)
+        after_inventory = type(self)(after_timespans)
+        for timespan in during_timespans:
+            before_timespan, after_timespan = timespan.split_at_offset(offset)
+            before_inventory.append(before_timespan)
+            after_inventory.append(after_timespan)
+        before_inventory.sort()
+        after_inventory.sort()
+        return before_inventory, after_inventory
 
     def stretch(self, multiplier, anchor=None):
         r'''Stretch timespans by `multiplier` relative to `anchor`.
