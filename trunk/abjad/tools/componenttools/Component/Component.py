@@ -57,16 +57,28 @@ class Component(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
+        '''Copy component with marks but without children or spanners.
+
+        Return newly created component.
+        '''
         return self._copy_with_marks_but_without_children_or_spanners()
 
     def __getnewargs__(self):
         return ()
 
     def __mul__(self, n):
+        '''Copy `n` times and detach spanners.
+
+        Return list of newly created components.
+        '''
         from abjad.tools import componenttools
         return componenttools.copy_components_and_detach_spanners([self], n)
 
     def __rmul__(self, n):
+        '''Copy `n` times and detach spanners.
+
+        Return list of newly created components.
+        '''
         return self * n
 
     ### PRIVATE PROPERTIES ###
@@ -534,6 +546,10 @@ class Component(AbjadObject):
 
     @property
     def lilypond_format(self):
+        '''Lilypond format.
+
+        Return string.
+        '''
         self._update_marks_of_entire_score_tree_if_necessary()
         return self._format_component()
 
@@ -599,6 +615,10 @@ class Component(AbjadObject):
         direction=Right,
         grow_spanners=True,
         ):
+        '''Extend `new_components` in parent of component.
+
+        Return list of component followed by `new_components`.
+        '''
         from abjad.tools import componenttools
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
@@ -773,6 +793,12 @@ class Component(AbjadObject):
         self,
         mark_classes=None,
         ):
+        '''Get mark.
+
+        Raise exception when no mark of `mark_classes` is attached.
+
+        Return mark.
+        '''
         marks = self.get_marks(mark_classes=mark_classes)
         if not marks:
             raise MissingMarkError
@@ -785,6 +811,10 @@ class Component(AbjadObject):
         self,
         mark_classes=None,
         ):
+        '''Get marks.
+
+        Return list.
+        '''
         from abjad.tools import marktools
         mark_classes = mark_classes or (marktools.Mark,)
         if not isinstance(mark_classes, tuple):

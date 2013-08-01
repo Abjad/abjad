@@ -117,6 +117,10 @@ class Tuplet(Container):
         return (self.multiplier, )
 
     def __repr__(self):
+        ''''Interpreter representation of tuplet.
+
+        Return string.
+        '''
         return '%s(%s, [%s])' % (
             self._class_name,
             self.multiplier,
@@ -124,6 +128,10 @@ class Tuplet(Container):
             )
 
     def __str__(self):
+        '''String representation of tuplet.
+
+        Return string.
+        '''
         if 0 < len(self):
             return '{%s %s %s %s}' % (
                 self._signifier,
