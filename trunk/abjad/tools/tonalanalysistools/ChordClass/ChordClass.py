@@ -91,12 +91,12 @@ class ChordClass(NamedChromaticPitchClassSet):
         if len(root) == 2:
             adjustment = r'\hspace #-0.5 \raise #1 \fontsize #-3'
             if root[-1].lower() == 's':
-                root = root[0] + r'%s \sharp' % adjustment
+                root = root[0] + r'{} \sharp'.format(adjustment)
             elif root[-1].lower() == 'f':
-                root = root[0] + r'%s \flat' % adjustment
+                root = root[0] + r'{} \flat'.format(adjustment)
             else:
                 print self
-                raise ValueError('unknown note name: %s' % root)
+                raise ValueError('unknown note name: {}'.format(root))
         return root
 
     @property
@@ -108,8 +108,8 @@ class ChordClass(NamedChromaticPitchClassSet):
             return circle
         elif self.quality_indicator._quality_string == 'half diminished':
             line = r"\draw-line #'(1 . 1)"
-            markup = r'\concat { %s \hspace #-0.85 \raise #-0.5 %s }'
-            markup %= (circle, line)
+            markup = r'\concat {{ {} \hspace #-0.85 \raise #-0.5 {} }}'.format(
+                circle, line)
             return markup
         elif self.quality_indicator._quality_string == 'major' and \
             5 < self.extent.number:
@@ -175,10 +175,11 @@ class ChordClass(NamedChromaticPitchClassSet):
     def markup(self):
         markup = [self._markup_root, self._markup_symbol, self.figured_bass]
         markup = ''.join(markup)
-        markup = r'\fontsize #1 %s \hspace #-0.5' % self._markup_root
+        markup = r'\fontsize #1 {} \hspace #-0.5'.format(self._markup_root)
         symbol = self._markup_symbol
         if symbol:
-            markup += r' \hspace #0.5 \raise #1 \fontsize #-3 %s' % symbol
+            markup += r' \hspace #0.5 \raise #1 \fontsize #-3 {}'.format(
+                symbol)
             if 'circle' in symbol:
                 if 'sharp' in self._markup_root:
                     markup += r' \hspace #0'
@@ -187,7 +188,7 @@ class ChordClass(NamedChromaticPitchClassSet):
         inversion = self.figured_bass
         if inversion:
             inv = r" \raise #1 \fontsize #-3 \override #'(baseline-skip . 1.5)"
-            inv += r' \column { %s }' % ' '.join(inversion.split('/'))
+            inv += r' \column {{ {} }}'.format(' '.join(inversion.split('/')))
             markup += inv
         return markuptools.Markup(markup, Down)
 
