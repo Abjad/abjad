@@ -387,12 +387,6 @@ class Spanner(AbjadObject):
         return tuple(self._components[:])
 
     @property
-    def duration(self):
-        r'''Sum of prolated duration of all components in spanner.
-        '''
-        return sum([component.duration for component in self])
-
-    @property
     def leaves(self):
         r'''Return read-only tuple of leaves in spanner:
 
@@ -701,10 +695,10 @@ class Spanner(AbjadObject):
 
         Return duration.
         '''
-        if in_seconds:
-            return self._duration_in_seconds
-        else:
-            return sum([component.duration for component in self])
+        return sum(
+            component.get_duration(in_seconds=in_seconds)
+            for component in self
+            )
 
     def index(self, component):
         r'''Return nonnegative integer index of `component` in spanner:

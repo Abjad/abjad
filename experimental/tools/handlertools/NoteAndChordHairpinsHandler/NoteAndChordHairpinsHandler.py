@@ -37,7 +37,7 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
             if len(group) == 1:
                 is_short_group = True
             elif self.minimum_duration is not None:
-                if group.duration < self.minimum_duration:
+                if group.get_duration() < self.minimum_duration:
                     is_short_group = True
             if is_short_group:
                 start_dynamic = hairpin_token[0]

@@ -117,7 +117,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
 
     def _fracture_left(self, i):
         self, left, right = ComplexBeamSpanner._fracture_left(self, i)
-        weights = [left.duration, right.duration]
+        weights = [left.get_duration(), right.get_duration()]
         assert sum(self.durations) == sum(weights)
         split_durations = sequencetools.split_sequence_by_weights(
             self.durations, weights, cyclic=False, overhang=False)
@@ -128,7 +128,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
 
     def _fracture_right(self, i):
         self, left, right = ComplexBeamSpanner._fracture_right(self, i)
-        weights = [left.duration, right.duration]
+        weights = [left.get_duration(), right.get_duration()]
         assert sum(self.durations) == sum(weights)
         split_durations = sequencetools.split_sequence_by_weights(
             self.durations, weights, cyclic=False, overhang=False)

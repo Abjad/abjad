@@ -156,14 +156,6 @@ class SequentialSelection(Selection):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def duration(self):
-        r'''Duration of components in selection.
-
-        Return duration.
-        '''
-        return sum(component.duration for component in self)
-
-    @property
     def timespan(self):
         r'''Timespan of selection.
         '''

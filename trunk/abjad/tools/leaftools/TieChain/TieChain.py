@@ -87,14 +87,6 @@ class TieChain(SequentialLeafSelection):
             [leaf._parent for leaf in self.leaves])
 
     @property
-    def duration(self):
-        r'''Sum of durations of all components in tie chain.
-
-        Return duration.
-        '''
-        return sum([x.duration for x in self])
-
-    @property
     def head(self):
         r'''Reference to element ``0`` in tie chain.
 

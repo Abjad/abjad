@@ -5,7 +5,8 @@ import py.test
 
 def test_Spanner_leaves_01():
     r'''Spanner attaching to container knows about both container and
-        also leaves in container.'''
+    also leaves in container.
+    '''
 
     class MockSpanner(spannertools.Spanner):
         def __init__(self, components=None):
@@ -22,12 +23,13 @@ def test_Spanner_leaves_01():
     assert len(p.leaves) == 4
     for i, leaf in enumerate(p.leaves):
         assert leaf is t[i]
-    assert p.duration == Duration(4, 8)
+    assert p.get_duration() == Duration(4, 8)
 
 
 def test_Spanner_leaves_02():
     r'''Spanner attaching only to leaves makes p.components and p.leaves
-        hold the same references.'''
+    hold the same references.
+    '''
 
     class MockSpanner(spannertools.Spanner):
         def __init__(self, components=None):
@@ -43,12 +45,13 @@ def test_Spanner_leaves_02():
     assert len(p.leaves) == 4
     for i, leaf in enumerate(p.leaves):
         assert leaf is t[i]
-    assert p.duration == Duration(4, 8)
+    assert p.get_duration() == Duration(4, 8)
 
 
 def test_Spanner_leaves_03():
     r'''Spanner attaching to empty container knows about container
-        and also about empty leaves.'''
+    and also about empty leaves.
+    '''
 
     class MockSpanner(spannertools.Spanner):
         def __init__(self, components=None):
@@ -62,7 +65,7 @@ def test_Spanner_leaves_03():
     assert len(p.components) == 1
     assert p.components[0] is t
     assert len(p.leaves) == 0
-    assert p.duration == Duration(0)
+    assert p.get_duration() == Duration(0)
 
 
 def test_Spanner_leaves_04():
@@ -102,7 +105,7 @@ def test_Spanner_leaves_04():
     assert len(p.leaves) == 8
     for i, leaf in enumerate(t.select_leaves()):
         assert leaf is t.select_leaves()[i]
-    assert p.duration == Duration(8, 8)
+    assert p.get_duration() == Duration(8, 8)
 
 
 def test_Spanner_leaves_05():
@@ -145,13 +148,14 @@ def test_Spanner_leaves_05():
     assert len(p.leaves) == 4
     for i, leaf in enumerate(p.leaves):
         assert leaf is t.select_leaves()[i]
-    assert p.duration == Duration(4, 8)
+    assert p.get_duration() == Duration(4, 8)
 
 
 def test_Spanner_leaves_06():
     r'''Spanner attaching to container with some parallel contents.
-        Spanner absolutely does not descend into parallel container.
-        Spanner duration does, however, account for parallel duration.'''
+    Spanner absolutely does not descend into parallel container.
+    Spanner duration does, however, account for parallel duration.
+    '''
 
     class MockSpanner(spannertools.Spanner):
         def __init__(self, components=None):
@@ -191,13 +195,14 @@ def test_Spanner_leaves_06():
 #   assert p.leaves[1] is t[1]
 #   assert p.leaves[2] is t[3]
 #   assert p.leaves[3] is t[4]
-#   assert p.duration == Duration(6, 8)
+#   assert p.get_duration() == Duration(6, 8)
 
 
 def test_Spanner_leaves_07():
     r'''Spanner attaching to mixture of parallel and leaf components.
-        Spanner absolutely does not descend into parallel container.
-        Spanner duration does, however, account for parallel duration.'''
+    Spanner absolutely does not descend into parallel container.
+    Spanner duration does, however, account for parallel duration.
+    '''
 
     class MockSpanner(spannertools.Spanner):
         def __init__(self, components=None):
@@ -237,4 +242,4 @@ def test_Spanner_leaves_07():
 #   assert p.leaves[1] is t[1]
 #   assert p.leaves[2] is t[3]
 #   assert p.leaves[3] is t[4]
-#   assert p.duration == Duration(6, 8)
+#   assert p.get_duration() == Duration(6, 8)
