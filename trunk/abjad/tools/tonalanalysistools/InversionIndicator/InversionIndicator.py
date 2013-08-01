@@ -39,7 +39,7 @@ class InversionIndicator(AbjadObject):
         return not self == arg
 
     def __repr__(self):
-        return '%s(%s)' % (self._class_name, self.name)
+        return '{}({})'.format(self._class_name, self.name)
 
     ### PRIVATE PROPERTIES ###
 
@@ -88,7 +88,7 @@ class InversionIndicator(AbjadObject):
         name = self._inversion_number_to_inversion_name[self.number]
         if name == 'root position':
             return 'RootPosition'
-        return '%sInversion' % name.title()
+        return '{}Inversion'.format(name.title())
 
     ### PUBLIC METHODS ###
 

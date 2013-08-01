@@ -24,8 +24,8 @@ class ExtentIndicator(AbjadObject):
     def __init__(self, arg):
         if isinstance(arg, (int, long)):
             if arg not in self._acceptable_number:
-                message = 'can not initialize extent indicator: %s'
-                raise ValueError(message % arg)
+                message = 'can not initialize extent indicator: {}'
+                raise ValueError(message.format(arg))
             number = arg
         elif isinstance(arg, type(self)):
             number = arg.number
@@ -43,7 +43,10 @@ class ExtentIndicator(AbjadObject):
         return not self == arg
 
     def __repr__(self):
-        return '%s(%s)' % (self._class_name, self.number)
+        return '{}({})'.format(
+            self._class_name,
+            self.number,
+            )
 
     ### PRIVATE PROPERTIES ###
 

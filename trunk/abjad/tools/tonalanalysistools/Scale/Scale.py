@@ -47,7 +47,7 @@ class Scale(NamedChromaticPitchClassSegment):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '%s(%s)' % (self._capital_name, self._format_string)
+        return '{}({})'.format(self._capital_name, self._format_string)
 
     ### PRIVATE PROPERTIES ###
 
@@ -55,7 +55,7 @@ class Scale(NamedChromaticPitchClassSegment):
     def _capital_name(self):
         letter = str(self.key_signature.tonic).title()
         mode = self.key_signature.mode.mode_name.title()
-        return '%s%s' % (letter, mode)
+        return '{}{}'.format(letter, mode)
 
     ### PUBLIC PROPERTIES ###
 

@@ -29,7 +29,8 @@ class Mode(AbjadObject):
         elif isinstance(arg, Mode):
             mode_name = arg.mode_name
         else:
-            raise TypeError('%s must be mode instance or mode name.' % arg)
+            raise TypeError('{} must be mode instance or mode name.'.format(
+                arg))
         mdi_segment = self._init_with_mode_name(mode_name)
         object.__setattr__(
             self, '_melodic_diatonic_interval_segment', mdi_segment)
@@ -49,7 +50,7 @@ class Mode(AbjadObject):
         return not self == arg
 
     def __repr__(self):
-        return '%s(%r)' % (self._class_name, self.mode_name)
+        return '{}({!r})'.format(self._class_name, self.mode_name)
 
     def __str__(self):
         return self.mode_name
@@ -81,7 +82,7 @@ class Mode(AbjadObject):
         elif mode_name == 'harmonic minor':
             mdi_segment.extend([M2, m2, M2, M2, m2, A2, m2])
         else:
-            raise ValueError("unknown mode name '%s'." % mode_name)
+            raise ValueError('unknown mode name {!r}.'.format(mode_name))
         return pitchtools.MelodicDiatonicIntervalSegment(mdi_segment)
 
     ### PUBLIC PROPERTIES ###

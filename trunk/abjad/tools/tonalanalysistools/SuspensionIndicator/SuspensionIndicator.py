@@ -48,13 +48,13 @@ class SuspensionIndicator(AbjadObject):
 
     def __repr__(self):
         if self.start is not None and self.stop is not None:
-            return '%s(%s, %s)' % (self._class_name, self.start, self.stop)
+            return '{}({}, {})'.format(self._class_name, self.start, self.stop)
         else:
-            return '%s()' % self._class_name
+            return '{}()'.format(self._class_name)
 
     def __str__(self):
         if self.start is not None and self.stop is not None:
-            return '%s-%s' % (self.start, self.stop)
+            return '{}-{}'.format(self.start, self.stop)
         else:
             return ''
 
@@ -95,7 +95,7 @@ class SuspensionIndicator(AbjadObject):
     def chord_name(self):
         if self.is_empty:
             return ''
-        return 'sus%s' % self.start
+        return 'sus{}'.format(self.start)
 
     @property
     def figured_bass_pair(self):
@@ -105,7 +105,7 @@ class SuspensionIndicator(AbjadObject):
     def figured_bass_string(self):
         if self.is_empty:
             return ''
-        return '%s-%s' % (self.start, self.stop)
+        return '{}-{}'.format(self.start, self.stop)
 
     @property
     def is_empty(self):
@@ -125,4 +125,4 @@ class SuspensionIndicator(AbjadObject):
             return ''
         start = self.start.title_string
         stop = self.stop.title_string
-        return '%s%sSuspension' % (start, stop)
+        return '{}{}Suspension'.format(start, stop)

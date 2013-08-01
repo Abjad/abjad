@@ -35,8 +35,8 @@ class ScaleDegree(AbjadObject):
             accidental, number = self._init_by_accidental_and_number(*args)
         else:
             arg_string = ', '.join([str(x) for x in args])
-            message = 'can not initialize scale degree: %s.'
-            raise ValueError(message % arg_string)
+            message = 'can not initialize scale degree: {}.'
+            raise ValueError(message.format(arg_string))
         object.__setattr__(self, '_accidental', accidental)
         object.__setattr__(self, '_number', number)
 
@@ -53,7 +53,7 @@ class ScaleDegree(AbjadObject):
         return not self == arg
 
     def __repr__(self):
-        return '%s(%s)' % (self._class_name, self._format_string)
+        return '{}({})'.format(self._class_name, self._format_string)
 
     def __str__(self):
         return self._compact_format_string
@@ -66,7 +66,7 @@ class ScaleDegree(AbjadObject):
 
     @property
     def _compact_format_string(self):
-        return '%s%s' % (
+        return '{}{}'.format(
             self.accidental.symbolic_accidental_string, self.number)
 
     @property
@@ -191,7 +191,7 @@ class ScaleDegree(AbjadObject):
 
     @property
     def symbolic_string(self):
-        return '%s%s' % (self.accidental.symbolic_accidental_string,
+        return '{}{}'.format(self.accidental.symbolic_accidental_string,
             self.roman_numeral_string)
 
     @property
@@ -201,7 +201,7 @@ class ScaleDegree(AbjadObject):
         else:
             accidental = ''
         number = self._numeral_to_number_name[self.number]
-        return '%s%s' % (accidental.title(), number.title())
+        return '{}{}'.format(accidental.title(), number.title())
 
     ### PUBLIC METHODS ###
 

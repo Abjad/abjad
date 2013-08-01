@@ -20,6 +20,10 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
         '<m3, M3>': ('minor', 5),
         '<M3, m3>': ('major', 5),
         '<M3, M3>': ('augmented', 5),
+        '<M3, M2, M3>': ('augmented French', 6),
+        '<M3, m3, +2>': ('augmented German', 6),
+        '<M3, P1, +4>': ('augmented Italian', 6),
+        '<M3, +2, m3>': ('augmented Swiss', 6),
         '<m3, m3, m3>': ('diminished', 7),
         '<m3, m3, M3>': ('half diminished', 7),
         '<m3, M3, m3>': ('minor', 7),
@@ -27,6 +31,7 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
         '<M3, m3, M3>': ('major', 7),
         '<M3, m3, m3, M3>': ('dominant', 9),
         }
+
     ### INITIALIZER ###
 
     def __new__(self, quality_string, extent='triad', inversion='root'):
@@ -36,6 +41,8 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
             intervals = self._init_seventh(quality_string)
         elif extent in ('ninth', 9):
             intervals = self._init_ninth(quality_string)
+        elif extent in ('augmented sixth', 6):
+            intervals = self._init_augmented_sixth(quality_string)
         else:
             raise ValueError('unknown chord quality indicator arguments.')
         intervals, rotation = self._invert_quality_indicator(
@@ -48,9 +55,21 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '%s(%s)' % (self._title_case_name, self._format_string)
+        return '{}({})'.format(
+            self._title_case_name,
+            self._format_string,
+            )
 
     ### PRIVATE PROPERTIES ###
+
+    @property
+    def _acceptable_augmented_sixth_qualities(self):
+        return (
+            'french',
+            'german',
+            'italian',
+            'swiss',
+            )
 
     @property
     def _acceptable_ninth_qualities(self):
@@ -83,11 +102,45 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
 
     @property
     def _title_case_name(self):
-        return '%s%sIn%s' % (self._quality_string.title(),
-            self.extent_name.title(), self._chord_position_string)
+        return '{}{}In{}'.format(
+            self._quality_string.title(),
+            self.extent_name.title(), 
+            self._chord_position_string,
+            )
 
     ### PRIVATE METHODS ###
 
+    @staticmethod
+    def _init_augmented_sixth(quality_string):
+        if quality_string == 'French':
+            intervals = [
+                HarmonicDiatonicInterval('major', 3),
+                HarmonicDiatonicInterval('major', 2), 
+                HarmonicDiatonicInterval('major', 3), 
+                ]
+        elif quality_string == 'German':
+            intervals = [
+                HarmonicDiatonicInterval('major', 3), 
+                HarmonicDiatonicInterval('minor', 3), 
+                HarmonicDiatonicInterval('augmented', 2), 
+                ]
+        elif quality_string == 'Italian':
+            intervals = [
+                HarmonicDiatonicInterval('major', 3), 
+                HarmonicDiatonicInterval('perfect', 1), 
+                HarmonicDiatonicInterval('augmented', 4), 
+                ]
+        elif quality_string == 'Swiss':
+            intervals = [
+                HarmonicDiatonicInterval('major', 3), 
+                HarmonicDiatonicInterval('augmented', 2), 
+                HarmonicDiatonicInterval('minor', 3), 
+                ]
+        else:
+           raise ValueError('unaccpetable quality string.')
+        intervals.insert(0, HarmonicDiatonicInterval('perfect', 1))
+        return intervals
+        
     @staticmethod
     def _init_ninth(quality_string):
         if quality_string == 'dominant':

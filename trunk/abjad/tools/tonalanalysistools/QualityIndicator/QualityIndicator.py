@@ -38,7 +38,7 @@ class QualityIndicator(AbjadObject):
         return not self == arg
 
     def __repr__(self):
-        return '%s(%s)' % (self._class_name, self.quality_string)
+        return '{}({})'.format(self._class_name, self.quality_string)
 
     ### PRIVATE PROPERTIES ###
 
