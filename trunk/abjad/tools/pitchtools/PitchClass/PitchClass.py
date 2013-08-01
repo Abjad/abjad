@@ -4,9 +4,7 @@ from abjad.tools.abctools import AttributeEqualityAbjadObject
 
 
 class PitchClass(AttributeEqualityAbjadObject):
-    '''.. versionadded:: 2.0
-
-    Pitch-class base class.
+    '''Pitch-class base class.
     '''
 
     ### CLASS VARIABLES ###

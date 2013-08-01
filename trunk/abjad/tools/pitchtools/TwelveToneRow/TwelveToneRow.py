@@ -4,9 +4,7 @@ from abjad.tools.pitchtools.NumberedChromaticPitchClassSegment \
 
 
 class TwelveToneRow(NumberedChromaticPitchClassSegment):
-    '''.. versionadded:: 2.0
-
-    Abjad model of twelve-tone row:
+    '''Abjad model of twelve-tone row:
 
     ::
 

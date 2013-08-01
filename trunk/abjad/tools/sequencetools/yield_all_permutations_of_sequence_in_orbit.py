@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def yield_all_permutations_of_sequence_in_orbit(sequence, permutation):
-    '''.. versionadded:: 2.0
-
-    Yield all permutations of `sequence` in orbit of `permutation` in lex order:
+    '''Yield all permutations of `sequence` in orbit of `permutation` in lex order:
 
     ::
 

@@ -5,9 +5,7 @@ import copy
 # TODO: Reimplement to work on Abjad PitchSet, Note and Chord objects only.
 # TODO: Reimplement to work with diatonic transposition. #
 def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitch_carrier, pitch_range):
-    r""".. versionadded:: 1.1
-
-    List octave transpositions of `pitch_carrier` in `pitch_range`:
+    r"""List octave transpositions of `pitch_carrier` in `pitch_range`:
 
     ::
 

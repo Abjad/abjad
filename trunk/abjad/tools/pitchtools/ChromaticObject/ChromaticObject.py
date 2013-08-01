@@ -4,9 +4,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class ChromaticObject(AbjadObject):
-    '''..versionadded:: 2.0
-
-    Chromatic object base class.
+    r'''Chromatic object base class.
     '''
 
     ### CLASS VARIABLES ##

@@ -5,9 +5,7 @@ from abjad.tools.durationtools.Duration import Duration
 
 
 class Multiplier(Duration):
-    '''.. versionadded:: 2.11
-
-    Multiplier.
+    '''Multiplier.
     '''
 
     ### SPECIAL METHODS ###

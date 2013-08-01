@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def make_empty_piano_score():
-    r'''.. versionadded:: 1.1
-
-    Make empty piano score:
+    r'''Make empty piano score:
 
     ::
 

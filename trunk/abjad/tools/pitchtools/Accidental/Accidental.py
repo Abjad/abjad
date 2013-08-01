@@ -3,9 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Accidental(AbjadObject):
-    '''.. versionadded:: 2.0
-
-    Abjad model of the accidental:
+    '''Abjad model of the accidental:
 
     ::
 

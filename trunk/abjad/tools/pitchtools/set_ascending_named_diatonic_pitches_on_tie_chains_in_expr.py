@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(expr, key_signature=None):
-    r'''.. versionadded:: 1.1
-
-    Set ascending named diatonic pitches on nontied pitched components in `expr`:
+    r'''Set ascending named diatonic pitches on nontied pitched components in `expr`:
 
     ::
 

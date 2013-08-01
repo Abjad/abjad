@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def make_spanner_schema(components):
-    r'''.. versionadded:: 2.0
-
-    Make schema of spanners contained by `components`:
+    r'''Make schema of spanners contained by `components`:
 
     ::
 

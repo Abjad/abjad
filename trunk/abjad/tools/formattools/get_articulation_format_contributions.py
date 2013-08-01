@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def get_articulation_format_contributions(component):
-    '''.. versionadded:: 2.0
-
-    Get articulation format contributions for `component`.
+    '''Get articulation format contributions for `component`.
 
     Return list.
     '''

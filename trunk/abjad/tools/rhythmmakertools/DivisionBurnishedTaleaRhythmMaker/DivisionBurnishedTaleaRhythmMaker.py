@@ -6,9 +6,7 @@ from abjad.tools.rhythmmakertools.BurnishedRhythmMaker \
 
 
 class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
-    r'''.. versionadded:: 2.8
-
-    Division-burnished talea rhythm-maker:
+    r'''Division-burnished talea rhythm-maker:
 
     ::
 

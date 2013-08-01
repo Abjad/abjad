@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def is_diatonic_pitch_class_number(expr):
-    '''.. versionadded:: 2.0
-
-    True when `expr` is a diatonic pitch-class number. Otherwise false:
+    '''True when `expr` is a diatonic pitch-class number. Otherwise false:
 
     ::
 

@@ -3,9 +3,7 @@ from abjad.tools import sequencetools
 
 
 def harmonic_chromatic_interval_class_number_dictionary(pitches):
-    '''.. versionadded:: 1.1
-
-    Change named chromatic pitches to harmonic chromatic interval-class number dictionary:
+    '''Change named chromatic pitches to harmonic chromatic interval-class number dictionary:
 
     ::
 

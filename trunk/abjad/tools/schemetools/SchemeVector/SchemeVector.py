@@ -3,9 +3,7 @@ from abjad.tools.schemetools.Scheme import Scheme
 
 
 class SchemeVector(Scheme):
-    '''.. versionadded:: 2.0
-
-    Abjad model of Scheme vector:
+    '''Abjad model of Scheme vector:
 
     ::
 

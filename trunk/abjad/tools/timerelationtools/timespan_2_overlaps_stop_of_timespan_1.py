@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def timespan_2_overlaps_stop_of_timespan_1(timespan_1=None, timespan_2=None, hold=False):
-    r'''.. versionadded:: 2.11
-
-    Make time relation indicating that `timespan_2` overlaps stop of `timespan_1`:
+    r'''Make time relation indicating that `timespan_2` overlaps stop of `timespan_1`:
 
     ::
 

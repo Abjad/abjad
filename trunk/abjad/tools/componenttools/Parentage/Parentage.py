@@ -116,9 +116,7 @@ class Parentage(SimultaneousSelection):
 
     @property
     def containment_signature(self):
-        r'''.. versionadded:: 1.1
-
-        Containment signature of component:
+        r'''Containment signature of component:
 
         ::
 

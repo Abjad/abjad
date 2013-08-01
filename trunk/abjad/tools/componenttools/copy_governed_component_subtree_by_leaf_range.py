@@ -6,9 +6,7 @@
 #       this method could be bound to GovernorSelection.
 def copy_governed_component_subtree_by_leaf_range(
     component, start=0, stop=None):
-    r'''.. versionadded:: 1.1
-
-    Copy governed `component` subtree by leaf range.
+    r'''Copy governed `component` subtree by leaf range.
 
     Governed subtree means `component` together with children of `component`.
 

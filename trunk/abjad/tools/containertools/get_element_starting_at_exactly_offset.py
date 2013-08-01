@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def get_element_starting_at_exactly_offset(container, prolated_offset):
-    '''.. versionadded:: 2.0
-
-    Get `container` element starting at exactly `prolated_offset`:
+    '''Get `container` element starting at exactly `prolated_offset`:
 
     ::
 

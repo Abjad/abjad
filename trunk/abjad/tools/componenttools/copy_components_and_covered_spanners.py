@@ -3,9 +3,7 @@ import copy
 
 
 def copy_components_and_covered_spanners(components, n=1):
-    r'''.. versionadded:: 1.1
-
-    Copy `components` and covered spanners.
+    r'''Copy `components` and covered spanners.
 
     The `components` must be thread-contiguous.
 

@@ -3,9 +3,7 @@ from abjad.tools import componenttools
 
 
 def get_spanners_covered_by_components(components):
-    '''.. versionadded:: 1.1
-
-    Get spanners covered by `components`.
+    '''Get spanners covered by `components`.
 
     Return unordered set of  spanners completely contained
     within the time bounds of thread-contiguous components.

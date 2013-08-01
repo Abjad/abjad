@@ -3,9 +3,7 @@ from abjad.tools import mathtools
 
 
 def get_nth_component_in_time_order_from_component(component, n):
-    r'''.. versionadded:: 2.9
-
-    Get nth component from `component` in temporal order:
+    r'''Get nth component from `component` in temporal order:
 
     ::
 

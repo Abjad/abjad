@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def is_pitch_carrier(expr):
-    '''.. versionadded:: 1.1
-
-    True when `expr` is an Abjad pitch, note, note-head of chord instance.
+    '''True when `expr` is an Abjad pitch, note, note-head of chord instance.
     Otherwise false:
 
     ::

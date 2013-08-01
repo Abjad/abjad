@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 class CyclicList(list):
-    '''.. versionadded:: 2.0
-
-    Abjad model of cyclic list:
+    '''Abjad model of cyclic list:
 
     ::
 

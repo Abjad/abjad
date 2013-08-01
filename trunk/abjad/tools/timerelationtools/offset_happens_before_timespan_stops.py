@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def offset_happens_before_timespan_stops(timespan=None, offset=None, hold=False):
-    r'''.. versionadded:: 2.11
-
-    Make time relation indicating that `offset` happens before `timespan` stops:
+    r'''Make time relation indicating that `offset` happens before `timespan` stops:
 
     ::
 

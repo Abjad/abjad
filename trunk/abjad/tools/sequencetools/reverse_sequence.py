@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def reverse_sequence(sequence):
-    '''.. versionadded:: 2.0
-
-    Reverse `sequence`:
+    '''Reverse `sequence`:
 
     ::
 

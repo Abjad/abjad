@@ -6,9 +6,7 @@ from abjad.tools import mathtools
 
 
 def rewrite_integer_tempo(integer_tempo, maximum_numerator=None, maximum_denominator=None):
-    r'''.. versionadded:: 2.0
-
-    Rewrite `integer_tempo`.
+    r'''Rewrite `integer_tempo`.
 
     Allow no tempo less than half `integer_tempo` or greater than double `integer_tempo`:
 

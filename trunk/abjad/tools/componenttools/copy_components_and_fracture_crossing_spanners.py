@@ -3,9 +3,7 @@ import copy
 
 
 def copy_components_and_fracture_crossing_spanners(components, n=1):
-    r'''.. versionadded:: 1.1
-
-    Copy `components` and fracture crossing spanners.
+    r'''Copy `components` and fracture crossing spanners.
 
     The `components` must be thread-contiguous.
 

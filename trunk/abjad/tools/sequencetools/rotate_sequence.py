@@ -3,9 +3,7 @@ import copy
 
 
 def rotate_sequence(sequence, n):
-    '''.. versionadded:: 1.1
-
-    Rotate `sequence` to the right:
+    '''Rotate `sequence` to the right:
 
     ::
 

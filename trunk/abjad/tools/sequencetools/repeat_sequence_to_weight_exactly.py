@@ -5,9 +5,7 @@ from abjad.tools import mathtools
 
 
 def repeat_sequence_to_weight_exactly(sequence, weight):
-    '''.. versionadded:: 1.1
-
-    Repeat `sequence` to `weight` exactly:
+    '''Repeat `sequence` to `weight` exactly:
 
     ::
 

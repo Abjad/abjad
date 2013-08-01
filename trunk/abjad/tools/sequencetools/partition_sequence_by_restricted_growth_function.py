@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def partition_sequence_by_restricted_growth_function(sequence, restricted_growth_function):
-    '''.. versionadded:: 2.0
-
-    Partition `sequence` by `restricted_growth_function`:
+    '''Partition `sequence` by `restricted_growth_function`:
 
     ::
 

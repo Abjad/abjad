@@ -3,9 +3,7 @@ from abjad.tools import mathtools
 
 
 def is_integer_equivalent_n_tuple(expr, n):
-    r'''.. versionadded:: 2.9
-
-    True when `expr` is a tuple of `n` integer-equivalent expressions:
+    r'''True when `expr` is a tuple of `n` integer-equivalent expressions:
 
     ::
 

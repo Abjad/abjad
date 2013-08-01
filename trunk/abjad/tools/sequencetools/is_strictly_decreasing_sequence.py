@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def is_strictly_decreasing_sequence(expr):
-    r'''.. versionadded:: 2.0
-
-    True when `expr` is a sequence and the elements in `expr` decrease strictly:
+    r'''True when `expr` is a sequence and the elements in `expr` decrease strictly:
 
     ::
 

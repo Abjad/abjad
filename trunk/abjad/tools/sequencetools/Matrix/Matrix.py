@@ -3,9 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Matrix(AbjadObject):
-    '''.. versionadded:: 2.0
-
-    Abjad model of matrix.
+    '''Abjad model of matrix.
 
     Initialize from rows:
 

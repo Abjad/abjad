@@ -4,9 +4,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class AttributeEqualityAbjadObject(AbjadObject):
-    '''.. versionadded:: 2.0
-
-    Abstract base class to confer nonsorting attribute-equality 
+    '''Abstract base class to confer nonsorting attribute-equality 
     to any custom class.
 
     Nonsorting objects raise exceptions on ``__gt__``, ``__ge__``, 

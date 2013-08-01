@@ -3,9 +3,7 @@ import re
 
 
 def chromatic_pitch_name_to_octave_number(chromatic_pitch_name):
-    '''.. versionadded:: 2.0
-
-    Change `chromatic_pitch_name` to octave number:
+    '''Change `chromatic_pitch_name` to octave number:
 
     ::
 

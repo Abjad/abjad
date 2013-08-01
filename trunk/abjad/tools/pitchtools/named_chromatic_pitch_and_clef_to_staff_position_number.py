@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def named_chromatic_pitch_and_clef_to_staff_position_number(pitch, clef):
-    r'''.. versionadded:: 2.0
-
-    Change named chromatic `pitch` and `clef` to staff position number:
+    r'''Change named chromatic `pitch` and `clef` to staff position number:
 
     ::
 

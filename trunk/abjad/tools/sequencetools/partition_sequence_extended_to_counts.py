@@ -3,9 +3,7 @@ import math
 
 
 def partition_sequence_extended_to_counts(sequence, counts, overhang=True):
-    '''.. versionadded:: 2.0
-
-    Partition sequence extended to counts.
+    '''Partition sequence extended to counts.
 
     Example 1. Partition sequence extended to counts with overhang:
 

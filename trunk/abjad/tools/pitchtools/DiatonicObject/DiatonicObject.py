@@ -4,9 +4,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class DiatonicObject(AbjadObject):
-    '''..versionadded:: 2.0
-
-    Diatonic object base class.
+    '''Diatonic object base class.
     '''
 
     ### CLASS VARIABLES ###

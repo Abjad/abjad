@@ -5,9 +5,7 @@ from abjad.tools.leaftools.Leaf import Leaf
 
 
 class Note(Leaf):
-    '''.. versionadded:: 1.0
-
-    Abjad model of a note:
+    '''Abjad model of a note:
 
     ::
 

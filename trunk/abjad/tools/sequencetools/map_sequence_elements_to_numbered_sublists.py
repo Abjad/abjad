@@ -3,9 +3,7 @@ from abjad.tools import mathtools
 
 
 def map_sequence_elements_to_numbered_sublists(sequence):
-    '''.. versionadded:: 1.1
-
-    Map `sequence` elements to numbered sublists:
+    '''Map `sequence` elements to numbered sublists:
 
     ::
 

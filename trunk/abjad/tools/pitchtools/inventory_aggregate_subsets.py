@@ -3,9 +3,7 @@ from abjad.tools import mathtools
 
 
 def inventory_aggregate_subsets():
-    '''.. versionadded:: 2.0
-
-    Inventory aggregate subsets:
+    '''Inventory aggregate subsets:
 
     ::
 

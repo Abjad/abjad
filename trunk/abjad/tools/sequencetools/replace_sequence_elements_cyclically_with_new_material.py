@@ -3,9 +3,7 @@ import sys
 
 
 def replace_sequence_elements_cyclically_with_new_material(sequence, indices, new_material):
-    '''.. versionadded:: 1.1
-
-    Replace `sequence` elements cyclically at `indices` with `new_material`:
+    '''Replace `sequence` elements cyclically at `indices` with `new_material`:
 
     ::
 

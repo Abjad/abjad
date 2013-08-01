@@ -3,9 +3,7 @@ from abjad.tools import mathtools
 
 
 def divide_sequence_elements_by_greatest_common_divisor(sequence):
-    '''.. versionadded:: 2.0
-
-    Divide `sequence` elements by greatest common divisor:
+    '''Divide `sequence` elements by greatest common divisor:
 
     ::
 

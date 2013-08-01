@@ -4,9 +4,7 @@ from abjad.tools.rhythmmakertools.DivisionIncisedRestRhythmMaker \
 
 
 class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
-    r'''.. versionadded:: 2.8
-
-    Rest rhythm-maker.
+    r'''Rest rhythm-maker.
 
     Example 1:
 

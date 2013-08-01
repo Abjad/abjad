@@ -4,9 +4,7 @@ from abjad.tools.sequencetools.Tree import Tree
 
 
 class CyclicTree(Tree):
-    r'''.. versionadded:: 2.5
-
-    Abjad data structure to work with a sequence whose elements have been
+    r'''Abjad data structure to work with a sequence whose elements have been
     grouped into arbitrarily many levels of cyclic containment.
 
     Exactly like the ``Tree`` class but with the additional affordance

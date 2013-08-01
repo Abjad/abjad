@@ -6,9 +6,7 @@ from abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell \
 
 
 class PitchArrayColumn(AbjadObject):
-    '''.. versionadded:: 2.0
-
-    Column in a pitch array:
+    '''Column in a pitch array:
 
     ::
 

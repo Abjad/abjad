@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def remove_sequence_elements_at_indices(sequence, indices):
-    '''.. versionadded:: 2.0
-
-    Remove `sequence` elements at `indices`:
+    '''Remove `sequence` elements at `indices`:
 
     ::
 

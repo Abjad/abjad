@@ -4,9 +4,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class ScoreTemplate(AbjadObject):
-    r'''.. versionadded:: 2.8
-
-    Abstract score template.
+    r'''Abstract score template.
     '''
 
     ### CLASS VARIABLES ##

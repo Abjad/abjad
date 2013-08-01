@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def make_text_alignment_example_lilypond_file(music=None):
-    r'''.. versionadded:: 2.9
-
-    Make text-alignment example LilyPond file with `music`.
+    r'''Make text-alignment example LilyPond file with `music`.
 
         >>> score = Score([Staff('c d e f')])
         >>> lilypond_file = documentationtools.make_text_alignment_example_lilypond_file(score)

@@ -8,9 +8,7 @@ from abjad.tools.rhythmmakertools.OutputIncisedRhythmMaker \
 
 
 class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
-    r'''.. versionadded:: 2.8
-
-    Output-incised rest rhythm-maker:
+    r'''Output-incised rest rhythm-maker:
 
     ::
 

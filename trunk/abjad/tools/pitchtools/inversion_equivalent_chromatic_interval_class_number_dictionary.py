@@ -3,9 +3,7 @@ from abjad.tools import sequencetools
 
 
 def inversion_equivalent_chromatic_interval_class_number_dictionary(pitches):
-    r'''.. versionadded:: 1.1
-
-    Change named chromatic `pitches` to inversion-equivalent chromatic interval-class number
+    r'''Change named chromatic `pitches` to inversion-equivalent chromatic interval-class number
     dictionary:
 
     ::

@@ -5,9 +5,7 @@ from abjad.tools.sequencetools.zip_sequences_without_truncation \
 
 
 def interlace_sequences(*sequences):
-    '''.. versionadded:: 1.1
-
-    Interlace `sequences`:
+    '''Interlace `sequences`:
 
     ::
 

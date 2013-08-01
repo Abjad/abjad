@@ -5,9 +5,7 @@ from abjad.tools.pitchtools.IntervalClass import IntervalClass
 
 
 class HarmonicIntervalClass(IntervalClass, HarmonicObject):
-    '''.. versionadded:: 2.0
-
-    Harmonic interval-class base class.
+    '''Harmonic interval-class base class.
     '''
 
     ### CLASS VARIABLES ###

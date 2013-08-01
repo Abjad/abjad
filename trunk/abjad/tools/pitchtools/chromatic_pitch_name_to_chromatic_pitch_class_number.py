@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def chromatic_pitch_name_to_chromatic_pitch_class_number(chromatic_pitch_name):
-    '''.. versionadded:: 2.0
-
-    Change `chromatic_class_name` to chromatic pitch-class-number:
+    '''Change `chromatic_class_name` to chromatic pitch-class-number:
 
     ::
 

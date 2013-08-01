@@ -3,9 +3,7 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 
 
 class ClefMark(ContextMark):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of a clef:
+    r'''Abjad model of a clef:
 
     ::
 

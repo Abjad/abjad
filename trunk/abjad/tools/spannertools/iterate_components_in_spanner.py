@@ -4,9 +4,7 @@ from abjad.tools import componenttools
 
 def iterate_components_in_spanner(
     spanner, component_classes=None, reverse=False):
-    '''.. versionadded:: 2.10
-
-    Yield components in `spanner` one at a time from left to right:
+    '''Yield components in `spanner` one at a time from left to right:
 
     ::
 

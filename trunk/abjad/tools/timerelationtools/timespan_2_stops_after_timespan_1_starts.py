@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def timespan_2_stops_after_timespan_1_starts(timespan_1=None, timespan_2=None, hold=False):
-    r'''.. versionadded:: 2.11
-
-    Make time relation indicating that `timespan_2` stops after `timespan_1` starts:
+    r'''Make time relation indicating that `timespan_2` stops after `timespan_1` starts:
 
     ::
 

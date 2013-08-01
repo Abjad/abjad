@@ -4,9 +4,7 @@ from abjad.tools import containertools
 
 
 def change_fixed_duration_tuplets_in_expr_to_tuplets(expr):
-    r'''.. versionadded:: 2.9
-
-    Change fixed-duration tuplets in `expr` to tuplets:
+    r'''Change fixed-duration tuplets in `expr` to tuplets:
 
     ::
 

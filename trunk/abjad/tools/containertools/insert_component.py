@@ -3,9 +3,7 @@ from abjad.tools import componenttools
 
 
 def insert_component(container, i, component, fracture_spanners=False):
-    r'''.. versionadded:: 2.10
-
-    Insert `component` into `container` at index `i`.
+    r'''Insert `component` into `container` at index `i`.
 
     Example 1.  Insert `component` into `container` at index `i`.
     Do not fracture crossing spanners:

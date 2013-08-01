@@ -3,9 +3,7 @@ from abjad.tools import mathtools
 
 
 def pair_duration_sequence_elements_with_input_pair_values(duration_sequence, input_pairs):
-    r'''.. versionadded:: 2.10
-
-    Pair `duration_sequence` elements with the values of `input_pairs`:
+    r'''Pair `duration_sequence` elements with the values of `input_pairs`:
 
     ::
 

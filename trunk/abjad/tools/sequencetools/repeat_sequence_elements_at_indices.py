@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def repeat_sequence_elements_at_indices(sequence, indices, total):
-    '''.. versionadded:: 2.0
-
-    Repeat `sequence` elements at `indices` to `total` length:
+    '''Repeat `sequence` elements at `indices` to `total` length:
 
     ::
 

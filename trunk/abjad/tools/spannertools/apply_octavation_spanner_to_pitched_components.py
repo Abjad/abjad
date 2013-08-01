@@ -5,9 +5,7 @@ from abjad.tools import pitchtools
 # TODO: rename to apply_octavation_spanner_to_pitched_components_in_expr
 def apply_octavation_spanner_to_pitched_components(expr,
     ottava_numbered_diatonic_pitch=None, quindecisima_numbered_diatonic_pitch=None):
-    r""".. versionadded:: 1.1
-
-    Apply octavation spanner to pitched components in `expr`:
+    r"""Apply octavation spanner to pitched components in `expr`:
 
     ::
 

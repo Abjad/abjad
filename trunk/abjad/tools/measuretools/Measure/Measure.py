@@ -9,9 +9,7 @@ from abjad.tools.containertools.FixedDurationContainer \
 
 
 class Measure(FixedDurationContainer):
-    r'''.. versionadded:: 1.1
-
-    Abjad model of a measure:
+    r'''Abjad model of a measure:
 
     ::
 

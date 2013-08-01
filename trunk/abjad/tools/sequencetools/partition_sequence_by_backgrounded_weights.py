@@ -4,9 +4,7 @@ import copy
 
 
 def partition_sequence_by_backgrounded_weights(sequence, weights):
-    r'''.. versionadded:: 2.9
-
-    Partition `sequence` by backgrounded `weights`:
+    r'''Partition `sequence` by backgrounded `weights`:
 
     ::
 

@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def list_chromatic_pitch_numbers_in_expr(expr):
-    '''.. versionadded:: 2.0
-
-    List chromatic pitch numbers in `expr`:
+    '''List chromatic pitch numbers in `expr`:
 
     ::
 

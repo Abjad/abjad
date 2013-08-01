@@ -3,9 +3,7 @@ import fractions
 
 
 def sum_sequence_elements_at_indices(sequence, pairs, period=None, overhang=True):
-    '''.. versionadded:: 1.1
-
-    Sum `sequence` elements at indices according to `pairs`:
+    '''Sum `sequence` elements at indices according to `pairs`:
 
     ::
 

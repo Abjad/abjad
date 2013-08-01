@@ -10,9 +10,7 @@ def replace_container_slice_with_rests(
     stop=None,
     decrease_durations_monotonically=True,
     ):
-    r'''.. versionadded:: 2.10
-
-    Replace `container` slice from `start` to `stop` with rests that decrease
+    r'''Replace `container` slice from `start` to `stop` with rests that decrease
     durations monotonically.
 
     Example 1. Replace all container elements:

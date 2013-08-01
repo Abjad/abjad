@@ -5,9 +5,7 @@ from abjad.tools.pitchtools.Set import Set
 
 
 class PitchSet(Set):
-    '''.. versionadded:: 2.0
-
-    Pitch set base class.
+    '''Pitch set base class.
     '''
 
     ### CLASS METHODS ###

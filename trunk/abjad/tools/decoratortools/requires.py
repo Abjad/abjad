@@ -4,9 +4,7 @@ import types
 
 # TODO: figure out how to handle functions with **kwargs
 def requires(*tests):
-    r'''.. versionadded:: 2.6
-
-    Function decorator to require input parameter `tests`.
+    r'''Function decorator to require input parameter `tests`.
 
     Example:
 

@@ -1,9 +1,7 @@
 # -*- encoding: utf-8 -*-
 # TODO: make work with nested tuplets
 def change_augmented_tuplets_in_expr_to_diminished(tuplet):
-    '''.. versionadded:: 2.0
-
-    Multiply the written duration of the leaves in `tuplet`
+    '''Multiply the written duration of the leaves in `tuplet`
     by the least power of 2 necessary to diminshed `tuplet`:
 
     ::

@@ -4,9 +4,7 @@ from abjad.tools import schemetools
 
 
 def make_solid_text_spanner_below_with_nib_at_right(left_text, components=None):
-    r'''.. versionadded:: 2.0
-
-    Span `components` with text spanner.
+    r'''Span `components` with text spanner.
     Position spanner below staff and configure with `left_text`,
     solid line and upward-pointing nib at right:
 

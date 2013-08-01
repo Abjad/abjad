@@ -4,9 +4,7 @@ from abjad.tools import mathtools
 
 
 def repeat_sequence_to_weight_at_most(sequence, weight):
-    '''.. versionadded:: 1.1
-
-    Repeat `sequence` to `weight` at most:
+    '''Repeat `sequence` to `weight` at most:
 
     ::
 

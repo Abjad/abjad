@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def replace_contents_of_target_container_with_contents_of_source_container(target_container, source_container):
-    r'''.. versionadded:: 2.0
-
-    Replace contents of `target_container` with contents of `source_container`:
+    r'''Replace contents of `target_container` with contents of `source_container`:
 
     ::
 

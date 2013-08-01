@@ -9,9 +9,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class MetricalHierarchy(AbjadObject):
-    '''.. versionadded:: 2.11
-
-    A rhythm tree-based model of nested time signature groupings.
+    '''A rhythm tree-based model of nested time signature groupings.
 
     The structure of the tree corresponds to the monotonically increasing
     sequence of factors of the time signature's numerator.

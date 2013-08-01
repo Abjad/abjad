@@ -3,9 +3,7 @@ import numbers
 
 
 def all_are_numbers(expr):
-    '''.. versionadded:: 1.1
-
-    True when `expr` is a sequence and all elements in `expr` are numbers:
+    '''True when `expr` is a sequence and all elements in `expr` are numbers:
 
     ::
 

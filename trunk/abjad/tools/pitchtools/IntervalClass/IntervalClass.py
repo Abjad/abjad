@@ -4,9 +4,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class IntervalClass(AbjadObject):
-    '''.. versionadded:: 2.0
-
-    Interval-class base class.
+    '''Interval-class base class.
     '''
 
     ### CLASS VARIABLES ###

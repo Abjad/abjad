@@ -3,9 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class ImmutableDictionary(dict, AbjadObject):
-    '''.. versionadded:: 2.0
-
-    .. note:: deprecated.
+    '''note:: deprecated.
 
     Immutable dictionary:
 

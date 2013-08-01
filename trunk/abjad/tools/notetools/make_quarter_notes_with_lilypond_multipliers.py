@@ -4,9 +4,7 @@ from abjad.tools import sequencetools
 
 
 def make_quarter_notes_with_lilypond_multipliers(pitches, multiplied_durations):
-    r'''.. versionadded:: 2.0
-
-    Make quarter notes with `pitches` and `multiplied_durations`:
+    r'''Make quarter notes with `pitches` and `multiplied_durations`:
 
     ::
 

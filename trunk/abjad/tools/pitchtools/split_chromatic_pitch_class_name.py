@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def split_chromatic_pitch_class_name(chromatic_pitch_class_name):
-    '''.. versionadded:: 1.1
-
-    Change `chromatic_pitch_class_name` to diatonic pitch-class name / alphabetic
+    '''Change `chromatic_pitch_class_name` to diatonic pitch-class name / alphabetic
     accidental abbreviation pair:
 
     ::

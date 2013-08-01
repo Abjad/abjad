@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def add_terminal_newlines(lines):
-    r'''.. versionadded:: 2.13
-
-    Add terminal newlines to `lines`:
+    r'''Add terminal newlines to `lines`:
 
         >>> lines = ['first line', 'second line']
         >>> stringtools.add_terminal_newlines(lines)

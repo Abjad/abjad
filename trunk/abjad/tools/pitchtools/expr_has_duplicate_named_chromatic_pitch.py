@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def expr_has_duplicate_named_chromatic_pitch(expr):
-    '''.. versionadded:: 2.0
-
-    True when `expr` has duplicate named chromatic pitch.
+    '''True when `expr` has duplicate named chromatic pitch.
     Otherwise false:
 
     ::

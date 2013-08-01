@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def get_sequence_degree_of_rotational_symmetry(sequence):
-    '''.. versionadded:: 2.0
-
-    Change `sequence` to degree of rotational symmetry:
+    '''Change `sequence` to degree of rotational symmetry:
 
     ::
 

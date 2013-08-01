@@ -6,9 +6,7 @@ def partition_components_by_durations_not_less_than(
     in_seconds=False,
     overhang=False,
     ):
-    r'''.. versionadded:: 1.1
-
-    Partition `components` by `durations` not less than.
+    r'''Partition `components` by `durations` not less than.
 
     Example 1. Partition `components` cyclically by prolated `durations`. 
     Keep overhang:

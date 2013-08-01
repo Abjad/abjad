@@ -5,9 +5,7 @@ from abjad.tools import selectiontools
 
 def all_are_thread_contiguous_components(
     expr, component_classes=None, allow_orphans=True):
-    r'''.. versionadded:: 1.1
-
-    True when elements in `expr` are all thread-contiguous components:
+    r'''True when elements in `expr` are all thread-contiguous components:
 
     ::
 

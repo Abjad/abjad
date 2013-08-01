@@ -3,9 +3,7 @@ from abjad.tools import mathtools
 
 
 def map_sequence_elements_to_canonic_tuples(sequence, decrease_parts_monotonically=True):
-    '''.. versionadded:: 1.1
-
-    Partition `sequence` elements into canonic parts that decrease monotonically:
+    '''Partition `sequence` elements into canonic parts that decrease monotonically:
 
     ::
 

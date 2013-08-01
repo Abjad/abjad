@@ -5,9 +5,7 @@ from abjad.tools.pitchtools.Segment import Segment
 
 
 class PitchSegment(Segment):
-    '''.. versionadded:: 2.0
-
-    Pitch segment base class.
+    '''Pitch segment base class.
     '''
 
     ### CLASS VARIABLES ##

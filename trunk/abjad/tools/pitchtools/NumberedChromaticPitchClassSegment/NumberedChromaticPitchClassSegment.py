@@ -4,9 +4,7 @@ import copy
 
 
 class NumberedChromaticPitchClassSegment(PitchClassSegment):
-    '''.. versionadded:: 2.0
-
-    Abjad model of a numbered chromatic pitch-class segment:
+    '''Abjad model of a numbered chromatic pitch-class segment:
 
     ::
 

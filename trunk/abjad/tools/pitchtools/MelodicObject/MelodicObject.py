@@ -4,9 +4,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class MelodicObject(AbjadObject):
-    '''..versionadded:: 2.0
-
-    Melodic object base class.
+    '''Melodic object base class.
     '''
 
     ### CLASS VARIABLES ###

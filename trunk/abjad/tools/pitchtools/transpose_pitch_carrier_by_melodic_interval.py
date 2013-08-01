@@ -4,9 +4,7 @@ import numbers
 
 def transpose_pitch_carrier_by_melodic_interval(
     pitch_carrier, melodic_interval):
-    '''.. versionadded:: 2.0
-
-    Transpose `pitch_carrier` by diatonic `melodic_interval`:
+    '''Transpose `pitch_carrier` by diatonic `melodic_interval`:
 
     ::
 

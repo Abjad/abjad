@@ -4,9 +4,7 @@ from abjad.tools import mathtools
 
 
 def partition_sequence_by_sign_of_elements(sequence, sign=[-1, 0, 1]):
-    '''.. versionadded:: 1.1
-
-    Partition `sequence` elements by sign:
+    '''Partition `sequence` elements by sign:
 
     ::
 

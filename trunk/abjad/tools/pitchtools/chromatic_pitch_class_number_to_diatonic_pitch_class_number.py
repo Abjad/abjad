@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def chromatic_pitch_class_number_to_diatonic_pitch_class_number(chromatic_pitch_class_number):
-    '''.. versionadded:: 2.0
-
-    Change `chromatic_pitch_class_number` to diatonic pitch-class number:
+    '''Change `chromatic_pitch_class_number` to diatonic pitch-class number:
 
     ::
 

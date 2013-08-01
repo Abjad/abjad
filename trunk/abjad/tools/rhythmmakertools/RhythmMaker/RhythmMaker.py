@@ -9,9 +9,7 @@ from abjad.tools.abctools.Maker import Maker
 
 
 class RhythmMaker(Maker):
-    '''.. versionadded:: 2.8
-
-    Rhythm maker abstract base class.
+    '''Rhythm maker abstract base class.
     '''
 
     ### INITIALIZER ###

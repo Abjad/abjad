@@ -6,9 +6,7 @@ from abjad.tools import sequencetools
 # TODO: fix bug that unintentionally fractures ties.
 def split_components_at_offsets(components, offsets,
     fracture_spanners=False, cyclic=False, tie_split_notes=True, tie_split_rests=False):
-    r'''.. versionadded:: 2.0
-
-    Example 1. Split components cyclically and do not fracture crossing spanners:
+    r'''Example 1. Split components cyclically and do not fracture crossing spanners:
 
     ::
 

@@ -6,9 +6,7 @@ import math
 
 
 def repeat_sequence_to_length(sequence, length, start=0):
-    '''.. versionadded:: 1.1
-
-    Repeat `sequence` to nonnegative integer `length`:
+    '''Repeat `sequence` to nonnegative integer `length`:
 
     ::
 

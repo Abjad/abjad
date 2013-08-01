@@ -4,9 +4,7 @@ from abjad.tools import mathtools
 
 
 def split_sequence_extended_to_weights(sequence, weights, overhang=True):
-    '''.. versionadded:: 2.0
-
-    Split sequence extended to weights.
+    '''Split sequence extended to weights.
 
     Example 1. Split sequence extended to weights with overhang:
 

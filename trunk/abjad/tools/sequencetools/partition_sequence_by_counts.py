@@ -4,9 +4,7 @@ from abjad.tools import mathtools
 
 
 def partition_sequence_by_counts(sequence, counts, cyclic=False, overhang=False, copy_elements=False):
-    '''.. versionadded:: 1.1
-
-    Example 1a. Partition sequence once by counts without overhang:
+    '''Example 1a. Partition sequence once by counts without overhang:
 
     ::
 

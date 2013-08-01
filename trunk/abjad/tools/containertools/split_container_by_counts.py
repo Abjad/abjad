@@ -3,9 +3,7 @@ from abjad.tools import sequencetools
 
 
 def split_container_by_counts(components, counts, fracture_spanners=False, cyclic=False):
-    r'''.. versionadded:: 1.1
-
-    Partition Python list of zero or more Abjad components.
+    r'''Partition Python list of zero or more Abjad components.
     Partition by zero or more positive integers in counts list.
     Fracture spanners or not according to keyword.
     Read counts in list cyclically or not according to keyword.

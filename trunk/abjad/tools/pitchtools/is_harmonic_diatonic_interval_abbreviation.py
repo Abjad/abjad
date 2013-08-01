@@ -13,9 +13,7 @@ harmonic_diatonic_interval_abbreviation_regex = re.compile(
     '^%s$' % harmonic_diatonic_interval_abbreviation_regex_body, re.VERBOSE)
 
 def is_harmonic_diatonic_interval_abbreviation(expr):
-    '''.. versionadded:: 2.0
-
-    True when `expr` is a harmonic diatonic interval abbreviation. Otherwise false:
+    '''True when `expr` is a harmonic diatonic interval abbreviation. Otherwise false:
 
     ::
 

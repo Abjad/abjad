@@ -3,9 +3,7 @@ from abjad.tools import markuptools
 
 
 def make_reference_manual_lilypond_file(music=None):
-    r'''.. versionadded:: 2.9
-
-    Make reference manual LilyPond file.
+    r'''Make reference manual LilyPond file.
 
         >>> score = Score([Staff('c d e f')])
         >>> lilypond_file = documentationtools.make_reference_manual_lilypond_file(score)

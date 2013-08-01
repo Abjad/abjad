@@ -5,9 +5,7 @@ from abjad.tools import mathtools
 
 
 def split_container_at_index(component, i, fracture_spanners=False):
-    r'''.. versionadded:: 1.1
-
-    General component index split algorithm.
+    r'''General component index split algorithm.
     Works on leaves, tuplets, measures, contexts and unqualified containers.
     Keyword controls spanner behavior at split time.
     Use containertools.split_container_at_index_and_fracture_crossing_spanners()

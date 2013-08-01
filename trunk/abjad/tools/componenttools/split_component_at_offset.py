@@ -10,9 +10,7 @@ def split_component_at_offset(
     tie_split_notes=True,
     tie_split_rests=False,
     ):
-    r'''.. versionadded:: 1.1
-
-    Split `component` at `offset`.
+    r'''Split `component` at `offset`.
 
     Example 1. Split `component` at `offset`. Don't fracture spanners:
 

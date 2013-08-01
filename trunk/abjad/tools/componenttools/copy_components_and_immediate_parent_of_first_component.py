@@ -4,9 +4,7 @@ from abjad.tools import mathtools
 
 
 def copy_components_and_immediate_parent_of_first_component(components):
-    r'''.. versionadded:: 1.1
-
-    Copy `components` and immediate parent of first component.
+    r'''Copy `components` and immediate parent of first component.
 
     The `components` must be thread-contiguous.
 

@@ -12,9 +12,7 @@ def establish_metrical_hierarchy(
     boundary_depth=None,
     maximum_dot_count=None,
     ):
-    r'''.. versionadded:: 2.11
-
-    Rewrite the contents of tie chains in an expression to match a metrical
+    r'''Rewrite the contents of tie chains in an expression to match a metrical
     hierarchy.
 
     Example 1. Rewrite the contents of a measure in a staff using the 

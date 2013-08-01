@@ -5,9 +5,7 @@ from abjad.tools.abctools.AttributeEqualityAbjadObject \
 
 
 class SortableAttributeEqualityAbjadObject(AttributeEqualityAbjadObject):
-    '''.. versionadded:: 2.0
-
-    .. note:: deprecated.
+    '''note:: deprecated.
 
     Abstact base class to confer sortable attribute-equality 
     to any custom class.

@@ -4,9 +4,7 @@ import copy
 
 
 def permute_sequence(sequence, permutation):
-    '''.. versionadded:: 2.0
-
-    Permute `sequence` by `permutation`:
+    '''Permute `sequence` by `permutation`:
 
     ::
 

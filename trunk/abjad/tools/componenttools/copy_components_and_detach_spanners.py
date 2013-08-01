@@ -3,9 +3,7 @@ import copy
 
 
 def copy_components_and_detach_spanners(components, n=1):
-    r'''.. versionadded:: 1.1
-
-    Copy `components` and remove spanners.
+    r'''Copy `components` and remove spanners.
 
     The `components` must be thread-contiguous.
 

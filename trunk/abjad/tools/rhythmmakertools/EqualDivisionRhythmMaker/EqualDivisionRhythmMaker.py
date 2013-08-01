@@ -9,9 +9,7 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
 class EqualDivisionRhythmMaker(RhythmMaker):
-    r'''.. versionadded:: 2.10
-
-    Equal division rhythm-maker:
+    r'''Equal division rhythm-maker:
 
     ::
 

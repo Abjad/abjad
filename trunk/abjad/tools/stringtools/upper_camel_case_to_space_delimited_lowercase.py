@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def upper_camel_case_to_space_delimited_lowercase(string):
-    r'''.. versionadded:: 2.6
-
-    Change uppercamelcase `string` to space-delimited lowercase:
+    r'''Change uppercamelcase `string` to space-delimited lowercase:
 
     ::
 

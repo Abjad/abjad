@@ -9,9 +9,7 @@ from abjad.tools.scoretemplatetools.ScoreTemplate import ScoreTemplate
 
 
 class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
-    r'''.. versionadded:: 2.9
-
-    Example 1. Grouped rhythmic staves score template with 
+    r'''Example 1. Grouped rhythmic staves score template with 
     one voice per staff:
 
     ::

@@ -4,9 +4,7 @@ from abjad.tools.pitchtools.PitchClassSet import PitchClassSet
 
 
 class  NumberedChromaticPitchClassSet(PitchClassSet):
-    '''.. versionadded:: 2.0
-
-    Abjad model of a numbered chromatic pitch-class set:
+    '''Abjad model of a numbered chromatic pitch-class set:
 
     ::
 

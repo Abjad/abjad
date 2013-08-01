@@ -7,9 +7,7 @@ from abjad.tools.pitchtools.MelodicIntervalClass import MelodicIntervalClass
 
 class MelodicCounterpointIntervalClass(
     CounterpointIntervalClass, MelodicIntervalClass):
-    '''.. versionadded:: 2.0
-
-    Abjad model of melodic counterpoint interval-class:
+    '''Abjad model of melodic counterpoint interval-class:
 
     ::
 

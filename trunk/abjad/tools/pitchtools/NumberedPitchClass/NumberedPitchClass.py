@@ -5,9 +5,7 @@ from abjad.tools.pitchtools.PitchClass import PitchClass
 
 
 class NumberedPitchClass(PitchClass, NumberedObject):
-    '''.. versionadded:: 2.0
-
-    Numbered pitch-class base class.
+    '''Numbered pitch-class base class.
     '''
 
     ### CLASS VARIABLES ###

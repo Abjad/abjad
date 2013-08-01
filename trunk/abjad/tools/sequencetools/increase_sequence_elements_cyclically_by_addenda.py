@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def increase_sequence_elements_cyclically_by_addenda(sequence, addenda, shield=True):
-    '''.. versionadded:: 1.1.
-
-    Increase `sequence` cyclically by `addenda`:
+    '''Increase `sequence` cyclically by `addenda`:
 
     ::
 

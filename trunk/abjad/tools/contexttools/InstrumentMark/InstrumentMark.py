@@ -24,9 +24,7 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 # The impact this currently has in the system concerns the 
 # storage format of such objects.
 class InstrumentMark(ContextMark):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of an instrument change:
+    r'''Abjad model of an instrument change:
 
     ::
 

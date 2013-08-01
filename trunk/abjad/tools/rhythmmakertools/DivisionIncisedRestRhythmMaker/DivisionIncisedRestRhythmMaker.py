@@ -4,9 +4,7 @@ from abjad.tools.rhythmmakertools.DivisionIncisedRhythmMaker \
 
 
 class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
-    r'''.. versionadded:: 2.8
-
-    Division-incised rest rhythm-maker:
+    r'''Division-incised rest rhythm-maker:
 
     ::
 

@@ -3,9 +3,7 @@ from __future__ import division
 
 
 def zip_sequences_cyclically(*sequences):
-    '''.. versionadded:: 1.1
-
-    Zip `sequences` cyclically:
+    '''Zip `sequences` cyclically:
 
     ::
 

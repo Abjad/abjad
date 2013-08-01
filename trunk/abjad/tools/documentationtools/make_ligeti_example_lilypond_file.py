@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def make_ligeti_example_lilypond_file(music=None):
-    r'''.. versionadded:: 2.9
-
-    Make Ligeti example LilyPond file.
+    r'''Make Ligeti example LilyPond file.
 
     Return LilyPond file.
     '''

@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def delete_contents_of_container_starting_strictly_before_offset(container, prolated_offset):
-    r'''.. versionadded:: 2.0
-
-    Delete contents of `container` contents starting strictly before `prolated_offset`:
+    r'''Delete contents of `container` contents starting strictly before `prolated_offset`:
 
     ::
 

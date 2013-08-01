@@ -3,9 +3,7 @@ from abjad.tools import mathtools
 
 
 def truncate_sequence_to_weight(sequence, weight):
-    '''.. versionadded:: 1.1
-
-    Truncate `sequence` to `weight`:
+    '''Truncate `sequence` to `weight`:
 
     ::
 

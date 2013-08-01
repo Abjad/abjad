@@ -3,9 +3,7 @@ from abjad.tools import componenttools
 
 
 def is_component_with_spanner_attached(expr, spanner_classes=None):
-    r'''.. versionadded:: 2.0
-
-    True when `expr` is a component with spanner attached:
+    r'''True when `expr` is a component with spanner attached:
 
     ::
 

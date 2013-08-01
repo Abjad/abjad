@@ -8,9 +8,7 @@ import numbers
 
 class MelodicChromaticIntervalClass(
     ChromaticIntervalClass, MelodicIntervalClass):
-    '''.. versionadded:: 2.0
-
-    Abjad model of melodic chromatic interval-class:
+    '''Abjad model of melodic chromatic interval-class:
 
     ::
 

@@ -5,9 +5,7 @@ from abjad.tools import selectiontools
 
 def all_are_contiguous_components_in_same_thread(
     expr, component_classes=None, allow_orphans=True):
-    '''.. versionadded:: 1.1
-
-    True when elements in `expr` are all contiguous components in same thread.
+    '''True when elements in `expr` are all contiguous components in same thread.
     Otherwise false:
 
     ::

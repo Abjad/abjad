@@ -1,9 +1,7 @@
 # -*- encoding: utf-8 -*-
 # TODO: implement chromatic_pitch_name_to_pitch_class_octave_number_string()
 def pitch_class_octave_number_string_to_chromatic_pitch_name(pitch_class_octave_number_string):
-    '''.. versionadded:: 2.5
-
-    Change `pitch_class_octave_number_string` to chromatic pitch name:
+    '''Change `pitch_class_octave_number_string` to chromatic pitch name:
 
     ::
 

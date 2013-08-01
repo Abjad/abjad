@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def retain_sequence_elements_at_indices(sequence, indices):
-    '''.. versionadded:: 2.0
-
-    Retain `sequence` elements at `indices`:
+    '''Retain `sequence` elements at `indices`:
 
     ::
 

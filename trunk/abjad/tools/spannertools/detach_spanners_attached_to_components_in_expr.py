@@ -1,9 +1,7 @@
 # -*- encoding: utf-8 -*-
 def detach_spanners_attached_to_components_in_expr(
     expr, spanner_classes=None):
-    r'''.. versionadded:: 2.9
-
-    Destroy spanners of `spanner_classes` attached to components in `expr`:
+    r'''Destroy spanners of `spanner_classes` attached to components in `expr`:
 
     ::
 

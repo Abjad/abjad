@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def pluralize_string(string):
-    r'''.. versionadded:: 2.13
-
-    Pluralize English `string`. Change terminal `-y` to `-ies`:
+    r'''Pluralize English `string`. Change terminal `-y` to `-ies`:
 
     ::
 

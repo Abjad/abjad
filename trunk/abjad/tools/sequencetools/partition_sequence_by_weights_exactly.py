@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def partition_sequence_by_weights_exactly(sequence, weights, cyclic=False, overhang=False):
-    r'''.. versionadded:: 1.1
-
-    Partition `sequence` by `weights` exactly.
+    r'''Partition `sequence` by `weights` exactly.
 
         >>> sequence = [3, 3, 3, 3, 4, 4, 4, 4, 5]
 

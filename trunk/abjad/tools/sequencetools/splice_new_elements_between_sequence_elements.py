@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def splice_new_elements_between_sequence_elements(sequence, new_elements, overhang=(0, 0)):
-    '''.. versionadded:: 1.1
-
-    Splice copies of `new_elements` between each of the elements of `sequence`:
+    '''Splice copies of `new_elements` between each of the elements of `sequence`:
 
     ::
 

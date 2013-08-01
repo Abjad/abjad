@@ -5,9 +5,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class SimpleInequality(AbjadObject):
-    '''.. versionadded:: 2.12
-
-    Simple inequality.
+    '''Simple inequality.
 
         >>> template = 'timespan_2.start_offset < timespan_1.start_offset'
         >>> simple_inequality = timerelationtools.SimpleInequality(template)

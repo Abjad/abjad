@@ -18,9 +18,7 @@ symbolic_pitch_range_string_regex_body = """
 
 symbolic_pitch_range_string_regex = re.compile('^%s$' % symbolic_pitch_range_string_regex_body, re.VERBOSE)
 def is_symbolic_pitch_range_string(expr):
-    '''.. versionadded:: 2.5
-
-    True when `expr` is a symbolic pitch range string. Otherwise false:
+    '''True when `expr` is a symbolic pitch range string. Otherwise false:
 
     ::
 

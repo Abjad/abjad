@@ -8,9 +8,7 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
 class EvenRunRhythmMaker(RhythmMaker):
-    r'''.. versionadded:: 2.11
-
-    Even run rhythm-maker.
+    r'''Even run rhythm-maker.
 
     Example 1. Make even run of notes each equal in duration to ``1/d``
     with ``d`` equal to the denominator of each division on which

@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def flatten_sequence(sequence, classes=None, depth=-1):
-    '''.. versionadded:: 1.1
-
-    Flatten `sequence`:
+    '''Flatten `sequence`:
 
     ::
 

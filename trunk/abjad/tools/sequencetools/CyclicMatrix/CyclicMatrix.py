@@ -4,9 +4,7 @@ from abjad.tools.sequencetools.Matrix import Matrix
 
 
 class CyclicMatrix(Matrix):
-    '''.. versionadded:: 2.0
-
-    Abjad model of cyclic matrix.
+    '''Abjad model of cyclic matrix.
 
     Initialize from rows:
 

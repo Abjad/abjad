@@ -3,9 +3,7 @@ from abjad.tools.spannertools.BeamSpanner import BeamSpanner
 
 
 class MultipartBeamSpanner(BeamSpanner):
-    r'''.. versionadded:: 2.0
-
-    Abjad multipart beam spanner:
+    r'''Abjad multipart beam spanner:
 
     ::
 

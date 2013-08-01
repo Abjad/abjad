@@ -4,9 +4,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class NumberedObject(AbjadObject):
-    '''..versionadded: 1.1.2
-
-    Numbered object base class.
+    '''Numbered object base class.
     '''
 
     ### CLASS VARIABLES ###

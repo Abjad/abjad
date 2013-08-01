@@ -609,8 +609,7 @@ class Container(Component):
 
         Return none.
 
-        .. versionadded:: 2.3
-            ``expr`` may now be a LilyPond input string.
+        expr`` may now be a LilyPond input string.
         '''
         #return self
         # to make pychecker happy

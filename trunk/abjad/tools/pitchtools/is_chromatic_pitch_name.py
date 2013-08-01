@@ -19,9 +19,7 @@ chromatic_pitch_name_regex_body = '''
 chromatic_pitch_name_regex = re.compile('^%s$' % chromatic_pitch_name_regex_body, re.VERBOSE)
 
 def is_chromatic_pitch_name(expr):
-    '''.. versionadded:: 2.0
-
-    True `expr` is a chromatic pitch name. Otherwise false:
+    '''True `expr` is a chromatic pitch name. Otherwise false:
 
     ::
 

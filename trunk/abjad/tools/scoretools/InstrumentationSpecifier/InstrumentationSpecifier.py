@@ -4,9 +4,7 @@ from abjad.tools.scoretools.PerformerInventory import PerformerInventory
 
 
 class InstrumentationSpecifier(AbjadObject):
-    r'''.. versionadded:: 2.5
-
-    Abjad model of score instrumentation:
+    r'''Abjad model of score instrumentation:
 
     ::
 

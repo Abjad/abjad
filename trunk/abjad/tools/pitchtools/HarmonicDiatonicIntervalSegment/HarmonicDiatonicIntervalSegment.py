@@ -3,9 +3,7 @@ from abjad.tools.pitchtools.IntervalSegment import IntervalSegment
 
 
 class HarmonicDiatonicIntervalSegment(IntervalSegment):
-    '''.. versionadded:: 2.0
-
-    Abjad model of harmonic diatonic interval segment:
+    '''Abjad model of harmonic diatonic interval segment:
 
     ::
 

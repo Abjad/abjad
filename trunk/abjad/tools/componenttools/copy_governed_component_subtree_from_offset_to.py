@@ -3,9 +3,7 @@ from abjad.tools import durationtools
 
 
 def copy_governed_component_subtree_from_offset_to(component, start=0, stop=None):
-    r'''.. versionadded:: 1.1
-
-    Copy governed `component` subtree from `start` prolated duration
+    r'''Copy governed `component` subtree from `start` prolated duration
     to `stop` prolated duration.
 
     Governed subtree refers to `component` together with the

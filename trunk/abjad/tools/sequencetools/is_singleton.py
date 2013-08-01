@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def is_singleton(expr):
-    r'''.. versionadded:: 2.9
-
-    True when `expr` is a tuple of length ``1``:
+    r'''True when `expr` is a tuple of length ``1``:
 
     ::
 

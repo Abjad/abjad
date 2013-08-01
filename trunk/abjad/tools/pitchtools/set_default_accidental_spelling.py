@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def set_default_accidental_spelling(spelling='mixed'):
-    '''.. versionadded:: 1.1
-
-    Set default accidental spelling to sharps:
+    '''Set default accidental spelling to sharps:
 
     ::
 

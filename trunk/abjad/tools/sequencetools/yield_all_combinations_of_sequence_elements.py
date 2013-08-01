@@ -4,9 +4,7 @@ from abjad.tools import mathtools
 
 
 def yield_all_combinations_of_sequence_elements(sequence, min_length=None, max_length=None):
-    '''.. versionadded:: 2.0
-
-    Yield all combinations of `sequence` in binary string order:
+    '''Yield all combinations of `sequence` in binary string order:
 
     ::
 

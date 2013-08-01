@@ -6,9 +6,7 @@ import fractions
 
 
 class SkipRhythmMaker(RhythmMaker):
-    r'''.. versionadded:: 2.10
-
-    Skip rhythm-maker:
+    r'''Skip rhythm-maker:
 
     ::
 

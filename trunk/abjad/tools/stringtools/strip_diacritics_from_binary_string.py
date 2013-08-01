@@ -3,9 +3,7 @@ import unicodedata
 
 
 def strip_diacritics_from_binary_string(binary_string):
-    r'''.. versionadded:: 2.5
-
-    Strip diacritics from `binary_string`:
+    r'''Strip diacritics from `binary_string`:
 
     ::
 

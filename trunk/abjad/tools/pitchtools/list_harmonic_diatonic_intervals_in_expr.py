@@ -3,9 +3,7 @@ from abjad.tools import sequencetools
 
 
 def list_harmonic_diatonic_intervals_in_expr(expr):
-    '''.. versionadded:: 2.0
-
-    List harmonic diatonic intervals in `expr`:
+    '''List harmonic diatonic intervals in `expr`:
 
     ::
 

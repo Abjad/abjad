@@ -4,9 +4,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class ImmutableAbjadObject(AbjadObject):
-    '''.. versionadded:: 2.8
-
-    .. note:: deprecated.
+    '''note:: deprecated.
 
     Abstract base class from which all custom classes which also subclass
     immutable builtin classes, such as tuple and frozenset, should inherit.

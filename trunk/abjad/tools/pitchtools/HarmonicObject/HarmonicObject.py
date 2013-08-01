@@ -4,9 +4,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class HarmonicObject(AbjadObject):
-    '''..versionadded:: 2.0
-
-    Harmonic object base class.
+    '''Harmonic object base class.
     '''
 
     ### CLASS VARIABLES ###

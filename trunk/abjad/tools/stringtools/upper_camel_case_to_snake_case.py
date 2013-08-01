@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def upper_camel_case_to_snake_case(string):
-    r'''.. versionadded:: 2.6
-
-    Change uppercamelcase `string` to underscore-delimited lowercase:
+    r'''Change uppercamelcase `string` to underscore-delimited lowercase:
 
     ::
 

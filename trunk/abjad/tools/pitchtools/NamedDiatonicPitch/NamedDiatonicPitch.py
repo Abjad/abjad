@@ -3,9 +3,7 @@ from abjad.tools.pitchtools.DiatonicPitch import DiatonicPitch
 
 
 class NamedDiatonicPitch(DiatonicPitch):
-    '''.. versionadded:: 2.0
-
-    Abjad model of a named diatonic pitch:
+    '''Abjad model of a named diatonic pitch:
 
     ::
 

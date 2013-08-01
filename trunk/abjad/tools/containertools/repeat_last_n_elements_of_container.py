@@ -3,9 +3,7 @@ from abjad.tools import componenttools
 
 
 def repeat_last_n_elements_of_container(container, n=1, total=2):
-    r'''.. versionadded:: 1.1
-
-    Repeat last `n` elements of `container`:
+    r'''Repeat last `n` elements of `container`:
 
     ::
 

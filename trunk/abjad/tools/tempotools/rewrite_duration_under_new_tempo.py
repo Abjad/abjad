@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def rewrite_duration_under_new_tempo(duration, tempo_mark_1, tempo_mark_2):
-    r'''.. versionadded:: 2.0
-
-    Rewrite prolated `duration` under new tempo.
+    r'''Rewrite prolated `duration` under new tempo.
 
     Given prolated `duration` governed by `tempo_mark_1`,
     return new duration governed by `tempo_mark_2`.

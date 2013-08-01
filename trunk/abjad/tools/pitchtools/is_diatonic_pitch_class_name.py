@@ -10,9 +10,7 @@ diatonic_pitch_class_name_regex = re.compile('^%s$' %
     diatonic_pitch_class_name_regex_body, re.VERBOSE)
 
 def is_diatonic_pitch_class_name(expr):
-    '''.. versionadded:: 2.0
-
-    True when `expr` is a diatonic pitch-class name. Otherwise false:
+    '''True when `expr` is a diatonic pitch-class name. Otherwise false:
 
     ::
 

@@ -6,9 +6,7 @@ from abjad.tools.pitchtools.Pitch import Pitch
 
 
 class DiatonicPitch(Pitch, DiatonicObject):
-    '''.. versionadded:: 2.0
-
-    Diatonic pitch base class.
+    '''Diatonic pitch base class.
     '''
 
     ### CLASS VARIABLES ###

@@ -5,9 +5,7 @@ import math
 # TODO: can't this just return a named chromatic pitch class instance?
 def chromatic_pitch_number_to_chromatic_pitch_triple(
     chromatic_pitch_number, accidental_spelling='mixed'):
-    '''.. versionadded: 1.1.1
-
-    Change `chromatic_pitch_number` to diatonic pitch-class name / alphabetic
+    '''Change `chromatic_pitch_number` to diatonic pitch-class name / alphabetic
     accidental abbreviation / octave number triple:
 
     ::

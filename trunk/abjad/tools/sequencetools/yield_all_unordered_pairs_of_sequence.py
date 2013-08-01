@@ -1,9 +1,7 @@
 # -*- encoding: utf-8 -*-
 # TODO: make function return a list of two-element multisets.
 def yield_all_unordered_pairs_of_sequence(sequence):
-    '''.. versionadded:: 2.0
-
-    Yield all unordered pairs of `sequence`:
+    '''Yield all unordered pairs of `sequence`:
 
     ::
 

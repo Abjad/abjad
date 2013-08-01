@@ -4,9 +4,7 @@ from abjad.tools.stringtools.strip_diacritics_from_binary_string \
 
 
 def string_to_accent_free_snake_case(string):
-    '''.. versionadded:: 2.6
-
-    Change `string` to strict directory name:
+    '''Change `string` to strict directory name:
 
     ::
 

@@ -4,9 +4,7 @@ from abjad.tools import componenttools
 
 def get_spanners_attached_to_any_improper_parent_of_component(
     component, spanner_classes=None):
-    r'''.. versionadded:: 1.1
-
-    Get all spanners attached to improper parentage of `component`:
+    r'''Get all spanners attached to improper parentage of `component`:
 
     ::
 

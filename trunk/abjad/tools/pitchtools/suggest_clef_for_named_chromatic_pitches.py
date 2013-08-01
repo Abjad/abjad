@@ -1,9 +1,7 @@
 # -*- encoding: utf-8 -*-
 # TODO: renamed to suggest_clef_for_named_chromatic_pitches_in_expr
 def suggest_clef_for_named_chromatic_pitches(pitches):
-    '''.. versionadded:: 1.1
-
-    Suggest clef for named chromatic `pitches`:
+    '''Suggest clef for named chromatic `pitches`:
 
     ::
 

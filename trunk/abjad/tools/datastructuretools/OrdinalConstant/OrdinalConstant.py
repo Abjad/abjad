@@ -3,9 +3,7 @@ from abjad.tools.abctools.ImmutableAbjadObject import ImmutableAbjadObject
 
 
 class OrdinalConstant(ImmutableAbjadObject):
-    r'''.. versionadded:: 1.0
-
-    Ordinal constant.
+    r'''Ordinal constant.
 
     Initialize with `dimension`, `value` and `representation`:
 

@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def repeat_runs_in_sequence_to_count(sequence, indicators):
-    '''.. versionadded:: 1.1
-
-    Repeat subruns in `sequence` according to `indicators`.
+    '''Repeat subruns in `sequence` according to `indicators`.
     The `indicators` input parameter must be a list of
     zero or more ``(start, length, count)`` triples.
     For every ``(start, length, count)`` indicator in `indicators`,

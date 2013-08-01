@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def sort_named_chromatic_pitch_carriers_in_expr(pitch_carriers):
-    '''.. versionadded:: 2.0
-
-    List named chromatic pitch carriers in `expr` sorted by 
+    '''List named chromatic pitch carriers in `expr` sorted by 
     numbered chromatic pitch-class:
 
     ::

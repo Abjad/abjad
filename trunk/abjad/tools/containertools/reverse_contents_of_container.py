@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def reverse_contents_of_container(container):
-    r'''.. versionadded:: 1.1
-
-    Reverse contents of `container`:
+    r'''Reverse contents of `container`:
 
     ::
 

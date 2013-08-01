@@ -3,9 +3,7 @@ from abjad.tools import durationtools
 
 
 def update_offset_values_of_component_in_seconds(component):
-    r'''.. versionadded:: 2.9
-
-    Update offset values of `component` in seconds.
+    r'''Update offset values of `component` in seconds.
     '''
     from abjad.tools import componenttools
     try:

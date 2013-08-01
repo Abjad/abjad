@@ -4,9 +4,7 @@ from abjad.tools import sievetools
 
 def repeat_sequence_elements_at_indices_cyclically(
     sequence, cycle_token, total):
-    '''.. versionadded:: 2.0
-
-    Repeat `sequence` elements at indices specified by `cycle_token` 
+    '''Repeat `sequence` elements at indices specified by `cycle_token` 
     to `total` length:
 
     ::

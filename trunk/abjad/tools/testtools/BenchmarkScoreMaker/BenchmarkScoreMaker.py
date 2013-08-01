@@ -9,9 +9,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class BenchmarkScoreMaker(AbjadObject):
-    '''.. versionadded:: 2.12
-
-    Benchmark score maker:
+    '''Benchmark score maker:
 
     ::
 

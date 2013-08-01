@@ -1,9 +1,7 @@
 # -*- encoding: utf-8 -*-
 def transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell(
     pitch, staff_spaces, melodic_chromatic_interval):
-    '''.. versionadded:: 1.1
-
-    Transpose named chromatic pitch by `melodic_chromatic_interval` and respell `staff_spaces`
+    '''Transpose named chromatic pitch by `melodic_chromatic_interval` and respell `staff_spaces`
     above or below:
 
     ::

@@ -4,9 +4,7 @@ from abjad.tools.sequencetools.iterate_sequence_pairwise_strict \
 
 
 def is_repetition_free_sequence(expr):
-    '''.. versionadded:: 2.0
-
-    True when `expr` is a sequence and `expr` is repetition free:
+    '''True when `expr` is a sequence and `expr` is repetition free:
 
     ::
 

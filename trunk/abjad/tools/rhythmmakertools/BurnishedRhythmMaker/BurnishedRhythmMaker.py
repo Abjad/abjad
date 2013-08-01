@@ -13,9 +13,7 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
 class BurnishedRhythmMaker(RhythmMaker):
-    '''.. versionadded:: 2.8
-
-    Abstract base class for rhythm-makers that burnish some or
+    '''Abstract base class for rhythm-makers that burnish some or
     all of the output cells they produce.
 
     'Burnishing' means to forcibly cast the first or last

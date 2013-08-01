@@ -6,9 +6,7 @@ from abjad.tools.pitchtools.Pitch import Pitch
 
 
 class NumberedPitch(Pitch, NumberedObject):
-    '''.. versionadded:: 2.0
-
-    Numbered pitch base class from which concrete classes inherit.
+    '''Numbered pitch base class from which concrete classes inherit.
     '''
 
     ### CLASS VARIABLES ###

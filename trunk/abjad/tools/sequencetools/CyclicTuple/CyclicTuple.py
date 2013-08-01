@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 class CyclicTuple(tuple):
-    '''.. versionadded:: 2.0
-
-    Abjad model of cyclic tuple:
+    '''Abjad model of cyclic tuple:
 
     ::
 

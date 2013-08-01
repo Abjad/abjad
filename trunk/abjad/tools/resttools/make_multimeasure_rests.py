@@ -3,9 +3,7 @@ from abjad.tools import durationtools
 
 
 def make_multimeasure_rests(durations):
-    '''.. versionadded:: 2.0
-
-    Make multi-measure rests from `durations`:
+    '''Make multi-measure rests from `durations`:
 
     ::
 

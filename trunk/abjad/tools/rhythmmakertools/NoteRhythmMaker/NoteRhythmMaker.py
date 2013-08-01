@@ -4,9 +4,7 @@ from abjad.tools.rhythmmakertools.DivisionIncisedNoteRhythmMaker \
 
 
 class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
-    r'''.. versionadded:: 2.8
-
-    Note rhythm-maker:
+    r'''Note rhythm-maker:
 
     Example 1:
 

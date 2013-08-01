@@ -3,9 +3,7 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 
 
 class KeySignatureMark(ContextMark):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of a key signature setting or key signature change:
+    r'''Abjad model of a key signature setting or key signature change:
 
     ::
 

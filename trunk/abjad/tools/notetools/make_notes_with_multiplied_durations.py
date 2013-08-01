@@ -3,9 +3,7 @@ from abjad.tools import durationtools
 
 
 def make_notes_with_multiplied_durations(pitch, written_duration, multiplied_durations):
-    '''.. versionadded:: 2.0
-
-    Make `written_duration` notes with `pitch` and `multiplied_durations`:
+    '''Make `written_duration` notes with `pitch` and `multiplied_durations`:
 
     ::
 

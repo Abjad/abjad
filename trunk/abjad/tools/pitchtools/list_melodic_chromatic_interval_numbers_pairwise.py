@@ -3,9 +3,7 @@ from abjad.tools import sequencetools
 
 
 def list_melodic_chromatic_interval_numbers_pairwise(pitch_carriers, wrap=False):
-    r'''.. versionadded:: 1.1
-
-    List melodic chromatic interval numbers pairwise between `pitch_carriers`:
+    r'''List melodic chromatic interval numbers pairwise between `pitch_carriers`:
 
     ::
 

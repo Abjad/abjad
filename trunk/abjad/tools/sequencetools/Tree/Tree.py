@@ -4,9 +4,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Tree(AbjadObject):
-    r'''.. versionadded:: 2.4
-
-    Abjad data structure to work with a sequence whose elements have been
+    r'''Abjad data structure to work with a sequence whose elements have been
     grouped into arbitrarily many levels of containment.
 
     Here is a tree:

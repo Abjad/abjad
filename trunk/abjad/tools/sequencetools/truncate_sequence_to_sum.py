@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def truncate_sequence_to_sum(sequence, target_sum):
-    '''.. versionadded:: 1.1
-
-    Truncate `sequence` to `target_sum`:
+    '''Truncate `sequence` to `target_sum`:
 
     ::
 

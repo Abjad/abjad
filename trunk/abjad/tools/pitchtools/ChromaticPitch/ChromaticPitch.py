@@ -5,9 +5,7 @@ from abjad.tools.pitchtools.Pitch import Pitch
 
 
 class ChromaticPitch(Pitch, ChromaticObject):
-    '''.. versionadded:: 2.0
-
-    Chromatic pitch base class.
+    '''Chromatic pitch base class.
     '''
 
     ### CLASS VARIABLES ##

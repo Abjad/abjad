@@ -10,9 +10,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Spanner(AbjadObject):
-    '''.. versionadded:: 1.1
-
-    Any type of notation object that stretches horizontally
+    '''Any type of notation object that stretches horizontally
     and encompasses some number of notes, rest, chords, tuplets,
     measures, voices or other Abjad components.
 

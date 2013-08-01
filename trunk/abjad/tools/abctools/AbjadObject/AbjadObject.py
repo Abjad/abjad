@@ -4,9 +4,7 @@ import types
 
 
 class AbjadObject(object):
-    '''.. versionadded:: 2.0
-
-    Abstract base class from which all custom classes should inherit.
+    '''Abstract base class from which all custom classes should inherit.
 
     Abajd objects raise exceptions on ``__gt__``, ``__ge__``, 
     ``__lt__``, ``__le__``.

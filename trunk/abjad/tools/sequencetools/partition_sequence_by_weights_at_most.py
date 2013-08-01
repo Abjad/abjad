@@ -3,9 +3,7 @@ from abjad.tools import mathtools
 
 
 def partition_sequence_by_weights_at_most(sequence, weights, cyclic=False, overhang=False):
-    r'''.. versionadded:: 1.1
-
-    Partition `sequence` by `weights` at most.
+    r'''Partition `sequence` by `weights` at most.
 
         >>> sequence = [3, 3, 3, 3, 4, 4, 4, 4, 5, 5]
 

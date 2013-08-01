@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def all_are_named_chromatic_pitch_tokens(expr):
-    '''.. versionadded:: 2.6
-
-    True when `expr` is a sequence of named chromatic pitch tokens:
+    '''True when `expr` is a sequence of named chromatic pitch tokens:
 
     ::
 

@@ -4,9 +4,7 @@ from abjad.tools import mathtools
 
 
 def partition_sequence_by_ratio_of_weights(sequence, weights):
-    '''.. versionadded:: 2.0
-
-    Partition `sequence` by ratio of `weights`:
+    '''Partition `sequence` by ratio of `weights`:
 
     ::
 

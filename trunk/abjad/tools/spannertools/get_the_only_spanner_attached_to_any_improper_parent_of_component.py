@@ -1,9 +1,7 @@
 # -*- encoding: utf-8 -*-
 def get_the_only_spanner_attached_to_any_improper_parent_of_component(
     component, spanner_classes=None):
-    r'''.. versionadded:: 1.1
-
-    Get the only spanner attached to any improper parent `component`:
+    r'''Get the only spanner attached to any improper parent `component`:
 
     ::
 

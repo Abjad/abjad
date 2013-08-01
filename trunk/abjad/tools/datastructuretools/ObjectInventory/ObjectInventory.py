@@ -5,9 +5,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 # TODO: inherit from AbjadObject only
 class ObjectInventory(list, AbjadObject):
-    '''.. versionadded:: 2.8
-
-    Ordered collection of custom objects.
+    '''Ordered collection of custom objects.
 
     Object inventories extend ``append()``, ``extend()`` and
     ``__contains__()`` and allow token input.

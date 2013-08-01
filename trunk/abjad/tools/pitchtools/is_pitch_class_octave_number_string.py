@@ -14,9 +14,7 @@ pitch_class_octave_number_regex_body = """
 pitch_class_octave_number_regex = re.compile('^%s$' % pitch_class_octave_number_regex_body, re.VERBOSE)
 
 def is_pitch_class_octave_number_string(expr):
-    '''.. versionadded:: 2.5
-
-    True when `expr` is a pitch-class / octave number string. Otherwise false:
+    '''True when `expr` is a pitch-class / octave number string. Otherwise false:
 
     ::
 

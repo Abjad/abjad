@@ -133,9 +133,7 @@ class Sieve(BaseResidueClass):
 
     @staticmethod
     def from_cycle_tokens(*cycle_tokens):
-        '''.. versionadded:: 2.0
-
-        Make Xenakis sieve from `cycle_tokens`:
+        '''Make Xenakis sieve from `cycle_tokens`:
 
         ::
 

@@ -4,9 +4,7 @@ from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 
 
 class CompoundInequality(ObjectInventory):
-    '''.. versionadded:: 2.12
-
-    Compound inequality:
+    '''Compound inequality:
 
     ::
 

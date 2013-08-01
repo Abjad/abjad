@@ -3,9 +3,7 @@ from abjad.tools import sequencetools
 
 
 def list_inversion_equivalent_chromatic_interval_classes_pairwise(pitch_carriers, wrap=False):
-    r'''.. versionadded:: 2.0
-
-    List inversion-equivalent chromatic interval-classes pairwise between `pitch_carriers`:
+    r'''List inversion-equivalent chromatic interval-classes pairwise between `pitch_carriers`:
 
     ::
 

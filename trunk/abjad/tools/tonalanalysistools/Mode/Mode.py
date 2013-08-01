@@ -5,9 +5,7 @@ from abjad.tools import pitchtools
 
 
 class Mode(AbjadObject):
-    '''.. versionadded:: 2.0
-
-    Diatonic mode. Can be extended for nondiatonic mode.
+    '''Diatonic mode. Can be extended for nondiatonic mode.
 
     Modes with different ascending and descending forms not yet implemented.
     '''

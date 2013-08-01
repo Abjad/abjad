@@ -9,9 +9,7 @@ from abjad.tools.scoretemplatetools.ScoreTemplate import ScoreTemplate
 
 
 class StringQuartetScoreTemplate(ScoreTemplate):
-    '''.. versionadded:: 2.8
-
-    String quartet score template:
+    '''String quartet score template:
 
     ::
 

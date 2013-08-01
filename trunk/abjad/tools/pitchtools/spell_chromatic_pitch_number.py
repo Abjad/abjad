@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def spell_chromatic_pitch_number(chromatic_pitch_number, diatonic_pitch_class_name):
-    '''.. versionadded:: 1.1
-
-    Spell `chromatic_pitch_number` according to `diatonic_pitch_class_name`:
+    '''Spell `chromatic_pitch_number` according to `diatonic_pitch_class_name`:
 
     ::
 

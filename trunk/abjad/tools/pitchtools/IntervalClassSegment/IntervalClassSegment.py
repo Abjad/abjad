@@ -4,9 +4,7 @@ from abjad.tools.pitchtools.Segment import Segment
 
 
 class IntervalClassSegment(Segment):
-    '''.. versionadded:: 2.0
-
-    Interval-class segment base class.
+    '''Interval-class segment base class.
     '''
 
     ### CLASS VARIABLES ###

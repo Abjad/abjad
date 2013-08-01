@@ -3,9 +3,7 @@ from abjad.tools.pitchtools.IntervalSet import IntervalSet
 
 
 class MelodicChromaticIntervalSet(IntervalSet):
-    '''.. versionadded:: 2.0
-
-    Abjad model of melodic chromatic interval set:
+    '''Abjad model of melodic chromatic interval set:
 
     ::
 

@@ -6,8 +6,6 @@ def partition_components_by_durations_exactly(
     in_seconds=False,
     overhang=False,
     ):
-    r'''.. versionadded:: 1.1
-    '''
     from abjad.tools import componenttools
 
     return componenttools.partition_components_by_durations(

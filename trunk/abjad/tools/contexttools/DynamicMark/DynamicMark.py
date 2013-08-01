@@ -3,9 +3,7 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 
 
 class DynamicMark(ContextMark):
-    r'''.. versionadded:: 2.0
-
-    Abjad model of a dynamic mark.
+    r'''Abjad model of a dynamic mark.
 
     Example 1. Initialize from dynamic name:
 

@@ -321,9 +321,7 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
 
     @property
     def dot_count(self):
-        r'''.. versionadded:: 2.11
-
-        Positive integer number of dots required to notate duration:
+        r'''Positive integer number of dots required to notate duration:
 
         ::
 

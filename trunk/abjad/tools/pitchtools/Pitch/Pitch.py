@@ -6,9 +6,7 @@ from abjad.tools.abctools.SortableAttributeEqualityAbjadObject \
 
 
 class Pitch(SortableAttributeEqualityAbjadObject):
-    '''.. versionadded:: 2.0
-
-    Pitch base class.
+    '''Pitch base class.
     '''
 
     ### CLASS VARIABLES ###

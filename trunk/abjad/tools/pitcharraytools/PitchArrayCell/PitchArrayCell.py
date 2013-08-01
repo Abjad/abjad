@@ -5,9 +5,7 @@ from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch \
 
 
 class PitchArrayCell(AbjadObject):
-    '''.. versionadded 1.1.2
-
-    One cell in a pitch array. ::
+    '''One cell in a pitch array. ::
 
         >>> array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
         >>> print array

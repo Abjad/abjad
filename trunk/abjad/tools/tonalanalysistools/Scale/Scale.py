@@ -14,9 +14,7 @@ from abjad.tools.pitchtools.NamedChromaticPitchClassSegment \
 
 
 class Scale(NamedChromaticPitchClassSegment):
-    '''.. versionadded:: 2.0
-
-    Abjad model of diatonic scale.
+    '''Abjad model of diatonic scale.
     '''
 
     ### CLASS VARIABLES ###

@@ -4,9 +4,7 @@ from abjad.tools.rhythmmakertools.DivisionBurnishedTaleaRhythmMaker import \
 
 
 class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
-    r'''.. versionadded:: 2.8
-
-    Talea rhythm-maker.
+    r'''Talea rhythm-maker.
 
     Example 1. Basic usage:
 

@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def format_input_lines_as_regression_test(input_lines, tab_width=3):
-    r""".. versionadded:: 2.0
-
-    Format `input_lines` as regression test:
+    r"""Format `input_lines` as regression test:
 
     ::
 

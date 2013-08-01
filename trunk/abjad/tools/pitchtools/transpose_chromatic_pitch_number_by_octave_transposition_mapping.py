@@ -1,9 +1,7 @@
 # -*- encoding: utf-8 -*-
 # TODO: remove in favor of OctaveTranspositionMapping.__call__()
 def transpose_chromatic_pitch_number_by_octave_transposition_mapping(chromatic_pitch_number, mapping):
-    '''.. versionadded:: 1.1
-
-    Transpose `chromatic_pitch_number` by the some number of octaves up or down.
+    '''Transpose `chromatic_pitch_number` by the some number of octaves up or down.
     Derive correct number of octaves from `mapping` where
     `mapping` is a list of ``(range_spec, octave)`` pairs
     and ``range_spec`` is, in turn, a ``(start, stop)`` pair

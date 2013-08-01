@@ -3,9 +3,7 @@ from abjad.tools import mathtools
 
 
 def calculate_melodic_chromatic_interval(pitch_carrier_1, pitch_carrier_2):
-    '''.. versionadded:: 2.0
-
-    Calculate melodic chromatic interval from `pitch_carrier_1` to
+    '''Calculate melodic chromatic interval from `pitch_carrier_1` to
     `pitch_carrier_2`:
 
     ::

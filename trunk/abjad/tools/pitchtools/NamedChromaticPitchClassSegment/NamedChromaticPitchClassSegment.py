@@ -4,9 +4,7 @@ from abjad.tools.pitchtools.PitchClassSegment import PitchClassSegment
 
 
 class NamedChromaticPitchClassSegment(PitchClassSegment):
-    '''.. versionadded:: 2.0
-
-    Abjad model of named chromatic pitch-class segment:
+    '''Abjad model of named chromatic pitch-class segment:
 
     ::
 

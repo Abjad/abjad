@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def iterate_sequence_forward_and_backward_nonoverlapping(sequence):
-    '''.. versionadded:: 2.0
-
-    Iterate `sequence` first forward and then backward, with first
+    '''Iterate `sequence` first forward and then backward, with first
     and last elements repeated:
 
     ::

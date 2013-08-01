@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def is_integer_pair(expr):
-    r'''.. versionadded:: 2.9
-
-    True when `expr` is an integer tuple of length ``2``:
+    r'''True when `expr` is an integer tuple of length ``2``:
 
     ::
 

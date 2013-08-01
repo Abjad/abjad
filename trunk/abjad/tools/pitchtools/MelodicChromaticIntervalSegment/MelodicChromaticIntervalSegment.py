@@ -4,9 +4,7 @@ import fractions
 
 
 class MelodicChromaticIntervalSegment(IntervalSegment):
-    '''.. versionadded:: 2.0
-
-    Abjad model of melodic chromatic interval segment:
+    '''Abjad model of melodic chromatic interval segment:
 
     ::
 

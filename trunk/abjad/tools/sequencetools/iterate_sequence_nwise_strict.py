@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def iterate_sequence_nwise_strict(sequence, n):
-    '''.. versionadded:: 2.0
-
-    Iterate elements in `sequence` `n` at a time:
+    '''Iterate elements in `sequence` `n` at a time:
 
     ::
 

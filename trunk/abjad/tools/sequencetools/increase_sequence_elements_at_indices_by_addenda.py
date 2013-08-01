@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def increase_sequence_elements_at_indices_by_addenda(sequence, addenda, indices):
-    '''.. versionadded:: 1.1
-
-    Increase `sequence` by `addenda` at `indices`:
+    '''Increase `sequence` by `addenda` at `indices`:
 
     ::
 

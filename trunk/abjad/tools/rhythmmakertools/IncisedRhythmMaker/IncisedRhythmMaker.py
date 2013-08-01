@@ -11,9 +11,7 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
 class IncisedRhythmMaker(RhythmMaker):
-    '''.. versionadded 2.8
-
-    Abstract base class for rhythm-makers that incise some or
+    '''Abstract base class for rhythm-makers that incise some or
     all of the output cells they produce.
 
     Rhythm makers can incise the edge of every output cell.

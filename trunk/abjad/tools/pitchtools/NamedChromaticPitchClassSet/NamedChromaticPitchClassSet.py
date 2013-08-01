@@ -3,9 +3,7 @@ from abjad.tools.pitchtools.PitchClassSet import PitchClassSet
 
 
 class NamedChromaticPitchClassSet(PitchClassSet):
-    '''.. versionadded:: 2.0
-
-    Abjad model of a named chromatic pitch-class set:
+    '''Abjad model of a named chromatic pitch-class set:
 
     ::
 

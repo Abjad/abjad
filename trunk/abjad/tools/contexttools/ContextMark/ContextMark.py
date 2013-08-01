@@ -3,9 +3,7 @@ from abjad.tools.marktools.Mark import Mark
 
 
 class ContextMark(Mark):
-    '''.. versionadded:: 2.0
-
-    Abstract class from which concrete context marks inherit:
+    '''Abstract class from which concrete context marks inherit:
 
     ::
 

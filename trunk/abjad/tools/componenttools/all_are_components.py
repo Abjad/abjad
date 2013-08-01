@@ -4,9 +4,7 @@ from abjad.tools import selectiontools
 
 
 def all_are_components(expr, classes=None):
-    '''.. versionadded:: 1.1
-
-    True when elements in `expr` are all components:
+    '''True when elements in `expr` are all components:
 
     ::
 

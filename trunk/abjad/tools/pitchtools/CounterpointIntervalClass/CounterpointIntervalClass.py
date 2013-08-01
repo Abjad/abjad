@@ -5,9 +5,7 @@ from abjad.tools.pitchtools.IntervalClass import IntervalClass
 
 
 class CounterpointIntervalClass(IntervalClass, CounterpointObject):
-    '''.. versionadded:: 2.0
-
-    Counterpoint interval-class base class.
+    '''Counterpoint interval-class base class.
     '''
 
     ### CLASS VARIABLES ###

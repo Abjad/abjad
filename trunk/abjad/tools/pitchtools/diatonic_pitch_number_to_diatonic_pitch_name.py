@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def diatonic_pitch_number_to_diatonic_pitch_name(diatonic_pitch_number):
-    '''.. versionadded:: 2.0
-
-    Change `diatonic_pitch_number` to diatonic pitch name:
+    '''Change `diatonic_pitch_number` to diatonic pitch name:
 
     ::
 

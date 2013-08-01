@@ -1,9 +1,7 @@
 # -*- encoding: utf-8 -*-
 def chromatic_pitch_number_to_chromatic_pitch_name(
     chromatic_pitch_number, accidental_spelling='mixed'):
-    '''.. versionadded:: 2.0
-
-    Change `chromatic_pitch_number` to chromatic pitch name:
+    '''Change `chromatic_pitch_number` to chromatic pitch name:
 
     ::
 

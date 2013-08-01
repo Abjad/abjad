@@ -3,9 +3,7 @@ import numbers
 
 
 def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
-    '''.. versionadded:: 1.1
-
-    Get named chromatic pitch from `pitch_carrier`:
+    '''Get named chromatic pitch from `pitch_carrier`:
 
     ::
 

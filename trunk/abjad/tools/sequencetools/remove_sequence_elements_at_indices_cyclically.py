@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def remove_sequence_elements_at_indices_cyclically(sequence, indices, period, offset=0):
-    '''.. versionadded:: 2.0
-
-    Remove `sequence` elements at `indices` mod `period` plus `offset`:
+    '''Remove `sequence` elements at `indices` mod `period` plus `offset`:
 
     ::
 

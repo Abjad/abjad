@@ -6,9 +6,7 @@ from abjad.tools.pitchtools.Interval import Interval
 
 
 class ChromaticInterval(Interval, ChromaticObject):
-    '''.. versionadded:: 2.0
-
-    Chromatic interval base class.
+    '''Chromatic interval base class.
     '''
 
     ### CLASS VARIABLES ###

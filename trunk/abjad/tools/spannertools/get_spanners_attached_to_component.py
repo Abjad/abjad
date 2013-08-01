@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def get_spanners_attached_to_component(component, spanner_classes=None):
-    r'''.. versionadded:: 2.0
-
-    Get all spanners attached to `component`:
+    r'''Get all spanners attached to `component`:
 
     ::
 

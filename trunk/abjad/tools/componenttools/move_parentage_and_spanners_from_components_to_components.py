@@ -1,9 +1,7 @@
 # -*- encoding: utf-8 -*-
 def move_parentage_and_spanners_from_components_to_components(
     donors, recipients):
-    '''.. versionadded:: 1.1
-
-    Move parentage and spanners from `donors` to `recipients`.
+    '''Move parentage and spanners from `donors` to `recipients`.
 
     Give everything from donors to recipients.
 

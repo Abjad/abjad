@@ -5,9 +5,7 @@ from abjad.tools.pitchtools.OctaveTranspositionMappingComponent \
 
 
 class OctaveTranspositionMapping(ObjectInventory):
-    '''.. versionadded:: 2.8
-
-    Octave transposition mapping:
+    '''Octave transposition mapping:
 
     ::
 

@@ -4,9 +4,7 @@ from abjad.tools.abctools import ImmutableAbjadObject
 
 
 class Set(frozenset, ImmutableAbjadObject):
-    '''.. versionadded:: 2.0
-
-    Music-theoretic set base class.
+    '''Music-theoretic set base class.
     '''
 
     ### CLASS METHODS ###

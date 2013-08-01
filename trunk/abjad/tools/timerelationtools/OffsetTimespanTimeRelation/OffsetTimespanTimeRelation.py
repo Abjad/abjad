@@ -5,9 +5,7 @@ from abjad.tools.timerelationtools.TimeRelation import TimeRelation
 
 
 class OffsetTimespanTimeRelation(TimeRelation):
-    r'''.. versionadded:: 2.11
-
-    Offset / timespan time relation:
+    r'''Offset / timespan time relation:
 
     ::
 

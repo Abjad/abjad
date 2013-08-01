@@ -5,9 +5,7 @@ from abjad.tools.pitchtools.OctaveTranspositionMapping \
 
 
 class OctaveTranspositionMappingInventory(ObjectInventory):
-    '''.. versionadded:: 2.8
-
-    Model of an ordered list of octave transposition mappings:
+    '''Model of an ordered list of octave transposition mappings:
 
     ::
 

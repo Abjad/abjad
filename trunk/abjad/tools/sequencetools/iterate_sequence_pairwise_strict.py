@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def iterate_sequence_pairwise_strict(sequence):
-    '''.. versionadded:: 1.1
-
-    Iterate `sequence` pairwise strict:
+    '''Iterate `sequence` pairwise strict:
 
     ::
 

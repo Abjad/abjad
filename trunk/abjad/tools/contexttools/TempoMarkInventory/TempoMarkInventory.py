@@ -4,9 +4,7 @@ from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 
 
 class TempoMarkInventory(ObjectInventory):
-    r'''.. versionadded:: 2.7
-
-    Abjad model of an ordered list of tempo marks:
+    r'''Abjad model of an ordered list of tempo marks:
 
     ::
 

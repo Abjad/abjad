@@ -4,9 +4,7 @@ from abjad.tools import durationtools
 
 def report_integer_tempo_rewrite_pairs(integer_tempo,
     maximum_numerator=None, maximum_denominator=None):
-    '''.. versionadded:: 2.0
-
-    Report `integer_tempo` rewrite pairs.
+    '''Report `integer_tempo` rewrite pairs.
 
     Allow no tempo less than half `integer_tempo` or
     greater than double `integer_tempo`:

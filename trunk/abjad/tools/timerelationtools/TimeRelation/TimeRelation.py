@@ -4,9 +4,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class TimeRelation(AbjadObject):
-    r'''.. versionadded:: 2.11
-
-    Time relation:
+    r'''Time relation:
 
     ::
 

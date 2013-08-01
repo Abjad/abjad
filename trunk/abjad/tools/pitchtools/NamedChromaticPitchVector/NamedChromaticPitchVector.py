@@ -3,9 +3,7 @@ from abjad.tools.pitchtools.Vector import Vector
 
 
 class NamedChromaticPitchVector(Vector):
-    '''.. versionadded:: 2.0
-
-    Abjad model of named chromatic pitch vector:
+    '''Abjad model of named chromatic pitch vector:
 
     ::
 

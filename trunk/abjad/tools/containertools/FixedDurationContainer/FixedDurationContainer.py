@@ -4,9 +4,7 @@ from abjad.tools.containertools.Container import Container
 
 
 class FixedDurationContainer(Container):
-    r'''.. versionadded:: 2.9
-
-    Fixed-duration container:
+    r'''Fixed-duration container:
 
     ::
 

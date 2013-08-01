@@ -3,9 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class ContainmentSignature(AbjadObject):
-    r'''.. versionadded:: 2.9
-
-    Containment signature of Abjad component:
+    r'''Containment signature of Abjad component:
 
     ::
 

@@ -6,9 +6,7 @@ from abjad.tools.pitchtools.is_chromatic_pitch_name \
 
 
 class NamedChromaticPitch(Pitch):
-    '''.. versionadded:: 1.1
-
-    Abjad model of named chromatic pitch:
+    '''Abjad model of named chromatic pitch:
 
     ::
 

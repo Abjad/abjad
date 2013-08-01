@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def negate_sequence_elements_cyclically(sequence, indices, period):
-    '''.. versionadded:: 2.0
-
-    Negate `sequence` elements at `indices` cyclically according to `period`:
+    '''Negate `sequence` elements at `indices` cyclically according to `period`:
 
     ::
 

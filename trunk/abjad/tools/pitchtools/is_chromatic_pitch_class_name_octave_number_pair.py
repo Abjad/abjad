@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def is_chromatic_pitch_class_name_octave_number_pair(expr):
-    '''.. versionadded:: 1.1
-
-    True when `arg` has the form of a chromatic pitch-class / octave number pair.
+    '''True when `arg` has the form of a chromatic pitch-class / octave number pair.
     Otherwise false:
 
     ::

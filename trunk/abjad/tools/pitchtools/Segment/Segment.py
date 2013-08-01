@@ -5,9 +5,7 @@ from abjad.tools.abctools import ImmutableAbjadObject
 
 
 class Segment(tuple, ImmutableAbjadObject):
-    '''.. versionadded:: 2.0
-
-    Mix-in base class for ordered collections of pitch objects.
+    '''Mix-in base class for ordered collections of pitch objects.
     '''
 
     ### CLASS VARIABLES ##

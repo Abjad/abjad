@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def all_are_equal(expr):
-    '''.. versionadded:: 2.0
-
-    True when `expr` is a sequence and all elements in `expr` are equal:
+    '''True when `expr` is a sequence and all elements in `expr` are equal:
 
     ::
 

@@ -3,9 +3,7 @@ from abjad.tools import chordtools
 
 
 def make_piano_score_from_leaves(leaves, lowest_treble_pitch=None):
-    r""".. versionadded:: 2.0
-
-    Make piano score from `leaves`:
+    r"""Make piano score from `leaves`:
 
     ::
 

@@ -4,9 +4,7 @@ from abjad.tools import leaftools
 
 
 def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
-    '''.. versionadded:: 1.0
-
-    Make percussion note:
+    '''Make percussion note:
 
     ::
 

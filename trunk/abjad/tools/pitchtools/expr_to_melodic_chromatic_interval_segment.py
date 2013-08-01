@@ -3,9 +3,7 @@ from abjad.tools import sequencetools
 
 
 def expr_to_melodic_chromatic_interval_segment(expr):
-    '''.. versionadded:: 2.0
-
-    Change `expr` to melodic chromatic interval segment:
+    '''Change `expr` to melodic chromatic interval segment:
 
     ::
 

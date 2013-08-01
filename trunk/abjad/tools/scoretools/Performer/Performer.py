@@ -4,9 +4,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Performer(AbjadObject):
-    r'''.. versionadded:: 2.5
-
-    Abjad model of performer:
+    r'''Abjad model of performer:
 
     ::
 

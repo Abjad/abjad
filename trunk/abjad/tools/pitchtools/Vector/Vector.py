@@ -5,9 +5,7 @@ from abjad.tools.datastructuretools import ImmutableDictionary
 
 
 class Vector(ImmutableDictionary):
-    '''.. versionadded:: 2.0
-
-    Music theoretic vector base class.
+    '''Music theoretic vector base class.
     '''
 
     ### CLASS VARIABLES ###

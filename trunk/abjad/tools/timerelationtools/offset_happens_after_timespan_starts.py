@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 def offset_happens_after_timespan_starts(timespan=None, offset=None, hold=False):
-    r'''.. versionadded:: 2.11
-
-    Make time relation indicating that `offset` happens after `timespan` starts:
+    r'''Make time relation indicating that `offset` happens after `timespan` starts:
 
     ::
 

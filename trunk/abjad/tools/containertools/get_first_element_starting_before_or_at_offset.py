@@ -3,9 +3,7 @@ from abjad.tools import durationtools
 
 
 def get_first_element_starting_before_or_at_offset(container, prolated_offset):
-    '''.. versionadded:: 2.0
-
-    Get first `container` element starting before or at `prolated_offset`:
+    '''Get first `container` element starting before or at `prolated_offset`:
 
     ::
 
