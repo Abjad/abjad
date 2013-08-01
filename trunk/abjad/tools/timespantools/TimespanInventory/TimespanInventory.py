@@ -1396,6 +1396,142 @@ class TimespanInventory(ObjectInventory):
         self[:] = new_timespans
         return self
 
+    def round_offsets(self, multiplier, anchor=Left, must_be_well_formed=True):
+        '''Round offsets of timespans in inventory to multiples of
+        `multiplier`:
+
+        Example 1:
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 2),
+            ...     timespantools.Timespan(3, 6),
+            ...     timespantools.Timespan(6, 10),
+            ...     ])
+        
+        ::
+
+            >>> z(timespan_inventory.round_offsets(3))
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(3, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(3, 1),
+                    stop_offset=durationtools.Offset(6, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(6, 1),
+                    stop_offset=durationtools.Offset(9, 1)
+                    )
+                ])
+
+        Example 2:
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 2),
+            ...     timespantools.Timespan(3, 6),
+            ...     timespantools.Timespan(6, 10),
+            ...     ])
+        
+        ::
+
+            >>> z(timespan_inventory.round_offsets(5))
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(5, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(5, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(5, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    )
+                ])
+
+        Example 3:
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 2),
+            ...     timespantools.Timespan(3, 6),
+            ...     timespantools.Timespan(6, 10),
+            ...     ])
+        
+        ::
+
+            >>> z(timespan_inventory.round_offsets(
+            ...     5,
+            ...     anchor=Right,
+            ...     ))
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(-5, 1),
+                    stop_offset=durationtools.Offset(0, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(5, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(5, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    )
+                ])
+
+        Example 4:
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 2),
+            ...     timespantools.Timespan(3, 6),
+            ...     timespantools.Timespan(6, 10),
+            ...     ])
+        
+        ::
+
+            >>> z(timespan_inventory.round_offsets(
+            ...     5,
+            ...     anchor=Right,
+            ...     must_be_well_formed=False,
+            ...     ))
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(0, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(5, 1),
+                    stop_offset=durationtools.Offset(5, 1)
+                    ),
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(5, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    )
+                ])
+
+        Operate in place and return timespan inventory.
+        '''
+        timespans = []
+        for timespan in self:
+            timespan = timespan.round_offsets(
+                multiplier, 
+                anchor=anchor,
+                must_be_well_formed=must_be_well_formed,
+                )
+            timespans.append(timespan)
+        self[:] = timespans
+        return self
+
     def scale(self, multiplier, anchor=Left):
         r'''Scale timespan by `multiplier` relative to `anchor`.
 
