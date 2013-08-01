@@ -61,7 +61,8 @@ def copy_components_and_fracture_crossing_spanners(components, n=1):
 
 
     # check input
-    assert componenttools.all_are_thread_contiguous_components(components)
+    assert componenttools.all_are_thread_contiguous_components(components), \
+        repr(components)
 
     # return empty list when nothing to copy
     if n < 1:

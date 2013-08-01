@@ -124,7 +124,19 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         Return timespan inventory.
         '''
         assert self._can_fuse(expr)
-        payload = self.payload + expr.payload
+        #payload = self.payload + expr.payload
+        if isinstance(self.payload, containertools.Container):
+            left = \
+                componenttools.copy_components_and_fracture_crossing_spanners(
+                [self.payload])[0]
+            right = \
+                componenttools.copy_components_and_fracture_crossing_spanners(
+                [expr.payload])[0]
+            payload = \
+                containertools.fuse_like_named_contiguous_containers_in_expr(
+                [left, right])
+        else:
+            payload = self.payload + expr.payload
         result = type(self)(
             [],
             start_offset=self.timespan.start_offset,

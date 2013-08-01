@@ -17,16 +17,20 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_02():
     r'''Do not fuse unnamed voices.
     '''
 
-    t = Staff([Voice(notetools.make_repeated_notes(2)), Voice(notetools.make_repeated_notes(2))])
+    t = Staff([
+        Voice(notetools.make_repeated_notes(2)), 
+        Voice(notetools.make_repeated_notes(2))])
     result = containertools.fuse_like_named_contiguous_containers_in_expr(t)
     assert result is None
 
 
 def test_containertools_fuse_like_named_contiguous_containers_in_expr_03():
-    r'''Do not fuse nonthreads.
+    r'''Do not fuse differently named voices.
     '''
 
-    t = Staff([Voice(notetools.make_repeated_notes(2)), Voice(notetools.make_repeated_notes(2))])
+    t = Staff([
+        Voice(notetools.make_repeated_notes(2)), 
+        Voice(notetools.make_repeated_notes(2))])
     t[0].name = 'one'
     t[1].name = 'two'
     result = containertools.fuse_like_named_contiguous_containers_in_expr(t)
@@ -37,7 +41,8 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_04():
     r'''Do not fuse tuplets.
     '''
 
-    t = Voice([Tuplet(Fraction(2, 3), notetools.make_repeated_notes(3)),
+    t = Voice([
+        Tuplet(Fraction(2, 3), notetools.make_repeated_notes(3)),
         Tuplet(Fraction(2, 3), notetools.make_repeated_notes(3))])
     result = containertools.fuse_like_named_contiguous_containers_in_expr(t)
     assert result is None
@@ -115,10 +120,10 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_06():
 
 
 def test_containertools_fuse_like_named_contiguous_containers_in_expr_07():
-    r'''Fuse orphan components.
+    r'''Fuse outside-of-score components.
     '''
 
-    t = Voice(notetools.make_repeated_notes(4)) * 2
+    t = 2 * Voice(notetools.make_repeated_notes(4))
     t[0].name = t[1].name = 'voiceOne'
     result = containertools.fuse_like_named_contiguous_containers_in_expr(t)
     assert isinstance(result, Voice)
@@ -305,3 +310,124 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_09():
         >>
     >>
     '''
+
+
+def test_containertools_fuse_like_named_contiguous_containers_in_expr_10():
+    r'''Fuse containers.
+    '''
+
+    t1 = Container(Note("c'4")*2)
+    t2 = Container(Note("c'4")*2)
+    tadd = containertools.fuse_like_named_contiguous_containers_in_expr(
+        [t1, t2])
+    assert tadd.lilypond_format == "{\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
+    assert select(tadd).is_well_formed()
+
+
+def test_containertools_fuse_like_named_contiguous_containers_in_expr_13():
+    r'''Fuse sequentially nested like-named voices.
+    '''
+
+    t1 = Staff([Voice(Note("c'4")*2)])
+    t2 = Staff([Voice(Note("c'4")*2)])
+    t1[0].name = t2[0].name = 'voiceOne'
+    t1.name = t2.name = 'staffOne'
+    tadd = containertools.fuse_like_named_contiguous_containers_in_expr([
+        t1, t2])
+    assert isinstance(tadd, Staff)
+    assert len(tadd) == 1
+    assert isinstance(tadd[0], Voice)
+    assert len(tadd[0]) == 4
+    assert tadd.lilypond_format == '\\context Staff = "staffOne" {\n\t\\context Voice = "voiceOne" {\n\t\tc\'4\n\t\tc\'4\n\t\tc\'4\n\t\tc\'4\n\t}\n}'
+
+    r'''
+    \context Staff = "staffOne" {
+        \context Voice = "voiceOne" {
+            c'4
+            c'4
+            c'4
+            c'4
+        }
+    }
+    '''
+
+
+def test_containertools_fuse_like_named_contiguous_containers_in_expr_14():
+    r'''Fuse matching parallel containers with like-named voices.
+    '''
+
+    t1 = Container([Voice(Note("c'4")*2)])
+    t1.is_parallel = True
+    t2 = Container([Voice(Note("c'4")*2)])
+    t2.is_parallel = True
+    t1[0].name = t2[0].name = 'voiceOne'
+    tadd = containertools.fuse_like_named_contiguous_containers_in_expr(
+        [t1, t2])
+
+    r'''
+    <<
+        \context Voice = "voiceOne" {
+            c'4
+            c'4
+            c'4
+            c'4
+        }
+    >>
+    '''
+
+    assert select(tadd).is_well_formed()
+    assert isinstance(tadd, Container)
+    assert tadd.is_parallel
+    assert len(tadd) == 1
+    assert isinstance(tadd[0], Voice)
+    assert len(tadd[0]) == 4
+
+
+def test_containertools_fuse_like_named_contiguous_containers_in_expr_15():
+    r'''Fuse matching parallel containers with two like-named voices each.
+    '''
+
+
+    v1 = Voice(Note("c'4")*2)
+    v1.name = '1'
+    v2 = Voice(Note(1, (1, 4))*2)
+    v2.name = '2'
+    v3 = Voice(Note("c'4")*2)
+    v3.name = '1'
+    v4 = Voice(Note(1, (1, 4))*2)
+    v4.name = '2'
+    t1 = Staff([v1, v2])
+    t1.is_parallel = True
+    t2 = Staff([v3, v4])
+    t2.is_parallel = True
+    t1.name = t2.name = 'staffOne'
+    tadd = containertools.fuse_like_named_contiguous_containers_in_expr(
+        [t1, t2])
+
+    r'''
+    \context Staff = "staffOne" <<
+        \context Voice = "1" {
+            c'4
+            c'4
+            c'4
+            c'4
+        }
+        \context Voice = "2" {
+            cs'4
+            cs'4
+            cs'4
+            cs'4
+        }
+    >>
+    '''
+
+    assert isinstance(tadd, Staff)
+    assert tadd.is_parallel
+    assert len(tadd) == 2
+    assert isinstance(tadd[0], Voice)
+    assert isinstance(tadd[1], Voice)
+    assert len(tadd[0]) == 4
+    assert len(tadd[1]) == 4
+    assert tadd[0].name == '1'
+    assert tadd[1].name == '2'
+    assert tadd.name == 'staffOne'

@@ -48,7 +48,11 @@ class Container(Component):
     ### SPECIAL METHODS ###
 
     def __add__(self, expr):
-        r'''Concatenate containers self and expr.
+        r'''DEPREACTED: use 
+        containertools.fuse_like_named_contiguous_containers_in_expr()
+        instead.
+
+        Concatenate containers self and expr.
         The operation c = a + b returns a new Container c with
         the content of both a and b.
         The operation is non-commutative: the content of the first
@@ -66,6 +70,9 @@ class Container(Component):
             raise Exception('can not add: {!r}.'.format(expr))
         else:
             return result
+        #message = 'DEPRECATED: use containertools.fuse_like_named'
+        #message += '_contiguous_containers_in_expr() instead.'
+        #raise Exception(message)
 
     def __contains__(self, expr):
         r'''True if expr is in container, otherwise False.
@@ -131,7 +138,8 @@ class Container(Component):
     def __radd__(self, expr):
         r'''Extend container by contents of expr to the right.
         '''
-        return self + expr
+        #return self + expr
+        raise Exception('DEPRECATED radd.')
 
     def __repr__(self):
         r'''String format of container for interpreter display.

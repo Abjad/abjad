@@ -1,29 +1,10 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 import py.test
+py.test.skip('DEPRECATED.')
 
 
 def test_Container___add___01():
-    r'''Addition DOES NOT works on unnamed voices.
-    '''
-
-    t1 = Voice(Note("c'4")*2)
-    t2 = Voice(Note("c'4")*2)
-
-    assert py.test.raises(Exception, 't1 + t2')
-
-
-def test_Container___add___02():
-    r'''Addition DOES NOT work on unnamed Staves.
-    '''
-
-    t1 = Staff(Note("c'4")*2)
-    t2 = Staff(Note("c'4")*2)
-
-    assert py.test.raises(Exception, 't1 + t2')
-
-
-def test_Container___add___03():
     r'''Addition works on simple Containers.
     '''
 
@@ -35,7 +16,7 @@ def test_Container___add___03():
     assert select(tadd).is_well_formed()
 
 
-def test_Container___add___04():
+def test_Container___add___02():
     r'''Addition works on equally named voices.
     '''
 
@@ -49,7 +30,7 @@ def test_Container___add___04():
     assert tadd.lilypond_format == "\\context Voice = \"1\" {\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
 
 
-def test_Container___add___05():
+def test_Container___add___03():
     r'''Addition raises exception on differently named voices.
     '''
 
@@ -61,7 +42,7 @@ def test_Container___add___05():
     assert py.test.raises(Exception, 't1 + t2')
 
 
-def test_Container___add___06():
+def test_Container___add___04():
     r'''Addition works on sequentially nested equally named containers.
     '''
 
@@ -88,7 +69,7 @@ def test_Container___add___06():
     '''
 
 
-def test_Container___add___07():
+def test_Container___add___05():
     r'''Addition works on two matching parallel containers each with
     a single threadable Voice child.
     '''
@@ -109,7 +90,7 @@ def test_Container___add___07():
     assert len(tadd[0]) == 4
 
 
-def test_Container___add___08():
+def test_Container___add___06():
     r'''Addition works on matching parallel containers each
     with two named threadable Voice children.
     '''
@@ -141,7 +122,7 @@ def test_Container___add___08():
     assert tadd.name == 'staffOne'
 
 
-def test_Container___add___09():
+def test_Container___add___07():
     r'''In place add makes a copy of right hand operand only.
     '''
 
