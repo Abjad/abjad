@@ -1,12 +1,23 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
+from abjad.tools import stringtools
 from abjad.tools.pitchtools import HarmonicDiatonicIntervalSegment
 from abjad.tools.pitchtools import HarmonicDiatonicInterval
 
 
 class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
-    r'''Chord quality indicator.
+    r'''Chord quality indicator:
+
+    ::
+
+        >>> tonalanalysistools.ChordQualityIndicator(
+        ...     'German',
+        ...     'augmented sixth',
+        ...     )
+        GermanAugmentedSixthInRootPosition(P1, M3, m3, aug2)
+
+    Return chord quality indicator.
     '''
 
     ### CLASS VARIABLES ###
@@ -97,15 +108,14 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
             )
 
     @property
-    def _chord_position_string(self):
-        return self.position.title().replace(' ', '')
-
-    @property
     def _title_case_name(self):
         return '{}{}In{}'.format(
-            self._quality_string.title(),
-            self.extent_name.title(), 
-            self._chord_position_string,
+            stringtools.space_delimited_lowercase_to_upper_camel_case(
+                self.quality_string),
+            stringtools.space_delimited_lowercase_to_upper_camel_case(
+                self.extent_name),
+            stringtools.space_delimited_lowercase_to_upper_camel_case(
+                self.position),
             )
 
     ### PRIVATE METHODS ###
@@ -257,6 +267,9 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
     @property
     def extent_name(self):
         from abjad.tools import tonalanalysistools
+        if self._quality_string.lower() in \
+            self._acceptable_augmented_sixth_qualities:
+            return 'augmented sixth'
         return tonalanalysistools.ChordClass.extent_to_extent_name(self.extent)
 
     @property
