@@ -115,12 +115,9 @@ class Tuplet(Container):
     ### SPECIAL METHODS ###
 
     def __add__(self, arg):
-        r'''Add two tuplets of same type and with same multiplier.
+        r'''DEPRECATED: use tuplettools.fuse_tuplets() instead.
         '''
-        from abjad.tools import tuplettools
-        assert isinstance(arg, type(self))
-        new = tuplettools.fuse_tuplets([self, arg])
-        return new
+        raise Exception('use tuplettools.fuse_tuplets() instead.')
 
     def __getnewargs__(self):
         return (self.multiplier, )

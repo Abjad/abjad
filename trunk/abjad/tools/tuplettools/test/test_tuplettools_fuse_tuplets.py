@@ -98,10 +98,8 @@ def test_tuplettools_fuse_tuplets_03():
     r'''Fuse fixed-multiplier tuplets with same multiplier in score.
     '''
 
-    #t1 = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
     t1 = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
     spannertools.BeamSpanner(t1[:])
-    #t2 = Tuplet(Fraction(2, 3), "c'8 d'8 e'8 f'8 g'8")
     t2 = Tuplet(Fraction(2, 3), "c'8 d'8 e'8 f'8 g'8")
     spannertools.SlurSpanner(t2[:])
     t = Voice([t1, t2])
@@ -159,7 +157,6 @@ def test_tuplettools_fuse_tuplets_05():
     '''
 
     t1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    #t2 = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
     t2 = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
 
     assert py.test.raises(TupletFuseError, 'tuplettools.fuse_tuplets([t1, t2])')
