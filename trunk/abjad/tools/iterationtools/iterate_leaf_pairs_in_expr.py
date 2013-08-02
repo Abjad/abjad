@@ -15,7 +15,7 @@ def iterate_leaf_pairs_in_expr(expr):
         >>> contexttools.ClefMark('bass')(score[1])
         ClefMark('bass')(Staff{3})
 
-    ::
+    ..  doctest::
 
         >>> f(score)
         \new Score <<

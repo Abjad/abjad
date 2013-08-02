@@ -28,7 +28,7 @@ def split_component_at_offset(
         >>> spannertools.SlurSpanner(staff.select_leaves())
         SlurSpanner(c'8, d'8, e'8, f'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -52,7 +52,7 @@ def split_component_at_offset(
         >>> halves = componenttools.split_component_at_offset(
         ... staff.select_leaves()[0], (1, 32), fracture_spanners=False, tie_split_notes=False)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -88,7 +88,7 @@ def split_component_at_offset(
         >>> spannertools.SlurSpanner(staff.select_leaves())
         SlurSpanner(c'8, d'8, e'8, f'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -112,7 +112,7 @@ def split_component_at_offset(
         >>> halves = componenttools.split_component_at_offset(
         ... staff.select_leaves()[0], (1, 32), fracture_spanners=True, tie_split_notes=False)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

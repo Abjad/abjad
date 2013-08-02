@@ -11,7 +11,7 @@ def color_contents_of_container(container, color):
         >>> labeltools.color_contents_of_container(measure, 'red')
         Measure(2/8, [c'8, d'8])
 
-    ::
+    ..  doctest::
 
         >>> f(measure)
         {

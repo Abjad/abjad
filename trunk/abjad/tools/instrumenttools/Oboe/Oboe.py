@@ -18,7 +18,7 @@ class Oboe(DoubleReedInstrument):
         >>> instrumenttools.Oboe()(staff)
         Oboe()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

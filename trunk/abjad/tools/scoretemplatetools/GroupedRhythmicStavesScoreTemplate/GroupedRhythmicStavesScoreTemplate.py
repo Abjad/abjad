@@ -24,7 +24,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
         >>> score
         Score-"Grouped Rhythmic Staves Score"<<1>>
 
-    ::
+    ..  doctest::
 
         >>> f(score)
         \context Score = "Grouped Rhythmic Staves Score" <<
@@ -58,7 +58,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
         ...     staff_count=[2, 1, 2])
         >>> score = template()
 
-    ::
+    ..  doctest::
 
         >>> f(score)
         \context Score = "Grouped Rhythmic Staves Score" <<

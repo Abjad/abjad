@@ -8,7 +8,7 @@ def delete_contents_of_container_starting_at_or_after_offset(container, prolated
         >>> spannertools.BeamSpanner(staff.select_leaves())
         BeamSpanner(c'8, d'8, e'8, f'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -24,7 +24,7 @@ def delete_contents_of_container_starting_at_or_after_offset(container, prolated
         ...     staff, Duration(1, 8))
         Staff{1}
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

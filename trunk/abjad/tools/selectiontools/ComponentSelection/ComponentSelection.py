@@ -40,7 +40,7 @@ class ComponentSelection(FreeSelection):
             >>> time_signature.attach(staff)
             TimeSignatureMark((2, 4))(Staff{4})
 
-        ::
+        ..  doctest::
 
             >>> f(staff)
             \new Staff {
@@ -61,7 +61,7 @@ class ComponentSelection(FreeSelection):
             ...     spanner_classes=(spannertools.TieSpanner,))
             (TieSpanner(), TieSpanner())
 
-        ::
+        ..  doctest::
 
             >>> f(staff)
             \new Staff {
@@ -104,7 +104,7 @@ class ComponentSelection(FreeSelection):
             >>> spannertools.BeamSpanner(staff[:])
             BeamSpanner(c'8, d'4, e'8, f'8)
 
-        ::
+        ..  doctest::
 
             >>> f(staff)
             \new Staff {
@@ -172,7 +172,7 @@ class ComponentSelection(FreeSelection):
             >>> spannertools.BeamSpanner(staff[:])
             BeamSpanner(c'8, d'4, e'8, f'8)
 
-        ::
+        ..  doctest::
 
             >>> f(staff)
             \new Staff {

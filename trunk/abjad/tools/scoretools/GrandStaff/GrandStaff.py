@@ -14,7 +14,7 @@ class GrandStaff(StaffGroup):
 
         >>> grand_staff = scoretools.GrandStaff([staff_1, staff_2])
 
-    ::
+    ..  doctest::
 
         >>> f(grand_staff)
         \new GrandStaff <<

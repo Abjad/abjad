@@ -14,7 +14,7 @@ def apply_octavation_spanner_to_pitched_components(expr,
         ...     t, ottava_numbered_diatonic_pitch=14)
         OctavationSpanner(|4/8(4)|)
 
-    ::
+    ..  doctest::
 
         >>> f(t)
             {

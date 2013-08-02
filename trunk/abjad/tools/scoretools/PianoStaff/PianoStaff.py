@@ -14,7 +14,7 @@ class PianoStaff(StaffGroup):
 
         >>> piano_staff = scoretools.PianoStaff([staff_1, staff_2])
 
-    ::
+    ..  doctest::
 
         >>> f(piano_staff)
         \new PianoStaff <<

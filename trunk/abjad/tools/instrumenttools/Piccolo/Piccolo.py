@@ -16,7 +16,7 @@ class Piccolo(Flute):
         >>> instrumenttools.Piccolo()(staff)
         Piccolo()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

@@ -14,7 +14,7 @@ def copy_governed_component_subtree_from_offset_to(
 
         >>> voice = Voice(r"c'8 d'8 \times 2/3 { e'8 f'8 g'8 }")
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {
@@ -32,7 +32,7 @@ def copy_governed_component_subtree_from_offset_to(
         >>> new = componenttools.copy_governed_component_subtree_from_offset_to(
         ...     voice, (0, 8), (3, 8))
 
-    ::
+    ..  doctest::
 
         >>> f(new)
         \new Voice {
@@ -69,7 +69,7 @@ def copy_governed_component_subtree_from_offset_to(
         >>> new = componenttools.copy_governed_component_subtree_from_offset_to(
         ...     voice, (0, 8), (1, 8))
 
-    ::
+    ..  doctest::
 
         >>> f(new)
         \new Voice {
@@ -83,7 +83,7 @@ def copy_governed_component_subtree_from_offset_to(
         >>> new = componenttools.copy_governed_component_subtree_from_offset_to(
         ...     voice, (1, 8), (2, 8))
 
-    ::
+    ..  doctest::
 
         >>> f(new)
         \new Voice {
@@ -99,7 +99,7 @@ def copy_governed_component_subtree_from_offset_to(
         >>> new = componenttools.copy_governed_component_subtree_from_offset_to(
         ...     voice, 0, (1, 12))
 
-    ::
+    ..  doctest::
 
         >>> f(new)
         \new Voice {
@@ -116,7 +116,7 @@ def copy_governed_component_subtree_from_offset_to(
         >>> new_leaf = componenttools.copy_governed_component_subtree_from_offset_to(
         ...     voice[0], 0, (1, 8))
 
-    ::
+    ..  doctest::
 
         >>> f(new_leaf)
         c'8

@@ -18,7 +18,7 @@ class LilyPondCommandMark(Mark):
         >>> lilypond_command.attach(staff[0])
         LilyPondCommandMark('slurDotted')(c'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

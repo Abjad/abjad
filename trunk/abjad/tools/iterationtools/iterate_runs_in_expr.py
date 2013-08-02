@@ -12,7 +12,7 @@ def iterate_runs_in_expr(sequence, classes):
         >>> staff.append(r"\times 2/3 { r8 <e' g'>8 <f' a'>8 }")
         >>> staff.extend("g'8 a'8 r8 r8 <b' d''>8 <c'' e''>8")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

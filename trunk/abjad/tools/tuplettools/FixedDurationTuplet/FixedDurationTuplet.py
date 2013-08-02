@@ -16,7 +16,7 @@ class FixedDurationTuplet(Tuplet):
         >>> tuplet
         FixedDurationTuplet(1/4, [c'8, d'8, e'8])
 
-    ::
+    ..  doctest::
 
         >>> f(tuplet)
         \times 2/3 {
@@ -142,7 +142,7 @@ class FixedDurationTuplet(Tuplet):
                 >>> tuplet.target_duration
                 Duration(1, 4)
 
-            ::
+            ..  doctest::
 
                 >>> f(tuplet)
                 \times 2/3 {

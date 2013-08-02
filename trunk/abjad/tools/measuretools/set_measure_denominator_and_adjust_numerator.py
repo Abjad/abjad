@@ -14,7 +14,7 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
         >>> spannertools.BeamSpanner(measure.select_leaves())
         BeamSpanner(c'8, d'8, e'8)
 
-    ::
+    ..  doctest::
 
         >>> f(measure)
         {
@@ -29,7 +29,7 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
         >>> measuretools.set_measure_denominator_and_adjust_numerator(measure, 16)
         Measure(6/16, [c'8, d'8, e'8])
 
-    ::
+    ..  doctest::
 
         >>> f(measure)
         {

@@ -6,7 +6,7 @@ def get_parent_and_start_stop_indices_of_components(components):
 
         >>> t = Staff("c'8 d'8 e'8 f'8 g'8 a'8")
 
-    ::
+    ..  doctest::
 
         >>> f(t)
         \new Staff {

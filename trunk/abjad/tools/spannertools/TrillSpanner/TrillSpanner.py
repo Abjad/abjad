@@ -15,7 +15,7 @@ class TrillSpanner(Spanner):
         >>> spannertools.TrillSpanner(staff[:])
         TrillSpanner(c'8, d'8, e'8, f'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -75,7 +75,7 @@ class TrillSpanner(Spanner):
                     >>> trill = spannertools.TrillSpanner(t[:2])
                     >>> trill.pitch = pitchtools.NamedChromaticPitch('cs', 4)
 
-                ::
+                ..  doctest::
 
                     >>> f(t)
                     \new Staff {

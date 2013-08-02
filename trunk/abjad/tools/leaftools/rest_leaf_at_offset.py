@@ -11,7 +11,7 @@ def rest_leaf_at_offset(leaf, offset):
 
         >>> staff = Staff("c'8 ( d'8 e'8 f'8 )")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -26,7 +26,7 @@ def rest_leaf_at_offset(leaf, offset):
         >>> leaftools.rest_leaf_at_offset(staff.select_leaves()[1], (1, 32))
         ([Note("d'32")], [Note("d'16.")])
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

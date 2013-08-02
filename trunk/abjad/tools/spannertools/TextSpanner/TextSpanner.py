@@ -23,7 +23,7 @@ class TextSpanner(Spanner):
         ...     markup
         >>> text_spanner.override.text_spanner.dash_fraction = 1
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

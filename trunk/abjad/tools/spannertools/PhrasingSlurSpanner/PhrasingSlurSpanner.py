@@ -16,7 +16,7 @@ class PhrasingSlurSpanner(DirectedSpanner):
         >>> spannertools.PhrasingSlurSpanner(staff[:])
         PhrasingSlurSpanner(c'8, d'8, e'8, f'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

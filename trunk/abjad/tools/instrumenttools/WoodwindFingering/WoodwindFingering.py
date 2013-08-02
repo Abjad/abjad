@@ -48,7 +48,7 @@ class WoodwindFingering(AbjadObject):
         >>> markup.attach(chord)
         Markup((MarkupCommand('woodwind-diagram', Scheme('clarinet'), Scheme([SchemePair(('cc', ('one', 'two', 'three', 'five'))), SchemePair(('lh', ('R', 'thumb'))), SchemePair(('rh', ('e',)))])),), direction=Down)(<ds' fs''>4)
 
-    ::
+    ..  doctest::
 
         >>> f(chord)
         <ds' fs''>4
@@ -100,7 +100,7 @@ class WoodwindFingering(AbjadObject):
         >>> markup.attach(chord)
         Markup((MarkupCommand('override', SchemePair(('graphical', False))), MarkupCommand('woodwind-diagram', Scheme('clarinet'), Scheme([SchemePair(('cc', ('one', 'two', 'three', 'four'))), SchemePair(('lh', ('R', 'cis'))), SchemePair(('rh', ('fis',)))]))), direction=Down)(<e' as' gqf''>1)
 
-    ::
+    ..  doctest::
 
         >>> f(chord)
         <e' as' gqf''>1
@@ -139,7 +139,7 @@ class WoodwindFingering(AbjadObject):
         >>> markup.attach(chord)
         Markup((MarkupCommand('override', SchemePair(('graphical', False))), MarkupCommand('override', SchemePair(('size', 0.5))), MarkupCommand('override', SchemePair(('thickness', 0.4))), MarkupCommand('woodwind-diagram', Scheme('clarinet'), Scheme([SchemePair(('cc', ('one', 'two', 'three', 'four'))), SchemePair(('lh', ('R', 'cis'))), SchemePair(('rh', ('fis',)))]))), direction=Down)(<e' as' gqf''>1)
 
-    ::
+    ..  doctest::
 
         >>> f(chord)
         <e' as' gqf''>1

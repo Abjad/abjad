@@ -12,7 +12,7 @@ def color_measures_with_non_power_of_two_denominators_in_expr(expr, color='red')
         >>> measuretools.scale_measure_denominator_and_adjust_measure_contents(staff[1], 3)
         Measure(3/12, [c'8., d'8.])
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -39,7 +39,7 @@ def color_measures_with_non_power_of_two_denominators_in_expr(expr, color='red')
         >>> labeltools.color_measures_with_non_power_of_two_denominators_in_expr(staff, 'red')
         [Measure(3/12, [c'8., d'8.])]
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

@@ -23,7 +23,7 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
         >>> score
         Score-"Grouped Staves Score"<<1>>
 
-    ::
+    ..  doctest::
 
         >>> f(score)
         \context Score = "Grouped Staves Score" <<

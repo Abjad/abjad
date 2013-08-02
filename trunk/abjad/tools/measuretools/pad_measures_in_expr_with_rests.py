@@ -25,7 +25,7 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice=False):
         >>> front, back = Duration(1, 32), Duration(1, 64)
         >>> measuretools.pad_measures_in_expr_with_rests(t, front, back)
 
-    ::
+    ..  doctest::
 
         >>> f(t)
         \new Staff {
@@ -55,7 +55,7 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice=False):
         >>> measuretools.pad_measures_in_expr_with_rests(
         ...     t, Duration(1, 32), Duration(1, 64))
 
-    ::
+    ..  doctest::
 
         >>> f(t)
         \new Staff {
@@ -101,7 +101,7 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice=False):
         >>> measuretools.pad_measures_in_expr_with_rests(
         ...     t, Duration(1, 32), Duration(1, 64), splice=True)
 
-    ::
+    ..  doctest::
 
         >>> f(t)
         {

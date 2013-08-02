@@ -9,7 +9,7 @@ def iterate_chords_in_expr(expr, reverse=False, start=0, stop=None):
 
         >>> staff = Staff("<e' g' c''>8 a'8 r8 <d' f' b'>8 r2")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

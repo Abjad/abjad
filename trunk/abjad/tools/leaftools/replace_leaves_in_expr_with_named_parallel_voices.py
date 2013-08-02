@@ -23,7 +23,7 @@ def replace_leaves_in_expr_with_named_parallel_voices(expr, upper_name, lower_na
         >>> leaves = leaftools.replace_leaves_in_expr_with_named_parallel_voices(
         ... c.select_leaves()[1:3], 'upper', 'lower')
 
-    ::
+    ..  doctest::
 
         >>> f(c)
         {
@@ -70,7 +70,7 @@ def replace_leaves_in_expr_with_named_parallel_voices(expr, upper_name, lower_na
         >>> leaves = leaftools.replace_leaves_in_expr_with_named_parallel_voices(
         ... c.select_leaves()[2:7], 'upper', 'lower')
 
-    ::
+    ..  doctest::
 
         >>> f(c)
         {

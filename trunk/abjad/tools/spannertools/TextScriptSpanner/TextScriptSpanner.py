@@ -17,7 +17,7 @@ class TextScriptSpanner(Spanner):
         >>> markuptools.Markup(r'\italic { espressivo }', Up)(staff[1])
         Markup((MarkupCommand('italic', ['espressivo']),), direction=Up)(d'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

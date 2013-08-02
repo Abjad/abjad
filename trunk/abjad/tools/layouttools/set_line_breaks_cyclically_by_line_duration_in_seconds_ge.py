@@ -16,7 +16,7 @@ def set_line_breaks_cyclically_by_line_duration_in_seconds_ge(expr, line_duratio
         >>> tempo_mark = contexttools.TempoMark(
         ...     Duration(1, 8), 44, target_context = Staff)(t)
 
-    ::
+    ..  doctest::
 
         >>> f(t)
         \new Staff {

@@ -14,7 +14,7 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
         >>> t = Measure((2, 8), [tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
         >>> measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature(t)
 
-    ::
+    ..  doctest::
 
         >>> f(t)
         {

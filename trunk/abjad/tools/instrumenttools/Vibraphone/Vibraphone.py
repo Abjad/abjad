@@ -18,7 +18,7 @@ class Vibraphone(PercussionInstrument):
         >>> instrumenttools.Vibraphone()(staff)
         Vibraphone()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

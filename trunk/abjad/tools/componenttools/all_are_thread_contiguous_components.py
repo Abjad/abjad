@@ -14,7 +14,7 @@ def all_are_thread_contiguous_components(
         >>> container_2 = Container("g'8 a'8")
         >>> outer_voice = Voice([container_1, inner_voice, container_2])
 
-    ::
+    ..  doctest::
 
         >>> f(outer_voice)
         \new Voice {

@@ -10,7 +10,7 @@ def set_container_multiplier(container, multiplier):
 
         >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
 
-    ::
+    ..  doctest::
 
         >>> f(tuplet)
         \times 2/3 {
@@ -23,7 +23,7 @@ def set_container_multiplier(container, multiplier):
 
         >>> containertools.set_container_multiplier(tuplet, Multiplier(3, 4))
 
-    ::
+    ..  doctest::
 
         >>> f(tuplet)
         \tweak #'text #tuplet-number::calc-fraction-text

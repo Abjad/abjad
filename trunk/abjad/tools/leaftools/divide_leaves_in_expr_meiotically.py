@@ -22,7 +22,7 @@ def divide_leaves_in_expr_meiotically(expr, n=2):
 
         >>> leaftools.divide_leaves_in_expr_meiotically(staff[2:], n=4)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

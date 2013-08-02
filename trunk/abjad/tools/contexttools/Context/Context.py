@@ -19,7 +19,7 @@ class Context(Container):
         >>> context
         TimeSignatureContext-"MeterVoice"{}
 
-    ::
+    ..  doctest::
 
         >>> f(context)
         \context TimeSignatureContext = "MeterVoice" {
@@ -242,7 +242,7 @@ class Context(Container):
 
                 >>> voice.is_nonsemantic = True
 
-            ::
+            ..  doctest::
 
                 >>> f(voice)
                 \context Voice = "HiddenTimeSignatureVoice" {

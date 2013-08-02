@@ -19,7 +19,7 @@ def repeat_leaves_in_expr(expr, total=1):
 
         >>> result = leaftools.repeat_leaves_in_expr(staff[2:], total=3)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

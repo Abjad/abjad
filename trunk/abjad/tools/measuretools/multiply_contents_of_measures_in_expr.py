@@ -13,7 +13,7 @@ def multiply_contents_of_measures_in_expr(expr, n):
         >>> spannertools.BeamSpanner(measure.select_leaves())
         BeamSpanner(c'8, d'8, e'8)
 
-    ::
+    ..  doctest::
 
         >>> f(measure)
         {
@@ -27,7 +27,7 @@ def multiply_contents_of_measures_in_expr(expr, n):
 
         >>> measuretools.multiply_contents_of_measures_in_expr(measure, 3)
 
-    ::
+    ..  doctest::
 
         >>> f(measure)
         {

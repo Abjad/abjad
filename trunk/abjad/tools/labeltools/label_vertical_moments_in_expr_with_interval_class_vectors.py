@@ -22,7 +22,7 @@ def label_vertical_moments_in_expr_with_interval_class_vectors(
 
         >>> labeltools.label_vertical_moments_in_expr_with_interval_class_vectors(score)
 
-    ::
+    ..  doctest::
 
         >>> f(score)
         \new Score <<

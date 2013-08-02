@@ -11,7 +11,7 @@ def replace_components_with_children_of_components(components):
         >>> spannertools.BeamSpanner(staff.select_leaves())
         BeamSpanner(c'8, d'8, e'8, f'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -30,7 +30,7 @@ def replace_components_with_children_of_components(components):
         >>> componenttools.replace_components_with_children_of_components(staff[0:1])
         SequentialSelection({},)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

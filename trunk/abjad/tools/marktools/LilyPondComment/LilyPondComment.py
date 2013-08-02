@@ -16,7 +16,7 @@ class LilyPondComment(Mark):
         >>> marktools.LilyPondComment('this is a comment')(note)
         LilyPondComment('this is a comment')(c'4)
 
-    ::
+    ..  doctest::
 
         >>> f(note)
         % this is a comment

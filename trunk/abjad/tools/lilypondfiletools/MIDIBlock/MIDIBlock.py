@@ -21,7 +21,7 @@ class MIDIBlock(AttributedBlock):
         >>> layout_block.is_formatted_when_empty = True
         >>> lilypond_file.score_block.append(layout_block)
 
-    ::
+    ..  doctest::
 
         >>> f(lilypond_file.score_block)
         \score {

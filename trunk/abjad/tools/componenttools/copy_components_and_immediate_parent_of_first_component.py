@@ -22,7 +22,7 @@ def copy_components_and_immediate_parent_of_first_component(components):
         >>> voice.append(r"\times 2/3 { b'8 c'' d'' }")
         >>> beam = spannertools.BeamSpanner(voice.select_leaves()[:4])
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {

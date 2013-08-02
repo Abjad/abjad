@@ -21,7 +21,7 @@ def split_container_at_index(component, i, fracture_spanners=False):
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
         >>> beam = spannertools.BeamSpanner(voice[:])
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {
@@ -43,7 +43,7 @@ def split_container_at_index(component, i, fracture_spanners=False):
         >>> containertools.split_container_at_index(voice[1], 1, fracture_spanners=False)
         (Measure(1/8, [f'8]), Measure(2/8, [g'8, a'8]))
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {
@@ -73,7 +73,7 @@ def split_container_at_index(component, i, fracture_spanners=False):
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
         >>> beam = spannertools.BeamSpanner(voice[:])
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {
@@ -94,7 +94,7 @@ def split_container_at_index(component, i, fracture_spanners=False):
         >>> left, right = containertools.split_container_at_index(
         ...         tuplet, 1, fracture_spanners=True)
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {

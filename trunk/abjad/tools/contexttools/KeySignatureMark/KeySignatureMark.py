@@ -14,7 +14,7 @@ class KeySignatureMark(ContextMark):
         >>> contexttools.KeySignatureMark('e', 'major')(staff)
         KeySignatureMark(NamedChromaticPitchClass('e'), Mode('major'))(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

@@ -17,7 +17,7 @@ def label_leaves_in_expr_with_leaf_depth(expr, markup_direction=Down):
 
         >>> labeltools.label_leaves_in_expr_with_leaf_depth(staff)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

@@ -13,7 +13,7 @@ class OctavationSpanner(Spanner):
 
         >>> spanner = spannertools.OctavationSpanner(staff[:], start=1)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

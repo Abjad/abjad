@@ -22,7 +22,7 @@ def label_vertical_moments_in_expr_with_pitch_numbers(
 
         >>> labeltools.label_vertical_moments_in_expr_with_pitch_numbers(score)
 
-    ::
+    ..  doctest::
 
         >>> f(score)
         \new Score <<

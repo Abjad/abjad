@@ -17,7 +17,7 @@ def make_repeated_notes(count, duration=durationtools.Duration(1, 8)):
         >>> notes = notetools.make_repeated_notes(2, (5, 16))
         >>> voice = Voice(notes)
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {

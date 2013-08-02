@@ -16,7 +16,7 @@ def color_leaf(leaf, color):
         >>> labeltools.color_leaf(note, 'red')
         Note("c'4")
 
-    ::
+    ..  doctest::
 
         >>> f(note)
         \once \override Accidental #'color = #red
@@ -41,7 +41,7 @@ def color_leaf(leaf, color):
         >>> labeltools.color_leaf(rest, 'red')
         Rest('r4')
 
-    ::
+    ..  doctest::
 
         >>> f(rest)
         \once \override Dots #'color = #red
@@ -63,7 +63,7 @@ def color_leaf(leaf, color):
         >>> labeltools.color_leaf(chord, 'red')
         Chord("<c' e' bf'>4")
 
-    ::
+    ..  doctest::
 
         >>> f(chord)
         \once \override Accidental #'color = #red

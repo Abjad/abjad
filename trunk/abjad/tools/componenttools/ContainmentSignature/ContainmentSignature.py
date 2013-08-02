@@ -11,7 +11,7 @@ class ContainmentSignature(AbjadObject):
         ...     r"""\context Voice = "CustomVoice" { c' d' e' f' } }""")
         >>> score.name = 'CustomScore'
 
-    ::
+    ..  doctest::
 
         >>> f(score)
         \context Score = "CustomScore" <<

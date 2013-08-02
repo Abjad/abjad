@@ -20,7 +20,7 @@ class Bassoon(DoubleReedInstrument):
         >>> instrumenttools.Bassoon()(staff)
         Bassoon()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

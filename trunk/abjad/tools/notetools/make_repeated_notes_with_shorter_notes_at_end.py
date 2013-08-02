@@ -13,7 +13,7 @@ def make_repeated_notes_with_shorter_notes_at_end(pitch, written_duration, total
         >>> notes = notetools.make_repeated_notes_with_shorter_notes_at_end(*args)
         >>> voice = Voice(notes)
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {
@@ -31,7 +31,7 @@ def make_repeated_notes_with_shorter_notes_at_end(pitch, written_duration, total
         >>> notes = notetools.make_repeated_notes_with_shorter_notes_at_end(*args)
         >>> voice = Voice(notes)
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {
@@ -50,7 +50,7 @@ def make_repeated_notes_with_shorter_notes_at_end(pitch, written_duration, total
         >>> notes = notetools.make_repeated_notes_with_shorter_notes_at_end(*args)
         >>> voice = Voice(notes)
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {

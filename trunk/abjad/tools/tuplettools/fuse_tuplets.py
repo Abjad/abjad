@@ -35,7 +35,7 @@ def fuse_tuplets(tuplets):
         >>> tuplettools.fuse_tuplets(staff[:])
         FixedDurationTuplet(3/8, [c'8, d'8, e'8, c'16, d'16, e'16])
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

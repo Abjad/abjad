@@ -18,7 +18,7 @@ class MultipartBeamSpanner(BeamSpanner):
         >>> spannertools.MultipartBeamSpanner(staff[:])
         MultipartBeamSpanner(c'8, d'8, e'4, f'8, g'8, r4)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

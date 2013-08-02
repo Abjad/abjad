@@ -18,7 +18,7 @@ class Harp(StringInstrument):
         >>> instrumenttools.Harp()(piano_staff)
         Harp()(PianoStaff<<2>>)
 
-    ::
+    ..  doctest::
 
         >>> f(piano_staff)
         \new PianoStaff <<

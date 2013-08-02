@@ -14,7 +14,7 @@ def get_spanners_attached_to_any_improper_child_of_component(
         >>> second_slur = spannertools.SlurSpanner(staff.select_leaves()[2:])
         >>> trill = spannertools.TrillSpanner(staff)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

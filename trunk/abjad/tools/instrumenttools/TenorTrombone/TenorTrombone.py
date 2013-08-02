@@ -19,7 +19,7 @@ class TenorTrombone(Trombone):
         >>> instrumenttools.TenorTrombone()(staff)
         TenorTrombone()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

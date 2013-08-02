@@ -11,7 +11,7 @@ class GraceContainer(Container):
         >>> spannertools.BeamSpanner(voice[:])
         BeamSpanner(c'8, d'8, e'8, f'8)
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {
@@ -31,7 +31,7 @@ class GraceContainer(Container):
         >>> leaftools.GraceContainer(grace_notes, kind='grace')(voice[1])
         Note("d'8")
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {
@@ -56,7 +56,7 @@ class GraceContainer(Container):
         ...     after_grace_notes, kind='after')(voice[1])
         Note("d'8")
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {

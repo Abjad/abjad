@@ -20,7 +20,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
         >>> durations = [Duration(1, 8), Duration(1, 8)]
         >>> beam = spannertools.DuratedComplexBeamSpanner(staff[:], durations, 1)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

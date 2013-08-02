@@ -8,7 +8,7 @@ def label_tie_chains_in_expr_with_tie_chain_duration(
         >>> staff = Staff(r"\times 2/3 { c'8 ~ c'8 c'8 ~ } c'8")
         >>> labeltools.label_tie_chains_in_expr_with_tie_chain_duration(staff)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

@@ -11,7 +11,7 @@ def fuse_leaves(leaves):
         >>> leaftools.fuse_leaves(staff[1:])
         [Note("d'4.")]
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

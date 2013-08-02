@@ -10,7 +10,7 @@ def get_spanners_attached_to_component(component, spanner_classes=None):
         >>> second_slur = spannertools.SlurSpanner(staff.select_leaves()[2:])
         >>> crescendo = spannertools.CrescendoSpanner(staff.select_leaves())
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

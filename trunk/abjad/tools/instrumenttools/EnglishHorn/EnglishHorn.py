@@ -17,7 +17,7 @@ class EnglishHorn(Oboe):
         >>> instrumenttools.EnglishHorn()(staff)
         EnglishHorn()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

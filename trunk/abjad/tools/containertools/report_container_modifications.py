@@ -8,7 +8,7 @@ def report_container_modifications(container):
         >>> container.override.note_head.color = 'red'
         >>> container.override.note_head.style = 'harmonic'
 
-    ::
+    ..  doctest::
 
         >>> f(container)
         {

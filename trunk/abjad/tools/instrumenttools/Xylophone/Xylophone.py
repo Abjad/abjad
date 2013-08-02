@@ -18,7 +18,7 @@ class Xylophone(PercussionInstrument):
         >>> instrumenttools.Xylophone()(staff)
         Xylophone()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

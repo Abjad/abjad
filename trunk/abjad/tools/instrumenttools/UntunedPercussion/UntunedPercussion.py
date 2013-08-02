@@ -18,7 +18,7 @@ class UntunedPercussion(PercussionInstrument):
         >>> instrumenttools.UntunedPercussion()(staff)
         UntunedPercussion()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

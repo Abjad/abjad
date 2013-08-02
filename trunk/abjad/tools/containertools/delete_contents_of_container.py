@@ -8,7 +8,7 @@ def delete_contents_of_container(container):
         >>> spannertools.BeamSpanner(staff.select_leaves())
         BeamSpanner(c'8, d'8, e'8, f'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -23,7 +23,7 @@ def delete_contents_of_container(container):
         >>> containertools.delete_contents_of_container(staff)
         SequentialSelection(Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"))
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

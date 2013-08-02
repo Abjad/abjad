@@ -7,7 +7,7 @@ def detach_spanners_attached_to_components_in_expr(
 
         >>> staff = Staff("c'4 [ ( d' e' f' ) ]")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -23,7 +23,7 @@ def detach_spanners_attached_to_components_in_expr(
         ...     spannertools.detach_spanners_attached_to_components_in_expr(
         ...     staff)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

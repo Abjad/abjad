@@ -16,7 +16,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
         >>> piano_staff.append(Staff(r"""\clef "bass" f'8 e'8 d'8 c'8"""))
         >>> score.append(piano_staff)
 
-    ::
+    ..  doctest::
 
         >>> f(score)
         \new Score <<

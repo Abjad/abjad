@@ -16,7 +16,7 @@ class ComplexGlissandoSpanner(Spanner):
         >>> spannertools.ComplexGlissandoSpanner(staff[:])
         ComplexGlissandoSpanner(c'16, r16, r16, g'16, r8, c'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

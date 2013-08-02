@@ -19,7 +19,7 @@ class HeaderBlock(AttributedBlock):
         >>> header_block.composer = markuptools.Markup('Josquin')
         >>> header_block.title = markuptools.Markup('Missa sexti tonus')
 
-    ::
+    ..  doctest::
 
         >>> f(header_block)
         \header {

@@ -20,7 +20,7 @@ def append_spacer_skip_to_underfull_measure(rigid_measure):
         >>> measuretools.append_spacer_skip_to_underfull_measure(measure)
         Measure(5/12, [c'8, d'8, e'8, f'8, s1 * 1/8])
 
-    ::
+    ..  doctest::
 
         >>> f(measure)
         {

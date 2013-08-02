@@ -21,7 +21,7 @@ def make_leaves_from_talea(talea, talea_denominator,
         >>> staff = stafftools.RhythmicStaff(leaves)
         >>> time_signature = contexttools.TimeSignatureMark((4, 4))(staff)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new RhythmicStaff {
@@ -48,7 +48,7 @@ def make_leaves_from_talea(talea, talea_denominator,
         >>> staff = stafftools.RhythmicStaff(leaves)
         >>> time_signature = contexttools.TimeSignatureMark((4, 4))(staff)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new RhythmicStaff {
@@ -75,7 +75,7 @@ def make_leaves_from_talea(talea, talea_denominator,
         >>> staff = stafftools.RhythmicStaff(leaves)
         >>> time_signature = contexttools.TimeSignatureMark((4, 4))(staff)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new RhythmicStaff {

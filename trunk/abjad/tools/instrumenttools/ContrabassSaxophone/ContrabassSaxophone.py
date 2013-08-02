@@ -17,7 +17,7 @@ class ContrabassSaxophone(Saxophone):
         >>> instrumenttools.ContrabassSaxophone()(staff)
         ContrabassSaxophone()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

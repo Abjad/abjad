@@ -24,7 +24,7 @@ def measure_to_one_line_input_string(measure):
         >>> new_measure
         Measure(4/4, [c'4, d'4, e'4, f'4])
 
-    ::
+    ..  doctest::
 
         >>> f(new_measure)
         {

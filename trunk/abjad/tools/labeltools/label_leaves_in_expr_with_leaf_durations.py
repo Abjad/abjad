@@ -27,7 +27,7 @@ def label_leaves_in_expr_with_leaf_durations(
 
         >>> show(staff) # doctest: +SKIP
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new RhythmicStaff \with {
@@ -58,7 +58,7 @@ def label_leaves_in_expr_with_leaf_durations(
 
         >>> show(staff) # doctest: +SKIP
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new RhythmicStaff \with {
@@ -90,7 +90,7 @@ def label_leaves_in_expr_with_leaf_durations(
 
         >>> show(staff) # doctest: +SKIP
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new RhythmicStaff \with {

@@ -11,7 +11,7 @@ def comment_measures_in_container_with_measure_numbers(container):
 
         >>> measuretools.comment_measures_in_container_with_measure_numbers(staff)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

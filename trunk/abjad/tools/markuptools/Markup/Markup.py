@@ -19,7 +19,7 @@ class Markup(DirectedMark):
         >>> markup
         Markup((MarkupCommand('bold', ['This is markup text.']),))
 
-    ::
+    ..  doctest::
 
         >>> f(markup)
         \markup { \bold { "This is markup text." } }
@@ -35,12 +35,12 @@ class Markup(DirectedMark):
         >>> markup_1 = markuptools.Markup('foo', direction=Up)
         >>> markup_2 = markuptools.Markup(markup_1, direction=Down)
 
-    ::
+    ..  doctest::
 
         >>> f(markup_1)
         ^ \markup { foo }
 
-    ::
+    ..  doctest::
 
         >>> f(markup_2) # doctest: +SKIP
         _ \markup { foo }
@@ -61,7 +61,7 @@ class Markup(DirectedMark):
         >>> markup(note)
         Markup((MarkupCommand('italic', ['This is also markup text.']),), direction=Up)(c'4)
 
-    ::
+    ..  doctest::
 
         >>> f(note)
         c'4 ^ \markup { \italic { "This is also markup text." } }

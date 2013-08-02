@@ -15,7 +15,7 @@ class BookpartBlock(NonattributedBlock):
         >>> bookpart_block
         BookpartBlock()
 
-    ::
+    ..  doctest::
 
         >>> f(bookpart_block)
         \bookpart {}

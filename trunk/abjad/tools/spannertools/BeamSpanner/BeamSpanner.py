@@ -10,7 +10,7 @@ class BeamSpanner(DirectedSpanner):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8 g'2")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -30,7 +30,7 @@ class BeamSpanner(DirectedSpanner):
         >>> spannertools.BeamSpanner(staff[:4])
         BeamSpanner(c'8, d'8, e'8, f'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

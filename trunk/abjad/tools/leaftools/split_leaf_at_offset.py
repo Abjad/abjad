@@ -31,7 +31,7 @@ def split_leaf_at_offset(
         >>> marktools.Articulation('accent')(staff.select_leaves()[0])
         Articulation('accent')(c'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -52,7 +52,7 @@ def split_leaf_at_offset(
         ...     tie_split_notes=False)
         ([Note("c'32")], [Note("c'16.")])
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -78,7 +78,7 @@ def split_leaf_at_offset(
         >>> leaftools.GraceContainer("ds'16", kind='after')(staff.select_leaves()[0])
         Note("c'8")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -106,7 +106,7 @@ def split_leaf_at_offset(
         ...     tie_split_notes=False)
         ([Note("c'32")], [Note("c'16.")])
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

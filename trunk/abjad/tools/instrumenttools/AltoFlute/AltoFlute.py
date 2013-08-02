@@ -16,7 +16,7 @@ class AltoFlute(Flute):
         >>> instrumenttools.AltoFlute()(staff)
         AltoFlute()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

@@ -10,7 +10,7 @@ def replace_contents_of_target_container_with_contents_of_source_container(targe
         >>> spannertools.BeamSpanner(staff.select_leaves())
         BeamSpanner(c'8, d'8, ... [5] ..., c''8, d''8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -37,7 +37,7 @@ def replace_contents_of_target_container_with_contents_of_source_container(targe
         >>> spannertools.SlurSpanner(container.select_leaves())
         SlurSpanner(c'8, d'8, e'8)
 
-    ::
+    ..  doctest::
 
         >>> f(container)
         {
@@ -52,7 +52,7 @@ def replace_contents_of_target_container_with_contents_of_source_container(targe
         ...     staff[1], container)
         Tuplet(2/3, [c'8, d'8, e'8])
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

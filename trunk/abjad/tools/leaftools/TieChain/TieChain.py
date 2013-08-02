@@ -188,7 +188,7 @@ class TieChain(SequentialLeafSelection):
             >>> time_signature.attach(staff)
             TimeSignatureMark((7, 16))(Staff{3})
             
-        ::
+        ..  doctest::
 
             >>> f(staff)
             \new Staff \with {
@@ -210,7 +210,7 @@ class TieChain(SequentialLeafSelection):
             >>> tie_chain.to_tuplet([2, 1, 1, 1], is_diminution=True)
             FixedDurationTuplet(3/16, [c'8, c'16, c'16, c'16])
 
-        ::
+        ..  doctest::
 
             >>> f(staff)
             \new Staff \with {
@@ -242,7 +242,7 @@ class TieChain(SequentialLeafSelection):
             >>> time_signature.attach(staff)
             TimeSignatureMark((7, 16))(Staff{3})
             
-        ::
+        ..  doctest::
 
             >>> f(staff)
             \new Staff \with {
@@ -264,7 +264,7 @@ class TieChain(SequentialLeafSelection):
             >>> tie_chain.to_tuplet([2, 1, 1, 1], is_diminution=False)
             FixedDurationTuplet(3/16, [c'16, c'32, c'32, c'32])
 
-        ::
+        ..  doctest::
 
             >>> f(staff)
             \new Staff \with {

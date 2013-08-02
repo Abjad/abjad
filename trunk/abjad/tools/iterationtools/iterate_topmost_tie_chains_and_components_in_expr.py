@@ -13,7 +13,7 @@ def iterate_topmost_tie_chains_and_components_in_expr(expr):
         >>> string = r"c'8 ~ c'32 d'8 ~ d'32 \times 2/3 { e'8 f'8 g'8 } a'8 ~ a'32 b'8 ~ b'32"
         >>> staff = Staff(string)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

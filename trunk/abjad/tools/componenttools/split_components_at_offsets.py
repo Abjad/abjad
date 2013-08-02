@@ -21,7 +21,7 @@ def split_components_at_offsets(components, offsets,
         >>> spannertools.SlurSpanner(staff.select_leaves())
         SlurSpanner(c'8, d'8, e'8, f'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -47,7 +47,7 @@ def split_components_at_offsets(components, offsets,
         [[Note("c'16.")], [Note("c'32"), Note("d'16")],
         [Note("d'16"), Note("e'32")], [Note("e'16.")], [Note("f'16.")], [Note("f'32")]]
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -85,7 +85,7 @@ def split_components_at_offsets(components, offsets,
         >>> spannertools.SlurSpanner(staff.select_leaves())
         SlurSpanner(c'8, d'8, e'8, f'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -115,7 +115,7 @@ def split_components_at_offsets(components, offsets,
         [[Note("c'16.")], [Note("c'32"), Note("d'16")], [Note("d'16"), Note("e'32")],
         [Note("e'16.")], [Note("f'16.")], [Note("f'32")]]
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -153,7 +153,7 @@ def split_components_at_offsets(components, offsets,
         >>> spannertools.SlurSpanner(staff.select_leaves())
         SlurSpanner(c'8, d'8, e'8, f'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -181,7 +181,7 @@ def split_components_at_offsets(components, offsets,
         >>> shards = componenttools.split_components_at_offsets(
         ... staff[:1], offsets, cyclic=False, fracture_spanners=False, tie_split_notes=False)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -223,7 +223,7 @@ def split_components_at_offsets(components, offsets,
         >>> spannertools.SlurSpanner(staff.select_leaves())
         SlurSpanner(c'8, d'8, e'8, f'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -248,7 +248,7 @@ def split_components_at_offsets(components, offsets,
         >>> shards = componenttools.split_components_at_offsets(
         ... staff[:1], offsets, cyclic=False, fracture_spanners=True, tie_split_notes=False)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -290,7 +290,7 @@ def split_components_at_offsets(components, offsets,
         >>> spannertools.SlurSpanner(staff.select_leaves())
         SlurSpanner(c'8, d'8, e'8, f'8, g'8, a'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -316,7 +316,7 @@ def split_components_at_offsets(components, offsets,
         >>> shards = componenttools.split_components_at_offsets(
         ... staff.select_leaves(), offsets, cyclic=False, fracture_spanners=True, tie_split_notes=True)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

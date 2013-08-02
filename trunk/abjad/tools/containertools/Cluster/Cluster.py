@@ -14,7 +14,7 @@ class Cluster(Container):
         >>> cluster
         Cluster(c'8, <d' g'>8, b'8)
 
-    ::
+    ..  doctest::
 
         >>> f(cluster)
         \makeClusters {

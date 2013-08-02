@@ -6,7 +6,7 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
 
         >>> voice = Voice("c'8 [ d'8 ] e'8 [ f'8 ]")
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {
@@ -21,7 +21,7 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
         >>> componenttools.move_component_subtree_to_right_in_immediate_parent_of_component(
         ... voice[1])
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {
@@ -48,7 +48,7 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
         >>> componenttools.move_component_subtree_to_right_in_immediate_parent_of_component(
         ... voice[0])
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {

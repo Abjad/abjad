@@ -11,7 +11,7 @@ def move_parentage_children_and_spanners_from_components_to_empty_container(
 
         >>> voice = Voice("{ c'8 [ d'8 } { e'8 f'8 } { g'8 a'8 ] }")
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {
@@ -35,7 +35,7 @@ def move_parentage_children_and_spanners_from_components_to_empty_container(
         >>> containertools.move_parentage_children_and_spanners_from_components_to_empty_container(
         ... voice[:2], tuplet)
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {

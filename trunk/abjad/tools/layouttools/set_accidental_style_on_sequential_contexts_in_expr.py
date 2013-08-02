@@ -10,7 +10,7 @@ def set_accidental_style_on_sequential_contexts_in_expr(expr, accidental_style):
         >>> score = Score(Staff("c'8 d'8") * 2)
         >>> layouttools.set_accidental_style_on_sequential_contexts_in_expr(score, 'forget')
 
-    ::
+    ..  doctest::
 
         >>> f(score)
         \new Score <<

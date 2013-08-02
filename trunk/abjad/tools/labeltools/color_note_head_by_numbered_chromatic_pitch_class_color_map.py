@@ -15,7 +15,7 @@ def color_note_head_by_numbered_chromatic_pitch_class_color_map(pitch_carrier):
         >>> labeltools.color_note_head_by_numbered_chromatic_pitch_class_color_map(note)
         Note("c'4")
 
-    ::
+    ..  doctest::
 
         >>> f(note)
         \once \override NoteHead #'color = #(x11-color 'red)

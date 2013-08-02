@@ -407,7 +407,7 @@ class Container(Component):
 
                 >>> container = Container([Voice("c'8 d'8 e'8"), Voice('g4.')])
 
-            ::
+            ..  doctest::
 
                 >>> f(container)
                 {
@@ -436,7 +436,7 @@ class Container(Component):
 
                 >>> container.is_parallel = True
 
-            ::
+            ..  doctest::
 
                 >>> f(container)
                 <<
@@ -551,7 +551,7 @@ class Container(Component):
 
             >>> container.append(Note("e'4"))
 
-        ::
+        ..  doctest::
 
             >>> f(container)
             {

@@ -17,7 +17,7 @@ class MezzoSopranoVoice(Voice):
         >>> instrumenttools.MezzoSopranoVoice()(staff)
         MezzoSopranoVoice()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

@@ -14,7 +14,7 @@ class StaffGroup(Context):
 
         >>> staff_group = scoretools.StaffGroup([staff_1, staff_2])
 
-    ::
+    ..  doctest::
 
         >>> f(staff_group)
         \new StaffGroup <<

@@ -16,7 +16,7 @@ class FixedDurationContainer(Container):
         >>> container
         FixedDurationContainer(Duration(3, 8), [Note("c'8"), Note("d'8"), Note("e'8")])
 
-    ::
+    ..  doctest::
 
         >>> f(container)
         {

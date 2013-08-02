@@ -9,7 +9,7 @@ def label_tie_chains_in_expr_with_written_tie_chain_duration(
         >>> labeltools.label_tie_chains_in_expr_with_written_tie_chain_duration(
         ...     staff)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

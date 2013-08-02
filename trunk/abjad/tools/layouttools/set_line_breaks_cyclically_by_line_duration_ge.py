@@ -19,7 +19,7 @@ def set_line_breaks_cyclically_by_line_duration_ge(
         >>> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
-    ::
+    ..  doctest::
 
         >>> f(t)
         \new Staff {

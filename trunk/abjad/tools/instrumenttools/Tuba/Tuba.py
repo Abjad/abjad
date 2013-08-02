@@ -19,7 +19,7 @@ class Tuba(BrassInstrument):
         >>> instrumenttools.Tuba()(staff)
         Tuba()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

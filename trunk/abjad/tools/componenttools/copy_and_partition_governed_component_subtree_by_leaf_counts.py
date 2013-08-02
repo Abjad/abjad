@@ -14,7 +14,7 @@ def copy_and_partition_governed_component_subtree_by_leaf_counts(
         >>> voice = Voice(r"\times 2/3 { c'8 [ d'8 e'8 ] }")
         >>> voice.append(r"\times 2/3 { f'8 [ g'8 a'8 ] }")
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {
@@ -43,7 +43,7 @@ def copy_and_partition_governed_component_subtree_by_leaf_counts(
 
         >>> first, second, third = result
 
-    ::
+    ..  doctest::
 
         >>> f(first) # doctest: +SKIP
         \new Voice {
@@ -56,7 +56,7 @@ def copy_and_partition_governed_component_subtree_by_leaf_counts(
 
         >>> show(first) # doctest: +SKIP
 
-    ::
+    ..  doctest::
 
         >>> f(second) # doctest: +SKIP
         \new Voice {
@@ -70,7 +70,7 @@ def copy_and_partition_governed_component_subtree_by_leaf_counts(
 
         >>> show(second) # doctest: +SKIP
 
-    ::
+    ..  doctest::
 
         >>> f(third) # doctest: +SKIP
         \new Voice {

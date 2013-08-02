@@ -9,7 +9,7 @@ def get_nth_component_in_time_order_from_component(component, n):
 
         >>> staff = Staff(r"c'4 \times 2/3 { d'8 e'8 f'8 } g'2")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

@@ -15,7 +15,7 @@ class StaffLinesSpanner(Spanner):
         >>> spannertools.StaffLinesSpanner(staff[:2], 1)
         StaffLinesSpanner(c'8, d'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

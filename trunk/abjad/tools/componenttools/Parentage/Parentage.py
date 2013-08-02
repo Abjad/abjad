@@ -16,7 +16,7 @@ class Parentage(SimultaneousSelection):
         >>> score.append(Staff(r"""\new Voice = "Bass Voice" { b,4 }""",
         ...     name='Bass Staff'))
 
-    ::
+    ..  doctest::
 
         >>> f(score)
         \new Score <<
@@ -139,7 +139,7 @@ class Parentage(SimultaneousSelection):
             >>> score.name = 'CustomScore'
 
 
-        ::
+        ..  doctest::
 
             >>> f(score)
             \context Score = "CustomScore" <<
@@ -279,7 +279,7 @@ class Parentage(SimultaneousSelection):
             >>> staff_2 = Staff(r"\times 2/3 { b'8 c''8 d''8 }")
             >>> score = Score([staff_1, staff_2])
 
-        ::
+        ..  doctest::
 
             >>> f(score)
             \new Score <<

@@ -9,7 +9,7 @@ def iterate_staves_in_expr(expr, reverse=False, start=0, stop=None):
 
         >>> score = Score(4 * Staff([]))
 
-    ::
+    ..  doctest::
 
         >>> f(score)
         \new Score <<

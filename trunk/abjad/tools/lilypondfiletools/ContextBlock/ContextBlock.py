@@ -24,7 +24,7 @@ class ContextBlock(AttributedBlock):
         >>> context_block.set.proportionalNotationDuration = \
         ...     schemetools.SchemeMoment((1, 45))
 
-    ::
+    ..  doctest::
 
         >>> f(context_block)
         \context {

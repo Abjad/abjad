@@ -7,7 +7,7 @@ def find_spanner_component_starting_at_exactly_score_offset(spanner, score_offse
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> beam = spannertools.BeamSpanner(staff.select_leaves())
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

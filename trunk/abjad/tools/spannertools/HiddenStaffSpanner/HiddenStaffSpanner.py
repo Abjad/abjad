@@ -14,7 +14,7 @@ class HiddenStaffSpanner(Spanner):
         >>> spannertools.HiddenStaffSpanner(staff[:2])
         HiddenStaffSpanner(c'8, d'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

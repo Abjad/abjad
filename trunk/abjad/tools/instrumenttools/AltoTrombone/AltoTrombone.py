@@ -19,7 +19,7 @@ class AltoTrombone(Trombone):
         >>> instrumenttools.AltoTrombone()(staff)
         AltoTrombone()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

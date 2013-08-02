@@ -35,7 +35,7 @@ class InstrumentMark(ContextMark):
         >>> contexttools.InstrumentMark('Flute', 'Fl.')(staff)
         InstrumentMark(instrument_name='Flute', short_instrument_name='Fl.')(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

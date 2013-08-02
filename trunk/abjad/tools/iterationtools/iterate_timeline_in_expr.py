@@ -13,7 +13,7 @@ def iterate_timeline_in_expr(expr, component_class=None, reverse=False):
         >>> score.append(Staff(notetools.make_repeated_notes(4)))
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(score)
 
-    ::
+    ..  doctest::
 
         >>> f(score)
         \new Score <<

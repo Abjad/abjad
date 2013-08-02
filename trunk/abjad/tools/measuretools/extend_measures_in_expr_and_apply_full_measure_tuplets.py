@@ -7,7 +7,7 @@ def extend_measures_in_expr_and_apply_full_measure_tuplets(expr, supplement):
 
         >>> staff = Staff([Measure((2, 8), "c'8 d'8"), Measure((3, 8), "e'8 f'8 g'8")])
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -30,7 +30,7 @@ def extend_measures_in_expr_and_apply_full_measure_tuplets(expr, supplement):
         >>> measuretools.extend_measures_in_expr_and_apply_full_measure_tuplets(
         ... staff, supplement)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

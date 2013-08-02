@@ -23,7 +23,7 @@ def copy_governed_component_subtree_by_leaf_range(
 
         >>> show(staff) # doctest: +SKIP
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -56,7 +56,7 @@ def copy_governed_component_subtree_by_leaf_range(
 
         >>> show(result) # doctest: +SKIP
 
-    ::
+    ..  doctest::
 
         >>> f(result)
         \new Staff {

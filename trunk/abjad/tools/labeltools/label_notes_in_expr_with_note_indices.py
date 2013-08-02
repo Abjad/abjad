@@ -14,7 +14,7 @@ def label_notes_in_expr_with_note_indices(expr, markup_direction=Down):
 
         >>> labeltools.label_notes_in_expr_with_note_indices(staff)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

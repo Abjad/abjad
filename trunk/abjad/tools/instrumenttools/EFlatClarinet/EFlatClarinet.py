@@ -17,7 +17,7 @@ class EFlatClarinet(Clarinet):
         >>> instrumenttools.EFlatClarinet()(staff)
         EFlatClarinet()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

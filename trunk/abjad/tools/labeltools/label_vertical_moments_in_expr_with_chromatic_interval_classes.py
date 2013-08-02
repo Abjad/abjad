@@ -25,7 +25,7 @@ def label_vertical_moments_in_expr_with_chromatic_interval_classes(
         >>> labeltools.label_vertical_moments_in_expr_with_chromatic_interval_classes(
         ...     score)
 
-    ::
+    ..  doctest::
 
         >>> f(score)
         \new Score <<

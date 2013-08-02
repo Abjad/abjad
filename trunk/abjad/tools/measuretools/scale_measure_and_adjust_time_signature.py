@@ -14,7 +14,7 @@ def scale_measure_and_adjust_time_signature(measure, multiplier=1):
         >>> measuretools.scale_measure_and_adjust_time_signature(t, Duration(2, 3))
         Measure(3/12, [c'8, d'8, e'8])
 
-    ::
+    ..  doctest::
 
         >>> f(t)
         {

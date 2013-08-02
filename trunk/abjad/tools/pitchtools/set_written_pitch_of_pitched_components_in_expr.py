@@ -6,7 +6,7 @@ def set_written_pitch_of_pitched_components_in_expr(expr, written_pitch=0):
 
         >>> staff = Staff("c' d' e' f'")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -20,7 +20,7 @@ def set_written_pitch_of_pitched_components_in_expr(expr, written_pitch=0):
 
         >>> pitchtools.set_written_pitch_of_pitched_components_in_expr(staff)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

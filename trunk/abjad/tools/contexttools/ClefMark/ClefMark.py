@@ -24,7 +24,7 @@ class ClefMark(ContextMark):
         >>> clef = contexttools.ClefMark('bass^15')(staff[6])
         >>> clef = contexttools.ClefMark('percussion')(staff[7])
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

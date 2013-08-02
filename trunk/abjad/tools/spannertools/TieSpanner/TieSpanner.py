@@ -13,7 +13,7 @@ class TieSpanner(DirectedSpanner):
         >>> spannertools.TieSpanner(staff[:])
         TieSpanner(c'8, c'8, c'8, c'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

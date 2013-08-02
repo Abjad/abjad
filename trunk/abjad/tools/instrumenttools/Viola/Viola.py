@@ -19,7 +19,7 @@ class Viola(StringInstrument):
         >>> instrumenttools.Viola()(staff)
         Viola()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

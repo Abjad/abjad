@@ -12,7 +12,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
         >>> spannertools.BeamSpanner(measure.select_leaves())
         BeamSpanner(c'8, d'8)
 
-    ::
+    ..  doctest::
 
         >>> f(measure)
         {
@@ -26,7 +26,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
         >>> measuretools.scale_measure_denominator_and_adjust_measure_contents(measure, 3)
         Measure(3/12, [c'8., d'8.])
 
-    ::
+    ..  doctest::
 
         >>> f(measure)
         {

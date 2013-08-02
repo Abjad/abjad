@@ -10,7 +10,7 @@ def iterate_pitched_tie_chains_in_expr(expr, reverse=False):
         >>> staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 }")
         >>> staff.extend(r"e'8 r8 f'8 ~ f'16 r8.")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

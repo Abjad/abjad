@@ -27,7 +27,7 @@ def fuse_leaves_in_tie_chain_by_immediate_parent(tie_chain):
         >>> leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(tie_chain)
         [[Note("c'4")], [Note("c'4")]]
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

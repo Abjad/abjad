@@ -17,7 +17,7 @@ class TenorVoice(Voice):
         >>> instrumenttools.TenorVoice()(staff)
         TenorVoice()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

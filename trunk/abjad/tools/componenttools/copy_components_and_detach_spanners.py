@@ -23,7 +23,7 @@ def copy_components_and_detach_spanners(components, n=1):
 
         >>> voice = Voice("abj: | 2/4 c'4 ( d' || 2/4 e' f' ) |")
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {
@@ -60,7 +60,7 @@ def copy_components_and_detach_spanners(components, n=1):
 
         >>> show(new_voice) # doctest: +SKIP
 
-    ::
+    ..  doctest::
 
         >>> f(new_voice)
         \new Voice {
@@ -88,7 +88,7 @@ def copy_components_and_detach_spanners(components, n=1):
 
         >>> show(new_voice) # doctest: +SKIP
 
-    ::
+    ..  doctest::
 
         >>> f(new_voice)
         \new Voice {

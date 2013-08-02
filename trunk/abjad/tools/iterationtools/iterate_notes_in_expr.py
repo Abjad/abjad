@@ -12,7 +12,7 @@ def iterate_notes_in_expr(expr, reverse=False, start=0, stop=None):
         >>> staff.append(Measure((2, 8), "e'8 f'8"))
         >>> staff.append(Measure((2, 8), "g'8 a'8"))
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -83,7 +83,7 @@ def iterate_notes_in_expr(expr, reverse=False, start=0, stop=None):
         >>> staff.append(Measure((2, 8), "e'8 f'8"))
         >>> staff.append(Measure((2, 8), "g'8 a'8"))
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

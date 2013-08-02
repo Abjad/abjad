@@ -45,7 +45,7 @@ def scale_preprolated_leaf_duration(leaf, multiplier):
         >>> leaftools.scale_preprolated_leaf_duration(staff[1], Duration(2, 3))
         SequentialSelection(Note("d'8"),)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

@@ -173,7 +173,7 @@ class RhythmMaker(Maker):
             >>> measures = measuretools.replace_contents_of_measures_in_expr(
             ...     staff, leaves)
 
-        ::
+        ..  doctest::
 
             >>> f(staff)
             \new Staff {

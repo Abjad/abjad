@@ -8,7 +8,7 @@ def scale_contents_of_container(container, multiplier):
         >>> spannertools.BeamSpanner(staff.select_leaves())
         BeamSpanner(c'8, d'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -21,7 +21,7 @@ def scale_contents_of_container(container, multiplier):
         >>> containertools.scale_contents_of_container(staff, Multiplier(3, 2))
         Staff{2}
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -37,7 +37,7 @@ def scale_contents_of_container(container, multiplier):
         >>> spannertools.BeamSpanner(staff.select_leaves())
         BeamSpanner(c'8, d'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -50,7 +50,7 @@ def scale_contents_of_container(container, multiplier):
         >>> containertools.scale_contents_of_container(staff, Multiplier(5, 4))
         Staff{4}
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -69,7 +69,7 @@ def scale_contents_of_container(container, multiplier):
         >>> spannertools.BeamSpanner(staff.select_leaves())
         BeamSpanner(c'8, d'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -82,7 +82,7 @@ def scale_contents_of_container(container, multiplier):
         >>> containertools.scale_contents_of_container(staff, Multiplier(4, 3))
         Staff{2}
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

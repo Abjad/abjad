@@ -17,7 +17,7 @@ def label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes(ex
         >>> labeltools.label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes(
         ...     staff)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

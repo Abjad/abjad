@@ -11,7 +11,7 @@ def fill_measures_in_expr_with_time_signature_denominator_notes(expr, iterctrl=N
         >>> staff = Staff([Measure((3, 4), []), Measure((3, 16), []), Measure((3, 8), [])])
         >>> measuretools.fill_measures_in_expr_with_time_signature_denominator_notes(staff)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

@@ -12,7 +12,7 @@ def fuse_like_named_contiguous_containers_in_expr(expr):
         >>> staff[0].name = 'soprano'
         >>> staff[1].name = 'soprano'
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -31,7 +31,7 @@ def fuse_like_named_contiguous_containers_in_expr(expr):
         >>> containertools.fuse_like_named_contiguous_containers_in_expr(staff)
         Staff{1}
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

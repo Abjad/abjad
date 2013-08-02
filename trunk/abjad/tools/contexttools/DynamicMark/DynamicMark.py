@@ -16,7 +16,7 @@ class DynamicMark(ContextMark):
         >>> contexttools.DynamicMark('f')(staff[0])
         DynamicMark('f')(c'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

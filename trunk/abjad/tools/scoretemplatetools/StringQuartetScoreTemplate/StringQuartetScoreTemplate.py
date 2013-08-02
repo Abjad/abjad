@@ -21,7 +21,7 @@ class StringQuartetScoreTemplate(ScoreTemplate):
         >>> score
         Score-"String Quartet Score"<<1>>
 
-    ::
+    ..  doctest::
 
         >>> f(score)
         \context Score = "String Quartet Score" <<

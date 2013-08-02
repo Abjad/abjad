@@ -20,7 +20,7 @@ def iterate_components_and_grace_containers_in_expr(expr, component_class):
         >>> leaftools.GraceContainer(after_grace_notes, kind='after')(voice[1])
         Note("d'8")
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {

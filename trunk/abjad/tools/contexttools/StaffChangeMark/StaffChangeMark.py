@@ -14,7 +14,7 @@ class StaffChangeMark(ContextMark):
         >>> lh_staff.name = 'LHStaff'
         >>> piano_staff.extend([rh_staff, lh_staff])
 
-    ::
+    ..  doctest::
 
         >>> f(piano_staff)
         \new PianoStaff <<
@@ -38,7 +38,7 @@ class StaffChangeMark(ContextMark):
         >>> contexttools.StaffChangeMark(lh_staff)(rh_staff[2])
         StaffChangeMark(Staff-"LHStaff"{1})(e'8)
 
-    ::
+    ..  doctest::
 
         >>> f(piano_staff)
         \new PianoStaff <<

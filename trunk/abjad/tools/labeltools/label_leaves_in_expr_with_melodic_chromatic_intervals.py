@@ -16,7 +16,7 @@ def label_leaves_in_expr_with_melodic_chromatic_intervals(expr, markup_direction
         >>> staff = Staff(notes)
         >>> labeltools.label_leaves_in_expr_with_melodic_chromatic_intervals(staff)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

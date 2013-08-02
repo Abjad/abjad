@@ -48,7 +48,7 @@ class TupletSelection(FreeSelection):
             >>> selection = selectiontools.select_tuplets(staff[0])
             >>> selection.move_prolation_to_contents_and_remove()
 
-        ::
+        ..  doctest::
 
             >>> f(staff)
             \new Staff {

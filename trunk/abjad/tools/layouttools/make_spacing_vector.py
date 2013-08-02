@@ -18,7 +18,7 @@ def make_spacing_vector(basic_distance, minimum_distance, padding, stretchabilit
         >>> spacing_vector = layouttools.make_spacing_vector(0, 0, 12, 0)
         >>> lilypond_file.paper_block.system_system_spacing = spacing_vector
 
-    ::
+    ..  doctest::
 
         >>> f(lilypond_file) # doctest: +SKIP
         % Abjad revision 4229

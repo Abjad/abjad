@@ -6,7 +6,7 @@ def remove_initial_rests_from_sequence(sequence):
 
         >>> staff = Staff("r8 r8 c'8 d'8 r4 r4")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -23,7 +23,7 @@ def remove_initial_rests_from_sequence(sequence):
         >>> leaftools.remove_initial_rests_from_sequence(staff)
         [Note("c'8"), Note("d'8"), Rest('r4'), Rest('r4')]
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

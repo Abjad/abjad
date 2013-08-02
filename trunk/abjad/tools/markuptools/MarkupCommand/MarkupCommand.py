@@ -34,7 +34,7 @@ class MarkupCommand(AbjadObject):
 
         >>> markup = markup(note)
 
-    ::
+    ..  doctest::
 
         >>> f(note)
         c'4

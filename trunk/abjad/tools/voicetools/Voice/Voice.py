@@ -14,7 +14,7 @@ class Voice(Context):
         >>> voice
         Voice{4}
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {

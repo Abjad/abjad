@@ -49,7 +49,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
         >>> leaftools.set_preprolated_leaf_duration(staff[1], Duration(1, 12))
         SequentialSelection(Note("d'8"),)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

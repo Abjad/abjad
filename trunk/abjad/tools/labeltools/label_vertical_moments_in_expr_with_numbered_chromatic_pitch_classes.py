@@ -23,7 +23,7 @@ def label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes(
         >>> labeltools.label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes(
         ...     score)
 
-    ::
+    ..  doctest::
 
         >>> f(score)
         \new Score <<

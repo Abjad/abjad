@@ -9,7 +9,7 @@ def make_spanner_schema(components):
         >>> beam = spannertools.BeamSpanner(voice.select_leaves()[:4])
         >>> slur = spannertools.SlurSpanner(voice[-2:])
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {

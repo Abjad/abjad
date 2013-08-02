@@ -22,7 +22,7 @@ def color_chord_note_heads_in_expr_by_pitch_class_color_map(chord, color_map):
         >>> labeltools.color_chord_note_heads_in_expr_by_pitch_class_color_map(chord, color_map)
         Chord("<c'' d'' fs'' a'' b''>4")
 
-    ::
+    ..  doctest::
 
         >>> f(chord)
         <
@@ -53,7 +53,7 @@ def color_chord_note_heads_in_expr_by_pitch_class_color_map(chord, color_map):
         >>> labeltools.color_chord_note_heads_in_expr_by_pitch_class_color_map(note, color_map)
         Note("c'4")
 
-    ::
+    ..  doctest::
 
         >>> f(note)
         \once \override NoteHead #'color = #red

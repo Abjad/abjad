@@ -16,7 +16,7 @@ class ContrabassFlute(Flute):
         >>> instrumenttools.ContrabassFlute()(staff)
         ContrabassFlute()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

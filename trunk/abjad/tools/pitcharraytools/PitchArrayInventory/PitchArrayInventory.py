@@ -57,7 +57,7 @@ class PitchArrayInventory(ObjectInventory):
 
             >>> score = inventory.to_score()
 
-        ::
+        ..  doctest::
 
             >>> f(score)
             \new Score <<

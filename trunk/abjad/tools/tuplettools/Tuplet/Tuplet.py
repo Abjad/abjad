@@ -302,7 +302,7 @@ class Tuplet(Container):
                 >>> tuplet.force_fraction is None
                 True
 
-            ::
+            ..  doctest::
 
                 >>> f(tuplet)
                 \times 2/3 {
@@ -316,7 +316,7 @@ class Tuplet(Container):
 
                 >>> tuplet.force_fraction = True
 
-            ::
+            ..  doctest::
 
                 >>> f(tuplet)
                 \tweak #'text #tuplet-number::calc-fraction-text

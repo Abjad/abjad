@@ -17,7 +17,7 @@ class SopranoVoice(Voice):
         >>> instrumenttools.SopranoVoice()(staff)
         SopranoVoice()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

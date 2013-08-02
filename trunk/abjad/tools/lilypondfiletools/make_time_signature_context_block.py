@@ -9,7 +9,7 @@ def make_time_signature_context_block(font_size=3, padding=4):
 
         >>> context_block = lilypondfiletools.make_time_signature_context_block()
 
-    ::
+    ..  doctest::
 
         >>> f(context_block) # doctest: +SKIP
         \context {

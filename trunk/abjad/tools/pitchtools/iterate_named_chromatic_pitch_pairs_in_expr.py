@@ -15,7 +15,7 @@ def iterate_named_chromatic_pitch_pairs_in_expr(expr):
         >>> contexttools.ClefMark('bass')(score[1])
         ClefMark('bass')(Staff{3})
 
-    ::
+    ..  doctest::
 
         >>> f(score)
         \new Score <<
@@ -61,7 +61,7 @@ def iterate_named_chromatic_pitch_pairs_in_expr(expr):
         >>> chord_2 = Chord([17, 19], (1, 4))
         >>> staff = Staff([chord_1, chord_2])
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

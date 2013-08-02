@@ -6,7 +6,7 @@ def make_empty_piano_score():
 
         >>> score, treble, bass = scoretools.make_empty_piano_score()
 
-    ::
+    ..  doctest::
 
         >>> f(score)
         \new Score <<

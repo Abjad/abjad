@@ -14,7 +14,7 @@ def fill_measures_in_expr_with_minimal_number_of_notes(expr, decrease_durations_
         >>> measuretools.fill_measures_in_expr_with_minimal_number_of_notes(
         ...     measure, decrease_durations_monotonically=True)
 
-    ::
+    ..  doctest::
 
         >>> f(measure)
         {
@@ -36,7 +36,7 @@ def fill_measures_in_expr_with_minimal_number_of_notes(expr, decrease_durations_
         >>> measuretools.fill_measures_in_expr_with_minimal_number_of_notes(
         ...     measure, decrease_durations_monotonically=False)
 
-    ::
+    ..  doctest::
 
         >>> f(measure)
         {

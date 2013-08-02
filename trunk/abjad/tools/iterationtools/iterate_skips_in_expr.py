@@ -9,7 +9,7 @@ def iterate_skips_in_expr(expr, reverse=False, start=0, stop=None):
 
         >>> staff = Staff("<e' g' c''>8 a'8 s8 <d' f' b'>8 s2")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

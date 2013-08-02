@@ -11,7 +11,7 @@ def get_composite_offset_difference_series_from_leaves_in_expr(expr):
         >>> staff_2 = Staff("f'8 g'8 a'8 b'8")
         >>> score = Score([staff_1, staff_2])
 
-    ::
+    ..  doctest::
 
         >>> f(score)
             \new Score <<

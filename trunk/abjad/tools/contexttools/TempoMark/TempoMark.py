@@ -21,7 +21,7 @@ class TempoMark(ContextMark):
         >>> contexttools.TempoMark(Duration(1, 8), 52)(staff[0])
         TempoMark(Duration(1, 8), 52)(c'8)
 
-    ::
+    ..  doctest::
 
         >>> f(score)
         \new Score <<

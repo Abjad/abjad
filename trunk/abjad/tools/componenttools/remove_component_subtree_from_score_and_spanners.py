@@ -8,7 +8,7 @@ def remove_component_subtree_from_score_and_spanners(components):
         >>> spannertools.GlissandoSpanner(voice.select_leaves())
         GlissandoSpanner(c'8, d'8, e'8, f'8)
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {
@@ -26,7 +26,7 @@ def remove_component_subtree_from_score_and_spanners(components):
         ...     voice.select_leaves()[1:2])
         SequentialLeafSelection(Note("d'8"),)
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {
@@ -45,7 +45,7 @@ def remove_component_subtree_from_score_and_spanners(components):
         >>> spannertools.GlissandoSpanner(voice.select_leaves())
         GlissandoSpanner(c'8, d'8, e'8, f'8)
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {
@@ -63,7 +63,7 @@ def remove_component_subtree_from_score_and_spanners(components):
         ...     voice.select_leaves()[:2])
         SequentialLeafSelection(Note("c'8"), Note("d'8"))
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {
@@ -81,7 +81,7 @@ def remove_component_subtree_from_score_and_spanners(components):
         >>> spannertools.GlissandoSpanner(voice.select_leaves())
         GlissandoSpanner(c'8, d'8, e'8, f'8)
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {
@@ -99,7 +99,7 @@ def remove_component_subtree_from_score_and_spanners(components):
         ... [voice.select_leaves()[0], voice.select_leaves()[2]])
         [Note("c'8"), Note("e'8")]
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {
@@ -116,7 +116,7 @@ def remove_component_subtree_from_score_and_spanners(components):
         >>> spannertools.GlissandoSpanner(voice.select_leaves())
         GlissandoSpanner(c'8, d'8, e'8, f'8)
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {
@@ -134,7 +134,7 @@ def remove_component_subtree_from_score_and_spanners(components):
         ...     voice[1:2])
         SequentialSelection({d'8, e'8},)
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {

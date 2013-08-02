@@ -18,7 +18,7 @@ class Glockenspiel(PercussionInstrument):
         >>> instrumenttools.Glockenspiel()(staff)
         Glockenspiel()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

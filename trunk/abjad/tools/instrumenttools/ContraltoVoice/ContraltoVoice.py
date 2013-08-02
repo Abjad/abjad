@@ -17,7 +17,7 @@ class ContraltoVoice(Voice):
         >>> instrumenttools.ContraltoVoice()(staff)
         ContraltoVoice()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

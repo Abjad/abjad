@@ -11,7 +11,7 @@ class Annotation(Mark):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -27,7 +27,7 @@ class Annotation(Mark):
         >>> marktools.Annotation('special pitch', pitch)(staff[0])
         Annotation('special pitch', NamedChromaticPitch('ds'))(c'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

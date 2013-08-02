@@ -20,7 +20,7 @@ class Piano(KeyboardInstrument):
         >>> instrumenttools.Piano()(piano_staff)
         Piano()(PianoStaff<<2>>)
 
-    ::
+    ..  doctest::
 
         >>> f(piano_staff)
         \new PianoStaff <<

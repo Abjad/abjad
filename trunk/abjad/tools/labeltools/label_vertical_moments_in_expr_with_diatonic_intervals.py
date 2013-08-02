@@ -23,7 +23,7 @@ def label_vertical_moments_in_expr_with_diatonic_intervals(
 
         >>> labeltools.label_vertical_moments_in_expr_with_diatonic_intervals(score)
 
-    ::
+    ..  doctest::
 
         >>> f(score)
         \new Score <<

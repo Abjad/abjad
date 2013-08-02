@@ -15,7 +15,7 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
         >>> spannertools.BeamSpanner(measure.select_leaves())
         BeamSpanner(c'8, d'8, e'8, f'8, g'8, a'8)
 
-    ::
+    ..  doctest::
 
         >>> f(measure)
         {
@@ -37,7 +37,7 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
         >>> leaftools.remove_leaf_and_shrink_durated_parent_containers(
         ...     measure.select_leaves()[0])
 
-    ::
+    ..  doctest::
 
         >>> f(measure)
         {

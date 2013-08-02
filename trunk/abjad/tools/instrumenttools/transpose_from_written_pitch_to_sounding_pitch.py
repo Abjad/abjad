@@ -15,7 +15,7 @@ def transpose_from_written_pitch_to_sounding_pitch(expr):
         >>> instrumenttools.BFlatClarinet()(staff)
         BFlatClarinet()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -34,7 +34,7 @@ def transpose_from_written_pitch_to_sounding_pitch(expr):
 
         >>> instrumenttools.transpose_from_written_pitch_to_sounding_pitch(staff)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

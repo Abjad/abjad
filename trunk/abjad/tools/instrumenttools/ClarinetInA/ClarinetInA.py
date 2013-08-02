@@ -17,7 +17,7 @@ class ClarinetInA(Clarinet):
         >>> instrumenttools.ClarinetInA()(staff)
         ClarinetInA()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

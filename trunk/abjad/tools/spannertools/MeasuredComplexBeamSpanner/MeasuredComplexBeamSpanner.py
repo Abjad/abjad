@@ -21,7 +21,7 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
         >>> spannertools.MeasuredComplexBeamSpanner(staff.select_leaves())
         MeasuredComplexBeamSpanner(c'16, d'16, e'16, f'16)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

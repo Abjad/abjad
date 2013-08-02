@@ -7,7 +7,7 @@ def set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(expr):
         >>> voice = Voice(notetools.make_notes(0, [(5, 32)] * 4))
         >>> pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(voice)
 
-    ::
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {

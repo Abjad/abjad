@@ -14,7 +14,7 @@ def make_basic_lilypond_file(music=None):
         >>> lilypond_file.paper_block.top_margin = 15
         >>> lilypond_file.paper_block.left_margin = 15
 
-    ::
+    ..  doctest::
 
         >>> f(lilypond_file) # doctest: +SKIP
         \header {

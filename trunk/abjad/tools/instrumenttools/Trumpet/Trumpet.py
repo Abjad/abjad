@@ -17,7 +17,7 @@ class Trumpet(BrassInstrument):
         >>> instrumenttools.Trumpet()(staff)
         Trumpet()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

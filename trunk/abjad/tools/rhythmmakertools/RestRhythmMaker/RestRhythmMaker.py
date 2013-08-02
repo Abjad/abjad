@@ -26,7 +26,7 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
         >>> measures = measuretools.replace_contents_of_measures_in_expr(
         ...     staff, leaves)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new RhythmicStaff {
@@ -64,7 +64,7 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
         >>> measures = measuretools.replace_contents_of_measures_in_expr(
         ...     staff, leaves)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new RhythmicStaff {

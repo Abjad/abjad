@@ -18,7 +18,7 @@ class Harpsichord(KeyboardInstrument):
         >>> instrumenttools.Harpsichord()(piano_staff)
         Harpsichord()(PianoStaff<<2>>)
 
-    ::
+    ..  doctest::
 
         >>> f(piano_staff)
         \new PianoStaff <<

@@ -17,7 +17,7 @@ class Flute(WindInstrument):
         >>> instrumenttools.Flute()(staff)
         Flute()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

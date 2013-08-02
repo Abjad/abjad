@@ -24,7 +24,7 @@ def divide_leaf_meiotically(leaf, n=2):
 
         >>> leaftools.divide_leaf_meiotically(staff[0], n=4)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

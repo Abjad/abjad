@@ -19,7 +19,7 @@ class Contrabass(StringInstrument):
         >>> instrumenttools.Contrabass()(staff)
         Contrabass()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

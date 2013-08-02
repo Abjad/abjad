@@ -10,7 +10,7 @@ def reverse_contents_of_container(container):
         >>> spannertools.SlurSpanner(staff.select_leaves()[2:])
         SlurSpanner(e'8, f'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -25,7 +25,7 @@ def reverse_contents_of_container(container):
         >>> containertools.reverse_contents_of_container(staff)
         Staff{4}
 
-    ::
+    ..  doctest::
 
         >>> f(staff) # doctest: +SKIP
         \new Staff {

@@ -9,7 +9,7 @@ class LilyPondDimension(abctools.AbjadObject):
 
         >>> dimension = lilypondfiletools.LilyPondDimension(2, 'in')
 
-    ::
+    ..  doctest::
 
         >>> f(dimension)
         2.0\in

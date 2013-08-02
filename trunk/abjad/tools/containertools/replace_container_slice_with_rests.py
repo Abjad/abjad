@@ -40,7 +40,7 @@ def replace_container_slice_with_rests(
         >>> container = containertools.replace_container_slice_with_rests(
         ...     container, start=1)
 
-    ::
+    ..  doctest::
 
         >>> f(container)
         \new Staff {
@@ -58,7 +58,7 @@ def replace_container_slice_with_rests(
         >>> container= containertools.replace_container_slice_with_rests(
         ...         container, start=1, stop=2)
 
-    ::
+    ..  doctest::
 
         >>> f(container)
         \new Staff {

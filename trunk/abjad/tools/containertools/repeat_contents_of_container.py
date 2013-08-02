@@ -8,7 +8,7 @@ def repeat_contents_of_container(container, total=2):
         >>> spannertools.BeamSpanner(staff.select_leaves())
         BeamSpanner(c'8, d'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -21,7 +21,7 @@ def repeat_contents_of_container(container, total=2):
         >>> containertools.repeat_contents_of_container(staff, 3)
         Staff{6}
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

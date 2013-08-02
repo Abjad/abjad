@@ -5,7 +5,7 @@ def make_text_alignment_example_lilypond_file(music=None):
         >>> score = Score([Staff('c d e f')])
         >>> lilypond_file = documentationtools.make_text_alignment_example_lilypond_file(score)
 
-    ::
+    ..  doctest::
 
         >>> f(lilypond_file) # doctest: +SKIP
         % Abjad revision 5651

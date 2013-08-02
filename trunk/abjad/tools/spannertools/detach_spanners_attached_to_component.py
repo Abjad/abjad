@@ -9,7 +9,7 @@ def detach_spanners_attached_to_component(component, spanner_classes=None):
         >>> slur = spannertools.SlurSpanner(staff.select_leaves())
         >>> trill = spannertools.TrillSpanner(staff)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -24,7 +24,7 @@ def detach_spanners_attached_to_component(component, spanner_classes=None):
         >>> spanners = spannertools.detach_spanners_attached_to_component(
         ...     staff[0])
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

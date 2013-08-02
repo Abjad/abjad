@@ -898,7 +898,7 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
         >>> input += "| 2/4 b'4 c''4 |"
         >>> staff = Staff(input)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

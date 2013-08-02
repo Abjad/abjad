@@ -133,7 +133,7 @@ class Scale(NamedChromaticPitchClassSegment):
             >>> notes = scale.make_notes(8)
             >>> staff = Staff(notes)
 
-        ::
+        ..  doctest::
 
             >>> f(staff)
             \new Staff {
@@ -159,7 +159,7 @@ class Scale(NamedChromaticPitchClassSegment):
             >>> staff = Staff(notes)
             >>> time_signature = contexttools.TimeSignatureMark((5, 4))(staff)
 
-        ::
+        ..  doctest::
 
             >>> f(staff)
             \new Staff {
@@ -194,7 +194,7 @@ class Scale(NamedChromaticPitchClassSegment):
             >>> scale = tonalanalysistools.Scale('E', 'major')
             >>> score = scale.make_score()
 
-        ::
+        ..  doctest::
 
             >>> f(score)
             \new Score \with {

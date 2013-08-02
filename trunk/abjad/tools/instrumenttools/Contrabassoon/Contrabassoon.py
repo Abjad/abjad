@@ -19,7 +19,7 @@ class Contrabassoon(Bassoon):
         >>> instrumenttools.Contrabassoon()(staff)
         Contrabassoon()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

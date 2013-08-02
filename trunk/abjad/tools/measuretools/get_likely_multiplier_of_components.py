@@ -11,7 +11,7 @@ def get_likely_multiplier_of_components(components):
 
         >>> staff = Staff("c'8.. d'8.. e'8.. f'8..")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -32,7 +32,7 @@ def get_likely_multiplier_of_components(components):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -54,7 +54,7 @@ def get_likely_multiplier_of_components(components):
         >>> staff = Staff(
         ...     notetools.make_notes([0, 2, 4, 5], [(3, 16), (7, 32)]))
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

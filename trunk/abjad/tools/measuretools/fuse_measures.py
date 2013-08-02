@@ -18,7 +18,7 @@ def fuse_measures(measures):
         >>> spannertools.BeamSpanner(staff.select_leaves())
         BeamSpanner(c'16, d'16, e'16, f'16)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -39,7 +39,7 @@ def fuse_measures(measures):
         >>> measuretools.fuse_measures(staff[:])
         Measure(2/8, [c'16, d'16, e'16, f'16])
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

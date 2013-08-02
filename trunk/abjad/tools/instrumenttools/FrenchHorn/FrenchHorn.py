@@ -18,7 +18,7 @@ class FrenchHorn(BrassInstrument, WindInstrument):
         >>> instrumenttools.FrenchHorn()(staff)
         FrenchHorn()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

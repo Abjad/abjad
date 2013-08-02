@@ -20,7 +20,7 @@ class PaperBlock(AttributedBlock):
         >>> paper_block.print_page_number = True
         >>> paper_block.print_first_page_number = False
 
-    ::
+    ..  doctest::
 
         >>> f(paper_block)
         \paper {

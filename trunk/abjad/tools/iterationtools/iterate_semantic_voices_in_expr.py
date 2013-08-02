@@ -14,7 +14,7 @@ def iterate_semantic_voices_in_expr(expr, reverse=False, start=0, stop=None):
         >>> staff = Staff([time_signature_voice, music_voice])
         >>> staff.is_parallel = True
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff <<

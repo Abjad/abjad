@@ -58,7 +58,7 @@ class Spanner(AbjadObject):
             >>> beam(staff[:])
             BeamSpanner(c'8, d'8, e'8, f'8)
 
-        ::
+        ..  doctest::
 
             >>> f(staff)
             \new Staff {
@@ -591,7 +591,7 @@ class Spanner(AbjadObject):
             >>> beam
             BeamSpanner(c'8, d'8, e'8, f'8)
 
-        ::
+        ..  doctest::
 
             >>> f(voice)
             \new Voice {
@@ -614,7 +614,7 @@ class Spanner(AbjadObject):
             BeamSpanner(c'8)
             BeamSpanner(d'8, e'8, f'8)
 
-        ::
+        ..  doctest::
 
             >>> f(voice)
             \new Voice {
@@ -733,7 +733,7 @@ class Spanner(AbjadObject):
             >>> spanner
             SlurSpanner(c'8, d'8, e'8, f'8)
 
-        ::
+        ..  doctest::
 
             >>> f(voice)
             \new Voice {
@@ -757,7 +757,7 @@ class Spanner(AbjadObject):
             >>> spanner
             SlurSpanner(c'8, d'8, e'8)
 
-        ::
+        ..  doctest::
 
             >>> f(voice)
             \new Voice {
@@ -787,7 +787,7 @@ class Spanner(AbjadObject):
             >>> spanner
             SlurSpanner(c'8, d'8, e'8, f'8)
 
-        ::
+        ..  doctest::
 
             >>> f(voice)
             \new Voice {
@@ -811,7 +811,7 @@ class Spanner(AbjadObject):
             >>> spanner
             SlurSpanner(d'8, e'8, f'8)
 
-        ::
+        ..  doctest::
 
             >>> f(voice)
             \new Voice {

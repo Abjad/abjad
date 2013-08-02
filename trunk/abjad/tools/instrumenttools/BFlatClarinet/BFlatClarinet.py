@@ -18,7 +18,7 @@ class BFlatClarinet(Clarinet):
         >>> clarinet
         BFlatClarinet()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

@@ -19,7 +19,7 @@ class LayoutBlock(AttributedBlock):
         >>> layout_block.indent = 0
         >>> layout_block.ragged_right = True
 
-    ::
+    ..  doctest::
 
         >>> f(layout_block)
         \layout {
@@ -79,7 +79,7 @@ class LayoutBlock(AttributedBlock):
             ...     scheme_expr
             >>> layout_block.context_blocks.append(context_block)
 
-        ::
+        ..  doctest::
 
             >>> f(layout_block)
             \layout {

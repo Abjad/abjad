@@ -6,7 +6,7 @@ def remove_terminal_rests_from_sequence(sequence):
 
         >>> staff = Staff("r8 r8 c'8 d'8 r4 r4")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -23,7 +23,7 @@ def remove_terminal_rests_from_sequence(sequence):
         >>> leaftools.remove_terminal_rests_from_sequence(staff)
         [Rest('r8'), Rest('r8'), Note("c'8"), Note("d'8")]
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

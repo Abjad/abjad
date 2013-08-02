@@ -325,7 +325,7 @@ class PitchArray(AbjadObject):
             ...     tuplettools.FixedDurationTuplet(
             ...     Duration(2, 8), "c'8 d'8 e'8") * 2))
 
-        ::
+        ..  doctest::
 
             >>> f(score)
             \new Score <<
@@ -377,7 +377,7 @@ class PitchArray(AbjadObject):
             ...     tuplettools.FixedDurationTuplet(
             ...     Duration(2, 8), "c'8 d'8 e'8") * 2))
 
-        ::
+        ..  doctest::
 
             >>> f(score)
             \new Score <<

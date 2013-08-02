@@ -18,7 +18,7 @@ class BarLine(LilyPondCommandMark):
         >>> bar_line
         BarLine('|.')(f'4)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -76,7 +76,7 @@ class BarLine(LilyPondCommandMark):
                 >>> bar_line.bar_line_string
                 '|.'
 
-            ::
+            ..  doctest::
 
                 >>> f(staff)
                 \new Staff {

@@ -25,7 +25,7 @@ def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, sto
         >>> beam = spannertools.BeamSpanner(staff[:])
         >>> slur = spannertools.SlurSpanner(staff[:])
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

@@ -14,7 +14,7 @@ class Lineage(SimultaneousSelection):
         >>> score.append(Staff(r"""\new Voice = "Bass Voice" { b,4 }""",
         ... name='Bass Staff'))
 
-    ::
+    ..  doctest::
 
         >>> f(score)
         \new Score <<

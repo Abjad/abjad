@@ -16,7 +16,7 @@ def label_leaves_in_expr_with_melodic_counterpoint_interval_classes(expr, markup
         >>> staff = Staff(notes)
         >>> labeltools.label_leaves_in_expr_with_melodic_counterpoint_interval_classes(staff)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

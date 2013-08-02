@@ -17,7 +17,7 @@ class SopranoSaxophone(Saxophone):
         >>> instrumenttools.SopranoSaxophone()(staff)
         SopranoSaxophone()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

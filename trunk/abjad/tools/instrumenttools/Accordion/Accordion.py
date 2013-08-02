@@ -25,7 +25,7 @@ class Accordion(KeyboardInstrument, ReedInstrument):
         >>> accordion.attach(piano_staff)
         Accordion()(PianoStaff<<2>>)
 
-    ::
+    ..  doctest::
 
         >>> f(piano_staff)
         \new PianoStaff <<

@@ -12,7 +12,7 @@ class LilyPondVersionToken(AbjadObject):
 
     A specific version can also be specified:
 
-    ::
+    ..  doctest::
 
         >>> f(lilypondfiletools.LilyPondVersionToken('2.16.0'))
         \version "2.16.0"

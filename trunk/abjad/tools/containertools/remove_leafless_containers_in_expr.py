@@ -18,7 +18,7 @@ def remove_leafless_containers_in_expr(expr):
         >>> containertools.delete_contents_of_container(staff[-1])
         SequentialSelection(Note("b'8"), Note("c''8"))
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -40,7 +40,7 @@ def remove_leafless_containers_in_expr(expr):
 
         >>> containertools.remove_leafless_containers_in_expr(staff)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

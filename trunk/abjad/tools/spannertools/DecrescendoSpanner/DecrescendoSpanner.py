@@ -9,7 +9,7 @@ class DecrescendoSpanner(HairpinSpanner):
 
         >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -26,7 +26,7 @@ class DecrescendoSpanner(HairpinSpanner):
         >>> spannertools.DecrescendoSpanner(staff[:], include_rests=True)
         DecrescendoSpanner(r4, c'8, d'8, e'8, f'8, r4)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -48,7 +48,7 @@ class DecrescendoSpanner(HairpinSpanner):
 
         >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -65,7 +65,7 @@ class DecrescendoSpanner(HairpinSpanner):
         >>> spannertools.DecrescendoSpanner(staff[:], include_rests=False)
         DecrescendoSpanner(r4, c'8, d'8, e'8, f'8, r4)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

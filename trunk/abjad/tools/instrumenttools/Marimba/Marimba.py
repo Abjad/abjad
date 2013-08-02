@@ -18,7 +18,7 @@ class Marimba(PercussionInstrument):
         >>> instrumenttools.Marimba()(staff)
         Marimba()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

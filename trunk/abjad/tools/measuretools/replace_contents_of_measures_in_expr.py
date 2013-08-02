@@ -8,7 +8,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
         >>> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(
         ...     [(1, 8), (3, 16)]))
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -28,7 +28,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
         >>> measuretools.replace_contents_of_measures_in_expr(staff, notes)
         [Measure(1/8, [c'16, d'16]), Measure(3/16, [e'16, f'16, s1 * 1/16])]
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

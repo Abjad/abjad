@@ -7,7 +7,7 @@ def set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(expr, key_signatu
         >>> staff = Staff(notetools.make_notes(0, [(5, 32)] * 4))
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

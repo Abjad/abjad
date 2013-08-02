@@ -19,7 +19,7 @@ class HairpinSpanner(DirectedSpanner):
         ...     staff[:], 'p < f', include_rests=False)
         HairpinSpanner(r4, c'8, d'8, e'8, f'8, r4)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -44,7 +44,7 @@ class HairpinSpanner(DirectedSpanner):
         ...     staff[:], 'p < f', include_rests=True)
         HairpinSpanner(r4, c'8, d'8, e'8, f'8, r4)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

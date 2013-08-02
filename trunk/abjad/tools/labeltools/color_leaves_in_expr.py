@@ -9,7 +9,7 @@ def color_leaves_in_expr(expr, color):
 
         >>> staff = Staff("cs'8. [ r8. s8. <c' cs' a'>8. ]")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -27,7 +27,7 @@ def color_leaves_in_expr(expr, color):
 
         >>> labeltools.color_leaves_in_expr(staff, 'red')
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

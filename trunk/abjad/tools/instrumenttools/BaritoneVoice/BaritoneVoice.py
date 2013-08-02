@@ -17,7 +17,7 @@ class BaritoneVoice(Voice):
         >>> instrumenttools.BaritoneVoice()(staff)
         BaritoneVoice()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

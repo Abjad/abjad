@@ -9,7 +9,7 @@ def iterate_tie_chains_in_expr(expr, reverse=False):
 
         >>> staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

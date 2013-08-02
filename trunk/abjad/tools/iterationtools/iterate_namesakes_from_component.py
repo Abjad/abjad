@@ -16,7 +16,7 @@ def iterate_namesakes_from_component(component, reverse=False, start=0, stop=Non
         >>> score.extend(container * 2)
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(score)
 
-    ::
+    ..  doctest::
 
         >>> f(score)
         \new Score {

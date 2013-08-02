@@ -22,7 +22,7 @@ def split_leaf_at_offsets(
 
         >>> staff = Staff("c'1 ( d'1 )")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -36,7 +36,7 @@ def split_leaf_at_offsets(
         ...     tie_split_notes=True)
         [[Note("c'4.")], [Note("c'2"), Note("c'8")]]
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -52,7 +52,7 @@ def split_leaf_at_offsets(
 
         >>> staff = Staff("c'1 ( d'1 )")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -66,7 +66,7 @@ def split_leaf_at_offsets(
         ...     tie_split_notes=True)
         [[Note("c'4.")], [Note("c'4.")], [Note("c'4")]]
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -82,7 +82,7 @@ def split_leaf_at_offsets(
 
         >>> staff = Staff("c'1 ( d'1 )")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -96,7 +96,7 @@ def split_leaf_at_offsets(
         ...     tie_split_notes=False)
         [[Note("c'4.")], [Note("c'2"), Note("c'8")]]
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -112,7 +112,7 @@ def split_leaf_at_offsets(
 
         >>> staff = Staff("c'1 ( d'1 )")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -126,7 +126,7 @@ def split_leaf_at_offsets(
         ...     tie_split_notes=False)
         [[Note("c'4.")], [Note("c'4.")], [Note("c'4")]]
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -142,7 +142,7 @@ def split_leaf_at_offsets(
 
         >>> staff = Staff(r"\times 2/3 { c'2 ( d'2 e'2 ) }")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -159,7 +159,7 @@ def split_leaf_at_offsets(
         ...     tie_split_notes=True)
         [[Note("d'4")], [Note("d'4")]]
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

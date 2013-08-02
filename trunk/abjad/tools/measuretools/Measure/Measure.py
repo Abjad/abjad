@@ -20,7 +20,7 @@ class Measure(FixedDurationContainer):
         >>> measure
         Measure(4/8, [c'8, d'8, e'8, f'8])
 
-    ::
+    ..  doctest::
 
         >>> f(measure)
         {
@@ -459,7 +459,7 @@ class Measure(FixedDurationContainer):
             >>> staff.append(Measure((3, 4), "c' d' e'"))
             >>> staff.append(Measure((2, 4), "f' g'"))
 
-        ::
+        ..  doctest::
 
             >>> f(staff)
             \new Staff {

@@ -11,7 +11,7 @@ def repeat_last_n_elements_of_container(container, n=1, total=2):
         >>> spannertools.BeamSpanner(staff.select_leaves())
         BeamSpanner(c'8, d'8, e'8, f'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -26,7 +26,7 @@ def repeat_last_n_elements_of_container(container, n=1, total=2):
         >>> containertools.repeat_last_n_elements_of_container(staff, n=2, total=3)
         Staff{8}
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

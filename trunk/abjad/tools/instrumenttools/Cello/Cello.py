@@ -19,7 +19,7 @@ class Cello(StringInstrument):
         >>> instrumenttools.Cello()(staff)
         Cello()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

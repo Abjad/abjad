@@ -17,7 +17,7 @@ class Guitar(StringInstrument):
         >>> instrumenttools.Guitar()(staff)
         Guitar()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

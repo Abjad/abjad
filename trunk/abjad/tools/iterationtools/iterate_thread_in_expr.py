@@ -15,7 +15,7 @@ def iterate_thread_in_expr(expr, component_class, containment_signature, reverse
         >>> staff = Staff(container * 2)
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

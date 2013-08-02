@@ -44,7 +44,7 @@ def notes_and_chords_in_expr_are_on_expected_clefs(expr, percussion_clef_is_allo
         >>> instrumenttools.Violin()(staff)
         Violin()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

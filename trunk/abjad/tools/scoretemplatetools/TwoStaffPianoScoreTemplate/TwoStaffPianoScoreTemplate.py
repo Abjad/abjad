@@ -21,7 +21,7 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
         >>> score
         Score-"Two-Staff Piano Score"<<1>>
 
-    ::
+    ..  doctest::
 
         >>> f(score)
         \context Score = "Two-Staff Piano Score" <<

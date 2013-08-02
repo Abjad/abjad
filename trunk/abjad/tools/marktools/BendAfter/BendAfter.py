@@ -14,7 +14,7 @@ class BendAfter(Mark):
         >>> marktools.BendAfter(-4)(note)
         BendAfter(-4.0)(c'4)
 
-    ::
+    ..  doctest::
 
         >>> f(note)
         c'4 - \bendAfter #'-4.0

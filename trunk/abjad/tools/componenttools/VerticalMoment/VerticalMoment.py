@@ -14,7 +14,7 @@ class VerticalMoment(SimultaneousSelection):
         >>> piano_staff.append(Staff(r"""\clef "bass" g2 f2"""))
         >>> score.append(piano_staff)
 
-    ::
+    ..  doctest::
 
         >>> f(score)
         \new Score <<

@@ -10,7 +10,7 @@ class ComplexBeamSpanner(BeamSpanner):
 
         >>> staff = Staff("c'16 e'16 r16 f'16 g'2")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -30,7 +30,7 @@ class ComplexBeamSpanner(BeamSpanner):
         >>> spannertools.ComplexBeamSpanner(staff[:4])
         ComplexBeamSpanner(c'16, e'16, r16, f'16)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -213,7 +213,7 @@ class ComplexBeamSpanner(BeamSpanner):
 
                 >>> beam = spannertools.ComplexBeamSpanner([note], lone='left')
 
-            ::
+            ..  doctest::
 
                 >>> f(note)
                 \set stemLeftBeamCount = #2
@@ -230,7 +230,7 @@ class ComplexBeamSpanner(BeamSpanner):
 
                 >>> beam = spannertools.ComplexBeamSpanner([note], lone='right')
 
-            ::
+            ..  doctest::
 
                 >>> f(note)
                 \set stemLeftBeamCount = #0
@@ -247,7 +247,7 @@ class ComplexBeamSpanner(BeamSpanner):
 
                 >>> beam = spannertools.ComplexBeamSpanner([note], lone='both')
 
-            ::
+            ..  doctest::
 
                 >>> f(note)
                 \set stemLeftBeamCount = #2
@@ -265,7 +265,7 @@ class ComplexBeamSpanner(BeamSpanner):
 
                 >>> beam = spannertools.ComplexBeamSpanner([note], lone=True)
 
-            ::
+            ..  doctest::
 
                 >>> f(note)
                 \set stemLeftBeamCount = #2
@@ -282,7 +282,7 @@ class ComplexBeamSpanner(BeamSpanner):
 
                 >>> beam = spannertools.ComplexBeamSpanner([note], lone=False)
 
-            ::
+            ..  doctest::
 
                 >>> f(note)
                 c'16

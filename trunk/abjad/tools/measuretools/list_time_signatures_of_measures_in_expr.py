@@ -6,7 +6,7 @@ def list_time_signatures_of_measures_in_expr(components):
 
         >>> staff = Staff('abj: | 2/8 c8 d8 || 3/8 c8 d8 e8 || 4/8 c8 d8 e8 f8 |')
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

@@ -16,7 +16,7 @@ class BassFlute(Flute):
         >>> instrumenttools.BassFlute()(staff)
         BassFlute()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

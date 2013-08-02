@@ -22,7 +22,7 @@ def fracture_spanners_attached_to_component(
         >>> parts = spannertools.fracture_spanners_attached_to_component(
         ...     staff[1], direction=Right)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

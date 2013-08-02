@@ -16,7 +16,7 @@ class StemTremolo(Mark):
         >>> marktools.StemTremolo(16)(note)
         StemTremolo(16)(c'4)
 
-    ::
+    ..  doctest::
 
         >>> f(note)
         c'4 :16

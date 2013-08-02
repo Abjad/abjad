@@ -9,7 +9,7 @@ def iterate_measures_in_expr(expr, reverse=False, start=0, stop=None):
 
         >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

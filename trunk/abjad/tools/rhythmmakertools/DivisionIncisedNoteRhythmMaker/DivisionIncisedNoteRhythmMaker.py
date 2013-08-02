@@ -30,7 +30,7 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
         >>> measures = measuretools.replace_contents_of_measures_in_expr(
         ...     staff, leaves)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new RhythmicStaff {
@@ -83,7 +83,7 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
         >>> measures = measuretools.replace_contents_of_measures_in_expr(
         ...     staff, leaves)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new RhythmicStaff {

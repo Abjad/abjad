@@ -17,7 +17,7 @@ class BassVoice(Voice):
         >>> instrumenttools.BassVoice()(staff)
         BassVoice()(Staff{4})
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

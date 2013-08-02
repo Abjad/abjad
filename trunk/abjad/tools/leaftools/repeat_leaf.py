@@ -22,7 +22,7 @@ def repeat_leaf(leaf, total=1):
 
         >>> leaftools.repeat_leaf(staff[0], total=3)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

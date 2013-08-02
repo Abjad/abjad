@@ -726,7 +726,7 @@ class Component(AbjadObject):
             >>> contexttools.TimeSignatureMark((4, 8))(staff)
             TimeSignatureMark((4, 8))(Staff{4})
 
-        ::
+        ..  doctest::
 
             >>> f(staff)
             \new Staff {

@@ -16,7 +16,7 @@ class TimeSignatureMark(ContextMark):
         >>> contexttools.TimeSignatureMark((4, 8))(staff[0])
         TimeSignatureMark((4, 8))(c'8)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

@@ -12,7 +12,7 @@ def iterate_contexts_in_expr(expr, reverse=False, start=0, stop=None):
         Tuplet(2/3, [e'8, f'8, g'8])
         >>> staff.is_parallel = True
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff <<

@@ -359,7 +359,7 @@ class PitchArrayRow(AbjadObject):
 
             >>> measure = array.rows[0].to_measure()
 
-        ::
+        ..  doctest::
 
             >>> f(measure)
             {

@@ -37,7 +37,7 @@ class LilyPondFile(list):
         >>> lilypond_file.paper_block.evenFooterMarkup = \
         ...     markuptools.Markup('The even-page footer')
 
-    ::
+    ..  doctest::
 
         >>> f(lilypond_file) # doctest: +SKIP
         % Abjad revision 3719

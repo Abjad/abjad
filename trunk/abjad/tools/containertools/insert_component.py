@@ -12,7 +12,7 @@ def insert_component(container, i, component, fracture_spanners=False):
 
         >>> staff = Staff("c'8 [ d'8 e'8 f'8 ]")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -28,7 +28,7 @@ def insert_component(container, i, component, fracture_spanners=False):
         ...     staff, 1, Note("cs'8"), fracture_spanners=False)
         Staff{5}
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -44,7 +44,7 @@ def insert_component(container, i, component, fracture_spanners=False):
 
         >>> staff = Staff("c'8 [ d'8 e'8 f'8 ]")
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -59,7 +59,7 @@ def insert_component(container, i, component, fracture_spanners=False):
         >>> parts = containertools.insert_component(
         ...     staff, 1, Rest('r8'), fracture_spanners=True)
 
-    ::
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

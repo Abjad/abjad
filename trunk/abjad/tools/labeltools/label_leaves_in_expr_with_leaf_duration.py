@@ -7,7 +7,7 @@ def label_leaves_in_expr_with_leaf_duration(expr, markup_direction=Down):
         >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
         >>> labeltools.label_leaves_in_expr_with_leaf_duration(tuplet)
 
-    ::
+    ..  doctest::
 
         >>> f(tuplet)
         \times 2/3 {
