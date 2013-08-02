@@ -164,7 +164,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             if hasattr(self.payload, 'duration'):
                 payload_duration = self.payload.duration
             else:
-                payload_duration = self.payload.duration
+                payload_duration = self.payload.get_duration()
             duration_to_keep = payload_duration - duration_to_trim
             result = self._split_payload_at_offsets([duration_to_keep])
             trimmed_payload = result[0]

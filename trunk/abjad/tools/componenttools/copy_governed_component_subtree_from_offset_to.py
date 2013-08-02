@@ -138,7 +138,7 @@ def copy_governed_component_subtree_from_offset_to(
     if start < 0:
         start = durationtools.Duration(0)
     if stop is None:
-        stop = component.duration
+        stop = component.get_duration()
     else:
         stop = durationtools.Duration(stop)
     assert start <= stop
@@ -156,11 +156,11 @@ def _copy_leaf_from_start_offset_to_stop_offset(leaf, start, stop):
     from abjad.tools import componenttools
     from abjad.tools import leaftools
 
-    if leaf.duration <= start:
+    if leaf.get_duration() <= start:
         return None
 
-    if leaf.duration < stop:
-        stop = leaf.duration
+    if leaf.get_duration() < stop:
+        stop = leaf.get_duration()
 
     total = stop - start
     if total == 0:
@@ -213,20 +213,20 @@ def _get_lcopy(container, start, stop):
     first_dif = second_dif = 0
 
     for i, leaf in enumerate(iterationtools.iterate_leaves_in_expr(container)):
-        total_dur += leaf.duration
+        total_dur += leaf.get_duration()
         if total_dur == start and start_leaf is None:
             start_leaf = i
             first_dif = 0
         elif start < total_dur and start_leaf is None:
             start_leaf = i
-            first_dif = leaf.duration - (total_dur - start)
+            first_dif = leaf.get_duration() - (total_dur - start)
             #print first_dif
         if stop <= total_dur and stop_leaf is None:
             stop_leaf = i + 1
-            #second_dif = leaf.duration - (total_dur - stop)
+            #second_dif = leaf.get_duration() - (total_dur - stop)
             remaining_duration = total_dur - stop
             if remaining_duration != 0:
-                second_dif = leaf.duration - remaining_duration
+                second_dif = leaf.get_duration() - remaining_duration
             #print second_dif
             #print 'breaking after stop'
             break

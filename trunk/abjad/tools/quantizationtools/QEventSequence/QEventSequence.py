@@ -468,12 +468,12 @@ class QEventSequence(tuple, ImmutableAbjadObject):
             # get millisecond cumulative duration
             if tempo is not None:
                 duration = sum(
-                    tempo.duration_to_milliseconds(x.duration)
+                    tempo.duration_to_milliseconds(x.get_duration())
                     for x in group)
             else:
                 duration = sum(x.get_effective_context_mark(
                     contexttools.TempoMark).duration_to_milliseconds(
-                    x.duration) 
+                    x.get_duration()) 
                     for x in group)
             durations.append(duration)
             # get pitch of first leaf in group

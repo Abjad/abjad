@@ -93,18 +93,18 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
                 left, right = self._get_left_right_for_exterior_leaf(leaf)
             # just right of span gap
             elif self._duration_offset_in_me(leaf) in self._span_points and \
-                not (self._duration_offset_in_me(leaf) + leaf.duration in \
+                not (self._duration_offset_in_me(leaf) + leaf.get_duration() in \
                 self._span_points):
                 assert isinstance(self.span, int)
                 left = self.span
-                #right = leaf.duration._flags
+                #right = leaf.get_duration()._flags
                 right = leaf.written_duration.flag_count
             # just left of span gap
-            elif self._duration_offset_in_me(leaf) + leaf.duration in \
+            elif self._duration_offset_in_me(leaf) + leaf.get_duration() in \
                 self._span_points and \
                 not self._duration_offset_in_me(leaf) in self._span_points:
                 assert isinstance(self.span, int)
-                #left = leaf.duration._flags
+                #left = leaf.get_duration()._flags
                 left = leaf.written_duration.flag_count
                 right = self.span
             else:

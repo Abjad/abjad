@@ -14,7 +14,7 @@ def test_FixedDurationTuplet___init___01():
     assert len(t) == 3
     assert t.target_duration == Fraction(1, 4)
     assert t.multiplier == Fraction(2, 3)
-    assert t.duration == Fraction(1, 4)
+    assert t.get_duration() == Fraction(1, 4)
 
 
 def test_FixedDurationTuplet___init___02():
@@ -28,4 +28,4 @@ def test_FixedDurationTuplet___init___02():
     assert len(t) == 0
     assert t.target_duration == Fraction(1, 4)
     assert t.multiplier == None
-    assert t.duration == Fraction(1, 4)
+    assert t.get_duration() == Fraction(1, 4)

@@ -26,6 +26,6 @@ def list_durations_of_leaves_in_expr(expr):
     durations = []
 
     for leaf in iterationtools.iterate_leaves_in_expr(expr):
-        durations.append(leaf.duration)
+        durations.append(leaf.get_duration())
 
     return durations

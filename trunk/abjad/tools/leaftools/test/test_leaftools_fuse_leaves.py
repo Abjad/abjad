@@ -61,7 +61,7 @@ def test_leaftools_fuse_leaves_05():
     }
     '''
 
-    assert t.duration == Duration(3, 8)
+    assert t.get_duration() == Duration(3, 8)
 
     result = leaftools.fuse_leaves(t[:])
 
@@ -73,4 +73,4 @@ def test_leaftools_fuse_leaves_05():
 
     assert select(t).is_well_formed()
     assert len(result) == 1
-    assert t.duration == Duration(3, 8)
+    assert t.get_duration() == Duration(3, 8)

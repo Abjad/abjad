@@ -66,7 +66,7 @@ class Leaf(Component):
         from abjad.tools import contexttools
         tempo = self.get_effective_context_mark(contexttools.TempoMark)
         if tempo is not None and not tempo.is_imprecise:
-            result = self.duration / tempo.duration / tempo.units_per_minute * 60
+            result = self.get_duration() / tempo.duration / tempo.units_per_minute * 60
             return durationtools.Duration(result)
         raise MissingTempoError
 
@@ -491,6 +491,6 @@ class Leaf(Component):
         r'''Shorten leaf by `duration`.
         '''
         from abjad.tools import leaftools
-        duration = self.duration - duration
+        duration = self.get_duration() - duration
         preprolated_duration = duration / self.prolation
         leaftools.set_preprolated_leaf_duration(self, preprolated_duration)

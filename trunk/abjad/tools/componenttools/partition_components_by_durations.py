@@ -47,7 +47,7 @@ def partition_components_by_durations(
             component = components_copy.pop(0)
         except IndexError:
             break
-        component_duration = component.duration
+        component_duration = component.get_duration()
         if in_seconds:
             component_duration = component.get_duration(in_seconds=True)
         candidate_duration = cumulative_duration + component_duration
@@ -74,7 +74,7 @@ def partition_components_by_durations(
                     cumulative_duration = \
                         sum([x.get_duration(in_seconds=True) for x in part])
                 else:
-                    cumulative_duration = sum([x.duration for x in part])
+                    cumulative_duration = sum([x.get_duration() for x in part])
                 current_duration_index += 1
                 try:
                     target_duration = durations[current_duration_index]

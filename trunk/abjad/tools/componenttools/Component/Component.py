@@ -536,9 +536,9 @@ class Component(AbjadObject):
 
     ### PUBLIC PROPERTIES ###
 
-    @property
-    def duration(self):
-        return self.prolation * self._preprolated_duration
+#    @property
+#    def duration(self):
+#        return self.prolation * self._preprolated_duration
 
     @property
     def lilypond_format(self):

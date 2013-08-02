@@ -14,7 +14,7 @@ def make_desordre_measure(pitches):
 
     for sequence in pitches:
         container = make_desordre_cell(sequence)
-        time_signature = container.duration
+        time_signature = container.get_duration()
         time_signature = mathtools.NonreducedFraction(time_signature)
         time_signature = time_signature.with_denominator(8)
         measure = measuretools.Measure(time_signature, [container])

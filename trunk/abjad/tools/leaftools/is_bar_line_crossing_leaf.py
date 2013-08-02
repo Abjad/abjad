@@ -46,7 +46,7 @@ def is_bar_line_crossing_leaf(leaf):
 
     shifted_start = (leaf.timespan.start_offset - partial) % time_signature_duration
 
-    if time_signature_duration < shifted_start + leaf.duration:
+    if time_signature_duration < shifted_start + leaf.get_duration():
          return True
 
     return False

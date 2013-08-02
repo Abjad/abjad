@@ -823,7 +823,7 @@ class Container(Component):
         accumulated_duration = durationtools.Duration(0)
         components = []
         for component in self:
-            current_duration = component.duration
+            current_duration = component.get_duration()
             if accumulated_duration + current_duration <= duration:
                 components.append(component)
                 accumulated_duration += current_duration
