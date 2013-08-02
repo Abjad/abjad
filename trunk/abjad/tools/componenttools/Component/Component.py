@@ -64,10 +64,14 @@ class Component(AbjadObject):
         return self._copy_with_marks_but_without_children_or_spanners()
 
     def __getnewargs__(self):
+        '''Get new arguments.
+
+        Return tuple.
+        '''
         return ()
 
     def __mul__(self, n):
-        '''Copy `n` times and detach spanners.
+        '''Copy component `n` times and detach spanners.
 
         Return list of newly created components.
         '''
@@ -75,7 +79,7 @@ class Component(AbjadObject):
         return componenttools.copy_components_and_detach_spanners([self], n)
 
     def __rmul__(self, n):
-        '''Copy `n` times and detach spanners.
+        '''Copy component `n` times and detach spanners.
 
         Return list of newly created components.
         '''

@@ -12,6 +12,9 @@ class Container(Component):
     ::
 
         >>> container = Container("c'8 d'8 e'8 f'8")
+
+    ..  doctest::
+
         >>> f(container)
         {
             c'8
@@ -20,7 +23,10 @@ class Container(Component):
             f'8
         }
 
-    Return Container instance.
+    ::
+
+        >>> show(container) # doctest: +SKIP
+
     '''
 
     ### CLASS VARIABLES ###
@@ -52,7 +58,10 @@ class Container(Component):
     ### SPECIAL METHODS ###
 
     def __contains__(self, expr):
-        r'''True if expr is in container, otherwise False.
+        r'''True when `expr` appears in container.
+        Otherwise false.
+
+        Return boolean.
         '''
         for x in self._music:
             if x is expr:
@@ -61,10 +70,12 @@ class Container(Component):
             return False
 
     def __delitem__(self, i):
-        r'''Find component(s) at index or slice 'i' in container.
+        r'''Delete container `i`.
         Detach component(s) from parentage.
         Withdraw component(s) from crossing spanners.
         Preserve spanners that component(s) cover(s).
+
+        Return none.
         '''
         components = self[i]
         if not isinstance(components, selectiontools.SequentialSelection):
@@ -73,8 +84,10 @@ class Container(Component):
         components._set_parents(None)
 
     def __getitem__(self, i):
-        r'''Return component at index i in container.
+        r'''Get container `i`.
         Shallow traversal of container for numeric indices only.
+
+        Return component.
         '''
         if isinstance(i, int):
             return self._music[i]
@@ -91,39 +104,48 @@ class Container(Component):
         raise ValueError(repr(i))
 
     def __iadd__(self, expr):
-        r'''__iadd__ avoids unnecessary copying of structures.
+        r'''Append a copy of `expr` to container.
+
+        Return list of container and copied `expr`.
         '''
         from abjad.tools import componenttools
         from abjad.tools import containertools
         return containertools.fuse_like_named_contiguous_containers_in_expr(
             [self,
             componenttools.copy_components_and_fracture_crossing_spanners(
-            [expr])[0]])
+            [expr])[0]
+            ])
 
-    def __imul__(self, total):
-        r'''Multiply contents of container 'total' times.
-        Return multiplied container.
+    def __imul__(self, n):
+        r'''Multiply contents of container `n` times.
+
+        Return container.
         '''
         from abjad.tools import containertools
-        return containertools.repeat_contents_of_container(self, total=total)
+        return containertools.repeat_contents_of_container(self, total=n)
 
     def __len__(self):
-        r'''Return nonnegative integer number of components in container.
+        r'''Number of items in container.
+
+        Return nonnegative integer.
         '''
         return len(self._music)
 
     def __repr__(self):
-        r'''String format of container for interpreter display.
+        r'''Representation of container in Python interpreter.
+
+        Return string.
         '''
         return self._compact_representation
 
     def __setitem__(self, i, expr):
-        r'''Set 'expr' in self at nonnegative integer index i.
-        Or, set 'expr' in self at slice i.
+        r'''Set container `i` equal to `expr`.
         Find spanners that dominate self[i] and children of self[i].
         Replace contents at self[i] with 'expr'.
         Reattach spanners to new contents.
         This operation always leaves score tree in tact.
+
+        Return none.
         '''
         return self._set_item(i, expr)
 
@@ -131,8 +153,6 @@ class Container(Component):
 
     @property
     def _compact_representation(self):
-        r'''Compact form used in spanner display.
-        '''
         if not self.is_parallel:
             return '{%s}' % self._summary
         else:
@@ -166,8 +186,6 @@ class Container(Component):
 
     @property
     def _space_delimited_summary(self):
-        r'''Formatted summary of container contents for string output.
-        '''
         if 0 < len(self):
             result = []
             for x in self._music:
@@ -181,8 +199,6 @@ class Container(Component):
 
     @property
     def _summary(self):
-        r'''Formatted summary of container contents for repr output.
-        '''
         if 0 < len(self):
             return ', '.join([str(x) for x in self._music])
         else:
@@ -190,9 +206,9 @@ class Container(Component):
 
     ### PRIVATE METHODS ###
 
-    # this is a composer-unsafe method to be called only by other 
-    # private functions
     def _append_without_withdrawing_from_crossing_spanners(self, component):
+        '''Not composer-safe.
+        '''
         self._set_item(slice(len(self), len(self)), [component],
             withdraw_components_in_expr_from_crossing_spanners=False)
 
@@ -382,7 +398,10 @@ class Container(Component):
     @apply
     def is_parallel():
         def fget(self):
-            r'''Get parallel container:
+            r'''Set to true to interpret container contents in parallel.
+            Set to false to interpret container contents sequentially.
+
+            Example 1. Sequential container:
 
             ::
 
@@ -411,9 +430,7 @@ class Container(Component):
                 >>> container.is_parallel
                 False
 
-            Return boolean.
-
-            Set parallel container:
+            Example 2. Parallel container:
 
             ::
 
@@ -437,7 +454,7 @@ class Container(Component):
 
                 >>> show(container) # doctest: +SKIP
 
-            Return none.
+            Return boolean.
             '''
             return self._parallel
         def fset(self, expr):
@@ -450,23 +467,6 @@ class Container(Component):
             self._parallel = expr
             self._mark_entire_score_tree_for_later_update('prolated')
         return property(**locals())
-
-#    @property
-#    def music(self):
-#        r'''Tuple of components in container:
-#
-#        ::
-#
-#            >>> container = Container("c'8 d'8 e'8")
-#
-#        ::
-#
-#            >>> container[:]
-#            (Note("c'8"), Note("d'8"), Note("e'8"))
-#
-#        Return tuple or zero or more components.
-#        '''
-#        return tuple(self._music)
 
     ### PRIVATE METHODS ###
 
@@ -526,20 +526,21 @@ class Container(Component):
     ### PUBLIC METHODS ###
 
     def append(self, component):
-        r'''Append `component` to container:
+        r'''Append `component` to container.
+
+        Example:
 
         ::
 
-            >>> container = Container("c'8 d'8 e'8")
-            >>> beam = spannertools.BeamSpanner(container[:])
+            >>> container = Container("c'4 ( d'4 f'4 )")
 
-        ::
+        ..  doctest::
 
             >>> f(container)
             {
-                c'8 [
-                d'8
-                e'8 ]
+                c'4 (
+                d'4
+                f'4 )
             }
 
         ::
@@ -548,16 +549,16 @@ class Container(Component):
 
         ::
 
-            >>> container.append(Note("f'8"))
+            >>> container.append(Note("e'4"))
 
         ::
 
             >>> f(container)
             {
-                c'8 [
-                d'8
-                e'8 ]
-                f'8
+                c'4 (
+                d'4
+                f'4 )
+                e'4
             }
 
         ::
@@ -571,20 +572,21 @@ class Container(Component):
         self.__setitem__(slice(len(self), len(self)), [component])
 
     def extend(self, expr):
-        r'''Extend `expr` against container:
+        r'''Extend container with `expr`.
+
+        Example.
 
         ::
 
-            >>> container = Container("c'8 d'8 e'8")
-            >>> beam = spannertools.BeamSpanner(container[:])
+            >>> container = Container("c'4 ( d'4 f'4 )")
 
-        ::
+        ..  doctest:: 
 
             >>> f(container)
             {
-                c'8 [
-                d'8
-                e'8 ]
+                c'4 (
+                d'4
+                f'4 )
             }
 
         ::
@@ -593,18 +595,19 @@ class Container(Component):
 
         ::
 
-            >>> container.extend([Note("cs'8"), Note("ds'8"), Note("es'8")])
+            >>> notes = [Note("e'32"), Note("d'32"), Note("e'16")]
+            >>> container.extend(notes)
 
-        ::
+        ..  doctest::
 
             >>> f(container)
             {
-                c'8 [
-                d'8
-                e'8 ]
-                cs'8
-                ds'8
-                es'8
+                c'4 (
+                d'4
+                f'4 )
+                e'32
+                d'32
+                e'16
             }
 
         ::
@@ -612,33 +615,47 @@ class Container(Component):
             >>> show(container) # doctest: +SKIP
 
         Return none.
-
-        expr`` may now be a LilyPond input string.
         '''
-        #return self
         # to make pychecker happy
         #self[len(self):len(self)] = expr[:]
         self.__setitem__(
             slice(len(self), len(self)), 
-            expr.__getitem__(slice(0, len(expr))))
+            expr.__getitem__(slice(0, len(expr)))
+            )
 
     def index(self, component):
-        r'''Index `component` in container:
+        r'''Return index of `component` in container.
+
+        Example:
 
         ::
 
-            >>> container = Container("c'8 d'8 e'8")
+            >>> container = Container("c'4 d'4 f'4 e'4")
+
+        ..  doctest::
+
+            >>> f(container)
+            {
+                c'4
+                d'4
+                f'4
+                e'4
+            }
+
+        ::
+
+            >>> show(container) # doctest: +SKIP
 
         ::
 
             >>> note = container[-1]
             >>> note
-            Note("e'8")
+            Note("e'4")
 
         ::
 
             >>> container.index(note)
-            2
+            3
 
         Return nonnegative integer.
         '''
@@ -651,20 +668,19 @@ class Container(Component):
             raise ValueError(message)
 
     def insert(self, i, component):
-        r'''Insert `component` in container at index `i`:
+        r'''Insert `component` in container at `i`:
 
         ::
 
-            >>> container = Container("c'8 d'8 e'8")
-            >>> beam = spannertools.BeamSpanner(container[:])
+            >>> container = Container("c'4 ( d'4 f'4 )")
 
-        ::
+        ..  doctest::
 
             >>> f(container)
             {
-                c'8 [
-                d'8
-                e'8 ]
+                c'4 (
+                d'4
+                f'4 )
             }
 
         ::
@@ -673,16 +689,16 @@ class Container(Component):
 
         ::
 
-            >>> container.insert(1, Note("cs'8"))
+            >>> container.insert(1, Note("e'4"))
 
-        ::
+        ..  doctest::
 
             >>> f(container)
             {
-                c'8 [
-                cs'8
-                d'8
-                e'8 ]
+                c'4 (
+                e'4
+                d'4
+                f'4 )
             }
 
         ::
@@ -696,20 +712,22 @@ class Container(Component):
         self.__setitem__(slice(i, i), [component])
 
     def pop(self, i=-1):
-        r'''Pop component at index `i` from container:
+        r'''Pop component from container at index `i`.
+
+        Example:
 
         ::
 
-            >>> container = Container("c'8 d'8 e'8")
-            >>> beam = spannertools.BeamSpanner(container[:])
+            >>> container = Container("c'4 ( d'4 f'4 ) e'4")
 
-        ::
+        ..  doctest::
 
             >>> f(container)
             {
-                c'8 [
-                d'8
-                e'8 ]
+                c'4 (
+                d'4
+                f'4 )
+                e'4
             }
 
         ::
@@ -718,15 +736,16 @@ class Container(Component):
 
         ::
 
-            >>> container.pop(-1)
-            Note("e'8")
+            >>> container.pop()
+            Note("e'4")
 
-        ::
+        ..  doctest::
 
             >>> f(container)
             {
-                c'8 [
-                d'8 ]
+                c'4 (
+                d'4
+                f'4 )
             }
 
         ::
@@ -740,20 +759,22 @@ class Container(Component):
         return component
 
     def remove(self, component):
-        r'''Remove `component` from container:
+        r'''Remove `component` from container.
+
+        Example:
 
         ::
 
-            >>> container = Container("c'8 d'8 e'8")
-            >>> beam = spannertools.BeamSpanner(container[:])
+            >>> container = Container("c'4 ( d'4 f'4 ) e'4")
 
-        ::
+        ..  doctest::
 
             >>> f(container)
             {
-                c'8 [
-                d'8
-                e'8 ]
+                c'4 (
+                d'4
+                f'4 )
+                e'4
             }
 
         ::
@@ -762,20 +783,21 @@ class Container(Component):
 
         ::
 
-            >>> note = container[-1]
+            >>> note = container[2]
             >>> note
-            Note("e'8")
+            Note("f'4")
 
         ::
 
             >>> container.remove(note)
 
-        ::
+        ..  doctest::
 
             >>> f(container)
             {
-                c'8 [
-                d'8 ]
+                c'4 (
+                d'4 )
+                e'4
             }
 
         ::
@@ -788,7 +810,9 @@ class Container(Component):
         del(self[i])
 
     def select_leaves(self):
-        r'''Select leaves in container:
+        r'''Select leaves in container.
+
+        Example:
 
         ::
 
@@ -807,7 +831,9 @@ class Container(Component):
         return selectiontools.SequentialLeafSelection(generator)
 
     def select_notes_and_chords(self):
-        r'''Select notes and chords in container:
+        r'''Select notes and chords in container.
+
+        Example:
 
         ::
 
