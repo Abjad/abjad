@@ -948,7 +948,7 @@ class Component(AbjadObject):
         result = []
         if include_self:
             result.append(self)
-        result.extend(getattr(self, 'music', []))
+        result.extend(getattr(self, '_music', []))
         result = selectiontools.SequentialSelection(result)
         return result
 

@@ -111,7 +111,7 @@ class SequentialSelection(Selection):
         assert not container
         music = []
         for component in self:
-            music.extend(getattr(component, 'music', ()))
+            music.extend(getattr(component, '_music', ()))
         container._music.extend(music)
         container[:]._set_parents(container)
 

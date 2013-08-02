@@ -235,6 +235,11 @@ class AbjadObject(object):
             if self._has_default_attribute_values:
                 private_keyword_argument_name = '_{}'.format(name)
                 value = getattr(self, private_keyword_argument_name)
+            # change container.music to container._music
+            elif hasattr(self, '_storage_format_attribute_mapping'):
+                mapped_attribute_name = \
+                    self._storage_format_attribute_mapping[name]
+                value = getattr(self, mapped_attribute_name)
             else:
                 value = getattr(self, name)
             if value is not None:

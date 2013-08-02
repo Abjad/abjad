@@ -36,6 +36,10 @@ class Container(Component):
         [],
         )
 
+    _storage_format_attribute_mapping = {
+        'music': '_music',
+        }
+
     ### INITIALIZER ###
 
     def __init__(self, music=None, **kwargs):
@@ -194,7 +198,7 @@ class Container(Component):
 
     def _copy_with_children_and_marks_but_without_spanners(self):
         new = self._copy_with_marks_but_without_children_or_spanners()
-        for component in self.music:
+        for component in self:
             new_component = \
                 component._copy_with_children_and_marks_but_without_spanners()
             new.append(new_component)
@@ -447,22 +451,22 @@ class Container(Component):
             self._mark_entire_score_tree_for_later_update('prolated')
         return property(**locals())
 
-    @property
-    def music(self):
-        r'''Tuple of components in container:
-
-        ::
-
-            >>> container = Container("c'8 d'8 e'8")
-
-        ::
-
-            >>> container.music
-            (Note("c'8"), Note("d'8"), Note("e'8"))
-
-        Return tuple or zero or more components.
-        '''
-        return tuple(self._music)
+#    @property
+#    def music(self):
+#        r'''Tuple of components in container:
+#
+#        ::
+#
+#            >>> container = Container("c'8 d'8 e'8")
+#
+#        ::
+#
+#            >>> container[:]
+#            (Note("c'8"), Note("d'8"), Note("e'8"))
+#
+#        Return tuple or zero or more components.
+#        '''
+#        return tuple(self._music)
 
     ### PRIVATE METHODS ###
 
@@ -527,7 +531,7 @@ class Container(Component):
         ::
 
             >>> container = Container("c'8 d'8 e'8")
-            >>> beam = spannertools.BeamSpanner(container.music)
+            >>> beam = spannertools.BeamSpanner(container[:])
 
         ::
 
@@ -572,7 +576,7 @@ class Container(Component):
         ::
 
             >>> container = Container("c'8 d'8 e'8")
-            >>> beam = spannertools.BeamSpanner(container.music)
+            >>> beam = spannertools.BeamSpanner(container[:])
 
         ::
 
@@ -652,7 +656,7 @@ class Container(Component):
         ::
 
             >>> container = Container("c'8 d'8 e'8")
-            >>> beam = spannertools.BeamSpanner(container.music)
+            >>> beam = spannertools.BeamSpanner(container[:])
 
         ::
 
@@ -697,7 +701,7 @@ class Container(Component):
         ::
 
             >>> container = Container("c'8 d'8 e'8")
-            >>> beam = spannertools.BeamSpanner(container.music)
+            >>> beam = spannertools.BeamSpanner(container[:])
 
         ::
 
@@ -741,7 +745,7 @@ class Container(Component):
         ::
 
             >>> container = Container("c'8 d'8 e'8")
-            >>> beam = spannertools.BeamSpanner(container.music)
+            >>> beam = spannertools.BeamSpanner(container[:])
 
         ::
 

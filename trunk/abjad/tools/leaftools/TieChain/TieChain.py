@@ -92,8 +92,8 @@ class TieChain(SequentialLeafSelection):
 
         Return component.
         '''
-        if self.music:
-            return self.music[0]
+        if self._music:
+            return self._music[0]
 
     @property
     def is_pitched(self):

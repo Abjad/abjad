@@ -126,7 +126,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
         stop_offsets.append(component.timespan.stop_offset)
         if isinstance(component, containertools.Container):
             if component.is_parallel:
-                for x in component.music:
+                for x in component:
                     _buffer_components_starting_with(x, buffer, stop_offsets)
             else:
                 if component:

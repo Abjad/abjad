@@ -51,6 +51,6 @@ def replace_components_with_children_of_components(components):
     for component in components:
         selection = component.select(sequential=True)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
-        music_list = list(getattr(component, 'music', ()))
+        music_list = list(getattr(component, '_music', ()))
         parent.__setitem__(slice(start, stop + 1), music_list)
     return components
