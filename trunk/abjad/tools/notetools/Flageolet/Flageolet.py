@@ -3,7 +3,7 @@ import abc
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class _Flageolet(AbjadObject):
+class Flageolet(AbjadObject):
     r'''Abjad model of both natural and artificial harmonics.
     Abstract base class.
     '''

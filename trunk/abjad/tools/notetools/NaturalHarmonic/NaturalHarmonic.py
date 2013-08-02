@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.notetools.Note import Note
-from abjad.tools.notetools._Flageolet._Flageolet import _Flageolet
+from abjad.tools.notetools.Flageolet.Flageolet import Flageolet
 
 
-class NaturalHarmonic(Note, _Flageolet):
+class NaturalHarmonic(Note, Flageolet):
     r'''Abjad model of natural harmonic.
 
     Initialize natural harmonic by hand:
