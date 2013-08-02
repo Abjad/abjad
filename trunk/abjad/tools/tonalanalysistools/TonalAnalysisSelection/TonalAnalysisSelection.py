@@ -146,7 +146,7 @@ class TonalAnalysisSelection(FreeSelection):
         quality = chord_class.quality_indicator.quality_string
         extent = chord_class.extent
         inversion = chord_class.inversion
-        return tonalanalysistools.TonalFunction(
+        return tonalanalysistools.RomanNumeral(
             scale_degree,
             quality,
             extent,
@@ -171,7 +171,7 @@ class TonalAnalysisSelection(FreeSelection):
         quality = chord_class.quality_indicator.quality_string
         extent = chord_class.extent
         inversion = chord_class.inversion
-        return tonalanalysistools.TonalFunction(
+        return tonalanalysistools.RomanNumeral(
             scale_degree,
             quality,
             extent,

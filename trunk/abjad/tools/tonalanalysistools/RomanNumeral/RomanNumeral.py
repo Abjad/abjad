@@ -4,7 +4,7 @@ from abjad.tools import marktools
 from abjad.tools.abctools import AbjadObject
 
 
-class TonalFunction(AbjadObject):
+class RomanNumeral(AbjadObject):
     '''Abjad model of functions in tonal harmony: I, I6, I64, V, V7, V43, V42,
     bII, bII6, etc., also i, i6, i64, v, v7, etc.
 

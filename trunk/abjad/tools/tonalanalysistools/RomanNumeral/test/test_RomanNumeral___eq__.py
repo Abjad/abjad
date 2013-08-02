@@ -3,11 +3,11 @@ from abjad import *
 from abjad.tools import tonalanalysistools
 
 
-def test_TonalFunction___eq___01():
+def test_RomanNumeral___eq___01():
 
-    t = tonalanalysistools.TonalFunction(5, 'dominant', 7, 0)
-    u = tonalanalysistools.TonalFunction(5, 'dominant', 7, 0, (4, 3))
-    v = tonalanalysistools.TonalFunction(5, 'dominant', 7, 0, (4, 3))
+    t = tonalanalysistools.RomanNumeral(5, 'dominant', 7, 0)
+    u = tonalanalysistools.RomanNumeral(5, 'dominant', 7, 0, (4, 3))
+    v = tonalanalysistools.RomanNumeral(5, 'dominant', 7, 0, (4, 3))
 
     assert      t == t
     assert not t == u
