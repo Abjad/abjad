@@ -492,5 +492,6 @@ class Leaf(Component):
         '''
         from abjad.tools import leaftools
         duration = self.get_duration() - duration
-        preprolated_duration = duration / self.prolation
+        prolation = self.select_parentage().prolation
+        preprolated_duration = duration / prolation
         leaftools.set_preprolated_leaf_duration(self, preprolated_duration)

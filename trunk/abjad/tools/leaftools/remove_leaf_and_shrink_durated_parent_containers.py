@@ -62,7 +62,8 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
     from abjad.tools import tuplettools
 
     prolated_leaf_duration = leaf.get_duration()
-    prolations = leaf._prolations
+    parentage = leaf.select_parentage(include_self=False)
+    prolations = parentage._prolations
     current_prolation, i = durationtools.Duration(1), 0
     parent = leaf._parent
 

@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import durationtools
+from abjad.tools import mathtools
 from abjad.tools.selectiontools.SimultaneousSelection \
     import SimultaneousSelection
 
@@ -76,6 +78,17 @@ class Parentage(SimultaneousSelection):
             music = tuple(music)
         SimultaneousSelection.__init__(self, music)
         self._component = component
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _prolations(self):
+        prolations = []
+        default = durationtools.Multiplier(1)
+        for parent in self:
+            prolation = getattr(parent, 'implied_prolation', default)
+            prolations.append(prolation)
+        return prolations
 
     ### PRIVATE METHODS ###
 
@@ -242,6 +255,12 @@ class Parentage(SimultaneousSelection):
             signature._root = id(component)
             signature._root_str = component._id_string
         return signature
+
+    @property
+    def prolation(self):
+        prolations = [durationtools.Multiplier(1)] + self._prolations
+        products = mathtools.cumulative_products(prolations)
+        return products[-1]
 
     @property
     def root(self):

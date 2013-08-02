@@ -21,7 +21,6 @@ def test_Measure_duration_01():
     assert t._contents_duration == Duration(3, 8)
     assert t._preprolated_duration == Duration(3, 8)
     assert t.get_duration() == Duration(3, 8)
-    assert t.prolation == 1
 
     assert t.lilypond_format == "{\n\t\\time 3/8\n\tc'8\n\td'8\n\te'8\n}"
 
@@ -46,7 +45,6 @@ def test_Measure_duration_02():
     assert t._contents_duration == Duration(3, 8)
     assert t._preprolated_duration == Duration(3, 10)
     assert t.get_duration() == Duration(3, 10)
-    assert t.prolation == 1
 
     assert t.lilypond_format == "{\n\t\\time 3/10\n\t\\scaleDurations #'(4 . 5) {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n}"
 
@@ -63,7 +61,6 @@ def test_Measure_duration_03():
     assert t._contents_duration == Duration(4, 8)
     assert t._preprolated_duration == Duration(4, 8)
     assert t.get_duration() == Duration(4, 8)
-    assert t.prolation == 1
 
 
 def test_Measure_duration_04():
@@ -77,4 +74,3 @@ def test_Measure_duration_04():
     assert t._contents_duration == Duration(4, 8)
     assert t._preprolated_duration == Duration(4, 10)
     assert t.get_duration() == Duration(4, 10)
-    assert t.prolation == 1

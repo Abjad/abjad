@@ -93,15 +93,22 @@ class Component(AbjadObject):
         rhs = getattr(self, 'name', None) or id(self)
         return '{}-{!r}'.format(lhs, rhs)
 
-    @property
-    def _prolations(self):
-        result = []
-        parent = self._parent
-        while parent is not None:
-            result.append(getattr(
-                parent, 'implied_prolation', fractions.Fraction(1)))
-            parent = parent._parent
-        return result
+#    @property
+#    def _prolation(self):
+#        products = [fractions.Fraction(1)] + self._prolations
+#        products = mathtools.cumulative_products(products)
+#        return products[-1]
+
+#    @property
+#    def _prolations(self):
+#        prolations = []
+#        parent = self._parent
+#        default = durationtools.Multiplier(1)
+#        while parent is not None:
+#            prolation = getattr(parent, 'implied_prolation', default)
+#            prolations.append(prolation)
+#            parent = parent._parent
+#        return prolations
 
     ### PRIVATE METHODS ###
 
@@ -536,10 +543,6 @@ class Component(AbjadObject):
 
     ### PUBLIC PROPERTIES ###
 
-#    @property
-#    def duration(self):
-#        return self.prolation * self._preprolated_duration
-
     @property
     def lilypond_format(self):
         '''Lilypond format.
@@ -557,12 +560,6 @@ class Component(AbjadObject):
             self._override = \
                 lilypondproxytools.LilyPondGrobOverrideComponentPlugIn()
         return self._override
-
-    @property
-    def prolation(self):
-        products = mathtools.cumulative_products(
-            [fractions.Fraction(1)] + self._prolations)
-        return products[-1]
 
     @property
     def set(self):
@@ -709,7 +706,8 @@ class Component(AbjadObject):
         if in_seconds:
             return self._duration_in_seconds
         else:
-            return self.prolation * self._preprolated_duration
+            parentage = self.select_parentage(include_self=False)
+            return parentage.prolation * self._preprolated_duration
 
     def get_effective_context_mark(
         self,

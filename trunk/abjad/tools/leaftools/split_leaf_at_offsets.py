@@ -198,7 +198,7 @@ def split_leaf_at_offsets(
     sequencetools.truncate_sequence_to_weight(durations, leaf.get_duration())
 
     result = []
-    leaf_prolation = leaf.prolation
+    leaf_prolation = leaf.select_parentage(include_self=False).prolation
     leaf_copy = componenttools.copy_components_and_detach_spanners([leaf])[0]
     for duration in durations:
         new_leaf = \
