@@ -148,7 +148,15 @@ class Tuplet(Container):
 
     ### PRIVATE PROPERTIES ###
 
-    # TODO: make public
+    @property
+    def _has_power_of_two_denominator(self):
+        if self.multiplier:
+            return mathtools.is_nonnegative_integer_power_of_two(
+                self.multiplier.numerator)
+        else:
+            return True
+
+    # TODO: remove in favor of "not self.is_invisible"
     @property
     def _is_visible(self):
         return not self.is_invisible
@@ -229,7 +237,7 @@ class Tuplet(Container):
     def _format_lilypond_fraction_command_string(self):
         if self._is_visible:
             if self.is_augmentation or \
-                self.has_non_power_of_two_denominator or \
+                (not self._has_power_of_two_denominator) or \
                 self.force_fraction:
                 return r"\tweak #'text #tuplet-number::calc-fraction-text"
         return ''
@@ -322,40 +330,6 @@ class Tuplet(Container):
                 message = 'bad type for tuplet force fraction: "%s".'
                 raise TypeError(message % arg)
         return property(**locals())
-
-    @property
-    def has_non_power_of_two_denominator(self):
-        r'''Boolean true when multiplier numerator is not 
-        power of two. Otherwise false:
-
-        ::
-
-            >>> tuplet = Tuplet((3, 5), "c'8 d'8 e'8 f'8 g'8")
-            >>> tuplet.has_non_power_of_two_denominator
-            True
-
-        Return boolean.
-        '''
-        return not self.has_power_of_two_denominator
-
-    @property
-    def has_power_of_two_denominator(self):
-        r'''Boolean true when multiplier numerator is 
-        power of two. Otherwise false:
-
-        ::
-
-            >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-            >>> tuplet.has_power_of_two_denominator
-            True
-
-        Return boolean.
-        '''
-        if self.multiplier:
-            return mathtools.is_nonnegative_integer_power_of_two(
-                self.multiplier.numerator)
-        else:
-            return True
 
     @property
     def implied_prolation(self):
@@ -464,6 +438,10 @@ class Tuplet(Container):
 
     @property
     def lilypond_format(self):
+        '''LilyPond format.
+
+        Return string.
+        '''
         self._update_marks_of_entire_score_tree_if_necessary()
         return self._format_component()
 
