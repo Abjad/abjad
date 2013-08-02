@@ -420,7 +420,7 @@ class Leaf(Component):
             >>> after_grace.attach(staff[1])
             Note("d'8")
 
-        ..  lilypond
+        ..  doctest::
 
             >>> f(staff)
             \new Staff {

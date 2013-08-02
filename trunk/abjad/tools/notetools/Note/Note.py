@@ -329,7 +329,7 @@ class Note(Leaf):
             >>> spannertools.BeamSpanner(staff[:])
             BeamSpanner(c'8, d'8, e'8, f'8)
 
-        ..  lilypond
+        ..  doctest::
 
             >>> f(staff)
             \new Staff {
@@ -348,7 +348,7 @@ class Note(Leaf):
             >>> staff[0].add_artificial_harmonic()
             Chord("<c' f'>8")
 
-        ..  lilypond
+        ..  doctest::
 
             >>> f(staff)
             \new Staff {

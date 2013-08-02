@@ -50,7 +50,7 @@ class Score(Context):
             >>> staff = Staff("c'4 d'4 e'4 f'4")
             >>> score = Score([staff])
 
-        ..  lilypond
+        ..  doctest::
 
             >>> f(score)
             \new Score <<
@@ -71,7 +71,7 @@ class Score(Context):
             >>> score.add_double_bar()
             BarLine('|.')(f'4)
 
-        ..  lilypond
+        ..  doctest::
 
             >>> f(score)
             \new Score <<
@@ -127,7 +127,7 @@ class Score(Context):
                 direction=Down
                 )
 
-        ..  lilypond
+        ..  doctest::
 
             >>> f(score)
             \new Score <<

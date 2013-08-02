@@ -39,7 +39,7 @@ def make_rests(
         ...     tie_parts=True,
         ...     ))
 
-    ..  lilypond
+    ..  doctest::
 
         >>> f(voice)
         \new Voice {

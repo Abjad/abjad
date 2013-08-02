@@ -26,7 +26,7 @@ def make_leaves(
         >>> leaves = leaftools.make_leaves(pitches, duration)
         >>> staff = Staff(leaves)
 
-    ..  lilypond
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -49,7 +49,7 @@ def make_leaves(
         >>> leaves = leaftools.make_leaves(pitches, duration)
         >>> staff = Staff(leaves)
 
-    ..  lilypond
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -70,7 +70,7 @@ def make_leaves(
         >>> leaves = leaftools.make_leaves(pitches, durations)
         >>> staff = stafftools.RhythmicStaff(leaves)
 
-    ..  lilypond
+    ..  doctest::
 
         >>> f(staff)
         \new RhythmicStaff {
@@ -93,7 +93,7 @@ def make_leaves(
         >>> leaves = leaftools.make_leaves(pitches, durations)
         >>> staff = Staff(leaves)
 
-    ..  lilypond
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -117,7 +117,7 @@ def make_leaves(
         >>> leaves = leaftools.make_leaves(pitches, durations)
         >>> staff = Staff(leaves)
 
-    ..  lilypond
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -141,7 +141,7 @@ def make_leaves(
         >>> leaves = leaftools.make_leaves(pitches, durations)
         >>> staff = Staff(leaves)
 
-    ..  lilypond
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -165,7 +165,7 @@ def make_leaves(
         >>> leaves = leaftools.make_leaves(pitches, durations)
         >>> staff = Staff(leaves)
 
-    ..  lilypond
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -191,7 +191,7 @@ def make_leaves(
         >>> staff = Staff(leaves)
         >>> time_signature = contexttools.TimeSignatureMark((13, 16))(staff)
 
-    ..  lilypond
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -219,7 +219,7 @@ def make_leaves(
         >>> staff = Staff(leaves)
         >>> time_signature = contexttools.TimeSignatureMark((13, 16))(staff)
 
-    ..  lilypond
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -244,7 +244,7 @@ def make_leaves(
         >>> staff = stafftools.RhythmicStaff(leaves)
         >>> time_signature = contexttools.TimeSignatureMark((5, 8))(staff)
 
-    ..  lilypond
+    ..  doctest::
 
         >>> f(staff)
         \new RhythmicStaff {
@@ -272,7 +272,7 @@ def make_leaves(
         >>> staff = Staff(leaves)
         >>> time_signature = contexttools.TimeSignatureMark((5, 4))(staff)
 
-    ..  lilypond
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {
@@ -305,7 +305,7 @@ def make_leaves(
         >>> staff = Staff(leaves)
         >>> time_signature = contexttools.TimeSignatureMark((5, 4))(staff)
 
-    ..  lilypond
+    ..  doctest::
 
         >>> f(staff)
         \new Staff {

@@ -101,7 +101,7 @@ class MetricalKernel(AbjadObject):
             >>> score.append(Staff("c'4. d'8 e'2"))
             >>> score.append(Staff(r'\clef bass c4 b,4 a,2'))
 
-        ..  lilypond
+        ..  doctest::
 
             >>> f(score)
             \new Score <<
