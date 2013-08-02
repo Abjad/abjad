@@ -135,7 +135,7 @@ class Tuplet(Container):
         if 0 < len(self):
             return '{%s %s %s %s}' % (
                 self._signifier,
-                self.ratio_string,
+                self._ratio_string,
                 self._summary,
                 self._signifier,
                 )
@@ -156,11 +156,6 @@ class Tuplet(Container):
         else:
             return True
 
-    # TODO: remove in favor of "not self.is_invisible"
-    @property
-    def _is_visible(self):
-        return not self.is_invisible
-
     @property
     def _multiplier_fraction_string(self):
         if self.preferred_denominator is not None:
@@ -178,6 +173,17 @@ class Tuplet(Container):
     @property
     def _preprolated_duration(self):
         return self.multiplied_duration
+
+    @property
+    def _ratio_string(self):
+        multiplier = self.multiplier
+        if multiplier is not None:
+            numerator = multiplier.numerator
+            denominator = multiplier.denominator
+            ratio_string = '{}:{}'.format(denominator, numerator)
+            return ratio_string
+        else:
+            return None
 
     @property
     def _summary(self):
@@ -235,7 +241,7 @@ class Tuplet(Container):
         return self._format_slot_contributions_with_indent(result)
 
     def _format_lilypond_fraction_command_string(self):
-        if self._is_visible:
+        if not self.is_invisible:
             if self.is_augmentation or \
                 (not self._has_power_of_two_denominator) or \
                 self.force_fraction:
@@ -343,7 +349,7 @@ class Tuplet(Container):
 
     @property
     def is_augmentation(self):
-        r'''True when multiplier is greater than 1.
+        r'''True when tuplet multiplier is greater than ``1``.
         Otherwise false:
 
         ::
@@ -362,7 +368,8 @@ class Tuplet(Container):
 
     @property
     def is_diminution(self):
-        r'''True when multiplier is less than 1.  Otherwise false:
+        r'''True when tuplet multiplier is less than ``1``.
+        Otherwise false:
 
         ::
 
@@ -381,14 +388,15 @@ class Tuplet(Container):
     @apply
     def is_invisible():
         def fget(self):
-            r'''Read / write boolean to output LilyPond ``\scaledDurations``
-            instead of tuplet:
+            r'''Set to true to hide tuplet bracket and tuplet number.
+
+            Example:
 
             ::
 
                 >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
 
-            ::
+            ..  doctest::
 
                 >>> f(tuplet)
                 \times 2/3 {
@@ -399,16 +407,24 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet.is_invisible = True
+                >>> show(tuplet) # doctest: +SKIP
 
             ::
 
+                >>> tuplet.is_invisible = True
 
+            ..  doctest::
+
+                >>> f(tuplet)
                 \scaleDurations #'(2 . 3) {
                     c'8
                     d'8
                     e'8
                 }
+
+            ::
+
+                >>> show(tuplet) # doctest: +SKIP
 
             This has the effect of rendering no
             no tuplet bracket and no tuplet number while preserving the 
@@ -424,7 +440,8 @@ class Tuplet(Container):
 
     @property
     def is_trivial(self):
-        r'''True when tuplet multiplier is one. Otherwise false:
+        r'''True when tuplet multiplier is equal to ``1``.
+        Otherwise false:
 
         ::
 
@@ -491,15 +508,16 @@ class Tuplet(Container):
     @apply
     def preferred_denominator():
         def fget(self):
-            r'''Integer denominator in terms of which tuplet fraction 
-            should format:
+            r'''Preferred denominator of tuplet.
+
+            Example:
 
             ::
 
                 >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
                 >>> tuplet.preferred_denominator = 4
 
-            ::
+            ..  doctest::
 
                 >>> f(tuplet)
                 \times 4/6 {
@@ -508,37 +526,21 @@ class Tuplet(Container):
                     e'8
                 }
 
+            ::
+
+                >>> show(tuplet) # doctest: +SKIP
+
             Return positive integer or none.
             '''
             return self._preferred_denominator
         def fset(self, arg):
             if isinstance(arg, (int, long)):
                 if not 0 < arg:
-                    message = 'tuplet preferred denominator must be positive: "%s".'
-                    raise ValueError(message % arg)
+                    raise ValueError(arg)
             elif not isinstance(arg, type(None)):
-                message = 'bad tuplet preferred denominator type: "%s".'
-                raise TypeError(message % arg)
+                raise TypeError(arg)
             self._preferred_denominator = arg
         return property(**locals())
-
-    @property
-    def ratio_string(self):
-        r'''Tuplet multiplier formatted with colon as ratio:
-
-        ::
-
-            >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-            >>> tuplet.ratio_string
-            '3:2'
-
-        Return string.
-        '''
-        multiplier = self.multiplier
-        if multiplier is not None:
-            return '%s:%s' % (multiplier.denominator, multiplier.numerator)
-        else:
-            return None
 
     ### PUBLIC METHODS ###
 

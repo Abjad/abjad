@@ -80,7 +80,7 @@ class FixedDurationTuplet(Tuplet):
         if 0 < len(self):
             return '{%s %s %s %s}' % (
                 self._signifier,
-                self.ratio_string,
+                self._ratio_string,
                 self._summary,
                 self._signifier,
                 )
