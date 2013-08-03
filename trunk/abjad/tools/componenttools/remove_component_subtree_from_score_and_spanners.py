@@ -158,7 +158,7 @@ def remove_component_subtree_from_score_and_spanners(components):
     for component in components:
         component._remove_from_parent()
         for child in iterationtools.iterate_components_in_expr([component]):
-            for spanner in child.spanners:
+            for spanner in child.get_spanners():
                 spanner._remove(child)
 
     # return components

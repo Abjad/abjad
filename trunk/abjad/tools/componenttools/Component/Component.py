@@ -250,7 +250,7 @@ class Component(AbjadObject):
         if not isinstance(spanner_classes, tuple):
             spanner_classes = (spanner_classes, )
         spanners = set()
-        for spanner in self.spanners:
+        for spanner in self.get_spanners():
             if isinstance(spanner, spanner_classes):
                 spanners.add(spanner)
         return spanners
@@ -567,8 +567,11 @@ class Component(AbjadObject):
         r'''Spanners attached to componnet.
 
         Return set.
+
+        .. note:: Deprecated. Use self.get_spanners() instead.
         '''
         return set(self._spanners)
+        #raise Exception('deprecated')
 
     ### PUBLIC METHODS ###
 
@@ -895,6 +898,13 @@ class Component(AbjadObject):
         elif direction is Down:
             return tuple(x for x in markup if x.direction is Down)
         return markup
+
+    def get_spanners(self):
+        r'''Get spanners attached to component.
+
+        Return set.
+        '''
+        return set(self._spanners)
 
     def get_timespan(self, in_seconds=False):
         '''Get timespan of component.

@@ -272,12 +272,19 @@ class LilyPondParser(abctools.Parser):
 
                 # or apply undirected event immediately (i.e. ties, glisses)
                 elif next_leaf is not first_leaf: # so long as we are not wrapping yet
-                    previous_spanners = [x for x in leaf.spanners if isinstance(x, spanner_class)]
+                    previous_spanners = [
+                        x for x in leaf.get_spanners() 
+                        if isinstance(x, spanner_class)
+                        ]
                     if previous_spanners:
                         previous_spanners[0].append(next_leaf)
                     else:
-                        if hasattr(span_event, 'direction') and hasattr(spanner_class, 'direction'):
-                            spanner_class([leaf, next_leaf], direction=span_event.direction)
+                        if hasattr(span_event, 'direction') and \
+                            hasattr(spanner_class, 'direction'):
+                            spanner_class(
+                                [leaf, next_leaf], 
+                                direction=span_event.direction
+                                )
                         else:
                             spanner_class([leaf, next_leaf])
 

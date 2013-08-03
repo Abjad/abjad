@@ -315,7 +315,7 @@ def test_leaftools_split_leaf_at_offset_12():
 
     assert len(t) == 2
     for leaf in t.select_leaves():
-        assert leaf.spanners == set([s])
+        assert leaf.get_spanners() == set([s])
         assert spannertools.get_the_only_spanner_attached_to_component(
             leaf, spannertools.TieSpanner) is s
     assert select(t).is_well_formed()
@@ -333,7 +333,7 @@ def test_leaftools_split_leaf_at_offset_13():
 
     assert len(t) == 5
     for l in t.select_leaves():
-        assert l.spanners == set([b])
+        assert l.get_spanners() == set([b])
         assert l._get_spanner(spannertools.BeamSpanner) is b
     assert select(t).is_well_formed()
 
@@ -351,7 +351,7 @@ def test_leaftools_split_leaf_at_offset_14():
     assert len(halves[0]) == 2
     assert len(halves[1]) == 1
     for l in t.select_leaves():
-        assert l.spanners == set([s])
+        assert l.get_spanners() == set([s])
         assert spannertools.get_the_only_spanner_attached_to_component(
             l, spannertools.TieSpanner) is s
     assert select(t).is_well_formed()
@@ -368,7 +368,7 @@ def test_leaftools_split_leaf_at_offset_15():
     assert spannertools.get_the_only_spanner_attached_to_component(t, spannertools.TieSpanner) is s
     assert s.components == (t, )
     for l in t.select_leaves():
-        assert not l.spanners
+        assert not l.get_spanners()
     assert select(t).is_well_formed()
 
 
@@ -382,9 +382,9 @@ def test_leaftools_split_leaf_at_offset_16():
 
     assert s.components == tuple(t[:])
     for v in t:
-        assert v.spanners == set([s])
+        assert v.get_spanners() == set([s])
         for l in v.select_leaves():
-            assert not l.spanners
+            assert not l.get_spanners()
             assert l._parent is v
     assert select(t).is_well_formed()
 

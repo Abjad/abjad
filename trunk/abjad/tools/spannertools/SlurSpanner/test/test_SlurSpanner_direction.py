@@ -15,5 +15,5 @@ def test_SlurSpanner_direction_01():
     }
     '''
 
-    assert t.spanners == set([s])
+    assert t.get_spanners() == set([s])
     assert t.lilypond_format == "\\new Voice {\n\tc'8 ^ (\n\td'8\n\te'8\n\tf'8 )\n}"

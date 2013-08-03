@@ -20,5 +20,5 @@ def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl=None):
             skip.duration_multiplier = \
                 time_signature.duration / time_signature.implied_prolation
             measure[:] = [skip]
-            for spanner in measure.spanners:
+            for spanner in measure.get_spanners():
                 spanner._remove(component)

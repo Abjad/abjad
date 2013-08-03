@@ -68,7 +68,7 @@ def get_spanners_attached_to_component(component, spanner_classes=None):
 
     # iterate spanners
     result = set()
-    for spanner in component.spanners:
+    for spanner in component.get_spanners():
         if isinstance(spanner, spanner_classes):
             result.add(spanner)
 
