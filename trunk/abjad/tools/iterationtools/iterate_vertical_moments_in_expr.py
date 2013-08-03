@@ -123,7 +123,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
         if not isinstance(component, componenttools.Component):
             raise TypeError
         buffer.append(component)
-        stop_offsets.append(component.timespan.stop_offset)
+        stop_offsets.append(component.get_timespan().stop_offset)
         if isinstance(component, containertools.Container):
             if component.is_parallel:
                 for x in component:
@@ -152,7 +152,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
     def _update_buffer(current_offset, buffer, stop_offsets):
         #print 'At %s with %s ...' % (current_offset, buffer)
         for component in buffer[:]:
-            if component.timespan.stop_offset <= current_offset:
+            if component.get_timespan().stop_offset <= current_offset:
                 buffer.remove(component)
                 try:
                     next_component = _next_in_parent(component)
@@ -161,7 +161,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
                 except StopIteration:
                     pass
             else:
-                stop_offsets.append(component.timespan.stop_offset)
+                stop_offsets.append(component.get_timespan().stop_offset)
 
     if not reverse:
         for x in _iterate_vertical_moments_forward_in_expr(expr):
@@ -169,7 +169,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
     else:
         moments_in_governor = []
         for component in iterationtools.iterate_components_in_expr(expr):
-            offset = component.timespan.start_offset
+            offset = component.get_timespan().start_offset
             if offset not in moments_in_governor:
                 moments_in_governor.append(offset)
         moments_in_governor.sort()

@@ -29,5 +29,5 @@ def find_spanner_component_starting_at_exactly_score_offset(spanner, score_offse
     '''
 
     for component in spanner:
-        if component.timespan.start_offset == score_offset:
+        if component.get_timespan().start_offset == score_offset:
             return component

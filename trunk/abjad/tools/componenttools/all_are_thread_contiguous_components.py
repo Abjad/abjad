@@ -143,8 +143,8 @@ def _are_thread_proper(component_1, component_2, component_classes=None):
         return False
 
     # find component_1 offset end time and component_2 offset begin
-    first_end = component_1.timespan.stop_offset
-    second_begin = component_2.timespan.start_offset
+    first_end = component_1.get_timespan().stop_offset
+    second_begin = component_2.get_timespan().start_offset
 
     # if component_1 does not preced component_2
     if not first_end <= second_begin:
@@ -158,7 +158,7 @@ def _are_thread_proper(component_1, component_2, component_classes=None):
             break
         node_thread = node.select_parentage().containment_signature
         if node_thread == first_thread:
-            node_begin = node.timespan.start_offset
+            node_begin = node.get_timespan().start_offset
             if first_end <= node_begin < second_begin:
                 message = 'component %s intervenes between %s and %s.'
                 message %= (node, component_1, component_2)

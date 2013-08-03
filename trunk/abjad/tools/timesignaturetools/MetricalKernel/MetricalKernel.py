@@ -164,8 +164,8 @@ class MetricalKernel(AbjadObject):
                 counter[x.start_offset] += 1
                 counter[x.stop_offset] += 1
             elif hasattr(x, 'timespan'):
-                counter[x.timespan.start_offset] += 1
-                counter[x.timespan.stop_offset] += 1
+                counter[x.get_timespan().start_offset] += 1
+                counter[x.get_timespan().stop_offset] += 1
             else:
                 offset = durationtools.Offset(x)
                 counter[offset] += 1

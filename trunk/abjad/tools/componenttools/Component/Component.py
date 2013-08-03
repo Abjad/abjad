@@ -575,16 +575,21 @@ class Component(AbjadObject):
         r'''Timespan of component.
 
         Return timespan.
+
+        .. note:: Deprecated. Use self.get_timespan() instead.
         '''
-        #self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
-        #return self._timespan
+#        self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
+#        return self._timespan
         return self.get_timespan()
+        #raise Exception('deprecated')
 
     @property
     def timespan_in_seconds(self):
         r'''Timespan of component in seconds.
 
         Return timespan.
+
+        .. note:: Deprecated. Use self.get_timespan() instead.
         '''
 #        self._update_offset_values_in_seconds_of_entire_score_tree_if_necessary()
 #        if self._start_offset_in_seconds is None:
@@ -593,8 +598,8 @@ class Component(AbjadObject):
 #            start_offset=self._start_offset_in_seconds, 
 #            stop_offset=self._stop_offset_in_seconds,
 #            )
-        #return self.get_timespan(in_seconds=True)
-        raise Exception('deprecated')
+        return self.get_timespan(in_seconds=True)
+        #raise Exception('deprecated')
 
     ### PUBLIC METHODS ###
 
@@ -614,7 +619,7 @@ class Component(AbjadObject):
         assert componenttools.all_are_components(components)
         if direction == Right:
             if grow_spanners:
-                insert_offset = self.timespan.stop_offset
+                insert_offset = self.get_timespan().stop_offset
                 receipt = spannertools.get_spanners_that_dominate_components(
                     [self])
                 for spanner, index in receipt:
@@ -641,7 +646,7 @@ class Component(AbjadObject):
             return [self] + components
         else:
             if grow_spanners:
-                offset = self.timespan.start_offset
+                offset= self.get_timespan().start_offset
                 receipt = spannertools.get_spanners_that_dominate_components(
                     [self])
                 for spanner, x in receipt:
@@ -760,7 +765,7 @@ class Component(AbjadObject):
         self._update_marks_of_entire_score_tree_if_necessary()
         # gathering candidate marks
         candidate_marks = datastructuretools.SortedCollection(
-            key=lambda x: x.start_component.timespan.start_offset)
+            key=lambda x: x.start_component.get_timespan().start_offset)
         for parent in self.select_parentage(include_self=True):
             parent_marks = parent._dependent_context_marks
             for mark in parent_marks:
@@ -774,7 +779,8 @@ class Component(AbjadObject):
         # elect most recent candidate mark
         if candidate_marks:
             try:
-                return candidate_marks.find_le(self.timespan.start_offset)
+                start_offset = self.get_timespan().start_offset
+                return candidate_marks.find_le(start_offset)
             except ValueError:
                 pass
 
@@ -1014,7 +1020,7 @@ class Component(AbjadObject):
         Return vertical moment.
         '''
         from abjad.tools import componenttools
-        offset = self.timespan.start_offset
+        offset = self.get_timespan().start_offset
         if governor is None:
             governor = self.select_parentage().root
         return componenttools.VerticalMoment(governor, offset)

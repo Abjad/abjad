@@ -120,8 +120,8 @@ class VerticalMoment(SimultaneousSelection):
         hi = len(container)
         while lo < hi:
             mid = (lo + hi) // 2
-            start_offset = container[mid].timespan.start_offset
-            stop_offset = container[mid].timespan.stop_offset
+            start_offset = container[mid].get_timespan().start_offset
+            stop_offset = container[mid].get_timespan().stop_offset
             if start_offset <= offset < stop_offset:
                 lo = mid + 1
             # if container[mid] is of nonzero duration
@@ -163,8 +163,8 @@ class VerticalMoment(SimultaneousSelection):
     @staticmethod
     def _recurse(component, offset):
         result = []
-        if component.timespan.start_offset <= \
-            offset < component.timespan.stop_offset:
+        if component.get_timespan().start_offset <= \
+            offset < component.get_timespan().stop_offset:
             result.append(component)
             if hasattr(component, '_music'):
                 if component.is_parallel:
@@ -254,8 +254,8 @@ class VerticalMoment(SimultaneousSelection):
         from abjad.tools import componenttools
         candidate_shortest_leaf = self.leaves[0]
         for leaf in self.leaves[1:]:
-            if leaf.timespan.stop_offset < \
-                candidate_shortest_leaf.timespan.stop_offset:
+            if leaf.get_timespan().stop_offset < \
+                candidate_shortest_leaf.get_timespan().stop_offset:
                 candidate_shortest_leaf = leaf
         next_leaf = candidate_shortest_leaf._get_namesake(1)
         next_vertical_moment = next_leaf.select_vertical_moment()
@@ -338,7 +338,7 @@ class VerticalMoment(SimultaneousSelection):
         for leaf in self.leaves:
             #print ''
             #print leaf
-            leaf_start = leaf.timespan.start_offset
+            leaf_start = leaf.get_timespan().start_offset
             if leaf_start < self.offset:
                 #print 'found leaf starting before this moment ...'
                 if most_recent_start_offset <= leaf_start:
@@ -348,7 +348,7 @@ class VerticalMoment(SimultaneousSelection):
                 #print 'found leaf starting on this moment ...'
                 try:
                     previous_leaf = leaf._get_namesake(-1)
-                    start = previous_leaf.timespan.start_offset
+                    start = previous_leaf.get_timespan().start_offset
                     #print previous_leaf, start
                     if most_recent_start_offset <= start:
                         most_recent_start_offset = start
@@ -369,7 +369,7 @@ class VerticalMoment(SimultaneousSelection):
         '''
         result = []
         for component in self.components:
-            if component.timespan.start_offset == self.offset:
+            if component.get_timespan().start_offset == self.offset:
                 result.append(component)
         result = tuple(result)
         return result

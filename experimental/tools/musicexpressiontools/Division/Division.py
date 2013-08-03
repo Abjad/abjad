@@ -149,15 +149,25 @@ class Division(NonreducedFraction, BoundedObject):
         if self.start_offset is not None:
             return self.start_offset + self.duration
 
+    # TODO: remove in favor of self.get_timespan()
     @property
     def timespan(self):
         r'''Division timespan.
 
         Return timespan.
+
+        .. note:: Deprecated. Use get_timespan() instead.
         '''
         return timespantools.Timespan(self.start_offset, self.stop_offset)
 
     ### PUBLIC METHODS ###
+
+    def get_timespan(self):
+        '''Get timespan of division.
+
+        Return timespan.
+        '''
+        return timespantools.Timespan(self.start_offset, self.stop_offset)
 
     def new(self, **kwargs):
         positional_argument_dictionary = self._positional_argument_dictionary

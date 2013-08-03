@@ -179,7 +179,9 @@ class Spanner(AbjadObject):
         raise NotImplemented
 
     def _duration_offset_in_me(self, leaf):
-        return leaf.timespan.start_offset - self.timespan.start_offset
+        leaf_start_offset = leaf.get_timespan().start_offset
+        self_start_offset = self.get_timespan().start_offset
+        return leaf_start_offset - self_start_offset
 
     def _format_after_leaf(self, leaf):
         result = []
@@ -432,16 +434,17 @@ class Spanner(AbjadObject):
     def timespan(self):
         r'''Timespan of spanner.
         '''
-        if len(self):
-            start_offset = self[0].timespan.start_offset
-        else:
-            start_offset = Duration(0)
-        if len(self):
-            stop_offset = self[-1].timespan.stop_offset
-        else:
-            stop_offset = Duration(0)
-        return timespantools.Timespan(
-            start_offset=start_offset, stop_offset=stop_offset)
+#        if len(self):
+#            start_offset = self[0].get_timespan().start_offset
+#        else:
+#            start_offset = Duration(0)
+#        if len(self):
+#            stop_offset = self[-1].get_timespan().stop_offset
+#        else:
+#            stop_offset = Duration(0)
+#        return timespantools.Timespan(
+#            start_offset=start_offset, stop_offset=stop_offset)
+        return self.get_timespan()
 
     @property
     def written_duration(self):
@@ -700,6 +703,20 @@ class Spanner(AbjadObject):
             for component in self
             )
 
+    def get_timespan(self, in_seconds=False):
+        if len(self):
+            start_offset = \
+                self[0].get_timespan(in_seconds=in_seconds).start_offset
+        else:
+            start_offset = Duration(0)
+        if len(self):
+            stop_offset = \
+                self[-1].get_timespan(in_seconds=in_seconds).stop_offset
+        else:
+            stop_offset = Duration(0)
+        return timespantools.Timespan(
+            start_offset=start_offset, stop_offset=stop_offset)
+        
     def index(self, component):
         r'''Return nonnegative integer index of `component` in spanner:
 

@@ -68,8 +68,8 @@ class SequentialSelection(Selection):
     def _get_offset_lists(self):
         start_offsets, stop_offsets = [], []
         for component in self:
-            start_offsets.append(component.timespan.start_offset)
-            stop_offsets.append(component.timespan.stop_offset)
+            start_offsets.append(component.get_timespan().start_offset)
+            stop_offsets.append(component.get_timespan().stop_offset)
         return start_offsets, stop_offsets
 
     def _get_parent_and_start_stop_indices(self):
@@ -160,8 +160,8 @@ class SequentialSelection(Selection):
         r'''Timespan of selection.
         '''
         from abjad.tools import timespantools
-        start_offset = min(x.timespan.start_offset for x in self)
-        stop_offset = max(x.timespan.stop_offset for x in self)
+        start_offset = min(x.get_timespan().start_offset for x in self)
+        stop_offset = max(x.get_timespan().stop_offset for x in self)
         return timespantools.Timespan(start_offset, stop_offset)
 
     ### PUBLIC METHODS ###

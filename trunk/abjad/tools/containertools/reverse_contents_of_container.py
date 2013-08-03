@@ -41,9 +41,9 @@ def reverse_contents_of_container(container):
     from abjad.tools import spannertools
 
     def _offset(x, y):
-        if x.timespan.start_offset < y.timespan.start_offset:
+        if x.get_timespan().start_offset < y.get_timespan().start_offset:
             return -1
-        elif y.timespan.start_offset < x.timespan.start_offset:
+        elif y.get_timespan().start_offset < x.get_timespan().start_offset:
             return 1
         else:
             return 0

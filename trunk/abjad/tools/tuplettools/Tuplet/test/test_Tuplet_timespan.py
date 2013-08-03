@@ -18,7 +18,7 @@ def test_Tuplet_timespan_01():
     }
     '''
 
-    assert staff.timespan == timespantools.Timespan(0, 1)
-    assert staff[0].timespan == timespantools.Timespan(0, (1, 4))
-    assert staff[1].timespan == timespantools.Timespan((1, 4), (1, 2))
-    assert staff[-1].timespan == timespantools.Timespan((1, 2), 1)
+    assert staff.get_timespan() == timespantools.Timespan(0, 1)
+    assert staff[0].get_timespan() == timespantools.Timespan(0, (1, 4))
+    assert staff[1].get_timespan() == timespantools.Timespan((1, 4), (1, 2))
+    assert staff[-1].get_timespan() == timespantools.Timespan((1, 2), 1)

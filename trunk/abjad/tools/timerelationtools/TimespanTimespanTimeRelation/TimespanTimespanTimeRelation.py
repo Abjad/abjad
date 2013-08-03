@@ -357,7 +357,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
         # iterate counttime components
         result = []
         for counttime_component in counttime_components:
-            if self(timespan_2=counttime_component.timespan):
+            if self(timespan_2=counttime_component.get_timespan()):
                 result.append(counttime_component)
 
         # return result
