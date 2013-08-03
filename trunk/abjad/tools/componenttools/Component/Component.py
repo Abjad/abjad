@@ -570,37 +570,6 @@ class Component(AbjadObject):
         '''
         return set(self._spanners)
 
-    @property
-    def timespan(self):
-        r'''Timespan of component.
-
-        Return timespan.
-
-        .. note:: Deprecated. Use self.get_timespan() instead.
-        '''
-#        self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
-#        return self._timespan
-        return self.get_timespan()
-        #raise Exception('deprecated')
-
-    @property
-    def timespan_in_seconds(self):
-        r'''Timespan of component in seconds.
-
-        Return timespan.
-
-        .. note:: Deprecated. Use self.get_timespan() instead.
-        '''
-#        self._update_offset_values_in_seconds_of_entire_score_tree_if_necessary()
-#        if self._start_offset_in_seconds is None:
-#            raise MissingTempoError
-#        return timespantools.Timespan(
-#            start_offset=self._start_offset_in_seconds, 
-#            stop_offset=self._stop_offset_in_seconds,
-#            )
-        return self.get_timespan(in_seconds=True)
-        #raise Exception('deprecated')
-
     ### PUBLIC METHODS ###
 
     def extend_in_parent(
@@ -928,6 +897,10 @@ class Component(AbjadObject):
         return markup
 
     def get_timespan(self, in_seconds=False):
+        '''Get timespan of component.
+
+        Return timespan.
+        '''
         if in_seconds:
             self._update_offset_values_in_seconds_of_entire_score_tree_if_necessary()
             if self._start_offset_in_seconds is None:

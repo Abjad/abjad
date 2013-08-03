@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
-def timespan_2_starts_during_timespan_1(timespan_1=None, timespan_2=None, hold=False):
+def timespan_2_starts_during_timespan_1(
+    timespan_1=None, timespan_2=None, hold=False):
     r'''Make time relation indicating that `timespan_2` starts during `timespan_1`:
 
     ::
@@ -24,8 +25,8 @@ def timespan_2_starts_during_timespan_1(timespan_1=None, timespan_2=None, hold=F
 
     ::
 
-        >>> start_offsets = [note.timespan.start_offset for note in staff_1]
-        >>> stop_offsets = [note.timespan.stop_offset for note in staff_1]
+        >>> start_offsets = [note.get_timespan().start_offset for note in staff_1]
+        >>> stop_offsets = [note.get_timespan().stop_offset for note in staff_1]
 
     ::
 

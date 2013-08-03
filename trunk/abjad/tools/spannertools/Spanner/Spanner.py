@@ -431,22 +431,6 @@ class Spanner(AbjadObject):
         return self._set
 
     @property
-    def timespan(self):
-        r'''Timespan of spanner.
-        '''
-#        if len(self):
-#            start_offset = self[0].get_timespan().start_offset
-#        else:
-#            start_offset = Duration(0)
-#        if len(self):
-#            stop_offset = self[-1].get_timespan().stop_offset
-#        else:
-#            stop_offset = Duration(0)
-#        return timespantools.Timespan(
-#            start_offset=start_offset, stop_offset=stop_offset)
-        return self.get_timespan()
-
-    @property
     def written_duration(self):
         r'''Sum of written duration of all components in spanner.
         '''

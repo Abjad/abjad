@@ -56,13 +56,17 @@ class AnchoredExpression(Expression):
         elif isinstance(result, list):
             new_result = []
             for expression in result:
-                if hasattr(expression, 'timespan'):
+                if hasattr(expression, 'get_timespan'):
+                    new_result.append(expression.get_timespan())
+                elif hasattr(expression, 'timespan'):
                     new_result.append(expression.timespan)
                 elif isinstance(expression.payload[0], timespantools.Timespan):
                     new_result.append(expression.payload[0])
                 else:
                     raise TypeError(expression)
             return new_result
+        elif hasattr(result, 'get_timespan'):
+            return result.get_timespan()
         elif hasattr(result, 'timespan'):
             return result.timespan
         elif isinstance(result.payload[0], timespantools.Timespan):

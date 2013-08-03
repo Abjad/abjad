@@ -163,7 +163,7 @@ class MetricalKernel(AbjadObject):
             if hasattr(x, 'start_offset') and hasattr(x, 'stop_offset'):
                 counter[x.start_offset] += 1
                 counter[x.stop_offset] += 1
-            elif hasattr(x, 'timespan'):
+            elif hasattr(x, 'get_timespan'):
                 counter[x.get_timespan().start_offset] += 1
                 counter[x.get_timespan().stop_offset] += 1
             else:
