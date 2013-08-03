@@ -6,9 +6,6 @@ import types
 class AbjadObject(object):
     '''Abstract base class from which all custom classes should inherit.
 
-    Abajd objects raise exceptions on ``__gt__``, ``__ge__``, 
-    ``__lt__``, ``__le__``.
-
     Abjad objects compare equal only with equal object IDs.
     '''
 
@@ -29,14 +26,14 @@ class AbjadObject(object):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''True when ``id(self)`` equals ``id(expr)``.
+        r'''True when id of `expr` equals id of Abjad object.
 
         Return boolean.
         '''
         return id(self) == id(expr)
 
     def __ne__(self, expr):
-        r'''Defined equal to the opposite of equality.
+        r'''True when the id of `expr` does not equal the id of Abjad object.
 
         Return boolean.
         '''

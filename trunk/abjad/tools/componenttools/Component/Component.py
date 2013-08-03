@@ -57,9 +57,10 @@ class Component(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        '''Copy component with marks but without children or spanners.
+        '''Copy component with marks but without children of component
+        or spanners attached to component.
 
-        Return newly created component.
+        Return new component.
         '''
         return self._copy_with_marks_but_without_children_or_spanners()
 
@@ -96,23 +97,6 @@ class Component(AbjadObject):
         lhs = self._class_name
         rhs = getattr(self, 'name', None) or id(self)
         return '{}-{!r}'.format(lhs, rhs)
-
-#    @property
-#    def _prolation(self):
-#        products = [fractions.Fraction(1)] + self._prolations
-#        products = mathtools.cumulative_products(products)
-#        return products[-1]
-
-#    @property
-#    def _prolations(self):
-#        prolations = []
-#        parent = self._parent
-#        default = durationtools.Multiplier(1)
-#        while parent is not None:
-#            prolation = getattr(parent, 'implied_prolation', default)
-#            prolations.append(prolation)
-#            parent = parent._parent
-#        return prolations
 
     ### PRIVATE METHODS ###
 
@@ -549,7 +533,7 @@ class Component(AbjadObject):
 
     @property
     def lilypond_format(self):
-        '''Lilypond format.
+        '''Lilypond format of component.
 
         Return string.
         '''
@@ -558,7 +542,9 @@ class Component(AbjadObject):
 
     @property
     def override(self):
-        r'''Reference to LilyPond grob override component plug-in.
+        r'''LilyPond grob override component plug-in.
+
+        Return LilyPond grob override component plug-in.
         '''
         if not hasattr(self, '_override'):
             self._override = \
@@ -567,7 +553,9 @@ class Component(AbjadObject):
 
     @property
     def set(self):
-        r'''Reference LilyPond context setting component plug-in.
+        r'''LilyPond context setting component plug-in.
+
+        Return LilyPond context setting component plug-in.
         '''
         if not hasattr(self, '_set'):
             self._set = \
@@ -576,14 +564,17 @@ class Component(AbjadObject):
 
     @property
     def spanners(self):
-        r'''Reference to unordered set of spanners attached 
-        to component.
+        r'''Spanners attached to componnet.
+
+        Return set.
         '''
         return set(self._spanners)
 
     @property
     def timespan(self):
         r'''Timespan of component.
+
+        Return timespan.
         '''
         self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
         return self._timespan
@@ -591,6 +582,8 @@ class Component(AbjadObject):
     @property
     def timespan_in_seconds(self):
         r'''Timespan of component in seconds.
+
+        Return timespan.
         '''
         self._update_offset_values_in_seconds_of_entire_score_tree_if_necessary()
         if self._start_offset_in_seconds is None:
@@ -604,18 +597,18 @@ class Component(AbjadObject):
 
     def extend_in_parent(
         self,
-        new_components,
+        components,
         direction=Right,
         grow_spanners=True,
         ):
-        '''Extend `new_components` in parent of component.
+        '''Extend `components` in parent of component.
 
-        Return list of component followed by `new_components`.
+        Return list of component followed by `components`.
         '''
         from abjad.tools import componenttools
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
-        assert componenttools.all_are_components(new_components)
+        assert componenttools.all_are_components(components)
         if direction == Right:
             if grow_spanners:
                 insert_offset = self.timespan.stop_offset
@@ -629,20 +622,20 @@ class Component(AbjadObject):
                         insert_index = spanner.index(insert_component)
                     else:
                         insert_index = len(spanner)
-                    for new_component in reversed(new_components):
-                        spanner._insert(insert_index, new_component)
-                        new_component._spanners.add(spanner)
+                    for component in reversed(components):
+                        spanner._insert(insert_index, component)
+                        component._spanners.add(spanner)
             selection = self.select(sequential=True)
             parent, start, stop = selection._get_parent_and_start_stop_indices()
             if parent is not None:
                 if grow_spanners:
-                    for new_component in reversed(new_components):
-                        new_component._set_parent(parent)
-                        parent._music.insert(start + 1, new_component)
+                    for component in reversed(components):
+                        component._set_parent(parent)
+                        parent._music.insert(start + 1, component)
                 else:
                     after = stop + 1
-                    parent.__setitem__(slice(after, after), new_components)
-            return [self] + new_components
+                    parent.__setitem__(slice(after, after), components)
+            return [self] + components
         else:
             if grow_spanners:
                 offset = self.timespan.start_offset
@@ -652,23 +645,24 @@ class Component(AbjadObject):
                     index = \
                         spannertools.find_index_of_spanner_component_at_score_offset(
                         spanner, offset)
-                    for new_component in reversed(new_components):
-                        spanner._insert(index, new_component)
-                        new_component._spanners.add(spanner)
+                    for component in reversed(components):
+                        spanner._insert(index, component)
+                        component._spanners.add(spanner)
             selection = self.select(sequential=True)
             parent, start, stop = selection._get_parent_and_start_stop_indices()
             if parent is not None:
                 if grow_spanners:
-                    for new_component in reversed(new_components):
-                        new_component._set_parent(parent)
-                        parent._music.insert(start, new_component)
+                    for component in reversed(components):
+                        component._set_parent(parent)
+                        parent._music.insert(start, component)
                 else:
-                    parent.__setitem__(slice(start, start), new_components)
-            return new_components + [self]
+                    parent.__setitem__(slice(start, start), components)
+            return components + [self]
 
+    def get_annotation_value(self, name, default=None):
+        r'''Get value of annotation with `name` attached to component.
 
-    def get_annotation_value(self, annotation_name, default=None):
-        r'''Get value of `annotation_name`:
+        Example:
 
         ::
 
@@ -681,11 +675,13 @@ class Component(AbjadObject):
             >>> staff[0].get_annotation_value('special dictionary')
             {}
 
-        Return arbitrary value of annotation.
+        Return value of annotation.
 
-        Return `default` when no `annotation_name` is attached.
+        Return `default` when no annotation with `name` is attached
+        to component.
 
-        Raise exception when more than one `annotation_name` is attached.
+        Raise exception when more than one annotation with `name`
+        is attached to component.
         '''
         from abjad.tools import marktools
         annotations = self.get_marks(marktools.Annotation)
@@ -693,7 +689,7 @@ class Component(AbjadObject):
             return default
         with_correct_name = []
         for annotation in annotations:
-            if annotation.name == annotation_name:
+            if annotation.name == name:
                 with_correct_name.append(annotation)
         if not with_correct_name:
             return default
@@ -703,7 +699,7 @@ class Component(AbjadObject):
         return annotation_value
 
     def get_duration(self, in_seconds=False):
-        '''Get duration.
+        '''Get duration of component.
 
         Return duration.
         '''
@@ -717,8 +713,10 @@ class Component(AbjadObject):
         self,
         context_mark_classes=None,
         ):
-        r'''Get effective context mark of `context_mark_class` from 
-        `component`:
+        r'''Get effective context mark of `context_mark_class` 
+        that governs component.
+
+        Example:
 
         ::
 
@@ -778,7 +776,7 @@ class Component(AbjadObject):
                 pass
 
     def get_effective_staff(self):
-        r'''Get effective staff.
+        r'''Get effective staff of component.
 
         Return staff or none.
         '''
@@ -797,7 +795,7 @@ class Component(AbjadObject):
         self,
         mark_classes=None,
         ):
-        '''Get mark.
+        '''Get exactly one mark of `mark_classes` attached to component.
 
         Raise exception when no mark of `mark_classes` is attached.
 
@@ -815,9 +813,9 @@ class Component(AbjadObject):
         self,
         mark_classes=None,
         ):
-        '''Get marks.
+        '''Get all marks of `mark_classes` attached to component.
 
-        Return list.
+        Return tuple.
         '''
         from abjad.tools import marktools
         mark_classes = mark_classes or (marktools.Mark,)
@@ -833,7 +831,9 @@ class Component(AbjadObject):
         self,
         direction=None,
         ):
-        r"""Get markup attached to `component`:
+        r"""Get all markup attached to component.
+
+        Example 1. Get all markup attached to component:
 
         ::
 
@@ -876,7 +876,7 @@ class Component(AbjadObject):
             >>> staff[0].get_markup()
             (Markup(('foo',))(c'8), Markup(('bar',))(c'8))
 
-        Get markup by direction:
+        Example 2. Get all up-markup attached to component:
 
         ::
 
@@ -901,6 +901,8 @@ class Component(AbjadObject):
             >>> chord.get_markup(direction=Up)
             (Markup(('UP',), direction=Up)(<cs d' f'>4),)
             
+        Example 3. Get all down-markup attached to component:
+
         ::
 
             >>> chord.get_markup(direction=Down)
@@ -930,7 +932,8 @@ class Component(AbjadObject):
             return selectiontools.SequentialSelection(music=self)
 
     def select_components(self, component_classes=None, include_self=True):
-        r'''Select `component_classes` in component.
+        r'''Select all components of `component_classes`
+        in the descendants of component.
 
         Return component selection.
         '''
@@ -946,7 +949,7 @@ class Component(AbjadObject):
     def select_contents(self, include_self=True):
         r'''Select contents of component.
 
-        Return selection.
+        Return sequential selection.
         '''
         from abjad.tools import selectiontools
         result = []
@@ -956,12 +959,15 @@ class Component(AbjadObject):
         result = selectiontools.SequentialSelection(result)
         return result
 
+    # TODO: remove cross_offset keyword
     def select_descendants(
         self,
         cross_offset=None,
         include_self=True,
         ):
-        r'''Select descendants.
+        r'''Select descendants of component.
+
+        Return descendants.
         '''
         from abjad.tools import componenttools
         return componenttools.Descendants(
@@ -971,19 +977,25 @@ class Component(AbjadObject):
             )
 
     def select_lineage(self):
-        r'''Select lineage.
+        r'''Select lineage of component.
+        
+        Return lineage.
         '''
         from abjad.tools import componenttools
         return componenttools.Lineage(self)
 
     def select_parentage(self, include_self=True):
-        r'''Select parentage.
+        r'''Select parentage of component.
+
+        Return parentage.
         '''
         from abjad.tools import componenttools
         return componenttools.Parentage(self, include_self=include_self)
 
     def select_vertical_moment(self, governor=None):
         r'''Select vertical moment starting with component.
+
+        Return vertical moment.
         '''
         from abjad.tools import componenttools
         offset = self.timespan.start_offset
@@ -993,6 +1005,8 @@ class Component(AbjadObject):
 
     def select_vertical_moment_at(self, offset):
         r'''Select vertical moment at `offset`.
+
+        Return vertical moment.
         '''
         from abjad.tools import componenttools
         return componenttools.VerticalMoment(self, offset)
