@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_Tuplet_timespan_in_seconds_01():
+def test_Tuplet_get_timespan_01():
 
     staff = Staff(r"c'4 d'4 \times 2/3 { e'4 f'4 g'4 }")
     score = Score([staff])
@@ -23,7 +23,11 @@ def test_Tuplet_timespan_in_seconds_01():
     >>
     '''
 
-    assert staff.timespan_in_seconds == timespantools.Timespan(0, 4)
-    assert staff[0].timespan_in_seconds == timespantools.Timespan(0, 1)
-    assert staff[1].timespan_in_seconds == timespantools.Timespan(1, 2)
-    assert staff[-1].timespan_in_seconds == timespantools.Timespan(2, 4)
+    assert staff.get_timespan(in_seconds=True) == \
+        timespantools.Timespan(0, 4)
+    assert staff[0].get_timespan(in_seconds=True) == \
+        timespantools.Timespan(0, 1)
+    assert staff[1].get_timespan(in_seconds=True) == \
+        timespantools.Timespan(1, 2)
+    assert staff[-1].get_timespan(in_seconds=True) == \
+        timespantools.Timespan(2, 4)

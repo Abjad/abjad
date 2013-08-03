@@ -18,8 +18,8 @@ def test_Component_start_offset_in_seconds_01():
     }
     '''
 
-    assert py.test.raises(MissingTempoError, 't[0].timespan_in_seconds.start_offset')
-    assert py.test.raises(MissingTempoError, 't[0].timespan_in_seconds.start_offset')
+    statement = 't[0].get_timespan(in_seconds=True).start_offset'
+    assert py.test.raises(MissingTempoError, statement)
 
 
 def test_Component_start_offset_in_seconds_02():
@@ -39,5 +39,5 @@ def test_Component_start_offset_in_seconds_02():
     }
     '''
 
-    assert t[0].timespan_in_seconds.start_offset == Duration(0)
-    assert t[1].timespan_in_seconds.start_offset == Duration(5, 4)
+    assert t[0].get_timespan(in_seconds=True).start_offset == Duration(0)
+    assert t[1].get_timespan(in_seconds=True).start_offset == Duration(5, 4)
