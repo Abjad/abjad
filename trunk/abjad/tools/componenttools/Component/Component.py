@@ -562,17 +562,6 @@ class Component(AbjadObject):
                 lilypondproxytools.LilyPondContextSettingComponentPlugIn()
         return self._set
 
-    @property
-    def spanners(self):
-        r'''Spanners attached to componnet.
-
-        Return set.
-
-        .. note:: Deprecated. Use self.get_spanners() instead.
-        '''
-        return set(self._spanners)
-        #raise Exception('deprecated')
-
     ### PUBLIC METHODS ###
 
     def extend_in_parent(
