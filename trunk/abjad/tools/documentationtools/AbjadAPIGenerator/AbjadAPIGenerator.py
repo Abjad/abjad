@@ -44,7 +44,8 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         from abjad.tools import documentationtools
 
         if verbose:
-            print 'Now making Sphinx TOCs ...'
+            print 'Now writing ReStructured Text files...'
+            print
 
         ignored_directory_names = ['.svn', 'test', '__pycache__']
         ignored_directory_names.extend(self._undocumented_packages)
