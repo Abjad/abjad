@@ -3,7 +3,7 @@ import types
 from abjad.tools import selectiontools
 
 
-def all_are_components(expr, classes=None):
+def all_are_components(expr, component_classes=None):
     '''True when elements in `expr` are all components:
 
     ::
@@ -18,18 +18,18 @@ def all_are_components(expr, classes=None):
         >>> componenttools.all_are_components(['foo', 'bar'])
         False
 
-    True when elements in `expr` are all `classes`:
+    True when elements in `expr` are all `component_classes`:
 
     ::
 
-        >>> componenttools.all_are_components(3 * Note("c'4"), classes=Note)
+        >>> componenttools.all_are_components(3 * Note("c'4"), component_classes=Note)
         True
 
     Otherwise false:
 
     ::
 
-        >>> componenttools.all_are_components(['foo', 'bar'], classes=Note)
+        >>> componenttools.all_are_components(['foo', 'bar'], component_classes=Note)
         False
 
     Return boolean.
@@ -40,11 +40,11 @@ def all_are_components(expr, classes=None):
     if not isinstance(expr, allowable):
         return False
 
-    if classes is None:
-        classes = componenttools.Component
+    if component_classes is None:
+        component_classes = componenttools.Component
 
     for element in expr:
-        if not isinstance(element, classes):
+        if not isinstance(element, component_classes):
             return False
 
     return True

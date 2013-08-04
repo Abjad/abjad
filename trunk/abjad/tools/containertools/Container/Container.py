@@ -463,7 +463,7 @@ class Container(Component):
             assert isinstance(expr, bool), repr(expr)
             if expr == True:
                 assert componenttools.all_are_components(
-                    self._music, classes=(Context, ))
+                    self._music, component_classes=(Context, ))
             self._parallel = expr
             self._mark_entire_score_tree_for_later_update('prolated')
         return property(**locals())
