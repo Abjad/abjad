@@ -169,6 +169,16 @@ class Measure(FixedDurationContainer):
 
     ### PRIVATE METHODS ###
 
+    def _all_contents_are_scalable_by_multiplier(self, multiplier):
+        from abjad.tools import leaftools
+        multiplier = durationtools.Multiplier(multiplier)
+        for component in self:
+            if isinstance(component, leaftools.Leaf):
+                candidate_duration = multiplier * component.written_duration
+                if not candidate_duration.is_assignable:
+                    return False
+        return True
+
     def _check_duration(self):
         from abjad.tools import contexttools
         effective_time_signature = self.get_effective_context_mark(
