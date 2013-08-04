@@ -194,6 +194,22 @@ class Tuplet(Container):
 
     ### PRIVATE METHODS ###
 
+    def _fix(self):
+        from abjad.tools import leaftools
+        from abjad.tools import tuplettools
+        if not isinstance(self, tuplettools.FixedDurationTuplet):
+            return
+        # find tuplet multiplier
+        integer_exponent = int(math.log(self.multiplier, 2))
+        leaf_multiplier = fractions.Fraction(2) ** integer_exponent
+        # scale leaves in tuplet by power of two
+        for component in self:
+            if isinstance(component, leaftools.Leaf):
+                old_written_duration = component.written_duration
+                new_written_duration = leaf_multiplier * old_written_duration
+                leaftools.set_preprolated_leaf_duration(
+                    component, new_written_duration)
+
     def _format_after_slot(self, format_contributions):
         r'''Tuple of format contributions to appear 
         immediately after self closing.
@@ -711,13 +727,8 @@ class Tuplet(Container):
                 )
         # make tuplet
         tuplet = tuplettools.FixedDurationTuplet(duration, notes)
-
-        # TODO: change to tuplet._fix()
-        ## fix tuplet contents if necessary
-        #tuplettools.fix_contents_of_tuplets_in_expr(tuplet)
-        selection = selectiontools.select_tuplets([tuplet])
-        selection.fix()
-
+        # fix tuplet contents if necessary
+        tuplet._fix()
         # change prolation if necessary
         if not tuplet.multiplier == 1:
             if is_diminution:

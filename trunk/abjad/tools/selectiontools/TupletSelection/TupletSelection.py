@@ -63,17 +63,7 @@ class TupletSelection(FreeSelection):
         from abjad.tools import leaftools
         from abjad.tools import tuplettools
         for tuplet in self:
-            if isinstance(tuplet, tuplettools.FixedDurationTuplet):
-                # find tuplet multiplier
-                integer_exponent = int(math.log(tuplet.multiplier, 2))
-                leaf_multiplier = fractions.Fraction(2) ** integer_exponent
-                # scale leaves in tuplet by power of two
-                for component in tuplet[:]:
-                    if isinstance(component, leaftools.Leaf):
-                        old_written_duration = component.written_duration
-                        new_written_duration = leaf_multiplier * old_written_duration
-                        leaftools.set_preprolated_leaf_duration(
-                            component, new_written_duration)
+            tuplet._fix()
 
     def fuse(self):
         r'''Fuse parent-contiguous tuplets in selection.
