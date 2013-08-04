@@ -570,7 +570,7 @@ class Component(AbjadObject):
         direction=Right,
         grow_spanners=True,
         ):
-        '''Extend `components` in parent of component.
+        r'''Extend `components` in parent of component.
 
         Return list of component followed by `components`.
         '''
@@ -631,21 +631,6 @@ class Component(AbjadObject):
     def get_annotation_value(self, name, default=None):
         r'''Get value of annotation with `name` attached to component.
 
-        Example:
-
-        ::
-
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> marktools.Annotation('special dictionary', {})(staff[0])
-            Annotation('special dictionary', {})(c'8)
-
-        ::
-
-            >>> staff[0].get_annotation_value('special dictionary')
-            {}
-
-        Return value of annotation.
-
         Return `default` when no annotation with `name` is attached
         to component.
 
@@ -668,7 +653,7 @@ class Component(AbjadObject):
         return annotation_value
 
     def get_duration(self, in_seconds=False):
-        '''Get duration of component.
+        r'''Get duration of component.
 
         Return duration.
         '''
@@ -684,31 +669,6 @@ class Component(AbjadObject):
         ):
         r'''Get effective context mark of `context_mark_class` 
         that governs component.
-
-        Example:
-
-        ::
-
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> contexttools.TimeSignatureMark((4, 8))(staff)
-            TimeSignatureMark((4, 8))(Staff{4})
-
-        ..  doctest::
-
-            >>> f(staff)
-            \new Staff {
-                \time 4/8
-                c'8
-                d'8
-                e'8
-                f'8
-            }
-
-        ::
-
-            >>> staff[0].get_effective_context_mark(
-            ...     contexttools.TimeSignatureMark)
-            TimeSignatureMark((4, 8))(Staff{4})
 
         Return context mark or none.
         '''
@@ -765,7 +725,7 @@ class Component(AbjadObject):
         self,
         mark_classes=None,
         ):
-        '''Get exactly one mark of `mark_classes` attached to component.
+        r'''Get exactly one mark of `mark_classes` attached to component.
 
         Raise exception when no mark of `mark_classes` is attached.
 
@@ -783,7 +743,7 @@ class Component(AbjadObject):
         self,
         mark_classes=None,
         ):
-        '''Get all marks of `mark_classes` attached to component.
+        r'''Get all marks of `mark_classes` attached to component.
 
         Return tuple.
         '''
@@ -801,85 +761,10 @@ class Component(AbjadObject):
         self,
         direction=None,
         ):
-        r"""Get all markup attached to component.
-
-        Example 1. Get all markup attached to component:
-
-        ::
-
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> slur = spannertools.SlurSpanner(staff[:])
-
-        ::
-
-            >>> markuptools.Markup('foo')(staff[0])
-            Markup(('foo',))(c'8)
-
-        ::
-
-            >>> markuptools.Markup('bar')(staff[0])
-            Markup(('bar',))(c'8)
-
-        .. doctest::
-
-            >>> f(staff)
-            \new Staff {
-                c'8 (
-                    - \markup {
-                        \column
-                            {
-                                foo
-                                bar
-                            }
-                        }
-                d'8
-                e'8
-                f'8 )
-            }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
-            >>> staff[0].get_markup()
-            (Markup(('foo',))(c'8), Markup(('bar',))(c'8))
-
-        Example 2. Get all up-markup attached to component:
-
-        ::
-
-            >>> chord = Chord([-11, 2, 5], (1, 4))
-
-        ::
-
-            >>> markuptools.Markup('UP', Up)(chord)
-            Markup(('UP',), direction=Up)(<cs d' f'>4)
-
-        ::
-
-            >>> markuptools.Markup('DOWN', Down)(chord)
-            Markup(('DOWN',), direction=Down)(<cs d' f'>4)
-
-        ::
-
-            >>> show(chord) # doctest: +SKIP
-            
-        ::
-
-            >>> chord.get_markup(direction=Up)
-            (Markup(('UP',), direction=Up)(<cs d' f'>4),)
-            
-        Example 3. Get all down-markup attached to component:
-
-        ::
-
-            >>> chord.get_markup(direction=Down)
-            (Markup(('DOWN',), direction=Down)(<cs d' f'>4),)
+        r'''Get all markup attached to component.
 
         Return tuple of zero or more markup objects.
-        """
+        '''
         from abjad.tools import markuptools
         markup = self.get_marks(mark_classes=(markuptools.Markup,))
         if direction is Up:
@@ -896,7 +781,7 @@ class Component(AbjadObject):
         return set(self._spanners)
 
     def get_timespan(self, in_seconds=False):
-        '''Get timespan of component.
+        r'''Get timespan of component.
 
         Return timespan.
         '''
