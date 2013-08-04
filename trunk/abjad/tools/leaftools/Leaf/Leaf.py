@@ -88,13 +88,26 @@ class Leaf(Component):
     def _formatted_duration(self):
         duration_string = self.written_duration.lilypond_duration_string
         if self.lilypond_duration_multiplier is not None:
-            return '%s * %s' % (duration_string, self.lilypond_duration_multiplier)
+            return '{} * {}'.format(
+                duration_string, self.lilypond_duration_multiplier)
         else:
             return duration_string
 
     @property
+    def _multiplied_duration(self):
+        if self.written_duration:
+            if self.lilypond_duration_multiplier is not None:
+                multiplied_duration = self.written_duration
+                multiplied_duration *= self.lilypond_duration_multiplier
+                return multiplied_duration
+            else:
+                return durationtools.Duration(self.written_duration)
+        else:
+            return None
+
+    @property
     def _preprolated_duration(self):
-        return self.multiplied_duration
+        return self._multiplied_duration
 
     ### PRIVATE METHODS ###
 
@@ -355,20 +368,6 @@ class Leaf(Component):
         '''
         self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
         return self._leaf_index
-
-    @property
-    def multiplied_duration(self):
-        '''Multiplier duration of leaf.
-
-        Return duration.
-        '''
-        if self.written_duration:
-            if self.lilypond_duration_multiplier is not None:
-                return self.written_duration * self.lilypond_duration_multiplier
-            else:
-                return durationtools.Duration(self.written_duration)
-        else:
-            return None
 
     @apply
     def written_duration():
