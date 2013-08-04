@@ -3,13 +3,13 @@ from abjad.tools import durationtools
 from abjad.tools import sequencetools
 
 
-def make_quarter_notes_with_lilypond_multipliers(pitches, multiplied_durations):
+def make_quarter_notes_with_lilypond_duration_multiplier(pitches, multiplied_durations):
     r'''Make quarter notes with `pitches` and `multiplied_durations`:
 
     ::
 
         >>> args = [[0, 2, 4, 5], [(1, 4), (1, 5), (1, 6), (1, 7)]]
-        >>> notetools.make_quarter_notes_with_lilypond_multipliers(*args)
+        >>> notetools.make_quarter_notes_with_lilypond_duration_multiplier(*args)
         [Note("c'4 * 1"), Note("d'4 * 4/5"), Note("e'4 * 2/3"), Note("f'4 * 4/7")]
 
     Read `pitches` cyclically where the length of `pitches` is
@@ -18,7 +18,7 @@ def make_quarter_notes_with_lilypond_multipliers(pitches, multiplied_durations):
     ::
 
         >>> args = [[0], [(1, 4), (1, 5), (1, 6), (1, 7)]]
-        >>> notetools.make_quarter_notes_with_lilypond_multipliers(*args)
+        >>> notetools.make_quarter_notes_with_lilypond_duration_multiplier(*args)
         [Note("c'4 * 1"), Note("c'4 * 4/5"), Note("c'4 * 2/3"), Note("c'4 * 4/7")]
 
     Read `multiplied_durations` cyclically where the length of
@@ -27,7 +27,7 @@ def make_quarter_notes_with_lilypond_multipliers(pitches, multiplied_durations):
     ::
 
         >>> args = [[0, 2, 4, 5], [(1, 5)]]
-        >>> notetools.make_quarter_notes_with_lilypond_multipliers(*args)
+        >>> notetools.make_quarter_notes_with_lilypond_duration_multiplier(*args)
         [Note("c'4 * 4/5"), Note("d'4 * 4/5"), Note("e'4 * 4/5"), Note("f'4 * 4/5")]
 
     Return list of zero or more newly constructed notes.

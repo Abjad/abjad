@@ -2,10 +2,10 @@
 from abjad import *
 
 
-def test_notetools_make_quarter_notes_with_lilypond_multipliers_01():
+def test_notetools_make_quarter_notes_with_lilypond_duration_multiplier_01():
 
     multipliers = [(1, 4), (1, 5), (1, 6), (1, 7)]
-    notes = notetools.make_quarter_notes_with_lilypond_multipliers([0], multipliers)
+    notes = notetools.make_quarter_notes_with_lilypond_duration_multiplier([0], multipliers)
     t = Staff(notes)
 
     r'''

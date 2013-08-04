@@ -425,7 +425,7 @@ class PitchArray(AbjadObject):
         array_width = len(time_intervals)
         array_depth = len(score)
         pitch_array = PitchArray(array_depth, array_width)
-        tokens = notetools.make_quarter_notes_with_lilypond_multipliers(
+        tokens = notetools.make_quarter_notes_with_lilypond_duration_multiplier(
             [0], time_intervals)
         for leaf_iterable, pitch_array_row in \
             zip(score, pitch_array.rows):
