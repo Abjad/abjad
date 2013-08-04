@@ -48,10 +48,10 @@ def change_written_leaf_duration_and_preserve_preprolated_leaf_duration(leaf, wr
     leaf.written_duration = written_duration
 
     # change leaf multiplier if required
-    leaf.duration_multiplier = None
+    leaf.lilypond_duration_multiplier = None
     multiplier = previous / leaf.written_duration
     if multiplier != 1:
-        leaf.duration_multiplier = multiplier
+        leaf.lilypond_duration_multiplier = multiplier
 
     # return leaf
     return leaf

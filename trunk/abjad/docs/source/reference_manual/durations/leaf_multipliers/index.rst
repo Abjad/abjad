@@ -14,8 +14,8 @@ attribute of notes, rests and chords.
 ::
 
    >>> note = Note("c'4")
-   >>> note.duration_multiplier = Fraction(1, 2)
-   >>> note.duration_multiplier
+   >>> note.lilypond_duration_multiplier = Fraction(1, 2)
+   >>> note.lilypond_duration_multiplier
    Multiplier(1, 2)
 
 
@@ -40,7 +40,7 @@ LilyPond multipliers give the half notes here multiplied durations equal to a qu
 
    >>> notes = Note("c'4") * 4
    >>> multiplied_note = Note(0, (1, 2))
-   >>> multiplied_note.duration_multiplier = Fraction(1, 2)
+   >>> multiplied_note.lilypond_duration_multiplier = Fraction(1, 2)
    >>> multiplied_notes = multiplied_note * 4
    >>> top = stafftools.RhythmicStaff(notes)
    >>> bottom = stafftools.RhythmicStaff(multiplied_notes)

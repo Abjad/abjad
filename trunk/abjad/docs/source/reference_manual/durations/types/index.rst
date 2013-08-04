@@ -165,8 +165,8 @@ The first two notes below carry leaf mulitipliers equal to ``2/1``:
 ::
 
    >>> notes = 4 * Note("c'16")
-   >>> notes[0].duration_multiplier = Fraction(2, 1)
-   >>> notes[1].duration_multiplier = Fraction(2, 1)
+   >>> notes[0].lilypond_duration_multiplier = Fraction(2, 1)
+   >>> notes[1].lilypond_duration_multiplier = Fraction(2, 1)
    >>> measure = Measure((3, 8), notes)
    >>> beam = spannertools.BeamSpanner(measure)
    >>> staff = stafftools.RhythmicStaff([measure])
@@ -188,13 +188,13 @@ The first two notes below carry leaf mulitipliers equal to ``2/1``:
 
 ::
 
-   >>> note.duration_multiplier
+   >>> note.lilypond_duration_multiplier
    Multiplier(2, 1)
 
 
 ::
 
-   >>> note.written_duration * note.duration_multiplier
+   >>> note.written_duration * note.lilypond_duration_multiplier
    Duration(1, 8)
    >>> note.multiplied_duration
    Duration(1, 8)

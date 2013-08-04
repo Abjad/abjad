@@ -6,7 +6,7 @@ def test_Leaf_multiplied_duration_01():
     r'''Mulplied leaf duration == written * multiplier.
     '''
     t = Note("c'4")
-    t.duration_multiplier = Duration(1, 2)
+    t.lilypond_duration_multiplier = Duration(1, 2)
     assert t.multiplied_duration == Duration(1, 8)
 
 
@@ -24,10 +24,10 @@ def test_Leaf_multiplied_duration_03():
     leaftools.change_written_leaf_duration_and_preserve_preprolated_leaf_duration(
         t, Duration(3, 8))
     assert t.written_duration == Duration(3, 8)
-    assert t.duration_multiplier == Duration(2, 3)
+    assert t.lilypond_duration_multiplier == Duration(2, 3)
     assert t.multiplied_duration == Duration(1, 4)
     leaftools.change_written_leaf_duration_and_preserve_preprolated_leaf_duration(
         t, Duration(1, 4))
     assert t.written_duration == Duration(1, 4)
-    assert t.duration_multiplier is None
+    assert t.lilypond_duration_multiplier is None
     assert t.multiplied_duration == Duration(1, 4)

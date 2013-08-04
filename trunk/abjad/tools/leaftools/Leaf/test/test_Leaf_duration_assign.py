@@ -31,13 +31,13 @@ def test_Leaf_duration_assign_04():
     r'''Multiplier duration can be assigned a Duration.
     '''
     t = Note(1, (1, 4))
-    t.duration_multiplier = Duration(1, 8)
-    assert t.duration_multiplier == Duration(1, 8)
+    t.lilypond_duration_multiplier = Duration(1, 8)
+    assert t.lilypond_duration_multiplier == Duration(1, 8)
 
 
 def test_Leaf_duration_assign_05():
     r'''Multiplier duration can be assigned an int.
     '''
     t = Note(1, (1, 4))
-    t.duration_multiplier = 2
-    assert t.duration_multiplier == Duration(2, 1)
+    t.lilypond_duration_multiplier = 2
+    assert t.lilypond_duration_multiplier == Duration(2, 1)

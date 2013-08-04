@@ -19,7 +19,7 @@ class Leaf(Component):
         '_after_grace', 
         '_grace', 
         '_leaf_index',
-        '_duration_multiplier', 
+        '_lilypond_duration_multiplier', 
         '_written_duration',
         '_written_pitch_indication_is_nonsemantic',
         '_written_pitch_indication_is_at_sounding_pitch',
@@ -29,9 +29,9 @@ class Leaf(Component):
 
     ### INITIALIZER ###
 
-    def __init__(self, written_duration, duration_multiplier=None):
+    def __init__(self, written_duration, lilypond_duration_multiplier=None):
         Component.__init__(self)
-        self._duration_multiplier = duration_multiplier
+        self._lilypond_duration_multiplier = lilypond_duration_multiplier
         self._leaf_index = None
         self.written_duration = durationtools.Duration(written_duration)
         self.written_pitch_indication_is_nonsemantic = False
@@ -46,8 +46,8 @@ class Leaf(Component):
         '''
         result = []
         result.append(self.written_duration)
-        if self.duration_multiplier is not None:
-            result.append(self.duration_multiplier)
+        if self.lilypond_duration_multiplier is not None:
+            result.append(self.lilypond_duration_multiplier)
         return tuple(result)
 
     def __repr__(self):
@@ -87,8 +87,8 @@ class Leaf(Component):
     @property
     def _formatted_duration(self):
         duration_string = self.written_duration.lilypond_duration_string
-        if self.duration_multiplier is not None:
-            return '%s * %s' % (duration_string, self.duration_multiplier)
+        if self.lilypond_duration_multiplier is not None:
+            return '%s * %s' % (duration_string, self.lilypond_duration_multiplier)
         else:
             return duration_string
 
@@ -331,28 +331,40 @@ class Leaf(Component):
     ### PUBLIC PROPERTIES ###
 
     @apply
-    def duration_multiplier():
+    def lilypond_duration_multiplier():
         def fget(self):
-            return self._duration_multiplier
+            '''LilyPond duration multiplier.
+
+            Return multiplier or none.
+            '''
+            return self._lilypond_duration_multiplier
         def fset(self, expr):
             if expr is None:
-                self._duration_multiplier = None
+                self._lilypond_duration_multiplier = None
             else:
-                duration_multiplier = durationtools.Multiplier(expr)
-                assert 0 <= duration_multiplier
-                self._duration_multiplier = duration_multiplier
+                lilypond_duration_multiplier = durationtools.Multiplier(expr)
+                assert 0 <= lilypond_duration_multiplier
+                self._lilypond_duration_multiplier = lilypond_duration_multiplier
         return property(**locals())
 
     @property
     def leaf_index(self):
+        '''Leaf index.
+
+        Return nonnegative integer.
+        '''
         self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
         return self._leaf_index
 
     @property
     def multiplied_duration(self):
+        '''Multiplier duration of leaf.
+
+        Return duration.
+        '''
         if self.written_duration:
-            if self.duration_multiplier is not None:
-                return self.written_duration * self.duration_multiplier
+            if self.lilypond_duration_multiplier is not None:
+                return self.written_duration * self.lilypond_duration_multiplier
             else:
                 return durationtools.Duration(self.written_duration)
         else:
@@ -361,6 +373,10 @@ class Leaf(Component):
     @apply
     def written_duration():
         def fget(self):
+            '''Written duration of leaf.
+
+            Return duration.
+            '''
             return self._written_duration
         def fset(self, expr):
             rational = durationtools.Duration(expr)
@@ -372,31 +388,37 @@ class Leaf(Component):
 
     @apply
     def written_pitch_indication_is_at_sounding_pitch():
-        def fset(self, arg):
-            r'''Read / write flag to be set to false when pitch indication 
-            is transposed.
+        def fget(self):
+            r'''True when written pitch is at sounding pitch.
+            False when written pitch is transposed.
+
+            Return boolean.
             '''
+            return self._written_pitch_indication_is_at_sounding_pitch
+        def fset(self, arg):
             if not isinstance(arg, bool):
                 raise TypeError
             self._written_pitch_indication_is_at_sounding_pitch = arg
-        def fget(self):
-            return self._written_pitch_indication_is_at_sounding_pitch
         return property(**locals())
 
     @apply
     def written_pitch_indication_is_nonsemantic():
-        def fset(self, arg):
-            r'''Read / write flag to be set when using leaves only graphically.
+        def fget(self):
+            r'''True when pitch is nonsemantic.
 
-            setting this value to true sets sounding pitch indicator to false.
+            Set to true when using leaves only graphically.
+
+            Setting this value to true sets sounding pitch indicator to false.
+
+            Return boolean.
             '''
+            return self._written_pitch_indication_is_nonsemantic
+        def fset(self, arg):
             if not isinstance(arg, bool):
                 raise TypeError
             self._written_pitch_indication_is_nonsemantic = arg
             if arg == True:
                 self.written_pitch_indication_is_at_sounding_pitch = False
-        def fget(self):
-            return self._written_pitch_indication_is_nonsemantic
         return property(**locals())
 
     ### PUBLIC METHODS ###

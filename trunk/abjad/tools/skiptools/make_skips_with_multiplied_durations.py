@@ -26,7 +26,7 @@ def make_skips_with_multiplied_durations(written_duration, multiplied_durations)
         multiplied_duration = durationtools.Duration(multiplied_duration)
         skip = skiptools.Skip(written_duration)
         multiplier = multiplied_duration / written_duration
-        skip.duration_multiplier = multiplier
+        skip.lilypond_duration_multiplier = multiplier
         skips.append(skip)
 
     # return skips

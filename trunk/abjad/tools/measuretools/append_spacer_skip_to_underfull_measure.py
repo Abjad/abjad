@@ -51,7 +51,7 @@ def append_spacer_skip_to_underfull_measure(rigid_measure):
         time_signature_multiplier = rigid_measure.get_effective_context_mark(
             contexttools.TimeSignatureMark).implied_prolation
         new_multiplier = (target_duration - duration) / time_signature_multiplier
-        skip.duration_multiplier = new_multiplier
+        skip.lilypond_duration_multiplier = new_multiplier
         rigid_measure.append(skip)
 
     return rigid_measure

@@ -51,8 +51,8 @@ def test_leaftools_fuse_leaves_05():
     '''
 
     t = Staff([skiptools.Skip((1, 1)), skiptools.Skip((1, 1))])
-    t[0].duration_multiplier = Duration(1, 16)
-    t[1].duration_multiplier = Duration(5, 16)
+    t[0].lilypond_duration_multiplier = Duration(1, 16)
+    t[1].lilypond_duration_multiplier = Duration(5, 16)
 
     r'''
     \new Staff {

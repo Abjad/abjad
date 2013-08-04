@@ -1128,7 +1128,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         'event_chord : MULTI_MEASURE_REST optional_notemode_duration post_events'
         rest = resttools.MultimeasureRest(p[2].duration)
         if p[2].multiplier is not None:
-            rest.duration_multiplier = p[2].multiplier
+            rest.lilypond_duration_multiplier = p[2].multiplier
         self.client._process_post_events(rest, p[3])
         p[0] = rest
 
@@ -3065,7 +3065,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         else:
             rest = skiptools.Skip(p[2].duration)
         if p[2].multiplier is not None:
-            rest.duration_multiplier = p[2].multiplier
+            rest.lilypond_duration_multiplier = p[2].multiplier
         p[0] = rest
 
 
@@ -3079,7 +3079,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             leaf = resttools.Rest(p[5].duration)
             resttools.set_vertical_positioning_pitch_on_rest(leaf, p[1])
         if p[5].multiplier is not None:
-            leaf.duration_multiplier = p[5].multiplier
+            leaf.lilypond_duration_multiplier = p[5].multiplier
         # TODO: handle exclamations, questions, octave_check
         p[0] = leaf
 

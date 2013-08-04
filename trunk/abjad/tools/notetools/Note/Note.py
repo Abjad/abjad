@@ -51,7 +51,7 @@ class Note(Leaf):
         if len(args) == 1 and isinstance(args[0], Leaf):
             leaf = args[0]
             written_duration = leaf.written_duration
-            lilypond_multiplier = leaf.duration_multiplier
+            lilypond_multiplier = leaf.lilypond_duration_multiplier
             if hasattr(leaf, 'written_pitch'):
                 pitch = leaf.written_pitch
                 is_cautionary = leaf.note_head.is_cautionary

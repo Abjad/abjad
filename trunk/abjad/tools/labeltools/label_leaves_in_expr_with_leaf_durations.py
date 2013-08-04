@@ -112,8 +112,8 @@ def label_leaves_in_expr_with_leaf_durations(
         tie_spanners = spannertools.get_spanners_attached_to_component(
             leaf, spanner_classes=spanner_classes)
         if not tie_spanners:
-            if leaf.duration_multiplier is not None:
-                multiplier = '* %s' % str(leaf.duration_multiplier)
+            if leaf.lilypond_duration_multiplier is not None:
+                multiplier = '* %s' % str(leaf.lilypond_duration_multiplier)
             else:
                 multiplier = ''
             if label_written_durations:

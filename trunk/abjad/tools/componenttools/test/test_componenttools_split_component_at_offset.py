@@ -1047,7 +1047,7 @@ def test_componenttools_split_component_at_offset_20():
     '''
 
     t = Note(0, (1, 8))
-    t.duration_multiplier = Fraction(1, 2)
+    t.lilypond_duration_multiplier = Fraction(1, 2)
 
     "c'8 * 1/2"
 
@@ -1070,7 +1070,7 @@ def test_componenttools_split_component_at_offset_21():
     '''
 
     t = Note(0, (1, 8))
-    t.duration_multiplier = Fraction(1, 2)
+    t.lilypond_duration_multiplier = Fraction(1, 2)
 
     "c'8 * 1/2"
 
@@ -1094,7 +1094,7 @@ def test_componenttools_split_component_at_offset_22():
     t = Staff(Measure((2, 16), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     for leaf in t.select_leaves():
-        leaf.duration_multiplier = Fraction(1, 2)
+        leaf.lilypond_duration_multiplier = Fraction(1, 2)
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.select_leaves())
@@ -1151,7 +1151,7 @@ def test_componenttools_split_component_at_offset_23():
     t = Staff(Measure((2, 16), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     for leaf in t.select_leaves():
-        leaf.duration_multiplier = Fraction(1, 2)
+        leaf.lilypond_duration_multiplier = Fraction(1, 2)
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.select_leaves())
@@ -1210,7 +1210,7 @@ def test_componenttools_split_component_at_offset_24():
     t = Staff(Measure((2, 16), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     for leaf in t.select_leaves():
-        leaf.duration_multiplier = Fraction(1, 2)
+        leaf.lilypond_duration_multiplier = Fraction(1, 2)
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.select_leaves())
@@ -1269,7 +1269,7 @@ def test_componenttools_split_component_at_offset_25():
     '''
 
     t = Staff([Measure((5, 16), [skiptools.Skip((1, 1))])])
-    t.select_leaves()[0].duration_multiplier = Fraction(5, 16)
+    t.select_leaves()[0].lilypond_duration_multiplier = Fraction(5, 16)
 
     r'''
     \new Staff {

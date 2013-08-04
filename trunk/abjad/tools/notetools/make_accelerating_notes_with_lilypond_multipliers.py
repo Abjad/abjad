@@ -81,7 +81,7 @@ def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, sto
     result = []
     for i, multiplier in enumerate(multipliers):
         note = notetools.Note(pitches[i % len(pitches)], written)
-        note.duration_multiplier = durationtools.Multiplier(multiplier / written)
+        note.lilypond_duration_multiplier = durationtools.Multiplier(multiplier / written)
         result.append(note)
 
     # return result

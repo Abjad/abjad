@@ -29,26 +29,26 @@ def test_Leaf_duration_compare_04():
     r'''Multiplier Durations can be evaluated for equality with Durations.
     '''
     t = Note(1, (1, 4))
-    t.duration_multiplier = Duration(1, 4)
-    assert t.duration_multiplier == Duration(1, 4)
+    t.lilypond_duration_multiplier = Duration(1, 4)
+    assert t.lilypond_duration_multiplier == Duration(1, 4)
 
 
 def test_Leaf_duration_compare_05():
     r'''Multiplier Durations can be evaluated for equality with integers.
     '''
     t = Note(1, 4)
-    t.duration_multiplier = Duration(1)
-    assert t.duration_multiplier == Duration(1)
-    assert t.duration_multiplier == 1
-    assert t.duration_multiplier != (1, 1)
-    assert t.duration_multiplier != 'foo'
+    t.lilypond_duration_multiplier = Duration(1)
+    assert t.lilypond_duration_multiplier == Duration(1)
+    assert t.lilypond_duration_multiplier == 1
+    assert t.lilypond_duration_multiplier != (1, 1)
+    assert t.lilypond_duration_multiplier != 'foo'
 
 
 def test_Leaf_duration_compare_06():
     r'''Multiplier durations compare unequally with
         all values other than Durations.'''
     t = Note("c'4")
-    t.duration_multiplier = Duration(1, 8)
-    assert t.duration_multiplier == Duration(1, 8)
-    assert t.duration_multiplier != (1, 8)
-    assert t.duration_multiplier != 'foo'
+    t.lilypond_duration_multiplier = Duration(1, 8)
+    assert t.lilypond_duration_multiplier == Duration(1, 8)
+    assert t.lilypond_duration_multiplier != (1, 8)
+    assert t.lilypond_duration_multiplier != 'foo'

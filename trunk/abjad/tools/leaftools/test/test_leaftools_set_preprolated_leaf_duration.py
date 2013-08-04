@@ -175,7 +175,7 @@ def test_leaftools_set_preprolated_leaf_duration_06():
     '''
 
     t = Note(0, (1, 8))
-    t.duration_multiplier = Duration(1, 2)
+    t.lilypond_duration_multiplier = Duration(1, 2)
 
     "c'8 * 1/2"
 
@@ -191,7 +191,7 @@ def test_leaftools_set_preprolated_leaf_duration_07():
     '''
 
     t = Note(0, (1, 8))
-    t.duration_multiplier = Duration(1, 2)
+    t.lilypond_duration_multiplier = Duration(1, 2)
 
     "c'8 * 1/2"
 
@@ -207,7 +207,7 @@ def test_leaftools_set_preprolated_leaf_duration_08():
     '''
 
     t = Note(0, (1, 8))
-    t.duration_multiplier = Duration(1, 2)
+    t.lilypond_duration_multiplier = Duration(1, 2)
 
     "c'8 * 1/2"
 
@@ -223,7 +223,7 @@ def test_leaftools_set_preprolated_leaf_duration_09():
     '''
 
     t = Note(0, (1, 8))
-    t.duration_multiplier = Duration(1, 2)
+    t.lilypond_duration_multiplier = Duration(1, 2)
 
     "c'8 * 1/2"
 
@@ -240,7 +240,7 @@ def test_leaftools_set_preprolated_leaf_duration_10():
     '''
 
     t = Note(0, (1, 8))
-    t.duration_multiplier = Duration(1, 2)
+    t.lilypond_duration_multiplier = Duration(1, 2)
 
     "c'8 * 1/2"
 

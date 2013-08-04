@@ -26,7 +26,7 @@ def make_notes_with_multiplied_durations(pitch, written_duration, multiplied_dur
         multiplied_duration = durationtools.Duration(multiplied_duration)
         note = notetools.Note(pitch, written_duration)
         multiplier = multiplied_duration / written_duration
-        note.duration_multiplier = multiplier
+        note.lilypond_duration_multiplier = multiplier
         notes.append(note)
 
     # return notes
