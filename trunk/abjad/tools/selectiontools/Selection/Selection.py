@@ -142,7 +142,7 @@ class Selection(object):
             )
     
     def _all_are_contiguous_components(
-        self, component_classes=None, allow_orphans=None):
+        self, component_classes=None, allow_orphans=True):
         from abjad.tools import componenttools
         return componenttools.all_are_contiguous_components(
             self,
@@ -151,7 +151,7 @@ class Selection(object):
             )
 
     def _all_are_contiguous_components_in_same_parent(
-        self, component_classes=None, allow_orphans=None):
+        self, component_classes=None, allow_orphans=True):
         from abjad.tools import componenttools
         return componenttools.all_are_contiguous_components_in_same_parent(
             self,
@@ -160,7 +160,7 @@ class Selection(object):
             )
 
     def _all_are_contiguous_components_in_same_thread(
-        self, component_classes=None, allow_orphans=None):
+        self, component_classes=None, allow_orphans=True):
         from abjad.tools import componenttools
         return componenttools.all_are_contiguous_components_in_same_thread(
             self,
@@ -169,7 +169,7 @@ class Selection(object):
             )
 
     def _all_are_thread_contiguous_components(
-        self, component_classes=None, allow_orphans=None):
+        self, component_classes=None, allow_orphans=True):
         from abjad.tools import componenttools
         return componenttools.all_are_thread_contiguous_components(
             self,
