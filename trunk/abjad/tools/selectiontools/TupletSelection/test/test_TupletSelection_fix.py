@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_tuplettools_fix_contents_of_tuplets_in_expr_01():
+def test_TupletSelection_fix_01():
     r'''Halve note durations.
     '''
 
@@ -17,7 +17,8 @@ def test_tuplettools_fix_contents_of_tuplets_in_expr_01():
     }
     '''
 
-    tuplettools.fix_contents_of_tuplets_in_expr(t)
+    tuplets = selectiontools.select_tuplets([t])
+    tuplets.fix()
 
     r'''
     \times 2/3 {
@@ -32,7 +33,7 @@ def test_tuplettools_fix_contents_of_tuplets_in_expr_01():
     assert t.lilypond_format == "\\times 2/3 {\n\tc'8\n\td'8\n\te'8\n}"
 
 
-def test_tuplettools_fix_contents_of_tuplets_in_expr_02():
+def test_TupletSelection_fix_02():
     r'''Double note duration.
     '''
 
@@ -47,7 +48,8 @@ def test_tuplettools_fix_contents_of_tuplets_in_expr_02():
     }
     '''
 
-    tuplettools.fix_contents_of_tuplets_in_expr(t)
+    tuplets = selectiontools.select_tuplets([t])
+    tuplets.fix()
 
     r'''
     \tweak #'text #tuplet-number::calc-fraction-text
@@ -63,7 +65,7 @@ def test_tuplettools_fix_contents_of_tuplets_in_expr_02():
     assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 4/3 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
-def test_tuplettools_fix_contents_of_tuplets_in_expr_03():
+def test_TupletSelection_fix_03():
     r'''Halve note durations.
     '''
 
@@ -79,7 +81,8 @@ def test_tuplettools_fix_contents_of_tuplets_in_expr_03():
     }
     '''
 
-    tuplettools.fix_contents_of_tuplets_in_expr(t)
+    tuplets = selectiontools.select_tuplets([t])
+    tuplets.fix()
 
     r'''
     \tweak #'text #tuplet-number::calc-fraction-text

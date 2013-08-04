@@ -672,6 +672,7 @@ class Tuplet(Container):
         from abjad.tools import leaftools
         from abjad.tools import notetools
         from abjad.tools import resttools
+        from abjad.tools import selectiontools
         from abjad.tools import tuplettools
         # coerce duration and proportions
         duration = durationtools.Duration(duration)
@@ -710,8 +711,13 @@ class Tuplet(Container):
                 )
         # make tuplet
         tuplet = tuplettools.FixedDurationTuplet(duration, notes)
-        # fix tuplet contents if necessary
-        tuplettools.fix_contents_of_tuplets_in_expr(tuplet)
+
+        # TODO: change to tuplet._fix()
+        ## fix tuplet contents if necessary
+        #tuplettools.fix_contents_of_tuplets_in_expr(tuplet)
+        selection = selectiontools.select_tuplets([tuplet])
+        selection.fix()
+
         # change prolation if necessary
         if not tuplet.multiplier == 1:
             if is_diminution:

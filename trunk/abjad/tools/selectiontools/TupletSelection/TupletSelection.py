@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+import fractions
+import math
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools.selectiontools.FreeSelection import FreeSelection
@@ -10,10 +12,73 @@ class TupletSelection(FreeSelection):
 
     ### PUBLIC METHODS ###
 
+    def fix(self):
+        r'''Scale contents of each fixed-duration tuplet in selection 
+        by power of two if tuplet multiplier less than ``1/2`` 
+        or greater than ``2``.
+
+        Example.
+
+            >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), [])
+            >>> tuplet.extend("c'4 d'4 e'4")
+
+        ::
+
+            >>> tuplet
+            FixedDurationTuplet(1/4, [c'4, d'4, e'4])
+
+        ..  doctest::
+
+            >>> f(tuplet)
+            \times 1/3 {
+                c'4
+                d'4
+                e'4
+            }
+
+        ::
+
+            >>> show(tuplet) # doctest: +SKIP
+
+        ::
+
+            >>> tuplets = selectiontools.select_tuplets([tuplet])
+            >>> tuplets.fix()
+
+        ..  doctest::
+
+            >>> f(tuplet)
+            \times 2/3 {
+                c'8
+                d'8
+                e'8
+            }
+
+        ::
+
+            >>> show(tuplet) # doctest: +SKIP
+
+        Return none.
+        '''
+        from abjad.tools import leaftools
+        from abjad.tools import tuplettools
+        for tuplet in self:
+            if isinstance(tuplet, tuplettools.FixedDurationTuplet):
+                # find tuplet multiplier
+                integer_exponent = int(math.log(tuplet.multiplier, 2))
+                leaf_multiplier = fractions.Fraction(2) ** integer_exponent
+                # scale leaves in tuplet by power of two
+                for component in tuplet[:]:
+                    if isinstance(component, leaftools.Leaf):
+                        old_written_duration = component.written_duration
+                        new_written_duration = leaf_multiplier * old_written_duration
+                        leaftools.set_preprolated_leaf_duration(
+                            component, new_written_duration)
+
     def fuse(self):
         r'''Fuse parent-contiguous tuplets in selection.
 
-        Example. Fuse parent-contiguous fixed-duration tuplets
+        Example. Fuse parent-contiguous fxed-duration tuplets
         in selection:
 
         ::
@@ -322,14 +387,12 @@ class TupletSelection(FreeSelection):
                         if isinstance(component, leaftools.Leaf):
                             leaftools.scale_preprolated_leaf_duration(
                                 component, multiplier)
-                # otherwise doctor up tuplet multiplier, if necessary
-                elif not tuplet.multiplier.is_proper_tuplet_multiplier:
-                    tuplettools.fix_contents_of_tuplets_in_expr(tuplet)
             else:
                 for component in tuplet[:]:
                     if isinstance(component, leaftools.Leaf):
                         leaftools.scale_preprolated_leaf_duration(
                             component, multiplier)
+        self.fix()
 
     def set_denominator_to_at_least(self, n):
         r'''Set denominator of tuplets in selection to at least `n`.
