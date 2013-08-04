@@ -39,10 +39,11 @@ class Leaf(Component):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *args):
-        return self._copy_with_marks_but_without_children_or_spanners()
-
     def __getnewargs__(self):
+        '''Get new arguments.
+
+        Return tuple.
+        '''
         result = []
         result.append(self.written_duration)
         if self.duration_multiplier is not None:
@@ -50,9 +51,18 @@ class Leaf(Component):
         return tuple(result)
 
     def __repr__(self):
-        return '%s(%r)' % (self._class_name, self._compact_representation)
+        '''Interpreter representation of leaf.
+
+        Return string.
+        '''
+        return '{}({!r})'.format(
+            self._class_name, self._compact_representation)
 
     def __str__(self):
+        '''String representation of leaf.
+
+        Return string.
+        '''
         return self._compact_representation
 
     ### PRIVATE PROPERTIES ###
