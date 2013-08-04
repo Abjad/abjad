@@ -194,6 +194,16 @@ class Tuplet(Container):
 
     ### PRIVATE METHODS ###
 
+    def _augmented_to_diminished(self):
+        while not self.is_diminution:
+            for leaf in self.select_leaves():
+                leaf.written_duration *= 2
+
+    def _diminished_to_augmented(self):
+        while self.is_diminution:
+            for leaf in self.select_leaves():
+                leaf.written_duration /= 2
+    
     def _fix(self):
         from abjad.tools import leaftools
         from abjad.tools import tuplettools
@@ -733,12 +743,10 @@ class Tuplet(Container):
         if not tuplet.multiplier == 1:
             if is_diminution:
                 if not tuplet.is_diminution:
-                    tuplettools.change_augmented_tuplets_in_expr_to_diminished(
-                        tuplet)
+                    tuplet._augmented_to_diminshed()
             else:
                 if tuplet.is_diminution:
-                    tuplettools.change_diminished_tuplets_in_expr_to_augmented(
-                        tuplet)
+                    tuplet._diminished_to_augmented()
         # return tuplet
         return tuplet
 

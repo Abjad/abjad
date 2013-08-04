@@ -12,6 +12,67 @@ class TupletSelection(FreeSelection):
 
     ### PUBLIC METHODS ###
 
+    # TODO: make work with (non-fixed-duration) tuplets
+    # TODO: make work with nested tuplets
+    def augmented_to_diminished(self):
+        '''Change augmented tuplets in selection to diminished tuplets.
+
+        Example:
+
+        ::
+
+            >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), [])
+            >>> tuplet.extend("c'8 d'8 e'8")
+
+        ::
+
+            >>> tuplet
+            FixedDurationTuplet(1/2, [c'8, d'8, e'8])
+
+        ..  doctest::
+
+            >>> f(tuplet)
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 4/3 {
+                c'8
+                d'8
+                e'8
+            }
+
+        ::
+
+            >>> show(tuplet) # doctest: +SKIP
+
+        ::
+
+            >>> tuplets = selectiontools.select_tuplets([tuplet])
+            >>> tuplets.augmented_to_diminished()
+
+        ..  doctest::
+
+            >>> f(tuplet)
+            \times 2/3 {
+                c'4
+                d'4
+                e'4
+            }
+
+        ::
+
+            >>> show(tuplet) # doctest: +SKIP
+
+        Multiply the written duration of the leaves in tuplet
+        by the least power of ``2`` necessary to diminshed tuplet.
+
+        .. note:: Does not yet work with nested tuplets.
+
+        .. note:: Currently only works with fixed-duration tuplets.
+
+        Return none.
+        '''
+        for tuplet in self:
+            tuplet._augmented_to_diminished()
+
     def change_fixed_duration_tuplets_to_tuplets(expr):
         r'''Change fixed-duration tuplets in selection to tuplets.
 
@@ -141,6 +202,68 @@ class TupletSelection(FreeSelection):
                 result.append(new_tuplet)
         return result
     
+    # TODO: make work with (non-fixed-duration) tuplets
+    # TODO: make work with nested tuplets
+    def diminished_to_augmented(self):
+        '''Change diminished fixed-duration tuplets in selection 
+        to augmented tuplets.
+
+        Example:
+
+        ::
+
+            >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), [])
+            >>> tuplet.extend("c'8 d'8 e'8")
+
+        ::
+
+            >>> tuplet
+            FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+
+        ..  doctest::
+
+            >>> f(tuplet)
+            \times 2/3 {
+                c'8
+                d'8
+                e'8
+            }
+
+        ::
+
+            >>> show(tuplet) # doctest: +SKIP
+
+        ::
+
+            >>> tuplets = selectiontools.select_tuplets([tuplet])
+            >>> tuplets.diminished_to_augmented()
+
+        ..  doctest::
+
+            >>> f(tuplet)
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 4/3 {
+                c'16
+                d'16
+                e'16
+            }
+
+        ::
+
+            >>> show(tuplet) # doctest: +SKIP
+
+        .. note:: Does not yet work with nested tuplets.
+
+        .. note:: Currently only works with fixed-duration tuplets.
+
+        Divide the written duration of the leaves in `tuplet`
+        by the least power of 2 necessary to augment `tuplet`:
+
+        Return none.
+        '''
+        for tuplet in self:
+            tuplet._diminished_to_augmented()
+
     def fix(self):
         r'''Scale contents of each fixed-duration tuplet in selection 
         by power of two if tuplet multiplier less than ``1/2`` 

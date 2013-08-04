@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_tuplettools_change_diminished_tuplets_in_expr_to_augmented_01():
+def test_TupletSelection_diminished_to_augmented_01():
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
 
@@ -14,7 +14,8 @@ def test_tuplettools_change_diminished_tuplets_in_expr_to_augmented_01():
     }
     '''
 
-    tuplettools.change_diminished_tuplets_in_expr_to_augmented(tuplet)
+    tuplets = selectiontools.select_tuplets([tuplet])
+    tuplets.diminished_to_augmented()
 
     r'''
     \tweak #'text #tuplet-number::calc-fraction-text
