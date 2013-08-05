@@ -384,7 +384,8 @@ def test_Container___setitem___slice_13():
 
     On the other hand, if you want to empty a container and
     allow the emptied components to remain embedded within spanners,
-    use containertools.delete_contents_of_container() instead.'''
+    use del(container) instead.
+    '''
 
     t = Staff("c'8 d'8 e'8 f'8")
     inner = Container(t[1:3])
@@ -428,14 +429,14 @@ def test_Container___setitem___slice_13():
     # inner container leaves DO withdraw from all spanners
     assert inner.lilypond_format == "{\n\td'8\n\te'8\n}"
 
-    # ALTERNATIVE: use containertools.delete_contents_of_container()
+    # ALTERNATIVE: use del(container)
 
     t = Staff("c'8 d'8 e'8 f'8")
     inner = Container(t[1:3])
     outer = Container([inner])
     beam = spannertools.BeamSpanner(inner[:])
 
-    containertools.delete_contents_of_container(outer)
+    del(outer[:])
 
     r'''
     \new Staff {

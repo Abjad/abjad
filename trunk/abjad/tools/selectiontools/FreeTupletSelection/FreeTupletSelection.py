@@ -421,7 +421,7 @@ class FreeTupletSelection(FreeSelection):
         containertools.move_parentage_children_and_spanners_from_components_to_empty_container(
             self, new_tuplet)
         if wrapped:
-            containertools.delete_contents_of_container(dummy_container)
+            del(dummy_container[:])
         return new_tuplet
 
     # TODO: reimplement as a keyword variation on self.remove()
