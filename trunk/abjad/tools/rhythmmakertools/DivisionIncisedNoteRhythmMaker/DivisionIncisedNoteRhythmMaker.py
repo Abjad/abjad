@@ -7,114 +7,118 @@ from abjad.tools.rhythmmakertools.DivisionIncisedRhythmMaker \
 class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
     r'''Division-incised note rhythm-maker:
 
-    Example 1. Basic usage:
+    ..  container:: example
 
-        >>> maker = rhythmmakertools.DivisionIncisedNoteRhythmMaker(
-        ...     prefix_talea=[-1],
-        ...     prefix_lengths=[0, 1],
-        ...     suffix_talea=[-1],
-        ...     suffix_lengths=[1],
-        ...     talea_denominator=16)
+        **Example 1.** Basic usage:
 
-    Configure at instantiation and then call on any sequence of divisions:
+            >>> maker = rhythmmakertools.DivisionIncisedNoteRhythmMaker(
+            ...     prefix_talea=[-1],
+            ...     prefix_lengths=[0, 1],
+            ...     suffix_talea=[-1],
+            ...     suffix_lengths=[1],
+            ...     talea_denominator=16)
 
-    ::
+        Configure at instantiation and then call on any sequence of divisions:
 
-        >>> divisions = 4 * [(5, 16)]
-        >>> leaf_lists = maker(divisions)
-        >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-        >>> measures = \
-        ...     measuretools.make_measures_with_full_measure_spacer_skips(
-        ...     divisions)
-        >>> staff = stafftools.RhythmicStaff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(
-        ...     staff, leaves)
+        ::
 
-    ..  doctest::
+            >>> divisions = 4 * [(5, 16)]
+            >>> leaf_lists = maker(divisions)
+            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
+            >>> staff = stafftools.RhythmicStaff(measures)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, leaves)
 
-        >>> f(staff)
-        \new RhythmicStaff {
-            {
-                \time 5/16
-                c'4
-                r16
+        ..  doctest::
+
+            >>> f(staff)
+            \new RhythmicStaff {
+                {
+                    \time 5/16
+                    c'4
+                    r16
+                }
+                {
+                    r16
+                    c'8.
+                    r16
+                }
+                {
+                    c'4
+                    r16
+                }
+                {
+                    r16
+                    c'8.
+                    r16
+                }
             }
-            {
-                r16
-                c'8.
-                r16
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+    ..  container:: example
+    
+        **Example 2.** Set `body_ratio` to divide middle part proportionally:
+
+        ::
+
+            >>> maker = rhythmmakertools.DivisionIncisedNoteRhythmMaker(
+            ...     prefix_talea=[-1],
+            ...     prefix_lengths=[0, 1],
+            ...     suffix_talea=[-1],
+            ...     suffix_lengths=[1],
+            ...     talea_denominator=16,
+            ...     body_ratio=(1, 1))
+
+        ::
+
+            >>> divisions = 4 * [(5, 16)]
+            >>> leaf_lists = maker(divisions)
+            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
+            >>> staff = stafftools.RhythmicStaff(measures)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, leaves)
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new RhythmicStaff {
+                {
+                    \time 5/16
+                    c'8
+                    c'8
+                    r16
+                }
+                {
+                    r16
+                    c'16.
+                    c'16.
+                    r16
+                }
+                {
+                    c'8
+                    c'8
+                    r16
+                }
+                {
+                    r16
+                    c'16.
+                    c'16.
+                    r16
+                }
             }
-            {
-                c'4
-                r16
-            }
-            {
-                r16
-                c'8.
-                r16
-            }
-        }
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
-
-    Example 2. Set `body_ratio` to divide middle part proportionally:
-
-    ::
-
-        >>> maker = rhythmmakertools.DivisionIncisedNoteRhythmMaker(
-        ...     prefix_talea=[-1],
-        ...     prefix_lengths=[0, 1],
-        ...     suffix_talea=[-1],
-        ...     suffix_lengths=[1],
-        ...     talea_denominator=16,
-        ...     body_ratio=(1, 1))
-
-    ::
-
-        >>> divisions = 4 * [(5, 16)]
-        >>> leaf_lists = maker(divisions)
-        >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-        >>> measures = \
-        ...     measuretools.make_measures_with_full_measure_spacer_skips(
-        ...     divisions)
-        >>> staff = stafftools.RhythmicStaff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(
-        ...     staff, leaves)
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new RhythmicStaff {
-            {
-                \time 5/16
-                c'8
-                c'8
-                r16
-            }
-            {
-                r16
-                c'16.
-                c'16.
-                r16
-            }
-            {
-                c'8
-                c'8
-                r16
-            }
-            {
-                r16
-                c'16.
-                c'16.
-                r16
-            }
-        }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
     Usage follows the two-step instantiate-then-call pattern shown here.
     '''

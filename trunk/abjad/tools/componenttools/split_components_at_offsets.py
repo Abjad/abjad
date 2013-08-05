@@ -6,336 +6,398 @@ from abjad.tools import sequencetools
 # TODO: fix bug that unintentionally fractures ties.
 def split_components_at_offsets(components, offsets,
     fracture_spanners=False, cyclic=False, tie_split_notes=True, tie_split_rests=False):
-    r'''Example 1. Split components cyclically and do not fracture crossing spanners:
+    r'''Split components at offsets.
+    
+    ..  container:: example
 
-    ::
+        **Example 1.** Split components cyclically and do not fracture crossing spanners:
 
-        >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+        ::
 
-    ::
+            >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
 
-        >>> spannertools.BeamSpanner(staff[0])
-        BeamSpanner(|2/8(2)|)
-        >>> spannertools.BeamSpanner(staff[1])
-        BeamSpanner(|2/8(2)|)
-        >>> spannertools.SlurSpanner(staff.select_leaves())
-        SlurSpanner(c'8, d'8, e'8, f'8)
+        ::
 
-    ..  doctest::
+            >>> spannertools.BeamSpanner(staff[0])
+            BeamSpanner(|2/8(2)|)
 
-        >>> f(staff)
-        \new Staff {
-            {
-                \time 2/8
-                c'8 [ (
-                d'8 ]
+        ::
+
+            >>> spannertools.BeamSpanner(staff[1])
+            BeamSpanner(|2/8(2)|)
+
+        ::
+
+            >>> spannertools.SlurSpanner(staff.select_leaves())
+            SlurSpanner(c'8, d'8, e'8, f'8)
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                {
+                    \time 2/8
+                    c'8 [ (
+                    d'8 ]
+                }
+                {
+                    e'8 [
+                    f'8 ] )
+                }
             }
-            {
-                e'8 [
-                f'8 ] )
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        ::
+
+            >>> result = componenttools.split_components_at_offsets(
+            ...     staff.select_leaves(), 
+            ...     [Duration(3, 32)], 
+            ...     cyclic=True,
+            ...     )
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                {
+                    \time 2/8
+                    c'16. [ ( ~
+                    c'32
+                    d'16 ~
+                    d'16 ]
+                }
+                {
+                    e'32 [ ~
+                    e'16.
+                    f'16. ~
+                    f'32 ] )
+                }
             }
-        }
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
-    ::
+    ..  container:: example
 
-        >>> componenttools.split_components_at_offsets(
-        ...     staff.select_leaves(), [Duration(3, 32)], cyclic=True)
-        [[Note("c'16.")], [Note("c'32"), Note("d'16")],
-        [Note("d'16"), Note("e'32")], [Note("e'16.")], [Note("f'16.")], [Note("f'32")]]
+        **Example 2.** Split components cyclically and fracture spanners:
 
-    ..  doctest::
+        ::
 
-        >>> f(staff)
-        \new Staff {
-            {
-                \time 2/8
-                c'16. [ ( ~
-                c'32
-                d'16 ~
-                d'16 ]
+            >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+
+        ::
+
+            >>> spannertools.BeamSpanner(staff[0])
+            BeamSpanner(|2/8(2)|)
+
+        ::
+        
+            >>> spannertools.BeamSpanner(staff[1])
+            BeamSpanner(|2/8(2)|)
+
+        ::
+
+            >>> spannertools.SlurSpanner(staff.select_leaves())
+            SlurSpanner(c'8, d'8, e'8, f'8)
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                {
+                    \time 2/8
+                    c'8 [ (
+                    d'8 ]
+                }
+                {
+                    e'8 [
+                    f'8 ] )
+                }
             }
-            {
-                e'32 [ ~
-                e'16.
-                f'16. ~
-                f'32 ] )
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        ::
+
+            >>> result = componenttools.split_components_at_offsets(
+            ...     staff.select_leaves(), 
+            ...     [Duration(3, 32)], 
+            ...     cyclic=True, 
+            ...     fracture_spanners=True,
+            ...     )
+
+        ::
+
+            >>> result
+            [[Note("c'16.")], [Note("c'32"), Note("d'16")], [Note("d'16"), Note("e'32")],
+            [Note("e'16.")], [Note("f'16.")], [Note("f'32")]]
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                {
+                    \time 2/8
+                    c'16. [ ( ) ~
+                    c'32 (
+                    d'16 ) ~
+                    d'16 ] (
+                }
+                {
+                    e'32 [ ) ~
+                    e'16. (
+                    f'16. ) ~
+                    f'32 ] ( )
+                }
             }
-        }
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
-    Example 2. Split components cyclically and fracture spanners:
+    ..  container:: example
 
-    ::
+        **Example 3.** Split components once and do not fracture crossing spanners:
 
-        >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+        ::
 
-    ::
+            >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
 
-        >>> spannertools.BeamSpanner(staff[0])
-        BeamSpanner(|2/8(2)|)
-        >>> spannertools.BeamSpanner(staff[1])
-        BeamSpanner(|2/8(2)|)
-        >>> spannertools.SlurSpanner(staff.select_leaves())
-        SlurSpanner(c'8, d'8, e'8, f'8)
+        ::
 
-    ..  doctest::
+            >>> spannertools.BeamSpanner(staff[0])
+            BeamSpanner(|2/8(2)|)
 
-        >>> f(staff)
-        \new Staff {
-            {
-                \time 2/8
-                c'8 [ (
-                d'8 ]
+        ::
+
+            >>> spannertools.BeamSpanner(staff[1])
+            BeamSpanner(|2/8(2)|)
+
+        ::
+
+            >>> spannertools.SlurSpanner(staff.select_leaves())
+            SlurSpanner(c'8, d'8, e'8, f'8)
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                {
+                    \time 2/8
+                    c'8 [ (
+                    d'8 ]
+                }
+                {
+                    e'8 [
+                    f'8 ] )
+                }
             }
-            {
-                e'8 [
-                f'8 ] )
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        ::
+
+            >>> offsets = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
+
+        ::
+
+            >>> shards = componenttools.split_components_at_offsets(
+            ...    staff[:1], 
+            ...     offsets, 
+            ...     cyclic=False, 
+            ...     fracture_spanners=False, 
+            ...     tie_split_notes=False,
+            ...     )
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                {
+                    \time 1/32
+                    c'32 [ (
+                }
+                {
+                    \time 3/32
+                    c'16.
+                }
+                {
+                    \time 4/32
+                    d'8 ]
+                }
+                {
+                    \time 2/8
+                    e'8 [
+                    f'8 ] )
+                }
             }
-        }
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
-    ::
+    ..  container:: example
 
-        >>> result = componenttools.split_components_at_offsets(
-        ... staff.select_leaves(), [Duration(3, 32)], cyclic=True, fracture_spanners=True)
+        **Example 4.** Split components once and fracture crossing spanners:
 
-    ::
+        ::
 
-        >>> result
-        [[Note("c'16.")], [Note("c'32"), Note("d'16")], [Note("d'16"), Note("e'32")],
-        [Note("e'16.")], [Note("f'16.")], [Note("f'32")]]
+            >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
 
-    ..  doctest::
+        ::
 
-        >>> f(staff)
-        \new Staff {
-            {
-                \time 2/8
-                c'16. [ ( ) ~
-                c'32 (
-                d'16 ) ~
-                d'16 ] (
+            >>> spannertools.BeamSpanner(staff[0])
+            BeamSpanner(|2/8(2)|)
+
+        ::
+
+            >>> spannertools.BeamSpanner(staff[1])
+            BeamSpanner(|2/8(2)|)
+
+        ::
+
+            >>> spannertools.SlurSpanner(staff.select_leaves())
+            SlurSpanner(c'8, d'8, e'8, f'8)
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                {
+                    \time 2/8
+                    c'8 [ (
+                    d'8 ]
+                }
+                {
+                    e'8 [
+                    f'8 ] )
+                }
             }
-            {
-                e'32 [ ) ~
-                e'16. (
-                f'16. ) ~
-                f'32 ] ( )
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        ::
+
+            >>> offsets = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
+            >>> shards = componenttools.split_components_at_offsets(
+            ...     staff[:1], 
+            ...     offsets, 
+            ...     cyclic=False, 
+            ...     fracture_spanners=True, 
+            ...     tie_split_notes=False,
+            ...     )
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                {
+                    \time 1/32
+                    c'32 [ ] ( )
+                }
+                {
+                    \time 3/32
+                    c'16. [ ] ( )
+                }
+                {
+                    \time 4/32
+                    d'8 [ ] (
+                }
+                {
+                    \time 2/8
+                    e'8 [
+                    f'8 ] )
+                }
             }
-        }
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
-    Example 3. Split components once and do not fracture crossing spanners:
+    ..  container:: example
 
-    ::
+        **Example 5.** Split tupletted components once and fracture crossing spanners:
 
-        >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+        ::
 
-    ::
+            >>> staff = Staff(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 g'8 a'8 }")
 
-        >>> spannertools.BeamSpanner(staff[0])
-        BeamSpanner(|2/8(2)|)
-        >>> spannertools.BeamSpanner(staff[1])
-        BeamSpanner(|2/8(2)|)
-        >>> spannertools.SlurSpanner(staff.select_leaves())
-        SlurSpanner(c'8, d'8, e'8, f'8)
+        ::
 
-    ..  doctest::
+            >>> spannertools.BeamSpanner(staff[0])
+            BeamSpanner({c'8, d'8, e'8})
 
-        >>> f(staff)
-        \new Staff {
-            {
-                \time 2/8
-                c'8 [ (
-                d'8 ]
+        ::
+
+            >>> spannertools.BeamSpanner(staff[1])
+            BeamSpanner({f'8, g'8, a'8})
+
+        ::
+
+            >>> spannertools.SlurSpanner(staff.select_leaves())
+            SlurSpanner(c'8, d'8, e'8, f'8, g'8, a'8)
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                \times 2/3 {
+                    c'8 [ (
+                    d'8
+                    e'8 ]
+                }
+                \times 2/3 {
+                    f'8 [
+                    g'8
+                    a'8 ] )
+                }
             }
-            {
-                e'8 [
-                f'8 ] )
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        ::
+
+            >>> offsets = [(1, 8)]
+            >>> shards = componenttools.split_components_at_offsets(
+            ...     staff.select_leaves(), 
+            ...     offsets, 
+            ...     cyclic=False, 
+            ...     fracture_spanners=True, 
+            ...     tie_split_notes=True,
+            ...     )
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                \times 2/3 {
+                    c'8 [ (
+                    d'16 ) ~
+                    d'16 (
+                    e'8 ]
+                }
+                \times 2/3 {
+                    f'8 [
+                    g'8
+                    a'8 ] )
+                }
             }
-        }
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
-
-    ::
-
-        >>> offsets = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
-
-    ::
-
-        >>> shards = componenttools.split_components_at_offsets(
-        ... staff[:1], offsets, cyclic=False, fracture_spanners=False, tie_split_notes=False)
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            {
-                \time 1/32
-                c'32 [ (
-            }
-            {
-                \time 3/32
-                c'16.
-            }
-            {
-                \time 4/32
-                d'8 ]
-            }
-            {
-                \time 2/8
-                e'8 [
-                f'8 ] )
-            }
-        }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
-    Example 4. Split components once and fracture crossing spanners:
-
-    ::
-
-        >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-
-    ::
-
-        >>> spannertools.BeamSpanner(staff[0])
-        BeamSpanner(|2/8(2)|)
-        >>> spannertools.BeamSpanner(staff[1])
-        BeamSpanner(|2/8(2)|)
-        >>> spannertools.SlurSpanner(staff.select_leaves())
-        SlurSpanner(c'8, d'8, e'8, f'8)
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            {
-                \time 2/8
-                c'8 [ (
-                d'8 ]
-            }
-            {
-                e'8 [
-                f'8 ] )
-            }
-        }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
-    ::
-
-        >>> offsets = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
-        >>> shards = componenttools.split_components_at_offsets(
-        ... staff[:1], offsets, cyclic=False, fracture_spanners=True, tie_split_notes=False)
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            {
-                \time 1/32
-                c'32 [ ] ( )
-            }
-            {
-                \time 3/32
-                c'16. [ ] ( )
-            }
-            {
-                \time 4/32
-                d'8 [ ] (
-            }
-            {
-                \time 2/8
-                e'8 [
-                f'8 ] )
-            }
-        }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
-    Example 5. Split tupletted components once and fracture crossing spanners:
-
-    ::
-
-        >>> staff = Staff(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 g'8 a'8 }")
-
-    ::
-
-        >>> spannertools.BeamSpanner(staff[0])
-        BeamSpanner({c'8, d'8, e'8})
-        >>> spannertools.BeamSpanner(staff[1])
-        BeamSpanner({f'8, g'8, a'8})
-        >>> spannertools.SlurSpanner(staff.select_leaves())
-        SlurSpanner(c'8, d'8, e'8, f'8, g'8, a'8)
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            \times 2/3 {
-                c'8 [ (
-                d'8
-                e'8 ]
-            }
-            \times 2/3 {
-                f'8 [
-                g'8
-                a'8 ] )
-            }
-        }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
-    ::
-
-        >>> offsets = [(1, 8)]
-        >>> shards = componenttools.split_components_at_offsets(
-        ... staff.select_leaves(), offsets, cyclic=False, fracture_spanners=True, tie_split_notes=True)
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            \times 2/3 {
-                c'8 [ (
-                d'16 ) ~
-                d'16 (
-                e'8 ]
-            }
-            \times 2/3 {
-                f'8 [
-                g'8
-                a'8 ] )
-            }
-        }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
     Return list of newly split shards.
 

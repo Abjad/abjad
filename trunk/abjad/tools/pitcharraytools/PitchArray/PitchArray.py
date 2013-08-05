@@ -313,109 +313,121 @@ class PitchArray(AbjadObject):
     def from_score(score, populate=True):
         r'''Make pitch array from `score`.
 
-        Example 1. Make empty pitch array from score:
+        ..  container:: example
 
-        ::
+            **Example 1.** Make empty pitch array from score:
 
-            >>> score = Score([])
-            >>> score.append(Staff("c'8 d'8 e'8 f'8"))
-            >>> score.append(Staff("c'4 d'4"))
-            >>> score.append(
-            ...     Staff(
-            ...     tuplettools.FixedDurationTuplet(
-            ...     Duration(2, 8), "c'8 d'8 e'8") * 2))
+            ::
 
-        ..  doctest::
+                >>> score = Score([])
+                >>> score.append(Staff("c'8 d'8 e'8 f'8"))
+                >>> score.append(Staff("c'4 d'4"))
+                >>> score.append(
+                ...     Staff(
+                ...     tuplettools.FixedDurationTuplet(
+                ...     Duration(2, 8), "c'8 d'8 e'8") * 2))
 
-            >>> f(score)
-            \new Score <<
-                \new Staff {
-                    c'8
-                    d'8
-                    e'8
-                    f'8
-                }
-                \new Staff {
-                    c'4
-                    d'4
-                }
-                \new Staff {
-                    \times 2/3 {
+            ..  doctest::
+
+                >>> f(score)
+                \new Score <<
+                    \new Staff {
                         c'8
                         d'8
                         e'8
+                        f'8
                     }
-                    \times 2/3 {
+                    \new Staff {
+                        c'4
+                        d'4
+                    }
+                    \new Staff {
+                        \times 2/3 {
+                            c'8
+                            d'8
+                            e'8
+                        }
+                        \times 2/3 {
+                            c'8
+                            d'8
+                            e'8
+                        }
+                    }
+                >>
+
+            ::
+
+                >>> show(score) # doctest: +SKIP
+
+            ::
+
+                >>> array = pitcharraytools.PitchArray.from_score(
+                ...     score, populate=False)
+
+            ::
+
+                >>> print array
+                [     ] [     ] [     ] [     ]
+                [                 ] [                 ]
+                [ ] [     ] [ ] [ ] [     ] [ ]
+
+        ..  container:: example
+
+            **Example 2.** Make populated pitch array from `score`:
+
+            ::
+
+                >>> score = Score([])
+                >>> score.append(Staff("c'8 d'8 e'8 f'8"))
+                >>> score.append(Staff("c'4 d'4"))
+                >>> score.append(
+                ...     Staff(
+                ...     tuplettools.FixedDurationTuplet(
+                ...     Duration(2, 8), "c'8 d'8 e'8") * 2))
+
+            ..  doctest::
+
+                >>> f(score)
+                \new Score <<
+                    \new Staff {
                         c'8
                         d'8
                         e'8
+                        f'8
                     }
-                }
-            >>
-
-        ::
-
-            >>> array = pitcharraytools.PitchArray.from_score(
-            ...     score, populate=False)
-
-        ::
-
-            >>> print array
-            [     ] [     ] [     ] [     ]
-            [                 ] [                 ]
-            [ ] [     ] [ ] [ ] [     ] [ ]
-
-        Example 2. Make populated pitch array from `score`:
-
-        ::
-
-            >>> score = Score([])
-            >>> score.append(Staff("c'8 d'8 e'8 f'8"))
-            >>> score.append(Staff("c'4 d'4"))
-            >>> score.append(
-            ...     Staff(
-            ...     tuplettools.FixedDurationTuplet(
-            ...     Duration(2, 8), "c'8 d'8 e'8") * 2))
-
-        ..  doctest::
-
-            >>> f(score)
-            \new Score <<
-                \new Staff {
-                    c'8
-                    d'8
-                    e'8
-                    f'8
-                }
-                \new Staff {
-                    c'4
-                    d'4
-                }
-                \new Staff {
-                    \times 2/3 {
-                        c'8
-                        d'8
-                        e'8
+                    \new Staff {
+                        c'4
+                        d'4
                     }
-                    \times 2/3 {
-                        c'8
-                        d'8
-                        e'8
+                    \new Staff {
+                        \times 2/3 {
+                            c'8
+                            d'8
+                            e'8
+                        }
+                        \times 2/3 {
+                            c'8
+                            d'8
+                            e'8
+                        }
                     }
-                }
-            >>
+                >>
 
-        ::
+            ::
 
-            >>> array = pitcharraytools.PitchArray.from_score(
-            ...     score, populate=True)
+                >>> show(score) # doctest: +SKIP
+                
+            ::
 
-        ::
+                >>> array = pitcharraytools.PitchArray.from_score(
+                ...     score, populate=True)
 
-            >>> print array
-            [c'     ] [d'     ] [e'     ] [f'     ]
-            [c'                   ] [d'                   ]
-            [c'] [d'     ] [e'] [c'] [d'     ] [e']
+            ::
+
+                >>> print array
+                [c'     ] [d'     ] [e'     ] [f'     ]
+                [c'                   ] [d'                   ]
+                [c'] [d'     ] [e'] [c'] [d'     ] [e']
     
         Return pitch array.
         '''

@@ -10,38 +10,53 @@ def multiply_and_scale_contents_of_measures_in_expr(expr, multiplier_pairs):
 
     Both `contents_multiplier` and `denominator_multiplier` must be positive integers.
 
-    Example 1. Multiply measure contents by ``3``. Scale time signature denominator by ``3``:
+    ..  container:: example
 
-    ::
+        **Example 1.** Multiply measure contents by ``3``. Scale time signature denominator by ``3``:
 
-        >>> measure = Measure((3, 16), "c'16 c'16 c'16")
+        ::
 
-    ::
+            >>> measure = Measure((3, 16), "c'16 c'16 c'16")
 
-        >>> measuretools.multiply_and_scale_contents_of_measures_in_expr(measure, [(3, 3)])
-        [Measure(9/48, [c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32])]
+        ::
 
-    Example 2. Multiply measure contents by ``3``. Scale time signature denominator by ``2``:
+            >>> measuretools.multiply_and_scale_contents_of_measures_in_expr(
+            ...     measure, 
+            ...     [(3, 3)],
+            ...     )
+            [Measure(9/48, [c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32])]
 
-    ::
+    ..  container:: example
 
-        >>> measure = Measure((3, 16), "c'16 c'16 c'16")
+        **Example 2.** Multiply measure contents by ``3``. Scale time signature denominator by ``2``:
 
-    ::
+        ::
 
-        >>> measuretools.multiply_and_scale_contents_of_measures_in_expr(measure, [(3, 2)])
-        [Measure(9/32, [c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32])]
+            >>> measure = Measure((3, 16), "c'16 c'16 c'16")
 
-    Example 3. Multiply measure contents ``3``:
+        ::
 
-    ::
+            >>> measuretools.multiply_and_scale_contents_of_measures_in_expr(
+            ...     measure, 
+            ...     [(3, 2)],
+            ...     )
+            [Measure(9/32, [c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32])]
 
-        >>> measure = Measure((3, 16), "c'16 c'16 c'16")
+    ..  container:: example
 
-    ::
+        **Example 3.** Multiply measure contents ``3``:
 
-        >>> measuretools.multiply_and_scale_contents_of_measures_in_expr(measure, [(3, 1)])
-        [Measure(9/16, [c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16])]
+        ::
+
+            >>> measure = Measure((3, 16), "c'16 c'16 c'16")
+
+        ::
+
+            >>> measuretools.multiply_and_scale_contents_of_measures_in_expr(
+            ...     measure, 
+            ...     [(3, 1)],
+            ...     )
+            [Measure(9/16, [c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16])]
 
     Return list of measures changed.
     '''

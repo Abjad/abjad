@@ -10,53 +10,57 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 class EvenRunRhythmMaker(RhythmMaker):
     r'''Even run rhythm-maker.
 
-    Example 1. Make even run of notes each equal in duration to ``1/d``
-    with ``d`` equal to the denominator of each division on which
-    the rhythm-maker is called:
+    ..  container:: example
+    
+        **Example 1.** Make even run of notes each equal in duration to ``1/d``
+        with ``d`` equal to the denominator of each division on which
+        the rhythm-maker is called:
 
-    ::
+        ::
 
-        >>> maker = rhythmmakertools.EvenRunRhythmMaker()
+            >>> maker = rhythmmakertools.EvenRunRhythmMaker()
 
-    ::
+        ::
 
-        >>> divisions = [(4, 8), (3, 4), (2, 4)]
-        >>> lists = maker(divisions)
-        >>> music = sequencetools.flatten_sequence(lists)
-        >>> measures = \
-        ...     measuretools.make_measures_with_full_measure_spacer_skips(
-        ...     divisions)
-        >>> staff = stafftools.RhythmicStaff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(
-        ...     staff, music)
+            >>> divisions = [(4, 8), (3, 4), (2, 4)]
+            >>> lists = maker(divisions)
+            >>> music = sequencetools.flatten_sequence(lists)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
+            >>> staff = stafftools.RhythmicStaff(measures)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, music)
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
-    Example 2. Make even run of notes each equal in duration to ``1/(2**d)``
-    with ``d`` equal to the denominator of each division on which
-    the rhythm-maker is called:
+    ..  container:: example
 
-    ::
+        **Example 2.** Make even run of notes each equal in duration to ``1/(2**d)``
+        with ``d`` equal to the denominator of each division on which
+        the rhythm-maker is called:
 
-        >>> maker = rhythmmakertools.EvenRunRhythmMaker(1)
+        ::
 
-    ::
+            >>> maker = rhythmmakertools.EvenRunRhythmMaker(1)
 
-        >>> divisions = [(4, 8), (3, 4), (2, 4)]
-        >>> lists = maker(divisions)
-        >>> music = sequencetools.flatten_sequence(lists)
-        >>> measures = \
-        ...     measuretools.make_measures_with_full_measure_spacer_skips(
-        ...     divisions)
-        >>> staff = stafftools.RhythmicStaff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(
-        ...     staff, music)
+        ::
 
-    ::
+            >>> divisions = [(4, 8), (3, 4), (2, 4)]
+            >>> lists = maker(divisions)
+            >>> music = sequencetools.flatten_sequence(lists)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
+            >>> staff = stafftools.RhythmicStaff(measures)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, music)
 
-        >>> show(staff) # doctest: +SKIP
+        ::
+
+            >>> show(staff) # doctest: +SKIP
 
     Output a list of lists of depth-``2`` note-bearing containers.
 

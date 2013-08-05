@@ -807,30 +807,34 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
     def to_clock_string(self, escape_ticks=False):
         r'''Change duration to clock string.
 
-        Example 1. Change numeric `seconds` to clock string:
+        ..  container:: example
 
-        ::
+            **Example 1.** Change numeric `seconds` to clock string:
 
-            >>> duration = Duration(117)
-            >>> duration.to_clock_string()
-            '1\'57"'
+            ::
 
-        Example 2. Change numeric `seconds` to escaped clock string:
+                >>> duration = Duration(117)
+                >>> duration.to_clock_string()
+                '1\'57"'
 
-        ::
+        ..  container:: example
 
-            >>> note = Note("c'4")
-            >>> clock_string = duration.to_clock_string(escape_ticks=True)
+            **Example 2.** Change numeric `seconds` to escaped clock string:
 
-        ::
+            ::
 
-            >>> markuptools.Markup('"%s"' % clock_string, Up)(note)
-            Markup(('1\'57\\"',), direction=Up)(c'4)
+                >>> note = Note("c'4")
+                >>> clock_string = duration.to_clock_string(escape_ticks=True)
 
-        ..  doctest::
+            ::
 
-            >>> f(note)
-            c'4 ^ \markup { 1'57\\" }
+                >>> markuptools.Markup('"%s"' % clock_string, Up)(note)
+                Markup(('1\'57\\"',), direction=Up)(c'4)
+
+            ..  doctest::
+
+                >>> f(note)
+                c'4 ^ \markup { 1'57\\" }
 
         Return string.
         '''
@@ -870,57 +874,61 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
     def yield_durations(unique=False):
         r'''Yield durations.
 
-        Example 1. Yield all positive durations in 
-        Cantor diagonalized order:
+        ..  container:: example
 
-        ::
+            **Example 1.** Yield all positive durations in 
+            Cantor diagonalized order:
 
-            >>> generator = Duration.yield_durations()
-            >>> for n in range(16):
-            ...     generator.next()
-            ...
-            Duration(1, 1)
-            Duration(2, 1)
-            Duration(1, 2)
-            Duration(1, 3)
-            Duration(1, 1)
-            Duration(3, 1)
-            Duration(4, 1)
-            Duration(3, 2)
-            Duration(2, 3)
-            Duration(1, 4)
-            Duration(1, 5)
-            Duration(1, 2)
-            Duration(1, 1)
-            Duration(2, 1)
-            Duration(5, 1)
-            Duration(6, 1)
+            ::
 
-        Example 2. Yield all positive durations in 
-        Cantor diagonalized order uniquely:
+                >>> generator = Duration.yield_durations()
+                >>> for n in range(16):
+                ...     generator.next()
+                ...
+                Duration(1, 1)
+                Duration(2, 1)
+                Duration(1, 2)
+                Duration(1, 3)
+                Duration(1, 1)
+                Duration(3, 1)
+                Duration(4, 1)
+                Duration(3, 2)
+                Duration(2, 3)
+                Duration(1, 4)
+                Duration(1, 5)
+                Duration(1, 2)
+                Duration(1, 1)
+                Duration(2, 1)
+                Duration(5, 1)
+                Duration(6, 1)
 
-        ::
+        ..  container:: example
 
-            >>> generator = Duration.yield_durations(unique=True)
-            >>> for n in range(16):
-            ...     generator.next()
-            ...
-            Duration(1, 1)
-            Duration(2, 1)
-            Duration(1, 2)
-            Duration(1, 3)
-            Duration(3, 1)
-            Duration(4, 1)
-            Duration(3, 2)
-            Duration(2, 3)
-            Duration(1, 4)
-            Duration(1, 5)
-            Duration(5, 1)
-            Duration(6, 1)
-            Duration(5, 2)
-            Duration(4, 3)
-            Duration(3, 4)
-            Duration(2, 5)
+            **Example 2.** Yield all positive durations in 
+            Cantor diagonalized order uniquely:
+
+            ::
+
+                >>> generator = Duration.yield_durations(unique=True)
+                >>> for n in range(16):
+                ...     generator.next()
+                ...
+                Duration(1, 1)
+                Duration(2, 1)
+                Duration(1, 2)
+                Duration(1, 3)
+                Duration(3, 1)
+                Duration(4, 1)
+                Duration(3, 2)
+                Duration(2, 3)
+                Duration(1, 4)
+                Duration(1, 5)
+                Duration(5, 1)
+                Duration(6, 1)
+                Duration(5, 2)
+                Duration(4, 3)
+                Duration(3, 4)
+                Duration(2, 5)
 
         Return generator.
         '''

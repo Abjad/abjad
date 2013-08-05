@@ -10,99 +10,107 @@ def label_leaves_in_expr_with_leaf_durations(
     label_written_durations=True,
     markup_direction=Down,
     ):
-    r'''Example 1. Label leaves with written durations:
+    r'''Label leaves in expression with leaf durations.
+    
+    ..  container:: example
 
-    ::
+        **Example 1.** Label leaves with written durations:
 
-        >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-        >>> staff = stafftools.RhythmicStaff([tuplet])
-        >>> staff.override.text_script.staff_padding = 2.5
-        >>> staff.override.time_signature.stencil = False
-        >>> labeltools.label_leaves_in_expr_with_leaf_durations(
-        ...     tuplet, 
-        ...     label_durations=False,
-        ...     label_written_durations=True)
+        ::
 
-    ::
+            >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+            >>> staff = stafftools.RhythmicStaff([tuplet])
+            >>> staff.override.text_script.staff_padding = 2.5
+            >>> staff.override.time_signature.stencil = False
+            >>> labeltools.label_leaves_in_expr_with_leaf_durations(
+            ...     tuplet, 
+            ...     label_durations=False,
+            ...     label_written_durations=True)
 
-        >>> show(staff) # doctest: +SKIP
+        ::
 
-    ..  doctest::
+            >>> show(staff) # doctest: +SKIP
 
-        >>> f(staff)
-        \new RhythmicStaff \with {
-            \override TextScript #'staff-padding = #2.5
-            \override TimeSignature #'stencil = ##f
-        } {
-            \times 2/3 {
-                c'8 _ \markup { \small 1/8 }
-                d'8 _ \markup { \small 1/8 }
-                e'8 _ \markup { \small 1/8 }
+        ..  doctest::
+
+            >>> f(staff)
+            \new RhythmicStaff \with {
+                \override TextScript #'staff-padding = #2.5
+                \override TimeSignature #'stencil = ##f
+            } {
+                \times 2/3 {
+                    c'8 _ \markup { \small 1/8 }
+                    d'8 _ \markup { \small 1/8 }
+                    e'8 _ \markup { \small 1/8 }
+                }
             }
-        }
 
-    Example 2. Label leaves with actual durations:
+    ..  container:: example
+    
+        **Example 2.** Label leaves with actual durations:
 
-    ::
+        ::
 
-        >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-        >>> staff = stafftools.RhythmicStaff([tuplet])
-        >>> staff.override.text_script.staff_padding = 2.5
-        >>> staff.override.time_signature.stencil = False
-        >>> labeltools.label_leaves_in_expr_with_leaf_durations(
-        ...     tuplet, 
-        ...     label_durations=True,
-        ...     label_written_durations=False)
+            >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+            >>> staff = stafftools.RhythmicStaff([tuplet])
+            >>> staff.override.text_script.staff_padding = 2.5
+            >>> staff.override.time_signature.stencil = False
+            >>> labeltools.label_leaves_in_expr_with_leaf_durations(
+            ...     tuplet, 
+            ...     label_durations=True,
+            ...     label_written_durations=False)
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+        ..  doctest::
 
-        >>> f(staff)
-        \new RhythmicStaff \with {
-            \override TextScript #'staff-padding = #2.5
-            \override TimeSignature #'stencil = ##f
-        } {
-            \times 2/3 {
-                c'8 _ \markup { \small 1/12 }
-                d'8 _ \markup { \small 1/12 }
-                e'8 _ \markup { \small 1/12 }
+            >>> f(staff)
+            \new RhythmicStaff \with {
+                \override TextScript #'staff-padding = #2.5
+                \override TimeSignature #'stencil = ##f
+            } {
+                \times 2/3 {
+                    c'8 _ \markup { \small 1/12 }
+                    d'8 _ \markup { \small 1/12 }
+                    e'8 _ \markup { \small 1/12 }
+                }
             }
-        }
 
-    Example 3. Label leaves in tuplet with both written and actual
-    durations:
+    ..  container:: example
 
-    ::
+        **Example 3.** Label leaves in tuplet with both written and actual
+        durations:
 
-        >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-        >>> staff = stafftools.RhythmicStaff([tuplet])
-        >>> staff.override.text_script.staff_padding = 2.5
-        >>> staff.override.time_signature.stencil = False
-        >>> labeltools.label_leaves_in_expr_with_leaf_durations(
-        ...     tuplet, 
-        ...     label_durations=True,
-        ...     label_written_durations=True)
+        ::
 
-    ::
+            >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+            >>> staff = stafftools.RhythmicStaff([tuplet])
+            >>> staff.override.text_script.staff_padding = 2.5
+            >>> staff.override.time_signature.stencil = False
+            >>> labeltools.label_leaves_in_expr_with_leaf_durations(
+            ...     tuplet, 
+            ...     label_durations=True,
+            ...     label_written_durations=True)
 
-        >>> show(staff) # doctest: +SKIP
+        ::
 
-    ..  doctest::
+            >>> show(staff) # doctest: +SKIP
 
-        >>> f(staff)
-        \new RhythmicStaff \with {
-            \override TextScript #'staff-padding = #2.5
-            \override TimeSignature #'stencil = ##f
-        } {
-            \times 2/3 {
-                c'8 _ \markup { \column { \small 1/8 \small 1/12 } }
-                d'8 _ \markup { \column { \small 1/8 \small 1/12 } }
-                e'8 _ \markup { \column { \small 1/8 \small 1/12 } }
+        ..  doctest::
+
+            >>> f(staff)
+            \new RhythmicStaff \with {
+                \override TextScript #'staff-padding = #2.5
+                \override TimeSignature #'stencil = ##f
+            } {
+                \times 2/3 {
+                    c'8 _ \markup { \column { \small 1/8 \small 1/12 } }
+                    d'8 _ \markup { \column { \small 1/8 \small 1/12 } }
+                    e'8 _ \markup { \column { \small 1/8 \small 1/12 } }
+                }
             }
-        }
 
     Return none.
     '''

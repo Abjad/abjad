@@ -12,125 +12,129 @@ def split_component_at_offset(
     ):
     r'''Split `component` at `offset`.
 
-    Example 1. Split `component` at `offset`. Don't fracture spanners:
+    ..  container:: example
 
-    ::
+        **Example 1.** Split `component` at `offset`. Don't fracture spanners:
 
-        >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+        ::
 
-    ::
+            >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+            >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
-        >>> spannertools.BeamSpanner(staff[0])
-        BeamSpanner(|2/8(2)|)
-        >>> spannertools.BeamSpanner(staff[1])
-        BeamSpanner(|2/8(2)|)
-        >>> spannertools.SlurSpanner(staff.select_leaves())
-        SlurSpanner(c'8, d'8, e'8, f'8)
+        ::
 
-    ..  doctest::
+            >>> spannertools.BeamSpanner(staff[0])
+            BeamSpanner(|2/8(2)|)
+            >>> spannertools.BeamSpanner(staff[1])
+            BeamSpanner(|2/8(2)|)
+            >>> spannertools.SlurSpanner(staff.select_leaves())
+            SlurSpanner(c'8, d'8, e'8, f'8)
 
-        >>> f(staff)
-        \new Staff {
-            {
-                \time 2/8
-                c'8 [ (
-                d'8 ]
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                {
+                    \time 2/8
+                    c'8 [ (
+                    d'8 ]
+                }
+                {
+                    e'8 [
+                    f'8 ] )
+                }
             }
-            {
-                e'8 [
-                f'8 ] )
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        ::
+
+            >>> halves = componenttools.split_component_at_offset(
+            ... staff.select_leaves()[0], (1, 32), fracture_spanners=False, tie_split_notes=False)
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                {
+                    \time 2/8
+                    c'32 [ (
+                    c'16.
+                    d'8 ]
+                }
+                {
+                    e'8 [
+                    f'8 ] )
+                }
             }
-        }
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
-    ::
+    ..  container:: example
 
-        >>> halves = componenttools.split_component_at_offset(
-        ... staff.select_leaves()[0], (1, 32), fracture_spanners=False, tie_split_notes=False)
+        **Example 2.** Split component at offset at fracture crossing spanners:
 
-    ..  doctest::
+        ::
 
-        >>> f(staff)
-        \new Staff {
-            {
-                \time 2/8
-                c'32 [ (
-                c'16.
-                d'8 ]
+            >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+            >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+
+        ::
+
+            >>> spannertools.BeamSpanner(staff[0])
+            BeamSpanner(|2/8(2)|)
+            >>> spannertools.BeamSpanner(staff[1])
+            BeamSpanner(|2/8(2)|)
+            >>> spannertools.SlurSpanner(staff.select_leaves())
+            SlurSpanner(c'8, d'8, e'8, f'8)
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                {
+                    \time 2/8
+                    c'8 [ (
+                    d'8 ]
+                }
+                {
+                    e'8 [
+                    f'8 ] )
+                }
             }
-            {
-                e'8 [
-                f'8 ] )
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        ::
+
+            >>> halves = componenttools.split_component_at_offset(
+            ... staff.select_leaves()[0], (1, 32), fracture_spanners=True, tie_split_notes=False)
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                {
+                    \time 2/8
+                    c'32 [ ( )
+                    c'16. (
+                    d'8 ]
+                }
+                {
+                    e'8 [
+                    f'8 ] )
+                }
             }
-        }
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
-
-    Example 2. Split component at offset at fracture crossing spanners:
-
-    ::
-
-        >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
-
-    ::
-
-        >>> spannertools.BeamSpanner(staff[0])
-        BeamSpanner(|2/8(2)|)
-        >>> spannertools.BeamSpanner(staff[1])
-        BeamSpanner(|2/8(2)|)
-        >>> spannertools.SlurSpanner(staff.select_leaves())
-        SlurSpanner(c'8, d'8, e'8, f'8)
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            {
-                \time 2/8
-                c'8 [ (
-                d'8 ]
-            }
-            {
-                e'8 [
-                f'8 ] )
-            }
-        }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
-    ::
-
-        >>> halves = componenttools.split_component_at_offset(
-        ... staff.select_leaves()[0], (1, 32), fracture_spanners=True, tie_split_notes=False)
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            {
-                \time 2/8
-                c'32 [ ( )
-                c'16. (
-                d'8 ]
-            }
-            {
-                e'8 [
-                f'8 ] )
-            }
-        }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
     Return pair of left and right part-lists.
     '''

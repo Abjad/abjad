@@ -9,78 +9,84 @@ from abjad.tools.scoretemplatetools.ScoreTemplate import ScoreTemplate
 
 
 class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
-    r'''Example 1. Grouped rhythmic staves score template with 
-    one voice per staff:
+    r'''Score template for grouped rhythmic staves.
+    
+    ..  container:: example
 
-    ::
+        **Example 1.** Grouped rhythmic staves score template with 
+        one voice per staff:
 
-        >>> template = \
-        ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
-        ...     staff_count=4)
-        >>> score = template()
+        ::
 
-    ::
+            >>> template = \
+            ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+            ...     staff_count=4)
+            >>> score = template()
 
-        >>> score
-        Score-"Grouped Rhythmic Staves Score"<<1>>
+        ::
 
-    ..  doctest::
+            >>> score
+            Score-"Grouped Rhythmic Staves Score"<<1>>
 
-        >>> f(score)
-        \context Score = "Grouped Rhythmic Staves Score" <<
-            \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
-                \context RhythmicStaff = "Staff 1" {
-                    \context Voice = "Voice 1" {
+        ..  doctest::
+
+            >>> f(score)
+            \context Score = "Grouped Rhythmic Staves Score" <<
+                \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
+                    \context RhythmicStaff = "Staff 1" {
+                        \context Voice = "Voice 1" {
+                        }
                     }
-                }
-                \context RhythmicStaff = "Staff 2" {
-                    \context Voice = "Voice 2" {
+                    \context RhythmicStaff = "Staff 2" {
+                        \context Voice = "Voice 2" {
+                        }
                     }
-                }
-                \context RhythmicStaff = "Staff 3" {
-                    \context Voice = "Voice 3" {
+                    \context RhythmicStaff = "Staff 3" {
+                        \context Voice = "Voice 3" {
+                        }
                     }
-                }
-                \context RhythmicStaff = "Staff 4" {
-                    \context Voice = "Voice 4" {
-                    }
-                }
-            >>
-        >>
-
-    Example 2. Grouped rhythmic staves score template with more than 
-    one voice per staff:
-
-    ::
-
-        >>> template = \
-        ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
-        ...     staff_count=[2, 1, 2])
-        >>> score = template()
-
-    ..  doctest::
-
-        >>> f(score)
-        \context Score = "Grouped Rhythmic Staves Score" <<
-            \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
-                \context RhythmicStaff = "Staff 1" <<
-                    \context Voice = "Voice 1-1" {
-                    }
-                    \context Voice = "Voice 1-2" {
-                    }
-                >>
-                \context RhythmicStaff = "Staff 2" {
-                    \context Voice = "Voice 2" {
-                    }
-                }
-                \context RhythmicStaff = "Staff 3" <<
-                    \context Voice = "Voice 3-1" {
-                    }
-                    \context Voice = "Voice 3-2" {
+                    \context RhythmicStaff = "Staff 4" {
+                        \context Voice = "Voice 4" {
+                        }
                     }
                 >>
             >>
-        >>
+
+    ..  container:: example
+    
+        **Example 2.** Grouped rhythmic staves score template with more than 
+        one voice per staff:
+
+        ::
+
+            >>> template = \
+            ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+            ...     staff_count=[2, 1, 2])
+            >>> score = template()
+
+        ..  doctest::
+
+            >>> f(score)
+            \context Score = "Grouped Rhythmic Staves Score" <<
+                \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
+                    \context RhythmicStaff = "Staff 1" <<
+                        \context Voice = "Voice 1-1" {
+                        }
+                        \context Voice = "Voice 1-2" {
+                        }
+                    >>
+                    \context RhythmicStaff = "Staff 2" {
+                        \context Voice = "Voice 2" {
+                        }
+                    }
+                    \context RhythmicStaff = "Staff 3" <<
+                        \context Voice = "Voice 3-1" {
+                        }
+                        \context Voice = "Voice 3-2" {
+                        }
+                    >>
+                >>
+            >>
 
     Return score template object.
     '''

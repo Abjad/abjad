@@ -301,21 +301,25 @@ class TimeSignatureMark(ContextMark):
     def implied_prolation(self):
         '''Time signature mark implied prolation.
 
-        Example 1. Implied prolation of time signature 
-        with power-of-two denominator:
+        ..  container:: example
 
-        ::
+            **Example 1.** Implied prolation of time signature 
+            with power-of-two denominator:
 
-            >>> contexttools.TimeSignatureMark((3, 8)).implied_prolation
-            Multiplier(1, 1)
+            ::
 
-        Example 2. Implied prolation of time signature 
-        with non-power-of-two denominator:
+                >>> contexttools.TimeSignatureMark((3, 8)).implied_prolation
+                Multiplier(1, 1)
 
-        ::
+        ..  container:: example
 
-            >>> contexttools.TimeSignatureMark((7, 12)).implied_prolation
-            Multiplier(2, 3)
+            **Example 2.** Implied prolation of time signature 
+            with non-power-of-two denominator:
+
+            ::
+
+                >>> contexttools.TimeSignatureMark((7, 12)).implied_prolation
+                Multiplier(2, 3)
 
         Return multiplier.
         '''

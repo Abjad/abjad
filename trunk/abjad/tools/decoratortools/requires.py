@@ -6,24 +6,26 @@ import types
 def requires(*tests):
     r'''Function decorator to require input parameter `tests`.
 
-    Example:
+    ..  container:: example
 
-    ::
+        **Example:**
 
-        >>> @decoratortools.requires(
-        ...     mathtools.is_nonnegative_integer, string) # doctest: +SKIP
-        >>> def multiply_string(n, string): return n * string
+        ::
 
-    ::
+            >>> @decoratortools.requires(
+            ...     mathtools.is_nonnegative_integer, string) # doctest: +SKIP
+            >>> def multiply_string(n, string): return n * string
 
-        >>> multiply_string(2, 'bar') # doctest: +SKIP
-        'barbar'
+        ::
 
-    ::
+            >>> multiply_string(2, 'bar') # doctest: +SKIP
+            'barbar'
 
-        >>> multiply_string(2.5, 'bar') # doctest: +SKIP
-        ...
-        AssertionError: is_nonnegative_integer(2.5) does not return true.
+        ::
+
+            >>> multiply_string(2.5, 'bar') # doctest: +SKIP
+            ...
+            AssertionError: is_nonnegative_integer(2.5) does not return true.
 
     Decorator target is available like this:
 

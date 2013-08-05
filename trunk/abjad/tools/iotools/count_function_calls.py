@@ -7,19 +7,23 @@ def count_function_calls(
     ):
     '''Count function calls returned by ``iotools.profile_expr(expr)``.
 
-    Example 1. Function calls required to initialize note from string:
+    ..  container:: example
 
-    ::
+        **Example 1.** Function calls required to initialize note from string:
 
-        >>> iotools.count_function_calls("Note('c4')", globals())
-        10743
+        ::
 
-    Example 2. Function calls required to initialize note from integers:
+            >>> iotools.count_function_calls("Note('c4')", globals())
+            10743
+        
+    ..  container:: example
 
-    ::
+        **Example 2.** Function calls required to initialize note from integers:
 
-        >>> iotools.count_function_calls("Note(-12, (1, 4))", globals())
-        138
+        ::
+
+            >>> iotools.count_function_calls("Note(-12, (1, 4))", globals())
+            138
 
     Return integer.
     '''

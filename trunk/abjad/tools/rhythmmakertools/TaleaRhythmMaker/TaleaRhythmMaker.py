@@ -6,53 +6,57 @@ from abjad.tools.rhythmmakertools.DivisionBurnishedTaleaRhythmMaker import \
 class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
     r'''Talea rhythm-maker.
 
-    Example 1. Basic usage:
+    ..  container:: example
 
-    ::
+        **Example 1.** Basic usage:
 
-        >>> maker = rhythmmakertools.TaleaRhythmMaker(
-        ...     talea=[-1, 4, -2, 3],
-        ...     talea_denominator=16,
-        ...     prolation_addenda=[3, 4])
+        ::
 
-    ::
+            >>> maker = rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=[-1, 4, -2, 3],
+            ...     talea_denominator=16,
+            ...     prolation_addenda=[3, 4])
 
-        >>> divisions = [(2, 8), (5, 8)]
-        >>> music = maker(divisions)
-        >>> music = sequencetools.flatten_sequence(music)
-        >>> measures = \
-        ...     measuretools.make_measures_with_full_measure_spacer_skips(
-        ...     divisions)
-        >>> staff = Staff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(
-        ...     staff, music)
+        ::
 
-    ::
+            >>> divisions = [(2, 8), (5, 8)]
+            >>> music = maker(divisions)
+            >>> music = sequencetools.flatten_sequence(music)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
+            >>> staff = Staff(measures)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, music)
 
-        >>> show(staff) # doctest: +SKIP
+        ::
 
-    Example 2. Tie split notes.
+            >>> show(staff) # doctest: +SKIP
 
-        >>> maker = rhythmmakertools.TaleaRhythmMaker(
-        ...     talea=[5],
-        ...     talea_denominator=16,
-        ...     tie_split_notes=True)
+    ..  container:: example
 
-    ::
+        **Example 2.** Tie split notes.
 
-        >>> divisions = [(2, 8), (2, 8), (2, 8), (2, 8)]
-        >>> music = maker(divisions)
-        >>> music = sequencetools.flatten_sequence(music)
-        >>> measures = \
-        ...     measuretools.make_measures_with_full_measure_spacer_skips(
-        ...     divisions)
-        >>> staff = Staff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(
-        ...     staff, music)
+            >>> maker = rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=[5],
+            ...     talea_denominator=16,
+            ...     tie_split_notes=True)
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
+            >>> divisions = [(2, 8), (2, 8), (2, 8), (2, 8)]
+            >>> music = maker(divisions)
+            >>> music = sequencetools.flatten_sequence(music)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
+            >>> staff = Staff(measures)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, music)
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
 
     Usage follows the two-step instantiate-then-call pattern shown here.
     '''

@@ -6,81 +6,85 @@ from abjad.tools.rhythmmakertools.DivisionIncisedNoteRhythmMaker \
 class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
     r'''Note rhythm-maker:
 
-    Example 1:
+    ..  container:: example
 
-    ::
+        **Example 1:**
 
-        >>> maker = rhythmmakertools.NoteRhythmMaker()
+        ::
 
-    ::
+            >>> maker = rhythmmakertools.NoteRhythmMaker()
 
-        >>> divisions = [(5, 8), (3, 8)]
-        >>> leaf_lists = maker(divisions)
-        >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-        >>> measures = \
-        ...     measuretools.make_measures_with_full_measure_spacer_skips(
-        ...     divisions)
-        >>> staff = Staff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(
-        ...     staff, leaves)
+        ::
 
-    ..  doctest::
+            >>> divisions = [(5, 8), (3, 8)]
+            >>> leaf_lists = maker(divisions)
+            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
+            >>> staff = Staff(measures)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, leaves)
 
-        >>> f(staff)
-        \new Staff {
-            {
-                \time 5/8
-                c'2 ~
-                c'8
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                {
+                    \time 5/8
+                    c'2 ~
+                    c'8
+                }
+                {
+                    \time 3/8
+                    c'4.
+                }
             }
-            {
-                \time 3/8
-                c'4.
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+    ..  container:: example
+    
+        **Example 2.** Forbid half notes:
+
+        ::
+
+            >>> maker = rhythmmakertools.NoteRhythmMaker(
+            ...     forbidden_written_duration=Duration(1, 2))
+
+        ::
+
+            >>> divisions = [(5, 8), (3, 8)]
+            >>> leaf_lists = maker(divisions)
+            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
+            >>> staff = Staff(measures)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, leaves)
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                {
+                    \time 5/8
+                    c'4 ~
+                    c'4 ~
+                    c'8
+                }
+                {
+                    \time 3/8
+                    c'4.
+                }
             }
-        }
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
-
-    Example 2. Forbid half notes:
-
-    ::
-
-        >>> maker = rhythmmakertools.NoteRhythmMaker(
-        ...     forbidden_written_duration=Duration(1, 2))
-
-    ::
-
-        >>> divisions = [(5, 8), (3, 8)]
-        >>> leaf_lists = maker(divisions)
-        >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-        >>> measures = \
-        ...     measuretools.make_measures_with_full_measure_spacer_skips(
-        ...     divisions)
-        >>> staff = Staff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(
-        ...     staff, leaves)
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            {
-                \time 5/8
-                c'4 ~
-                c'4 ~
-                c'8
-            }
-            {
-                \time 3/8
-                c'4.
-            }
-        }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
     Usage follows the two-step instantiate-then-call pattern shown here.
     '''

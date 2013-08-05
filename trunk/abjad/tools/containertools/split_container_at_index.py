@@ -6,111 +6,118 @@ from abjad.tools import mathtools
 
 def split_container_at_index(component, i, fracture_spanners=False):
     r'''General component index split algorithm.
+
     Works on leaves, tuplets, measures, contexts and unqualified containers.
     Keyword controls spanner behavior at split time.
+
     Use containertools.split_container_at_index_and_fracture_crossing_spanners()
     to fracture spanners.
+
     Use containertools.split_container_at_index_and_do_not_fracture_crossing_spanners()
     to leave spanners unchanged.
 
-    Example 1. Split container and do not fracture crossing spanners:
+    ..  container:: example
 
-    ::
+        **Example 1.** Split container and do not fracture crossing spanners:
 
-        >>> voice = Voice(Measure((3, 8), "c'8 c'8 c'8") * 2)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
-        >>> beam = spannertools.BeamSpanner(voice[:])
+        ::
 
-    ..  doctest::
+            >>> voice = Voice(Measure((3, 8), "c'8 c'8 c'8") * 2)
+            >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+            >>> beam = spannertools.BeamSpanner(voice[:])
 
-        >>> f(voice)
-        \new Voice {
-            {
-                \time 3/8
-                c'8 [
-                d'8
-                e'8
+        ..  doctest::
+
+            >>> f(voice)
+            \new Voice {
+                {
+                    \time 3/8
+                    c'8 [
+                    d'8
+                    e'8
+                }
+                {
+                    f'8
+                    g'8
+                    a'8 ]
+                }
             }
-            {
-                f'8
-                g'8
-                a'8 ]
+
+        ::
+
+            >>> containertools.split_container_at_index(voice[1], 1, fracture_spanners=False)
+            (Measure(1/8, [f'8]), Measure(2/8, [g'8, a'8]))
+
+        ..  doctest::
+
+            >>> f(voice)
+            \new Voice {
+                {
+                    \time 3/8
+                    c'8 [
+                    d'8
+                    e'8
+                }
+                {
+                    \time 1/8
+                    f'8
+                }
+                {
+                    \time 2/8
+                    g'8
+                    a'8 ]
+                }
             }
-        }
 
-    ::
+    ..  container:: example
 
-        >>> containertools.split_container_at_index(voice[1], 1, fracture_spanners=False)
-        (Measure(1/8, [f'8]), Measure(2/8, [g'8, a'8]))
+        **Example 2.** Split container and fracture crossing spanners:
 
-    ..  doctest::
+        ::
 
-        >>> f(voice)
-        \new Voice {
-            {
-                \time 3/8
-                c'8 [
-                d'8
-                e'8
+            >>> voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 c'8 c'8") * 2)
+            >>> tuplet = voice[1]
+            >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+            >>> beam = spannertools.BeamSpanner(voice[:])
+
+        ..  doctest::
+
+            >>> f(voice)
+            \new Voice {
+                \times 2/3 {
+                    c'8 [
+                    d'8
+                    e'8
+                }
+                \times 2/3 {
+                    f'8
+                    g'8
+                    a'8 ]
+                }
             }
-            {
-                \time 1/8
-                f'8
+
+        ::
+
+            >>> left, right = containertools.split_container_at_index(
+            ...         tuplet, 1, fracture_spanners=True)
+
+        ..  doctest::
+
+            >>> f(voice)
+            \new Voice {
+                \times 2/3 {
+                    c'8 [
+                    d'8
+                    e'8
+                }
+                \times 2/3 {
+                    f'8 ]
+                }
+                \times 2/3 {
+                    g'8 [
+                    a'8 ]
+                }
             }
-            {
-                \time 2/8
-                g'8
-                a'8 ]
-            }
-        }
-
-    Example 2. Split container and fracture crossing spanners:
-
-    ::
-
-        >>> voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 c'8 c'8") * 2)
-        >>> tuplet = voice[1]
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
-        >>> beam = spannertools.BeamSpanner(voice[:])
-
-    ..  doctest::
-
-        >>> f(voice)
-        \new Voice {
-            \times 2/3 {
-                c'8 [
-                d'8
-                e'8
-            }
-            \times 2/3 {
-                f'8
-                g'8
-                a'8 ]
-            }
-        }
-
-    ::
-
-        >>> left, right = containertools.split_container_at_index(
-        ...         tuplet, 1, fracture_spanners=True)
-
-    ..  doctest::
-
-        >>> f(voice)
-        \new Voice {
-            \times 2/3 {
-                c'8 [
-                d'8
-                e'8
-            }
-            \times 2/3 {
-                f'8 ]
-            }
-            \times 2/3 {
-                g'8 [
-                a'8 ]
-            }
-        }
 
     Leave spanners and leaves untouched.
 

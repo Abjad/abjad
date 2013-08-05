@@ -6,85 +6,90 @@ from abjad.tools.rhythmmakertools.DivisionIncisedRestRhythmMaker \
 class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
     r'''Rest rhythm-maker.
 
-    Example 1:
+    ..  container:: example
 
-    ::
+        **Example 1:**
 
-        >>> maker = rhythmmakertools.RestRhythmMaker()
+        ::
 
-    Initialize and then call on arbitrary divisions:
+            >>> maker = rhythmmakertools.RestRhythmMaker()
 
-    ::
+        Initialize and then call on arbitrary divisions:
 
-        >>> divisions = [(5, 16), (3, 8)]
-        >>> leaf_lists = maker(divisions)
-        >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-        >>> measures = \
-        ...     measuretools.make_measures_with_full_measure_spacer_skips(
-        ...     divisions)
-        >>> staff = stafftools.RhythmicStaff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(
-        ...     staff, leaves)
+        ::
 
-    ..  doctest::
+            >>> divisions = [(5, 16), (3, 8)]
+            >>> leaf_lists = maker(divisions)
+            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
+            >>> staff = stafftools.RhythmicStaff(measures)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, leaves)
 
-        >>> f(staff)
-        \new RhythmicStaff {
-            {
-                \time 5/16
-                r4
-                r16
+        ..  doctest::
+
+            >>> f(staff)
+            \new RhythmicStaff {
+                {
+                    \time 5/16
+                    r4
+                    r16
+                }
+                {
+                    \time 3/8
+                    r4.
+                }
             }
-            {
-                \time 3/8
-                r4.
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+    ..  container:: example
+
+        **Example 2.** Forbid written durations greater than or equal to a half 
+        note:
+
+        ::
+
+            >>> maker = rhythmmakertools.RestRhythmMaker(
+            ...     forbidden_written_duration=Duration(1, 4))
+
+        ::
+
+            >>> divisions = [(5, 16), (3, 8)]
+            >>> leaf_lists = maker(divisions)
+            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
+            >>> staff = stafftools.RhythmicStaff(measures)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, leaves)
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new RhythmicStaff {
+                {
+                    \time 5/16
+                    r8
+                    r8
+                    r16
+                }
+                {
+                    \time 3/8
+                    r8
+                    r8
+                    r8
+                }
             }
-        }
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
-
-    Example 2. Forbid written durations greater than or equal to a half note:
-
-    ::
-
-        >>> maker = rhythmmakertools.RestRhythmMaker(
-        ...     forbidden_written_duration=Duration(1, 4))
-
-    ::
-
-        >>> divisions = [(5, 16), (3, 8)]
-        >>> leaf_lists = maker(divisions)
-        >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-        >>> measures = \
-        ...     measuretools.make_measures_with_full_measure_spacer_skips(
-        ...     divisions)
-        >>> staff = stafftools.RhythmicStaff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(
-        ...     staff, leaves)
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new RhythmicStaff {
-            {
-                \time 5/16
-                r8
-                r8
-                r16
-            }
-            {
-                \time 3/8
-                r8
-                r8
-                r8
-            }
-        }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
     Usage follows the two-step instantiate-then-call pattern shown here.
     '''

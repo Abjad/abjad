@@ -17,86 +17,90 @@ def copy_components_and_detach_spanners(components, n=1):
 
     * Return copied components.
 
-    Example 1. Copy components one time:
+    ..  container:: example
+    
+        **Example 1.** Copy components one time:
 
-    ::
+        ::
 
-        >>> voice = Voice("abj: | 2/4 c'4 ( d' || 2/4 e' f' ) |")
+            >>> voice = Voice("abj: | 2/4 c'4 ( d' || 2/4 e' f' ) |")
 
-    ..  doctest::
+        ..  doctest::
 
-        >>> f(voice)
-        \new Voice {
-            {
-                \time 2/4
-                c'4 (
+            >>> f(voice)
+            \new Voice {
+                {
+                    \time 2/4
+                    c'4 (
+                    d'4
+                }
+                {
+                    e'4
+                    f'4 )
+                }
+            }
+
+        ::
+
+            >>> show(voice) # doctest: +SKIP
+
+        ::
+
+            >>> result = componenttools.copy_components_and_detach_spanners(
+            ...     voice.select_leaves()[1:3])
+
+        ::
+
+            >>> result
+            SequentialLeafSelection(Note("d'4"), Note("e'4"))
+
+        ::
+
+            >>> new_voice = Voice(result)
+
+        ::
+
+            >>> show(new_voice) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(new_voice)
+            \new Voice {
                 d'4
-            }
-            {
                 e'4
-                f'4 )
             }
-        }
 
-    ::
+        ::
 
-        >>> show(voice) # doctest: +SKIP
+            >>> voice.select_leaves()[2] is new_voice.select_leaves()[0]
+            False
 
-    ::
+    ..  container:: example
 
-        >>> result = componenttools.copy_components_and_detach_spanners(
-        ...     voice.select_leaves()[1:3])
+        **Example 2.** Copy components multiple times:
 
-    ::
+        ::
 
-        >>> result
-        SequentialLeafSelection(Note("d'4"), Note("e'4"))
+            >>> result = componenttools.copy_components_and_detach_spanners(
+            ...     voice.select_leaves()[1:3], n=2)
 
-    ::
+        ::
 
-        >>> new_voice = Voice(result)
+            >>> new_voice = Voice(result)
 
-    ::
+        ::
 
-        >>> show(new_voice) # doctest: +SKIP
+            >>> show(new_voice) # doctest: +SKIP
 
-    ..  doctest::
+        ..  doctest::
 
-        >>> f(new_voice)
-        \new Voice {
-            d'4
-            e'4
-        }
-
-    ::
-
-        >>> voice.select_leaves()[2] is new_voice.select_leaves()[0]
-        False
-
-    Example 2. Copy components multiple times:
-
-    ::
-
-        >>> result = componenttools.copy_components_and_detach_spanners(
-        ...     voice.select_leaves()[1:3], n=2)
-
-    ::
-
-        >>> new_voice = Voice(result)
-
-    ::
-
-        >>> show(new_voice) # doctest: +SKIP
-
-    ..  doctest::
-
-        >>> f(new_voice)
-        \new Voice {
-            d'4
-            e'4
-            d'4
-            e'4
-        }
+            >>> f(new_voice)
+            \new Voice {
+                d'4
+                e'4
+                d'4
+                e'4
+            }
 
     Return selection.
     '''

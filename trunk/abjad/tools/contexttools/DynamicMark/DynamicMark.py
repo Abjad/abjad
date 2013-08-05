@@ -5,47 +5,51 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 class DynamicMark(ContextMark):
     r'''Abjad model of a dynamic mark.
 
-    Example 1. Initialize from dynamic name:
+    ..  container:: example
+    
+        **Example 1.** Initialize from dynamic name:
 
-    ::
+        ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
 
-    ::
+        ::
 
-        >>> contexttools.DynamicMark('f')(staff[0])
-        DynamicMark('f')(c'8)
+            >>> contexttools.DynamicMark('f')(staff[0])
+            DynamicMark('f')(c'8)
 
-    ..  doctest::
+        ..  doctest::
 
-        >>> f(staff)
-        \new Staff {
-            c'8 \f
-            d'8
-            e'8
-            f'8
-        }
+            >>> f(staff)
+            \new Staff {
+                c'8 \f
+                d'8
+                e'8
+                f'8
+            }
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
-    Example 2. Initialize from other dynamic mark:
+    ..  container:: example
 
-    ::
+        **Example 2.** Initialize from other dynamic mark:
 
-        >>> dynamic_mark_1 = contexttools.DynamicMark('f')
-        >>> dynamic_mark_2 = contexttools.DynamicMark(dynamic_mark_1)
+        ::
 
-    ::
+            >>> dynamic_mark_1 = contexttools.DynamicMark('f')
+            >>> dynamic_mark_2 = contexttools.DynamicMark(dynamic_mark_1)
 
-        >>> dynamic_mark_1
-        DynamicMark('f')
+        ::
 
-    ::
+            >>> dynamic_mark_1
+            DynamicMark('f')
 
-        >>> dynamic_mark_2
-        DynamicMark('f')
+        ::
+
+            >>> dynamic_mark_2
+            DynamicMark('f')
 
     Dynamic marks target the staff context by default.
     '''
