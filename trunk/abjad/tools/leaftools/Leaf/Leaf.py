@@ -473,7 +473,7 @@ class Leaf(Component):
 
         ..  container:: example
         
-        **Example 1.** Get all grace containers attached to leaf:
+            **Example 1.** Get all grace containers attached to leaf:
 
             ::
 
