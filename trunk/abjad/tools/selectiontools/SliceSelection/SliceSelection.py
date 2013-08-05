@@ -6,14 +6,31 @@ from abjad.tools.selectiontools.Selection import Selection
 
 
 class SliceSelection(Selection):
-    r'''Selection of components taken sequentially:
+    r'''Selection of components sliced from a sequential container.
 
-    ::
+    **Example**:
 
-        >>> staff = Staff("c'4 d'4 e'4 f'4")
-        >>> selection = staff[:2]
-        >>> selection
-        SliceSelection(Note("c'4"), Note("d'4"))
+    ..  container:: example
+
+        ::
+
+            >>> staff = Staff("c'4 d'4 e'4 f'4")
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+        ::
+
+            >>> staff[:2]
+            SliceSelection(Note("c'4"), Note("d'4"))
 
     '''
 
@@ -24,7 +41,6 @@ class SliceSelection(Selection):
             music = ()
         elif isinstance(music, (tuple, list)):
             music = tuple(music)
-        #elif isinstance(music, SliceSelection):
         elif isinstance(music, Selection):
             music = tuple(music)
         elif isinstance(music, types.GeneratorType):
@@ -36,6 +52,10 @@ class SliceSelection(Selection):
     ### SPECIAL METHODS ###
 
     def __add__(self, expr):
+        '''Add `expr` to slice selection.
+
+        Return new slice selection.
+        '''
         assert isinstance(expr, (type(self), list, tuple))
         if isinstance(expr, type(self)):
             music = self._music + expr._music
@@ -47,6 +67,10 @@ class SliceSelection(Selection):
         return type(self)(music)
 
     def __radd__(self, expr):
+        '''Add slice selection to `expr`.
+
+        Return new slice selection.
+        '''
         assert isinstance(expr, (type(self), list, tuple))
         if isinstance(expr, type(self)):
             music = expr._music + self._music
@@ -157,7 +181,9 @@ class SliceSelection(Selection):
 
     @property
     def timespan(self):
-        r'''Timespan of selection.
+        r'''Timespan of slice selection.
+
+        Return timespan.
         '''
         from abjad.tools import timespantools
         start_offset = min(x.get_timespan().start_offset for x in self)
@@ -177,6 +203,10 @@ class SliceSelection(Selection):
             )
 
     def group_by(self, predicate):
+        '''Group components in selection by `predicate`.
+
+        Return list of tuples.
+        '''
         result = []
         grouper = itertools.groupby(self, predicate)
         for label, generator in grouper:
@@ -184,3 +214,106 @@ class SliceSelection(Selection):
             selection = tuple(generator)
             result.append(selection)
         return result
+
+    def replace_with_rests(
+        self,
+        decrease_durations_monotonically=True,
+        ):
+        r'''Replace components in selection with one or more rests.
+
+        **Example 1.** Replace all container elements:
+
+        ..  container:: example
+
+            ::
+
+                >>> container = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b' c''8")
+                >>> show(container) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(container)
+                \new Staff {
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                    g'8
+                    a'8
+                    b'8
+                    c''8
+                }
+
+            ::
+
+                >>> container[:].replace_with_rests()
+                >>> show(container) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(container)
+                \new Staff {
+                    r1
+                }
+
+        **Example 2.** Replace container elements from ``1`` forward:
+
+        ..  container:: example
+
+            ::
+
+                >>> container = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b' c''8")
+                >>> show(container) # doctest: +SKIP
+
+            ::
+
+                >>> container[1:].replace_with_rests()
+                >>> show(container) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(container)
+                \new Staff {
+                    c'8
+                    r2..
+                }
+
+        **Example 3.** Replace container elements from ``1`` to ``2``:
+
+        ..  container:: example
+
+            ::
+
+                >>> container = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b' c''8")
+                >>> show(container) # doctest: +SKIP
+
+            ::
+
+                >>> container[1:2].replace_with_rests()
+                >>> show(container) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(container)
+                \new Staff {
+                    c'8
+                    r8
+                    e'8
+                    f'8
+                    g'8
+                    a'8
+                    b'8
+                    c''8
+                }
+
+        Return none.
+        '''
+        from abjad.tools import resttools
+        if self:
+            duration = self._preprolated_duration
+            rests = resttools.make_rests(
+                duration,
+                decrease_durations_monotonically=decrease_durations_monotonically,
+                )
+            parent, start, stop = self._get_parent_and_start_stop_indices()
+            parent[start:stop+1] = rests
