@@ -471,26 +471,32 @@ class Leaf(Component):
 
             >>> show(staff) # doctest: +SKIP
 
-        Example 1. Get all grace containers attached to leaf:
+        ..  container:: example
+        
+        **Example 1.** Get all grace containers attached to leaf:
 
-        ::
+            ::
 
-            >>> staff[1].get_grace_containers()
-            (GraceContainer(cs'16), GraceContainer(ds'16))
+                >>> staff[1].get_grace_containers()
+                (GraceContainer(cs'16), GraceContainer(ds'16))
 
-        Example 2. Get only (proper) grace containers attached to leaf:
+        ..  container:: example
+        
+            **Example 2.** Get only (proper) grace containers attached to leaf:
 
-        ::
+            ::
 
-            >>> staff[1].get_grace_containers(kind='grace')
-            (GraceContainer(cs'16),)
+                >>> staff[1].get_grace_containers(kind='grace')
+                (GraceContainer(cs'16),)
 
-        Example 3. Get only after grace containers attached to leaf:
+        ..  container:: example
+        
+            **Example 3.** Get only after grace containers attached to leaf:
 
-        ::
+            ::
 
-            >>> staff[1].get_grace_containers(kind='after')
-            (GraceContainer(ds'16),)
+                >>> staff[1].get_grace_containers(kind='after')
+                (GraceContainer(ds'16),)
 
         Return tuple.
         '''

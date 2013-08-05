@@ -17,310 +17,334 @@ def make_leaves(
     ):
     r'''Make leaves.
 
-    Example 1. Integer and string elements in `pitches` result in notes:
+    ..  container:: example
+    
+        **Example 1.** Integer and string elements in `pitches` result in notes:
 
-    ::
+        ::
 
-        >>> pitches = [2, 4, 'F#5', 'G#5']
-        >>> duration = Duration(1, 4)
-        >>> leaves = leaftools.make_leaves(pitches, duration)
-        >>> staff = Staff(leaves)
+            >>> pitches = [2, 4, 'F#5', 'G#5']
+            >>> duration = Duration(1, 4)
+            >>> leaves = leaftools.make_leaves(pitches, duration)
+            >>> staff = Staff(leaves)
 
-    ..  doctest::
+        ..  doctest::
 
-        >>> f(staff)
-        \new Staff {
-            d'4
-            e'4
-            fs''4
-            gs''4
-        }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
-    Example 2. Tuple elements in `pitches` result in chords:
-
-    ::
-
-        >>> pitches = [(0, 2, 4), ('F#5', 'G#5', 'A#5')]
-        >>> duration = Duration(1, 2)
-        >>> leaves = leaftools.make_leaves(pitches, duration)
-        >>> staff = Staff(leaves)
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            <c' d' e'>2
-            <fs'' gs'' as''>2
-        }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
-    Example 3. None-valued elements in `pitches` result in rests:
-
-    ::
-
-        >>> pitches = 4 * [None]
-        >>> durations = [Duration(1, 4)]
-        >>> leaves = leaftools.make_leaves(pitches, durations)
-        >>> staff = stafftools.RhythmicStaff(leaves)
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new RhythmicStaff {
-            r4
-            r4
-            r4
-            r4
-        }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
-    Example 4. You can mix and match values passed to `pitches`:
-
-    ::
-
-        >>> pitches = [(0, 2, 4), None, 'C#5', 'D#5']
-        >>> durations = [Duration(1, 4)]
-        >>> leaves = leaftools.make_leaves(pitches, durations)
-        >>> staff = Staff(leaves)
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            <c' d' e'>4
-            r4
-            cs''4
-            ds''4
-        }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
-    Example 5. Read `pitches` cyclically when the length of `pitches`
-    is less than the length of `durations`:
-
-    ::
-
-        >>> pitches = ['C5']
-        >>> durations = 2 * [Duration(3, 8), Duration(1, 8)]
-        >>> leaves = leaftools.make_leaves(pitches, durations)
-        >>> staff = Staff(leaves)
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            c''4.
-            c''8
-            c''4.
-            c''8
-        }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
-    Example 6. Read `durations` cyclically when the length of `durations`
-    is less than the length of `pitches`:
-
-    ::
-
-        >>> pitches = "c'' d'' e'' f''"
-        >>> durations = [Duration(1, 4)]
-        >>> leaves = leaftools.make_leaves(pitches, durations)
-        >>> staff = Staff(leaves)
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            c''4
-            d''4
-            e''4
-            f''4
-        }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
-    Example 7. Elements in `durations` with non-power-of-two denominators
-    result in tuplet-nested leaves:
-
-    ::
-
-        >>> pitches = ['D5']
-        >>> durations = [Duration(1, 3), Duration(1, 3), Duration(1, 3)]
-        >>> leaves = leaftools.make_leaves(pitches, durations)
-        >>> staff = Staff(leaves)
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            \times 2/3 {
-                d''2
-                d''2
-                d''2
+            >>> f(staff)
+            \new Staff {
+                d'4
+                e'4
+                fs''4
+                gs''4
             }
-        }
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
-    Example 8. Set `decrease_durations_monotonically` to true to return
-    nonassignable durations tied from greatest to least:
+    ..  container:: example
+    
+        **Example 2.** Tuple elements in `pitches` result in chords:
 
-    ::
+        ::
 
-        >>> pitches = ['D#5']
-        >>> durations = [Duration(13, 16)]
-        >>> leaves = leaftools.make_leaves(pitches, durations)
-        >>> staff = Staff(leaves)
-        >>> time_signature = contexttools.TimeSignatureMark((13, 16))(staff)
+            >>> pitches = [(0, 2, 4), ('F#5', 'G#5', 'A#5')]
+            >>> duration = Duration(1, 2)
+            >>> leaves = leaftools.make_leaves(pitches, duration)
+            >>> staff = Staff(leaves)
 
-    ..  doctest::
+        ..  doctest::
 
-        >>> f(staff)
-        \new Staff {
-            \time 13/16
-            ds''2. ~
-            ds''16
-        }
+            >>> f(staff)
+            \new Staff {
+                <c' d' e'>2
+                <fs'' gs'' as''>2
+            }
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
-    Example 9. Set `decrease_durations_monotonically` to false to return
-    nonassignable durations tied from least to greatest:
+    ..  container:: example
+        
+        **Example 3.** None-valued elements in `pitches` result in rests:
 
-    ::
+        ::
 
-        >>> pitches = ['E5']
-        >>> durations = [Duration(13, 16)]
-        >>> leaves = leaftools.make_leaves(
-        ...     pitches, 
-        ...     durations,
-        ...     decrease_durations_monotonically=False,
-        ...     )
-        >>> staff = Staff(leaves)
-        >>> time_signature = contexttools.TimeSignatureMark((13, 16))(staff)
+            >>> pitches = 4 * [None]
+            >>> durations = [Duration(1, 4)]
+            >>> leaves = leaftools.make_leaves(pitches, durations)
+            >>> staff = stafftools.RhythmicStaff(leaves)
 
-    ..  doctest::
+        ..  doctest::
 
-        >>> f(staff)
-        \new Staff {
-            \time 13/16
-            e''16 ~
-            e''2.
-        }
+            >>> f(staff)
+            \new RhythmicStaff {
+                r4
+                r4
+                r4
+                r4
+            }
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
-    Example 10. Set `tie_rests` to true to return tied rests for 
-    nonassignable durations. Note that LilyPond does not engrave 
-    ties between rests:
+    ..  container:: example
+        
+        **Example 4.** You can mix and match values passed to `pitches`:
 
-    ::
+        ::
 
-        >>> pitches = [None]
-        >>> durations = [Duration(5, 8)]
-        >>> leaves = leaftools.make_leaves(pitches, durations, tie_rests=True)
-        >>> staff = stafftools.RhythmicStaff(leaves)
-        >>> time_signature = contexttools.TimeSignatureMark((5, 8))(staff)
+            >>> pitches = [(0, 2, 4), None, 'C#5', 'D#5']
+            >>> durations = [Duration(1, 4)]
+            >>> leaves = leaftools.make_leaves(pitches, durations)
+            >>> staff = Staff(leaves)
 
-    ..  doctest::
+        ..  doctest::
 
-        >>> f(staff)
-        \new RhythmicStaff {
-            \time 5/8
-            r2 ~
-            r8
-        }
+            >>> f(staff)
+            \new Staff {
+                <c' d' e'>4
+                r4
+                cs''4
+                ds''4
+            }
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
-    Example 11. Set `forbidden_written_duration` to avoid notes greater
-    than or equal to a certain written duration:
+    ..  container:: example
+            
+        **Example 5.** Read `pitches` cyclically when the length of `pitches`
+        is less than the length of `durations`:
 
-    ::
+        ::
 
-        >>> pitches = "f' g'"
-        >>> durations = [Duration(5, 8)]
-        >>> leaves = leaftools.make_leaves(
-        ...     pitches,
-        ...     durations,
-        ...     forbidden_written_duration=Duration(1, 2),
-        ...     )
-        >>> staff = Staff(leaves)
-        >>> time_signature = contexttools.TimeSignatureMark((5, 4))(staff)
+            >>> pitches = ['C5']
+            >>> durations = 2 * [Duration(3, 8), Duration(1, 8)]
+            >>> leaves = leaftools.make_leaves(pitches, durations)
+            >>> staff = Staff(leaves)
 
-    ..  doctest::
+        ..  doctest::
 
-        >>> f(staff)
-        \new Staff {
-            \time 5/4
-            f'4 ~
-            f'4 ~
-            f'8
-            g'4 ~
-            g'4 ~
-            g'8
-        }
+            >>> f(staff)
+            \new Staff {
+                c''4.
+                c''8
+                c''4.
+                c''8
+            }
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
-    Example 12. You may set `forbidden_written_duration` and
-    `decrease_durations_monotonically` together:
+    ..  container:: example
+            
+        **Example 6.** Read `durations` cyclically when the length of `durations`
+        is less than the length of `pitches`:
 
-    ::
+        ::
 
-        >>> pitches = "f' g'"
-        >>> durations = [Duration(5, 8)]
-        >>> leaves = leaftools.make_leaves(
-        ...     pitches,
-        ...     durations,
-        ...     forbidden_written_duration=Duration(1, 2),
-        ...     decrease_durations_monotonically=False,
-        ...     )
-        >>> staff = Staff(leaves)
-        >>> time_signature = contexttools.TimeSignatureMark((5, 4))(staff)
+            >>> pitches = "c'' d'' e'' f''"
+            >>> durations = [Duration(1, 4)]
+            >>> leaves = leaftools.make_leaves(pitches, durations)
+            >>> staff = Staff(leaves)
 
-    ..  doctest::
+        ..  doctest::
 
-        >>> f(staff)
-        \new Staff {
-            \time 5/4
-            f'8 ~
-            f'4 ~
-            f'4
-            g'8 ~
-            g'4 ~
-            g'4
-        }
+            >>> f(staff)
+            \new Staff {
+                c''4
+                d''4
+                e''4
+                f''4
+            }
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
+
+    ..  container:: example
+            
+        **Example 7.** Elements in `durations` with non-power-of-two denominators
+        result in tuplet-nested leaves:
+
+        ::
+
+            >>> pitches = ['D5']
+            >>> durations = [Duration(1, 3), Duration(1, 3), Duration(1, 3)]
+            >>> leaves = leaftools.make_leaves(pitches, durations)
+            >>> staff = Staff(leaves)
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                \times 2/3 {
+                    d''2
+                    d''2
+                    d''2
+                }
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+    ..  container:: example
+            
+        **Example 8.** Set `decrease_durations_monotonically` to true to return
+        nonassignable durations tied from greatest to least:
+
+        ::
+
+            >>> pitches = ['D#5']
+            >>> durations = [Duration(13, 16)]
+            >>> leaves = leaftools.make_leaves(pitches, durations)
+            >>> staff = Staff(leaves)
+            >>> time_signature = contexttools.TimeSignatureMark((13, 16))(staff)
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                \time 13/16
+                ds''2. ~
+                ds''16
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+    ..  container:: example
+            
+        **Example 9.** Set `decrease_durations_monotonically` to false to return
+        nonassignable durations tied from least to greatest:
+
+        ::
+
+            >>> pitches = ['E5']
+            >>> durations = [Duration(13, 16)]
+            >>> leaves = leaftools.make_leaves(
+            ...     pitches, 
+            ...     durations,
+            ...     decrease_durations_monotonically=False,
+            ...     )
+            >>> staff = Staff(leaves)
+            >>> time_signature = contexttools.TimeSignatureMark((13, 16))(staff)
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                \time 13/16
+                e''16 ~
+                e''2.
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+    ..  container:: example
+        
+        **Example 10.** Set `tie_rests` to true to return tied rests for 
+        nonassignable durations. Note that LilyPond does not engrave 
+        ties between rests:
+
+        ::
+
+            >>> pitches = [None]
+            >>> durations = [Duration(5, 8)]
+            >>> leaves = leaftools.make_leaves(pitches, durations, tie_rests=True)
+            >>> staff = stafftools.RhythmicStaff(leaves)
+            >>> time_signature = contexttools.TimeSignatureMark((5, 8))(staff)
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new RhythmicStaff {
+                \time 5/8
+                r2 ~
+                r8
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+    ..  container:: example
+    
+        **Example 11.** Set `forbidden_written_duration` to avoid notes greater
+        than or equal to a certain written duration:
+
+        ::
+
+            >>> pitches = "f' g'"
+            >>> durations = [Duration(5, 8)]
+            >>> leaves = leaftools.make_leaves(
+            ...     pitches,
+            ...     durations,
+            ...     forbidden_written_duration=Duration(1, 2),
+            ...     )
+            >>> staff = Staff(leaves)
+            >>> time_signature = contexttools.TimeSignatureMark((5, 4))(staff)
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                \time 5/4
+                f'4 ~
+                f'4 ~
+                f'8
+                g'4 ~
+                g'4 ~
+                g'8
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+    ..  container:: example
+        
+        **Example 12.** You may set `forbidden_written_duration` and
+        `decrease_durations_monotonically` together:
+
+        ::
+
+            >>> pitches = "f' g'"
+            >>> durations = [Duration(5, 8)]
+            >>> leaves = leaftools.make_leaves(
+            ...     pitches,
+            ...     durations,
+            ...     forbidden_written_duration=Duration(1, 2),
+            ...     decrease_durations_monotonically=False,
+            ...     )
+            >>> staff = Staff(leaves)
+            >>> time_signature = contexttools.TimeSignatureMark((5, 4))(staff)
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                \time 5/4
+                f'8 ~
+                f'4 ~
+                f'4
+                g'8 ~
+                g'4 ~
+                g'4
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
 
     Return list of leaves.
     '''

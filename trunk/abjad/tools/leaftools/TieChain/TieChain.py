@@ -177,113 +177,117 @@ class TieChain(SequentialLeafSelection):
         ):
         r'''Change tie chain to tuplet.
 
-        Example 1. Change tie chain to diminished tuplet:
+        ..  container:: example
 
-        ::
+            **Example 1.** Change tie chain to diminished tuplet:
 
-            >>> staff = Staff(r"c'8 ~ c'16 cqs''4")
-            >>> crescendo = spannertools.HairpinSpanner(staff[:], 'p < f')
-            >>> staff.override.dynamic_line_spanner.staff_padding = 3
-            >>> time_signature = contexttools.TimeSignatureMark((7, 16))
-            >>> time_signature.attach(staff)
-            TimeSignatureMark((7, 16))(Staff{3})
-            
-        ..  doctest::
+            ::
 
-            >>> f(staff)
-            \new Staff \with {
-                \override DynamicLineSpanner #'staff-padding = #3
-            } {
-                \time 7/16
-                c'8 \< \p ~
-                c'16
-                cqs''4 \f
-            }
+                >>> staff = Staff(r"c'8 ~ c'16 cqs''4")
+                >>> crescendo = spannertools.HairpinSpanner(staff[:], 'p < f')
+                >>> staff.override.dynamic_line_spanner.staff_padding = 3
+                >>> time_signature = contexttools.TimeSignatureMark((7, 16))
+                >>> time_signature.attach(staff)
+                TimeSignatureMark((7, 16))(Staff{3})
+                
+            ..  doctest::
 
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
-            >>> tie_chain = staff[0].select_tie_chain()
-            >>> tie_chain.to_tuplet([2, 1, 1, 1], is_diminution=True)
-            FixedDurationTuplet(3/16, [c'8, c'16, c'16, c'16])
-
-        ..  doctest::
-
-            >>> f(staff)
-            \new Staff \with {
-                \override DynamicLineSpanner #'staff-padding = #3
-            } {
-                \time 7/16
-                \tweak #'text #tuplet-number::calc-fraction-text
-                \times 3/5 {
-                    c'8 \< \p
+                >>> f(staff)
+                \new Staff \with {
+                    \override DynamicLineSpanner #'staff-padding = #3
+                } {
+                    \time 7/16
+                    c'8 \< \p ~
                     c'16
-                    c'16
-                    c'16
+                    cqs''4 \f
                 }
-                cqs''4 \f
-            }
 
-        ::
+            ::
 
-            >>> show(staff) # doctest: +SKIP
+                >>> show(staff) # doctest: +SKIP
 
-        Example 2. Change tie chain to augmented tuplet:
+            ::
 
-        ::
+                >>> tie_chain = staff[0].select_tie_chain()
+                >>> tie_chain.to_tuplet([2, 1, 1, 1], is_diminution=True)
+                FixedDurationTuplet(3/16, [c'8, c'16, c'16, c'16])
 
-            >>> staff = Staff(r"c'8 ~ c'16 cqs''4")
-            >>> crescendo = spannertools.HairpinSpanner(staff[:], 'p < f')
-            >>> staff.override.dynamic_line_spanner.staff_padding = 3
-            >>> time_signature = contexttools.TimeSignatureMark((7, 16))
-            >>> time_signature.attach(staff)
-            TimeSignatureMark((7, 16))(Staff{3})
-            
-        ..  doctest::
+            ..  doctest::
 
-            >>> f(staff)
-            \new Staff \with {
-                \override DynamicLineSpanner #'staff-padding = #3
-            } {
-                \time 7/16
-                c'8 \< \p ~
-                c'16
-                cqs''4 \f
-            }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
-            >>> tie_chain = staff[0].select_tie_chain()
-            >>> tie_chain.to_tuplet([2, 1, 1, 1], is_diminution=False)
-            FixedDurationTuplet(3/16, [c'16, c'32, c'32, c'32])
-
-        ..  doctest::
-
-            >>> f(staff)
-            \new Staff \with {
-                \override DynamicLineSpanner #'staff-padding = #3
-            } {
-                \time 7/16
-                \tweak #'text #tuplet-number::calc-fraction-text
-                \times 6/5 {
-                    c'16 \< \p
-                    c'32
-                    c'32
-                    c'32
+                >>> f(staff)
+                \new Staff \with {
+                    \override DynamicLineSpanner #'staff-padding = #3
+                } {
+                    \time 7/16
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 3/5 {
+                        c'8 \< \p
+                        c'16
+                        c'16
+                        c'16
+                    }
+                    cqs''4 \f
                 }
-                cqs''4 \f
-            }
 
-        ::
+            ::
 
-            >>> show(staff) # doctest: +SKIP
+                >>> show(staff) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 2.** Change tie chain to augmented tuplet:
+
+            ::
+
+                >>> staff = Staff(r"c'8 ~ c'16 cqs''4")
+                >>> crescendo = spannertools.HairpinSpanner(staff[:], 'p < f')
+                >>> staff.override.dynamic_line_spanner.staff_padding = 3
+                >>> time_signature = contexttools.TimeSignatureMark((7, 16))
+                >>> time_signature.attach(staff)
+                TimeSignatureMark((7, 16))(Staff{3})
+                
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override DynamicLineSpanner #'staff-padding = #3
+                } {
+                    \time 7/16
+                    c'8 \< \p ~
+                    c'16
+                    cqs''4 \f
+                }
+
+            ::
+
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> tie_chain = staff[0].select_tie_chain()
+                >>> tie_chain.to_tuplet([2, 1, 1, 1], is_diminution=False)
+                FixedDurationTuplet(3/16, [c'16, c'32, c'32, c'32])
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override DynamicLineSpanner #'staff-padding = #3
+                } {
+                    \time 7/16
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 6/5 {
+                        c'16 \< \p
+                        c'32
+                        c'32
+                        c'32
+                    }
+                    cqs''4 \f
+                }
+
+            ::
+
+                >>> show(staff) # doctest: +SKIP
 
         Return tuplet.
         '''

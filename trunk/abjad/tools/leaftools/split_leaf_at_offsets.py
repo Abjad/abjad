@@ -16,160 +16,228 @@ def split_leaf_at_offsets(
     ):
     r'''Split `leaf` at `offsets`.
 
-    Example 1. Split note once at `offsets` and tie split notes:
+    ..  container:: example
+    
+        **Example 1.** Split note once at `offsets` and tie split notes:
 
-    ::
+        ::
 
-        >>> staff = Staff("c'1 ( d'1 )")
+            >>> staff = Staff("c'1 ( d'1 )")
 
-    ..  doctest::
+        ..  doctest::
 
-        >>> f(staff)
-        \new Staff {
-            c'1 (
-            d'1 )
-        }
-
-    ::
-
-        >>> leaftools.split_leaf_at_offsets(staff[0], [(3, 8)],
-        ...     tie_split_notes=True)
-        [[Note("c'4.")], [Note("c'2"), Note("c'8")]]
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            c'4. ( ~
-            c'2 ~
-            c'8
-            d'1 )
-        }
-
-    Example 2. Split note cyclically at `offsets` and tie split notes:
-
-    ::
-
-        >>> staff = Staff("c'1 ( d'1 )")
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            c'1 (
-            d'1 )
-        }
-
-    ::
-
-        >>> leaftools.split_leaf_at_offsets(staff[0], [(3, 8)], cyclic=True,
-        ...     tie_split_notes=True)
-        [[Note("c'4.")], [Note("c'4.")], [Note("c'4")]]
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            c'4. ( ~
-            c'4. ~
-            c'4
-            d'1 )
-        }
-
-    Example 3. Split note once at `offsets` and do no tie split notes:
-
-    ::
-
-        >>> staff = Staff("c'1 ( d'1 )")
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            c'1 (
-            d'1 )
-        }
-
-    ::
-
-        >>> leaftools.split_leaf_at_offsets(staff[0], [(3, 8)],
-        ...     tie_split_notes=False)
-        [[Note("c'4.")], [Note("c'2"), Note("c'8")]]
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            c'4. (
-            c'2 ~
-            c'8
-            d'1 )
-        }
-
-    Example 4. Split note cyclically at `offsets` and do not tie split notes:
-
-    ::
-
-        >>> staff = Staff("c'1 ( d'1 )")
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            c'1 (
-            d'1 )
-        }
-
-    ::
-
-        >>> leaftools.split_leaf_at_offsets(staff[0], [(3, 8)], cyclic=True,
-        ...     tie_split_notes=False)
-        [[Note("c'4.")], [Note("c'4.")], [Note("c'4")]]
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            c'4. (
-            c'4.
-            c'4
-            d'1 )
-        }
-
-    Example 5. Split tupletted note once at `offsets` and tie split notes:
-
-    ::
-
-        >>> staff = Staff(r"\times 2/3 { c'2 ( d'2 e'2 ) }")
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            \times 2/3 {
-                c'2 (
-                d'2
-                e'2 )
+            >>> f(staff)
+            \new Staff {
+                c'1 (
+                d'1 )
             }
-        }
 
-    ::
+        ::
 
-        >>> leaftools.split_leaf_at_offsets(staff.select_leaves()[1], [(1, 6)], cyclic=False,
-        ...     tie_split_notes=True)
-        [[Note("d'4")], [Note("d'4")]]
+            >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+        ::
 
-        >>> f(staff)
-        \new Staff {
-            \times 2/3 {
-                c'2 (
-                d'4 ~
-                d'4
-                e'2 )
+            >>> leaftools.split_leaf_at_offsets(
+            ...     staff[0], 
+            ...     [(3, 8)],
+            ...     tie_split_notes=True,
+            ...     )
+            [[Note("c'4.")], [Note("c'2"), Note("c'8")]]
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'4. ( ~
+                c'2 ~
+                c'8
+                d'1 )
             }
-        }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+    ..  container:: example
+    
+        **Example 2.** Split note cyclically at `offsets` and tie split notes:
+
+        ::
+
+            >>> staff = Staff("c'1 ( d'1 )")
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'1 (
+                d'1 )
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        ::
+
+            >>> leaftools.split_leaf_at_offsets(
+            ...     staff[0], 
+            ...     [(3, 8)], 
+            ...     cyclic=True,
+            ...     tie_split_notes=True,
+            ...     )
+            [[Note("c'4.")], [Note("c'4.")], [Note("c'4")]]
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'4. ( ~
+                c'4. ~
+                c'4
+                d'1 )
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+    ..  container:: example
+    
+        **Example 3.** Split note once at `offsets` and do no tie split notes:
+
+        ::
+
+            >>> staff = Staff("c'1 ( d'1 )")
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'1 (
+                d'1 )
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        ::
+
+            >>> leaftools.split_leaf_at_offsets(
+            ...     staff[0], 
+            ...     [(3, 8)],
+            ...     tie_split_notes=False,
+            ...     )
+            [[Note("c'4.")], [Note("c'2"), Note("c'8")]]
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'4. (
+                c'2 ~
+                c'8
+                d'1 )
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+    ..  container:: example
+    
+        **Example 4.** Split note cyclically at `offsets` and do not tie split notes:
+
+        ::
+
+            >>> staff = Staff("c'1 ( d'1 )")
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'1 (
+                d'1 )
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        ::
+
+            >>> leaftools.split_leaf_at_offsets(
+            ...     staff[0], 
+            ...     [(3, 8)], 
+            ...     cyclic=True,
+            ...     tie_split_notes=False,
+            ...     )
+            [[Note("c'4.")], [Note("c'4.")], [Note("c'4")]]
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'4. (
+                c'4.
+                c'4
+                d'1 )
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+    ..  container:: example
+    
+        **Example 5.** Split tupletted note once at `offsets` and tie split notes:
+
+        ::
+
+            >>> staff = Staff(r"\times 2/3 { c'2 ( d'2 e'2 ) }")
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                \times 2/3 {
+                    c'2 (
+                    d'2
+                    e'2 )
+                }
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        ::
+
+            >>> leaftools.split_leaf_at_offsets(
+            ...     staff.select_leaves()[1], 
+            ...     [(1, 6)], 
+            ...     cyclic=False,
+            ...     tie_split_notes=True,
+            ...     )
+            [[Note("d'4")], [Note("d'4")]]
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                \times 2/3 {
+                    c'2 (
+                    d'4 ~
+                    d'4
+                    e'2 )
+                }
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
 
     .. note:: Add examples showing mark and context mark handling.
 

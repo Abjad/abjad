@@ -13,117 +13,125 @@ def make_tied_leaf(
     ):
     r'''Make tied `kind` with `duration`.
 
-    Example 1. Make note:
+    ..  container:: example
+    
+        **Example 1.** Make note:
 
-    ::
+        ::
 
-        >>> leaves = leaftools.make_tied_leaf(
-        ...     Note, 
-        ...     Duration(1, 2), 
-        ...     pitches='C#5',
-        ...     )
-        >>> staff = Staff(leaves)
-        >>> time_signature = contexttools.TimeSignatureMark((2, 4))(staff)
+            >>> leaves = leaftools.make_tied_leaf(
+            ...     Note, 
+            ...     Duration(1, 2), 
+            ...     pitches='C#5',
+            ...     )
+            >>> staff = Staff(leaves)
+            >>> time_signature = contexttools.TimeSignatureMark((2, 4))(staff)
 
-    ..  doctest::
+        ..  doctest::
 
-        >>> f(staff)
-        \new Staff {
-            \time 2/4
-            cs''2
-        }
+            >>> f(staff)
+            \new Staff {
+                \time 2/4
+                cs''2
+            }
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
-    Example 2. Make note and forbid half notes:
+    ..  container:: example
+    
+        **Example 2.** Make note and forbid half notes:
 
-    ::
+        ::
 
-        >>> leaves = leaftools.make_tied_leaf(
-        ...     Note, 
-        ...     Duration(1, 2), 
-        ...     pitches='C#5',
-        ...     forbidden_written_duration=Duration(1, 2),
-        ...     )
-        >>> staff = Staff(leaves)
-        >>> time_signature = contexttools.TimeSignatureMark((2, 4))(staff)
+            >>> leaves = leaftools.make_tied_leaf(
+            ...     Note, 
+            ...     Duration(1, 2), 
+            ...     pitches='C#5',
+            ...     forbidden_written_duration=Duration(1, 2),
+            ...     )
+            >>> staff = Staff(leaves)
+            >>> time_signature = contexttools.TimeSignatureMark((2, 4))(staff)
 
-    ..  doctest::
+        ..  doctest::
 
-        >>> f(staff)
-        \new Staff {
-            \time 2/4
-            cs''4 ~
-            cs''4
-        }
+            >>> f(staff)
+            \new Staff {
+                \time 2/4
+                cs''4 ~
+                cs''4
+            }
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
-    Example 3. Make tied note with half notes forbidden and 
-    durations decreasing monotonically:
+    ..  container:: example
+    
+        **Example 3.** Make tied note with half notes forbidden and 
+        durations decreasing monotonically:
 
-    ::
+        ::
 
-        >>> leaves = leaftools.make_tied_leaf(
-        ...     Note, 
-        ...     Duration(9, 8), 
-        ...     pitches='C#5',
-        ...     forbidden_written_duration=Duration(1, 2),
-        ...     decrease_durations_monotonically=True,
-        ...     )
-        >>> staff = Staff(leaves)
-        >>> time_signature = contexttools.TimeSignatureMark((9, 8))(staff)
+            >>> leaves = leaftools.make_tied_leaf(
+            ...     Note, 
+            ...     Duration(9, 8), 
+            ...     pitches='C#5',
+            ...     forbidden_written_duration=Duration(1, 2),
+            ...     decrease_durations_monotonically=True,
+            ...     )
+            >>> staff = Staff(leaves)
+            >>> time_signature = contexttools.TimeSignatureMark((9, 8))(staff)
 
-    ..  doctest::
+        ..  doctest::
 
-        >>> f(staff)
-        \new Staff {
-            \time 9/8
-            cs''4 ~
-            cs''4 ~
-            cs''4 ~
-            cs''4 ~
-            cs''8
-        }
+            >>> f(staff)
+            \new Staff {
+                \time 9/8
+                cs''4 ~
+                cs''4 ~
+                cs''4 ~
+                cs''4 ~
+                cs''8
+            }
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
-    Example 4. Make tied note with half notes forbidden and 
-    durations increasing monotonically:
+    ..  container:: example
+    
+        **Example 4.** Make tied note with half notes forbidden and 
+        durations increasing monotonically:
 
-    ::
+        ::
 
-        >>> leaves = leaftools.make_tied_leaf(
-        ...     Note, 
-        ...     Duration(9, 8), 
-        ...     pitches='C#5',
-        ...     forbidden_written_duration=Duration(1, 2),
-        ...     decrease_durations_monotonically=False,
-        ...     )
-        >>> staff = Staff(leaves)
-        >>> time_signature = contexttools.TimeSignatureMark((9, 8))(staff)
+            >>> leaves = leaftools.make_tied_leaf(
+            ...     Note, 
+            ...     Duration(9, 8), 
+            ...     pitches='C#5',
+            ...     forbidden_written_duration=Duration(1, 2),
+            ...     decrease_durations_monotonically=False,
+            ...     )
+            >>> staff = Staff(leaves)
+            >>> time_signature = contexttools.TimeSignatureMark((9, 8))(staff)
 
-    ..  doctest::
+        ..  doctest::
 
-        >>> f(staff)
-        \new Staff {
-            \time 9/8
-            cs''8 ~
-            cs''4 ~
-            cs''4 ~
-            cs''4 ~
-            cs''4
-        }
+            >>> f(staff)
+            \new Staff {
+                \time 9/8
+                cs''8 ~
+                cs''4 ~
+                cs''4 ~
+                cs''4 ~
+                cs''4
+            }
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
     Return list of leaves.
     '''

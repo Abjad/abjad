@@ -13,86 +13,92 @@ def make_leaves_from_talea(talea, talea_denominator,
 
     Set the pitch of all notes to middle C.
 
-    Example 1. Make leaves from talea:
+    ..  container:: example
+    
+        **Example 1.** Make leaves from talea:
 
-    ::
+        ::
 
-        >>> leaves = leaftools.make_leaves_from_talea([3, -3, 5, -5], 16)
-        >>> staff = stafftools.RhythmicStaff(leaves)
-        >>> time_signature = contexttools.TimeSignatureMark((4, 4))(staff)
+            >>> leaves = leaftools.make_leaves_from_talea([3, -3, 5, -5], 16)
+            >>> staff = stafftools.RhythmicStaff(leaves)
+            >>> time_signature = contexttools.TimeSignatureMark((4, 4))(staff)
 
-    ..  doctest::
+        ..  doctest::
 
-        >>> f(staff)
-        \new RhythmicStaff {
-            \time 4/4
-            c'8.
-            r8.
-            c'4 ~
-            c'16
-            r4
-            r16
-        }
+            >>> f(staff)
+            \new RhythmicStaff {
+                \time 4/4
+                c'8.
+                r8.
+                c'4 ~
+                c'16
+                r4
+                r16
+            }
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
-    Example 2. Increase durations monotonically:
+    ..  container:: example
+    
+        **Example 2.** Increase durations monotonically:
 
-    ::
+        ::
 
-        >>> leaves = leaftools.make_leaves_from_talea(
-        ...     [3, -3, 5, -5], 16,
-        ...     decrease_durations_monotonically=False)
-        >>> staff = stafftools.RhythmicStaff(leaves)
-        >>> time_signature = contexttools.TimeSignatureMark((4, 4))(staff)
+            >>> leaves = leaftools.make_leaves_from_talea(
+            ...     [3, -3, 5, -5], 16,
+            ...     decrease_durations_monotonically=False)
+            >>> staff = stafftools.RhythmicStaff(leaves)
+            >>> time_signature = contexttools.TimeSignatureMark((4, 4))(staff)
 
-    ..  doctest::
+        ..  doctest::
 
-        >>> f(staff)
-        \new RhythmicStaff {
-            \time 4/4
-            c'8.
-            r8.
-            c'16 ~
-            c'4
-            r16
-            r4
-        }
+            >>> f(staff)
+            \new RhythmicStaff {
+                \time 4/4
+                c'8.
+                r8.
+                c'16 ~
+                c'4
+                r16
+                r4
+            }
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
-    Example 3. Forbid written durations greater than or equal to a half note:
+    ..  container:: example
+    
+        **Example 3.** Forbid written durations greater than or equal to a half note:
 
-    ::
+        ::
 
-        >>> leaves = leaftools.make_leaves_from_talea(
-        ...     [3, -3, 5, -5], 16,
-        ...     forbidden_written_duration=Duration(1, 4))
-        >>> staff = stafftools.RhythmicStaff(leaves)
-        >>> time_signature = contexttools.TimeSignatureMark((4, 4))(staff)
+            >>> leaves = leaftools.make_leaves_from_talea(
+            ...     [3, -3, 5, -5], 16,
+            ...     forbidden_written_duration=Duration(1, 4))
+            >>> staff = stafftools.RhythmicStaff(leaves)
+            >>> time_signature = contexttools.TimeSignatureMark((4, 4))(staff)
 
-    ..  doctest::
+        ..  doctest::
 
-        >>> f(staff)
-        \new RhythmicStaff {
-            \time 4/4
-            c'8.
-            r8.
-            c'8 ~
-            c'8 ~
-            c'16
-            r8
-            r8
-            r16
-        }
+            >>> f(staff)
+            \new RhythmicStaff {
+                \time 4/4
+                c'8.
+                r8.
+                c'8 ~
+                c'8 ~
+                c'16
+                r8
+                r8
+                r16
+            }
 
-    ::
+        ::
 
-        >>> show(staff) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
     Return list of leaves.
     '''
