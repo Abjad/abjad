@@ -67,5 +67,9 @@ def fuse_like_named_contiguous_containers_in_expr(expr):
                     [next_component])
                 merged = True
     if merged:
-        containertools.remove_leafless_containers_in_expr(expr)
+        #containertools.remove_leafless_containers_in_expr(expr)
+        for container in iterationtools.iterate_containers_in_expr(expr):
+            if not container.select_leaves():
+                componenttools.remove_component_subtree_from_score_and_spanners(
+                    [container])
         return expr.pop(0)
