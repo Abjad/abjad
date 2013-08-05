@@ -6,7 +6,7 @@ from abjad.tools import mathtools
 from abjad.tools.selectiontools.FreeSelection import FreeSelection
 
 
-class TupletSelection(FreeSelection):
+class FreeTupletSelection(FreeSelection):
     r'''Free selection of tuplets.
     '''
 
@@ -531,7 +531,7 @@ class TupletSelection(FreeSelection):
         ::
 
             >>> selection
-            TupletSelection(Tuplet(1, [g'4, fs'4]),)
+            FreeTupletSelection(Tuplet(1, [g'4, fs'4]),)
 
         ::
 

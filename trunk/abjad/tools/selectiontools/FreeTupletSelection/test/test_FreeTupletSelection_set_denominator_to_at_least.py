@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_TupletSelection_set_denominator_to_at_least_01():
+def test_FreeTupletSelection_set_denominator_to_at_least_01():
 
     tuplet = Tuplet(Fraction(3, 5), "c'4 d'8 e'8 f'4 g'2")
     tuplets = selectiontools.select_tuplets(tuplet)
@@ -22,7 +22,7 @@ def test_TupletSelection_set_denominator_to_at_least_01():
     assert tuplet.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 6/10 {\n\tc'4\n\td'8\n\te'8\n\tf'4\n\tg'2\n}"
 
 
-def test_TupletSelection_set_denominator_to_at_least_02():
+def test_FreeTupletSelection_set_denominator_to_at_least_02():
 
     tuplet = Tuplet(Fraction(3, 5), "c'4 d'8 e'8 f'4 g'2")
     tuplets = selectiontools.select_tuplets(tuplet)
@@ -42,7 +42,7 @@ def test_TupletSelection_set_denominator_to_at_least_02():
     assert tuplet.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 12/20 {\n\tc'4\n\td'8\n\te'8\n\tf'4\n\tg'2\n}"
 
 
-def test_TupletSelection_set_denominator_to_at_least_03():
+def test_FreeTupletSelection_set_denominator_to_at_least_03():
 
     tuplet = Tuplet(Fraction(3, 5), "c'4 d'8 e'8 f'4 g'2")
     tuplets = selectiontools.select_tuplets(tuplet)

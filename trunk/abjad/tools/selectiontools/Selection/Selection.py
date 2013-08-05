@@ -8,7 +8,7 @@ class Selection(object):
 
     Selections will eventually model all user selections.
 
-    This means that selections will eventually serve as input
+    Selections will eventually serve as input
     to and output from most functions in the API.
 
     '''

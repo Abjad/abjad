@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_TupletSelection_move_prolation_to_contents_and_remove_01():
+def test_FreeTupletSelection_move_prolation_to_contents_and_remove_01():
     r'''Scale tuplet contents and then bequeath in-score position
     of tuplet to contents.
     '''
@@ -44,7 +44,7 @@ def test_TupletSelection_move_prolation_to_contents_and_remove_01():
     assert t.lilypond_format == "\\new Staff {\n\tc'8. [\n\td'8.\n\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\\times 3/2 {\n\t\tc'8\n\t\td'8 ]\n\t}\n}"
 
 
-def test_TupletSelection_move_prolation_to_contents_and_remove_02():
+def test_FreeTupletSelection_move_prolation_to_contents_and_remove_02():
     r'''Scale tuplet contents and then bequeath in-score position
     of tuplet to contents.
     '''

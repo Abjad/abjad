@@ -45,7 +45,7 @@ def select_tuplets(
     ::
 
         >>> selection
-        TupletSelection(...)
+        FreeTupletSelection(...)
 
     ::
 
@@ -73,5 +73,5 @@ def select_tuplets(
             continue
         else:
             tuplets.append(tuplet)
-    selection = selectiontools.TupletSelection(music=tuplets)
+    selection = selectiontools.FreeTupletSelection(music=tuplets)
     return selection

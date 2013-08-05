@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_TupletSelection_fix_01():
+def test_FreeTupletSelection_fix_01():
     r'''Halve note durations.
     '''
 
@@ -33,7 +33,7 @@ def test_TupletSelection_fix_01():
     assert t.lilypond_format == "\\times 2/3 {\n\tc'8\n\td'8\n\te'8\n}"
 
 
-def test_TupletSelection_fix_02():
+def test_FreeTupletSelection_fix_02():
     r'''Double note duration.
     '''
 
@@ -65,7 +65,7 @@ def test_TupletSelection_fix_02():
     assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 4/3 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
-def test_TupletSelection_fix_03():
+def test_FreeTupletSelection_fix_03():
     r'''Halve note durations.
     '''
 

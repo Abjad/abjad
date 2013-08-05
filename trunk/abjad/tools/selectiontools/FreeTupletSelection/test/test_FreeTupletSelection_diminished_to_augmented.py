@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_TupletSelection_diminished_to_augmented_01():
+def test_FreeTupletSelection_diminished_to_augmented_01():
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
 

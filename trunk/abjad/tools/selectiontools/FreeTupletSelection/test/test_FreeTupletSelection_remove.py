@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_TupletSelection_remove_01():
+def test_FreeTupletSelection_remove_01():
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)

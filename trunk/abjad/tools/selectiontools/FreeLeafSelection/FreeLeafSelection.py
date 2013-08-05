@@ -2,7 +2,7 @@
 from abjad.tools.selectiontools.FreeSelection import FreeSelection
 
 
-class LeafSelection(FreeSelection):
+class FreeLeafSelection(FreeSelection):
     r'''Free selection of leaves.
     '''
 
@@ -280,4 +280,4 @@ class LeafSelection(FreeSelection):
                 is_diminution=is_diminution,
                 )
             result.append(tuplet)
-        return selectiontools.TupletSelection(result)
+        return selectiontools.FreeTupletSelection(result)

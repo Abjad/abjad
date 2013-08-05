@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_LeafSelection_to_tuplets_with_ratio_01():
+def test_FreeLeafSelection_to_tuplets_with_ratio_01():
 
     note = Note(0, (3, 16))
     selection = selectiontools.select_leaves(note)
@@ -27,7 +27,7 @@ def test_LeafSelection_to_tuplets_with_ratio_01():
     assert tuplets[0].lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 8/5 {\n\tc'128\n\tc'64\n\tc'64\n\tc'64.\n\tc'64.\n\tc'32\n}"
 
 
-def test_LeafSelection_to_tuplets_with_ratio_02():
+def test_FreeLeafSelection_to_tuplets_with_ratio_02():
 
     note = Note("c'8.")
     selection = selectiontools.select_leaves(note)
@@ -52,7 +52,7 @@ def test_LeafSelection_to_tuplets_with_ratio_02():
     assert tuplets[0].lilypond_format == "\\times 4/5 {\n\tc'64\n\tc'32\n\tc'32\n\tc'32.\n\tc'32.\n\tc'16\n}"
 
 
-def test_LeafSelection_to_tuplets_with_ratio_03():
+def test_FreeLeafSelection_to_tuplets_with_ratio_03():
     r'''Divide note into 1, ..., 5 parts.
     '''
 
@@ -75,7 +75,7 @@ def test_LeafSelection_to_tuplets_with_ratio_03():
     assert tuplets[0].lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 8/5 {\n\tc'64.\n\tc'64.\n\tc'64.\n\tc'64.\n\tc'64.\n}"
 
 
-def test_LeafSelection_to_tuplets_with_ratio_04():
+def test_FreeLeafSelection_to_tuplets_with_ratio_04():
     r'''Divide note into 1, ..., 5 parts.
     '''
 

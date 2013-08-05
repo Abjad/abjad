@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_TupletSelection_fuse_01():
+def test_FreeTupletSelection_fuse_01():
     r'''Fuse two unincorporated fixed-duration tuplets with same multiplier.
     '''
 
@@ -51,7 +51,7 @@ def test_TupletSelection_fuse_01():
 
 
 
-def test_TupletSelection_fuse_02():
+def test_FreeTupletSelection_fuse_02():
     r'''Fuse fixed-duration tuplets with same multiplier in score.
     '''
 
@@ -96,7 +96,7 @@ def test_TupletSelection_fuse_02():
     assert t.lilypond_format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8 ]\n\t\tc'16 (\n\t\td'16\n\t\te'16 )\n\t}\n}"
 
 
-def test_TupletSelection_fuse_03():
+def test_FreeTupletSelection_fuse_03():
     r'''Fuse fixed-multiplier tuplets with same multiplier in score.
     '''
 
@@ -145,7 +145,7 @@ def test_TupletSelection_fuse_03():
     assert t.lilypond_format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8 ]\n\t\tc'8 (\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\tg'8 )\n\t}\n}"
 
 
-def test_TupletSelection_fuse_04():
+def test_FreeTupletSelection_fuse_04():
     r'''Tuplets must carry same multiplier.
     '''
 
@@ -156,7 +156,7 @@ def test_TupletSelection_fuse_04():
     assert py.test.raises(Exception, 'tuplets.fuse()')
 
 
-def test_TupletSelection_fuse_05():
+def test_FreeTupletSelection_fuse_05():
     r'''Tuplets must be same type.
     '''
 
@@ -167,7 +167,7 @@ def test_TupletSelection_fuse_05():
     assert py.test.raises(Exception, 'tuplets.fuse()')
 
 
-def test_TupletSelection_fuse_06():
+def test_FreeTupletSelection_fuse_06():
     r'''Dominant spanners on contents are preserved.
     '''
 

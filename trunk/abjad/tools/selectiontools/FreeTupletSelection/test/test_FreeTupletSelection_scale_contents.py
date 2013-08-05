@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_TupletSelection_scale_contents_01():
+def test_FreeTupletSelection_scale_contents_01():
     r'''Double tuplet.
     '''
 
@@ -22,7 +22,7 @@ def test_TupletSelection_scale_contents_01():
     assert t.lilypond_format == "\\times 2/3 {\n\tc'4\n\td'4\n\te'4\n}"
 
 
-def test_TupletSelection_scale_contents_02():
+def test_FreeTupletSelection_scale_contents_02():
     r'''Halve tuplet.
     '''
 
@@ -42,7 +42,7 @@ def test_TupletSelection_scale_contents_02():
     assert t.lilypond_format == "\\times 2/3 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
-def test_TupletSelection_scale_contents_03():
+def test_FreeTupletSelection_scale_contents_03():
     r'''Quadruple tuplet.
     '''
 
@@ -62,7 +62,7 @@ def test_TupletSelection_scale_contents_03():
     assert t.lilypond_format == "\\times 2/3 {\n\tc'2\n\td'2\n\te'2\n}"
 
 
-def test_TupletSelection_scale_contents_04():
+def test_FreeTupletSelection_scale_contents_04():
     r'''Quarter tuplet.
     '''
 
@@ -82,7 +82,7 @@ def test_TupletSelection_scale_contents_04():
     assert t.lilypond_format == "\\times 2/3 {\n\tc'32\n\td'32\n\te'32\n}"
 
 
-def test_TupletSelection_scale_contents_05():
+def test_FreeTupletSelection_scale_contents_05():
     r'''Multiply tuplet by 3/2.
     '''
 
@@ -102,7 +102,7 @@ def test_TupletSelection_scale_contents_05():
     assert t.lilypond_format == "\\times 2/3 {\n\tc'8.\n\td'8.\n\te'8.\n}"
 
 
-def test_TupletSelection_scale_contents_06():
+def test_FreeTupletSelection_scale_contents_06():
     r'''Multiply tuplet by 2/3.
     '''
 
@@ -122,7 +122,7 @@ def test_TupletSelection_scale_contents_06():
     assert t.lilypond_format == "\\times 8/9 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
-def test_TupletSelection_scale_contents_07():
+def test_FreeTupletSelection_scale_contents_07():
     r'''Multiply tuplet by 3/5.
     '''
 
@@ -142,7 +142,7 @@ def test_TupletSelection_scale_contents_07():
     assert t.lilypond_format == "\\times 4/5 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
-def test_TupletSelection_scale_contents_08():
+def test_FreeTupletSelection_scale_contents_08():
     r'''Multiply undotted, unbracketted notes by 3/2; ie, add a single dot.
     '''
 
@@ -162,7 +162,7 @@ def test_TupletSelection_scale_contents_08():
     assert t.lilypond_format == "{\n\tc'8.\n\td'8.\n\te'8.\n}"
 
 
-def test_TupletSelection_scale_contents_09():
+def test_FreeTupletSelection_scale_contents_09():
     r'''Binary target duration.
     '''
 
@@ -190,7 +190,7 @@ def test_TupletSelection_scale_contents_09():
     assert t.lilypond_format == "\\times 4/5 {\n\tc'8\n\tc'8.\n}"
 
 
-def test_TupletSelection_scale_contents_10():
+def test_FreeTupletSelection_scale_contents_10():
     r'''Target duration without power-of-two denominator.
     '''
 
