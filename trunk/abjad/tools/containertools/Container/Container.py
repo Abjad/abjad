@@ -105,19 +105,6 @@ class Container(Component):
             return self._named_children[i][0]
         raise ValueError(repr(i))
 
-    def __iadd__(self, expr):
-        r'''Append a copy of `expr` to container.
-
-        Return list of container and copied `expr`.
-        '''
-        from abjad.tools import componenttools
-        from abjad.tools import containertools
-        return containertools.fuse_like_named_contiguous_containers_in_expr(
-            [self,
-            componenttools.copy_components_and_fracture_crossing_spanners(
-            [expr])[0]
-            ])
-
     def __len__(self):
         r'''Number of items in container.
 
