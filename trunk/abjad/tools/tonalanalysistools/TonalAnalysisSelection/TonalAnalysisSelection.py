@@ -27,28 +27,32 @@ class TonalAnalysisSelection(FreeSelection):
 
         >>> show(staff) # doctest: +SKIP
 
-    Example 1. Conjunt selection:
+    ..  container:: example
 
-    ::
+        **Example 1.** Conjunt selection:
 
-        >>> selection_1 = tonalanalysistools.select(staff[:])
+        ::
 
-    ::
+            >>> selection_1 = tonalanalysistools.select(staff[:])
 
-        >>> selection_1
-        TonalAnalysisSelection(Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4"))
+        ::
 
-    Example 2. Disjunct selection:
+            >>> selection_1
+            TonalAnalysisSelection(Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4"))
 
-    ::
+    ..  container:: example
 
-        >>> notes = (staff[0], staff[3])
-        >>> selection_2 = tonalanalysistools.select(notes)
+        **Example 2.** Disjunct selection:
 
-    ::
+        ::
 
-        >>> selection_2
-        TonalAnalysisSelection(Note("c'4"), Note("f'4"))
+            >>> notes = (staff[0], staff[3])
+            >>> selection_2 = tonalanalysistools.select(notes)
+
+        ::
+
+            >>> selection_2
+            TonalAnalysisSelection(Note("c'4"), Note("f'4"))
 
     '''
 
