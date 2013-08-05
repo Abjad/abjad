@@ -118,14 +118,6 @@ class Container(Component):
             [expr])[0]
             ])
 
-    def __imul__(self, n):
-        r'''Multiply contents of container `n` times.
-
-        Return container.
-        '''
-        from abjad.tools import containertools
-        return containertools.repeat_contents_of_container(self, total=n)
-
     def __len__(self):
         r'''Number of items in container.
 
