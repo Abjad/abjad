@@ -667,56 +667,140 @@ class Container(Component):
             message = message.format(component, self)
             raise ValueError(message)
 
-    def insert(self, i, component):
-        r'''Insert `component` in container at `i`:
+    def insert(self, i, component, fracture_spanners=False):
+        r'''Insert `component` at index `i` in container.
+
+        Example 1. Insert note. Do not fracture spanners:
 
         ::
 
-            >>> container = Container("c'4 ( d'4 f'4 )")
+            >>> container = Container([])
+            >>> container.extend("fs16 cs' e' a'")
+            >>> container.extend("cs''16 e'' cs'' a'")
+            >>> container.extend("fs'16 e' cs' fs")
+            >>> slur = spannertools.SlurSpanner(container[:])
+            >>> slur.direction = Down
+            >>> show(container) # doctest: +SKIP
 
         ..  doctest::
 
             >>> f(container)
             {
-                c'4 (
-                d'4
-                f'4 )
+                fs16 _ (
+                cs'16
+                e'16
+                a'16
+                cs''16
+                e''16
+                cs''16
+                a'16
+                fs'16
+                e'16
+                cs'16
+                fs16 )
             }
 
         ::
 
+            >>> container.insert(-4, Note("e'4"), fracture_spanners=False)
             >>> show(container) # doctest: +SKIP
-
-        ::
-
-            >>> container.insert(1, Note("e'4"))
 
         ..  doctest::
 
             >>> f(container)
             {
-                c'4 (
+                fs16 _ (
+                cs'16
+                e'16
+                a'16
+                cs''16
+                e''16
+                cs''16
+                a'16
                 e'4
-                d'4
-                f'4 )
+                fs'16
+                e'16
+                cs'16
+                fs16 )
+            }
+
+        Example 2. Insert note. Fracture spanners:
+
+            >>> container = Container([])
+            >>> container.extend("fs16 cs' e' a'")
+            >>> container.extend("cs''16 e'' cs'' a'")
+            >>> container.extend("fs'16 e' cs' fs")
+            >>> slur = spannertools.SlurSpanner(container[:])
+            >>> slur.direction = Down
+            >>> show(container) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(container)
+            {
+                fs16 _ (
+                cs'16
+                e'16
+                a'16
+                cs''16
+                e''16
+                cs''16
+                a'16
+                fs'16
+                e'16
+                cs'16
+                fs16 )
             }
 
         ::
 
+            >>> container.insert(-4, Note("e'4"), fracture_spanners=True)
             >>> show(container) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(container)
+            {
+                fs16 _ (
+                cs'16
+                e'16
+                a'16
+                cs''16
+                e''16
+                cs''16
+                a'16 )
+                e'4
+                fs'16 _ (
+                e'16
+                cs'16
+                fs16 )
+            }
 
         Return none.
         '''
-        # to make pychecker happy
-        #self[i:i] = [component]
-        #self.__setitem__(slice(i, i), [component])
+        from abjad.tools import componenttools
         from abjad.tools import containertools
-        containertools.insert_component(
-            self, 
-            i, 
-            component, 
-            fracture_spanners=False,
-            )
+        from abjad.tools import leaftools
+        from abjad.tools import spannertools
+        assert isinstance(component, componenttools.Component)
+        assert isinstance(i, int)
+        if not fracture_spanners:
+            self.__setitem__(slice(i, i), [component])
+            return
+        result = []
+        component._set_parent(self)
+        self._music.insert(i, component)
+        previous_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(
+            component, -1)
+        if previous_leaf:
+            result.extend(
+                spannertools.fracture_spanners_attached_to_component(
+                    previous_leaf, direction=Right))
+        next_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(component, 1)
+        if next_leaf:
+            result.extend(
+                spannertools.fracture_spanners_attached_to_component(
+                    next_leaf, direction=Left))
 
     def pop(self, i=-1):
         r'''Pop component from container at index `i`.
