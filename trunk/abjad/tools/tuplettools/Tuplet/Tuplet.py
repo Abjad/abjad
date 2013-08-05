@@ -416,41 +416,43 @@ class Tuplet(Container):
         def fget(self):
             r'''Set to true to hide tuplet bracket and tuplet number.
 
-            Example:
+            ..  container:: example
 
-            ::
+                **Example:**
 
-                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                ::
 
-            ..  doctest::
+                    >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
 
-                >>> f(tuplet)
-                \times 2/3 {
-                    c'8
-                    d'8
-                    e'8
-                }
+                ..  doctest::
 
-            ::
+                    >>> f(tuplet)
+                    \times 2/3 {
+                        c'8
+                        d'8
+                        e'8
+                    }
 
-                >>> show(tuplet) # doctest: +SKIP
+                ::
 
-            ::
+                    >>> show(tuplet) # doctest: +SKIP
 
-                >>> tuplet.is_invisible = True
+                ::
 
-            ..  doctest::
+                    >>> tuplet.is_invisible = True
 
-                >>> f(tuplet)
-                \scaleDurations #'(2 . 3) {
-                    c'8
-                    d'8
-                    e'8
-                }
+                ..  doctest::
 
-            ::
+                    >>> f(tuplet)
+                    \scaleDurations #'(2 . 3) {
+                        c'8
+                        d'8
+                        e'8
+                    }
 
-                >>> show(tuplet) # doctest: +SKIP
+                ::
+
+                    >>> show(tuplet) # doctest: +SKIP
 
             This has the effect of rendering no
             no tuplet bracket and no tuplet number while preserving the 
@@ -536,25 +538,27 @@ class Tuplet(Container):
         def fget(self):
             r'''Preferred denominator of tuplet.
 
-            Example:
+            ..  container:: example
 
-            ::
+                **Example:**
 
-                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-                >>> tuplet.preferred_denominator = 4
+                ::
 
-            ..  doctest::
+                    >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                    >>> tuplet.preferred_denominator = 4
 
-                >>> f(tuplet)
-                \times 4/6 {
-                    c'8
-                    d'8
-                    e'8
-                }
+                ..  doctest::
 
-            ::
+                    >>> f(tuplet)
+                    \times 4/6 {
+                        c'8
+                        d'8
+                        e'8
+                    }
 
-                >>> show(tuplet) # doctest: +SKIP
+                ::
+
+                    >>> show(tuplet) # doctest: +SKIP
 
             Return positive integer or none.
             '''
