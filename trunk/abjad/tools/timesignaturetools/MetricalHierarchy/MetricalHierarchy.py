@@ -311,58 +311,62 @@ class MetricalHierarchy(AbjadObject):
     def decrease_durations_monotonically(self):
         r'''True if the metrical hierarchy divides large primes into 
         collections of ``2`` and ``3`` that decrease monotonically.
+        
+        ..  container:: example
 
-        Example 1. Metrical hiearchy with durations that increase 
-        monotonically:
+            **Example 1.** Metrical hiearchy with durations that increase 
+            monotonically:
 
-        ::
+            ::
 
-            >>> metrical_hierarchy = \
-            ...     timesignaturetools.MetricalHierarchy((5, 4),
-            ...     decrease_durations_monotonically=False)
+                >>> metrical_hierarchy = \
+                ...     timesignaturetools.MetricalHierarchy((5, 4),
+                ...     decrease_durations_monotonically=False)
 
-        ::
+            ::
 
-            >>> metrical_hierarchy.decrease_durations_monotonically
-            False
+                >>> metrical_hierarchy.decrease_durations_monotonically
+                False
 
-        ::
+            ::
 
-            >>> print metrical_hierarchy.pretty_rtm_format
-            (5/4 (
-                (2/4 (
-                    1/4
-                    1/4))
-                (3/4 (
-                    1/4
-                    1/4
-                    1/4))))
+                >>> print metrical_hierarchy.pretty_rtm_format
+                (5/4 (
+                    (2/4 (
+                        1/4
+                        1/4))
+                    (3/4 (
+                        1/4
+                        1/4
+                        1/4))))
 
-        Example 2. Metrical hierarchy with durations that 
-        decrease monotonically:
+        ..  container:: example
 
-        ::
+            **Example 2.** Metrical hierarchy with durations that 
+            decrease monotonically:
 
-            >>> metrical_hierarchy = \
-            ...     timesignaturetools.MetricalHierarchy((5, 4),
-            ...     decrease_durations_monotonically=True)
+            ::
 
-        ::
+                >>> metrical_hierarchy = \
+                ...     timesignaturetools.MetricalHierarchy((5, 4),
+                ...     decrease_durations_monotonically=True)
 
-            >>> metrical_hierarchy.decrease_durations_monotonically
-            True
+            ::
 
-        ::
+                >>> metrical_hierarchy.decrease_durations_monotonically
+                True
 
-            >>> print metrical_hierarchy.pretty_rtm_format
-            (5/4 (
-                (3/4 (
-                    1/4
-                    1/4
-                    1/4))
-                (2/4 (
-                    1/4
-                    1/4))))
+            ::
+
+                >>> print metrical_hierarchy.pretty_rtm_format
+                (5/4 (
+                    (3/4 (
+                        1/4
+                        1/4
+                        1/4))
+                    (2/4 (
+                        1/4
+                        1/4))))
 
         Return boolean.
         '''

@@ -93,68 +93,72 @@ class MetricalKernel(AbjadObject):
     def count_offsets_in_expr(expr):
         r'''Count offsets in `expr`.
 
-        Example 1.:
+        ..  container:: example
 
-        ::
+            **Example 1:**
 
-            >>> score = Score()
-            >>> score.append(Staff("c'4. d'8 e'2"))
-            >>> score.append(Staff(r'\clef bass c4 b,4 a,2'))
+            ::
 
-        ..  doctest::
+                >>> score = Score()
+                >>> score.append(Staff("c'4. d'8 e'2"))
+                >>> score.append(Staff(r'\clef bass c4 b,4 a,2'))
 
-            >>> f(score)
-            \new Score <<
-                \new Staff {
-                    c'4.
-                    d'8
-                    e'2
-                }
-                \new Staff {
-                    \clef "bass"
-                    c4
-                    b,4
-                    a,2
-                }
-            >>
+            ..  doctest::
 
-        ::
+                >>> f(score)
+                \new Score <<
+                    \new Staff {
+                        c'4.
+                        d'8
+                        e'2
+                    }
+                    \new Staff {
+                        \clef "bass"
+                        c4
+                        b,4
+                        a,2
+                    }
+                >>
 
-            >>> show(score) # doctest: +SKIP
+            ::
 
-        ::
+                >>> show(score) # doctest: +SKIP
 
-            >>> MetricalKernel = timesignaturetools.MetricalKernel
-            >>> leaves = score.select_leaves()
-            >>> counter = MetricalKernel.count_offsets_in_expr(leaves)
-            >>> for offset, count in sorted(counter.items()):
-            ...     offset, count
-            ...
-            (Offset(0, 1), 2)
-            (Offset(1, 4), 2)
-            (Offset(3, 8), 2)
-            (Offset(1, 2), 4)
-            (Offset(1, 1), 2)
+            ::
 
-        Example 2.:
+                >>> MetricalKernel = timesignaturetools.MetricalKernel
+                >>> leaves = score.select_leaves()
+                >>> counter = MetricalKernel.count_offsets_in_expr(leaves)
+                >>> for offset, count in sorted(counter.items()):
+                ...     offset, count
+                ...
+                (Offset(0, 1), 2)
+                (Offset(1, 4), 2)
+                (Offset(3, 8), 2)
+                (Offset(1, 2), 4)
+                (Offset(1, 1), 2)
 
-        ::
+        ..  container:: example
 
-            >>> a = timespantools.Timespan(0, 10)
-            >>> b = timespantools.Timespan(5, 15)
-            >>> c = timespantools.Timespan(15, 20)
+            **Example 2:**
 
-        ::
+            ::
 
-            >>> counter = MetricalKernel.count_offsets_in_expr((a, b, c))
-            >>> for offset, count in sorted(counter.items()):
-            ...     offset, count
-            ...
-            (Offset(0, 1), 1)
-            (Offset(5, 1), 1)
-            (Offset(10, 1), 1)
-            (Offset(15, 1), 2)
-            (Offset(20, 1), 1)
+                >>> a = timespantools.Timespan(0, 10)
+                >>> b = timespantools.Timespan(5, 15)
+                >>> c = timespantools.Timespan(15, 20)
+
+            ::
+
+                >>> counter = MetricalKernel.count_offsets_in_expr((a, b, c))
+                >>> for offset, count in sorted(counter.items()):
+                ...     offset, count
+                ...
+                (Offset(0, 1), 1)
+                (Offset(5, 1), 1)
+                (Offset(10, 1), 1)
+                (Offset(15, 1), 2)
+                (Offset(20, 1), 1)
 
         Return counter.
         '''

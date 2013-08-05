@@ -18,33 +18,37 @@ def fit_metrical_hierarchies_to_expr(
         ...     timesignaturetools.MetricalHierarchyInventory(
         ...     [(3, 4), (4, 4), (5, 4)])
 
-    Example 1. Matching a series of hypothetical 4/4 measures:
+    ..  container:: example
 
-    ::
+        **Example 1.** Matching a series of hypothetical 4/4 measures:
 
-        >>> expr = [(0, 4), (4, 4), (8, 4), (12, 4), (16, 4)]
-        >>> for x in timesignaturetools.fit_metrical_hierarchies_to_expr(
-        ...     expr, metrical_hierarchies):
-        ...     print x.implied_time_signature
-        ...
-        4/4
-        4/4
-        4/4
-        4/4
+        ::
 
-    Example 2. Matching a series of hypothetical 5/4 measures:
+            >>> expr = [(0, 4), (4, 4), (8, 4), (12, 4), (16, 4)]
+            >>> for x in timesignaturetools.fit_metrical_hierarchies_to_expr(
+            ...     expr, metrical_hierarchies):
+            ...     print x.implied_time_signature
+            ...
+            4/4
+            4/4
+            4/4
+            4/4
 
-    ::
+    ..  container:: example
 
-        >>> expr = [(0, 4), (3, 4), (5, 4), (10, 4), (15, 4), (20, 4)]
-        >>> for x in timesignaturetools.fit_metrical_hierarchies_to_expr(
-        ...     expr, metrical_hierarchies):
-        ...     print x.implied_time_signature
-        ...
-        5/4
-        5/4
-        5/4
-        5/4
+        **Example 2.** Matching a series of hypothetical 5/4 measures:
+
+        ::
+
+            >>> expr = [(0, 4), (3, 4), (5, 4), (10, 4), (15, 4), (20, 4)]
+            >>> for x in timesignaturetools.fit_metrical_hierarchies_to_expr(
+            ...     expr, metrical_hierarchies):
+            ...     print x.implied_time_signature
+            ...
+            5/4
+            5/4
+            5/4
+            5/4
 
     Offsets are coerced from `expr` via 
     `MetricalKernel.count_offsets_in_expr()`.
