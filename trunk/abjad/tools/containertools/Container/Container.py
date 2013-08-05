@@ -709,7 +709,14 @@ class Container(Component):
         '''
         # to make pychecker happy
         #self[i:i] = [component]
-        self.__setitem__(slice(i, i), [component])
+        #self.__setitem__(slice(i, i), [component])
+        from abjad.tools import containertools
+        containertools.insert_component(
+            self, 
+            i, 
+            component, 
+            fracture_spanners=False,
+            )
 
     def pop(self, i=-1):
         r'''Pop component from container at index `i`.

@@ -44,7 +44,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         from abjad.tools import documentationtools
 
         if verbose:
-            print 'Now writing ReStructured Text files...'
+            print 'Now writing ReStructured Text files ...'
             print
 
         ignored_directory_names = ['.svn', 'test', '__pycache__']
@@ -113,8 +113,8 @@ class AbjadAPIGenerator(abctools.AbjadObject):
             )
 
         if verbose:
-            print ''
-            print '... Done.'
+            #print ''
+            print '... done.'
             print ''
 
     ### PRIVATE METHODS ###
