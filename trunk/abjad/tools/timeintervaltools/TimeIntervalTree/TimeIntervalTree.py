@@ -607,8 +607,6 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
         r'''Explode intervals into trees, avoiding overlap and distributing
         density.
 
-        Example 1. Explode intervals into optimal number of non-overlapping trees:
-
         ::
 
             >>> tree = timeintervaltools.TimeIntervalTree(
@@ -629,90 +627,98 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
                 TimeInterval(Offset(34, 1), Offset(37, 1), {'name': 'l'})
             ])
 
-        ::
+        ..  container:: example
 
-            >>> exploded_trees = tree.explode_intervals()
-            >>> for exploded_tree in exploded_trees:
-            ...     exploded_tree
-            ...
-            TimeIntervalTree([
-                TimeInterval(Offset(0, 1), Offset(3, 1), {'name': 'a'}),
-                TimeInterval(Offset(5, 1), Offset(13, 1), {'name': 'b'}),
-                TimeInterval(Offset(16, 1), Offset(21, 1), {'name': 'f'})
-            ])
-            TimeIntervalTree([
-                TimeInterval(Offset(6, 1), Offset(10, 1), {'name': 'c'}),
-                TimeInterval(Offset(17, 1), Offset(19, 1), {'name': 'g'}),
-                TimeInterval(Offset(19, 1), Offset(20, 1), {'name': 'h'}),
-                TimeInterval(Offset(26, 1), Offset(29, 1), {'name': 'j'}),
-                TimeInterval(Offset(32, 1), Offset(34, 1), {'name': 'k'})
-            ])
-            TimeIntervalTree([
-                TimeInterval(Offset(8, 1), Offset(9, 1), {'name': 'd'}),
-                TimeInterval(Offset(15, 1), Offset(23, 1), {'name': 'e'}),
-                TimeInterval(Offset(25, 1), Offset(30, 1), {'name': 'i'}),
-                TimeInterval(Offset(34, 1), Offset(37, 1), {'name': 'l'})
-            ])
+            **Example 1.** Explode intervals into optimal number of non-overlapping trees:
 
-        Example 2. Explode intervals into less-than-optimal number of overlapping
-        trees:
+            ::
 
-        ::
+                >>> exploded_trees = tree.explode_intervals()
+                >>> for exploded_tree in exploded_trees:
+                ...     exploded_tree
+                ...
+                TimeIntervalTree([
+                    TimeInterval(Offset(0, 1), Offset(3, 1), {'name': 'a'}),
+                    TimeInterval(Offset(5, 1), Offset(13, 1), {'name': 'b'}),
+                    TimeInterval(Offset(16, 1), Offset(21, 1), {'name': 'f'})
+                ])
+                TimeIntervalTree([
+                    TimeInterval(Offset(6, 1), Offset(10, 1), {'name': 'c'}),
+                    TimeInterval(Offset(17, 1), Offset(19, 1), {'name': 'g'}),
+                    TimeInterval(Offset(19, 1), Offset(20, 1), {'name': 'h'}),
+                    TimeInterval(Offset(26, 1), Offset(29, 1), {'name': 'j'}),
+                    TimeInterval(Offset(32, 1), Offset(34, 1), {'name': 'k'})
+                ])
+                TimeIntervalTree([
+                    TimeInterval(Offset(8, 1), Offset(9, 1), {'name': 'd'}),
+                    TimeInterval(Offset(15, 1), Offset(23, 1), {'name': 'e'}),
+                    TimeInterval(Offset(25, 1), Offset(30, 1), {'name': 'i'}),
+                    TimeInterval(Offset(34, 1), Offset(37, 1), {'name': 'l'})
+                ])
 
-            >>> exploded_trees = tree.explode_intervals(aggregate_count=2)
-            >>> for exploded_tree in exploded_trees:
-            ...     exploded_tree
-            ...
-            TimeIntervalTree([
-                TimeInterval(Offset(5, 1), Offset(13, 1), {'name': 'b'}),
-                TimeInterval(Offset(16, 1), Offset(21, 1), {'name': 'f'}),
-                TimeInterval(Offset(17, 1), Offset(19, 1), {'name': 'g'}),
-                TimeInterval(Offset(25, 1), Offset(30, 1), {'name': 'i'}),
-                TimeInterval(Offset(32, 1), Offset(34, 1), {'name': 'k'})
-            ])
-            TimeIntervalTree([
-                TimeInterval(Offset(0, 1), Offset(3, 1), {'name': 'a'}),
-                TimeInterval(Offset(6, 1), Offset(10, 1), {'name': 'c'}),
-                TimeInterval(Offset(8, 1), Offset(9, 1), {'name': 'd'}),
-                TimeInterval(Offset(15, 1), Offset(23, 1), {'name': 'e'}),
-                TimeInterval(Offset(19, 1), Offset(20, 1), {'name': 'h'}),
-                TimeInterval(Offset(26, 1), Offset(29, 1), {'name': 'j'}),
-                TimeInterval(Offset(34, 1), Offset(37, 1), {'name': 'l'})
-            ])
+        ..  container:: example
 
-        Example 3. Explode intervals into greater-than-optimal number of 
-        non-overlapping trees:
+            **Example 2.** Explode intervals into less-than-optimal number of overlapping
+            trees:
 
-        ::
+            ::
 
-            >>> exploded_trees = tree.explode_intervals(aggregate_count=6)
-            >>> for exploded_tree in exploded_trees:
-            ...     exploded_tree
-            ...
-            TimeIntervalTree([
-                TimeInterval(Offset(16, 1), Offset(21, 1), {'name': 'f'})
-            ])
-            TimeIntervalTree([
-                TimeInterval(Offset(15, 1), Offset(23, 1), {'name': 'e'})
-            ])
-            TimeIntervalTree([
-                TimeInterval(Offset(8, 1), Offset(9, 1), {'name': 'd'}),
-                TimeInterval(Offset(17, 1), Offset(19, 1), {'name': 'g'}),
-                TimeInterval(Offset(19, 1), Offset(20, 1), {'name': 'h'}),
-                TimeInterval(Offset(25, 1), Offset(30, 1), {'name': 'i'}),
-                TimeInterval(Offset(34, 1), Offset(37, 1), {'name': 'l'})
-            ])
-            TimeIntervalTree([
-                TimeInterval(Offset(6, 1), Offset(10, 1), {'name': 'c'})
-            ])
-            TimeIntervalTree([
-                TimeInterval(Offset(5, 1), Offset(13, 1), {'name': 'b'})
-            ])
-            TimeIntervalTree([
-                TimeInterval(Offset(0, 1), Offset(3, 1), {'name': 'a'}),
-                TimeInterval(Offset(26, 1), Offset(29, 1), {'name': 'j'}),
-                TimeInterval(Offset(32, 1), Offset(34, 1), {'name': 'k'})
-            ])
+                >>> exploded_trees = tree.explode_intervals(aggregate_count=2)
+                >>> for exploded_tree in exploded_trees:
+                ...     exploded_tree
+                ...
+                TimeIntervalTree([
+                    TimeInterval(Offset(5, 1), Offset(13, 1), {'name': 'b'}),
+                    TimeInterval(Offset(16, 1), Offset(21, 1), {'name': 'f'}),
+                    TimeInterval(Offset(17, 1), Offset(19, 1), {'name': 'g'}),
+                    TimeInterval(Offset(25, 1), Offset(30, 1), {'name': 'i'}),
+                    TimeInterval(Offset(32, 1), Offset(34, 1), {'name': 'k'})
+                ])
+                TimeIntervalTree([
+                    TimeInterval(Offset(0, 1), Offset(3, 1), {'name': 'a'}),
+                    TimeInterval(Offset(6, 1), Offset(10, 1), {'name': 'c'}),
+                    TimeInterval(Offset(8, 1), Offset(9, 1), {'name': 'd'}),
+                    TimeInterval(Offset(15, 1), Offset(23, 1), {'name': 'e'}),
+                    TimeInterval(Offset(19, 1), Offset(20, 1), {'name': 'h'}),
+                    TimeInterval(Offset(26, 1), Offset(29, 1), {'name': 'j'}),
+                    TimeInterval(Offset(34, 1), Offset(37, 1), {'name': 'l'})
+                ])
+
+        ..  container:: example
+
+            **Example 3.** Explode intervals into greater-than-optimal number of 
+            non-overlapping trees:
+
+            ::
+
+                >>> exploded_trees = tree.explode_intervals(aggregate_count=6)
+                >>> for exploded_tree in exploded_trees:
+                ...     exploded_tree
+                ...
+                TimeIntervalTree([
+                    TimeInterval(Offset(16, 1), Offset(21, 1), {'name': 'f'})
+                ])
+                TimeIntervalTree([
+                    TimeInterval(Offset(15, 1), Offset(23, 1), {'name': 'e'})
+                ])
+                TimeIntervalTree([
+                    TimeInterval(Offset(8, 1), Offset(9, 1), {'name': 'd'}),
+                    TimeInterval(Offset(17, 1), Offset(19, 1), {'name': 'g'}),
+                    TimeInterval(Offset(19, 1), Offset(20, 1), {'name': 'h'}),
+                    TimeInterval(Offset(25, 1), Offset(30, 1), {'name': 'i'}),
+                    TimeInterval(Offset(34, 1), Offset(37, 1), {'name': 'l'})
+                ])
+                TimeIntervalTree([
+                    TimeInterval(Offset(6, 1), Offset(10, 1), {'name': 'c'})
+                ])
+                TimeIntervalTree([
+                    TimeInterval(Offset(5, 1), Offset(13, 1), {'name': 'b'})
+                ])
+                TimeIntervalTree([
+                    TimeInterval(Offset(0, 1), Offset(3, 1), {'name': 'a'}),
+                    TimeInterval(Offset(26, 1), Offset(29, 1), {'name': 'j'}),
+                    TimeInterval(Offset(32, 1), Offset(34, 1), {'name': 'k'})
+                ])
 
         Return 0 or more trees.
         '''
