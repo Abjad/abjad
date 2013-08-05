@@ -112,84 +112,92 @@ class TimespanTimespanTimeRelation(TimeRelation):
     def __call__(self, timespan_1=None, timespan_2=None):
         r'''Evaluate time relation.
 
-        Example 1. Evaluate time relation without substitution:
+        ..  container:: example
 
-        ::
+            **Example 1.** Evaluate time relation without substitution:
 
-            >>> timespan_1 = timespantools.Timespan(5, 15)
-            >>> timespan_2 = timespantools.Timespan(10, 20)
+            ::
 
-        ::
+                >>> timespan_1 = timespantools.Timespan(5, 15)
+                >>> timespan_2 = timespantools.Timespan(10, 20)
 
-            >>> time_relation = \
-            ...     timerelationtools.timespan_2_starts_during_timespan_1(
-            ...     timespan_1=timespan_1, timespan_2=timespan_2, hold=True)
+            ::
 
-        ::
+                >>> time_relation = \
+                ...     timerelationtools.timespan_2_starts_during_timespan_1(
+                ...     timespan_1=timespan_1, timespan_2=timespan_2, hold=True)
 
-            >>> z(time_relation)
-            timerelationtools.TimespanTimespanTimeRelation(
-                timerelationtools.CompoundInequality([
-                    timerelationtools.SimpleInequality('timespan_1.start_offset <= timespan_2.start_offset'),
-                    timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.stop_offset')
-                    ],
-                    logical_operator='and'
-                    ),
-                timespan_1=timespantools.Timespan(
-                    start_offset=durationtools.Offset(5, 1),
-                    stop_offset=durationtools.Offset(15, 1)
-                    ),
-                timespan_2=timespantools.Timespan(
-                    start_offset=durationtools.Offset(10, 1),
-                    stop_offset=durationtools.Offset(20, 1)
+            ::
+
+                >>> z(time_relation)
+                timerelationtools.TimespanTimespanTimeRelation(
+                    timerelationtools.CompoundInequality([
+                        timerelationtools.SimpleInequality('timespan_1.start_offset <= timespan_2.start_offset'),
+                        timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.stop_offset')
+                        ],
+                        logical_operator='and'
+                        ),
+                    timespan_1=timespantools.Timespan(
+                        start_offset=durationtools.Offset(5, 1),
+                        stop_offset=durationtools.Offset(15, 1)
+                        ),
+                    timespan_2=timespantools.Timespan(
+                        start_offset=durationtools.Offset(10, 1),
+                        stop_offset=durationtools.Offset(20, 1)
+                        )
                     )
-                )
 
-        ::
+            ::
 
-            >>> time_relation()
-            True
+                >>> time_relation()
+                True
 
-        Example 2. Substitute `timespan_1` during evaluation:
+        ..  container:: example
+        
+            **Example 2.** Substitute `timespan_1` during evaluation:
 
-        ::
+            ::
 
-            >>> new_timespan_1 = timespantools.Timespan(0, 10)
+                >>> new_timespan_1 = timespantools.Timespan(0, 10)
 
-        ::
+            ::
 
-            >>> new_timespan_1
-            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(10, 1))
+                >>> new_timespan_1
+                Timespan(start_offset=Offset(0, 1), stop_offset=Offset(10, 1))
 
-        ::
+            ::
 
-            >>> time_relation(timespan_1=new_timespan_1)
-            False
+                >>> time_relation(timespan_1=new_timespan_1)
+                False
 
-        Example 3. Substitute `timespan_2` during evaluation:
+        ..  container:: example
 
-        ::
+            **Example 3.** Substitute `timespan_2` during evaluation:
 
-            >>> new_timespan_2 = timespantools.Timespan(2, 12)
+            ::
 
-        ::
+                >>> new_timespan_2 = timespantools.Timespan(2, 12)
 
-            >>> new_timespan_2
-            Timespan(start_offset=Offset(2, 1), stop_offset=Offset(12, 1))
+            ::
 
-        ::
+                >>> new_timespan_2
+                Timespan(start_offset=Offset(2, 1), stop_offset=Offset(12, 1))
 
-            >>> time_relation(timespan_2=new_timespan_2)
-            False
+            ::
 
-        Example 4. Substitute both `timespan_1` and `timespan_2` 
-        during evaluation:
+                >>> time_relation(timespan_2=new_timespan_2)
+                False
 
-        ::
+        ..  container:: example
 
-            >>> time_relation(
-            ...     timespan_1=new_timespan_1, timespan_2=new_timespan_2)
-            True
+            **Example 4.** Substitute both `timespan_1` and `timespan_2` 
+            during evaluation:
+
+            ::
+
+                >>> time_relation(
+                ...     timespan_1=new_timespan_1, timespan_2=new_timespan_2)
+                True
 
         Raise value error if either `timespan_1` or `timespan_2` is none.
 
@@ -373,29 +381,33 @@ class TimespanTimespanTimeRelation(TimeRelation):
             >>> start_offsets = [note.get_timespan().start_offset for note in staff]
             >>> stop_offsets = [note.get_timespan().stop_offset for note in staff]
 
-        Example 1. Notes equal to ``staff[0:2]`` start 
-        during timespan ``[0, 3/16)``:
+        ..  container:: example
 
-        ::
+            **Example 1.** Notes equal to ``staff[0:2]`` start 
+            during timespan ``[0, 3/16)``:
 
-            >>> timespan_1 = timespantools.Timespan(Offset(0), Offset(3, 16))
-            >>> time_relation = \
-            ...     timerelationtools.timespan_2_starts_during_timespan_1(
-            ...     timespan_1=timespan_1)
-            >>> time_relation.get_offset_indices(start_offsets, stop_offsets)
-            (0, 2)
+            ::
 
-        Example 2. Notes equal to ``staff[2:8]`` start 
-            after timespan ``[0, 3/16)`` stops:
+                >>> timespan_1 = timespantools.Timespan(Offset(0), Offset(3, 16))
+                >>> time_relation = \
+                ...     timerelationtools.timespan_2_starts_during_timespan_1(
+                ...     timespan_1=timespan_1)
+                >>> time_relation.get_offset_indices(start_offsets, stop_offsets)
+                (0, 2)
 
-        ::
+        ..  container:: example
 
-            >>> timespan_1 = timespantools.Timespan(Offset(0), Offset(3, 16))
-            >>> time_relation = \
-            ...     timerelationtools.timespan_2_starts_after_timespan_1_stops(
-            ...     timespan_1=timespan_1)
-            >>> time_relation.get_offset_indices(start_offsets, stop_offsets)
-            (2, 8)
+            **Example 2.** Notes equal to ``staff[2:8]`` start after timespan 
+            ``[0, 3/16)`` stops:
+
+            ::
+
+                >>> timespan_1 = timespantools.Timespan(Offset(0), Offset(3, 16))
+                >>> time_relation = \
+                ...     timerelationtools.timespan_2_starts_after_timespan_1_stops(
+                ...     timespan_1=timespan_1)
+                >>> time_relation.get_offset_indices(start_offsets, stop_offsets)
+                (2, 8)
 
         Return nonnegative integer pair.
         '''
