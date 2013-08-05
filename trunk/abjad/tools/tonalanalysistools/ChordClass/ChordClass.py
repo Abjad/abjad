@@ -222,13 +222,15 @@ class ChordClass(NamedChromaticPitchClassSet):
     def cardinality_to_extent(cardinality):
         r'''Change `cardinality` to extent.
 
-        Example: tertian chord with four pitch classes
-        qualifies as a seventh chord:
+        ..  container:: example
 
-        ::
+            **Example:** tertian chord with four pitch classes
+            qualifies as a seventh chord:
 
-            >>> tonalanalysistools.ChordClass.cardinality_to_extent(4)
-            7
+            ::
+
+                >>> tonalanalysistools.ChordClass.cardinality_to_extent(4)
+                7
 
         Return integer.
         '''
@@ -238,13 +240,15 @@ class ChordClass(NamedChromaticPitchClassSet):
     def extent_to_cardinality(extent):
         r'''Change `extent` to cardinality.
 
-        Example: tertian chord with extent of seven
-        comprises four pitch-clases:
+        ..  container:: example
 
-        ::
+            **Example:** tertian chord with extent of seven
+            comprises four pitch-clases:
 
-            >>> tonalanalysistools.ChordClass.extent_to_cardinality(7)
-            4
+            ::
+
+                >>> tonalanalysistools.ChordClass.extent_to_cardinality(7)
+                4
 
         Return integer.
         '''
@@ -254,12 +258,14 @@ class ChordClass(NamedChromaticPitchClassSet):
     def extent_to_extent_name(extent):
         r'''Change `extent` to extent name.
 
-        Example: extent of seven is a seventh:
+        ..  container:: example
 
-        ::
+            **Example:** extent of seven is a seventh:
 
-            >>> tonalanalysistools.ChordClass.extent_to_extent_name(7)
-            'seventh'
+            ::
+
+                >>> tonalanalysistools.ChordClass.extent_to_extent_name(7)
+                'seventh'
 
         Return string.
         '''

@@ -15,40 +15,41 @@ def timespan_2_starts_during_timespan_1(
                 )
             )
 
-    Example score:
+    ..  container:: example
 
-    ::
+        **Example:**
 
-        >>> staff_1 = Staff("c'4 d'4 e'4 f'4 g'2 c''2")
-        >>> staff_2 = Staff("c'2 b'2 a'2 g'2")
-        >>> score = Score([staff_1, staff_2])
+        ::
 
-    ::
+            >>> staff_1 = Staff("c'4 d'4 e'4 f'4 g'2 c''2")
+            >>> staff_2 = Staff("c'2 b'2 a'2 g'2")
+            >>> score = Score([staff_1, staff_2])
 
-        >>> start_offsets = [note.get_timespan().start_offset for note in staff_1]
-        >>> stop_offsets = [note.get_timespan().stop_offset for note in staff_1]
+        ::
 
-    ::
+            >>> start_offsets = [note.get_timespan().start_offset for note in staff_1]
+            >>> stop_offsets = [note.get_timespan().stop_offset for note in staff_1]
 
-        >>> timespan_1 = timespantools.Timespan(Offset(1, 4), Offset(5, 4))
-        >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(
-        ...     timespan_1=timespan_1)
-        >>> start_index, stop_index = time_relation.get_offset_indices(start_offsets, stop_offsets)
+        ::
 
-    ::
+            >>> timespan_1 = timespantools.Timespan(Offset(1, 4), Offset(5, 4))
+            >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(
+            ...     timespan_1=timespan_1)
+            >>> start_index, stop_index = time_relation.get_offset_indices(start_offsets, stop_offsets)
 
-        >>> selected_notes = staff_1[start_index:stop_index]
-        >>> selected_notes
-        SliceSelection(Note("d'4"), Note("e'4"), Note("f'4"), Note("g'2"))
+        ::
 
-    ::
+            >>> selected_notes = staff_1[start_index:stop_index]
+            >>> selected_notes
+            SliceSelection(Note("d'4"), Note("e'4"), Note("f'4"), Note("g'2"))
 
-        >>> labeltools.color_leaves_in_expr(selected_notes, 'red')
+        ::
 
-    ::
+            >>> labeltools.color_leaves_in_expr(selected_notes, 'red')
 
-        >>> show(score) # doctest: +SKIP
+        ::
 
+            >>> show(score) # doctest: +SKIP
 
     Return time relation or boolean.
     '''

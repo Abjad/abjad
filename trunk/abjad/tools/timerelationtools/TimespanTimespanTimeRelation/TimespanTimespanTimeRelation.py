@@ -46,55 +46,85 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         >>> show(score) # doctest: +SKIP
 
-    Example functions calls using the score above:
+    ..  container:: example
 
-    ::
+       **Example 1:**
 
-        >>> timerelationtools.timespan_2_happens_during_timespan_1(
-        ... timespan_1=last_tuplet, timespan_2=long_note)
-        False
+        ::
 
-    ::
+            >>> timerelationtools.timespan_2_happens_during_timespan_1(
+            ... timespan_1=last_tuplet, timespan_2=long_note)
+            False
 
-        >>> timerelationtools.timespan_2_intersects_timespan_1(
-        ... timespan_1=last_tuplet, timespan_2=long_note)
-        True
+    ..  container:: example
 
-    ::
+       **Example 2:**
 
-        >>> timerelationtools.timespan_2_is_congruent_to_timespan_1(
-        ... timespan_1=last_tuplet, timespan_2=long_note)
-        False
+        ::
 
-    ::
+            >>> timerelationtools.timespan_2_intersects_timespan_1(
+            ... timespan_1=last_tuplet, timespan_2=long_note)
+            True
 
-        >>> timerelationtools.timespan_2_overlaps_all_of_timespan_1(
-        ... timespan_1=last_tuplet, timespan_2=long_note)
-        False
+    ..  container:: example
 
-    ::
+       **Example 3:**
 
-        >>> timerelationtools.timespan_2_overlaps_start_of_timespan_1(
-        ... timespan_1=last_tuplet, timespan_2=long_note)
-        True
+        ::
 
-    ::
+            >>> timerelationtools.timespan_2_is_congruent_to_timespan_1(
+            ... timespan_1=last_tuplet, timespan_2=long_note)
+            False
 
-        >>> timerelationtools.timespan_2_overlaps_stop_of_timespan_1(
-        ... timespan_1=last_tuplet, timespan_2=long_note)
-        False
+    ..  container:: example
 
-    ::
+       **Example 4:**
 
-        >>> timerelationtools.timespan_2_starts_after_timespan_1_starts(
-        ... timespan_1=last_tuplet, timespan_2=long_note)
-        False
+        ::
 
-    ::
+            >>> timerelationtools.timespan_2_overlaps_all_of_timespan_1(
+            ... timespan_1=last_tuplet, timespan_2=long_note)
+            False
 
-        >>> timerelationtools.timespan_2_starts_after_timespan_1_stops(
-        ... timespan_1=last_tuplet, timespan_2=long_note)
-        False
+    ..  container:: example
+
+       **Example 5:**
+
+        ::
+
+            >>> timerelationtools.timespan_2_overlaps_start_of_timespan_1(
+            ... timespan_1=last_tuplet, timespan_2=long_note)
+            True
+
+    ..  container:: example
+
+       **Example 6:**
+
+        ::
+
+            >>> timerelationtools.timespan_2_overlaps_stop_of_timespan_1(
+            ... timespan_1=last_tuplet, timespan_2=long_note)
+            False
+
+    ..  container:: example
+
+       **Example 7:**
+
+        ::
+
+            >>> timerelationtools.timespan_2_starts_after_timespan_1_starts(
+            ... timespan_1=last_tuplet, timespan_2=long_note)
+            False
+
+    ..  container:: example
+
+       **Example 8:**
+
+        ::
+
+            >>> timerelationtools.timespan_2_starts_after_timespan_1_stops(
+            ... timespan_1=last_tuplet, timespan_2=long_note)
+            False
 
     Timespan / timespan time relations are immutable.
     '''
@@ -350,7 +380,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         `counttime_components` must be time-contiguous.
 
-        Example shown here takes 78355 function calls under r9686.
+        The call shown here takes 78355 function calls under r9686.
 
         Return selection.
         '''

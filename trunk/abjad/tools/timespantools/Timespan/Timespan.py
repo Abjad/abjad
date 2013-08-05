@@ -10,14 +10,16 @@ from abjad.tools.mathtools.BoundedObject import BoundedObject
 class Timespan(BoundedObject):
     r'''Closed-open interval.
 
-    Examples:
+    ..  container:: example
 
-    ::
+        **Example:**
 
-            >>> timespan_1 = timespantools.Timespan(0, 10)
-            >>> timespan_2 = timespantools.Timespan(5, 12)
-            >>> timespan_3 = timespantools.Timespan(-2, 2)
-            >>> timespan_4 = timespantools.Timespan(10, 20)
+        ::
+
+                >>> timespan_1 = timespantools.Timespan(0, 10)
+                >>> timespan_2 = timespantools.Timespan(5, 12)
+                >>> timespan_3 = timespantools.Timespan(-2, 2)
+                >>> timespan_4 = timespantools.Timespan(10, 20)
 
     Timespans are immutable and treated as value objects.
     '''
