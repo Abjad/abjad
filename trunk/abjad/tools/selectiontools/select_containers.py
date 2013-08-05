@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-def select_leaves(expr=None):
-    r'''Select leaves in `expr`.
+def select_containers(expr=None):
+    r'''Select containers in `expr`.
 
-    Example 1. Select leaves in staff:
+    Example 1. Select containers in staff, including staff:
 
     ::
 
@@ -33,33 +33,26 @@ def select_leaves(expr=None):
 
     ::
 
-        >>> selection = selectiontools.select_leaves(staff)
+        >>> selection = selectiontools.select_containers(staff)
 
     ::
         
         >>> selection
-        FreeLeafSelection(...)
+        FreeContainerSelection(...)
 
     ::
 
-        >>> for leaf in selection:
-        ...     leaf
-        Note("c'8")
-        Note("d'8")
-        Note("e'8")
-        Note("g'8")
-        Note("f'8")
-        Note("g'8")
-        Note("f'8")
-        Note("e'8")
-        Note("c'8")
-        Note("d'8")
+        >>> for container in selection:
+        ...     container
+        Staff{6}
+        Tuplet(2/3, [e'8, g'8, f'8])
+        Tuplet(2/3, [e'8, c'8, d'8])
 
-    Return free leaf selection.
+    Return free container selection.
     '''
     from abjad.tools import iterationtools
     from abjad.tools import selectiontools
-    expr = iterationtools.iterate_leaves_in_expr(expr)
-    selection = selectiontools.FreeLeafSelection(music=expr)
+    expr = expr or []
+    containers = iterationtools.iterate_containers_in_expr(expr)
+    selection = selectiontools.FreeContainerSelection(music=containers)
     return selection
-
