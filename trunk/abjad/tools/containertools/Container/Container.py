@@ -9,7 +9,7 @@ from abjad.tools.componenttools.Component import Component
 class Container(Component):
     r'''Abjad model of an iterable container of music.
 
-    Example:
+    **Example**:
 
     ..  container:: example
 
@@ -382,7 +382,7 @@ class Container(Component):
             r'''Set to true to interpret container contents in parallel.
             Set to false to interpret container contents sequentially.
 
-            Example 1. Sequential container:
+            **Example 1.** Sequential container:
 
             ..  container:: example
 
@@ -410,7 +410,7 @@ class Container(Component):
                     >>> container.is_parallel
                     False
 
-            Example 2. Parallel container:
+            **Example 2.** Parallel container:
 
             ..  container:: example
 
@@ -507,7 +507,7 @@ class Container(Component):
     def append(self, component):
         r'''Append `component` to container.
 
-        Example:
+        **Example**:
 
         ..  container:: example
 
@@ -547,7 +547,7 @@ class Container(Component):
     def extend(self, expr):
         r'''Extend container with `expr`.
 
-        Example.
+        **Example**:
 
         ..  container:: example
 
@@ -593,7 +593,7 @@ class Container(Component):
     def index(self, component):
         r'''Return index of `component` in container.
 
-        Example:
+        **Example**:
 
         ..  container:: example
 
@@ -636,7 +636,7 @@ class Container(Component):
     def insert(self, i, component, fracture_spanners=False):
         r'''Insert `component` at index `i` in container.
 
-        Example 1. Insert note. Do not fracture spanners:
+        **Example 1.** Insert note. Do not fracture spanners:
 
         ..  container:: example
 
@@ -692,7 +692,7 @@ class Container(Component):
                     fs16 )
                 }
 
-        Example 2. Insert note. Fracture spanners:
+        **Example 2.** Insert note. Fracture spanners:
 
         ..  container:: example
 
@@ -777,7 +777,7 @@ class Container(Component):
     def pop(self, i=-1):
         r'''Pop component from container at index `i`.
 
-        Example:
+        **Example**:
 
         ..  container:: example
 
@@ -820,7 +820,7 @@ class Container(Component):
     def remove(self, component):
         r'''Remove `component` from container.
 
-        Example:
+        **Example**:
 
         ..  container:: example
 
@@ -867,7 +867,7 @@ class Container(Component):
     def select_leaves(self):
         r'''Select leaves in container.
 
-        Example:
+        **Example**:
 
         ..  container:: example
 
@@ -890,7 +890,7 @@ class Container(Component):
     def select_notes_and_chords(self):
         r'''Select notes and chords in container.
 
-        Example:
+        **Example**:
 
         ..  container:: example
 
