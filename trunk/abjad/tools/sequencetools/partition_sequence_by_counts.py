@@ -4,69 +4,119 @@ from abjad.tools import mathtools
 
 
 def partition_sequence_by_counts(sequence, counts, cyclic=False, overhang=False, copy_elements=False):
-    '''Example 1a. Partition sequence once by counts without overhang:
+    r'''Partition sequence by counts.
+    
+    ..  container:: example
 
-    ::
+        **Example 1a.** Partition sequence once by counts without overhang:
 
-        >>> sequencetools.partition_sequence_by_counts(
-        ...     range(10), [3], cyclic=False, overhang=False)
-        [[0, 1, 2]]
+        ::
 
-    Example 1b. Partition sequence once by counts without overhang:
+            >>> sequencetools.partition_sequence_by_counts(
+            ...     range(10), 
+            ...     [3], 
+            ...     cyclic=False, 
+            ...     overhang=False,
+            ...     )
+            [[0, 1, 2]]
 
-    ::
+    ..  container:: example
 
-        >>> sequencetools.partition_sequence_by_counts(
-        ...     range(16), [4, 3], cyclic=False, overhang=False)
-        [[0, 1, 2, 3], [4, 5, 6]]
+        **Example 1b.** Partition sequence once by counts without overhang:
 
-    Example 2a. Partition sequence cyclically by counts without overhang:
+        ::
 
-    ::
+            >>> sequencetools.partition_sequence_by_counts(
+            ...     range(16), 
+            ...     [4, 3], 
+            ...     cyclic=False, 
+            ...     overhang=False,
+            ...     )
+            [[0, 1, 2, 3], [4, 5, 6]]
 
-        >>> sequencetools.partition_sequence_by_counts(
-        ...     range(10), [3], cyclic=True, overhang=False)
-        [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+    ..  container:: example
 
-    Example 2b. Partition sequence cyclically by counts without overhang:
+        **Example 2a.** Partition sequence cyclically by counts without overhang:
 
-    ::
+        ::
 
-        >>> sequencetools.partition_sequence_by_counts(
-        ...     range(16), [4, 3], cyclic=True, overhang=False)
-        [[0, 1, 2, 3], [4, 5, 6], [7, 8, 9, 10], [11, 12, 13]]
+            >>> sequencetools.partition_sequence_by_counts(
+            ...     range(10), 
+            ...     [3], 
+            ...     cyclic=True, 
+            ...     overhang=False,
+            ...     )
+            [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 
-    Example 3a. Partition sequence once by counts with overhang:
+    ..  container:: example
 
-    ::
+        **Example 2b.** Partition sequence cyclically by counts without overhang:
 
-        >>> sequencetools.partition_sequence_by_counts(
-        ...     range(10), [3], cyclic=False, overhang=True)
-        [[0, 1, 2], [3, 4, 5, 6, 7, 8, 9]]
+        ::
 
-    Example 3b. Partition sequence once by counts with overhang:
+            >>> sequencetools.partition_sequence_by_counts(
+            ...     range(16), 
+            ...     [4, 3], 
+            ...     cyclic=True, 
+            ...     overhang=False,
+            ...     )
+            [[0, 1, 2, 3], [4, 5, 6], [7, 8, 9, 10], [11, 12, 13]]
 
-    ::
+    ..  container:: example
 
-        >>> sequencetools.partition_sequence_by_counts(
-        ...     range(16), [4, 3], cyclic=False, overhang=True)
-        [[0, 1, 2, 3], [4, 5, 6], [7, 8, 9, 10, 11, 12, 13, 14, 15]]
+        **Example 3a.** Partition sequence once by counts with overhang:
 
-    Example 4a. Partition sequence cyclically by counts with overhang:
+        ::
 
-    ::
+            >>> sequencetools.partition_sequence_by_counts(
+            ...     range(10), 
+            ...     [3], 
+            ...     cyclic=False, 
+            ...     overhang=True,
+            ...     )
+            [[0, 1, 2], [3, 4, 5, 6, 7, 8, 9]]
 
-        >>> sequencetools.partition_sequence_by_counts(
-        ...     range(10), [3], cyclic=True, overhang=True)
-        [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9]]
+    ..  container:: example
 
-    Example 4b. Partition sequence cyclically by counts with overhang:
+        **Example 3b.** Partition sequence once by counts with overhang:
 
-    ::
+        ::
 
-        >>> sequencetools.partition_sequence_by_counts(
-        ...     range(16), [4, 3], cyclic=True, overhang=True)
-        [[0, 1, 2, 3], [4, 5, 6], [7, 8, 9, 10], [11, 12, 13], [14, 15]]
+            >>> sequencetools.partition_sequence_by_counts(
+            ...     range(16), 
+            ...     [4, 3], 
+            ...     cyclic=False, 
+            ...     overhang=True,
+            ...     )
+            [[0, 1, 2, 3], [4, 5, 6], [7, 8, 9, 10, 11, 12, 13, 14, 15]]
+
+    ..  container:: example
+
+        **Example 4a.** Partition sequence cyclically by counts with overhang:
+
+        ::
+
+            >>> sequencetools.partition_sequence_by_counts(
+            ...     range(10), 
+            ...     [3], 
+            ...     cyclic=True, 
+            ...     overhang=True,
+            ...     )
+            [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9]]
+
+    ..  container:: example
+
+        **Example 4b.** Partition sequence cyclically by counts with overhang:
+
+        ::
+
+            >>> sequencetools.partition_sequence_by_counts(
+            ...     range(16), 
+            ...     [4, 3], 
+            ...     cyclic=True, 
+            ...     overhang=True,
+            ...     )
+            [[0, 1, 2, 3], [4, 5, 6], [7, 8, 9, 10], [11, 12, 13], [14, 15]]
 
     Return list of sequence objects.
     '''

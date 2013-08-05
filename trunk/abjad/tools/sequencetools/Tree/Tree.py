@@ -1173,50 +1173,54 @@ class Tree(AbjadObject):
     def iterate_depth_first(self, reverse=False):
         r'''Iterate tree depth-first:
 
-        Example 1. Iterate tree depth-first from left to right:
+        ..  container:: example
 
-        ::
+            **Example 1.** Iterate tree depth-first from left to right:
 
-            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            ::
 
-        ::
+                >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+                >>> tree = sequencetools.Tree(sequence)
 
-            >>> for node in tree.iterate_depth_first(): node
-            ...
-            Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
-            Tree([0, 1])
-            Tree(0)
-            Tree(1)
-            Tree([2, 3])
-            Tree(2)
-            Tree(3)
-            Tree([4, 5])
-            Tree(4)
-            Tree(5)
-            Tree([6, 7])
-            Tree(6)
-            Tree(7)
+            ::
 
-        Example 2. Iterate tree depth-first from right to left:
+                >>> for node in tree.iterate_depth_first(): node
+                ...
+                Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
+                Tree([0, 1])
+                Tree(0)
+                Tree(1)
+                Tree([2, 3])
+                Tree(2)
+                Tree(3)
+                Tree([4, 5])
+                Tree(4)
+                Tree(5)
+                Tree([6, 7])
+                Tree(6)
+                Tree(7)
 
-        ::
+        ..  container::
 
-            >>> for node in tree.iterate_depth_first(reverse=True): node
-            ...
-            Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
-            Tree([6, 7])
-            Tree(7)
-            Tree(6)
-            Tree([4, 5])
-            Tree(5)
-            Tree(4)
-            Tree([2, 3])
-            Tree(3)
-            Tree(2)
-            Tree([0, 1])
-            Tree(1)
-            Tree(0)
+            **Example 2.** Iterate tree depth-first from right to left:
+
+            ::
+
+                >>> for node in tree.iterate_depth_first(reverse=True): node
+                ...
+                Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
+                Tree([6, 7])
+                Tree(7)
+                Tree(6)
+                Tree([4, 5])
+                Tree(5)
+                Tree(4)
+                Tree([2, 3])
+                Tree(3)
+                Tree(2)
+                Tree([0, 1])
+                Tree(1)
+                Tree(0)
 
         Return node generator.
         '''
@@ -1231,47 +1235,51 @@ class Tree(AbjadObject):
     def iterate_payload(self, reverse=False):
         r'''Iterate tree payload:
 
-        Example 1. Iterate payload from left to right:
+        ..  container:: example
 
-        ::
+            **Example 1.** Iterate payload from left to right:
 
-            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            ::
 
-        ::
+                >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+                >>> tree = sequencetools.Tree(sequence)
 
-            >>> for element in tree.iterate_payload():
-            ...     element
-            ...
-            0
-            1
-            2
-            3
-            4
-            5
-            6
-            7
+            ::
 
-        Example 2. Iterate payload from right to left:
+                >>> for element in tree.iterate_payload():
+                ...     element
+                ...
+                0
+                1
+                2
+                3
+                4
+                5
+                6
+                7
 
-        ::
+        ..  container:: example
 
-            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            **Example 2.** Iterate payload from right to left:
 
-        ::
+            ::
 
-            >>> for element in tree.iterate_payload(reverse=True):
-            ...     element
-            ...
-            7
-            6
-            5
-            4
-            3
-            2
-            1
-            0
+                >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+                >>> tree = sequencetools.Tree(sequence)
+
+            ::
+
+                >>> for element in tree.iterate_payload(reverse=True):
+                ...     element
+                ...
+                7
+                6
+                5
+                4
+                3
+                2
+                1
+                0
 
         Return payload generator.
         '''

@@ -181,62 +181,66 @@ class CyclicTree(Tree):
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> cyclic_tree = sequencetools.CyclicTree(sequence)
 
-        Example 1. Iterate from left to right:
+        ..  container:: example
+        
+            **Example 1.** Iterate from left to right:
 
-        ::
+            ::
 
-            >>> generator = cyclic_tree.iterate_forever_depth_first()
-            >>> for i in range(20):
-            ...     generator.next()
-            CyclicTree([[0, 1], [2, 3], [4, 5], [6, 7]])
-            CyclicTree([0, 1])
-            CyclicTree(0)
-            CyclicTree(1)
-            CyclicTree([2, 3])
-            CyclicTree(2)
-            CyclicTree(3)
-            CyclicTree([4, 5])
-            CyclicTree(4)
-            CyclicTree(5)
-            CyclicTree([6, 7])
-            CyclicTree(6)
-            CyclicTree(7)
-            CyclicTree([[0, 1], [2, 3], [4, 5], [6, 7]])
-            CyclicTree([0, 1])
-            CyclicTree(0)
-            CyclicTree(1)
-            CyclicTree([2, 3])
-            CyclicTree(2)
-            CyclicTree(3)
+                >>> generator = cyclic_tree.iterate_forever_depth_first()
+                >>> for i in range(20):
+                ...     generator.next()
+                CyclicTree([[0, 1], [2, 3], [4, 5], [6, 7]])
+                CyclicTree([0, 1])
+                CyclicTree(0)
+                CyclicTree(1)
+                CyclicTree([2, 3])
+                CyclicTree(2)
+                CyclicTree(3)
+                CyclicTree([4, 5])
+                CyclicTree(4)
+                CyclicTree(5)
+                CyclicTree([6, 7])
+                CyclicTree(6)
+                CyclicTree(7)
+                CyclicTree([[0, 1], [2, 3], [4, 5], [6, 7]])
+                CyclicTree([0, 1])
+                CyclicTree(0)
+                CyclicTree(1)
+                CyclicTree([2, 3])
+                CyclicTree(2)
+                CyclicTree(3)
 
-        Example 2. Iterate from right to left:
+        ..  container:: example
 
-        ::
+            **Example 2.** Iterate from right to left:
 
-            >>> generator = cyclic_tree.iterate_forever_depth_first(
-            ...     reverse=True)
-            >>> for i in range(20):
-            ...     generator.next()
-            CyclicTree([[0, 1], [2, 3], [4, 5], [6, 7]])
-            CyclicTree([6, 7])
-            CyclicTree(7)
-            CyclicTree(6)
-            CyclicTree([4, 5])
-            CyclicTree(5)
-            CyclicTree(4)
-            CyclicTree([2, 3])
-            CyclicTree(3)
-            CyclicTree(2)
-            CyclicTree([0, 1])
-            CyclicTree(1)
-            CyclicTree(0)
-            CyclicTree([[0, 1], [2, 3], [4, 5], [6, 7]])
-            CyclicTree([6, 7])
-            CyclicTree(7)
-            CyclicTree(6)
-            CyclicTree([4, 5])
-            CyclicTree(5)
-            CyclicTree(4)
+            ::
+
+                >>> generator = cyclic_tree.iterate_forever_depth_first(
+                ...     reverse=True)
+                >>> for i in range(20):
+                ...     generator.next()
+                CyclicTree([[0, 1], [2, 3], [4, 5], [6, 7]])
+                CyclicTree([6, 7])
+                CyclicTree(7)
+                CyclicTree(6)
+                CyclicTree([4, 5])
+                CyclicTree(5)
+                CyclicTree(4)
+                CyclicTree([2, 3])
+                CyclicTree(3)
+                CyclicTree(2)
+                CyclicTree([0, 1])
+                CyclicTree(1)
+                CyclicTree(0)
+                CyclicTree([[0, 1], [2, 3], [4, 5], [6, 7]])
+                CyclicTree([6, 7])
+                CyclicTree(7)
+                CyclicTree(6)
+                CyclicTree([4, 5])
+                CyclicTree(5)
+                CyclicTree(4)
 
         Return node generator.
         '''

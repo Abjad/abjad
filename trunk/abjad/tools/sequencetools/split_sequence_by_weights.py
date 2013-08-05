@@ -5,37 +5,61 @@ from abjad.tools import mathtools
 def split_sequence_by_weights(sequence, weights, cyclic=False, overhang=False):
     '''Split sequence by weights.
 
-    Example 1. Split sequence cyclically by weights with overhang:
+    ..  container:: example
 
-    ::
+        **Example 1.** Split sequence cyclically by weights with overhang:
 
-        >>> sequencetools.split_sequence_by_weights(
-        ...     (10, -10, 10, -10), [3, 15, 3], cyclic=True, overhang=True)
-        [(3,), (7, -8), (-2, 1), (3,), (6, -9), (-1,)]
+        ::
 
-    Example 2. Split sequence cyclically by weights without overhang:
+            >>> sequencetools.split_sequence_by_weights(
+            ...     (10, -10, 10, -10), 
+            ...     (3, 15, 3), 
+            ...     cyclic=True, 
+            ...     overhang=True,
+            ...     )
+            [(3,), (7, -8), (-2, 1), (3,), (6, -9), (-1,)]
 
-    ::
+    ..  container:: example
+    
+        **Example 2.** Split sequence cyclically by weights without overhang:
 
-        >>> sequencetools.split_sequence_by_weights(
-        ...         (10, -10, 10, -10), [3, 15, 3], cyclic=True, overhang=False)
-        [(3,), (7, -8), (-2, 1), (3,), (6, -9)]
+        ::
 
-    Example 3. Split sequence once by weights with overhang:
+            >>> sequencetools.split_sequence_by_weights(
+            ...     (10, -10, 10, -10), 
+            ...     (3, 15, 3), 
+            ...     cyclic=True, 
+            ...     overhang=False,
+            ...     )
+            [(3,), (7, -8), (-2, 1), (3,), (6, -9)]
 
-    ::
+    ..  container:: example
 
-        >>> sequencetools.split_sequence_by_weights(
-        ...     (10, -10, 10, -10), [3, 15, 3], cyclic=False, overhang=True)
-        [(3,), (7, -8), (-2, 1), (9, -10)]
+        **Example 3.** Split sequence once by weights with overhang:
 
-    Example 4. Split sequence once by weights without overhang:
+        ::
 
-    ::
+            >>> sequencetools.split_sequence_by_weights(
+            ...     (10, -10, 10, -10), 
+            ...     (3, 15, 3), 
+            ...     cyclic=False, 
+            ...     overhang=True,
+            ...     )
+            [(3,), (7, -8), (-2, 1), (9, -10)]
 
-        >>> sequencetools.split_sequence_by_weights(
-        ...     (10, -10, 10, -10), [3, 15, 3], cyclic=False, overhang=False)
-        [(3,), (7, -8), (-2, 1)]
+    ..  container:: example
+
+        **Example 4.** Split sequence once by weights without overhang:
+
+        ::
+
+            >>> sequencetools.split_sequence_by_weights(
+            ...     (10, -10, 10, -10), 
+            ...     (3, 15, 3), 
+            ...     cyclic=False, 
+            ...     overhang=False,
+            ...     )
+            [(3,), (7, -8), (-2, 1)]
 
     Return list of sequence types.
     '''

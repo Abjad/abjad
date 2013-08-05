@@ -5,21 +5,31 @@ import math
 def partition_sequence_extended_to_counts(sequence, counts, overhang=True):
     '''Partition sequence extended to counts.
 
-    Example 1. Partition sequence extended to counts with overhang:
+    ..  container:: example
 
-    ::
+        **Example 1.** Partition sequence extended to counts with overhang:
 
-        >>> sequencetools.partition_sequence_extended_to_counts(
-        ...     [1, 2, 3, 4], [6, 6, 6], overhang=True)
-        [[1, 2, 3, 4, 1, 2], [3, 4, 1, 2, 3, 4], [1, 2, 3, 4, 1, 2], [3, 4]]
+        ::
 
-    Example 2. Partition sequence extended to coutns without overhang:
+            >>> sequencetools.partition_sequence_extended_to_counts(
+            ...     (1, 2, 3, 4), 
+            ...     (6, 6, 6), 
+            ...     overhang=True,
+            ...     )
+            [(1, 2, 3, 4, 1, 2), (3, 4, 1, 2, 3, 4), (1, 2, 3, 4, 1, 2), (3, 4)]
 
-    ::
+    ..  container:: example
 
-        >>> sequencetools.partition_sequence_extended_to_counts(
-        ...     [1, 2, 3, 4], [6, 6, 6], overhang=False)
-        [[1, 2, 3, 4, 1, 2], [3, 4, 1, 2, 3, 4], [1, 2, 3, 4, 1, 2]]
+        **Example 2.** Partition sequence extended to coutns without overhang:
+
+        ::
+
+            >>> sequencetools.partition_sequence_extended_to_counts(
+            ...     (1, 2, 3, 4), 
+            ...     (6, 6, 6), 
+            ...     overhang=False,
+            ...     )
+            [(1, 2, 3, 4, 1, 2), (3, 4, 1, 2, 3, 4), (1, 2, 3, 4, 1, 2)]
 
     Return sequence of sequence objects.
     '''
