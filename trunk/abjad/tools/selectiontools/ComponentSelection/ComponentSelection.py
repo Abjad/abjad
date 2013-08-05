@@ -162,6 +162,72 @@ class ComponentSelection(FreeSelection):
                 results.append(checker.check(component))
         return all(results)
 
+    def report_modifications(self):
+        r'''Report modifications of components in selection.
+
+        Example. Report modifications of container in selection:
+
+        ::
+
+            >>> container = Container("c'8 d'8 e'8 f'8")
+            >>> container.override.note_head.color = 'red'
+            >>> container.override.note_head.style = 'harmonic'
+            >>> show(container) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(container)
+            {
+                \override NoteHead #'color = #red
+                \override NoteHead #'style = #'harmonic
+                c'8
+                d'8
+                e'8
+                f'8
+                \revert NoteHead #'color
+                \revert NoteHead #'style
+            }
+
+        ::
+
+            >>> selection = select(container)
+            >>> report = selection.report_modifications()
+
+        ::
+
+            >>> print report
+            {
+                \override NoteHead #'color = #red
+                \override NoteHead #'style = #'harmonic
+                %%% 4 components omitted %%%
+                \revert NoteHead #'color
+                \revert NoteHead #'style
+            }
+
+        Return string.
+        '''
+        from abjad.tools import containertools
+        from abjad.tools import formattools
+        for component in self:
+            format_contributions = formattools.get_all_format_contributions(
+                component)
+            result = []
+            result.extend(component._get_format_contributions_for_slot(
+                'before', format_contributions))
+            result.extend(component._get_format_contributions_for_slot(
+                'open brackets', format_contributions))
+            result.extend(component._get_format_contributions_for_slot(
+                'opening', format_contributions))
+            result.append('\t%%%%%% %s components omitted %%%%%%' % len(component))
+            result.extend(component._get_format_contributions_for_slot(
+                'closing', format_contributions))
+            result.extend(component._get_format_contributions_for_slot(
+                'close brackets', format_contributions))
+            result.extend(component._get_format_contributions_for_slot(
+                'after', format_contributions))
+            result = '\n'.join(result)
+        return result
+
     def tabulate_well_formedness_violations(self):
         r'''Tabulate well-formedness violations in selection:
 

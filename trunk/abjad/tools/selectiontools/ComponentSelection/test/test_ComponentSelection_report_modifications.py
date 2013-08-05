@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_containertools_report_container_modifications_01():
+def test_ComponentSelection_report_modifications_01():
 
     t = Voice("c'8 d'8 e'8 f'8")
     marktools.LilyPondComment('Example voice', 'before')(t)
@@ -27,7 +27,7 @@ def test_containertools_report_container_modifications_01():
     }
     '''
 
-    result = containertools.report_container_modifications(t)
+    result = select(t).report_modifications()
 
     r'''
     % Example voice
@@ -42,7 +42,7 @@ def test_containertools_report_container_modifications_01():
     assert result == "% Example voice\n\\new Voice \\with {\n\t\\override NoteHead #'color = #red\n} {\n\t#(set-accidental-style 'forget)\n\t%%% 4 components omitted %%%\n}"
 
 
-def test_containertools_report_container_modifications_02():
+def test_ComponentSelection_report_modifications_02():
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     marktools.LilyPondComment('Example tuplet', 'before')(t)
@@ -65,7 +65,7 @@ def test_containertools_report_container_modifications_02():
     \revert NoteHead #'color
     '''
 
-    result = containertools.report_container_modifications(t)
+    result = select(t).report_modifications()
 
     r'''
     % Example tuplet
