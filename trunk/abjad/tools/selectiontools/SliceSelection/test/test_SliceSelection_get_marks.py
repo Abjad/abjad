@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_SequentialSelection_get_marks_01():
+def test_SliceSelection_get_marks_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     clef = contexttools.ClefMark('treble')(staff)
@@ -19,7 +19,7 @@ def test_SequentialSelection_get_marks_01():
     assert dynamic in context_marks
 
 
-def test_SequentialSelection_get_marks_02():
+def test_SliceSelection_get_marks_02():
 
     staff = Staff(r"c'4 \pp d' \staccato e' \ff f' \staccato")
 

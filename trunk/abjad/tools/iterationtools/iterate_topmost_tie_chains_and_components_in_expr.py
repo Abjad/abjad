@@ -59,7 +59,7 @@ def iterate_topmost_tie_chains_and_components_in_expr(expr):
         else:
             raise TieChainError('can not have only one leaf in tie chain.')
     elif isinstance(
-        expr, (list, containertools.Container, selectiontools.SequentialSelection)):
+        expr, (list, containertools.Container, selectiontools.SliceSelection)):
         for component in expr:
             if isinstance(component, leaftools.Leaf):
                 tie_spanners = spannertools.get_spanners_attached_to_component(

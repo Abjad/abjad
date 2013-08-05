@@ -1,16 +1,16 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.selectiontools.SequentialSelection import SequentialSelection
+from abjad.tools.selectiontools.SliceSelection import SliceSelection
 
 
-class SequentialLeafSelection(SequentialSelection):
-    r'''SequentialSelection of leaves.
+class SequentialLeafSelection(SliceSelection):
+    r'''SliceSelection of leaves.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, music=None):
         from abjad.tools import leaftools
-        SequentialSelection.__init__(self, music=music)
+        SliceSelection.__init__(self, music=music)
         assert all(isinstance(x, leaftools.Leaf) for x in self)
 
     ### PUBLIC METHODS ###

@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_SequentialSelection__withdraw_from_crossing_spanners_01():
+def test_SliceSelection__withdraw_from_crossing_spanners_01():
     r'''Withdraw thread-contiguous components from crossing spanners.
     '''
 
@@ -32,7 +32,7 @@ def test_SequentialSelection__withdraw_from_crossing_spanners_01():
     assert slur in spanners
     assert trill in spanners
 
-    voice_selection = selectiontools.SequentialSelection([t])
+    voice_selection = selectiontools.SliceSelection([t])
     voice_selection._withdraw_from_crossing_spanners()
     assert len(spanners) == 3
     assert beam in spanners
@@ -40,7 +40,7 @@ def test_SequentialSelection__withdraw_from_crossing_spanners_01():
     assert trill in spanners
 
 
-def test_SequentialSelection__withdraw_from_crossing_spanners_02():
+def test_SliceSelection__withdraw_from_crossing_spanners_02():
     r'''Withdraw thread-contiguous components from crossing spanners.
     '''
 
@@ -90,7 +90,7 @@ def test_SequentialSelection__withdraw_from_crossing_spanners_02():
     assert t.lilypond_format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 ( \\startTrillSpan\n\t\tf'8 ) \\stopTrillSpan\n\t}\n}"
 
 
-def test_SequentialSelection__withdraw_from_crossing_spanners_03():
+def test_SliceSelection__withdraw_from_crossing_spanners_03():
     r'''Withdraw thread-contiguous components from crossing spanners.
     '''
 

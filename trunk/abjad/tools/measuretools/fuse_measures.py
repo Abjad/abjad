@@ -78,7 +78,7 @@ def fuse_measures(measures):
     from abjad.tools import timesignaturetools
 
     # check input
-    assert isinstance(measures, selectiontools.SequentialSelection), repr(measures)
+    assert isinstance(measures, selectiontools.SliceSelection), repr(measures)
     assert componenttools.all_are_contiguous_components_in_same_parent(
         measures, component_classes=(measuretools.Measure, ))
 

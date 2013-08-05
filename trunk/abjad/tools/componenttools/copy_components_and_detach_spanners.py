@@ -108,7 +108,7 @@ def copy_components_and_detach_spanners(components, n=1):
 
     # return empty selection when nothing to copy
     if n < 1:
-        return selectiontools.SequentialSelection()
+        return selectiontools.SliceSelection()
 
     # copy components without spanners
     result = []

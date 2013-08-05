@@ -66,9 +66,9 @@ def iterate_runs_in_expr(sequence, classes):
         list,
         tuple,
         types.GeneratorType, 
-        selectiontools.SequentialSelection)), repr(expr)
+        selectiontools.SliceSelection)), repr(expr)
 
-    sequence = selectiontools.SequentialSelection(sequence)
+    sequence = selectiontools.SliceSelection(sequence)
 
     current_group = ()
     for group in sequence.group_by(type):

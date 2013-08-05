@@ -107,7 +107,7 @@ Get the leaves in a voice with ``leaves``:
 ::
 
    >>> voice.select_leaves()
-   SequentialSelection(Note("c'4"), Note("d'4"), Note("e'4"), Note("f'2"), Note("g'1"))
+   SliceSelection(Note("c'4"), Note("d'4"), Note("e'4"), Note("f'2"), Note("g'1"))
 
 
 Abjad returns a read-only selection of leaves.

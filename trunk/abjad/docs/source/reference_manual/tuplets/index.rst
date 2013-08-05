@@ -121,7 +121,7 @@ Get the leaves in any Abjad container with ``leaves``:
 ::
 
    >>> tuplet.select_leaves()
-   SequentialSelection(Note("fs'8"), Note("g'8"), Rest('r8'))
+   SliceSelection(Note("fs'8"), Note("g'8"), Rest('r8'))
 
 
 Abjad returns a read-only selection of leaves.

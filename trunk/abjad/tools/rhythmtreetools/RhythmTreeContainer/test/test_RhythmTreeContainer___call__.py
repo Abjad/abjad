@@ -8,7 +8,7 @@ def test_RhythmTreeContainer___call___01():
     tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
     result = tree((1, 4))
 
-    assert isinstance(result, (list, selectiontools.SequentialSelection))
+    assert isinstance(result, (list, selectiontools.SliceSelection))
     assert len(result) == 1
 
     r'''
@@ -32,6 +32,6 @@ def test_RhythmTreeContainer___call___02():
     tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
     result = tree((1, 4))
 
-    assert isinstance(result, (list, selectiontools.SequentialSelection))
+    assert isinstance(result, (list, selectiontools.SliceSelection))
     assert len(result) == 6
     assert [x.lilypond_format for x in result] == ["c'16", "c'32", "c'32", "c'32", "c'32", "c'16"]

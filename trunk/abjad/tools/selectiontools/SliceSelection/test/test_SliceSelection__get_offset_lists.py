@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_SequentialSelection__get_offset_lists_01():
+def test_SliceSelection__get_offset_lists_01():
 
     staff = Staff("c'4 d'4 e'4 f'4")
     selection = staff[:2]

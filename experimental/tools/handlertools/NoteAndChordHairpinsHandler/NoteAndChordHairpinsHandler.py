@@ -30,8 +30,8 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
             leaves, (notetools.Note, chordtools.Chord)))
         hairpin_tokens = sequencetools.CyclicList(self.hairpin_tokens)
         for i, group in enumerate(groups):
-            if not isinstance(group, selectiontools.SequentialSelection):
-                group = selectiontools.SequentialSelection(group)
+            if not isinstance(group, selectiontools.SliceSelection):
+                group = selectiontools.SliceSelection(group)
             is_short_group = False
             hairpin_token = hairpin_tokens[offset+i]
             if len(group) == 1:

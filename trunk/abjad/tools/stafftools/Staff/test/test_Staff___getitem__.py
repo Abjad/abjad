@@ -131,7 +131,7 @@ def test_Staff___getitem___08():
     assert select(t).is_well_formed()
     slice = t[:]
     assert len(slice) == 5
-    assert isinstance(slice, (list, selectiontools.SequentialSelection))
+    assert isinstance(slice, (list, selectiontools.SliceSelection))
     assert isinstance(slice[0], Note)
     assert isinstance(slice[1], Rest)
     assert isinstance(slice[2], Chord)

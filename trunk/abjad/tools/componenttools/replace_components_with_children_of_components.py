@@ -28,7 +28,7 @@ def replace_components_with_children_of_components(components):
     ::
 
         >>> componenttools.replace_components_with_children_of_components(staff[0:1])
-        SequentialSelection({},)
+        SliceSelection({},)
 
     ..  doctest::
 

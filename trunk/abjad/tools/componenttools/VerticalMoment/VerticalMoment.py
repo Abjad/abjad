@@ -141,7 +141,7 @@ class VerticalMoment(SimultaneousSelection):
         message = 'must be Abjad component or tuple of Abjad components.'
         if isinstance(expr, componenttools.Component):
             governors.append(expr)
-        #elif isinstance(expr, (list, tuple, selectiontools.SequentialSelection)):
+        #elif isinstance(expr, (list, tuple, selectiontools.SliceSelection)):
         elif isinstance(
             expr, (list, tuple, selectiontools.SimultaneousSelection)):
             for x in expr:

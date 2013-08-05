@@ -22,7 +22,7 @@ def get_parent_and_start_stop_indices_of_components(components):
 
         >>> leaves = t[-2:]
         >>> leaves
-        SequentialSelection(Note("g'8"), Note("a'8"))
+        SliceSelection(Note("g'8"), Note("a'8"))
         >>> componenttools.get_parent_and_start_stop_indices_of_components(leaves)
         (Staff{6}, 4, 5)
 

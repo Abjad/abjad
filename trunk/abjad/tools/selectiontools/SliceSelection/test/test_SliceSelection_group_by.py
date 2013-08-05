@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_SequentialSelection_group_by_01():
+def test_SliceSelection_group_by_01():
 
     staff = Staff(leaftools.make_leaves([0, 2, 4, None, None, 5, 7], [(1, 8)]))
     t = staff.select_leaves().group_by(type)

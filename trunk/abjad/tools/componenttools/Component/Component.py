@@ -808,7 +808,7 @@ class Component(AbjadObject):
         if not sequential:
             return selectiontools.ComponentSelection(music=self)
         else:
-            return selectiontools.SequentialSelection(music=self)
+            return selectiontools.SliceSelection(music=self)
 
     def select_components(self, component_classes=None, include_self=True):
         r'''Select all components of `component_classes`
@@ -835,7 +835,7 @@ class Component(AbjadObject):
         if include_self:
             result.append(self)
         result.extend(getattr(self, '_music', []))
-        result = selectiontools.SequentialSelection(result)
+        result = selectiontools.SliceSelection(result)
         return result
 
     # TODO: remove cross_offset keyword

@@ -40,7 +40,7 @@ class IterablePayloadExpression(PayloadExpression):
         assert not isinstance(payload, rhythmmakertools.RhythmMaker)
         assert not isinstance(payload, musicexpressiontools.StatalServerCursor)
         assert isinstance(payload, 
-            (str, tuple, list, selectiontools.SequentialSelection,
+            (str, tuple, list, selectiontools.SliceSelection,
             musicexpressiontools.DivisionList, containertools.Container))
         if isinstance(payload, list):
             payload = tuple(payload)

@@ -3,7 +3,7 @@ from abjad.tools.selectiontools.Selection import Selection
 
 
 class SimultaneousSelection(Selection):
-    r'''SequentialSelection of components taken simultaneously.
+    r'''SliceSelection of components taken simultaneously.
 
     Simultaneously selections implement no duration properties.
     '''

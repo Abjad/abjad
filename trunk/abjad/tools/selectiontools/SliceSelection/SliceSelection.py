@@ -5,7 +5,7 @@ import types
 from abjad.tools.selectiontools.Selection import Selection
 
 
-class SequentialSelection(Selection):
+class SliceSelection(Selection):
     r'''Selection of components taken sequentially:
 
     ::
@@ -13,7 +13,7 @@ class SequentialSelection(Selection):
         >>> staff = Staff("c'4 d'4 e'4 f'4")
         >>> selection = staff[:2]
         >>> selection
-        SequentialSelection(Note("c'4"), Note("d'4"))
+        SliceSelection(Note("c'4"), Note("d'4"))
 
     '''
 
@@ -24,7 +24,7 @@ class SequentialSelection(Selection):
             music = ()
         elif isinstance(music, (tuple, list)):
             music = tuple(music)
-        #elif isinstance(music, SequentialSelection):
+        #elif isinstance(music, SliceSelection):
         elif isinstance(music, Selection):
             music = tuple(music)
         elif isinstance(music, types.GeneratorType):
@@ -55,7 +55,7 @@ class SequentialSelection(Selection):
         # and force the use of selections only
         elif isinstance(expr, (tuple, list)):
             music = tuple(expr) + self._music
-        return SequentialSelection(music)
+        return SliceSelection(music)
 
     ### PRIVATE PROPERTIES ###
 

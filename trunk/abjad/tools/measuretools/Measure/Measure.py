@@ -65,7 +65,7 @@ class Measure(FixedDurationContainer):
         assert isinstance(arg, type(self))
         from abjad.tools import measuretools
         from abjad.tools import selectiontools
-        measures = selectiontools.SequentialSelection([self, arg])
+        measures = selectiontools.SliceSelection([self, arg])
         new = measuretools.fuse_measures(measures)
         return new
 

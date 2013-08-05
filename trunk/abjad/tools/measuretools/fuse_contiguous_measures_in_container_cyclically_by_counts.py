@@ -105,7 +105,7 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(
                         contexttools.TimeSignatureMark))
                         for x in measures_to_fuse])
                 time_signature_sum_str = '"%s"' % time_signature_sum_str
-                measures_to_fuse = selectiontools.SequentialSelection(measures_to_fuse)
+                measures_to_fuse = selectiontools.SliceSelection(measures_to_fuse)
                 new = measuretools.fuse_measures(measures_to_fuse)
                 if mark:
                     new_mark = markuptools.Markup(time_signature_sum_str, Up)

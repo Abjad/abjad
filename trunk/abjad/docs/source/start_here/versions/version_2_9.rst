@@ -358,7 +358,7 @@ New functionality is available for working with ties.
     TieChain.get_duration(in_seconds=True)
     TieChain.written_duration
 
-  The ``TieChain`` class inherits from the new ``SequentialSelection`` abstract base class.
+  The ``TieChain`` class inherits from the new ``SliceSelection`` abstract base class.
 
   Added new ``tietools`` functions:: 
 

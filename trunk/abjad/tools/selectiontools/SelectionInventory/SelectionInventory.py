@@ -16,4 +16,4 @@ class SelectionInventory(ObjectInventory):
     @property
     def _item_callable(self):
         from abjad.tools import selectiontools
-        return selectiontools.SequentialSelection
+        return selectiontools.SliceSelection

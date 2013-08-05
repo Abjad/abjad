@@ -28,7 +28,7 @@ def timespan_2_contains_timespan_1_improperly(timespan_1=None, timespan_2=None, 
         >>> start_index, stop_index = time_relation.get_offset_indices(*offset_lists)
         >>> selected_notes = staff[start_index:stop_index]
         >>> selected_notes
-        SequentialSelection(Note("a'4"),)
+        SliceSelection(Note("a'4"),)
 
     ::
 
