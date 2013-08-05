@@ -1212,19 +1212,23 @@ class Timespan(BoundedObject):
     def reflect(self, axis=None):
         r'''Reverse timespan about `axis`.
 
-        Example 1. Reverse timespan about timespan axis:
+        ..  container:: example
 
-        ::
+            **Example 1.** Reverse timespan about timespan axis:
 
-            >>> timespantools.Timespan(3, 6).reflect()
-            Timespan(start_offset=Offset(3, 1), stop_offset=Offset(6, 1))
+            ::
 
-        Example 2. Reverse timespan about arbitrary axis:
+                >>> timespantools.Timespan(3, 6).reflect()
+                Timespan(start_offset=Offset(3, 1), stop_offset=Offset(6, 1))
 
-        ::
+        ..  container:: example
 
-            >>> timespantools.Timespan(3, 6).reflect(axis=Offset(10))
-            Timespan(start_offset=Offset(14, 1), stop_offset=Offset(17, 1))
+            **Example 2.** Reverse timespan about arbitrary axis:
+
+            ::
+
+                >>> timespantools.Timespan(3, 6).reflect(axis=Offset(10))
+                Timespan(start_offset=Offset(14, 1), stop_offset=Offset(17, 1))
 
         Emit newly constructed timespan.
         '''
@@ -1293,20 +1297,23 @@ class Timespan(BoundedObject):
 
             >>> timespan = timespantools.Timespan(3, 6)
 
-        Example 1. Scale timespan relative to timespan start offset:
+        ..  container:: example
+        
+            **Example 1.** Scale timespan relative to timespan start offset:
 
-        ::
+            ::
 
-            >>> timespan.scale(Multiplier(2))
-            Timespan(start_offset=Offset(3, 1), stop_offset=Offset(9, 1))
+                >>> timespan.scale(Multiplier(2))
+                Timespan(start_offset=Offset(3, 1), stop_offset=Offset(9, 1))
 
-        Example 2. Scale timespan relative to timespan stop offset:
+        ..  container:: example
 
-        ::
+            **Example 2.** Scale timespan relative to timespan stop offset:
 
-            >>> timespan.scale(Multiplier(2), anchor=Right)
-            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(6, 1))
+            ::
 
+                >>> timespan.scale(Multiplier(2), anchor=Right)
+                Timespan(start_offset=Offset(0, 1), stop_offset=Offset(6, 1))
 
         Emit newly constructed timespan.
         '''
@@ -1996,30 +2003,50 @@ class Timespan(BoundedObject):
     def stretch(self, multiplier, anchor=None):
         r'''Stretch timespan by `multiplier` relative to `anchor`.
 
-        Example 1. Stretch relative to timespan start offset:
+        .. container:: example
 
-            >>> timespantools.Timespan(3, 10).stretch(Multiplier(2))
-            Timespan(start_offset=Offset(3, 1), stop_offset=Offset(17, 1))
+            **Example 1.** Stretch relative to timespan start offset:
 
-        Example 2. Stretch relative to timespan stop offset:
+            ::
 
-            >>> timespantools.Timespan(3, 10).stretch(Multiplier(2), Offset(10))
-            Timespan(start_offset=Offset(-4, 1), stop_offset=Offset(10, 1))
+                >>> timespantools.Timespan(3, 10).stretch(Multiplier(2))
+                Timespan(start_offset=Offset(3, 1), stop_offset=Offset(17, 1))
 
-        Example 3: Stretch relative to offset prior to timespan:
+        .. container:: example
 
-            >>> timespantools.Timespan(3, 10).stretch(Multiplier(2), Offset(0))
-            Timespan(start_offset=Offset(6, 1), stop_offset=Offset(20, 1))
+            **Example 2.** Stretch relative to timespan stop offset:
 
-        Example 4: Stretch relative to offset after timespan:
+            ::
 
-            >>> timespantools.Timespan(3, 10).stretch(Multiplier(3), Offset(12))
-            Timespan(start_offset=Offset(-15, 1), stop_offset=Offset(6, 1))
+                >>> timespantools.Timespan(3, 10).stretch(Multiplier(2), Offset(10))
+                Timespan(start_offset=Offset(-4, 1), stop_offset=Offset(10, 1))
 
-        Example 5: Stretch relative to offset that happens during timespan:
+        .. container:: example
 
-            >>> timespantools.Timespan(3, 10).stretch(Multiplier(2), Offset(4))
-            Timespan(start_offset=Offset(2, 1), stop_offset=Offset(16, 1))
+            **Example 3.** Stretch relative to offset prior to timespan:
+
+            ::
+
+                >>> timespantools.Timespan(3, 10).stretch(Multiplier(2), Offset(0))
+                Timespan(start_offset=Offset(6, 1), stop_offset=Offset(20, 1))
+
+        .. container:: example
+
+            **Example 4.** Stretch relative to offset after timespan:
+
+            ::
+
+                >>> timespantools.Timespan(3, 10).stretch(Multiplier(3), Offset(12))
+                Timespan(start_offset=Offset(-15, 1), stop_offset=Offset(6, 1))
+
+        .. container:: example
+
+            **Example 5.** Stretch relative to offset that happens during timespan:
+
+            ::
+
+                >>> timespantools.Timespan(3, 10).stretch(Multiplier(2), Offset(4))
+                Timespan(start_offset=Offset(2, 1), stop_offset=Offset(16, 1))
 
         Return newly emitted timespan.
         '''
