@@ -7,25 +7,27 @@ from abjad.tools.componenttools.Component import Component
 
 
 class Container(Component):
-    r'''Abjad model of a music container:
+    r'''Abjad model of an iterable container of music.
 
-    ::
+    Example:
 
-        >>> container = Container("c'8 d'8 e'8 f'8")
+    ..  container:: example
 
-    ..  doctest::
+        ::
 
-        >>> f(container)
-        {
-            c'8
-            d'8
-            e'8
-            f'8
-        }
+            >>> container = Container("c'4 e'4 d'4 e'8 f'8")
+            >>> show(container) # doctest: +SKIP
 
-    ::
+        ..  doctest::
 
-        >>> show(container) # doctest: +SKIP
+            >>> f(container)
+            {
+                c'4
+                e'4
+                d'4
+                e'8
+                f'8
+            }
 
     '''
 
@@ -403,56 +405,54 @@ class Container(Component):
 
             Example 1. Sequential container:
 
-            ::
+            ..  container:: example
 
-                >>> container = Container([Voice("c'8 d'8 e'8"), Voice('g4.')])
+                ::
 
-            ..  doctest::
+                    >>> container = Container([Voice("c'8 d'8 e'8"), Voice('g4.')])
+                    >>> show(container) # doctest: +SKIP
 
-                >>> f(container)
-                {
-                    \new Voice {
-                        c'8
-                        d'8
-                        e'8
+                ..  doctest::
+
+                    >>> f(container)
+                    {
+                        \new Voice {
+                            c'8
+                            d'8
+                            e'8
+                        }
+                        \new Voice {
+                            g4.
+                        }
                     }
-                    \new Voice {
-                        g4.
-                    }
-                }
 
-            ::
+                ::
 
-                >>> show(container) # doctest: +SKIP
-
-            ::
-
-                >>> container.is_parallel
-                False
+                    >>> container.is_parallel
+                    False
 
             Example 2. Parallel container:
 
-            ::
+            ..  container:: example
 
-                >>> container.is_parallel = True
+                ::
 
-            ..  doctest::
+                    >>> container.is_parallel = True
+                    >>> show(container) # doctest: +SKIP
 
-                >>> f(container)
-                <<
-                    \new Voice {
-                        c'8
-                        d'8
-                        e'8
-                    }
-                    \new Voice {
-                        g4.
-                    }
-                >>
+                ..  doctest::
 
-            ::
-
-                >>> show(container) # doctest: +SKIP
+                    >>> f(container)
+                    <<
+                        \new Voice {
+                            c'8
+                            d'8
+                            e'8
+                        }
+                        \new Voice {
+                            g4.
+                        }
+                    >>
 
             Return boolean.
             '''
@@ -530,45 +530,39 @@ class Container(Component):
 
         Example:
 
-        ::
+        ..  container:: example
 
-            >>> container = Container("c'4 ( d'4 f'4 )")
+            ::
 
-        ..  doctest::
+                >>> container = Container("c'4 ( d'4 f'4 )")
+                >>> show(container) # doctest: +SKIP
 
-            >>> f(container)
-            {
-                c'4 (
-                d'4
-                f'4 )
-            }
+            ..  doctest::
 
-        ::
+                >>> f(container)
+                {
+                    c'4 (
+                    d'4
+                    f'4 )
+                }
 
-            >>> show(container) # doctest: +SKIP
+            ::
 
-        ::
+                >>> container.append(Note("e'4"))
+                >>> show(container) # doctest: +SKIP
 
-            >>> container.append(Note("e'4"))
+            ..  doctest::
 
-        ..  doctest::
-
-            >>> f(container)
-            {
-                c'4 (
-                d'4
-                f'4 )
-                e'4
-            }
-
-        ::
-
-            >>> show(container) # doctest: +SKIP
+                >>> f(container)
+                {
+                    c'4 (
+                    d'4
+                    f'4 )
+                    e'4
+                }
 
         Return none.
         '''
-        # to make pychecker happy
-        #self[len(self):len(self)] = [component]
         self.__setitem__(slice(len(self), len(self)), [component])
 
     def extend(self, expr):
@@ -576,48 +570,42 @@ class Container(Component):
 
         Example.
 
-        ::
+        ..  container:: example
 
-            >>> container = Container("c'4 ( d'4 f'4 )")
+            ::
 
-        ..  doctest:: 
+                >>> container = Container("c'4 ( d'4 f'4 )")
+                >>> show(container) # doctest: +SKIP
 
-            >>> f(container)
-            {
-                c'4 (
-                d'4
-                f'4 )
-            }
+            ..  doctest:: 
 
-        ::
+                >>> f(container)
+                {
+                    c'4 (
+                    d'4
+                    f'4 )
+                }
 
-            >>> show(container) # doctest: +SKIP
+            ::
 
-        ::
+                >>> notes = [Note("e'32"), Note("d'32"), Note("e'16")]
+                >>> container.extend(notes)
+                >>> show(container) # doctest: +SKIP
 
-            >>> notes = [Note("e'32"), Note("d'32"), Note("e'16")]
-            >>> container.extend(notes)
+            ..  doctest::
 
-        ..  doctest::
-
-            >>> f(container)
-            {
-                c'4 (
-                d'4
-                f'4 )
-                e'32
-                d'32
-                e'16
-            }
-
-        ::
-
-            >>> show(container) # doctest: +SKIP
+                >>> f(container)
+                {
+                    c'4 (
+                    d'4
+                    f'4 )
+                    e'32
+                    d'32
+                    e'16
+                }
 
         Return none.
         '''
-        # to make pychecker happy
-        #self[len(self):len(self)] = expr[:]
         self.__setitem__(
             slice(len(self), len(self)), 
             expr.__getitem__(slice(0, len(expr)))
@@ -628,34 +616,33 @@ class Container(Component):
 
         Example:
 
-        ::
+        ..  container:: example
 
-            >>> container = Container("c'4 d'4 f'4 e'4")
+            ::
 
-        ..  doctest::
+                >>> container = Container("c'4 d'4 f'4 e'4")
+                >>> show(container) # doctest: +SKIP
 
-            >>> f(container)
-            {
-                c'4
-                d'4
-                f'4
-                e'4
-            }
+            ..  doctest::
 
-        ::
+                >>> f(container)
+                {
+                    c'4
+                    d'4
+                    f'4
+                    e'4
+                }
 
-            >>> show(container) # doctest: +SKIP
+            ::
 
-        ::
+                >>> note = container[-1]
+                >>> note
+                Note("e'4")
 
-            >>> note = container[-1]
-            >>> note
-            Note("e'4")
+            ::
 
-        ::
-
-            >>> container.index(note)
-            3
+                >>> container.index(note)
+                3
 
         Return nonnegative integer.
         '''
@@ -672,109 +659,115 @@ class Container(Component):
 
         Example 1. Insert note. Do not fracture spanners:
 
-        ::
+        ..  container:: example
 
-            >>> container = Container([])
-            >>> container.extend("fs16 cs' e' a'")
-            >>> container.extend("cs''16 e'' cs'' a'")
-            >>> container.extend("fs'16 e' cs' fs")
-            >>> slur = spannertools.SlurSpanner(container[:])
-            >>> slur.direction = Down
-            >>> show(container) # doctest: +SKIP
+            ::
 
-        ..  doctest::
+                >>> container = Container([])
+                >>> container.extend("fs16 cs' e' a'")
+                >>> container.extend("cs''16 e'' cs'' a'")
+                >>> container.extend("fs'16 e' cs' fs")
+                >>> slur = spannertools.SlurSpanner(container[:])
+                >>> slur.direction = Down
+                >>> show(container) # doctest: +SKIP
 
-            >>> f(container)
-            {
-                fs16 _ (
-                cs'16
-                e'16
-                a'16
-                cs''16
-                e''16
-                cs''16
-                a'16
-                fs'16
-                e'16
-                cs'16
-                fs16 )
-            }
+            ..  doctest::
 
-        ::
+                >>> f(container)
+                {
+                    fs16 _ (
+                    cs'16
+                    e'16
+                    a'16
+                    cs''16
+                    e''16
+                    cs''16
+                    a'16
+                    fs'16
+                    e'16
+                    cs'16
+                    fs16 )
+                }
 
-            >>> container.insert(-4, Note("e'4"), fracture_spanners=False)
-            >>> show(container) # doctest: +SKIP
+            ::
 
-        ..  doctest::
+                >>> container.insert(-4, Note("e'4"), fracture_spanners=False)
+                >>> show(container) # doctest: +SKIP
 
-            >>> f(container)
-            {
-                fs16 _ (
-                cs'16
-                e'16
-                a'16
-                cs''16
-                e''16
-                cs''16
-                a'16
-                e'4
-                fs'16
-                e'16
-                cs'16
-                fs16 )
-            }
+            ..  doctest::
+
+                >>> f(container)
+                {
+                    fs16 _ (
+                    cs'16
+                    e'16
+                    a'16
+                    cs''16
+                    e''16
+                    cs''16
+                    a'16
+                    e'4
+                    fs'16
+                    e'16
+                    cs'16
+                    fs16 )
+                }
 
         Example 2. Insert note. Fracture spanners:
 
-            >>> container = Container([])
-            >>> container.extend("fs16 cs' e' a'")
-            >>> container.extend("cs''16 e'' cs'' a'")
-            >>> container.extend("fs'16 e' cs' fs")
-            >>> slur = spannertools.SlurSpanner(container[:])
-            >>> slur.direction = Down
-            >>> show(container) # doctest: +SKIP
+        ..  container:: example
 
-        ..  doctest::
+            ::
 
-            >>> f(container)
-            {
-                fs16 _ (
-                cs'16
-                e'16
-                a'16
-                cs''16
-                e''16
-                cs''16
-                a'16
-                fs'16
-                e'16
-                cs'16
-                fs16 )
-            }
+                >>> container = Container([])
+                >>> container.extend("fs16 cs' e' a'")
+                >>> container.extend("cs''16 e'' cs'' a'")
+                >>> container.extend("fs'16 e' cs' fs")
+                >>> slur = spannertools.SlurSpanner(container[:])
+                >>> slur.direction = Down
+                >>> show(container) # doctest: +SKIP
 
-        ::
+            ..  doctest::
 
-            >>> container.insert(-4, Note("e'4"), fracture_spanners=True)
-            >>> show(container) # doctest: +SKIP
+                >>> f(container)
+                {
+                    fs16 _ (
+                    cs'16
+                    e'16
+                    a'16
+                    cs''16
+                    e''16
+                    cs''16
+                    a'16
+                    fs'16
+                    e'16
+                    cs'16
+                    fs16 )
+                }
 
-        ..  doctest::
+            ::
 
-            >>> f(container)
-            {
-                fs16 _ (
-                cs'16
-                e'16
-                a'16
-                cs''16
-                e''16
-                cs''16
-                a'16 )
-                e'4
-                fs'16 _ (
-                e'16
-                cs'16
-                fs16 )
-            }
+                >>> container.insert(-4, Note("e'4"), fracture_spanners=True)
+                >>> show(container) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(container)
+                {
+                    fs16 _ (
+                    cs'16
+                    e'16
+                    a'16
+                    cs''16
+                    e''16
+                    cs''16
+                    a'16 )
+                    e'4
+                    fs'16 _ (
+                    e'16
+                    cs'16
+                    fs16 )
+                }
 
         Return none.
         '''
@@ -807,41 +800,37 @@ class Container(Component):
 
         Example:
 
-        ::
+        ..  container:: example
 
-            >>> container = Container("c'4 ( d'4 f'4 ) e'4")
+            ::
 
-        ..  doctest::
+                >>> container = Container("c'4 ( d'4 f'4 ) e'4")
+                >>> show(container) # doctest: +SKIP
 
-            >>> f(container)
-            {
-                c'4 (
-                d'4
-                f'4 )
-                e'4
-            }
+            ..  doctest::
 
-        ::
+                >>> f(container)
+                {
+                    c'4 (
+                    d'4
+                    f'4 )
+                    e'4
+                }
 
-            >>> show(container) # doctest: +SKIP
+            ::
 
-        ::
+                >>> container.pop()
+                Note("e'4")
+                >>> show(container) # doctest: +SKIP
 
-            >>> container.pop()
-            Note("e'4")
+            ..  doctest::
 
-        ..  doctest::
-
-            >>> f(container)
-            {
-                c'4 (
-                d'4
-                f'4 )
-            }
-
-        ::
-
-            >>> show(container) # doctest: +SKIP
+                >>> f(container)
+                {
+                    c'4 (
+                    d'4
+                    f'4 )
+                }
 
         Return component.
         '''
@@ -854,46 +843,42 @@ class Container(Component):
 
         Example:
 
-        ::
+        ..  container:: example
 
-            >>> container = Container("c'4 ( d'4 f'4 ) e'4")
+            ::
 
-        ..  doctest::
+                >>> container = Container("c'4 ( d'4 f'4 ) e'4")
+                >>> show(container) # doctest: +SKIP
 
-            >>> f(container)
-            {
-                c'4 (
-                d'4
-                f'4 )
-                e'4
-            }
+            ..  doctest::
 
-        ::
+                >>> f(container)
+                {
+                    c'4 (
+                    d'4
+                    f'4 )
+                    e'4
+                }
 
-            >>> show(container) # doctest: +SKIP
+            ::
 
-        ::
+                >>> note = container[2]
+                >>> note
+                Note("f'4")
 
-            >>> note = container[2]
-            >>> note
-            Note("f'4")
+            ::
 
-        ::
+                >>> container.remove(note)
+                >>> show(container) # doctest: +SKIP
 
-            >>> container.remove(note)
+            ..  doctest::
 
-        ..  doctest::
-
-            >>> f(container)
-            {
-                c'4 (
-                d'4 )
-                e'4
-            }
-
-        ::
-
-            >>> show(container) # doctest: +SKIP
+                >>> f(container)
+                {
+                    c'4 (
+                    d'4 )
+                    e'4
+                }
 
         Return none.
         '''
@@ -905,14 +890,16 @@ class Container(Component):
 
         Example:
 
-        ::
+        ..  container:: example
 
-            >>> container = Container("c'8 d'8 r8 e'8")
+            ::
 
-        ::
+                >>> container = Container("c'8 d'8 r8 e'8")
 
-            >>> container.select_leaves()
-            SequentialLeafSelection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"))
+            ::
+
+                >>> container.select_leaves()
+                SequentialLeafSelection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"))
 
         Return leaf selection.
         '''
@@ -926,10 +913,12 @@ class Container(Component):
 
         Example:
 
-        ::
+        ..  container:: example
 
-            >>> container.select_notes_and_chords()
-            SequentialLeafSelection(Note("c'8"), Note("d'8"), Note("e'8"))
+            ::
+
+                >>> container.select_notes_and_chords()
+                SequentialLeafSelection(Note("c'8"), Note("d'8"), Note("e'8"))
 
         Return leaf selection.
         '''
