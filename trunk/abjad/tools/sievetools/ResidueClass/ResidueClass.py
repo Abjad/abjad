@@ -9,37 +9,40 @@ class ResidueClass(BaseResidueClass):
     make any complex periodic integer or boolean sequence as a
     combination of simple periodic sequences.
 
-    Example from the opening of Xenakis's *Psappha* for solo percussion:
+    ..  container:: example
 
-    ::
+        **Example.** From the opening of Xenakis's *Psappha* for solo 
+        percussion:
 
-        >>> RC = sievetools.ResidueClass
+        ::
 
-    ::
+            >>> RC = sievetools.ResidueClass
 
-        >>> s1 = (RC(8, 0) | RC(8, 1) | RC(8, 7)) & (RC(5, 1) | RC(5, 3))
-        >>> s2 = (RC(8, 0) | RC(8, 1) | RC(8, 2)) & RC(5, 0)
-        >>> s3 = RC(8, 3)
-        >>> s4 = RC(8, 4)
-        >>> s5 = (RC(8, 5) | RC(8, 6)) & (RC(5, 2) | RC(5, 3) | RC(5, 4))
-        >>> s6 = (RC(8, 1) & RC(5, 2))
-        >>> s7 = (RC(8, 6) & RC(5, 1))
+        ::
 
-    ::
+            >>> s1 = (RC(8, 0) | RC(8, 1) | RC(8, 7)) & (RC(5, 1) | RC(5, 3))
+            >>> s2 = (RC(8, 0) | RC(8, 1) | RC(8, 2)) & RC(5, 0)
+            >>> s3 = RC(8, 3)
+            >>> s4 = RC(8, 4)
+            >>> s5 = (RC(8, 5) | RC(8, 6)) & (RC(5, 2) | RC(5, 3) | RC(5, 4))
+            >>> s6 = (RC(8, 1) & RC(5, 2))
+            >>> s7 = (RC(8, 6) & RC(5, 1))
 
-        >>> y = s1 | s2 | s3 | s4 | s5 | s6 | s7
+        ::
 
-    ::
+            >>> y = s1 | s2 | s3 | s4 | s5 | s6 | s7
 
-        >>> y.get_congruent_bases(40)
-            [0, 1, 3, 4, 6, 8, 10, 11, 12, 13, 14, 16, 17, 19, 20, 22, 
-            23, 25, 27, 28, 29, 31, 33, 35, 36, 37, 38, 40]
+        ::
 
-    ::
+            >>> y.get_congruent_bases(40)
+                [0, 1, 3, 4, 6, 8, 10, 11, 12, 13, 14, 16, 17, 19, 20, 22, 
+                23, 25, 27, 28, 29, 31, 33, 35, 36, 37, 38, 40]
 
-        >>> y.get_boolean_train(40)
-            [1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 
-            1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0]
+        ::
+
+            >>> y.get_boolean_train(40)
+                [1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 
+                1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0]
 
     Return residue class.
     '''
@@ -140,18 +143,24 @@ class ResidueClass(BaseResidueClass):
         r'''Returns a boolean train with 0s mapped to the integers
         that are not congruent bases of the residue class and 1s mapped
         to those that are.
+
         The method takes one or two integer arguments. If only one is given,
         it is taken as the max range and the min is assumed to be 0.
 
-        Example:
+        ..  container:: example
 
-        ::
+            **Example:**
 
-            >>> r = RC(3, 0)
-            >>> r.get_boolean_train(6)
-            [1, 0, 0, 1, 0, 0]
-            >>> r.get_congruent_bases(-6, 6)
-            [-6, -3, 0, 3, 6]
+            ::
+
+                >>> r = RC(3, 0)
+                >>> r.get_boolean_train(6)
+                [1, 0, 0, 1, 0, 0]
+
+            ::
+
+                >>> r.get_congruent_bases(-6, 6)
+                [-6, -3, 0, 3, 6]
 
         Return list.
         '''
@@ -165,21 +174,26 @@ class ResidueClass(BaseResidueClass):
         return result
 
     def get_congruent_bases(self, *min_max):
-        r'''Returns all the congruent bases of this residue class
-        within the given range.
-        The method takes one or two integer arguments.
-        If only one it given, it is taken as the max range and
-        the min is assumed to be 0.
+        r'''Returns all the congruent bases of this residue class within the 
+        given range.
 
-        Example:
+        The method takes one or two integer arguments. If only one it given, it 
+        is taken as the max range and the min is assumed to be 0.
 
-        ::
+        ..  container:: example
 
-            >>> r = RC(3, 0)
-            >>> r.get_congruent_bases(6)
-            [0, 3, 6]
-            >>> r.get_congruent_bases(-6, 6)
-            [-6, -3, 0, 3, 6]
+            **Example:**
+
+            ::
+
+                >>> r = RC(3, 0)
+                >>> r.get_congruent_bases(6)
+                [0, 3, 6]
+
+            ::
+
+                >>> r.get_congruent_bases(-6, 6)
+                [-6, -3, 0, 3, 6]
 
         Return list.
         '''

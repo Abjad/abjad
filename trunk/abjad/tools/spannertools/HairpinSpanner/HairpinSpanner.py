@@ -10,55 +10,59 @@ from abjad.tools.spannertools.DirectedSpanner.DirectedSpanner \
 class HairpinSpanner(DirectedSpanner):
     r'''Hairpin spanner.
 
-    Example 1. Hairpin spanner that does not include rests:
+    ..  container:: example
 
-    ::
+        **Example 1.** Hairpin spanner that does not include rests:
 
-        >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-        >>> spannertools.HairpinSpanner(
-        ...     staff[:], 'p < f', include_rests=False)
-        HairpinSpanner(r4, c'8, d'8, e'8, f'8, r4)
+        ::
 
-    ..  doctest::
+            >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
+            >>> spannertools.HairpinSpanner(
+            ...     staff[:], 'p < f', include_rests=False)
+            HairpinSpanner(r4, c'8, d'8, e'8, f'8, r4)
 
-        >>> f(staff)
-        \new Staff {
-            r4
-            c'8 \< \p
-            d'8
-            e'8
-            f'8 \f
-            r4
-        }
+        ..  doctest::
 
-    ::
+            >>> f(staff)
+            \new Staff {
+                r4
+                c'8 \< \p
+                d'8
+                e'8
+                f'8 \f
+                r4
+            }
 
-        >>> show(staff) # doctest: +SKIP
+        ::
 
-    Example 2. Hairpin spanner that includes rests:
+            >>> show(staff) # doctest: +SKIP
 
-    ::
+    ..  container:: example
 
-        >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-        >>> spannertools.HairpinSpanner(
-        ...     staff[:], 'p < f', include_rests=True)
-        HairpinSpanner(r4, c'8, d'8, e'8, f'8, r4)
+        **Example 2.** Hairpin spanner that includes rests:
 
-    ..  doctest::
+        ::
 
-        >>> f(staff)
-        \new Staff {
-            r4 \< \p
-            c'8
-            d'8
-            e'8
-            f'8
-            r4 \f
-        }
+            >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
+            >>> spannertools.HairpinSpanner(
+            ...     staff[:], 'p < f', include_rests=True)
+            HairpinSpanner(r4, c'8, d'8, e'8, f'8, r4)
 
-    ::
+        ..  doctest::
 
-        >>> show(staff) # doctest: +SKIP
+            >>> f(staff)
+            \new Staff {
+                r4 \< \p
+                c'8
+                d'8
+                e'8
+                f'8
+                r4 \f
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
 
     Return hairpin spanner.
     '''

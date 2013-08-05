@@ -10,52 +10,56 @@ def fracture_spanners_that_cross_components(components):
     Return components.
 
     Components must be thread-contiguous.
+
     Some spanners may copy during fracture.
+
     This helper is public-safe.
 
-    Example:
+    ..  container:: 
 
-    ::
+        **Example:**
 
-        >>> t = Staff(Container(notetools.make_repeated_notes(2)) * 3)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-        >>> crescendo = spannertools.CrescendoSpanner(t)
-        >>> beam = spannertools.BeamSpanner(t[:])
-        >>> trill = spannertools.TrillSpanner(t.select_leaves())
+        ::
 
-        >>> f(t)
-        \new Staff {
-            {
-                c'8 [ \< \startTrillSpan
-                d'8
-            }
-            {
-                e'8
-                f'8
-            }
-            {
-                g'8
-                a'8 ] \! \stopTrillSpan
-            }   }
+            >>> t = Staff(Container(notetools.make_repeated_notes(2)) * 3)
+            >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+            >>> crescendo = spannertools.CrescendoSpanner(t)
+            >>> beam = spannertools.BeamSpanner(t[:])
+            >>> trill = spannertools.TrillSpanner(t.select_leaves())
 
-        >>> spannertools.fracture_spanners_that_cross_components(t[1:2])
-        SliceSelection({e'8, f'8},)
+            >>> f(t)
+            \new Staff {
+                {
+                    c'8 [ \< \startTrillSpan
+                    d'8
+                }
+                {
+                    e'8
+                    f'8
+                }
+                {
+                    g'8
+                    a'8 ] \! \stopTrillSpan
+                }   }
 
-        >>> f(t)
-        \new Staff {
-            {
-                c'8 [ \< \startTrillSpan
-                d'8 ]
+            >>> spannertools.fracture_spanners_that_cross_components(t[1:2])
+            SliceSelection({e'8, f'8},)
+
+            >>> f(t)
+            \new Staff {
+                {
+                    c'8 [ \< \startTrillSpan
+                    d'8 ]
+                }
+                {
+                    e'8 [
+                    f'8 ]
+                }
+                {
+                    g'8 [
+                    a'8 ] \! \stopTrillSpan
+                }
             }
-            {
-                e'8 [
-                f'8 ]
-            }
-            {
-                g'8 [
-                a'8 ] \! \stopTrillSpan
-            }
-        }
 
     Return selection.
     '''
