@@ -16,261 +16,316 @@ class FreeLeafSelection(FreeSelection):
             >>> note = Note("c'8.")
             >>> selection = selectiontools.select_leaves(note)
 
-        Example 1. Change leaves in selection to augmented tuplets with 
-        `proportions`:
+        ..  container:: example
 
-        ::
+            **Example 1a.** Change leaves in selection to augmented tuplets with 
+            `proportions`:
 
-            >>> tuplets = selection.to_tuplets_with_ratio(
-            ...     [1], 
-            ...     is_diminution=False,
-            ...     )
+            ::
 
-        ..  doctest::
+                >>> tuplets = selection.to_tuplets_with_ratio(
+                ...     [1], 
+                ...     is_diminution=False,
+                ...     )
 
-            >>> f(tuplets[0]) 
-            {
-                c'8.
-            }
+            ..  doctest::
 
-        ::
+                >>> f(tuplets[0]) 
+                {
+                    c'8.
+                }
 
-            >>> show(stafftools.RhythmicStaff(tuplets)) # doctest: +SKIP
+            ::
 
-        ::
+                >>> show(stafftools.RhythmicStaff(tuplets)) # doctest: +SKIP
 
-            >>> tuplets = selection.to_tuplets_with_ratio(
-            ...     [1, 2], 
-            ...     is_diminution=False,
-            ...     )
+        ..  container:: example
 
-        ..  doctest::
+            **Example 1b.** Change leaves in selection to augmented tuplets with 
+            `proportions`:
 
-            >>> f(tuplets[0]) 
-            {
-                c'16
-                c'8
-            }
+            ::
 
-        ::
+                >>> tuplets = selection.to_tuplets_with_ratio(
+                ...     [1, 2], 
+                ...     is_diminution=False,
+                ...     )
 
-            >>> show(stafftools.RhythmicStaff(tuplets)) # doctest: +SKIP
+            ..  doctest::
 
-        ::
+                >>> f(tuplets[0]) 
+                {
+                    c'16
+                    c'8
+                }
 
-            >>> tuplets = selection.to_tuplets_with_ratio(
-            ...     [1, 2, 2], 
-            ...     is_diminution=False,
-            ...     )
+            ::
 
-        ..  doctest::
+                >>> show(stafftools.RhythmicStaff(tuplets)) # doctest: +SKIP
 
-            >>> f(tuplets[0]) 
-            \tweak #'text #tuplet-number::calc-fraction-text
-            \times 8/5 {
-                c'64.
-                c'32.
-                c'32.
-            }
+        ..  container:: example
 
-        ::
+            **Example 1c.** Change leaves in selection to augmented tuplets with 
+            `proportions`:
 
-            >>> show(stafftools.RhythmicStaff(tuplets)) # doctest: +SKIP
+            ::
 
-        ::
+                >>> tuplets = selection.to_tuplets_with_ratio(
+                ...     [1, 2, 2], 
+                ...     is_diminution=False,
+                ...     )
 
-            >>> tuplets = selection.to_tuplets_with_ratio(
-            ...     [1, 2, 2, 3], 
-            ...     is_diminution=False,
-            ...     )
+            ..  doctest::
 
-        ..  doctest::
+                >>> f(tuplets[0]) 
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 8/5 {
+                    c'64.
+                    c'32.
+                    c'32.
+                }
 
-            >>> f(tuplets[0]) 
-            \tweak #'text #tuplet-number::calc-fraction-text
-            \times 3/2 {
-                c'64
-                c'32
-                c'32
-                c'32.
-            }
+            ::
 
-        ::
+                >>> show(stafftools.RhythmicStaff(tuplets)) # doctest: +SKIP
 
-            >>> show(stafftools.RhythmicStaff(tuplets)) # doctest: +SKIP
+        ..  container:: example
 
-        ::
+            **Example 1d.** Change leaves in selection to augmented tuplets with 
+            `proportions`:
 
-            >>> tuplets = selection.to_tuplets_with_ratio(
-            ...     [1, 2, 2, 3, 3], 
-            ...     is_diminution=False,
-            ...     )
+            ::
 
-        ..  doctest::
+                >>> tuplets = selection.to_tuplets_with_ratio(
+                ...     [1, 2, 2, 3], 
+                ...     is_diminution=False,
+                ...     )
 
-            >>> f(tuplets[0]) 
-            \tweak #'text #tuplet-number::calc-fraction-text
-            \times 12/11 {
-                c'64
-                c'32
-                c'32
-                c'32.
-                c'32.
-            }
+            ..  doctest::
 
-        ::
+                >>> f(tuplets[0]) 
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 3/2 {
+                    c'64
+                    c'32
+                    c'32
+                    c'32.
+                }
 
-            >>> show(stafftools.RhythmicStaff(tuplets)) # doctest: +SKIP
+            ::
 
-        ::
+                >>> show(stafftools.RhythmicStaff(tuplets)) # doctest: +SKIP
 
-            >>> tuplets = selection.to_tuplets_with_ratio(
-            ...     [1, 2, 2, 3, 3, 4], 
-            ...     is_diminution=False,
-            ...     )
+        ..  container:: example
 
-        ..  doctest::
+            **Example 1e.** Change leaves in selection to augmented tuplets with 
+            `proportions`:
 
-            >>> f(tuplets[0]) 
-            \tweak #'text #tuplet-number::calc-fraction-text
-            \times 8/5 {
-                c'128
-                c'64
-                c'64
-                c'64.
-                c'64.
-                c'32
-            }
+            ::
 
-        ::
+                >>> tuplets = selection.to_tuplets_with_ratio(
+                ...     [1, 2, 2, 3, 3], 
+                ...     is_diminution=False,
+                ...     )
 
-            >>> show(stafftools.RhythmicStaff(tuplets)) # doctest: +SKIP
+            ..  doctest::
 
-        Example 2. Change leaves in selection to diminished tuplets:
+                >>> f(tuplets[0]) 
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 12/11 {
+                    c'64
+                    c'32
+                    c'32
+                    c'32.
+                    c'32.
+                }
 
-        ::
+            ::
 
-            >>> tuplets = selection.to_tuplets_with_ratio(
-            ...     [1], 
-            ...     is_diminution=True,
-            ...     )
+                >>> show(stafftools.RhythmicStaff(tuplets)) # doctest: +SKIP
 
-        ..  doctest::
+        ..  container:: example
 
-            >>> f(tuplets[0]) 
-            {
-                c'8.
-            }
+            **Example 1f.** Change leaves in selection to augmented tuplets with 
+            `proportions`:
 
-        ::
+            ::
 
-            >>> show(stafftools.RhythmicStaff(tuplets)) # doctest: +SKIP
+                >>> tuplets = selection.to_tuplets_with_ratio(
+                ...     [1, 2, 2, 3, 3, 4], 
+                ...     is_diminution=False,
+                ...     )
 
-        ::
+            ..  doctest::
 
-            >>> tuplets = selection.to_tuplets_with_ratio(
-            ...     [1, 2], 
-            ...     is_diminution=True,
-            ...     )
+                >>> f(tuplets[0]) 
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 8/5 {
+                    c'128
+                    c'64
+                    c'64
+                    c'64.
+                    c'64.
+                    c'32
+                }
 
-        ..  doctest::
+            ::
 
-            >>> f(tuplets[0]) 
-            {
-                c'16
-                c'8
-            }
+                >>> show(stafftools.RhythmicStaff(tuplets)) # doctest: +SKIP
 
-        ::
+        ..  container:: example
 
-            >>> show(stafftools.RhythmicStaff(tuplets)) # doctest: +SKIP
+            **Example 2a.** Change leaves in selection to diminished tuplets with 
+            `proportions`:
 
-        ::
+            ::
 
-            >>> tuplets = selection.to_tuplets_with_ratio(
-            ...     [1, 2, 2], is_diminution=True)
+                >>> tuplets = selection.to_tuplets_with_ratio(
+                ...     [1], 
+                ...     is_diminution=True,
+                ...     )
 
-        ..  doctest::
+            ..  doctest::
 
-            >>> f(tuplets[0]) 
-            \times 4/5 {
-                c'32.
-                c'16.
-                c'16.
-            }
-            
-        ::
+                >>> f(tuplets[0]) 
+                {
+                    c'8.
+                }
 
-            >>> show(stafftools.RhythmicStaff(tuplets)) # doctest: +SKIP
+            ::
 
-        ::
+                >>> show(stafftools.RhythmicStaff(tuplets)) # doctest: +SKIP
 
-            >>> tuplets = selection.to_tuplets_with_ratio(
-            ...     [1, 2, 2, 3], is_diminution=True,
-            ...     )
+        ..  container:: example
 
-        ..  doctest::
+            **Example 2b.** Change leaves in selection to diminished tuplets with 
+            `proportions`:
 
-            >>> f(tuplets[0]) 
-            \tweak #'text #tuplet-number::calc-fraction-text
-            \times 3/4 {
-                c'32
-                c'16
-                c'16
-                c'16.
-            }
+            ::
 
-        ::
+                >>> tuplets = selection.to_tuplets_with_ratio(
+                ...     [1, 2], 
+                ...     is_diminution=True,
+                ...     )
 
-            >>> show(stafftools.RhythmicStaff(tuplets)) # doctest: +SKIP
+            ..  doctest::
 
-        ::
+                >>> f(tuplets[0]) 
+                {
+                    c'16
+                    c'8
+                }
 
-            >>> tuplets = selection.to_tuplets_with_ratio(
-            ...     [1, 2, 2, 3, 3], 
-            ...     is_diminution=True,
-            ...     )
+            ::
 
-        ..  doctest::
+                >>> show(stafftools.RhythmicStaff(tuplets)) # doctest: +SKIP
 
-            >>> f(tuplets[0]) 
-            \tweak #'text #tuplet-number::calc-fraction-text
-            \times 6/11 {
-                c'32
-                c'16
-                c'16
-                c'16.
-                c'16.
-            }
+        ..  container:: example
 
-        ::
+            **Example 2c.** Change leaves in selection to diminished tuplets with 
+            `proportions`:
 
-            >>> show(stafftools.RhythmicStaff(tuplets)) # doctest: +SKIP
+            ::
 
-        ::
+                >>> tuplets = selection.to_tuplets_with_ratio(
+                ...     [1, 2, 2], is_diminution=True)
 
-            >>> tuplets = selection.to_tuplets_with_ratio(
-            ...     [1, 2, 2, 3, 3, 4], 
-            ...     is_diminution=True,
-            ...     )
+            ..  doctest::
 
-        ..  doctest::
+                >>> f(tuplets[0]) 
+                \times 4/5 {
+                    c'32.
+                    c'16.
+                    c'16.
+                }
+                
+            ::
 
-            >>> f(tuplets[0]) 
-            \times 4/5 {
-                c'64
-                c'32
-                c'32
-                c'32.
-                c'32.
-                c'16
-            }
+                >>> show(stafftools.RhythmicStaff(tuplets)) # doctest: +SKIP
 
-        ::
+        ..  container:: example
 
-            >>> show(stafftools.RhythmicStaff(tuplets)) # doctest: +SKIP
+            **Example 2d.** Change leaves in selection to diminished tuplets with 
+            `proportions`:
 
-        Return none.
+            ::
+
+                >>> tuplets = selection.to_tuplets_with_ratio(
+                ...     [1, 2, 2, 3], is_diminution=True,
+                ...     )
+
+            ..  doctest::
+
+                >>> f(tuplets[0]) 
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 3/4 {
+                    c'32
+                    c'16
+                    c'16
+                    c'16.
+                }
+
+            ::
+
+                >>> show(stafftools.RhythmicStaff(tuplets)) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 2e.** Change leaves in selection to diminished tuplets with 
+            `proportions`:
+
+            ::
+
+                >>> tuplets = selection.to_tuplets_with_ratio(
+                ...     [1, 2, 2, 3, 3], 
+                ...     is_diminution=True,
+                ...     )
+
+            ..  doctest::
+
+                >>> f(tuplets[0]) 
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 6/11 {
+                    c'32
+                    c'16
+                    c'16
+                    c'16.
+                    c'16.
+                }
+
+            ::
+
+                >>> show(stafftools.RhythmicStaff(tuplets)) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 2f.** Change leaves in selection to diminished tuplets with 
+            `proportions`:
+
+            ::
+
+                >>> tuplets = selection.to_tuplets_with_ratio(
+                ...     [1, 2, 2, 3, 3, 4], 
+                ...     is_diminution=True,
+                ...     )
+
+            ..  doctest::
+
+                >>> f(tuplets[0]) 
+                \times 4/5 {
+                    c'64
+                    c'32
+                    c'32
+                    c'32.
+                    c'32.
+                    c'16
+                }
+
+            ::
+
+                >>> show(stafftools.RhythmicStaff(tuplets)) # doctest: +SKIP
+
+        Return tuplet selection.
         '''
         from abjad.tools import selectiontools
         result = []

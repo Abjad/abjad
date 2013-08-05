@@ -130,31 +130,33 @@ class SequentialLeafSelection(SliceSelection):
 
             >>> show(staff) # doctest: +SKIP
 
-        Example 1. Replace leaves with rests:
+        ..  container:: example
 
-        ::
+            **Example.** Replace leaves with rests:
 
-            >>> selection = staff[0].select_leaves()
-            >>> selection.replace_with(Rest)
+            ::
 
-        .. doctest::
+                >>> selection = staff[0].select_leaves()
+                >>> selection.replace_with(Rest)
 
-            >>> f(staff)
-            \new Staff {
-                {
-                    \time 2/8
-                    r8
-                    r8
+            .. doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        r8
+                        r8
+                    }
+                    {
+                        c'8
+                        d'8
+                    }
                 }
-                {
-                    c'8
-                    d'8
-                }
-            }
 
-        ::
+            ::
 
-            >>> show(staff) # doctest: +SKIP
+                >>> show(staff) # doctest: +SKIP
 
         Return none.
         '''

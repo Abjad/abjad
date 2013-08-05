@@ -31,50 +31,52 @@ class ComponentSelection(FreeSelection):
     def detach_spanners(self, spanner_classes=None, recurse=True):
         r'''Detach `spanner_classes` from components in selection.
 
-        Example 1. Detach tie spanners from components in selection:
+        ..  container:: example
 
-        ::
+            **Example 1.** Detach tie spanners from components in selection:
 
-            >>> staff = Staff("e'4 ( ~ e'16 fs'8 ~ fs'16 )")
-            >>> time_signature = contexttools.TimeSignatureMark((2, 4))
-            >>> time_signature.attach(staff)
-            TimeSignatureMark((2, 4))(Staff{4})
+            ::
 
-        ..  doctest::
+                >>> staff = Staff("e'4 ( ~ e'16 fs'8 ~ fs'16 )")
+                >>> time_signature = contexttools.TimeSignatureMark((2, 4))
+                >>> time_signature.attach(staff)
+                TimeSignatureMark((2, 4))(Staff{4})
 
-            >>> f(staff)
-            \new Staff {
-                \time 2/4
-                e'4 ( ~
-                e'16
-                fs'8 ~
-                fs'16 )
-            }
+            ..  doctest::
 
-        ::
+                >>> f(staff)
+                \new Staff {
+                    \time 2/4
+                    e'4 ( ~
+                    e'16
+                    fs'8 ~
+                    fs'16 )
+                }
 
-            >>> show(staff) # doctest: +SKIP
+            ::
 
-        ::
+                >>> show(staff) # doctest: +SKIP
 
-            >>> select(staff).detach_spanners(
-            ...     spanner_classes=(spannertools.TieSpanner,))
-            (TieSpanner(), TieSpanner())
+            ::
 
-        ..  doctest::
+                >>> select(staff).detach_spanners(
+                ...     spanner_classes=(spannertools.TieSpanner,))
+                (TieSpanner(), TieSpanner())
 
-            >>> f(staff)
-            \new Staff {
-                \time 2/4
-                e'4 (
-                e'16
-                fs'8
-                fs'16 )
-            }
+            ..  doctest::
 
-        ::
+                >>> f(staff)
+                \new Staff {
+                    \time 2/4
+                    e'4 (
+                    e'16
+                    fs'8
+                    fs'16 )
+                }
 
-            >>> show(staff) # doctest: +SKIP
+            ::
+
+                >>> show(staff) # doctest: +SKIP
 
         Detach spanners from components at all levels
         of selection when `recurse` is true.
@@ -165,44 +167,46 @@ class ComponentSelection(FreeSelection):
     def report_modifications(self):
         r'''Report modifications of components in selection.
 
-        Example. Report modifications of container in selection:
+        ..  container:: example
 
-        ::
+            **Example.** Report modifications of container in selection:
 
-            >>> container = Container("c'8 d'8 e'8 f'8")
-            >>> container.override.note_head.color = 'red'
-            >>> container.override.note_head.style = 'harmonic'
-            >>> show(container) # doctest: +SKIP
+            ::
 
-        ..  doctest::
+                >>> container = Container("c'8 d'8 e'8 f'8")
+                >>> container.override.note_head.color = 'red'
+                >>> container.override.note_head.style = 'harmonic'
+                >>> show(container) # doctest: +SKIP
 
-            >>> f(container)
-            {
-                \override NoteHead #'color = #red
-                \override NoteHead #'style = #'harmonic
-                c'8
-                d'8
-                e'8
-                f'8
-                \revert NoteHead #'color
-                \revert NoteHead #'style
-            }
+            ..  doctest::
 
-        ::
+                >>> f(container)
+                {
+                    \override NoteHead #'color = #red
+                    \override NoteHead #'style = #'harmonic
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                    \revert NoteHead #'color
+                    \revert NoteHead #'style
+                }
 
-            >>> selection = select(container)
-            >>> report = selection.report_modifications()
+            ::
 
-        ::
+                >>> selection = select(container)
+                >>> report = selection.report_modifications()
 
-            >>> print report
-            {
-                \override NoteHead #'color = #red
-                \override NoteHead #'style = #'harmonic
-                %%% 4 components omitted %%%
-                \revert NoteHead #'color
-                \revert NoteHead #'style
-            }
+            ::
+
+                >>> print report
+                {
+                    \override NoteHead #'color = #red
+                    \override NoteHead #'style = #'harmonic
+                    %%% 4 components omitted %%%
+                    \revert NoteHead #'color
+                    \revert NoteHead #'style
+                }
 
         Return string.
         '''

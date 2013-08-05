@@ -17,49 +17,51 @@ class FreeTupletSelection(FreeSelection):
     def augmented_to_diminished(self):
         '''Change augmented tuplets in selection to diminished tuplets.
 
-        Example:
+        ..  container:: example
+        
+            **Example:**
 
-        ::
+            ::
 
-            >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), [])
-            >>> tuplet.extend("c'8 d'8 e'8")
+                >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), [])
+                >>> tuplet.extend("c'8 d'8 e'8")
 
-        ::
+            ::
 
-            >>> tuplet
-            FixedDurationTuplet(1/2, [c'8, d'8, e'8])
+                >>> tuplet
+                FixedDurationTuplet(1/2, [c'8, d'8, e'8])
 
-        ..  doctest::
+            ..  doctest::
 
-            >>> f(tuplet)
-            \tweak #'text #tuplet-number::calc-fraction-text
-            \times 4/3 {
-                c'8
-                d'8
-                e'8
-            }
+                >>> f(tuplet)
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 4/3 {
+                    c'8
+                    d'8
+                    e'8
+                }
 
-        ::
+            ::
 
-            >>> show(tuplet) # doctest: +SKIP
+                >>> show(tuplet) # doctest: +SKIP
 
-        ::
+            ::
 
-            >>> tuplets = selectiontools.select_tuplets([tuplet])
-            >>> tuplets.augmented_to_diminished()
+                >>> tuplets = selectiontools.select_tuplets([tuplet])
+                >>> tuplets.augmented_to_diminished()
 
-        ..  doctest::
+            ..  doctest::
 
-            >>> f(tuplet)
-            \times 2/3 {
-                c'4
-                d'4
-                e'4
-            }
+                >>> f(tuplet)
+                \times 2/3 {
+                    c'4
+                    d'4
+                    e'4
+                }
 
-        ::
+            ::
 
-            >>> show(tuplet) # doctest: +SKIP
+                >>> show(tuplet) # doctest: +SKIP
 
         Multiply the written duration of the leaves in tuplet
         by the least power of ``2`` necessary to diminshed tuplet.
@@ -76,51 +78,53 @@ class FreeTupletSelection(FreeSelection):
     def change_fixed_duration_tuplets_to_tuplets(expr):
         r'''Change fixed-duration tuplets in selection to tuplets.
 
-        Example:
+        ..  container:: example
 
-        ::
+            **Example:**
 
-            >>> tuplet = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
-            >>> staff = Staff(2 * tuplet)
+            ::
 
-        ::
+                >>> tuplet = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
+                >>> staff = Staff(2 * tuplet)
 
-            >>> for tuplet in staff:
-            ...     tuplet
-            FixedDurationTuplet(1/4, [c'8, d'8, e'8])
-            FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+            ::
 
-        ..  doctest::
+                >>> for tuplet in staff:
+                ...     tuplet
+                FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+                FixedDurationTuplet(1/4, [c'8, d'8, e'8])
 
-            >>> f(staff)
-            \new Staff {
-                \times 2/3 {
-                    c'8
-                    d'8
-                    e'8
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \times 2/3 {
+                        c'8
+                        d'8
+                        e'8
+                    }
+                    \times 2/3 {
+                        c'8
+                        d'8
+                        e'8
+                    }
                 }
-                \times 2/3 {
-                    c'8
-                    d'8
-                    e'8
-                }
-            }
 
-        ::
+            ::
 
-            >>> show(staff) # doctest: +SKIP
+                >>> show(staff) # doctest: +SKIP
 
-        ::
+            ::
 
-            >>> tuplets = selectiontools.select_tuplets(staff)
-            >>> result = tuplets.change_fixed_duration_tuplets_to_tuplets()
+                >>> tuplets = selectiontools.select_tuplets(staff)
+                >>> result = tuplets.change_fixed_duration_tuplets_to_tuplets()
 
-        ::
+            ::
 
-            >>> for tuplet in staff:
-            ...     tuplet
-            Tuplet(2/3, [c'8, d'8, e'8])
-            Tuplet(2/3, [c'8, d'8, e'8])
+                >>> for tuplet in staff:
+                ...     tuplet
+                Tuplet(2/3, [c'8, d'8, e'8])
+                Tuplet(2/3, [c'8, d'8, e'8])
 
         Return tuplets.
         '''
@@ -140,51 +144,53 @@ class FreeTupletSelection(FreeSelection):
     def change_tuplets_to_fixed_duration_tuplets(self):
         r'''Change tuplets in selection to fixed-duration tuplets.
 
-        Example.
+        ..  container:: example
+        
+            **Example:**
 
-        ::
+            ::
 
-            >>> staff = Staff(r"\times 2/3 { c'8 d'8 e'8 }")
-            >>> staff.append(r"\times 2/3 { c'8 d'8 e'8 }")
+                >>> staff = Staff(r"\times 2/3 { c'8 d'8 e'8 }")
+                >>> staff.append(r"\times 2/3 { c'8 d'8 e'8 }")
 
-        ::
+            ::
 
-            >>> for tuplet in staff:
-            ...     tuplet
-            Tuplet(2/3, [c'8, d'8, e'8])
-            Tuplet(2/3, [c'8, d'8, e'8])
+                >>> for tuplet in staff:
+                ...     tuplet
+                Tuplet(2/3, [c'8, d'8, e'8])
+                Tuplet(2/3, [c'8, d'8, e'8])
 
-        ..  doctest::
+            ..  doctest::
 
-            >>> f(staff)
-            \new Staff {
-                \times 2/3 {
-                    c'8
-                    d'8
-                    e'8
+                >>> f(staff)
+                \new Staff {
+                    \times 2/3 {
+                        c'8
+                        d'8
+                        e'8
+                    }
+                    \times 2/3 {
+                        c'8
+                        d'8
+                        e'8
+                    }
                 }
-                \times 2/3 {
-                    c'8
-                    d'8
-                    e'8
-                }
-            }
 
-        ::
+            ::
 
-            >>> show(staff) # doctest: +SKIP
+                >>> show(staff) # doctest: +SKIP
 
-        ::
+            ::
 
-            >>> tuplets = selectiontools.select_tuplets(staff)
-            >>> result = tuplets.change_tuplets_to_fixed_duration_tuplets()
+                >>> tuplets = selectiontools.select_tuplets(staff)
+                >>> result = tuplets.change_tuplets_to_fixed_duration_tuplets()
 
-        ::
+            ::
 
-            >>> for tuplet in staff:
-            ...     tuplet
-            FixedDurationTuplet(1/4, [c'8, d'8, e'8])
-            FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+                >>> for tuplet in staff:
+                ...     tuplet
+                FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+                FixedDurationTuplet(1/4, [c'8, d'8, e'8])
 
         Return modified tuplets.
         '''
@@ -208,49 +214,51 @@ class FreeTupletSelection(FreeSelection):
         '''Change diminished fixed-duration tuplets in selection 
         to augmented tuplets.
 
-        Example:
+        ..  container:: example
 
-        ::
+            **Example:**
 
-            >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), [])
-            >>> tuplet.extend("c'8 d'8 e'8")
+            ::
 
-        ::
+                >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), [])
+                >>> tuplet.extend("c'8 d'8 e'8")
 
-            >>> tuplet
-            FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+            ::
 
-        ..  doctest::
+                >>> tuplet
+                FixedDurationTuplet(1/4, [c'8, d'8, e'8])
 
-            >>> f(tuplet)
-            \times 2/3 {
-                c'8
-                d'8
-                e'8
-            }
+            ..  doctest::
 
-        ::
+                >>> f(tuplet)
+                \times 2/3 {
+                    c'8
+                    d'8
+                    e'8
+                }
 
-            >>> show(tuplet) # doctest: +SKIP
+            ::
 
-        ::
+                >>> show(tuplet) # doctest: +SKIP
 
-            >>> tuplets = selectiontools.select_tuplets([tuplet])
-            >>> tuplets.diminished_to_augmented()
+            ::
 
-        ..  doctest::
+                >>> tuplets = selectiontools.select_tuplets([tuplet])
+                >>> tuplets.diminished_to_augmented()
 
-            >>> f(tuplet)
-            \tweak #'text #tuplet-number::calc-fraction-text
-            \times 4/3 {
-                c'16
-                d'16
-                e'16
-            }
+            ..  doctest::
 
-        ::
+                >>> f(tuplet)
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 4/3 {
+                    c'16
+                    d'16
+                    e'16
+                }
 
-            >>> show(tuplet) # doctest: +SKIP
+            ::
+
+                >>> show(tuplet) # doctest: +SKIP
 
         .. note:: Does not yet work with nested tuplets.
 
@@ -269,46 +277,48 @@ class FreeTupletSelection(FreeSelection):
         by power of two if tuplet multiplier less than ``1/2`` 
         or greater than ``2``.
 
-        Example.
+        ..  container:: example
 
-            >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), [])
-            >>> tuplet.extend("c'4 d'4 e'4")
+            **Example:**
 
-        ::
+                >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), [])
+                >>> tuplet.extend("c'4 d'4 e'4")
 
-            >>> tuplet
-            FixedDurationTuplet(1/4, [c'4, d'4, e'4])
+            ::
 
-        ..  doctest::
+                >>> tuplet
+                FixedDurationTuplet(1/4, [c'4, d'4, e'4])
 
-            >>> f(tuplet)
-            \times 1/3 {
-                c'4
-                d'4
-                e'4
-            }
+            ..  doctest::
 
-        ::
+                >>> f(tuplet)
+                \times 1/3 {
+                    c'4
+                    d'4
+                    e'4
+                }
 
-            >>> show(tuplet) # doctest: +SKIP
+            ::
 
-        ::
+                >>> show(tuplet) # doctest: +SKIP
 
-            >>> tuplets = selectiontools.select_tuplets([tuplet])
-            >>> tuplets.fix()
+            ::
 
-        ..  doctest::
+                >>> tuplets = selectiontools.select_tuplets([tuplet])
+                >>> tuplets.fix()
 
-            >>> f(tuplet)
-            \times 2/3 {
-                c'8
-                d'8
-                e'8
-            }
+            ..  doctest::
 
-        ::
+                >>> f(tuplet)
+                \times 2/3 {
+                    c'8
+                    d'8
+                    e'8
+                }
 
-            >>> show(tuplet) # doctest: +SKIP
+            ::
+
+                >>> show(tuplet) # doctest: +SKIP
 
         Return none.
         '''
@@ -320,62 +330,64 @@ class FreeTupletSelection(FreeSelection):
     def fuse(self):
         r'''Fuse parent-contiguous tuplets in selection.
 
-        Example. Fuse parent-contiguous fxed-duration tuplets
-        in selection:
+        ..  container:: example
+        
+            **Example.** Fuse parent-contiguous fxed-duration tuplets
+            in selection:
 
-        ::
+            ::
 
-            >>> t1 = tuplettools.FixedDurationTuplet(Duration(2, 8), [])
-            >>> t1.extend("c'8 d'8 e'8")
-            >>> beam = spannertools.BeamSpanner(t1[:])
-            >>> t2 = tuplettools.FixedDurationTuplet(Duration(2, 16), [])
-            >>> t2.extend("c'16 d'16 e'16")
-            >>> slur = spannertools.SlurSpanner(t2[:])
-            >>> staff = Staff([t1, t2])
+                >>> t1 = tuplettools.FixedDurationTuplet(Duration(2, 8), [])
+                >>> t1.extend("c'8 d'8 e'8")
+                >>> beam = spannertools.BeamSpanner(t1[:])
+                >>> t2 = tuplettools.FixedDurationTuplet(Duration(2, 16), [])
+                >>> t2.extend("c'16 d'16 e'16")
+                >>> slur = spannertools.SlurSpanner(t2[:])
+                >>> staff = Staff([t1, t2])
 
-        ..  doctest::
+            ..  doctest::
 
-            >>> f(staff)
-            \new Staff {
-                \times 2/3 {
-                    c'8 [
-                    d'8
-                    e'8 ]
+                >>> f(staff)
+                \new Staff {
+                    \times 2/3 {
+                        c'8 [
+                        d'8
+                        e'8 ]
+                    }
+                    \times 2/3 {
+                        c'16 (
+                        d'16
+                        e'16 )
+                    }
                 }
-                \times 2/3 {
-                    c'16 (
-                    d'16
-                    e'16 )
+
+            ::
+
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> tuplets = selectiontools.select_tuplets(staff[:])
+                >>> tuplets.fuse()
+                FixedDurationTuplet(3/8, [c'8, d'8, e'8, c'16, d'16, e'16])
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \times 2/3 {
+                        c'8 [
+                        d'8
+                        e'8 ]
+                        c'16 (
+                        d'16
+                        e'16 )
+                    }
                 }
-            }
 
-        ::
+            ::
 
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
-            >>> tuplets = selectiontools.select_tuplets(staff[:])
-            >>> tuplets.fuse()
-            FixedDurationTuplet(3/8, [c'8, d'8, e'8, c'16, d'16, e'16])
-
-        ..  doctest::
-
-            >>> f(staff)
-            \new Staff {
-                \times 2/3 {
-                    c'8 [
-                    d'8
-                    e'8 ]
-                    c'16 (
-                    d'16
-                    e'16 )
-                }
-            }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
+                >>> show(staff) # doctest: +SKIP
 
         Return new tuplet.
 
@@ -429,55 +441,57 @@ class FreeTupletSelection(FreeSelection):
         r'''Move prolation of tupets in selection to contents of 
         of tuplets in selection and then remove tuplets in selection.
 
-        Example 1.
+        ..  container:: example
 
-        ::
+            **Example:**
 
-            >>> staff = Staff(
-            ...     r"\times 3/2 { c'8 [ d'8 } \times 3/2 { c'8 d'8 ] }"
-            ...     )
+            ::
 
-        ..  doctest::
+                >>> staff = Staff(
+                ...     r"\times 3/2 { c'8 [ d'8 } \times 3/2 { c'8 d'8 ] }"
+                ...     )
 
-            >>> f(staff)
-            \new Staff {
-                \tweak #'text #tuplet-number::calc-fraction-text
-                \times 3/2 {
-                    c'8 [
-                    d'8
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 3/2 {
+                        c'8 [
+                        d'8
+                    }
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 3/2 {
+                        c'8
+                        d'8 ]
+                    }
                 }
-                \tweak #'text #tuplet-number::calc-fraction-text
-                \times 3/2 {
-                    c'8
-                    d'8 ]
+
+            ::
+
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> selection = selectiontools.select_tuplets(staff[0])
+                >>> selection.move_prolation_to_contents_and_remove()
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8. [
+                    d'8.
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 3/2 {
+                        c'8
+                        d'8 ]
+                    }
                 }
-            }
 
-        ::
+            ::
 
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
-            >>> selection = selectiontools.select_tuplets(staff[0])
-            >>> selection.move_prolation_to_contents_and_remove()
-
-        ..  doctest::
-
-            >>> f(staff)
-            \new Staff {
-                c'8. [
-                d'8.
-                \tweak #'text #tuplet-number::calc-fraction-text
-                \times 3/2 {
-                    c'8
-                    d'8 ]
-                }
-            }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
+                >>> show(staff) # doctest: +SKIP
 
         Return none.
         '''
@@ -492,67 +506,69 @@ class FreeTupletSelection(FreeSelection):
     def remove(self):
         r'''Remove tuplets in selection.
 
-        Example 1. Remove trivial tuplets in selection:
+        ..  container:: example
 
-        ::
+            **Example.** Remove trivial tuplets in selection:
 
-            >>> tuplet_1 = Tuplet((2, 3), "c'4 d'4 e'4")
-            >>> tuplet_2 = Tuplet((1, 1), "g'4 fs'4")
-            >>> staff = Staff([tuplet_1, tuplet_2])
+            ::
 
-        ..  doctest::
+                >>> tuplet_1 = Tuplet((2, 3), "c'4 d'4 e'4")
+                >>> tuplet_2 = Tuplet((1, 1), "g'4 fs'4")
+                >>> staff = Staff([tuplet_1, tuplet_2])
 
-            >>> f(staff)
-            \new Staff {
-                \times 2/3 {
-                    c'4
-                    d'4
-                    e'4
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \times 2/3 {
+                        c'4
+                        d'4
+                        e'4
+                    }
+                    {
+                        g'4
+                        fs'4
+                    }
                 }
-                {
+
+            ::
+
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> selection = selectiontools.select_tuplets(
+                ...     staff,
+                ...     include_augmented_tuplets=False,
+                ...     include_diminished_tuplets=False,
+                ...     include_trivial_tuplets=True,
+                ...     )
+
+            ::
+
+                >>> selection
+                FreeTupletSelection(Tuplet(1, [g'4, fs'4]),)
+
+            ::
+
+                >>> selection.remove()
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \times 2/3 {
+                        c'4
+                        d'4
+                        e'4
+                    }
                     g'4
                     fs'4
                 }
-            }
 
-        ::
+            ::
 
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
-            >>> selection = selectiontools.select_tuplets(
-            ...     staff,
-            ...     include_augmented_tuplets=False,
-            ...     include_diminished_tuplets=False,
-            ...     include_trivial_tuplets=True,
-            ...     )
-
-        ::
-
-            >>> selection
-            FreeTupletSelection(Tuplet(1, [g'4, fs'4]),)
-
-        ::
-
-            >>> selection.remove()
-
-        ..  doctest::
-
-            >>> f(staff)
-            \new Staff {
-                \times 2/3 {
-                    c'4
-                    d'4
-                    e'4
-                }
-                g'4
-                fs'4
-            }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
+                >>> show(staff) # doctest: +SKIP
 
         Return none.
         '''
@@ -565,48 +581,51 @@ class FreeTupletSelection(FreeSelection):
         r'''Scale contents of fixed-duration tuplets in selection
         by `multiplier`.
 
-        Example 1. Double duration of tuplets in selection:
-        ::
+        ..  container:: example
 
-            >>> tuplet = tuplettools.FixedDurationTuplet((3, 8), [])
-            >>> tuplet.extend("c'8 d'8 e'8 f'8 g'8")
+            **Example.** Double duration of tuplets in selection:
 
-        ..  doctest::
+            ::
 
-            >>> f(tuplet)
-            \tweak #'text #tuplet-number::calc-fraction-text
-            \times 3/5 {
-                c'8
-                d'8
-                e'8
-                f'8
-                g'8
-            }
+                >>> tuplet = tuplettools.FixedDurationTuplet((3, 8), [])
+                >>> tuplet.extend("c'8 d'8 e'8 f'8 g'8")
 
-        ::
+            ..  doctest::
 
-            >>> show(tuplet) # doctest: +SKIP
+                >>> f(tuplet)
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 3/5 {
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                    g'8
+                }
 
-        ::
+            ::
 
-            >>> selection = selectiontools.select_tuplets(tuplet)
-            >>> selection.scale_contents(Multiplier(2))
+                >>> show(tuplet) # doctest: +SKIP
 
-        ..  doctest::
+            ::
 
-            >>> f(tuplet)
-            \tweak #'text #tuplet-number::calc-fraction-text
-            \times 3/5 {
-                c'4
-                d'4
-                e'4
-                f'4
-                g'4
-            }
+                >>> selection = selectiontools.select_tuplets(tuplet)
+                >>> selection.scale_contents(Multiplier(2))
 
-        ::
+            ..  doctest::
 
-            >>> show(tuplet) # doctest: +SKIP
+                >>> f(tuplet)
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 3/5 {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                    g'4
+                }
+
+            ::
+
+                >>> show(tuplet) # doctest: +SKIP
 
         Preserve tuplet multipliers.
 
@@ -639,48 +658,50 @@ class FreeTupletSelection(FreeSelection):
     def set_denominator_to_at_least(self, n):
         r'''Set denominator of tuplets in selection to at least `n`.
 
-        Example 1. Set denominator of tuplets to at least ``8``:
+        ..  container:: example
 
-        ::
+            **Example.** Set denominator of tuplets to at least ``8``:
 
-            >>> tuplet = Tuplet(Fraction(3, 5), "c'4 d'8 e'8 f'4 g'2")
+            ::
 
-        ..  doctest::
+                >>> tuplet = Tuplet(Fraction(3, 5), "c'4 d'8 e'8 f'4 g'2")
 
-            >>> f(tuplet)
-            \tweak #'text #tuplet-number::calc-fraction-text
-            \times 3/5 {
-                c'4
-                d'8
-                e'8
-                f'4
-                g'2
-            }
+            ..  doctest::
 
-        ::
+                >>> f(tuplet)
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 3/5 {
+                    c'4
+                    d'8
+                    e'8
+                    f'4
+                    g'2
+                }
 
-            >>> show(tuplet) # doctest: +SKIP
+            ::
 
-        ::
+                >>> show(tuplet) # doctest: +SKIP
 
-            >>> tuplets = selectiontools.select_tuplets(tuplet)
-            >>> tuplets.set_denominator_to_at_least(8)
+            ::
 
-        ..  doctest::
+                >>> tuplets = selectiontools.select_tuplets(tuplet)
+                >>> tuplets.set_denominator_to_at_least(8)
 
-            >>> f(tuplet)
-            \tweak #'text #tuplet-number::calc-fraction-text
-            \times 6/10 {
-                c'4
-                d'8
-                e'8
-                f'4
-                g'2
-            }
+            ..  doctest::
 
-        ::
+                >>> f(tuplet)
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 6/10 {
+                    c'4
+                    d'8
+                    e'8
+                    f'4
+                    g'2
+                }
 
-            >>> show(tuplet) # doctest: +SKIP
+            ::
+
+                >>> show(tuplet) # doctest: +SKIP
 
         Return none.
         '''
