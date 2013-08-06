@@ -15,7 +15,10 @@ def test_LayoutBlock_01():
     }
     '''
 
-    assert lb.lilypond_format == '\\layout {\n\tindent = #0\n\tragged-right = ##t\n}'
+    assert testtools.compare(
+        lb.lilypond_format,
+        '\\layout {\n\tindent = #0\n\tragged-right = ##t\n}'
+        )
 
 
 def test_LayoutBlock_02():
@@ -30,4 +33,7 @@ def test_LayoutBlock_02():
     }
     '''
 
-    assert lb.lilypond_format == '\\layout {\n\t\\accidentalStyle modern\n}'
+    assert testtools.compare(
+        lb.lilypond_format,
+        '\\layout {\n\t\\accidentalStyle modern\n}'
+        )

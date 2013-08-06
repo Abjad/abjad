@@ -31,7 +31,10 @@ def test_Component_detach_marks_01():
     '''
 
     assert select(staff).is_well_formed()
-    assert staff.lilypond_format == '\\new Staff {\n\t\\clef "treble"\n\tc\'8\n\td\'8\n\te\'8\n\tf\'8\n}'
+    assert testtools.compare(
+        staff.lilypond_format,
+        '\\new Staff {\n\t\\clef "treble"\n\tc\'8\n\td\'8\n\te\'8\n\tf\'8\n}'
+        )
 
 
 def test_Component_detach_marks_02():
@@ -53,7 +56,10 @@ def test_Component_detach_marks_02():
     '''
 
     assert detached_instrument_marks[0] is instrument_mark
-    assert staff.lilypond_format == "\\new Staff {\n\tc'4\n\td'4\n\te'4\n\tf'4\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tc'4\n\td'4\n\te'4\n\tf'4\n}"
+        )
 
 
 def test_Component_detach_marks_03():
@@ -73,7 +79,10 @@ def test_Component_detach_marks_03():
     '''
 
     assert result[0] is time_signature_mark
-    assert staff.lilypond_format == "\\new Staff {\n\tc'4\n\td'4\n\te'4\n\tf'4\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tc'4\n\td'4\n\te'4\n\tf'4\n}"
+        )
 
 
 def test_Component_detach_marks_04():
@@ -135,7 +144,10 @@ def test_Component_detach_marks_06():
     '''
 
     assert select(staff).is_well_formed()
-    assert staff.lilypond_format == "\\new Staff {\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
+        )
 
 
 def test_Component_detach_marks_07():
@@ -168,7 +180,10 @@ def test_Component_detach_marks_07():
     '''
 
     assert select(staff).is_well_formed()
-    assert staff.lilypond_format == "\\new Staff {\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
+        )
 
 
 def test_Component_detach_marks_08():

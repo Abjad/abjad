@@ -50,7 +50,10 @@ def test_OutputBurnishedTaleaRhythmMaker___call___01():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/16\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 3/5 {\n\t\t\tc'16\n\t\t\tr16\n\t\t\tr16\n\t\t\tr16\n\t\t\tr16\n\t\t}\n\t}\n\t{\n\t\t\\time 3/8\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 3/4 {\n\t\t\tr16\n\t\t\tr16\n\t\t\tr16\n\t\t\tr16\n\t\t\tr16\n\t\t\tr16\n\t\t\tr16\n\t\t\tc'16\n\t\t}\n\t}\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\t\\time 3/16\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 3/5 {\n\t\t\tc'16\n\t\t\tr16\n\t\t\tr16\n\t\t\tr16\n\t\t\tr16\n\t\t}\n\t}\n\t{\n\t\t\\time 3/8\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 3/4 {\n\t\t\tr16\n\t\t\tr16\n\t\t\tr16\n\t\t\tr16\n\t\t\tr16\n\t\t\tr16\n\t\t\tr16\n\t\t\tc'16\n\t\t}\n\t}\n}"
+        )
 
 
 def test_OutputBurnishedTaleaRhythmMaker___call___02():
@@ -91,7 +94,10 @@ def test_OutputBurnishedTaleaRhythmMaker___call___02():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/16\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 3/5 {\n\t\t\tr4\n\t\t\tc'16\n\t\t}\n\t}\n\t{\n\t\t\\time 3/8\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 3/4 {\n\t\t\tc'8.\n\t\t\tc'4\n\t\t\tr16\n\t\t}\n\t}\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\t\\time 3/16\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 3/5 {\n\t\t\tr4\n\t\t\tc'16\n\t\t}\n\t}\n\t{\n\t\t\\time 3/8\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 3/4 {\n\t\t\tc'8.\n\t\t\tc'4\n\t\t\tr16\n\t\t}\n\t}\n}"
+        )
 
 
 def test_OutputBurnishedTaleaRhythmMaker___call___03():
@@ -139,7 +145,10 @@ def test_OutputBurnishedTaleaRhythmMaker___call___03():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/8\n\t\t{\n\t\t\tr16\n\t\t\tc'8\n\t\t\tc'8.\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 3/5 {\n\t\t\tc'16\n\t\t\tc'8\n\t\t\tc'8\n\t\t}\n\t\t{\n\t\t\tc'16\n\t\t\tc'16\n\t\t\tc'8\n\t\t\tr16\n\t\t}\n\t}\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\t\\time 3/8\n\t\t{\n\t\t\tr16\n\t\t\tc'8\n\t\t\tc'8.\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 3/5 {\n\t\t\tc'16\n\t\t\tc'8\n\t\t\tc'8\n\t\t}\n\t\t{\n\t\t\tc'16\n\t\t\tc'16\n\t\t\tc'8\n\t\t\tr16\n\t\t}\n\t}\n}"
+        )
 
 
 def test_OutputBurnishedTaleaRhythmMaker___call___04():
@@ -175,4 +184,7 @@ def test_OutputBurnishedTaleaRhythmMaker___call___04():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 8/8\n\t\tr8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tr8\n\t\tr8\n\t}\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\t\\time 8/8\n\t\tr8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tr8\n\t\tr8\n\t}\n}"
+        )

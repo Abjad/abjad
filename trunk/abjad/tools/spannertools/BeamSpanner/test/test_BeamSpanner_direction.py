@@ -17,7 +17,10 @@ def test_BeamSpanner_direction_01():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\tc'8 ^ [\n\td'8\n\te'8\n\tf'8 ]\n\tg'2\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tc'8 ^ [\n\td'8\n\te'8\n\tf'8 ]\n\tg'2\n}"
+        )
 
 
 def test_BeamSpanner_direction_02():
@@ -35,7 +38,10 @@ def test_BeamSpanner_direction_02():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\tc'8 _ [\n\td'8\n\te'8\n\tf'8 ]\n\tg'2\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tc'8 _ [\n\td'8\n\te'8\n\tf'8 ]\n\tg'2\n}"
+        )
 
 
 def test_BeamSpanner_direction_03():
@@ -53,4 +59,7 @@ def test_BeamSpanner_direction_03():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\tc'8 - [\n\td'8\n\te'8\n\tf'8 ]\n\tg'2\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tc'8 - [\n\td'8\n\te'8\n\tf'8 ]\n\tg'2\n}"
+        )

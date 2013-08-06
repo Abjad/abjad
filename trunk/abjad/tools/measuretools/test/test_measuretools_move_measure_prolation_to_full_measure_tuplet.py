@@ -29,7 +29,10 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01():
     }
     '''
 
-    assert t.lilypond_format == "{\n\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\td'16\n\t\t\te'16\n\t\t}\n\t\tf'8\n\t\tg'8\n\t}\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "{\n\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\td'16\n\t\t\te'16\n\t\t}\n\t\tf'8\n\t\tg'8\n\t}\n}"
+        )
 
 
     measuretools.move_measure_prolation_to_full_measure_tuplet(t)
@@ -50,7 +53,10 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "{\n\t\\time 2/8\n\t\\times 2/3 {\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\td'16\n\t\t\te'16\n\t\t}\n\t\tf'8\n\t\tg'8\n\t}\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "{\n\t\\time 2/8\n\t\\times 2/3 {\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\td'16\n\t\t\te'16\n\t\t}\n\t\tf'8\n\t\tg'8\n\t}\n}"
+        )
 
 
 def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02():
@@ -81,7 +87,10 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02():
     }
     '''
 
-    assert t.lilypond_format == "{\n\t\\time 15/24\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8 ~\n\t\tc'32\n\t\td'8 ~\n\t\td'32\n\t\te'8 ~\n\t\te'32\n\t\tf'8 ~\n\t\tf'32\n\t\tg'8 ~\n\t\tg'32\n\t\ta'8 ~\n\t\ta'32\n\t}\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "{\n\t\\time 15/24\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8 ~\n\t\tc'32\n\t\td'8 ~\n\t\td'32\n\t\te'8 ~\n\t\te'32\n\t\tf'8 ~\n\t\tf'32\n\t\tg'8 ~\n\t\tg'32\n\t\ta'8 ~\n\t\ta'32\n\t}\n}"
+        )
 
     measuretools.move_measure_prolation_to_full_measure_tuplet(t)
 
@@ -101,4 +110,7 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "{\n\t\\time 5/8\n\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\\times 5/6 {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t}\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "{\n\t\\time 5/8\n\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\\times 5/6 {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t}\n}"
+        )

@@ -20,4 +20,7 @@ def test_Score_add_double_bar_01():
     >>
     '''
 
-    assert score.lilypond_format == '\\new Score <<\n\t\\new Staff {\n\t\tc\'4\n\t\td\'4\n\t\te\'4\n\t\tf\'4\n\t\t\\bar "|."\n\t}\n>>'
+    assert testtools.compare(
+        score.lilypond_format,
+        '\\new Score <<\n\t\\new Staff {\n\t\tc\'4\n\t\td\'4\n\t\te\'4\n\t\tf\'4\n\t\t\\bar "|."\n\t}\n>>'
+        )

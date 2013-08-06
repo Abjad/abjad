@@ -18,7 +18,10 @@ def test_BeamSpanner_span_anonymous_01():
     assert len(beam.components) == 1
     assert isinstance(beam.components[0], Container)
     assert len(beam.leaves) == 0
-    assert container.lilypond_format == '{\n}'
+    assert testtools.compare(
+        container.lilypond_format,
+        '{\n}'
+        )
 
 
 def test_BeamSpanner_span_anonymous_02():
@@ -44,7 +47,10 @@ def test_BeamSpanner_span_anonymous_02():
     assert len(beam.components) == 1
     assert isinstance(beam.components[0], Container)
     assert len(beam.leaves) == 8
-    assert container.lilypond_format == "{\n\tc'8 [\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8 ]\n}"
+    assert testtools.compare(
+        container.lilypond_format,
+        "{\n\tc'8 [\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8 ]\n}"
+        )
 
 
 def test_BeamSpanner_span_anonymous_03():
@@ -76,7 +82,10 @@ def test_BeamSpanner_span_anonymous_03():
     assert type(beam.components[1]) is Container
     assert len(beam.leaves) == 8
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\t{\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\t{\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"
+        )
 
 
 def test_BeamSpanner_span_anonymous_04():
@@ -103,7 +112,10 @@ def test_BeamSpanner_span_anonymous_04():
     assert type(beam.components[0]) is Staff
     assert len(beam.leaves) == 6
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
+        )
 
 
 def test_BeamSpanner_span_anonymous_05():
@@ -132,7 +144,10 @@ def test_BeamSpanner_span_anonymous_05():
     assert type(staff[2]) is Note
     assert len(beam.leaves) == 6
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
+        )
 
 
 def test_BeamSpanner_span_anonymous_06():
@@ -159,7 +174,10 @@ def test_BeamSpanner_span_anonymous_06():
     assert all(type(x) is Note for x in beam.components)
     assert len(beam.leaves) == 6
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
+        )
 
 
 def test_BeamSpanner_span_anonymous_07():
@@ -184,7 +202,10 @@ def test_BeamSpanner_span_anonymous_07():
     assert all(type(x) is Container for x in beam.components)
     assert len(beam.leaves) == 0
     
-    assert staff.lilypond_format == '\\new Staff {\n\t{\n\t}\n\t{\n\t}\n\t{\n\t}\n}'
+    assert testtools.compare(
+        staff.lilypond_format,
+        '\\new Staff {\n\t{\n\t}\n\t{\n\t}\n\t{\n\t}\n}'
+        )
 
 
 def test_BeamSpanner_span_anonymous_08():
@@ -217,7 +238,10 @@ def test_BeamSpanner_span_anonymous_08():
     assert all(type(x) is Container for x in beam.components)
     assert len(beam.leaves) == 8
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\t{\n\t}\n\t{\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\t{\n\t}\n\t{\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"
+        )
 
 
 def test_BeamSpanner_span_anonymous_09():
@@ -248,7 +272,10 @@ def test_BeamSpanner_span_anonymous_09():
         assert isinstance(x, Container)
     assert len(p.leaves) == 4
 
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t}\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n\t{\n\t}\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\t{\n\t}\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n\t{\n\t}\n}"
+        )
 
 
 def test_BeamSpanner_span_anonymous_10():

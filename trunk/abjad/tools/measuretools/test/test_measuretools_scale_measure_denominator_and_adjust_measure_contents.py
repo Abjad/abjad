@@ -32,7 +32,10 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_01()
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "{\n\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8. [\n\t\td'8. ]\n\t}\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "{\n\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8. [\n\t\td'8. ]\n\t}\n}"
+        )
 
 
 def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_02():
@@ -67,7 +70,10 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_02()
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "{\n\t\\time 5/20\n\t\\scaleDurations #'(4 . 5) {\n\t\tc'8 [ ~\n\t\tc'32\n\t\td'8 ~\n\t\td'32 ]\n\t}\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "{\n\t\\time 5/20\n\t\\scaleDurations #'(4 . 5) {\n\t\tc'8 [ ~\n\t\tc'32\n\t\td'8 ~\n\t\td'32 ]\n\t}\n}"
+        )
 
 
 def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_03():
@@ -100,7 +106,10 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_03()
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "{\n\t\\time 7/28\n\t\\scaleDurations #'(4 . 7) {\n\t\tc'8.. [\n\t\td'8.. ]\n\t}\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "{\n\t\\time 7/28\n\t\\scaleDurations #'(4 . 7) {\n\t\tc'8.. [\n\t\td'8.. ]\n\t}\n}"
+        )
 
 
 def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_04():
@@ -135,4 +144,7 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_04()
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "{\n\t\\time 9/36\n\t\\scaleDurations #'(8 . 9) {\n\t\tc'8 [ ~\n\t\tc'64\n\t\td'8 ~\n\t\td'64 ]\n\t}\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "{\n\t\\time 9/36\n\t\\scaleDurations #'(8 . 9) {\n\t\tc'8 [ ~\n\t\tc'64\n\t\td'8 ~\n\t\td'64 ]\n\t}\n}"
+        )

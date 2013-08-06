@@ -20,7 +20,10 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_01():
     }
     '''
 
-    assert t.lilypond_format == "\\new Voice {\n\tc'16 (\n\tc'8\n\tc'8 )\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'16 (\n\tc'8\n\tc'8 )\n}"
+        )
 
 
 def test_leaftools_fuse_leaves_in_container_once_by_counts_02():
@@ -40,7 +43,10 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_02():
     }
     '''
 
-    assert t.lilypond_format == "\\new Voice {\n\tc'2 ( ~\n\tc'8 )\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'2 ( ~\n\tc'8 )\n}"
+        )
 
 
 def test_leaftools_fuse_leaves_in_container_once_by_counts_03():
@@ -60,7 +66,10 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_03():
     }
     '''
 
-    assert t.lilypond_format == '\\new Voice {\n\tr8\n\tr4\n\tr4\n}'
+    assert testtools.compare(
+        t.lilypond_format,
+        '\\new Voice {\n\tr8\n\tr4\n\tr4\n}'
+        )
 
 
 def test_leaftools_fuse_leaves_in_container_once_by_counts_04():
@@ -80,4 +89,7 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_04():
     }
     '''
 
-    assert t.lilypond_format == "\\new Voice {\n\tc'8 ( ~\n\tc'2 )\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'8 ( ~\n\tc'2 )\n}"
+        )

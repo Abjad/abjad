@@ -13,4 +13,7 @@ def test_PaperBlock_minimal_page_breaking_01():
     }
     '''
 
-    assert pb.lilypond_format == '\\paper {\n\t#(define page-breaking ly:minimal-breaking)\n}'
+    assert testtools.compare(
+        pb.lilypond_format,
+        '\\paper {\n\t#(define page-breaking ly:minimal-breaking)\n}'
+        )

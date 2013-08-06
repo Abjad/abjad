@@ -19,7 +19,10 @@ def test_FixedDurationTuplet_fraction_01():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/4 {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/4 {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        )
 
 
 def test_FixedDurationTuplet_fraction_02():
@@ -39,7 +42,10 @@ def test_FixedDurationTuplet_fraction_02():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 4/3 {\n\tc'8\n\td'8\n\te'8\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 4/3 {\n\tc'8\n\td'8\n\te'8\n}"
+        )
 
 
 def test_FixedDurationTuplet_fraction_03():
@@ -57,4 +63,7 @@ def test_FixedDurationTuplet_fraction_03():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "{\n\tc'8\n\td'8\n\te'8\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "{\n\tc'8\n\td'8\n\te'8\n}"
+        )

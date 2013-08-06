@@ -46,7 +46,10 @@ def test_DivisionBurnishedTaleaRhythmMaker___call___01():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\t{\n\t\t\tr32\n\t\t\tr32\n\t\t\tc'16\n\t\t\tc'8\n\t\t\tc'32\n\t\t\tr32\n\t\t}\n\t}\n\t{\n\t\t\\time 6/16\n\t\t{\n\t\t\tr16\n\t\t\tr8\n\t\t\tc'32\n\t\t\tc'32\n\t\t\tc'16\n\t\t\tr16\n\t\t}\n\t}\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\t{\n\t\t\tr32\n\t\t\tr32\n\t\t\tc'16\n\t\t\tc'8\n\t\t\tc'32\n\t\t\tr32\n\t\t}\n\t}\n\t{\n\t\t\\time 6/16\n\t\t{\n\t\t\tr16\n\t\t\tr8\n\t\t\tc'32\n\t\t\tc'32\n\t\t\tc'16\n\t\t\tr16\n\t\t}\n\t}\n}"
+        )
 
 
 def test_DivisionBurnishedTaleaRhythmMaker___call___02():
@@ -90,7 +93,10 @@ def test_DivisionBurnishedTaleaRhythmMaker___call___02():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\t{\n\t\t\tc'32\n\t\t\tc'32\n\t\t\tr16\n\t\t\tr8\n\t\t\tr32\n\t\t\tc'32\n\t\t}\n\t}\n\t{\n\t\t\\time 6/16\n\t\t{\n\t\t\tc'16\n\t\t\tc'8\n\t\t\tr32\n\t\t\tr32\n\t\t\tr16\n\t\t\tc'16\n\t\t}\n\t}\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\t{\n\t\t\tc'32\n\t\t\tc'32\n\t\t\tr16\n\t\t\tr8\n\t\t\tr32\n\t\t\tc'32\n\t\t}\n\t}\n\t{\n\t\t\\time 6/16\n\t\t{\n\t\t\tc'16\n\t\t\tc'8\n\t\t\tr32\n\t\t\tr32\n\t\t\tr16\n\t\t\tc'16\n\t\t}\n\t}\n}"
+        )
 
 
 def test_DivisionBurnishedTaleaRhythmMaker___call___03():
@@ -139,7 +145,10 @@ def test_DivisionBurnishedTaleaRhythmMaker___call___03():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 10/13 {\n\t\t\tc'32\n\t\t\tc'32\n\t\t\tr16\n\t\t\tr8\n\t\t\tr32\n\t\t\tr32\n\t\t\tr16\n\t\t\tc'32\n\t\t}\n\t}\n\t{\n\t\t\\time 6/16\n\t\t\\times 4/5 {\n\t\t\tc'16.\n\t\t\tc'32\n\t\t\tr32\n\t\t\tr16\n\t\t\tr8\n\t\t\tr32\n\t\t\tr32\n\t\t\tc'16\n\t\t}\n\t}\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 10/13 {\n\t\t\tc'32\n\t\t\tc'32\n\t\t\tr16\n\t\t\tr8\n\t\t\tr32\n\t\t\tr32\n\t\t\tr16\n\t\t\tc'32\n\t\t}\n\t}\n\t{\n\t\t\\time 6/16\n\t\t\\times 4/5 {\n\t\t\tc'16.\n\t\t\tc'32\n\t\t\tr32\n\t\t\tr16\n\t\t\tr8\n\t\t\tr32\n\t\t\tr32\n\t\t\tc'16\n\t\t}\n\t}\n}"
+        )
 
 
 def test_DivisionBurnishedTaleaRhythmMaker___call___04():
@@ -184,7 +193,10 @@ def test_DivisionBurnishedTaleaRhythmMaker___call___04():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\t{\n\t\t\tr32\n\t\t\tc'32\n\t\t\tc'16\n\t\t\tc'8\n\t\t\tc'32\n\t\t\tr32\n\t\t}\n\t}\n\t{\n\t\t\\time 6/16\n\t\t\\times 4/5 {\n\t\t\tr16\n\t\t\tc'8\n\t\t\tc'32\n\t\t\tc'32\n\t\t\tc'16\n\t\t\tc'8\n\t\t\tr32\n\t\t}\n\t}\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\t{\n\t\t\tr32\n\t\t\tc'32\n\t\t\tc'16\n\t\t\tc'8\n\t\t\tc'32\n\t\t\tr32\n\t\t}\n\t}\n\t{\n\t\t\\time 6/16\n\t\t\\times 4/5 {\n\t\t\tr16\n\t\t\tc'8\n\t\t\tc'32\n\t\t\tc'32\n\t\t\tc'16\n\t\t\tc'8\n\t\t\tr32\n\t\t}\n\t}\n}"
+        )
 
 
 def test_DivisionBurnishedTaleaRhythmMaker___call___05():
@@ -233,4 +245,7 @@ def test_DivisionBurnishedTaleaRhythmMaker___call___05():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\t{\n\t\t\tr32\n\t\t\tc'32\n\t\t\tc'16\n\t\t\tc'8\n\t\t\tc'32\n\t\t\tr32\n\t\t}\n\t}\n\t{\n\t\t\\time 6/16\n\t\t\\times 4/7 {\n\t\t\tr16\n\t\t\tc'8\n\t\t\tr32\n\t\t}\n\t\t{\n\t\t\tr32\n\t\t\tc'16\n\t\t\tc'8\n\t\t\tr32\n\t\t}\n\t}\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\t{\n\t\t\tr32\n\t\t\tc'32\n\t\t\tc'16\n\t\t\tc'8\n\t\t\tc'32\n\t\t\tr32\n\t\t}\n\t}\n\t{\n\t\t\\time 6/16\n\t\t\\times 4/7 {\n\t\t\tr16\n\t\t\tc'8\n\t\t\tr32\n\t\t}\n\t\t{\n\t\t\tr32\n\t\t\tc'16\n\t\t\tc'8\n\t\t\tr32\n\t\t}\n\t}\n}"
+        )

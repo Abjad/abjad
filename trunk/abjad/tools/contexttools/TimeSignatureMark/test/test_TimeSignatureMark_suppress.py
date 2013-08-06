@@ -23,7 +23,10 @@ def test_TimeSignatureMark_suppress_01():
     }
     '''
 
-    assert t.lilypond_format == "{\n\tc'8\n\td'8\n\te'8\n\tf'8\n\tg'8\n\ta'8\n\tb'8\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "{\n\tc'8\n\td'8\n\te'8\n\tf'8\n\tg'8\n\ta'8\n\tb'8\n}"
+        )
 
 
 def test_TimeSignatureMark_suppress_02():

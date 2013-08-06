@@ -25,7 +25,10 @@ def test_Component_extend_in_parent_01():
 
     assert select(t).is_well_formed()
     assert result == t[-4:]
-    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tc'8\n\td'8\n\te'8 ]\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tc'8\n\td'8\n\te'8 ]\n}"
+        )
 
 
 def test_Component_extend_in_parent_02():
@@ -46,7 +49,10 @@ def test_Component_extend_in_parent_02():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n\tdqs'8\n\te'8 ]\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'8 [\n\td'8\n\tdqs'8\n\te'8 ]\n}"
+        )
     assert result == t[1:3]
 
 
@@ -79,7 +85,10 @@ def test_Component_extend_in_parent_03():
 
     assert select(t).is_well_formed()
     assert result == t[:]
-    assert t.lilypond_format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tc'8\n\t\td'8\n\t\te'8 ]\n\t}\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tc'8\n\t\td'8\n\t\te'8 ]\n\t}\n}"
+        )
 
 
 def test_Component_extend_in_parent_04():
@@ -106,7 +115,10 @@ def test_Component_extend_in_parent_04():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t}\n\tdqs'8\n\t{\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t}\n\tdqs'8\n\t{\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"
+        )
     assert result == t[0:2]
 
 
@@ -135,7 +147,10 @@ def test_Component_extend_in_parent_05():
 
     assert select(t).is_well_formed()
     assert result == t[-4:]
-    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8 ]\n\tc'8\n\td'8\n\te'8\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'8 [\n\td'8\n\te'8 ]\n\tc'8\n\td'8\n\te'8\n}"
+        )
 
 
 def test_Component_extend_in_parent_06():
@@ -157,7 +172,10 @@ def test_Component_extend_in_parent_06():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n\tdqs'8\n\te'8 ]\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'8 [\n\td'8\n\tdqs'8\n\te'8 ]\n}"
+        )
     assert result == t[1:3]
 
 
@@ -186,7 +204,10 @@ def test_Component_extend_in_parent_07():
 
     assert select(t).is_well_formed()
     assert result == t[:4]
-    assert t.lilypond_format == "\\new Voice {\n\tc'16 [\n\td'16\n\te'16\n\tc'8\n\td'8\n\te'8 ]\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'16 [\n\td'16\n\te'16\n\tc'8\n\td'8\n\te'8 ]\n}"
+        )
 
 
 def test_Component_extend_in_parent_08():
@@ -212,7 +233,10 @@ def test_Component_extend_in_parent_08():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\tdqf'8\n\td'8\n\te'8 ]\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'8 [\n\tdqf'8\n\td'8\n\te'8 ]\n}"
+        )
     assert result == t[1:3]
 
 
@@ -246,7 +270,10 @@ def test_Component_extend_in_parent_09():
 
     assert select(t).is_well_formed()
     assert result == t[:]
-    assert t.lilypond_format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tc'8\n\t\td'8\n\t\te'8 ]\n\t}\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tc'8\n\t\td'8\n\t\te'8 ]\n\t}\n}"
+        )
 
 
 def test_Component_extend_in_parent_10():
@@ -278,7 +305,10 @@ def test_Component_extend_in_parent_10():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\tdqs'8\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\tdqs'8\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
+        )
     assert result == t[1:]
 
 
@@ -308,7 +338,10 @@ def test_Component_extend_in_parent_11():
 
     assert select(t).is_well_formed()
     assert result == t[:4]
-    assert t.lilypond_format == "\\new Voice {\n\tc'16\n\td'16\n\te'16\n\tc'8 [\n\td'8\n\te'8 ]\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'16\n\td'16\n\te'16\n\tc'8 [\n\td'8\n\te'8 ]\n}"
+        )
 
 
 def test_Component_extend_in_parent_12():
@@ -333,5 +366,8 @@ def test_Component_extend_in_parent_12():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\tdqf'8\n\td'8\n\te'8 ]\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'8 [\n\tdqf'8\n\td'8\n\te'8 ]\n}"
+        )
     assert result == t[1:3]

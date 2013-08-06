@@ -23,7 +23,10 @@ def test_ComplexBeamSpanner_direction_01():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t\\set stemLeftBeamCount = #0\n\t\\set stemRightBeamCount = #2\n\tc'16 ^ [\n\t\\set stemLeftBeamCount = #2\n\t\\set stemRightBeamCount = #2\n\te'16 ]\n\tr16\n\t\\set stemLeftBeamCount = #2\n\t\\set stemRightBeamCount = #0\n\tf'16 ^ [ ]\n\tg'2\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t\\set stemLeftBeamCount = #0\n\t\\set stemRightBeamCount = #2\n\tc'16 ^ [\n\t\\set stemLeftBeamCount = #2\n\t\\set stemRightBeamCount = #2\n\te'16 ]\n\tr16\n\t\\set stemLeftBeamCount = #2\n\t\\set stemRightBeamCount = #0\n\tf'16 ^ [ ]\n\tg'2\n}"
+        )
 
 
 def test_ComplexBeamSpanner_direction_02():
@@ -47,4 +50,7 @@ def test_ComplexBeamSpanner_direction_02():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t\\set stemLeftBeamCount = #0\n\t\\set stemRightBeamCount = #2\n\tc'16 _ [\n\t\\set stemLeftBeamCount = #2\n\t\\set stemRightBeamCount = #2\n\te'16 ]\n\tr16\n\t\\set stemLeftBeamCount = #2\n\t\\set stemRightBeamCount = #0\n\tf'16 _ [ ]\n\tg'2\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t\\set stemLeftBeamCount = #0\n\t\\set stemRightBeamCount = #2\n\tc'16 _ [\n\t\\set stemLeftBeamCount = #2\n\t\\set stemRightBeamCount = #2\n\te'16 ]\n\tr16\n\t\\set stemLeftBeamCount = #2\n\t\\set stemRightBeamCount = #0\n\tf'16 _ [ ]\n\tg'2\n}"
+        )

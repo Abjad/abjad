@@ -31,4 +31,7 @@ def test_Measure_time_signature_update_01():
     }
     '''
 
-    assert t.lilypond_format == "{\n\t\\time 3/8\n\tc'8\n\td'8\n\te'8\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "{\n\t\\time 3/8\n\tc'8\n\td'8\n\te'8\n}"
+        )

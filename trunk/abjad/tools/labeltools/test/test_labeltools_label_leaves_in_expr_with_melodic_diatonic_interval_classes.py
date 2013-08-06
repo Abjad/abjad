@@ -22,4 +22,7 @@ def test_labeltools_label_leaves_in_expr_with_melodic_diatonic_interval_classes_
     }
     """
 
-    assert staff.lilypond_format == "\\new Staff {\n\tc'8 ^ \\markup { +aug8 }\n\tcs'''8 ^ \\markup { -M2 }\n\tb'8 ^ \\markup { -aug2 }\n\taf8 ^ \\markup { -m7 }\n\tbf,8 ^ \\markup { aug1 }\n\tb,8 ^ \\markup { +m7 }\n\ta'8 ^ \\markup { +m2 }\n\tbf'8 ^ \\markup { -dim4 }\n\tfs'8 ^ \\markup { aug1 }\n\tf'8\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tc'8 ^ \\markup { +aug8 }\n\tcs'''8 ^ \\markup { -M2 }\n\tb'8 ^ \\markup { -aug2 }\n\taf8 ^ \\markup { -m7 }\n\tbf,8 ^ \\markup { aug1 }\n\tb,8 ^ \\markup { +m7 }\n\ta'8 ^ \\markup { +m2 }\n\tbf'8 ^ \\markup { -dim4 }\n\tfs'8 ^ \\markup { aug1 }\n\tf'8\n}"
+        )

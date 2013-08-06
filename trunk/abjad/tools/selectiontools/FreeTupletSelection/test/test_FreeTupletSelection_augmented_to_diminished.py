@@ -26,4 +26,7 @@ def test_FreeTupletSelection_augmented_to_diminished_01():
     '''
 
     assert select(tuplet).is_well_formed()
-    assert tuplet.lilypond_format == "\\times 2/3 {\n\tc'4\n\td'4\n\te'4\n}"
+    assert testtools.compare(
+        tuplet.lilypond_format,
+        "\\times 2/3 {\n\tc'4\n\td'4\n\te'4\n}"
+        )

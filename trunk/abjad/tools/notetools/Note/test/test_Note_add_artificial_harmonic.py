@@ -8,7 +8,10 @@ def test_Note_add_artificial_harmonic_01():
 
     t = Note("c'4")
     t = t.add_artificial_harmonic()
-    assert t.lilypond_format == "<\n\tc'\n\t\\tweak #'style #'harmonic\n\tf'\n>4"
+    assert testtools.compare(
+        t.lilypond_format,
+        "<\n\tc'\n\t\\tweak #'style #'harmonic\n\tf'\n>4"
+        )
 
     r'''
     <
@@ -26,7 +29,10 @@ def test_Note_add_artificial_harmonic_02():
     t = Note("c'4")
     diatonic_interval = pitchtools.MelodicDiatonicInterval('minor', 3)
     t = t.add_artificial_harmonic(diatonic_interval)
-    assert t.lilypond_format == "<\n\tc'\n\t\\tweak #'style #'harmonic\n\tef'\n>4"
+    assert testtools.compare(
+        t.lilypond_format,
+        "<\n\tc'\n\t\\tweak #'style #'harmonic\n\tef'\n>4"
+        )
 
     r'''
     <
@@ -62,4 +68,7 @@ def test_Note_add_artificial_harmonic_03():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Staff {\n\tc'8\n\tcs'8\n\t<\n\t\td'\n\t\t\\tweak #'style #'harmonic\n\t\tg'\n\t>8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\tc'8\n\tcs'8\n\t<\n\t\td'\n\t\t\\tweak #'style #'harmonic\n\t\tg'\n\t>8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+        )

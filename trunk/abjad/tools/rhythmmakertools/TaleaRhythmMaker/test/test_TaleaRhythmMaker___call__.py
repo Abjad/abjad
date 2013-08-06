@@ -41,7 +41,10 @@ def test_TaleaRhythmMaker___call___01():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\t\\times 4/7 {\n\t\t\tr16\n\t\t\tc'4\n\t\t\tr8\n\t\t}\n\t}\n\t{\n\t\t\\time 5/8\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 5/7 {\n\t\t\tc'8.\n\t\t\tr16\n\t\t\tc'4\n\t\t\tr8\n\t\t\tc'8.\n\t\t\tr16\n\t\t}\n\t}\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\t\\times 4/7 {\n\t\t\tr16\n\t\t\tc'4\n\t\t\tr8\n\t\t}\n\t}\n\t{\n\t\t\\time 5/8\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 5/7 {\n\t\t\tc'8.\n\t\t\tr16\n\t\t\tc'4\n\t\t\tr8\n\t\t\tc'8.\n\t\t\tr16\n\t\t}\n\t}\n}"
+        )
 
 
 def test_TaleaRhythmMaker___call___02():
@@ -86,4 +89,7 @@ def test_TaleaRhythmMaker___call___02():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\t\\times 4/7 {\n\t\t\tr16\n\t\t\tc'4\n\t\t\tr8\n\t\t}\n\t}\n\t{\n\t\t\\time 5/8\n\t\t{\n\t\t\tc'8\n\t\t}\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\tr16\n\t\t\tc'4\n\t\t\tr8\n\t\t\tc'16\n\t\t}\n\t\t{\n\t\t\tc'8\n\t\t}\n\t}\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\t\\times 4/7 {\n\t\t\tr16\n\t\t\tc'4\n\t\t\tr8\n\t\t}\n\t}\n\t{\n\t\t\\time 5/8\n\t\t{\n\t\t\tc'8\n\t\t}\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\tr16\n\t\t\tc'4\n\t\t\tr8\n\t\t\tc'16\n\t\t}\n\t\t{\n\t\t\tc'8\n\t\t}\n\t}\n}"
+        )

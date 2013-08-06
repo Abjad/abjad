@@ -19,4 +19,7 @@ def test_LayoutBlock_contexts_01():
     }
     '''
 
-    assert layout_block.lilypond_format == '\\layout {\n\t\\context {\n\t\t\\Voice\n\t\t\\remove Forbid_line_break_engraver\n\t}\n}'
+    assert testtools.compare(
+        layout_block.lilypond_format,
+        '\\layout {\n\t\\context {\n\t\t\\Voice\n\t\t\\remove Forbid_line_break_engraver\n\t}\n}'
+        )

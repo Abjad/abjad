@@ -19,7 +19,10 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_01():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n}"
+        )
 
 
 def test_notetools_make_repeated_notes_with_shorter_notes_at_end_02():
@@ -39,7 +42,10 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_02():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'32\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'32\n}"
+        )
 
 
 def test_notetools_make_repeated_notes_with_shorter_notes_at_end_03():
@@ -55,7 +61,10 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_03():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\tc'128\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'128\n}"
+        )
 
 
 def test_notetools_make_repeated_notes_with_shorter_notes_at_end_04():
@@ -79,7 +88,10 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_04():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\t\\times 4/5 {\n\t\tc'32\n\t}\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\t\\times 4/5 {\n\t\tc'32\n\t}\n}"
+        )
 
 
 def test_notetools_make_repeated_notes_with_shorter_notes_at_end_05():
@@ -103,4 +115,7 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_05():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "{\n\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "{\n\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n}"
+        )

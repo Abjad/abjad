@@ -23,7 +23,10 @@ def test_RhythmTreeContainer___call___01():
     }
     '''
 
-    assert result[0].lilypond_format == "\\times 4/5 {\n\tc'16\n\t\\times 2/3 {\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n\tc'8\n}"
+    assert testtools.compare(
+        result[0].lilypond_format,
+        "\\times 4/5 {\n\tc'16\n\t\\times 2/3 {\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n\tc'8\n}"
+        )
 
 
 def test_RhythmTreeContainer___call___02():

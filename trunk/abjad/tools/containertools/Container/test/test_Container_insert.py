@@ -27,7 +27,10 @@ def test_Container_insert_01():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\tr8\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tr8\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
+        )
 
 
 def test_Container_insert_02():
@@ -49,7 +52,10 @@ def test_Container_insert_02():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\tcs'8\n\td'8\n\te'8\n\tf'8 ]\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'8 [\n\tcs'8\n\td'8\n\te'8\n\tf'8 ]\n}"
+        )
 
 
 
@@ -72,7 +78,10 @@ def test_Container_insert_03():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
+        )
 
 
 def test_Container_insert_04():
@@ -94,7 +103,10 @@ def test_Container_insert_04():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
+        )
 
 
 def test_Container_insert_05():
@@ -116,7 +128,10 @@ def test_Container_insert_05():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\teqs'8\n\tf'8 ]\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\teqs'8\n\tf'8 ]\n}"
+        )
 
 
 def test_Container_insert_06():
@@ -138,7 +153,10 @@ def test_Container_insert_06():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\tr8\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tr8\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
+        )
 
 
 def test_Container_insert_07():
@@ -174,7 +192,10 @@ def test_Container_insert_08():
     '''
 
     assert select(staff).is_well_formed()
-    assert staff.lilypond_format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\te'8\n\tf'8 ]\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\te'8\n\tf'8 ]\n}"
+        )
 
 
 def test_Container_insert_09():
@@ -201,7 +222,10 @@ def test_Container_insert_09():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Staff {\n\tr4\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\tr4\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n}"
+        )
 
 
 def test_Container_insert_10():
@@ -223,7 +247,10 @@ def test_Container_insert_10():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Staff {\n\tc'8 [ ]\n\tr4\n\tcs'8 [\n\td'8\n\tef'8 ]\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\tc'8 [ ]\n\tr4\n\tcs'8 [\n\td'8\n\tef'8 ]\n}"
+        )
 
 
 def test_Container_insert_11():
@@ -245,7 +272,10 @@ def test_Container_insert_11():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
+        )
 
 
 def test_Container_insert_12():
@@ -267,7 +297,10 @@ def test_Container_insert_12():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
+        )
 
 
 def test_Container_insert_13():
@@ -289,7 +322,10 @@ def test_Container_insert_13():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8 ]\n\tr4\n\tef'8 [ ]\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8 ]\n\tr4\n\tef'8 [ ]\n}"
+        )
 
 
 def test_Container_insert_14():
@@ -311,7 +347,10 @@ def test_Container_insert_14():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Staff {\n\tr4\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\tr4\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n}"
+        )
 
 
 def test_Container_insert_15():

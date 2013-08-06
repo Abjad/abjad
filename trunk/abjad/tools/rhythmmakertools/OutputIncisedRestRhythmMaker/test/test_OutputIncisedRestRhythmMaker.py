@@ -44,7 +44,10 @@ def test_OutputIncisedRestRhythmMaker_01():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tc'4\n\t\tr8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tr4\n\t\tc'16.\n\t\tc'16.\n\t\tc'16.\n\t\tc'16.\n\t}\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tc'4\n\t\tr8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tr4\n\t\tc'16.\n\t\tc'16.\n\t\tc'16.\n\t\tc'16.\n\t}\n}"
+        )
 
 
 def test_OutputIncisedRestRhythmMaker_02():
@@ -85,7 +88,10 @@ def test_OutputIncisedRestRhythmMaker_02():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tc'4\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tr8\n\t\tc'4\n\t\tc'4\n\t}\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tc'4\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tr8\n\t\tc'4\n\t\tc'4\n\t}\n}"
+        )
 
 
 def test_OutputIncisedRestRhythmMaker_03():
@@ -124,7 +130,10 @@ def test_OutputIncisedRestRhythmMaker_03():
     }
     '''
 
-    assert staff.lilypond_format == '\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr8\n\t}\n}'
+    assert testtools.compare(
+        staff.lilypond_format,
+        '\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr8\n\t}\n}'
+        )
 
 
 def test_OutputIncisedRestRhythmMaker_04():
@@ -170,7 +179,10 @@ def test_OutputIncisedRestRhythmMaker_04():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 4/8\n\t\t\\times 4/5 {\n\t\t\tc'8\n\t\t\tr2\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tr2\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t\\times 4/7 {\n\t\t\tr2.\n\t\t\tc'8\n\t\t}\n\t}\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\t\\time 4/8\n\t\t\\times 4/5 {\n\t\t\tc'8\n\t\t\tr2\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tr2\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t\\times 4/7 {\n\t\t\tr2.\n\t\t\tc'8\n\t\t}\n\t}\n}"
+        )
 
 
 def test_OutputIncisedRestRhythmMaker_05():
@@ -225,4 +237,7 @@ def test_OutputIncisedRestRhythmMaker_05():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 4/8\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 3/4 {\n\t\t\tc'8\n\t\t\tr4.\n\t\t}\n\t\t{\n\t\t\tr8\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tr2\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tr8\n\t\t}\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 3/5 {\n\t\t\tr2\n\t\t\tc'8\n\t\t}\n\t}\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\t\\time 4/8\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 3/4 {\n\t\t\tc'8\n\t\t\tr4.\n\t\t}\n\t\t{\n\t\t\tr8\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tr2\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tr8\n\t\t}\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 3/5 {\n\t\t\tr2\n\t\t\tc'8\n\t\t}\n\t}\n}"
+        )

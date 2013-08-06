@@ -17,7 +17,10 @@ def test_HairpinSpanner_shape_string_01():
     '''
 
     assert hairpin.shape_string == '<'
-    assert staff.lilypond_format == "\\new Staff {\n\tc'8 \\<\n\td'8\n\te'8\n\tf'8 \\!\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tc'8 \\<\n\td'8\n\te'8\n\tf'8 \\!\n}"
+        )
 
     hairpin.shape_string = '>'
 
@@ -31,4 +34,7 @@ def test_HairpinSpanner_shape_string_01():
     '''
 
     assert hairpin.shape_string == '>'
-    assert staff.lilypond_format == "\\new Staff {\n\tc'8 \\>\n\td'8\n\te'8\n\tf'8 \\!\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tc'8 \\>\n\td'8\n\te'8\n\tf'8 \\!\n}"
+        )

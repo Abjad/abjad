@@ -28,4 +28,7 @@ def test_labeltools_remove_markup_from_leaves_in_expr_01():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\times 2/3 {\n\tc'8\n\td'8\n\te'8\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\times 2/3 {\n\tc'8\n\td'8\n\te'8\n}"
+        )

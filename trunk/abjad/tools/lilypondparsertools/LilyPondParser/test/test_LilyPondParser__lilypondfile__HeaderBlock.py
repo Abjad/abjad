@@ -23,7 +23,10 @@ def test_LilyPondParser__lilypondfile__HeaderBlock_01():
     assert isinstance(result, lilypondfiletools.LilyPondFile)
     assert len(result) == 2
 
-    assert result[0].lilypond_format == '\\header {\n\tglobalvariable = #"This overrides the global variable"\n\tlocalvariable = #"and this is a local variable."\n\tsomething = #4\n\ttitle = \\markup {\n\t\t"This overrides the global variable"\n\t\t"and this is a local variable."\n\t\t}\n}'
+    assert testtools.compare(
+        result[0].lilypond_format,
+        '\\header {\n\tglobalvariable = #"This overrides the global variable"\n\tlocalvariable = #"and this is a local variable."\n\tsomething = #4\n\ttitle = \\markup {\n\t\t"This overrides the global variable"\n\t\t"and this is a local variable."\n\t\t}\n}'
+        )
 
     r'''
     \header {
@@ -37,7 +40,10 @@ def test_LilyPondParser__lilypondfile__HeaderBlock_01():
     }
     '''
 
-    assert result[1].lilypond_format == '\\score {\n\t\\new Staff {\n\t\tc\'4 ^ \\markup { This is a global variable. }\n\t}\n}'
+    assert testtools.compare(
+        result[1].lilypond_format,
+        '\\score {\n\t\\new Staff {\n\t\tc\'4 ^ \\markup { This is a global variable. }\n\t}\n}'
+        )
 
     r'''
     \score {

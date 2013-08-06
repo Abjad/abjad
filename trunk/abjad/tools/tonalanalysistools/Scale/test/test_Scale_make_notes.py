@@ -19,4 +19,7 @@ def test_Scale_make_notes_01():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\tc'4 ~\n\tc'16\n\td'4 ~\n\td'16\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tc'4 ~\n\tc'16\n\td'4 ~\n\td'16\n}"
+        )

@@ -17,4 +17,7 @@ def test_notetools_make_repeated_notes_01():
     }
     '''
 
-    assert t.lilypond_format == "\\new Voice {\n\tc'4 ~\n\tc'16\n\tc'4 ~\n\tc'16\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'4 ~\n\tc'16\n\tc'4 ~\n\tc'16\n}"
+        )

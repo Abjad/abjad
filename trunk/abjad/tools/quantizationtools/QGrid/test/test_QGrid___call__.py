@@ -46,7 +46,10 @@ def test_QGrid___call___02():
     result = q_grid((1, 4))
 
     assert isinstance(result, list) and len(result) == 1
-    assert result[0].lilypond_format == "\\times 2/3 {\n\tc'8\n\tc'16\n\tc'16\n\t\\times 2/3 {\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n}"
+    assert testtools.compare(
+        result[0].lilypond_format,
+        "\\times 2/3 {\n\tc'8\n\tc'16\n\tc'16\n\t\\times 2/3 {\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n}"
+        )
 
     leaf = result[0].select_leaves()[0]
     annotation = leaf.get_marks(marktools.Annotation)[0]
@@ -89,4 +92,7 @@ def test_QGrid___call___03():
     result = q_grid((1, 3))
 
     assert isinstance(result, list) and len(result) == 1
-    assert result[0].lilypond_format == "\\times 2/3 {\n\tc'4\n\tc'4\n}"
+    assert testtools.compare(
+        result[0].lilypond_format,
+        "\\times 2/3 {\n\tc'4\n\tc'4\n}"
+        )

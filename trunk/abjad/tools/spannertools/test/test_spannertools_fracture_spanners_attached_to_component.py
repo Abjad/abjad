@@ -30,7 +30,10 @@ def test_spannertools_fracture_spanners_attached_to_component_01():
     '''
 
     assert select(staff).is_well_formed()
-    assert staff.lilypond_format == "\\new Staff {\n\tc'8 [ ( \\startTrillSpan\n\td'8 ] )\n\te'8 [ (\n\tf'8 ] ) \\stopTrillSpan\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tc'8 [ ( \\startTrillSpan\n\td'8 ] )\n\te'8 [ (\n\tf'8 ] ) \\stopTrillSpan\n}"
+        )
 
 
 def test_spannertools_fracture_spanners_attached_to_component_02():
@@ -65,4 +68,7 @@ def test_spannertools_fracture_spanners_attached_to_component_02():
     '''
 
     assert select(staff).is_well_formed()
-    assert staff.lilypond_format == "\\new Staff {\n\tc'8 [ ( \\startTrillSpan\n\td'8 ]\n\te'8 [\n\tf'8 ] ) \\stopTrillSpan\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tc'8 [ ( \\startTrillSpan\n\td'8 ]\n\te'8 [\n\tf'8 ] ) \\stopTrillSpan\n}"
+        )

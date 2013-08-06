@@ -16,4 +16,7 @@ def test_FixedDurationTuplet_force_fraction_01():
     }
     '''
 
-    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 2/3 {\n\tc'8\n\td'8\n\te'8\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 2/3 {\n\tc'8\n\td'8\n\te'8\n}"
+        )

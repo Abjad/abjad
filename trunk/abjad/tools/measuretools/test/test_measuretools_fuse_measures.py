@@ -47,7 +47,10 @@ def test_measuretools_fuse_measures_01():
     assert len(t1) == 0
     assert len(t2) == 0
     assert select(new).is_well_formed()
-    assert new.lilypond_format == "{\n\t\\time 2/8\n\tc'16 [\n\td'16 ]\n\tc'16 (\n\td'16 )\n}"
+    assert testtools.compare(
+        new.lilypond_format,
+        "{\n\t\\time 2/8\n\tc'16 [\n\td'16 ]\n\tc'16 (\n\td'16 )\n}"
+        )
 
 
 def test_measuretools_fuse_measures_02():
@@ -91,7 +94,10 @@ def test_measuretools_fuse_measures_02():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\tc'16 [\n\t\td'16\n\t\te'16\n\t\tf'16 ]\n\t}\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\tc'16 [\n\t\td'16\n\t\te'16\n\t\tf'16 ]\n\t}\n}"
+        )
 
 
 def test_measuretools_fuse_measures_03():
@@ -135,7 +141,10 @@ def test_measuretools_fuse_measures_03():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\tc'16\n\t\td'16\n\t\te'16\n\t\tf'16\n\t}\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\tc'16\n\t\td'16\n\t\te'16\n\t\tf'16\n\t}\n}"
+        )
 
 
 def test_measuretools_fuse_measures_04():
@@ -181,7 +190,10 @@ def test_measuretools_fuse_measures_04():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\t{\n\t\t\\time 5/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\tc'8. [\n\t\t\td'8 ]\n\t\t}\n\t}\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\t{\n\t\t\\time 5/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\tc'8. [\n\t\t\td'8 ]\n\t\t}\n\t}\n}"
+        )
 
 
 def test_measuretools_fuse_measures_05():
@@ -250,7 +262,10 @@ def test_measuretools_fuse_measures_07():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\t{\n\t\t\\time 3/8\n\t\tc'16 [\n\t\td'16\n\t\te'16\n\t\tf'16\n\t\tg'16\n\t\ta'16 ]\n\t}\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\t{\n\t\t\\time 3/8\n\t\tc'16 [\n\t\td'16\n\t\te'16\n\t\tf'16\n\t\tg'16\n\t\ta'16 ]\n\t}\n}"
+        )
 
 
 def test_measuretools_fuse_measures_08():
@@ -351,4 +366,7 @@ def test_measuretools_fuse_measures_09():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 19/80\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc'64\n\t\t\tc'64\n\t\t\tc'64\n\t\t\tc'64\n\t\t\tc'64\n\t\t\tc'64\n\t\t\tc'64\n\t\t\tc'64\n\t\t\tc'64\n\t\t\tc'16 ~\n\t\t\tc'64\n\t\t\tc'16 ~\n\t\t\tc'64\n\t\t}\n\t}\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\t{\n\t\t\\time 19/80\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc'64\n\t\t\tc'64\n\t\t\tc'64\n\t\t\tc'64\n\t\t\tc'64\n\t\t\tc'64\n\t\t\tc'64\n\t\t\tc'64\n\t\t\tc'64\n\t\t\tc'16 ~\n\t\t\tc'64\n\t\t\tc'16 ~\n\t\t\tc'64\n\t\t}\n\t}\n}"
+        )

@@ -24,7 +24,10 @@ def test_RhythmTreeNode___call___02():
     assert isinstance(result, (list, selectiontools.SliceSelection))
     assert len(result) == 1
     assert isinstance(result[0], tuplettools.FixedDurationTuplet)
-    assert result[0].lilypond_format == "\\times 4/5 {\n\tc'16\n\t\\times 2/3 {\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n\tc'8\n}"
+    assert testtools.compare(
+        result[0].lilypond_format,
+        "\\times 4/5 {\n\tc'16\n\t\\times 2/3 {\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n\tc'8\n}"
+        )
 
 
 def test_RhythmTreeNode___call___03():
@@ -33,4 +36,7 @@ def test_RhythmTreeNode___call___03():
     tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
     result = tree((1, 4))
 
-    assert result[0].lilypond_format == "\\times 4/5 {\n\tc'16\n\tc'32\n\tc'32\n\tc'32\n\tc'32\n\tc'8\n}"
+    assert testtools.compare(
+        result[0].lilypond_format,
+        "\\times 4/5 {\n\tc'16\n\tc'32\n\tc'32\n\tc'32\n\tc'32\n\tc'8\n}"
+        )

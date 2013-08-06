@@ -42,7 +42,10 @@ def test_measuretools_pad_measures_in_expr_with_skips_01():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 19/64\n\t\ts32\n\t\tc'8\n\t\td'8\n\t\ts64\n\t}\n\t{\n\t\ts32\n\t\tc'8\n\t\td'8\n\t\ts64\n\t}\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\t{\n\t\t\\time 19/64\n\t\ts32\n\t\tc'8\n\t\td'8\n\t\ts64\n\t}\n\t{\n\t\ts32\n\t\tc'8\n\t\td'8\n\t\ts64\n\t}\n}"
+        )
 
 
 def test_measuretools_pad_measures_in_expr_with_skips_02():
@@ -120,7 +123,10 @@ def test_measuretools_pad_measures_in_expr_with_skips_02():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Staff {\n\t<<\n\t\t\\time 19/64\n\t\t\\new Voice {\n\t\t\ts32\n\t\t\tc'8\n\t\t\td'8\n\t\t\ts64\n\t\t}\n\t\t\\new Voice {\n\t\t\ts32\n\t\t\te'8\n\t\t\tf'8\n\t\t\ts64\n\t\t}\n\t>>\n\t<<\n\t\t\\time 19/64\n\t\t\\new Voice {\n\t\t\ts32\n\t\t\tg'8\n\t\t\ta'8\n\t\t\ts64\n\t\t}\n\t\t\\new Voice {\n\t\t\ts32\n\t\t\tb'8\n\t\t\tc''8\n\t\t\ts64\n\t\t}\n\t>>\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\t<<\n\t\t\\time 19/64\n\t\t\\new Voice {\n\t\t\ts32\n\t\t\tc'8\n\t\t\td'8\n\t\t\ts64\n\t\t}\n\t\t\\new Voice {\n\t\t\ts32\n\t\t\te'8\n\t\t\tf'8\n\t\t\ts64\n\t\t}\n\t>>\n\t<<\n\t\t\\time 19/64\n\t\t\\new Voice {\n\t\t\ts32\n\t\t\tg'8\n\t\t\ta'8\n\t\t\ts64\n\t\t}\n\t\t\\new Voice {\n\t\t\ts32\n\t\t\tb'8\n\t\t\tc''8\n\t\t\ts64\n\t\t}\n\t>>\n}"
+        )
 
 
 def test_measuretools_pad_measures_in_expr_with_skips_03():
@@ -142,4 +148,7 @@ def test_measuretools_pad_measures_in_expr_with_skips_03():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "{\n\t\\time 19/64\n\ts32 [\n\tc'8\n\td'8\n\ts64 ]\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "{\n\t\\time 19/64\n\ts32 [\n\tc'8\n\td'8\n\ts64 ]\n}"
+        )

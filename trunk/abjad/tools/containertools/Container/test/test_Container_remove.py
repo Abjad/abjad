@@ -37,7 +37,10 @@ def test_Container_remove_01():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\tc'8 (\n\te'8\n\tf'8 )\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'8 (\n\te'8\n\tf'8 )\n}"
+        )
 
     "Note is now d'8 [ ]"
 
@@ -85,7 +88,10 @@ def test_Container_remove_02():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n}"
+        )
 
     r'''
     {
@@ -95,7 +101,10 @@ def test_Container_remove_02():
     '''
 
     assert select(sequential).is_well_formed()
-    assert sequential.lilypond_format == "{\n\tc'8\n\td'8\n}"
+    assert testtools.compare(
+        sequential.lilypond_format,
+        "{\n\tc'8\n\td'8\n}"
+        )
 
 
 def test_Container_remove_03():

@@ -27,7 +27,10 @@ def test_DuratedComplexBeamSpanner_span_01():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\t\\set stemLeftBeamCount = #0\n\t\\set stemRightBeamCount = #2\n\tc'16 [\n\t\\set stemLeftBeamCount = #2\n\t\\set stemRightBeamCount = #1\n\td'16\n\t\\set stemLeftBeamCount = #1\n\t\\set stemRightBeamCount = #2\n\te'16\n\t\\set stemLeftBeamCount = #2\n\t\\set stemRightBeamCount = #0\n\tf'16 ]\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\t\\set stemLeftBeamCount = #0\n\t\\set stemRightBeamCount = #2\n\tc'16 [\n\t\\set stemLeftBeamCount = #2\n\t\\set stemRightBeamCount = #1\n\td'16\n\t\\set stemLeftBeamCount = #1\n\t\\set stemRightBeamCount = #2\n\te'16\n\t\\set stemLeftBeamCount = #2\n\t\\set stemRightBeamCount = #0\n\tf'16 ]\n}"
+        )
 
 
 
@@ -56,4 +59,7 @@ def test_DuratedComplexBeamSpanner_span_02():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\t\\set stemLeftBeamCount = #0\n\t\\set stemRightBeamCount = #2\n\tc'16 [\n\t\\set stemLeftBeamCount = #2\n\t\\set stemRightBeamCount = #2\n\td'16\n\t\\set stemLeftBeamCount = #2\n\t\\set stemRightBeamCount = #2\n\te'16\n\t\\set stemLeftBeamCount = #2\n\t\\set stemRightBeamCount = #0\n\tf'16 ]\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\t\\set stemLeftBeamCount = #0\n\t\\set stemRightBeamCount = #2\n\tc'16 [\n\t\\set stemLeftBeamCount = #2\n\t\\set stemRightBeamCount = #2\n\td'16\n\t\\set stemLeftBeamCount = #2\n\t\\set stemRightBeamCount = #2\n\te'16\n\t\\set stemLeftBeamCount = #2\n\t\\set stemRightBeamCount = #0\n\tf'16 ]\n}"
+        )

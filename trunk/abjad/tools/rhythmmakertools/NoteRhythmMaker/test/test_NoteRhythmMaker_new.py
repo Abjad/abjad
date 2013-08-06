@@ -27,4 +27,7 @@ def test_NoteRhythmMaker_new_01():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\tc'16 ~\n\t\tc'4\n\t}\n\t{\n\t\t\\time 3/8\n\t\tc'4.\n\t}\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\tc'16 ~\n\t\tc'4\n\t}\n\t{\n\t\t\\time 3/8\n\t\tc'4.\n\t}\n}"
+        )

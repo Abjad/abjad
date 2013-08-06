@@ -15,4 +15,7 @@ def test_lilypondfiletools_HeaderBlock_01():
     }
     '''
 
-    assert header_block.lilypond_format == '\\header {\n\tcomposer = \\markup { Josquin }\n\ttitle = \\markup { Missa sexti tonus }\n}'
+    assert testtools.compare(
+        header_block.lilypond_format,
+        '\\header {\n\tcomposer = \\markup { Josquin }\n\ttitle = \\markup { Missa sexti tonus }\n}'
+        )

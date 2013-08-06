@@ -19,7 +19,10 @@ def test_ComponentSelection_attach_marks_01():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\tc'8 -\\marcato -\\staccato\n\td'8 -\\marcato -\\staccato\n\tr8\n\tf'8 -\\marcato -\\staccato\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tc'8 -\\marcato -\\staccato\n\td'8 -\\marcato -\\staccato\n\tr8\n\tf'8 -\\marcato -\\staccato\n}"
+        )
 
 
 def test_ComponentSelection_attach_marks_02():
@@ -44,4 +47,7 @@ def test_ComponentSelection_attach_marks_02():
         assert new_stem_tremolo == stem_tremolo
         assert new_stem_tremolo is not stem_tremolo
 
-    assert staff.lilypond_format == "\\new Staff {\n\tc'8 :16\n\td'8 :16\n\tr8\n\tf'8 :16\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tc'8 :16\n\td'8 :16\n\tr8\n\tf'8 :16\n}"
+        )

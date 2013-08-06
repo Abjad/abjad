@@ -20,4 +20,7 @@ def test_Chord___setitem___01():
     >4
     '''
 
-    assert chord.lilypond_format == "<\n\t\\tweak #'color #red\n\tef'\n\tcs''\n\tf''\n>4"
+    assert testtools.compare(
+        chord.lilypond_format,
+        "<\n\t\\tweak #'color #red\n\tef'\n\tcs''\n\tf''\n>4"
+        )

@@ -30,7 +30,10 @@ def test_FreeTupletSelection_fix_01():
 
     assert select(t).is_well_formed()
     assert t.multiplier.is_proper_tuplet_multiplier
-    assert t.lilypond_format == "\\times 2/3 {\n\tc'8\n\td'8\n\te'8\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\times 2/3 {\n\tc'8\n\td'8\n\te'8\n}"
+        )
 
 
 def test_FreeTupletSelection_fix_02():
@@ -62,7 +65,10 @@ def test_FreeTupletSelection_fix_02():
 
     assert select(t).is_well_formed()
     assert t.multiplier.is_proper_tuplet_multiplier
-    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 4/3 {\n\tc'16\n\td'16\n\te'16\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 4/3 {\n\tc'16\n\td'16\n\te'16\n}"
+        )
 
 
 def test_FreeTupletSelection_fix_03():
@@ -95,4 +101,7 @@ def test_FreeTupletSelection_fix_03():
 
     assert select(t).is_well_formed()
     assert t.multiplier.is_proper_tuplet_multiplier
-    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 5/6 {\n\tc'8\n\td'8\n\te'8\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 5/6 {\n\tc'8\n\td'8\n\te'8\n}"
+        )

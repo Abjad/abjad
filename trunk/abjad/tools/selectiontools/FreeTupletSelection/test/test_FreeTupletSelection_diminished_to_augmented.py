@@ -27,4 +27,7 @@ def test_FreeTupletSelection_diminished_to_augmented_01():
     '''
 
     assert select(tuplet).is_well_formed()
-    assert tuplet.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 4/3 {\n\tc'16\n\td'16\n\te'16\n}"
+    assert testtools.compare(
+        tuplet.lilypond_format,
+        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 4/3 {\n\tc'16\n\td'16\n\te'16\n}"
+        )

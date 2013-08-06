@@ -21,4 +21,7 @@ def test_leaftools_rest_leaf_at_offset_01():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Staff {\n\tc'8 (\n\td'32\n\tr16.\n\te'8\n\tf'8 )\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\tc'8 (\n\td'32\n\tr16.\n\te'8\n\tf'8 )\n}"
+        )

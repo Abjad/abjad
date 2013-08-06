@@ -35,7 +35,10 @@ def test_componenttools_remove_component_subtree_from_score_and_spanners_01():
 
     assert select(t).is_well_formed()
     assert select(sequential).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\tc'8 [ \\glissando\n\tf'8 ]\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'8 [ \\glissando\n\tf'8 ]\n}"
+        )
 
 
 def test_componenttools_remove_component_subtree_from_score_and_spanners_02():
@@ -74,4 +77,7 @@ def test_componenttools_remove_component_subtree_from_score_and_spanners_02():
 
     assert select(t).is_well_formed()
     assert select(leaf).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\tc'8 [ \\glissando\n\t{\n\t\te'8 \\glissando\n\t}\n\tf'8 ]\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'8 [ \\glissando\n\t{\n\t\te'8 \\glissando\n\t}\n\tf'8 ]\n}"
+        )

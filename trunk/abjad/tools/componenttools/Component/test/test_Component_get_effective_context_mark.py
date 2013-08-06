@@ -90,7 +90,10 @@ def test_Component_get_effective_context_mark_06():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == '\\new Staff {\n\t\\clef "treble"\n\tc\'8\n\tcs\'8\n\td\'8\n\tef\'8\n\t\\clef "treble"\n\te\'8\n\tf\'8\n\tfs\'8\n\tg\'8\n}'
+    assert testtools.compare(
+        t.lilypond_format,
+        '\\new Staff {\n\t\\clef "treble"\n\tc\'8\n\tcs\'8\n\td\'8\n\tef\'8\n\t\\clef "treble"\n\te\'8\n\tf\'8\n\tfs\'8\n\tg\'8\n}'
+        )
 
 
 def test_Component_get_effective_context_mark_07():
@@ -118,7 +121,10 @@ def test_Component_get_effective_context_mark_07():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == '\\new Staff {\n\t\\clef "treble_8"\n\tc\'8\n\tcs\'8\n\td\'8\n\tef\'8\n\t\\clef "treble"\n\te\'8\n\tf\'8\n\tfs\'8\n\tg\'8\n}'
+    assert testtools.compare(
+        t.lilypond_format,
+        '\\new Staff {\n\t\\clef "treble_8"\n\tc\'8\n\tcs\'8\n\td\'8\n\tef\'8\n\t\\clef "treble"\n\te\'8\n\tf\'8\n\tfs\'8\n\tg\'8\n}'
+        )
 
 
 def test_Component_get_effective_context_mark_08():
@@ -198,7 +204,10 @@ def test_Component_get_effective_context_mark_11():
 
     assert t.get_effective_context_mark(contexttools.KeySignatureMark) == contexttools.KeySignatureMark('c', 'major')
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Staff {\n\t\\key c \\major\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\t\\key c \\major\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        )
 
 
 def test_Component_get_effective_context_mark_12():
@@ -233,7 +242,10 @@ def test_Component_get_effective_context_mark_13():
     assert t[1].get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 38)
     assert t[2].get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 42)
     assert t[3].get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 42)
-    assert t.lilypond_format == "\\new Staff {\n\t\\tempo 8=38\n\tc'8\n\td'8\n\t\\tempo 8=42\n\te'8\n\tf'8\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\t\\tempo 8=38\n\tc'8\n\td'8\n\t\\tempo 8=42\n\te'8\n\tf'8\n}"
+        )
 
 
 
@@ -251,7 +263,10 @@ def test_Component_get_effective_context_mark_14():
     }
     '''
 
-    assert t.lilypond_format == "\\new Staff {\n\t\\tempo 8=38\n\t<d' ef' e'>4\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\t\\tempo 8=38\n\t<d' ef' e'>4\n}"
+        )
 
 
 def test_Component_get_effective_context_mark_15():
@@ -268,7 +283,10 @@ def test_Component_get_effective_context_mark_15():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t\\tempo 8=38\n\tc'4\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t\\tempo 8=38\n\tc'4\n}"
+        )
 
 
 def test_Component_get_effective_context_mark_16():
@@ -286,7 +304,10 @@ def test_Component_get_effective_context_mark_16():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\tc'4\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tc'4\n}"
+        )
 
 
 def test_Component_get_effective_context_mark_17():

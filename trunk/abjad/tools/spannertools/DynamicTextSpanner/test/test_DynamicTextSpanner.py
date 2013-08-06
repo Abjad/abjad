@@ -19,7 +19,10 @@ def test_DynamicTextSpanner_01():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\tc'8 [ \\f\n\td'8\n\te'8 \\p\n\tf'8 ]\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'8 [ \\f\n\td'8\n\te'8 \\p\n\tf'8 ]\n}"
+        )
     #assert t[0].dynamics.effective == 'f'
     #assert t[1].dynamics.effective == 'f'
     #assert t[2].dynamics.effective == 'p'

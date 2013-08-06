@@ -31,7 +31,10 @@ def test_leaftools_set_preprolated_leaf_duration_01():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8 ~\n\td'32 ]\n\te'8\n\tf'8\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'8 [\n\td'8 ~\n\td'32 ]\n\te'8\n\tf'8\n}"
+        )
 
 
 def test_leaftools_set_preprolated_leaf_duration_02():
@@ -97,7 +100,10 @@ def test_leaftools_set_preprolated_leaf_duration_03():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8. ]\n\te'8\n\tf'8\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'8 [\n\td'8. ]\n\te'8\n\tf'8\n}"
+        )
 
 
 def test_leaftools_set_preprolated_leaf_duration_04():
@@ -132,7 +138,10 @@ def test_leaftools_set_preprolated_leaf_duration_04():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'8 ~\n\t\td'32 ]\n\t}\n\te'8\n\tf'8\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'8 ~\n\t\td'32 ]\n\t}\n\te'8\n\tf'8\n}"
+        )
 
 
 def test_leaftools_set_preprolated_leaf_duration_05():
@@ -166,7 +175,10 @@ def test_leaftools_set_preprolated_leaf_duration_05():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'8 ]\n\t}\n\te'8\n\tf'8\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'8 ]\n\t}\n\te'8\n\tf'8\n}"
+        )
 
 
 def test_leaftools_set_preprolated_leaf_duration_06():

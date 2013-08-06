@@ -26,5 +26,11 @@ def test_Chord___deepcopy___01():
     assert chord_1[1] is not chord_2[1]
     assert chord_1[2] is not chord_2[2]
 
-    assert chord_1.lilypond_format == "<\n\t\\tweak #'color #red\n\tc'\n\te'\n\tg'\n>4"
-    assert chord_2.lilypond_format == "<\n\t\\tweak #'color #red\n\tc'\n\te'\n\tg'\n>4"
+    assert testtools.compare(
+        chord_1.lilypond_format,
+        "<\n\t\\tweak #'color #red\n\tc'\n\te'\n\tg'\n>4"
+        )
+    assert testtools.compare(
+        chord_2.lilypond_format,
+        "<\n\t\\tweak #'color #red\n\tc'\n\te'\n\tg'\n>4"
+        )

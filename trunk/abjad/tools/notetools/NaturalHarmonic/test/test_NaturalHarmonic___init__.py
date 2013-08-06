@@ -20,4 +20,7 @@ def test_NaturalHarmonic___init___01():
     }
     '''
 
-    assert t.lilypond_format == "\\new Staff {\n\tc'8\n\t\\once \\override NoteHead #'style = #'harmonic\n\td'8\n\te'8\n\tf'8\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\tc'8\n\t\\once \\override NoteHead #'style = #'harmonic\n\td'8\n\te'8\n\tf'8\n}"
+        )

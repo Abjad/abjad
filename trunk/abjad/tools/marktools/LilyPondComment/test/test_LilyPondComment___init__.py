@@ -21,7 +21,10 @@ def test_LilyPondComment___init___01():
     '''
 
     assert select(staff).is_well_formed()
-    assert staff.lilypond_format == "\\new Staff {\n\t% beginning of note content\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t% beginning of note content\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
+        )
 
 
 def test_LilyPondComment___init___02():

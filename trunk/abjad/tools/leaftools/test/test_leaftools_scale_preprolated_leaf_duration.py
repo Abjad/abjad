@@ -32,7 +32,10 @@ def test_leaftools_scale_preprolated_leaf_duration_03():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\tc'8 [\n\td'8 ~\n\td'32\n\te'8\n\tf'8 ]\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tc'8 [\n\td'8 ~\n\td'32\n\te'8\n\tf'8 ]\n}"
+        )
 
 
 def test_leaftools_scale_preprolated_leaf_duration_04():
@@ -52,4 +55,7 @@ def test_leaftools_scale_preprolated_leaf_duration_04():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'8\n\t}\n\te'8\n\tf'8 ]\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'8\n\t}\n\te'8\n\tf'8 ]\n}"
+        )

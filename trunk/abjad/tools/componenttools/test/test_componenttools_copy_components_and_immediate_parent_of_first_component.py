@@ -18,7 +18,10 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
 
     assert select(t).is_well_formed()
     assert select(u).is_well_formed()
-    assert u.lilypond_format == "\\new Staff {\n\tc'8\n\td'8\n}"
+    assert testtools.compare(
+        u.lilypond_format,
+        "\\new Staff {\n\tc'8\n\td'8\n}"
+        )
 
 
 def test_componenttools_copy_components_and_immediate_parent_of_first_component_02():
@@ -37,7 +40,10 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
 
     assert select(t).is_well_formed()
     assert select(u).is_well_formed()
-    assert u.lilypond_format == "\\new Staff {\n\te'8\n\tf'8\n}"
+    assert testtools.compare(
+        u.lilypond_format,
+        "\\new Staff {\n\te'8\n\tf'8\n}"
+        )
 
 
 
@@ -60,7 +66,10 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
     assert u.target_duration == Duration(3, 10)
     assert len(u) == 3
 
-    assert u.lilypond_format == "\\times 4/5 {\n\tc'8\n\td'8\n\te'8\n}"
+    assert testtools.compare(
+        u.lilypond_format,
+        "\\times 4/5 {\n\tc'8\n\td'8\n\te'8\n}"
+        )
 
 
 def test_componenttools_copy_components_and_immediate_parent_of_first_component_04():
@@ -88,7 +97,10 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
 
     assert select(t).is_well_formed()
     assert select(u).is_well_formed()
-    assert u.lilypond_format == "\\new Staff {\n\t\\times 2/3 {\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t}\n\t\\times 2/3 {\n\t\tb'8\n\t\tc''8\n\t\td''8\n\t}\n}"
+    assert testtools.compare(
+        u.lilypond_format,
+        "\\new Staff {\n\t\\times 2/3 {\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t}\n\t\\times 2/3 {\n\t\tb'8\n\t\tc''8\n\t\td''8\n\t}\n}"
+        )
 
 
 def test_componenttools_copy_components_and_immediate_parent_of_first_component_05():

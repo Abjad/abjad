@@ -23,7 +23,10 @@ def test_Staff_time_signature_01():
     }
     '''
 
-    assert t.lilypond_format == "\\new Staff {\n\t\\time 2/4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\t\\time 2/4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
+        )
 
 
 def test_Staff_time_signature_02():
@@ -39,7 +42,10 @@ def test_Staff_time_signature_02():
     }
     '''
 
-    assert t.lilypond_format == '\\new Staff {\n\t\\time 2/4\n}'
+    assert testtools.compare(
+        t.lilypond_format,
+        '\\new Staff {\n\t\\time 2/4\n}'
+        )
 
 
 def test_Staff_time_signature_03():

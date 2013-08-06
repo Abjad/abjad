@@ -40,7 +40,10 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_01():
 
     assert select(t).is_well_formed()
     assert select(new).is_well_formed()
-    assert new.lilypond_format == "\\new Voice {\n\te'8 \\startTrillSpan\n\tf'8 \\stopTrillSpan\n}"
+    assert testtools.compare(
+        new.lilypond_format,
+        "\\new Voice {\n\te'8 \\startTrillSpan\n\tf'8 \\stopTrillSpan\n}"
+        )
 
 
 def test_componenttools_copy_components_and_fracture_crossing_spanners_02():
@@ -88,7 +91,10 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_02():
 
     assert select(t).is_well_formed()
     assert select(new).is_well_formed()
-    assert new.lilypond_format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\te'8 [ ( \\startTrillSpan\n\t\tf'8 ] ) \\stopTrillSpan\n\t}\n}"
+    assert testtools.compare(
+        new.lilypond_format,
+        "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\te'8 [ ( \\startTrillSpan\n\t\tf'8 ] ) \\stopTrillSpan\n\t}\n}"
+        )
 
 
 def test_componenttools_copy_components_and_fracture_crossing_spanners_03():
@@ -134,7 +140,10 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_03():
 
     assert select(t).is_well_formed()
     assert select(new).is_well_formed()
-    assert new.lilypond_format == "\\new Voice {\n\tf'8 \\startTrillSpan\n\tg'8 [\n\ta'8 ] \\stopTrillSpan\n}"
+    assert testtools.compare(
+        new.lilypond_format,
+        "\\new Voice {\n\tf'8 \\startTrillSpan\n\tg'8 [\n\ta'8 ] \\stopTrillSpan\n}"
+        )
 
 
 def test_componenttools_copy_components_and_fracture_crossing_spanners_04():
@@ -193,4 +202,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_04():
     '''
 
     assert select(t).is_well_formed()
-    assert new.lilypond_format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\te'8 [ ( \\startTrillSpan\n\t\tf'8 ] ) \\stopTrillSpan\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [ ( \\startTrillSpan\n\t\tf'8 ] ) \\stopTrillSpan\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [ ( \\startTrillSpan\n\t\tf'8 ] ) \\stopTrillSpan\n\t}\n}"
+    assert testtools.compare(
+        new.lilypond_format,
+        "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\te'8 [ ( \\startTrillSpan\n\t\tf'8 ] ) \\stopTrillSpan\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [ ( \\startTrillSpan\n\t\tf'8 ] ) \\stopTrillSpan\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [ ( \\startTrillSpan\n\t\tf'8 ] ) \\stopTrillSpan\n\t}\n}"
+        )

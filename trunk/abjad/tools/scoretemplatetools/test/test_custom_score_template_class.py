@@ -36,7 +36,10 @@ def test_custom_score_template_class_01():
     >>
     '''
 
-    assert score.lilypond_format == '\\context Score = "Green Score" <<\n\t\\context Staff = "Red Staff" {\n\t\t\\context Voice = "Blue Voice" {\n\t\t}\n\t}\n>>'
+    assert testtools.compare(
+        score.lilypond_format,
+        '\\context Score = "Green Score" <<\n\t\\context Staff = "Red Staff" {\n\t\t\\context Voice = "Blue Voice" {\n\t\t}\n\t}\n>>'
+        )
 
 
 def test_custom_score_template_class_02():
@@ -74,7 +77,10 @@ def test_custom_score_template_class_02():
     >>
     '''
 
-    assert score.lilypond_format == '\\new Score <<\n\t\\new CustomStaff {\n\t\t\\new CustomVoice {\n\t\t}\n\t}\n>>'
+    assert testtools.compare(
+        score.lilypond_format,
+        '\\new Score <<\n\t\\new CustomStaff {\n\t\t\\new CustomVoice {\n\t\t}\n\t}\n>>'
+        )
 
     # here's how to properly override with externalized layout
 
@@ -130,7 +136,10 @@ def test_custom_score_template_class_02():
     }
     '''
 
-    assert lilypond_file.layout_block.lilypond_format == "\\layout {\n\t\\context {\n\t\t\\Voice\n\t\t\\name CustomVoice\n\t\t\\type Engraver_group\n\t\t\\alias Voice\n\t\t\\override NoteHead #'color = #green\n\t\t\\override Stem #'color = #green\n\t}\n\t\\context {\n\t\t\\Staff\n\t\t\\name CustomStaff\n\t\t\\type Engraver_group\n\t\t\\alias Staff\n\t\t\\accepts CustomVoice\n\t\t\\override StaffSymbol #'color = #red\n\t}\n\t\\context {\n\t\t\\Score\n\t\t\\accepts CustomStaff\n\t}\n}"
+    assert testtools.compare(
+        lilypond_file.layout_block.lilypond_format,
+        "\\layout {\n\t\\context {\n\t\t\\Voice\n\t\t\\name CustomVoice\n\t\t\\type Engraver_group\n\t\t\\alias Voice\n\t\t\\override NoteHead #'color = #green\n\t\t\\override Stem #'color = #green\n\t}\n\t\\context {\n\t\t\\Staff\n\t\t\\name CustomStaff\n\t\t\\type Engraver_group\n\t\t\\alias Staff\n\t\t\\accepts CustomVoice\n\t\t\\override StaffSymbol #'color = #red\n\t}\n\t\\context {\n\t\t\\Score\n\t\t\\accepts CustomStaff\n\t}\n}"
+        )
 
     r'''
     \score {
@@ -147,4 +156,7 @@ def test_custom_score_template_class_02():
     }
     '''
 
-    assert lilypond_file.score_block.lilypond_format == "\\score {\n\t\\new Score <<\n\t\t\\new CustomStaff {\n\t\t\t\\new CustomVoice {\n\t\t\t\tc'4 (\n\t\t\t\td'4\n\t\t\t\te'4\n\t\t\t\tf'4 )\n\t\t\t}\n\t\t}\n\t>>\n}"
+    assert testtools.compare(
+        lilypond_file.score_block.lilypond_format,
+        "\\score {\n\t\\new Score <<\n\t\t\\new CustomStaff {\n\t\t\t\\new CustomVoice {\n\t\t\t\tc'4 (\n\t\t\t\td'4\n\t\t\t\te'4\n\t\t\t\tf'4 )\n\t\t\t}\n\t\t}\n\t>>\n}"
+        )

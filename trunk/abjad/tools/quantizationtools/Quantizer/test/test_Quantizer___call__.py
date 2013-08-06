@@ -47,7 +47,10 @@ def test_Quantizer___call___01():
     >>
     '''
 
-    assert score.lilypond_format == "\\new Score <<\n\t\\new Staff {\n\t\t\\new Voice {\n\t\t\t{\n\t\t\t\t\\time 4/4\n\t\t\t\t\\tempo 4=60\n\t\t\t\tc'4 ~\n\t\t\t\tc'8\n\t\t\t\tr8 ~\n\t\t\t\tr8\n\t\t\t\tc'8 ~\n\t\t\t\tc'8\n\t\t\t\tc'8 ~\n\t\t\t}\n\t\t\t{\n\t\t\t\tc'8\n\t\t\t\tr8 ~\n\t\t\t\tr8\n\t\t\t\tc'8 ~\n\t\t\t\tc'8\n\t\t\t\tr8 ~\n\t\t\t\tr8\n\t\t\t\tc'8\n\t\t\t}\n\t\t}\n\t}\n>>"
+    assert testtools.compare(
+        score.lilypond_format,
+        "\\new Score <<\n\t\\new Staff {\n\t\t\\new Voice {\n\t\t\t{\n\t\t\t\t\\time 4/4\n\t\t\t\t\\tempo 4=60\n\t\t\t\tc'4 ~\n\t\t\t\tc'8\n\t\t\t\tr8 ~\n\t\t\t\tr8\n\t\t\t\tc'8 ~\n\t\t\t\tc'8\n\t\t\t\tc'8 ~\n\t\t\t}\n\t\t\t{\n\t\t\t\tc'8\n\t\t\t\tr8 ~\n\t\t\t\tr8\n\t\t\t\tc'8 ~\n\t\t\t\tc'8\n\t\t\t\tr8 ~\n\t\t\t\tr8\n\t\t\t\tc'8\n\t\t\t}\n\t\t}\n\t}\n>>"
+        )
 
 
 def test_Quantizer___call___02():
@@ -80,7 +83,10 @@ def test_Quantizer___call___02():
     }
     '''
 
-    assert result.lilypond_format == "\\new Voice {\n\t{\n\t\t\\time 4/4\n\t\t%%% \\tempo 4=60 %%%\n\t\tc'16\n\t\tc'16 ~\n\t\tc'8 ~\n\t\tc'16\n\t\tc'16 ~\n\t\tc'8 ~\n\t\tc'16\n\t\tc'16 ~\n\t\tc'8 ~\n\t\tc'16\n\t\tc'16 ~\n\t\tc'8\n\t}\n}"
+    assert testtools.compare(
+        result.lilypond_format,
+        "\\new Voice {\n\t{\n\t\t\\time 4/4\n\t\t%%% \\tempo 4=60 %%%\n\t\tc'16\n\t\tc'16 ~\n\t\tc'8 ~\n\t\tc'16\n\t\tc'16 ~\n\t\tc'8 ~\n\t\tc'16\n\t\tc'16 ~\n\t\tc'8 ~\n\t\tc'16\n\t\tc'16 ~\n\t\tc'8\n\t}\n}"
+        )
 
 
 def test_Quantizer___call___03():
@@ -136,4 +142,7 @@ def test_Quantizer___call___03():
     }
     '''
 
-    assert result.lilypond_format == "\\new Voice {\n\t\\grace {\n\t\tc'16\n\t}\n\t%%% \\tempo 4=60 %%%\n\tc'8\n\t\\grace {\n\t\tc'16\n\t}\n\tc'8\n\t\\times 2/3 {\n\t\tc'8\n\t\t\\grace {\n\t\t\tc'16\n\t\t}\n\t\tc'8\n\t\tc'8\n\t}\n\t\\times 4/5 {\n\t\tc'16\n\t\tc'16\n\t\tc'16 ~\n\t\tc'16\n\t\tc'16\n\t}\n\t\\times 4/7 {\n\t\tc'16 ~\n\t\tc'16\n\t\tc'16\n\t\tc'16 ~\n\t\tc'16\n\t\tc'16 ~\n\t\tc'16\n\t}\n}"
+    assert testtools.compare(
+        result.lilypond_format,
+        "\\new Voice {\n\t\\grace {\n\t\tc'16\n\t}\n\t%%% \\tempo 4=60 %%%\n\tc'8\n\t\\grace {\n\t\tc'16\n\t}\n\tc'8\n\t\\times 2/3 {\n\t\tc'8\n\t\t\\grace {\n\t\t\tc'16\n\t\t}\n\t\tc'8\n\t\tc'8\n\t}\n\t\\times 4/5 {\n\t\tc'16\n\t\tc'16\n\t\tc'16 ~\n\t\tc'16\n\t\tc'16\n\t}\n\t\\times 4/7 {\n\t\tc'16 ~\n\t\tc'16\n\t\tc'16\n\t\tc'16 ~\n\t\tc'16\n\t\tc'16 ~\n\t\tc'16\n\t}\n}"
+        )

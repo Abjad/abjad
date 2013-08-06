@@ -17,7 +17,10 @@ def test_PaperBlock_01():
     }
     '''
 
-    assert paper_block.lilypond_format == "\\paper {\n\tleft-margin = #15\n\tmarkup-system-spacing #'basic-distance = #8\n\ttop-margin = #15\n}"
+    assert testtools.compare(
+        paper_block.lilypond_format,
+        "\\paper {\n\tleft-margin = #15\n\tmarkup-system-spacing #'basic-distance = #8\n\ttop-margin = #15\n}"
+        )
 
 
 def test_PaperBlock_02():
@@ -33,7 +36,10 @@ def test_PaperBlock_02():
     }
     '''
 
-    assert paper_block.lilypond_format == "\\paper {\n\tsystem-system-spacing = #'((basic-distance . 0) (minimum-distance . 0) (padding . 12) (stretchability . 0))\n}"
+    assert testtools.compare(
+        paper_block.lilypond_format,
+        "\\paper {\n\tsystem-system-spacing = #'((basic-distance . 0) (minimum-distance . 0) (padding . 12) (stretchability . 0))\n}"
+        )
 
 
 def test_PaperBlock_03():
@@ -55,4 +61,7 @@ def test_PaperBlock_03():
     }
     '''
 
-    assert paper_block.lilypond_format == '\\paper {\n\t#(define fonts (make-pango-font-tree "Baskerville" "Baskerville" "Baskerville" (/ 14 20)))\n}'
+    assert testtools.compare(
+        paper_block.lilypond_format,
+        '\\paper {\n\t#(define fonts (make-pango-font-tree "Baskerville" "Baskerville" "Baskerville" (/ 14 20)))\n}'
+        )

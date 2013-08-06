@@ -19,7 +19,10 @@ def test_Chord_divide_01():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t<d' ef' e'>4\n\t<d' ef' e'>4\n\tr4\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t<d' ef' e'>4\n\t<d' ef' e'>4\n\tr4\n}"
+        )
     assert select(staff).is_well_formed()
 
 
@@ -41,7 +44,10 @@ def test_Chord_divide_02():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t<d' ef' e'>4\n\t<ef' e'>4\n\td'4\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t<d' ef' e'>4\n\t<ef' e'>4\n\td'4\n}"
+        )
     assert select(staff).is_well_formed()
 
 
@@ -62,5 +68,8 @@ def test_Chord_divide_03():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t<d' ef' e'>4\n\te'4\n\t<d' ef'>4\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t<d' ef' e'>4\n\te'4\n\t<d' ef'>4\n}"
+        )
     assert select(staff).is_well_formed()

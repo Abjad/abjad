@@ -19,7 +19,10 @@ def test_FreeTupletSelection_set_denominator_to_at_least_01():
     }
     '''
 
-    assert tuplet.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 6/10 {\n\tc'4\n\td'8\n\te'8\n\tf'4\n\tg'2\n}"
+    assert testtools.compare(
+        tuplet.lilypond_format,
+        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 6/10 {\n\tc'4\n\td'8\n\te'8\n\tf'4\n\tg'2\n}"
+        )
 
 
 def test_FreeTupletSelection_set_denominator_to_at_least_02():
@@ -39,7 +42,10 @@ def test_FreeTupletSelection_set_denominator_to_at_least_02():
     }
     '''
 
-    assert tuplet.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 12/20 {\n\tc'4\n\td'8\n\te'8\n\tf'4\n\tg'2\n}"
+    assert testtools.compare(
+        tuplet.lilypond_format,
+        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 12/20 {\n\tc'4\n\td'8\n\te'8\n\tf'4\n\tg'2\n}"
+        )
 
 
 def test_FreeTupletSelection_set_denominator_to_at_least_03():
@@ -59,4 +65,7 @@ def test_FreeTupletSelection_set_denominator_to_at_least_03():
     }
     '''
 
-    assert tuplet.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/5 {\n\tc'4\n\td'8\n\te'8\n\tf'4\n\tg'2\n}"
+    assert testtools.compare(
+        tuplet.lilypond_format,
+        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/5 {\n\tc'4\n\td'8\n\te'8\n\tf'4\n\tg'2\n}"
+        )

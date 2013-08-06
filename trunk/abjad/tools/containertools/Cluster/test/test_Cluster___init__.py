@@ -8,7 +8,10 @@ def test_Cluster___init___01():
     t = containertools.Cluster([])
     assert not t.is_parallel
     assert len(t) == 0
-    assert t.lilypond_format == '\\makeClusters {\n}'
+    assert testtools.compare(
+        t.lilypond_format,
+        '\\makeClusters {\n}'
+        )
 
 
 def test_Cluster___init___02():
@@ -16,4 +19,7 @@ def test_Cluster___init___02():
     assert isinstance(t, containertools.Cluster)
     assert not t.is_parallel
     assert len(t) == 4
-    assert t.lilypond_format == "\\makeClusters {\n\tcs'4\n\tcs'4\n\tcs'4\n\tcs'4\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\makeClusters {\n\tcs'4\n\tcs'4\n\tcs'4\n\tcs'4\n}"
+        )

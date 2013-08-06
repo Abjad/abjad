@@ -50,7 +50,10 @@ def test_DivisionIncisedRestRhythmMaker___call___01():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr16.\n\t\tc'32\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tr4\n\t\tr16.\n\t\tc'32\n\t}\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr16.\n\t\tc'32\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tr4\n\t\tr16.\n\t\tc'32\n\t}\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr16.\n\t\tc'32\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tr4\n\t\tr16.\n\t\tc'32\n\t}\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr16.\n\t\tc'32\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tr4\n\t\tr16.\n\t\tc'32\n\t}\n}"
+        )
 
 
 # TODO: change all calls to explicit keyword calls
@@ -101,7 +104,10 @@ def test_DivisionIncisedRestRhythmMaker___call___02():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tr4\n\t\tr16.\n\t\tc'32\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tc'4\n\t\tr16.\n\t\tc'32\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tc'4\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tc'4\n\t\tc'8\n\t}\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tr4\n\t\tr16.\n\t\tc'32\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tc'4\n\t\tr16.\n\t\tc'32\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tc'4\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tc'4\n\t\tc'8\n\t}\n}"
+        )
 
 
 # TODO: change all calls to explicit keyword calls
@@ -147,7 +153,10 @@ def test_DivisionIncisedRestRhythmMaker___call___03():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tc'32\n\t\tr4\n\t\tr16.\n\t\tc'4\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'32\n\t\tr16.\n\t\tc'4\n\t\tc'4\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'32\n\t\tc'4\n\t\tc'4\n\t\tc'16.\n\t}\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tc'32\n\t\tr4\n\t\tr16.\n\t\tc'4\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'32\n\t\tr16.\n\t\tc'4\n\t\tc'4\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'32\n\t\tc'4\n\t\tc'4\n\t\tc'16.\n\t}\n}"
+        )
 
 
 # TODO: change all calls to explicit keyword calls
@@ -187,7 +196,10 @@ def test_DivisionIncisedRestRhythmMaker___call___04():
     }
     '''
 
-    assert staff.lilypond_format == '\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr8\n\t}\n}'
+    assert testtools.compare(
+        staff.lilypond_format,
+        '\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr8\n\t}\n}'
+        )
 
 
 # TODO: change all calls to explicit keyword calls
@@ -239,7 +251,10 @@ def test_DivisionIncisedRestRhythmMaker___call___05():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 4/8\n\t\t\\times 4/5 {\n\t\t\tc'8\n\t\t\tr4.\n\t\t\tc'8\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tc'8\n\t\t\tr4\n\t\t\tc'8\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t\\times 4/7 {\n\t\t\tc'8\n\t\t\tr2\n\t\t\tr8\n\t\t\tc'8\n\t\t}\n\t}\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\t\\time 4/8\n\t\t\\times 4/5 {\n\t\t\tc'8\n\t\t\tr4.\n\t\t\tc'8\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tc'8\n\t\t\tr4\n\t\t\tc'8\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t\\times 4/7 {\n\t\t\tc'8\n\t\t\tr2\n\t\t\tr8\n\t\t\tc'8\n\t\t}\n\t}\n}"
+        )
 
 
 def test_DivisionIncisedRestRhythmMaker___call___06():
@@ -302,4 +317,7 @@ def test_DivisionIncisedRestRhythmMaker___call___06():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 4/8\n\t\t\\times 8/9 {\n\t\t\tc'32\n\t\t\tr2\n\t\t\tr32\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tc'32\n\t\t\tr16.\n\t\t}\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 6/7 {\n\t\t\tc'32\n\t\t\tr4.\n\t\t\tr32\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tc'32\n\t\t\tr8..\n\t\t}\n\t\t\\times 4/5 {\n\t\t\tc'32\n\t\t\tr4\n\t\t\tr32\n\t\t}\n\t}\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\t{\n\t\t\\time 4/8\n\t\t\\times 8/9 {\n\t\t\tc'32\n\t\t\tr2\n\t\t\tr32\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tc'32\n\t\t\tr16.\n\t\t}\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 6/7 {\n\t\t\tc'32\n\t\t\tr4.\n\t\t\tr32\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tc'32\n\t\t\tr8..\n\t\t}\n\t\t\\times 4/5 {\n\t\t\tc'32\n\t\t\tr4\n\t\t\tr32\n\t\t}\n\t}\n}"
+        )

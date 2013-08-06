@@ -16,4 +16,7 @@ def test_HairpinSpanner_direction_01():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\tc'8 _ \\< _ \\p\n\td'8\n\te'8\n\tf'8 _ \\f\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tc'8 _ \\< _ \\p\n\td'8\n\te'8\n\tf'8 _ \\f\n}"
+        )

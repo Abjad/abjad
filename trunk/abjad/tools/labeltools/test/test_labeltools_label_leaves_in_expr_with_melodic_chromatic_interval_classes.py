@@ -23,4 +23,7 @@ def test_labeltools_label_leaves_in_expr_with_melodic_chromatic_interval_classes
     }
     """
 
-    assert staff.lilypond_format == "\\new Staff {\n\tc'8 ^ \\markup { +1 }\n\tcs'''8 ^ \\markup { -2 }\n\tb'8 ^ \\markup { -2 }\n\taf8 ^ \\markup { -10 }\n\tbf,8 ^ \\markup { +1 }\n\tb,8 ^ \\markup { +10 }\n\ta'8 ^ \\markup { +1 }\n\tbf'8 ^ \\markup { -4 }\n\tfs'8 ^ \\markup { -1 }\n\tf'8\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tc'8 ^ \\markup { +1 }\n\tcs'''8 ^ \\markup { -2 }\n\tb'8 ^ \\markup { -2 }\n\taf8 ^ \\markup { -10 }\n\tbf,8 ^ \\markup { +1 }\n\tb,8 ^ \\markup { +10 }\n\ta'8 ^ \\markup { +1 }\n\tbf'8 ^ \\markup { -4 }\n\tfs'8 ^ \\markup { -1 }\n\tf'8\n}"
+        )

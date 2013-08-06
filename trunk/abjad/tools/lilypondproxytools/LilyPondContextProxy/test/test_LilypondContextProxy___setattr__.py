@@ -23,7 +23,10 @@ def test_LilypondContextProxy___setattr___01():
     >>
     '''
 
-    assert score.lilypond_format == "\\new Score \\with {\n\ttempoWholesPerMinute = #(ly:make-moment 24 1)\n} <<\n\t\\new Staff {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n>>"
+    assert testtools.compare(
+        score.lilypond_format,
+        "\\new Score \\with {\n\ttempoWholesPerMinute = #(ly:make-moment 24 1)\n} <<\n\t\\new Staff {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n>>"
+        )
 
 
 def test_LilypondContextProxy___setattr___02():
@@ -46,4 +49,7 @@ def test_LilypondContextProxy___setattr___02():
     >>
     '''
 
-    assert score.lilypond_format == "\\new Score <<\n\t\\new Staff {\n\t\tc'8\n\t\t\\set Score.tempoWholesPerMinute = #(ly:make-moment 24 1)\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n>>"
+    assert testtools.compare(
+        score.lilypond_format,
+        "\\new Score <<\n\t\\new Staff {\n\t\tc'8\n\t\t\\set Score.tempoWholesPerMinute = #(ly:make-moment 24 1)\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n>>"
+        )

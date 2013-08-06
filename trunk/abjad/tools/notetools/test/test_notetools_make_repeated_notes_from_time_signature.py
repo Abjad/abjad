@@ -10,7 +10,10 @@ def test_notetools_make_repeated_notes_from_time_signature_01():
     staff = Staff(notes)
 
     assert select(staff).is_well_formed()
-    assert staff.lilypond_format == "\\new Staff {\n\td''32\n\td''32\n\td''32\n\td''32\n\td''32\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\td''32\n\td''32\n\td''32\n\td''32\n\td''32\n}"
+        )
 
 
 def test_notetools_make_repeated_notes_from_time_signature_02():
@@ -22,4 +25,7 @@ def test_notetools_make_repeated_notes_from_time_signature_02():
     staff = Staff(notes)
 
     assert select(staff).is_well_formed()
-    assert staff.lilypond_format == "\\new Staff {\n\td''32\n\td''32\n\td''32\n\td''32\n\td''32\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\td''32\n\td''32\n\td''32\n\td''32\n\td''32\n}"
+        )

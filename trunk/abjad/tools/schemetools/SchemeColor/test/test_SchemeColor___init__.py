@@ -14,7 +14,10 @@ def test_SchemeColor___init___01():
     c'4
     '''
 
-    assert t.lilypond_format == "\\once \\override NoteHead #'color = #(x11-color 'ForestGreen)\nc'4"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\once \\override NoteHead #'color = #(x11-color 'ForestGreen)\nc'4"
+        )
 
 
 def test_SchemeColor___init___02():
@@ -29,4 +32,7 @@ def test_SchemeColor___init___02():
     c'4
     '''
 
-    assert t.lilypond_format == "\\once \\override NoteHead #'color = #grey\nc'4"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\once \\override NoteHead #'color = #grey\nc'4"
+        )

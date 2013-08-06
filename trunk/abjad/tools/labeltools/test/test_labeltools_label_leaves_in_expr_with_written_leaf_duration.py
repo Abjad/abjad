@@ -28,4 +28,7 @@ def test_labeltools_label_leaves_in_expr_with_written_leaf_duration_01():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\times 2/3 {\n\tc'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t1/8\n\t\t\t}\n\td'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t1/8\n\t\t\t}\n\te'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t1/8\n\t\t\t}\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\times 2/3 {\n\tc'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t1/8\n\t\t\t}\n\td'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t1/8\n\t\t\t}\n\te'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t1/8\n\t\t\t}\n}"
+        )

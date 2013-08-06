@@ -15,7 +15,10 @@ def test_SliceSelection_replace_with_rests_01():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\tr2\n\tr8\n\ta'8\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tr2\n\tr8\n\ta'8\n}"
+        )
 
 
 def test_SliceSelection_replace_with_rests_02():
@@ -31,7 +34,10 @@ def test_SliceSelection_replace_with_rests_02():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\tc'8\n\tr2\n\tr8\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tc'8\n\tr2\n\tr8\n}"
+        )
 
 
 def test_SliceSelection_replace_with_rests_03():
@@ -47,7 +53,10 @@ def test_SliceSelection_replace_with_rests_03():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\tr8\n\tr2\n\ta'8\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tr8\n\tr2\n\ta'8\n}"
+        )
 
 
 def test_SliceSelection_replace_with_rests_04():
@@ -63,4 +72,7 @@ def test_SliceSelection_replace_with_rests_04():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\tc'8\n\tr8\n\tr2\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tc'8\n\tr8\n\tr2\n}"
+        )

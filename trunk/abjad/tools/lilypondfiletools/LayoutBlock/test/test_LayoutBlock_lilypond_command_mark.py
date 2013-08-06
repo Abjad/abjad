@@ -9,4 +9,7 @@ def test_LayoutBlock_lilypond_command_mark_01():
     lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
     lilypond_file.layout_block.append(marktools.LilyPondCommandMark('accidentalStyle forget'))
 
-    assert lilypond_file.layout_block.lilypond_format == '\\layout {\n\t\\accidentalStyle forget\n}'
+    assert testtools.compare(
+        lilypond_file.layout_block.lilypond_format,
+        '\\layout {\n\t\\accidentalStyle forget\n}'
+        )

@@ -22,7 +22,10 @@ def test_OctavationSpanner_01():
     '''
 
     assert o.start == o.stop == 0
-    assert t.lilypond_format == "\\new Staff {\n\t\\ottava #0\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\t\\ottava #0\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\t\\ottava #0\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\t\\ottava #0\n}"
+        )
 
 
 def test_OctavationSpanner_02():
@@ -46,7 +49,10 @@ def test_OctavationSpanner_02():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Staff {\n\t\\ottava #1\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\ottava #0\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\t\\ottava #1\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\ottava #0\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+        )
 
 
 def test_OctavationSpanner_03():
@@ -70,7 +76,10 @@ def test_OctavationSpanner_03():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Staff {\n\t\\ottava #1\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\ottava #2\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\t\\ottava #1\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\ottava #2\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+        )
 
 
 
@@ -82,7 +91,10 @@ def test_OctavationSpanner_04():
     spannertools.OctavationSpanner(t[0], 1)
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Staff {\n\t\\ottava #1\n\tc'8\n\t\\ottava #0\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\t\\ottava #1\n\tc'8\n\t\\ottava #0\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+        )
 
     r'''
     \new Staff {
@@ -110,7 +122,10 @@ def test_OctavationSpanner_05():
     spannertools.OctavationSpanner(t[1], 2)
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Staff {\n\t\\ottava #1\n\tc'8\n\t\\ottava #0\n\t\\ottava #2\n\tcs'8\n\t\\ottava #0\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\t\\ottava #1\n\tc'8\n\t\\ottava #0\n\t\\ottava #2\n\tcs'8\n\t\\ottava #0\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+        )
 
     r'''
     \new Staff {
@@ -140,7 +155,10 @@ def test_OctavationSpanner_06():
     checker = OverlappingOctavationCheck()
 
     assert not checker.check(t)
-    assert t.lilypond_format == "\\new Staff {\n\t\\ottava #1\n\tc'8\n\tcs'8\n\t\\ottava #2\n\td'8\n\tef'8\n\t\\ottava #0\n\te'8\n\tf'8\n\t\\ottava #0\n\tfs'8\n\tg'8\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\t\\ottava #1\n\tc'8\n\tcs'8\n\t\\ottava #2\n\td'8\n\tef'8\n\t\\ottava #0\n\te'8\n\tf'8\n\t\\ottava #0\n\tfs'8\n\tg'8\n}"
+        )
 
     r'''
     \new Staff {

@@ -63,7 +63,10 @@ def test_HiddenStaffSpanner___init___02():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\t\\stopStaff\n\t\te'8\n\t\tf'8\n\t\t\\startStaff\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n}"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\t\\stopStaff\n\t\te'8\n\t\tf'8\n\t\t\\startStaff\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n}"
+        )
 
 
 def test_HiddenStaffSpanner___init___03():
@@ -80,4 +83,7 @@ def test_HiddenStaffSpanner___init___03():
     '''
 
     assert select(t).is_well_formed()
-    assert t.lilypond_format == "\\stopStaff\nc'8\n\\startStaff"
+    assert testtools.compare(
+        t.lilypond_format,
+        "\\stopStaff\nc'8\n\\startStaff"
+        )

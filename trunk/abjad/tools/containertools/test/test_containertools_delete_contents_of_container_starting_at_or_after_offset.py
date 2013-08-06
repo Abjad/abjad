@@ -15,7 +15,10 @@ def test_containertools_delete_contents_of_container_starting_at_or_after_offset
     '''
 
     assert select(staff).is_well_formed()
-    assert staff.lilypond_format == "\\new Staff {\n\tc'8 [ ]\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tc'8 [ ]\n}"
+        )
 
 
 def test_containertools_delete_contents_of_container_starting_at_or_after_offset_02():
@@ -32,4 +35,7 @@ def test_containertools_delete_contents_of_container_starting_at_or_after_offset
     '''
 
     assert select(staff).is_well_formed()
-    assert staff.lilypond_format == "\\new Staff {\n\tc'8 [\n\td'8 ]\n}"
+    assert testtools.compare(
+        staff.lilypond_format,
+        "\\new Staff {\n\tc'8 [\n\td'8 ]\n}"
+        )
