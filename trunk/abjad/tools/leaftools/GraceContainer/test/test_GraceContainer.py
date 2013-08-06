@@ -13,7 +13,13 @@ def test_GraceContainer_01():
     assert len(t) == 3
     assert testtools.compare(
         t.lilypond_format,
-        "\\grace {\n\tc'16\n\td'16\n\te'16\n}"
+        r'''
+        \grace {
+            c'16
+            d'16
+            e'16
+        }
+        '''
         )
 
     r'''
@@ -50,7 +56,13 @@ def test_GraceContainer_03():
     t.kind = 'grace'
     assert testtools.compare(
         t.lilypond_format,
-        "\\grace {\n\tc'8\n\tc'8\n\tc'8\n}"
+        r'''
+        \grace {
+            c'8
+            c'8
+            c'8
+        }
+        '''
         )
 
     r'''
@@ -70,7 +82,13 @@ def test_GraceContainer_04():
     t.kind = 'acciaccatura'
     assert testtools.compare(
         t.lilypond_format,
-        "\\acciaccatura {\n\tc'8\n\tc'8\n\tc'8\n}"
+        r'''
+        \acciaccatura {
+            c'8
+            c'8
+            c'8
+        }
+        '''
         )
 
     r'''
@@ -90,7 +108,13 @@ def test_GraceContainer_05():
     t.kind = 'appoggiatura'
     assert testtools.compare(
         t.lilypond_format,
-        "\\appoggiatura {\n\tc'8\n\tc'8\n\tc'8\n}"
+        r'''
+        \appoggiatura {
+            c'8
+            c'8
+            c'8
+        }
+        '''
         )
 
     r'''
@@ -110,7 +134,13 @@ def test_GraceContainer_06():
     t.kind = 'after'
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\tc'8\n\tc'8\n\tc'8\n}"
+        r'''
+        {
+            c'8
+            c'8
+            c'8
+        }
+        '''
         )
 
     r'''

@@ -117,7 +117,12 @@ def test_leaftools_make_leaves_08():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t<cs'' df''>4\n\t<cs'' df''>8\n}"
+        r'''
+        \new Staff {
+            <cs'' df''>4
+            <cs'' df''>8
+        }
+        '''
         )
 
 
@@ -137,7 +142,12 @@ def test_leaftools_make_leaves_09():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tcs''4\n\tdf''4\n}"
+        r'''
+        \new Staff {
+            cs''4
+            df''4
+        }
+        '''
         )
 
 
@@ -159,5 +169,12 @@ def test_leaftools_make_leaves_10():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tcs''4\n\tdf''4\n\tc''4\n\tfs''4\n}"
+        r'''
+        \new Staff {
+            cs''4
+            df''4
+            c''4
+            fs''4
+        }
+        '''
         )

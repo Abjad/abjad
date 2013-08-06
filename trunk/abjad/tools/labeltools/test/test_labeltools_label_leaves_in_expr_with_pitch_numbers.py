@@ -37,5 +37,27 @@ def test_labeltools_label_leaves_in_expr_with_pitch_numbers_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\tr4\n\tc''4\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t12\n\t\t\t}\n\t<cs'' d'' ef''>4\n\t\t_ \\markup {\n\t\t\t\\column\n\t\t\t\t{\n\t\t\t\t\t\\small\n\t\t\t\t\t\t15\n\t\t\t\t\t\\small\n\t\t\t\t\t\t14\n\t\t\t\t\t\\small\n\t\t\t\t\t\t13\n\t\t\t\t}\n\t\t\t}\n\tr4\n}"
+        r'''
+        \new Staff {
+            r4
+            c''4
+                _ \markup {
+                    \small
+                        12
+                    }
+            <cs'' d'' ef''>4
+                _ \markup {
+                    \column
+                        {
+                            \small
+                                15
+                            \small
+                                14
+                            \small
+                                13
+                        }
+                    }
+            r4
+        }
+        '''
         )

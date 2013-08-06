@@ -44,7 +44,23 @@ def test_measuretools_pad_measures_in_expr_with_rests_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 19/64\n\t\tr32\n\t\tc'8\n\t\td'8\n\t\tr64\n\t}\n\t{\n\t\tr32\n\t\tc'8\n\t\td'8\n\t\tr64\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 19/64
+                r32
+                c'8
+                d'8
+                r64
+            }
+            {
+                r32
+                c'8
+                d'8
+                r64
+            }
+        }
+        '''
         )
 
 
@@ -125,7 +141,40 @@ def test_measuretools_pad_measures_in_expr_with_rests_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t<<\n\t\t\\time 19/64\n\t\t\\new Voice {\n\t\t\tr32\n\t\t\tc'8\n\t\t\td'8\n\t\t\tr64\n\t\t}\n\t\t\\new Voice {\n\t\t\tr32\n\t\t\te'8\n\t\t\tf'8\n\t\t\tr64\n\t\t}\n\t>>\n\t<<\n\t\t\\time 19/64\n\t\t\\new Voice {\n\t\t\tr32\n\t\t\tg'8\n\t\t\ta'8\n\t\t\tr64\n\t\t}\n\t\t\\new Voice {\n\t\t\tr32\n\t\t\tb'8\n\t\t\tc''8\n\t\t\tr64\n\t\t}\n\t>>\n}"
+        r'''
+        \new Staff {
+            <<
+                \time 19/64
+                \new Voice {
+                    r32
+                    c'8
+                    d'8
+                    r64
+                }
+                \new Voice {
+                    r32
+                    e'8
+                    f'8
+                    r64
+                }
+            >>
+            <<
+                \time 19/64
+                \new Voice {
+                    r32
+                    g'8
+                    a'8
+                    r64
+                }
+                \new Voice {
+                    r32
+                    b'8
+                    c''8
+                    r64
+                }
+            >>
+        }
+        '''
         )
 
 
@@ -150,5 +199,13 @@ def test_measuretools_pad_measures_in_expr_with_rests_03():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\t\\time 19/64\n\tr32 [\n\tc'8\n\td'8\n\tr64 ]\n}"
+        r'''
+        {
+            \time 19/64
+            r32 [
+            c'8
+            d'8
+            r64 ]
+        }
+        '''
         )

@@ -34,5 +34,13 @@ def test_TimeSignatureMark_numerator_02():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t\\time 2/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff {
+            \time 2/8
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )

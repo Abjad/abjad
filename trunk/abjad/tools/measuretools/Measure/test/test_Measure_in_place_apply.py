@@ -29,7 +29,21 @@ def test_Measure_in_place_apply_01():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t{\n\t\t\\time 4/8\n\t\tc'8\n\t\tcs'8\n\t\td'8\n\t\tef'8\n\t}\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+        r'''
+        \new Voice {
+            {
+                \time 4/8
+                c'8
+                cs'8
+                d'8
+                ef'8
+            }
+            e'8
+            f'8
+            fs'8
+            g'8
+        }
+        '''
         )
 
 
@@ -58,7 +72,21 @@ def test_Measure_in_place_apply_02():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 4/8\n\t\tc'8\n\t\tcs'8\n\t\td'8\n\t\tef'8\n\t}\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+        r'''
+        \new Staff {
+            {
+                \time 4/8
+                c'8
+                cs'8
+                d'8
+                ef'8
+            }
+            e'8
+            f'8
+            fs'8
+            g'8
+        }
+        '''
         )
 
 
@@ -83,7 +111,17 @@ def test_Measure_in_place_apply_03():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 1/1\n\t\tc'1\n\t}\n\tcs'1\n\td'1\n\tef'1\n}"
+        r'''
+        \new Staff {
+            {
+                \time 1/1
+                c'1
+            }
+            cs'1
+            d'1
+            ef'1
+        }
+        '''
         )
 
 
@@ -120,5 +158,24 @@ def test_Measure_in_place_apply_04():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 1/1\n\t\tc'1\n\t}\n\t{\n\t\t\\time 1/1\n\t\tcs'1\n\t}\n\t{\n\t\t\\time 1/1\n\t\td'1\n\t}\n\t{\n\t\t\\time 1/1\n\t\tef'1\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 1/1
+                c'1
+            }
+            {
+                \time 1/1
+                cs'1
+            }
+            {
+                \time 1/1
+                d'1
+            }
+            {
+                \time 1/1
+                ef'1
+            }
+        }
+        '''
         )

@@ -10,5 +10,12 @@ def test_notetools_make_notes_with_multiplied_durations_01():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tc'4 * 2\n\tc'4 * 4/3\n\tc'4 * 1\n\tc'4 * 4/5\n}"
+        r'''
+        \new Staff {
+            c'4 * 2
+            c'4 * 4/3
+            c'4 * 1
+            c'4 * 4/5
+        }
+        '''
         )

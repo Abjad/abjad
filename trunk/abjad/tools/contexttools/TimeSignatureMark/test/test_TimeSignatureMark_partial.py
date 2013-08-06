@@ -21,7 +21,16 @@ def test_TimeSignatureMark_partial_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\partial 8\n\t\\time 2/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff {
+            \partial 8
+            \time 2/8
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -59,7 +68,18 @@ def test_TimeSignatureMark_partial_03():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t\\partial 4\n\t\\time 4/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n\tg'8\n\ta'8\n}"
+        r'''
+        \new Staff {
+            \partial 4
+            \time 4/8
+            c'8
+            d'8
+            e'8
+            f'8
+            g'8
+            a'8
+        }
+        '''
         )
 
     time_signature.partial = None
@@ -78,5 +98,15 @@ def test_TimeSignatureMark_partial_03():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t\\time 4/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n\tg'8\n\ta'8\n}"
+        r'''
+        \new Staff {
+            \time 4/8
+            c'8
+            d'8
+            e'8
+            f'8
+            g'8
+            a'8
+        }
+        '''
         )

@@ -17,7 +17,13 @@ def test_SliceSelection_replace_with_rests_01():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tr2\n\tr8\n\ta'8\n}"
+        r'''
+        \new Staff {
+            r2
+            r8
+            a'8
+        }
+        '''
         )
 
 
@@ -36,7 +42,13 @@ def test_SliceSelection_replace_with_rests_02():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tc'8\n\tr2\n\tr8\n}"
+        r'''
+        \new Staff {
+            c'8
+            r2
+            r8
+        }
+        '''
         )
 
 
@@ -55,7 +67,13 @@ def test_SliceSelection_replace_with_rests_03():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tr8\n\tr2\n\ta'8\n}"
+        r'''
+        \new Staff {
+            r8
+            r2
+            a'8
+        }
+        '''
         )
 
 
@@ -74,5 +92,11 @@ def test_SliceSelection_replace_with_rests_04():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tc'8\n\tr8\n\tr2\n}"
+        r'''
+        \new Staff {
+            c'8
+            r8
+            r2
+        }
+        '''
         )

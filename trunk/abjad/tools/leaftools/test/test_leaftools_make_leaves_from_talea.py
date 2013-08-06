@@ -20,5 +20,14 @@ def test_leaftools_make_leaves_from_talea_01():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tc'4.\n\tr4.\n\tc'2 ~\n\tc'8\n\tr2\n\tr8\n}"
+        r'''
+        \new Staff {
+            c'4.
+            r4.
+            c'2 ~
+            c'8
+            r2
+            r8
+        }
+        '''
         )

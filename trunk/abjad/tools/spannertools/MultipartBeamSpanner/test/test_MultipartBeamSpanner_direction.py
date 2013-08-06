@@ -20,12 +20,30 @@ def test_MultipartBeamSpanner_direction_01():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tc'8 ^ [\n\td'8 ]\n\tr8\n\te'8 ^ [\n\tf'8 ]\n\tg'4\n}"
+        r'''
+        \new Staff {
+            c'8 ^ [
+            d'8 ]
+            r8
+            e'8 ^ [
+            f'8 ]
+            g'4
+        }
+        '''
         )
 
     spanner.direction = Down
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tc'8 _ [\n\td'8 ]\n\tr8\n\te'8 _ [\n\tf'8 ]\n\tg'4\n}"
+        r'''
+        \new Staff {
+            c'8 _ [
+            d'8 ]
+            r8
+            e'8 _ [
+            f'8 ]
+            g'4
+        }
+        '''
         )

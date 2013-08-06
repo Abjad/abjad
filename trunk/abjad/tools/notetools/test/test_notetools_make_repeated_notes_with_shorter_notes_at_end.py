@@ -21,7 +21,14 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n}"
+        r'''
+        \new Voice {
+            c'16
+            c'16
+            c'16
+            c'16
+        }
+        '''
         )
 
 
@@ -44,7 +51,15 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'32\n}"
+        r'''
+        \new Voice {
+            c'16
+            c'16
+            c'16
+            c'16
+            c'32
+        }
+        '''
         )
 
 
@@ -63,7 +78,11 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_03():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'128\n}"
+        r'''
+        \new Voice {
+            c'128
+        }
+        '''
         )
 
 
@@ -90,7 +109,19 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_04():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\t\\times 4/5 {\n\t\tc'32\n\t}\n}"
+        r'''
+        \new Voice {
+            c'16
+            c'16
+            c'16
+            c'16
+            c'16
+            c'16
+            \times 4/5 {
+                c'32
+            }
+        }
+        '''
         )
 
 
@@ -117,5 +148,16 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_05():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n}"
+        r'''
+        {
+            \time 5/18
+            \scaleDurations #'(8 . 9) {
+                c'16
+                c'16
+                c'16
+                c'16
+                c'16
+            }
+        }
+        '''
         )

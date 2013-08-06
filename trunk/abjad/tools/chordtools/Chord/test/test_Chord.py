@@ -22,7 +22,14 @@ def test_Chord_02():
     t[0].tweak.style = 'harmonic'
     assert testtools.compare(
         t.lilypond_format,
-        "<\n\t\\tweak #'style #'harmonic\n\td'\n\tef'\n\te'\n>4"
+        r'''
+        <
+            \tweak #'style #'harmonic
+            d'
+            ef'
+            e'
+        >4
+        '''
         )
 
 
@@ -31,7 +38,14 @@ def test_Chord_03():
     t[0].tweak.transparent = True
     assert testtools.compare(
         t.lilypond_format,
-        "<\n\t\\tweak #'transparent ##t\n\td'\n\tef'\n\te'\n>4"
+        r'''
+        <
+            \tweak #'transparent ##t
+            d'
+            ef'
+            e'
+        >4
+        '''
         )
 
 
@@ -80,7 +94,14 @@ def test_Chord_06():
 
     assert testtools.compare(
         chord.lilypond_format,
-        "<\n\t\\tweak #'color #red\n\td'\n\tef'\n\te'\n>4 \\glissando"
+        r'''
+        <
+            \tweak #'color #red
+            d'
+            ef'
+            e'
+        >4 \glissando
+        '''
         )
 
 

@@ -89,7 +89,18 @@ def test_SliceSelection__withdraw_from_crossing_spanners_02():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 ( \\startTrillSpan\n\t\tf'8 ) \\stopTrillSpan\n\t}\n}"
+        r'''
+        \new Voice {
+            {
+                c'8 [
+                d'8 ]
+            }
+            {
+                e'8 ( \startTrillSpan
+                f'8 ) \stopTrillSpan
+            }
+        }
+        '''
         )
 
 

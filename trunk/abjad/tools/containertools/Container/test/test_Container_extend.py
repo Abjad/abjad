@@ -31,7 +31,14 @@ def test_Container_extend_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 [\n\td'8 ]\n\tc'8\n\td'8\n}"
+        r'''
+        \new Voice {
+            c'8 [
+            d'8 ]
+            c'8
+            d'8
+        }
+        '''
         )
 
 
@@ -65,7 +72,14 @@ def test_Container_extend_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 [\n\td'8 ]\n\te'8 [\n\tf'8 ]\n}"
+        r'''
+        \new Voice {
+            c'8 [
+            d'8 ]
+            e'8 [
+            f'8 ]
+        }
+        '''
         )
 
 
@@ -87,7 +101,12 @@ def test_Container_extend_03():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
+        r'''
+        \new Voice {
+            c'8 [
+            d'8 ]
+        }
+        '''
         )
 
 
@@ -109,7 +128,12 @@ def test_Container_extend_04():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
+        r'''
+        \new Voice {
+            c'8 [
+            d'8 ]
+        }
+        '''
         )
 
 
@@ -177,7 +201,14 @@ def test_Container_extend_07():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 [\n\td'8 ]\n\te'8\n\tf'8\n}"
+        r'''
+        \new Voice {
+            c'8 [
+            d'8 ]
+            e'8
+            f'8
+        }
+        '''
         )
 
     "Container u is now ..."
@@ -192,7 +223,12 @@ def test_Container_extend_07():
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
-        "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
+        r'''
+        \new Voice {
+            c'8 [
+            d'8 ]
+        }
+        '''
         )
 
 
@@ -240,7 +276,14 @@ def test_Container_extend_08():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 [\n\td'8 ]\n\te'8 (\n\tf'8 )\n}"
+        r'''
+        \new Voice {
+            c'8 [
+            d'8 ]
+            e'8 (
+            f'8 )
+        }
+        '''
         )
 
     "Container u is now ..."
@@ -255,7 +298,12 @@ def test_Container_extend_08():
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
-        "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
+        r'''
+        \new Voice {
+            c'8 [
+            d'8 ]
+        }
+        '''
         )
 
 
@@ -278,5 +326,12 @@ def test_Container_extend_09():
     assert select(container).is_well_formed()
     assert testtools.compare(
         container.lilypond_format,
-        "{\n\tc'4 (\n\td'4\n\te'4\n\tf'4 )\n}"
+        r'''
+        {
+            c'4 (
+            d'4
+            e'4
+            f'4 )
+        }
+        '''
         )

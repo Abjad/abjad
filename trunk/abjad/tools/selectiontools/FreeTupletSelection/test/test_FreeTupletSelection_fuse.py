@@ -49,7 +49,16 @@ def test_FreeTupletSelection_fuse_01():
 
     assert testtools.compare(
         new.lilypond_format,
-        "\\times 2/3 {\n\tc'8 [\n\td'8\n\te'8 ]\n\tc'16 (\n\td'16\n\te'16 )\n}"
+        r'''
+        \times 2/3 {
+            c'8 [
+            d'8
+            e'8 ]
+            c'16 (
+            d'16
+            e'16 )
+        }
+        '''
         )
 
 
@@ -98,7 +107,18 @@ def test_FreeTupletSelection_fuse_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8 ]\n\t\tc'16 (\n\t\td'16\n\t\te'16 )\n\t}\n}"
+        r'''
+        \new Voice {
+            \times 2/3 {
+                c'8 [
+                d'8
+                e'8 ]
+                c'16 (
+                d'16
+                e'16 )
+            }
+        }
+        '''
         )
 
 
@@ -150,7 +170,20 @@ def test_FreeTupletSelection_fuse_03():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8 ]\n\t\tc'8 (\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\tg'8 )\n\t}\n}"
+        r'''
+        \new Voice {
+            \times 2/3 {
+                c'8 [
+                d'8
+                e'8 ]
+                c'8 (
+                d'8
+                e'8
+                f'8
+                g'8 )
+            }
+        }
+        '''
         )
 
 
@@ -214,5 +247,13 @@ def test_FreeTupletSelection_fuse_06():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 (\n\t\tc'4\n\t}\n\tc'4 )\n}"
+        r'''
+        \new Voice {
+            \times 2/3 {
+                c'8 (
+                c'4
+            }
+            c'4 )
+        }
+        '''
         )

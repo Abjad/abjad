@@ -206,7 +206,15 @@ def test_Component_get_effective_context_mark_11():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\key c \\major\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff {
+            \key c \major
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -244,7 +252,16 @@ def test_Component_get_effective_context_mark_13():
     assert t[3].get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 42)
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\tempo 8=38\n\tc'8\n\td'8\n\t\\tempo 8=42\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff {
+            \tempo 8=38
+            c'8
+            d'8
+            \tempo 8=42
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -265,7 +282,12 @@ def test_Component_get_effective_context_mark_14():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\tempo 8=38\n\t<d' ef' e'>4\n}"
+        r'''
+        \new Staff {
+            \tempo 8=38
+            <d' ef' e'>4
+        }
+        '''
         )
 
 
@@ -285,7 +307,12 @@ def test_Component_get_effective_context_mark_15():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t\\tempo 8=38\n\tc'4\n}"
+        r'''
+        \new Staff {
+            \tempo 8=38
+            c'4
+        }
+        '''
         )
 
 
@@ -306,7 +333,11 @@ def test_Component_get_effective_context_mark_16():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tc'4\n}"
+        r'''
+        \new Staff {
+            c'4
+        }
+        '''
         )
 
 

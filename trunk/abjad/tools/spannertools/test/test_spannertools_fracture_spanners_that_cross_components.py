@@ -24,7 +24,14 @@ def test_spannertools_fracture_spanners_that_cross_components_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\tc'8 [ ]\n\td'8 [\n\te'8 ]\n\tf'8 [ ]\n}"
+        r'''
+        \new Staff {
+            c'8 [ ]
+            d'8 [
+            e'8 ]
+            f'8 [ ]
+        }
+        '''
         )
 
 
@@ -48,7 +55,14 @@ def test_spannertools_fracture_spanners_that_cross_components_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\tc'8 [ ]\n\td'8 [ ]\n\te'8 [\n\tf'8 ]\n}"
+        r'''
+        \new Staff {
+            c'8 [ ]
+            d'8 [ ]
+            e'8 [
+            f'8 ]
+        }
+        '''
         )
 
 
@@ -108,7 +122,22 @@ def test_spannertools_fracture_spanners_that_cross_components_04():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\tc'8 [ \\<\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8 [\n\t\ta'8 ] \\!\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                c'8 [ \<
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ]
+            }
+            {
+                g'8 [
+                a'8 ] \!
+            }
+        }
+        '''
         )
 
 
@@ -161,5 +190,20 @@ def test_spannertools_fracture_spanners_that_cross_components_05():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\tc'8 [ \\< \\startTrillSpan\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8 [\n\t\ta'8 ] \\! \\stopTrillSpan\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                c'8 [ \< \startTrillSpan
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ]
+            }
+            {
+                g'8 [
+                a'8 ] \! \stopTrillSpan
+            }
+        }
+        '''
         )

@@ -25,5 +25,14 @@ def test_Measure_extend_02():
     assert not measure.is_misfilled
     assert testtools.compare(
         measure.lilypond_format,
-        "{\n\t\\time 5/4\n\tc'4\n\td'4\n\te'4\n\tf'4\n\tg'4\n}"
+        r'''
+        {
+            \time 5/4
+            c'4
+            d'4
+            e'4
+            f'4
+            g'4
+        }
+        '''
         )

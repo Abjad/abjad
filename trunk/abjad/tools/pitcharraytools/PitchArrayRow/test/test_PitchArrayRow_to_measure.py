@@ -28,5 +28,12 @@ def test_PitchArrayRow_to_measure_01():
     assert select(measure).is_well_formed()
     assert testtools.compare(
         measure.lilypond_format,
-        "{\n\t\\time 4/8\n\tr8\n\td'8\n\t<bf bqf>4\n}"
+        r'''
+        {
+            \time 4/8
+            r8
+            d'8
+            <bf bqf>4
+        }
+        '''
         )

@@ -26,7 +26,18 @@ def test_measuretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\t\\time 4/8\n\t\\times 4/5 {\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n}"
+        r'''
+        {
+            \time 4/8
+            \times 4/5 {
+                c'8
+                c'8
+                c'8
+                c'8
+                c'8
+            }
+        }
+        '''
         )
 
 
@@ -54,5 +65,16 @@ def test_measuretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\t\\time 4/8\n\t\\times 2/3 {\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tr4\n\t}\n}"
+        r'''
+        {
+            \time 4/8
+            \times 2/3 {
+                c'8
+                c'8
+                c'8
+                c'8
+                r4
+            }
+        }
+        '''
         )

@@ -21,7 +21,13 @@ def test_FreeTupletSelection_scale_contents_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\times 2/3 {\n\tc'4\n\td'4\n\te'4\n}"
+        r'''
+        \times 2/3 {
+            c'4
+            d'4
+            e'4
+        }
+        '''
         )
 
 
@@ -44,7 +50,13 @@ def test_FreeTupletSelection_scale_contents_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\times 2/3 {\n\tc'16\n\td'16\n\te'16\n}"
+        r'''
+        \times 2/3 {
+            c'16
+            d'16
+            e'16
+        }
+        '''
         )
 
 
@@ -67,7 +79,13 @@ def test_FreeTupletSelection_scale_contents_03():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\times 2/3 {\n\tc'2\n\td'2\n\te'2\n}"
+        r'''
+        \times 2/3 {
+            c'2
+            d'2
+            e'2
+        }
+        '''
         )
 
 
@@ -90,7 +108,13 @@ def test_FreeTupletSelection_scale_contents_04():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\times 2/3 {\n\tc'32\n\td'32\n\te'32\n}"
+        r'''
+        \times 2/3 {
+            c'32
+            d'32
+            e'32
+        }
+        '''
         )
 
 
@@ -113,7 +137,13 @@ def test_FreeTupletSelection_scale_contents_05():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\times 2/3 {\n\tc'8.\n\td'8.\n\te'8.\n}"
+        r'''
+        \times 2/3 {
+            c'8.
+            d'8.
+            e'8.
+        }
+        '''
         )
 
 
@@ -136,7 +166,13 @@ def test_FreeTupletSelection_scale_contents_06():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\times 8/9 {\n\tc'16\n\td'16\n\te'16\n}"
+        r'''
+        \times 8/9 {
+            c'16
+            d'16
+            e'16
+        }
+        '''
         )
 
 
@@ -159,7 +195,13 @@ def test_FreeTupletSelection_scale_contents_07():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\times 4/5 {\n\tc'16\n\td'16\n\te'16\n}"
+        r'''
+        \times 4/5 {
+            c'16
+            d'16
+            e'16
+        }
+        '''
         )
 
 
@@ -182,7 +224,13 @@ def test_FreeTupletSelection_scale_contents_08():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\tc'8.\n\td'8.\n\te'8.\n}"
+        r'''
+        {
+            c'8.
+            d'8.
+            e'8.
+        }
+        '''
         )
 
 
@@ -213,7 +261,12 @@ def test_FreeTupletSelection_scale_contents_09():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\times 4/5 {\n\tc'8\n\tc'8.\n}"
+        r'''
+        \times 4/5 {
+            c'8
+            c'8.
+        }
+        '''
         )
 
 
@@ -243,5 +296,10 @@ def test_FreeTupletSelection_scale_contents_10():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\times 8/15 {\n\tc'4\n\tc'4.\n}"
+        r'''
+        \times 8/15 {
+            c'4
+            c'4.
+        }
+        '''
         )

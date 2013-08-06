@@ -48,7 +48,18 @@ def test_QGrid___call___02():
     assert isinstance(result, list) and len(result) == 1
     assert testtools.compare(
         result[0].lilypond_format,
-        "\\times 2/3 {\n\tc'8\n\tc'16\n\tc'16\n\t\\times 2/3 {\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n}"
+        r'''
+        \times 2/3 {
+            c'8
+            c'16
+            c'16
+            \times 2/3 {
+                c'16
+                c'16
+                c'16
+            }
+        }
+        '''
         )
 
     leaf = result[0].select_leaves()[0]
@@ -94,5 +105,10 @@ def test_QGrid___call___03():
     assert isinstance(result, list) and len(result) == 1
     assert testtools.compare(
         result[0].lilypond_format,
-        "\\times 2/3 {\n\tc'4\n\tc'4\n}"
+        r'''
+        \times 2/3 {
+            c'4
+            c'4
+        }
+        '''
         )

@@ -37,5 +37,12 @@ def test_FreeTupletSelection_remove_01():
     assert len(t) == 4
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )

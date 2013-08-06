@@ -37,7 +37,30 @@ def test_labeltools_label_leaves_in_expr_with_pitch_class_numbers_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\tc'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t0\n\t\t\t}\n\td'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t2\n\t\t\t}\n\te'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t4\n\t\t\t}\n\tf'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t5\n\t\t\t}\n}"
+        r'''
+        \new Staff {
+            c'8
+                _ \markup {
+                    \small
+                        0
+                    }
+            d'8
+                _ \markup {
+                    \small
+                        2
+                    }
+            e'8
+                _ \markup {
+                    \small
+                        4
+                    }
+            f'8
+                _ \markup {
+                    \small
+                        5
+                    }
+        }
+        '''
         )
 
 
@@ -64,5 +87,16 @@ def test_labeltools_label_leaves_in_expr_with_pitch_class_numbers_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\once \\override NoteHead #'color = #(x11-color 'red)\n\tc'8\n\t\\once \\override NoteHead #'color = #(x11-color 'orange)\n\td'8\n\t\\once \\override NoteHead #'color = #(x11-color 'ForestGreen)\n\te'8\n\t\\once \\override NoteHead #'color = #(x11-color 'MediumOrchid)\n\tf'8\n}"
+        r'''
+        \new Staff {
+            \once \override NoteHead #'color = #(x11-color 'red)
+            c'8
+            \once \override NoteHead #'color = #(x11-color 'orange)
+            d'8
+            \once \override NoteHead #'color = #(x11-color 'ForestGreen)
+            e'8
+            \once \override NoteHead #'color = #(x11-color 'MediumOrchid)
+            f'8
+        }
+        '''
         )

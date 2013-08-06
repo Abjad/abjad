@@ -64,7 +64,22 @@ def test_BeamSpanner_span_parallel_container_03():
     assert isinstance(p.components[0], Container)
     assert testtools.compare(
         t.lilypond_format,
-        "<<\n\t\\new Voice {\n\t\tc'8 [\n\t\tcs'8\n\t\td'8\n\t\tef'8 ]\n\t}\n\t\\new Voice {\n\t\te'8\n\t\tf'8\n\t\tfs'8\n\t\tg'8\n\t}\n>>"
+        r'''
+        <<
+            \new Voice {
+                c'8 [
+                cs'8
+                d'8
+                ef'8 ]
+            }
+            \new Voice {
+                e'8
+                f'8
+                fs'8
+                g'8
+            }
+        >>
+        '''
         )
 
     r'''
@@ -112,7 +127,16 @@ def test_BeamSpanner_span_parallel_container_05():
     assert len(p.leaves) == 4
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\tc'8 [\n\tcs'8\n\t<<\n\t>>\n\td'8\n\tef'8 ]\n}"
+        r'''
+        \new Staff {
+            c'8 [
+            cs'8
+            <<
+            >>
+            d'8
+            ef'8 ]
+        }
+        '''
         )
 
     r'''

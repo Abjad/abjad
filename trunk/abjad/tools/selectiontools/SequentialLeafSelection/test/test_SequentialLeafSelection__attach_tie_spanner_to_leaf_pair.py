@@ -32,7 +32,14 @@ def test_SequentialLeafSelection__attach_tie_spanner_to_leaf_pair_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 ~\n\tc'8 ~\n\tc'8\n\tc'8\n}"
+        r'''
+        \new Voice {
+            c'8 ~
+            c'8 ~
+            c'8
+            c'8
+        }
+        '''
         )
 
 
@@ -67,7 +74,14 @@ def test_SequentialLeafSelection__attach_tie_spanner_to_leaf_pair_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 ~\n\tc'8 ~\n\tc'8 ~\n\tc'8\n}"
+        r'''
+        \new Voice {
+            c'8 ~
+            c'8 ~
+            c'8 ~
+            c'8
+        }
+        '''
         )
 
 
@@ -100,5 +114,12 @@ def test_SequentialLeafSelection__attach_tie_spanner_to_leaf_pair_03():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8\n\tc'8 ~\n\tc'8\n\tc'8\n}"
+        r'''
+        \new Voice {
+            c'8
+            c'8 ~
+            c'8
+            c'8
+        }
+        '''
         )

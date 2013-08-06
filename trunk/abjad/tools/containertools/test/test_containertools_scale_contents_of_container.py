@@ -21,7 +21,14 @@ def test_containertools_scale_contents_of_container_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8.\n\td'8.\n\te'8.\n\tf'8.\n}"
+        r'''
+        \new Voice {
+            c'8.
+            d'8.
+            e'8.
+            f'8.
+        }
+        '''
         )
 
 
@@ -48,7 +55,18 @@ def test_containertools_scale_contents_of_container_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 ~\n\tc'32\n\td'8 ~\n\td'32\n\te'8 ~\n\te'32\n\tf'8 ~\n\tf'32\n}"
+        r'''
+        \new Voice {
+            c'8 ~
+            c'32
+            d'8 ~
+            d'32
+            e'8 ~
+            e'32
+            f'8 ~
+            f'32
+        }
+        '''
         )
 
 
@@ -79,7 +97,22 @@ def test_containertools_scale_contents_of_container_03():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t\\times 2/3 {\n\t\tc'4\n\t}\n\t\\times 2/3 {\n\t\td'4\n\t}\n\t\\times 2/3 {\n\t\te'4\n\t}\n\t\\times 2/3 {\n\t\tf'4\n\t}\n}"
+        r'''
+        \new Voice {
+            \times 2/3 {
+                c'4
+            }
+            \times 2/3 {
+                d'4
+            }
+            \times 2/3 {
+                e'4
+            }
+            \times 2/3 {
+                f'4
+            }
+        }
+        '''
         )
 
 
@@ -115,7 +148,26 @@ def test_containertools_scale_contents_of_container_04():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 ~\n\t\tc'32\n\t}\n\t\\times 2/3 {\n\t\td'8 ~\n\t\td'32\n\t}\n\t\\times 2/3 {\n\t\te'8 ~\n\t\te'32\n\t}\n\t\\times 2/3 {\n\t\tf'8 ~\n\t\tf'32\n\t}\n}"
+        r'''
+        \new Voice {
+            \times 2/3 {
+                c'8 ~
+                c'32
+            }
+            \times 2/3 {
+                d'8 ~
+                d'32
+            }
+            \times 2/3 {
+                e'8 ~
+                e'32
+            }
+            \times 2/3 {
+                f'8 ~
+                f'32
+            }
+        }
+        '''
         )
 
 
@@ -157,7 +209,17 @@ def test_containertools_scale_contents_of_container_05():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8\n\t{\n\t\td'16\n\t\te'16\n\t\tf'16\n\t\tg'16\n\t}\n}"
+        r'''
+        \new Voice {
+            c'8
+            {
+                d'16
+                e'16
+                f'16
+                g'16
+            }
+        }
+        '''
         )
 
 
@@ -183,7 +245,18 @@ def test_containertools_scale_contents_of_container_06():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 ~\n\tc'32\n\td'8 ~\n\td'32\n\te'8 ~\n\te'32\n\tf'8 ~\n\tf'32\n}"
+        r'''
+        \new Voice {
+            c'8 ~
+            c'32
+            d'8 ~
+            d'32
+            e'8 ~
+            e'32
+            f'8 ~
+            f'32
+        }
+        '''
         )
 
     containertools.scale_contents_of_container(t, Duration(4, 5))
@@ -200,7 +273,14 @@ def test_containertools_scale_contents_of_container_06():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Voice {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -247,7 +327,20 @@ def test_containertools_scale_contents_of_container_07():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t{\n\t\t\\time 2/4\n\t\tc'4\n\t\td'4\n\t}\n\t{\n\t\t\\time 2/4\n\t\te'4\n\t\tf'4\n\t}\n}"
+        r'''
+        \new Voice {
+            {
+                \time 2/4
+                c'4
+                d'4
+            }
+            {
+                \time 2/4
+                e'4
+                f'4
+            }
+        }
+        '''
         )
 
 
@@ -299,5 +392,22 @@ def test_containertools_scale_contents_of_container_08():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t{\n\t\t\\time 20/64\n\t\tc'8 ~\n\t\tc'32\n\t\td'8 ~\n\t\td'32\n\t}\n\t{\n\t\t\\time 20/64\n\t\te'8 ~\n\t\te'32\n\t\tf'8 ~\n\t\tf'32\n\t}\n}"
+        r'''
+        \new Voice {
+            {
+                \time 20/64
+                c'8 ~
+                c'32
+                d'8 ~
+                d'32
+            }
+            {
+                \time 20/64
+                e'8 ~
+                e'32
+                f'8 ~
+                f'32
+            }
+        }
+        '''
         )

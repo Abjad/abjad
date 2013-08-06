@@ -33,5 +33,18 @@ def test_labeltools_color_chord_note_heads_in_expr_by_pitch_class_color_map_01()
     assert select(chord).is_well_formed()
     assert testtools.compare(
         chord.lilypond_format,
-        "<\n\t\\tweak #'color #red\n\tc''\n\t\\tweak #'color #red\n\td''\n\t\\tweak #'color #green\n\tfs''\n\t\\tweak #'color #green\n\ta''\n\t\\tweak #'color #blue\n\tb''\n>4"
+        r'''
+        <
+            \tweak #'color #red
+            c''
+            \tweak #'color #red
+            d''
+            \tweak #'color #green
+            fs''
+            \tweak #'color #green
+            a''
+            \tweak #'color #blue
+            b''
+        >4
+        '''
         )

@@ -49,7 +49,18 @@ def test_Container_is_parallel_04():
     t.is_parallel = True
     assert testtools.compare(
         t.lilypond_format,
-        "<<\n\t\\new Voice {\n\t\tc'8\n\t\tcs'8\n\t}\n\t\\new Voice {\n\t\td'8\n\t\tef'8\n\t}\n>>"
+        r'''
+        <<
+            \new Voice {
+                c'8
+                cs'8
+            }
+            \new Voice {
+                d'8
+                ef'8
+            }
+        >>
+        '''
         )
 
     r'''

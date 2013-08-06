@@ -23,5 +23,15 @@ def test_Staff_engraver_removals_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff \\with {\n\t\\remove Time_signature_engraver\n\t\\remove Bar_number_engraver\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff \with {
+            \remove Time_signature_engraver
+            \remove Bar_number_engraver
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )

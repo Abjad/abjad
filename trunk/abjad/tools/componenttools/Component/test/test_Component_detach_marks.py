@@ -58,7 +58,14 @@ def test_Component_detach_marks_02():
     assert detached_instrument_marks[0] is instrument_mark
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tc'4\n\td'4\n\te'4\n\tf'4\n}"
+        r'''
+        \new Staff {
+            c'4
+            d'4
+            e'4
+            f'4
+        }
+        '''
         )
 
 
@@ -81,7 +88,14 @@ def test_Component_detach_marks_03():
     assert result[0] is time_signature_mark
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tc'4\n\td'4\n\te'4\n\tf'4\n}"
+        r'''
+        \new Staff {
+            c'4
+            d'4
+            e'4
+            f'4
+        }
+        '''
         )
 
 
@@ -146,7 +160,14 @@ def test_Component_detach_marks_06():
     assert select(staff).is_well_formed()
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
+        r'''
+        \new Staff {
+            c'8 (
+            d'8
+            e'8
+            f'8 )
+        }
+        '''
         )
 
 
@@ -182,7 +203,14 @@ def test_Component_detach_marks_07():
     assert select(staff).is_well_formed()
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
+        r'''
+        \new Staff {
+            c'8 (
+            d'8
+            e'8
+            f'8 )
+        }
+        '''
         )
 
 

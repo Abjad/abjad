@@ -14,5 +14,8 @@ def test_NaturalHarmonic_01():
     assert t.written_pitch == pitchtools.NamedChromaticPitch(10)
     assert testtools.compare(
         t.lilypond_format,
-        "\\once \\override NoteHead #'style = #'harmonic\nbf'4"
+        r'''
+        \once \override NoteHead #'style = #'harmonic
+        bf'4
+        '''
         )

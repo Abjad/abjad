@@ -48,7 +48,32 @@ def test_DivisionBurnishedTaleaRhythmMaker___call___01():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\t{\n\t\t\tr32\n\t\t\tr32\n\t\t\tc'16\n\t\t\tc'8\n\t\t\tc'32\n\t\t\tr32\n\t\t}\n\t}\n\t{\n\t\t\\time 6/16\n\t\t{\n\t\t\tr16\n\t\t\tr8\n\t\t\tc'32\n\t\t\tc'32\n\t\t\tc'16\n\t\t\tr16\n\t\t}\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 5/16
+                {
+                    r32
+                    r32
+                    c'16
+                    c'8
+                    c'32
+                    r32
+                }
+            }
+            {
+                \time 6/16
+                {
+                    r16
+                    r8
+                    c'32
+                    c'32
+                    c'16
+                    r16
+                }
+            }
+        }
+        '''
         )
 
 
@@ -95,7 +120,32 @@ def test_DivisionBurnishedTaleaRhythmMaker___call___02():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\t{\n\t\t\tc'32\n\t\t\tc'32\n\t\t\tr16\n\t\t\tr8\n\t\t\tr32\n\t\t\tc'32\n\t\t}\n\t}\n\t{\n\t\t\\time 6/16\n\t\t{\n\t\t\tc'16\n\t\t\tc'8\n\t\t\tr32\n\t\t\tr32\n\t\t\tr16\n\t\t\tc'16\n\t\t}\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 5/16
+                {
+                    c'32
+                    c'32
+                    r16
+                    r8
+                    r32
+                    c'32
+                }
+            }
+            {
+                \time 6/16
+                {
+                    c'16
+                    c'8
+                    r32
+                    r32
+                    r16
+                    c'16
+                }
+            }
+        }
+        '''
         )
 
 
@@ -147,7 +197,37 @@ def test_DivisionBurnishedTaleaRhythmMaker___call___03():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 10/13 {\n\t\t\tc'32\n\t\t\tc'32\n\t\t\tr16\n\t\t\tr8\n\t\t\tr32\n\t\t\tr32\n\t\t\tr16\n\t\t\tc'32\n\t\t}\n\t}\n\t{\n\t\t\\time 6/16\n\t\t\\times 4/5 {\n\t\t\tc'16.\n\t\t\tc'32\n\t\t\tr32\n\t\t\tr16\n\t\t\tr8\n\t\t\tr32\n\t\t\tr32\n\t\t\tc'16\n\t\t}\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 5/16
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 10/13 {
+                    c'32
+                    c'32
+                    r16
+                    r8
+                    r32
+                    r32
+                    r16
+                    c'32
+                }
+            }
+            {
+                \time 6/16
+                \times 4/5 {
+                    c'16.
+                    c'32
+                    r32
+                    r16
+                    r8
+                    r32
+                    r32
+                    c'16
+                }
+            }
+        }
+        '''
         )
 
 
@@ -195,7 +275,33 @@ def test_DivisionBurnishedTaleaRhythmMaker___call___04():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\t{\n\t\t\tr32\n\t\t\tc'32\n\t\t\tc'16\n\t\t\tc'8\n\t\t\tc'32\n\t\t\tr32\n\t\t}\n\t}\n\t{\n\t\t\\time 6/16\n\t\t\\times 4/5 {\n\t\t\tr16\n\t\t\tc'8\n\t\t\tc'32\n\t\t\tc'32\n\t\t\tc'16\n\t\t\tc'8\n\t\t\tr32\n\t\t}\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 5/16
+                {
+                    r32
+                    c'32
+                    c'16
+                    c'8
+                    c'32
+                    r32
+                }
+            }
+            {
+                \time 6/16
+                \times 4/5 {
+                    r16
+                    c'8
+                    c'32
+                    c'32
+                    c'16
+                    c'8
+                    r32
+                }
+            }
+        }
+        '''
         )
 
 
@@ -247,5 +353,33 @@ def test_DivisionBurnishedTaleaRhythmMaker___call___05():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\t{\n\t\t\tr32\n\t\t\tc'32\n\t\t\tc'16\n\t\t\tc'8\n\t\t\tc'32\n\t\t\tr32\n\t\t}\n\t}\n\t{\n\t\t\\time 6/16\n\t\t\\times 4/7 {\n\t\t\tr16\n\t\t\tc'8\n\t\t\tr32\n\t\t}\n\t\t{\n\t\t\tr32\n\t\t\tc'16\n\t\t\tc'8\n\t\t\tr32\n\t\t}\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 5/16
+                {
+                    r32
+                    c'32
+                    c'16
+                    c'8
+                    c'32
+                    r32
+                }
+            }
+            {
+                \time 6/16
+                \times 4/7 {
+                    r16
+                    c'8
+                    r32
+                }
+                {
+                    r32
+                    c'16
+                    c'8
+                    r32
+                }
+            }
+        }
+        '''
         )

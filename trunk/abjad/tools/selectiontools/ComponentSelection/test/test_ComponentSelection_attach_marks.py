@@ -21,7 +21,14 @@ def test_ComponentSelection_attach_marks_01():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tc'8 -\\marcato -\\staccato\n\td'8 -\\marcato -\\staccato\n\tr8\n\tf'8 -\\marcato -\\staccato\n}"
+        r'''
+        \new Staff {
+            c'8 -\marcato -\staccato
+            d'8 -\marcato -\staccato
+            r8
+            f'8 -\marcato -\staccato
+        }
+        '''
         )
 
 
@@ -49,5 +56,12 @@ def test_ComponentSelection_attach_marks_02():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tc'8 :16\n\td'8 :16\n\tr8\n\tf'8 :16\n}"
+        r'''
+        \new Staff {
+            c'8 :16
+            d'8 :16
+            r8
+            f'8 :16
+        }
+        '''
         )

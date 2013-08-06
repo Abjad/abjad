@@ -20,5 +20,14 @@ def test_ComplexGlissandoSpanner_01():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\tc'8 \\glissando\n\td'8 \\glissando\n\t\\once \\override NoteColumn #'glissando-skip = ##t\n\t\\once \\override Rest #'transparent = ##t\n\tr8\n\te'8\n}"
+        r'''
+        \new Staff {
+            c'8 \glissando
+            d'8 \glissando
+            \once \override NoteColumn #'glissando-skip = ##t
+            \once \override Rest #'transparent = ##t
+            r8
+            e'8
+        }
+        '''
         )

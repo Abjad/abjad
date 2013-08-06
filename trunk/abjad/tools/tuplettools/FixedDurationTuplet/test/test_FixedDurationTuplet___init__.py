@@ -12,7 +12,13 @@ def test_FixedDurationTuplet___init___01():
     assert str(t) == "{@ 3:2 c'8, c'8, c'8 @}"
     assert testtools.compare(
         t.lilypond_format,
-        "\\times 2/3 {\n\tc'8\n\tc'8\n\tc'8\n}"
+        r'''
+        \times 2/3 {
+            c'8
+            c'8
+            c'8
+        }
+        '''
         )
     assert len(t) == 3
     assert t.target_duration == Fraction(1, 4)

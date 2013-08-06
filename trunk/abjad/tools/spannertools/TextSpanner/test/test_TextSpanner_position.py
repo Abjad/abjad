@@ -19,7 +19,14 @@ def test_TextSpanner_position_01():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n}"
+        r'''
+        \new Staff {
+            c'8 \startTextSpan
+            c'8
+            c'8
+            c'8 \stopTextSpan
+        }
+        '''
         )
 
 
@@ -41,7 +48,15 @@ def test_TextSpanner_position_02():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\textSpannerNeutral\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n}"
+        r'''
+        \new Staff {
+            \textSpannerNeutral
+            c'8 \startTextSpan
+            c'8
+            c'8
+            c'8 \stopTextSpan
+        }
+        '''
         )
 
 
@@ -63,7 +78,15 @@ def test_TextSpanner_position_03():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\textSpannerUp\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n}"
+        r'''
+        \new Staff {
+            \textSpannerUp
+            c'8 \startTextSpan
+            c'8
+            c'8
+            c'8 \stopTextSpan
+        }
+        '''
         )
 
 
@@ -85,7 +108,15 @@ def test_TextSpanner_position_04():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\textSpannerDown\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n}"
+        r'''
+        \new Staff {
+            \textSpannerDown
+            c'8 \startTextSpan
+            c'8
+            c'8
+            c'8 \stopTextSpan
+        }
+        '''
         )
 
 
@@ -107,5 +138,12 @@ def test_TextSpanner_position_05():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n}"
+        r'''
+        \new Staff {
+            c'8 \startTextSpan
+            c'8
+            c'8
+            c'8 \stopTextSpan
+        }
+        '''
         )

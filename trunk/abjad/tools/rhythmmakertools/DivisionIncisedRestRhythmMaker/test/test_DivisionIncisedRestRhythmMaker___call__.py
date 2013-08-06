@@ -52,7 +52,36 @@ def test_DivisionIncisedRestRhythmMaker___call___01():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr16.\n\t\tc'32\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tr4\n\t\tr16.\n\t\tc'32\n\t}\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr16.\n\t\tc'32\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tr4\n\t\tr16.\n\t\tc'32\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 5/8
+                r2
+                r16.
+                c'32
+            }
+            {
+                \time 5/8
+                c'4
+                r4
+                r16.
+                c'32
+            }
+            {
+                \time 5/8
+                r2
+                r16.
+                c'32
+            }
+            {
+                \time 5/8
+                c'4
+                r4
+                r16.
+                c'32
+            }
+        }
+        '''
         )
 
 
@@ -106,7 +135,36 @@ def test_DivisionIncisedRestRhythmMaker___call___02():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tr4\n\t\tr16.\n\t\tc'32\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tc'4\n\t\tr16.\n\t\tc'32\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tc'4\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tc'4\n\t\tc'8\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 5/8
+                c'4
+                r4
+                r16.
+                c'32
+            }
+            {
+                \time 5/8
+                c'4
+                c'4
+                r16.
+                c'32
+            }
+            {
+                \time 5/8
+                c'4
+                c'4
+                c'8
+            }
+            {
+                \time 5/8
+                c'4
+                c'4
+                c'8
+            }
+        }
+        '''
         )
 
 
@@ -155,7 +213,31 @@ def test_DivisionIncisedRestRhythmMaker___call___03():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tc'32\n\t\tr4\n\t\tr16.\n\t\tc'4\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'32\n\t\tr16.\n\t\tc'4\n\t\tc'4\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'32\n\t\tc'4\n\t\tc'4\n\t\tc'16.\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 5/8
+                c'32
+                r4
+                r16.
+                c'4
+            }
+            {
+                \time 5/8
+                c'32
+                r16.
+                c'4
+                c'4
+            }
+            {
+                \time 5/8
+                c'32
+                c'4
+                c'4
+                c'16.
+            }
+        }
+        '''
         )
 
 
@@ -253,7 +335,35 @@ def test_DivisionIncisedRestRhythmMaker___call___05():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 4/8\n\t\t\\times 4/5 {\n\t\t\tc'8\n\t\t\tr4.\n\t\t\tc'8\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tc'8\n\t\t\tr4\n\t\t\tc'8\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t\\times 4/7 {\n\t\t\tc'8\n\t\t\tr2\n\t\t\tr8\n\t\t\tc'8\n\t\t}\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 4/8
+                \times 4/5 {
+                    c'8
+                    r4.
+                    c'8
+                }
+            }
+            {
+                \time 4/8
+                {
+                    c'8
+                    r4
+                    c'8
+                }
+            }
+            {
+                \time 4/8
+                \times 4/7 {
+                    c'8
+                    r2
+                    r8
+                    c'8
+                }
+            }
+        }
+        '''
         )
 
 
@@ -319,5 +429,41 @@ def test_DivisionIncisedRestRhythmMaker___call___06():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 4/8\n\t\t\\times 8/9 {\n\t\t\tc'32\n\t\t\tr2\n\t\t\tr32\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tc'32\n\t\t\tr16.\n\t\t}\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 6/7 {\n\t\t\tc'32\n\t\t\tr4.\n\t\t\tr32\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tc'32\n\t\t\tr8..\n\t\t}\n\t\t\\times 4/5 {\n\t\t\tc'32\n\t\t\tr4\n\t\t\tr32\n\t\t}\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 4/8
+                \times 8/9 {
+                    c'32
+                    r2
+                    r32
+                }
+            }
+            {
+                \time 4/8
+                {
+                    c'32
+                    r16.
+                }
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 6/7 {
+                    c'32
+                    r4.
+                    r32
+                }
+            }
+            {
+                \time 4/8
+                {
+                    c'32
+                    r8..
+                }
+                \times 4/5 {
+                    c'32
+                    r4
+                    r32
+                }
+            }
+        }
+        '''
         )

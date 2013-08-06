@@ -32,7 +32,14 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 [\n\te'8\n\td'8\n\tf'8 ]\n}"
+        r'''
+        \new Voice {
+            c'8 [
+            e'8
+            d'8
+            f'8 ]
+        }
+        '''
         )
 
 
@@ -67,7 +74,14 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 [\n\te'8 ]\n\td'8 [\n\tf'8 ]\n}"
+        r'''
+        \new Voice {
+            c'8 [
+            e'8 ]
+            d'8 [
+            f'8 ]
+        }
+        '''
         )
 
 
@@ -101,7 +115,14 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 [\n\te'8 ]\n\td'8\n\tf'8\n}"
+        r'''
+        \new Voice {
+            c'8 [
+            e'8 ]
+            d'8
+            f'8
+        }
+        '''
         )
 
 
@@ -141,7 +162,15 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t{\n\t\tc'8 [ \\glissando\n\t\td'8 \\glissando\n\t}\n\te'8 ]\n}"
+        r'''
+        \new Voice {
+            {
+                c'8 [ \glissando
+                d'8 \glissando
+            }
+            e'8 ]
+        }
+        '''
         )
 
 
@@ -185,7 +214,18 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t{\n\t\tc'8 [ \\glissando\n\t\td'8 \\glissando\n\t}\n\t{\n\t\te'8 \\glissando\n\t\tf'8 ]\n\t}\n}"
+        r'''
+        \new Voice {
+            {
+                c'8 [ \glissando
+                d'8 \glissando
+            }
+            {
+                e'8 \glissando
+                f'8 ]
+            }
+        }
+        '''
         )
 
 
@@ -239,7 +279,22 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\tr8\n\t\tf'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
+        r'''
+        \new Voice {
+            {
+                c'8 [
+                d'8
+            }
+            {
+                r8
+                f'8
+            }
+            {
+                g'8
+                a'8 ]
+            }
+        }
+        '''
         )
 
 
@@ -298,5 +353,24 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t{\n\t\tc'8 [ \\glissando\n\t\td'8 \\glissando\n\t}\n\t{\n\t\t\\times 2/3 {\n\t\t\tc'16 \\glissando\n\t\t\tc'16 \\glissando\n\t\t\tc'16 \\glissando\n\t\t}\n\t\tf'8 \\glissando\n\t}\n\t{\n\t\tg'8 \\glissando\n\t\ta'8 ]\n\t}\n}"
+        r'''
+        \new Voice {
+            {
+                c'8 [ \glissando
+                d'8 \glissando
+            }
+            {
+                \times 2/3 {
+                    c'16 \glissando
+                    c'16 \glissando
+                    c'16 \glissando
+                }
+                f'8 \glissando
+            }
+            {
+                g'8 \glissando
+                a'8 ]
+            }
+        }
+        '''
         )

@@ -22,5 +22,13 @@ def test_LayoutBlock_context_blocks_01():
 
     assert testtools.compare(
         layout_block.lilypond_format,
-        "\\layout {\n\t\\context {\n\t\t\\Score\n\t\t\\override BarNumber #'transparent = ##t\n\t\t\\override TimeSignature #'break-visibility = #end-of-line-invisible\n\t}\n}"
+        r'''
+        \layout {
+            \context {
+                \Score
+                \override BarNumber #'transparent = ##t
+                \override TimeSignature #'break-visibility = #end-of-line-invisible
+            }
+        }
+        '''
         )

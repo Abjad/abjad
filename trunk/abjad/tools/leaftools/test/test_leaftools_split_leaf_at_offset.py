@@ -36,7 +36,14 @@ def test_leaftools_split_leaf_at_offset_01():
     assert select(staff).is_well_formed()
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tc'8 [\n\td'32\n\td'16.\n\te'8 ]\n}"
+        r'''
+        \new Staff {
+            c'8 [
+            d'32
+            d'16.
+            e'8 ]
+        }
+        '''
         )
 
 
@@ -74,7 +81,14 @@ def test_leaftools_split_leaf_at_offset_02():
     assert select(staff).is_well_formed()
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tc'8 [\n\td'32 ]\n\td'16. [\n\te'8 ]\n}"
+        r'''
+        \new Staff {
+            c'8 [
+            d'32 ]
+            d'16. [
+            e'8 ]
+        }
+        '''
         )
 
 
@@ -111,7 +125,14 @@ def test_leaftools_split_leaf_at_offset_03():
     assert select(staff).is_well_formed()
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tc'8 [\n\td'32 ~\n\td'16.\n\te'8 ]\n}"
+        r'''
+        \new Staff {
+            c'8 [
+            d'32 ~
+            d'16.
+            e'8 ]
+        }
+        '''
         )
 
 
@@ -145,7 +166,14 @@ def test_leaftools_split_leaf_at_offset_04():
     assert select(staff).is_well_formed()
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tc'8 [\n\td'32 ] ~\n\td'16. [\n\te'8 ]\n}"
+        r'''
+        \new Staff {
+            c'8 [
+            d'32 ] ~
+            d'16. [
+            e'8 ]
+        }
+        '''
         )
 
 
@@ -183,7 +211,18 @@ def test_leaftools_split_leaf_at_offset_05():
     assert select(staff).is_well_formed()
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'16\n\t}\n\t\\times 2/3 {\n\t\td'8\n\t}\n\te'8 ]\n}"
+        r'''
+        \new Staff {
+            c'8 [
+            \times 2/3 {
+                d'16
+            }
+            \times 2/3 {
+                d'8
+            }
+            e'8 ]
+        }
+        '''
         )
 
 
@@ -224,7 +263,17 @@ def test_leaftools_split_leaf_at_offset_06():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'16\n\t\td'16\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
+        r'''
+        \new Voice {
+            c'8 [
+            \times 2/3 {
+                d'16
+                d'16
+                e'8
+                f'8 ]
+            }
+        }
+        '''
         )
 
 

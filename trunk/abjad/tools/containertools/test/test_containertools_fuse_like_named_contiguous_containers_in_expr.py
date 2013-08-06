@@ -331,7 +331,14 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_10():
         [t1, t2])
     assert testtools.compare(
         tadd.lilypond_format,
-        "{\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
+        r'''
+        {
+            c'4
+            c'4
+            c'4
+            c'4
+        }
+        '''
         )
     assert select(tadd).is_well_formed()
 

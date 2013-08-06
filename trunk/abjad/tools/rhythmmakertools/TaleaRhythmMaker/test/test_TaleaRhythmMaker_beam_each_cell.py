@@ -22,5 +22,41 @@ def test_TaleaRhythmMaker_beam_each_cell_01():
 
     assert testtools.compare(
         score.lilypond_format,
-        "\\new Score \\with {\n\tautoBeaming = ##f\n} <<\n\t\\new Staff {\n\t\t{\n\t\t\t\\time 2/16\n\t\t\t\\times 4/7 {\n\t\t\t\tc'32 [\n\t\t\t\tc'32\n\t\t\t\tc'32 ]\n\t\t\t\tr32\n\t\t\t\tc'16 [\n\t\t\t\tc'32 ]\n\t\t\t}\n\t\t}\n\t\t{\n\t\t\t\\time 5/16\n\t\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\t\\times 5/7 {\n\t\t\t\tc'32 [\n\t\t\t\tc'32\n\t\t\t\tc'32\n\t\t\t\tc'32 ]\n\t\t\t\tr32\n\t\t\t\tc'16 [\n\t\t\t\tc'16\n\t\t\t\tc'32\n\t\t\t\tc'32\n\t\t\t\tc'32 ]\n\t\t\t\tr32\n\t\t\t\tc'32\n\t\t\t}\n\t\t}\n\t}\n>>"
+        r'''
+        \new Score \with {
+            autoBeaming = ##f
+        } <<
+            \new Staff {
+                {
+                    \time 2/16
+                    \times 4/7 {
+                        c'32 [
+                        c'32
+                        c'32 ]
+                        r32
+                        c'16 [
+                        c'32 ]
+                    }
+                }
+                {
+                    \time 5/16
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 5/7 {
+                        c'32 [
+                        c'32
+                        c'32
+                        c'32 ]
+                        r32
+                        c'16 [
+                        c'16
+                        c'32
+                        c'32
+                        c'32 ]
+                        r32
+                        c'32
+                    }
+                }
+            }
+        >>
+        '''
         )

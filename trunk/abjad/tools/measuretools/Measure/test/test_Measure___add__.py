@@ -45,7 +45,15 @@ def test_Measure___add___01():
     assert select(new).is_well_formed()
     assert testtools.compare(
         new.lilypond_format,
-        "{\n\t\\time 2/8\n\tc'16 [\n\td'16 ]\n\tc'16 (\n\td'16 )\n}"
+        r'''
+        {
+            \time 2/8
+            c'16 [
+            d'16 ]
+            c'16 (
+            d'16 )
+        }
+        '''
         )
 
 
@@ -92,5 +100,15 @@ def test_Measure___add___02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16 [\n\t\td'16 ]\n\t\tc'16 (\n\t\td'16 )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'16 [
+                d'16 ]
+                c'16 (
+                d'16 )
+            }
+        }
+        '''
         )

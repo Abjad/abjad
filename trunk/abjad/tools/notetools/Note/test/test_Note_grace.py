@@ -18,7 +18,12 @@ def test_Note_grace_01():
 
     assert testtools.compare(
         note.lilypond_format,
-        "\\grace {\n\td'16\n}\nc'4"
+        r'''
+        \grace {
+            d'16
+        }
+        c'4
+        '''
         )
 
 
@@ -40,7 +45,14 @@ def test_Note_grace_02():
 
     assert testtools.compare(
         note.lilypond_format,
-        "\\grace {\n\tc'16\n\td'16\n\te'16\n}\nc'4"
+        r'''
+        \grace {
+            c'16
+            d'16
+            e'16
+        }
+        c'4
+        '''
         )
 
 
@@ -60,7 +72,12 @@ def test_Note_grace_03():
 
     assert testtools.compare(
         note.lilypond_format,
-        "\\appoggiatura {\n\td'16\n}\nc'4"
+        r'''
+        \appoggiatura {
+            d'16
+        }
+        c'4
+        '''
         )
 
 
@@ -80,7 +97,12 @@ def test_Note_grace_04():
 
     assert testtools.compare(
         note.lilypond_format,
-        "\\acciaccatura {\n\td'16\n}\nc'4"
+        r'''
+        \acciaccatura {
+            d'16
+        }
+        c'4
+        '''
         )
 
 
@@ -101,7 +123,13 @@ def test_Note_grace_05():
 
     assert testtools.compare(
         note.lilypond_format,
-        "\\afterGrace\nc'4\n{\n\td'16\n}"
+        r'''
+        \afterGrace
+        c'4
+        {
+            d'16
+        }
+        '''
         )
 
 

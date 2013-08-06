@@ -36,5 +36,11 @@ def test_Staff___copy___01():
 
     assert testtools.compare(
         staff_2.lilypond_format,
-        "\\new Staff \\with {\n\t\\override NoteHead #'color = #red\n\ttupletFullLength = ##t\n} {\n}"
+        r'''
+        \new Staff \with {
+            \override NoteHead #'color = #red
+            tupletFullLength = ##t
+        } {
+        }
+        '''
         )

@@ -10,35 +10,69 @@ def test_Tuplet_from_duration_and_ratio_01():
         duration, [1], avoid_dots=True, is_diminution=False)
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/2 {\n\tc'8\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/2 {
+            c'8
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 1], avoid_dots=True, is_diminution=False)
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/2 {\n\tc'16\n\tc'16\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/2 {
+            c'16
+            c'16
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 1, 1], avoid_dots=True, is_diminution=False)
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\tc'16\n\tc'16\n\tc'16\n}"
+        r'''
+        {
+            c'16
+            c'16
+            c'16
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 1, 1, 1], avoid_dots=True, is_diminution=False)
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/2 {\n\tc'32\n\tc'32\n\tc'32\n\tc'32\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/2 {
+            c'32
+            c'32
+            c'32
+            c'32
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 1, 1, 1, 1], avoid_dots=True, is_diminution=False)
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 6/5 {\n\tc'32\n\tc'32\n\tc'32\n\tc'32\n\tc'32\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 6/5 {
+            c'32
+            c'32
+            c'32
+            c'32
+            c'32
+        }
+        '''
         )
 
 
@@ -50,35 +84,69 @@ def test_Tuplet_from_duration_and_ratio_02():
         duration, [1], avoid_dots=True, is_diminution=False)
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/2 {\n\tc'8\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/2 {
+            c'8
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 2], avoid_dots=True, is_diminution=False)
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\tc'16\n\tc'8\n}"
+        r'''
+        {
+            c'16
+            c'8
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 2, 2], avoid_dots=True, is_diminution=False)
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 6/5 {\n\tc'32\n\tc'16\n\tc'16\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 6/5 {
+            c'32
+            c'16
+            c'16
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 2, 2, 3], avoid_dots=True, is_diminution=False)
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/2 {\n\tc'64\n\tc'32\n\tc'32\n\tc'32.\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/2 {
+            c'64
+            c'32
+            c'32
+            c'32.
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 2, 2, 3, 3], avoid_dots=True, is_diminution=False)
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 12/11 {\n\tc'64\n\tc'32\n\tc'32\n\tc'32.\n\tc'32.\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 12/11 {
+            c'64
+            c'32
+            c'32
+            c'32.
+            c'32.
+        }
+        '''
         )
 
 
@@ -92,7 +160,16 @@ def test_Tuplet_from_duration_and_ratio_03():
         duration, [1, -2, -2, 3, 3], avoid_dots=True, is_diminution=False)
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 12/11 {\n\tc'64\n\tr32\n\tr32\n\tc'32.\n\tc'32.\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 12/11 {
+            c'64
+            r32
+            r32
+            c'32.
+            c'32.
+        }
+        '''
         )
 
 
@@ -112,7 +189,11 @@ def test_Tuplet_from_duration_and_ratio_04():
         Fraction(1, 8), [27], avoid_dots=True, is_diminution=False)
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\tc'8\n}"
+        r'''
+        {
+            c'8
+        }
+        '''
         )
 
 
@@ -124,35 +205,66 @@ def test_Tuplet_from_duration_and_ratio_05():
         duration, [1], avoid_dots=False, is_diminution=False)
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\tc'8.\n}"
+        r'''
+        {
+            c'8.
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 1], avoid_dots=False, is_diminution=False)
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\tc'16.\n\tc'16.\n}"
+        r'''
+        {
+            c'16.
+            c'16.
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 1, 1], avoid_dots=False, is_diminution=False)
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\tc'16\n\tc'16\n\tc'16\n}"
+        r'''
+        {
+            c'16
+            c'16
+            c'16
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 1, 1, 1], avoid_dots=False, is_diminution=False)
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\tc'32.\n\tc'32.\n\tc'32.\n\tc'32.\n}"
+        r'''
+        {
+            c'32.
+            c'32.
+            c'32.
+            c'32.
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 1, 1, 1, 1], avoid_dots=False, is_diminution=False)
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 8/5 {\n\tc'64.\n\tc'64.\n\tc'64.\n\tc'64.\n\tc'64.\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 8/5 {
+            c'64.
+            c'64.
+            c'64.
+            c'64.
+            c'64.
+        }
+        '''
         )
 
 
@@ -164,35 +276,68 @@ def test_Tuplet_from_duration_and_ratio_06():
         duration, [1], avoid_dots=False, is_diminution=False)
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\tc'8.\n}"
+        r'''
+        {
+            c'8.
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 2], avoid_dots=False, is_diminution=False)
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\tc'16\n\tc'8\n}"
+        r'''
+        {
+            c'16
+            c'8
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 2, 2], avoid_dots=False, is_diminution=False)
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 8/5 {\n\tc'64.\n\tc'32.\n\tc'32.\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 8/5 {
+            c'64.
+            c'32.
+            c'32.
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 2, 2, 3], avoid_dots=False, is_diminution=False)
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/2 {\n\tc'64\n\tc'32\n\tc'32\n\tc'32.\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/2 {
+            c'64
+            c'32
+            c'32
+            c'32.
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 2, 2, 3, 3], avoid_dots=False, is_diminution=False)
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 12/11 {\n\tc'64\n\tc'32\n\tc'32\n\tc'32.\n\tc'32.\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 12/11 {
+            c'64
+            c'32
+            c'32
+            c'32.
+            c'32.
+        }
+        '''
         )
 
 
@@ -212,7 +357,11 @@ def test_Tuplet_from_duration_and_ratio_07():
         Fraction(1, 8), [27], avoid_dots=False, is_diminution=False)
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\tc'8\n}"
+        r'''
+        {
+            c'8
+        }
+        '''
         )
 
 
@@ -224,35 +373,69 @@ def test_Tuplet_from_duration_and_ratio_08():
         duration, [1], avoid_dots=True, is_diminution=True)
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/4 {\n\tc'4\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/4 {
+            c'4
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 1], avoid_dots=True, is_diminution=True)
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/4 {\n\tc'8\n\tc'8\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/4 {
+            c'8
+            c'8
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 1, 1], avoid_dots=True, is_diminution=True)
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\tc'16\n\tc'16\n\tc'16\n}"
+        r'''
+        {
+            c'16
+            c'16
+            c'16
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 1, 1, 1], avoid_dots=True, is_diminution=True)
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/4 {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/4 {
+            c'16
+            c'16
+            c'16
+            c'16
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 1, 1, 1, 1], avoid_dots=True, is_diminution=True)
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/5 {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/5 {
+            c'16
+            c'16
+            c'16
+            c'16
+            c'16
+        }
+        '''
         )
 
 
@@ -264,35 +447,69 @@ def test_Tuplet_from_duration_and_ratio_09():
         duration, [1], avoid_dots=True, is_diminution=True)
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/4 {\n\tc'4\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/4 {
+            c'4
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 2], avoid_dots=True, is_diminution=True)
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\tc'16\n\tc'8\n}"
+        r'''
+        {
+            c'16
+            c'8
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 2, 2], avoid_dots=True, is_diminution=True)
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/5 {\n\tc'16\n\tc'8\n\tc'8\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/5 {
+            c'16
+            c'8
+            c'8
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 2, 2, 3], avoid_dots=True, is_diminution=True)
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/4 {\n\tc'32\n\tc'16\n\tc'16\n\tc'16.\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/4 {
+            c'32
+            c'16
+            c'16
+            c'16.
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 2, 2, 3, 3], avoid_dots=True, is_diminution=True)
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 6/11 {\n\tc'32\n\tc'16\n\tc'16\n\tc'16.\n\tc'16.\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 6/11 {
+            c'32
+            c'16
+            c'16
+            c'16.
+            c'16.
+        }
+        '''
         )
 
 
@@ -306,7 +523,16 @@ def test_Tuplet_from_duration_and_ratio_10():
         duration, [1, -2, -2, 3, 3], avoid_dots=True, is_diminution=True)
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 6/11 {\n\tc'32\n\tr16\n\tr16\n\tc'16.\n\tc'16.\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 6/11 {
+            c'32
+            r16
+            r16
+            c'16.
+            c'16.
+        }
+        '''
         )
 
 
@@ -326,7 +552,11 @@ def test_Tuplet_from_duration_and_ratio_11():
         Fraction(1, 8), [27])
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\tc'8\n}"
+        r'''
+        {
+            c'8
+        }
+        '''
         )
 
 
@@ -338,35 +568,65 @@ def test_Tuplet_from_duration_and_ratio_12():
         duration, [1], avoid_dots=False, is_diminution=True)
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\tc'8.\n}"
+        r'''
+        {
+            c'8.
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 1], avoid_dots=False, is_diminution=True)
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\tc'16.\n\tc'16.\n}"
+        r'''
+        {
+            c'16.
+            c'16.
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 1, 1], avoid_dots=False, is_diminution=True)
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\tc'16\n\tc'16\n\tc'16\n}"
+        r'''
+        {
+            c'16
+            c'16
+            c'16
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 1, 1, 1], avoid_dots=False, is_diminution=True)
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\tc'32.\n\tc'32.\n\tc'32.\n\tc'32.\n}"
+        r'''
+        {
+            c'32.
+            c'32.
+            c'32.
+            c'32.
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 1, 1, 1, 1], avoid_dots=False, is_diminution=True)
     assert testtools.compare(
         t.lilypond_format,
-        "\\times 4/5 {\n\tc'32.\n\tc'32.\n\tc'32.\n\tc'32.\n\tc'32.\n}"
+        r'''
+        \times 4/5 {
+            c'32.
+            c'32.
+            c'32.
+            c'32.
+            c'32.
+        }
+        '''
         )
 
 
@@ -378,35 +638,67 @@ def test_Tuplet_from_duration_and_ratio_13():
         duration, [1], avoid_dots=False, is_diminution=True)
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\tc'8.\n}"
+        r'''
+        {
+            c'8.
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 2], avoid_dots=False, is_diminution=True)
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\tc'16\n\tc'8\n}"
+        r'''
+        {
+            c'16
+            c'8
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 2, 2], avoid_dots=False, is_diminution=True)
     assert testtools.compare(
         t.lilypond_format,
-        "\\times 4/5 {\n\tc'32.\n\tc'16.\n\tc'16.\n}"
+        r'''
+        \times 4/5 {
+            c'32.
+            c'16.
+            c'16.
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 2, 2, 3], avoid_dots=False, is_diminution=True)
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/4 {\n\tc'32\n\tc'16\n\tc'16\n\tc'16.\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/4 {
+            c'32
+            c'16
+            c'16
+            c'16.
+        }
+        '''
         )
 
     t = Tuplet.from_duration_and_ratio(
         duration, [1, 2, 2, 3, 3], avoid_dots=False, is_diminution=True)
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 6/11 {\n\tc'32\n\tc'16\n\tc'16\n\tc'16.\n\tc'16.\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 6/11 {
+            c'32
+            c'16
+            c'16
+            c'16.
+            c'16.
+        }
+        '''
         )
 
 
@@ -426,7 +718,11 @@ def test_Tuplet_from_duration_and_ratio_14():
         Fraction(1, 8), [27], avoid_dots=False, is_diminution=True)
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\tc'8\n}"
+        r'''
+        {
+            c'8
+        }
+        '''
         )
 
 
@@ -439,5 +735,11 @@ def test_Tuplet_from_duration_and_ratio_15():
 
     assert testtools.compare(
         tuplet.lilypond_format,
-        "\\times 2/3 {\n\tc'8\n\tr8\n\tc'8\n}"
+        r'''
+        \times 2/3 {
+            c'8
+            r8
+            c'8
+        }
+        '''
         )

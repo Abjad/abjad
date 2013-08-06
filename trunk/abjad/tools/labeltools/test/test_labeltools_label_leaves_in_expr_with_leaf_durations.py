@@ -35,5 +35,38 @@ def test_labeltools_label_leaves_in_expr_with_leaf_durations_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\times 2/3 {\n\tc'8\n\t\t_ \\markup {\n\t\t\t\\column\n\t\t\t\t{\n\t\t\t\t\t\\small\n\t\t\t\t\t\t1/8\n\t\t\t\t\t\\small\n\t\t\t\t\t\t1/12\n\t\t\t\t}\n\t\t\t}\n\td'8\n\t\t_ \\markup {\n\t\t\t\\column\n\t\t\t\t{\n\t\t\t\t\t\\small\n\t\t\t\t\t\t1/8\n\t\t\t\t\t\\small\n\t\t\t\t\t\t1/12\n\t\t\t\t}\n\t\t\t}\n\te'8\n\t\t_ \\markup {\n\t\t\t\\column\n\t\t\t\t{\n\t\t\t\t\t\\small\n\t\t\t\t\t\t1/8\n\t\t\t\t\t\\small\n\t\t\t\t\t\t1/12\n\t\t\t\t}\n\t\t\t}\n}"
+        r'''
+        \times 2/3 {
+            c'8
+                _ \markup {
+                    \column
+                        {
+                            \small
+                                1/8
+                            \small
+                                1/12
+                        }
+                    }
+            d'8
+                _ \markup {
+                    \column
+                        {
+                            \small
+                                1/8
+                            \small
+                                1/12
+                        }
+                    }
+            e'8
+                _ \markup {
+                    \column
+                        {
+                            \small
+                                1/8
+                            \small
+                                1/12
+                        }
+                    }
+        }
+        '''
         )

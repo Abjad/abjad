@@ -43,7 +43,17 @@ def test_FreeTupletSelection_move_prolation_to_contents_and_remove_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\tc'8. [\n\td'8.\n\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\\times 3/2 {\n\t\tc'8\n\t\td'8 ]\n\t}\n}"
+        r'''
+        \new Staff {
+            c'8. [
+            d'8.
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 3/2 {
+                c'8
+                d'8 ]
+            }
+        }
+        '''
         )
 
 
@@ -95,5 +105,22 @@ def test_FreeTupletSelection_move_prolation_to_contents_and_remove_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8\n\t}\n\t\\times 2/3 {\n\t\td'8\n\t}\n\t\\times 2/3 {\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t}\n}"
+        r'''
+        \new Voice {
+            \times 2/3 {
+                c'8
+            }
+            \times 2/3 {
+                d'8
+            }
+            \times 2/3 {
+                e'8
+            }
+            \times 2/3 {
+                f'8
+                g'8
+                a'8
+            }
+        }
+        '''
         )

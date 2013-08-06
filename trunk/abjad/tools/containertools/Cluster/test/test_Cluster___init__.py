@@ -21,5 +21,12 @@ def test_Cluster___init___02():
     assert len(t) == 4
     assert testtools.compare(
         t.lilypond_format,
-        "\\makeClusters {\n\tcs'4\n\tcs'4\n\tcs'4\n\tcs'4\n}"
+        r'''
+        \makeClusters {
+            cs'4
+            cs'4
+            cs'4
+            cs'4
+        }
+        '''
         )

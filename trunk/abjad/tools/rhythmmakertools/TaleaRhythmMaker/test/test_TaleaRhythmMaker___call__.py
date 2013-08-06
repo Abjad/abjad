@@ -43,7 +43,30 @@ def test_TaleaRhythmMaker___call___01():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\t\\times 4/7 {\n\t\t\tr16\n\t\t\tc'4\n\t\t\tr8\n\t\t}\n\t}\n\t{\n\t\t\\time 5/8\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 5/7 {\n\t\t\tc'8.\n\t\t\tr16\n\t\t\tc'4\n\t\t\tr8\n\t\t\tc'8.\n\t\t\tr16\n\t\t}\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                \times 4/7 {
+                    r16
+                    c'4
+                    r8
+                }
+            }
+            {
+                \time 5/8
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 5/7 {
+                    c'8.
+                    r16
+                    c'4
+                    r8
+                    c'8.
+                    r16
+                }
+            }
+        }
+        '''
         )
 
 
@@ -91,5 +114,32 @@ def test_TaleaRhythmMaker___call___02():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\t\\times 4/7 {\n\t\t\tr16\n\t\t\tc'4\n\t\t\tr8\n\t\t}\n\t}\n\t{\n\t\t\\time 5/8\n\t\t{\n\t\t\tc'8\n\t\t}\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\tr16\n\t\t\tc'4\n\t\t\tr8\n\t\t\tc'16\n\t\t}\n\t\t{\n\t\t\tc'8\n\t\t}\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                \times 4/7 {
+                    r16
+                    c'4
+                    r8
+                }
+            }
+            {
+                \time 5/8
+                {
+                    c'8
+                }
+                \times 2/3 {
+                    c'16
+                    r16
+                    c'4
+                    r8
+                    c'16
+                }
+                {
+                    c'8
+                }
+            }
+        }
+        '''
         )

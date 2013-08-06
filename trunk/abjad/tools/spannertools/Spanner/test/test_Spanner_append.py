@@ -29,7 +29,22 @@ def test_Spanner_append_01():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t{\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8\n\t\ta'8\n\t}\n}"
+        r'''
+        \new Voice {
+            {
+                c'8
+                d'8
+            }
+            {
+                e'8 [
+                f'8 ]
+            }
+            {
+                g'8
+                a'8
+            }
+        }
+        '''
         )
 
     p.append(t[2])
@@ -53,7 +68,22 @@ def test_Spanner_append_01():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t{\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\te'8 [\n\t\tf'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
+        r'''
+        \new Voice {
+            {
+                c'8
+                d'8
+            }
+            {
+                e'8 [
+                f'8
+            }
+            {
+                g'8
+                a'8 ]
+            }
+        }
+        '''
         )
 
 
@@ -84,7 +114,22 @@ def test_Spanner_append_02():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t{\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8\n\t\ta'8\n\t}\n}"
+        r'''
+        \new Voice {
+            {
+                c'8
+                d'8
+            }
+            {
+                e'8 [
+                f'8 ]
+            }
+            {
+                g'8
+                a'8
+            }
+        }
+        '''
         )
 
     p.append(t[2][0])
@@ -108,5 +153,20 @@ def test_Spanner_append_02():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t{\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\te'8 [\n\t\tf'8\n\t}\n\t{\n\t\tg'8 ]\n\t\ta'8\n\t}\n}"
+        r'''
+        \new Voice {
+            {
+                c'8
+                d'8
+            }
+            {
+                e'8 [
+                f'8
+            }
+            {
+                g'8 ]
+                a'8
+            }
+        }
+        '''
         )

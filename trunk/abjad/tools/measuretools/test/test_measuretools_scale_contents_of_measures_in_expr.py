@@ -24,7 +24,14 @@ def test_measuretools_scale_contents_of_measures_in_expr_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\t\\time 3/8\n\tc'8 [\n\td'8\n\te'8 ]\n}"
+        r'''
+        {
+            \time 3/8
+            c'8 [
+            d'8
+            e'8 ]
+        }
+        '''
         )
 
 
@@ -49,7 +56,14 @@ def test_measuretools_scale_contents_of_measures_in_expr_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\t\\time 9/32\n\tc'16. [\n\td'16.\n\te'16. ]\n}"
+        r'''
+        {
+            \time 9/32
+            c'16. [
+            d'16.
+            e'16. ]
+        }
+        '''
         )
 
 
@@ -76,5 +90,14 @@ def test_measuretools_scale_contents_of_measures_in_expr_03():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8 [\n\t\td'8\n\t\te'8 ]\n\t}\n}"
+        r'''
+        {
+            \time 3/12
+            \scaleDurations #'(2 . 3) {
+                c'8 [
+                d'8
+                e'8 ]
+            }
+        }
+        '''
         )

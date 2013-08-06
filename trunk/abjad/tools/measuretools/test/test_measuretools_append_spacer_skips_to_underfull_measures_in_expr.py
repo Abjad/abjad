@@ -44,5 +44,28 @@ def test_measuretools_append_spacer_skips_to_underfull_measures_in_expr_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 3/8\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n\t{\n\t\t\\time 4/8\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\ts1 * 1/8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\ts1 * 1/4\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 3/8
+                c'8
+                d'8
+                e'8
+            }
+            {
+                \time 4/8
+                c'8
+                d'8
+                e'8
+                s1 * 1/8
+            }
+            {
+                \time 5/8
+                c'8
+                d'8
+                e'8
+                s1 * 1/4
+            }
+        }
+        '''
         )

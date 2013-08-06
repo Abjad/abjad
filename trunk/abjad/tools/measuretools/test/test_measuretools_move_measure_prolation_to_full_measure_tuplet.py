@@ -31,7 +31,20 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01():
 
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\td'16\n\t\t\te'16\n\t\t}\n\t\tf'8\n\t\tg'8\n\t}\n}"
+        r'''
+        {
+            \time 3/12
+            \scaleDurations #'(2 . 3) {
+                \times 2/3 {
+                    c'16
+                    d'16
+                    e'16
+                }
+                f'8
+                g'8
+            }
+        }
+        '''
         )
 
 
@@ -55,7 +68,20 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\t\\time 2/8\n\t\\times 2/3 {\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\td'16\n\t\t\te'16\n\t\t}\n\t\tf'8\n\t\tg'8\n\t}\n}"
+        r'''
+        {
+            \time 2/8
+            \times 2/3 {
+                \times 2/3 {
+                    c'16
+                    d'16
+                    e'16
+                }
+                f'8
+                g'8
+            }
+        }
+        '''
         )
 
 
@@ -89,7 +115,25 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02():
 
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\t\\time 15/24\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8 ~\n\t\tc'32\n\t\td'8 ~\n\t\td'32\n\t\te'8 ~\n\t\te'32\n\t\tf'8 ~\n\t\tf'32\n\t\tg'8 ~\n\t\tg'32\n\t\ta'8 ~\n\t\ta'32\n\t}\n}"
+        r'''
+        {
+            \time 15/24
+            \scaleDurations #'(2 . 3) {
+                c'8 ~
+                c'32
+                d'8 ~
+                d'32
+                e'8 ~
+                e'32
+                f'8 ~
+                f'32
+                g'8 ~
+                g'32
+                a'8 ~
+                a'32
+            }
+        }
+        '''
         )
 
     measuretools.move_measure_prolation_to_full_measure_tuplet(t)
@@ -112,5 +156,18 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\t\\time 5/8\n\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\\times 5/6 {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t}\n}"
+        r'''
+        {
+            \time 5/8
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 5/6 {
+                c'8
+                d'8
+                e'8
+                f'8
+                g'8
+                a'8
+            }
+        }
+        '''
         )

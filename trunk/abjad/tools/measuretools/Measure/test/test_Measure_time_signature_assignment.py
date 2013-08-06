@@ -33,5 +33,12 @@ def test_Measure_time_signature_assignment_01():
 
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\t\\time 3/8\n\tc'8\n\td'8\n\te'8\n}"
+        r'''
+        {
+            \time 3/8
+            c'8
+            d'8
+            e'8
+        }
+        '''
         )

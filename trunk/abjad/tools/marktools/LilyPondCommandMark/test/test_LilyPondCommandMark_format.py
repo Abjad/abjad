@@ -19,7 +19,15 @@ def test_LilyPondCommandMark_format_01():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t#(set-accidental-style 'forget)\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff {
+            #(set-accidental-style 'forget)
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -40,7 +48,15 @@ def test_LilyPondCommandMark_format_02():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\tc'8\n\t#(set-accidental-style 'forget)\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff {
+            c'8
+            #(set-accidental-style 'forget)
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -114,7 +130,12 @@ def test_LilyPondCommandMark_format_07():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t\\compressFullBarRests\n\tc'4\n}"
+        r'''
+        \new Staff {
+            \compressFullBarRests
+            c'4
+        }
+        '''
         )
 
 
@@ -132,7 +153,12 @@ def test_LilyPondCommandMark_format_08():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t\\expandFullBarRests\n\tc'4\n}"
+        r'''
+        \new Staff {
+            \expandFullBarRests
+            c'4
+        }
+        '''
         )
 
 
@@ -145,7 +171,15 @@ def test_LilyPondCommandMark_format_09():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t\\voiceOne\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
+        r'''
+        \new Voice {
+            \voiceOne
+            c'8
+            c'8
+            c'8
+            c'8
+        }
+        '''
         )
 
 
@@ -158,34 +192,73 @@ def test_LilyPondCommandMark_format_10():
     marktools.LilyPondCommandMark('voiceOne')(t[0])
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t\\voiceOne\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
+        r'''
+        \new Voice {
+            \voiceOne
+            c'8
+            c'8
+            c'8
+            c'8
+        }
+        '''
         )
 
     select(t[0]).detach_marks()
     marktools.LilyPondCommandMark('voiceTwo')(t[0])
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t\\voiceTwo\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
+        r'''
+        \new Voice {
+            \voiceTwo
+            c'8
+            c'8
+            c'8
+            c'8
+        }
+        '''
         )
 
     select(t[0]).detach_marks()
     marktools.LilyPondCommandMark('voiceThree')(t[0])
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t\\voiceThree\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
+        r'''
+        \new Voice {
+            \voiceThree
+            c'8
+            c'8
+            c'8
+            c'8
+        }
+        '''
         )
 
     select(t[0]).detach_marks()
     marktools.LilyPondCommandMark('voiceFour')(t[0])
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t\\voiceFour\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
+        r'''
+        \new Voice {
+            \voiceFour
+            c'8
+            c'8
+            c'8
+            c'8
+        }
+        '''
         )
 
     select(t[0]).detach_marks()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
+        r'''
+        \new Voice {
+            c'8
+            c'8
+            c'8
+            c'8
+        }
+        '''
         )
 
 
@@ -198,5 +271,14 @@ def test_LilyPondCommandMark_format_11():
     marktools.LilyPondCommandMark('voiceTwo')(t[1])
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t\\voiceOne\n\tc'8\n\t\\voiceTwo\n\tc'8\n\tc'8\n\tc'8\n}"
+        r'''
+        \new Voice {
+            \voiceOne
+            c'8
+            \voiceTwo
+            c'8
+            c'8
+            c'8
+        }
+        '''
         )

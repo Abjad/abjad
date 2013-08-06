@@ -47,5 +47,23 @@ def test_measuretools_apply_full_measure_tuplets_to_contents_of_measures_in_expr
     assert select(staff).is_well_formed()
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\t{\n\t\t\tc'8\n\t\t\td'8\n\t\t}\n\t}\n\t{\n\t\t\\time 3/8\n\t\t{\n\t\t\te'8\n\t\t\tf'8\n\t\t\tg'8\n\t\t}\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                {
+                    c'8
+                    d'8
+                }
+            }
+            {
+                \time 3/8
+                {
+                    e'8
+                    f'8
+                    g'8
+                }
+            }
+        }
+        '''
         )

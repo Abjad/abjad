@@ -22,7 +22,15 @@ def test_Component_shorten_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t\\times 4/5 {\n\t\td'16. [\n\t}\n\te'8\n\tf'8 ]\n}"
+        r'''
+        \new Voice {
+            \times 4/5 {
+                d'16. [
+            }
+            e'8
+            f'8 ]
+        }
+        '''
         )
 
 
@@ -43,5 +51,11 @@ def test_Component_shorten_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\td'16 [\n\te'8\n\tf'8 ]\n}"
+        r'''
+        \new Voice {
+            d'16 [
+            e'8
+            f'8 ]
+        }
+        '''
         )

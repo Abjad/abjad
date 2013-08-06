@@ -49,7 +49,18 @@ def test_BeamSpanner_span_anonymous_02():
     assert len(beam.leaves) == 8
     assert testtools.compare(
         container.lilypond_format,
-        "{\n\tc'8 [\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8 ]\n}"
+        r'''
+        {
+            c'8 [
+            c'8
+            c'8
+            c'8
+            c'8
+            c'8
+            c'8
+            c'8 ]
+        }
+        '''
         )
 
 
@@ -84,7 +95,22 @@ def test_BeamSpanner_span_anonymous_03():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\t{\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                c'8 [
+                c'8
+                c'8
+                c'8
+            }
+            {
+                c'8
+                c'8
+                c'8
+                c'8 ]
+            }
+        }
+        '''
         )
 
 
@@ -114,7 +140,18 @@ def test_BeamSpanner_span_anonymous_04():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
+        r'''
+        \new Staff {
+            {
+                c'8 [
+                c'8
+                c'8
+                c'8
+            }
+            c'8
+            c'8 ]
+        }
+        '''
         )
 
 
@@ -146,7 +183,18 @@ def test_BeamSpanner_span_anonymous_05():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
+        r'''
+        \new Staff {
+            {
+                c'8 [
+                c'8
+                c'8
+                c'8
+            }
+            c'8
+            c'8 ]
+        }
+        '''
         )
 
 
@@ -176,7 +224,18 @@ def test_BeamSpanner_span_anonymous_06():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
+        r'''
+        \new Staff {
+            {
+                c'8 [
+                c'8
+                c'8
+                c'8
+            }
+            c'8
+            c'8 ]
+        }
+        '''
         )
 
 
@@ -240,7 +299,24 @@ def test_BeamSpanner_span_anonymous_08():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\t{\n\t}\n\t{\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                c'8 [
+                c'8
+                c'8
+                c'8
+            }
+            {
+            }
+            {
+                c'8
+                c'8
+                c'8
+                c'8 ]
+            }
+        }
+        '''
         )
 
 
@@ -274,7 +350,20 @@ def test_BeamSpanner_span_anonymous_09():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t}\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n\t{\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+            }
+            {
+                c'8 [
+                c'8
+                c'8
+                c'8 ]
+            }
+            {
+            }
+        }
+        '''
         )
 
 

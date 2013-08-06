@@ -48,7 +48,22 @@ def test_containertools_split_container_at_index_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tf'8\n\t}\n\t\\times 2/3 {\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
+        r'''
+        \new Voice {
+            \times 2/3 {
+                c'8 [
+                d'8
+                e'8
+            }
+            \times 2/3 {
+                f'8
+            }
+            \times 2/3 {
+                g'8
+                a'8 ]
+            }
+        }
+        '''
         )
 
 
@@ -102,7 +117,25 @@ def test_containertools_split_container_at_index_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t{\n\t\t\\time 3/8\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t{\n\t\t\\time 1/8\n\t\tf'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
+        r'''
+        \new Voice {
+            {
+                \time 3/8
+                c'8 [
+                d'8
+                e'8
+            }
+            {
+                \time 1/8
+                f'8
+            }
+            {
+                \time 2/8
+                g'8
+                a'8 ]
+            }
+        }
+        '''
         )
 
 
@@ -167,7 +200,31 @@ def test_containertools_split_container_at_index_03():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t{\n\t\t\\time 3/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tc'8 [\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t}\n\t{\n\t\t\\time 1/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tf'8\n\t\t}\n\t}\n\t{\n\t\t\\time 2/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tg'8\n\t\t\ta'8 ]\n\t\t}\n\t}\n}"
+        r'''
+        \new Voice {
+            {
+                \time 3/9
+                \scaleDurations #'(8 . 9) {
+                    c'8 [
+                    d'8
+                    e'8
+                }
+            }
+            {
+                \time 1/9
+                \scaleDurations #'(8 . 9) {
+                    f'8
+                }
+            }
+            {
+                \time 2/9
+                \scaleDurations #'(8 . 9) {
+                    g'8
+                    a'8 ]
+                }
+            }
+        }
+        '''
         )
     #assert t.lilypond_format == "\\new Voice {\n\t{\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\t\\time 3/9\n\t\t\tc'8 [\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t}\n\t{\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\t\\time 1/9\n\t\t\tf'8\n\t\t}\n\t}\n\t{\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\t\\time 2/9\n\t\t\tg'8\n\t\t\ta'8 ]\n\t\t}\n\t}\n}"
 
@@ -194,11 +251,21 @@ def test_containertools_split_container_at_index_04():
     assert select(t2).is_well_formed()
     assert testtools.compare(
         t1.lilypond_format,
-        "\\new Voice {\n\tc'8\n\td'8\n}"
+        r'''
+        \new Voice {
+            c'8
+            d'8
+        }
+        '''
         )
     assert testtools.compare(
         t2.lilypond_format,
-        "\\new Voice {\n\te'8\n\tf'8\n}"
+        r'''
+        \new Voice {
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -231,11 +298,27 @@ def test_containertools_split_container_at_index_05():
         )
     assert testtools.compare(
         right.lilypond_format,
-        "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
+        r'''
+        \new Voice {
+            c'8 [
+            d'8
+            e'8
+            f'8 ]
+        }
+        '''
         )
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
+        r'''
+        \new Staff {
+            \new Voice {
+                c'8 [
+                d'8
+                e'8
+                f'8 ]
+            }
+        }
+        '''
         )
 
 
@@ -253,7 +336,14 @@ def test_containertools_split_container_at_index_06():
     assert select(t).is_well_formed()
     assert testtools.compare(
         left.lilypond_format,
-        "\\new Voice {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Voice {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
     assert testtools.compare(
         right.lilypond_format,
@@ -265,7 +355,16 @@ def test_containertools_split_container_at_index_06():
         )
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\new Voice {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n}"
+        r'''
+        \new Staff {
+            \new Voice {
+                c'8
+                d'8
+                e'8
+                f'8
+            }
+        }
+        '''
         )
 
 
@@ -281,11 +380,21 @@ def test_containertools_split_container_at_index_07():
     assert select(t).is_well_formed()
     assert testtools.compare(
         left.lilypond_format,
-        "\\new Voice {\n\tc'8\n\td'8\n}"
+        r'''
+        \new Voice {
+            c'8
+            d'8
+        }
+        '''
         )
     assert testtools.compare(
         right.lilypond_format,
-        "\\new Voice {\n\te'8\n\tf'8\n}"
+        r'''
+        \new Voice {
+            e'8
+            f'8
+        }
+        '''
         )
     assert testtools.compare(
         v.lilypond_format,
@@ -293,7 +402,18 @@ def test_containertools_split_container_at_index_07():
         )
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\new Voice {\n\t\tc'8\n\t\td'8\n\t}\n\t\\new Voice {\n\t\te'8\n\t\tf'8\n\t}\n}"
+        r'''
+        \new Staff {
+            \new Voice {
+                c'8
+                d'8
+            }
+            \new Voice {
+                e'8
+                f'8
+            }
+        }
+        '''
         )
 
 
@@ -322,11 +442,21 @@ def test_containertools_split_container_at_index_08():
     assert select(t).is_well_formed()
     assert testtools.compare(
         left.lilypond_format,
-        "{\n\tc'8 [\n\td'8\n}"
+        r'''
+        {
+            c'8 [
+            d'8
+        }
+        '''
         )
     assert testtools.compare(
         right.lilypond_format,
-        "{\n\te'8\n\tf'8 ]\n}"
+        r'''
+        {
+            e'8
+            f'8 ]
+        }
+        '''
         )
     assert testtools.compare(
         v.lilypond_format,
@@ -334,7 +464,18 @@ def test_containertools_split_container_at_index_08():
         )
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                c'8 [
+                d'8
+            }
+            {
+                e'8
+                f'8 ]
+            }
+        }
+        '''
         )
 
 
@@ -367,11 +508,22 @@ def test_containertools_split_container_at_index_09():
     assert select(t).is_well_formed()
     assert testtools.compare(
         left.lilypond_format,
-        "\\times 4/5 {\n\tc'8 [\n\tc'8\n}"
+        r'''
+        \times 4/5 {
+            c'8 [
+            c'8
+        }
+        '''
         )
     assert testtools.compare(
         right.lilypond_format,
-        "\\times 4/5 {\n\tc'8\n\tc'8\n\tc'8 ]\n}"
+        r'''
+        \times 4/5 {
+            c'8
+            c'8
+            c'8 ]
+        }
+        '''
         )
     assert testtools.compare(
         tuplet.lilypond_format,
@@ -379,11 +531,37 @@ def test_containertools_split_container_at_index_09():
         )
     assert testtools.compare(
         v.lilypond_format,
-        "\\new Voice {\n\t\\times 4/5 {\n\t\tc'8 [\n\t\tc'8\n\t}\n\t\\times 4/5 {\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"
+        r'''
+        \new Voice {
+            \times 4/5 {
+                c'8 [
+                c'8
+            }
+            \times 4/5 {
+                c'8
+                c'8
+                c'8 ]
+            }
+        }
+        '''
         )
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\new Voice {\n\t\t\\times 4/5 {\n\t\t\tc'8 [\n\t\t\tc'8\n\t\t}\n\t\t\\times 4/5 {\n\t\t\tc'8\n\t\t\tc'8\n\t\t\tc'8 ]\n\t\t}\n\t}\n}"
+        r'''
+        \new Staff {
+            \new Voice {
+                \times 4/5 {
+                    c'8 [
+                    c'8
+                }
+                \times 4/5 {
+                    c'8
+                    c'8
+                    c'8 ]
+                }
+            }
+        }
+        '''
         )
 
 
@@ -438,7 +616,20 @@ def test_containertools_split_container_at_index_10():
     assert right is leaf
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                \time 2/8
+                e'8 [
+                f'8 ] )
+            }
+        }
+        '''
         )
 
 
@@ -493,7 +684,20 @@ def test_containertools_split_container_at_index_11():
     assert right is None
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                \time 2/8
+                e'8 [
+                f'8 ] )
+            }
+        }
+        '''
         )
 
 
@@ -543,16 +747,40 @@ def test_containertools_split_container_at_index_12():
     assert select(t).is_well_formed()
     assert testtools.compare(
         left.lilypond_format,
-        "\\times 2/3 {\n\tf'8 ]\n}"
+        r'''
+        \times 2/3 {
+            f'8 ]
+        }
+        '''
         )
     assert testtools.compare(
         right.lilypond_format,
-        "\\times 2/3 {\n\tg'8 [\n\ta'8 ]\n}"
+        r'''
+        \times 2/3 {
+            g'8 [
+            a'8 ]
+        }
+        '''
         )
     assert tuplet.lilypond_format == ''
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tf'8 ]\n\t}\n\t\\times 2/3 {\n\t\tg'8 [\n\t\ta'8 ]\n\t}\n}"
+        r'''
+        \new Voice {
+            \times 2/3 {
+                c'8 [
+                d'8
+                e'8
+            }
+            \times 2/3 {
+                f'8 ]
+            }
+            \times 2/3 {
+                g'8 [
+                a'8 ]
+            }
+        }
+        '''
         )
 
 
@@ -608,16 +836,45 @@ def test_containertools_split_container_at_index_13():
     assert select(t).is_well_formed()
     assert testtools.compare(
         left.lilypond_format,
-        "{\n\t\\time 1/8\n\tf'8 ]\n}"
+        r'''
+        {
+            \time 1/8
+            f'8 ]
+        }
+        '''
         )
     assert testtools.compare(
         right.lilypond_format,
-        "{\n\t\\time 2/8\n\tg'8 [\n\ta'8 ]\n}"
+        r'''
+        {
+            \time 2/8
+            g'8 [
+            a'8 ]
+        }
+        '''
         )
     assert py.test.raises(UnderfullContainerError, 'm.lilypond_format')
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t{\n\t\t\\time 3/8\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t{\n\t\t\\time 1/8\n\t\tf'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8 [\n\t\ta'8 ]\n\t}\n}"
+        r'''
+        \new Voice {
+            {
+                \time 3/8
+                c'8 [
+                d'8
+                e'8
+            }
+            {
+                \time 1/8
+                f'8 ]
+            }
+            {
+                \time 2/8
+                g'8 [
+                a'8 ]
+            }
+        }
+        '''
         )
 
 
@@ -683,16 +940,55 @@ def test_containertools_split_container_at_index_14():
     assert select(t).is_well_formed()
     assert testtools.compare(
         left.lilypond_format,
-        "{\n\t\\time 1/9\n\t\\scaleDurations #'(8 . 9) {\n\t\tf'8 ]\n\t}\n}"
+        r'''
+        {
+            \time 1/9
+            \scaleDurations #'(8 . 9) {
+                f'8 ]
+            }
+        }
+        '''
         )
     assert testtools.compare(
         right.lilypond_format,
-        "{\n\t\\time 2/9\n\t\\scaleDurations #'(8 . 9) {\n\t\tg'8 [\n\t\ta'8 ]\n\t}\n}"
+        r'''
+        {
+            \time 2/9
+            \scaleDurations #'(8 . 9) {
+                g'8 [
+                a'8 ]
+            }
+        }
+        '''
         )
     assert py.test.raises(UnderfullContainerError, 'm.lilypond_format')
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t{\n\t\t\\time 3/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tc'8 [\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t}\n\t{\n\t\t\\time 1/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tf'8 ]\n\t\t}\n\t}\n\t{\n\t\t\\time 2/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tg'8 [\n\t\t\ta'8 ]\n\t\t}\n\t}\n}"
+        r'''
+        \new Voice {
+            {
+                \time 3/9
+                \scaleDurations #'(8 . 9) {
+                    c'8 [
+                    d'8
+                    e'8
+                }
+            }
+            {
+                \time 1/9
+                \scaleDurations #'(8 . 9) {
+                    f'8 ]
+                }
+            }
+            {
+                \time 2/9
+                \scaleDurations #'(8 . 9) {
+                    g'8 [
+                    a'8 ]
+                }
+            }
+        }
+        '''
         )
 
 
@@ -731,11 +1027,21 @@ def test_containertools_split_container_at_index_15():
 
     assert testtools.compare(
         left.lilypond_format,
-        "\\new Voice {\n\tc'8 [\n\td'8\n}"
+        r'''
+        \new Voice {
+            c'8 [
+            d'8
+        }
+        '''
         )
     assert testtools.compare(
         right.lilypond_format,
-        "\\new Voice {\n\te'8\n\tf'8 ]\n}"
+        r'''
+        \new Voice {
+            e'8
+            f'8 ]
+        }
+        '''
         )
     assert testtools.compare(
         t.lilypond_format,
@@ -783,7 +1089,14 @@ def test_containertools_split_container_at_index_16():
         )
     assert testtools.compare(
         right.lilypond_format,
-        "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
+        r'''
+        \new Voice {
+            c'8 [
+            d'8
+            e'8
+            f'8 ]
+        }
+        '''
         )
     assert testtools.compare(
         v.lilypond_format,
@@ -791,7 +1104,16 @@ def test_containertools_split_container_at_index_16():
         )
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
+        r'''
+        \new Staff {
+            \new Voice {
+                c'8 [
+                d'8
+                e'8
+                f'8 ]
+            }
+        }
+        '''
         )
 
 
@@ -821,7 +1143,14 @@ def test_containertools_split_container_at_index_17():
 
     assert testtools.compare(
         left.lilypond_format,
-        "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
+        r'''
+        \new Voice {
+            c'8 [
+            d'8
+            e'8
+            f'8 ]
+        }
+        '''
         )
     assert testtools.compare(
         right.lilypond_format,
@@ -833,7 +1162,16 @@ def test_containertools_split_container_at_index_17():
         )
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
+        r'''
+        \new Staff {
+            \new Voice {
+                c'8 [
+                d'8
+                e'8
+                f'8 ]
+            }
+        }
+        '''
         )
 
 
@@ -887,7 +1225,23 @@ def test_containertools_split_container_at_index_18():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 1/8\n\t\tc'8 [ ] (\n\t}\n\t{\n\t\t\\time 1/8\n\t\td'8 [ ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 1/8
+                c'8 [ ] (
+            }
+            {
+                \time 1/8
+                d'8 [ ]
+            }
+            {
+                \time 2/8
+                e'8 [
+                f'8 ] )
+            }
+        }
+        '''
         )
 
 
@@ -941,7 +1295,20 @@ def test_containertools_split_container_at_index_19():
     assert right is leaf
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ ( )\n\t\td'8 ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ ( )
+                d'8 ] (
+            }
+            {
+                \time 2/8
+                e'8 [
+                f'8 ] )
+            }
+        }
+        '''
         )
 
 
@@ -994,7 +1361,20 @@ def test_containertools_split_container_at_index_20():
     assert right is None
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'8 ] )\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [ (\n\t\tf'8 ] )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ] )
+            }
+            {
+                \time 2/8
+                e'8 [ (
+                f'8 ] )
+            }
+        }
+        '''
         )
 
 
@@ -1045,7 +1425,22 @@ def test_containertools_split_container_at_index_21():
     assert len(halves) == 2
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 3/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\tc'8. [ ] (\n\t\t}\n\t}\n\t{\n\t\t\\time 3/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\td'8. [ ] )\n\t\t}\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 3/24
+                \scaleDurations #'(2 . 3) {
+                    c'8. [ ] (
+                }
+            }
+            {
+                \time 3/24
+                \scaleDurations #'(2 . 3) {
+                    d'8. [ ] )
+                }
+            }
+        }
+        '''
         )
 
 
@@ -1091,5 +1486,16 @@ def test_containertools_split_container_at_index_22():
     assert len(halves) == 2
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 3/16\n\t\tc'8. [ ] (\n\t}\n\t{\n\t\t\\time 3/16\n\t\td'8. [ ] )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 3/16
+                c'8. [ ] (
+            }
+            {
+                \time 3/16
+                d'8. [ ] )
+            }
+        }
+        '''
         )

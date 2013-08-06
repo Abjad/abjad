@@ -138,7 +138,30 @@ def test_custom_score_template_class_02():
 
     assert testtools.compare(
         lilypond_file.layout_block.lilypond_format,
-        "\\layout {\n\t\\context {\n\t\t\\Voice\n\t\t\\name CustomVoice\n\t\t\\type Engraver_group\n\t\t\\alias Voice\n\t\t\\override NoteHead #'color = #green\n\t\t\\override Stem #'color = #green\n\t}\n\t\\context {\n\t\t\\Staff\n\t\t\\name CustomStaff\n\t\t\\type Engraver_group\n\t\t\\alias Staff\n\t\t\\accepts CustomVoice\n\t\t\\override StaffSymbol #'color = #red\n\t}\n\t\\context {\n\t\t\\Score\n\t\t\\accepts CustomStaff\n\t}\n}"
+        r'''
+        \layout {
+            \context {
+                \Voice
+                \name CustomVoice
+                \type Engraver_group
+                \alias Voice
+                \override NoteHead #'color = #green
+                \override Stem #'color = #green
+            }
+            \context {
+                \Staff
+                \name CustomStaff
+                \type Engraver_group
+                \alias Staff
+                \accepts CustomVoice
+                \override StaffSymbol #'color = #red
+            }
+            \context {
+                \Score
+                \accepts CustomStaff
+            }
+        }
+        '''
         )
 
     r'''
@@ -158,5 +181,18 @@ def test_custom_score_template_class_02():
 
     assert testtools.compare(
         lilypond_file.score_block.lilypond_format,
-        "\\score {\n\t\\new Score <<\n\t\t\\new CustomStaff {\n\t\t\t\\new CustomVoice {\n\t\t\t\tc'4 (\n\t\t\t\td'4\n\t\t\t\te'4\n\t\t\t\tf'4 )\n\t\t\t}\n\t\t}\n\t>>\n}"
+        r'''
+        \score {
+            \new Score <<
+                \new CustomStaff {
+                    \new CustomVoice {
+                        c'4 (
+                        d'4
+                        e'4
+                        f'4 )
+                    }
+                }
+            >>
+        }
+        '''
         )

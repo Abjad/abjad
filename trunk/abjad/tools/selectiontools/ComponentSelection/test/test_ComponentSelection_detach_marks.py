@@ -32,7 +32,14 @@ def test_ComponentSelection_detach_marks_01():
     assert select(staff).is_well_formed()
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tc'4\n\tc'16\n\tc'4\n\tc'16\n}"
+        r'''
+        \new Staff {
+            c'4
+            c'16
+            c'4
+            c'16
+        }
+        '''
         )
 
 

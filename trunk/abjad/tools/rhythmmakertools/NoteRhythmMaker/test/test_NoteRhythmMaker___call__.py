@@ -29,7 +29,19 @@ def test_NoteRhythmMaker___call___01():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\tc'4 ~\n\t\tc'16\n\t}\n\t{\n\t\t\\time 3/8\n\t\tc'4.\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 5/16
+                c'4 ~
+                c'16
+            }
+            {
+                \time 3/8
+                c'4.
+            }
+        }
+        '''
         )
 
 
@@ -60,5 +72,17 @@ def test_NoteRhythmMaker___call___02():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\tc'16 ~\n\t\tc'4\n\t}\n\t{\n\t\t\\time 3/8\n\t\tc'4.\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 5/16
+                c'16 ~
+                c'4
+            }
+            {
+                \time 3/8
+                c'4.
+            }
+        }
+        '''
         )

@@ -34,7 +34,14 @@ def test_Container___setitem___integer_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 [ \\glissando\n\tc''8 ] \\glissando\n\te'8 \\glissando\n\tf'8\n}"
+        r'''
+        \new Voice {
+            c'8 [ \glissando
+            c''8 ] \glissando
+            e'8 \glissando
+            f'8
+        }
+        '''
         )
 
 
@@ -73,7 +80,18 @@ def test_Container___setitem___integer_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 [ \\glissando\n\t{\n\t\tc'16 \\glissando\n\t\tc'16 \\glissando\n\t\tc'16 ] \\glissando\n\t}\n\te'8 \\glissando\n\tf'8\n}"
+        r'''
+        \new Voice {
+            c'8 [ \glissando
+            {
+                c'16 \glissando
+                c'16 \glissando
+                c'16 ] \glissando
+            }
+            e'8 \glissando
+            f'8
+        }
+        '''
         )
 
 
@@ -114,7 +132,15 @@ def test_Container___setitem___integer_03():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t{\n\t\tc'8 [ \\glissando\n\t\td'8 \\glissando\n\t}\n\tc''8 ]\n}"
+        r'''
+        \new Voice {
+            {
+                c'8 [ \glissando
+                d'8 \glissando
+            }
+            c''8 ]
+        }
+        '''
         )
 
 
@@ -155,7 +181,15 @@ def test_Container___setitem___integer_04():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t{\n\t\tc'8 [ \\glissando\n\t\td'8 \\glissando\n\t}\n\tc''8 ]\n}"
+        r'''
+        \new Voice {
+            {
+                c'8 [ \glissando
+                d'8 \glissando
+            }
+            c''8 ]
+        }
+        '''
         )
 
 
@@ -200,7 +234,19 @@ def test_Container___setitem___integer_05():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t{\n\t\tc'8 [ \\glissando\n\t\td'8 \\glissando\n\t}\n\t\\times 2/3 {\n\t\tc'8 \\glissando\n\t\td'8 \\glissando\n\t\te'8 ]\n\t}\n}"
+        r'''
+        \new Voice {
+            {
+                c'8 [ \glissando
+                d'8 \glissando
+            }
+            \times 2/3 {
+                c'8 \glissando
+                d'8 \glissando
+                e'8 ]
+            }
+        }
+        '''
         )
 
 
@@ -241,7 +287,15 @@ def test_Container___setitem___integer_06():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t{\n\t\tc'8 [ \\glissando\n\t\td'8 \\glissando\n\t}\n\tc''8 ]\n}"
+        r'''
+        \new Voice {
+            {
+                c'8 [ \glissando
+                d'8 \glissando
+            }
+            c''8 ]
+        }
+        '''
         )
 
 
@@ -286,7 +340,17 @@ def test_Container___setitem___integer_07():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n\tr2\n}"
+        r'''
+        \new Voice {
+            {
+                c'8 [
+                d'8
+                e'8
+                f'8 ]
+            }
+            r2
+        }
+        '''
         )
 
 
@@ -334,7 +398,13 @@ def test_Container___setitem___integer_08():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 [\n\tg'8\n\te'8 ]\n}"
+        r'''
+        \new Voice {
+            c'8 [
+            g'8
+            e'8 ]
+        }
+        '''
         )
 
     "Modified u:"
@@ -349,7 +419,12 @@ def test_Container___setitem___integer_08():
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
-        "\\new Voice {\n\tf'8 [\n\ta'8 ]\n}"
+        r'''
+        \new Voice {
+            f'8 [
+            a'8 ]
+        }
+        '''
         )
 
 
@@ -405,7 +480,16 @@ def test_Container___setitem___integer_09():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 [\n\t{\n\t\tg'8 (\n\t\ta'8 )\n\t}\n\te'8 ]\n}"
+        r'''
+        \new Voice {
+            c'8 [
+            {
+                g'8 (
+                a'8 )
+            }
+            e'8 ]
+        }
+        '''
         )
 
     "Voice u is now ..."
@@ -420,5 +504,10 @@ def test_Container___setitem___integer_09():
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
-        "\\new Voice {\n\tf'8 \\glissando\n\tb'8\n}"
+        r'''
+        \new Voice {
+            f'8 \glissando
+            b'8
+        }
+        '''
         )

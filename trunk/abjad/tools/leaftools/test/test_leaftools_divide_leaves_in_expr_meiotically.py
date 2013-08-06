@@ -24,7 +24,16 @@ def test_leaftools_divide_leaves_in_expr_meiotically_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'16 [\n\tc'16\n\td'16\n\td'16\n\te'16\n\te'16 ]\n}"
+        r'''
+        \new Voice {
+            c'16 [
+            c'16
+            d'16
+            d'16
+            e'16
+            e'16 ]
+        }
+        '''
         )
 
 
@@ -50,5 +59,14 @@ def test_leaftools_divide_leaves_in_expr_meiotically_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'32 [\n\tc'32\n\tc'32\n\tc'32\n\td'8\n\te'8 ]\n}"
+        r'''
+        \new Voice {
+            c'32 [
+            c'32
+            c'32
+            c'32
+            d'8
+            e'8 ]
+        }
+        '''
         )

@@ -53,7 +53,14 @@ def test_SliceSelection__give_dominant_spanners_to_components_01():
     assert not select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 [ \\<\n\td'8 ]\n\te'8\n\tf'8 \\!\n}"
+        r'''
+        \new Voice {
+            c'8 [ \<
+            d'8 ]
+            e'8
+            f'8 \!
+        }
+        '''
         )
 
     "Recipient is now ..."
@@ -71,7 +78,13 @@ def test_SliceSelection__give_dominant_spanners_to_components_01():
     assert not select(recipient).is_well_formed()
     assert testtools.compare(
         recipient.lilypond_format,
-        "\\new Voice {\n\tc'16 [ (\n\tc'16\n\tc'16 ] )\n}"
+        r'''
+        \new Voice {
+            c'16 [ (
+            c'16
+            c'16 ] )
+        }
+        '''
         )
 
 
@@ -117,7 +130,18 @@ def test_SliceSelection__give_dominant_spanners_to_components_02():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t{\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
+        r'''
+        \new Voice {
+            {
+                c'8
+                d'8
+            }
+            {
+                e'8
+                f'8 ]
+            }
+        }
+        '''
         )
 
     "Recipient container is now ..."
@@ -133,7 +157,14 @@ def test_SliceSelection__give_dominant_spanners_to_components_02():
 
     assert testtools.compare(
         recipient.lilypond_format,
-        "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Voice {
+            c'8 [
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
     "Both container t and recipient container carry discontiguous spanners."

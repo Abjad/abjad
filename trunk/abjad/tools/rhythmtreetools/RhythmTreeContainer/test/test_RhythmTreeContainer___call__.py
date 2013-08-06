@@ -25,7 +25,17 @@ def test_RhythmTreeContainer___call___01():
 
     assert testtools.compare(
         result[0].lilypond_format,
-        "\\times 4/5 {\n\tc'16\n\t\\times 2/3 {\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n\tc'8\n}"
+        r'''
+        \times 4/5 {
+            c'16
+            \times 2/3 {
+                c'16
+                c'16
+                c'16
+            }
+            c'8
+        }
+        '''
         )
 
 

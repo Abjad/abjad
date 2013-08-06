@@ -24,7 +24,16 @@ def test_containertools_repeat_contents_of_container_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 [\n\td'8 ]\n\tc'8 [\n\td'8 ]\n\tc'8 [\n\td'8 ]\n}"
+        r'''
+        \new Voice {
+            c'8 [
+            d'8 ]
+            c'8 [
+            d'8 ]
+            c'8 [
+            d'8 ]
+        }
+        '''
         )
 
 
@@ -46,7 +55,12 @@ def test_containertools_repeat_contents_of_container_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
+        r'''
+        \new Voice {
+            c'8 [
+            d'8 ]
+        }
+        '''
         )
 
 

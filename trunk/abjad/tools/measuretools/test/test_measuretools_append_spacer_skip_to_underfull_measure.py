@@ -30,7 +30,18 @@ def test_measuretools_append_spacer_skip_to_underfull_measure_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\t\\time 5/12\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\ts1 * 1/8\n\t}\n}"
+        r'''
+        {
+            \time 5/12
+            \scaleDurations #'(2 . 3) {
+                c'8
+                d'8
+                e'8
+                f'8
+                s1 * 1/8
+            }
+        }
+        '''
         )
 
 
@@ -60,5 +71,14 @@ def test_measuretools_append_spacer_skip_to_underfull_measure_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\t\\time 5/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n\ts1 * 1/8\n}"
+        r'''
+        {
+            \time 5/8
+            c'8
+            d'8
+            e'8
+            f'8
+            s1 * 1/8
+        }
+        '''
         )

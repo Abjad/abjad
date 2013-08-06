@@ -42,7 +42,12 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_01():
     assert select(new).is_well_formed()
     assert testtools.compare(
         new.lilypond_format,
-        "\\new Voice {\n\te'8 \\startTrillSpan\n\tf'8 \\stopTrillSpan\n}"
+        r'''
+        \new Voice {
+            e'8 \startTrillSpan
+            f'8 \stopTrillSpan
+        }
+        '''
         )
 
 
@@ -93,7 +98,15 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_02():
     assert select(new).is_well_formed()
     assert testtools.compare(
         new.lilypond_format,
-        "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\te'8 [ ( \\startTrillSpan\n\t\tf'8 ] ) \\stopTrillSpan\n\t}\n}"
+        r'''
+        \new Voice {
+            {
+                \time 2/8
+                e'8 [ ( \startTrillSpan
+                f'8 ] ) \stopTrillSpan
+            }
+        }
+        '''
         )
 
 
@@ -142,7 +155,13 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_03():
     assert select(new).is_well_formed()
     assert testtools.compare(
         new.lilypond_format,
-        "\\new Voice {\n\tf'8 \\startTrillSpan\n\tg'8 [\n\ta'8 ] \\stopTrillSpan\n}"
+        r'''
+        \new Voice {
+            f'8 \startTrillSpan
+            g'8 [
+            a'8 ] \stopTrillSpan
+        }
+        '''
         )
 
 
@@ -204,5 +223,23 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_04():
     assert select(t).is_well_formed()
     assert testtools.compare(
         new.lilypond_format,
-        "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\te'8 [ ( \\startTrillSpan\n\t\tf'8 ] ) \\stopTrillSpan\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [ ( \\startTrillSpan\n\t\tf'8 ] ) \\stopTrillSpan\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [ ( \\startTrillSpan\n\t\tf'8 ] ) \\stopTrillSpan\n\t}\n}"
+        r'''
+        \new Voice {
+            {
+                \time 2/8
+                e'8 [ ( \startTrillSpan
+                f'8 ] ) \stopTrillSpan
+            }
+            {
+                \time 2/8
+                e'8 [ ( \startTrillSpan
+                f'8 ] ) \stopTrillSpan
+            }
+            {
+                \time 2/8
+                e'8 [ ( \startTrillSpan
+                f'8 ] ) \stopTrillSpan
+            }
+        }
+        '''
         )

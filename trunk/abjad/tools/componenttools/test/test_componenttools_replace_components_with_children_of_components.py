@@ -41,7 +41,16 @@ def test_componenttools_replace_components_with_children_of_components_01():
     assert len(sequential) == 0
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\tc'8 [\n\td'8\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
+        r'''
+        \new Staff {
+            c'8 [
+            d'8
+            {
+                e'8
+                f'8 ]
+            }
+        }
+        '''
         )
 
 
@@ -67,7 +76,13 @@ def test_componenttools_replace_components_with_children_of_components_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 [ \\glissando\n\te'8 \\glissando\n\tf'8 ]\n}"
+        r'''
+        \new Voice {
+            c'8 [ \glissando
+            e'8 \glissando
+            f'8 ]
+        }
+        '''
         )
 
 
@@ -100,7 +115,12 @@ def test_componenttools_replace_components_with_children_of_components_03():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\te'8 [ \\glissando\n\tf'8 ]\n}"
+        r'''
+        \new Voice {
+            e'8 [ \glissando
+            f'8 ]
+        }
+        '''
         )
 
 
@@ -148,5 +168,16 @@ def test_componenttools_replace_components_with_children_of_components_04():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 [ \\glissando\n\td'8 \\glissando\n\te'8 \\glissando\n\tf'8 \\glissando\n\t{\n\t\tg'8 \\glissando\n\t\ta'8 ]\n\t}\n}"
+        r'''
+        \new Voice {
+            c'8 [ \glissando
+            d'8 \glissando
+            e'8 \glissando
+            f'8 \glissando
+            {
+                g'8 \glissando
+                a'8 ]
+            }
+        }
+        '''
         )

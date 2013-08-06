@@ -24,7 +24,14 @@ def test_Measure_duration_01():
 
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\t\\time 3/8\n\tc'8\n\td'8\n\te'8\n}"
+        r'''
+        {
+            \time 3/8
+            c'8
+            d'8
+            e'8
+        }
+        '''
         )
 
 
@@ -51,7 +58,16 @@ def test_Measure_duration_02():
 
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\t\\time 3/10\n\t\\scaleDurations #'(4 . 5) {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n}"
+        r'''
+        {
+            \time 3/10
+            \scaleDurations #'(4 . 5) {
+                c'8
+                d'8
+                e'8
+            }
+        }
+        '''
         )
 
 

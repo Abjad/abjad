@@ -23,7 +23,15 @@ def test_TrillSpanner_pitch_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\pitchedTrill\n\tc'8 \\startTrillSpan cs'\n\td'8 \\stopTrillSpan\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff {
+            \pitchedTrill
+            c'8 \startTrillSpan cs'
+            d'8 \stopTrillSpan
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -48,7 +56,15 @@ def test_TrillSpanner_pitch_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\pitchedTrill\n\tc'8 \\startTrillSpan cs'\n\td'8 \\stopTrillSpan\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff {
+            \pitchedTrill
+            c'8 \startTrillSpan cs'
+            d'8 \stopTrillSpan
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -73,5 +89,12 @@ def test_TrillSpanner_pitch_03():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\tc'8 \\startTrillSpan\n\td'8 \\stopTrillSpan\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff {
+            c'8 \startTrillSpan
+            d'8 \stopTrillSpan
+            e'8
+            f'8
+        }
+        '''
         )

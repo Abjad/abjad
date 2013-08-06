@@ -31,5 +31,20 @@ def test_TupletMonadRhythmMaker___call___01():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t\\times 4/5 {\n\t\tc'4\n\t}\n\t{\n\t\tc'4\n\t}\n\t\\times 2/3 {\n\t\tc'4\n\t}\n\t\\times 8/9 {\n\t\tc'2..\n\t}\n}"
+        r'''
+        \new Staff {
+            \times 4/5 {
+                c'4
+            }
+            {
+                c'4
+            }
+            \times 2/3 {
+                c'4
+            }
+            \times 8/9 {
+                c'2..
+            }
+        }
+        '''
         )

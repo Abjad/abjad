@@ -15,7 +15,14 @@ def test_Measure___delitem___01():
     assert select(measure).is_well_formed()
     assert testtools.compare(
         measure.lilypond_format,
-        "{\n\t\\time 3/8\n\tc'8\n\tc'8\n\tc'8\n}"
+        r'''
+        {
+            \time 3/8
+            c'8
+            c'8
+            c'8
+        }
+        '''
         )
 
 
@@ -32,7 +39,14 @@ def test_Measure___delitem___02():
     assert select(measure).is_well_formed()
     assert testtools.compare(
         measure.lilypond_format,
-        "{\n\t\\time 3/8\n\tc'8\n\tc'8\n\tc'8\n}"
+        r'''
+        {
+            \time 3/8
+            c'8
+            c'8
+            c'8
+        }
+        '''
         )
 
 
@@ -49,7 +63,13 @@ def test_Measure___delitem___03():
     assert select(measure).is_well_formed()
     assert testtools.compare(
         measure.lilypond_format,
-        "{\n\t\\time 2/8\n\tc'8\n\tc'8\n}"
+        r'''
+        {
+            \time 2/8
+            c'8
+            c'8
+        }
+        '''
         )
 
 
@@ -66,7 +86,15 @@ def test_Measure___delitem___04():
     assert select(measure).is_well_formed()
     assert testtools.compare(
         measure.lilypond_format,
-        "{\n\t\\time 7/16\n\tc'16\n\tc'8\n\tc'8\n\tc'8\n}"
+        r'''
+        {
+            \time 7/16
+            c'16
+            c'8
+            c'8
+            c'8
+        }
+        '''
         )
 
 
@@ -94,7 +122,16 @@ def test_Measure___delitem___05():
     assert select(measure).is_well_formed()
     assert testtools.compare(
         measure.lilypond_format,
-        "{\n\t\\time 3/9\n\t\\scaleDurations #'(8 . 9) {\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n}"
+        r'''
+        {
+            \time 3/9
+            \scaleDurations #'(8 . 9) {
+                d'8
+                e'8
+                f'8
+            }
+        }
+        '''
         )
 
 
@@ -135,7 +172,16 @@ def test_Measure___delitem___06():
     assert select(measure).is_well_formed()
     assert testtools.compare(
         measure.lilypond_format,
-        "{\n\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\td'16\n\t\te'8\n\t\tf'8\n\t}\n}"
+        r'''
+        {
+            \time 5/18
+            \scaleDurations #'(8 . 9) {
+                d'16
+                e'8
+                f'8
+            }
+        }
+        '''
         )
 
 

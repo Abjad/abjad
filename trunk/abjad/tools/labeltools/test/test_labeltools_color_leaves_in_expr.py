@@ -30,5 +30,24 @@ def test_labeltools_color_leaves_in_expr_01():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t\\once \\override Accidental #'color = #red\n\t\\once \\override Beam #'color = #red\n\t\\once \\override Dots #'color = #red\n\t\\once \\override NoteHead #'color = #red\n\t\\once \\override Stem #'color = #red\n\tcs'8.\n\t\\once \\override Dots #'color = #red\n\t\\once \\override Rest #'color = #red\n\tr8.\n\ts8.\n\t\\once \\override Accidental #'color = #red\n\t\\once \\override Beam #'color = #red\n\t\\once \\override Dots #'color = #red\n\t\\once \\override NoteHead #'color = #red\n\t\\once \\override Stem #'color = #red\n\t<c' cs' a'>8.\n}"
+        r'''
+        \new Staff {
+            \once \override Accidental #'color = #red
+            \once \override Beam #'color = #red
+            \once \override Dots #'color = #red
+            \once \override NoteHead #'color = #red
+            \once \override Stem #'color = #red
+            cs'8.
+            \once \override Dots #'color = #red
+            \once \override Rest #'color = #red
+            r8.
+            s8.
+            \once \override Accidental #'color = #red
+            \once \override Beam #'color = #red
+            \once \override Dots #'color = #red
+            \once \override NoteHead #'color = #red
+            \once \override Stem #'color = #red
+            <c' cs' a'>8.
+        }
+        '''
         )

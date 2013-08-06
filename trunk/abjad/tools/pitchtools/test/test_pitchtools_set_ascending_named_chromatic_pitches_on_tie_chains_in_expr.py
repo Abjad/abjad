@@ -25,5 +25,16 @@ def test_pitchtools_set_ascending_named_chromatic_pitches_on_tie_chains_in_expr_
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 ~\n\tc'32\n\tcs'8 ~\n\tcs'32\n\td'8 ~\n\td'32\n\tef'8 ~\n\tef'32\n}"
+        r'''
+        \new Voice {
+            c'8 ~
+            c'32
+            cs'8 ~
+            cs'32
+            d'8 ~
+            d'32
+            ef'8 ~
+            ef'32
+        }
+        '''
         )

@@ -21,7 +21,14 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\ts1 * 5/16\n\t}\n}"
+        r'''
+        {
+            \time 5/18
+            \scaleDurations #'(8 . 9) {
+                s1 * 5/16
+            }
+        }
+        '''
         )
 
 
@@ -91,7 +98,28 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\ts1 * 1/4\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\ts1 * 1/4\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8
+                d'8
+            }
+            {
+                \time 2/8
+                s1 * 1/4
+            }
+            {
+                \time 2/8
+                g'8
+                a'8
+            }
+            {
+                \time 2/8
+                s1 * 1/4
+            }
+        }
+        '''
         )
 
 
@@ -153,5 +181,21 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_03():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 3/8\n\t\ts1 * 3/8\n\t}\n\t{\n\t\t\\time 4/8\n\t\ts1 * 1/2\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8
+                d'8
+            }
+            {
+                \time 3/8
+                s1 * 3/8
+            }
+            {
+                \time 4/8
+                s1 * 1/2
+            }
+        }
+        '''
         )

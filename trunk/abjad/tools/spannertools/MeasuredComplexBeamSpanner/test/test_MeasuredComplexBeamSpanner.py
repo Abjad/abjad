@@ -65,5 +65,35 @@ def test_MeasuredComplexBeamSpanner_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 2/16\n\t\t\\set stemLeftBeamCount = #0\n\t\t\\set stemRightBeamCount = #2\n\t\tc'16 [\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\td'16\n\t}\n\t{\n\t\t\\time 2/16\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\te'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\tf'16\n\t}\n\t{\n\t\t\\time 2/16\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tg'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #0\n\t\ta'16 ]\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 2/16
+                \set stemLeftBeamCount = #0
+                \set stemRightBeamCount = #2
+                c'16 [
+                \set stemLeftBeamCount = #2
+                \set stemRightBeamCount = #1
+                d'16
+            }
+            {
+                \time 2/16
+                \set stemLeftBeamCount = #1
+                \set stemRightBeamCount = #2
+                e'16
+                \set stemLeftBeamCount = #2
+                \set stemRightBeamCount = #1
+                f'16
+            }
+            {
+                \time 2/16
+                \set stemLeftBeamCount = #1
+                \set stemRightBeamCount = #2
+                g'16
+                \set stemLeftBeamCount = #2
+                \set stemRightBeamCount = #0
+                a'16 ]
+            }
+        }
+        '''
         )

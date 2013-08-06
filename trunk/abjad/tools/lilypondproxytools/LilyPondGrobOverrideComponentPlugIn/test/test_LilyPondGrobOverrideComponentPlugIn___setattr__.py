@@ -23,7 +23,16 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___01():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff \\with {\n\t\\override Accidental #'color = #red\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff \with {
+            \override Accidental #'color = #red
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -46,7 +55,15 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___02():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\tc'8\n\t\\once \\override Accidental #'color = #red\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff {
+            c'8
+            \once \override Accidental #'color = #red
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -77,7 +94,22 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___03():
     assert select(score).is_well_formed()
     assert testtools.compare(
         score.lilypond_format,
-        "\\new Score \\with {\n\t\\override BarNumber #'break-visibility = #end-of-line-invisible\n} <<\n\t\\new Staff {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t\tb'8\n\t\tc''8\n\t}\n>>"
+        r'''
+        \new Score \with {
+            \override BarNumber #'break-visibility = #end-of-line-invisible
+        } <<
+            \new Staff {
+                c'8
+                d'8
+                e'8
+                f'8
+                g'8
+                a'8
+                b'8
+                c''8
+            }
+        >>
+        '''
         )
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___04():
@@ -103,7 +135,18 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___04():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Score \\with {\n\t\\override BarNumber #'color = #red\n} <<\n\t\\new Staff {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n>>"
+        r'''
+        \new Score \with {
+            \override BarNumber #'color = #red
+        } <<
+            \new Staff {
+                c'8
+                d'8
+                e'8
+                f'8
+            }
+        >>
+        '''
         )
 
 
@@ -128,7 +171,16 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___05():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t\\override Beam #'positions = #'(4 . 4)\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\t\\revert Beam #'positions\n}"
+        r'''
+        \new Voice {
+            \override Beam #'positions = #'(4 . 4)
+            c'8 [
+            d'8
+            e'8
+            f'8 ]
+            \revert Beam #'positions
+        }
+        '''
         )
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___06():
@@ -145,7 +197,10 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___06():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\once \\override Clef #'color = #red\nc'4"
+        r'''
+        \once \override Clef #'color = #red
+        c'4
+        '''
         )
 
 
@@ -158,7 +213,10 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___07():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\once \\override Staff.Clef #'color = #red\nc'4"
+        r'''
+        \once \override Staff.Clef #'color = #red
+        c'4
+        '''
         )
     r'''
     \once \override Staff.Clef #'color = #red
@@ -186,7 +244,16 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___08():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff \\with {\n\t\\override Clef #'color = #red\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff \with {
+            \override Clef #'color = #red
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -213,7 +280,18 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___09():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\makeClusters {\n\t\\override ClusterSpanner #'padding = #0.1\n\t\\override ClusterSpanner #'style = #'ramp\n\tcs'4\n\tcs'4\n\tcs'4\n\tcs'4\n\t\\revert ClusterSpanner #'padding\n\t\\revert ClusterSpanner #'style\n}"
+        r'''
+        \makeClusters {
+            \override ClusterSpanner #'padding = #0.1
+            \override ClusterSpanner #'style = #'ramp
+            cs'4
+            cs'4
+            cs'4
+            cs'4
+            \revert ClusterSpanner #'padding
+            \revert ClusterSpanner #'style
+        }
+        '''
         )
 
     del(t.override.cluster_spanner)
@@ -229,7 +307,14 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___09():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\makeClusters {\n\tcs'4\n\tcs'4\n\tcs'4\n\tcs'4\n}"
+        r'''
+        \makeClusters {
+            cs'4
+            cs'4
+            cs'4
+            cs'4
+        }
+        '''
         )
 
 
@@ -254,7 +339,16 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___10():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t\\override DynamicLineSpanner #'staff-padding = #4\n\tc'8 \\< \\p\n\td'8\n\te'8\n\tf'8 \\f\n\t\\revert DynamicLineSpanner #'staff-padding\n}"
+        r'''
+        \new Voice {
+            \override DynamicLineSpanner #'staff-padding = #4
+            c'8 \< \p
+            d'8
+            e'8
+            f'8 \f
+            \revert DynamicLineSpanner #'staff-padding
+        }
+        '''
         )
 
 
@@ -280,7 +374,17 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___11():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff \\with {\n\t\\override DynamicLineSpanner #'Y-extent = #'(-1.5 . 1.5)\n\t\\override DynamicLineSpanner #'staff-padding = #2\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff \with {
+            \override DynamicLineSpanner #'Y-extent = #'(-1.5 . 1.5)
+            \override DynamicLineSpanner #'staff-padding = #2
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -307,7 +411,16 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___12():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t\\override DynamicText #'thickness = #3\n\tc'8 [ \\f\n\td'8\n\te'8\n\tf'8 ]\n\t\\revert DynamicText #'thickness\n}"
+        r'''
+        \new Voice {
+            \override DynamicText #'thickness = #3
+            c'8 [ \f
+            d'8
+            e'8
+            f'8 ]
+            \revert DynamicText #'thickness
+        }
+        '''
         )
 
 
@@ -333,7 +446,17 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___13():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff \\with {\n\t\\override DynamicText #'Y-extent = #'(-1.5 . 1.5)\n\t\\override DynamicText #'staff-padding = #2\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff \with {
+            \override DynamicText #'Y-extent = #'(-1.5 . 1.5)
+            \override DynamicText #'staff-padding = #2
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -359,7 +482,17 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___14():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff \\with {\n\t\\override DynamicTextSpanner #'Y-extent = #'(-1.5 . 1.5)\n\t\\override DynamicTextSpanner #'staff-padding = #2\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff \with {
+            \override DynamicTextSpanner #'Y-extent = #'(-1.5 . 1.5)
+            \override DynamicTextSpanner #'staff-padding = #2
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -384,7 +517,16 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___15():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t\\override Glissando #'thickness = #3\n\tc'8 \\glissando\n\td'8 \\glissando\n\te'8 \\glissando\n\tf'8\n\t\\revert Glissando #'thickness\n}"
+        r'''
+        \new Voice {
+            \override Glissando #'thickness = #3
+            c'8 \glissando
+            d'8 \glissando
+            e'8 \glissando
+            f'8
+            \revert Glissando #'thickness
+        }
+        '''
         )
 
 
@@ -410,7 +552,17 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___16():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff \\with {\n\t\\override Hairpin #'Y-extent = #'(-1.5 . 1.5)\n\t\\override Hairpin #'staff-padding = #2\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff \with {
+            \override Hairpin #'Y-extent = #'(-1.5 . 1.5)
+            \override Hairpin #'staff-padding = #2
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -437,7 +589,17 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___17():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff \\with {\n\t\\override InstrumentName #'color = #red\n\tinstrumentName = \\markup { \\circle { V } }\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff \with {
+            \override InstrumentName #'color = #red
+            instrumentName = \markup { \circle { V } }
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -467,7 +629,19 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___18():
     assert select(score).is_well_formed()
     assert testtools.compare(
         score.lilypond_format,
-        "\\new Score \\with {\n\t\\override MetronomeMark #'color = #red\n} <<\n\t\\new Staff {\n\t\t\\tempo 4=58\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n>>"
+        r'''
+        \new Score \with {
+            \override MetronomeMark #'color = #red
+        } <<
+            \new Staff {
+                \tempo 4=58
+                c'8
+                d'8
+                e'8
+                f'8
+            }
+        >>
+        '''
         )
 
 
@@ -488,7 +662,13 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___19():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff \\with {\n\t\\override MultiMeasureRest #'expand-limit = #12\n} {\n\tc'4\n}"
+        r'''
+        \new Staff \with {
+            \override MultiMeasureRest #'expand-limit = #12
+        } {
+            c'4
+        }
+        '''
         )
 
 
@@ -517,7 +697,19 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___20():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Score \\with {\n\t\\override NonMusicalPaperColumn #'line-break-permission = ##f\n\t\\override NonMusicalPaperColumn #'page-break-permission = ##f\n} <<\n\t\\new Staff {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n>>"
+        r'''
+        \new Score \with {
+            \override NonMusicalPaperColumn #'line-break-permission = ##f
+            \override NonMusicalPaperColumn #'page-break-permission = ##f
+        } <<
+            \new Staff {
+                c'8
+                d'8
+                e'8
+                f'8
+            }
+        >>
+        '''
         )
 
 
@@ -536,7 +728,10 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___21():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\once \\override NoteColumn #'ignore-collision = ##t\nc'4"
+        r'''
+        \once \override NoteColumn #'ignore-collision = ##t
+        c'4
+        '''
         )
 
 
@@ -561,7 +756,16 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___22():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff \\with {\n\t\\override NoteColumn #'ignore-collision = ##t\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff \with {
+            \override NoteColumn #'ignore-collision = ##t
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -575,7 +779,10 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___23():
     assert t.override.note_head.style == 'cross'
     assert testtools.compare(
         t.lilypond_format,
-        "\\once \\override NoteHead #'style = #'cross\ncs'4"
+        r'''
+        \once \override NoteHead #'style = #'cross
+        cs'4
+        '''
         )
 
     del(t.override.note_head.style)
@@ -592,7 +799,10 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___24():
     assert t.override.note_head.style == 'mystrangehead'
     assert testtools.compare(
         t.lilypond_format,
-        "\\once \\override NoteHead #'style = #'mystrangehead\ncs'4"
+        r'''
+        \once \override NoteHead #'style = #'mystrangehead
+        cs'4
+        '''
         )
 
     del(t.override.note_head.style)
@@ -617,7 +827,14 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___25():
 
     assert testtools.compare(
         t.lilypond_format,
-        "<\n\t\\tweak #'style #'harmonic\n\tcs'\n\td'\n\tef'\n>4"
+        r'''
+        <
+            \tweak #'style #'harmonic
+            cs'
+            d'
+            ef'
+        >4
+        '''
         )
 
 
@@ -631,7 +848,10 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___26():
     assert t.override.note_head.style == 'triangle'
     assert testtools.compare(
         t.lilypond_format,
-        "\\once \\override NoteHead #'style = #'triangle\ncs'4"
+        r'''
+        \once \override NoteHead #'style = #'triangle
+        cs'4
+        '''
         )
 
     del(t.override.note_head.style)
@@ -648,7 +868,10 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___27():
     assert t.override.note_head.style == 'do'
     assert testtools.compare(
         t.lilypond_format,
-        "\\once \\override NoteHead #'style = #'do\ncs'4"
+        r'''
+        \once \override NoteHead #'style = #'do
+        cs'4
+        '''
         )
 
     del(t.override.note_head.style)
@@ -665,7 +888,10 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___28():
     assert t.override.note_head.transparent
     assert testtools.compare(
         t.lilypond_format,
-        "\\once \\override NoteHead #'transparent = ##t\ncs''4"
+        r'''
+        \once \override NoteHead #'transparent = ##t
+        cs''4
+        '''
         )
 
     del(t.override.note_head.transparent)
@@ -693,7 +919,16 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___29():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice \\with {\n\t\\override NoteHead #'color = #red\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Voice \with {
+            \override NoteHead #'color = #red
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -720,7 +955,18 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___30():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t\\override Staff.OttavaBracket #'staff-position = #4\n\t\\ottava #1\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\ottava #0\n\t\\revert Staff.OttavaBracket #'staff-position\n}"
+        r'''
+        \new Voice {
+            \override Staff.OttavaBracket #'staff-position = #4
+            \ottava #1
+            c'8
+            d'8
+            e'8
+            f'8
+            \ottava #0
+            \revert Staff.OttavaBracket #'staff-position
+        }
+        '''
         )
 
 
@@ -746,7 +992,17 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___31():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff \\with {\n\t\\override RehearsalMark #'Y-extent = #'(-1.5 . 1.5)\n\t\\override RehearsalMark #'staff-padding = #2\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff \with {
+            \override RehearsalMark #'Y-extent = #'(-1.5 . 1.5)
+            \override RehearsalMark #'staff-padding = #2
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -770,7 +1026,16 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___32():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff \\with {\n\t\\override Rest #'transparent = ##t\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff \with {
+            \override Rest #'transparent = ##t
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -789,7 +1054,10 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___33():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\once \\override Script #'color = #red\nc'4 -\\staccato"
+        r'''
+        \once \override Script #'color = #red
+        c'4 -\staccato
+        '''
         )
 
 
@@ -815,7 +1083,17 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___34():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff \\with {\n\t\\override Script #'Y-extent = #'(-1.5 . 1.5)\n\t\\override Script #'staff-padding = #2\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff \with {
+            \override Script #'Y-extent = #'(-1.5 . 1.5)
+            \override Script #'staff-padding = #2
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -847,7 +1125,20 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___35():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\override Score.SpacingSpanner #'strict-grace-spacing = ##t\n\t\\override Score.SpacingSpanner #'strict-note-spacing = ##t\n\t\\override Score.SpacingSpanner #'uniform-stretching = ##t\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\t\\revert Score.SpacingSpanner #'strict-grace-spacing\n\t\\revert Score.SpacingSpanner #'strict-note-spacing\n\t\\revert Score.SpacingSpanner #'uniform-stretching\n}"
+        r'''
+        \new Staff {
+            \override Score.SpacingSpanner #'strict-grace-spacing = ##t
+            \override Score.SpacingSpanner #'strict-note-spacing = ##t
+            \override Score.SpacingSpanner #'uniform-stretching = ##t
+            c'8 [
+            d'8
+            e'8
+            f'8 ]
+            \revert Score.SpacingSpanner #'strict-grace-spacing
+            \revert Score.SpacingSpanner #'strict-note-spacing
+            \revert Score.SpacingSpanner #'uniform-stretching
+        }
+        '''
         )
 
 
@@ -890,7 +1181,26 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___36():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\t\\override Score.SpacingSpanner #'strict-grace-spacing = ##t\n\t\t\\override Score.SpacingSpanner #'strict-note-spacing = ##t\n\t\t\\override Score.SpacingSpanner #'uniform-stretching = ##t\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8 ]\n\t\t\\revert Score.SpacingSpanner #'strict-grace-spacing\n\t\t\\revert Score.SpacingSpanner #'strict-note-spacing\n\t\t\\revert Score.SpacingSpanner #'uniform-stretching\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                \override Score.SpacingSpanner #'strict-grace-spacing = ##t
+                \override Score.SpacingSpanner #'strict-note-spacing = ##t
+                \override Score.SpacingSpanner #'uniform-stretching = ##t
+                c'8 [
+                d'8
+            }
+            {
+                \time 2/8
+                e'8
+                f'8 ]
+                \revert Score.SpacingSpanner #'strict-grace-spacing
+                \revert Score.SpacingSpanner #'strict-note-spacing
+                \revert Score.SpacingSpanner #'uniform-stretching
+            }
+        }
+        '''
         )
 
 
@@ -915,7 +1225,14 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___37():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Score \\with {\n\t\\override SpacingSpanner #'strict-grace-spacing = ##t\n\t\\override SpacingSpanner #'strict-note-spacing = ##t\n\t\\override SpacingSpanner #'uniform-stretching = ##t\n} <<\n>>"
+        r'''
+        \new Score \with {
+            \override SpacingSpanner #'strict-grace-spacing = ##t
+            \override SpacingSpanner #'strict-note-spacing = ##t
+            \override SpacingSpanner #'uniform-stretching = ##t
+        } <<
+        >>
+        '''
         )
 
 
@@ -980,7 +1297,16 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___39():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff \\with {\n\t\\override StaffSymbol #'color = #red\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff \with {
+            \override StaffSymbol #'color = #red
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -1024,7 +1350,16 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___41():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff \\with {\n\t\\override StaffSymbol #'line-positions = #'(-4 -2 2 4)\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff \with {
+            \override StaffSymbol #'line-positions = #'(-4 -2 2 4)
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -1068,7 +1403,17 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___43():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff \\with {\n\t\\override StemTremolo #'slope = #0.5\n\t\\override StemTremolo #'staff-padding = #2\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff \with {
+            \override StemTremolo #'slope = #0.5
+            \override StemTremolo #'staff-padding = #2
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -1102,7 +1447,25 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___44():
 
     assert testtools.compare(
         score.lilypond_format,
-        "\\new Score \\with {\n\t\\override SystemStartBar #'collapse-height = #0\n\t\\override SystemStartBar #'color = #red\n} <<\n\t\\new StaffGroup <<\n\t\t\\new Staff {\n\t\t\tc'8\n\t\t\tc'8\n\t\t\tc'8\n\t\t\tc'8\n\t\t\tc'8\n\t\t\tc'8\n\t\t\tc'8\n\t\t\tc'8\n\t\t}\n\t>>\n>>"
+        r'''
+        \new Score \with {
+            \override SystemStartBar #'collapse-height = #0
+            \override SystemStartBar #'color = #red
+        } <<
+            \new StaffGroup <<
+                \new Staff {
+                    c'8
+                    c'8
+                    c'8
+                    c'8
+                    c'8
+                    c'8
+                    c'8
+                    c'8
+                }
+            >>
+        >>
+        '''
         )
 
 
@@ -1128,7 +1491,16 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___45():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\override TextScript #'color = #red\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert TextScript #'color\n}"
+        r'''
+        \new Staff {
+            \override TextScript #'color = #red
+            c'8
+            d'8
+            e'8
+            f'8
+            \revert TextScript #'color
+        }
+        '''
         )
 
 
@@ -1154,7 +1526,16 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___46():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\override TextSpanner #'font-shape = #'italic\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n\t\\revert TextSpanner #'font-shape\n}"
+        r'''
+        \new Staff {
+            \override TextSpanner #'font-shape = #'italic
+            c'8 \startTextSpan
+            c'8
+            c'8
+            c'8 \stopTextSpan
+            \revert TextSpanner #'font-shape
+        }
+        '''
         )
 
 
@@ -1166,7 +1547,10 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___47():
     t.override.tie.color = 'red'
     assert testtools.compare(
         t.lilypond_format,
-        "\\once \\override Tie #'color = #red\nc'4"
+        r'''
+        \once \override Tie #'color = #red
+        c'4
+        '''
         )
 
 
@@ -1190,7 +1574,16 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___48():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff \\with {\n\t\\override TimeSignature #'transparent = ##t\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff \with {
+            \override TimeSignature #'transparent = ##t
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -1215,7 +1608,17 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___49():
 
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\t\\override TimeSignature #'transparent = ##t\n\t\\time 4/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert TimeSignature #'transparent\n}"
+        r'''
+        {
+            \override TimeSignature #'transparent = ##t
+            \time 4/8
+            c'8
+            d'8
+            e'8
+            f'8
+            \revert TimeSignature #'transparent
+        }
+        '''
         )
 
 
@@ -1240,7 +1643,17 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___50():
 
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\t\\override Staff.TimeSignature #'transparent = ##t\n\t\\time 4/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert Staff.TimeSignature #'transparent\n}"
+        r'''
+        {
+            \override Staff.TimeSignature #'transparent = ##t
+            \time 4/8
+            c'8
+            d'8
+            e'8
+            f'8
+            \revert Staff.TimeSignature #'transparent
+        }
+        '''
         )
 
 
@@ -1266,7 +1679,17 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___51():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff \\with {\n\t\\override TrillPitchAccidental #'Y-extent = #'(-1.5 . 1.5)\n\t\\override TrillPitchAccidental #'staff-padding = #2\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff \with {
+            \override TrillPitchAccidental #'Y-extent = #'(-1.5 . 1.5)
+            \override TrillPitchAccidental #'staff-padding = #2
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -1291,7 +1714,16 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___52():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t\\override TrillSpanner #'color = #red\n\tc'8 \\startTrillSpan\n\td'8\n\te'8\n\tf'8 \\stopTrillSpan\n\t\\revert TrillSpanner #'color\n}"
+        r'''
+        \new Voice {
+            \override TrillSpanner #'color = #red
+            c'8 \startTrillSpan
+            d'8
+            e'8
+            f'8 \stopTrillSpan
+            \revert TrillSpanner #'color
+        }
+        '''
         )
 
 
@@ -1317,7 +1749,16 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___53():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice \\with {\n\t\\override TupletBracket #'direction = #down\n} {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
+        r'''
+        \new Voice \with {
+            \override TupletBracket #'direction = #down
+        } {
+            c'8 [
+            d'8
+            e'8
+            f'8 ]
+        }
+        '''
         )
 
 
@@ -1342,7 +1783,15 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___54():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 [\n\t\\once \\override TupletBracket #'direction = #down\n\td'8\n\te'8\n\tf'8 ]\n}"
+        r'''
+        \new Voice {
+            c'8 [
+            \once \override TupletBracket #'direction = #down
+            d'8
+            e'8
+            f'8 ]
+        }
+        '''
         )
 
 
@@ -1366,7 +1815,15 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___55():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\override TupletNumber #'fraction = ##t\n\\times 2/3 {\n\tc'8\n\td'8\n\te'8\n}\n\\revert TupletNumber #'fraction"
+        r'''
+        \override TupletNumber #'fraction = ##t
+        \times 2/3 {
+            c'8
+            d'8
+            e'8
+        }
+        \revert TupletNumber #'fraction
+        '''
         )
 
 
@@ -1392,7 +1849,16 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___56():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice \\with {\n\t\\override TupletNumber #'fraction = ##t\n} {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
+        r'''
+        \new Voice \with {
+            \override TupletNumber #'fraction = ##t
+        } {
+            c'8 [
+            d'8
+            e'8
+            f'8 ]
+        }
+        '''
         )
 
 
@@ -1417,7 +1883,15 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___57():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\tc'8 [\n\t\\once \\override TupletNumber #'fraction = ##t\n\td'8\n\te'8\n\tf'8 ]\n}"
+        r'''
+        \new Voice {
+            c'8 [
+            \once \override TupletNumber #'fraction = ##t
+            d'8
+            e'8
+            f'8 ]
+        }
+        '''
         )
 
 
@@ -1469,7 +1943,17 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___59():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff \\with {\n\t\\override VerticalAlignment #'Y-extent = #'(-1.5 . 1.5)\n\t\\override VerticalAlignment #'staff-padding = #2\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff \with {
+            \override VerticalAlignment #'Y-extent = #'(-1.5 . 1.5)
+            \override VerticalAlignment #'staff-padding = #2
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -1495,7 +1979,17 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___60():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff \\with {\n\t\\override VerticalAxisGroup #'Y-extent = #'(-1.5 . 1.5)\n\t\\override VerticalAxisGroup #'staff-padding = #2\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff \with {
+            \override VerticalAxisGroup #'Y-extent = #'(-1.5 . 1.5)
+            \override VerticalAxisGroup #'staff-padding = #2
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 

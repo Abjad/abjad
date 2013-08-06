@@ -21,5 +21,11 @@ def test_Measure___setitem___02():
     assert not measure.is_underfull
     assert testtools.compare(
         measure.lilypond_format,
-        "{\n\t\\time 3/8\n\tr8\n\te'4\n}"
+        r'''
+        {
+            \time 3/8
+            r8
+            e'4
+        }
+        '''
         )

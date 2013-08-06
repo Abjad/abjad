@@ -36,5 +36,12 @@ def test_Leaf_detach_grace_containers_01():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )

@@ -23,5 +23,12 @@ def test_Chord_append_01():
     assert note_head._client is chord
     assert testtools.compare(
         chord.lilypond_format,
-        "<\n\tc'\n\td'\n\t\\tweak #'style #'harmonic\n\tb'\n>4"
+        r'''
+        <
+            c'
+            d'
+            \tweak #'style #'harmonic
+            b'
+        >4
+        '''
         )

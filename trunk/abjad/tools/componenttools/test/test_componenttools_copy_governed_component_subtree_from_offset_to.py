@@ -18,7 +18,12 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_01():
 
     assert testtools.compare(
         new.lilypond_format,
-        "{\n\tc'8\n\td'16\n}"
+        r'''
+        {
+            c'8
+            d'16
+        }
+        '''
         )
 
 
@@ -40,7 +45,12 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_02():
 
     assert testtools.compare(
         new.lilypond_format,
-        "{\n\tc'8\n\tr16\n}"
+        r'''
+        {
+            c'8
+            r16
+        }
+        '''
         )
 
 
@@ -61,7 +71,13 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_03():
 
     assert testtools.compare(
         new.lilypond_format,
-        "{\n\t\\time 3/16\n\tc'8\n\td'16\n}"
+        r'''
+        {
+            \time 3/16
+            c'8
+            d'16
+        }
+        '''
         )
 
 
@@ -81,7 +97,12 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_04():
 
     assert testtools.compare(
         new.lilypond_format,
-        "\\times 2/3 {\n\tc'8\n\td'16\n}"
+        r'''
+        \times 2/3 {
+            c'8
+            d'16
+        }
+        '''
         )
 
 
@@ -101,7 +122,12 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_05():
 
     assert testtools.compare(
         new.lilypond_format,
-        "\\times 2/3 {\n\tc'8\n\td'16\n}"
+        r'''
+        \times 2/3 {
+            c'8
+            d'16
+        }
+        '''
         )
 
 
@@ -121,7 +147,12 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_06():
 
     assert testtools.compare(
         new.lilypond_format,
-        "\\new Voice {\n\tc'8\n\td'16\n}"
+        r'''
+        \new Voice {
+            c'8
+            d'16
+        }
+        '''
         )
 
 
@@ -141,7 +172,12 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_07():
 
     assert testtools.compare(
         new.lilypond_format,
-        "\\new Staff {\n\tc'8\n\td'16\n}"
+        r'''
+        \new Staff {
+            c'8
+            d'16
+        }
+        '''
         )
 
 
@@ -170,7 +206,11 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_09():
 
     assert testtools.compare(
         parent.lilypond_format,
-        "\\times 2/3 {\n\tc'8\n}"
+        r'''
+        \times 2/3 {
+            c'8
+        }
+        '''
         )
 
 
@@ -190,7 +230,11 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_10():
 
     assert testtools.compare(
         parent.lilypond_format,
-        "\\times 2/3 {\n\tc'8\n}"
+        r'''
+        \times 2/3 {
+            c'8
+        }
+        '''
         )
 
 
@@ -210,7 +254,11 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_11():
 
     assert testtools.compare(
         parent.lilypond_format,
-        "\\times 2/3 {\n\tc'8\n}"
+        r'''
+        \times 2/3 {
+            c'8
+        }
+        '''
         )
 
 
@@ -247,7 +295,11 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_14():
 
     assert testtools.compare(
         parent.lilypond_format,
-        "\\times 2/3 {\n\tc'8\n}"
+        r'''
+        \times 2/3 {
+            c'8
+        }
+        '''
         )
 
 
@@ -277,7 +329,12 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_16():
 
     assert testtools.compare(
         parent.lilypond_format,
-        "\\times 2/3 {\n\tc'4 ~\n\tc'16\n}"
+        r'''
+        \times 2/3 {
+            c'4 ~
+            c'16
+        }
+        '''
         )
 
 

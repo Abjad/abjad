@@ -25,7 +25,19 @@ def test_Staff_time_signature_01():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\time 2/4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
+        r'''
+        \new Staff {
+            \time 2/4
+            c'4
+            c'4
+            c'4
+            c'4
+            c'4
+            c'4
+            c'4
+            c'4
+        }
+        '''
         )
 
 

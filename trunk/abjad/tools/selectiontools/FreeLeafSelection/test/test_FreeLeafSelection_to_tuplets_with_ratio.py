@@ -10,13 +10,22 @@ def test_FreeLeafSelection_to_tuplets_with_ratio_01():
     tuplets = selection.to_tuplets_with_ratio([1], is_diminution=False)
     assert testtools.compare(
         tuplets[0].lilypond_format,
-        "{\n\tc'8.\n}"
+        r'''
+        {
+            c'8.
+        }
+        '''
         )
 
     tuplets = selection.to_tuplets_with_ratio([1, 2], is_diminution=False)
     assert testtools.compare(
         tuplets[0].lilypond_format,
-        "{\n\tc'16\n\tc'8\n}"
+        r'''
+        {
+            c'16
+            c'8
+        }
+        '''
         )
 
     # TODO: DECIDE ON DOTTED VALUES #
@@ -26,19 +35,46 @@ def test_FreeLeafSelection_to_tuplets_with_ratio_01():
     tuplets = selection.to_tuplets_with_ratio([1, 2, 2, 3], is_diminution=False)
     assert testtools.compare(
         tuplets[0].lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/2 {\n\tc'64\n\tc'32\n\tc'32\n\tc'32.\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/2 {
+            c'64
+            c'32
+            c'32
+            c'32.
+        }
+        '''
         )
 
     tuplets = selection.to_tuplets_with_ratio([1, 2, 2, 3, 3], is_diminution=False)
     assert testtools.compare(
         tuplets[0].lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 12/11 {\n\tc'64\n\tc'32\n\tc'32\n\tc'32.\n\tc'32.\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 12/11 {
+            c'64
+            c'32
+            c'32
+            c'32.
+            c'32.
+        }
+        '''
         )
 
     tuplets = selection.to_tuplets_with_ratio([1, 2, 2, 3, 3, 4], is_diminution=False)
     assert testtools.compare(
         tuplets[0].lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 8/5 {\n\tc'128\n\tc'64\n\tc'64\n\tc'64.\n\tc'64.\n\tc'32\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 8/5 {
+            c'128
+            c'64
+            c'64
+            c'64.
+            c'64.
+            c'32
+        }
+        '''
         )
 
 
@@ -50,13 +86,22 @@ def test_FreeLeafSelection_to_tuplets_with_ratio_02():
     tuplets = selection.to_tuplets_with_ratio([1], is_diminution=True)
     assert testtools.compare(
         tuplets[0].lilypond_format,
-        "{\n\tc'8.\n}"
+        r'''
+        {
+            c'8.
+        }
+        '''
         )
 
     tuplets = selection.to_tuplets_with_ratio([1, 2], is_diminution=True)
     assert testtools.compare(
         tuplets[0].lilypond_format,
-        "{\n\tc'16\n\tc'8\n}"
+        r'''
+        {
+            c'16
+            c'8
+        }
+        '''
         )
 
     # TODO: DECIDE ON DOTTED VALUES #
@@ -66,19 +111,45 @@ def test_FreeLeafSelection_to_tuplets_with_ratio_02():
     tuplets = selection.to_tuplets_with_ratio([1, 2, 2, 3], is_diminution=True)
     assert testtools.compare(
         tuplets[0].lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/4 {\n\tc'32\n\tc'16\n\tc'16\n\tc'16.\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/4 {
+            c'32
+            c'16
+            c'16
+            c'16.
+        }
+        '''
         )
 
     tuplets = selection.to_tuplets_with_ratio([1, 2, 2, 3, 3], is_diminution=True)
     assert testtools.compare(
         tuplets[0].lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 6/11 {\n\tc'32\n\tc'16\n\tc'16\n\tc'16.\n\tc'16.\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 6/11 {
+            c'32
+            c'16
+            c'16
+            c'16.
+            c'16.
+        }
+        '''
         )
 
     tuplets = selection.to_tuplets_with_ratio([1, 2, 2, 3, 3, 4], is_diminution=True)
     assert testtools.compare(
         tuplets[0].lilypond_format,
-        "\\times 4/5 {\n\tc'64\n\tc'32\n\tc'32\n\tc'32.\n\tc'32.\n\tc'16\n}"
+        r'''
+        \times 4/5 {
+            c'64
+            c'32
+            c'32
+            c'32.
+            c'32.
+            c'16
+        }
+        '''
         )
 
 
@@ -92,31 +163,62 @@ def test_FreeLeafSelection_to_tuplets_with_ratio_03():
     tuplets =selection.to_tuplets_with_ratio(1 * [1], is_diminution=False)
     assert testtools.compare(
         tuplets[0].lilypond_format,
-        "{\n\tc'8.\n}"
+        r'''
+        {
+            c'8.
+        }
+        '''
         )
 
     tuplets =selection.to_tuplets_with_ratio(2 * [1], is_diminution=False)
     assert testtools.compare(
         tuplets[0].lilypond_format,
-        "{\n\tc'16.\n\tc'16.\n}"
+        r'''
+        {
+            c'16.
+            c'16.
+        }
+        '''
         )
 
     tuplets =selection.to_tuplets_with_ratio(3 * [1], is_diminution=False)
     assert testtools.compare(
         tuplets[0].lilypond_format,
-        "{\n\tc'16\n\tc'16\n\tc'16\n}"
+        r'''
+        {
+            c'16
+            c'16
+            c'16
+        }
+        '''
         )
 
     tuplets =selection.to_tuplets_with_ratio(4 * [1], is_diminution=False)
     assert testtools.compare(
         tuplets[0].lilypond_format,
-        "{\n\tc'32.\n\tc'32.\n\tc'32.\n\tc'32.\n}"
+        r'''
+        {
+            c'32.
+            c'32.
+            c'32.
+            c'32.
+        }
+        '''
         )
 
     tuplets =selection.to_tuplets_with_ratio(5 * [1], is_diminution=False)
     assert testtools.compare(
         tuplets[0].lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 8/5 {\n\tc'64.\n\tc'64.\n\tc'64.\n\tc'64.\n\tc'64.\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 8/5 {
+            c'64.
+            c'64.
+            c'64.
+            c'64.
+            c'64.
+        }
+        '''
         )
 
 
@@ -130,23 +232,45 @@ def test_FreeLeafSelection_to_tuplets_with_ratio_04():
     tuplets =selection.to_tuplets_with_ratio(1 * [1], is_diminution=True)
     assert testtools.compare(
         tuplets[0].lilypond_format,
-        "{\n\tc'8.\n}"
+        r'''
+        {
+            c'8.
+        }
+        '''
         )
 
     tuplets =selection.to_tuplets_with_ratio(2 * [1], is_diminution=True)
     assert testtools.compare(
         tuplets[0].lilypond_format,
-        "{\n\tc'16.\n\tc'16.\n}"
+        r'''
+        {
+            c'16.
+            c'16.
+        }
+        '''
         )
 
     tuplets =selection.to_tuplets_with_ratio(3 * [1], is_diminution=True)
     assert testtools.compare(
         tuplets[0].lilypond_format,
-        "{\n\tc'16\n\tc'16\n\tc'16\n}"
+        r'''
+        {
+            c'16
+            c'16
+            c'16
+        }
+        '''
         )
 
     tuplets =selection.to_tuplets_with_ratio(4 * [1], is_diminution=True)
     assert testtools.compare(
         tuplets[0].lilypond_format,
-        "{\n\tc'32.\n\tc'32.\n\tc'32.\n\tc'32.\n}"
+        r'''
+        {
+            c'32.
+            c'32.
+            c'32.
+            c'32.
+        }
+        '''
         )

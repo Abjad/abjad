@@ -45,7 +45,18 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_01():
     assert len(result) == 2
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'4 ~\n\t}\n\t{\n\t\t\\time 2/8\n\t\tc'4\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'4 ~
+            }
+            {
+                \time 2/8
+                c'4
+            }
+        }
+        '''
         )
 
 
@@ -72,7 +83,11 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_02():
     assert len(result) == 1
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\tc'2\n}"
+        r'''
+        \new Staff {
+            c'2
+        }
+        '''
         )
 
 

@@ -28,7 +28,18 @@ def test_LilyPondComment_before_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "% Voice before comments here.\n% More voice before comments.\n\\new Voice {\n\t\\override Beam #'thickness = #3\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\t\\revert Beam #'thickness\n}"
+        r'''
+        % Voice before comments here.
+        % More voice before comments.
+        \new Voice {
+            \override Beam #'thickness = #3
+            c'8 [
+            d'8
+            e'8
+            f'8 ]
+            \revert Beam #'thickness
+        }
+        '''
         )
 
 
@@ -50,5 +61,10 @@ def test_LilyPondComment_before_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "% Leaf comments before here.\n% More comments before.\n\\once \\override Beam #'thickness = #3\nc'8"
+        r'''
+        % Leaf comments before here.
+        % More comments before.
+        \once \override Beam #'thickness = #3
+        c'8
+        '''
         )

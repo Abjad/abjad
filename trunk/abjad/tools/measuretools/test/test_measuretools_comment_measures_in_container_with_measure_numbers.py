@@ -40,7 +40,31 @@ def test_measuretools_comment_measures_in_container_with_measure_numbers_01():
     assert select(staff).is_well_formed()
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t% start measure 1\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t% stop measure 1\n\t% start measure 2\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n\t% stop measure 2\n\t% start measure 3\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n\t% stop measure 3\n}"
+        r'''
+        \new Staff {
+            % start measure 1
+            {
+                \time 2/8
+                c'8
+                d'8
+            }
+            % stop measure 1
+            % start measure 2
+            {
+                \time 2/8
+                e'8
+                f'8
+            }
+            % stop measure 2
+            % start measure 3
+            {
+                \time 2/8
+                g'8
+                a'8
+            }
+            % stop measure 3
+        }
+        '''
         )
 
 
@@ -78,5 +102,25 @@ def test_measuretools_comment_measures_in_container_with_measure_numbers_02():
     assert select(staff).is_well_formed()
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t% start measure 2\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n\t% stop measure 2\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8
+                d'8
+            }
+            % start measure 2
+            {
+                \time 2/8
+                e'8
+                f'8
+            }
+            % stop measure 2
+            {
+                \time 2/8
+                g'8
+                a'8
+            }
+        }
+        '''
         )

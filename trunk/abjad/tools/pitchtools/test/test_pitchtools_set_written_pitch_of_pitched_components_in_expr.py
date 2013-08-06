@@ -28,5 +28,12 @@ def test_pitchtools_set_written_pitch_of_pitched_components_in_expr_01():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
+        r'''
+        \new Staff {
+            c'4
+            c'4
+            c'4
+            c'4
+        }
+        '''
         )

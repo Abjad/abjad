@@ -47,7 +47,22 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\t\\time 5/6\n\t\\scaleDurations #'(2 . 3) {\n\t\t{\n\t\t\td'4\n\t\t\te'4\n\t\t}\n\t\t{\n\t\t\tf'4\n\t\t\tg'4\n\t\t\ta'4\n\t\t}\n\t}\n}"
+        r'''
+        {
+            \time 5/6
+            \scaleDurations #'(2 . 3) {
+                {
+                    d'4
+                    e'4
+                }
+                {
+                    f'4
+                    g'4
+                    a'4
+                }
+            }
+        }
+        '''
         )
 
 
@@ -104,7 +119,26 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\t\\time 9/10\n\t\\scaleDurations #'(4 . 5) {\n\t\t{\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t\t\tg'8\n\t\t}\n\t\t{\n\t\t\ta'8\n\t\t\tb'8\n\t\t\tc''8\n\t\t\td''8\n\t\t\te''8\n\t\t}\n\t}\n}"
+        r'''
+        {
+            \time 9/10
+            \scaleDurations #'(4 . 5) {
+                {
+                    d'8
+                    e'8
+                    f'8
+                    g'8
+                }
+                {
+                    a'8
+                    b'8
+                    c''8
+                    d''8
+                    e''8
+                }
+            }
+        }
+        '''
         )
 
 
@@ -174,7 +208,30 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_03():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\t\\time 11/15\n\t\\scaleDurations #'(8 . 15) {\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 3/4 {\n\t\t\td'4\n\t\t\te'4\n\t\t\tf'4\n\t\t\tg'4\n\t\t}\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 5/7 {\n\t\t\ta'8\n\t\t\tb'8\n\t\t\tc''8\n\t\t\td''8\n\t\t\te''8\n\t\t\tf''8\n\t\t\tg''8\n\t\t}\n\t}\n}"
+        r'''
+        {
+            \time 11/15
+            \scaleDurations #'(8 . 15) {
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 3/4 {
+                    d'4
+                    e'4
+                    f'4
+                    g'4
+                }
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 5/7 {
+                    a'8
+                    b'8
+                    c''8
+                    d''8
+                    e''8
+                    f''8
+                    g''8
+                }
+            }
+        }
+        '''
         )
 
 
@@ -739,7 +796,12 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_21():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\times 2/3 {\n\tc'4\n\td'4\n}"
+        r'''
+        \times 2/3 {
+            c'4
+            d'4
+        }
+        '''
         )
 
 
@@ -785,7 +847,17 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_22():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\times 2/3 {\n\tc'4\n\td'4\n\t{\n\t\t{\n\t\t\te'8\n\t\t}\n\t}\n}"
+        r'''
+        \times 2/3 {
+            c'4
+            d'4
+            {
+                {
+                    e'8
+                }
+            }
+        }
+        '''
         )
 
 
@@ -819,7 +891,14 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_23():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\times 4/5 {\n\td'8\n\te'8\n\tf'8\n\tg'8\n}"
+        r'''
+        \times 4/5 {
+            d'8
+            e'8
+            f'8
+            g'8
+        }
+        '''
         )
 
 
@@ -854,7 +933,14 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_24():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\times 4/5 {\n\td'8\n\te'8\n\tf'8\n\tg'8\n}"
+        r'''
+        \times 4/5 {
+            d'8
+            e'8
+            f'8
+            g'8
+        }
+        '''
         )
 
 
@@ -893,7 +979,16 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_25():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\times 2/3 {\n\tc'2\n\tcs'2\n\t\\times 2/3 {\n\t\td'4\n\t\tef'4\n\t}\n}"
+        r'''
+        \times 2/3 {
+            c'2
+            cs'2
+            \times 2/3 {
+                d'4
+                ef'4
+            }
+        }
+        '''
         )
 
 
@@ -934,5 +1029,14 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_26():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\times 2/3 {\n\tc'2\n\tcs'2\n\t\\times 2/3 {\n\t\td'4\n\t\tef'4\n\t}\n}"
+        r'''
+        \times 2/3 {
+            c'2
+            cs'2
+            \times 2/3 {
+                d'4
+                ef'4
+            }
+        }
+        '''
         )

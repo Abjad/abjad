@@ -19,7 +19,14 @@ def test_measuretools_set_measure_denominator_and_adjust_numerator_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\t\\time 6/16\n\tc'8\n\td'8\n\te'8\n}"
+        r'''
+        {
+            \time 6/16
+            c'8
+            d'8
+            e'8
+        }
+        '''
         )
 
     measuretools.set_measure_denominator_and_adjust_numerator(t, 8)
@@ -36,5 +43,12 @@ def test_measuretools_set_measure_denominator_and_adjust_numerator_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\t\\time 3/8\n\tc'8\n\td'8\n\te'8\n}"
+        r'''
+        {
+            \time 3/8
+            c'8
+            d'8
+            e'8
+        }
+        '''
         )

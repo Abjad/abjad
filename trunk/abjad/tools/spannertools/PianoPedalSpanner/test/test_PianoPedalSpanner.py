@@ -22,7 +22,15 @@ def test_PianoPedalSpanner_01():
     assert p.style == 'mixed'
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'mixed\n\tc'8 \\sustainOn\n\tc'8\n\tc'8\n\tc'8 \\sustainOff\n}"
+        r'''
+        \new Staff {
+            \set Staff.pedalSustainStyle = #'mixed
+            c'8 \sustainOn
+            c'8
+            c'8
+            c'8 \sustainOff
+        }
+        '''
         )
 
 
@@ -47,7 +55,15 @@ def test_PianoPedalSpanner_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'mixed\n\tc'8 \\sostenutoOn\n\tc'8\n\tc'8\n\tc'8 \\sostenutoOff\n}"
+        r'''
+        \new Staff {
+            \set Staff.pedalSustainStyle = #'mixed
+            c'8 \sostenutoOn
+            c'8
+            c'8
+            c'8 \sostenutoOff
+        }
+        '''
         )
 
 
@@ -72,7 +88,15 @@ def test_PianoPedalSpanner_03():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'mixed\n\tc'8 \\unaCorda\n\tc'8\n\tc'8\n\tc'8 \\treCorde\n}"
+        r'''
+        \new Staff {
+            \set Staff.pedalSustainStyle = #'mixed
+            c'8 \unaCorda
+            c'8
+            c'8
+            c'8 \treCorde
+        }
+        '''
         )
 
 
@@ -98,7 +122,15 @@ def test_PianoPedalSpanner_04():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'text\n\tc'8 \\sustainOn\n\tc'8\n\tc'8\n\tc'8 \\sustainOff\n}"
+        r'''
+        \new Staff {
+            \set Staff.pedalSustainStyle = #'text
+            c'8 \sustainOn
+            c'8
+            c'8
+            c'8 \sustainOff
+        }
+        '''
         )
 
 
@@ -124,7 +156,15 @@ def test_PianoPedalSpanner_05():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'bracket\n\tc'8 \\sustainOn\n\tc'8\n\tc'8\n\tc'8 \\sustainOff\n}"
+        r'''
+        \new Staff {
+            \set Staff.pedalSustainStyle = #'bracket
+            c'8 \sustainOn
+            c'8
+            c'8
+            c'8 \sustainOff
+        }
+        '''
         )
 
 
@@ -154,7 +194,20 @@ def test_PianoPedalSpanner_06():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\set Staff.pedalSustainStyle = #'mixed\n\tc'8 \\sustainOn\n\tc'8\n\tc'8\n\t\\set Staff.pedalSustainStyle = #'mixed\n\tc'8 \\sustainOff \\sustainOn\n\tc'8\n\tc'8\n\tc'8\n\tc'8 \\sustainOff\n}"
+        r'''
+        \new Staff {
+            \set Staff.pedalSustainStyle = #'mixed
+            c'8 \sustainOn
+            c'8
+            c'8
+            \set Staff.pedalSustainStyle = #'mixed
+            c'8 \sustainOff \sustainOn
+            c'8
+            c'8
+            c'8
+            c'8 \sustainOff
+        }
+        '''
         )
 
 

@@ -23,7 +23,16 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff \\with {\n\tautoBeaming = ##t\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff \with {
+            autoBeaming = ##t
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -47,7 +56,14 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -71,7 +87,15 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___03():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\set Score.currentBarNumber = #12\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff {
+            \set Score.currentBarNumber = #12
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -103,7 +127,21 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___04():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\set Score.currentBarNumber = #12\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \set Score.currentBarNumber = #12
+                \time 2/8
+                c'8
+                d'8
+            }
+            {
+                \time 2/8
+                e'8
+                f'8
+            }
+        }
+        '''
         )
 
 def test_LilyPondContextSettingComponentPlugIn___setattr___05():
@@ -127,7 +165,16 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___05():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff \\with {\n\tfontSize = #-3\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff \with {
+            fontSize = #-3
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -177,7 +224,16 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___07():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff \\with {\n\tinstrumentName = \\markup { \\circle { V } }\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff \with {
+            instrumentName = \markup { \circle { V } }
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -204,7 +260,18 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___08():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Score \\with {\n\tproportionalNotationDuration = #(ly:make-moment 1 56)\n} <<\n\t\\new Staff {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n>>"
+        r'''
+        \new Score \with {
+            proportionalNotationDuration = #(ly:make-moment 1 56)
+        } <<
+            \new Staff {
+                c'8
+                d'8
+                e'8
+                f'8
+            }
+        >>
+        '''
         )
 
 
@@ -254,7 +321,16 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___10():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff \\with {\n\tshortInstrumentName = \\markup { \\circle { V } }\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff \with {
+            shortInstrumentName = \markup { \circle { V } }
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -279,7 +355,16 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___11():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff \\with {\n\tsuggestAccidentals = ##t\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff \with {
+            suggestAccidentals = ##t
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -303,7 +388,15 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___12():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\tc'8\n\t\\set suggestAccidentals = ##t\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        \new Staff {
+            c'8
+            \set suggestAccidentals = ##t
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 

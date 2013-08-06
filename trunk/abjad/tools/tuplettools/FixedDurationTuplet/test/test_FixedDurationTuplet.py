@@ -55,7 +55,12 @@ def test_FixedDurationTuplet_03():
     assert str(t) == "{@ 1:1 c'8, c'8 @}"
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\tc'8\n\tc'8\n}"
+        r'''
+        {
+            c'8
+            c'8
+        }
+        '''
         )
 
 
@@ -69,7 +74,12 @@ def test_FixedDurationTuplet_04():
     assert str(t) == "{@ 1:1 c'8, c'8 @}"
     assert testtools.compare(
         t.lilypond_format,
-        "{\n\tc'8\n\tc'8\n}"
+        r'''
+        {
+            c'8
+            c'8
+        }
+        '''
         )
 
 
@@ -82,7 +92,13 @@ def test_FixedDurationTuplet_05():
     t.is_invisible = True
     assert testtools.compare(
         t.lilypond_format,
-        "\\scaleDurations #'(2 . 3) {\n\tc'8\n\tc'8\n\tc'8\n}"
+        r'''
+        \scaleDurations #'(2 . 3) {
+            c'8
+            c'8
+            c'8
+        }
+        '''
         )
 
     r'''
@@ -96,5 +112,11 @@ def test_FixedDurationTuplet_05():
     t.is_invisible = False
     assert testtools.compare(
         t.lilypond_format,
-        "\\times 2/3 {\n\tc'8\n\tc'8\n\tc'8\n}"
+        r'''
+        \times 2/3 {
+            c'8
+            c'8
+            c'8
+        }
+        '''
         )

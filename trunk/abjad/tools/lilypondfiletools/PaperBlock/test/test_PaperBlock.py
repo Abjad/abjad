@@ -19,7 +19,13 @@ def test_PaperBlock_01():
 
     assert testtools.compare(
         paper_block.lilypond_format,
-        "\\paper {\n\tleft-margin = #15\n\tmarkup-system-spacing #'basic-distance = #8\n\ttop-margin = #15\n}"
+        r'''
+        \paper {
+            left-margin = #15
+            markup-system-spacing #'basic-distance = #8
+            top-margin = #15
+        }
+        '''
         )
 
 
@@ -38,7 +44,11 @@ def test_PaperBlock_02():
 
     assert testtools.compare(
         paper_block.lilypond_format,
-        "\\paper {\n\tsystem-system-spacing = #'((basic-distance . 0) (minimum-distance . 0) (padding . 12) (stretchability . 0))\n}"
+        r'''
+        \paper {
+            system-system-spacing = #'((basic-distance . 0) (minimum-distance . 0) (padding . 12) (stretchability . 0))
+        }
+        '''
         )
 
 

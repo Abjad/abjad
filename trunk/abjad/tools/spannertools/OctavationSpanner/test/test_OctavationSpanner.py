@@ -24,7 +24,16 @@ def test_OctavationSpanner_01():
     assert o.start == o.stop == 0
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\ottava #0\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\t\\ottava #0\n}"
+        r'''
+        \new Staff {
+            \ottava #0
+            c'8
+            c'8
+            c'8
+            c'8
+            \ottava #0
+        }
+        '''
         )
 
 
@@ -51,7 +60,20 @@ def test_OctavationSpanner_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\ottava #1\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\ottava #0\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+        r'''
+        \new Staff {
+            \ottava #1
+            c'8
+            cs'8
+            d'8
+            ef'8
+            \ottava #0
+            e'8
+            f'8
+            fs'8
+            g'8
+        }
+        '''
         )
 
 
@@ -78,7 +100,20 @@ def test_OctavationSpanner_03():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\ottava #1\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\ottava #2\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+        r'''
+        \new Staff {
+            \ottava #1
+            c'8
+            cs'8
+            d'8
+            ef'8
+            \ottava #2
+            e'8
+            f'8
+            fs'8
+            g'8
+        }
+        '''
         )
 
 
@@ -93,7 +128,20 @@ def test_OctavationSpanner_04():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\ottava #1\n\tc'8\n\t\\ottava #0\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+        r'''
+        \new Staff {
+            \ottava #1
+            c'8
+            \ottava #0
+            cs'8
+            d'8
+            ef'8
+            e'8
+            f'8
+            fs'8
+            g'8
+        }
+        '''
         )
 
     r'''
@@ -124,7 +172,22 @@ def test_OctavationSpanner_05():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\ottava #1\n\tc'8\n\t\\ottava #0\n\t\\ottava #2\n\tcs'8\n\t\\ottava #0\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+        r'''
+        \new Staff {
+            \ottava #1
+            c'8
+            \ottava #0
+            \ottava #2
+            cs'8
+            \ottava #0
+            d'8
+            ef'8
+            e'8
+            f'8
+            fs'8
+            g'8
+        }
+        '''
         )
 
     r'''
@@ -157,7 +220,22 @@ def test_OctavationSpanner_06():
     assert not checker.check(t)
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t\\ottava #1\n\tc'8\n\tcs'8\n\t\\ottava #2\n\td'8\n\tef'8\n\t\\ottava #0\n\te'8\n\tf'8\n\t\\ottava #0\n\tfs'8\n\tg'8\n}"
+        r'''
+        \new Staff {
+            \ottava #1
+            c'8
+            cs'8
+            \ottava #2
+            d'8
+            ef'8
+            \ottava #0
+            e'8
+            f'8
+            \ottava #0
+            fs'8
+            g'8
+        }
+        '''
         )
 
     r'''

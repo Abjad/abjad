@@ -37,7 +37,26 @@ def test_TaleaRhythmMaker_tie_split_notes_01():
     assert select(staff).is_well_formed()
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'4 ~\n\t}\n\t{\n\t\tc'16\n\t\tc'8. ~\n\t}\n\t{\n\t\tc'8\n\t\tc'8 ~\n\t}\n\t{\n\t\tc'8.\n\t\tc'16\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'4 ~
+            }
+            {
+                c'16
+                c'8. ~
+            }
+            {
+                c'8
+                c'8 ~
+            }
+            {
+                c'8.
+                c'16
+            }
+        }
+        '''
         )
 
 
@@ -83,5 +102,31 @@ def test_TaleaRhythmMaker_tie_split_notes_02():
     assert select(staff).is_well_formed()
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 3/16\n\t\tc'8. ~\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'8\n\t\tc'4 ~\n\t\tc'16\n\t\tc'8. ~\n\t}\n\t{\n\t\t\\time 4/8\n\t\tc'8\n\t\tc'4 ~\n\t\tc'16\n\t\tc'16 ~\n\t}\n\t{\n\t\t\\time 7/16\n\t\tc'4\n\t\tc'8.\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 3/16
+                c'8. ~
+            }
+            {
+                \time 5/8
+                c'8
+                c'4 ~
+                c'16
+                c'8. ~
+            }
+            {
+                \time 4/8
+                c'8
+                c'4 ~
+                c'16
+                c'16 ~
+            }
+            {
+                \time 7/16
+                c'4
+                c'8.
+            }
+        }
+        '''
         )

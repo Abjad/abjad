@@ -69,7 +69,29 @@ def test_measuretools_fuse_contiguous_measures_in_container_cyclically_by_counts
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 4/8\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n\t{\n\t\t\\time 4/8\n\t\tb'8\n\t\tc''8\n\t\td''8\n\t\te''8\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 4/8
+                c'8
+                d'8
+                e'8
+                f'8
+            }
+            {
+                \time 2/8
+                g'8
+                a'8
+            }
+            {
+                \time 4/8
+                b'8
+                c''8
+                d''8
+                e''8
+            }
+        }
+        '''
         )
 
 
@@ -138,5 +160,24 @@ def test_measuretools_fuse_contiguous_measures_in_container_cyclically_by_counts
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 6/8\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t}\n\t{\n\t\t\\time 4/8\n\t\tb'8\n\t\tc''8\n\t\td''8\n\t\te''8\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 6/8
+                c'8
+                d'8
+                e'8
+                f'8
+                g'8
+                a'8
+            }
+            {
+                \time 4/8
+                b'8
+                c''8
+                d''8
+                e''8
+            }
+        }
+        '''
         )

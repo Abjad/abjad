@@ -51,7 +51,21 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\\times 3/4 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
+        r'''
+        \new Voice {
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 3/4 {
+                c'8 [
+                d'8
+                e'8
+                f'8
+            }
+            {
+                g'8
+                a'8 ]
+            }
+        }
+        '''
         )
 
 
@@ -159,7 +173,23 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t{\n\t\tc'8 [ \\glissando\n\t\td'8 \\glissando\n\t}\n\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\\times 3/4 {\n\t\te'8 \\glissando\n\t\tf'8 \\glissando\n\t}\n\t{\n\t\tg'8 \\glissando\n\t\ta'8 ]\n\t}\n}"
+        r'''
+        \new Voice {
+            {
+                c'8 [ \glissando
+                d'8 \glissando
+            }
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 3/4 {
+                e'8 \glissando
+                f'8 \glissando
+            }
+            {
+                g'8 \glissando
+                a'8 ]
+            }
+        }
+        '''
         )
 
     assert select(t).is_well_formed()
@@ -258,5 +288,13 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
     assert testtools.compare(
         u.lilypond_format,
-        "{\n\t\\time 4/8\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+        r'''
+        {
+            \time 4/8
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )

@@ -60,7 +60,35 @@ def test_containertools_repeat_last_n_elements_of_container_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n}"
+        r'''
+        \new Voice {
+            {
+                \time 2/8
+                c'8
+                d'8
+            }
+            {
+                \time 2/8
+                e'8
+                f'8
+            }
+            {
+                \time 2/8
+                e'8
+                f'8
+            }
+            {
+                \time 2/8
+                e'8
+                f'8
+            }
+            {
+                \time 2/8
+                e'8
+                f'8
+            }
+        }
+        '''
         )
 
 
@@ -116,5 +144,28 @@ def test_containertools_repeat_last_n_elements_of_container_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t}\n\t\\times 2/3 {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t}\n}"
+        r'''
+        \new Voice {
+            \times 2/3 {
+                c'8
+                d'8
+                e'8
+            }
+            \times 2/3 {
+                f'8
+                g'8
+                a'8
+            }
+            \times 2/3 {
+                c'8
+                d'8
+                e'8
+            }
+            \times 2/3 {
+                f'8
+                g'8
+                a'8
+            }
+        }
+        '''
         )

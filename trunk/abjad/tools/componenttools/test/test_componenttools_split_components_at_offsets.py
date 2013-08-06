@@ -51,7 +51,21 @@ def test_componenttools_split_components_at_offsets_01():
     assert len(parts) == 3
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32. ~\n\t\td'32. ~\n\t\td'32 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'32. ~
+                d'32. ~
+                d'32 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
+        }
+        '''
         )
 
 
@@ -104,7 +118,23 @@ def test_componenttools_split_components_at_offsets_02():
     assert len(parts) == 6
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16. [ ( ~\n\t\tc'32\n\t\td'16 ~\n\t\td'16 ]\n\t}\n\t{\n\t\te'32 [ ~\n\t\te'16.\n\t\tf'16. ~\n\t\tf'32 ] )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'16. [ ( ~
+                c'32
+                d'16 ~
+                d'16 ]
+            }
+            {
+                e'32 [ ~
+                e'16.
+                f'16. ~
+                f'32 ] )
+            }
+        }
+        '''
         )
 
 
@@ -159,7 +189,27 @@ def test_componenttools_split_components_at_offsets_03():
     assert len(parts) == 3
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ (\n\t}\n\t{\n\t\tc'32\n\t\td'16\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 3/32
+                c'16. [ (
+            }
+            {
+                c'32
+                d'16
+            }
+            {
+                \time 2/32
+                d'16 ]
+            }
+            {
+                \time 2/8
+                e'8 [
+                f'8 ] )
+            }
+        }
+        '''
         )
 
 
@@ -224,7 +274,37 @@ def test_componenttools_split_components_at_offsets_04():
     assert len(parts) == 6
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ (\n\t}\n\t{\n\t\tc'32\n\t\td'16\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16.\n\t}\n\t{\n\t\tf'16.\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 ] )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 3/32
+                c'16. [ (
+            }
+            {
+                c'32
+                d'16
+            }
+            {
+                \time 2/32
+                d'16 ]
+            }
+            {
+                \time 1/32
+                e'32 [
+            }
+            {
+                \time 3/32
+                e'16.
+            }
+            {
+                f'16.
+            }
+            {
+                \time 1/32
+                f'32 ] )
+            }
+        }
+        '''
         )
 
 
@@ -277,7 +357,37 @@ def test_componenttools_split_components_at_offsets_05():
     assert len(parts) == 6
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [\n\t}\n\t{\n\t\tc'32\n\t\td'16\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16.\n\t}\n\t{\n\t\tf'16.\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 ]\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 3/32
+                c'16. [
+            }
+            {
+                c'32
+                d'16
+            }
+            {
+                \time 2/32
+                d'16 ]
+            }
+            {
+                \time 1/32
+                e'32 [
+            }
+            {
+                \time 3/32
+                e'16.
+            }
+            {
+                f'16.
+            }
+            {
+                \time 1/32
+                f'32 ]
+            }
+        }
+        '''
         )
 
 
@@ -327,7 +437,22 @@ def test_componenttools_split_components_at_offsets_06():
     assert len(parts) == 4
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32 ~\n\t\td'32 ~\n\t\td'32 ~\n\t\td'32 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'32 ~
+                d'32 ~
+                d'32 ~
+                d'32 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
+        }
+        '''
         )
 
 
@@ -378,7 +503,23 @@ def test_componenttools_split_components_at_offsets_07():
     assert len(parts) == 8
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16 [ ( ~\n\t\tc'16\n\t\td'16 ~\n\t\td'16 ]\n\t}\n\t{\n\t\te'16 [ ~\n\t\te'16\n\t\tf'16 ~\n\t\tf'16 ] )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'16 [ ( ~
+                c'16
+                d'16 ~
+                d'16 ]
+            }
+            {
+                e'16 [ ~
+                e'16
+                f'16 ~
+                f'16 ] )
+            }
+        }
+        '''
         )
 
 
@@ -434,7 +575,28 @@ def test_componenttools_split_components_at_offsets_08():
     assert len(parts) == 4
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 1/16\n\t\tc'16 [ ( ~\n\t}\n\t{\n\t\tc'16\n\t}\n\t{\n\t\td'16 ~\n\t}\n\t{\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 1/16
+                c'16 [ ( ~
+            }
+            {
+                c'16
+            }
+            {
+                d'16 ~
+            }
+            {
+                d'16 ]
+            }
+            {
+                \time 2/8
+                e'8 [
+                f'8 ] )
+            }
+        }
+        '''
         )
 
 
@@ -499,7 +661,37 @@ def test_componenttools_split_components_at_offsets_09():
     assert len(parts) == 6
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ( ~\n\t}\n\t{\n\t\tc'32\n\t\td'16 ~\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ~\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16.\n\t}\n\t{\n\t\tf'16. ~\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 ] )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 3/32
+                c'16. [ ( ~
+            }
+            {
+                c'32
+                d'16 ~
+            }
+            {
+                \time 2/32
+                d'16 ]
+            }
+            {
+                \time 1/32
+                e'32 [ ~
+            }
+            {
+                \time 3/32
+                e'16.
+            }
+            {
+                f'16. ~
+            }
+            {
+                \time 1/32
+                f'32 ] )
+            }
+        }
+        '''
         )
 
 
@@ -553,7 +745,21 @@ def test_componenttools_split_components_at_offsets_10():
     assert len(parts) == 3
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32. ) ~\n\t\td'32. ( ) ~\n\t\td'32 ] (\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'32. ) ~
+                d'32. ( ) ~
+                d'32 ] (
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
+        }
+        '''
         )
 
 
@@ -604,7 +810,23 @@ def test_componenttools_split_components_at_offsets_11():
     assert len(parts) == 6
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16. [ ( ) ~\n\t\tc'32 (\n\t\td'16 ) ~\n\t\td'16 ] (\n\t}\n\t{\n\t\te'32 [ ) ~\n\t\te'16. (\n\t\tf'16. ) ~\n\t\tf'32 ] ( )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'16. [ ( ) ~
+                c'32 (
+                d'16 ) ~
+                d'16 ] (
+            }
+            {
+                e'32 [ ) ~
+                e'16. (
+                f'16. ) ~
+                f'32 ] ( )
+            }
+        }
+        '''
         )
 
 
@@ -659,7 +881,27 @@ def test_componenttools_split_components_at_offsets_12():
     assert len(parts) == 3
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\tc'32 [ (\n\t\td'16 ] )\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 3/32
+                c'16. [ ] ( )
+            }
+            {
+                c'32 [ (
+                d'16 ] )
+            }
+            {
+                \time 2/32
+                d'16 [ ] (
+            }
+            {
+                \time 2/8
+                e'8 [
+                f'8 ] )
+            }
+        }
+        '''
         )
 
 
@@ -724,7 +966,37 @@ def test_componenttools_split_components_at_offsets_13():
     assert len(parts) == 6
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\tc'32 [ (\n\t\td'16 ] )\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ] )\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16. [ ] ( )\n\t}\n\t{\n\t\tf'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ] ( )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 3/32
+                c'16. [ ] ( )
+            }
+            {
+                c'32 [ (
+                d'16 ] )
+            }
+            {
+                \time 2/32
+                d'16 [ ] (
+            }
+            {
+                \time 1/32
+                e'32 [ ] )
+            }
+            {
+                \time 3/32
+                e'16. [ ] ( )
+            }
+            {
+                f'16. [ ] ( )
+            }
+            {
+                \time 1/32
+                f'32 [ ] ( )
+            }
+        }
+        '''
         )
 
 
@@ -757,7 +1029,18 @@ def test_componenttools_split_components_at_offsets_14():
     assert len(parts) == 6
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tc'16. ~\n\tc'32\n\td'16 ~\n\td'16\n\te'32 ~\n\te'16.\n\tf'16. ~\n\tf'32\n}"
+        r'''
+        \new Staff {
+            c'16. ~
+            c'32
+            d'16 ~
+            d'16
+            e'32 ~
+            e'16.
+            f'16. ~
+            f'32
+        }
+        '''
         )
 
 
@@ -810,7 +1093,37 @@ def test_componenttools_split_components_at_offsets_15():
     assert len(parts) == 6
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ]\n\t}\n\t{\n\t\tc'32 [\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ]\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16. [ ]\n\t}\n\t{\n\t\tf'16. [ ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ]\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 3/32
+                c'16. [ ]
+            }
+            {
+                c'32 [
+                d'16 ]
+            }
+            {
+                \time 2/32
+                d'16 [ ]
+            }
+            {
+                \time 1/32
+                e'32 [ ]
+            }
+            {
+                \time 3/32
+                e'16. [ ]
+            }
+            {
+                f'16. [ ]
+            }
+            {
+                \time 1/32
+                f'32 [ ]
+            }
+        }
+        '''
         )
 
 
@@ -860,7 +1173,22 @@ def test_componenttools_split_components_at_offsets_16():
     assert len(parts) == 4
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32 ) ~\n\t\td'32 ( ) ~\n\t\td'32 ( ) ~\n\t\td'32 ] (\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'32 ) ~
+                d'32 ( ) ~
+                d'32 ( ) ~
+                d'32 ] (
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
+        }
+        '''
         )
 
 
@@ -911,7 +1239,23 @@ def test_componenttools_split_components_at_offsets_17():
     assert len(parts) == 8
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16 [ ( ) ~\n\t\tc'16 (\n\t\td'16 ) ~\n\t\td'16 ] (\n\t}\n\t{\n\t\te'16 [ ) ~\n\t\te'16 (\n\t\tf'16 ) ~\n\t\tf'16 ] ( )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'16 [ ( ) ~
+                c'16 (
+                d'16 ) ~
+                d'16 ] (
+            }
+            {
+                e'16 [ ) ~
+                e'16 (
+                f'16 ) ~
+                f'16 ] ( )
+            }
+        }
+        '''
         )
 
 
@@ -967,7 +1311,28 @@ def test_componenttools_split_components_at_offsets_18():
     assert len(parts) == 4
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 1/16\n\t\tc'16 [ ] ( ) ~\n\t}\n\t{\n\t\tc'16 [ ] ( )\n\t}\n\t{\n\t\td'16 [ ] ( ) ~\n\t}\n\t{\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 1/16
+                c'16 [ ] ( ) ~
+            }
+            {
+                c'16 [ ] ( )
+            }
+            {
+                d'16 [ ] ( ) ~
+            }
+            {
+                d'16 [ ] (
+            }
+            {
+                \time 2/8
+                e'8 [
+                f'8 ] )
+            }
+        }
+        '''
         )
 
 
@@ -1032,7 +1397,37 @@ def test_componenttools_split_components_at_offsets_19():
     assert len(parts) == 6
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( ) ~\n\t}\n\t{\n\t\tc'32 [ (\n\t\td'16 ] ) ~\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ] ) ~\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16. [ ] ( )\n\t}\n\t{\n\t\tf'16. [ ] ( ) ~\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ] ( )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 3/32
+                c'16. [ ] ( ) ~
+            }
+            {
+                c'32 [ (
+                d'16 ] ) ~
+            }
+            {
+                \time 2/32
+                d'16 [ ] (
+            }
+            {
+                \time 1/32
+                e'32 [ ] ) ~
+            }
+            {
+                \time 3/32
+                e'16. [ ] ( )
+            }
+            {
+                f'16. [ ] ( ) ~
+            }
+            {
+                \time 1/32
+                f'32 [ ] ( )
+            }
+        }
+        '''
         )
 
 
@@ -1088,7 +1483,27 @@ def test_componenttools_split_components_at_offsets_20():
     assert len(parts) == 3
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ (\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16.\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 1/32
+                c'32 [ (
+            }
+            {
+                \time 3/32
+                c'16.
+            }
+            {
+                \time 4/32
+                d'8 ]
+            }
+            {
+                \time 2/8
+                e'8 [
+                f'8 ] )
+            }
+        }
+        '''
         )
 
 
@@ -1147,7 +1562,31 @@ def test_componenttools_split_components_at_offsets_21():
     assert len(parts) == 4
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ (\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16.\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [\n\t}\n\t{\n\t\t\\time 7/32\n\t\te'16.\n\t\tf'8 ] )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 1/32
+                c'32 [ (
+            }
+            {
+                \time 3/32
+                c'16.
+            }
+            {
+                \time 4/32
+                d'8 ]
+            }
+            {
+                \time 1/32
+                e'32 [
+            }
+            {
+                \time 7/32
+                e'16.
+                f'8 ] )
+            }
+        }
+        '''
         )
 
 
@@ -1203,7 +1642,27 @@ def test_componenttools_split_components_at_offsets_22():
     assert len(parts) == 3
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 1/32
+                c'32 [ ] ( )
+            }
+            {
+                \time 3/32
+                c'16. [ ] ( )
+            }
+            {
+                \time 4/32
+                d'8 [ ] (
+            }
+            {
+                \time 2/8
+                e'8 [
+                f'8 ] )
+            }
+        }
+        '''
         )
 
 
@@ -1263,7 +1722,31 @@ def test_componenttools_split_components_at_offsets_23():
     assert len(parts) == 4
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 [ ] (\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ] )\n\t}\n\t{\n\t\t\\time 7/32\n\t\te'16. [ (\n\t\tf'8 ] )\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 1/32
+                c'32 [ ] ( )
+            }
+            {
+                \time 3/32
+                c'16. [ ] ( )
+            }
+            {
+                \time 4/32
+                d'8 [ ] (
+            }
+            {
+                \time 1/32
+                e'32 [ ] )
+            }
+            {
+                \time 7/32
+                e'16. [ (
+                f'8 ] )
+            }
+        }
+        '''
         )
 
 
@@ -1293,7 +1776,14 @@ def test_componenttools_split_components_at_offsets_24():
     assert len(parts) == 3
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tc'32 ~\n\tc'8 ~\n\tc'32 ~\n\tc'16\n}"
+        r'''
+        \new Staff {
+            c'32 ~
+            c'8 ~
+            c'32 ~
+            c'16
+        }
+        '''
         )
 
 
@@ -1325,5 +1815,12 @@ def test_componenttools_split_components_at_offsets_25():
     assert select(staff).is_well_formed()
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\tc'64 [ ] ~\n\tc'16 [ ~\n\tc'64 ] ~\n\tc'32 [ ]\n}"
+        r'''
+        \new Staff {
+            c'64 [ ] ~
+            c'16 [ ~
+            c'64 ] ~
+            c'32 [ ]
+        }
+        '''
         )

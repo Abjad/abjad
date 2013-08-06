@@ -28,7 +28,28 @@ def test_Spanner_fracture_01():
 
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tcs'8\n\t\td'8\n\t\tef'8\n\t}\n\t{\n\t\te'8\n\t\tf'8\n\t\tfs'8\n\t\tg'8 ]\n\t}\n\t{\n\t\taf'8 [\n\t\ta'8\n\t\tbf'8\n\t\tb'8 ]\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                c'8 [
+                cs'8
+                d'8
+                ef'8
+            }
+            {
+                e'8
+                f'8
+                fs'8
+                g'8 ]
+            }
+            {
+                af'8 [
+                a'8
+                bf'8
+                b'8 ]
+            }
+        }
+        '''
         )
 
     r'''

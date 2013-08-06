@@ -34,7 +34,20 @@ def test_ScoreBlock_01():
 
     assert testtools.compare(
         score_block.lilypond_format,
-        "\\score {\n\t\\new Score <<\n\t\t\\new Staff {\n\t\t\tc'8\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t\t}\n\t>>\n\t\\layout {}\n\t\\midi {}\n}"
+        r'''
+        \score {
+            \new Score <<
+                \new Staff {
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                }
+            >>
+            \layout {}
+            \midi {}
+        }
+        '''
         )
 
 

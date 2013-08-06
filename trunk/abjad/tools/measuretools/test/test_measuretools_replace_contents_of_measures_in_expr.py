@@ -45,7 +45,21 @@ def test_measuretools_replace_contents_of_measures_in_expr_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 1/8\n\t\tc'16\n\t\td'16\n\t}\n\t{\n\t\t\\time 3/16\n\t\te'16\n\t\tf'16\n\t\ts1 * 1/16\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 1/8
+                c'16
+                d'16
+            }
+            {
+                \time 3/16
+                e'16
+                f'16
+                s1 * 1/16
+            }
+        }
+        '''
         )
 
 
@@ -106,7 +120,28 @@ def test_measuretools_replace_contents_of_measures_in_expr_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 1/16\n\t\ts1 * 1/16\n\t}\n\t{\n\t\t\\time 3/16\n\t\tc'8\n\t\ts1 * 1/16\n\t}\n\t{\n\t\t\\time 1/16\n\t\ts1 * 1/16\n\t}\n\t{\n\t\t\\time 3/16\n\t\td'8\n\t\ts1 * 1/16\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 1/16
+                s1 * 1/16
+            }
+            {
+                \time 3/16
+                c'8
+                s1 * 1/16
+            }
+            {
+                \time 1/16
+                s1 * 1/16
+            }
+            {
+                \time 3/16
+                d'8
+                s1 * 1/16
+            }
+        }
+        '''
         )
 
 
@@ -163,7 +198,20 @@ def test_measuretools_replace_contents_of_measures_in_expr_05():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 1/8\n\t\tc'16\n\t\td'16\n\t}\n\t{\n\t\t\\time 1/8\n\t\te'16\n\t\tf'16\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 1/8
+                c'16
+                d'16
+            }
+            {
+                \time 1/8
+                e'16
+                f'16
+            }
+        }
+        '''
         )
 
 
@@ -197,5 +245,17 @@ def test_measuretools_replace_contents_of_measures_in_expr_06():
     assert select(staff).is_well_formed()
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\tc'4 ~\n\t\tc'16\n\t}\n\t{\n\t\t\\time 3/16\n\t\tc'8.\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 5/16
+                c'4 ~
+                c'16
+            }
+            {
+                \time 3/16
+                c'8.
+            }
+        }
+        '''
         )

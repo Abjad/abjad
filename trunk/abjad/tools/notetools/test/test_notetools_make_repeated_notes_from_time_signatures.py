@@ -25,6 +25,14 @@ def test_notetools_make_repeated_notes_from_time_signatures_01():
 
     assert testtools.compare(
         staff.lilypond_format,
-        "\\new Staff {\n\td''8\n\td''8\n\td''32\n\td''32\n\td''32\n}"
+        r'''
+        \new Staff {
+            d''8
+            d''8
+            d''32
+            d''32
+            d''32
+        }
+        '''
         )
     assert select(staff).is_well_formed()

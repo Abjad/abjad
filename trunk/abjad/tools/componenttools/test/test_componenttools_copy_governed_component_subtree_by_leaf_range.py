@@ -44,7 +44,18 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_01():
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
-        "\\new Staff {\n\t\\times 2/3 {\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tf'8\n\t\tg'8\n\t}\n}"
+        r'''
+        \new Staff {
+            \times 2/3 {
+                d'8
+                e'8
+            }
+            \times 2/3 {
+                f'8
+                g'8
+            }
+        }
+        '''
         )
 
 
@@ -93,7 +104,20 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_02():
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
-        "\\new Staff {\n\t\\new Voice {\n\t\t\\times 2/3 {\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t\t\\times 2/3 {\n\t\t\tf'8\n\t\t\tg'8\n\t\t}\n\t}\n}"
+        r'''
+        \new Staff {
+            \new Voice {
+                \times 2/3 {
+                    d'8
+                    e'8
+                }
+                \times 2/3 {
+                    f'8
+                    g'8
+                }
+            }
+        }
+        '''
         )
 
 
@@ -148,7 +172,12 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_04():
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
-        "\\new Voice {\n\td'8\n\te'8\n}"
+        r'''
+        \new Voice {
+            d'8
+            e'8
+        }
+        '''
         )
 
 
@@ -170,7 +199,13 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_05():
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
-        "{\n\t\\time 2/8\n\td'8\n\te'8\n}"
+        r'''
+        {
+            \time 2/8
+            d'8
+            e'8
+        }
+        '''
         )
 
 
@@ -193,7 +228,12 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_06():
     assert select(new).is_well_formed()
     assert testtools.compare(
         new.lilypond_format,
-        "\\new Staff {\n\td'8\n\te'8\n}"
+        r'''
+        \new Staff {
+            d'8
+            e'8
+        }
+        '''
         )
 
 
@@ -236,7 +276,18 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_07():
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
-        "{\n\t\\time 3/10\n\t\\scaleDurations #'(4 . 5) {\n\t\t{\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t\t}\n\t}\n}"
+        r'''
+        {
+            \time 3/10
+            \scaleDurations #'(4 . 5) {
+                {
+                    d'8
+                    e'8
+                    f'8
+                }
+            }
+        }
+        '''
         )
 
 
@@ -284,7 +335,20 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_08():
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
-        "\\new Voice {\n\t{\n\t\t\\time 3/10\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\t{\n\t\t\t\td'8\n\t\t\t\te'8\n\t\t\t\tf'8\n\t\t\t}\n\t\t}\n\t}\n}"
+        r'''
+        \new Voice {
+            {
+                \time 3/10
+                \scaleDurations #'(4 . 5) {
+                    {
+                        d'8
+                        e'8
+                        f'8
+                    }
+                }
+            }
+        }
+        '''
         )
 
 
@@ -335,7 +399,22 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_09():
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
-        "{\n\t\\time 5/12\n\t\\scaleDurations #'(2 . 3) {\n\t\t{\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t\t{\n\t\t\tf'8\n\t\t\tg'8\n\t\t\ta'8\n\t\t}\n\t}\n}"
+        r'''
+        {
+            \time 5/12
+            \scaleDurations #'(2 . 3) {
+                {
+                    d'8
+                    e'8
+                }
+                {
+                    f'8
+                    g'8
+                    a'8
+                }
+            }
+        }
+        '''
         )
 
 
@@ -384,7 +463,18 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_10():
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 1/8\n\t\te'8\n\t}\n\t{\n\t\t\\time 1/8\n\t\tf'8\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 1/8
+                e'8
+            }
+            {
+                \time 1/8
+                f'8
+            }
+        }
+        '''
         )
 
 
@@ -426,7 +516,14 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_11():
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
-        "\\new Staff {\n\t\\times 2/3 {\n\t\tg'8\n\t\ta'8\n\t}\n}"
+        r'''
+        \new Staff {
+            \times 2/3 {
+                g'8
+                a'8
+            }
+        }
+        '''
         )
 
 
@@ -473,7 +570,15 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_12():
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                g'8
+                a'8
+            }
+        }
+        '''
         )
 
 
@@ -526,5 +631,15 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_13():
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
-        "\\new Staff {\n\t{\n\t\t\\time 2/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tg'8\n\t\t\ta'8\n\t\t}\n\t}\n}"
+        r'''
+        \new Staff {
+            {
+                \time 2/9
+                \scaleDurations #'(8 . 9) {
+                    g'8
+                    a'8
+                }
+            }
+        }
+        '''
         )

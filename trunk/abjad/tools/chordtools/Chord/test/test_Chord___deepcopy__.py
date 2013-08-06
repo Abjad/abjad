@@ -28,9 +28,23 @@ def test_Chord___deepcopy___01():
 
     assert testtools.compare(
         chord_1.lilypond_format,
-        "<\n\t\\tweak #'color #red\n\tc'\n\te'\n\tg'\n>4"
+        r'''
+        <
+            \tweak #'color #red
+            c'
+            e'
+            g'
+        >4
+        '''
         )
     assert testtools.compare(
         chord_2.lilypond_format,
-        "<\n\t\\tweak #'color #red\n\tc'\n\te'\n\tg'\n>4"
+        r'''
+        <
+            \tweak #'color #red
+            c'
+            e'
+            g'
+        >4
+        '''
         )

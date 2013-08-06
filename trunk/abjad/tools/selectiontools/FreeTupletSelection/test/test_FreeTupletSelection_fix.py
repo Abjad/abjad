@@ -32,7 +32,13 @@ def test_FreeTupletSelection_fix_01():
     assert t.multiplier.is_proper_tuplet_multiplier
     assert testtools.compare(
         t.lilypond_format,
-        "\\times 2/3 {\n\tc'8\n\td'8\n\te'8\n}"
+        r'''
+        \times 2/3 {
+            c'8
+            d'8
+            e'8
+        }
+        '''
         )
 
 
@@ -67,7 +73,14 @@ def test_FreeTupletSelection_fix_02():
     assert t.multiplier.is_proper_tuplet_multiplier
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 4/3 {\n\tc'16\n\td'16\n\te'16\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 4/3 {
+            c'16
+            d'16
+            e'16
+        }
+        '''
         )
 
 
@@ -103,5 +116,12 @@ def test_FreeTupletSelection_fix_03():
     assert t.multiplier.is_proper_tuplet_multiplier
     assert testtools.compare(
         t.lilypond_format,
-        "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 5/6 {\n\tc'8\n\td'8\n\te'8\n}"
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 5/6 {
+            c'8
+            d'8
+            e'8
+        }
+        '''
         )
