@@ -4,54 +4,46 @@ import py.test
 
 
 def test_Chord_note_heads_01():
-    r'''Returns immutable tuple of note_heads in chord.
+    r'''Chord returns note heads as an immutable tuple.
     '''
 
-    t = Chord([2, 4, 5], (1, 4))
-    note_heads = t.note_heads
+    chord = Chord("<d' e' f'>4")
+    note_heads = chord.note_heads
 
     assert isinstance(note_heads, tuple)
     assert len(note_heads) == 3
-    assert py.test.raises(AttributeError, 'note_heads.pop()')
-    assert py.test.raises(AttributeError, 'note_heads.remove(note_heads[0])')
+    assert py.test.raises(Exception, 'note_heads.pop()')
+    assert py.test.raises(Exception, 'note_heads.remove(note_heads[0])')
 
 
 def test_Chord_note_heads_02():
-    r'''Chords with equivalent pitch numbers *do* carry equivalent note_head instances.
+    r'''Note heads of chords with equivalent pitches compare equal.
     '''
 
-    t1 = Chord([2, 4, 5], (1, 4))
-    t2 = Chord([2, 4, 5], (1, 4))
+    chord_1 = Chord("<d' e' f'>4")
+    chord_2 = Chord("<d' e' f'>4")
 
-    assert t1.note_heads == t2.note_heads
+    assert chord_1.note_heads == chord_2.note_heads
 
 
 def test_Chord_note_heads_03():
-    r'''Note head can be assigned with a LilyPond-style note name.
+    r'''Note heads can be assigned with a LilyPond input string.
     '''
 
-    t = Chord([0], (1, 4))
-    t.note_heads = "c' d' e'"
+    chord = Chord("<c'>4")
+    chord.note_heads = "c' d' e'"
 
-    assert t.lilypond_format == "<c' d' e'>4"
+    assert chord.lilypond_format == "<c' d' e'>4"
 
 
 def test_Chord_note_heads_04():
-    r'''Set chord with tweaked note heads.
+    r'''Set note head color with the LilyPond tweak reservoir.
     '''
 
-    chord = Chord([3, 13, 17], (1, 4))
-    note_heads = []
-    note_head = notetools.NoteHead(3)
-    note_head.tweak.color = 'red'
-    note_heads.append(note_head)
-    note_head = notetools.NoteHead(13)
-    note_head.tweak.color = 'green'
-    note_heads.append(note_head)
-    note_head = notetools.NoteHead(17)
-    note_head.tweak.color = 'blue'
-    note_heads.append(note_head)
-    chord.note_heads = note_heads
+    chord = Chord("<ef' cs'' f''>4")
+    chord[0].tweak.color = 'red'
+    chord[1].tweak.color = 'green'
+    chord[2].tweak.color = 'blue'
 
     r'''
     <
