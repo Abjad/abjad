@@ -2,7 +2,7 @@ def compare(string_1, string_2):
 
     split_lines = string_2.split('\n')
 
-    if not split_lines[0] or split_lines.isspace():
+    if not split_lines[0] or split_lines[0].isspace():
         split_lines.pop(0)
     if not split_lines[-1] or split_lines[-1].isspace():
         split_lines.pop(-1)

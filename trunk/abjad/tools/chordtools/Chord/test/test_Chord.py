@@ -4,6 +4,7 @@ from py.test import raises
 
 
 def test_Chord_01():
+
     t = Chord([2, 3, 4], (1, 4))
     assert str(t) == "<d' ef' e'>4"
     assert t.lilypond_format == "<d' ef' e'>4"
@@ -19,12 +20,19 @@ def test_Chord_02():
 
     t = Chord([2, 3, 4], (1, 4))
     t[0].tweak.style = 'harmonic'
-    assert t.lilypond_format == "<\n\t\\tweak #'style #'harmonic\n\td'\n\tef'\n\te'\n>4"
+    assert testtools.compare(
+        t.lilypond_format,
+        "<\n\t\\tweak #'style #'harmonic\n\td'\n\tef'\n\te'\n>4"
+        )
+
 
 def test_Chord_03():
     t = Chord([2, 3, 4], (1, 4))
     t[0].tweak.transparent = True
-    assert t.lilypond_format == "<\n\t\\tweak #'transparent ##t\n\td'\n\tef'\n\te'\n>4"
+    assert testtools.compare(
+        t.lilypond_format,
+        "<\n\t\\tweak #'transparent ##t\n\td'\n\tef'\n\te'\n>4"
+        )
 
 
 def test_Chord_04():
@@ -70,7 +78,10 @@ def test_Chord_06():
     >4 \glissando
     '''
 
-    assert chord.lilypond_format == "<\n\t\\tweak #'color #red\n\td'\n\tef'\n\te'\n>4 \\glissando"
+    assert testtools.compare(
+        chord.lilypond_format,
+        "<\n\t\\tweak #'color #red\n\td'\n\tef'\n\te'\n>4 \\glissando"
+        )
 
 
 def test_Chord_07():
