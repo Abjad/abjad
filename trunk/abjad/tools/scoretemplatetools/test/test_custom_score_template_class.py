@@ -38,7 +38,14 @@ def test_custom_score_template_class_01():
 
     assert testtools.compare(
         score.lilypond_format,
-        '\\context Score = "Green Score" <<\n\t\\context Staff = "Red Staff" {\n\t\t\\context Voice = "Blue Voice" {\n\t\t}\n\t}\n>>'
+        r'''
+        \context Score = "Green Score" <<
+            \context Staff = "Red Staff" {
+                \context Voice = "Blue Voice" {
+                }
+            }
+        >>
+        '''
         )
 
 
@@ -79,7 +86,14 @@ def test_custom_score_template_class_02():
 
     assert testtools.compare(
         score.lilypond_format,
-        '\\new Score <<\n\t\\new CustomStaff {\n\t\t\\new CustomVoice {\n\t\t}\n\t}\n>>'
+        r'''
+        \new Score <<
+            \new CustomStaff {
+                \new CustomVoice {
+                }
+            }
+        >>
+        '''
         )
 
     # here's how to properly override with externalized layout

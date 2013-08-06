@@ -10,7 +10,10 @@ def test_Cluster___init___01():
     assert len(t) == 0
     assert testtools.compare(
         t.lilypond_format,
-        '\\makeClusters {\n}'
+        r'''
+        \makeClusters {
+        }
+        '''
         )
 
 

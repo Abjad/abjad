@@ -17,7 +17,12 @@ def test_LayoutBlock_01():
 
     assert testtools.compare(
         lb.lilypond_format,
-        '\\layout {\n\tindent = #0\n\tragged-right = ##t\n}'
+        r'''
+        \layout {
+            indent = #0
+            ragged-right = ##t
+        }
+        '''
         )
 
 
@@ -35,5 +40,9 @@ def test_LayoutBlock_02():
 
     assert testtools.compare(
         lb.lilypond_format,
-        '\\layout {\n\t\\accidentalStyle modern\n}'
+        r'''
+        \layout {
+            \accidentalStyle modern
+        }
+        '''
         )

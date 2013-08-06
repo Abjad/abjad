@@ -79,7 +79,13 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_03():
 
     assert testtools.compare(
         t.lilypond_format,
-        '\\new Voice {\n\tr8\n\tr4\n\tr4\n}'
+        r'''
+        \new Voice {
+            r8
+            r4
+            r4
+        }
+        '''
         )
 
 

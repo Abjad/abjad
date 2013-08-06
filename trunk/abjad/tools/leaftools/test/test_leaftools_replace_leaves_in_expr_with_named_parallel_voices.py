@@ -7,5 +7,39 @@ def test_leaftools_replace_leaves_in_expr_with_named_parallel_voices_01():
     result = leaftools.replace_leaves_in_expr_with_named_parallel_voices(c.select_leaves()[2:7], 'upper', 'lower')
     assert testtools.compare(
         c.lilypond_format,
-        '{\n\tc8\n\t\\times 2/3 {\n\t\tc8\n\t\t<<\n\t\t\t\\context Voice = "upper" {\n\t\t\t\tc8\n\t\t\t\tc8\n\t\t\t}\n\t\t\t\\context Voice = "lower" {\n\t\t\t\tc8\n\t\t\t\tc8\n\t\t\t}\n\t\t>>\n\t}\n\t\\times 4/5 {\n\t\t<<\n\t\t\t\\context Voice = "upper" {\n\t\t\t\tc16\n\t\t\t\tc16\n\t\t\t\tc16\n\t\t\t}\n\t\t\t\\context Voice = "lower" {\n\t\t\t\tc16\n\t\t\t\tc16\n\t\t\t\tc16\n\t\t\t}\n\t\t>>\n\t\tc16\n\t\tc16\n\t}\n\tc8\n}'
+        r'''
+        {
+            c8
+            \times 2/3 {
+                c8
+                <<
+                    \context Voice = "upper" {
+                        c8
+                        c8
+                    }
+                    \context Voice = "lower" {
+                        c8
+                        c8
+                    }
+                >>
+            }
+            \times 4/5 {
+                <<
+                    \context Voice = "upper" {
+                        c16
+                        c16
+                        c16
+                    }
+                    \context Voice = "lower" {
+                        c16
+                        c16
+                        c16
+                    }
+                >>
+                c16
+                c16
+            }
+            c8
+        }
+        '''
         )

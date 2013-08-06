@@ -32,5 +32,24 @@ def test_measuretools_make_measures_with_full_measure_spacer_skips_01():
 
     assert testtools.compare(
         t.lilypond_format,
-        '\\new Staff {\n\t{\n\t\t\\time 1/8\n\t\ts1 * 1/8\n\t}\n\t{\n\t\t\\time 5/16\n\t\ts1 * 5/16\n\t}\n\t{\n\t\t\\time 5/16\n\t\ts1 * 5/16\n\t}\n\t{\n\t\t\\time 1/4\n\t\ts1 * 1/4\n\t}\n}'
+        r'''
+        \new Staff {
+            {
+                \time 1/8
+                s1 * 1/8
+            }
+            {
+                \time 5/16
+                s1 * 5/16
+            }
+            {
+                \time 5/16
+                s1 * 5/16
+            }
+            {
+                \time 1/4
+                s1 * 1/4
+            }
+        }
+        '''
         )

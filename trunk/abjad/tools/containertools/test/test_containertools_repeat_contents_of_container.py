@@ -80,5 +80,8 @@ def test_containertools_repeat_contents_of_container_03():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        '\\new Voice {\n}'
+        r'''
+        \new Voice {
+        }
+        '''
         )

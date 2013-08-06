@@ -42,7 +42,23 @@ def test_Component_get_effective_staff_01():
 
     assert testtools.compare(
         piano.lilypond_format,
-        '\\new PianoStaff <<\n\t\\context Staff = "RH" {\n\t\t\\change Staff = LH\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n\t\\context Staff = "LH" {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n>>'
+        r'''
+        \new PianoStaff <<
+            \context Staff = "RH" {
+                \change Staff = LH
+                c'8
+                d'8
+                e'8
+                f'8
+            }
+            \context Staff = "LH" {
+                c'8
+                d'8
+                e'8
+                f'8
+            }
+        >>
+        '''
         )
 
 
@@ -88,7 +104,24 @@ def test_Component_get_effective_staff_02():
 
     assert testtools.compare(
         piano.lilypond_format,
-        '\\new PianoStaff <<\n\t\\context Staff = "RH" {\n\t\t\\change Staff = LH\n\t\tc\'8\n\t\td\'8\n\t\t\\change Staff = RH\n\t\te\'8\n\t\tf\'8\n\t}\n\t\\context Staff = "LH" {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n>>'
+        r'''
+        \new PianoStaff <<
+            \context Staff = "RH" {
+                \change Staff = LH
+                c'8
+                d'8
+                \change Staff = RH
+                e'8
+                f'8
+            }
+            \context Staff = "LH" {
+                c'8
+                d'8
+                e'8
+                f'8
+            }
+        >>
+        '''
         )
 
 
@@ -123,7 +156,23 @@ def test_Component_get_effective_staff_03():
     assert select(piano).is_well_formed()
     assert testtools.compare(
         piano.lilypond_format,
-        '\\new PianoStaff <<\n\t\\context Staff = "RH" {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\t\\change Staff = LH\n\t\tf\'8\n\t}\n\t\\context Staff = "LH" {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n>>'
+        r'''
+        \new PianoStaff <<
+            \context Staff = "RH" {
+                c'8
+                d'8
+                e'8
+                \change Staff = LH
+                f'8
+            }
+            \context Staff = "LH" {
+                c'8
+                d'8
+                e'8
+                f'8
+            }
+        >>
+        '''
         )
 
 
@@ -169,5 +218,22 @@ def test_Component_get_effective_staff_04():
 
     assert testtools.compare(
         piano.lilypond_format,
-        '\\new PianoStaff <<\n\t\\context Staff = "RH" {\n\t\t\\change Staff = LH\n\t\tc\'8\n\t\t\\change Staff = LH\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n\t\\context Staff = "LH" {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n>>'
+        r'''
+        \new PianoStaff <<
+            \context Staff = "RH" {
+                \change Staff = LH
+                c'8
+                \change Staff = LH
+                d'8
+                e'8
+                f'8
+            }
+            \context Staff = "LH" {
+                c'8
+                d'8
+                e'8
+                f'8
+            }
+        >>
+        '''
         )

@@ -39,7 +39,30 @@ def test_scoretools_make_piano_score_from_leaves_01():
     assert select(score).is_well_formed()
     assert testtools.compare(
         score.lilypond_format,
-        '\\new Score <<\n\t\\new PianoStaff <<\n\t\t\\context Staff = "treble" {\n\t\t\t\\clef "treble"\n\t\t\tr4\n\t\t\tcs\'\'\'\'4\n\t\t\tr4\n\t\t\tef\'\'\'4\n\t\t\te\'4\n\t\t\tf\'\'4\n\t\t}\n\t\t\\context Staff = "bass" {\n\t\t\t\\clef "bass"\n\t\t\tc4\n\t\t\tr4\n\t\t\td4\n\t\t\tr4\n\t\t\tr4\n\t\t\tr4\n\t\t}\n\t>>\n>>'
+        r"""
+        \new Score <<
+            \new PianoStaff <<
+                \context Staff = "treble" {
+                    \clef "treble"
+                    r4
+                    cs''''4
+                    r4
+                    ef'''4
+                    e'4
+                    f''4
+                }
+                \context Staff = "bass" {
+                    \clef "bass"
+                    c4
+                    r4
+                    d4
+                    r4
+                    r4
+                    r4
+                }
+            >>
+        >>
+        """
         )
 
 
@@ -88,5 +111,32 @@ def test_scoretools_make_piano_score_from_leaves_02():
 
     assert testtools.compare(
         score.lilypond_format,
-        '\\new Score <<\n\t\\new PianoStaff <<\n\t\t\\context Staff = "treble" {\n\t\t\t\\clef "treble"\n\t\t\tr4\n\t\t\ta4\n\t\t\tb4\n\t\t\tc\'4\n\t\t\td\'4\n\t\t\tr4\n\t\t\ta4\n\t\t\tr4\n\t\t}\n\t\t\\context Staff = "bass" {\n\t\t\t\\clef "bass"\n\t\t\tg4\n\t\t\tr4\n\t\t\tr4\n\t\t\tr4\n\t\t\tr4\n\t\t\tr4\n\t\t\tr4\n\t\t\tg4\n\t\t}\n\t>>\n>>'
+        r'''
+        \new Score <<
+            \new PianoStaff <<
+                \context Staff = "treble" {
+                    \clef "treble"
+                    r4
+                    a4
+                    b4
+                    c'4
+                    d'4
+                    r4
+                    a4
+                    r4
+                }
+                \context Staff = "bass" {
+                    \clef "bass"
+                    g4
+                    r4
+                    r4
+                    r4
+                    r4
+                    r4
+                    r4
+                    g4
+                }
+            >>
+        >>
+        '''
         )

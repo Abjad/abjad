@@ -56,5 +56,38 @@ def test_LilyFile_format_01():
 
     assert testtools.compare(
         lilypond_file.lilypond_format,
-        '% User comments 1.\n% User comments 2.\n\n\\include "external-settings-file-1.ly"\n\\include "external-settings-file-2.ly"\n\n#(set-default-paper-size "letter" \'portrait)\n#(set-global-staff-size 16)\n\n\\header {\n\tcomposer = \\markup { Josquin }\n\ttitle = \\markup { Missa sexti tonus }\n}\n\n\\layout {\n\tindent = #0\n\tleft-margin = #15\n}\n\n\\paper {\n\tevenFooterMarkup = \\markup { The even-page footer }\n\toddFooterMarkup = \\markup { The odd-page footer }\n}\n\n\\score {\n\t\\new Staff {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n}'
+        r'''
+        % User comments 1.
+        % User comments 2.
+
+        \include "external-settings-file-1.ly"
+        \include "external-settings-file-2.ly"
+
+        #(set-default-paper-size "letter" 'portrait)
+        #(set-global-staff-size 16)
+
+        \header {
+            composer = \markup { Josquin }
+            title = \markup { Missa sexti tonus }
+        }
+
+        \layout {
+            indent = #0
+            left-margin = #15
+        }
+
+        \paper {
+            evenFooterMarkup = \markup { The even-page footer }
+            oddFooterMarkup = \markup { The odd-page footer }
+        }
+
+        \score {
+            \new Staff {
+                c'8
+                d'8
+                e'8
+                f'8
+            }
+        }
+        '''
         )

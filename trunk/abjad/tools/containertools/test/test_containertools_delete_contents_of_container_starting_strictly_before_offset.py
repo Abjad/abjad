@@ -101,5 +101,8 @@ def test_containertools_delete_contents_of_container_starting_strictly_before_of
     assert select(staff).is_well_formed()
     assert testtools.compare(
         staff.lilypond_format,
-        '\\new Staff {\n}'
+        r'''
+        \new Staff {
+        }
+        '''
         )

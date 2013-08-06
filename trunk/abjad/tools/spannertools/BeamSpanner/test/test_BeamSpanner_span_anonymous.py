@@ -20,7 +20,10 @@ def test_BeamSpanner_span_anonymous_01():
     assert len(beam.leaves) == 0
     assert testtools.compare(
         container.lilypond_format,
-        '{\n}'
+        r'''
+        {
+        }
+        '''
         )
 
 
@@ -263,7 +266,16 @@ def test_BeamSpanner_span_anonymous_07():
     
     assert testtools.compare(
         staff.lilypond_format,
-        '\\new Staff {\n\t{\n\t}\n\t{\n\t}\n\t{\n\t}\n}'
+        r'''
+        \new Staff {
+            {
+            }
+            {
+            }
+            {
+            }
+        }
+        '''
         )
 
 

@@ -73,5 +73,9 @@ def test_PaperBlock_03():
 
     assert testtools.compare(
         paper_block.lilypond_format,
-        '\\paper {\n\t#(define fonts (make-pango-font-tree "Baskerville" "Baskerville" "Baskerville" (/ 14 20)))\n}'
+        r'''
+        \paper {
+            #(define fonts (make-pango-font-tree "Baskerville" "Baskerville" "Baskerville" (/ 14 20)))
+        }
+        '''
         )

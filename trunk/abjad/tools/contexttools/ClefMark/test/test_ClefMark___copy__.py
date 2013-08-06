@@ -44,7 +44,23 @@ def test_ClefMark___copy___01():
 
     assert testtools.compare(
         t.lilypond_format,
-        '''\\new Staff {\n\t\\clef "treble"\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\clef "bass"\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\t\\clef "treble"\n\tc'8\n\tcs'8\n}'''
+        r'''
+        \new Staff {
+            \clef "treble"
+            c'8
+            cs'8
+            d'8
+            ef'8
+            \clef "bass"
+            e'8
+            f'8
+            fs'8
+            g'8
+            \clef "treble"
+            c'8
+            cs'8
+        }
+        '''
         )
 
 
@@ -72,5 +88,20 @@ def test_ClefMark___copy___02():
 
     assert testtools.compare(
         t.lilypond_format,
-        '''\\new Staff {\n\t\\clef "treble"\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\clef "bass"\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\td'8\n\tef'8\n}'''
+        r'''
+        \new Staff {
+            \clef "treble"
+            c'8
+            cs'8
+            d'8
+            ef'8
+            \clef "bass"
+            e'8
+            f'8
+            fs'8
+            g'8
+            d'8
+            ef'8
+        }
+        '''
         )

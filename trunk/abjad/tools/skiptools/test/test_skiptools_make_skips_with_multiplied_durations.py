@@ -20,5 +20,12 @@ def test_skiptools_make_skips_with_multiplied_durations_01():
     assert select(staff).is_well_formed()
     assert testtools.compare(
         staff.lilypond_format,
-        '\\new Staff {\n\ts4 * 2\n\ts4 * 4/3\n\ts4 * 1\n\ts4 * 4/5\n}'
+        r'''
+        \new Staff {
+            s4 * 2
+            s4 * 4/3
+            s4 * 1
+            s4 * 4/5
+        }
+        '''
         )

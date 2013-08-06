@@ -208,7 +208,10 @@ def test_Container___delitem___06():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        '\\new Voice {\n}'
+        r'''
+        \new Voice {
+        }
+        '''
         )
 
 

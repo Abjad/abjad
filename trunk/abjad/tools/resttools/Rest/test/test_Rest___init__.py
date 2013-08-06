@@ -211,5 +211,12 @@ def test_Rest___init___14():
 
     assert testtools.compare(
         t.lilypond_format,
-        '\\new Voice {\n\tr8 [\n\tr8\n\tr8\n\tr8 ]\n}'
+        r'''
+        \new Voice {
+            r8 [
+            r8
+            r8
+            r8 ]
+        }
+        '''
         )

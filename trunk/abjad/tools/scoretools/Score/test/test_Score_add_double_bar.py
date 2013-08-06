@@ -22,5 +22,15 @@ def test_Score_add_double_bar_01():
 
     assert testtools.compare(
         score.lilypond_format,
-        '\\new Score <<\n\t\\new Staff {\n\t\tc\'4\n\t\td\'4\n\t\te\'4\n\t\tf\'4\n\t\t\\bar "|."\n\t}\n>>'
+        r'''
+        \new Score <<
+            \new Staff {
+                c'4
+                d'4
+                e'4
+                f'4
+                \bar "|."
+            }
+        >>
+        '''
         )

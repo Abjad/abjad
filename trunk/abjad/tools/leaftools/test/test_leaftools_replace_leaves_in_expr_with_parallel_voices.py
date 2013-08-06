@@ -7,5 +7,39 @@ def test_leaftools_replace_leaves_in_expr_with_parallel_voices_01():
     result = leaftools.replace_leaves_in_expr_with_parallel_voices(c.select_leaves()[2:7])
     assert testtools.compare(
         c.lilypond_format,
-        '{\n\tc8\n\t\\times 2/3 {\n\t\tc8\n\t\t<<\n\t\t\t\\new Voice {\n\t\t\t\tc8\n\t\t\t\tc8\n\t\t\t}\n\t\t\t\\new Voice {\n\t\t\t\tc8\n\t\t\t\tc8\n\t\t\t}\n\t\t>>\n\t}\n\t\\times 4/5 {\n\t\t<<\n\t\t\t\\new Voice {\n\t\t\t\tc16\n\t\t\t\tc16\n\t\t\t\tc16\n\t\t\t}\n\t\t\t\\new Voice {\n\t\t\t\tc16\n\t\t\t\tc16\n\t\t\t\tc16\n\t\t\t}\n\t\t>>\n\t\tc16\n\t\tc16\n\t}\n\tc8\n}'
+        r'''
+        {
+            c8
+            \times 2/3 {
+                c8
+                <<
+                    \new Voice {
+                        c8
+                        c8
+                    }
+                    \new Voice {
+                        c8
+                        c8
+                    }
+                >>
+            }
+            \times 4/5 {
+                <<
+                    \new Voice {
+                        c16
+                        c16
+                        c16
+                    }
+                    \new Voice {
+                        c16
+                        c16
+                        c16
+                    }
+                >>
+                c16
+                c16
+            }
+            c8
+        }
+        '''
         )

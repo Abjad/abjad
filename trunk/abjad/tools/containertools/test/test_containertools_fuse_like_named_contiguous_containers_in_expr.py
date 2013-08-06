@@ -99,7 +99,24 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_06():
     assert len(result[0][1]) == 4
     assert testtools.compare(
         result.lilypond_format,
-        '{\n\t\\context Staff = "staffOne" {\n\t\t\\new Voice {\n\t\t\tc\'8\n\t\t\tc\'8\n\t\t\tc\'8\n\t\t\tc\'8\n\t\t}\n\t\t\\new Voice {\n\t\t\tc\'8\n\t\t\tc\'8\n\t\t\tc\'8\n\t\t\tc\'8\n\t\t}\n\t}\n}'
+        r'''
+        {
+            \context Staff = "staffOne" {
+                \new Voice {
+                    c'8
+                    c'8
+                    c'8
+                    c'8
+                }
+                \new Voice {
+                    c'8
+                    c'8
+                    c'8
+                    c'8
+                }
+            }
+        }
+        '''
         )
 
     r'''
@@ -163,7 +180,72 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_08():
     assert len(s) == 1
     assert testtools.compare(
         s.lilypond_format,
-        '{\n\t\\context StaffGroup = "sg" <<\n\t\t\\context Staff = "staff1" <<\n\t\t\t\\context Voice = "1" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t\t\\context Voice = "2" {\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t}\n\t\t\t\\context Voice = "3" {\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t}\n\t\t>>\n\t\t\\context Staff = "staff2" <<\n\t\t\t\\context Voice = "1" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t\t\\context Voice = "2" {\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t}\n\t\t\t\\context Voice = "3" {\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t}\n\t\t>>\n\t\t\\context Staff = "staff3" <<\n\t\t\t\\context Voice = "1" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t\t\\context Voice = "2" {\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t\td\'4\n\t\t\t}\n\t\t\t\\context Voice = "3" {\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t\te\'4\n\t\t\t}\n\t\t>>\n\t>>\n}'
+        r'''
+        {
+            \context StaffGroup = "sg" <<
+                \context Staff = "staff1" <<
+                    \context Voice = "1" {
+                        c'4
+                        c'4
+                        c'4
+                        c'4
+                    }
+                    \context Voice = "2" {
+                        d'4
+                        d'4
+                        d'4
+                        d'4
+                    }
+                    \context Voice = "3" {
+                        e'4
+                        e'4
+                        e'4
+                        e'4
+                    }
+                >>
+                \context Staff = "staff2" <<
+                    \context Voice = "1" {
+                        c'4
+                        c'4
+                        c'4
+                        c'4
+                    }
+                    \context Voice = "2" {
+                        d'4
+                        d'4
+                        d'4
+                        d'4
+                    }
+                    \context Voice = "3" {
+                        e'4
+                        e'4
+                        e'4
+                        e'4
+                    }
+                >>
+                \context Staff = "staff3" <<
+                    \context Voice = "1" {
+                        c'4
+                        c'4
+                        c'4
+                        c'4
+                    }
+                    \context Voice = "2" {
+                        d'4
+                        d'4
+                        d'4
+                        d'4
+                    }
+                    \context Voice = "3" {
+                        e'4
+                        e'4
+                        e'4
+                        e'4
+                    }
+                >>
+            >>
+        }
+        '''
         )
 
     r'''
@@ -260,7 +342,62 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_09():
 
     assert testtools.compare(
         seq.lilypond_format,
-        '\\context StaffGroup = "topGroup" <<\n\t\\context StaffGroup = "groupOne" <<\n\t\t\\context Staff = "staffOne" {\n\t\t\t\\context Voice = "voiceOne" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t}\n\t\t\\context Staff = "staffTwo" {\n\t\t\t\\context Voice = "voiceTwo" {\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t}\n\t\t}\n\t>>\n\t\\context StaffGroup = "groupTwo" <<\n\t\t\\context Staff = "staffOne" {\n\t\t\t\\context Voice = "voiceOne" {\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t\tc\'4\n\t\t\t}\n\t\t}\n\t\t\\context Staff = "staffTwo" {\n\t\t\t\\context Voice = "voiceTwo" {\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t\tc\'\'4\n\t\t\t}\n\t\t}\n\t>>\n>>'
+        r'''
+        \context StaffGroup = "topGroup" <<
+            \context StaffGroup = "groupOne" <<
+                \context Staff = "staffOne" {
+                    \context Voice = "voiceOne" {
+                        c'4
+                        c'4
+                        c'4
+                        c'4
+                        c'4
+                        c'4
+                        c'4
+                        c'4
+                    }
+                }
+                \context Staff = "staffTwo" {
+                    \context Voice = "voiceTwo" {
+                        c''4
+                        c''4
+                        c''4
+                        c''4
+                        c''4
+                        c''4
+                        c''4
+                        c''4
+                    }
+                }
+            >>
+            \context StaffGroup = "groupTwo" <<
+                \context Staff = "staffOne" {
+                    \context Voice = "voiceOne" {
+                        c'4
+                        c'4
+                        c'4
+                        c'4
+                        c'4
+                        c'4
+                        c'4
+                        c'4
+                    }
+                }
+                \context Staff = "staffTwo" {
+                    \context Voice = "voiceTwo" {
+                        c''4
+                        c''4
+                        c''4
+                        c''4
+                        c''4
+                        c''4
+                        c''4
+                        c''4
+                    }
+                }
+            >>
+        >>
+        '''
         )
 
     r'''
@@ -359,7 +496,16 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_11():
     assert len(tadd[0]) == 4
     assert testtools.compare(
         tadd.lilypond_format,
-        '\\context Staff = "staffOne" {\n\t\\context Voice = "voiceOne" {\n\t\tc\'4\n\t\tc\'4\n\t\tc\'4\n\t\tc\'4\n\t}\n}'
+        r'''
+        \context Staff = "staffOne" {
+            \context Voice = "voiceOne" {
+                c'4
+                c'4
+                c'4
+                c'4
+            }
+        }
+        '''
         )
 
     r'''

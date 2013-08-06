@@ -16,7 +16,10 @@ def test_Container___init___01():
     assert isinstance(container, Container)
     assert testtools.compare(
         container.lilypond_format,
-        '{\n}'
+        r'''
+        {
+        }
+        '''
         )
 
 

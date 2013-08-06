@@ -44,7 +44,15 @@ def test_Voice___copy___01():
 
     assert testtools.compare(
         voice_2.lilypond_format,
-        '\\context Voice = "SopranoVoice" \\with {\n\t\\remove Forbid_line_break_engraver\n\t\\consists Time_signature_engraver\n\t\\override NoteHead #\'color = #red\n\ttupletFullLength = ##t\n} {\n}'
+        r'''
+        \context Voice = "SopranoVoice" \with {
+            \remove Forbid_line_break_engraver
+            \consists Time_signature_engraver
+            \override NoteHead #'color = #red
+            tupletFullLength = ##t
+        } {
+        }
+        '''
         )
 
 
@@ -75,5 +83,8 @@ def test_Voice___copy___02():
     assert voice_2.is_nonsemantic
     assert testtools.compare(
         voice_2.lilypond_format,
-        '\\context Voice = "SkipVoice" {\n}'
+        r'''
+        \context Voice = "SkipVoice" {
+        }
+        '''
         )

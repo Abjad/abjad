@@ -32,5 +32,14 @@ def test_instrumenttools_transpose_from_sounding_pitch_to_written_pitch_01():
 
     assert testtools.compare(
         staff.lilypond_format,
-        '''\\new Staff {\n\t\\set Staff.instrumentName = \\markup { Clarinet in B-flat }\n\t\\set Staff.shortInstrumentName = \\markup { Cl. B-flat }\n\t<d' fs' a'>4\n\te'4\n\tr4\n\tfs'4\n}'''
+        r'''
+        \new Staff {
+            \set Staff.instrumentName = \markup { Clarinet in B-flat }
+            \set Staff.shortInstrumentName = \markup { Cl. B-flat }
+            <d' fs' a'>4
+            e'4
+            r4
+            fs'4
+        }
+        '''
         )

@@ -31,5 +31,17 @@ def test_RestRhythmMaker___call___01():
 
     assert testtools.compare(
         staff.lilypond_format,
-        '\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\tr4\n\t\tr16\n\t}\n\t{\n\t\t\\time 3/8\n\t\tr4.\n\t}\n}'
+        r'''
+        \new Staff {
+            {
+                \time 5/16
+                r4
+                r16
+            }
+            {
+                \time 3/8
+                r4.
+            }
+        }
+        '''
         )

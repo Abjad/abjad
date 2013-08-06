@@ -25,6 +25,14 @@ def test_skiptools_make_repeated_skips_from_time_signatures_01():
 
     assert testtools.compare(
         staff.lilypond_format,
-        '\\new Staff {\n\tr8\n\tr8\n\tr32\n\tr32\n\tr32\n}'
+        r'''
+        \new Staff {
+            r8
+            r8
+            r32
+            r32
+            r32
+        }
+        '''
         )
     assert select(staff).is_well_formed()

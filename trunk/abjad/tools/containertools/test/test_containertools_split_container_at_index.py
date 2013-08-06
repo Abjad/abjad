@@ -294,7 +294,10 @@ def test_containertools_split_container_at_index_05():
     assert select(t).is_well_formed()
     assert testtools.compare(
         left.lilypond_format,
-        '\\new Voice {\n}'
+        r'''
+        \new Voice {
+        }
+        '''
         )
     assert testtools.compare(
         right.lilypond_format,
@@ -347,11 +350,17 @@ def test_containertools_split_container_at_index_06():
         )
     assert testtools.compare(
         right.lilypond_format,
-        '\\new Voice {\n}'
+        r'''
+        \new Voice {
+        }
+        '''
         )
     assert testtools.compare(
         v.lilypond_format,
-        '\\new Voice {\n}'
+        r'''
+        \new Voice {
+        }
+        '''
         )
     assert testtools.compare(
         t.lilypond_format,
@@ -398,7 +407,10 @@ def test_containertools_split_container_at_index_07():
         )
     assert testtools.compare(
         v.lilypond_format,
-        '\\new Voice {\n}'
+        r'''
+        \new Voice {
+        }
+        '''
         )
     assert testtools.compare(
         t.lilypond_format,
@@ -460,7 +472,10 @@ def test_containertools_split_container_at_index_08():
         )
     assert testtools.compare(
         v.lilypond_format,
-        '{\n}'
+        r'''
+        {
+        }
+        '''
         )
     assert testtools.compare(
         t.lilypond_format,
@@ -527,7 +542,10 @@ def test_containertools_split_container_at_index_09():
         )
     assert testtools.compare(
         tuplet.lilypond_format,
-        '\\times 4/5 {\n}'
+        r'''
+        \times 4/5 {
+        }
+        '''
         )
     assert testtools.compare(
         v.lilypond_format,
@@ -1045,7 +1063,10 @@ def test_containertools_split_container_at_index_15():
         )
     assert testtools.compare(
         t.lilypond_format,
-        '\\new Voice {\n}'
+        r'''
+        \new Voice {
+        }
+        '''
         )
 
 
@@ -1085,7 +1106,10 @@ def test_containertools_split_container_at_index_16():
 
     assert testtools.compare(
         left.lilypond_format,
-        '\\new Voice {\n}'
+        r'''
+        \new Voice {
+        }
+        '''
         )
     assert testtools.compare(
         right.lilypond_format,
@@ -1100,7 +1124,10 @@ def test_containertools_split_container_at_index_16():
         )
     assert testtools.compare(
         v.lilypond_format,
-        '\\new Voice {\n}'
+        r'''
+        \new Voice {
+        }
+        '''
         )
     assert testtools.compare(
         t.lilypond_format,
@@ -1154,11 +1181,17 @@ def test_containertools_split_container_at_index_17():
         )
     assert testtools.compare(
         right.lilypond_format,
-        '\\new Voice {\n}'
+        r'''
+        \new Voice {
+        }
+        '''
         )
     assert testtools.compare(
         v.lilypond_format,
-        '\\new Voice {\n}'
+        r'''
+        \new Voice {
+        }
+        '''
         )
     assert testtools.compare(
         t.lilypond_format,

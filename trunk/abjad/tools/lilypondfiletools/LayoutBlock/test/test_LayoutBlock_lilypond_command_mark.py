@@ -11,5 +11,9 @@ def test_LayoutBlock_lilypond_command_mark_01():
 
     assert testtools.compare(
         lilypond_file.layout_block.lilypond_format,
-        '\\layout {\n\t\\accidentalStyle forget\n}'
+        r'''
+        \layout {
+            \accidentalStyle forget
+        }
+        '''
         )

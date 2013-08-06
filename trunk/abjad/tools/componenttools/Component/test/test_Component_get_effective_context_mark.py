@@ -92,7 +92,20 @@ def test_Component_get_effective_context_mark_06():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        '\\new Staff {\n\t\\clef "treble"\n\tc\'8\n\tcs\'8\n\td\'8\n\tef\'8\n\t\\clef "treble"\n\te\'8\n\tf\'8\n\tfs\'8\n\tg\'8\n}'
+        r'''
+        \new Staff {
+            \clef "treble"
+            c'8
+            cs'8
+            d'8
+            ef'8
+            \clef "treble"
+            e'8
+            f'8
+            fs'8
+            g'8
+        }
+        '''
         )
 
 
@@ -123,7 +136,20 @@ def test_Component_get_effective_context_mark_07():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        '\\new Staff {\n\t\\clef "treble_8"\n\tc\'8\n\tcs\'8\n\td\'8\n\tef\'8\n\t\\clef "treble"\n\te\'8\n\tf\'8\n\tfs\'8\n\tg\'8\n}'
+        r'''
+        \new Staff {
+            \clef "treble_8"
+            c'8
+            cs'8
+            d'8
+            ef'8
+            \clef "treble"
+            e'8
+            f'8
+            fs'8
+            g'8
+        }
+        '''
         )
 
 

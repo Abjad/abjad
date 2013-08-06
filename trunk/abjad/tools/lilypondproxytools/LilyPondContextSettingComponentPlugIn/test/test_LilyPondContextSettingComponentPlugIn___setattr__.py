@@ -199,7 +199,16 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___06():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        '\\new Staff \\with {\n\tinstrumentName = "Violini I"\n} {\n\tc\'8\n\td\'8\n\te\'8\n\tf\'8\n}'
+        r'''
+        \new Staff \with {
+            instrumentName = "Violini I"
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -296,7 +305,16 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___09():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        '\\new Staff \\with {\n\tshortInstrumentName = "Vni. I"\n} {\n\tc\'8\n\td\'8\n\te\'8\n\tf\'8\n}'
+        r'''
+        \new Staff \with {
+            shortInstrumentName = "Vni. I"
+        } {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        '''
         )
 
 
@@ -418,7 +436,12 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___13():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        '\\new Staff \\with {\n\ttupletFullLength = ##t\n} {\n}'
+        r'''
+        \new Staff \with {
+            tupletFullLength = ##t
+        } {
+        }
+        '''
         )
 
     #t.tuplet_bracket.tuplet_full_length = False
@@ -434,7 +457,12 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___13():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        '\\new Staff \\with {\n\ttupletFullLength = ##f\n} {\n}'
+        r'''
+        \new Staff \with {
+            tupletFullLength = ##f
+        } {
+        }
+        '''
         )
 
     #t.tuplet_bracket.tuplet_full_length = None
@@ -448,5 +476,8 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___13():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        '\\new Staff {\n}'
+        r'''
+        \new Staff {
+        }
+        '''
         )

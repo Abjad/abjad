@@ -22,7 +22,14 @@ def test_SequentialLeafSelection_replace_with_01():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        '\\new Staff {\n\tr8\n\tr8\n\tr8\n\tr8\n}'
+        r'''
+        \new Staff {
+            r8
+            r8
+            r8
+            r8
+        }
+        '''
         )
 
 
@@ -46,5 +53,12 @@ def test_SequentialLeafSelection_replace_with_02():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        '\\new Staff {\n\ts8\n\ts8\n\ts8\n\ts8\n}'
+        r'''
+        \new Staff {
+            s8
+            s8
+            s8
+            s8
+        }
+        '''
         )

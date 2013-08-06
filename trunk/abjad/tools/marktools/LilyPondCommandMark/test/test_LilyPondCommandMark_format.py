@@ -74,7 +74,10 @@ def test_LilyPondCommandMark_format_03():
 
     assert testtools.compare(
         t.lilypond_format,
-        'c\'4\n\\break'
+        r'''
+        c'4
+        \break
+        '''
         )
 
 
@@ -93,7 +96,11 @@ def test_LilyPondCommandMark_format_04():
 
     assert testtools.compare(
         t.lilypond_format,
-        '\\new Staff {\n\t\\break\n}'
+        r'''
+        \new Staff {
+            \break
+        }
+        '''
         )
 
 

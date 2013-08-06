@@ -1273,7 +1273,28 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___38():
     assert select(score).is_well_formed()
     assert testtools.compare(
         score.lilypond_format,
-        '\\new Score \\with {\n\t\\override SpanBar #\'color = #red\n} <<\n\t\\new PianoStaff <<\n\t\t\\context Staff = "treble" {\n\t\t\t\\clef "treble"\n\t\t\tc\'8\n\t\t\td\'8\n\t\t\te\'8\n\t\t\tf\'8\n\t\t}\n\t\t\\context Staff = "bass" {\n\t\t\t\\clef "bass"\n\t\t\tc\'8\n\t\t\td\'8\n\t\t\te\'8\n\t\t\tf\'8\n\t\t}\n\t>>\n>>'
+        r'''
+        \new Score \with {
+            \override SpanBar #'color = #red
+        } <<
+            \new PianoStaff <<
+                \context Staff = "treble" {
+                    \clef "treble"
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                }
+                \context Staff = "bass" {
+                    \clef "bass"
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                }
+            >>
+        >>
+        '''
         )
 
 
@@ -1377,7 +1398,10 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___42():
 
     assert testtools.compare(
         t.lilypond_format,
-        '\\once \\override Stem #\'stroke-style = #"grace"\nc\'16'
+        r'''
+        \once \override Stem #'stroke-style = #"grace"
+        c'16
+        '''
         )
 
 
@@ -1917,7 +1941,16 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___58():
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        '\\new Voice \\with {\n\t\\override TupletNumber #\'text = \\markup { 6:4 }\n} {\n\tc\'8 [\n\td\'8\n\te\'8\n\tf\'8 ]\n}'
+        r'''
+        \new Voice \with {
+            \override TupletNumber #'text = \markup { 6:4 }
+        } {
+            c'8 [
+            d'8
+            e'8
+            f'8 ]
+        }
+        '''
         )
 
 

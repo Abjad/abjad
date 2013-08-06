@@ -120,7 +120,22 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     assert select(t).is_well_formed()
     assert testtools.compare(
         t.lilypond_format,
-        '\\context Voice = "foo" {\n\t{\n\t\tc\'8 [ \\glissando\n\t\td\'8 \\glissando\n\t}\n\t\\context Voice = "foo" {\n\t\te\'8 \\glissando\n\t\tf\'8 \\glissando\n\t}\n\t{\n\t\tg\'8 \\glissando\n\t\ta\'8 ]\n\t}\n}'
+        r'''
+        \context Voice = "foo" {
+            {
+                c'8 [ \glissando
+                d'8 \glissando
+            }
+            \context Voice = "foo" {
+                e'8 \glissando
+                f'8 \glissando
+            }
+            {
+                g'8 \glissando
+                a'8 ]
+            }
+        }
+        '''
         )
 
 

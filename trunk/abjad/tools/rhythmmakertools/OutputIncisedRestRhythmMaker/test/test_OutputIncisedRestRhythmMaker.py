@@ -174,7 +174,25 @@ def test_OutputIncisedRestRhythmMaker_03():
 
     assert testtools.compare(
         staff.lilypond_format,
-        '\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tr2\n\t\tr8\n\t}\n}'
+        r'''
+        \new Staff {
+            {
+                \time 5/8
+                r2
+                r8
+            }
+            {
+                \time 5/8
+                r2
+                r8
+            }
+            {
+                \time 5/8
+                r2
+                r8
+            }
+        }
+        '''
         )
 
 
