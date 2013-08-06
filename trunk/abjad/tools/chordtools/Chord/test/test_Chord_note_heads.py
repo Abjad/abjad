@@ -45,15 +45,16 @@ def test_Chord_note_heads_04():
     chord[1].tweak.color = 'green'
     chord[2].tweak.color = 'blue'
 
-    r'''
-    <
-        \tweak #'color #red
-        ef'
-        \tweak #'color #green
-        cs''
-        \tweak #'color #blue
-        f''
-    >4
-    '''
-
-    assert chord.lilypond_format == "<\n\t\\tweak #'color #red\n\tef'\n\t\\tweak #'color #green\n\tcs''\n\t\\tweak #'color #blue\n\tf''\n>4"
+    assert testtools.compare(
+        chord.lilypond_format,
+        r'''
+        <
+            \tweak #'color #red
+            ef'
+            \tweak #'color #green
+            cs''
+            \tweak #'color #blue
+            f''
+        >4
+        '''
+        )
