@@ -15,7 +15,7 @@ def test_Spanner__is_my_first_leaf_01():
 
     voice = Voice(notetools.make_repeated_notes(4))
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(voice)
-    p = MockSpanner(voice)
+    spanner = MockSpanner(voice)
 
     r'''
     \new Voice {
@@ -26,14 +26,14 @@ def test_Spanner__is_my_first_leaf_01():
     }
     '''
 
-    assert p._is_my_first_leaf(voice[0])
+    assert spanner._is_my_first_leaf(voice[0])
     for leaf in voice[1:]:
-        assert not p._is_my_first_leaf(leaf)
-    assert p._is_my_last_leaf(voice[-1])
+        assert not spanner._is_my_first_leaf(leaf)
+    assert spanner._is_my_last_leaf(voice[-1])
     for leaf in voice[:-1]:
-        assert not p._is_my_last_leaf(leaf)
+        assert not spanner._is_my_last_leaf(leaf)
     for leaf in voice:
-        assert not p._is_my_only_leaf(leaf)
+        assert not spanner._is_my_only_leaf(leaf)
 
 
 def test_Spanner__is_my_first_leaf_02():
@@ -49,7 +49,7 @@ def test_Spanner__is_my_first_leaf_02():
     voice = Voice(notetools.make_repeated_notes(4))
     voice.insert(2, Container(notetools.make_repeated_notes(2)))
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(voice)
-    p = MockSpanner(voice[:3])
+    spanner = MockSpanner(voice[:3])
 
     r'''
     \new Voice {
@@ -64,8 +64,8 @@ def test_Spanner__is_my_first_leaf_02():
     }
     '''
 
-    assert p._is_my_first_leaf(voice[0])
-    assert p._is_my_last_leaf(voice[2][1])
+    assert spanner._is_my_first_leaf(voice[0])
+    assert spanner._is_my_last_leaf(voice[2][1])
 
 # NONSTRUCTURAL in new parallel --> context model
 #def test_Spanner__is_my_first_leaf_03():
@@ -93,6 +93,6 @@ def test_Spanner__is_my_first_leaf_02():
 #      g'8
 #   }'''
 #
-#   assert py.test.raises(ContiguityError, 'p = spannertools.Spanner(t[:3])')
-#   #assert p._is_my_first_leaf(t[0])
-#   #assert p._is_my_last_leaf(t[1])
+#   assert py.test.raises(ContiguityError, 'spanner = spannertools.Spanner(t[:3])')
+#   #assert spanner._is_my_first_leaf(t[0])
+#   #assert spanner._is_my_last_leaf(t[1])

@@ -31,9 +31,9 @@ def test_BeamSpanner_span_differently_named_01():
     }
     '''
 
-    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner(staff)')
+    assert py.test.raises(AssertionError, 'beam = spannertools.BeamSpanner(staff)')
 
-    p = spannertools.BeamSpanner(staff[0])
+    beam = spannertools.BeamSpanner(staff[0])
 
     r'''
     \new Staff {
@@ -119,4 +119,4 @@ def test_BeamSpanner_span_differently_named_02():
     }
     '''
 
-    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner([container[0][0], container[1][0]])')
+    assert py.test.raises(AssertionError, 'beam = spannertools.BeamSpanner([container[0][0], container[1][0]])')

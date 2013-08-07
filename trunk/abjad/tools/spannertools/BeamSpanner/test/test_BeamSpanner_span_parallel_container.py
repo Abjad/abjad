@@ -9,11 +9,11 @@ def test_BeamSpanner_span_parallel_container_01():
 
     container = Container([])
     container.is_parallel = True
-    p = spannertools.BeamSpanner(container)
+    beam = spannertools.BeamSpanner(container)
 
-    assert len(p.components) == 1
-    assert p.components[0] is container
-    assert len(p.leaves) == 0
+    assert len(beam.components) == 1
+    assert beam.components[0] is container
+    assert len(beam.leaves) == 0
     assert testtools.compare(
         container.lilypond_format,
         r'''
@@ -31,11 +31,11 @@ def test_BeamSpanner_span_parallel_container_02():
     container.is_parallel = True
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
 
-    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner(container)')
+    assert py.test.raises(AssertionError, 'beam = spannertools.BeamSpanner(container)')
 
-#   assert len(p.components) == 1
-#   assert p.components[0] is container
-#   assert len(p.leaves) == 0
+#   assert len(beam.components) == 1
+#   assert beam.components[0] is container
+#   assert len(beam.leaves) == 0
 #   assert container.lilypond_format == "<<\n\container{\n\container\tc'8\n\container\tcs'8\n\container\td'8\n\container\tef'8\n\container}\n\container{\n\container\te'8\n\container\tf'8\n\container\tfs'8\n\container\tg'8\n\container}\n>>"
 #
 #   r'''<<
@@ -61,10 +61,10 @@ def test_BeamSpanner_span_parallel_container_03():
     container = Container(Voice(notetools.make_repeated_notes(4)) * 2)
     container.is_parallel = True
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
-    p = spannertools.BeamSpanner(container[0])
+    beam = spannertools.BeamSpanner(container[0])
 
-    assert len(p.components) == 1
-    assert isinstance(p.components[0], Container)
+    assert len(beam.components) == 1
+    assert isinstance(beam.components[0], Container)
     assert testtools.compare(
         container.lilypond_format,
         r'''
@@ -112,7 +112,7 @@ def test_BeamSpanner_span_parallel_container_04():
     staff.insert(2, new)
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
 
-    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner(staff)')
+    assert py.test.raises(AssertionError, 'beam = spannertools.BeamSpanner(staff)')
 
 
 def test_BeamSpanner_span_parallel_container_05():
@@ -124,10 +124,10 @@ def test_BeamSpanner_span_parallel_container_05():
     new.is_parallel = True
     staff.insert(2, new)
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
-    p = spannertools.BeamSpanner(staff)
+    beam = spannertools.BeamSpanner(staff)
 
-    assert len(p.components) == 1
-    assert len(p.leaves) == 4
+    assert len(beam.components) == 1
+    assert len(beam.leaves) == 4
     assert testtools.compare(
         staff.lilypond_format,
         r'''
@@ -166,13 +166,13 @@ def test_BeamSpanner_span_parallel_container_06():
     staff[1][0].name = 'foo'
     staff[1][1].name = 'bar'
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
-    p = spannertools.BeamSpanner([staff[0], staff[1][0], staff[2]])
+    beam = spannertools.BeamSpanner([staff[0], staff[1][0], staff[2]])
 
-    assert len(p.components) == 3
-    assert p.components[0] is staff[0]
-    assert p.components[1] is staff[1][0]
-    assert p.components[2] is staff[2]
-    assert len(p.leaves) == 12
+    assert len(beam.components) == 3
+    assert beam.components[0] is staff[0]
+    assert beam.components[1] is staff[1][0]
+    assert beam.components[2] is staff[2]
+    assert len(beam.leaves) == 12
     assert testtools.compare(
         staff.lilypond_format,
         r'''

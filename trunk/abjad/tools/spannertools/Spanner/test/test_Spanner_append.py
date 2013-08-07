@@ -8,7 +8,7 @@ def test_Spanner_append_01():
 
     voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
-    p = spannertools.BeamSpanner(voice[1])
+    beam = spannertools.BeamSpanner(voice[1])
 
     r'''
     \new Voice {
@@ -47,7 +47,7 @@ def test_Spanner_append_01():
         '''
         )
 
-    p.append(voice[2])
+    beam.append(voice[2])
 
     r'''
     \new Voice {
@@ -93,7 +93,7 @@ def test_Spanner_append_02():
 
     voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
-    p = spannertools.BeamSpanner(voice[1])
+    beam = spannertools.BeamSpanner(voice[1])
 
     r'''
     \new Voice {
@@ -132,7 +132,7 @@ def test_Spanner_append_02():
         '''
         )
 
-    p.append(voice[2][0])
+    beam.append(voice[2][0])
 
     r'''
     \new Voice {

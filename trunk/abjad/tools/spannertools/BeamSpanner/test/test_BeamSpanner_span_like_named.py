@@ -12,10 +12,10 @@ def test_BeamSpanner_span_like_named_01():
     staff[1].name = 'foo'
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
 
-    p = spannertools.BeamSpanner(staff)
-    assert len(p.components) == 1
-    assert isinstance(p.components[0], Staff)
-    assert len(p.leaves) == 8
+    beam = spannertools.BeamSpanner(staff)
+    assert len(beam.components) == 1
+    assert isinstance(beam.components[0], Staff)
+    assert len(beam.leaves) == 8
     assert testtools.compare(
         staff.lilypond_format,
         r'''
@@ -35,13 +35,13 @@ def test_BeamSpanner_span_like_named_01():
         }
         '''
         )
-    p.detach()
+    beam.detach()
 
-    p = spannertools.BeamSpanner(staff[:])
-    assert len(p.components) == 2
-    for x in p.components:
+    beam = spannertools.BeamSpanner(staff[:])
+    assert len(beam.components) == 2
+    for x in beam.components:
         assert isinstance(x, Voice)
-    assert len(p.leaves) == 8
+    assert len(beam.leaves) == 8
     assert testtools.compare(
         staff.lilypond_format,
         r'''
@@ -90,11 +90,11 @@ def test_BeamSpanner_span_like_named_02():
     container[0][0].name, container[1][0].name = 'bar', 'bar'
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
 
-    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner(container)')
+    assert py.test.raises(AssertionError, 'beam = spannertools.BeamSpanner(container)')
 
-    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner(container[:])')
+    assert py.test.raises(AssertionError, 'beam = spannertools.BeamSpanner(container[:])')
 
-    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner([container[0][0], container[1][0]])')
+    assert py.test.raises(AssertionError, 'beam = spannertools.BeamSpanner([container[0][0], container[1][0]])')
 
 
 def test_BeamSpanner_span_like_named_03():
@@ -109,12 +109,12 @@ def test_BeamSpanner_span_like_named_03():
     container[0][1].name, container[1][0].name = 'second', 'second'
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
 
-    p = spannertools.BeamSpanner([container[0][0], container[1][1]])
-    assert len(p.components) == 2
-    assert isinstance(p.components[0], Voice)
-    assert isinstance(p.components[1], Voice)
-    assert len(p.leaves) == 8
-    p.detach()
+    beam = spannertools.BeamSpanner([container[0][0], container[1][1]])
+    assert len(beam.components) == 2
+    assert isinstance(beam.components[0], Voice)
+    assert isinstance(beam.components[1], Voice)
+    assert len(beam.leaves) == 8
+    beam.detach()
 
     r'''
     {
@@ -162,10 +162,10 @@ def test_BeamSpanner_span_like_named_04():
     container[0][1].name, container[1][1].name = 'second', 'second'
     del(container[1][1])
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
-    p = spannertools.BeamSpanner([container[0][0], container[1][0]])
+    beam = spannertools.BeamSpanner([container[0][0], container[1][0]])
 
-    assert len(p.components) == 2
-    assert len(p.leaves) == 8
+    assert len(beam.components) == 2
+    assert len(beam.leaves) == 8
 
     assert testtools.compare(
         container.lilypond_format,

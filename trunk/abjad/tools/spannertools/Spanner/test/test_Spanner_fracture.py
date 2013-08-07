@@ -8,8 +8,8 @@ def test_Spanner_fracture_01():
 
     staff = Staff(Container(notetools.make_repeated_notes(4)) * 3)
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
-    p = spannertools.BeamSpanner(staff[:])
-    original, left, right = p.fracture(1, direction=Right)
+    beam = spannertools.BeamSpanner(staff[:])
+    original, left, right = beam.fracture(1, direction=Right)
 
     assert len(original.components) == 3
     assert original.components[0] is staff[0]

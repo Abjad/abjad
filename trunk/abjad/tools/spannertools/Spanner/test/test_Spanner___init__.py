@@ -7,9 +7,9 @@ def test_Spanner___init___01():
     r'''Init empty spanner.
     '''
 
-    p = spannertools.BeamSpanner()
-    assert len(p) == 0
-    assert p[:] == []
+    beam = spannertools.BeamSpanner()
+    assert len(beam) == 0
+    assert beam[:] == []
 
 
 def test_Spanner___init___02():
@@ -17,7 +17,7 @@ def test_Spanner___init___02():
     '''
 
     container = Container("c'8 d'8 e'8 f'8")
-    p = spannertools.BeamSpanner(container[:])
+    beam = spannertools.BeamSpanner(container[:])
 
     r'''
     {
@@ -28,12 +28,12 @@ def test_Spanner___init___02():
     }
     '''
 
-    assert len(p) == 4
-    assert p[:] == container[:]
+    assert len(beam) == 4
+    assert beam[:] == container[:]
 
 
 def test_Spanner___init___03():
     r'''Spanner is abstract.
     '''
 
-    assert py.test.raises(TypeError, 'p = spannertools.Spanner()')
+    assert py.test.raises(TypeError, 'beam = spannertools.Spanner()')

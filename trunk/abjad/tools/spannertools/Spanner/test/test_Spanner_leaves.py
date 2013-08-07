@@ -16,18 +16,18 @@ def test_Spanner_leaves_01():
 
     voice = Voice(notetools.make_repeated_notes(4))
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(voice)
-    p = MockSpanner(voice)
+    spanner = MockSpanner(voice)
 
-    assert len(p.components) == 1
-    assert p.components[0] is voice
-    assert len(p.leaves) == 4
-    for i, leaf in enumerate(p.leaves):
+    assert len(spanner.components) == 1
+    assert spanner.components[0] is voice
+    assert len(spanner.leaves) == 4
+    for i, leaf in enumerate(spanner.leaves):
         assert leaf is voice[i]
-    assert p.get_duration() == Duration(4, 8)
+    assert spanner.get_duration() == Duration(4, 8)
 
 
 def test_Spanner_leaves_02():
-    r'''Spanner attaching only to leaves makes p.components and p.leaves
+    r'''Spanner attaching only to leaves makes spanner.components and spanner.leaves
     hold the same references.
     '''
 
@@ -39,13 +39,13 @@ def test_Spanner_leaves_02():
 
     voice = Voice(notetools.make_repeated_notes(4))
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(voice)
-    p = MockSpanner(voice[:])
+    spanner = MockSpanner(voice[:])
 
-    assert len(p.components) == 4
-    assert len(p.leaves) == 4
-    for i, leaf in enumerate(p.leaves):
+    assert len(spanner.components) == 4
+    assert len(spanner.leaves) == 4
+    for i, leaf in enumerate(spanner.leaves):
         assert leaf is voice[i]
-    assert p.get_duration() == Duration(4, 8)
+    assert spanner.get_duration() == Duration(4, 8)
 
 
 def test_Spanner_leaves_03():
@@ -60,12 +60,12 @@ def test_Spanner_leaves_03():
             pass
 
     voice = Voice([])
-    p = MockSpanner(voice)
+    spanner = MockSpanner(voice)
 
-    assert len(p.components) == 1
-    assert p.components[0] is voice
-    assert len(p.leaves) == 0
-    assert p.get_duration() == Duration(0)
+    assert len(spanner.components) == 1
+    assert spanner.components[0] is voice
+    assert len(spanner.leaves) == 0
+    assert spanner.get_duration() == Duration(0)
 
 
 def test_Spanner_leaves_04():
@@ -82,7 +82,7 @@ def test_Spanner_leaves_04():
     voice.insert(1, Container(notetools.make_repeated_notes(2)))
     voice.insert(3, Container(notetools.make_repeated_notes(2)))
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(voice)
-    p = MockSpanner(voice)
+    spanner = MockSpanner(voice)
 
     r'''
     \new Voice {
@@ -101,11 +101,11 @@ def test_Spanner_leaves_04():
     }
     '''
 
-    assert len(p.components) == 1
-    assert len(p.leaves) == 8
+    assert len(spanner.components) == 1
+    assert len(spanner.leaves) == 8
     for i, leaf in enumerate(voice.select_leaves()):
         assert leaf is voice.select_leaves()[i]
-    assert p.get_duration() == Duration(8, 8)
+    assert spanner.get_duration() == Duration(8, 8)
 
 
 def test_Spanner_leaves_05():
@@ -122,7 +122,7 @@ def test_Spanner_leaves_05():
     voice.insert(1, Container(notetools.make_repeated_notes(2)))
     voice.insert(3, Container(notetools.make_repeated_notes(2)))
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(voice)
-    p = MockSpanner(voice[0:3])
+    spanner = MockSpanner(voice[0:3])
 
     r'''
     \new Voice {
@@ -141,14 +141,14 @@ def test_Spanner_leaves_05():
     }
     '''
 
-    assert len(p.components) == 3
-    assert p.components[0] is voice[0]
-    assert p.components[1] is voice[1]
-    assert p.components[2] is voice[2]
-    assert len(p.leaves) == 4
-    for i, leaf in enumerate(p.leaves):
+    assert len(spanner.components) == 3
+    assert spanner.components[0] is voice[0]
+    assert spanner.components[1] is voice[1]
+    assert spanner.components[2] is voice[2]
+    assert len(spanner.leaves) == 4
+    for i, leaf in enumerate(spanner.leaves):
         assert leaf is voice.select_leaves()[i]
-    assert p.get_duration() == Duration(4, 8)
+    assert spanner.get_duration() == Duration(4, 8)
 
 
 def test_Spanner_leaves_06():
@@ -187,15 +187,15 @@ def test_Spanner_leaves_06():
     }
     '''
 
-    assert py.test.raises(AssertionError, 'p = MockSpanner(staff)')
-#   assert len(p.components) == 1
-#   assert p.components[0] is staff
-#   assert len(p.leaves) == 4
-#   assert p.leaves[0] is staff[0]
-#   assert p.leaves[1] is staff[1]
-#   assert p.leaves[2] is staff[3]
-#   assert p.leaves[3] is staff[4]
-#   assert p.get_duration() == Duration(6, 8)
+    assert py.test.raises(AssertionError, 'spanner = MockSpanner(staff)')
+#   assert len(spanner.components) == 1
+#   assert spanner.components[0] is staff
+#   assert len(spanner.leaves) == 4
+#   assert spanner.leaves[0] is staff[0]
+#   assert spanner.leaves[1] is staff[1]
+#   assert spanner.leaves[2] is staff[3]
+#   assert spanner.leaves[3] is staff[4]
+#   assert spanner.get_duration() == Duration(6, 8)
 
 
 def test_Spanner_leaves_07():
@@ -234,12 +234,12 @@ def test_Spanner_leaves_07():
     }
     '''
 
-    assert py.test.raises(AssertionError, 'p = MockSpanner(staff[:])')
+    assert py.test.raises(AssertionError, 'spanner = MockSpanner(staff[:])')
 #   for i, component in enumerate(staff[:]):
 #      assert component is staff[i]
-#   assert len(p.leaves) == 4
-#   assert p.leaves[0] is staff[0]
-#   assert p.leaves[1] is staff[1]
-#   assert p.leaves[2] is staff[3]
-#   assert p.leaves[3] is staff[4]
-#   assert p.get_duration() == Duration(6, 8)
+#   assert len(spanner.leaves) == 4
+#   assert spanner.leaves[0] is staff[0]
+#   assert spanner.leaves[1] is staff[1]
+#   assert spanner.leaves[2] is staff[3]
+#   assert spanner.leaves[3] is staff[4]
+#   assert spanner.get_duration() == Duration(6, 8)

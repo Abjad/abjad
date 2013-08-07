@@ -5,7 +5,7 @@ import py.test
 
 def test_PianoPedalSpanner_01():
     staff = Staff(notetools.make_repeated_notes(4))
-    p = spannertools.PianoPedalSpanner(staff[:])
+    piano_pedal = spannertools.PianoPedalSpanner(staff[:])
 
     r'''
     \new Staff {
@@ -18,8 +18,8 @@ def test_PianoPedalSpanner_01():
     '''
 
     assert select(staff).is_well_formed()
-    assert p.kind == 'sustain'
-    assert p.style == 'mixed'
+    assert piano_pedal.kind == 'sustain'
+    assert piano_pedal.style == 'mixed'
     assert testtools.compare(
         staff.lilypond_format,
         r'''
@@ -39,8 +39,8 @@ def test_PianoPedalSpanner_02():
     '''
 
     staff = Staff(notetools.make_repeated_notes(4))
-    p = spannertools.PianoPedalSpanner(staff[:])
-    p.kind = 'sostenuto'
+    piano_pedal = spannertools.PianoPedalSpanner(staff[:])
+    piano_pedal.kind = 'sostenuto'
 
     r'''
     \new Staff {
@@ -72,8 +72,8 @@ def test_PianoPedalSpanner_03():
     '''
 
     staff = Staff(notetools.make_repeated_notes(4))
-    p = spannertools.PianoPedalSpanner(staff[:])
-    p.kind = 'corda'
+    piano_pedal = spannertools.PianoPedalSpanner(staff[:])
+    piano_pedal.kind = 'corda'
 
     r'''
     \new Staff {
@@ -105,9 +105,9 @@ def test_PianoPedalSpanner_04():
     '''
 
     staff = Staff(notetools.make_repeated_notes(4))
-    p = spannertools.PianoPedalSpanner(staff[:])
-    assert p.kind == 'sustain'
-    p.style = 'text'
+    piano_pedal = spannertools.PianoPedalSpanner(staff[:])
+    assert piano_pedal.kind == 'sustain'
+    piano_pedal.style = 'text'
 
     r'''
     \new Staff {
@@ -139,9 +139,9 @@ def test_PianoPedalSpanner_05():
     '''
 
     staff = Staff(notetools.make_repeated_notes(4))
-    p = spannertools.PianoPedalSpanner(staff[:])
-    assert p.kind == 'sustain'
-    p.style = 'bracket'
+    piano_pedal = spannertools.PianoPedalSpanner(staff[:])
+    assert piano_pedal.kind == 'sustain'
+    piano_pedal.style = 'bracket'
 
     r'''
     \new Staff {
@@ -216,7 +216,7 @@ def test_PianoPedalSpanner_07():
     '''
 
     staff = Staff(notetools.make_repeated_notes(4))
-    p = spannertools.PianoPedalSpanner(staff)
+    piano_pedal = spannertools.PianoPedalSpanner(staff)
 
-    assert py.test.raises(ValueError, 'p.kind = "abc"')
-    assert py.test.raises(ValueError, 'p.style = "abc"')
+    assert py.test.raises(ValueError, 'piano_pedal.kind = "abc"')
+    assert py.test.raises(ValueError, 'piano_pedal.style = "abc"')

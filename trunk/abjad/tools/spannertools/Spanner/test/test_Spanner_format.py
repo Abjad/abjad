@@ -14,7 +14,7 @@ def test_Spanner_format_01():
             pass
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    p = MockSpanner(staff[:])
+    spanner = MockSpanner(staff[:])
 
     r'''
     \new Staff {

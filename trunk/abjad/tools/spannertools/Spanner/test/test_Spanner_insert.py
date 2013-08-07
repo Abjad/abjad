@@ -10,7 +10,7 @@ def test_Spanner_insert_01():
         Inserting into middle of spanner may leave discontiguous spanner.'''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    p = spannertools.BeamSpanner(voice[:2])
+    beam = spannertools.BeamSpanner(voice[:2])
 
     r'''
     \new Voice {
@@ -21,7 +21,7 @@ def test_Spanner_insert_01():
     }
     '''
 
-    p._insert(1, voice.select_leaves()[-1])
+    beam._insert(1, voice.select_leaves()[-1])
 
     "Interior insert leaves discontiguous spanner: spannertools.BeamSpanner(c'8, f'8, d'8)."
 
@@ -32,11 +32,11 @@ def test_Spanner_insert_02():
     r'''Insert component at index zero in spanner.
         This operation does not mangle spanner.
         Operation is still not composer-safe, however.
-        Note that p.append() and p.append_left() are composer-safe.'''
+        Note that beam.append() and beam.append_left() are composer-safe.'''
 
     voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
-    p = spannertools.BeamSpanner(voice[1])
+    beam = spannertools.BeamSpanner(voice[1])
 
     r'''
     \new Voice {
@@ -55,7 +55,7 @@ def test_Spanner_insert_02():
     }
     '''
 
-    p._insert(0, voice[0][1])
+    beam._insert(0, voice[0][1])
 
     r'''
     \new Voice {

@@ -8,7 +8,7 @@ def test_Spanner___in___01():
 
     voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
-    p = spannertools.BeamSpanner(voice[1])
+    beam = spannertools.BeamSpanner(voice[1])
 
     r'''
     \new Voice {
@@ -27,9 +27,9 @@ def test_Spanner___in___01():
     }
     '''
 
-    assert voice[1] in p
-    assert voice[1][0] not in p
-    assert voice[1][1] not in p
+    assert voice[1] in beam
+    assert voice[1][0] not in beam
+    assert voice[1][1] not in beam
 
 
 def test_Spanner___in___02():
@@ -38,7 +38,7 @@ def test_Spanner___in___02():
 
     voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
-    p = spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -57,5 +57,5 @@ def test_Spanner___in___02():
     }
     '''
 
-    assert all(x in p for x in (voice[0], voice[1], voice[2]))
-    assert not any(x in p for x in voice.select_leaves())
+    assert all(x in beam for x in (voice[0], voice[1], voice[2]))
+    assert not any(x in beam for x in voice.select_leaves())

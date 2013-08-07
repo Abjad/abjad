@@ -8,7 +8,7 @@ def test_Spanner___getitem___01():
 
     voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
-    p = spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -27,7 +27,7 @@ def test_Spanner___getitem___01():
     }
     '''
 
-    assert p[0] is voice[0]
+    assert beam[0] is voice[0]
 
 
 def test_Spanner___getitem___02():
@@ -36,7 +36,7 @@ def test_Spanner___getitem___02():
 
     voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
-    p = spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -55,7 +55,7 @@ def test_Spanner___getitem___02():
     }
     '''
 
-    assert p[-1] is voice[-1]
+    assert beam[-1] is voice[-1]
 
 
 def test_Spanner___getitem___03():
@@ -64,7 +64,7 @@ def test_Spanner___getitem___03():
 
     voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
-    p = spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -83,16 +83,16 @@ def test_Spanner___getitem___03():
     }
     '''
 
-    assert p[-2:] == voice[-2:]
+    assert beam[-2:] == voice[-2:]
 
 
 def test_Spanner___getitem___04():
     r'''Get all spanner components.
-        Equivalent to p.clear().'''
+        Equivalent to beam.clear().'''
 
     voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
-    p = spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -111,4 +111,4 @@ def test_Spanner___getitem___04():
     }
     '''
 
-    assert p[:] == voice[:]
+    assert beam[:] == voice[:]
