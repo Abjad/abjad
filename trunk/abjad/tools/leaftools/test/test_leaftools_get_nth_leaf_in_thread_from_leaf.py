@@ -634,9 +634,9 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_19():
     '''
 
     v1 = Voice([Note(i , (1,8)) for i in range(3)])
-    n = Note(3, (1,8))
+    note = Note(3, (1,8))
     v2 = Voice([Note(i , (1,8)) for i in range(4,8)])
-    staff = Staff([v1, n, v2])
+    staff = Staff([v1, note, v2])
 
     r'''
     \new Staff {
@@ -656,10 +656,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_19():
     '''
 
     assert leaftools.get_nth_leaf_in_thread_from_leaf(v1[-1], 1) is None
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(n, 1) is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(note, 1) is None
 
     assert leaftools.get_nth_leaf_in_thread_from_leaf(v2[0], -1) is None
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(n, -1) is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(note, -1) is None
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_20():

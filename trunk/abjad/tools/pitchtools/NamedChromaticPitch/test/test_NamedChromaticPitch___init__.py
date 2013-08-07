@@ -78,8 +78,8 @@ def test_NamedChromaticPitch___init___07():
     r'''Init by reference.
     '''
 
-    r = pitchtools.NamedChromaticPitch('df', 5)
-    p = pitchtools.NamedChromaticPitch(r)
+    pitch_1 = pitchtools.NamedChromaticPitch('df', 5)
+    p = pitchtools.NamedChromaticPitch(pitch_1)
 
     assert p.lilypond_format == "df''"
     assert p.named_chromatic_pitch_class == pitchtools.NamedChromaticPitchClass('df')

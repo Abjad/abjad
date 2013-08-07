@@ -588,9 +588,9 @@ def test_BeamSpanner_span_anonymous_15():
     '''
 
     v1 = Voice([Note(i , (1, 8)) for i in range(3)])
-    n = Note(3, (1,8))
+    note = Note(3, (1,8))
     v2 = Voice([Note(i , (1, 8)) for i in range(4, 8)])
-    staff = Staff([v1, n, v2])
+    staff = Staff([v1, note, v2])
 
     r'''
     \new Staff {

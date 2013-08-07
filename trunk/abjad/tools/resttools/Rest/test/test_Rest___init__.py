@@ -40,13 +40,13 @@ def test_Rest___init___04():
 
     c = Chord([2, 3, 4], (1, 4))
     duration = c.written_duration
-    r = Rest(c)
-    assert isinstance(r, Rest)
+    rest = Rest(c)
+    assert isinstance(rest, Rest)
     # check that attributes have not been removed or added.
     assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
-    assert dir(r) == dir(Rest((1, 4)))
-    assert r._parent is None
-    assert r.written_duration == duration
+    assert dir(rest) == dir(Rest((1, 4)))
+    assert rest._parent is None
+    assert rest.written_duration == duration
 
 
 def test_Rest___init___05():
@@ -81,12 +81,12 @@ def test_Rest___init___07():
 
     skip = skiptools.Skip((1, 8))
     d = skip.written_duration
-    r = Rest(skip)
-    assert isinstance(r, Rest)
+    rest = Rest(skip)
+    assert isinstance(rest, Rest)
     assert dir(skip) == dir(skiptools.Skip((1, 4)))
-    assert dir(r) == dir(Rest((1, 4)))
-    assert r._parent is None
-    assert r.written_duration == d
+    assert dir(rest) == dir(Rest((1, 4)))
+    assert rest._parent is None
+    assert rest.written_duration == d
 
 
 def test_Rest___init___08():
@@ -120,16 +120,16 @@ def test_Rest___init___10():
     r'''Init rest from unincorporated note.
     '''
 
-    n = Note(2, (1, 8))
-    d = n.written_duration
-    r = Rest(n)
-    assert isinstance(r, Rest)
+    note = Note(2, (1, 8))
+    d = note.written_duration
+    rest = Rest(note)
+    assert isinstance(rest, Rest)
     # check that attributes have not been removed or added.
-    assert dir(n) == dir(Note(0, (1, 8)))
-    assert dir(r) == dir(Rest((1, 4)))
-    assert r.lilypond_format == 'r8'
-    assert r._parent is None
-    assert r.written_duration == d
+    assert dir(note) == dir(Note(0, (1, 8)))
+    assert dir(rest) == dir(Rest((1, 4)))
+    assert rest.lilypond_format == 'r8'
+    assert rest._parent is None
+    assert rest.written_duration == d
 
 
 def test_Rest___init___11():

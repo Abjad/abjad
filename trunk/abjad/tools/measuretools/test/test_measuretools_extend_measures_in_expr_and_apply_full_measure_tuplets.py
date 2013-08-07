@@ -22,7 +22,7 @@ def test_measuretools_extend_measures_in_expr_and_apply_full_measure_tuplets_01(
     }
     '''
     supplement = [Rest((1, 16))]
-    r = measuretools.extend_measures_in_expr_and_apply_full_measure_tuplets(staff, supplement)
+    result = measuretools.extend_measures_in_expr_and_apply_full_measure_tuplets(staff, supplement)
 
     r'''
     \new Staff {

@@ -62,12 +62,12 @@ def test_Skip___init___05():
 
 
 def test_Skip___init___06():
-    n = Note(2, (1, 8))
-    d = n.written_duration
-    skip = skiptools.Skip(n)
+    note = Note(2, (1, 8))
+    d = note.written_duration
+    skip = skiptools.Skip(note)
     assert isinstance(skip, skiptools.Skip)
     # check that attributes have not been removed or added.
-    assert dir(n) == dir(Note("c'4"))
+    assert dir(note) == dir(Note("c'4"))
     assert dir(skip) == dir(skiptools.Skip((1, 4)))
     assert skip.lilypond_format == 's8'
     assert skip._parent is None
@@ -100,12 +100,12 @@ def test_Skip___init___09():
     r'''Init skip from unincorporaed rest.
     '''
 
-    r = Rest((1, 8))
-    d = r.written_duration
-    skip = skiptools.Skip(r)
+    rest = Rest((1, 8))
+    d = rest.written_duration
+    skip = skiptools.Skip(rest)
     assert isinstance(skip, skiptools.Skip)
     # check that attributes have not been removed or added.
-    assert dir(r) == dir(Rest((1, 4)))
+    assert dir(rest) == dir(Rest((1, 4)))
     assert dir(skip) == dir(skiptools.Skip((1, 4)))
     assert skip._parent is None
     assert skip.written_duration == d

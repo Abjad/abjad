@@ -157,10 +157,10 @@ def test_GraceContainer_07():
     '''
 
     gracecontainer = leaftools.GraceContainer(notetools.make_repeated_notes(2))
-    n = Note(1, (1, 4))
-    gracecontainer.append(n)
+    note = Note(1, (1, 4))
+    gracecontainer.append(note)
     assert len(gracecontainer) == 3
-    assert gracecontainer[-1] is n
+    assert gracecontainer[-1] is note
 
 
 def test_GraceContainer_08():

@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import iotools
 
 
 # What's the best way to test play?
@@ -8,8 +7,8 @@ from abjad.tools import iotools
 def test_iotools_play_01():
     r'''A note can be played.
     '''
-    n = Note(1, (1, 32))
-    play(n)
+    note = Note(1, (1, 32))
+    play(note)
 
 
 def test_iotools_play_02():

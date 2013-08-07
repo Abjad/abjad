@@ -48,13 +48,13 @@ def test_Note___init___06():
 
     c = Chord([2, 3, 4], (1, 4))
     duration = c.written_duration
-    n = Note(c)
-    assert isinstance(n, Note)
+    note = Note(c)
+    assert isinstance(note, Note)
     # check that attributes have not been removed or added.
     assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
-    assert dir(n) == dir(Note("c'4"))
-    assert n._parent is None
-    assert n.written_duration == duration
+    assert dir(note) == dir(Note("c'4"))
+    assert note._parent is None
+    assert note.written_duration == duration
 
 
 def test_Note___init___07():
@@ -86,16 +86,16 @@ def test_Note___init___09():
     r'''Init note from rest.
     '''
 
-    r = Rest((1, 8))
-    d = r.written_duration
-    n = Note(r)
-    assert isinstance(n, Note)
+    rest = Rest((1, 8))
+    d = rest.written_duration
+    note = Note(rest)
+    assert isinstance(note, Note)
     # check that attributes have not been removed or added.
-    assert dir(r) == dir(Rest((1, 4)))
-    assert dir(n) == dir(Note("c'4"))
-    assert n._parent is None
-    assert n.written_duration == d
-    assert isinstance(r, Rest)
+    assert dir(rest) == dir(Rest((1, 4)))
+    assert dir(note) == dir(Note("c'4"))
+    assert note._parent is None
+    assert note.written_duration == d
+    assert isinstance(rest, Rest)
 
 
 def test_Note___init___10():
@@ -130,12 +130,12 @@ def test_Note___init___12():
     '''
     skip = skiptools.Skip((1, 8))
     d = skip.written_duration
-    n = Note(skip)
-    assert isinstance(n, Note)
+    note = Note(skip)
+    assert isinstance(note, Note)
     assert dir(skip) == dir(skiptools.Skip((1, 4)))
-    assert dir(n) == dir(Note("c'4"))
-    assert n._parent is None
-    assert n.written_duration == d
+    assert dir(note) == dir(Note("c'4"))
+    assert note._parent is None
+    assert note.written_duration == d
 
 
 def test_Note___init___13():

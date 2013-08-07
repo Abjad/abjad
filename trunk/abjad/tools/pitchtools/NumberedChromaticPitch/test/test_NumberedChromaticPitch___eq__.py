@@ -6,16 +6,16 @@ def test_NumberedChromaticPitch___eq___01():
 
     p = pitchtools.NumberedChromaticPitch(12)
     q = pitchtools.NumberedChromaticPitch(12)
-    r = pitchtools.NumberedChromaticPitch(13)
+    pitch_3 = pitchtools.NumberedChromaticPitch(13)
 
     assert p == p
     assert p == q
-    assert not p == r
+    assert not p == pitch_3
 
     assert q == p
     assert q == q
-    assert not q == r
+    assert not q == pitch_3
 
-    assert not r == p
-    assert not r == q
-    assert r == r
+    assert not pitch_3 == p
+    assert not pitch_3 == q
+    assert pitch_3 == pitch_3

@@ -67,9 +67,9 @@ def test_NamedChromaticPitch___cmp___06():
     r'''Pitches test False for equality against unlike instances.
     Other pitch comparisons raise ValueError against unlike instances.'''
     p = pitchtools.NamedChromaticPitch('c', 4)
-    n = 99
-    assert not p == n
-    assert      p != n
+    number = 99
+    assert not p == number
+    assert      p != number
 
 
 def test_NamedChromaticPitch___cmp___07():

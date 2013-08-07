@@ -116,11 +116,11 @@ def test_Chord___init___12():
     r'''Init chord from rest.
     '''
 
-    r = Rest((1, 8))
-    d = r.written_duration
-    c = Chord(r)
+    rest = Rest((1, 8))
+    d = rest.written_duration
+    c = Chord(rest)
     assert isinstance(c, Chord)
-    assert dir(r) == dir(Rest((1, 4)))
+    assert dir(rest) == dir(Rest((1, 4)))
     assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
     assert c._parent is None
     assert c.written_duration == d
@@ -157,11 +157,11 @@ def test_Chord___init___15():
     r'''Init chord from note.
     '''
 
-    n = Note(2, (1, 8))
-    h, p, d = n.note_head, n.written_pitch, n.written_duration
-    c = Chord(n)
+    note = Note(2, (1, 8))
+    h, p, d = note.note_head, note.written_pitch, note.written_duration
+    c = Chord(note)
     assert isinstance(c, Chord)
-    assert dir(n) == dir(Note("c'4"))
+    assert dir(note) == dir(Note("c'4"))
     assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
     assert c.lilypond_format == "<d'>8"
     assert c._parent is None

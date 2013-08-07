@@ -6,17 +6,17 @@ from abjad import *
 
 def test_Leaf___copy___01():
     m = Note(0, (1, 8))
-    n = componenttools.copy_components_and_fracture_crossing_spanners([m])[0]
-    assert id(m) != id(n)
+    note_2 = componenttools.copy_components_and_fracture_crossing_spanners([m])[0]
+    assert id(m) != id(note_2)
     assert m._parent is None
-    assert n._parent is None
+    assert note_2._parent is None
 
 
 def test_Leaf___copy___02():
-    r = Rest((1, 8))
-    rest_2 = componenttools.copy_components_and_fracture_crossing_spanners([r])[0]
-    assert id(r) != id(rest_2)
-    assert r._parent is None
+    rest_1 = Rest((1, 8))
+    rest_2 = componenttools.copy_components_and_fracture_crossing_spanners([rest_1])[0]
+    assert id(rest_1) != id(rest_2)
+    assert rest_1._parent is None
     assert rest_2._parent is None
 
 
@@ -39,10 +39,10 @@ def test_Leaf___copy___04():
 def test_Leaf___copy___05():
     tuplet = tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
     m = tuplet[1]
-    n = componenttools.copy_components_and_fracture_crossing_spanners([m])[0]
-    assert id(m) != id(n)
+    note_2 = componenttools.copy_components_and_fracture_crossing_spanners([m])[0]
+    assert id(m) != id(note_2)
     assert m._parent is tuplet
-    assert n._parent is None
+    assert note_2._parent is None
 
 
 # TEST COPY ONE CONTAINER #
