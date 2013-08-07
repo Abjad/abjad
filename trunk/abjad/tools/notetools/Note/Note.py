@@ -418,7 +418,7 @@ class Note(Leaf):
         return treble, bass
 
     def get_grace_containers(self, kind=None):
-        r'''Get grace containers attached to note.
+        r'''Gets grace containers attached to note.
 
         ::
 
@@ -435,6 +435,7 @@ class Note(Leaf):
             ...     )
             >>> after_grace.attach(staff[1])
             Note("d'8")
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -453,31 +454,33 @@ class Note(Leaf):
                 f'8
             }
 
-        ::
+        ..  container:: example
 
-            >>> show(staff) # doctest: +SKIP
+            **Example 1.** Get all grace containers attached to note:
 
-        Example 1. Get all grace containers attached to note:
+            ::
 
-        ::
+                >>> staff[1].get_grace_containers()
+                (GraceContainer(cs'16), GraceContainer(ds'16))
 
-            >>> staff[1].get_grace_containers()
-            (GraceContainer(cs'16), GraceContainer(ds'16))
+        ..  container:: example
 
-        Example 2. Get only (proper) grace containers attached to note:
+            **Example 2.** Get only (proper) grace containers attached to note:
 
-        ::
+            ::
 
-            >>> staff[1].get_grace_containers(kind='grace')
-            (GraceContainer(cs'16),)
+                >>> staff[1].get_grace_containers(kind='grace')
+                (GraceContainer(cs'16),)
 
-        Example 3. Get only after grace containers attached to note:
+        ..  container:: example
 
-        ::
+            **Example 3.** Get only after grace containers attached to note:
 
-            >>> staff[1].get_grace_containers(kind='after')
-            (GraceContainer(ds'16),)
+            ::
 
-        Return tuple.
+                >>> staff[1].get_grace_containers(kind='after')
+                (GraceContainer(ds'16),)
+
+        Returns tuple.
         '''
         return super(Note, self).get_grace_containers(kind=kind)

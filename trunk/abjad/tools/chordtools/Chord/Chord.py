@@ -5,11 +5,11 @@ from abjad.tools.leaftools.Leaf import Leaf
 
 
 class Chord(Leaf):
-    r'''Abjad model of a chord:
+    r'''Abjad model of a chord.
 
     ::
 
-        >>> chord = Chord([4, 13, 17], (1, 4))
+        >>> chord = Chord("<e' cs'' f''>4")
 
     ::
 
@@ -20,7 +20,6 @@ class Chord(Leaf):
 
         >>> show(chord) # doctest: +SKIP
 
-    Return Chord instance.
     '''
 
     ### CLASS VARIABLES ###
@@ -74,29 +73,52 @@ class Chord(Leaf):
     ### SPECIAL METHODS ###
 
     def __contains__(self, arg):
+        r'''Returns true when `expr` equals one of the note heads in chord.
+        Otherwise false.
+        '''
         from abjad.tools.notetools.NoteHead import NoteHead
         note_head = NoteHead(written_pitch=arg)
         return note_head in self.note_heads
 
-    def __copy__(self, *args):
-        return self._copy_with_marks_but_without_children_or_spanners()
+#    def __copy__(self, *args):
+#        return self._copy_with_marks_but_without_children_or_spanners()
 
     def __delitem__(self, i):
+        '''Deletes note head `i` from chord.
+
+        Returns none.
+        '''
         del(self._note_heads[i])
 
     def __getitem__(self, i):
+        '''Gets note head `i` from chord.
+
+        Returns note head.
+        '''
         return self._note_heads[i]
 
     def __getnewargs__(self):
+        '''Gets new arguments.
+
+        Returns tuple.
+        '''
         result = []
         result.append(self.written_pitches)
         result.extend(Leaf.__getnewargs__(self))
         return tuple(result)
 
     def __len__(self):
+        '''Number of note heads in chord.
+
+        Return nonnegative integer.
+        '''
         return len(self.note_heads)
 
     def __setitem__(self, i, arg):
+        '''Sets chord note head `i` to `arg`.
+
+        Returns none.
+        '''
         from abjad.tools.notetools.NoteHead import NoteHead
         if isinstance(i, slice) and arg == []:
             note_head = []
@@ -118,8 +140,6 @@ class Chord(Leaf):
 
     @property
     def _summary(self):
-        r'''String summary of noteh eads in chord.
-        '''
         return ' '.join([str(x) for x in self.note_heads])
 
     ### PRIVATE METHODS ###
@@ -147,29 +167,34 @@ class Chord(Leaf):
 
     @property
     def written_pitches(self):
-        r"""Fingered pitches:
+        r"""Written pitches in chord.
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff("<c''' e'''>4 <d''' fs'''>4")
-            >>> glockenspiel = instrumenttools.Glockenspiel()(staff)
-            >>> instrumenttools.transpose_from_sounding_pitch_to_written_pitch(
-            ...     staff)
+            **Example**
 
-        ..  doctest::
+            ::
 
-            >>> f(staff)
-            \new Staff {
-                \set Staff.instrumentName = \markup { Glockenspiel }
-                \set Staff.shortInstrumentName = \markup { Gkspl. }
-                <c' e'>4
-                <d' fs'>4
-            }
+                >>> staff = Staff("<c''' e'''>4 <d''' fs'''>4")
+                >>> glockenspiel = instrumenttools.Glockenspiel()(staff)
+                >>> instrumenttools.transpose_from_sounding_pitch_to_written_pitch(
+                ...     staff)
+                >>> show(staff) # doctest: +SKIP
 
-        ::
+            ..  doctest::
 
-            >>> staff[0].written_pitches
-            (NamedChromaticPitch("c'"), NamedChromaticPitch("e'"))
+                >>> f(staff)
+                \new Staff {
+                    \set Staff.instrumentName = \markup { Glockenspiel }
+                    \set Staff.shortInstrumentName = \markup { Gkspl. }
+                    <c' e'>4
+                    <d' fs'>4
+                }
+
+            ::
+
+                >>> staff[0].written_pitches
+                (NamedChromaticPitch("c'"), NamedChromaticPitch("e'"))
 
         Return tuple of named chromatic pitches.
         """
@@ -181,11 +206,11 @@ class Chord(Leaf):
             if not instrument:
                 message = 'effective instrument of note can not be determined.'
                 raise InstrumentError(message)
-            t_n = instrument.interval_of_transposition
-            t_n *= -1
+            interval = instrument.interval_of_transposition
+            interval *= -1
             written_pitches = [
                 pitchtools.transpose_pitch_carrier_by_melodic_interval(
-                pitch, t_n)
+                pitch, interval)
                 for pitch in self.written_pitches]
             return tuple(written_pitches)
         else:
@@ -194,23 +219,61 @@ class Chord(Leaf):
     @apply
     def note_heads():
         def fget(self):
-            r'''Get read-only tuple of note heads in chord:
+            r'''Note heads in chord.
 
-            ::
+            ..  container:: example
 
-                >>> chord = Chord([7, 12, 16], (1, 4))
-                >>> chord.note_heads
-                (NoteHead("g'"), NoteHead("c''"), NoteHead("e''"))
+                **Example 1.** Get note heads in chord:
 
-            Set chord note heads from any iterable:
+                ::
 
-            ::
+                    >>> chord = Chord("<g' c'' e''>4")
+                    >>> show(chord) # doctest: +SKIP
 
-                >>> chord = Chord([7, 12, 16], (1, 4))
-                >>> chord.note_heads = [0, 2, 6]
-                >>> chord
-                Chord("<c' d' fs'>4")
+                ::
 
+                    >>> chord.note_heads
+                    (NoteHead("g'"), NoteHead("c''"), NoteHead("e''"))
+
+            ..  container:: example
+
+                **Example 2.** Set note heads with pitch names:
+
+                ::
+
+                    >>> chord = Chord("<g' c'' e''>4")
+                    >>> show(chord) # doctest: +SKIP
+
+                ::
+
+                    >>> chord.note_heads = "c' d' fs'"
+                    >>> show(chord) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(chord)
+                    <c' d' fs'>4
+
+            ..  container:: example
+
+                **Example 3.** Set note heads with pitch numbers:
+
+                    >>> chord = Chord("<g' c'' e''>4")
+                    >>> show(chord) # doctest: +SKIP
+
+                ::
+
+                    >>> chord.note_heads = [16, 17, 19]
+                    >>> show(chord) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(chord)
+                    <e'' f'' g''>4
+
+            Set note heads with any iterable.
+
+            Returns tuple.
             '''
             return tuple(self._note_heads)
         def fset(self, note_heads):
@@ -222,31 +285,36 @@ class Chord(Leaf):
 
     @property
     def sounding_pitches(self):
-        r"""Sounding pitches:
+        r"""Sounding pitches in chord.
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff("<c''' e'''>4 <d''' fs'''>4")
-            >>> glockenspiel = instrumenttools.Glockenspiel()(staff)
-            >>> instrumenttools.transpose_from_sounding_pitch_to_written_pitch(
-            ...     staff)
+            **Example 1.**
 
-        ..  doctest::
+            ::
 
-            >>> f(staff)
-            \new Staff {
-                \set Staff.instrumentName = \markup { Glockenspiel }
-                \set Staff.shortInstrumentName = \markup { Gkspl. }
-                <c' e'>4
-                <d' fs'>4
-            }
+                >>> staff = Staff("<c''' e'''>4 <d''' fs'''>4")
+                >>> glockenspiel = instrumenttools.Glockenspiel()(staff)
+                >>> instrumenttools.transpose_from_sounding_pitch_to_written_pitch(
+                ...     staff)
+                >>> show(staff) # doctest: +SKIP
 
-        ::
+            ..  doctest::
 
-            >>> staff[0].sounding_pitches
-            (NamedChromaticPitch("c'''"), NamedChromaticPitch("e'''"))
+                >>> f(staff)
+                \new Staff {
+                    \set Staff.instrumentName = \markup { Glockenspiel }
+                    \set Staff.shortInstrumentName = \markup { Gkspl. }
+                    <c' e'>4
+                    <d' fs'>4
+                }
 
-        Return tuple of named chromatic pitches.
+            ::
+
+                >>> staff[0].sounding_pitches
+                (NamedChromaticPitch("c'''"), NamedChromaticPitch("e'''"))
+
+        Returns tuple.
         """
         from abjad.tools import contexttools
         from abjad.tools import pitchtools
@@ -258,35 +326,54 @@ class Chord(Leaf):
             if not instrument:
                 message = 'effective instrument of note can not be determined.'
                 raise InstrumentError(message)
-            t_n = instrument.interval_of_transposition
+            interval = instrument.interval_of_transposition
             sounding_pitches = [
                 pitchtools.transpose_pitch_carrier_by_melodic_interval(
-                pitch, t_n) for pitch in self.written_pitches]
+                pitch, interval) for pitch in self.written_pitches]
             return tuple(sounding_pitches)
 
     @apply
     def written_pitches():
         def fget(self):
-            r'''Get read-only tuple of pitches in chord:
+            r'''Written pitches in chord.
 
-            ::
+            ..  container:: example
 
-                >>> chord = Chord([7, 12, 16], (1, 4))
-                >>> for written_pitch in chord.written_pitches:
-                ...     written_pitch
-                NamedChromaticPitch("g'")
-                NamedChromaticPitch("c''")
-                NamedChromaticPitch("e''")
+                **Example 1.** Get written pitches:
 
-            Set chord pitches from any iterable:
+                    >>> chord = Chord("<g' c'' e''>4")
+                    >>> show(chord) # doctest: +SKIP
 
-            ::
+                ::
 
-                >>> chord = Chord([7, 12, 16], (1, 4))
-                >>> chord.written_pitches = [0, 2, 6]
-                >>> chord
-                Chord("<c' d' fs'>4")
+                    >>> for written_pitch in chord.written_pitches:
+                    ...     written_pitch
+                    NamedChromaticPitch("g'")
+                    NamedChromaticPitch("c''")
+                    NamedChromaticPitch("e''")
 
+            ..  container:: example
+
+                **Example 2.** Set written pitches with pitch names:
+
+                ::
+
+                    >>> chord = Chord("<e' g' c''>4")
+                    >>> show(chord) # doctest: +SKIP
+
+                ::
+
+                    >>> chord.written_pitches = "f' b' d''"
+                    >>> show(chord) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(chord)
+                    <f' b' d''>4
+
+            Set written pitches with any iterable.
+
+            Returns tuple.
             '''
             return tuple([note_head.written_pitch for note_head in self])
         def fset(self, pitchs):
@@ -296,21 +383,32 @@ class Chord(Leaf):
     ### PUBLIC METHODS ###
 
     def append(self, note_head):
-        r'''Append `note_head` to chord:
+        r'''Appends `note_head` to chord.
 
-        ::
+        ..  container:: example
 
-            >>> chord = Chord([4, 13, 17], (1, 4))
-            >>> chord
-            Chord("<e' cs'' f''>4")
+            **Example.**
 
-        ::
+            ::
 
-            >>> chord.append(19)
-            >>> chord
-            Chord("<e' cs'' f'' g''>4")
+                >>> chord = Chord("<e' cs'' f''>4")
+                >>> show(chord) # doctest: +SKIP
 
-        Sort chord note heads automatically after append and return none.
+            ::
+
+                >>> chord.append("g''")
+                >>> show(chord) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(chord)
+                <e' cs'' f'' g''>4
+
+        Set `note_head` to a pitch, pitch name, pitch number or note head.
+
+        Sorts note heads automatically.
+
+        Returns none.
         '''
         from abjad.tools.notetools.NoteHead import NoteHead
         if isinstance(note_head, NoteHead):
@@ -322,9 +420,35 @@ class Chord(Leaf):
         self._note_heads.sort()
 
     def divide(self, pitch=None):
-        r'''Divide chord at `pitch`.
+        r'''Divides chord at `pitch`.
 
-        Return pair of newly created notes, rests or chords.
+        ..  container:: example
+
+            **Example 1.** Divide chord at ``Eb4``:
+
+                >>> chord = Chord("<d' ef' e'>4")
+                >>> show(chord) # doctest: +SKIP
+
+            ::
+
+                >>> pitch = pitchtools.NamedChromaticPitch('Eb4')
+                >>> upper, lower = chord.divide(pitch=pitch)
+                >>> staff = Staff([upper, lower])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    <ef' e'>4
+                    d'4
+                }
+
+        Set `pitch` to pitch, pitch name, pitch number or none.
+
+        Sets `pitch` equal to ``B3`` when `pitch` is none.
+
+        Returns pair of newly created leaves.
         '''
         from abjad.tools import chordtools
         from abjad.tools import markuptools
@@ -372,7 +496,7 @@ class Chord(Leaf):
         return treble, bass
 
     def extend(self, note_heads):
-        r'''Extend chord with `note_heads`:
+        r'''Extends chord with `note_heads`.
 
         ::
 
@@ -386,33 +510,84 @@ class Chord(Leaf):
             >>> chord
             Chord("<d' e' c'' cs'' f'' fs''>4")
 
-        Sort chord note heads automatically after extend and return none.
+        Sorts note heads automatically.
+
+        Returns none.
         '''
         for note_head in note_heads:
             self.append(note_head)
 
     def get_note_head(self, pitch):
-        r'''Get note head from chord by `pitch`.
+        r'''Gets note head in chord by `pitch`.
 
-        Raise missing note head error when chord contains no
-        note head with pitch.
+        ..  container:: example
 
-        Raise extra note head error when chord contains more than
-        one note head with pitch.
+            **Example 1.** Get note head by pitch name:
 
-        Return note head.
+            ::
+
+                >>> chord = Chord("<e' cs'' f''>4")
+                >>> show(chord) # doctest: +SKIP
+
+            ::
+
+                >>> note_head = chord.get_note_head("cs''")
+                >>> note_head
+                NoteHead("cs''")
+                >>> note_head.tweak.color = 'red'
+                >>> show(chord) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(chord)
+                <
+                    e'
+                    \tweak #'color #red
+                    cs''
+                    f''
+                >4
+
+        ..  container:: example
+
+            **Example 2.** Get note head by pitch number:
+
+            ::
+
+                >>> chord = Chord("<e' cs'' f''>4")
+                >>> show(chord) # doctest: +SKIP
+
+            ::
+
+                >>> note_head = chord.get_note_head(17)
+                >>> note_head
+                NoteHead("f''")
+                >>> note_head.tweak.color = 'red'
+                >>> show(chord) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(chord)
+                <
+                    e'
+                    cs''
+                    \tweak #'color #red
+                    f''
+                >4
+
+        Raises missing note head error when chord contains no
+        note head with `pitch`.
+
+        Raises extra note head error when chord contains more than
+        one note head with `pitch`.
+
+        Returns note head.
         '''
         from abjad.tools import pitchtools
         result = []
-        if isinstance(pitch, pitchtools.NamedChromaticPitch):
-            for note_head in self.note_heads:
-                if note_head.written_pitch == pitch:
-                    result.append(note_head)
-        else:
-            for note_head in self.note_heads:
-                ncp = note_head.written_pitch.numbered_chromatic_pitch
-                if ncp._chromatic_pitch_number == pitch:
-                    result.append(note_head)
+        pitch = pitchtools.NamedChromaticPitch(pitch)
+        for note_head in self.note_heads:
+            if note_head.written_pitch == pitch:
+                result.append(note_head)
         count = len(result)
         if count == 0:
             raise MissingNoteHeadError
@@ -423,7 +598,7 @@ class Chord(Leaf):
             raise ExtraNoteHeadError
 
     def pop(self, i=-1):
-        r'''Remove note head at index `i` in chord:
+        r'''Pops note head at index `i` in chord.
 
         ::
 
@@ -441,14 +616,14 @@ class Chord(Leaf):
             >>> chord
             Chord("<e' f''>4")
 
-        Return note head.
+        Returns note head.
         '''
         note_head = self._note_heads.pop(i)
         note_head._client = None
         return note_head
 
     def remove(self, note_head):
-        r'''Remove `note_head` from chord:
+        r'''Removes `note_head` from chord:
 
         ::
 
@@ -462,7 +637,7 @@ class Chord(Leaf):
             >>> chord
             Chord("<e' f''>4")
 
-        Return none.
+        Returns none.
         '''
         note_head._client = None
         self._note_heads.remove(note_head)

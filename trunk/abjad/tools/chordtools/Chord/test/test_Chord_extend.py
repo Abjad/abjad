@@ -3,27 +3,28 @@ from abjad import *
 
 
 def test_Chord_extend_01():
-    r'''Extend tweaked note heads.
+    r'''Extend chord with tweaked note heads.
     '''
 
-    chord = Chord([3], (1, 4))
+    chord = Chord("<ef'>4")
     note_heads = []
-    note_head = notetools.NoteHead(13)
+    note_head = notetools.NoteHead("cs''")
     note_head.tweak.color = 'blue'
     note_heads.append(note_head)
-    note_head = notetools.NoteHead(17)
+    note_head = notetools.NoteHead("f''")
     note_head.tweak.color = 'green'
     note_heads.append(note_head)
     chord.extend(note_heads)
 
-    r'''
-    <
-        ef'
-        \tweak #'color #blue
-        cs''
-        \tweak #'color #green
-        f''
-    >4
-    '''
-
-    chord.lilypond_format == "<\n\tef'\n\t\\tweak #'color #blue\n\tcs''\n\t\\tweak #'color #green\n\tf''\n>4"
+    assert testtools.compare(
+        chord.lilypond_format,
+        r'''
+        <
+            ef'
+            \tweak #'color #blue
+            cs''
+            \tweak #'color #green
+            f''
+        >4
+        '''
+        )

@@ -22,4 +22,5 @@ def test_Chord_written_pitch_indication_is_at_sounding_pitch_03():
 
     chord = Chord("<c' e' g'>4")
 
-    assert py.test.raises(TypeError, "chord.written_pitch_indication_is_at_sounding_pitch = 'foo'")
+    statement = "chord.written_pitch_indication_is_at_sounding_pitch = 'foo'"
+    assert py.test.raises(Exception, statement)

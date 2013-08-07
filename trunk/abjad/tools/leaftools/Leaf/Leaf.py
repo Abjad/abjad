@@ -14,7 +14,7 @@ class Leaf(Component):
 
     __metaclass__ = abc.ABCMeta
 
-    # TODO: see if _grace and _after_grace can be removed #
+    # TODO: see if _grace and _after_grace can be removed
     __slots__ = (
         '_after_grace', 
         '_grace', 
@@ -40,9 +40,9 @@ class Leaf(Component):
     ### SPECIAL METHODS ###
 
     def __getnewargs__(self):
-        '''Get new arguments.
+        '''Gets new arguments.
 
-        Return tuple.
+        Returns tuple.
         '''
         result = []
         result.append(self.written_duration)
@@ -53,7 +53,7 @@ class Leaf(Component):
     def __repr__(self):
         '''Interpreter representation of leaf.
 
-        Return string.
+        Returns string.
         '''
         return '{}({!r})'.format(
             self._class_name, self._compact_representation)
@@ -61,7 +61,7 @@ class Leaf(Component):
     def __str__(self):
         '''String representation of leaf.
 
-        Return string.
+        Returns string.
         '''
         return self._compact_representation
 
@@ -192,7 +192,6 @@ class Leaf(Component):
         result = []
         result.append(leaf._format_leaf_body(format_contributions))
         return result
-
 
     def _format_grace_body(leaf):
         result = []
@@ -347,7 +346,9 @@ class Leaf(Component):
         def fget(self):
             '''LilyPond duration multiplier.
 
-            Return multiplier or none.
+            Set to positive multiplier or none.
+
+            Returns positive multiplier or none.
             '''
             return self._lilypond_duration_multiplier
         def fset(self, expr):
@@ -363,7 +364,7 @@ class Leaf(Component):
     def leaf_index(self):
         '''Leaf index.
 
-        Return nonnegative integer.
+        Returns nonnegative integer.
         '''
         self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
         return self._leaf_index
@@ -373,24 +374,24 @@ class Leaf(Component):
         def fget(self):
             '''Written duration of leaf.
 
-            Return duration.
+            Set to duration.
+
+            Returns duration.
             '''
             return self._written_duration
         def fset(self, expr):
             rational = durationtools.Duration(expr)
             if not rational.is_assignable:
-                message = 'not assignable duration: "%s".'
-                raise AssignabilityError(message % str(rational))
+                message = 'not assignable duration: {!r}.'
+                raise AssignabilityError(message.format(rational))
             self._written_duration = rational
         return property(**locals())
 
     @apply
     def written_pitch_indication_is_at_sounding_pitch():
         def fget(self):
-            r'''True when written pitch is at sounding pitch.
-            False when written pitch is transposed.
-
-            Return boolean.
+            r'''Returns true when written pitch is at sounding pitch.
+            Returns false when written pitch is transposed.
             '''
             return self._written_pitch_indication_is_at_sounding_pitch
         def fset(self, arg):
@@ -402,13 +403,12 @@ class Leaf(Component):
     @apply
     def written_pitch_indication_is_nonsemantic():
         def fget(self):
-            r'''True when pitch is nonsemantic.
+            r'''Returns true when pitch is nonsemantic.
+            Returns false otherwise.
 
             Set to true when using leaves only graphically.
 
             Setting this value to true sets sounding pitch indicator to false.
-
-            Return boolean.
             '''
             return self._written_pitch_indication_is_nonsemantic
         def fset(self, arg):
@@ -422,9 +422,9 @@ class Leaf(Component):
     ### PUBLIC METHODS ###
 
     def detach_grace_containers(self, kind=None):
-        r'''Detach grace containers attached to leaf.
+        r'''Detaches grace containers attached to leaf.
 
-        Return tuple of detached grace containers.
+        Returns tuple of detached grace containers.
         '''
         grace_containers = self.get_grace_containers(kind=kind)
         for grace_container in grace_containers:
@@ -432,73 +432,11 @@ class Leaf(Component):
         return grace_containers
 
     def get_grace_containers(self, kind=None):
-        r'''Get grace containers attached to leaf.
+        r'''Gets grace containers attached to leaf.
 
         Set `kind` to ``'grace'``, ``'after'`` or none.
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> grace_container = leaftools.GraceContainer(
-            ...     [Note("cs'16")], 
-            ...     kind='grace',
-            ...     )
-            >>> grace_container.attach(staff[1])
-            Note("d'8")
-            >>> after_grace = leaftools.GraceContainer(
-            ...     [Note("ds'16")], 
-            ...     kind='after'
-            ...     )
-            >>> after_grace.attach(staff[1])
-            Note("d'8")
-
-        ..  doctest::
-
-            >>> f(staff)
-            \new Staff {
-                c'8
-                \grace {
-                    cs'16
-                }
-                \afterGrace
-                d'8
-                {
-                    ds'16
-                }
-                e'8
-                f'8
-            }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
-        ..  container:: example
-        
-            **Example 1.** Get all grace containers attached to leaf:
-
-            ::
-
-                >>> staff[1].get_grace_containers()
-                (GraceContainer(cs'16), GraceContainer(ds'16))
-
-        ..  container:: example
-        
-            **Example 2.** Get only (proper) grace containers attached to leaf:
-
-            ::
-
-                >>> staff[1].get_grace_containers(kind='grace')
-                (GraceContainer(cs'16),)
-
-        ..  container:: example
-        
-            **Example 3.** Get only after grace containers attached to leaf:
-
-            ::
-
-                >>> staff[1].get_grace_containers(kind='after')
-                (GraceContainer(ds'16),)
-
-        Return tuple.
+        Returns tuple.
         '''
         result = []
         if kind in (None, 'grace') and hasattr(self, '_grace'):
@@ -508,9 +446,9 @@ class Leaf(Component):
         return tuple(result)
 
     def select_tie_chain(self):
-        r'''Select tie chain.
+        r'''Selects tie chain that governs leaf.
 
-        Return tie chain.
+        Returns tie chain.
         '''
         from abjad.tools import leaftools
         from abjad.tools import spannertools
@@ -526,9 +464,9 @@ class Leaf(Component):
             return leaftools.TieChain(music=self)
 
     def shorten(self, duration):
-        r'''Shorten leaf by `duration`.
+        r'''Shortens leaf by `duration`.
 
-        Return none.
+        Returns none.
         '''
         from abjad.tools import leaftools
         duration = self.get_duration() - duration

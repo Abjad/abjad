@@ -4,26 +4,61 @@ import py.test
 
 
 def test_Chord_get_note_head_01():
-    r'''Get note head.
+    r'''Get note heads by pitch number.
     '''
 
-    chord = Chord([0, 2, 11], Duration(1, 4))
+    chord = Chord("<c' d' b'>4")
 
     note_head = chord.get_note_head(0)
-    assert note_head.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 0
+    assert note_head.written_pitch == 0
 
     note_head = chord.get_note_head(2)
-    assert note_head.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 2
+    assert note_head.written_pitch == 2
 
     note_head = chord.get_note_head(11)
-    assert note_head.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 11
+    assert note_head.written_pitch == 11
 
 
 def test_Chord_get_note_head_02():
-    r'''Exceptions.
+    r'''Get note heads by LilyPond input string.
     '''
 
-    chord = Chord([0, 2, 2], Duration(1, 4))
+    chord = Chord("<c' d' b'>4")
+
+    note_head = chord.get_note_head("c'")
+    assert note_head.written_pitch == 0
+
+    note_head = chord.get_note_head("d'")
+    assert note_head.written_pitch == 2
+
+    note_head = chord.get_note_head("b'")
+    assert note_head.written_pitch == 11
+
+
+def test_Chord_get_note_head_03():
+    r'''Get note heads by pitch.
+    '''
+
+    chord = Chord("<c' d' b'>4")
+
+    pitch = pitchtools.NamedChromaticPitch("c'")
+    note_head = chord.get_note_head(pitch)
+    assert note_head.written_pitch == 0
+
+    pitch = pitchtools.NamedChromaticPitch("d'")
+    note_head = chord.get_note_head(pitch)
+    assert note_head.written_pitch == 2
+
+    pitch = pitchtools.NamedChromaticPitch("b'")
+    note_head = chord.get_note_head(pitch)
+    assert note_head.written_pitch == 11
+
+
+def test_Chord_get_note_head_04():
+    '''Raise exceptions when chord has too few or too many note heads.
+    '''
+
+    chord = Chord("<c' d' d'>4")
 
     assert py.test.raises(MissingNoteHeadError, 'chord.get_note_head(9)')
     assert py.test.raises(ExtraNoteHeadError, 'chord.get_note_head(2)')

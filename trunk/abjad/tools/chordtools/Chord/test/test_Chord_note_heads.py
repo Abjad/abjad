@@ -27,7 +27,45 @@ def test_Chord_note_heads_02():
 
 
 def test_Chord_note_heads_03():
-    r'''Note heads can be assigned with a LilyPond input string.
+    r'''Set note heads with pitch numbers.
+    '''
+
+    chord = Chord([], (1, 4))
+    chord.note_heads = [4, 3, 2]
+
+    assert chord.lilypond_format == "<d' ef' e'>4"
+
+
+def test_Chord_note_heads_04():
+    r'''Set note heads with pitches.
+    '''
+
+    chord = Chord([], (1, 4))
+    chord.note_heads = [
+        pitchtools.NamedChromaticPitch(4), 
+        pitchtools.NamedChromaticPitch(3), 
+        pitchtools.NamedChromaticPitch(2),
+        ]
+
+    assert chord.lilypond_format == "<d' ef' e'>4"
+
+
+def test_Chord_note_heads_05():
+    r'''Set note heads with both pitches and pitch numbers.
+    '''
+
+    chord = Chord([], (1, 4))
+    chord.note_heads = [
+        pitchtools.NamedChromaticPitch(4), 
+        3, 
+        pitchtools.NamedChromaticPitch(2),
+        ]
+
+    assert chord.lilypond_format == "<d' ef' e'>4"
+
+
+def test_Chord_note_heads_06():
+    r'''Set note heads with a LilyPond input string.
     '''
 
     chord = Chord("<c'>4")
@@ -36,7 +74,7 @@ def test_Chord_note_heads_03():
     assert chord.lilypond_format == "<c' d' e'>4"
 
 
-def test_Chord_note_heads_04():
+def test_Chord_note_heads_07():
     r'''Set note head color with the LilyPond tweak reservoir.
     '''
 
