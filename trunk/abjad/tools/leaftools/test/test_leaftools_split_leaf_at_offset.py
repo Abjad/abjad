@@ -377,14 +377,14 @@ def test_leaftools_split_leaf_at_offset_12():
     '''
 
     staff = Staff([Note("c'4")])
-    s = spannertools.TieSpanner(staff.select_leaves())
+    tie = spannertools.TieSpanner(staff.select_leaves())
     halves = leaftools.split_leaf_at_offset(staff[0], Duration(1, 8))
 
     assert len(staff) == 2
     for leaf in staff.select_leaves():
-        assert leaf.get_spanners() == set([s])
+        assert leaf.get_spanners() == set([tie])
         assert spannertools.get_the_only_spanner_attached_to_component(
-            leaf, spannertools.TieSpanner) is s
+            leaf, spannertools.TieSpanner) is tie
     assert select(staff).is_well_formed()
 
 
@@ -411,16 +411,16 @@ def test_leaftools_split_leaf_at_offset_14():
     '''
 
     staff = Staff([Note("c'4")])
-    s = spannertools.TieSpanner(staff.select_leaves())
+    tie = spannertools.TieSpanner(staff.select_leaves())
     halves = leaftools.split_leaf_at_offset(staff[0], Duration(5, 32))
 
     assert len(halves) == 2
     assert len(halves[0]) == 2
     assert len(halves[1]) == 1
     for l in staff.select_leaves():
-        assert l.get_spanners() == set([s])
+        assert l.get_spanners() == set([tie])
         assert spannertools.get_the_only_spanner_attached_to_component(
-            l, spannertools.TieSpanner) is s
+            l, spannertools.TieSpanner) is tie
     assert select(staff).is_well_formed()
 
 
@@ -429,11 +429,12 @@ def test_leaftools_split_leaf_at_offset_15():
     '''
 
     staff = Staff(notetools.make_repeated_notes(4))
-    s = spannertools.TieSpanner(staff)
+    tie = spannertools.TieSpanner(staff)
     halves = leaftools.split_leaf_at_offset(staff[0], Duration(5, 64))
 
-    assert spannertools.get_the_only_spanner_attached_to_component(staff, spannertools.TieSpanner) is s
-    assert s.components == (staff, )
+    assert spannertools.get_the_only_spanner_attached_to_component(staff,
+    spannertools.TieSpanner) is tie
+    assert tie.components == (staff, )
     for l in staff.select_leaves():
         assert not l.get_spanners()
     assert select(staff).is_well_formed()
@@ -444,12 +445,12 @@ def test_leaftools_split_leaf_at_offset_16():
     '''
 
     staff = Staff(Container(notetools.make_repeated_notes(4)) * 2)
-    s = spannertools.TieSpanner(staff[:])
+    tie = spannertools.TieSpanner(staff[:])
     halves = leaftools.split_leaf_at_offset(staff[0][0], Duration(5, 64))
 
-    assert s.components == tuple(staff[:])
+    assert tie.components == tuple(staff[:])
     for v in staff:
-        assert v.get_spanners() == set([s])
+        assert v.get_spanners() == set([tie])
         for l in v.select_leaves():
             assert not l.get_spanners()
             assert l._parent is v

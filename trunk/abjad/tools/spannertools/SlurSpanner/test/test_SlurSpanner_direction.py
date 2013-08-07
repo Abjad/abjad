@@ -4,7 +4,7 @@ from abjad import *
 
 def test_SlurSpanner_direction_01():
     voice = Voice("c'8 d'8 e'8 f'8")
-    s = spannertools.SlurSpanner(voice, direction=Up)
+    slur = spannertools.SlurSpanner(voice, direction=Up)
 
     r'''
     \new Voice {
@@ -15,7 +15,7 @@ def test_SlurSpanner_direction_01():
     }
     '''
 
-    assert voice.get_spanners() == set([s])
+    assert voice.get_spanners() == set([slur])
     assert testtools.compare(
         voice.lilypond_format,
         r'''

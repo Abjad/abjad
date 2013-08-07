@@ -25,13 +25,13 @@ def test_Skip___init___03():
 
     c = Chord([2, 3, 4], (1, 4))
     duration = c.written_duration
-    s = skiptools.Skip(c)
-    assert isinstance(s, skiptools.Skip)
+    skip = skiptools.Skip(c)
+    assert isinstance(skip, skiptools.Skip)
     # check that attributes have not been removed or added.
     assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
-    assert dir(s) == dir(skiptools.Skip((1, 4)))
-    assert s._parent is None
-    assert s.written_duration == duration
+    assert dir(skip) == dir(skiptools.Skip((1, 4)))
+    assert skip._parent is None
+    assert skip.written_duration == duration
 
 
 def test_Skip___init___04():
@@ -64,14 +64,14 @@ def test_Skip___init___05():
 def test_Skip___init___06():
     n = Note(2, (1, 8))
     d = n.written_duration
-    s = skiptools.Skip(n)
-    assert isinstance(s, skiptools.Skip)
+    skip = skiptools.Skip(n)
+    assert isinstance(skip, skiptools.Skip)
     # check that attributes have not been removed or added.
     assert dir(n) == dir(Note("c'4"))
-    assert dir(s) == dir(skiptools.Skip((1, 4)))
-    assert s.lilypond_format == 's8'
-    assert s._parent is None
-    assert s.written_duration == d
+    assert dir(skip) == dir(skiptools.Skip((1, 4)))
+    assert skip.lilypond_format == 's8'
+    assert skip._parent is None
+    assert skip.written_duration == d
 
 
 def test_Skip___init___07():
@@ -102,13 +102,13 @@ def test_Skip___init___09():
 
     r = Rest((1, 8))
     d = r.written_duration
-    s = skiptools.Skip(r)
-    assert isinstance(s, skiptools.Skip)
+    skip = skiptools.Skip(r)
+    assert isinstance(skip, skiptools.Skip)
     # check that attributes have not been removed or added.
     assert dir(r) == dir(Rest((1, 4)))
-    assert dir(s) == dir(skiptools.Skip((1, 4)))
-    assert s._parent is None
-    assert s.written_duration == d
+    assert dir(skip) == dir(skiptools.Skip((1, 4)))
+    assert skip._parent is None
+    assert skip.written_duration == d
 
 
 def test_Skip___init___10():

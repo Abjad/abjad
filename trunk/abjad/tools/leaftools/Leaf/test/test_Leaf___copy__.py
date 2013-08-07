@@ -14,17 +14,17 @@ def test_Leaf___copy___01():
 
 def test_Leaf___copy___02():
     r = Rest((1, 8))
-    s = componenttools.copy_components_and_fracture_crossing_spanners([r])[0]
-    assert id(r) != id(s)
+    rest_2 = componenttools.copy_components_and_fracture_crossing_spanners([r])[0]
+    assert id(r) != id(rest_2)
     assert r._parent is None
-    assert s._parent is None
+    assert rest_2._parent is None
 
 
 def test_Leaf___copy___03():
-    s = skiptools.Skip((1, 8))
-    none = componenttools.copy_components_and_fracture_crossing_spanners([s])[0]
-    assert id(s) != id(none)
-    assert s._parent is None
+    skip = skiptools.Skip((1, 8))
+    none = componenttools.copy_components_and_fracture_crossing_spanners([skip])[0]
+    assert id(skip) != id(none)
+    assert skip._parent is None
     assert none._parent is None
 
 

@@ -6,29 +6,29 @@ from abjad.tools.schemetools import SchemePair
 def test_Scheme_01():
     r'''Scheme can be initialized from any value.
     '''
-    s = Scheme(True)
-    s = Scheme(False)
-    s = Scheme(None)
-    s = Scheme('hello')
-    s = Scheme('hello world')
-    s = Scheme((Scheme('foo'), Scheme(3.14159)))
-    s = Scheme((SchemePair('padding', 1), SchemePair('attach-dir', -1)))
+    scheme = Scheme(True)
+    scheme = Scheme(False)
+    scheme = Scheme(None)
+    scheme = Scheme('hello')
+    scheme = Scheme('hello world')
+    scheme = Scheme((Scheme('foo'), Scheme(3.14159)))
+    scheme = Scheme((SchemePair('padding', 1), SchemePair('attach-dir', -1)))
 
 
 def test_Scheme_02():
     r'''Scheme takes an optional `quoting` keyword, for prepending quote/unquote ticks.
     '''
-    s = Scheme(('fus', 'ro', 'dah'), quoting = "',")
-    assert str(s) == "',(fus ro dah)"
+    scheme = Scheme(('fus', 'ro', 'dah'), quoting = "',")
+    assert str(scheme) == "',(fus ro dah)"
 
 
 def test_Scheme_03():
     r'''__str__ of Scheme returns the Scheme formatted value without the hash mark,
     while Scheme.lilypond_format returns the formatted value with the hash mark,
     allowing for nested Scheme expressions.'''
-    s = Scheme(('fus', 'ro', 'dah'), quoting = "'")
-    assert str(s) == "'(fus ro dah)"
-    assert s.lilypond_format == "#'(fus ro dah)"
+    scheme = Scheme(('fus', 'ro', 'dah'), quoting = "'")
+    assert str(scheme) == "'(fus ro dah)"
+    assert scheme.lilypond_format == "#'(fus ro dah)"
 
 
 def test_Scheme_04():

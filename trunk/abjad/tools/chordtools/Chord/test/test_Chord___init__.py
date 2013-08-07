@@ -62,11 +62,11 @@ def test_Chord___init___08():
     r'''Init chord from skip.
     '''
 
-    s = skiptools.Skip((1, 8))
-    d = s.written_duration
-    c = Chord(s)
+    skip = skiptools.Skip((1, 8))
+    d = skip.written_duration
+    c = Chord(skip)
     assert isinstance(c, Chord)
-    assert dir(s) == dir(skiptools.Skip((1, 4)))
+    assert dir(skip) == dir(skiptools.Skip((1, 4)))
     assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
     assert c._parent is None
     assert c.written_duration == d

@@ -174,12 +174,12 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_08():
     s1.name = 'sg'
     s2 = componenttools.copy_components_and_fracture_crossing_spanners([s1])[0]
     s2.name = 'sg'
-    s = Container([s1, s2])
+    container = Container([s1, s2])
 
-    containertools.fuse_like_named_contiguous_containers_in_expr(s)
-    assert len(s) == 1
+    containertools.fuse_like_named_contiguous_containers_in_expr(container)
+    assert len(container) == 1
     assert testtools.compare(
-        s.lilypond_format,
+        container.lilypond_format,
         r'''
         {
             \context StaffGroup = "sg" <<

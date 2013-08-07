@@ -7,7 +7,7 @@ def test_SlurSpanner_01():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    s = spannertools.SlurSpanner(voice)
+    slur = spannertools.SlurSpanner(voice)
 
     r'''
     \new Voice {
@@ -18,7 +18,7 @@ def test_SlurSpanner_01():
     }
     '''
 
-    assert voice.get_spanners() == set([s])
+    assert voice.get_spanners() == set([slur])
     assert testtools.compare(
         voice.lilypond_format,
         r'''
@@ -37,11 +37,11 @@ def test_SlurSpanner_02():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    s = spannertools.SlurSpanner(voice[:])
+    slur = spannertools.SlurSpanner(voice[:])
 
     assert len(voice.get_spanners()) == 0
     for leaf in voice.select_leaves():
-        assert leaf.get_spanners() == set([s])
+        assert leaf.get_spanners() == set([slur])
     assert testtools.compare(
         voice.lilypond_format,
         r'''

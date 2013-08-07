@@ -128,11 +128,11 @@ def test_Note___init___11():
 def test_Note___init___12():
     r'''Cast skip as note.
     '''
-    s = skiptools.Skip((1, 8))
-    d = s.written_duration
-    n = Note(s)
+    skip = skiptools.Skip((1, 8))
+    d = skip.written_duration
+    n = Note(skip)
     assert isinstance(n, Note)
-    assert dir(s) == dir(skiptools.Skip((1, 4)))
+    assert dir(skip) == dir(skiptools.Skip((1, 4)))
     assert dir(n) == dir(Note("c'4"))
     assert n._parent is None
     assert n.written_duration == d

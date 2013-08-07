@@ -79,11 +79,11 @@ def test_Rest___init___07():
     r'''Init rest from skip.
     '''
 
-    s = skiptools.Skip((1, 8))
-    d = s.written_duration
-    r = Rest(s)
+    skip = skiptools.Skip((1, 8))
+    d = skip.written_duration
+    r = Rest(skip)
     assert isinstance(r, Rest)
-    assert dir(s) == dir(skiptools.Skip((1, 4)))
+    assert dir(skip) == dir(skiptools.Skip((1, 4)))
     assert dir(r) == dir(Rest((1, 4)))
     assert r._parent is None
     assert r.written_duration == d
