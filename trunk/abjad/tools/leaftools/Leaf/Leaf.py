@@ -263,6 +263,10 @@ class Leaf(Component):
         result.append(leaf._format_agrace_opening())
         return result
 
+    def _get_leaf_index(self):
+        self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
+        return self._leaf_index
+
     def _process_contribution_packet(self, contribution_packet):
         result = ''
         for contributor, contributions in contribution_packet:
@@ -361,15 +365,6 @@ class Leaf(Component):
                 assert 0 <= lilypond_duration_multiplier
                 self._lilypond_duration_multiplier = lilypond_duration_multiplier
         return property(**locals())
-
-    @property
-    def leaf_index(self):
-        '''Leaf index.
-
-        Returns nonnegative integer.
-        '''
-        self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
-        return self._leaf_index
 
     @apply
     def written_duration():
