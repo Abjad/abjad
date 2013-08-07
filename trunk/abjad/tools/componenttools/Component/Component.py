@@ -11,6 +11,11 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Component(AbjadObject):
+    r'''Any score component.
+
+    Notes, rests, chords, tuplets, voices, staves
+    and scores are all components.
+    '''
 
     ### CLASS VARIABLES ###
 
@@ -57,32 +62,32 @@ class Component(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        '''Copy component with marks but without children of component
+        '''Copies component with marks but without children of component
         or spanners attached to component.
 
-        Return new component.
+        Returns new component.
         '''
         return self._copy_with_marks_but_without_children_or_spanners()
 
     def __getnewargs__(self):
-        '''Get new arguments.
+        '''Gets new arguments.
 
-        Return tuple.
+        Returns tuple.
         '''
         return ()
 
     def __mul__(self, n):
-        '''Copy component `n` times and detach spanners.
+        '''Copies component `n` times and detaches spanners.
 
-        Return list of newly created components.
+        Returns list of new components.
         '''
         from abjad.tools import componenttools
         return componenttools.copy_components_and_detach_spanners([self], n)
 
     def __rmul__(self, n):
-        '''Copy component `n` times and detach spanners.
+        '''Copies component `n` times and detach spanners.
 
-        Return list of newly created components.
+        Returns list of new components.
         '''
         return self * n
 
@@ -436,12 +441,10 @@ class Component(AbjadObject):
             elif value == 'seconds':
                 component._offset_values_in_seconds_are_current = False
             else:
-                raise ValueError('unknown value: "%s"' % value)
-            if hasattr(component, '_time_signature_is_current'):
-                component._time_signature_is_current = False
+                raise ValueError('unknown value: {!r}'.format(value))
 
     def _update_leaf_indices_and_measure_numbers_in_score_tree(self):
-        r'''Called only when updating prolated offset of score components.
+        r'''Call only when updating prolated offset of score components.
         No separate state flags for leaf indices or measure numbers.
         '''
         from abjad.tools import componenttools
@@ -535,7 +538,7 @@ class Component(AbjadObject):
     def lilypond_format(self):
         '''Lilypond format of component.
 
-        Return string.
+        Returns string.
         '''
         self._update_marks_of_entire_score_tree_if_necessary()
         return self._format_component()
@@ -544,7 +547,7 @@ class Component(AbjadObject):
     def override(self):
         r'''LilyPond grob override component plug-in.
 
-        Return LilyPond grob override component plug-in.
+        Returns LilyPond grob override component plug-in.
         '''
         if not hasattr(self, '_override'):
             self._override = \
@@ -555,7 +558,7 @@ class Component(AbjadObject):
     def set(self):
         r'''LilyPond context setting component plug-in.
 
-        Return LilyPond context setting component plug-in.
+        Returns LilyPond context setting component plug-in.
         '''
         if not hasattr(self, '_set'):
             self._set = \
@@ -570,9 +573,9 @@ class Component(AbjadObject):
         direction=Right,
         grow_spanners=True,
         ):
-        r'''Extend `components` in parent of component.
+        r'''Extends `components` in parent of component.
 
-        Return list of component followed by `components`.
+        Returns list of component followed by `components`.
         '''
         from abjad.tools import componenttools
         from abjad.tools import selectiontools
@@ -629,12 +632,12 @@ class Component(AbjadObject):
             return components + [self]
 
     def get_annotation_value(self, name, default=None):
-        r'''Get value of annotation with `name` attached to component.
+        r'''Gets value of annotation with `name` attached to component.
 
-        Return `default` when no annotation with `name` is attached
+        Returns `default` when no annotation with `name` is attached
         to component.
 
-        Raise exception when more than one annotation with `name`
+        Raises exception when more than one annotation with `name`
         is attached to component.
         '''
         from abjad.tools import marktools
@@ -653,9 +656,9 @@ class Component(AbjadObject):
         return annotation_value
 
     def get_duration(self, in_seconds=False):
-        r'''Get duration of component.
+        r'''Gets duration of component.
 
-        Return duration.
+        Returns duration.
         '''
         if in_seconds:
             return self._duration_in_seconds
@@ -667,10 +670,10 @@ class Component(AbjadObject):
         self,
         context_mark_classes=None,
         ):
-        r'''Get effective context mark of `context_mark_class` 
+        r'''Gets effective context mark of `context_mark_class` 
         that governs component.
 
-        Return context mark or none.
+        Returns context mark or none.
         '''
         from abjad.tools import contexttools
         from abjad.tools import datastructuretools
@@ -678,8 +681,6 @@ class Component(AbjadObject):
         # do special things for time signature marks
         if context_mark_classes == contexttools.TimeSignatureMark:
             if isinstance(self, measuretools.Measure):
-                if not getattr(self, '_time_signature_is_current', True):
-                    self._update_time_signature()
                 if self._has_mark(contexttools.TimeSignatureMark):
                     return self.get_mark(contexttools.TimeSignatureMark)
         # updating marks of entire score tree if necessary
@@ -706,9 +707,9 @@ class Component(AbjadObject):
                 pass
 
     def get_effective_staff(self):
-        r'''Get effective staff of component.
+        r'''Gets effective staff of component.
 
-        Return staff or none.
+        Returns staff or none.
         '''
         from abjad.tools import contexttools
         from abjad.tools import stafftools
@@ -725,11 +726,12 @@ class Component(AbjadObject):
         self,
         mark_classes=None,
         ):
-        r'''Get exactly one mark of `mark_classes` attached to component.
+        r'''Gets exactly one mark of `mark_classes` attached to component.
 
-        Raise exception when no mark of `mark_classes` is attached.
+        Raises exception when no mark of `mark_classes` is attached
+        to component.
 
-        Return mark.
+        Returns mark.
         '''
         marks = self.get_marks(mark_classes=mark_classes)
         if not marks:
@@ -761,9 +763,9 @@ class Component(AbjadObject):
         self,
         direction=None,
         ):
-        r'''Get all markup attached to component.
+        r'''Gets all markup attached to component.
 
-        Return tuple of zero or more markup objects.
+        Returns tuple.
         '''
         from abjad.tools import markuptools
         markup = self.get_marks(mark_classes=(markuptools.Markup,))
@@ -774,16 +776,16 @@ class Component(AbjadObject):
         return markup
 
     def get_spanners(self):
-        r'''Get spanners attached to component.
+        r'''Gets spanners attached to component.
 
-        Return set.
+        Returns set.
         '''
         return set(self._spanners)
 
     def get_timespan(self, in_seconds=False):
-        r'''Get timespan of component.
+        r'''Gets timespan of component.
 
-        Return timespan.
+        Returns timespan.
         '''
         if in_seconds:
             self._update_offset_values_in_seconds_of_entire_score_tree_if_necessary()
@@ -798,11 +800,11 @@ class Component(AbjadObject):
             return self._timespan
 
     def select(self, sequential=False):
-        r'''Select component.
+        r'''Selects component.
 
-        Return component selection when `sequential` is false.
+        Returns component selection when `sequential` is false.
 
-        Return sequential selection when `sequential` is true.
+        Returns sequential selection when `sequential` is true.
         '''
         from abjad.tools import selectiontools
         if not sequential:
@@ -811,10 +813,10 @@ class Component(AbjadObject):
             return selectiontools.SliceSelection(music=self)
 
     def select_components(self, component_classes=None, include_self=True):
-        r'''Select all components of `component_classes`
+        r'''Selects all components of `component_classes`
         in the descendants of component.
 
-        Return component selection.
+        Returns component selection.
         '''
         from abjad.tools import iterationtools
         from abjad.tools import selectiontools
@@ -826,9 +828,9 @@ class Component(AbjadObject):
         return selectiontools.ComponentSelection(components)
 
     def select_contents(self, include_self=True):
-        r'''Select contents of component.
+        r'''Selects contents of component.
 
-        Return sequential selection.
+        Returns sequential selection.
         '''
         from abjad.tools import selectiontools
         result = []
@@ -844,9 +846,9 @@ class Component(AbjadObject):
         cross_offset=None,
         include_self=True,
         ):
-        r'''Select descendants of component.
+        r'''Selects descendants of component.
 
-        Return descendants.
+        Returns descendants.
         '''
         from abjad.tools import componenttools
         return componenttools.Descendants(
@@ -856,25 +858,25 @@ class Component(AbjadObject):
             )
 
     def select_lineage(self):
-        r'''Select lineage of component.
+        r'''Selects lineage of component.
         
-        Return lineage.
+        Returns lineage.
         '''
         from abjad.tools import componenttools
         return componenttools.Lineage(self)
 
     def select_parentage(self, include_self=True):
-        r'''Select parentage of component.
+        r'''Selects parentage of component.
 
-        Return parentage.
+        Returns parentage.
         '''
         from abjad.tools import componenttools
         return componenttools.Parentage(self, include_self=include_self)
 
     def select_vertical_moment(self, governor=None):
-        r'''Select vertical moment starting with component.
+        r'''Selects vertical moment starting with component.
 
-        Return vertical moment.
+        Returns vertical moment.
         '''
         from abjad.tools import componenttools
         offset = self.get_timespan().start_offset
@@ -883,9 +885,9 @@ class Component(AbjadObject):
         return componenttools.VerticalMoment(governor, offset)
 
     def select_vertical_moment_at(self, offset):
-        r'''Select vertical moment at `offset`.
+        r'''Selects vertical moment at `offset`.
 
-        Return vertical moment.
+        Returns vertical moment.
         '''
         from abjad.tools import componenttools
         return componenttools.VerticalMoment(self, offset)

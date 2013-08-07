@@ -28,21 +28,21 @@ class AbjadObject(object):
     def __eq__(self, expr):
         r'''True when id of `expr` equals id of Abjad object.
 
-        Return boolean.
+        Returns boolean.
         '''
         return id(self) == id(expr)
 
     def __ne__(self, expr):
-        r'''True when the id of `expr` does not equal the id of Abjad object.
+        r'''True when id of `expr` does not equal id of Abjad object.
 
-        Return boolean.
+        Returns boolean.
         '''
         return not self == expr
 
     def __repr__(self):
         r'''Interpreter representation of Abjad object.
 
-        Return string.
+        Returns string.
         '''
         return '{}({})'.format(self._class_name, self._contents_repr_string)
 
@@ -333,6 +333,6 @@ class AbjadObject(object):
     def storage_format(self):
         r'''Storage format of Abjad object.
 
-        Return string.
+        Returns string.
         '''
         return self._tools_package_qualified_indented_repr

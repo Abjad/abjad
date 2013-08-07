@@ -9,6 +9,8 @@ from abjad.tools.componenttools.Component import Component
 
 
 class Leaf(Component):
+    '''A note, rest, chord or skip.
+    '''
 
     ### CLASS VARIABLES ##
 
@@ -424,7 +426,7 @@ class Leaf(Component):
     def detach_grace_containers(self, kind=None):
         r'''Detaches grace containers attached to leaf.
 
-        Returns tuple of detached grace containers.
+        Returns tuple.
         '''
         grace_containers = self.get_grace_containers(kind=kind)
         for grace_container in grace_containers:
