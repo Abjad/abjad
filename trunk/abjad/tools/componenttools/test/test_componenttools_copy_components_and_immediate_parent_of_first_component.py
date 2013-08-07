@@ -158,9 +158,9 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
 
 def test_componenttools_copy_components_and_immediate_parent_of_first_component_07():
 
-    t = Staff([Note(n, (1, 8)) for n in range(8)])
-    spannertools.BeamSpanner(t[:4])
-    u = componenttools.copy_components_and_immediate_parent_of_first_component(t[0:4])
+    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    spannertools.BeamSpanner(staff[:4])
+    u = componenttools.copy_components_and_immediate_parent_of_first_component(staff[0:4])
 
     beam_spanner = u[0]._get_spanner(spannertools.BeamSpanner)
     assert beam_spanner._is_my_first_leaf(u[0])

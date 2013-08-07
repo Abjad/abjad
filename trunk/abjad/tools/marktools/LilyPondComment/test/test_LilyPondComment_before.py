@@ -47,10 +47,10 @@ def test_LilyPondComment_before_02():
     r'''Leaf comments before.
     '''
 
-    t = Note(0, (1, 8))
-    t.override.beam.thickness = 3
-    marktools.LilyPondComment('Leaf comments before here.', 'before')(t)
-    marktools.LilyPondComment('More comments before.', 'before')(t)
+    note = Note(0, (1, 8))
+    note.override.beam.thickness = 3
+    marktools.LilyPondComment('Leaf comments before here.', 'before')(note)
+    marktools.LilyPondComment('More comments before.', 'before')(note)
 
     r'''
     % Leaf comments before here.
@@ -58,9 +58,9 @@ def test_LilyPondComment_before_02():
     \once \override Beam #'thickness = #3
     c'8'''
 
-    assert select(t).is_well_formed()
+    assert select(note).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        note.lilypond_format,
         r'''
         % Leaf comments before here.
         % More comments before.

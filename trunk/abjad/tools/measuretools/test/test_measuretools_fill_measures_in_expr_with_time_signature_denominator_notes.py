@@ -6,8 +6,8 @@ def test_measuretools_fill_measures_in_expr_with_time_signature_denominator_note
     r'''Populate non-power-of-two measure with time signature denominator notes.
     '''
 
-    t = Measure((5, 18), [])
-    measuretools.fill_measures_in_expr_with_time_signature_denominator_notes(t)
+    measure = Measure((5, 18), [])
+    measuretools.fill_measures_in_expr_with_time_signature_denominator_notes(measure)
 
     r'''
     {
@@ -22,9 +22,9 @@ def test_measuretools_fill_measures_in_expr_with_time_signature_denominator_note
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 5/18

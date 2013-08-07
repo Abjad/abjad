@@ -86,7 +86,7 @@ def test_ResidueClass_operator_or_06():
     r'''OR.
     '''
 
-    t = ResidueClass(2, 1) | ResidueClass(3, 0)
+    residueclass = ResidueClass(2, 1) | ResidueClass(3, 0)
 
-    assert t.get_boolean_train(6) == [1,1,0,1,0,1]
-    assert t.get_congruent_bases(6) == [0,1,3,5,6]
+    assert residueclass.get_boolean_train(6) == [1,1,0,1,0,1]
+    assert residueclass.get_congruent_bases(6) == [0,1,3,5,6]

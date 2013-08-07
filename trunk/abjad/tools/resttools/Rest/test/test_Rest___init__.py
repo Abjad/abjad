@@ -194,9 +194,9 @@ def test_Rest___init___14():
     r'''Init multiple rests from spanned notes.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
-    for note in t:
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:])
+    for note in voice:
         rest = Rest(note)
         componenttools.move_parentage_and_spanners_from_components_to_components([note], [rest])
 
@@ -210,7 +210,7 @@ def test_Rest___init___14():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             r8 [

@@ -7,11 +7,11 @@ def test_spannertools_get_spanners_covered_by_components_01():
     r'''Return unordered set of spanners completely covered
         by the time bounds of thread-contiguous components.'''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beam = spannertools.BeamSpanner(t[0][:])
-    slur = spannertools.SlurSpanner(t[1][:])
-    trill = spannertools.TrillSpanner(t.select_leaves())
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    beam = spannertools.BeamSpanner(voice[0][:])
+    slur = spannertools.SlurSpanner(voice[1][:])
+    trill = spannertools.TrillSpanner(voice.select_leaves())
 
     r'''
     \new Voice {
@@ -26,21 +26,21 @@ def test_spannertools_get_spanners_covered_by_components_01():
     }
     '''
 
-    spanners = spannertools.get_spanners_covered_by_components([t])
+    spanners = spannertools.get_spanners_covered_by_components([voice])
     assert len(spanners) == 3
     assert beam in spanners
     assert slur in spanners
     assert trill in spanners
 
-    spanners = spannertools.get_spanners_covered_by_components(t.select_leaves())
+    spanners = spannertools.get_spanners_covered_by_components(voice.select_leaves())
     assert len(spanners) == 3
     assert beam in spanners
     assert slur in spanners
     assert trill in spanners
 
-    spanners = spannertools.get_spanners_covered_by_components(t[0:1])
+    spanners = spannertools.get_spanners_covered_by_components(voice[0:1])
     assert len(spanners) == 1
     assert beam in spanners
 
-    spanners = spannertools.get_spanners_covered_by_components(t.select_leaves()[0:1])
+    spanners = spannertools.get_spanners_covered_by_components(voice.select_leaves()[0:1])
     assert spanners == set([])

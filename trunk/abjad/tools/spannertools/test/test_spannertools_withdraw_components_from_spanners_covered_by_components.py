@@ -6,9 +6,9 @@ def test_spannertools_withdraw_components_from_spanners_covered_by_components_01
     r'''Withdraw from all spanners covered by components.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:2])
-    spannertools.SlurSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:2])
+    spannertools.SlurSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -19,7 +19,7 @@ def test_spannertools_withdraw_components_from_spanners_covered_by_components_01
     }
     '''
 
-    spannertools.withdraw_components_from_spanners_covered_by_components(t[:2])
+    spannertools.withdraw_components_from_spanners_covered_by_components(voice[:2])
 
     r'''
     \new Voice {
@@ -30,9 +30,9 @@ def test_spannertools_withdraw_components_from_spanners_covered_by_components_01
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 (

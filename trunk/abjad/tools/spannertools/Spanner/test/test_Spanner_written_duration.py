@@ -3,11 +3,11 @@ from abjad import *
 
 
 def test_Spanner_written_duration_01():
-    t = Voice([Measure((2, 12), "c'8 d'8"),
+    voice = Voice([Measure((2, 12), "c'8 d'8"),
         Measure((2, 8), "c'8 d'8")])
-    beam = spannertools.BeamSpanner(t.select_leaves())
-    crescendo = spannertools.CrescendoSpanner(t[0][:])
-    decrescendo = spannertools.DecrescendoSpanner(t[1][:])
+    beam = spannertools.BeamSpanner(voice.select_leaves())
+    crescendo = spannertools.CrescendoSpanner(voice[0][:])
+    decrescendo = spannertools.DecrescendoSpanner(voice[1][:])
 
     r'''
     \new Voice {

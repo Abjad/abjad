@@ -366,5 +366,5 @@ def test_measuretools_scale_measure_and_adjust_time_signature_11():
     r'''Raise ZeroDivisionError when multiplier equals zero.
     '''
 
-    t = Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
-    py.test.raises(ZeroDivisionError, 'measuretools.scale_measure_and_adjust_time_signature(t, 0)')
+    measure = Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
+    py.test.raises(ZeroDivisionError, 'measuretools.scale_measure_and_adjust_time_signature(measure, 0)')

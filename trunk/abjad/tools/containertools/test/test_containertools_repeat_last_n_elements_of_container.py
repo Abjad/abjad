@@ -96,8 +96,8 @@ def test_containertools_repeat_last_n_elements_of_container_02():
     r'''Cyclic extend tuplets in voice.
     '''
 
-    t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
 
     r'''
     \new Voice {
@@ -114,7 +114,7 @@ def test_containertools_repeat_last_n_elements_of_container_02():
     }
     '''
 
-    containertools.repeat_last_n_elements_of_container(t, 2, total=2)
+    containertools.repeat_last_n_elements_of_container(voice, 2, total=2)
 
     r'''
     \new Voice {
@@ -141,9 +141,9 @@ def test_containertools_repeat_last_n_elements_of_container_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             \times 2/3 {

@@ -74,8 +74,8 @@ def test_pitchtools_set_ascending_named_diatonic_pitches_on_tie_chains_in_expr_0
     r'''Diatonicize tie chains in staff according to key signature.
     '''
 
-    t = Staff(notetools.make_notes(0, [(5, 32)] * 4))
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t, contexttools.KeySignatureMark('fs', 'major'))
+    staff = Staff(notetools.make_notes(0, [(5, 32)] * 4))
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff, contexttools.KeySignatureMark('fs', 'major'))
 
     r'''
     \new Staff {
@@ -90,9 +90,9 @@ def test_pitchtools_set_ascending_named_diatonic_pitches_on_tie_chains_in_expr_0
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             fs'8 ~

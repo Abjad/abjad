@@ -146,8 +146,8 @@ def test_componenttools_partition_components_by_durations_exactly_04():
 
 def test_componenttools_partition_components_by_durations_exactly_05():
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     r'''
     \new Staff {
@@ -168,9 +168,9 @@ def test_componenttools_partition_components_by_durations_exactly_05():
 
     groups = \
         componenttools.partition_components_by_durations_exactly(
-        t.select_leaves(), [Duration(3, 8)], cyclic=False, in_seconds=False, overhang=False)
+        staff.select_leaves(), [Duration(3, 8)], cyclic=False, in_seconds=False, overhang=False)
 
     "[[Note(c'', 8), Note(b', 8), Note(a', 8)]]"
 
     assert len(groups) == 1
-    assert groups[0] == list(t.select_leaves()[:3])
+    assert groups[0] == list(staff.select_leaves()[:3])

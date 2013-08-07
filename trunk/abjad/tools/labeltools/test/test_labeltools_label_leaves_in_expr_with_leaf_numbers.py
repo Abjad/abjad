@@ -68,8 +68,8 @@ def test_labeltools_label_leaves_in_expr_with_leaf_numbers_02():
     r'''Optional markup direction keyword.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    labeltools.label_leaves_in_expr_with_leaf_numbers(t, markup_direction=Up)
+    staff = Staff("c'8 d'8 e'8 f'8")
+    labeltools.label_leaves_in_expr_with_leaf_numbers(staff, markup_direction=Up)
 
     r'''
     \new Staff {
@@ -96,9 +96,9 @@ def test_labeltools_label_leaves_in_expr_with_leaf_numbers_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8

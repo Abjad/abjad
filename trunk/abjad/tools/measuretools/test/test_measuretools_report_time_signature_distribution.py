@@ -5,7 +5,7 @@ from abjad import *
 def test_measuretools_report_time_signature_distribution_01():
 
     time_signatures = [(1, 8), (3, 16), (5, 16), (5, 16)]
-    t = Staff(measuretools.make_measures_with_full_measure_spacer_skips(time_signatures))
+    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(time_signatures))
 
     r'''
     \new Staff {
@@ -28,7 +28,7 @@ def test_measuretools_report_time_signature_distribution_01():
     }
     '''
 
-    report = measuretools.report_time_signature_distribution(t)
+    report = measuretools.report_time_signature_distribution(staff)
 
     r'''
         1/8     1

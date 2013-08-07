@@ -40,7 +40,7 @@ def test_spannertools_get_spanners_on_components_or_component_children_03():
     r'''Return empty set when no spanners.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    spanners = spannertools.get_spanners_on_components_or_component_children(t[:])
+    staff = Staff("c'8 d'8 e'8 f'8")
+    spanners = spannertools.get_spanners_on_components_or_component_children(staff[:])
 
     assert spanners == set([])

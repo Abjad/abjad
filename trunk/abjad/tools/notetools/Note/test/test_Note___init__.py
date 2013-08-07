@@ -194,5 +194,5 @@ def test_Note___init___18():
     '''
 
     c = Chord("<c'!? e' g'>4")
-    t = Note(c)
-    assert t.lilypond_format == "c'!?4"
+    note = Note(c)
+    assert note.lilypond_format == "c'!?4"

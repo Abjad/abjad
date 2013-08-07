@@ -78,8 +78,8 @@ def test_Component_select_descendants_04():
     r'''Nothing crosses 100.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     r'''
     \new Staff {
@@ -92,7 +92,7 @@ def test_Component_select_descendants_04():
     }
     '''
 
-    cross_offset = t.get_timespan().start_offset + Duration(100)
-    result = t.select_descendants(cross_offset=cross_offset)
+    cross_offset = staff.get_timespan().start_offset + Duration(100)
+    result = staff.select_descendants(cross_offset=cross_offset)
 
     assert result == []

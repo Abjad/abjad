@@ -78,13 +78,13 @@ def test_BeamSpanner_span_differently_named_02():
     r'''Abjad does NOT let you span across Staves, even if they and
     all its sub-contexts are equally named.'''
 
-    t = Container(Staff(Voice(notetools.make_repeated_notes(4)) * 2) * 2)
-    t[0].is_parallel = True
-    t[1].is_parallel = True
-    t[0].name, t[1].name = 'foo', 'foo'
-    t[0][0].name, t[1][0].name = 'first', 'first'
-    t[0][1].name, t[1][1].name = 'second', 'second'
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
+    container = Container(Staff(Voice(notetools.make_repeated_notes(4)) * 2) * 2)
+    container[0].is_parallel = True
+    container[1].is_parallel = True
+    container[0].name, container[1].name = 'foo', 'foo'
+    container[0][0].name, container[1][0].name = 'first', 'first'
+    container[0][1].name, container[1][1].name = 'second', 'second'
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
 
     r'''
     {
@@ -119,4 +119,4 @@ def test_BeamSpanner_span_differently_named_02():
     }
     '''
 
-    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner([t[0][0], t[1][0]])')
+    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner([container[0][0], container[1][0]])')

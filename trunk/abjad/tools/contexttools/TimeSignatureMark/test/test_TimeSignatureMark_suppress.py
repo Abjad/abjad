@@ -43,8 +43,8 @@ def test_TimeSignatureMark_suppress_02():
     r'''Suppressing time signature without power-of-two denominator raises exception.
     '''
 
-    t = Measure((8, 9), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    t.get_effective_context_mark(
+    measure = Measure((8, 9), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    measure.get_effective_context_mark(
         contexttools.TimeSignatureMark).suppress = True
 
-    assert py.test.raises(Exception, 't.lilypond_format')
+    assert py.test.raises(Exception, 'measure.lilypond_format')

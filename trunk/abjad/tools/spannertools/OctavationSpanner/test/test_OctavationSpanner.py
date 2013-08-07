@@ -212,14 +212,14 @@ def test_OctavationSpanner_06():
     r'''Overlapping octavation spanners are allowed but not well-formed.
     '''
 
-    t = Staff([Note(n, (1, 8)) for n in range(8)])
-    spannertools.OctavationSpanner(t[:4], 1)
-    spannertools.OctavationSpanner(t[2:6], 2)
+    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    spannertools.OctavationSpanner(staff[:4], 1)
+    spannertools.OctavationSpanner(staff[2:6], 2)
     checker = OverlappingOctavationCheck()
 
-    assert not checker.check(t)
+    assert not checker.check(staff)
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \ottava #1

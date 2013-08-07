@@ -12,5 +12,5 @@ def test_SliceSelection_is_well_formed_01():
 def test_SliceSelection_is_well_formed_02():
     r'''Well-formedness checking runs correctly against containers.
     '''
-    t = Staff([Note(n, (1, 8)) for n in range(8)])
-    assert select(t).is_well_formed()
+    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    assert select(staff).is_well_formed()

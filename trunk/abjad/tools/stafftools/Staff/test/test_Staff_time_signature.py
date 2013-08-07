@@ -79,9 +79,9 @@ def test_Staff_time_signature_04():
     r'''Staff time signature set and then clear.
     '''
 
-    t = Staff(Note("c'4") * 8)
-    contexttools.TimeSignatureMark((2, 4))(t)
-    t.get_effective_context_mark(contexttools.TimeSignatureMark).detach()
-    for leaf in t:
+    staff = Staff(Note("c'4") * 8)
+    contexttools.TimeSignatureMark((2, 4))(staff)
+    staff.get_effective_context_mark(contexttools.TimeSignatureMark).detach()
+    for leaf in staff:
         assert leaf.get_effective_context_mark(
             contexttools.TimeSignatureMark) is None

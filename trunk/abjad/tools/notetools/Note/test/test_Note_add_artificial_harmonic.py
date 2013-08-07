@@ -59,8 +59,8 @@ def test_Note_add_artificial_harmonic_03():
     r'''Works in staves.
     '''
 
-    t = Staff([Note(n, (1, 8)) for n in range(8)])
-    t[2].add_artificial_harmonic()
+    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    staff[2].add_artificial_harmonic()
 
     r'''
     \new Staff {
@@ -79,9 +79,9 @@ def test_Note_add_artificial_harmonic_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8

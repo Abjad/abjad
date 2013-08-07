@@ -587,9 +587,9 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_13():
     Pass start and stop indices local to measure.
     '''
 
-    t = Staff(Measure((3, 9), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((3, 9), notetools.make_repeated_notes(3)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -612,7 +612,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_13():
     }
     '''
 
-    u = componenttools.copy_governed_component_subtree_by_leaf_range(t[1], 1, 3)
+    u = componenttools.copy_governed_component_subtree_by_leaf_range(staff[1], 1, 3)
     measuretools.set_always_format_time_signature_of_measures_in_expr(u)
 
     r'''
@@ -627,7 +627,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_13():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,

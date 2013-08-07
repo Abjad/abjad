@@ -76,16 +76,16 @@ def test_ResidueClass_08():
     r'''get_congruent_bases() and get_boolean_train() must take
     range parameters.'''
 
-    t = RC(1, 0)
+    rc = RC(1, 0)
 
-    py.test.raises(Exception, 't = t. get_congruent_bases()')
-    py.test.raises(Exception, 't = t. get_boolean_train()')
+    py.test.raises(Exception, 'rc = rc. get_congruent_bases()')
+    py.test.raises(Exception, 'rc = rc. get_boolean_train()')
 
-    assert isinstance(t.get_congruent_bases(12), list)
-    assert isinstance(t.get_boolean_train(12), list)
+    assert isinstance(rc.get_congruent_bases(12), list)
+    assert isinstance(rc.get_boolean_train(12), list)
 
-    assert t.get_congruent_bases(99) == range(100)
-    assert t.get_congruent_bases(-10, 99) == range(-10, 100)
+    assert rc.get_congruent_bases(99) == range(100)
+    assert rc.get_congruent_bases(-10, 99) == range(-10, 100)
 
-    assert t.get_boolean_train(12) == [1] * 12
-    assert t.get_boolean_train(-2, 12) == [1] * 14
+    assert rc.get_boolean_train(12) == [1] * 12
+    assert rc.get_boolean_train(-2, 12) == [1] * 14

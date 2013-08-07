@@ -684,9 +684,9 @@ def test_containertools_split_container_by_counts_12():
     r'''Partition by empty part counts list.
     Input container returns within one-element result list.'''
 
-    t = Voice([Container("c'8 d'8 e'8 f'8")])
-    spannertools.BeamSpanner(t[0])
-    spannertools.SlurSpanner(t[0].select_leaves())
+    voice = Voice([Container("c'8 d'8 e'8 f'8")])
+    spannertools.BeamSpanner(voice[0])
+    spannertools.SlurSpanner(voice[0].select_leaves())
 
     r'''
     \new Voice {
@@ -699,7 +699,7 @@ def test_containertools_split_container_by_counts_12():
     }
     '''
 
-    parts = containertools.split_container_by_counts(t[0], [], cyclic=False, fracture_spanners=True)
+    parts = containertools.split_container_by_counts(voice[0], [], cyclic=False, fracture_spanners=True)
 
     r'''
     \new Voice {
@@ -712,10 +712,10 @@ def test_containertools_split_container_by_counts_12():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert len(parts) == 1
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {

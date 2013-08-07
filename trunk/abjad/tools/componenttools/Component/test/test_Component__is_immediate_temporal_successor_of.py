@@ -391,19 +391,19 @@ def test_Component__is_immediate_temporal_successor_of_12():
     s1 = Container([s1])
     s2 = Container([Note(i, (1, 8)) for i in range(4, 8)])
     s2 = Container([s2])
-    t = Voice([s1, s2])
+    voice = Voice([s1, s2])
 
-    assert t[0]._is_immediate_temporal_successor_of(t[1])
-    assert t[0]._is_immediate_temporal_successor_of(t[1][0])
-    assert t[0]._is_immediate_temporal_successor_of(t[1][0][0])
+    assert voice[0]._is_immediate_temporal_successor_of(voice[1])
+    assert voice[0]._is_immediate_temporal_successor_of(voice[1][0])
+    assert voice[0]._is_immediate_temporal_successor_of(voice[1][0][0])
 
-    assert t[0][0]._is_immediate_temporal_successor_of(t[1])
-    assert t[0][0]._is_immediate_temporal_successor_of(t[1][0])
-    assert t[0][0]._is_immediate_temporal_successor_of(t[1][0][0])
+    assert voice[0][0]._is_immediate_temporal_successor_of(voice[1])
+    assert voice[0][0]._is_immediate_temporal_successor_of(voice[1][0])
+    assert voice[0][0]._is_immediate_temporal_successor_of(voice[1][0][0])
 
-    assert t[0][0][-1]._is_immediate_temporal_successor_of(t[1])
-    assert t[0][0][-1]._is_immediate_temporal_successor_of(t[1][0])
-    assert t[0][0][-1]._is_immediate_temporal_successor_of(t[1][0][0])
+    assert voice[0][0][-1]._is_immediate_temporal_successor_of(voice[1])
+    assert voice[0][0][-1]._is_immediate_temporal_successor_of(voice[1][0])
+    assert voice[0][0][-1]._is_immediate_temporal_successor_of(voice[1][0][0])
 
     r'''
     \new Voice {

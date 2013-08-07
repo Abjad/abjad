@@ -414,8 +414,8 @@ def test_Component_get_effective_context_mark_19():
     r'''InputSetExpression and then clearing works as expected.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    time_signature = contexttools.TimeSignatureMark((2, 8))(t[0])
+    staff = Staff("c'8 d'8 e'8 f'8")
+    time_signature = contexttools.TimeSignatureMark((2, 8))(staff[0])
     time_signature.detach()
 
     r'''
@@ -427,6 +427,6 @@ def test_Component_get_effective_context_mark_19():
     }
     '''
 
-    for leaf in t:
+    for leaf in staff:
         assert leaf.get_effective_context_mark(
             contexttools.TimeSignatureMark) is None

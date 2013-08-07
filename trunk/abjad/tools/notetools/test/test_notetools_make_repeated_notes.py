@@ -6,7 +6,7 @@ def test_notetools_make_repeated_notes_01():
     r'''Allow nonassignable durations.
     '''
 
-    t = Voice(notetools.make_repeated_notes(2, (5, 16)))
+    voice = Voice(notetools.make_repeated_notes(2, (5, 16)))
 
     r'''
     \new Voice {
@@ -18,7 +18,7 @@ def test_notetools_make_repeated_notes_01():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'4 ~

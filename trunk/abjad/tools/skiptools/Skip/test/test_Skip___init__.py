@@ -129,10 +129,10 @@ def test_Skip___init___11():
     r'''Init skip from spanned rest.
     '''
 
-    t = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
-    spannertools.BeamSpanner(t[:])
-    skip = skiptools.Skip(t[1])
+    staff = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
+    spannertools.BeamSpanner(staff[:])
+    skip = skiptools.Skip(staff[1])
     assert isinstance(skip, skiptools.Skip)
-    assert isinstance(t[1], Rest)
-    assert t[1]._parent is t
+    assert isinstance(staff[1], Rest)
+    assert staff[1]._parent is staff
     assert skip._parent is None

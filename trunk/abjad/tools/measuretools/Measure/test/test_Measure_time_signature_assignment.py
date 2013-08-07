@@ -6,7 +6,7 @@ def test_Measure_time_signature_assignment_01():
     r'''Measures allow timesignature reassignment.
     '''
 
-    t = Measure((4, 8), "c'8 d'8 e'8 f'8")
+    measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
 
     r'''
     {
@@ -18,9 +18,9 @@ def test_Measure_time_signature_assignment_01():
     }
     '''
 
-    t.pop()
-    t.select().detach_marks(contexttools.TimeSignatureMark)
-    contexttools.TimeSignatureMark((3, 8))(t)
+    measure.pop()
+    measure.select().detach_marks(contexttools.TimeSignatureMark)
+    contexttools.TimeSignatureMark((3, 8))(measure)
 
     r'''
     {
@@ -32,7 +32,7 @@ def test_Measure_time_signature_assignment_01():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 3/8

@@ -41,9 +41,9 @@ def test_leaftools_repeat_leaves_in_expr_02():
     r'''Multiply each leaf in voice by 2.
     '''
 
-    t = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
-    leaftools.repeat_leaves_in_expr(t, total=3)
+    voice = Voice("c'8 d'8 e'8")
+    spannertools.BeamSpanner(voice[:])
+    leaftools.repeat_leaves_in_expr(voice, total=3)
 
     r'''
     \new Voice {
@@ -59,9 +59,9 @@ def test_leaftools_repeat_leaves_in_expr_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [

@@ -33,5 +33,5 @@ def test_Container_get_duration_02():
     r'''Container can not calculate duration in seconds
         without tempo indication.'''
 
-    t = Container("c'8 d'8 e'8 f'8")
-    assert py.test.raises(MissingTempoError, 't.get_duration(in_seconds=True)')
+    container = Container("c'8 d'8 e'8 f'8")
+    assert py.test.raises(MissingTempoError, 'container.get_duration(in_seconds=True)')

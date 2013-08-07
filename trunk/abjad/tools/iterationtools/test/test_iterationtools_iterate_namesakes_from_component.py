@@ -290,8 +290,8 @@ def test_iterationtools_iterate_namesakes_from_component_08():
     r'''Optional start and stop keywords.
     '''
 
-    t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     r'''
     \new Staff {
@@ -308,9 +308,9 @@ def test_iterationtools_iterate_namesakes_from_component_08():
     }
     '''
 
-    g = iterationtools.iterate_namesakes_from_component(t.select_leaves()[1], start=2)
+    g = iterationtools.iterate_namesakes_from_component(staff.select_leaves()[1], start=2)
 
-    assert g.next() is t.select_leaves()[3]
-    assert g.next() is t.select_leaves()[4]
-    assert g.next() is t.select_leaves()[5]
+    assert g.next() is staff.select_leaves()[3]
+    assert g.next() is staff.select_leaves()[4]
+    assert g.next() is staff.select_leaves()[5]
     assert py.test.raises(StopIteration, 'g.next()')

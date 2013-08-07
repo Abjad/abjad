@@ -16,5 +16,5 @@ def test_iotools_play_02():
     r'''A score can be played.
     '''
     notes = [Note(i, (1, 64)) for i in range(10)]
-    t = Score([Staff(notes)])
-    play(t)
+    score = Score([Staff(notes)])
+    play(score)

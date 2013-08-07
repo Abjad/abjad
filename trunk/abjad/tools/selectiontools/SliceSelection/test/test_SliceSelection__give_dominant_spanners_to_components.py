@@ -92,9 +92,9 @@ def test_SliceSelection__give_dominant_spanners_to_components_02():
     r'''Not composer-safe.
     '''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[:])
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -109,11 +109,11 @@ def test_SliceSelection__give_dominant_spanners_to_components_02():
     }
     '''
 
-    donor = t[0]
+    donor = voice[0]
     recipient = Voice("c'8 d'8 e'8 f'8")
-    t[:1]._give_dominant_spanners_to_components([recipient])
+    voice[:1]._give_dominant_spanners_to_components([recipient])
 
-    "Container t is now ..."
+    "Container voice is now ..."
 
     r'''
     \new Voice {
@@ -129,7 +129,7 @@ def test_SliceSelection__give_dominant_spanners_to_components_02():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {
@@ -167,7 +167,7 @@ def test_SliceSelection__give_dominant_spanners_to_components_02():
         '''
         )
 
-    "Both container t and recipient container carry discontiguous spanners."
+    "Both container voice and recipient container carry discontiguous spanners."
 
-    assert not select(t).is_well_formed()
+    assert not select(voice).is_well_formed()
     assert not select(recipient).is_well_formed()

@@ -4,17 +4,17 @@ from abjad import *
 
 def test_measuretools_append_spacer_skips_to_underfull_measures_in_expr_01():
 
-    t = Staff(Measure((3, 8), "c'8 d'8 e'8") * 3)
-    t[1].select().detach_marks(contexttools.TimeSignatureMark)
-    contexttools.TimeSignatureMark((4, 8))(t[1])
-    t[2].select().detach_marks(contexttools.TimeSignatureMark)
-    contexttools.TimeSignatureMark((5, 8))(t[2])
+    staff = Staff(Measure((3, 8), "c'8 d'8 e'8") * 3)
+    staff[1].select().detach_marks(contexttools.TimeSignatureMark)
+    contexttools.TimeSignatureMark((4, 8))(staff[1])
+    staff[2].select().detach_marks(contexttools.TimeSignatureMark)
+    contexttools.TimeSignatureMark((5, 8))(staff[2])
 
-    assert not t[0].is_underfull
-    assert t[1].is_underfull
-    assert t[2].is_underfull
+    assert not staff[0].is_underfull
+    assert staff[1].is_underfull
+    assert staff[2].is_underfull
 
-    measuretools.append_spacer_skips_to_underfull_measures_in_expr(t)
+    measuretools.append_spacer_skips_to_underfull_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -41,9 +41,9 @@ def test_measuretools_append_spacer_skips_to_underfull_measures_in_expr_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {

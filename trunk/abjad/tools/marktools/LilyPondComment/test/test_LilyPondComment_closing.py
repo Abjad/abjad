@@ -42,10 +42,10 @@ def test_LilyPondComment_closing_02():
     r'''Test leaf comments closing.
     '''
 
-    t = Note(0, (1, 8))
-    t.override.beam.thickness = 3
-    marktools.LilyPondComment('Leaf closing comments here.', 'closing')(t)
-    marktools.LilyPondComment('More leaf closing comments.', 'closing')(t)
+    note = Note(0, (1, 8))
+    note.override.beam.thickness = 3
+    marktools.LilyPondComment('Leaf closing comments here.', 'closing')(note)
+    marktools.LilyPondComment('More leaf closing comments.', 'closing')(note)
 
     r'''
     \once \override Beam #'thickness = #3
@@ -54,9 +54,9 @@ def test_LilyPondComment_closing_02():
     % More leaf closing comments.
     '''
 
-    assert select(t).is_well_formed()
+    assert select(note).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        note.lilypond_format,
         r'''
         \once \override Beam #'thickness = #3
         c'8

@@ -109,17 +109,17 @@ def test_lily_voice_resolution_04():
     Two like-structured parallels in the middle of the run.
     '''
 
-    t = Container(notetools.make_repeated_notes(2))
-    t[1:1] = Container(Voice(notetools.make_repeated_notes(2)) * 2) * 2
-    t[1].is_parallel = True
-    t[1][0].name = 'alto'
-    t[1][1].name = 'soprano'
-    t[2][0].name = 'alto'
-    t[2][1].name = 'soprano'
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    container = Container(notetools.make_repeated_notes(2))
+    container[1:1] = Container(Voice(notetools.make_repeated_notes(2)) * 2) * 2
+    container[1].is_parallel = True
+    container[1][0].name = 'alto'
+    container[1][1].name = 'soprano'
+    container[2][0].name = 'alto'
+    container[2][1].name = 'soprano'
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(container)
 
-    t[1][1].override.note_head.color = 'red'
-    t[2][1].override.note_head.color = 'red'
+    container[1][1].override.note_head.color = 'red'
+    container[2][1].override.note_head.color = 'red'
 
     r'''
     {

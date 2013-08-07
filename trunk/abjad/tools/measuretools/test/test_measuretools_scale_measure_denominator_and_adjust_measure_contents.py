@@ -144,8 +144,8 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_04()
     Nonassignable 9/8 multiplier induces ties.
     '''
 
-    t = Measure((2, 8), "c'8 d'8")
-    spannertools.BeamSpanner(t[:])
+    measure = Measure((2, 8), "c'8 d'8")
+    spannertools.BeamSpanner(measure[:])
 
     r'''
     {
@@ -155,7 +155,7 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_04()
     }
     '''
 
-    measuretools.scale_measure_denominator_and_adjust_measure_contents(t, 9)
+    measuretools.scale_measure_denominator_and_adjust_measure_contents(measure, 9)
 
     r'''
     {
@@ -169,9 +169,9 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_04()
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 9/36

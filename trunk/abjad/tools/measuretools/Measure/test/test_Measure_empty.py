@@ -20,11 +20,11 @@ def test_Measure_empty_02():
 
 
 def test_Measure_empty_03():
-    t = Measure((4, 5), [])
-    assert repr(t) == 'Measure(4/5)'
-    assert str(t) == '|4/5|'
-    assert py.test.raises(UnderfullContainerError, 't.lilypond_format')
-    assert len(t) == 0
-    assert t._preprolated_duration == 0
-    assert t.get_duration() == 0
-    assert not select(t).is_well_formed()
+    measure = Measure((4, 5), [])
+    assert repr(measure) == 'Measure(4/5)'
+    assert str(measure) == '|4/5|'
+    assert py.test.raises(UnderfullContainerError, 'measure.lilypond_format')
+    assert len(measure) == 0
+    assert measure._preprolated_duration == 0
+    assert measure.get_duration() == 0
+    assert not select(measure).is_well_formed()

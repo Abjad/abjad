@@ -6,8 +6,8 @@ def test_pitchtools_set_ascending_named_chromatic_pitches_on_tie_chains_in_expr_
     r'''Appictation works on tie chains.
     '''
 
-    t = Voice(notetools.make_notes(0, [(5, 32)] * 4))
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
+    voice = Voice(notetools.make_notes(0, [(5, 32)] * 4))
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(voice)
 
     r'''
     \new Voice {
@@ -22,9 +22,9 @@ def test_pitchtools_set_ascending_named_chromatic_pitches_on_tie_chains_in_expr_
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 ~

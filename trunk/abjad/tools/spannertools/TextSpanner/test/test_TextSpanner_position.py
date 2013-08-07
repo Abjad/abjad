@@ -124,8 +124,8 @@ def test_TextSpanner_position_05():
     r'''TextSpanner attaching to container formats correctly.
     '''
 
-    t = Staff(notetools.make_repeated_notes(4))
-    p = spannertools.TextSpanner(t)
+    staff = Staff(notetools.make_repeated_notes(4))
+    p = spannertools.TextSpanner(staff)
 
     r'''
     \new Staff {
@@ -137,7 +137,7 @@ def test_TextSpanner_position_05():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8 \startTextSpan

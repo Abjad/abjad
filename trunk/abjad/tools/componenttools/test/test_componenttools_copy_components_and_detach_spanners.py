@@ -342,11 +342,11 @@ def test_componenttools_copy_components_and_detach_spanners_05():
     Use optional 'n' argument for multiple copies.
     '''
 
-    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
-    slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    beam = spannertools.BeamSpanner(voice[:2] + voice[2][:] + voice[3][:])
+    slur = spannertools.SlurSpanner(voice[0][:] + voice[1][:] + voice[2:])
+    measuretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     r'''
     \new Voice {
@@ -373,7 +373,7 @@ def test_componenttools_copy_components_and_detach_spanners_05():
     }
     '''
 
-    result = componenttools.copy_components_and_detach_spanners(t[-2:], 3)
+    result = componenttools.copy_components_and_detach_spanners(voice[-2:], 3)
     new = Voice(result)
     measuretools.set_always_format_time_signature_of_measures_in_expr(new)
 

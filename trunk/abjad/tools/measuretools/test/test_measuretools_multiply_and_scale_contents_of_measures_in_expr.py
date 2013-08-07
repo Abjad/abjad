@@ -160,9 +160,9 @@ def test_measuretools_multiply_and_scale_contents_of_measures_in_expr_04():
         Time signature 3/16 goes to 6/64.
         Numerator doubles and denominator quadruples.'''
 
-    t = Measure((3, 16), "c'16 d'16 e'16")
-    spannertools.BeamSpanner(t[:])
-    measuretools.multiply_and_scale_contents_of_measures_in_expr(t, [(2, 4)])
+    measure = Measure((3, 16), "c'16 d'16 e'16")
+    spannertools.BeamSpanner(measure[:])
+    measuretools.multiply_and_scale_contents_of_measures_in_expr(measure, [(2, 4)])
 
     r'''
     {
@@ -176,9 +176,9 @@ def test_measuretools_multiply_and_scale_contents_of_measures_in_expr_04():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 6/64

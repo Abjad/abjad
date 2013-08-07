@@ -81,15 +81,15 @@ def test_FixedDurationTuplet_in_place_apply_05():
 
 
 def test_FixedDurationTuplet_in_place_apply_06():
-    t = Staff([Note(n, (1, 8)) for n in range(8)])
-    leaves_before = t.select_leaves()
-    tuplettools.FixedDurationTuplet(Duration(2, 8), t[0:3])
-    leaves_after = t.select_leaves()
+    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    leaves_before = staff.select_leaves()
+    tuplettools.FixedDurationTuplet(Duration(2, 8), staff[0:3])
+    leaves_after = staff.select_leaves()
     assert leaves_before == leaves_after
-    assert len(t) == 6
-    for i, x in enumerate(t):
+    assert len(staff) == 6
+    for i, x in enumerate(staff):
         if i == 0:
             assert isinstance(x, tuplettools.FixedDurationTuplet)
         else:
             assert isinstance(x, Note)
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()

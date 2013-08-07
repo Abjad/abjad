@@ -531,8 +531,8 @@ def test_Container___setitem___slice_13():
     use del(container) instead.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    inner = Container(t[1:3])
+    staff = Staff("c'8 d'8 e'8 f'8")
+    inner = Container(staff[1:3])
     outer = Container([inner])
     beam = spannertools.BeamSpanner(inner[:])
 
@@ -562,7 +562,7 @@ def test_Container___setitem___slice_13():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8
@@ -593,8 +593,8 @@ def test_Container___setitem___slice_13():
 
     # ALTERNATIVE: use del(container)
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    inner = Container(t[1:3])
+    staff = Staff("c'8 d'8 e'8 f'8")
+    inner = Container(staff[1:3])
     outer = Container([inner])
     beam = spannertools.BeamSpanner(inner[:])
 

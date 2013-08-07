@@ -36,8 +36,8 @@ def test_spannertools_iterate_components_in_spanner_01():
 
 def test_spannertools_iterate_components_in_spanner_02():
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    spanner = spannertools.BeamSpanner(t[2:])
+    staff = Staff("c'8 d'8 e'8 f'8")
+    spanner = spannertools.BeamSpanner(staff[2:])
 
     notes = spannertools.iterate_components_in_spanner(spanner)
-    assert list(notes) == t[2:]
+    assert list(notes) == staff[2:]

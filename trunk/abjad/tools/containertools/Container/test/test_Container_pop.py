@@ -53,9 +53,9 @@ def test_Container_pop_02():
     r'''Containers pop nested containers correctly.
         Popped containers detach from both parent and spanners.'''
 
-    t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    p = spannertools.BeamSpanner(t[:])
+    staff = Staff(Container(notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    p = spannertools.BeamSpanner(staff[:])
 
     r'''
     \new Staff {
@@ -70,7 +70,7 @@ def test_Container_pop_02():
     }
     '''
 
-    sequential = t.pop()
+    sequential = staff.pop()
 
     r'''
     \new Staff {
@@ -82,7 +82,7 @@ def test_Container_pop_02():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -92,7 +92,7 @@ def test_Container_pop_02():
         }
         '''
         )
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
 
     r'''
     {

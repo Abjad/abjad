@@ -455,9 +455,9 @@ def test_Component_extend_in_parent_12():
     r'''Extend leaf leftwards of interior leaf. Do extend interior spanners.
     '''
 
-    t = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
-    result = t[1].extend_in_parent(
+    voice = Voice("c'8 d'8 e'8")
+    spannertools.BeamSpanner(voice[:])
+    result = voice[1].extend_in_parent(
         [Note(1.5, (1, 8))], 
         direction=Left,
         grow_spanners=False,
@@ -472,9 +472,9 @@ def test_Component_extend_in_parent_12():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [
@@ -484,4 +484,4 @@ def test_Component_extend_in_parent_12():
         }
         '''
         )
-    assert result == t[1:3]
+    assert result == voice[1:3]

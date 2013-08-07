@@ -996,9 +996,9 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_26():
     r'''Excise nested fixed-multiplier tuplet.
     '''
 
-    #t = Tuplet(Fraction(2,3), [Note(0, (1,2)), Note(1, (1,2)),
+    #tuplet = Tuplet(Fraction(2,3), [Note(0, (1,2)), Note(1, (1,2)),
     #    Tuplet(Fraction(2,3), [Note(i, (1,4)) for i in range(2, 5)])])
-    t = Tuplet(Fraction(2,3), [Note(0, (1,2)), Note(1, (1,2)),
+    tuplet = Tuplet(Fraction(2,3), [Note(0, (1,2)), Note(1, (1,2)),
         Tuplet(Fraction(2,3), [Note(i, (1,4)) for i in range(2, 5)])])
 
     r'''
@@ -1013,7 +1013,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_26():
     }
     '''
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[-1])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(tuplet.select_leaves()[-1])
 
     r'''
     \times 2/3 {
@@ -1026,9 +1026,9 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_26():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        tuplet.lilypond_format,
         r'''
         \times 2/3 {
             c'2

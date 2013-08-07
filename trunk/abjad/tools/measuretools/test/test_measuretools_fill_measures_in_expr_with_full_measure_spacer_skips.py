@@ -130,7 +130,7 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_03():
     Iteration control tests measure length.
     '''
 
-    t = Staff([
+    staff = Staff([
         Measure((2, 8), "c'8 d'8"),
         Measure((3, 8), "c'8 d'8 e'8"),
         Measure((4, 8), "c'8 d'8 e'8 f'8"),
@@ -159,7 +159,7 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_03():
     }
     '''
 
-    measuretools.fill_measures_in_expr_with_full_measure_spacer_skips(t, lambda m, i: 2 < len(m))
+    measuretools.fill_measures_in_expr_with_full_measure_spacer_skips(staff, lambda m, i: 2 < len(m))
 
     r'''
     \new Staff {
@@ -179,9 +179,9 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {

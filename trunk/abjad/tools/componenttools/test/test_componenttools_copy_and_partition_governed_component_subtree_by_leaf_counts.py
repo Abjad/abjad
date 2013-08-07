@@ -60,9 +60,9 @@ def test_componenttools_copy_and_partition_governed_component_subtree_by_leaf_co
     r'''Partition voice.
     '''
 
-    t = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
-    result = componenttools.copy_and_partition_governed_component_subtree_by_leaf_counts(t, [1, 2])
+    voice = Voice("c'8 d'8 e'8")
+    spannertools.BeamSpanner(voice[:])
+    result = componenttools.copy_and_partition_governed_component_subtree_by_leaf_counts(voice, [1, 2])
 
     r'''
     \new Voice {
@@ -72,9 +72,9 @@ def test_componenttools_copy_and_partition_governed_component_subtree_by_leaf_co
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [

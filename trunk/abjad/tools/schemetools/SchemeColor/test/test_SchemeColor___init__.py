@@ -27,8 +27,8 @@ def test_SchemeColor___init___02():
     r'''Normal (non-X11) color names specify with a string.
     '''
 
-    t = Note("c'4")
-    t.override.note_head.color = 'grey'
+    note = Note("c'4")
+    note.override.note_head.color = 'grey'
 
     r'''
     \once \override NoteHead #'color = #grey
@@ -36,7 +36,7 @@ def test_SchemeColor___init___02():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        note.lilypond_format,
         r'''
         \once \override NoteHead #'color = #grey
         c'4

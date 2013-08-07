@@ -90,8 +90,8 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02():
     onto measure with tied note values.
     '''
 
-    t = Measure((5, 8), [tuplettools.FixedDurationTuplet(Duration(5, 8), "c'8 d'8 e'8 f'8 g'8 a'8")])
-    measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature(t)
+    measure = Measure((5, 8), [tuplettools.FixedDurationTuplet(Duration(5, 8), "c'8 d'8 e'8 f'8 g'8 a'8")])
+    measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature(measure)
 
     r'''
     {
@@ -114,7 +114,7 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 15/24
@@ -136,7 +136,7 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02():
         '''
         )
 
-    measuretools.move_measure_prolation_to_full_measure_tuplet(t)
+    measuretools.move_measure_prolation_to_full_measure_tuplet(measure)
 
     r'''
     {
@@ -153,9 +153,9 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 5/8

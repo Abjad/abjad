@@ -3,8 +3,8 @@ from abjad import *
 
 
 def test_ComplexGlissandoSpanner_01():
-    t = Staff("c'8 d'8 r8 e'8")
-    gliss = spannertools.ComplexGlissandoSpanner(t.select_leaves()[:])
+    staff = Staff("c'8 d'8 r8 e'8")
+    gliss = spannertools.ComplexGlissandoSpanner(staff.select_leaves()[:])
     assert isinstance(gliss, spannertools.ComplexGlissandoSpanner)
 
     '''
@@ -19,7 +19,7 @@ def test_ComplexGlissandoSpanner_01():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8 \glissando

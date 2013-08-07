@@ -6,8 +6,8 @@ def test_measuretools_fill_measures_in_expr_with_repeated_notes_01():
     r'''Populate non-power-of-two measure with note train.
     '''
 
-    t = Measure((5, 18), [])
-    measuretools.fill_measures_in_expr_with_repeated_notes(t, Duration(1, 16))
+    measure = Measure((5, 18), [])
+    measuretools.fill_measures_in_expr_with_repeated_notes(measure, Duration(1, 16))
 
     r'''
     {
@@ -22,9 +22,9 @@ def test_measuretools_fill_measures_in_expr_with_repeated_notes_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 5/18

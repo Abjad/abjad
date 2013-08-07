@@ -487,9 +487,9 @@ def test_leaftools_split_leaf_at_offset_19():
     r'''Grace notes are removed from second leaf in bipartition.
     '''
 
-    t = Note("c'4")
-    leaftools.GraceContainer([Note(0, (1, 32))])(t)
-    halves = leaftools.split_leaf_at_offset(t, Duration(1, 16))
+    note = Note("c'4")
+    leaftools.GraceContainer([Note(0, (1, 32))])(note)
+    halves = leaftools.split_leaf_at_offset(note, Duration(1, 16))
 
     assert len(halves[0]) == 1
     assert len(halves[1]) == 1

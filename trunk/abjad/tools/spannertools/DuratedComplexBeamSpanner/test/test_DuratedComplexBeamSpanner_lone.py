@@ -58,8 +58,8 @@ def test_DuratedComplexBeamSpanner_lone_03():
     r'''Ignore lone when spanner spans more than one leaf.
     '''
 
-    t = Voice("c'8 d'8")
-    spannertools.DuratedComplexBeamSpanner(t, lone=False)
+    voice = Voice("c'8 d'8")
+    spannertools.DuratedComplexBeamSpanner(voice, lone=False)
 
     r'''
     \new Voice {
@@ -72,9 +72,9 @@ def test_DuratedComplexBeamSpanner_lone_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             \set stemLeftBeamCount = #0

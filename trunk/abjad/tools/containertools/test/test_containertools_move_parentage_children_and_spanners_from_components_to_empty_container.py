@@ -276,7 +276,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     to empty measure.
     '''
 
-    t = Measure((4, 8), "c'8 d'8 e'8 f'8")
+    measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
 
     r'''
     {
@@ -289,7 +289,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     '''
 
     u = Measure((4, 8), [])
-    containertools.move_parentage_children_and_spanners_from_components_to_empty_container([t], u)
+    containertools.move_parentage_children_and_spanners_from_components_to_empty_container([measure], u)
 
     r'''
     {

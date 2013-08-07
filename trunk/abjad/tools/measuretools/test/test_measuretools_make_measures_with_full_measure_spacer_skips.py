@@ -6,8 +6,8 @@ def test_measuretools_make_measures_with_full_measure_spacer_skips_01():
     r'''Make list of skip-populated rigid measures.
     '''
 
-    t = Staff(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (5, 16), (5, 16), (1, 4)]))
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (5, 16), (5, 16), (1, 4)]))
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -31,7 +31,7 @@ def test_measuretools_make_measures_with_full_measure_spacer_skips_01():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {

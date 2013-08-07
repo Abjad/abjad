@@ -50,14 +50,14 @@ def test_Leaf_number_05():
     r'''Leaves number correctly after contents rotation.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
+    staff = Staff("c'8 d'8 e'8 f'8")
 
-    assert t[0].leaf_index == 0
-    assert t[1].leaf_index == 1
-    assert t[2].leaf_index == 2
-    assert t[3].leaf_index == 3
+    assert staff[0].leaf_index == 0
+    assert staff[1].leaf_index == 1
+    assert staff[2].leaf_index == 2
+    assert staff[3].leaf_index == 3
 
-    t[:] = (t[-2:] + t[:2])
+    staff[:] = (staff[-2:] + staff[:2])
 
     r'''
     \new Staff {
@@ -68,9 +68,9 @@ def test_Leaf_number_05():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             e'8
@@ -81,7 +81,7 @@ def test_Leaf_number_05():
         '''
         )
 
-    assert t[0].leaf_index == 0
-    assert t[1].leaf_index == 1
-    assert t[2].leaf_index == 2
-    assert t[3].leaf_index == 3
+    assert staff[0].leaf_index == 0
+    assert staff[1].leaf_index == 1
+    assert staff[2].leaf_index == 2
+    assert staff[3].leaf_index == 3

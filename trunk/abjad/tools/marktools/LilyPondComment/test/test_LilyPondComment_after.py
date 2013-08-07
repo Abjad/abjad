@@ -46,10 +46,10 @@ def test_LilyPondComment_after_02():
     r'''Leaf comments after.
     '''
 
-    t = Note(0, (1, 8))
-    t.override.beam.thickness = 3
-    marktools.LilyPondComment('Leaf comments after here.', 'after')(t)
-    marktools.LilyPondComment('More comments after.', 'after')(t)
+    note = Note(0, (1, 8))
+    note.override.beam.thickness = 3
+    marktools.LilyPondComment('Leaf comments after here.', 'after')(note)
+    marktools.LilyPondComment('More comments after.', 'after')(note)
 
     r'''
     \once \override Beam #'thickness = #3
@@ -57,9 +57,9 @@ def test_LilyPondComment_after_02():
     % Leaf comments after here.
     % More comments after.'''
 
-    assert select(t).is_well_formed()
+    assert select(note).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        note.lilypond_format,
         r'''
         \once \override Beam #'thickness = #3
         c'8

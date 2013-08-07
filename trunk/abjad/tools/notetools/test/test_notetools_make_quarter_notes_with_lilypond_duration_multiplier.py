@@ -6,7 +6,7 @@ def test_notetools_make_quarter_notes_with_lilypond_duration_multiplier_01():
 
     multipliers = [(1, 4), (1, 5), (1, 6), (1, 7)]
     notes = notetools.make_quarter_notes_with_lilypond_duration_multiplier([0], multipliers)
-    t = Staff(notes)
+    staff = Staff(notes)
 
     r'''
     \new Staff {
@@ -17,9 +17,9 @@ def test_notetools_make_quarter_notes_with_lilypond_duration_multiplier_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'4 * 1

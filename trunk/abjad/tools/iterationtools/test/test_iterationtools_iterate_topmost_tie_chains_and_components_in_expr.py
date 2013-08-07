@@ -6,10 +6,10 @@ def test_iterationtools_iterate_topmost_tie_chains_and_components_in_expr_01():
     r'''Iterate toplevel contents with tie chains in place of leaves.
     '''
 
-    t = Staff(notetools.make_notes(0, [(5, 32)] * 4))
-    t.insert(4, tuplettools.FixedDurationTuplet(
+    staff = Staff(notetools.make_notes(0, [(5, 32)] * 4))
+    staff.insert(4, tuplettools.FixedDurationTuplet(
         Duration(2, 8), notetools.make_repeated_notes(3)))
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     r'''
     \new Staff {
@@ -30,10 +30,10 @@ def test_iterationtools_iterate_topmost_tie_chains_and_components_in_expr_01():
     '''
 
     chained_contents = list(
-        iterationtools.iterate_topmost_tie_chains_and_components_in_expr(t))
+        iterationtools.iterate_topmost_tie_chains_and_components_in_expr(staff))
 
-    assert chained_contents[0] == t[0].select_tie_chain()
-    assert chained_contents[1] == t[2].select_tie_chain()
-    assert chained_contents[2] is t[4]
-    assert chained_contents[3] == t[5].select_tie_chain()
-    assert chained_contents[4] == t[7].select_tie_chain()
+    assert chained_contents[0] == staff[0].select_tie_chain()
+    assert chained_contents[1] == staff[2].select_tie_chain()
+    assert chained_contents[2] is staff[4]
+    assert chained_contents[3] == staff[5].select_tie_chain()
+    assert chained_contents[4] == staff[7].select_tie_chain()

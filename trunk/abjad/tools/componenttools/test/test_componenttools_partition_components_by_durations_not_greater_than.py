@@ -116,8 +116,8 @@ def test_componenttools_partition_components_by_durations_not_greater_than_03():
 
 def test_componenttools_partition_components_by_durations_not_greater_than_04():
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     r'''
     \new Staff {
@@ -137,9 +137,9 @@ def test_componenttools_partition_components_by_durations_not_greater_than_04():
     '''
 
     parts = componenttools.partition_components_by_durations_not_greater_than(
-        t.select_leaves(), [Duration(3, 16)], cyclic=False, in_seconds=False, overhang=False)
+        staff.select_leaves(), [Duration(3, 16)], cyclic=False, in_seconds=False, overhang=False)
 
     "[[Note(c', 8)]]"
 
     assert len(parts) == 1
-    assert parts[0] == list(t.select_leaves()[:1])
+    assert parts[0] == list(staff.select_leaves()[:1])

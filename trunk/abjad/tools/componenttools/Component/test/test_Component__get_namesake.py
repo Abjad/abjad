@@ -113,7 +113,7 @@ def test_Component__get_namesake_09():
     b[0].name = 'voiceOne'
     b[1].name = 'voiceTwo'
     b.is_parallel = True
-    t = Staff([a, b])
+    staff = Staff([a, b])
 
     r'''
     \new Staff {

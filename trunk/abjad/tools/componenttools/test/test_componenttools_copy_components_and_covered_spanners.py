@@ -162,11 +162,11 @@ def test_componenttools_copy_components_and_covered_spanners_03():
     r'''With optional 'n' argument for multiple copies.
     '''
 
-    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beam = spannertools.BeamSpanner(t.select_leaves()[:4])
-    slur = spannertools.SlurSpanner(t[-2:])
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    beam = spannertools.BeamSpanner(voice.select_leaves()[:4])
+    slur = spannertools.SlurSpanner(voice[-2:])
+    measuretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     r'''
     \new Voice {
@@ -193,7 +193,7 @@ def test_componenttools_copy_components_and_covered_spanners_03():
     }
     '''
 
-    result = componenttools.copy_components_and_covered_spanners(t[-3:], 2)
+    result = componenttools.copy_components_and_covered_spanners(voice[-3:], 2)
     new = Voice(result)
     measuretools.set_always_format_time_signature_of_measures_in_expr(new)
 
@@ -222,9 +222,9 @@ def test_componenttools_copy_components_and_covered_spanners_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {

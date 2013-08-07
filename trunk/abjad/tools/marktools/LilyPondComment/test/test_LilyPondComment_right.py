@@ -45,19 +45,19 @@ def test_LilyPondComment_right_02():
     r'''Leaf comments right.
     '''
 
-    t = Note(0, (1, 8))
-    t.override.beam.thickness = 3
-    marktools.LilyPondComment('Leaf comments right here.', 'right')(t)
-    marktools.LilyPondComment('More comments right.', 'right')(t)
+    note = Note(0, (1, 8))
+    note.override.beam.thickness = 3
+    marktools.LilyPondComment('Leaf comments right here.', 'right')(note)
+    marktools.LilyPondComment('More comments right.', 'right')(note)
 
     r'''
     \once \override Beam #'thickness = #3
     c'8 % Leaf comments right here. % More comments right.
     '''
 
-    assert select(t).is_well_formed()
+    assert select(note).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        note.lilypond_format,
         r'''
         \once \override Beam #'thickness = #3
         c'8 % Leaf comments right here. % More comments right.

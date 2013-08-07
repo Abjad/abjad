@@ -363,10 +363,10 @@ def test_measuretools_fuse_measures_09():
     With change in number of note heads because of non-power-of-two multiplier.
     '''
 
-    t = Staff([
+    staff = Staff([
         Measure((9, 80), []),
         Measure((2, 16), [])])
-    measuretools.fill_measures_in_expr_with_time_signature_denominator_notes(t)
+    measuretools.fill_measures_in_expr_with_time_signature_denominator_notes(staff)
 
     r'''
     \new Staff {
@@ -392,7 +392,7 @@ def test_measuretools_fuse_measures_09():
     }
     '''
 
-    new = measuretools.fuse_measures(t[:])
+    new = measuretools.fuse_measures(staff[:])
 
     r'''
     {
@@ -415,9 +415,9 @@ def test_measuretools_fuse_measures_09():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {

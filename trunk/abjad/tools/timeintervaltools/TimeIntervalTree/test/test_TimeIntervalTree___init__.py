@@ -50,9 +50,9 @@ def test_TimeIntervalTree___init___04():
     TimeIntervals and / or trees.'''
     a = TimeInterval(0, 10)
     b = TimeInterval(5, 15)
-    t = TimeIntervalTree([a, b])
+    timeintervaltree = TimeIntervalTree([a, b])
     c = TimeInterval(21, 23)
     d = TimeInterval(2001, 2009)
-    tree = TimeIntervalTree([a, b, [c, d], [[t]]])
+    tree = TimeIntervalTree([a, b, [c, d], [[timeintervaltree]]])
     assert [x.signature for x in tree] == \
         [(0, 10), (0, 10), (5, 15), (5, 15), (21, 23), (2001, 2009)]

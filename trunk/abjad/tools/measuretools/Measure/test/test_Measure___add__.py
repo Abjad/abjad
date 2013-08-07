@@ -65,7 +65,7 @@ def test_Measure___add___02():
     spannertools.BeamSpanner(t1[:])
     t2 = Measure((2, 16), "c'16 d'16")
     spannertools.SlurSpanner(t2[:])
-    t = Staff([t1, t2])
+    staff = Staff([t1, t2])
 
     r'''
     \new Staff {
@@ -97,9 +97,9 @@ def test_Measure___add___02():
     assert new is not t1 and new is not t2
     assert len(t1) == 0
     assert len(t2) == 0
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {

@@ -174,9 +174,9 @@ def test_Chord_13():
     r'''Set chord item to pitch or number.
     '''
 
-    t = Chord([2, 4], (1,4))
-    t[0] = pitchtools.NamedChromaticPitch(5)
-    assert t.lilypond_format == "<e' f'>4"
+    chord = Chord([2, 4], (1,4))
+    chord[0] = pitchtools.NamedChromaticPitch(5)
+    assert chord.lilypond_format == "<e' f'>4"
 
-    t[0] = 7
-    assert t.lilypond_format == "<f' g'>4"
+    chord[0] = 7
+    assert chord.lilypond_format == "<f' g'>4"

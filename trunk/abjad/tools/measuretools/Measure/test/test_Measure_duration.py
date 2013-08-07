@@ -89,10 +89,10 @@ def test_Measure_duration_04():
     r'''Impropely filled measure without power-of-two time signature denominator.
     '''
 
-    t = Measure((3, 10), "c'8 d'8 e'8 f'8")
+    measure = Measure((3, 10), "c'8 d'8 e'8 f'8")
 
-    assert py.test.raises(OverfullContainerError, 't.lilypond_format')
+    assert py.test.raises(OverfullContainerError, 'measure.lilypond_format')
 
-    assert t._contents_duration == Duration(4, 8)
-    assert t._preprolated_duration == Duration(4, 10)
-    assert t.get_duration() == Duration(4, 10)
+    assert measure._contents_duration == Duration(4, 8)
+    assert measure._preprolated_duration == Duration(4, 10)
+    assert measure.get_duration() == Duration(4, 10)

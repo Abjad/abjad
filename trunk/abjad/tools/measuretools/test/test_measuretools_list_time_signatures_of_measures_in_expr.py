@@ -35,7 +35,7 @@ def test_measuretools_list_time_signatures_of_measures_in_expr_02():
     r'''Extract ordered list of time signature pairs from components.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
+    staff = Staff("c'8 d'8 e'8 f'8")
 
     r'''
     \new Staff {
@@ -46,5 +46,5 @@ def test_measuretools_list_time_signatures_of_measures_in_expr_02():
     }
     '''
 
-    time_signature_list = measuretools.list_time_signatures_of_measures_in_expr(t[:])
+    time_signature_list = measuretools.list_time_signatures_of_measures_in_expr(staff[:])
     assert time_signature_list == []

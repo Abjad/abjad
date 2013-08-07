@@ -3,8 +3,8 @@ from abjad import *
 
 
 def test_DuratedComplexBeamSpanner_direction_01():
-    t = Voice("c'16 d'16 e'16 f'16")
-    spannertools.DuratedComplexBeamSpanner(t, durations=[(1, 8), (1, 8)], span=1, direction=Up)
+    voice = Voice("c'16 d'16 e'16 f'16")
+    spannertools.DuratedComplexBeamSpanner(voice, durations=[(1, 8), (1, 8)], span=1, direction=Up)
 
     r'''
     \new Voice {
@@ -23,9 +23,9 @@ def test_DuratedComplexBeamSpanner_direction_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             \set stemLeftBeamCount = #0

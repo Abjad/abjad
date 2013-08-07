@@ -62,8 +62,8 @@ def test_FreeTupletSelection_move_prolation_to_contents_and_remove_02():
     of tuplet to contents.
     '''
 
-    t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
 
     r'''
     \new Voice {
@@ -80,7 +80,7 @@ def test_FreeTupletSelection_move_prolation_to_contents_and_remove_02():
     }
     '''
 
-    selection = selectiontools.select_tuplets(t[0])
+    selection = selectiontools.select_tuplets(voice[0])
     selection.move_prolation_to_contents_and_remove()
 
     r'''
@@ -102,9 +102,9 @@ def test_FreeTupletSelection_move_prolation_to_contents_and_remove_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             \times 2/3 {

@@ -127,12 +127,12 @@ def test_Measure_in_place_apply_03():
 
 def test_Measure_in_place_apply_04():
 
-    t = Staff([Note(n, (1, 1)) for n in range(4)])
-    Measure((1, 1), t[:1])
-    Measure((1, 1), t[1:2])
-    Measure((1, 1), t[2:3])
-    Measure((1, 1), t[3:])
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff([Note(n, (1, 1)) for n in range(4)])
+    Measure((1, 1), staff[:1])
+    Measure((1, 1), staff[1:2])
+    Measure((1, 1), staff[2:3])
+    Measure((1, 1), staff[3:])
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -155,9 +155,9 @@ def test_Measure_in_place_apply_04():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {

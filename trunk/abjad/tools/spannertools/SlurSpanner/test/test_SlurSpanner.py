@@ -36,14 +36,14 @@ def test_SlurSpanner_02():
     r'''Slur spanner can attach to leaves.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    s = spannertools.SlurSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    s = spannertools.SlurSpanner(voice[:])
 
-    assert len(t.get_spanners()) == 0
-    for leaf in t.select_leaves():
+    assert len(voice.get_spanners()) == 0
+    for leaf in voice.select_leaves():
         assert leaf.get_spanners() == set([s])
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 (

@@ -75,7 +75,7 @@ def test_Parentage__get_governor_04( ):
     either a parallel container or None.
     '''
 
-    t = Staff([Voice([Container("c'8 d'8 e'8 f'8")])])
+    staff = Staff([Voice([Container("c'8 d'8 e'8 f'8")])])
 
     r'''
     \new Staff {
@@ -90,6 +90,6 @@ def test_Parentage__get_governor_04( ):
     }
     '''
 
-    assert t[0][0].select_parentage()._get_governor() is t
-    assert t[0].select_parentage()._get_governor() is t
-    assert t.select_parentage()._get_governor() is t
+    assert staff[0][0].select_parentage()._get_governor() is staff
+    assert staff[0].select_parentage()._get_governor() is staff
+    assert staff.select_parentage()._get_governor() is staff

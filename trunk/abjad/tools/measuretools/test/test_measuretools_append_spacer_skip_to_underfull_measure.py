@@ -49,12 +49,12 @@ def test_measuretools_append_spacer_skip_to_underfull_measure_02():
     r'''Handles regular measure with no time signature prolation.
     '''
 
-    t = Measure((4, 8), "c'8 d'8 e'8 f'8")
-    t.select().detach_marks(contexttools.TimeSignatureMark)
-    contexttools.TimeSignatureMark((5, 8))(t)
-    assert t.is_underfull
+    measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
+    measure.select().detach_marks(contexttools.TimeSignatureMark)
+    contexttools.TimeSignatureMark((5, 8))(measure)
+    assert measure.is_underfull
 
-    measuretools.append_spacer_skip_to_underfull_measure(t)
+    measuretools.append_spacer_skip_to_underfull_measure(measure)
 
 
     r'''
@@ -68,9 +68,9 @@ def test_measuretools_append_spacer_skip_to_underfull_measure_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 5/8

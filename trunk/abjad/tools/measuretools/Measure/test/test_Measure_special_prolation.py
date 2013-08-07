@@ -74,13 +74,13 @@ def test_Measure_special_prolation_06():
     contribute nontrivially to prolation.
     '''
 
-    t = Measure((4, 5), [
+    measure = Measure((4, 5), [
         Note("c'4"),
         tuplettools.FixedDurationTuplet(Duration(2, 4), [
             tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3),
             Note("c'4")]),
         Note("c'4")])
-    assert t.select_leaves()[0].written_duration == Duration(1, 4)
-    assert t.select_leaves()[0].get_duration() == Duration(1, 5)
-    assert t.select_leaves()[1].written_duration == Duration(1, 4)
-    assert t.select_leaves()[1].get_duration() == Duration(4, 45)
+    assert measure.select_leaves()[0].written_duration == Duration(1, 4)
+    assert measure.select_leaves()[0].get_duration() == Duration(1, 5)
+    assert measure.select_leaves()[1].written_duration == Duration(1, 4)
+    assert measure.select_leaves()[1].get_duration() == Duration(4, 45)

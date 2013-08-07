@@ -15,10 +15,10 @@ def test_BracketSpanner___init___02():
     and with no nibs at left and right broken edges.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BracketSpanner(t[1])
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BracketSpanner(staff[1])
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -57,7 +57,7 @@ def test_BracketSpanner___init___02():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {

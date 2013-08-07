@@ -139,7 +139,7 @@ def test_pitchtools_set_default_accidental_spelling_04():
     '''
 
     pitchtools.set_default_accidental_spelling('mixed')
-    t = Staff([Note(n, (1, 8)) for n in range(12)])
+    staff = Staff([Note(n, (1, 8)) for n in range(12)])
 
     r'''
     \new Staff {
@@ -159,7 +159,7 @@ def test_pitchtools_set_default_accidental_spelling_04():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8

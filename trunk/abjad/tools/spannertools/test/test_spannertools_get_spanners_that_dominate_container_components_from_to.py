@@ -53,9 +53,9 @@ def test_spannertools_get_spanners_that_dominate_container_components_from_to_03
     r'''Get dominant spanners over four-component slice.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(t[:2])
-    glissando = spannertools.GlissandoSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    beam = spannertools.BeamSpanner(voice[:2])
+    glissando = spannertools.GlissandoSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -66,7 +66,7 @@ def test_spannertools_get_spanners_that_dominate_container_components_from_to_03
     }
     '''
 
-    receipt = spannertools.get_spanners_that_dominate_container_components_from_to(t, 0, 4)
+    receipt = spannertools.get_spanners_that_dominate_container_components_from_to(voice, 0, 4)
 
     assert len(receipt) == 1
     assert (glissando, 0) in receipt

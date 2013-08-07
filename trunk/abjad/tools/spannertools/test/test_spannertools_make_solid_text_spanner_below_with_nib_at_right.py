@@ -4,8 +4,8 @@ from abjad import *
 
 def test_spannertools_make_solid_text_spanner_below_with_nib_at_right_01():
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    spannertools.make_solid_text_spanner_below_with_nib_at_right('foo', t[:])
+    staff = Staff("c'8 d'8 e'8 f'8")
+    spannertools.make_solid_text_spanner_below_with_nib_at_right('foo', staff[:])
 
     r'''
     \new Staff {
@@ -27,7 +27,7 @@ def test_spannertools_make_solid_text_spanner_below_with_nib_at_right_01():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \override TextSpanner #'bound-details #'left #'text = \markup { foo }

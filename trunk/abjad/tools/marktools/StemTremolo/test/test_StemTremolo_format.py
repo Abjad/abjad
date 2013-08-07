@@ -28,8 +28,8 @@ def test_StemTremolo_format_03():
     r'''Tremolo formats correctly on rests.
     '''
 
-    t = Rest((1, 4))
-    marktools.StemTremolo(8)(t)
-    assert t.lilypond_format == "r4 :8"
-    t.select().detach_marks()
-    assert t.lilypond_format == "r4"
+    rest = Rest((1, 4))
+    marktools.StemTremolo(8)(rest)
+    assert rest.lilypond_format == "r4 :8"
+    rest.select().detach_marks()
+    assert rest.lilypond_format == "r4"

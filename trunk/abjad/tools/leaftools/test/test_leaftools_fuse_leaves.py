@@ -50,9 +50,9 @@ def test_leaftools_fuse_leaves_05():
     r'''Fuse leaves with differing LilyPond multipliers.
     '''
 
-    t = Staff([skiptools.Skip((1, 1)), skiptools.Skip((1, 1))])
-    t[0].lilypond_duration_multiplier = Duration(1, 16)
-    t[1].lilypond_duration_multiplier = Duration(5, 16)
+    staff = Staff([skiptools.Skip((1, 1)), skiptools.Skip((1, 1))])
+    staff[0].lilypond_duration_multiplier = Duration(1, 16)
+    staff[1].lilypond_duration_multiplier = Duration(5, 16)
 
     r'''
     \new Staff {
@@ -61,9 +61,9 @@ def test_leaftools_fuse_leaves_05():
     }
     '''
 
-    assert t.get_duration() == Duration(3, 8)
+    assert staff.get_duration() == Duration(3, 8)
 
-    result = leaftools.fuse_leaves(t[:])
+    result = leaftools.fuse_leaves(staff[:])
 
     r'''
     \new Staff {
@@ -71,6 +71,6 @@ def test_leaftools_fuse_leaves_05():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(result) == 1
-    assert t.get_duration() == Duration(3, 8)
+    assert staff.get_duration() == Duration(3, 8)

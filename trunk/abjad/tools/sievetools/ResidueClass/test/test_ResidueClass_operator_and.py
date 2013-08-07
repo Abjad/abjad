@@ -88,7 +88,7 @@ def test_ResidueClass_operator_and_06():
     r'''AND.
     '''
 
-    t = ResidueClass(2, 1) & ResidueClass(3, 0)
+    residueclass = ResidueClass(2, 1) & ResidueClass(3, 0)
 
-    assert t.get_boolean_train(6) == [0,0,0,1,0,0]
-    assert t.get_congruent_bases(6) == [3]
+    assert residueclass.get_boolean_train(6) == [0,0,0,1,0,0]
+    assert residueclass.get_congruent_bases(6) == [3]

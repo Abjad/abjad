@@ -164,10 +164,10 @@ def test_spannertools_get_spanners_that_dominate_components_09():
     r'''Works on empty containers.
         Implementation does not depend on component duration.'''
 
-    t = Voice(Container([]) * 3)
-    beam = spannertools.BeamSpanner(t[:2])
-    glissando = spannertools.GlissandoSpanner(t[1:])
-    trill = spannertools.TrillSpanner(t.select_leaves())
+    voice = Voice(Container([]) * 3)
+    beam = spannertools.BeamSpanner(voice[:2])
+    glissando = spannertools.GlissandoSpanner(voice[1:])
+    trill = spannertools.TrillSpanner(voice.select_leaves())
 
     r'''
     \new Voice {
@@ -180,7 +180,7 @@ def test_spannertools_get_spanners_that_dominate_components_09():
     }
     '''
 
-    receipt = spannertools.get_spanners_that_dominate_components(t[:1])
+    receipt = spannertools.get_spanners_that_dominate_components(voice[:1])
 
     "Only beam dominates first container."
 

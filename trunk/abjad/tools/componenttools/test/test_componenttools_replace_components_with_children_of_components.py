@@ -128,10 +128,10 @@ def test_componenttools_replace_components_with_children_of_components_04():
     r'''Slip multiple containers.
     '''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.select_leaves())
-    spannertools.GlissandoSpanner(t.select_leaves())
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.BeamSpanner(voice.select_leaves())
+    spannertools.GlissandoSpanner(voice.select_leaves())
 
     r'''
     \new Voice {
@@ -150,7 +150,7 @@ def test_componenttools_replace_components_with_children_of_components_04():
     }
     '''
 
-    componenttools.replace_components_with_children_of_components(t[:2])
+    componenttools.replace_components_with_children_of_components(voice[:2])
 
     r'''
     \new Voice {
@@ -165,9 +165,9 @@ def test_componenttools_replace_components_with_children_of_components_04():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [ \glissando

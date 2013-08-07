@@ -108,11 +108,11 @@ def test_SliceSelection__withdraw_from_crossing_spanners_03():
     r'''Withdraw thread-contiguous components from crossing spanners.
     '''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beam = spannertools.BeamSpanner(t[0][:])
-    slur = spannertools.SlurSpanner(t[1][:])
-    trill = spannertools.TrillSpanner(t.select_leaves())
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    beam = spannertools.BeamSpanner(voice[0][:])
+    slur = spannertools.SlurSpanner(voice[1][:])
+    trill = spannertools.TrillSpanner(voice.select_leaves())
 
     r'''
     \new Voice {
@@ -127,17 +127,17 @@ def test_SliceSelection__withdraw_from_crossing_spanners_03():
     }
     '''
 
-    spanners = spannertools.get_spanners_contained_by_components(t.select_leaves()[2:3])
+    spanners = spannertools.get_spanners_contained_by_components(voice.select_leaves()[2:3])
     assert len(spanners) == 2
     assert slur in spanners
     assert trill in spanners
 
-    t.select_leaves()[2:3]._withdraw_from_crossing_spanners()
+    voice.select_leaves()[2:3]._withdraw_from_crossing_spanners()
 
-    spanners = spannertools.get_spanners_contained_by_components(t.select_leaves()[2:3])
+    spanners = spannertools.get_spanners_contained_by_components(voice.select_leaves()[2:3])
     assert spanners == set([])
 
     "Operation leaves score tree in weird state."
     "Both slur and trill are now discontiguous."
 
-    assert not select(t).is_well_formed()
+    assert not select(voice).is_well_formed()

@@ -57,8 +57,8 @@ def test_Duration__group_nonreduced_fractions_by_implied_prolation_06():
 
 def test_Duration__group_nonreduced_fractions_by_implied_prolation_07():
     fractions = [(1, 24), (2, 24), (3, 24), (4, 24), (5, 24), (6, 24)]
-    t = Duration._group_nonreduced_fractions_by_implied_prolation(fractions)
-    assert t == [[
+    duration = Duration._group_nonreduced_fractions_by_implied_prolation(fractions)
+    assert duration == [[
         NonreducedFraction(1, 24), 
         NonreducedFraction(2, 24), 
         NonreducedFraction(3, 24), 

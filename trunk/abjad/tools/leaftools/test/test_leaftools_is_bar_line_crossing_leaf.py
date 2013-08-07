@@ -31,8 +31,8 @@ def test_leaftools_is_bar_line_crossing_leaf_02():
     r'''Works when no explicit time signature is attached.
     '''
 
-    t = Staff("c'2 d'1 e'2")
+    staff = Staff("c'2 d'1 e'2")
 
-    assert not leaftools.is_bar_line_crossing_leaf(t[0])
-    assert leaftools.is_bar_line_crossing_leaf(t[1])
-    assert not leaftools.is_bar_line_crossing_leaf(t[2])
+    assert not leaftools.is_bar_line_crossing_leaf(staff[0])
+    assert leaftools.is_bar_line_crossing_leaf(staff[1])
+    assert not leaftools.is_bar_line_crossing_leaf(staff[2])

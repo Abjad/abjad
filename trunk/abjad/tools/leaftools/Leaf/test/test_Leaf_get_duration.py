@@ -33,5 +33,5 @@ def test_Leaf_get_duration_02():
     r'''Clock duration can not calculate without tempo.
     '''
 
-    t = Note("c'4")
-    assert py.test.raises(MissingTempoError, 't.get_duration(in_seconds=True)')
+    note = Note("c'4")
+    assert py.test.raises(MissingTempoError, 'note.get_duration(in_seconds=True)')

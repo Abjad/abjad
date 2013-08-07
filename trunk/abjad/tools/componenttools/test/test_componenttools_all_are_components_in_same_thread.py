@@ -1246,9 +1246,9 @@ def test_componenttools_all_are_components_in_same_thread_42():
 
     p = Container(Voice(Note(0, (1, 8)) * 4) * 2)
     p.is_parallel = True
-    t = Container(Note(0, (1, 8)) * 4)
-    t.insert(2, p)
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
+    container = Container(Note(0, (1, 8)) * 4)
+    container.insert(2, p)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
 
     r'''
     {
@@ -1275,8 +1275,8 @@ def test_componenttools_all_are_components_in_same_thread_42():
 
     outer = (0, 1, 10, 11)
 
-    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in outer])
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[2:6])
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[6:10])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves()[:6])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert componenttools.all_are_components_in_same_thread([container.select_leaves()[i] for i in outer])
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[2:6])
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[6:10])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves()[:6])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves())

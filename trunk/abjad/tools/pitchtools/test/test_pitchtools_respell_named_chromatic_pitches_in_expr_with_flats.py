@@ -33,8 +33,8 @@ def test_pitchtools_respell_named_chromatic_pitches_in_expr_with_flats_04():
     r'''The pitchtools.respell_named_chromatic_pitches_in_expr_with_flats()
     helper renotates all pitches in any arbirary expression.'''
 
-    t = Staff([Note(n, (1, 8)) for n in range(12, 0, -1)])
-    pitchtools.respell_named_chromatic_pitches_in_expr_with_flats(t)
+    staff = Staff([Note(n, (1, 8)) for n in range(12, 0, -1)])
+    pitchtools.respell_named_chromatic_pitches_in_expr_with_flats(staff)
 
     r'''
     \new Staff {
@@ -54,7 +54,7 @@ def test_pitchtools_respell_named_chromatic_pitches_in_expr_with_flats_04():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c''8

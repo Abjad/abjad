@@ -72,9 +72,9 @@ def test_Spanner_extend_left_02():
     r'''Extend spanner to the left.
     '''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    p = spannertools.BeamSpanner(t[1])
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    p = spannertools.BeamSpanner(voice[1])
 
     r'''
     \new Voice {
@@ -93,7 +93,7 @@ def test_Spanner_extend_left_02():
     }
     '''
 
-    p.extend_left(t[0:1])
+    p.extend_left(voice[0:1])
 
     r'''
     \new Voice {
@@ -113,7 +113,7 @@ def test_Spanner_extend_left_02():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {

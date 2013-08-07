@@ -21,6 +21,6 @@ def test_Staff_extend_notes_03():
 
 
 def test_Staff_extend_notes_04():
-    t = Staff([Note(n, (1, 8)) for n in range(8)])
-    t.extend(componenttools.copy_components_and_immediate_parent_of_first_component(t[5:7]))
-    assert select(t).is_well_formed()
+    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    staff.extend(componenttools.copy_components_and_immediate_parent_of_first_component(staff[5:7]))
+    assert select(staff).is_well_formed()

@@ -129,7 +129,7 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_05():
     r'''Make train of written 1/16th notes within measure of 5/18.
     '''
 
-    t = Measure((5, 18), notetools.make_repeated_notes_with_shorter_notes_at_end(
+    measure = Measure((5, 18), notetools.make_repeated_notes_with_shorter_notes_at_end(
         0, Duration(1, 16), Duration(5, 18), prolation = Duration(16, 18)))
 
     r'''
@@ -145,9 +145,9 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_05():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 5/18

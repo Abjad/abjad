@@ -142,12 +142,12 @@ def test_Staff___setitem___09():
 def test_Staff___setitem___10():
     r'''Slice-assign measures.
     '''
-    t = Staff(Note(0, (1, 8)) * 8)
-    t[0:4] = Measure((2, 8), Note(0, (1, 8)) * 2) * 2
-    assert len(t) == 6
-    for i, x in enumerate(t):
+    staff = Staff(Note(0, (1, 8)) * 8)
+    staff[0:4] = Measure((2, 8), Note(0, (1, 8)) * 2) * 2
+    assert len(staff) == 6
+    for i, x in enumerate(staff):
         if i in [0, 1]:
             assert isinstance(x, Measure)
         else:
             assert isinstance(x, Note)
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()

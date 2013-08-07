@@ -4,9 +4,9 @@ from abjad import *
 
 def test_MeasuredComplexBeamSpanner_01():
 
-    t = Staff(Measure((2, 16), notetools.make_repeated_notes(2, Duration(1, 16))) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 16), notetools.make_repeated_notes(2, Duration(1, 16))) * 3)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -28,7 +28,7 @@ def test_MeasuredComplexBeamSpanner_01():
     }
     '''
 
-    beam = spannertools.MeasuredComplexBeamSpanner(t[:])
+    beam = spannertools.MeasuredComplexBeamSpanner(staff[:])
 
     r'''
     \new Staff {
@@ -62,9 +62,9 @@ def test_MeasuredComplexBeamSpanner_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {

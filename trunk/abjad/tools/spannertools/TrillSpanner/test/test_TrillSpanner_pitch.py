@@ -72,8 +72,8 @@ def test_TrillSpanner_pitch_03():
     r'''Clear with None.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    trill = spannertools.TrillSpanner(t[:2])
+    staff = Staff("c'8 d'8 e'8 f'8")
+    trill = spannertools.TrillSpanner(staff[:2])
     trill.pitch = pitchtools.NamedChromaticPitch(1)
     trill.pitch = None
 
@@ -86,9 +86,9 @@ def test_TrillSpanner_pitch_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8 \startTrillSpan

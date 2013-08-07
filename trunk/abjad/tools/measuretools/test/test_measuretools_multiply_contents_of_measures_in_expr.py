@@ -48,9 +48,9 @@ def test_measuretools_multiply_contents_of_measures_in_expr_02():
     r'''Multiply contents of each measure 3 times.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -72,7 +72,7 @@ def test_measuretools_multiply_contents_of_measures_in_expr_02():
     }
     '''
 
-    measuretools.multiply_contents_of_measures_in_expr(t, 2)
+    measuretools.multiply_contents_of_measures_in_expr(staff, 2)
 
     r'''
     \new Staff {
@@ -100,9 +100,9 @@ def test_measuretools_multiply_contents_of_measures_in_expr_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {

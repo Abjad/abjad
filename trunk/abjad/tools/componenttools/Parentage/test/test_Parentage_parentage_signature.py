@@ -102,8 +102,8 @@ def test_Parentage_parentage_signature_06():
     parentage signature.
     '''
 
-    t = Container(Staff(notetools.make_repeated_notes(2)) * 2)
-    t[0].name = t[1].name = 'staff'
+    container = Container(Staff(notetools.make_repeated_notes(2)) * 2)
+    container[0].name = container[1].name = 'staff'
 
     r'''
     {
@@ -118,14 +118,14 @@ def test_Parentage_parentage_signature_06():
     }
     '''
 
-    assert t.select_leaves()[0].select_parentage().parentage_signature == \
-        t.select_leaves()[1].select_parentage().parentage_signature
-    assert t.select_leaves()[0].select_parentage().parentage_signature == \
-        t.select_leaves()[2].select_parentage().parentage_signature
-    assert t.select_leaves()[2].select_parentage().parentage_signature == \
-        t.select_leaves()[3].select_parentage().parentage_signature
-    assert t.select_leaves()[2].select_parentage().parentage_signature == \
-        t.select_leaves()[0].select_parentage().parentage_signature
+    assert container.select_leaves()[0].select_parentage().parentage_signature == \
+        container.select_leaves()[1].select_parentage().parentage_signature
+    assert container.select_leaves()[0].select_parentage().parentage_signature == \
+        container.select_leaves()[2].select_parentage().parentage_signature
+    assert container.select_leaves()[2].select_parentage().parentage_signature == \
+        container.select_leaves()[3].select_parentage().parentage_signature
+    assert container.select_leaves()[2].select_parentage().parentage_signature == \
+        container.select_leaves()[0].select_parentage().parentage_signature
 
-    assert t.select_leaves()[0].select_parentage().parentage_signature == \
-        t.select_leaves()[1].select_parentage().parentage_signature
+    assert container.select_leaves()[0].select_parentage().parentage_signature == \
+        container.select_leaves()[1].select_parentage().parentage_signature

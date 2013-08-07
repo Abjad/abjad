@@ -61,5 +61,5 @@ def test_measuretools_get_likely_multiplier_of_components_07():
     r'''Return none when more than one likely multiplier.
     '''
 
-    t = Staff(notetools.make_notes([0], [(1, 8), (7, 32)]))
-    assert measuretools.get_likely_multiplier_of_components(t[:]) is None
+    staff = Staff(notetools.make_notes([0], [(1, 8), (7, 32)]))
+    assert measuretools.get_likely_multiplier_of_components(staff[:]) is None

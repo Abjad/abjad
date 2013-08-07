@@ -179,9 +179,9 @@ def test_iterationtools_iterate_thread_in_expr_14():
     v2 = Voice(Note(2, (1, 4)) * 2)
     v1.name = 'flute'
     v2.name = 'piccolo'
-    t = Staff([v1, v2])
-    thread_signature = t[0].select_parentage().containment_signature
-    iter = iterationtools.iterate_thread_in_expr(t, Note, thread_signature)
+    staff = Staff([v1, v2])
+    thread_signature = staff[0].select_parentage().containment_signature
+    iter = iterationtools.iterate_thread_in_expr(staff, Note, thread_signature)
     iter = list(iter)
 
     assert len(iter) == 2

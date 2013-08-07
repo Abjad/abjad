@@ -14,5 +14,5 @@ def test_Voice___len___02():
     r'''Voice length returns the number of elements in voice.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    assert len(t) == 4
+    voice = Voice("c'8 d'8 e'8 f'8")
+    assert len(voice) == 4

@@ -91,5 +91,5 @@ def test_Container_is_parallel_06():
     r'''Parallel containers must contain only Contexts.
     It cannot take Containers.'''
 
-    t = Container(Container(notetools.make_repeated_notes(4)) * 2)
-    py.test.raises(AssertionError, 't.is_parallel = True')
+    container = Container(Container(notetools.make_repeated_notes(4)) * 2)
+    py.test.raises(AssertionError, 'container.is_parallel = True')

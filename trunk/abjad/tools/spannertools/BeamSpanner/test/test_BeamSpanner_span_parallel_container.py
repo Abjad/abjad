@@ -158,23 +158,23 @@ def test_BeamSpanner_span_parallel_container_06():
     r'''This is the proper way to 'thread through' parallel containers.
         LilyPond is happy here again.'''
 
-    t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
-    t[0].name, t[1].name = 'foo', 'foo'
+    staff = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
+    staff[0].name, staff[1].name = 'foo', 'foo'
     new = Container(Voice(notetools.make_repeated_notes(4)) * 2)
     new.is_parallel = True
-    t.insert(1, new)
-    t[1][0].name = 'foo'
-    t[1][1].name = 'bar'
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
-    p = spannertools.BeamSpanner([t[0], t[1][0], t[2]])
+    staff.insert(1, new)
+    staff[1][0].name = 'foo'
+    staff[1][1].name = 'bar'
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
+    p = spannertools.BeamSpanner([staff[0], staff[1][0], staff[2]])
 
     assert len(p.components) == 3
-    assert p.components[0] is t[0]
-    assert p.components[1] is t[1][0]
-    assert p.components[2] is t[2]
+    assert p.components[0] is staff[0]
+    assert p.components[1] is staff[1][0]
+    assert p.components[2] is staff[2]
     assert len(p.leaves) == 12
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \context Voice = "foo" {

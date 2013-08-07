@@ -25,13 +25,13 @@ def test_spannertools_apply_octavation_spanner_to_pitched_components_01():
 
 def test_spannertools_apply_octavation_spanner_to_pitched_components_02():
 
-    t = Voice([Note(31, (1, 4))])
-    assert t[0].written_pitch.numbered_diatonic_pitch == 18
-    spannertools.apply_octavation_spanner_to_pitched_components(t,
+    voice = Voice([Note(31, (1, 4))])
+    assert voice[0].written_pitch.numbered_diatonic_pitch == 18
+    spannertools.apply_octavation_spanner_to_pitched_components(voice,
         ottava_numbered_diatonic_pitch = 15, quindecisima_numbered_diatonic_pitch=19)
 
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r"""
         \new Voice {
             \ottava #1

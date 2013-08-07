@@ -68,18 +68,18 @@ def test_containertools_repeat_contents_of_container_03():
     r'''Multiplication by zero empties container.
     '''
 
-    t = Voice("c'8 d'8")
-    spannertools.BeamSpanner(t[:])
-    containertools.repeat_contents_of_container(t, total=0)
+    voice = Voice("c'8 d'8")
+    spannertools.BeamSpanner(voice[:])
+    containertools.repeat_contents_of_container(voice, total=0)
 
     r'''
     \new Voice {
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
         }

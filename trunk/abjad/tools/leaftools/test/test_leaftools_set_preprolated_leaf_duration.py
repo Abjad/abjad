@@ -285,12 +285,12 @@ def test_leaftools_set_preprolated_leaf_duration_10():
     LilyPond multiplier changes but leaf written duration does not.
     '''
 
-    t = Note(0, (1, 8))
-    t.lilypond_duration_multiplier = Duration(1, 2)
+    note = Note(0, (1, 8))
+    note.lilypond_duration_multiplier = Duration(1, 2)
 
     "c'8 * 1/2"
 
-    leaftools.set_preprolated_leaf_duration(t, Duration(5, 24))
+    leaftools.set_preprolated_leaf_duration(note, Duration(5, 24))
 
-    assert select(t).is_well_formed()
-    assert t.lilypond_format == "c'8 * 5/3"
+    assert select(note).is_well_formed()
+    assert note.lilypond_format == "c'8 * 5/3"

@@ -145,11 +145,11 @@ def test_spannertools_fracture_spanners_that_cross_components_05():
     r'''Fractures around components at only top level of list.
     '''
 
-    t = Staff(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.CrescendoSpanner(t)
-    spannertools.BeamSpanner(t[:])
-    spannertools.TrillSpanner(t.select_leaves())
+    staff = Staff(Container(notetools.make_repeated_notes(2)) * 3)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.CrescendoSpanner(staff)
+    spannertools.BeamSpanner(staff[:])
+    spannertools.TrillSpanner(staff.select_leaves())
 
     r'''
     \new Staff {
@@ -168,7 +168,7 @@ def test_spannertools_fracture_spanners_that_cross_components_05():
     }
     '''
 
-    spannertools.fracture_spanners_that_cross_components(t[1:2])
+    spannertools.fracture_spanners_that_cross_components(staff[1:2])
 
     r'''
     \new Staff {
@@ -187,9 +187,9 @@ def test_spannertools_fracture_spanners_that_cross_components_05():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {

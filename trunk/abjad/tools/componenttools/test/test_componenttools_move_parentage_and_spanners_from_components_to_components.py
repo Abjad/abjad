@@ -267,8 +267,8 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
     r'''Move parentage and spanners from container to children of container.
     '''
 
-    t = Staff([Voice("c'8 d'8 e'8 f'8")])
-    spannertools.BeamSpanner(t[0])
+    staff = Staff([Voice("c'8 d'8 e'8 f'8")])
+    spannertools.BeamSpanner(staff[0])
 
     r'''
     \new Staff {
@@ -281,13 +281,13 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
     }
     '''
 
-    voice_selection = t[:1]
+    voice_selection = staff[:1]
     voice = voice_selection[0]
     old_components = \
         componenttools.move_parentage_and_spanners_from_components_to_components(
-        voice_selection, t[0][:])
+        voice_selection, staff[0][:])
 
-    "Equivalent to t[:1] = t[0][:]."
+    "Equivalent to staff[:1] = staff[0][:]."
 
     r'''
     \new Staff {
@@ -298,9 +298,9 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8 [

@@ -182,9 +182,9 @@ def test_measuretools_pad_measures_in_expr_with_skips_03():
     r'''Set splice to true to extend edge spanners over newly insert rests.
     '''
 
-    t = Measure((2, 8), "c'8 d'8")
-    spannertools.BeamSpanner(t[:])
-    measuretools.pad_measures_in_expr_with_skips(t, Duration(1, 32), Duration(1, 64), splice = True)
+    measure = Measure((2, 8), "c'8 d'8")
+    spannertools.BeamSpanner(measure[:])
+    measuretools.pad_measures_in_expr_with_skips(measure, Duration(1, 32), Duration(1, 64), splice = True)
 
     r'''
     {
@@ -196,9 +196,9 @@ def test_measuretools_pad_measures_in_expr_with_skips_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 19/64

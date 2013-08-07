@@ -95,8 +95,8 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_03():
     r'''Fuse leaves in tie chain with same immediate parent.
     '''
 
-    t = Note("c'4")
+    note = Note("c'4")
     result = leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(
-        t.select_tie_chain())
+        note.select_tie_chain())
     assert len(result) == 1
-    assert select(t).is_well_formed()
+    assert select(note).is_well_formed()

@@ -302,10 +302,10 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     r'''Donate from note to tuplet.
     '''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.GlissandoSpanner(t[:])
-    spannertools.BeamSpanner(t.select_leaves())
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.GlissandoSpanner(voice[:])
+    spannertools.BeamSpanner(voice.select_leaves())
 
     r'''
     \new Voice {
@@ -325,9 +325,9 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     '''
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(1, 8), Note(0, (1, 16)) * 3)
-    #containertools.move_parentage_children_and_spanners_from_components_to_empty_container(t[1][:1], tuplet)
+    #containertools.move_parentage_children_and_spanners_from_components_to_empty_container(voice[1][:1], tuplet)
     # ALSO WORKS:
-    componenttools.move_parentage_and_spanners_from_components_to_components(t[1][:1], [tuplet])
+    componenttools.move_parentage_and_spanners_from_components_to_components(voice[1][:1], [tuplet])
 
     r'''
     \new Voice {
@@ -350,9 +350,9 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {

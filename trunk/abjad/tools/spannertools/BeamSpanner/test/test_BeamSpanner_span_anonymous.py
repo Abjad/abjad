@@ -590,7 +590,7 @@ def test_BeamSpanner_span_anonymous_15():
     v1 = Voice([Note(i , (1, 8)) for i in range(3)])
     n = Note(3, (1,8))
     v2 = Voice([Note(i , (1, 8)) for i in range(4, 8)])
-    t = Staff([v1, n, v2])
+    staff = Staff([v1, n, v2])
 
     r'''
     \new Staff {
@@ -611,8 +611,8 @@ def test_BeamSpanner_span_anonymous_15():
 
     assert py.test.raises(
         AssertionError, 
-        'p = spannertools.BeamSpanner([t[0], t[1]])')
+        'p = spannertools.BeamSpanner([staff[0], staff[1]])')
 
     assert py.test.raises(
         AssertionError, 
-        'p = spannertools.BeamSpanner([t[1], t[2]])')
+        'p = spannertools.BeamSpanner([staff[1], staff[2]])')

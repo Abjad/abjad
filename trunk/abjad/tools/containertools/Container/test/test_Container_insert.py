@@ -463,11 +463,11 @@ def test_Container_insert_15():
     '''
 
     v = Voice("c'8 d'8 e'8 f'8")
-    t = Staff(notetools.make_repeated_notes(8))
+    staff = Staff(notetools.make_repeated_notes(8))
     note = v[0]
-    t.insert(1, v[0], fracture_spanners=True)
+    staff.insert(1, v[0], fracture_spanners=True)
 
     assert select(v).is_well_formed()
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert not note in v
-    assert note._parent is t
+    assert note._parent is staff

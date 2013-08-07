@@ -158,9 +158,9 @@ def test_componenttools_all_are_thread_contiguous_components_10():
     r'''False when components belonging to same thread are ommitted.
     '''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.select_leaves())
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.BeamSpanner(voice.select_leaves())
 
     r'''
     \new Voice {
@@ -179,4 +179,4 @@ def test_componenttools_all_are_thread_contiguous_components_10():
     }
     '''
 
-    assert not componenttools.all_are_thread_contiguous_components(t[:1] + t[-1:])
+    assert not componenttools.all_are_thread_contiguous_components(voice[:1] + voice[-1:])

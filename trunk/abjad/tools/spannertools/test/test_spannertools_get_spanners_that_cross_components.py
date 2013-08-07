@@ -46,9 +46,9 @@ def test_spannertools_get_spanners_that_cross_components_02():
     r'''Helper gets spanners that cross in from above.
     '''
 
-    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beam = spannertools.BeamSpanner(t[1:2] + t[2][0:1])
+    voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    beam = spannertools.BeamSpanner(voice[1:2] + voice[2][0:1])
 
     r'''
     \new Voice {
@@ -64,7 +64,7 @@ def test_spannertools_get_spanners_that_cross_components_02():
     }
     '''
 
-    spanners = spannertools.get_spanners_that_cross_components(t.select_leaves())
+    spanners = spannertools.get_spanners_that_cross_components(voice.select_leaves())
 
     assert len(spanners) == 1
     assert beam in spanners

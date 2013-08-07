@@ -28,8 +28,8 @@ def test_BendAfter_format_03():
     r'''Bend formats correctly on rests.
     '''
 
-    t = Rest((1, 4))
-    marktools.BendAfter(8)(t)
-    assert t.lilypond_format == "r4 - \\bendAfter #'8.0"
-    t.select().detach_marks(marktools.BendAfter)
-    assert t.lilypond_format == "r4"
+    rest = Rest((1, 4))
+    marktools.BendAfter(8)(rest)
+    assert rest.lilypond_format == "r4 - \\bendAfter #'8.0"
+    rest.select().detach_marks(marktools.BendAfter)
+    assert rest.lilypond_format == "r4"

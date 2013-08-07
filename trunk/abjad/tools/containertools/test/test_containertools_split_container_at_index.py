@@ -1484,10 +1484,10 @@ def test_containertools_split_container_at_index_22():
     Measure contents necessitate denominator change.
     '''
 
-    t = Staff([Measure((3, 8), "c'8. d'8.")])
-    spannertools.BeamSpanner(t[0])
-    spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff([Measure((3, 8), "c'8. d'8.")])
+    spannertools.BeamSpanner(staff[0])
+    spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -1499,8 +1499,8 @@ def test_containertools_split_container_at_index_22():
     }
     '''
 
-    halves = containertools.split_container_at_index(t[0], 1, fracture_spanners=True)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    halves = containertools.split_container_at_index(staff[0], 1, fracture_spanners=True)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -1515,10 +1515,10 @@ def test_containertools_split_container_at_index_22():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(halves) == 2
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {

@@ -4,8 +4,8 @@ from abjad import *
 
 def test_Articulation_direction_01():
 
-    t = Note("c'4")
-    a = marktools.Articulation('staccato')(t)
+    note = Note("c'4")
+    a = marktools.Articulation('staccato')(note)
 
     assert a.direction is None
 

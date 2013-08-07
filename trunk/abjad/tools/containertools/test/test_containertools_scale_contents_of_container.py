@@ -348,9 +348,9 @@ def test_containertools_scale_contents_of_container_08():
     r'''Multiply all contents by 5/4, including measure.
     '''
 
-    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     r'''
     \new Voice {
@@ -367,8 +367,8 @@ def test_containertools_scale_contents_of_container_08():
     }
     '''
 
-    containertools.scale_contents_of_container(t, Duration(5, 4))
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    containertools.scale_contents_of_container(voice, Duration(5, 4))
+    measuretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     r'''
     \new Voice {
@@ -389,9 +389,9 @@ def test_containertools_scale_contents_of_container_08():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {

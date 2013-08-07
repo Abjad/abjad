@@ -422,9 +422,9 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___13():
     r'''Define LilyPond tupletFullLength context setting.
     '''
 
-    t = Staff([])
-    #t.tuplet_bracket.tuplet_full_length = True
-    t.set.tuplet_full_length = True
+    staff = Staff([])
+    #staff.tuplet_bracket.tuplet_full_length = True
+    staff.set.tuplet_full_length = True
 
     r'''
     \new Staff \with {
@@ -433,9 +433,9 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___13():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff \with {
             tupletFullLength = ##t
@@ -444,8 +444,8 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___13():
         '''
         )
 
-    #t.tuplet_bracket.tuplet_full_length = False
-    t.set.tuplet_full_length = False
+    #staff.tuplet_bracket.tuplet_full_length = False
+    staff.set.tuplet_full_length = False
 
     r'''
     \new Staff \with {
@@ -454,9 +454,9 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___13():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff \with {
             tupletFullLength = ##f
@@ -465,17 +465,17 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___13():
         '''
         )
 
-    #t.tuplet_bracket.tuplet_full_length = None
-    del(t.set.tuplet_full_length)
+    #staff.tuplet_bracket.tuplet_full_length = None
+    del(staff.set.tuplet_full_length)
 
     r'''
     \new Staff {
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
         }

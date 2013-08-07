@@ -6,9 +6,9 @@ def test_spannertools_move_spanners_from_component_to_children_of_component_01()
     r'''From parent to children.
     '''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beam = spannertools.BeamSpanner(t[:])
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    beam = spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -23,7 +23,7 @@ def test_spannertools_move_spanners_from_component_to_children_of_component_01()
     }
     '''
 
-    spannertools.move_spanners_from_component_to_children_of_component(t[0])
+    spannertools.move_spanners_from_component_to_children_of_component(voice[0])
 
-    assert t[0].get_spanners() == set([])
-    assert t[0][0].get_spanners() == set([beam])
+    assert voice[0].get_spanners() == set([])
+    assert voice[0][0].get_spanners() == set([beam])

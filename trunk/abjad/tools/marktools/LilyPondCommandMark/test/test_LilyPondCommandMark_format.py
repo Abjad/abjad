@@ -273,11 +273,11 @@ def test_LilyPondCommandMark_format_11():
     r'''Voice number can be set on a Voice container and on one of the leaves contained in it.
     '''
 
-    t = Voice(notetools.make_repeated_notes(4))
-    marktools.LilyPondCommandMark('voiceOne')(t)
-    marktools.LilyPondCommandMark('voiceTwo')(t[1])
+    voice = Voice(notetools.make_repeated_notes(4))
+    marktools.LilyPondCommandMark('voiceOne')(voice)
+    marktools.LilyPondCommandMark('voiceTwo')(voice[1])
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             \voiceOne

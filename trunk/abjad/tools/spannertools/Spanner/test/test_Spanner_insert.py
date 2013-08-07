@@ -34,9 +34,9 @@ def test_Spanner_insert_02():
         Operation is still not composer-safe, however.
         Note that p.append() and p.append_left() are composer-safe.'''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    p = spannertools.BeamSpanner(t[1])
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    p = spannertools.BeamSpanner(voice[1])
 
     r'''
     \new Voice {
@@ -55,7 +55,7 @@ def test_Spanner_insert_02():
     }
     '''
 
-    p._insert(0, t[0][1])
+    p._insert(0, voice[0][1])
 
     r'''
     \new Voice {
@@ -75,7 +75,7 @@ def test_Spanner_insert_02():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {

@@ -36,9 +36,9 @@ def test_Spanner___in___02():
     r'''Spanner containment tests components.
     '''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    p = spannertools.BeamSpanner(t[:])
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    p = spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -57,5 +57,5 @@ def test_Spanner___in___02():
     }
     '''
 
-    assert all(x in p for x in (t[0], t[1], t[2]))
-    assert not any(x in p for x in t.select_leaves())
+    assert all(x in p for x in (voice[0], voice[1], voice[2]))
+    assert not any(x in p for x in voice.select_leaves())

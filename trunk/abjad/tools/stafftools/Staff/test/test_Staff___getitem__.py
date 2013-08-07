@@ -122,14 +122,14 @@ def test_Staff___getitem___07():
 
 
 def test_Staff___getitem___08():
-    t = Staff([Note("c'4"),
+    staff = Staff([Note("c'4"),
             Rest((1, 4)),
             Chord([2, 3, 4], (1, 4)),
             skiptools.Skip((1, 4)),
             tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
-    assert len(t) == 5
-    assert select(t).is_well_formed()
-    slice = t[:]
+    assert len(staff) == 5
+    assert select(staff).is_well_formed()
+    slice = staff[:]
     assert len(slice) == 5
     assert isinstance(slice, (list, selectiontools.SliceSelection))
     assert isinstance(slice[0], Note)
@@ -138,5 +138,5 @@ def test_Staff___getitem___08():
     assert isinstance(slice[3], skiptools.Skip)
     assert isinstance(slice[4], tuplettools.FixedDurationTuplet)
     for x in slice:
-        assert x._parent == t
-    assert select(t).is_well_formed()
+        assert x._parent == staff
+    assert select(staff).is_well_formed()

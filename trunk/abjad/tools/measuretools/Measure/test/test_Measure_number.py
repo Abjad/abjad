@@ -27,15 +27,15 @@ def test_Measure_number_03():
     r'''Measure numbering works correctly after contents rotation.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
-    assert t[0].measure_number == 1
-    assert t[1].measure_number == 2
-    assert t[2].measure_number == 3
+    assert staff[0].measure_number == 1
+    assert staff[1].measure_number == 2
+    assert staff[2].measure_number == 3
 
-    t[:] = [t[1], t[2], t[0]]
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff[:] = [staff[1], staff[2], staff[0]]
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -57,13 +57,13 @@ def test_Measure_number_03():
     }
     '''
 
-    assert t[0].measure_number == 1
-    assert t[1].measure_number == 2
-    assert t[2].measure_number == 3
+    assert staff[0].measure_number == 1
+    assert staff[1].measure_number == 2
+    assert staff[2].measure_number == 3
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {

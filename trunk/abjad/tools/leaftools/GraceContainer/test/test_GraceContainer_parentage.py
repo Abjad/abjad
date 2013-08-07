@@ -25,20 +25,20 @@ def test_GraceContainer_parentage_03():
     r'''Grace containers bound to leaf have their correct carrier after assignment.
     '''
 
-    t = Note(1, (1, 4))
-    leaftools.GraceContainer([Note(4, (1, 16))], kind = 'after')(t)
-    leaftools.GraceContainer([Note(4, (1, 16))], kind = 'grace')(t)
-    assert t.after_grace._carrier is t
-    assert t.grace._carrier is t
-    t.after_grace[:] = []
+    note = Note(1, (1, 4))
+    leaftools.GraceContainer([Note(4, (1, 16))], kind = 'after')(note)
+    leaftools.GraceContainer([Note(4, (1, 16))], kind = 'grace')(note)
+    assert note.after_grace._carrier is note
+    assert note.grace._carrier is note
+    note.after_grace[:] = []
     notes = [Note("c'8"), Note("d'8")]
-    t.after_grace.extend(notes)
-    t.grace[:] = []
+    note.after_grace.extend(notes)
+    note.grace[:] = []
     notes = [Note("c'8"), Note("d'8")]
-    t.grace.extend(notes)
-    assert t.after_grace._carrier is t
-    assert t.grace._carrier is t
-    t.after_grace[:] = []
-    t.grace[:] = []
-    assert t.after_grace._carrier is t
-    assert t.grace._carrier is t
+    note.grace.extend(notes)
+    assert note.after_grace._carrier is note
+    assert note.grace._carrier is note
+    note.after_grace[:] = []
+    note.grace[:] = []
+    assert note.after_grace._carrier is note
+    assert note.grace._carrier is note

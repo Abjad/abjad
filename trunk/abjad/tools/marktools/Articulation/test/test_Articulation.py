@@ -95,8 +95,8 @@ def test_Articulation_08():
     r'''Shortcut strings are replaced with full word.
     '''
 
-    t = Note("c'4")
-    a = marktools.Articulation('.')(t)
+    note = Note("c'4")
+    a = marktools.Articulation('.')(note)
     assert a.name == '.'
     assert str(a) == r'-\staccato'
 

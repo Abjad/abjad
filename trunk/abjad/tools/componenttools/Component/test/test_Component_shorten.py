@@ -36,9 +36,9 @@ def test_Component_shorten_01():
 
 def test_Component_shorten_02():
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
-    t.shorten(Duration(3, 16))
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:])
+    voice.shorten(Duration(3, 16))
 
     r'''
     \new Voice {
@@ -48,9 +48,9 @@ def test_Component_shorten_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             d'16 [

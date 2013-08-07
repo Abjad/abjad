@@ -155,20 +155,20 @@ def test_BeamSpanner_span_like_named_04():
     Asymmetric structures are no problem.
     '''
 
-    t = Container(Container(Voice(notetools.make_repeated_notes(4)) * 2) * 2)
-    t[0].is_parallel = True
-    t[1].is_parallel = True
-    t[0][0].name, t[1][0].name = 'first', 'first'
-    t[0][1].name, t[1][1].name = 'second', 'second'
-    del(t[1][1])
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
-    p = spannertools.BeamSpanner([t[0][0], t[1][0]])
+    container = Container(Container(Voice(notetools.make_repeated_notes(4)) * 2) * 2)
+    container[0].is_parallel = True
+    container[1].is_parallel = True
+    container[0][0].name, container[1][0].name = 'first', 'first'
+    container[0][1].name, container[1][1].name = 'second', 'second'
+    del(container[1][1])
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
+    p = spannertools.BeamSpanner([container[0][0], container[1][0]])
 
     assert len(p.components) == 2
     assert len(p.leaves) == 8
 
     assert testtools.compare(
-        t.lilypond_format,
+        container.lilypond_format,
         r'''
         {
             <<

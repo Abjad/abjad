@@ -6,28 +6,28 @@ def test_Spanner_fracture_01():
     r'''Fracture container spanner to the right of index 1.
     '''
 
-    t = Staff(Container(notetools.make_repeated_notes(4)) * 3)
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
-    p = spannertools.BeamSpanner(t[:])
+    staff = Staff(Container(notetools.make_repeated_notes(4)) * 3)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
+    p = spannertools.BeamSpanner(staff[:])
     original, left, right = p.fracture(1, direction=Right)
 
     assert len(original.components) == 3
-    assert original.components[0] is t[0]
-    assert original.components[1] is t[1]
-    assert original.components[2] is t[2]
+    assert original.components[0] is staff[0]
+    assert original.components[1] is staff[1]
+    assert original.components[2] is staff[2]
     assert len(original.leaves) == 12
 
     assert len(left.components) == 2
-    assert left.components[0] is t[0]
-    assert left.components[1] is t[1]
+    assert left.components[0] is staff[0]
+    assert left.components[1] is staff[1]
     assert len(left.leaves) == 8
 
     assert len(right.components) == 1
-    assert right.components[0] is t[2]
+    assert right.components[0] is staff[2]
     assert len(right.leaves) == 4
 
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {

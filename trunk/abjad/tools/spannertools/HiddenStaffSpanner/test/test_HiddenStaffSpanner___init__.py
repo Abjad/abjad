@@ -93,8 +93,8 @@ def test_HiddenStaffSpanner___init___03():
     r'''Hide staff around one leaf.
     '''
 
-    t = Note(0, (1, 8))
-    spannertools.HiddenStaffSpanner(t)
+    note = Note(0, (1, 8))
+    spannertools.HiddenStaffSpanner(note)
 
     r'''
     \stopStaff
@@ -102,9 +102,9 @@ def test_HiddenStaffSpanner___init___03():
     \startStaff
     '''
 
-    assert select(t).is_well_formed()
+    assert select(note).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        note.lilypond_format,
         r'''
         \stopStaff
         c'8

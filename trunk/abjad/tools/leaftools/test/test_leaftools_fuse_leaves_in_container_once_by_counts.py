@@ -91,10 +91,10 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_03():
 
 def test_leaftools_fuse_leaves_in_container_once_by_counts_04():
 
-    t = Voice(notetools.make_repeated_notes(5))
-    spannertools.SlurSpanner(t)
+    voice = Voice(notetools.make_repeated_notes(5))
+    spannertools.SlurSpanner(voice)
     leaftools.fuse_leaves_in_container_once_by_counts(
-        t, 
+        voice, 
         [5], 
         leaf_class=Note, 
         decrease_durations_monotonically=False)
@@ -107,7 +107,7 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_04():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 ( ~

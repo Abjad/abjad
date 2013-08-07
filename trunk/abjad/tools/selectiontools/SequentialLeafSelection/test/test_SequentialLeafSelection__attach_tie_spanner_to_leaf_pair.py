@@ -89,7 +89,7 @@ def test_SequentialLeafSelection__attach_tie_spanner_to_leaf_pair_03():
     r'''Span left leaves with no spanner.
     '''
 
-    t = Voice(notetools.make_repeated_notes(4))
+    voice = Voice(notetools.make_repeated_notes(4))
 
     r'''
     \new Voice {
@@ -100,7 +100,7 @@ def test_SequentialLeafSelection__attach_tie_spanner_to_leaf_pair_03():
     }
     '''
 
-    t.select_leaves()[1:3]._attach_tie_spanner_to_leaf_pair()
+    voice.select_leaves()[1:3]._attach_tie_spanner_to_leaf_pair()
 
     r'''
     \new Voice {
@@ -111,9 +111,9 @@ def test_SequentialLeafSelection__attach_tie_spanner_to_leaf_pair_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8

@@ -169,12 +169,12 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_04():
     r'''Optional 'n' argument for multiple copies.
     '''
 
-    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    slur = spannertools.SlurSpanner(t[:])
-    trill = spannertools.TrillSpanner(t.select_leaves())
-    beam = spannertools.BeamSpanner(t[0][:] + t[1:2] + t[2][:])
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    slur = spannertools.SlurSpanner(voice[:])
+    trill = spannertools.TrillSpanner(voice.select_leaves())
+    beam = spannertools.BeamSpanner(voice[0][:] + voice[1:2] + voice[2][:])
+    measuretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     r'''
     \new Voice {
@@ -196,7 +196,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_04():
     }
     '''
 
-    result = componenttools.copy_components_and_fracture_crossing_spanners(t[1:2], 3)
+    result = componenttools.copy_components_and_fracture_crossing_spanners(voice[1:2], 3)
     new = Voice(result)
     measuretools.set_always_format_time_signature_of_measures_in_expr(new)
 
@@ -220,7 +220,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_04():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
         new.lilypond_format,
         r'''

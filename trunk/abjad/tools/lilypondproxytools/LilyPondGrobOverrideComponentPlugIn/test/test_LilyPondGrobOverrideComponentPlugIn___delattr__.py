@@ -67,9 +67,9 @@ def test_LilyPondGrobOverrideComponentPlugIn___delattr___03():
     r'''Delete LilyPond TimeSignature grob override.
     '''
 
-    t = Note("c'4")
-    t.override.time_signature.color = 'red'
-    t.override.time_signature.transparent = True
-    del(t.override.time_signature)
+    note = Note("c'4")
+    note.override.time_signature.color = 'red'
+    note.override.time_signature.transparent = True
+    del(note.override.time_signature)
 
-    assert t.lilypond_format == "c'4"
+    assert note.lilypond_format == "c'4"

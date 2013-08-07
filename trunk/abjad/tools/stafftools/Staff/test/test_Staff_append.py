@@ -36,7 +36,7 @@ def test_Staff_append_03():
 def test_Staff_append_04():
     r'''Empty containers are allowed but not well-formed.
     '''
-    t = Staff(Note("c'4") * 4)
-    t.append(tuplettools.FixedDurationTuplet(Duration(2, 8), []))
-    assert len(t) == 5
-    assert t._contents_duration == Duration(5, 4)
+    staff = Staff(Note("c'4") * 4)
+    staff.append(tuplettools.FixedDurationTuplet(Duration(2, 8), []))
+    assert len(staff) == 5
+    assert staff._contents_duration == Duration(5, 4)

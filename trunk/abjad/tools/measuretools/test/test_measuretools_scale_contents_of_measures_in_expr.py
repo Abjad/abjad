@@ -71,10 +71,10 @@ def test_measuretools_scale_contents_of_measures_in_expr_03():
     r'''Multiply measure with power-of-two time signature denomiantor by 2/3.
     '''
 
-    t = Measure((3, 8), "c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
+    measure = Measure((3, 8), "c'8 d'8 e'8")
+    spannertools.BeamSpanner(measure[:])
 
-    measuretools.scale_contents_of_measures_in_expr(t, Duration(2, 3))
+    measuretools.scale_contents_of_measures_in_expr(measure, Duration(2, 3))
 
     r'''
     {
@@ -87,9 +87,9 @@ def test_measuretools_scale_contents_of_measures_in_expr_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 3/12

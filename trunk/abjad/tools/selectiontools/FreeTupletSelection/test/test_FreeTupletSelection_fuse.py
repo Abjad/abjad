@@ -213,11 +213,11 @@ def test_FreeTupletSelection_fuse_06():
     r'''Dominant spanners on contents are preserved.
     '''
 
-    t = Voice([
+    voice = Voice([
         tuplettools.FixedDurationTuplet(Duration(1, 12), [Note(0, (1, 8))]),
         tuplettools.FixedDurationTuplet(Duration(1, 6), [Note("c'4")]),
         Note("c'4")])
-    spannertools.SlurSpanner(t.select_leaves())
+    spannertools.SlurSpanner(voice.select_leaves())
 
     r'''
     \new Voice {
@@ -231,7 +231,7 @@ def test_FreeTupletSelection_fuse_06():
     }
     '''
 
-    tuplets = selectiontools.select_tuplets(t[:2])
+    tuplets = selectiontools.select_tuplets(voice[:2])
     tuplets.fuse()
 
     r'''
@@ -244,9 +244,9 @@ def test_FreeTupletSelection_fuse_06():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             \times 2/3 {

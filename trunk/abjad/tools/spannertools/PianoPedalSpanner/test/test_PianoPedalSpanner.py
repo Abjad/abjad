@@ -215,8 +215,8 @@ def test_PianoPedalSpanner_07():
     r'''The 'kind' and 'style' attributes raise ValueError as needed.
     '''
 
-    t = Staff(notetools.make_repeated_notes(4))
-    p = spannertools.PianoPedalSpanner(t)
+    staff = Staff(notetools.make_repeated_notes(4))
+    p = spannertools.PianoPedalSpanner(staff)
 
     assert py.test.raises(ValueError, 'p.kind = "abc"')
     assert py.test.raises(ValueError, 'p.style = "abc"')

@@ -435,8 +435,8 @@ def test_Container___setitem___integer_09():
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8")]
 
-    t = Voice(notes[:3])
-    spannertools.BeamSpanner(t[:])
+    voice = Voice(notes[:3])
+    spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -462,9 +462,9 @@ def test_Container___setitem___integer_09():
     }
     '''
 
-    t[1] = u[1]
+    voice[1] = u[1]
 
-    "Voice t is now ..."
+    "Voice voice is now ..."
 
     r'''
     \new Voice {
@@ -477,9 +477,9 @@ def test_Container___setitem___integer_09():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [

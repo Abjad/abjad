@@ -239,7 +239,7 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
     '''
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(5, 16), "c'8 d'8 e'8")
-    t = Measure((5, 16), [tuplet])
+    measure = Measure((5, 16), [tuplet])
 
     r'''
     {
@@ -253,7 +253,7 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
     }
     '''
 
-    measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature(t)
+    measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature(measure)
 
     r'''
     {
@@ -269,9 +269,9 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 15/48

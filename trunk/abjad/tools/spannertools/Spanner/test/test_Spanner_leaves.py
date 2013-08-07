@@ -210,10 +210,10 @@ def test_Spanner_leaves_07():
         def _copy_keyword_args(self, new):
             pass
 
-    t = Staff(notetools.make_repeated_notes(4))
-    t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
-    t[2].is_parallel = True
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
+    staff = Staff(notetools.make_repeated_notes(4))
+    staff.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
+    staff[2].is_parallel = True
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
 
     r'''
     \new Staff {
@@ -234,12 +234,12 @@ def test_Spanner_leaves_07():
     }
     '''
 
-    assert py.test.raises(AssertionError, 'p = MockSpanner(t[:])')
-#   for i, component in enumerate(t[:]):
-#      assert component is t[i]
+    assert py.test.raises(AssertionError, 'p = MockSpanner(staff[:])')
+#   for i, component in enumerate(staff[:]):
+#      assert component is staff[i]
 #   assert len(p.leaves) == 4
-#   assert p.leaves[0] is t[0]
-#   assert p.leaves[1] is t[1]
-#   assert p.leaves[2] is t[3]
-#   assert p.leaves[3] is t[4]
+#   assert p.leaves[0] is staff[0]
+#   assert p.leaves[1] is staff[1]
+#   assert p.leaves[2] is staff[3]
+#   assert p.leaves[3] is staff[4]
 #   assert p.get_duration() == Duration(6, 8)
