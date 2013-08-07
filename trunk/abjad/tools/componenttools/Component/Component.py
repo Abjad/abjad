@@ -565,6 +565,16 @@ class Component(AbjadObject):
                 lilypondproxytools.LilyPondContextSettingComponentPlugIn()
         return self._set
 
+    @property
+    def storage_format(self):
+        r'''Storage format of component.
+
+        ..  note:: Attribute will be removed in Abjad 2.14.
+
+        Returns string.
+        '''
+        return super(Component, self).storage_format
+
     ### PUBLIC METHODS ###
 
     def extend_in_parent(

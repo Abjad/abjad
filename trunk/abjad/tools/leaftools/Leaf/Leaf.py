@@ -354,6 +354,8 @@ class Leaf(Component):
 
             Set to positive multiplier or none.
 
+            ..  note:: Attribute will migrate to ``Duration`` in Abjad 2.14.
+
             Returns positive multiplier or none.
             '''
             return self._lilypond_duration_multiplier
@@ -391,10 +393,10 @@ class Leaf(Component):
             Returns false when written pitch is transposed.
             '''
             return self._written_pitch_indication_is_at_sounding_pitch
-        def fset(self, arg):
-            if not isinstance(arg, bool):
+        def fset(self, expr):
+            if not isinstance(expr, bool):
                 raise TypeError
-            self._written_pitch_indication_is_at_sounding_pitch = arg
+            self._written_pitch_indication_is_at_sounding_pitch = expr
         return property(**locals())
 
     @apply
@@ -408,11 +410,11 @@ class Leaf(Component):
             Setting this value to true sets sounding pitch indicator to false.
             '''
             return self._written_pitch_indication_is_nonsemantic
-        def fset(self, arg):
-            if not isinstance(arg, bool):
+        def fset(self, expr):
+            if not isinstance(expr, bool):
                 raise TypeError
-            self._written_pitch_indication_is_nonsemantic = arg
-            if arg == True:
+            self._written_pitch_indication_is_nonsemantic = expr
+            if expr == True:
                 self.written_pitch_indication_is_at_sounding_pitch = False
         return property(**locals())
 

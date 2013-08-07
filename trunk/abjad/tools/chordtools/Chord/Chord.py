@@ -164,6 +164,136 @@ class Chord(Leaf):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def lilypond_format(self):
+        r'''LilyPond format of chord.
+
+        ..  container:: example
+
+            **Example.**
+
+            ::
+
+                >>> chord = Chord("<e' cs'' f''>4")
+                >>> show(chord) # doctest: +SKIP
+
+            ::
+
+                >>> chord.lilypond_format
+                "<e' cs'' f''>4"
+
+        Returns string.
+        '''
+        return super(Chord, self).lilypond_format
+
+    @property
+    def override(self):
+        r'''LilyPond grob override component plug-in.
+
+        ..  container:: example
+
+            **Example.** Override LilyPond accidental, note head and stem
+            grobs:
+
+            ::
+
+                >>> chord = Chord("<e' cs'' f''>4")
+                >>> show(chord) # doctest: +SKIP
+
+            ::
+
+                >>> chord.override.accidental.color = 'red'
+                >>> chord.override.note_head.color = 'red'
+                >>> chord.override.stem.color = 'red'
+                >>> show(chord) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(chord)
+                \once \override Accidental #'color = #red
+                \once \override NoteHead #'color = #red
+                \once \override Stem #'color = #red
+                <e' cs'' f''>4
+
+        Returns none.
+        '''
+        return super(Chord, self).override
+
+    @property
+    def set(self):
+        r'''LilyPond context setting component plug-in.
+
+        ..  container:: example
+
+            **Example.** Set LilyPond ``stemLeftBeamCount``
+            and ``stemRightBeamCount`` context settings:
+
+            ::
+
+                >>> chord = Chord("<e' cs'' f''>16")
+                >>> show(chord) # doctest: +SKIP
+
+            ::
+
+                >>> beam = spannertools.BeamSpanner()
+                >>> beam.attach([chord])
+                >>> chord.set.stem_left_beam_count = 0
+                >>> chord.set.stem_right_beam_count = 2
+                >>> show(chord) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(chord)
+                \set stemLeftBeamCount = #0
+                \set stemRightBeamCount = #2
+                <e' cs'' f''>16 [ ]
+
+        Returns none.
+        '''
+        return super(Chord, self).set
+
+    @apply
+    def written_duration():
+        def fget(self):
+            r'''Written duration of chord.
+
+            ..  container:: example
+
+                **Example 1.** Get written duration:
+
+                ::
+
+                    >>> chord = Chord("<e' cs'' f''>4")
+                    >>> show(chord) # doctest: +SKIP
+
+                ::
+
+                    >>> chord.written_duration
+                    Duration(1, 4)
+
+            ..  container:: example
+
+                **Example 2.** Set written duration:
+
+                ::
+
+                    >>> chord = Chord("<e' cs'' f''>4")
+                    >>> show(chord) # doctest: +SKIP
+
+                ::
+
+                    >>> chord.written_duration = Duration(1, 16)
+                    >>> show(chord) # doctest: +SKIP
+
+            Set duration.
+
+            Returns duration.
+            '''
+            return Leaf.written_duration.fget(self)
+        def fset(self, expr):
+            Leaf.written_duration.fset(self, expr)
+        return property(**locals())
+
+    @property
     def written_pitches(self):
         r"""Written pitches in chord.
 
@@ -287,7 +417,7 @@ class Chord(Leaf):
 
         ..  container:: example
 
-            **Example 1.**
+            **Example.**
 
             ::
 
@@ -422,7 +552,7 @@ class Chord(Leaf):
 
         ..  container:: example
 
-            **Example 1.** Divide chord at ``Eb4``:
+            **Example.** Divide chord at ``Eb4``:
 
                 >>> chord = Chord("<d' ef' e'>4")
                 >>> show(chord) # doctest: +SKIP
@@ -557,9 +687,7 @@ class Chord(Leaf):
 
             ::
 
-                >>> note_head = chord.get_note_head("cs''")
-                >>> note_head
-                NoteHead("cs''")
+                >>> note_head = chord.get_note_head("e'")
                 >>> note_head.tweak.color = 'red'
                 >>> show(chord) # doctest: +SKIP
 
@@ -567,8 +695,8 @@ class Chord(Leaf):
 
                 >>> f(chord)
                 <
-                    e'
                     \tweak #'color #red
+                    e'
                     cs''
                     f''
                 >4
@@ -584,9 +712,7 @@ class Chord(Leaf):
 
             ::
 
-                >>> note_head = chord.get_note_head(17)
-                >>> note_head
-                NoteHead("f''")
+                >>> note_head = chord.get_note_head(4)
                 >>> note_head.tweak.color = 'red'
                 >>> show(chord) # doctest: +SKIP
 
@@ -594,9 +720,9 @@ class Chord(Leaf):
 
                 >>> f(chord)
                 <
+                    \tweak #'color #red
                     e'
                     cs''
-                    \tweak #'color #red
                     f''
                 >4
 
@@ -635,14 +761,14 @@ class Chord(Leaf):
 
             ::
 
-                >>> chord.pop(1)
-                NoteHead("cs''")
+                >>> chord.pop(0)
+                NoteHead("e'")
                 >>> show(chord) # doctest: +SKIP
 
             ..  doctest::
 
                 >>> f(chord)
-                <e' f''>4
+                <cs'' f''>4
 
         Returns note head.
         '''
@@ -662,13 +788,13 @@ class Chord(Leaf):
 
             ::
 
-                >>> chord.remove(chord[1])
+                >>> chord.remove(chord[0])
                 >>> show(chord) # doctest: +SKIP
 
             ..  doctest::
 
                 >>> f(chord)
-                <e' f''>4
+                <cs'' f''>4
 
         Returns none.
         '''
