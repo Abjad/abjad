@@ -6,8 +6,8 @@ def test_pitchtools_respell_named_chromatic_pitches_in_expr_with_flats_01():
     r'''The pitchtools.respell_named_chromatic_pitches_in_expr_with_flats()
     helper renotates an individual pitch.'''
 
-    t = pitchtools.NamedChromaticPitch('cs', 4)
-    assert pitchtools.respell_named_chromatic_pitches_in_expr_with_flats(t) == pitchtools.NamedChromaticPitch(
+    namedchromaticpitch = pitchtools.NamedChromaticPitch('cs', 4)
+    assert pitchtools.respell_named_chromatic_pitches_in_expr_with_flats(namedchromaticpitch) == pitchtools.NamedChromaticPitch(
         'df', 4)
 
 

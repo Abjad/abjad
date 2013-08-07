@@ -6,8 +6,8 @@ def test_FreeTupletSelection_fix_01():
     r'''Halve note durations.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'4 d'4 e'4")
-    assert not t.multiplier.is_proper_tuplet_multiplier
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'4 d'4 e'4")
+    assert not tuplet.multiplier.is_proper_tuplet_multiplier
 
     r'''
     \times 1/3 {
@@ -17,7 +17,7 @@ def test_FreeTupletSelection_fix_01():
     }
     '''
 
-    tuplets = selectiontools.select_tuplets([t])
+    tuplets = selectiontools.select_tuplets([tuplet])
     tuplets.fix()
 
     r'''
@@ -28,10 +28,10 @@ def test_FreeTupletSelection_fix_01():
     }
     '''
 
-    assert select(t).is_well_formed()
-    assert t.multiplier.is_proper_tuplet_multiplier
+    assert select(tuplet).is_well_formed()
+    assert tuplet.multiplier.is_proper_tuplet_multiplier
     assert testtools.compare(
-        t.lilypond_format,
+        tuplet.lilypond_format,
         r'''
         \times 2/3 {
             c'8
@@ -46,8 +46,8 @@ def test_FreeTupletSelection_fix_02():
     r'''Double note duration.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'32 d'32 e'32")
-    assert not t.multiplier.is_proper_tuplet_multiplier
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'32 d'32 e'32")
+    assert not tuplet.multiplier.is_proper_tuplet_multiplier
 
     r'''
     \times 8/3 {
@@ -57,7 +57,7 @@ def test_FreeTupletSelection_fix_02():
     }
     '''
 
-    tuplets = selectiontools.select_tuplets([t])
+    tuplets = selectiontools.select_tuplets([tuplet])
     tuplets.fix()
 
     r'''
@@ -69,10 +69,10 @@ def test_FreeTupletSelection_fix_02():
     }
     '''
 
-    assert select(t).is_well_formed()
-    assert t.multiplier.is_proper_tuplet_multiplier
+    assert select(tuplet).is_well_formed()
+    assert tuplet.multiplier.is_proper_tuplet_multiplier
     assert testtools.compare(
-        t.lilypond_format,
+        tuplet.lilypond_format,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 4/3 {

@@ -8,9 +8,9 @@ def test_pitchtools_list_named_chromatic_pitches_in_expr_01():
     '''
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    t = pitchtools.list_named_chromatic_pitches_in_expr(tuplet)
+    namedchromaticpitch = pitchtools.list_named_chromatic_pitches_in_expr(tuplet)
 
-    assert t == (pitchtools.NamedChromaticPitch('c', 4), pitchtools.NamedChromaticPitch('d', 4), pitchtools.NamedChromaticPitch('e', 4))
+    assert namedchromaticpitch == (pitchtools.NamedChromaticPitch('c', 4), pitchtools.NamedChromaticPitch('d', 4), pitchtools.NamedChromaticPitch('e', 4))
 
 
 def test_pitchtools_list_named_chromatic_pitches_in_expr_02():
@@ -19,9 +19,9 @@ def test_pitchtools_list_named_chromatic_pitches_in_expr_02():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner(staff[:])
-    t = pitchtools.list_named_chromatic_pitches_in_expr(beam)
+    namedchromaticpitch = pitchtools.list_named_chromatic_pitches_in_expr(beam)
 
-    assert t == (pitchtools.NamedChromaticPitch('c', 4), pitchtools.NamedChromaticPitch('d', 4), pitchtools.NamedChromaticPitch('e', 4), pitchtools.NamedChromaticPitch('f', 4))
+    assert namedchromaticpitch == (pitchtools.NamedChromaticPitch('c', 4), pitchtools.NamedChromaticPitch('d', 4), pitchtools.NamedChromaticPitch('e', 4), pitchtools.NamedChromaticPitch('f', 4))
 
 
 def test_pitchtools_list_named_chromatic_pitches_in_expr_03():
@@ -29,9 +29,9 @@ def test_pitchtools_list_named_chromatic_pitches_in_expr_03():
     '''
 
     pitch_set = pitchtools.NamedChromaticPitchSet([0, 2, 4, 5])
-    t = pitchtools.list_named_chromatic_pitches_in_expr(pitch_set)
+    namedchromaticpitch = pitchtools.list_named_chromatic_pitches_in_expr(pitch_set)
 
-    assert t == (pitchtools.NamedChromaticPitch('c', 4), pitchtools.NamedChromaticPitch('d', 4), pitchtools.NamedChromaticPitch('e', 4), pitchtools.NamedChromaticPitch('f', 4))
+    assert namedchromaticpitch == (pitchtools.NamedChromaticPitch('c', 4), pitchtools.NamedChromaticPitch('d', 4), pitchtools.NamedChromaticPitch('e', 4), pitchtools.NamedChromaticPitch('f', 4))
 
 
 def test_pitchtools_list_named_chromatic_pitches_in_expr_04():

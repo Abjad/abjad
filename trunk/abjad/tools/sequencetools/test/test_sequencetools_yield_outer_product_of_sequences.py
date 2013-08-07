@@ -11,8 +11,8 @@ def test_sequencetools_yield_outer_product_of_sequences_01():
 
 def test_sequencetools_yield_outer_product_of_sequences_02():
 
-    t = list(sequencetools.yield_outer_product_of_sequences([[1, 2, 3], ['a', 'b'], ['X', 'Y']]))
-    assert t == [[1, 'a', 'X'], [1, 'a', 'Y'], [1, 'b', 'X'], [1, 'b', 'Y'], [2, 'a', 'X'] , [2, 'a', 'Y'], [2, 'b', 'X'], [2, 'b', 'Y'], [3, 'a', 'X'], [3, 'a', 'Y'], [3, 'b', 'X'], [3, 'b', 'Y']]
+    x = list(sequencetools.yield_outer_product_of_sequences([[1, 2, 3], ['a', 'b'], ['X', 'Y']]))
+    assert x == [[1, 'a', 'X'], [1, 'a', 'Y'], [1, 'b', 'X'], [1, 'b', 'Y'], [2, 'a', 'X'] , [2, 'a', 'Y'], [2, 'b', 'X'], [2, 'b', 'Y'], [3, 'a', 'X'], [3, 'a', 'Y'], [3, 'b', 'X'], [3, 'b', 'Y']]
 
 
 def test_sequencetools_yield_outer_product_of_sequences_03():

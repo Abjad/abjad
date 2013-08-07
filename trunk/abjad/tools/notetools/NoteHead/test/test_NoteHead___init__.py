@@ -8,27 +8,27 @@ def test_NoteHead___init___01():
     r'''Init note head by number.
     '''
 
-    t = notetools.NoteHead(6)
-    assert t.written_pitch == pitchtools.NamedChromaticPitch(6)
+    notehead = notetools.NoteHead(6)
+    assert notehead.written_pitch == pitchtools.NamedChromaticPitch(6)
 
 
 def test_NoteHead___init___02():
     r'''Init note head by LilyPond-style pitch string.
     '''
 
-    t = notetools.NoteHead('cs,,,')
-    assert t.written_pitch == pitchtools.NamedChromaticPitch('cs,,,')
+    notehead = notetools.NoteHead('cs,,,')
+    assert notehead.written_pitch == pitchtools.NamedChromaticPitch('cs,,,')
 
 
 def test_NoteHead___init___03():
     r'''Init note head by other note head instance.
     '''
 
-    t = notetools.NoteHead(6)
-    new = notetools.NoteHead(t)
+    notehead = notetools.NoteHead(6)
+    new = notetools.NoteHead(notehead)
 
-    assert t is not new
-    assert t.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 6
+    assert notehead is not new
+    assert notehead.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 6
     assert new.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 6
 
 

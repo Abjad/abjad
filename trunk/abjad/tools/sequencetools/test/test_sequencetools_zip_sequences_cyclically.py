@@ -33,10 +33,10 @@ def test_sequencetools_zip_sequences_cyclically_04():
     r'''zip_cyclic can take two lists of the different sizes.
         The list with the shortest size is cycled through.'''
 
-    t = sequencetools.zip_sequences_cyclically([1, 2, 3], ['a', 'b'])
-    assert t == [(1, 'a'), (2, 'b'), (3, 'a')]
-    t = sequencetools.zip_sequences_cyclically([1, 2], ['a', 'b', 'c'])
-    assert t == [(1, 'a'), (2, 'b'), (1, 'c')]
+    the = sequencetools.zip_sequences_cyclically([1, 2, 3], ['a', 'b'])
+    assert the == [(1, 'a'), (2, 'b'), (3, 'a')]
+    the = sequencetools.zip_sequences_cyclically([1, 2], ['a', 'b', 'c'])
+    assert the == [(1, 'a'), (2, 'b'), (1, 'c')]
 
 
 def test_sequencetools_zip_sequences_cyclically_05():

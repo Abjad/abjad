@@ -7,10 +7,10 @@ def test_notetools_make_accelerating_notes_with_lilypond_multipliers_01():
     r'''Pitches can be a list of any length greater than 1.
     '''
 
-    t = notetools.make_accelerating_notes_with_lilypond_multipliers(
+    duration = notetools.make_accelerating_notes_with_lilypond_multipliers(
         [1], Duration(2), Duration(1, 2), Duration(1, 2))
-    assert len(t) == 4
-    for n in t:
+    assert len(duration) == 4
+    for n in duration:
         assert n.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 1
 
 
@@ -18,10 +18,10 @@ def test_notetools_make_accelerating_notes_with_lilypond_multipliers_02():
     r'''Pitches can be a list of any length greater than 1.
     '''
 
-    t = notetools.make_accelerating_notes_with_lilypond_multipliers(
+    duration = notetools.make_accelerating_notes_with_lilypond_multipliers(
         [1, 2], Duration(2), Duration(1, 2), Duration(1, 2))
-    assert len(t) == 4
-    for i, n in enumerate(t):
+    assert len(duration) == 4
+    for i, n in enumerate(duration):
         if i % 2 == 0:
             assert n.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 1
         else:
@@ -39,8 +39,8 @@ def test_notetools_make_accelerating_notes_with_lilypond_multipliers_04():
     '''
     The default written duration of notes returned is 1/8.
     '''
-    t = notetools.make_accelerating_notes_with_lilypond_multipliers([1, 2], Duration(2), Duration(1, 2), Duration(1, 2))
-    for n in t:
+    duration = notetools.make_accelerating_notes_with_lilypond_multipliers([1, 2], Duration(2), Duration(1, 2), Duration(1, 2))
+    for n in duration:
         assert n.written_duration == Duration(1, 8)
 
 
@@ -48,9 +48,9 @@ def test_notetools_make_accelerating_notes_with_lilypond_multipliers_05():
     '''
     The written duration can be set.
     '''
-    t = notetools.make_accelerating_notes_with_lilypond_multipliers([1, 2], Duration(2), Duration(1, 2), Duration(1, 2),
+    duration = notetools.make_accelerating_notes_with_lilypond_multipliers([1, 2], Duration(2), Duration(1, 2), Duration(1, 2),
     written=Duration(1))
-    for n in t:
+    for n in duration:
         assert n.written_duration == Duration(1)
 
 

@@ -5,14 +5,14 @@ from abjad import *
 def test_pitchtools_list_melodic_chromatic_interval_numbers_pairwise_01():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    t = pitchtools.list_melodic_chromatic_interval_numbers_pairwise(staff)
+    staff = pitchtools.list_melodic_chromatic_interval_numbers_pairwise(staff)
 
-    assert t == [2, 2, 1, 2, 2, 2, 1]
+    assert staff == [2, 2, 1, 2, 2, 2, 1]
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    t = pitchtools.list_melodic_chromatic_interval_numbers_pairwise(staff, wrap=True)
+    staff = pitchtools.list_melodic_chromatic_interval_numbers_pairwise(staff, wrap=True)
 
-    assert t == [2, 2, 1, 2, 2, 2, 1, -12]
+    assert staff == [2, 2, 1, 2, 2, 2, 1, -12]
 
 
 

@@ -19,9 +19,9 @@ def test_sequencetools_flatten_sequence_at_indices_02():
     '''
 
     l = [0, 1, [2, 3, 4], [5, 6, 7]]
-    t = sequencetools.flatten_sequence_at_indices(l, [-1])
+    works = sequencetools.flatten_sequence_at_indices(l, [-1])
 
-    assert t == [0, 1, [2, 3, 4], 5, 6, 7]
+    assert works == [0, 1, [2, 3, 4], 5, 6, 7]
 
 
 def test_sequencetools_flatten_sequence_at_indices_03():

@@ -48,8 +48,8 @@ def test_Component_start_offset_06():
 
 
 def test_Component_start_offset_07():
-    t = tuplettools.FixedDurationTuplet(Duration(1,4), notetools.make_repeated_notes(3))
-    for i, x in enumerate(t):
+    tuplet = tuplettools.FixedDurationTuplet(Duration(1,4), notetools.make_repeated_notes(3))
+    for i, x in enumerate(tuplet):
         assert x.get_timespan().start_offset == i * Duration(1, 12)
 
 
@@ -67,9 +67,9 @@ def test_Component_start_offset_09():
     '''
 
     tp = tuplettools.FixedDurationTuplet(Duration(1, 4), notetools.make_repeated_notes(3))
-    t = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), tp, Note("c'4")])
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), tp, Note("c'4")])
     offset = 0
-    for x, d in zip(t.select_leaves(), [(1, 6), (1, 18), (1, 18), (1, 18), (1, 6)]):
+    for x, d in zip(tuplet.select_leaves(), [(1, 6), (1, 18), (1, 18), (1, 18), (1, 6)]):
         assert x.get_timespan().start_offset == offset
         offset += Duration(*d)
 
@@ -210,10 +210,10 @@ def test_Component_start_offset_21():
     '''
 
     tp = tuplettools.FixedDurationTuplet(Duration(1, 4), notetools.make_repeated_notes(3))
-    t = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), tp, Note("c'4")])
-    assert t[0].get_timespan().start_offset == 0 * Duration(1, 6)
-    assert t[1].get_timespan().start_offset == 1 * Duration(1, 6)
-    assert t[2].get_timespan().start_offset == 2 * Duration(1, 6)
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), tp, Note("c'4")])
+    assert tuplet[0].get_timespan().start_offset == 0 * Duration(1, 6)
+    assert tuplet[1].get_timespan().start_offset == 1 * Duration(1, 6)
+    assert tuplet[2].get_timespan().start_offset == 2 * Duration(1, 6)
 
 
 def test_Component_start_offset_22():

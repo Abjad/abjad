@@ -76,13 +76,13 @@ def test_Chord___init___09():
     r'''Init chord from skip.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(2, 8), skiptools.Skip((1, 8)) * 3)
-    d = t[0].written_duration
-    chord = Chord(t[0])
-    assert isinstance(t[0], skiptools.Skip)
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), skiptools.Skip((1, 8)) * 3)
+    d = tuplet[0].written_duration
+    chord = Chord(tuplet[0])
+    assert isinstance(tuplet[0], skiptools.Skip)
     assert isinstance(chord, Chord)
-    assert t[0]._parent is t
-    assert t[0].written_duration == d
+    assert tuplet[0]._parent is tuplet
+    assert tuplet[0].written_duration == d
     assert chord._parent is None
 
 
@@ -130,13 +130,13 @@ def test_Chord___init___13():
     r'''Init chord from tupletized rest.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(2, 8), Rest((1, 8)) * 3)
-    d = t[0].written_duration
-    chord = Chord(t[0])
-    assert isinstance(t[0], Rest)
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), Rest((1, 8)) * 3)
+    d = tuplet[0].written_duration
+    chord = Chord(tuplet[0])
+    assert isinstance(tuplet[0], Rest)
     assert isinstance(chord, Chord)
-    assert t[0]._parent is t
-    assert t[0].written_duration == d
+    assert tuplet[0]._parent is tuplet
+    assert tuplet[0].written_duration == d
     assert chord._parent is None
 
 
@@ -174,13 +174,13 @@ def test_Chord___init___16():
     r'''Init chord from tupletized note.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
-    h, p, d = t[0].note_head, t[0].written_pitch, t[0].written_duration
-    chord = Chord(t[0])
-    assert isinstance(t[0], Note)
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
+    h, p, d = tuplet[0].note_head, tuplet[0].written_pitch, tuplet[0].written_duration
+    chord = Chord(tuplet[0])
+    assert isinstance(tuplet[0], Note)
     assert isinstance(chord, Chord)
     assert chord.lilypond_format == "<c'>8"
-    assert t[0]._parent is t
+    assert tuplet[0]._parent is tuplet
     assert chord.note_heads[0] is not h
     assert chord.written_pitches[0] == p
     assert chord.written_duration == d

@@ -18,18 +18,18 @@ def test_FixedDurationTuplet_in_place_apply_01():
 
 
 def test_FixedDurationTuplet_in_place_apply_02():
-    t = tuplettools.FixedDurationTuplet(Duration(7, 8), [Note(n, (1, 8)) for n in range(8)])
-    leaves_before = t.select_leaves()
-    tuplettools.FixedDurationTuplet(Duration(2, 8), t[0:3])
-    leaves_after = t.select_leaves()
+    tuplet = tuplettools.FixedDurationTuplet(Duration(7, 8), [Note(n, (1, 8)) for n in range(8)])
+    leaves_before = tuplet.select_leaves()
+    tuplettools.FixedDurationTuplet(Duration(2, 8), tuplet[0:3])
+    leaves_after = tuplet.select_leaves()
     assert leaves_before == leaves_after
-    assert len(t) == 6
-    for i, x in enumerate(t):
+    assert len(tuplet) == 6
+    for i, x in enumerate(tuplet):
         if i == 0:
             assert isinstance(x, tuplettools.FixedDurationTuplet)
         else:
             assert isinstance(x, Note)
-    assert select(t).is_well_formed()
+    assert select(tuplet).is_well_formed()
 
 
 def test_FixedDurationTuplet_in_place_apply_03():

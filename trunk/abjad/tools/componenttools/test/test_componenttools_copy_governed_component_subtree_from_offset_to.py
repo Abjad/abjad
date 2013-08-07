@@ -85,8 +85,8 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_04():
     r'''Fixed duration tuplet.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(1, 4), "c'8 d'8 e'8")
-    new = componenttools.copy_governed_component_subtree_from_offset_to(t, 0, (1, 8))
+    tuplet = tuplettools.FixedDurationTuplet(Duration(1, 4), "c'8 d'8 e'8")
+    new = componenttools.copy_governed_component_subtree_from_offset_to(tuplet, 0, (1, 8))
 
     r'''
     \times 2/3 {

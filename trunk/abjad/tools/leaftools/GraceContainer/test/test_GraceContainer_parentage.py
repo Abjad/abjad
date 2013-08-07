@@ -6,8 +6,8 @@ def test_GraceContainer_parentage_01():
     r'''Lone grace container carrier is none.
     '''
 
-    t = leaftools.GraceContainer(notetools.make_repeated_notes(4))
-    assert t._carrier is None
+    gracecontainer = leaftools.GraceContainer(notetools.make_repeated_notes(4))
+    assert gracecontainer._carrier is None
 
 
 def test_GraceContainer_parentage_02():

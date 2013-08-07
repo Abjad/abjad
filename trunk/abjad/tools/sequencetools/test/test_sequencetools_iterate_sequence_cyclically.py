@@ -18,9 +18,9 @@ def test_sequencetools_iterate_sequence_cyclically_02():
     '''
 
     l = [1, 2, 3, 4, 5, 6, 7]
-    t = list(sequencetools.iterate_sequence_cyclically(l, 2, length=20))
+    step = list(sequencetools.iterate_sequence_cyclically(l, 2, length=20))
 
-    assert t == [1, 3, 5, 7, 2, 4, 6, 1, 3, 5, 7, 2, 4, 6, 1, 3, 5, 7, 2, 4]
+    assert step == [1, 3, 5, 7, 2, 4, 6, 1, 3, 5, 7, 2, 4, 6, 1, 3, 5, 7, 2, 4]
 
 
 def test_sequencetools_iterate_sequence_cyclically_03():
@@ -38,9 +38,9 @@ def test_sequencetools_iterate_sequence_cyclically_04():
     '''
 
     l = [1, 2, 3, 4, 5, 6, 7]
-    t = list(sequencetools.iterate_sequence_cyclically(l, -2, 5, length=20))
+    step = list(sequencetools.iterate_sequence_cyclically(l, -2, 5, length=20))
 
-    assert t == [6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3]
+    assert step == [6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3]
 
 
 def test_sequencetools_iterate_sequence_cyclically_05():

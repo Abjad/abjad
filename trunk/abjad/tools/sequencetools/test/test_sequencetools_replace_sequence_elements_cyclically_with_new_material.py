@@ -12,9 +12,9 @@ def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_01
     indices = ([0], 2)
     material = (['A', 'B'], 3)
 
-    t = sequencetools.replace_sequence_elements_cyclically_with_new_material(l, indices, material)
+    a = sequencetools.replace_sequence_elements_cyclically_with_new_material(l, indices, material)
 
-    assert t == ['A', 1, 'B', 3, 4, 5,
+    assert a == ['A', 1, 'B', 3, 4, 5,
         'A', 7, 'B', 9, 10, 11, 'A', 13, 'B', 15, 16, 17, 'A', 19]
 
 
@@ -39,9 +39,9 @@ def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_03
     indices = ([0], 2)
     material = (['A', 'B', 'C', 'D'], None)
 
-    t = sequencetools.replace_sequence_elements_cyclically_with_new_material(l, indices, material)
+    overwrite = sequencetools.replace_sequence_elements_cyclically_with_new_material(l, indices, material)
 
-    assert t == ['A', 1, 'B', 3, 'C', 5, 'D', 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+    assert overwrite == ['A', 1, 'B', 3, 'C', 5, 'D', 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 
 
 def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_04():
@@ -52,9 +52,9 @@ def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_04
     indices = ([0, 1, 8, 13], None)
     material = (['A', 'B', 'C', 'D'], None)
 
-    t = sequencetools.replace_sequence_elements_cyclically_with_new_material(l, indices, material)
+    a = sequencetools.replace_sequence_elements_cyclically_with_new_material(l, indices, material)
 
-    assert t == ['A', 'B', 2, 3, 4, 5, 6, 7, 'C', 9, 10, 11, 12, 'D', 14, 15, 16, 17, 18, 19]
+    assert a == ['A', 'B', 2, 3, 4, 5, 6, 7, 'C', 9, 10, 11, 12, 'D', 14, 15, 16, 17, 18, 19]
 
 
 def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_05():

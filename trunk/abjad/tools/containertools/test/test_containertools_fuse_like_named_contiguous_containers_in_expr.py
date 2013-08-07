@@ -143,9 +143,9 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_07():
     r'''Fuse outside-of-score components.
     '''
 
-    t = 2 * Voice(notetools.make_repeated_notes(4))
-    t[0].name = t[1].name = 'voiceOne'
-    result = containertools.fuse_like_named_contiguous_containers_in_expr(t)
+    voice = 2 * Voice(notetools.make_repeated_notes(4))
+    voice[0].name = voice[1].name = 'voiceOne'
+    result = containertools.fuse_like_named_contiguous_containers_in_expr(voice)
     assert isinstance(result, Voice)
     assert len(result) == 8
 

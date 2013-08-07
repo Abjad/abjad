@@ -6,33 +6,33 @@ def test_resttools_make_rests_01():
     r'''Make rest.
     '''
 
-    t = resttools.make_rests((1, 4))
-    assert isinstance(t, list)
-    assert len(t) == 1
-    assert isinstance(t[0], Rest)
-    assert t[0].written_duration == Duration(1, 4)
-    assert len(t[0].select_tie_chain()) == 1
+    rest = resttools.make_rests((1, 4))
+    assert isinstance(rest, list)
+    assert len(rest) == 1
+    assert isinstance(rest[0], Rest)
+    assert rest[0].written_duration == Duration(1, 4)
+    assert len(rest[0].select_tie_chain()) == 1
 
 
 def test_resttools_make_rests_02():
     r'''Do not tie rests.
     '''
 
-    t = resttools.make_rests((5, 8))
-    assert len(t) == 2
-    assert isinstance(t[0], Rest)
-    assert isinstance(t[1], Rest)
-    assert t[0].written_duration == Duration(4, 8)
-    assert t[1].written_duration == Duration(1, 8)
-    assert all(len(x.select_tie_chain()) == 1 for x in t)
+    rest = resttools.make_rests((5, 8))
+    assert len(rest) == 2
+    assert isinstance(rest[0], Rest)
+    assert isinstance(rest[1], Rest)
+    assert rest[0].written_duration == Duration(4, 8)
+    assert rest[1].written_duration == Duration(1, 8)
+    assert all(len(x.select_tie_chain()) == 1 for x in rest)
 
 
 def test_resttools_make_rests_03():
     r'''Do tie rests.
     '''
 
-    t = resttools.make_rests((5, 8), tie_parts=True)
-    assert all(len(x.select_tie_chain()) == 2 for x in t)
+    true = resttools.make_rests((5, 8), tie_parts=True)
+    assert all(len(x.select_tie_chain()) == 2 for x in true)
 
 
 def test_resttools_make_rests_04():

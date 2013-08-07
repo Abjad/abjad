@@ -24,8 +24,8 @@ def test_sequencetools_repeat_sequence_to_length_03():
     return only the first length elements of list.
     '''
 
-    t = sequencetools.repeat_sequence_to_length(range(5), 3)
-    assert t == [0, 1, 2]
+    when = sequencetools.repeat_sequence_to_length(range(5), 3)
+    assert when == [0, 1, 2]
 
 
 def test_sequencetools_repeat_sequence_to_length_04():

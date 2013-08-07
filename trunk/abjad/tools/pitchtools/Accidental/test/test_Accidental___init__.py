@@ -6,22 +6,22 @@ import py.test
 def test_Accidental___init___01():
     r'''Accidentals can initialize from a string.
     '''
-    t = pitchtools.Accidental('s')
-    assert t == pitchtools.Accidental('s')
+    accidental = pitchtools.Accidental('s')
+    assert accidental == pitchtools.Accidental('s')
 
 
 def test_Accidental___init___02():
     r'''Accidentals can initialize from other accidentals.
     '''
-    t = pitchtools.Accidental(pitchtools.Accidental('s'))
-    assert t == pitchtools.Accidental('s')
+    accidental = pitchtools.Accidental(pitchtools.Accidental('s'))
+    assert accidental == pitchtools.Accidental('s')
 
 
 def test_Accidental___init___03():
     r'''Accidentals can initialize with none.
     '''
-    t = pitchtools.Accidental(None)
-    assert t == pitchtools.Accidental('')
+    accidental = pitchtools.Accidental(None)
+    assert accidental == pitchtools.Accidental('')
 
 
 def test_Accidental___init___04():

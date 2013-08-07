@@ -61,8 +61,8 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
     r'''Copy notes from tuplet and adjust tuplet target duration
     in order to preserve tuplet multiplier.'''
 
-    t = tuplettools.FixedDurationTuplet(Duration(4, 8), "c'8 d'8 e'8 f'8 g'8")
-    u = componenttools.copy_components_and_immediate_parent_of_first_component(t[:3])
+    tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), "c'8 d'8 e'8 f'8 g'8")
+    u = componenttools.copy_components_and_immediate_parent_of_first_component(tuplet[:3])
 
     r'''
     \times 4/5 {

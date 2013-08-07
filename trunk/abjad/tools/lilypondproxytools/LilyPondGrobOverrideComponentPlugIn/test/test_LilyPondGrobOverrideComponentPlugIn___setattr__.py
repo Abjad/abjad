@@ -261,9 +261,9 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___09():
     r'''Override LilyPond ClusterSpanner grob.
     '''
 
-    t = containertools.Cluster(Note(1, (1, 4)) * 4)
-    t.override.cluster_spanner.style = 'ramp'
-    t.override.cluster_spanner.padding = 0.1
+    cluster = containertools.Cluster(Note(1, (1, 4)) * 4)
+    cluster.override.cluster_spanner.style = 'ramp'
+    cluster.override.cluster_spanner.padding = 0.1
 
     r'''
     \makeClusters {
@@ -279,7 +279,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___09():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        cluster.lilypond_format,
         r'''
         \makeClusters {
             \override ClusterSpanner #'padding = #0.1
@@ -294,7 +294,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___09():
         '''
         )
 
-    del(t.override.cluster_spanner)
+    del(cluster.override.cluster_spanner)
 
     r'''
     \makeClusters {
@@ -306,7 +306,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___09():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        cluster.lilypond_format,
         r'''
         \makeClusters {
             cs'4
@@ -1823,11 +1823,11 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___55():
     r'''Override LilyPond TupletNumber grob.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    t.override.tuplet_number.fraction = True
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    tuplet.override.tuplet_number.fraction = True
 
     r'''
-    \override TupletNumber #'fraction = ##t
+    \override TupletNumber #'fraction = ##tuplet
     \times 2/3 {
         c'8
         d'8
@@ -1836,9 +1836,9 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___55():
     \revert TupletNumber #'fraction
     '''
 
-    assert select(t).is_well_formed()
+    assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        tuplet.lilypond_format,
         r'''
         \override TupletNumber #'fraction = ##t
         \times 2/3 {

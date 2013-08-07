@@ -53,12 +53,12 @@ def test_Rest___init___05():
     r'''Init rest from tupletized chord.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(2, 8), Chord([2, 3, 4], (1, 4)) * 3)
-    d = t[0].written_duration
-    rest = Rest(t[0])
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), Chord([2, 3, 4], (1, 4)) * 3)
+    d = tuplet[0].written_duration
+    rest = Rest(tuplet[0])
     assert isinstance(rest, Rest)
-    assert isinstance(t[0], Chord)
-    assert t[0]._parent is t
+    assert isinstance(tuplet[0], Chord)
+    assert tuplet[0]._parent is tuplet
     assert rest._parent is None
 
 
@@ -93,13 +93,13 @@ def test_Rest___init___08():
     r'''Init rest from tupletted skip.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(2, 8), skiptools.Skip((1, 8)) * 3)
-    d = t[0].written_duration
-    rest = Rest(t[0])
-    assert isinstance(t[0], skiptools.Skip)
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), skiptools.Skip((1, 8)) * 3)
+    d = tuplet[0].written_duration
+    rest = Rest(tuplet[0])
+    assert isinstance(tuplet[0], skiptools.Skip)
     assert isinstance(rest, Rest)
-    assert t[0]._parent is t
-    assert t[0].written_duration == d
+    assert tuplet[0]._parent is tuplet
+    assert tuplet[0].written_duration == d
     assert rest._parent is None
 
 
@@ -136,13 +136,13 @@ def test_Rest___init___11():
     r'''Init rest from tupletized note.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
-    d = t[0].written_duration
-    rest = Rest(t[0])
-    assert isinstance(t[0], Note)
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
+    d = tuplet[0].written_duration
+    rest = Rest(tuplet[0])
+    assert isinstance(tuplet[0], Note)
     assert isinstance(rest, Rest)
-    assert t[0]._parent is t
-    assert t[0].written_duration == d
+    assert tuplet[0]._parent is tuplet
+    assert tuplet[0].written_duration == d
     assert rest._parent is None
 
 

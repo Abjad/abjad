@@ -22,10 +22,10 @@ def test_Leaf___copy___02():
 
 def test_Leaf___copy___03():
     s = skiptools.Skip((1, 8))
-    t = componenttools.copy_components_and_fracture_crossing_spanners([s])[0]
-    assert id(s) != id(t)
+    none = componenttools.copy_components_and_fracture_crossing_spanners([s])[0]
+    assert id(s) != id(none)
     assert s._parent is None
-    assert t._parent is None
+    assert none._parent is None
 
 
 def test_Leaf___copy___04():
@@ -37,11 +37,11 @@ def test_Leaf___copy___04():
 
 
 def test_Leaf___copy___05():
-    t = tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
-    m = t[1]
+    tuplet = tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
+    m = tuplet[1]
     n = componenttools.copy_components_and_fracture_crossing_spanners([m])[0]
     assert id(m) != id(n)
-    assert m._parent is t
+    assert m._parent is tuplet
     assert n._parent is None
 
 

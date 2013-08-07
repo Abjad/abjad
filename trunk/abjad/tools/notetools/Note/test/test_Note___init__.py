@@ -61,12 +61,12 @@ def test_Note___init___07():
     r'''Init note from tupletized chord.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(2, 8), Chord([2, 3, 4], (1, 4)) * 3)
-    d = t[0].written_duration
-    note = Note(t[0])
-    assert isinstance(t[0], Chord)
-    assert t[0]._parent is t
-    assert t[0].written_duration == d
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), Chord([2, 3, 4], (1, 4)) * 3)
+    d = tuplet[0].written_duration
+    note = Note(tuplet[0])
+    assert isinstance(tuplet[0], Chord)
+    assert tuplet[0]._parent is tuplet
+    assert tuplet[0].written_duration == d
     assert isinstance(note, Note)
 
 
@@ -102,13 +102,13 @@ def test_Note___init___10():
     r'''Init note from tupletized rest.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(2, 8), Rest((1, 8)) * 3)
-    d = t[0].written_duration
-    note = Note(t[0])
-    assert isinstance(t[0], Rest)
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), Rest((1, 8)) * 3)
+    d = tuplet[0].written_duration
+    note = Note(tuplet[0])
+    assert isinstance(tuplet[0], Rest)
     assert isinstance(note, Note)
-    assert t[0]._parent is t
-    assert t[0].written_duration == d
+    assert tuplet[0]._parent is tuplet
+    assert tuplet[0].written_duration == d
     assert note._parent is None
 
 
@@ -142,13 +142,13 @@ def test_Note___init___13():
     r'''Init note from tupletized skip.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(2, 8), skiptools.Skip((1, 8)) * 3)
-    d = t[0].written_duration
-    note = Note(t[0])
-    assert isinstance(t[0], skiptools.Skip)
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), skiptools.Skip((1, 8)) * 3)
+    d = tuplet[0].written_duration
+    note = Note(tuplet[0])
+    assert isinstance(tuplet[0], skiptools.Skip)
     assert isinstance(note, Note)
-    assert t[0]._parent is t
-    assert t[0].written_duration == d
+    assert tuplet[0]._parent is tuplet
+    assert tuplet[0].written_duration == d
     assert note._parent is None
 
 

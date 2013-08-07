@@ -745,32 +745,32 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_20():
     r'''Excise singly-nested singleton.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(2, 4), [
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), [
         Note("c'4"),
         Note("c'4"),
         tuplettools.FixedDurationTuplet(Duration(1, 4), [Note("c'4")])])
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[-1])
-    assert isinstance(t, tuplettools.FixedDurationTuplet)
-    assert len(t) == 2
-    assert t.target_duration == Duration(2, 6)
-    assert t.multiplier == Duration(2, 3)
-    assert t.get_duration() == Duration(2, 6)
-    assert isinstance(t[0], Note)
-    assert t[0].written_duration == Duration(1, 4)
-    assert t[0].get_duration() == Duration(1, 6)
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(tuplet.select_leaves()[-1])
+    assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
+    assert len(tuplet) == 2
+    assert tuplet.target_duration == Duration(2, 6)
+    assert tuplet.multiplier == Duration(2, 3)
+    assert tuplet.get_duration() == Duration(2, 6)
+    assert isinstance(tuplet[0], Note)
+    assert tuplet[0].written_duration == Duration(1, 4)
+    assert tuplet[0].get_duration() == Duration(1, 6)
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_21():
     r'''Excise doubly-nested singleton.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(2, 4), [
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), [
         Note("c'4"),
         Note("c'4"),
         tuplettools.FixedDurationTuplet(Duration(1, 4), [
             tuplettools.FixedDurationTuplet(Duration(1, 4), [Note("c'4")])])])
 
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(tuplet)
 
     r'''
     \times 2/3 {
@@ -784,7 +784,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_21():
     }
     '''
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[-1])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(tuplet.select_leaves()[-1])
 
     r'''
     \times 2/3 {
@@ -793,9 +793,9 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_21():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        tuplet.lilypond_format,
         r'''
         \times 2/3 {
             c'4
@@ -809,13 +809,13 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_22():
     r'''Excise doubly-nested singleton leaf.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(2, 4), [
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), [
         Note("c'4"),
         Note("c'4"),
         tuplettools.FixedDurationTuplet(Duration(1, 4), [
             tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 2)])])
 
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(tuplet)
 
     r'''
     \times 2/3 {
@@ -830,7 +830,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_22():
     }
     '''
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[-1])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(tuplet.select_leaves()[-1])
 
     r'''
     \times 2/3 {
@@ -844,9 +844,9 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_22():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        tuplet.lilypond_format,
         r'''
         \times 2/3 {
             c'4
@@ -865,7 +865,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_23():
     r'''Excise leaf from fixed-duration tuplet.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(4, 8), "c'8 d'8 e'8 f'8 g'8")
+    tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), "c'8 d'8 e'8 f'8 g'8")
 
     r'''
     \times 4/5 {
@@ -877,7 +877,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_23():
     }
     '''
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[0])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(tuplet.select_leaves()[0])
 
     r'''
     \times 4/5 {
@@ -888,9 +888,9 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_23():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        tuplet.lilypond_format,
         r'''
         \times 4/5 {
             d'8
@@ -948,7 +948,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_25():
     r'''Excise nested fixed-duration tuplet.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(2,2), [Note(0, (1,2)), Note(1, (1,2)),
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2,2), [Note(0, (1,2)), Note(1, (1,2)),
         tuplettools.FixedDurationTuplet(Duration(2,4), [Note(i, (1,4)) for i in range(2, 5)])])
 
     r'''
@@ -963,7 +963,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_25():
     }
     '''
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[-1])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(tuplet.select_leaves()[-1])
 
     r'''
     \times 2/3 {
@@ -976,9 +976,9 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_25():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        tuplet.lilypond_format,
         r'''
         \times 2/3 {
             c'2

@@ -70,10 +70,10 @@ def test_Component__is_immediate_temporal_successor_of_04():
     the immediate temporal follower of the first.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(2, 8), [Note(i, (1, 8)) for i in range(3)])
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), [Note(i, (1, 8)) for i in range(3)])
 
-    assert t[0]._is_immediate_temporal_successor_of(t[1])
-    assert t[1]._is_immediate_temporal_successor_of(t[2])
+    assert tuplet[0]._is_immediate_temporal_successor_of(tuplet[1])
+    assert tuplet[1]._is_immediate_temporal_successor_of(tuplet[2])
 
     r'''
     \times 2/3 {

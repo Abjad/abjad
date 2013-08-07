@@ -6,8 +6,8 @@ def test_TempoMark_quarters_per_minute_01():
     r'''Maelzel metronome marking with integer-valued mark.
     '''
 
-    t = contexttools.TempoMark(Duration(3, 32), 52)
-    assert t.quarters_per_minute == Duration(416, 3)
+    tempomark = contexttools.TempoMark(Duration(3, 32), 52)
+    assert tempomark.quarters_per_minute == Duration(416, 3)
 
 
 def test_TempoMark_quarters_per_minute_02():

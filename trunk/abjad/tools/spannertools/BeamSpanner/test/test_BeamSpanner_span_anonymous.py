@@ -559,7 +559,7 @@ def test_BeamSpanner_span_anonymous_14():
     '''
 
     tinner = tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
-    t = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), tinner, Note("c'4")])
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), tinner, Note("c'4")])
 
     r'''
     \times 2/3 {
@@ -573,12 +573,12 @@ def test_BeamSpanner_span_anonymous_14():
     }
     '''
 
-    p = spannertools.BeamSpanner(t)
+    p = spannertools.BeamSpanner(tuplet)
     assert len(p.components) == 1
     assert len(p.leaves) == 5
     p.detach()
 
-    p = spannertools.BeamSpanner(t[:])
+    p = spannertools.BeamSpanner(tuplet[:])
     assert len(p.components) == 3
     assert len(p.leaves) == 5
 

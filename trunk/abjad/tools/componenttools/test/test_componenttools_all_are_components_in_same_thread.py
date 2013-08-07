@@ -37,7 +37,7 @@ def test_componenttools_all_are_components_in_same_thread_03():
     r'''Tuplet and leaves all thread.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
 
     r'''
     \times 2/3 {
@@ -47,7 +47,7 @@ def test_componenttools_all_are_components_in_same_thread_03():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(list(iterationtools.iterate_components_in_expr(t, Component)))
+    assert componenttools.all_are_components_in_same_thread(list(iterationtools.iterate_components_in_expr(tuplet, Component)))
 
 
 def test_componenttools_all_are_components_in_same_thread_04():

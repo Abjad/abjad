@@ -38,13 +38,13 @@ def test_Skip___init___04():
     r'''Init skip from tupletized note.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(2, 8), Chord([2, 3, 4], (1, 4)) * 3)
-    d = t[0].written_duration
-    skip = skiptools.Skip(t[0])
-    assert isinstance(t[0], Chord)
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), Chord([2, 3, 4], (1, 4)) * 3)
+    d = tuplet[0].written_duration
+    skip = skiptools.Skip(tuplet[0])
+    assert isinstance(tuplet[0], Chord)
     assert isinstance(skip, skiptools.Skip)
-    assert t[0]._parent is t
-    assert t[0].written_duration == d
+    assert tuplet[0]._parent is tuplet
+    assert tuplet[0].written_duration == d
     assert skip._parent is None
 
 
@@ -75,13 +75,13 @@ def test_Skip___init___06():
 
 
 def test_Skip___init___07():
-    t = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
-    d = t[0].written_duration
-    skip = skiptools.Skip(t[0])
-    assert isinstance(t[0], Note)
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
+    d = tuplet[0].written_duration
+    skip = skiptools.Skip(tuplet[0])
+    assert isinstance(tuplet[0], Note)
     assert isinstance(skip, skiptools.Skip)
-    assert t[0]._parent is t
-    assert t[0].written_duration == d
+    assert tuplet[0]._parent is tuplet
+    assert tuplet[0].written_duration == d
 
 
 def test_Skip___init___08():
@@ -115,13 +115,13 @@ def test_Skip___init___10():
     r'''Init skip from tupletized rest.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(2, 8), Rest((1, 8)) * 3)
-    d = t[0].written_duration
-    skip = skiptools.Skip(t[0])
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), Rest((1, 8)) * 3)
+    d = tuplet[0].written_duration
+    skip = skiptools.Skip(tuplet[0])
     assert isinstance(skip, skiptools.Skip)
-    assert isinstance(t[0], Rest)
-    assert t[0]._parent is t
-    assert t[0].written_duration == d
+    assert isinstance(tuplet[0], Rest)
+    assert tuplet[0]._parent is tuplet
+    assert tuplet[0].written_duration == d
     assert skip._parent is None
 
 

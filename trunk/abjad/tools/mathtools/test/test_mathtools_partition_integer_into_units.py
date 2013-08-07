@@ -16,9 +16,9 @@ def test_mathtools_partition_integer_into_units_02():
     r'''Partition integer n into n equal parts.
         Partition negative n into parts all equal to -1.'''
 
-    t = mathtools.partition_integer_into_units(-5)
+    partition = mathtools.partition_integer_into_units(-5)
 
-    assert t == [-1, -1, -1, -1, -1]
+    assert partition == [-1, -1, -1, -1, -1]
 
 
 def test_mathtools_partition_integer_into_units_03():

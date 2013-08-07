@@ -6,12 +6,12 @@ def test_FixedDurationTuplet___init___01():
     r'''Initialize typical fixed-duration tuplet.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
 
-    assert repr(t) == "FixedDurationTuplet(1/4, [c'8, c'8, c'8])"
-    assert str(t) == "{@ 3:2 c'8, c'8, c'8 @}"
+    assert repr(tuplet) == "FixedDurationTuplet(1/4, [c'8, c'8, c'8])"
+    assert str(tuplet) == "{@ 3:2 c'8, c'8, c'8 @}"
     assert testtools.compare(
-        t.lilypond_format,
+        tuplet.lilypond_format,
         r'''
         \times 2/3 {
             c'8
@@ -20,10 +20,10 @@ def test_FixedDurationTuplet___init___01():
         }
         '''
         )
-    assert len(t) == 3
-    assert t.target_duration == Fraction(1, 4)
-    assert t.multiplier == Fraction(2, 3)
-    assert t.get_duration() == Fraction(1, 4)
+    assert len(tuplet) == 3
+    assert tuplet.target_duration == Fraction(1, 4)
+    assert tuplet.multiplier == Fraction(2, 3)
+    assert tuplet.get_duration() == Fraction(1, 4)
 
 
 def test_FixedDurationTuplet___init___02():

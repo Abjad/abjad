@@ -120,7 +120,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_05():
     r'''Fixed-duration tuplet.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(2,8), [Note(i, (1,8)) for i in range(3)])
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2,8), [Note(i, (1,8)) for i in range(3)])
 
     r'''
     \times 2/3 {
@@ -130,13 +130,13 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_05():
     }
     '''
 
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[0], 1) is t[1]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[1], 1) is t[2]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[2], 1) is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(tuplet[0], 1) is tuplet[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(tuplet[1], 1) is tuplet[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(tuplet[2], 1) is None
 
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[0], -1) is None
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[1], -1) is t[0]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[2], -1) is t[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(tuplet[0], -1) is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(tuplet[1], -1) is tuplet[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(tuplet[2], -1) is tuplet[1]
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_06():
@@ -609,7 +609,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_18():
     '''
 
     tinner = tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
-    t = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), tinner, Note("c'4")])
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), tinner, Note("c'4")])
 
     r'''
     \times 2/3 {
@@ -623,10 +623,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_18():
     }
     '''
 
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[0], 1) is tinner[0]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(tinner[-1], 1) is t[-1]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[-1], -1) is tinner[-1]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(tinner[0], -1) is t[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(tuplet[0], 1) is tinner[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(tinner[-1], 1) is tuplet[-1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(tuplet[-1], -1) is tinner[-1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(tinner[0], -1) is tuplet[0]
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_19():

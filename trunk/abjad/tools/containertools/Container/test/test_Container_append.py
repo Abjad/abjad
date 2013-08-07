@@ -43,9 +43,9 @@ def test_Container_append_02():
     r'''Append leaf to tuplet.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
-    t.append(Note(5, (1, 16)))
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    spannertools.BeamSpanner(tuplet[:])
+    tuplet.append(Note(5, (1, 16)))
 
     r'''
     \times 4/7 {
@@ -56,9 +56,9 @@ def test_Container_append_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        tuplet.lilypond_format,
         r'''
         \times 4/7 {
             c'8 [

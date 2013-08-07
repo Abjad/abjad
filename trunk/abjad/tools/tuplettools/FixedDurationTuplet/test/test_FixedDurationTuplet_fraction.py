@@ -6,7 +6,7 @@ def test_FixedDurationTuplet_fraction_01():
     r'''Fraction format tuplets with non-power of two denominators.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(3, 8), "c'8 d'8 e'8 f'8")
+    tuplet = tuplettools.FixedDurationTuplet(Duration(3, 8), "c'8 d'8 e'8 f'8")
 
     r'''
     \tweak #'text #tuplet-number::calc-fraction-text
@@ -18,9 +18,9 @@ def test_FixedDurationTuplet_fraction_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        tuplet.lilypond_format,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 3/4 {
@@ -37,7 +37,7 @@ def test_FixedDurationTuplet_fraction_02():
     r'''Fraction format all augmentations, even ones with power-of-two denominator.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(4, 8), "c'8 d'8 e'8")
+    tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), "c'8 d'8 e'8")
 
 
     r'''
@@ -49,9 +49,9 @@ def test_FixedDurationTuplet_fraction_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        tuplet.lilypond_format,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 4/3 {
