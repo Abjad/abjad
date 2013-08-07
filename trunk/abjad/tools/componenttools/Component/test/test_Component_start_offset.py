@@ -92,11 +92,11 @@ def test_Component_start_offset_11():
     r'''Offset on leaves works in nested contexts.
     '''
 
-    v = Voice(notetools.make_repeated_notes(4))
-    staff = Staff([Note(0, (1, 8)), v, Note(0, (1, 8))])
+    voice = Voice(notetools.make_repeated_notes(4))
+    staff = Staff([Note(0, (1, 8)), voice, Note(0, (1, 8))])
     for i, x in enumerate(staff.select_leaves()):
         assert x.get_timespan().start_offset == i * Duration(1, 8)
-    for i, x in enumerate(v.select_leaves()):
+    for i, x in enumerate(voice.select_leaves()):
         assert x.get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 8)
 
 

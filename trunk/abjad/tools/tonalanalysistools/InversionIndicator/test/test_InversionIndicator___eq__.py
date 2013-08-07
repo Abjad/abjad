@@ -7,16 +7,16 @@ def test_InversionIndicator___eq___01():
 
     inversion_indicator = tonalanalysistools.InversionIndicator(0)
     u = tonalanalysistools.InversionIndicator(0)
-    v = tonalanalysistools.InversionIndicator(1)
+    voice = tonalanalysistools.InversionIndicator(1)
 
     assert      inversion_indicator == inversion_indicator
     assert      inversion_indicator == u
-    assert not inversion_indicator == v
+    assert not inversion_indicator == voice
 
     assert      u == inversion_indicator
     assert      u == u
-    assert not u == v
+    assert not u == voice
 
-    assert not v == inversion_indicator
-    assert not v == u
-    assert      v == v
+    assert not voice == inversion_indicator
+    assert not voice == u
+    assert      voice == voice

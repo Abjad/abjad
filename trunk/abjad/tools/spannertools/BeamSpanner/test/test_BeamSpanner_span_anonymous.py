@@ -492,7 +492,7 @@ def test_BeamSpanner_span_anonymous_12():
 
     s1 = Container([Note(i, (1, 8)) for i in range(2)])
     s2 = Container([Note(i, (1, 8)) for i in range(3, 5)])
-    v = Voice([s1, Note(2, (1, 8)), s2])
+    voice = Voice([s1, Note(2, (1, 8)), s2])
 
     r'''
     \new Voice {
@@ -508,12 +508,12 @@ def test_BeamSpanner_span_anonymous_12():
     }
     '''
 
-    p = spannertools.BeamSpanner(v)
+    p = spannertools.BeamSpanner(voice)
     assert len(p.components) == 1
     assert len(p.leaves) == 5
     p.detach()
 
-    p = spannertools.BeamSpanner(v[:])
+    p = spannertools.BeamSpanner(voice[:])
     assert len(p.components) == 3
     assert len(p.leaves) == 5
     p.detach()
@@ -525,7 +525,7 @@ def test_BeamSpanner_span_anonymous_13():
 
     t1 = tuplettools.FixedDurationTuplet(Duration(1,4), [Note(i, (1,8)) for i in range(3)])
     t2 = tuplettools.FixedDurationTuplet(Duration(1,4), [Note(i, (1,8)) for i in range(4,7)])
-    v = Voice([t1, Note(3, (1,8)), t2])
+    voice = Voice([t1, Note(3, (1,8)), t2])
 
     r'''
     \new Voice {
@@ -543,12 +543,12 @@ def test_BeamSpanner_span_anonymous_13():
     }
     '''
 
-    p = spannertools.BeamSpanner(v)
+    p = spannertools.BeamSpanner(voice)
     assert len(p.components) == 1
     assert len(p.leaves) == 7
     p.detach()
 
-    p = spannertools.BeamSpanner(v[:])
+    p = spannertools.BeamSpanner(voice[:])
     assert len(p.components) == 3
     assert len(p.leaves) == 7
     p.detach()

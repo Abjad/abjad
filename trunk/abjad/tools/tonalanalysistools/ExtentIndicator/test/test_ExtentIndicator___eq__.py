@@ -5,18 +5,18 @@ from abjad.tools import tonalanalysistools
 
 def test_ExtentIndicator___eq___01():
 
-    extentindicator = tonalanalysistools.ExtentIndicator(5)
+    extent_indicator = tonalanalysistools.ExtentIndicator(5)
     u = tonalanalysistools.ExtentIndicator(5)
-    v = tonalanalysistools.ExtentIndicator(7)
+    voice = tonalanalysistools.ExtentIndicator(7)
 
-    assert      extentindicator == extentindicator
-    assert      extentindicator == u
-    assert not extentindicator == v
+    assert      extent_indicator == extent_indicator
+    assert      extent_indicator == u
+    assert not extent_indicator == voice
 
-    assert      u == extentindicator
+    assert      u == extent_indicator
     assert      u == u
-    assert not u == v
+    assert not u == voice
 
-    assert not v == extentindicator
-    assert not v == u
-    assert      v == v
+    assert not voice == extent_indicator
+    assert not voice == u
+    assert      voice == voice

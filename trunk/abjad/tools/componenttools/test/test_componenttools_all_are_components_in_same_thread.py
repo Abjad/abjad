@@ -693,8 +693,8 @@ def test_componenttools_all_are_components_in_same_thread_27():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
-    v = Voice([Note(n, (1, 8)) for n in range(4)])
-    q = Container([v])
+    voice = Voice([Note(n, (1, 8)) for n in range(4)])
+    q = Container([voice])
     notes = [Note(n, (1, 8)) for n in range(4, 8)]
     container = Container([q] + notes)
 
@@ -724,9 +724,9 @@ def test_componenttools_all_are_components_in_same_thread_28():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
-    v = Voice([Note(n, (1, 8)) for n in range(4)])
-    v.name = 'foo'
-    q = Container([v])
+    voice = Voice([Note(n, (1, 8)) for n in range(4)])
+    voice.name = 'foo'
+    q = Container([voice])
     notes = [Note(n, (1, 8)) for n in range(4, 8)]
     container = Container([q] + notes)
 
@@ -1157,10 +1157,10 @@ def test_componenttools_all_are_components_in_same_thread_40():
     r'''Can not thread across differently named voices.
     '''
 
-    v = Voice(Note(0, (1, 8)) * 4)
-    v.name = 'bar'
+    voice = Voice(Note(0, (1, 8)) * 4)
+    voice.name = 'bar'
     q = Container(Note(0, (1, 8)) * 4)
-    q.insert(2, v)
+    q.insert(2, voice)
     qq = Container(Note(0, (1, 8)) * 4)
     qq.insert(2, q)
     voice = Voice(Note(0, (1, 8)) * 4)

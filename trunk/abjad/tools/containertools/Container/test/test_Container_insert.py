@@ -212,14 +212,14 @@ def test_Container_insert_07():
     changes note parent from first container to second.
     '''
 
-    v = Voice("c'8 d'8 e'8 f'8")
+    voice = Voice("c'8 d'8 e'8 f'8")
     staff = Staff(notetools.make_repeated_notes(8))
-    note = v[0]
-    staff.insert(1, v[0])
+    note = voice[0]
+    staff.insert(1, voice[0])
 
-    assert select(v).is_well_formed()
+    assert select(voice).is_well_formed()
     assert select(staff).is_well_formed()
-    assert not note in v
+    assert not note in voice
     assert note._parent is staff
 
 
@@ -462,12 +462,12 @@ def test_Container_insert_15():
     changes note parent from first container to second.
     '''
 
-    v = Voice("c'8 d'8 e'8 f'8")
+    voice = Voice("c'8 d'8 e'8 f'8")
     staff = Staff(notetools.make_repeated_notes(8))
-    note = v[0]
-    staff.insert(1, v[0], fracture_spanners=True)
+    note = voice[0]
+    staff.insert(1, voice[0], fracture_spanners=True)
 
-    assert select(v).is_well_formed()
+    assert select(voice).is_well_formed()
     assert select(staff).is_well_formed()
-    assert not note in v
+    assert not note in voice
     assert note._parent is staff

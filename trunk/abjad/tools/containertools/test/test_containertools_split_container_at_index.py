@@ -276,9 +276,9 @@ def test_containertools_split_container_at_index_05():
     '''
 
     staff = Staff([Voice("c'8 d'8 e'8 f'8")])
-    v = staff[0]
-    spannertools.BeamSpanner(v)
-    left, right = containertools.split_container_at_index(v, 0, fracture_spanners=False)
+    voice = staff[0]
+    spannertools.BeamSpanner(voice)
+    left, right = containertools.split_container_at_index(voice, 0, fracture_spanners=False)
 
     r'''
     \new Staff {
@@ -333,8 +333,8 @@ def test_containertools_split_container_at_index_06():
     '''
 
     staff = Staff([Voice("c'8 d'8 e'8 f'8")])
-    v = staff[0]
-    left, right = containertools.split_container_at_index(v, 10, fracture_spanners=False)
+    voice = staff[0]
+    left, right = containertools.split_container_at_index(voice, 10, fracture_spanners=False)
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
@@ -356,7 +356,7 @@ def test_containertools_split_container_at_index_06():
         '''
         )
     assert testtools.compare(
-        v.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
         }
@@ -382,10 +382,10 @@ def test_containertools_split_container_at_index_07():
     '''
 
     staff = Staff([Voice("c'8 d'8 e'8 f'8")])
-    v = staff[0]
-    #assert py.test.raises(ContiguityError, 'containertools.split_container_at_index(v, -2, fracture_spanners=False)')
+    voice = staff[0]
+    #assert py.test.raises(ContiguityError, 'containertools.split_container_at_index(voice, -2, fracture_spanners=False)')
 
-    left, right = containertools.split_container_at_index(v, -2, fracture_spanners=False)
+    left, right = containertools.split_container_at_index(voice, -2, fracture_spanners=False)
     assert select(staff).is_well_formed()
     assert testtools.compare(
         left.lilypond_format,
@@ -406,7 +406,7 @@ def test_containertools_split_container_at_index_07():
         '''
         )
     assert testtools.compare(
-        v.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
         }
@@ -434,9 +434,9 @@ def test_containertools_split_container_at_index_08():
     '''
 
     staff = Staff([Container("c'8 d'8 e'8 f'8")])
-    v = staff[0]
-    spannertools.BeamSpanner(v)
-    left, right = containertools.split_container_at_index(v, 2, fracture_spanners=False)
+    voice = staff[0]
+    spannertools.BeamSpanner(voice)
+    left, right = containertools.split_container_at_index(voice, 2, fracture_spanners=False)
 
     r'''
     \new Staff {
@@ -471,7 +471,7 @@ def test_containertools_split_container_at_index_08():
         '''
         )
     assert testtools.compare(
-        v.lilypond_format,
+        voice.lilypond_format,
         r'''
         {
         }
@@ -499,8 +499,8 @@ def test_containertools_split_container_at_index_09():
     '''
 
     staff = Staff([Voice([Tuplet(Fraction(4, 5), notetools.make_repeated_notes(5))])])
-    v = staff[0]
-    tuplet = v[0]
+    voice = staff[0]
+    tuplet = voice[0]
     spannertools.BeamSpanner(tuplet)
     left, right = containertools.split_container_at_index(tuplet, 2, fracture_spanners=False)
 
@@ -548,7 +548,7 @@ def test_containertools_split_container_at_index_09():
         '''
         )
     assert testtools.compare(
-        v.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             \times 4/5 {
@@ -1077,8 +1077,8 @@ def test_containertools_split_container_at_index_16():
     '''
 
     staff = Staff([Voice("c'8 d'8 e'8 f'8")])
-    v = staff[0]
-    spannertools.BeamSpanner(v)
+    voice = staff[0]
+    spannertools.BeamSpanner(voice)
 
     r'''
     \new Staff {
@@ -1091,7 +1091,7 @@ def test_containertools_split_container_at_index_16():
     }
     '''
 
-    left, right = containertools.split_container_at_index(v, 0, fracture_spanners=True)
+    left, right = containertools.split_container_at_index(voice, 0, fracture_spanners=True)
 
     r'''
     \new Staff {
@@ -1123,7 +1123,7 @@ def test_containertools_split_container_at_index_16():
         '''
         )
     assert testtools.compare(
-        v.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
         }
@@ -1152,10 +1152,10 @@ def test_containertools_split_container_at_index_17():
     '''
 
     staff = Staff([Voice("c'8 d'8 e'8 f'8")])
-    v = staff[0]
-    spannertools.BeamSpanner(v)
+    voice = staff[0]
+    spannertools.BeamSpanner(voice)
 
-    left, right = containertools.split_container_at_index(v, 10, fracture_spanners=True)
+    left, right = containertools.split_container_at_index(voice, 10, fracture_spanners=True)
 
     r'''
     \new Staff {
@@ -1187,7 +1187,7 @@ def test_containertools_split_container_at_index_17():
         '''
         )
     assert testtools.compare(
-        v.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
         }

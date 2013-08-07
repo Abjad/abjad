@@ -550,7 +550,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_16():
 
     s1 = Container([Note(i, (1,8)) for i in range(2)])
     s2 = Container([Note(i, (1,8)) for i in range(3,5)])
-    v = Voice([s1, Note(2, (1,8)), s2])
+    voice = Voice([s1, Note(2, (1,8)), s2])
 
     r'''
     \new Voice {
@@ -566,11 +566,11 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_16():
     }
     '''
 
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(s1[1], 1) is v[1]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(v[1], 1) is s2[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s1[1], 1) is voice[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(voice[1], 1) is s2[0]
 
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(v[1], -1) is s1[1]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(s2[0], -1) is v[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(voice[1], -1) is s1[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s2[0], -1) is voice[1]
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_17():
@@ -579,7 +579,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_17():
 
     t1 = tuplettools.FixedDurationTuplet(Duration(1,4), [Note(i, (1,8)) for i in range(3)])
     t2 = tuplettools.FixedDurationTuplet(Duration(1,4), [Note(i, (1,8)) for i in range(4,7)])
-    v = Voice([t1, Note(3, (1,8)), t2])
+    voice = Voice([t1, Note(3, (1,8)), t2])
 
     r'''
     \new Voice {
@@ -597,11 +597,11 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_17():
     }
     '''
 
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t1[-1], 1) is v[1]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(v[1], 1) is t2[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t1[-1], 1) is voice[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(voice[1], 1) is t2[0]
 
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(v[1], -1) is t1[-1]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t2[0], -1) is v[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(voice[1], -1) is t1[-1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t2[0], -1) is voice[1]
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_18():

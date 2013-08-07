@@ -90,13 +90,13 @@ def test_Chord___init___10():
     r'''Init chord from containerized skip.
     '''
 
-    v = Voice(skiptools.Skip((1, 8)) * 3)
-    d = v[0].written_duration
-    chord = Chord(v[0])
-    assert isinstance(v[0], skiptools.Skip)
+    voice = Voice(skiptools.Skip((1, 8)) * 3)
+    d = voice[0].written_duration
+    chord = Chord(voice[0])
+    assert isinstance(voice[0], skiptools.Skip)
     assert isinstance(chord, Chord)
-    assert v[0]._parent is v
-    assert v[0].written_duration == d
+    assert voice[0]._parent is voice
+    assert voice[0].written_duration == d
     assert chord._parent is None
 
 
