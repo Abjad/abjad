@@ -14,15 +14,15 @@ def test_Spanner_leaves_01():
         def _copy_keyword_args(self, new):
             pass
 
-    t = Voice(notetools.make_repeated_notes(4))
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
-    p = MockSpanner(t)
+    voice = Voice(notetools.make_repeated_notes(4))
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(voice)
+    p = MockSpanner(voice)
 
     assert len(p.components) == 1
-    assert p.components[0] is t
+    assert p.components[0] is voice
     assert len(p.leaves) == 4
     for i, leaf in enumerate(p.leaves):
-        assert leaf is t[i]
+        assert leaf is voice[i]
     assert p.get_duration() == Duration(4, 8)
 
 
@@ -37,14 +37,14 @@ def test_Spanner_leaves_02():
         def _copy_keyword_args(self, new):
             pass
 
-    t = Voice(notetools.make_repeated_notes(4))
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
-    p = MockSpanner(t[:])
+    voice = Voice(notetools.make_repeated_notes(4))
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(voice)
+    p = MockSpanner(voice[:])
 
     assert len(p.components) == 4
     assert len(p.leaves) == 4
     for i, leaf in enumerate(p.leaves):
-        assert leaf is t[i]
+        assert leaf is voice[i]
     assert p.get_duration() == Duration(4, 8)
 
 
@@ -59,11 +59,11 @@ def test_Spanner_leaves_03():
         def _copy_keyword_args(self, new):
             pass
 
-    t = Voice([])
-    p = MockSpanner(t)
+    voice = Voice([])
+    p = MockSpanner(voice)
 
     assert len(p.components) == 1
-    assert p.components[0] is t
+    assert p.components[0] is voice
     assert len(p.leaves) == 0
     assert p.get_duration() == Duration(0)
 
@@ -78,11 +78,11 @@ def test_Spanner_leaves_04():
         def _copy_keyword_args(self, new):
             pass
 
-    t = Voice(notetools.make_repeated_notes(4))
-    t.insert(1, Container(notetools.make_repeated_notes(2)))
-    t.insert(3, Container(notetools.make_repeated_notes(2)))
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
-    p = MockSpanner(t)
+    voice = Voice(notetools.make_repeated_notes(4))
+    voice.insert(1, Container(notetools.make_repeated_notes(2)))
+    voice.insert(3, Container(notetools.make_repeated_notes(2)))
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(voice)
+    p = MockSpanner(voice)
 
     r'''
     \new Voice {
@@ -103,8 +103,8 @@ def test_Spanner_leaves_04():
 
     assert len(p.components) == 1
     assert len(p.leaves) == 8
-    for i, leaf in enumerate(t.select_leaves()):
-        assert leaf is t.select_leaves()[i]
+    for i, leaf in enumerate(voice.select_leaves()):
+        assert leaf is voice.select_leaves()[i]
     assert p.get_duration() == Duration(8, 8)
 
 
@@ -118,11 +118,11 @@ def test_Spanner_leaves_05():
         def _copy_keyword_args(self, new):
             pass
 
-    t = Voice(notetools.make_repeated_notes(4))
-    t.insert(1, Container(notetools.make_repeated_notes(2)))
-    t.insert(3, Container(notetools.make_repeated_notes(2)))
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
-    p = MockSpanner(t[0:3])
+    voice = Voice(notetools.make_repeated_notes(4))
+    voice.insert(1, Container(notetools.make_repeated_notes(2)))
+    voice.insert(3, Container(notetools.make_repeated_notes(2)))
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(voice)
+    p = MockSpanner(voice[0:3])
 
     r'''
     \new Voice {
@@ -142,12 +142,12 @@ def test_Spanner_leaves_05():
     '''
 
     assert len(p.components) == 3
-    assert p.components[0] is t[0]
-    assert p.components[1] is t[1]
-    assert p.components[2] is t[2]
+    assert p.components[0] is voice[0]
+    assert p.components[1] is voice[1]
+    assert p.components[2] is voice[2]
     assert len(p.leaves) == 4
     for i, leaf in enumerate(p.leaves):
-        assert leaf is t.select_leaves()[i]
+        assert leaf is voice.select_leaves()[i]
     assert p.get_duration() == Duration(4, 8)
 
 
@@ -163,10 +163,10 @@ def test_Spanner_leaves_06():
         def _copy_keyword_args(self, new):
             pass
 
-    t = Staff(notetools.make_repeated_notes(4))
-    t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
-    t[2].is_parallel = True
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
+    staff = Staff(notetools.make_repeated_notes(4))
+    staff.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
+    staff[2].is_parallel = True
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
 
     r'''
     \new Staff {
@@ -187,14 +187,14 @@ def test_Spanner_leaves_06():
     }
     '''
 
-    assert py.test.raises(AssertionError, 'p = MockSpanner(t)')
+    assert py.test.raises(AssertionError, 'p = MockSpanner(staff)')
 #   assert len(p.components) == 1
-#   assert p.components[0] is t
+#   assert p.components[0] is staff
 #   assert len(p.leaves) == 4
-#   assert p.leaves[0] is t[0]
-#   assert p.leaves[1] is t[1]
-#   assert p.leaves[2] is t[3]
-#   assert p.leaves[3] is t[4]
+#   assert p.leaves[0] is staff[0]
+#   assert p.leaves[1] is staff[1]
+#   assert p.leaves[2] is staff[3]
+#   assert p.leaves[3] is staff[4]
 #   assert p.get_duration() == Duration(6, 8)
 
 

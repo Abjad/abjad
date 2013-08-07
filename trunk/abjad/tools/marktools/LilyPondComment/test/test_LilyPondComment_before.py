@@ -6,11 +6,11 @@ def test_LilyPondComment_before_01():
     r'''Test context comments before.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    beam = spannertools.BeamSpanner(voice[:])
     beam.override.beam.thickness = 3
-    marktools.LilyPondComment('Voice before comments here.', 'before')(t)
-    marktools.LilyPondComment('More voice before comments.', 'before')(t)
+    marktools.LilyPondComment('Voice before comments here.', 'before')(voice)
+    marktools.LilyPondComment('More voice before comments.', 'before')(voice)
 
     r'''
     % Voice before comments here.
@@ -25,9 +25,9 @@ def test_LilyPondComment_before_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         % Voice before comments here.
         % More voice before comments.

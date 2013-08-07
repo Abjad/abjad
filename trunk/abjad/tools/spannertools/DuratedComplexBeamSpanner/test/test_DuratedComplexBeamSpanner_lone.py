@@ -34,8 +34,8 @@ def test_DuratedComplexBeamSpanner_lone_02():
     r'''Do not span lone note when lone is set to false.
     '''
 
-    t = Voice("c'8")
-    spannertools.DuratedComplexBeamSpanner(t, lone=False)
+    voice = Voice("c'8")
+    spannertools.DuratedComplexBeamSpanner(voice, lone=False)
 
     r'''
     \new Voice {
@@ -43,9 +43,9 @@ def test_DuratedComplexBeamSpanner_lone_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8

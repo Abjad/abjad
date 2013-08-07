@@ -6,11 +6,11 @@ def test_componenttools_remove_component_subtree_from_score_and_spanners_01():
     r'''Detach sequential from score tree.
     '''
 
-    t = Voice(notetools.make_repeated_notes(2))
-    t.insert(1, Container(notetools.make_repeated_notes(2)))
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.select_leaves())
-    spannertools.GlissandoSpanner(t.select_leaves())
+    voice = Voice(notetools.make_repeated_notes(2))
+    voice.insert(1, Container(notetools.make_repeated_notes(2)))
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.BeamSpanner(voice.select_leaves())
+    spannertools.GlissandoSpanner(voice.select_leaves())
 
     r'''
     \new Voice {
@@ -23,8 +23,8 @@ def test_componenttools_remove_component_subtree_from_score_and_spanners_01():
     }
     '''
 
-    sequential = t[1]
-    componenttools.remove_component_subtree_from_score_and_spanners(t[1:2])
+    sequential = voice[1]
+    componenttools.remove_component_subtree_from_score_and_spanners(voice[1:2])
 
     r'''
     \new Voice {
@@ -33,10 +33,10 @@ def test_componenttools_remove_component_subtree_from_score_and_spanners_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert select(sequential).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [ \glissando

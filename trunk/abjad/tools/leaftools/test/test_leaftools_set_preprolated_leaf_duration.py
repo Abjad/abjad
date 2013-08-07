@@ -6,8 +6,8 @@ def test_leaftools_set_preprolated_leaf_duration_01():
     r'''Change leaf to tied duration.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:2])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:2])
 
     r'''
     \new Voice {
@@ -18,7 +18,7 @@ def test_leaftools_set_preprolated_leaf_duration_01():
     }
     '''
 
-    leaftools.set_preprolated_leaf_duration(t[1], Duration(5, 32))
+    leaftools.set_preprolated_leaf_duration(voice[1], Duration(5, 32))
 
     r'''
     \new Voice {
@@ -30,9 +30,9 @@ def test_leaftools_set_preprolated_leaf_duration_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [
@@ -50,9 +50,9 @@ def test_leaftools_set_preprolated_leaf_duration_02():
     Duplicate ties are not created.
     '''
 
-    t = Voice(notetools.make_repeated_notes(4))
-    spannertools.TieSpanner(t[:2])
-    spannertools.BeamSpanner(t[:2])
+    voice = Voice(notetools.make_repeated_notes(4))
+    spannertools.TieSpanner(voice[:2])
+    spannertools.BeamSpanner(voice[:2])
 
     r'''
     \new Voice {
@@ -63,7 +63,7 @@ def test_leaftools_set_preprolated_leaf_duration_02():
     }
     '''
 
-    leaftools.set_preprolated_leaf_duration(t[1], Duration(5, 32))
+    leaftools.set_preprolated_leaf_duration(voice[1], Duration(5, 32))
 
     r'''
     \new Voice {
@@ -75,17 +75,17 @@ def test_leaftools_set_preprolated_leaf_duration_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert "\\new Voice {\n\tc'8 [ ~\n\tc'8 ~\n\tc'32 ]\n\tc'8\n\tc'8\n}"
 
 
 def test_leaftools_set_preprolated_leaf_duration_03():
     r'''Change leaf to nontied duration.
-    Same as t.written_duration = Duration(3, 16).
+    Same as voice.written_duration = Duration(3, 16).
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:2])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:2])
 
     r'''
     \new Voice {
@@ -96,7 +96,7 @@ def test_leaftools_set_preprolated_leaf_duration_03():
     }
     '''
 
-    leaftools.set_preprolated_leaf_duration(t[1], Duration(3, 16))
+    leaftools.set_preprolated_leaf_duration(voice[1], Duration(3, 16))
 
     r'''
     \new Voice {
@@ -107,9 +107,9 @@ def test_leaftools_set_preprolated_leaf_duration_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [
@@ -126,8 +126,8 @@ def test_leaftools_set_preprolated_leaf_duration_04():
     Tuplet inserted over new tied notes.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:2])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:2])
 
     r'''
     \new Voice {
@@ -138,7 +138,7 @@ def test_leaftools_set_preprolated_leaf_duration_04():
     }
     '''
 
-    leaftools.set_preprolated_leaf_duration(t[1], Duration(5, 48))
+    leaftools.set_preprolated_leaf_duration(voice[1], Duration(5, 48))
 
     r'''
     \new Voice {
@@ -152,9 +152,9 @@ def test_leaftools_set_preprolated_leaf_duration_04():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [
@@ -174,8 +174,8 @@ def test_leaftools_set_preprolated_leaf_duration_05():
     Tuplet inserted over input leaf.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:2])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:2])
 
     r'''
     \new Voice {
@@ -186,7 +186,7 @@ def test_leaftools_set_preprolated_leaf_duration_05():
     }
     '''
 
-    leaftools.set_preprolated_leaf_duration(t[1], Duration(1, 12))
+    leaftools.set_preprolated_leaf_duration(voice[1], Duration(1, 12))
 
     r'''
     \new Voice {
@@ -199,9 +199,9 @@ def test_leaftools_set_preprolated_leaf_duration_05():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [
@@ -220,15 +220,15 @@ def test_leaftools_set_preprolated_leaf_duration_06():
     LilyPond multiplier changes but leaf written duration does not.
     '''
 
-    t = Note(0, (1, 8))
-    t.lilypond_duration_multiplier = Duration(1, 2)
+    note = Note(0, (1, 8))
+    note.lilypond_duration_multiplier = Duration(1, 2)
 
     "c'8 * 1/2"
 
-    leaftools.set_preprolated_leaf_duration(t, Duration(1, 32))
+    leaftools.set_preprolated_leaf_duration(note, Duration(1, 32))
 
-    assert select(t).is_well_formed()
-    assert t.lilypond_format == "c'8 * 1/4"
+    assert select(note).is_well_formed()
+    assert note.lilypond_format == "c'8 * 1/4"
 
 
 def test_leaftools_set_preprolated_leaf_duration_07():
@@ -236,15 +236,15 @@ def test_leaftools_set_preprolated_leaf_duration_07():
     LilyPond multiplier changes but leaf written duration does not.
     '''
 
-    t = Note(0, (1, 8))
-    t.lilypond_duration_multiplier = Duration(1, 2)
+    note = Note(0, (1, 8))
+    note.lilypond_duration_multiplier = Duration(1, 2)
 
     "c'8 * 1/2"
 
-    leaftools.set_preprolated_leaf_duration(t, Duration(3, 32))
+    leaftools.set_preprolated_leaf_duration(note, Duration(3, 32))
 
-    assert select(t).is_well_formed()
-    assert t.lilypond_format == "c'8 * 3/4"
+    assert select(note).is_well_formed()
+    assert note.lilypond_format == "c'8 * 3/4"
 
 
 def test_leaftools_set_preprolated_leaf_duration_08():
@@ -252,15 +252,15 @@ def test_leaftools_set_preprolated_leaf_duration_08():
     LilyPond multiplier changes but leaf written duration does not.
     '''
 
-    t = Note(0, (1, 8))
-    t.lilypond_duration_multiplier = Duration(1, 2)
+    note = Note(0, (1, 8))
+    note.lilypond_duration_multiplier = Duration(1, 2)
 
     "c'8 * 1/2"
 
-    leaftools.set_preprolated_leaf_duration(t, Duration(5, 32))
+    leaftools.set_preprolated_leaf_duration(note, Duration(5, 32))
 
-    assert select(t).is_well_formed()
-    assert t.lilypond_format == "c'8 * 5/4"
+    assert select(note).is_well_formed()
+    assert note.lilypond_format == "c'8 * 5/4"
 
 
 def test_leaftools_set_preprolated_leaf_duration_09():
@@ -268,15 +268,15 @@ def test_leaftools_set_preprolated_leaf_duration_09():
     LilyPond multiplier changes but leaf written duration does not.
     '''
 
-    t = Note(0, (1, 8))
-    t.lilypond_duration_multiplier = Duration(1, 2)
+    note = Note(0, (1, 8))
+    note.lilypond_duration_multiplier = Duration(1, 2)
 
     "c'8 * 1/2"
 
-    leaftools.set_preprolated_leaf_duration(t, Duration(1, 24))
+    leaftools.set_preprolated_leaf_duration(note, Duration(1, 24))
 
-    assert select(t).is_well_formed()
-    assert t.lilypond_format == "c'8 * 1/3"
+    assert select(note).is_well_formed()
+    assert note.lilypond_format == "c'8 * 1/3"
 
 
 def test_leaftools_set_preprolated_leaf_duration_10():

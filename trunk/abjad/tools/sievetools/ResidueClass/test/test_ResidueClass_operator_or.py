@@ -74,12 +74,12 @@ def test_ResidueClass_operator_or_05():
     r'''OR.
     '''
 
-    t = ResidueClass(2, 0) | ResidueClass(3, 0)
+    residueclass = ResidueClass(2, 0) | ResidueClass(3, 0)
 
-    assert isinstance(t, sievetools.Sieve)
-    assert t.logical_operator == 'or'
-    assert t.get_boolean_train(6) == [1,0,1,1,1,0]
-    assert t.get_congruent_bases(6) == [0,2,3,4,6]
+    assert isinstance(residueclass, sievetools.Sieve)
+    assert residueclass.logical_operator == 'or'
+    assert residueclass.get_boolean_train(6) == [1,0,1,1,1,0]
+    assert residueclass.get_congruent_bases(6) == [0,2,3,4,6]
 
 
 def test_ResidueClass_operator_or_06():

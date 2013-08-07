@@ -6,8 +6,8 @@ def test_DuratedComplexBeamSpanner_span_01():
     r'''1-beam span between adjacent groups of 1/16th notes.
     '''
 
-    t = Voice("c'16 d'16 e'16 f'16")
-    spannertools.DuratedComplexBeamSpanner(t, durations=[(1, 8), (1, 8)], span=1)
+    voice = Voice("c'16 d'16 e'16 f'16")
+    spannertools.DuratedComplexBeamSpanner(voice, durations=[(1, 8), (1, 8)], span=1)
 
     r'''
     \new Voice {
@@ -26,9 +26,9 @@ def test_DuratedComplexBeamSpanner_span_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             \set stemLeftBeamCount = #0

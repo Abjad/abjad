@@ -6,8 +6,8 @@ def test_measuretools_multiply_contents_of_measures_in_expr_01():
     r'''Multiply contents of measure 3 times.
     '''
 
-    t = Measure((3, 8), "c'8 d'8 e'8")
-    measuretools.multiply_contents_of_measures_in_expr(t, 3)
+    measure = Measure((3, 8), "c'8 d'8 e'8")
+    measuretools.multiply_contents_of_measures_in_expr(measure, 3)
 
     r'''
     {
@@ -24,9 +24,9 @@ def test_measuretools_multiply_contents_of_measures_in_expr_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 9/8

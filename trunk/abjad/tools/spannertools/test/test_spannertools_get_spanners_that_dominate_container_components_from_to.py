@@ -6,9 +6,9 @@ def test_spannertools_get_spanners_that_dominate_container_components_from_to_01
     r'''Get dominant spanners over zero-length 'crack'.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(t[:2])
-    glissando = spannertools.GlissandoSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    beam = spannertools.BeamSpanner(voice[:2])
+    glissando = spannertools.GlissandoSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -19,7 +19,7 @@ def test_spannertools_get_spanners_that_dominate_container_components_from_to_01
     }
     '''
 
-    receipt = spannertools.get_spanners_that_dominate_container_components_from_to(t, 2, 2)
+    receipt = spannertools.get_spanners_that_dominate_container_components_from_to(voice, 2, 2)
 
     assert len(receipt) == 1
     assert (glissando, 2) in receipt
@@ -29,9 +29,9 @@ def test_spannertools_get_spanners_that_dominate_container_components_from_to_02
     r'''Get dominant spanners over one-component slice.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(t[:2])
-    glissando = spannertools.GlissandoSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    beam = spannertools.BeamSpanner(voice[:2])
+    glissando = spannertools.GlissandoSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -42,7 +42,7 @@ def test_spannertools_get_spanners_that_dominate_container_components_from_to_02
     }
     '''
 
-    receipt = spannertools.get_spanners_that_dominate_container_components_from_to(t, 1, 2)
+    receipt = spannertools.get_spanners_that_dominate_container_components_from_to(voice, 1, 2)
 
     assert len(receipt) == 2
     assert (beam, 1) in receipt

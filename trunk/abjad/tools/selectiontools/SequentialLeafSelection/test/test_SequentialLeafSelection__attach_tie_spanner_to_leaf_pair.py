@@ -6,8 +6,8 @@ def test_SequentialLeafSelection__attach_tie_spanner_to_leaf_pair_01():
     r'''Span left leaf with spanner and right leaf without spanner.
     '''
 
-    t = Voice(notetools.make_repeated_notes(4))
-    spannertools.TieSpanner(t[:2])
+    voice = Voice(notetools.make_repeated_notes(4))
+    spannertools.TieSpanner(voice[:2])
 
     r'''
     \new Voice {
@@ -18,7 +18,7 @@ def test_SequentialLeafSelection__attach_tie_spanner_to_leaf_pair_01():
     }
     '''
 
-    t.select_leaves()[1:3]._attach_tie_spanner_to_leaf_pair()
+    voice.select_leaves()[1:3]._attach_tie_spanner_to_leaf_pair()
 
     r'''
     \new Voice {
@@ -29,9 +29,9 @@ def test_SequentialLeafSelection__attach_tie_spanner_to_leaf_pair_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 ~
@@ -47,9 +47,9 @@ def test_SequentialLeafSelection__attach_tie_spanner_to_leaf_pair_02():
     r'''Span left leaf with spanner and right leaf with spanner.
     '''
 
-    t = Voice(notetools.make_repeated_notes(4))
-    spannertools.TieSpanner(t[:2])
-    spannertools.TieSpanner(t[2:])
+    voice = Voice(notetools.make_repeated_notes(4))
+    spannertools.TieSpanner(voice[:2])
+    spannertools.TieSpanner(voice[2:])
 
     r'''
     \new Voice {
@@ -60,7 +60,7 @@ def test_SequentialLeafSelection__attach_tie_spanner_to_leaf_pair_02():
     }
     '''
 
-    t.select_leaves()[1:3]._attach_tie_spanner_to_leaf_pair()
+    voice.select_leaves()[1:3]._attach_tie_spanner_to_leaf_pair()
 
     r'''
     \new Voice {
@@ -71,9 +71,9 @@ def test_SequentialLeafSelection__attach_tie_spanner_to_leaf_pair_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 ~

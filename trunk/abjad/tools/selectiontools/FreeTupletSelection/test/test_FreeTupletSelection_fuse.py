@@ -71,7 +71,7 @@ def test_FreeTupletSelection_fuse_02():
     spannertools.BeamSpanner(t1[:])
     t2 = tuplettools.FixedDurationTuplet(Duration(2, 16), "c'16 d'16 e'16")
     spannertools.SlurSpanner(t2[:])
-    t = Voice([t1, t2])
+    voice = Voice([t1, t2])
 
     r'''
     \new Voice {
@@ -88,7 +88,7 @@ def test_FreeTupletSelection_fuse_02():
     }
     '''
 
-    tuplets = selectiontools.select_tuplets(t)
+    tuplets = selectiontools.select_tuplets(voice)
     tuplets.fuse()
 
     r'''
@@ -104,9 +104,9 @@ def test_FreeTupletSelection_fuse_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             \times 2/3 {
@@ -130,7 +130,7 @@ def test_FreeTupletSelection_fuse_03():
     spannertools.BeamSpanner(t1[:])
     t2 = Tuplet(Fraction(2, 3), "c'8 d'8 e'8 f'8 g'8")
     spannertools.SlurSpanner(t2[:])
-    t = Voice([t1, t2])
+    voice = Voice([t1, t2])
 
     r'''
     \new Voice {
@@ -149,7 +149,7 @@ def test_FreeTupletSelection_fuse_03():
     }
     '''
 
-    tuplets = selectiontools.select_tuplets(t)
+    tuplets = selectiontools.select_tuplets(voice)
     tuplets.fuse()
 
     r'''
@@ -167,9 +167,9 @@ def test_FreeTupletSelection_fuse_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             \times 2/3 {

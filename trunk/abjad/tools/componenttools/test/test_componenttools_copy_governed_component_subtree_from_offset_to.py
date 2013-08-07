@@ -6,8 +6,8 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_01():
     r'''Container.
     '''
 
-    t = Container("c'8 d'8 e'8")
-    new = componenttools.copy_governed_component_subtree_from_offset_to(t, 0, (3, 16))
+    container = Container("c'8 d'8 e'8")
+    new = componenttools.copy_governed_component_subtree_from_offset_to(container, 0, (3, 16))
 
     r'''
     {
@@ -31,10 +31,10 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_02():
     r'''Container with rest.
     '''
 
-    t = Container("c'8 d'8 e'8")
-    rest = Rest(t[1])
-    componenttools.move_parentage_and_spanners_from_components_to_components(t[1:2], [rest])
-    new = componenttools.copy_governed_component_subtree_from_offset_to(t, 0, (3, 16))
+    container = Container("c'8 d'8 e'8")
+    rest = Rest(container[1])
+    componenttools.move_parentage_and_spanners_from_components_to_components(container[1:2], [rest])
+    new = componenttools.copy_governed_component_subtree_from_offset_to(container, 0, (3, 16))
 
     r'''
     {
@@ -58,8 +58,8 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_03():
     r'''Copy measure.
     '''
 
-    t = Measure((3, 8), "c'8 d'8 e'8")
-    new = componenttools.copy_governed_component_subtree_from_offset_to(t, 0, (3, 16))
+    measure = Measure((3, 8), "c'8 d'8 e'8")
+    new = componenttools.copy_governed_component_subtree_from_offset_to(measure, 0, (3, 16))
 
     r'''
     {
@@ -110,8 +110,8 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_05():
     r'''Fixed multiplier tuplet.
     '''
 
-    t = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
-    new = componenttools.copy_governed_component_subtree_from_offset_to(t, 0, (1, 8))
+    tuplet = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
+    new = componenttools.copy_governed_component_subtree_from_offset_to(tuplet, 0, (1, 8))
 
     r'''
     \times 2/3 {
@@ -135,8 +135,8 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_06():
     r'''Voice.
     '''
 
-    t = Voice("c'8 d'8 e'8")
-    new = componenttools.copy_governed_component_subtree_from_offset_to(t, 0, (3, 16))
+    voice = Voice("c'8 d'8 e'8")
+    new = componenttools.copy_governed_component_subtree_from_offset_to(voice, 0, (3, 16))
 
     r'''
     \new Voice {
@@ -160,8 +160,8 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_07():
     r'''Staff.
     '''
 
-    t = Staff("c'8 d'8 e'8")
-    new = componenttools.copy_governed_component_subtree_from_offset_to(t, 0, (3, 16))
+    staff = Staff("c'8 d'8 e'8")
+    new = componenttools.copy_governed_component_subtree_from_offset_to(staff, 0, (3, 16))
 
     r'''
     \new Staff {
@@ -185,8 +185,8 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_08():
     r'''Start-to-mid clean cut.
     '''
 
-    t = Note("c'4")
-    new = componenttools.copy_governed_component_subtree_from_offset_to(t, 0, (1, 8))
+    note = Note("c'4")
+    new = componenttools.copy_governed_component_subtree_from_offset_to(note, 0, (1, 8))
     assert new.lilypond_format == "c'8"
 
 
@@ -194,8 +194,8 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_09():
     r'''Start-to-mid jagged cut.
     '''
 
-    t = Note("c'4")
-    new = componenttools.copy_governed_component_subtree_from_offset_to(t, 0, (1, 12))
+    note = Note("c'4")
+    new = componenttools.copy_governed_component_subtree_from_offset_to(note, 0, (1, 12))
     parent = new._parent
 
     r'''
@@ -218,8 +218,8 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_10():
     r'''Mid-mid jagged cut.
     '''
 
-    t = Note("c'4")
-    new = componenttools.copy_governed_component_subtree_from_offset_to(t, (1, 12), (2, 12))
+    note = Note("c'4")
+    new = componenttools.copy_governed_component_subtree_from_offset_to(note, (1, 12), (2, 12))
     parent = new._parent
 
     r'''
@@ -242,8 +242,8 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_11():
     r'''Mid-to-stop jagged cut.
     '''
 
-    t = Note("c'4")
-    new = componenttools.copy_governed_component_subtree_from_offset_to(t, (1, 6), (1, 4))
+    note = Note("c'4")
+    new = componenttools.copy_governed_component_subtree_from_offset_to(note, (1, 6), (1, 4))
     parent = new._parent
 
     r'''
@@ -265,8 +265,8 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_11():
 def test_componenttools_copy_governed_component_subtree_from_offset_to_12():
     r'''Start-to-after clean cut.
     '''
-    t = Note("c'4")
-    new = componenttools.copy_governed_component_subtree_from_offset_to(t, 0, (1, 2))
+    note = Note("c'4")
+    new = componenttools.copy_governed_component_subtree_from_offset_to(note, 0, (1, 2))
     assert new.lilypond_format == "c'4"
 
 
@@ -274,8 +274,8 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_13():
     r'''Mid-to-after clean cut.
     '''
 
-    t = Note("c'4")
-    new = componenttools.copy_governed_component_subtree_from_offset_to(t, (1, 8), (1, 2))
+    note = Note("c'4")
+    new = componenttools.copy_governed_component_subtree_from_offset_to(note, (1, 8), (1, 2))
     assert new.lilypond_format == "c'8"
 
 
@@ -283,8 +283,8 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_14():
     r'''Mid-to-after jagged cut.
     '''
 
-    t = Note("c'4")
-    new = componenttools.copy_governed_component_subtree_from_offset_to(t, (2, 12), (1, 2))
+    note = Note("c'4")
+    new = componenttools.copy_governed_component_subtree_from_offset_to(note, (2, 12), (1, 2))
     parent = new._parent
 
     r'''
@@ -307,8 +307,8 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_15():
     r'''Before-to-after.
     '''
 
-    t = Note("c'4")
-    new = componenttools.copy_governed_component_subtree_from_offset_to(t, (-1, 4), (1, 2))
+    note = Note("c'4")
+    new = componenttools.copy_governed_component_subtree_from_offset_to(note, (-1, 4), (1, 2))
     assert new.lilypond_format == "c'4"
 
 
@@ -316,8 +316,8 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_16():
     r'''Start-to-mid jagged.
     '''
 
-    t = Note("c'4")
-    new = componenttools.copy_governed_component_subtree_from_offset_to(t, 0, (5, 24))
+    note = Note("c'4")
+    new = componenttools.copy_governed_component_subtree_from_offset_to(note, 0, (5, 24))
     parent = new._parent
 
     r'''

@@ -7,15 +7,15 @@ def test_BeamSpanner_span_parallel_container_01():
     r'''Abjad spanners will not inspect the contents of parallel containers.
     '''
 
-    t = Container([])
-    t.is_parallel = True
-    p = spannertools.BeamSpanner(t)
+    container = Container([])
+    container.is_parallel = True
+    p = spannertools.BeamSpanner(container)
 
     assert len(p.components) == 1
-    assert p.components[0] is t
+    assert p.components[0] is container
     assert len(p.leaves) == 0
     assert testtools.compare(
-        t.lilypond_format,
+        container.lilypond_format,
         r'''
         <<
         >>
@@ -27,16 +27,16 @@ def test_BeamSpanner_span_parallel_container_02():
     r'''Nonempty spanned parallel container.
     '''
 
-    t = Container(Voice(notetools.make_repeated_notes(4)) * 2)
-    t.is_parallel = True
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
+    container = Container(Voice(notetools.make_repeated_notes(4)) * 2)
+    container.is_parallel = True
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
 
-    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner(t)')
+    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner(container)')
 
 #   assert len(p.components) == 1
-#   assert p.components[0] is t
+#   assert p.components[0] is container
 #   assert len(p.leaves) == 0
-#   assert t.lilypond_format == "<<\n\t{\n\t\tc'8\n\t\tcs'8\n\t\td'8\n\t\tef'8\n\t}\n\t{\n\t\te'8\n\t\tf'8\n\t\tfs'8\n\t\tg'8\n\t}\n>>"
+#   assert container.lilypond_format == "<<\n\container{\n\container\tc'8\n\container\tcs'8\n\container\td'8\n\container\tef'8\n\container}\n\container{\n\container\te'8\n\container\tf'8\n\container\tfs'8\n\container\tg'8\n\container}\n>>"
 #
 #   r'''<<
 #      {
@@ -58,15 +58,15 @@ def test_BeamSpanner_span_parallel_container_03():
     r'''Voice accepts spanner,
         even lodged within parallel parent container.'''
 
-    t = Container(Voice(notetools.make_repeated_notes(4)) * 2)
-    t.is_parallel = True
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
-    p = spannertools.BeamSpanner(t[0])
+    container = Container(Voice(notetools.make_repeated_notes(4)) * 2)
+    container.is_parallel = True
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
+    p = spannertools.BeamSpanner(container[0])
 
     assert len(p.components) == 1
     assert isinstance(p.components[0], Container)
     assert testtools.compare(
-        t.lilypond_format,
+        container.lilypond_format,
         r'''
         <<
             \new Voice {
@@ -106,30 +106,30 @@ def test_BeamSpanner_span_parallel_container_04():
     r'''Abjad forbids but LilyPond is happy.
     '''
 
-    t = Staff(notetools.make_repeated_notes(4))
+    staff = Staff(notetools.make_repeated_notes(4))
     new = Container(Voice(notetools.make_repeated_notes(4)) * 2)
     new.is_parallel = True
-    t.insert(2, new)
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
+    staff.insert(2, new)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
 
-    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner(t)')
+    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner(staff)')
 
 
 def test_BeamSpanner_span_parallel_container_05():
     r'''Abjad ignores empty parallel containers with no leaves.
         LilyPond is happy here.'''
 
-    t = Staff(notetools.make_repeated_notes(4))
+    staff = Staff(notetools.make_repeated_notes(4))
     new = Container([])
     new.is_parallel = True
-    t.insert(2, new)
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
-    p = spannertools.BeamSpanner(t)
+    staff.insert(2, new)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
+    p = spannertools.BeamSpanner(staff)
 
     assert len(p.components) == 1
     assert len(p.leaves) == 4
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8 [

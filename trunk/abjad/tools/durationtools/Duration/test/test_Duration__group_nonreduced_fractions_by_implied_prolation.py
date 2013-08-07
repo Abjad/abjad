@@ -12,14 +12,14 @@ def test_Duration__group_nonreduced_fractions_by_implied_prolation_01():
 
 def test_Duration__group_nonreduced_fractions_by_implied_prolation_02():
     fractions = [(1, 4)]
-    t = Duration._group_nonreduced_fractions_by_implied_prolation(fractions)
-    assert t == [[NonreducedFraction(1, 4)]]
+    duration = Duration._group_nonreduced_fractions_by_implied_prolation(fractions)
+    assert duration == [[NonreducedFraction(1, 4)]]
 
 
 def test_Duration__group_nonreduced_fractions_by_implied_prolation_03():
     fractions = [(1, 4), (1, 4), (1, 8)]
-    t = Duration._group_nonreduced_fractions_by_implied_prolation(fractions)
-    assert t == [[
+    duration = Duration._group_nonreduced_fractions_by_implied_prolation(fractions)
+    assert duration == [[
         NonreducedFraction(1, 4), 
         NonreducedFraction(1, 4), 
         NonreducedFraction(1, 8),
@@ -28,8 +28,8 @@ def test_Duration__group_nonreduced_fractions_by_implied_prolation_03():
 
 def test_Duration__group_nonreduced_fractions_by_implied_prolation_04():
     fractions = [(1, 4), (1, 3), (1, 8)]
-    t = Duration._group_nonreduced_fractions_by_implied_prolation(fractions)
-    assert t == [
+    duration = Duration._group_nonreduced_fractions_by_implied_prolation(fractions)
+    assert duration == [
         [NonreducedFraction(1, 4)], 
         [NonreducedFraction(1, 3)], 
         [NonreducedFraction(1, 8)],
@@ -38,8 +38,8 @@ def test_Duration__group_nonreduced_fractions_by_implied_prolation_04():
 
 def test_Duration__group_nonreduced_fractions_by_implied_prolation_05():
     fractions = [(1, 4), (1, 2), (1, 3)]
-    t = Duration._group_nonreduced_fractions_by_implied_prolation(fractions)
-    assert t == [
+    duration = Duration._group_nonreduced_fractions_by_implied_prolation(fractions)
+    assert duration == [
         [NonreducedFraction(1, 4), NonreducedFraction(1, 2)], 
         [NonreducedFraction(1, 3)],
         ]
@@ -47,8 +47,8 @@ def test_Duration__group_nonreduced_fractions_by_implied_prolation_05():
 
 def test_Duration__group_nonreduced_fractions_by_implied_prolation_06():
     fractions = [(1, 4), (1, 2), (1, 3), (1, 6), (1, 5)]
-    t = Duration._group_nonreduced_fractions_by_implied_prolation(fractions)
-    assert t == [
+    duration = Duration._group_nonreduced_fractions_by_implied_prolation(fractions)
+    assert duration == [
         [NonreducedFraction(1, 4), NonreducedFraction(1, 2)], 
         [NonreducedFraction(1, 3), NonreducedFraction(1, 6)], 
         [NonreducedFraction(1, 5)],

@@ -6,11 +6,11 @@ def test_LilyPondComment_right_01():
     r'''Context comments right.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    beam = spannertools.BeamSpanner(voice[:])
     beam.override.beam.thickness = 3
-    marktools.LilyPondComment('Voice right comments here.', 'right')(t)
-    marktools.LilyPondComment('More voice right comments.', 'right')(t)
+    marktools.LilyPondComment('Voice right comments here.', 'right')(voice)
+    marktools.LilyPondComment('More voice right comments.', 'right')(voice)
 
     "Container slots interfaces do not collect contributions to right."
 
@@ -25,9 +25,9 @@ def test_LilyPondComment_right_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             \override Beam #'thickness = #3

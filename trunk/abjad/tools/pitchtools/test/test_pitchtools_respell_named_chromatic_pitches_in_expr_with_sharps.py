@@ -15,18 +15,18 @@ def test_pitchtools_respell_named_chromatic_pitches_in_expr_with_sharps_02():
     r'''The pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps()
     helper renotates the pitch of one note.'''
 
-    t = Note(('df', 4), 4)
-    pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps(t)
-    assert t.written_pitch == pitchtools.NamedChromaticPitch('cs', 4)
+    note = Note(('df', 4), 4)
+    pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps(note)
+    assert note.written_pitch == pitchtools.NamedChromaticPitch('cs', 4)
 
 
 def test_pitchtools_respell_named_chromatic_pitches_in_expr_with_sharps_03():
     r'''The pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps()
     helper renotates the pitches of all notes in a chord.'''
 
-    t = Chord([('df', 4), ('f', 4), ('af', 4)], (1, 4))
-    pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps(t)
-    assert t.written_pitches == (pitchtools.NamedChromaticPitch('cs', 4), pitchtools.NamedChromaticPitch('f', 4), pitchtools.NamedChromaticPitch('gs', 4))
+    chord = Chord([('df', 4), ('f', 4), ('af', 4)], (1, 4))
+    pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps(chord)
+    assert chord.written_pitches == (pitchtools.NamedChromaticPitch('cs', 4), pitchtools.NamedChromaticPitch('f', 4), pitchtools.NamedChromaticPitch('gs', 4))
 
 
 def test_pitchtools_respell_named_chromatic_pitches_in_expr_with_sharps_04():

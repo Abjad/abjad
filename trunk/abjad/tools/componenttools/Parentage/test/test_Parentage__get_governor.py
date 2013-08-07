@@ -8,11 +8,11 @@ def test_Parentage__get_governor_01( ):
     either a parallel container or None.
     '''
 
-    t = Voice([Container(Voice(notetools.make_repeated_notes(2)) * 2)])
-    t[0].is_parallel = True
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    t[0][0].name = 'voice 1'
-    t[0][1].name = 'voice 2'
+    voice = Voice([Container(Voice(notetools.make_repeated_notes(2)) * 2)])
+    voice[0].is_parallel = True
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice[0][0].name = 'voice 1'
+    voice[0][1].name = 'voice 2'
 
     r'''
     \new Voice {
@@ -29,18 +29,18 @@ def test_Parentage__get_governor_01( ):
     }
     '''
 
-    assert t.select_leaves()[0].select_parentage()._get_governor() is t[0][0]
-    assert t.select_leaves()[1].select_parentage()._get_governor() is t[0][0]
-    assert t.select_leaves()[2].select_parentage()._get_governor() is t[0][1]
-    assert t.select_leaves()[3].select_parentage()._get_governor() is t[0][1]
+    assert voice.select_leaves()[0].select_parentage()._get_governor() is voice[0][0]
+    assert voice.select_leaves()[1].select_parentage()._get_governor() is voice[0][0]
+    assert voice.select_leaves()[2].select_parentage()._get_governor() is voice[0][1]
+    assert voice.select_leaves()[3].select_parentage()._get_governor() is voice[0][1]
 
 
 def test_Parentage__get_governor_02( ):
     r'''Unicorporated leaves have no governor.
     '''
 
-    t = Note(0, (1, 8))
-    assert t.select_parentage()._get_governor() is None
+    note = Note(0, (1, 8))
+    assert note.select_parentage()._get_governor() is None
 
 
 def test_Parentage__get_governor_03( ):
@@ -48,7 +48,7 @@ def test_Parentage__get_governor_03( ):
         such that the next element in the parentage of client is
         either a parallel container or None.'''
 
-    t = Staff([Voice([Container("c'8 d'8 e'8 f'8")])])
+    staff = Staff([Voice([Container("c'8 d'8 e'8 f'8")])])
 
     r'''
     \new Staff {
@@ -63,10 +63,10 @@ def test_Parentage__get_governor_03( ):
     }
     '''
 
-    assert t.select_leaves()[0].select_parentage()._get_governor() is t
-    assert t.select_leaves()[1].select_parentage()._get_governor() is t
-    assert t.select_leaves()[2].select_parentage()._get_governor() is t
-    assert t.select_leaves()[3].select_parentage()._get_governor() is t
+    assert staff.select_leaves()[0].select_parentage()._get_governor() is staff
+    assert staff.select_leaves()[1].select_parentage()._get_governor() is staff
+    assert staff.select_leaves()[2].select_parentage()._get_governor() is staff
+    assert staff.select_leaves()[3].select_parentage()._get_governor() is staff
 
 
 def test_Parentage__get_governor_04( ):

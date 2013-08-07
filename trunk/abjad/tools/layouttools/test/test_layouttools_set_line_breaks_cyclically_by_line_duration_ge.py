@@ -9,10 +9,10 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_01():
     Add line break after every total le line duration.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    layouttools.set_line_breaks_cyclically_by_line_duration_ge(t, Duration(4, 8))
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    layouttools.set_line_breaks_cyclically_by_line_duration_ge(staff, Duration(4, 8))
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -41,9 +41,9 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {

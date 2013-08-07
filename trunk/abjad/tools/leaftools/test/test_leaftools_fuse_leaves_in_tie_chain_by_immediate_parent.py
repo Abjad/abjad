@@ -6,9 +6,9 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_01():
     r'''Fuse leaves in tie chain with same immediate parent.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    spannertools.TieSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    spannertools.TieSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -26,7 +26,7 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_01():
     '''
 
     result = leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(
-        t.select_leaves()[1].select_tie_chain())
+        staff.select_leaves()[1].select_tie_chain())
 
     r'''
     \new Staff {
@@ -41,10 +41,10 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(result) == 2
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -64,8 +64,8 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_02():
     r'''Fuse leaves in tie chain with same immediate parent.
     '''
 
-    t = Staff(notetools.make_repeated_notes(4))
-    spannertools.TieSpanner(t.select_leaves())
+    staff = Staff(notetools.make_repeated_notes(4))
+    spannertools.TieSpanner(staff.select_leaves())
 
     r'''
     \new Staff {
@@ -77,12 +77,12 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_02():
     '''
 
     result = leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(
-        t.select_leaves()[1].select_tie_chain())
+        staff.select_leaves()[1].select_tie_chain())
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(result) == 1
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'2

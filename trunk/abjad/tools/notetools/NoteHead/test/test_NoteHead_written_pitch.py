@@ -7,35 +7,35 @@ def test_NoteHead_written_pitch_01():
     r'''Set Note head pitch with integer.
     '''
 
-    t = Note(13, (1, 4))
-    t.note_head.written_pitch = 14
+    note = Note(13, (1, 4))
+    note.note_head.written_pitch = 14
 
     "NoteHead(d'')"
 
-    assert t.note_head.lilypond_format == "d''"
-    assert t.note_head.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 14
+    assert note.note_head.lilypond_format == "d''"
+    assert note.note_head.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 14
 
 
 def test_NoteHead_written_pitch_02():
     r'''Set Note head pitch with pitch.
     '''
 
-    t = Note(13, (1, 4))
-    t.note_head.written_pitch = pitchtools.NamedChromaticPitch(14)
+    note = Note(13, (1, 4))
+    note.note_head.written_pitch = pitchtools.NamedChromaticPitch(14)
 
     "NoteHead(d'')"
 
-    assert t.note_head.lilypond_format == "d''"
-    assert t.note_head.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 14
+    assert note.note_head.lilypond_format == "d''"
+    assert note.note_head.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 14
 
 
 def test_NoteHead_written_pitch_03():
     r'''Can not set note head pitch to none.
     '''
 
-    t = Note(13, (1, 4))
+    note = Note(13, (1, 4))
 
-    assert py.test.raises(Exception, 't.note_head.written_pitch = None')
+    assert py.test.raises(Exception, 'note.note_head.written_pitch = None')
 
 
 def test_NoteHead_written_pitch_04():

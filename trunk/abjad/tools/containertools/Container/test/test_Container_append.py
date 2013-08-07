@@ -7,10 +7,10 @@ def test_Container_append_01():
     r'''Append sequential to voice.
     '''
 
-    t = Voice(notetools.make_repeated_notes(2))
-    spannertools.BeamSpanner(t[:])
-    t.append(Container(notetools.make_repeated_notes(2)))
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    voice = Voice(notetools.make_repeated_notes(2))
+    spannertools.BeamSpanner(voice[:])
+    voice.append(Container(notetools.make_repeated_notes(2)))
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
 
     r'''
     \new Voice {
@@ -23,9 +23,9 @@ def test_Container_append_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [
@@ -74,21 +74,21 @@ def test_Container_append_03():
     r'''Trying to append noncomponent to container
         raises TypeError.'''
 
-    t = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8")
+    spannertools.BeamSpanner(voice[:])
 
-    assert py.test.raises(Exception, "t.append('foo')")
-    assert py.test.raises(Exception, "t.append(99)")
-    assert py.test.raises(Exception, "t.append([])")
-    assert py.test.raises(Exception, "t.append([Note(0, (1, 8))])")
+    assert py.test.raises(Exception, "voice.append('foo')")
+    assert py.test.raises(Exception, "voice.append(99)")
+    assert py.test.raises(Exception, "voice.append([])")
+    assert py.test.raises(Exception, "voice.append([Note(0, (1, 8))])")
 
 
 def test_Container_append_04():
     r'''Append spanned leaf from donor container to recipient container.
     '''
 
-    t = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8")
+    spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -110,9 +110,9 @@ def test_Container_append_04():
     }
     '''
 
-    t.append(u[-1])
+    voice.append(u[-1])
 
-    "Container t is now ..."
+    "Container voice is now ..."
 
     r'''
     \new Voice {
@@ -123,9 +123,9 @@ def test_Container_append_04():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [
@@ -163,8 +163,8 @@ def test_Container_append_05():
     r'''Append spanned leaf from donor container to recipient container.
         Donor and recipient containers are the same.'''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -175,7 +175,7 @@ def test_Container_append_05():
     }
     '''
 
-    t.append(t[1])
+    voice.append(voice[1])
 
     r'''
     \new Voice {
@@ -186,9 +186,9 @@ def test_Container_append_05():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [

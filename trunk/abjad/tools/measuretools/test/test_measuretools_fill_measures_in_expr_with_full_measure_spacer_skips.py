@@ -6,8 +6,8 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_01():
     r'''Populate non-power-of-two measure with time-scaled skip.
     '''
 
-    t = Measure((5, 18), [])
-    measuretools.fill_measures_in_expr_with_full_measure_spacer_skips(t)
+    measure = Measure((5, 18), [])
+    measuretools.fill_measures_in_expr_with_full_measure_spacer_skips(measure)
 
     r'''
     {
@@ -18,9 +18,9 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 5/18
@@ -38,9 +38,9 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_02():
     Iteration control tests index of iteration.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -70,7 +70,8 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_02():
     def iterctrl(measure, i):
         return i % 2 == 1
 
-    measuretools.fill_measures_in_expr_with_full_measure_spacer_skips(t, iterctrl)
+    measuretools.fill_measures_in_expr_with_full_measure_spacer_skips(
+        staff, iterctrl)
 
     r'''
     \new Staff {
@@ -95,9 +96,9 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {

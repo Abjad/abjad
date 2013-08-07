@@ -21,18 +21,18 @@ def test_leaftools_fuse_leaves_02():
 def test_leaftools_fuse_leaves_03():
     r'''Works with containers.
     '''
-    t = Voice(Note("c'4") * 8)
-    fused = leaftools.fuse_leaves(t[:])
+    voice = Voice(Note("c'4") * 8)
+    fused = leaftools.fuse_leaves(voice[:])
     assert len(fused) == 1
     assert fused[0].written_duration == 2
-    assert t[0] is fused[0]
+    assert voice[0] is fused[0]
 
 
 def test_leaftools_fuse_leaves_04():
     r'''Fusion results in tied notes.
     '''
-    t = Voice([Note(0, (2, 16)), Note(9, (3, 16))])
-    fused = leaftools.fuse_leaves(t[:])
+    voice = Voice([Note(0, (2, 16)), Note(9, (3, 16))])
+    fused = leaftools.fuse_leaves(voice[:])
     assert len(fused) == 2
     assert fused[0].written_duration == Duration(1, 4)
     assert fused[1].written_duration == Duration(1, 16)
@@ -41,9 +41,9 @@ def test_leaftools_fuse_leaves_04():
       fused[0], spannertools.TieSpanner) is \
       spannertools.get_the_only_spanner_attached_to_component(
       fused[1], spannertools.TieSpanner)
-    assert t[0] is fused[0]
-    assert t[1] is fused[1]
-    assert t[0].written_pitch.numbered_chromatic_pitch == t[1].written_pitch.numbered_chromatic_pitch
+    assert voice[0] is fused[0]
+    assert voice[1] is fused[1]
+    assert voice[0].written_pitch.numbered_chromatic_pitch == voice[1].written_pitch.numbered_chromatic_pitch
 
 
 def test_leaftools_fuse_leaves_05():

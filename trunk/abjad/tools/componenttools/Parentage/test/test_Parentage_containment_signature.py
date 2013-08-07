@@ -7,10 +7,10 @@ def test_Parentage_containment_signature_01():
     r'''An anonymous staff and its contained unvoiced leaves share the same signature.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
+    staff = Staff("c'8 d'8 e'8 f'8")
 
-    containment = t.select_parentage().containment_signature
-    for component in iterationtools.iterate_components_in_expr(t):
+    containment = staff.select_parentage().containment_signature
+    for component in iterationtools.iterate_components_in_expr(staff):
         assert component.select_parentage().containment_signature == containment
 
 
@@ -18,11 +18,11 @@ def test_Parentage_containment_signature_02():
     r'''A named staff and its contained unvoiced leaves share the same signature.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    t.name = 'foo'
+    staff = Staff("c'8 d'8 e'8 f'8")
+    staff.name = 'foo'
 
-    containment = t.select_parentage().containment_signature
-    for component in iterationtools.iterate_components_in_expr(t):
+    containment = staff.select_parentage().containment_signature
+    for component in iterationtools.iterate_components_in_expr(staff):
         assert component.select_parentage().containment_signature == containment
 
 def test_Parentage_containment_signature_03():
@@ -30,12 +30,12 @@ def test_Parentage_containment_signature_03():
     share the same signature.
     '''
 
-    t = Staff(Voice("c'8 d'8 e'8 f'8") * 2)
-    t[0].name = 'foo'
-    t[1].name = 'foo'
+    staff = Staff(Voice("c'8 d'8 e'8 f'8") * 2)
+    staff[0].name = 'foo'
+    staff[1].name = 'foo'
 
-    containment = t[0][0].select_parentage().containment_signature
-    for leaf in t.select_leaves():
+    containment = staff[0][0].select_parentage().containment_signature
+    for leaf in staff.select_leaves():
         assert leaf.select_parentage().containment_signature == containment
 
 
@@ -44,11 +44,11 @@ def test_Parentage_containment_signature_04():
     first voice, staff and score in the parentage of component.
     '''
 
-    t = Voice(notetools.make_repeated_notes(4))
-    t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
-    t[2].is_parallel = True
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    t.override.note_head.color = 'red'
+    voice = Voice(notetools.make_repeated_notes(4))
+    voice.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
+    voice[2].is_parallel = True
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice.override.note_head.color = 'red'
 
     r'''
     \new Voice \with {
@@ -72,7 +72,7 @@ def test_Parentage_containment_signature_04():
     '''
 
     signatures = [leaf.select_parentage().containment_signature 
-        for leaf in t.select_leaves()]
+        for leaf in voice.select_leaves()]
 
     assert signatures[0] == signatures[1]
     assert signatures[0] != signatures[2]
@@ -88,13 +88,13 @@ def test_Parentage_containment_signature_05():
     first voice, staff and score in parentage of component.
     '''
 
-    t = Voice(notetools.make_repeated_notes(4))
-    t.name = 'foo'
-    t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
-    t[2].is_parallel = True
-    t[2][0].name = 'foo'
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    t.override.note_head.color = 'red'
+    voice = Voice(notetools.make_repeated_notes(4))
+    voice.name = 'foo'
+    voice.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
+    voice[2].is_parallel = True
+    voice[2][0].name = 'foo'
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice.override.note_head.color = 'red'
 
     r'''
     \context Voice = "foo" \with {
@@ -118,7 +118,7 @@ def test_Parentage_containment_signature_05():
     '''
 
     signatures = [leaf.select_parentage().containment_signature 
-        for leaf in t.select_leaves()]
+        for leaf in voice.select_leaves()]
 
     signatures[0] == signatures[1]
     signatures[0] == signatures[2]
@@ -141,15 +141,15 @@ def test_Parentage_containment_signature_06():
     first voice, staff and score in parentage of component.
     '''
 
-    t = Container(Staff([Voice("c'8 d'8")]) * 2)
-    t[0].name = 'staff1'
-    t[1].name = 'staff2'
-    t[0][0].name = 'voicefoo'
-    t[1][0].name = 'voicefoo'
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    assert py.test.raises(AssertionError, 'spannertools.BeamSpanner(t.select_leaves())')
-    spannertools.BeamSpanner(t.select_leaves()[:2])
-    spannertools.BeamSpanner(t.select_leaves()[2:])
+    container = Container(Staff([Voice("c'8 d'8")]) * 2)
+    container[0].name = 'staff1'
+    container[1].name = 'staff2'
+    container[0][0].name = 'voicefoo'
+    container[1][0].name = 'voicefoo'
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(container)
+    assert py.test.raises(AssertionError, 'spannertools.BeamSpanner(container.select_leaves())')
+    spannertools.BeamSpanner(container.select_leaves()[:2])
+    spannertools.BeamSpanner(container.select_leaves()[2:])
 
     r'''
     {
@@ -169,7 +169,7 @@ def test_Parentage_containment_signature_06():
     '''
 
     signatures = [leaf.select_parentage().containment_signature 
-        for leaf in t.select_leaves()]
+        for leaf in container.select_leaves()]
 
     signatures[0] == signatures[1]
     signatures[0] != signatures[2]
@@ -183,17 +183,17 @@ def test_Parentage_containment_signature_07():
     first voice, staff and score in parentage of component.
     '''
 
-    t = Container(notetools.make_repeated_notes(2))
-    t[1:1] = Container(Voice(notetools.make_repeated_notes(1)) * 2) * 2
-    t[1].is_parallel = True
-    t[1][0].name = 'alto'
-    t[1][1].name = 'soprano'
-    t[2][0].name = 'alto'
-    t[2][1].name = 'soprano'
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    container = Container(notetools.make_repeated_notes(2))
+    container[1:1] = Container(Voice(notetools.make_repeated_notes(1)) * 2) * 2
+    container[1].is_parallel = True
+    container[1][0].name = 'alto'
+    container[1][1].name = 'soprano'
+    container[2][0].name = 'alto'
+    container[2][1].name = 'soprano'
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(container)
 
-    t[1][1].override.note_head.color = 'red'
-    t[2][1].override.note_head.color = 'red'
+    container[1][1].override.note_head.color = 'red'
+    container[2][1].override.note_head.color = 'red'
 
     r'''
     {
@@ -221,7 +221,7 @@ def test_Parentage_containment_signature_07():
     '''
 
     signatures = [leaf.select_parentage().containment_signature 
-        for leaf in t.select_leaves()]
+        for leaf in container.select_leaves()]
 
     signatures[0] != signatures[1]
     signatures[0] != signatures[2]
@@ -275,8 +275,8 @@ def test_Parentage_containment_signature_10():
     r'''Measure and leaves must carry same thread signature.
     '''
 
-    t = Staff([Measure((2, 8), "c'8 d'8")] + notetools.make_repeated_notes(2))
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    staff = Staff([Measure((2, 8), "c'8 d'8")] + notetools.make_repeated_notes(2))
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     r'''
     \new Staff {
@@ -288,12 +288,12 @@ def test_Parentage_containment_signature_10():
     }
     '''
 
-    assert t[0].select_parentage().containment_signature == \
-        t[-1].select_parentage().containment_signature
-    assert t[0].select_parentage().containment_signature == \
-        t[0][0].select_parentage().containment_signature
-    assert t[0][0].select_parentage().containment_signature == \
-        t[-1].select_parentage().containment_signature
+    assert staff[0].select_parentage().containment_signature == \
+        staff[-1].select_parentage().containment_signature
+    assert staff[0].select_parentage().containment_signature == \
+        staff[0][0].select_parentage().containment_signature
+    assert staff[0][0].select_parentage().containment_signature == \
+        staff[-1].select_parentage().containment_signature
 
 
 def test_Parentage_containment_signature_11():

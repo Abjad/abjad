@@ -4,10 +4,10 @@ from abjad import *
 
 def test_Component_extend_in_parent_01():
 
-    t = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8")
+    spannertools.BeamSpanner(voice[:])
 
-    result = t[-1].extend_in_parent(
+    result = voice[-1].extend_in_parent(
         [Note("c'8"), Note("d'8"), Note("e'8")], 
         grow_spanners=True,
         )
@@ -23,10 +23,10 @@ def test_Component_extend_in_parent_01():
     }
     '''
 
-    assert select(t).is_well_formed()
-    assert result == t[-4:]
+    assert select(voice).is_well_formed()
+    assert result == voice[-4:]
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [
@@ -44,9 +44,9 @@ def test_Component_extend_in_parent_02():
     r'''Splice leaf after interior leaf.
     '''
 
-    t = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
-    result = t[1].extend_in_parent([Note(2.5, (1, 8))], grow_spanners=True)
+    voice = Voice("c'8 d'8 e'8")
+    spannertools.BeamSpanner(voice[:])
+    result = voice[1].extend_in_parent([Note(2.5, (1, 8))], grow_spanners=True)
 
     r'''
     \new Voice {
@@ -57,9 +57,9 @@ def test_Component_extend_in_parent_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [
@@ -69,17 +69,17 @@ def test_Component_extend_in_parent_02():
         }
         '''
         )
-    assert result == t[1:3]
+    assert result == voice[1:3]
 
 
 def test_Component_extend_in_parent_03():
     r'''Splice tuplet after tuplet.
     '''
 
-    t = Voice([tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
-    spannertools.BeamSpanner(t[0])
+    voice = Voice([tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
+    spannertools.BeamSpanner(voice[0])
 
-    result = t[-1].extend_in_parent(
+    result = voice[-1].extend_in_parent(
         [tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")], 
         grow_spanners=True,
         )
@@ -99,10 +99,10 @@ def test_Component_extend_in_parent_03():
     }
     '''
 
-    assert select(t).is_well_formed()
-    assert result == t[:]
+    assert select(voice).is_well_formed()
+    assert result == voice[:]
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             \times 2/3 {
@@ -124,10 +124,10 @@ def test_Component_extend_in_parent_04():
     r'''Splice after container with underspanners.
     '''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    spannertools.BeamSpanner(t.select_leaves())
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
+    spannertools.BeamSpanner(voice.select_leaves())
 
-    result = t[0].extend_in_parent([Note(2.5, (1, 8))], grow_spanners=True)
+    result = voice[0].extend_in_parent([Note(2.5, (1, 8))], grow_spanners=True)
 
     r'''
     \new Voice {
@@ -143,9 +143,9 @@ def test_Component_extend_in_parent_04():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {
@@ -160,17 +160,17 @@ def test_Component_extend_in_parent_04():
         }
         '''
         )
-    assert result == t[0:2]
+    assert result == voice[0:2]
 
 
 def test_Component_extend_in_parent_05():
     r'''Extend leaves rightwards after leaf.
     '''
 
-    t = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8")
+    spannertools.BeamSpanner(voice[:])
 
-    result = t[-1].extend_in_parent(
+    result = voice[-1].extend_in_parent(
         [Note("c'8"), Note("d'8"), Note("e'8")], 
         grow_spanners=False,
         )
@@ -186,10 +186,10 @@ def test_Component_extend_in_parent_05():
     }
     '''
 
-    assert select(t).is_well_formed()
-    assert result == t[-4:]
+    assert select(voice).is_well_formed()
+    assert result == voice[-4:]
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [
@@ -207,10 +207,10 @@ def test_Component_extend_in_parent_06():
     r'''Extend leaf rightwards after interior leaf.
     '''
 
-    t = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8")
+    spannertools.BeamSpanner(voice[:])
 
-    result = t[1].extend_in_parent([Note(2.5, (1, 8))], grow_spanners=False)
+    result = voice[1].extend_in_parent([Note(2.5, (1, 8))], grow_spanners=False)
 
     r'''
     \new Voice {
@@ -221,9 +221,9 @@ def test_Component_extend_in_parent_06():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [
@@ -233,7 +233,7 @@ def test_Component_extend_in_parent_06():
         }
         '''
         )
-    assert result == t[1:3]
+    assert result == voice[1:3]
 
 
 ### FIX FROM HERE DOWN ###
@@ -242,11 +242,11 @@ def test_Component_extend_in_parent_07():
     r'''Splice leaves left of leaf.
     '''
 
-    t = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8")
+    spannertools.BeamSpanner(voice[:])
     notes = [Note("c'16"), Note("d'16"), Note("e'16")]
 
-    result = t[0].extend_in_parent(notes, direction=Left, grow_spanners=True)
+    result = voice[0].extend_in_parent(notes, direction=Left, grow_spanners=True)
 
     r'''
     \new Voice {
@@ -259,10 +259,10 @@ def test_Component_extend_in_parent_07():
     }
     '''
 
-    assert select(t).is_well_formed()
-    assert result == t[:4]
+    assert select(voice).is_well_formed()
+    assert result == voice[:4]
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'16 [
@@ -280,10 +280,10 @@ def test_Component_extend_in_parent_08():
     r'''Splice leaf left of interior leaf.
     '''
 
-    t = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8")
+    spannertools.BeamSpanner(voice[:])
 
-    result = t[1].extend_in_parent(
+    result = voice[1].extend_in_parent(
         [Note(1.5, (1, 8))], 
         direction=Left, 
         grow_spanners=True,
@@ -298,9 +298,9 @@ def test_Component_extend_in_parent_08():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [
@@ -310,17 +310,17 @@ def test_Component_extend_in_parent_08():
         }
         '''
         )
-    assert result == t[1:3]
+    assert result == voice[1:3]
 
 
 def test_Component_extend_in_parent_09():
     r'''Splice tuplet left of tuplet.
     '''
 
-    t = Voice([tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
-    spannertools.BeamSpanner(t[0])
+    voice = Voice([tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
+    spannertools.BeamSpanner(voice[0])
 
-    result = t[0].extend_in_parent(
+    result = voice[0].extend_in_parent(
         [tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")], 
         direction=Left,
         grow_spanners=True,
@@ -341,10 +341,10 @@ def test_Component_extend_in_parent_09():
     }
     '''
 
-    assert select(t).is_well_formed()
-    assert result == t[:]
+    assert select(voice).is_well_formed()
+    assert result == voice[:]
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             \times 2/3 {
@@ -366,11 +366,11 @@ def test_Component_extend_in_parent_10():
     r'''Splice left of container with underspanners.
     '''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.select_leaves())
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.BeamSpanner(voice.select_leaves())
 
-    result = t[1].extend_in_parent(
+    result = voice[1].extend_in_parent(
         [Note(2.5, (1, 8))], 
         direction=Left,
         grow_spanners=True,
@@ -390,9 +390,9 @@ def test_Component_extend_in_parent_10():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {
@@ -407,17 +407,17 @@ def test_Component_extend_in_parent_10():
         }
         '''
         )
-    assert result == t[1:]
+    assert result == voice[1:]
 
 
 def test_Component_extend_in_parent_11():
     r'''Extend leaves leftwards of leaf. Do not extend edge spanners.
     '''
 
-    t = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8")
+    spannertools.BeamSpanner(voice[:])
     notes = [Note("c'16"), Note("d'16"), Note("e'16")]
-    result = t[0].extend_in_parent(
+    result = voice[0].extend_in_parent(
         notes,
         direction=Left,
         grow_spanners=False,
@@ -434,10 +434,10 @@ def test_Component_extend_in_parent_11():
     }
     '''
 
-    assert select(t).is_well_formed()
-    assert result == t[:4]
+    assert select(voice).is_well_formed()
+    assert result == voice[:4]
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'16

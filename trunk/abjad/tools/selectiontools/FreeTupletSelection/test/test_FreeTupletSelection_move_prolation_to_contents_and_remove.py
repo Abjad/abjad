@@ -7,8 +7,8 @@ def test_FreeTupletSelection_move_prolation_to_contents_and_remove_01():
     of tuplet to contents.
     '''
 
-    t = Staff(tuplettools.FixedDurationTuplet(Duration(3, 8), "c'8 d'8") * 2)
-    spannertools.BeamSpanner(t.select_leaves())
+    staff = Staff(tuplettools.FixedDurationTuplet(Duration(3, 8), "c'8 d'8") * 2)
+    spannertools.BeamSpanner(staff.select_leaves())
 
     r'''
     \new Staff {
@@ -25,7 +25,7 @@ def test_FreeTupletSelection_move_prolation_to_contents_and_remove_01():
     }
     '''
 
-    selection = selectiontools.select_tuplets(t[0])
+    selection = selectiontools.select_tuplets(staff[0])
     selection.move_prolation_to_contents_and_remove()
 
     r'''
@@ -40,9 +40,9 @@ def test_FreeTupletSelection_move_prolation_to_contents_and_remove_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8. [

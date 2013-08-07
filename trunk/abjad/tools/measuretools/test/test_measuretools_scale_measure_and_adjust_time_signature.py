@@ -8,8 +8,8 @@ def test_measuretools_scale_measure_and_adjust_time_signature_01():
     No note head rewriting necessary.
     '''
 
-    t = Measure((3, 8), "c'8 d'8 e'8")
-    measuretools.scale_measure_and_adjust_time_signature(t, Duration(2, 3))
+    measure = Measure((3, 8), "c'8 d'8 e'8")
+    measuretools.scale_measure_and_adjust_time_signature(measure, Duration(2, 3))
 
     r'''
     {
@@ -22,9 +22,9 @@ def test_measuretools_scale_measure_and_adjust_time_signature_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 3/12
@@ -44,8 +44,8 @@ def test_measuretools_scale_measure_and_adjust_time_signature_02():
     No note head rewriting necessary.
     '''
 
-    t = Measure((3, 12), "c'8 d'8 e'8")
-    measuretools.scale_measure_and_adjust_time_signature(t, Duration(3, 2))
+    measure = Measure((3, 12), "c'8 d'8 e'8")
+    measuretools.scale_measure_and_adjust_time_signature(measure, Duration(3, 2))
 
     r'''
     {
@@ -56,9 +56,9 @@ def test_measuretools_scale_measure_and_adjust_time_signature_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 3/8
@@ -75,8 +75,8 @@ def test_measuretools_scale_measure_and_adjust_time_signature_03():
     Noteheads rewrite with dots.
     '''
 
-    t = Measure((3, 8), "c'8 d'8 e'8")
-    measuretools.scale_measure_and_adjust_time_signature(t, Duration(3, 2))
+    measure = Measure((3, 8), "c'8 d'8 e'8")
+    measuretools.scale_measure_and_adjust_time_signature(measure, Duration(3, 2))
 
     r'''
     {
@@ -87,9 +87,9 @@ def test_measuretools_scale_measure_and_adjust_time_signature_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 9/16
@@ -106,8 +106,8 @@ def test_measuretools_scale_measure_and_adjust_time_signature_04():
     Noteheads rewrite without dots.
     '''
 
-    t = Measure((9, 16), "c'8. d'8. e'8.")
-    measuretools.scale_measure_and_adjust_time_signature(t, Duration(2, 3))
+    measure = Measure((9, 16), "c'8. d'8. e'8.")
+    measuretools.scale_measure_and_adjust_time_signature(measure, Duration(2, 3))
 
     r'''
     {
@@ -118,9 +118,9 @@ def test_measuretools_scale_measure_and_adjust_time_signature_04():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 3/8
@@ -137,8 +137,8 @@ def test_measuretools_scale_measure_and_adjust_time_signature_05():
     No note head rewriting necessary.
     '''
 
-    t = Measure((9, 16), "c'16 d'16 e'16 f'16 g'16 a'16 b'16 c''16 d''16")
-    measuretools.scale_measure_and_adjust_time_signature(t, Duration(2, 3))
+    measure = Measure((9, 16), "c'16 d'16 e'16 f'16 g'16 a'16 b'16 c''16 d''16")
+    measuretools.scale_measure_and_adjust_time_signature(measure, Duration(2, 3))
 
     r'''
     {
@@ -157,9 +157,9 @@ def test_measuretools_scale_measure_and_adjust_time_signature_05():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 9/24
@@ -184,8 +184,8 @@ def test_measuretools_scale_measure_and_adjust_time_signature_06():
     Noteheads rewrite with double duration.
     '''
 
-    t = Measure((3, 12), "c'8 d'8 e'8")
-    measuretools.scale_measure_and_adjust_time_signature(t, Duration(3))
+    measure = Measure((3, 12), "c'8 d'8 e'8")
+    measuretools.scale_measure_and_adjust_time_signature(measure, Duration(3))
 
     r'''
     {
@@ -196,9 +196,9 @@ def test_measuretools_scale_measure_and_adjust_time_signature_06():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 3/4
@@ -216,8 +216,8 @@ def test_measuretools_scale_measure_and_adjust_time_signature_07():
     Time signature rewrites with double denominator.
     '''
 
-    t = Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
-    measuretools.scale_measure_and_adjust_time_signature(t, Duration(1, 2))
+    measure = Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
+    measuretools.scale_measure_and_adjust_time_signature(measure, Duration(1, 2))
 
     r'''
     {
@@ -231,9 +231,9 @@ def test_measuretools_scale_measure_and_adjust_time_signature_07():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 6/32
@@ -254,8 +254,8 @@ def test_measuretools_scale_measure_and_adjust_time_signature_08():
     Time signature rewrites with quadruple denominator.
     '''
 
-    t = Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
-    measuretools.scale_measure_and_adjust_time_signature(t, Duration(1, 4))
+    measure = Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
+    measuretools.scale_measure_and_adjust_time_signature(measure, Duration(1, 4))
 
     r'''
     {
@@ -269,9 +269,9 @@ def test_measuretools_scale_measure_and_adjust_time_signature_08():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 6/64
@@ -292,8 +292,8 @@ def test_measuretools_scale_measure_and_adjust_time_signature_09():
     Time signature rewrites with half denominator.
     '''
 
-    t = Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
-    measuretools.scale_measure_and_adjust_time_signature(t, Duration(2))
+    measure = Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
+    measuretools.scale_measure_and_adjust_time_signature(measure, Duration(2))
 
     r'''
     {
@@ -307,9 +307,9 @@ def test_measuretools_scale_measure_and_adjust_time_signature_09():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 6/8
@@ -330,8 +330,8 @@ def test_measuretools_scale_measure_and_adjust_time_signature_10():
     Time signature rewrites with quarter denominator.
     '''
 
-    t = Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
-    measuretools.scale_measure_and_adjust_time_signature(t, Duration(4))
+    measure = Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
+    measuretools.scale_measure_and_adjust_time_signature(measure, Duration(4))
 
     r'''
     {
@@ -345,9 +345,9 @@ def test_measuretools_scale_measure_and_adjust_time_signature_10():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 6/4

@@ -60,9 +60,9 @@ EXAMPLES
         This is an <b>HTML</b> document. Here is Abjad code:
 
         <abjad>
-        v = Voice("c'4 d'4 e'4 f'4")
-        spannertools.BeamSpanner(v)
-        show(v)
+        voice = Voice("c'4 d'4 e'4 f'4")
+        spannertools.BeamSpanner(voice)
+        show(voice)
         </abjad>
 
         More ordinary <b>HTML</b> text here.

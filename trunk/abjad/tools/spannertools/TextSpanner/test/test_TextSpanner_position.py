@@ -5,8 +5,8 @@ from py.test import raises
 
 def test_TextSpanner_position_01():
 
-    t = Staff(notetools.make_repeated_notes(4))
-    p = spannertools.TextSpanner(t[:])
+    staff = Staff(notetools.make_repeated_notes(4))
+    p = spannertools.TextSpanner(staff[:])
 
     r'''
     \new Staff {
@@ -18,7 +18,7 @@ def test_TextSpanner_position_01():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8 \startTextSpan
@@ -32,8 +32,8 @@ def test_TextSpanner_position_01():
 
 def test_TextSpanner_position_02():
 
-    t = Staff(notetools.make_repeated_notes(4))
-    p = spannertools.TextSpanner(t[:])
+    staff = Staff(notetools.make_repeated_notes(4))
+    p = spannertools.TextSpanner(staff[:])
     marktools.LilyPondCommandMark('textSpannerNeutral')(p[0])
 
     r'''
@@ -47,7 +47,7 @@ def test_TextSpanner_position_02():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \textSpannerNeutral
@@ -62,8 +62,8 @@ def test_TextSpanner_position_02():
 
 def test_TextSpanner_position_03():
 
-    t = Staff(notetools.make_repeated_notes(4))
-    p = spannertools.TextSpanner(t[:])
+    staff = Staff(notetools.make_repeated_notes(4))
+    p = spannertools.TextSpanner(staff[:])
     marktools.LilyPondCommandMark('textSpannerUp')(p[0])
 
     r'''
@@ -77,7 +77,7 @@ def test_TextSpanner_position_03():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \textSpannerUp
@@ -92,8 +92,8 @@ def test_TextSpanner_position_03():
 
 def test_TextSpanner_position_04():
 
-    t = Staff(notetools.make_repeated_notes(4))
-    p = spannertools.TextSpanner(t[:])
+    staff = Staff(notetools.make_repeated_notes(4))
+    p = spannertools.TextSpanner(staff[:])
     marktools.LilyPondCommandMark('textSpannerDown')(p[0])
 
     r'''
@@ -107,7 +107,7 @@ def test_TextSpanner_position_04():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \textSpannerDown

@@ -5,23 +5,23 @@ from py.test import raises
 
 def test_Chord_01():
 
-    t = Chord([2, 3, 4], (1, 4))
-    assert str(t) == "<d' ef' e'>4"
-    assert t.lilypond_format == "<d' ef' e'>4"
-    assert len(t) == 3
-    assert len(t.note_heads) == 3
-    assert len(t.written_pitches) == 3
-    assert t.written_duration == t.get_duration() == Duration(1, 4)
+    chord = Chord([2, 3, 4], (1, 4))
+    assert str(chord) == "<d' ef' e'>4"
+    assert chord.lilypond_format == "<d' ef' e'>4"
+    assert len(chord) == 3
+    assert len(chord.note_heads) == 3
+    assert len(chord.written_pitches) == 3
+    assert chord.written_duration == chord.get_duration() == Duration(1, 4)
 
 
 def test_Chord_02():
     r'''Chord with tweaked note head.
     '''
 
-    t = Chord([2, 3, 4], (1, 4))
-    t[0].tweak.style = 'harmonic'
+    chord = Chord([2, 3, 4], (1, 4))
+    chord[0].tweak.style = 'harmonic'
     assert testtools.compare(
-        t.lilypond_format,
+        chord.lilypond_format,
         r'''
         <
             \tweak #'style #'harmonic
@@ -34,10 +34,10 @@ def test_Chord_02():
 
 
 def test_Chord_03():
-    t = Chord([2, 3, 4], (1, 4))
-    t[0].tweak.transparent = True
+    chord = Chord([2, 3, 4], (1, 4))
+    chord[0].tweak.transparent = True
     assert testtools.compare(
-        t.lilypond_format,
+        chord.lilypond_format,
         r'''
         <
             \tweak #'transparent ##t
@@ -53,12 +53,12 @@ def test_Chord_04():
     r'''Format one-note chord as chord.
     '''
 
-    t = Chord([0.5], (1, 4))
-    assert str(t) == "<cqs'>4"
-    assert t.lilypond_format == "<cqs'>4"
-    assert len(t) == 1
-    assert len(t.note_heads) == 1
-    assert len(t.written_pitches) == 1
+    chord = Chord([0.5], (1, 4))
+    assert str(chord) == "<cqs'>4"
+    assert chord.lilypond_format == "<cqs'>4"
+    assert len(chord) == 1
+    assert len(chord.note_heads) == 1
+    assert len(chord.written_pitches) == 1
 
 
 def test_Chord_05():
@@ -109,65 +109,65 @@ def test_Chord_07():
     r'''Set chord pitches to numbers.
     '''
 
-    t = Chord([], (1,4))
-    t.written_pitches = [4, 3, 2]
+    chord = Chord([], (1,4))
+    chord.written_pitches = [4, 3, 2]
 
-    assert t.lilypond_format == "<d' ef' e'>4"
+    assert chord.lilypond_format == "<d' ef' e'>4"
 
-    t.written_pitches = (4, 3, 2)
+    chord.written_pitches = (4, 3, 2)
 
-    assert t.lilypond_format == "<d' ef' e'>4"
+    assert chord.lilypond_format == "<d' ef' e'>4"
 
 
 def test_Chord_08():
     r'''Set chord pitches to pitches.
     '''
 
-    t = Chord([], (1,4))
-    t.written_pitches = [pitchtools.NamedChromaticPitch(4), pitchtools.NamedChromaticPitch(3),
+    chord = Chord([], (1,4))
+    chord.written_pitches = [pitchtools.NamedChromaticPitch(4), pitchtools.NamedChromaticPitch(3),
         pitchtools.NamedChromaticPitch(2)]
 
-    assert t.lilypond_format == "<d' ef' e'>4"
+    assert chord.lilypond_format == "<d' ef' e'>4"
 
 
 def test_Chord_09():
     r'''Set chord pitches to mixed numbers and pitches.
     '''
 
-    t = Chord([], (1,4))
-    t.written_pitches = [4, pitchtools.NamedChromaticPitch(3), pitchtools.NamedChromaticPitch(2)]
+    chord = Chord([], (1,4))
+    chord.written_pitches = [4, pitchtools.NamedChromaticPitch(3), pitchtools.NamedChromaticPitch(2)]
 
-    assert t.lilypond_format == "<d' ef' e'>4"
+    assert chord.lilypond_format == "<d' ef' e'>4"
 
 
 def test_Chord_10():
     r'''Set chord note heads to numbers.
     '''
 
-    t = Chord([], (1,4))
-    t.note_heads = [4, 3, 2]
+    chord = Chord([], (1,4))
+    chord.note_heads = [4, 3, 2]
 
-    assert t.lilypond_format == "<d' ef' e'>4"
+    assert chord.lilypond_format == "<d' ef' e'>4"
 
 
 def test_Chord_11():
     r'''Set chord note heads to pitches.
     '''
 
-    t = Chord([], (1,4))
-    t.note_heads = [pitchtools.NamedChromaticPitch(4), pitchtools.NamedChromaticPitch(3), pitchtools.NamedChromaticPitch(2)]
+    chord = Chord([], (1,4))
+    chord.note_heads = [pitchtools.NamedChromaticPitch(4), pitchtools.NamedChromaticPitch(3), pitchtools.NamedChromaticPitch(2)]
 
-    assert t.lilypond_format == "<d' ef' e'>4"
+    assert chord.lilypond_format == "<d' ef' e'>4"
 
 
 def test_Chord_12():
     r'''Set chord note heads to mixed numbers and pitches.
     '''
 
-    t = Chord([], (1,4))
-    t.note_heads = [pitchtools.NamedChromaticPitch(4), 3, pitchtools.NamedChromaticPitch(2)]
+    chord = Chord([], (1,4))
+    chord.note_heads = [pitchtools.NamedChromaticPitch(4), 3, pitchtools.NamedChromaticPitch(2)]
 
-    assert t.lilypond_format == "<d' ef' e'>4"
+    assert chord.lilypond_format == "<d' ef' e'>4"
 
 
 def test_Chord_13():

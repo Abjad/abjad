@@ -14,11 +14,11 @@ def test_GraceContainer_parentage_02():
     r'''Grace containers bound to leaf do have parent.
     '''
 
-    t = Note(1, (1, 4))
-    leaftools.GraceContainer()(t)
-    assert isinstance(t.grace, leaftools.GraceContainer)
-    assert t.grace._carrier is t
-    assert t.grace._carrier is t
+    note = Note(1, (1, 4))
+    leaftools.GraceContainer()(note)
+    assert isinstance(note.grace, leaftools.GraceContainer)
+    assert note.grace._carrier is note
+    assert note.grace._carrier is note
 
 
 def test_GraceContainer_parentage_03():

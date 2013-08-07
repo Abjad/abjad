@@ -6,8 +6,8 @@ def test_containertools_repeat_last_n_elements_of_container_01():
     r'''Cyclic extend measures in voice.
     '''
 
-    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
 
     r'''
     \new Voice {
@@ -24,8 +24,8 @@ def test_containertools_repeat_last_n_elements_of_container_01():
     }
     '''
 
-    containertools.repeat_last_n_elements_of_container(t, n=1, total=4)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    containertools.repeat_last_n_elements_of_container(voice, n=1, total=4)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     r'''
     \new Voice {
@@ -57,9 +57,9 @@ def test_containertools_repeat_last_n_elements_of_container_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {

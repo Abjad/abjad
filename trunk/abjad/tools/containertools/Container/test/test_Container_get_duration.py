@@ -8,10 +8,10 @@ def test_Container_get_duration_01():
     sum of leaf durations in seconds.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    contexttools.TempoMark(Duration(1, 4), 38)(t)
-    contexttools.TempoMark(Duration(1, 4), 42)(t[2])
-    score = Score([t])
+    staff = Staff("c'8 d'8 e'8 f'8")
+    contexttools.TempoMark(Duration(1, 4), 38)(staff)
+    contexttools.TempoMark(Duration(1, 4), 42)(staff[2])
+    score = Score([staff])
 
     r'''
     \new Score <<

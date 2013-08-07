@@ -7,8 +7,8 @@ def test_Container_extend_01():
     r'''Extend container with list of leaves.
     '''
 
-    t = Voice("c'8 d'8")
-    spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8")
+    spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -17,7 +17,7 @@ def test_Container_extend_01():
     }
     '''
 
-    t.extend([Note("c'8"), Note("d'8")])
+    voice.extend([Note("c'8"), Note("d'8")])
 
     r'''
     \new Voice {
@@ -28,9 +28,9 @@ def test_Container_extend_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [
@@ -46,8 +46,8 @@ def test_Container_extend_02():
     r'''Extend container with contents of other container.
     '''
 
-    t = Voice("c'8 d'8")
-    spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8")
+    spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -58,7 +58,7 @@ def test_Container_extend_02():
 
     u = Voice([Note(4, (1, 8)), Note(5, (1, 8))])
     spannertools.BeamSpanner(u[:])
-    t.extend(u)
+    voice.extend(u)
 
     r'''
     \new Voice {
@@ -69,9 +69,9 @@ def test_Container_extend_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [
@@ -87,9 +87,9 @@ def test_Container_extend_03():
     r'''Extending container with empty list leaves container unchanged.
     '''
 
-    t = Voice("c'8 d'8")
-    spannertools.BeamSpanner(t[:])
-    t.extend([])
+    voice = Voice("c'8 d'8")
+    spannertools.BeamSpanner(voice[:])
+    voice.extend([])
 
     r'''
     \new Voice {
@@ -98,9 +98,9 @@ def test_Container_extend_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [
@@ -114,9 +114,9 @@ def test_Container_extend_04():
     r'''Extending one container with empty second container leaves both containers unchanged.
     '''
 
-    t = Voice("c'8 d'8")
-    spannertools.BeamSpanner(t[:])
-    t.extend(Voice([]))
+    voice = Voice("c'8 d'8")
+    spannertools.BeamSpanner(voice[:])
+    voice.extend(Voice([]))
 
     r'''
     \new Voice {
@@ -125,9 +125,9 @@ def test_Container_extend_04():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [
@@ -141,30 +141,30 @@ def test_Container_extend_05():
     r'''Trying to extend container with noncomponent raises TypeError.
     '''
 
-    t = Voice("c'8 d'8")
-    spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8")
+    spannertools.BeamSpanner(voice[:])
 
-    assert py.test.raises(Exception, 't.extend(7)')
-    assert py.test.raises(Exception, "t.extend('foo')")
+    assert py.test.raises(Exception, 'voice.extend(7)')
+    assert py.test.raises(Exception, "voice.extend('foo')")
 
 
 def test_Container_extend_06():
     r'''Trying to extend container with noncontainer raises exception.
     '''
 
-    t = Voice("c'8 d'8")
-    spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8")
+    spannertools.BeamSpanner(voice[:])
 
-    assert py.test.raises(Exception, 't.extend(Note(4, (1, 4)))')
-    assert py.test.raises(AssertionError, "t.extend(Chord([2, 3, 5], (1, 4)))")
+    assert py.test.raises(Exception, 'voice.extend(Note(4, (1, 4)))')
+    assert py.test.raises(AssertionError, "voice.extend(Chord([2, 3, 5], (1, 4)))")
 
 
 def test_Container_extend_07():
     r'''Extend container with partial and spanned contents of other container.
     '''
 
-    t = Voice("c'8 d'8")
-    spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8")
+    spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -185,9 +185,9 @@ def test_Container_extend_07():
     }
     '''
 
-    t.extend(u[-2:])
+    voice.extend(u[-2:])
 
-    "Container t is now ..."
+    "Container voice is now ..."
 
     r'''
     \new Voice {
@@ -198,9 +198,9 @@ def test_Container_extend_07():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [
@@ -237,8 +237,8 @@ def test_Container_extend_08():
     Covered span comes with components from donor container.
     '''
 
-    t = Voice("c'8 d'8")
-    spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8")
+    spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -260,9 +260,9 @@ def test_Container_extend_08():
     }
     '''
 
-    t.extend(u[-2:])
+    voice.extend(u[-2:])
 
-    "Container t is now ..."
+    "Container voice is now ..."
 
     r'''
     \new Voice {
@@ -273,9 +273,9 @@ def test_Container_extend_08():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [

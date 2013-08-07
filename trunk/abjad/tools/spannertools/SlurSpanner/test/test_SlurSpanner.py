@@ -6,8 +6,8 @@ def test_SlurSpanner_01():
     r'''Slur spanner can attach to a container.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    s = spannertools.SlurSpanner(t)
+    voice = Voice("c'8 d'8 e'8 f'8")
+    s = spannertools.SlurSpanner(voice)
 
     r'''
     \new Voice {
@@ -18,9 +18,9 @@ def test_SlurSpanner_01():
     }
     '''
 
-    assert t.get_spanners() == set([s])
+    assert voice.get_spanners() == set([s])
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 (

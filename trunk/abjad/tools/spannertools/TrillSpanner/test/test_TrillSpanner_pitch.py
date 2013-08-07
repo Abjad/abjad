@@ -6,8 +6,8 @@ def test_TrillSpanner_pitch_01():
     r'''Assign Abjad pitch instance to create a pitched trill.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    trill = spannertools.TrillSpanner(t[:2])
+    staff = Staff("c'8 d'8 e'8 f'8")
+    trill = spannertools.TrillSpanner(staff[:2])
     trill.pitch = pitchtools.NamedChromaticPitch(1)
 
     r'''
@@ -20,9 +20,9 @@ def test_TrillSpanner_pitch_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \pitchedTrill
@@ -39,8 +39,8 @@ def test_TrillSpanner_pitch_02():
     r'''Any pitch init value will work.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    trill = spannertools.TrillSpanner(t[:2])
+    staff = Staff("c'8 d'8 e'8 f'8")
+    trill = spannertools.TrillSpanner(staff[:2])
     trill.pitch = 1
 
     r'''
@@ -53,9 +53,9 @@ def test_TrillSpanner_pitch_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \pitchedTrill

@@ -7,9 +7,9 @@ def test_componenttools_all_are_thread_contiguous_components_01():
     r'''True for thread contiguous components even when
         components are not strictly contiguous.'''
 
-    t = Voice(notetools.make_repeated_notes(4))
-    t.insert(2, Voice(notetools.make_repeated_notes(2)))
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    voice = Voice(notetools.make_repeated_notes(4))
+    voice.insert(2, Voice(notetools.make_repeated_notes(2)))
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
 
     r'''
     \new Voice {
@@ -25,7 +25,7 @@ def test_componenttools_all_are_thread_contiguous_components_01():
     '''
 
     outer = (0, 1, 4, 5)
-    assert componenttools.all_are_thread_contiguous_components([t.select_leaves()[i] for i in outer])
+    assert componenttools.all_are_thread_contiguous_components([voice.select_leaves()[i] for i in outer])
 
 
 def test_componenttools_all_are_thread_contiguous_components_02():
@@ -33,11 +33,11 @@ def test_componenttools_all_are_thread_contiguous_components_02():
         So long as gaps are filled with foreign components
         that do not belong to thread.'''
 
-    t = Voice(notetools.make_repeated_notes(4))
-    t.insert(2, Voice(notetools.make_repeated_notes(2)))
-    Container(t[:2])
-    Container(t[-2:])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    voice = Voice(notetools.make_repeated_notes(4))
+    voice.insert(2, Voice(notetools.make_repeated_notes(2)))
+    Container(voice[:2])
+    Container(voice[-2:])
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
 
     r'''
     \new Voice {
@@ -56,21 +56,21 @@ def test_componenttools_all_are_thread_contiguous_components_02():
     }
     '''
 
-    assert componenttools.all_are_thread_contiguous_components(t[0:1] + t[-1:])
-    assert componenttools.all_are_thread_contiguous_components(t[0][:] + t[-1:])
-    assert componenttools.all_are_thread_contiguous_components(t[0:1] + t[-1][:])
-    assert componenttools.all_are_thread_contiguous_components(t[0][:] + t[-1][:])
+    assert componenttools.all_are_thread_contiguous_components(voice[0:1] + voice[-1:])
+    assert componenttools.all_are_thread_contiguous_components(voice[0][:] + voice[-1:])
+    assert componenttools.all_are_thread_contiguous_components(voice[0:1] + voice[-1][:])
+    assert componenttools.all_are_thread_contiguous_components(voice[0][:] + voice[-1][:])
 
 
 def test_componenttools_all_are_thread_contiguous_components_03():
     r'''Components that start at the same moment are bad.
         Even if components are all part of the same thread.'''
 
-    t = Voice(notetools.make_repeated_notes(4))
-    t.insert(2, Voice(notetools.make_repeated_notes(2)))
-    Container(t[:2])
-    Container(t[-2:])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    voice = Voice(notetools.make_repeated_notes(4))
+    voice.insert(2, Voice(notetools.make_repeated_notes(2)))
+    Container(voice[:2])
+    Container(voice[-2:])
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
 
     r'''
     \new Voice {
@@ -89,17 +89,17 @@ def test_componenttools_all_are_thread_contiguous_components_03():
     }
     '''
 
-    assert not componenttools.all_are_thread_contiguous_components([t, t[0]])
-    assert not componenttools.all_are_thread_contiguous_components(t[0:1] + t[0][:])
-    assert not componenttools.all_are_thread_contiguous_components(t[-1:] + t[-1][:])
+    assert not componenttools.all_are_thread_contiguous_components([voice, voice[0]])
+    assert not componenttools.all_are_thread_contiguous_components(voice[0:1] + voice[0][:])
+    assert not componenttools.all_are_thread_contiguous_components(voice[-1:] + voice[-1][:])
 
 
 def test_componenttools_all_are_thread_contiguous_components_04():
     r'''True for strictly contiguous leaves in same staff.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    assert componenttools.all_are_thread_contiguous_components(t[:])
+    staff = Staff("c'8 d'8 e'8 f'8")
+    assert componenttools.all_are_thread_contiguous_components(staff[:])
 
 
 def test_componenttools_all_are_thread_contiguous_components_05():
@@ -115,8 +115,8 @@ def test_componenttools_all_are_thread_contiguous_components_06():
     r'''False for time reordered leaves in staff.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    assert not componenttools.all_are_thread_contiguous_components(t[2:] + t[:2])
+    staff = Staff("c'8 d'8 e'8 f'8")
+    assert not componenttools.all_are_thread_contiguous_components(staff[2:] + staff[:2])
 
 
 def test_componenttools_all_are_thread_contiguous_components_07():
@@ -137,8 +137,8 @@ def test_componenttools_all_are_thread_contiguous_components_09():
     r'''False when components belonging to same thread are ommitted.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8 g'8 a'8")
-    spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8 f'8 g'8 a'8")
+    spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -151,7 +151,7 @@ def test_componenttools_all_are_thread_contiguous_components_09():
     }
     '''
 
-    assert not componenttools.all_are_thread_contiguous_components(t[:2] + t[-2:])
+    assert not componenttools.all_are_thread_contiguous_components(voice[:2] + voice[-2:])
 
 
 def test_componenttools_all_are_thread_contiguous_components_10():

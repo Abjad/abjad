@@ -10,11 +10,11 @@ def test_lily_voice_resolution_01():
     How does LilyPond resolve voices?
     '''
 
-    t = Voice(notetools.make_repeated_notes(4))
-    t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
-    t[2].is_parallel = True
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    t.override.note_head.color = 'red'
+    voice = Voice(notetools.make_repeated_notes(4))
+    voice.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
+    voice[2].is_parallel = True
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice.override.note_head.color = 'red'
 
     r'''
     \new Voice \with {
@@ -51,13 +51,13 @@ def test_lily_voice_resolution_02():
     How does LilyPond resolve voices?
     '''
 
-    t = Voice(notetools.make_repeated_notes(4))
-    t.name = 'foo'
-    t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
-    t[2].is_parallel = True
-    t[2][0].name = 'foo'
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    t.override.note_head.color = 'red'
+    voice = Voice(notetools.make_repeated_notes(4))
+    voice.name = 'foo'
+    voice.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
+    voice[2].is_parallel = True
+    voice[2][0].name = 'foo'
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice.override.note_head.color = 'red'
 
     r'''
     \context Voice = "foo" \with {
@@ -89,13 +89,13 @@ def test_lily_voice_resolution_03():
     r'''Two like-named voices in two differently named staves.
     '''
 
-    t = Container(Staff([Voice("c'8 d'8")]) * 2)
-    t[0].name = 'staff1'
-    t[1].name = 'staff2'
-    t[0][0].name = 'voicefoo'
-    t[1][0].name = 'voicefoo'
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    py.test.raises(AssertionError, 'spannertools.BeamSpanner(t.select_leaves())')
+    container = Container(Staff([Voice("c'8 d'8")]) * 2)
+    container[0].name = 'staff1'
+    container[1].name = 'staff2'
+    container[0][0].name = 'voicefoo'
+    container[1][0].name = 'voicefoo'
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(container)
+    py.test.raises(AssertionError, 'spannertools.BeamSpanner(container.select_leaves())')
 
     r'''LilyPond gives unterminated beam warnings.
     LilyPond gives grob direction programming errors.

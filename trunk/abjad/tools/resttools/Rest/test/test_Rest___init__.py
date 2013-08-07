@@ -107,13 +107,13 @@ def test_Rest___init___09():
     r'''Init rest from beamed skip.
     '''
 
-    t = Staff([Note(0, (1, 8)), skiptools.Skip((1, 8)), Note(0, (1, 8))])
-    spannertools.BeamSpanner(t[:])
-    rest = Rest(t[1])
-    assert isinstance(t[1], skiptools.Skip)
-    assert t[1] in t
+    staff = Staff([Note(0, (1, 8)), skiptools.Skip((1, 8)), Note(0, (1, 8))])
+    spannertools.BeamSpanner(staff[:])
+    rest = Rest(staff[1])
+    assert isinstance(staff[1], skiptools.Skip)
+    assert staff[1] in staff
     assert isinstance(rest, Rest)
-    assert rest not in t
+    assert rest not in staff
 
 
 def test_Rest___init___10():
@@ -150,12 +150,12 @@ def test_Rest___init___12():
     r'''Init rest from beamed note.
     '''
 
-    t = Staff(Note(0, (1, 8)) * 3)
-    spannertools.BeamSpanner(t[:])
-    rest = Rest(t[0])
-    assert isinstance(t[0], Note)
+    staff = Staff(Note(0, (1, 8)) * 3)
+    spannertools.BeamSpanner(staff[:])
+    rest = Rest(staff[0])
+    assert isinstance(staff[0], Note)
     assert isinstance(rest, Rest)
-    assert t[0]._parent is t
+    assert staff[0]._parent is staff
     assert rest._parent is None
 
 
@@ -163,10 +163,10 @@ def test_Rest___init___13():
     r'''Init rest from spanned note.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
-    rest = Rest(t[-1])
-    componenttools.move_parentage_and_spanners_from_components_to_components(t[-1:], [rest])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:])
+    rest = Rest(voice[-1])
+    componenttools.move_parentage_and_spanners_from_components_to_components(voice[-1:], [rest])
 
     r'''
     \new Voice {
@@ -178,7 +178,7 @@ def test_Rest___init___13():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [

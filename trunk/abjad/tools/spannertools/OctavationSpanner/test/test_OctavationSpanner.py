@@ -7,8 +7,8 @@ def test_OctavationSpanner_01():
     r'''Octavation has default start and stop arguments set to 0.
     '''
 
-    t = Staff(notetools.make_repeated_notes(4))
-    o = spannertools.OctavationSpanner(t[:])
+    staff = Staff(notetools.make_repeated_notes(4))
+    o = spannertools.OctavationSpanner(staff[:])
 
     r'''
     \new Staff {
@@ -23,7 +23,7 @@ def test_OctavationSpanner_01():
 
     assert o.start == o.stop == 0
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \ottava #0
@@ -39,8 +39,8 @@ def test_OctavationSpanner_01():
 
 def test_OctavationSpanner_02():
 
-    t = Staff([Note(n, (1, 8)) for n in range(8)])
-    spannertools.OctavationSpanner(t[:4], 1)
+    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    spannertools.OctavationSpanner(staff[:4], 1)
 
     r'''
     \new Staff {
@@ -57,9 +57,9 @@ def test_OctavationSpanner_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \ottava #1
@@ -79,8 +79,8 @@ def test_OctavationSpanner_02():
 
 def test_OctavationSpanner_03():
 
-    t = Staff([Note(n, (1, 8)) for n in range(8)])
-    spannertools.OctavationSpanner(t[:4], 1, 2)
+    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    spannertools.OctavationSpanner(staff[:4], 1, 2)
 
     r'''
     \new Staff {
@@ -97,9 +97,9 @@ def test_OctavationSpanner_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \ottava #1
@@ -122,12 +122,12 @@ def test_OctavationSpanner_04():
     r'''One-note octavation changes are allowed.
     '''
 
-    t = Staff([Note(n, (1, 8)) for n in range(8)])
-    spannertools.OctavationSpanner(t[0], 1)
+    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    spannertools.OctavationSpanner(staff[0], 1)
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \ottava #1
@@ -165,13 +165,13 @@ def test_OctavationSpanner_05():
         TODO - check for back-to-back set-octavation at format-
             time and compress to a single set-octavation.'''
 
-    t = Staff([Note(n, (1, 8)) for n in range(8)])
-    spannertools.OctavationSpanner(t[0], 1)
-    spannertools.OctavationSpanner(t[1], 2)
+    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    spannertools.OctavationSpanner(staff[0], 1)
+    spannertools.OctavationSpanner(staff[1], 2)
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \ottava #1

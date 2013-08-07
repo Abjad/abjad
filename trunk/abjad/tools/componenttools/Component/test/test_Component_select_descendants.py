@@ -6,8 +6,8 @@ def test_Component_select_descendants_01():
     r'''Staff and first measure cross offset at 1/8.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     r'''
     \new Staff {
@@ -20,18 +20,18 @@ def test_Component_select_descendants_01():
     }
     '''
 
-    cross_offset = t.get_timespan().start_offset + Duration(1, 8)
-    result = t.select_descendants(cross_offset=cross_offset)
+    cross_offset = staff.get_timespan().start_offset + Duration(1, 8)
+    result = staff.select_descendants(cross_offset=cross_offset)
 
-    assert result == [t, t[0]]
+    assert result == [staff, staff[0]]
 
 
 def test_Component_select_descendants_02():
     r'''Staff, first measure and first note cross 1/16.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     r'''
     \new Staff {
@@ -44,18 +44,18 @@ def test_Component_select_descendants_02():
     }
     '''
 
-    cross_offset = t.get_timespan().start_offset + Duration(1, 16)
-    result = t.select_descendants(cross_offset=cross_offset)
+    cross_offset = staff.get_timespan().start_offset + Duration(1, 16)
+    result = staff.select_descendants(cross_offset=cross_offset)
 
-    assert result == [t, t[0], t[0][0]]
+    assert result == [staff, staff[0], staff[0][0]]
 
 
 def test_Component_select_descendants_03():
     r'''Nothing crosses 0.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     r'''
     \new Staff {
@@ -68,8 +68,8 @@ def test_Component_select_descendants_03():
     }
     '''
 
-    cross_offset = t.get_timespan().start_offset + Duration(0)
-    result = t.select_descendants(cross_offset=cross_offset)
+    cross_offset = staff.get_timespan().start_offset + Duration(0)
+    result = staff.select_descendants(cross_offset=cross_offset)
 
     assert result == []
 

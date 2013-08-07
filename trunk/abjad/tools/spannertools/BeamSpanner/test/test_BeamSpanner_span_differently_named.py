@@ -11,8 +11,8 @@ def test_BeamSpanner_span_differently_named_01():
     v1.name = 'foo'
     v2 = Voice(notetools.make_repeated_notes(4))
     v2.name = 'bar'
-    t = Staff([v1, v2])
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
+    staff = Staff([v1, v2])
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
 
     r'''
     \new Staff {
@@ -31,9 +31,9 @@ def test_BeamSpanner_span_differently_named_01():
     }
     '''
 
-    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner(t)')
+    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner(staff)')
 
-    p = spannertools.BeamSpanner(t[0])
+    p = spannertools.BeamSpanner(staff[0])
 
     r'''
     \new Staff {
@@ -52,9 +52,9 @@ def test_BeamSpanner_span_differently_named_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \context Voice = "foo" {

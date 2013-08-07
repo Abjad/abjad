@@ -20,8 +20,8 @@ def tree_TimeIntervalTree___init___03():
     r'''TimeIntervalTree can be instantiated from a single TimeIntervalTree.
     '''
     a = TimeInterval(0, 10)
-    t = TimeIntervalTree(a)
-    tree = TimeIntervalTree(t)
+    timeintervaltree = TimeIntervalTree(a)
+    tree = TimeIntervalTree(timeintervaltree)
     assert a in tree
 
 

@@ -48,23 +48,23 @@ def test_Leaf___copy___05():
 # TEST COPY ONE CONTAINER #
 
 def test_Leaf___copy___06():
-    t = Staff([Note(n, (1, 8)) for n in range(8)])
-    u = componenttools.copy_components_and_fracture_crossing_spanners([t])[0]
-    id(u) is not id(t)
-    assert select(t).is_well_formed()
+    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    u = componenttools.copy_components_and_fracture_crossing_spanners([staff])[0]
+    id(u) is not id(staff)
+    assert select(staff).is_well_formed()
     assert select(u).is_well_formed()
 
 
 # TEST COPY ONE TUPLETIZED NOTE #
 
 def test_Leaf___copy___07():
-    t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3) * 3)
-    u = componenttools.copy_components_and_fracture_crossing_spanners(t.select_leaves()[4:5])[0]
+    staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3) * 3)
+    u = componenttools.copy_components_and_fracture_crossing_spanners(staff.select_leaves()[4:5])[0]
     assert isinstance(u, Note)
-    assert u.written_pitch.numbered_chromatic_pitch == t.select_leaves()[4].written_pitch.numbered_chromatic_pitch
-    assert u.written_duration == t.select_leaves()[4].written_duration
-    assert id(u) != id(t.select_leaves()[4])
-    assert u.get_duration() != t.select_leaves()[4].get_duration()
+    assert u.written_pitch.numbered_chromatic_pitch == staff.select_leaves()[4].written_pitch.numbered_chromatic_pitch
+    assert u.written_duration == staff.select_leaves()[4].written_duration
+    assert id(u) != id(staff.select_leaves()[4])
+    assert u.get_duration() != staff.select_leaves()[4].get_duration()
 
 
 def test_Leaf___copy___08():

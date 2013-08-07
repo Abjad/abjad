@@ -8,8 +8,8 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_01()
     Assignable 3/2 multiplier conserves note_heads.
     '''
 
-    t = Measure((2, 8), "c'8 d'8")
-    spannertools.BeamSpanner(t[:])
+    measure = Measure((2, 8), "c'8 d'8")
+    spannertools.BeamSpanner(measure[:])
 
     r'''
     {
@@ -19,7 +19,7 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_01()
     }
     '''
 
-    measuretools.scale_measure_denominator_and_adjust_measure_contents(t, 3)
+    measuretools.scale_measure_denominator_and_adjust_measure_contents(measure, 3)
 
     r'''
     {
@@ -31,9 +31,9 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_01()
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 3/12
@@ -52,8 +52,8 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_02()
     Nonassignable 5/4 multiplier induces ties.
     '''
 
-    t = Measure((2, 8), "c'8 d'8")
-    spannertools.BeamSpanner(t[:])
+    measure = Measure((2, 8), "c'8 d'8")
+    spannertools.BeamSpanner(measure[:])
 
     r'''
     {
@@ -63,7 +63,7 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_02()
     }
     '''
 
-    measuretools.scale_measure_denominator_and_adjust_measure_contents(t, 5)
+    measuretools.scale_measure_denominator_and_adjust_measure_contents(measure, 5)
 
     r'''
     {
@@ -77,9 +77,9 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_02()
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 5/20
@@ -100,8 +100,8 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_03()
     Assignable 7/4 multiplier conserves note_heads.
     '''
 
-    t = Measure((2, 8), "c'8 d'8")
-    spannertools.BeamSpanner(t[:])
+    measure = Measure((2, 8), "c'8 d'8")
+    spannertools.BeamSpanner(measure[:])
 
     r'''
     {
@@ -111,7 +111,7 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_03()
     }
     '''
 
-    measuretools.scale_measure_denominator_and_adjust_measure_contents(t, 7)
+    measuretools.scale_measure_denominator_and_adjust_measure_contents(measure, 7)
 
     r'''
     {
@@ -123,9 +123,9 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_03()
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 7/28

@@ -67,10 +67,10 @@ def test_measuretools_fuse_measures_02():
     Beams are OK because they attach to leaves rather than containers.
     '''
 
-    t = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
-    measuretools.fill_measures_in_expr_with_repeated_notes(t, Duration(1, 16))
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.select_leaves())
+    voice = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
+    measuretools.fill_measures_in_expr_with_repeated_notes(voice, Duration(1, 16))
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.BeamSpanner(voice.select_leaves())
 
     r'''
     \new Voice {
@@ -87,7 +87,7 @@ def test_measuretools_fuse_measures_02():
     }
     '''
 
-    measuretools.fuse_measures(t[:])
+    measuretools.fuse_measures(voice[:])
 
     r'''
     \new Voice {
@@ -101,9 +101,9 @@ def test_measuretools_fuse_measures_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {
@@ -124,10 +124,10 @@ def test_measuretools_fuse_measures_03():
     Beam attaches to container rather than leaves.
     '''
 
-    t = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
-    measuretools.fill_measures_in_expr_with_repeated_notes(t, Duration(1, 16))
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[0])
+    voice = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
+    measuretools.fill_measures_in_expr_with_repeated_notes(voice, Duration(1, 16))
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.BeamSpanner(voice[0])
 
     r'''
     \new Voice {
@@ -144,7 +144,7 @@ def test_measuretools_fuse_measures_03():
     }
     '''
 
-    measuretools.fuse_measures(t[:])
+    measuretools.fuse_measures(voice[:])
 
     r'''
     \new Voice {
@@ -158,9 +158,9 @@ def test_measuretools_fuse_measures_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {
@@ -184,9 +184,9 @@ def test_measuretools_fuse_measures_04():
 
     m1 = Measure((1, 8), notetools.make_repeated_notes(1))
     m2 = Measure((1, 12), notetools.make_repeated_notes(1))
-    t = Voice([m1, m2])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.select_leaves())
+    voice = Voice([m1, m2])
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.BeamSpanner(voice.select_leaves())
 
     r'''
     \new Voice {
@@ -203,7 +203,7 @@ def test_measuretools_fuse_measures_04():
     }
     '''
 
-    measuretools.fuse_measures(t[:])
+    measuretools.fuse_measures(voice[:])
 
     r'''
     \new Voice {
@@ -217,9 +217,9 @@ def test_measuretools_fuse_measures_04():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {
@@ -258,10 +258,10 @@ def test_measuretools_fuse_measures_07():
     r'''Fuse three measures.
     '''
 
-    t = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (1, 8), (1, 8)]))
-    measuretools.fill_measures_in_expr_with_repeated_notes(t, Duration(1, 16))
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.select_leaves())
+    voice = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (1, 8), (1, 8)]))
+    measuretools.fill_measures_in_expr_with_repeated_notes(voice, Duration(1, 16))
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.BeamSpanner(voice.select_leaves())
 
     r'''
     \new Voice {
@@ -283,7 +283,7 @@ def test_measuretools_fuse_measures_07():
     }
     '''
 
-    measuretools.fuse_measures(t[:])
+    measuretools.fuse_measures(voice[:])
 
     r'''
     \new Voice {
@@ -299,9 +299,9 @@ def test_measuretools_fuse_measures_07():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {
@@ -322,8 +322,8 @@ def test_measuretools_fuse_measures_08():
     r'''Measure fusion across intervening container boundaries is undefined.
     '''
 
-    t = Voice(Container(Measure((2, 8), notetools.make_repeated_notes(2)) * 2) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    voice = Voice(Container(Measure((2, 8), notetools.make_repeated_notes(2)) * 2) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
 
     r'''
     \new Voice {
@@ -354,7 +354,7 @@ def test_measuretools_fuse_measures_08():
     }
     '''
 
-    assert py.test.raises(AssertionError, 'measuretools.fuse_measures([t[0][1], t[1][0]])')
+    assert py.test.raises(AssertionError, 'measuretools.fuse_measures([voice[0][1], voice[1][0]])')
 
 
 def test_measuretools_fuse_measures_09():

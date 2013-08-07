@@ -5,43 +5,43 @@ from abjad import *
 def test_Leaf_duration_compare_01():
     r'''Written Durations can be evaluated for equality with Durations.
     '''
-    t = Note("c'4")
-    assert t.written_duration == Duration(1, 4)
+    note = Note("c'4")
+    assert note.written_duration == Duration(1, 4)
 
 
 def test_Leaf_duration_compare_02():
     r'''Written Durations can be evaluated for equality with integers.
     '''
-    t = Note(0, 1)
-    assert t.written_duration == 1
+    note = Note(0, 1)
+    assert note.written_duration == 1
 
 
 def test_Leaf_duration_compare_03():
     r'''Written Durations can NOT be evaluated for equality with tuples.
     '''
-    t = Note("c'4")
-    assert t.written_duration == Duration(1, 4)
-    assert t.written_duration != (1, 4)
-    assert t.written_duration != 'foo'
+    note = Note("c'4")
+    assert note.written_duration == Duration(1, 4)
+    assert note.written_duration != (1, 4)
+    assert note.written_duration != 'foo'
 
 
 def test_Leaf_duration_compare_04():
     r'''Multiplier Durations can be evaluated for equality with Durations.
     '''
-    t = Note(1, (1, 4))
-    t.lilypond_duration_multiplier = Duration(1, 4)
-    assert t.lilypond_duration_multiplier == Duration(1, 4)
+    note = Note(1, (1, 4))
+    note.lilypond_duration_multiplier = Duration(1, 4)
+    assert note.lilypond_duration_multiplier == Duration(1, 4)
 
 
 def test_Leaf_duration_compare_05():
     r'''Multiplier Durations can be evaluated for equality with integers.
     '''
-    t = Note(1, 4)
-    t.lilypond_duration_multiplier = Duration(1)
-    assert t.lilypond_duration_multiplier == Duration(1)
-    assert t.lilypond_duration_multiplier == 1
-    assert t.lilypond_duration_multiplier != (1, 1)
-    assert t.lilypond_duration_multiplier != 'foo'
+    note = Note(1, 4)
+    note.lilypond_duration_multiplier = Duration(1)
+    assert note.lilypond_duration_multiplier == Duration(1)
+    assert note.lilypond_duration_multiplier == 1
+    assert note.lilypond_duration_multiplier != (1, 1)
+    assert note.lilypond_duration_multiplier != 'foo'
 
 
 def test_Leaf_duration_compare_06():

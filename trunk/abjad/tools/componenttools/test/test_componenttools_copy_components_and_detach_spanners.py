@@ -8,11 +8,11 @@ def test_componenttools_copy_components_and_detach_spanners_01():
         Reapply spanners to components.
         Return unspanned copy.'''
 
-    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
-    slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    beam = spannertools.BeamSpanner(voice[:2] + voice[2][:] + voice[3][:])
+    slur = spannertools.SlurSpanner(voice[0][:] + voice[1][:] + voice[2:])
+    measuretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     r'''
     \new Voice {
@@ -39,7 +39,7 @@ def test_componenttools_copy_components_and_detach_spanners_01():
     }
     '''
 
-    result = componenttools.copy_components_and_detach_spanners([t])
+    result = componenttools.copy_components_and_detach_spanners([voice])
     voice = result[0]
     measuretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
@@ -68,7 +68,7 @@ def test_componenttools_copy_components_and_detach_spanners_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert select(voice).is_well_formed()
     assert testtools.compare(
         voice.lilypond_format,
@@ -105,11 +105,11 @@ def test_componenttools_copy_components_and_detach_spanners_02():
         Reapply spanners to components.
         Return unspanned copy.'''
 
-    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
-    slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    beam = spannertools.BeamSpanner(voice[:2] + voice[2][:] + voice[3][:])
+    slur = spannertools.SlurSpanner(voice[0][:] + voice[1][:] + voice[2:])
+    measuretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     r'''
     \new Voice {
@@ -136,7 +136,7 @@ def test_componenttools_copy_components_and_detach_spanners_02():
     }
     '''
 
-    result = componenttools.copy_components_and_detach_spanners(t[1:])
+    result = componenttools.copy_components_and_detach_spanners(voice[1:])
     new = Voice(result)
     measuretools.set_always_format_time_signature_of_measures_in_expr(new)
 
@@ -160,7 +160,7 @@ def test_componenttools_copy_components_and_detach_spanners_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert select(new).is_well_formed()
     assert testtools.compare(
         new.lilypond_format,
@@ -193,11 +193,11 @@ def test_componenttools_copy_components_and_detach_spanners_03():
     Return unspanned copy.
     '''
 
-    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
-    slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    beam = spannertools.BeamSpanner(voice[:2] + voice[2][:] + voice[3][:])
+    slur = spannertools.SlurSpanner(voice[0][:] + voice[1][:] + voice[2:])
+    measuretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     r'''
     \new Voice {
@@ -224,7 +224,7 @@ def test_componenttools_copy_components_and_detach_spanners_03():
     }
     '''
 
-    result = componenttools.copy_components_and_detach_spanners(t.select_leaves()[:6])
+    result = componenttools.copy_components_and_detach_spanners(voice.select_leaves()[:6])
     new = Voice(result)
     measuretools.set_always_format_time_signature_of_measures_in_expr(new)
 
@@ -239,7 +239,7 @@ def test_componenttools_copy_components_and_detach_spanners_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert select(new).is_well_formed()
     assert testtools.compare(
         new.lilypond_format,
@@ -263,11 +263,11 @@ def test_componenttools_copy_components_and_detach_spanners_04():
     Return unspanned copy.
     '''
 
-    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
-    slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    beam = spannertools.BeamSpanner(voice[:2] + voice[2][:] + voice[3][:])
+    slur = spannertools.SlurSpanner(voice[0][:] + voice[1][:] + voice[2:])
+    measuretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     r'''
     \new Voice {
@@ -294,7 +294,7 @@ def test_componenttools_copy_components_and_detach_spanners_04():
     }
     '''
 
-    result = componenttools.copy_components_and_detach_spanners(t[-2:])
+    result = componenttools.copy_components_and_detach_spanners(voice[-2:])
     new = Voice(result)
     measuretools.set_always_format_time_signature_of_measures_in_expr(new)
 
@@ -313,7 +313,7 @@ def test_componenttools_copy_components_and_detach_spanners_04():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert select(new).is_well_formed()
     assert testtools.compare(
         new.lilypond_format,

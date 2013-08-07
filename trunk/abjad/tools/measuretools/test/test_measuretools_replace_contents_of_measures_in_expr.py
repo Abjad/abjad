@@ -8,7 +8,7 @@ def test_measuretools_replace_contents_of_measures_in_expr_01():
     Note spacer skip at end of second measure.
     '''
 
-    t = Staff(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (3, 16)]))
+    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (3, 16)]))
 
     r'''
     \new Staff {
@@ -24,7 +24,7 @@ def test_measuretools_replace_contents_of_measures_in_expr_01():
     '''
 
     notes = [Note("c'16"), Note("d'16"), Note("e'16"), Note("f'16")]
-    measuretools.replace_contents_of_measures_in_expr(t, notes)
+    measuretools.replace_contents_of_measures_in_expr(staff, notes)
 
     r'''
     \new Staff {
@@ -42,9 +42,9 @@ def test_measuretools_replace_contents_of_measures_in_expr_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -68,7 +68,7 @@ def test_measuretools_replace_contents_of_measures_in_expr_02():
     Small measures skipped.
     '''
 
-    t = Staff(measuretools.make_measures_with_full_measure_spacer_skips([(1, 16), (3, 16), (1, 16), (3, 16)]))
+    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips([(1, 16), (3, 16), (1, 16), (3, 16)]))
 
     r'''
     \new Staff {
@@ -92,7 +92,7 @@ def test_measuretools_replace_contents_of_measures_in_expr_02():
     '''
 
     notes = [Note("c'8"), Note("d'8")]
-    measuretools.replace_contents_of_measures_in_expr(t, notes)
+    measuretools.replace_contents_of_measures_in_expr(staff, notes)
 
     r'''
     \new Staff {
@@ -117,9 +117,9 @@ def test_measuretools_replace_contents_of_measures_in_expr_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -150,33 +150,33 @@ def test_measuretools_replace_contents_of_measures_in_expr_03():
     contains no measures.
     '''
 
-    t = Note("c'4")
+    note = Note("c'4")
     notes = [Note("c'8"), Note("d'8")]
 
-    assert py.test.raises(MissingMeasureError, 'measuretools.replace_contents_of_measures_in_expr(t, notes)')
+    assert py.test.raises(MissingMeasureError, 'measuretools.replace_contents_of_measures_in_expr(note, notes)')
 
 
 def test_measuretools_replace_contents_of_measures_in_expr_04():
     r'''Raise StopIteration when not enough measures.
     '''
 
-    t = Staff(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (1, 8)]))
+    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (1, 8)]))
     notes = [Note("c'16"), Note("d'16"), Note("e'16"), Note("f'16"), Note("g'16"), Note("a'16")]
 
     assert py.test.raises(StopIteration,
-        'measuretools.replace_contents_of_measures_in_expr(t, notes)')
+        'measuretools.replace_contents_of_measures_in_expr(staff, notes)')
 
 
 def test_measuretools_replace_contents_of_measures_in_expr_05():
     r'''Populate measures even when not enough total measures.
     '''
 
-    t = Staff(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (1, 8)]))
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (1, 8)]))
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
     notes = [Note("c'16"), Note("d'16"), Note("e'16"), Note("f'16"), Note("g'16"), Note("a'16")]
 
     try:
-        measuretools.replace_contents_of_measures_in_expr(t, notes)
+        measuretools.replace_contents_of_measures_in_expr(staff, notes)
     except StopIteration:
         pass
 
@@ -195,9 +195,9 @@ def test_measuretools_replace_contents_of_measures_in_expr_05():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {

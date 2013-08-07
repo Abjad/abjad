@@ -7,20 +7,20 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_01():
     r'''Do nothing on leaf.
     '''
 
-    t = Note(1, (1, 4))
-    result = containertools.fuse_like_named_contiguous_containers_in_expr(t)
+    note = Note(1, (1, 4))
+    result = containertools.fuse_like_named_contiguous_containers_in_expr(note)
     assert result is None
-    assert isinstance(t, Note)
+    assert isinstance(note, Note)
 
 
 def test_containertools_fuse_like_named_contiguous_containers_in_expr_02():
     r'''Do not fuse unnamed voices.
     '''
 
-    t = Staff([
+    staff = Staff([
         Voice(notetools.make_repeated_notes(2)), 
         Voice(notetools.make_repeated_notes(2))])
-    result = containertools.fuse_like_named_contiguous_containers_in_expr(t)
+    result = containertools.fuse_like_named_contiguous_containers_in_expr(staff)
     assert result is None
 
 
@@ -28,12 +28,12 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_03():
     r'''Do not fuse differently named voices.
     '''
 
-    t = Staff([
+    staff = Staff([
         Voice(notetools.make_repeated_notes(2)), 
         Voice(notetools.make_repeated_notes(2))])
-    t[0].name = 'one'
-    t[1].name = 'two'
-    result = containertools.fuse_like_named_contiguous_containers_in_expr(t)
+    staff[0].name = 'one'
+    staff[1].name = 'two'
+    result = containertools.fuse_like_named_contiguous_containers_in_expr(staff)
     assert result is None
 
 
@@ -41,21 +41,21 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_04():
     r'''Do not fuse tuplets.
     '''
 
-    t = Voice([
+    voice = Voice([
         Tuplet(Fraction(2, 3), notetools.make_repeated_notes(3)),
         Tuplet(Fraction(2, 3), notetools.make_repeated_notes(3))])
-    result = containertools.fuse_like_named_contiguous_containers_in_expr(t)
+    result = containertools.fuse_like_named_contiguous_containers_in_expr(voice)
     assert result is None
-    assert len(t) == 2
+    assert len(voice) == 2
 
 
 def test_containertools_fuse_like_named_contiguous_containers_in_expr_05():
     r'''Fuse like-named staves.
     '''
 
-    t = Staff(notetools.make_repeated_notes(4)) * 2
-    t[0].name = t[1].name = 'staffOne'
-    result = containertools.fuse_like_named_contiguous_containers_in_expr(t)
+    staff = Staff(notetools.make_repeated_notes(4)) * 2
+    staff[0].name = staff[1].name = 'staffOne'
+    result = containertools.fuse_like_named_contiguous_containers_in_expr(staff)
     assert isinstance(result, Staff)
     assert len(result) == 8
 
@@ -64,8 +64,8 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_06():
     r'''Fuse like-named staves but not differently named voices.
     '''
 
-    t = Container(Staff([Voice(notetools.make_repeated_notes(4))]) * 2)
-    t[0].name = t[1].name = 'staffOne'
+    container = Container(Staff([Voice(notetools.make_repeated_notes(4))]) * 2)
+    container[0].name = container[1].name = 'staffOne'
 
     r'''
     {
@@ -88,7 +88,7 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_06():
     }
     '''
 
-    result = containertools.fuse_like_named_contiguous_containers_in_expr(t)
+    result = containertools.fuse_like_named_contiguous_containers_in_expr(container)
     assert isinstance(result, Container)
     assert len(result) == 1
     assert isinstance(result[0], Staff)

@@ -4,9 +4,9 @@ from abjad import *
 
 def test_componenttools_partition_components_by_durations_exactly_01():
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    contexttools.TempoMark(Duration(1, 4), 60, target_context=Staff)(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    contexttools.TempoMark(Duration(1, 4), 60, target_context=Staff)(staff)
 
     r'''
     \new Staff {
@@ -28,20 +28,20 @@ def test_componenttools_partition_components_by_durations_exactly_01():
     '''
 
     parts = componenttools.partition_components_by_durations_exactly(
-        t.select_leaves(), [1.5], cyclic=True, in_seconds=True, overhang=False)
+        staff.select_leaves(), [1.5], cyclic=True, in_seconds=True, overhang=False)
 
     "[[Note(c'', 8), Note(b', 8), Note(a', 8)], [Note(g', 8), Note(f', 8), Note(e', 8)]]"
 
     assert len(parts) == 2
-    assert parts[0] == list(t.select_leaves()[:3])
-    assert parts[1] == list(t.select_leaves()[3:6])
+    assert parts[0] == list(staff.select_leaves()[:3])
+    assert parts[1] == list(staff.select_leaves()[3:6])
 
 
 def test_componenttools_partition_components_by_durations_exactly_02():
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    contexttools.TempoMark(Duration(1, 4), 60, target_context = Staff)(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    contexttools.TempoMark(Duration(1, 4), 60, target_context = Staff)(staff)
 
     r'''
     \new Staff {
@@ -63,22 +63,22 @@ def test_componenttools_partition_components_by_durations_exactly_02():
     '''
 
     parts = componenttools.partition_components_by_durations_exactly(
-        t.select_leaves(), [1.5], cyclic=True, in_seconds=True, overhang=True)
+        staff.select_leaves(), [1.5], cyclic=True, in_seconds=True, overhang=True)
 
     "[[Note(c'', 8), Note(b', 8), Note(a', 8)], "
     "[Note(g', 8), Note(f', 8), Note(e', 8)], "
     "[Note(d', 8), Note(c', 8)]]"
 
     assert len(parts) == 3
-    assert parts[0] == list(t.select_leaves()[:3])
-    assert parts[1] == list(t.select_leaves()[3:6])
-    assert parts[2] == list(t.select_leaves()[6:8])
+    assert parts[0] == list(staff.select_leaves()[:3])
+    assert parts[1] == list(staff.select_leaves()[3:6])
+    assert parts[2] == list(staff.select_leaves()[6:8])
 
 
 def test_componenttools_partition_components_by_durations_exactly_03():
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     r'''
     \new Staff {
@@ -98,23 +98,23 @@ def test_componenttools_partition_components_by_durations_exactly_03():
     '''
 
     parts = componenttools.partition_components_by_durations_exactly(
-        t.select_leaves(), [Duration(3, 8)], cyclic=True, in_seconds=False, overhang=True)
+        staff.select_leaves(), [Duration(3, 8)], cyclic=True, in_seconds=False, overhang=True)
 
     "[[Note(c'', 8), Note(b', 8), Note(a', 8)], "
     "[Note(g', 8), Note(f', 8), Note(e', 8)], "
     "[Note(d', 8), Note(c', 8)]]"
 
     assert len(parts) == 3
-    assert parts[0] == list(t.select_leaves()[:3])
-    assert parts[1] == list(t.select_leaves()[3:6])
-    assert parts[2] == list(t.select_leaves()[6:8])
+    assert parts[0] == list(staff.select_leaves()[:3])
+    assert parts[1] == list(staff.select_leaves()[3:6])
+    assert parts[2] == list(staff.select_leaves()[6:8])
 
 
 def test_componenttools_partition_components_by_durations_exactly_04():
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    contexttools.TempoMark(Duration(1, 4), 60, target_context = Staff)(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    contexttools.TempoMark(Duration(1, 4), 60, target_context = Staff)(staff)
 
     r'''
     \new Staff {
@@ -136,12 +136,12 @@ def test_componenttools_partition_components_by_durations_exactly_04():
     '''
 
     parts = componenttools.partition_components_by_durations_exactly(
-        t.select_leaves(), [1.5], cyclic=False, in_seconds=True, overhang=False)
+        staff.select_leaves(), [1.5], cyclic=False, in_seconds=True, overhang=False)
 
     "[[Note(c'', 8), Note(b', 8), Note(a', 8)]]"
 
     assert len(parts) == 1
-    assert parts[0] == list(t.select_leaves()[:3])
+    assert parts[0] == list(staff.select_leaves()[:3])
 
 
 def test_componenttools_partition_components_by_durations_exactly_05():

@@ -74,12 +74,12 @@ def test_ResidueClass_operator_xor_05():
     r'''XOR.
     '''
 
-    t = ResidueClass(2, 0) ^ ResidueClass(3, 0)
+    residueclass = ResidueClass(2, 0) ^ ResidueClass(3, 0)
 
-    assert isinstance(t, sievetools.Sieve)
-    assert t.logical_operator == 'xor'
-    assert t.get_boolean_train(6) == [0,0,1,1,1,0]
-    assert t.get_congruent_bases(6) == [2,3,4]
+    assert isinstance(residueclass, sievetools.Sieve)
+    assert residueclass.logical_operator == 'xor'
+    assert residueclass.get_boolean_train(6) == [0,0,1,1,1,0]
+    assert residueclass.get_congruent_bases(6) == [2,3,4]
 
 
 def test_ResidueClass_operator_xor_06():

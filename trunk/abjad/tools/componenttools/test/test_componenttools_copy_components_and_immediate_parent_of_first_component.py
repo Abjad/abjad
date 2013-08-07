@@ -6,8 +6,8 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
     r'''Copy adjacent notes in staff.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    u = componenttools.copy_components_and_immediate_parent_of_first_component(t[:2])
+    staff = Staff("c'8 d'8 e'8 f'8")
+    u = componenttools.copy_components_and_immediate_parent_of_first_component(staff[:2])
 
     r'''
     \new Staff {
@@ -16,7 +16,7 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
@@ -33,8 +33,8 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
     r'''Copy adjacent notes in staff.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    u = componenttools.copy_components_and_immediate_parent_of_first_component(t[-2:])
+    staff = Staff("c'8 d'8 e'8 f'8")
+    u = componenttools.copy_components_and_immediate_parent_of_first_component(staff[-2:])
 
     r'''
     \new Staff {
@@ -43,7 +43,7 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
@@ -92,9 +92,9 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
     r'''Copy adjacent, whole tuplets from staff.
     '''
 
-    t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    u = componenttools.copy_components_and_immediate_parent_of_first_component(t[1:])
+    staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 3)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    u = componenttools.copy_components_and_immediate_parent_of_first_component(staff[1:])
 
     r'''
     \new Staff {
@@ -111,7 +111,7 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
@@ -134,9 +134,9 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
 
 def test_componenttools_copy_components_and_immediate_parent_of_first_component_05():
 
-    t = Staff([Note(n, (1, 8)) for n in range(8)])
-    spannertools.BeamSpanner(t[:4])
-    u = componenttools.copy_components_and_immediate_parent_of_first_component(t[0:1])
+    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    spannertools.BeamSpanner(staff[:4])
+    u = componenttools.copy_components_and_immediate_parent_of_first_component(staff[0:1])
 
     beam_spanner = u[0]._get_spanner(spannertools.BeamSpanner)
     assert beam_spanner._is_my_only_leaf(u[0])
@@ -144,10 +144,10 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
 
 def test_componenttools_copy_components_and_immediate_parent_of_first_component_06():
 
-    t = Staff([Note(n, (1, 8)) for n in range(8)])
-    spannertools.BeamSpanner(t[:4])
+    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    spannertools.BeamSpanner(staff[:4])
     u = componenttools.copy_components_and_immediate_parent_of_first_component(
-        t[0:2])
+        staff[0:2])
 
     beam_spanner = u[0]._get_spanner(spannertools.BeamSpanner)
     assert beam_spanner._is_my_first_leaf(u[0])

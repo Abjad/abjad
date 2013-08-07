@@ -19,8 +19,8 @@ def test_pitchtools_inversion_equivalent_chromatic_interval_class_number_diction
 
 def test_pitchtools_inversion_equivalent_chromatic_interval_class_number_dictionary_02():
 
-    t = Staff("c'8 d'8 e'8 f'8 c'8 d'8 e'8 f'8 c'8 d'8 e'8 f'8")
-    pitches = pitchtools.list_named_chromatic_pitches_in_expr(t)
+    staff = Staff("c'8 d'8 e'8 f'8 c'8 d'8 e'8 f'8 c'8 d'8 e'8 f'8")
+    pitches = pitchtools.list_named_chromatic_pitches_in_expr(staff)
     vector = pitchtools.inversion_equivalent_chromatic_interval_class_number_dictionary(pitches)
 
     assert vector == {

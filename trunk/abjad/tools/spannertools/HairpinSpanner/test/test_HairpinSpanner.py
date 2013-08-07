@@ -9,8 +9,8 @@ def test_HairpinSpanner_01():
     r'''Hairpins span adjacent leaves.
     '''
 
-    t = Staff([Note(n, (1, 8)) for n in range(8)])
-    spannertools.CrescendoSpanner(t[:4])
+    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    spannertools.CrescendoSpanner(staff[:4])
 
     r'''
     \new Staff {
@@ -25,9 +25,9 @@ def test_HairpinSpanner_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8 \<
@@ -47,8 +47,8 @@ def test_HairpinSpanner_02():
     r'''Hairpins spanning a single leaf are allowed but not well-formed.
     '''
 
-    t = Staff([Note(n, (1, 8)) for n in range(8)])
-    spannertools.CrescendoSpanner(t[0:1])
+    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    spannertools.CrescendoSpanner(staff[0:1])
     checker = ShortHairpinCheck()
 
     r'''
@@ -64,9 +64,9 @@ def test_HairpinSpanner_02():
     }
     '''
 
-    assert not checker.check(t)
+    assert not checker.check(staff)
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8 \< \!
@@ -86,10 +86,10 @@ def test_HairpinSpanner_03():
     r'''Hairpins and dynamics apply separately.
     '''
 
-    t = Staff([Note(n, (1, 8)) for n in range(8)])
-    spannertools.CrescendoSpanner(t[:4])
-    contexttools.DynamicMark('p')(t[0])
-    contexttools.DynamicMark('f')(t[3])
+    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    spannertools.CrescendoSpanner(staff[:4])
+    contexttools.DynamicMark('p')(staff[0])
+    contexttools.DynamicMark('f')(staff[3])
 
     r'''
     \new Staff {
@@ -104,9 +104,9 @@ def test_HairpinSpanner_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8 \p \<
@@ -126,23 +126,23 @@ def test_HairpinSpanner_04():
     r'''Internal marks raise well-formedness error.
     '''
 
-    t = Staff([Note(n, (1, 8)) for n in range(8)])
-    spannertools.CrescendoSpanner(t[:4])
-    assert py.test.raises(WellFormednessError, "contexttools.DynamicMark('p')(t[2])")
+    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    spannertools.CrescendoSpanner(staff[:4])
+    assert py.test.raises(WellFormednessError, "contexttools.DynamicMark('p')(staff[2])")
 
 
 def test_HairpinSpanner_05():
     r'''Apply back-to-back hairpins separately.
     '''
 
-    t = Staff([Note(n, (1, 8)) for n in range(8)])
-    contexttools.DynamicMark('p')(t[0])
-    spannertools.CrescendoSpanner(t[0:3])
-    contexttools.DynamicMark('f')(t[2])
-    spannertools.DecrescendoSpanner(t[2:5])
-    contexttools.DynamicMark('p')(t[4])
-    spannertools.CrescendoSpanner(t[4:7])
-    contexttools.DynamicMark('f')(t[6])
+    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    contexttools.DynamicMark('p')(staff[0])
+    spannertools.CrescendoSpanner(staff[0:3])
+    contexttools.DynamicMark('f')(staff[2])
+    spannertools.DecrescendoSpanner(staff[2:5])
+    contexttools.DynamicMark('p')(staff[4])
+    spannertools.CrescendoSpanner(staff[4:7])
+    contexttools.DynamicMark('f')(staff[6])
 
     r'''
     \new Staff {
@@ -158,7 +158,7 @@ def test_HairpinSpanner_05():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8 \p \<
@@ -172,15 +172,15 @@ def test_HairpinSpanner_05():
         }
         '''
         )
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
 
 
 def test_HairpinSpanner_06():
     r'''Hairpins format rests.
     '''
 
-    t = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
-    spannertools.CrescendoSpanner(t[:])
+    staff = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
+    spannertools.CrescendoSpanner(staff[:])
 
 
     r'''
@@ -197,7 +197,7 @@ def test_HairpinSpanner_06():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             r8 \<
@@ -211,7 +211,7 @@ def test_HairpinSpanner_06():
         }
         '''
         )
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
 
 
 def test_HairpinSpanner_07():

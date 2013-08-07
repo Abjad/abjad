@@ -6,10 +6,10 @@ def test_LilyPondComment_opening_01():
     r'''Opening comments in container.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
-    marktools.LilyPondComment('Voice opening comments here.', 'opening')(t)
-    marktools.LilyPondComment('More voice opening comments.', 'opening')(t)
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:])
+    marktools.LilyPondComment('Voice opening comments here.', 'opening')(voice)
+    marktools.LilyPondComment('More voice opening comments.', 'opening')(voice)
 
     r'''
     \new Voice {
@@ -22,9 +22,9 @@ def test_LilyPondComment_opening_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             % Voice opening comments here.

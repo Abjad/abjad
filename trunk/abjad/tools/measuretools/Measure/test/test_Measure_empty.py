@@ -9,14 +9,14 @@ def test_Measure_empty_01():
 
 
 def test_Measure_empty_02():
-    t = Measure((4, 4), [])
-    assert repr(t) == 'Measure(4/4)'
-    assert str(t) == '|4/4|'
-    assert py.test.raises(UnderfullContainerError, 't.lilypond_format')
-    assert len(t) == 0
-    assert t._preprolated_duration == 0
-    assert t.get_duration() == 0
-    assert not select(t).is_well_formed()
+    measure = Measure((4, 4), [])
+    assert repr(measure) == 'Measure(4/4)'
+    assert str(measure) == '|4/4|'
+    assert py.test.raises(UnderfullContainerError, 'measure.lilypond_format')
+    assert len(measure) == 0
+    assert measure._preprolated_duration == 0
+    assert measure.get_duration() == 0
+    assert not select(measure).is_well_formed()
 
 
 def test_Measure_empty_03():

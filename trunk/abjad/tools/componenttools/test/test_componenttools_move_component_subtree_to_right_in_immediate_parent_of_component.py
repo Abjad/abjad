@@ -6,8 +6,8 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     r'''Flip leaf under continuous spanner.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -18,7 +18,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     }
     '''
 
-    componenttools.move_component_subtree_to_right_in_immediate_parent_of_component(t[1])
+    componenttools.move_component_subtree_to_right_in_immediate_parent_of_component(voice[1])
 
     r'''
     \new Voice {
@@ -29,9 +29,9 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [
@@ -47,9 +47,9 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     r'''Flip leaf across spanner boundaries.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:2])
-    spannertools.BeamSpanner(t[2:])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:2])
+    spannertools.BeamSpanner(voice[2:])
 
     r'''
     \new Voice {
@@ -60,7 +60,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     }
     '''
 
-    componenttools.move_component_subtree_to_right_in_immediate_parent_of_component(t[1])
+    componenttools.move_component_subtree_to_right_in_immediate_parent_of_component(voice[1])
 
     r'''
     \new Voice {
@@ -71,9 +71,9 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [
@@ -89,8 +89,8 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     r'''Flip leaf from within to without spanner.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:2])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:2])
 
     r'''
     \new Voice {
@@ -101,7 +101,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     }
     '''
 
-    componenttools.move_component_subtree_to_right_in_immediate_parent_of_component(t[1])
+    componenttools.move_component_subtree_to_right_in_immediate_parent_of_component(voice[1])
 
     r'''
     \new Voice {
@@ -112,9 +112,9 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [
@@ -130,9 +130,9 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     r'''Donate from empty container to leaf.
     '''
 
-    t = Voice([Container("c'8 d'8"), Container([])])
-    spannertools.GlissandoSpanner(t[:])
-    spannertools.BeamSpanner(t[:])
+    voice = Voice([Container("c'8 d'8"), Container([])])
+    spannertools.GlissandoSpanner(voice[:])
+    spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -145,9 +145,9 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     }
     '''
 
-    #containertools.move_parentage_children_and_spanners_from_components_to_empty_container(t[1:2], Note(4, (1, 8)))
+    #containertools.move_parentage_children_and_spanners_from_components_to_empty_container(voice[1:2], Note(4, (1, 8)))
     # ALSO WORKS:
-    componenttools.move_parentage_and_spanners_from_components_to_components(t[1:2], [Note(4, (1, 8))])
+    componenttools.move_parentage_and_spanners_from_components_to_components(voice[1:2], [Note(4, (1, 8))])
 
     r'''
     \new Voice {
@@ -159,9 +159,9 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {
@@ -178,9 +178,9 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     r'''Donate from empty container to nonempty container.
     '''
 
-    t = Voice([Container("c'8 d'8"), Container([])])
-    spannertools.GlissandoSpanner(t[:])
-    spannertools.BeamSpanner(t[:])
+    voice = Voice([Container("c'8 d'8"), Container([])])
+    spannertools.GlissandoSpanner(voice[:])
+    spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -194,9 +194,9 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     '''
 
     container = Container([Note(4, (1, 8)), Note(5, (1, 8))])
-    #containertools.move_parentage_children_and_spanners_from_components_to_empty_container(t[1:2], container)
+    #containertools.move_parentage_children_and_spanners_from_components_to_empty_container(voice[1:2], container)
     # ALSO WORKS:
-    componenttools.move_parentage_and_spanners_from_components_to_components(t[1:2], [container])
+    componenttools.move_parentage_and_spanners_from_components_to_components(voice[1:2], [container])
 
     r'''
     \new Voice {
@@ -211,9 +211,9 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {
@@ -233,9 +233,9 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     r'''Donate from note to rest.
     '''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.select_leaves())
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.BeamSpanner(voice.select_leaves())
 
     r'''
     \new Voice {
@@ -254,10 +254,10 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     }
     '''
 
-    old = t.select_leaves()[2]
-    #containertools.move_parentage_children_and_spanners_from_components_to_empty_container(t.select_leaves()[2:3], Rest((1, 8)))
+    old = voice.select_leaves()[2]
+    #containertools.move_parentage_children_and_spanners_from_components_to_empty_container(voice.select_leaves()[2:3], Rest((1, 8)))
     # ALSO WORKS:
-    componenttools.move_parentage_and_spanners_from_components_to_components(t.select_leaves()[2:3], [Rest((1, 8))])
+    componenttools.move_parentage_and_spanners_from_components_to_components(voice.select_leaves()[2:3], [Rest((1, 8))])
 
     r'''
     \new Voice {
@@ -276,9 +276,9 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {

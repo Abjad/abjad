@@ -7,17 +7,17 @@ def test_BeamSpanner_span_like_named_01():
     r'''Abjad lets you span liked named voices.
     '''
 
-    t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
-    t[0].name = 'foo'
-    t[1].name = 'foo'
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
+    staff = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
+    staff[0].name = 'foo'
+    staff[1].name = 'foo'
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
 
-    p = spannertools.BeamSpanner(t)
+    p = spannertools.BeamSpanner(staff)
     assert len(p.components) == 1
     assert isinstance(p.components[0], Staff)
     assert len(p.leaves) == 8
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \context Voice = "foo" {
@@ -37,13 +37,13 @@ def test_BeamSpanner_span_like_named_01():
         )
     p.detach()
 
-    p = spannertools.BeamSpanner(t[:])
+    p = spannertools.BeamSpanner(staff[:])
     assert len(p.components) == 2
     for x in p.components:
         assert isinstance(x, Voice)
     assert len(p.leaves) == 8
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \context Voice = "foo" {
@@ -85,16 +85,16 @@ def test_BeamSpanner_span_like_named_02():
     Abjad does NOT lets you span over liked named staves.
     '''
 
-    t = Container(Staff([Voice(notetools.make_repeated_notes(4))]) * 2)
-    t[0].name, t[1].name = 'foo', 'foo'
-    t[0][0].name, t[1][0].name = 'bar', 'bar'
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
+    container = Container(Staff([Voice(notetools.make_repeated_notes(4))]) * 2)
+    container[0].name, container[1].name = 'foo', 'foo'
+    container[0][0].name, container[1][0].name = 'bar', 'bar'
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
 
-    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner(t)')
+    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner(container)')
 
-    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner(t[:])')
+    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner(container[:])')
 
-    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner([t[0][0], t[1][0]])')
+    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner([container[0][0], container[1][0]])')
 
 
 def test_BeamSpanner_span_like_named_03():
@@ -102,14 +102,14 @@ def test_BeamSpanner_span_like_named_03():
     Like-named containers need not be lexically contiguous.
     '''
 
-    t = Container(Container(Voice(notetools.make_repeated_notes(4)) * 2) * 2)
-    t[0].is_parallel = True
-    t[1].is_parallel = True
-    t[0][0].name, t[1][1].name = 'first', 'first'
-    t[0][1].name, t[1][0].name = 'second', 'second'
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
+    container = Container(Container(Voice(notetools.make_repeated_notes(4)) * 2) * 2)
+    container[0].is_parallel = True
+    container[1].is_parallel = True
+    container[0][0].name, container[1][1].name = 'first', 'first'
+    container[0][1].name, container[1][0].name = 'second', 'second'
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
 
-    p = spannertools.BeamSpanner([t[0][0], t[1][1]])
+    p = spannertools.BeamSpanner([container[0][0], container[1][1]])
     assert len(p.components) == 2
     assert isinstance(p.components[0], Voice)
     assert isinstance(p.components[1], Voice)

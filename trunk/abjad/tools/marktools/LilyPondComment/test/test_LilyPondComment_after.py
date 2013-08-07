@@ -6,11 +6,11 @@ def test_LilyPondComment_after_01():
     r'''Test context comments after.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    beam = spannertools.BeamSpanner(voice[:])
     beam.override.beam.thickness = 3
-    marktools.LilyPondComment('Voice after comments here.', 'after')(t)
-    marktools.LilyPondComment('More voice after comments.', 'after')(t)
+    marktools.LilyPondComment('Voice after comments here.', 'after')(voice)
+    marktools.LilyPondComment('More voice after comments.', 'after')(voice)
 
     r'''
     \new Voice {
@@ -24,9 +24,9 @@ def test_LilyPondComment_after_01():
     % Voice after comments here.
     % More voice after comments.'''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             \override Beam #'thickness = #3

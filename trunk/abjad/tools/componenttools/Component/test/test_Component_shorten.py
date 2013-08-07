@@ -4,9 +4,9 @@ from abjad import *
 
 def test_Component_shorten_01():
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
-    t.shorten(Duration(1, 8) + Duration(1, 20))
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:])
+    voice.shorten(Duration(1, 8) + Duration(1, 20))
 
 
     r'''
@@ -19,9 +19,9 @@ def test_Component_shorten_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             \times 4/5 {

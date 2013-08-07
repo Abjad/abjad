@@ -6,10 +6,10 @@ def test_Note_add_artificial_harmonic_01():
     r'''Adds a perfect fourth by default.
     '''
 
-    t = Note("c'4")
-    t = t.add_artificial_harmonic()
+    note = Note("c'4")
+    note = note.add_artificial_harmonic()
     assert testtools.compare(
-        t.lilypond_format,
+        note.lilypond_format,
         r'''
         <
             c'
@@ -32,11 +32,11 @@ def test_Note_add_artificial_harmonic_02():
     r'''Specify other diatonic intervals explicitly.
     '''
 
-    t = Note("c'4")
+    note = Note("c'4")
     diatonic_interval = pitchtools.MelodicDiatonicInterval('minor', 3)
-    t = t.add_artificial_harmonic(diatonic_interval)
+    note = note.add_artificial_harmonic(diatonic_interval)
     assert testtools.compare(
-        t.lilypond_format,
+        note.lilypond_format,
         r'''
         <
             c'

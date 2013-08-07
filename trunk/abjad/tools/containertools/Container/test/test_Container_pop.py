@@ -8,9 +8,9 @@ def test_Container_pop_01():
         Popped leaves withdraw from crossing spanners.
         Popped leaves carry covered spanners forward.'''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.SlurSpanner(t[:])
-    spannertools.BeamSpanner(t[1])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.SlurSpanner(voice[:])
+    spannertools.BeamSpanner(voice[1])
 
     r'''
     \new Voice {
@@ -21,7 +21,7 @@ def test_Container_pop_01():
     }
     '''
 
-    result = t.pop(1)
+    result = voice.pop(1)
 
     r'''
     \new Voice {
@@ -31,9 +31,9 @@ def test_Container_pop_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 (

@@ -7,9 +7,9 @@ def test_Container___setitem___integer_01():
     r'''Spanned leaves exchange correctly.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:2])
-    spannertools.GlissandoSpanner(t.select_leaves())
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:2])
+    spannertools.GlissandoSpanner(voice.select_leaves())
 
     r'''
     \new Voice {
@@ -20,7 +20,7 @@ def test_Container___setitem___integer_01():
     }
     '''
 
-    t[1] = Note(12, (1, 8))
+    voice[1] = Note(12, (1, 8))
 
     r'''
     \new Voice {
@@ -31,9 +31,9 @@ def test_Container___setitem___integer_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [ \glissando
@@ -49,9 +49,9 @@ def test_Container___setitem___integer_02():
     r'''Spanned leaf hands position over to container correctly.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:2])
-    spannertools.GlissandoSpanner(t.select_leaves())
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:2])
+    spannertools.GlissandoSpanner(voice.select_leaves())
 
     r'''
     \new Voice {
@@ -62,7 +62,7 @@ def test_Container___setitem___integer_02():
     }
     '''
 
-    t[1] = Container(notetools.make_repeated_notes(3, Duration(1, 16)))
+    voice[1] = Container(notetools.make_repeated_notes(3, Duration(1, 16)))
 
     r'''
     \new Voice {
@@ -77,9 +77,9 @@ def test_Container___setitem___integer_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [ \glissando
@@ -99,10 +99,10 @@ def test_Container___setitem___integer_03():
     r'''Directly spanned contains hand over correctly to a single leaf.
         Note here that only the sequentials are initially spanned.'''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[:])
-    spannertools.GlissandoSpanner(t[:])
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.BeamSpanner(voice[:])
+    spannertools.GlissandoSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -117,7 +117,7 @@ def test_Container___setitem___integer_03():
     }
     '''
 
-    t[1] = Note(12, (1, 8))
+    voice[1] = Note(12, (1, 8))
 
     r'''
     \new Voice {
@@ -129,9 +129,9 @@ def test_Container___setitem___integer_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {
@@ -148,10 +148,10 @@ def test_Container___setitem___integer_04():
     r'''Indirectly spanned containers hand over correctly to a single leaf.
         Notice here that only LEAVES are initially spanned.'''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.select_leaves())
-    spannertools.GlissandoSpanner(t.select_leaves())
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.BeamSpanner(voice.select_leaves())
+    spannertools.GlissandoSpanner(voice.select_leaves())
 
     r'''
     \new Voice {
@@ -166,7 +166,7 @@ def test_Container___setitem___integer_04():
     }
     '''
 
-    t[1] = Note(12, (1, 8))
+    voice[1] = Note(12, (1, 8))
 
     r'''
     \new Voice {
@@ -178,9 +178,9 @@ def test_Container___setitem___integer_04():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {
@@ -197,10 +197,10 @@ def test_Container___setitem___integer_05():
     r'''Directly spanned containers hand over to other containers correctly.
     '''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[:])
-    spannertools.GlissandoSpanner(t[:])
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.BeamSpanner(voice[:])
+    spannertools.GlissandoSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -215,7 +215,7 @@ def test_Container___setitem___integer_05():
     }
     '''
 
-    t[1] = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    voice[1] = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
 
     r'''
     \new Voice {
@@ -231,9 +231,9 @@ def test_Container___setitem___integer_05():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {
@@ -254,10 +254,10 @@ def test_Container___setitem___integer_06():
     r'''Indirectly spanned containers hand over correctly to a single leaf.
     '''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.select_leaves())
-    spannertools.GlissandoSpanner(t.select_leaves())
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.BeamSpanner(voice.select_leaves())
+    spannertools.GlissandoSpanner(voice.select_leaves())
 
     r'''
     \new Voice {
@@ -272,7 +272,7 @@ def test_Container___setitem___integer_06():
     }
     '''
 
-    t[1] = Note(12, (1, 8))
+    voice[1] = Note(12, (1, 8))
 
     r'''
     \new Voice {
@@ -284,9 +284,9 @@ def test_Container___setitem___integer_06():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {
@@ -303,9 +303,9 @@ def test_Container___setitem___integer_07():
     r'''Indirectly HALF-spanned containers hand over correctly to a
     single leaf. WOW!'''
 
-    t = Voice(Container(notetools.make_repeated_notes(4)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.select_leaves()[0:6])
+    voice = Voice(Container(notetools.make_repeated_notes(4)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.BeamSpanner(voice.select_leaves()[0:6])
     r'''
     \new Voice {
         {
@@ -323,7 +323,7 @@ def test_Container___setitem___integer_07():
     }
     '''
 
-    t[1] = Rest((1, 2))
+    voice[1] = Rest((1, 2))
 
     r'''
     \new Voice {
@@ -337,9 +337,9 @@ def test_Container___setitem___integer_07():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {
@@ -361,8 +361,8 @@ def test_Container___setitem___integer_08():
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'8"), Note("a'8")]
 
-    t = Voice(notes[:3])
-    spannertools.BeamSpanner(t[:])
+    voice = Voice(notes[:3])
+    spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -383,9 +383,9 @@ def test_Container___setitem___integer_08():
     }
     '''
 
-    t[1] = u[1]
+    voice[1] = u[1]
 
-    "Modified t:"
+    "Modified voice:"
 
     r'''
     \new Voice {
@@ -395,9 +395,9 @@ def test_Container___setitem___integer_08():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [

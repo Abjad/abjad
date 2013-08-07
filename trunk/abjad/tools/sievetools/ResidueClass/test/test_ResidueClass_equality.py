@@ -21,10 +21,10 @@ def test_ResidueClass_equality_02():
     r'''non-equal objects
     '''
 
-    t = RC(2, 1)
+    rc = RC(2, 1)
 
-    assert t != 'a'
-    assert 2 != t
+    assert rc != 'a'
+    assert 2 != rc
 
 
 def test_ResidueClass_equality_03():

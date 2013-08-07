@@ -5,8 +5,8 @@ from abjad import *
 def test_SliceSelection_is_well_formed_01():
     r'''Well-formedness checking runs correctly against leaves.
     '''
-    t = Note("c'4")
-    assert select(t).is_well_formed()
+    note = Note("c'4")
+    assert select(note).is_well_formed()
 
 
 def test_SliceSelection_is_well_formed_02():

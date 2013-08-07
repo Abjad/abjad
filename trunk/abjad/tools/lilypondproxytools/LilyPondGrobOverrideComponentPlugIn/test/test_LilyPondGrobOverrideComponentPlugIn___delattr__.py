@@ -37,9 +37,9 @@ def test_LilyPondGrobOverrideComponentPlugIn___delattr___02():
     r'''Delete LilyPond Rest grob override.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    t.override.rest.transparent = True
-    del(t.override.rest)
+    staff = Staff("c'8 d'8 e'8 f'8")
+    staff.override.rest.transparent = True
+    del(staff.override.rest)
 
     r'''
     \new Staff {
@@ -51,7 +51,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___delattr___02():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8

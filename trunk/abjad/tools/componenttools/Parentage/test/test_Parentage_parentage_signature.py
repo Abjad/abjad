@@ -8,10 +8,10 @@ def test_Parentage_parentage_signature_01():
     same parentage signature.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
+    staff = Staff("c'8 d'8 e'8 f'8")
 
-    containment = t.select_parentage().parentage_signature
-    for component in iterationtools.iterate_components_in_expr(t):
+    containment = staff.select_parentage().parentage_signature
+    for component in iterationtools.iterate_components_in_expr(staff):
         assert component.select_parentage().parentage_signature == containment
 
 
@@ -20,11 +20,11 @@ def test_Parentage_parentage_signature_02():
     same parentage signature.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    t.name = 'foo'
+    staff = Staff("c'8 d'8 e'8 f'8")
+    staff.name = 'foo'
 
-    containment = t.select_parentage().parentage_signature
-    for component in iterationtools.iterate_components_in_expr(t):
+    containment = staff.select_parentage().parentage_signature
+    for component in iterationtools.iterate_components_in_expr(staff):
         assert component.select_parentage().parentage_signature == containment
 
 
@@ -33,12 +33,12 @@ def test_Parentage_parentage_signature_03():
     share the same parentage signature.
     '''
 
-    t = Staff(Voice("c'8 d'8 e'8 f'8") * 2)
-    t[0].name = 'foo'
-    t[1].name = 'foo'
+    staff = Staff(Voice("c'8 d'8 e'8 f'8") * 2)
+    staff[0].name = 'foo'
+    staff[1].name = 'foo'
 
-    containment = t[0][0].select_parentage().parentage_signature
-    for leaf in t.select_leaves():
+    containment = staff[0][0].select_parentage().parentage_signature
+    for leaf in staff.select_leaves():
         assert leaf.select_parentage().parentage_signature == containment
 
 
@@ -47,11 +47,11 @@ def test_Parentage_parentage_signature_04():
     first voice, staff and score in the parentage of component.
     '''
 
-    t = Voice(notetools.make_repeated_notes(4))
-    t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
-    t[2].is_parallel = True
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    t.override.note_head.color = 'red'
+    voice = Voice(notetools.make_repeated_notes(4))
+    voice.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
+    voice[2].is_parallel = True
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice.override.note_head.color = 'red'
 
     r'''
     \new Voice \with {
@@ -75,7 +75,7 @@ def test_Parentage_parentage_signature_04():
     '''
 
     signatures = [leaf.select_parentage().parentage_signature 
-        for leaf in t.select_leaves()]
+        for leaf in voice.select_leaves()]
 
     assert signatures[0] == signatures[1]
     assert signatures[0] != signatures[2]

@@ -4,7 +4,7 @@ from abjad import *
 
 def test_pitchtools_set_default_accidental_spelling_01():
 
-    t = Staff([Note(n, (1, 8)) for n in range(12)])
+    staff = Staff([Note(n, (1, 8)) for n in range(12)])
 
     r'''
     \new Staff {
@@ -24,7 +24,7 @@ def test_pitchtools_set_default_accidental_spelling_01():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8
@@ -47,7 +47,7 @@ def test_pitchtools_set_default_accidental_spelling_01():
 def test_pitchtools_set_default_accidental_spelling_02():
 
     pitchtools.set_default_accidental_spelling('sharps')
-    t = Staff([Note(n, (1, 8)) for n in range(12)])
+    staff = Staff([Note(n, (1, 8)) for n in range(12)])
 
     r'''
     \new Staff {
@@ -67,7 +67,7 @@ def test_pitchtools_set_default_accidental_spelling_02():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8
@@ -92,7 +92,7 @@ def test_pitchtools_set_default_accidental_spelling_02():
 def test_pitchtools_set_default_accidental_spelling_03():
 
     pitchtools.set_default_accidental_spelling('flats')
-    t = Staff([Note(n, (1, 8)) for n in range(12)])
+    staff = Staff([Note(n, (1, 8)) for n in range(12)])
 
     r'''
     \new Staff {
@@ -112,7 +112,7 @@ def test_pitchtools_set_default_accidental_spelling_03():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8

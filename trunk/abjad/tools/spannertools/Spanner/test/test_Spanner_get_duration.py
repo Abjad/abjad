@@ -8,12 +8,12 @@ def test_Spanner_get_duration_01():
     of all leaves in spanner, in seconds.
     '''
 
-    t = Voice([Measure((2, 12), "c'8 d'8"),
+    voice = Voice([Measure((2, 12), "c'8 d'8"),
         Measure((2, 8), "c'8 d'8")])
-    contexttools.TempoMark(Duration(1, 8), 42, target_context=Voice)(t)
-    beam = spannertools.BeamSpanner(t.select_leaves())
-    crescendo = spannertools.CrescendoSpanner(t[0][:])
-    decrescendo = spannertools.DecrescendoSpanner(t[1][:])
+    contexttools.TempoMark(Duration(1, 8), 42, target_context=Voice)(voice)
+    beam = spannertools.BeamSpanner(voice.select_leaves())
+    crescendo = spannertools.CrescendoSpanner(voice[0][:])
+    decrescendo = spannertools.DecrescendoSpanner(voice[1][:])
 
     r'''
     \new Voice {

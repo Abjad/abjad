@@ -10,9 +10,9 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01():
         notetools.make_repeated_notes(3, Duration(1, 16)))
     notes = notetools.make_repeated_notes(2)
     outer = tuplettools.FixedDurationTuplet(Duration(2, 8), [inner] + notes)
-    t = Measure((2, 8), [outer])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature(t)
+    measure = Measure((2, 8), [outer])
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(measure)
+    measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature(measure)
 
     r'''
     {
@@ -30,7 +30,7 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 3/12
@@ -48,7 +48,7 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01():
         )
 
 
-    measuretools.move_measure_prolation_to_full_measure_tuplet(t)
+    measuretools.move_measure_prolation_to_full_measure_tuplet(measure)
 
     r'''
     {
@@ -65,9 +65,9 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 2/8

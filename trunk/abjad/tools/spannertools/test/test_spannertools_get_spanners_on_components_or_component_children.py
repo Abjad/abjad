@@ -6,10 +6,10 @@ def test_spannertools_get_spanners_on_components_or_component_children_01():
     r'''Get all spanners attaching directly to any component in list.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    b1 = spannertools.BeamSpanner(t[:2])
-    b2 = spannertools.BeamSpanner(t[2:])
-    crescendo = spannertools.CrescendoSpanner(t)
+    staff = Staff("c'8 d'8 e'8 f'8")
+    b1 = spannertools.BeamSpanner(staff[:2])
+    b2 = spannertools.BeamSpanner(staff[2:])
+    crescendo = spannertools.CrescendoSpanner(staff)
 
     r'''
     \new Staff {
@@ -20,7 +20,7 @@ def test_spannertools_get_spanners_on_components_or_component_children_01():
     }
     '''
 
-    spanners = spannertools.get_spanners_on_components_or_component_children(t[:])
+    spanners = spannertools.get_spanners_on_components_or_component_children(staff[:])
 
     assert b1 in spanners
     assert b2 in spanners

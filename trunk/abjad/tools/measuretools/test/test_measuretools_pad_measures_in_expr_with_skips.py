@@ -5,7 +5,7 @@ import py.test
 
 def test_measuretools_pad_measures_in_expr_with_skips_01():
 
-    t = Staff(2 * Measure((2, 8), "c'8 d'8"))
+    staff = Staff(2 * Measure((2, 8), "c'8 d'8"))
 
     r'''
     \new Staff {
@@ -21,7 +21,7 @@ def test_measuretools_pad_measures_in_expr_with_skips_01():
     }
     '''
 
-    measuretools.pad_measures_in_expr_with_skips(t, Duration(1, 32), Duration(1, 64))
+    measuretools.pad_measures_in_expr_with_skips(staff, Duration(1, 32), Duration(1, 64))
 
     r'''
     \new Staff {
@@ -41,9 +41,9 @@ def test_measuretools_pad_measures_in_expr_with_skips_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -70,9 +70,9 @@ def test_measuretools_pad_measures_in_expr_with_skips_02():
 
     measure = Measure((2, 8), 2 * Voice(notetools.make_repeated_notes(2)))
     measure.is_parallel = True
-    t = Staff(measure * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(measure * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -101,7 +101,7 @@ def test_measuretools_pad_measures_in_expr_with_skips_02():
     }
     '''
 
-    measuretools.pad_measures_in_expr_with_skips(t, Duration(1, 32), Duration(1, 64))
+    measuretools.pad_measures_in_expr_with_skips(staff, Duration(1, 32), Duration(1, 64))
 
     r'''
     \new Staff {
@@ -138,9 +138,9 @@ def test_measuretools_pad_measures_in_expr_with_skips_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             <<

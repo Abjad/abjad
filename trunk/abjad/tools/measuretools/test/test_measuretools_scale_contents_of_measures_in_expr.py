@@ -7,10 +7,10 @@ def test_measuretools_scale_contents_of_measures_in_expr_01():
     Time siganture denominator adjusts appropriately.
     '''
 
-    t = Measure((3, 32), "c'32 d'32 e'32")
-    spannertools.BeamSpanner(t[:])
+    measure = Measure((3, 32), "c'32 d'32 e'32")
+    spannertools.BeamSpanner(measure[:])
 
-    measuretools.scale_contents_of_measures_in_expr(t, Duration(4))
+    measuretools.scale_contents_of_measures_in_expr(measure, Duration(4))
 
     r'''
     {
@@ -21,9 +21,9 @@ def test_measuretools_scale_contents_of_measures_in_expr_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 3/8
@@ -39,10 +39,10 @@ def test_measuretools_scale_contents_of_measures_in_expr_02():
     r'''Triple time signature with power-of-two denominator.
     '''
 
-    t = Measure((3, 32), "c'32 d'32 e'32")
-    spannertools.BeamSpanner(t[:])
+    measure = Measure((3, 32), "c'32 d'32 e'32")
+    spannertools.BeamSpanner(measure[:])
 
-    measuretools.scale_contents_of_measures_in_expr(t, Duration(3))
+    measuretools.scale_contents_of_measures_in_expr(measure, Duration(3))
 
     r'''
     {
@@ -53,9 +53,9 @@ def test_measuretools_scale_contents_of_measures_in_expr_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 9/32

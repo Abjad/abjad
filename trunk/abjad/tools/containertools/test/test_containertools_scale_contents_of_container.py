@@ -6,8 +6,8 @@ def test_containertools_scale_contents_of_container_01():
     r'''Scale leaves in voice by 3/2; ie, dot leaves.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    containertools.scale_contents_of_container(t, Duration(3, 2))
+    voice = Voice("c'8 d'8 e'8 f'8")
+    containertools.scale_contents_of_container(voice, Duration(3, 2))
 
     r'''
     \new Voice {
@@ -18,9 +18,9 @@ def test_containertools_scale_contents_of_container_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8.
@@ -36,8 +36,8 @@ def test_containertools_scale_contents_of_container_02():
     r'''Scale leaves in voice by 5/4; ie, quarter-tie leaves.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    containertools.scale_contents_of_container(t, Duration(5, 4))
+    voice = Voice("c'8 d'8 e'8 f'8")
+    containertools.scale_contents_of_container(voice, Duration(5, 4))
 
     r'''
     \new Voice {
@@ -52,9 +52,9 @@ def test_containertools_scale_contents_of_container_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 ~
@@ -74,8 +74,8 @@ def test_containertools_scale_contents_of_container_03():
     r'''Scale leaves in voice by untied 4/3; ie, tupletize notes.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    containertools.scale_contents_of_container(t, Duration(4, 3))
+    voice = Voice("c'8 d'8 e'8 f'8")
+    containertools.scale_contents_of_container(voice, Duration(4, 3))
 
     r'''
     \new Voice {
@@ -94,9 +94,9 @@ def test_containertools_scale_contents_of_container_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             \times 2/3 {
@@ -121,8 +121,8 @@ def test_containertools_scale_contents_of_container_04():
     ie, tupletize notes.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    containertools.scale_contents_of_container(t, Duration(5, 6))
+    voice = Voice("c'8 d'8 e'8 f'8")
+    containertools.scale_contents_of_container(voice, Duration(5, 6))
 
     r'''
     \new Voice {
@@ -145,9 +145,9 @@ def test_containertools_scale_contents_of_container_04():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             \times 2/3 {
@@ -175,9 +175,9 @@ def test_containertools_scale_contents_of_container_05():
     r'''Scale mixed notes and tuplets.
     '''
 
-    t = Voice([Note(0, (3, 16)),
+    voice = Voice([Note(0, (3, 16)),
         tuplettools.FixedDurationTuplet(Duration(3, 8), notetools.make_repeated_notes(4))])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
 
     r'''
     \new Voice {
@@ -192,7 +192,7 @@ def test_containertools_scale_contents_of_container_05():
     }
     '''
 
-    containertools.scale_contents_of_container(t, Duration(2, 3))
+    containertools.scale_contents_of_container(voice, Duration(2, 3))
 
     r'''
     \new Voice {
@@ -206,9 +206,9 @@ def test_containertools_scale_contents_of_container_05():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8
@@ -227,8 +227,8 @@ def test_containertools_scale_contents_of_container_06():
     r'''Undo scale of 5/4 with scale of 4/5.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    containertools.scale_contents_of_container(t, Duration(5, 4))
+    voice = Voice("c'8 d'8 e'8 f'8")
+    containertools.scale_contents_of_container(voice, Duration(5, 4))
 
     r'''
     \new Voice {
@@ -244,7 +244,7 @@ def test_containertools_scale_contents_of_container_06():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 ~
@@ -259,7 +259,7 @@ def test_containertools_scale_contents_of_container_06():
         '''
         )
 
-    containertools.scale_contents_of_container(t, Duration(4, 5))
+    containertools.scale_contents_of_container(voice, Duration(4, 5))
 
     r'''
     \new Voice {
@@ -270,9 +270,9 @@ def test_containertools_scale_contents_of_container_06():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8
@@ -288,8 +288,8 @@ def test_containertools_scale_contents_of_container_07():
     r'''Double all contents, including measure.
     '''
 
-    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
 
     r'''
     \new Voice {
@@ -306,8 +306,8 @@ def test_containertools_scale_contents_of_container_07():
     }
     '''
 
-    containertools.scale_contents_of_container(t, Duration(2))
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    containertools.scale_contents_of_container(voice, Duration(2))
+    measuretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     r'''
     \new Voice {
@@ -324,9 +324,9 @@ def test_containertools_scale_contents_of_container_07():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {

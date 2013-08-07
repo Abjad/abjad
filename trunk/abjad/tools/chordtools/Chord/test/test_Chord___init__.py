@@ -6,56 +6,56 @@ def test_Chord___init___01():
     r'''Init empty chord.
     '''
 
-    t = Chord([], (1, 4))
-    assert t.lilypond_format == "<>4"
+    chord = Chord([], (1, 4))
+    assert chord.lilypond_format == "<>4"
 
 
 def test_Chord___init___02():
     r'''Init chord with numbers.
     '''
 
-    t = Chord([2, 4, 5], (1, 4))
-    assert t.lilypond_format == "<d' e' f'>4"
+    chord = Chord([2, 4, 5], (1, 4))
+    assert chord.lilypond_format == "<d' e' f'>4"
 
 
 def test_Chord___init___03():
     r'''Init chord with pitch tokens.
     '''
 
-    t = Chord([('ds', 4), ('ef', 4)], (1, 4))
-    assert t.lilypond_format == "<ds' ef'>4"
+    chord = Chord([('ds', 4), ('ef', 4)], (1, 4))
+    assert chord.lilypond_format == "<ds' ef'>4"
 
 
 def test_Chord___init___04():
     r'''Init chord with pitches.
     '''
 
-    t = Chord([pitchtools.NamedChromaticPitch('ds', 4), pitchtools.NamedChromaticPitch('ef', 4)], (1, 4))
-    assert t.lilypond_format == "<ds' ef'>4"
+    chord = Chord([pitchtools.NamedChromaticPitch('ds', 4), pitchtools.NamedChromaticPitch('ef', 4)], (1, 4))
+    assert chord.lilypond_format == "<ds' ef'>4"
 
 
 def test_Chord___init___05():
     r'''Init chord with pitch token and pitch together.
     '''
 
-    t = Chord([2, ('ef', 4), pitchtools.NamedChromaticPitch(4)], (1, 4))
-    assert t.lilypond_format == "<d' ef' e'>4"
+    chord = Chord([2, ('ef', 4), pitchtools.NamedChromaticPitch(4)], (1, 4))
+    assert chord.lilypond_format == "<d' ef' e'>4"
 
 
 def test_Chord___init___06():
     r'''Init chord with list of pitch names.
     '''
 
-    t = Chord(["d'", "ef'", "e'"], (1, 4))
-    assert t.lilypond_format == "<d' ef' e'>4"
+    chord = Chord(["d'", "ef'", "e'"], (1, 4))
+    assert chord.lilypond_format == "<d' ef' e'>4"
 
 
 def test_Chord___init___07():
     r'''Init chord with LilyPond input string.
     '''
 
-    t = Chord("<d' ef' e'>4")
-    assert t.lilypond_format == "<d' ef' e'>4"
+    chord = Chord("<d' ef' e'>4")
+    assert chord.lilypond_format == "<d' ef' e'>4"
 
 
 def test_Chord___init___08():
@@ -104,12 +104,12 @@ def test_Chord___init___11():
     r'''Init chord from beamed skip.
     '''
 
-    t = Staff([Note(0, (1, 8)), skiptools.Skip((1, 8)), Note(0, (1, 8))])
-    spannertools.BeamSpanner(t[:])
-    chord = Chord(t[1])
-    assert isinstance(t[1], skiptools.Skip)
+    staff = Staff([Note(0, (1, 8)), skiptools.Skip((1, 8)), Note(0, (1, 8))])
+    spannertools.BeamSpanner(staff[:])
+    chord = Chord(staff[1])
+    assert isinstance(staff[1], skiptools.Skip)
     assert isinstance(chord, Chord)
-    assert t[1]._parent is t
+    assert staff[1]._parent is staff
 
 
 def test_Chord___init___12():
@@ -144,12 +144,12 @@ def test_Chord___init___14():
     r'''Init chord from rest.
     '''
 
-    t = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
-    spannertools.BeamSpanner(t[:])
-    chord = Chord(t[1])
-    assert isinstance(t[1], Rest)
+    staff = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
+    spannertools.BeamSpanner(staff[:])
+    chord = Chord(staff[1])
+    assert isinstance(staff[1], Rest)
     assert isinstance(chord, Chord)
-    assert t[1]._parent is t
+    assert staff[1]._parent is staff
     assert chord._parent is None
 
 
@@ -190,12 +190,12 @@ def test_Chord___init___17():
     r'''Init chord from beamed note.
     '''
 
-    t = Staff(Note(0, (1, 8)) * 3)
-    spannertools.BeamSpanner(t[:])
-    chord = Chord(t[0])
-    assert isinstance(t[0], Note)
+    staff = Staff(Note(0, (1, 8)) * 3)
+    spannertools.BeamSpanner(staff[:])
+    chord = Chord(staff[0])
+    assert isinstance(staff[0], Note)
     assert isinstance(chord, Chord)
-    assert t[0]._parent is t
+    assert staff[0]._parent is staff
 
 
 def test_Chord___init___18():

@@ -22,8 +22,8 @@ def test_Articulation_02():
     r'''Articulations have string and direction.
     '''
 
-    t = Note("c'4")
-    a = marktools.Articulation('staccato')(t)
+    note = Note("c'4")
+    a = marktools.Articulation('staccato')(note)
     assert a.name == 'staccato'
     assert a.direction is None
 
@@ -32,8 +32,8 @@ def test_Articulation_03():
     r'''Articulation name can be set to none.
     '''
 
-    t = Note("c'4")
-    a = marktools.Articulation()(t)
+    note = Note("c'4")
+    a = marktools.Articulation()(note)
     assert a.name is None
     assert str(a) == ''
 
@@ -42,8 +42,8 @@ def test_Articulation_04():
     r'''Direction can be set to None.
     '''
 
-    t = Note("c'4")
-    a = marktools.Articulation('staccato', None)(t)
+    note = Note("c'4")
+    a = marktools.Articulation('staccato', None)(note)
     assert a.direction is None
     assert str(a) == r'-\staccato'
 
@@ -52,8 +52,8 @@ def test_Articulation_05():
     r'''Direction can be set to up.
     '''
 
-    t = Note("c'4")
-    a = marktools.Articulation('staccato', Up)(t)
+    note = Note("c'4")
+    a = marktools.Articulation('staccato', Up)(note)
     assert a.direction is Up
     assert str(a) == r'^\staccato'
 
@@ -66,8 +66,8 @@ def test_Articulation_06():
     r'''Direction can be set to down.
     '''
 
-    t = Note("c'4")
-    a = marktools.Articulation('staccato', Down)(t)
+    note = Note("c'4")
+    a = marktools.Articulation('staccato', Down)(note)
     assert a.direction is Down
     assert str(a) == r'_\staccato'
 
@@ -80,7 +80,7 @@ def test_Articulation_07():
     r'''Direction can be set to default.
     '''
 
-    t = Note("c'4")
+    note = Note("c'4")
     a = marktools.Articulation('staccato')
     assert a.direction is None
     assert str(a) == r'-\staccato'

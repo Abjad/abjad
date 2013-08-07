@@ -7,11 +7,11 @@ def test_Component__is_immediate_temporal_successor_of_01():
     the immediate temporal follower of the first.
     '''
 
-    t = Voice([Note(i, (1, 8)) for i in range(4)])
+    voice = Voice([Note(i, (1, 8)) for i in range(4)])
 
-    assert t[0]._is_immediate_temporal_successor_of(t[1])
-    assert t[1]._is_immediate_temporal_successor_of(t[2])
-    assert t[2]._is_immediate_temporal_successor_of(t[3])
+    assert voice[0]._is_immediate_temporal_successor_of(voice[1])
+    assert voice[1]._is_immediate_temporal_successor_of(voice[2])
+    assert voice[2]._is_immediate_temporal_successor_of(voice[3])
 
     r'''
     \new Voice {
@@ -28,11 +28,11 @@ def test_Component__is_immediate_temporal_successor_of_02():
     the immediate temporal follower of the first.
     '''
 
-    t = Staff([Note(i, (1, 8)) for i in range(4)])
+    staff = Staff([Note(i, (1, 8)) for i in range(4)])
 
-    assert t[0]._is_immediate_temporal_successor_of(t[1])
-    assert t[1]._is_immediate_temporal_successor_of(t[2])
-    assert t[2]._is_immediate_temporal_successor_of(t[3])
+    assert staff[0]._is_immediate_temporal_successor_of(staff[1])
+    assert staff[1]._is_immediate_temporal_successor_of(staff[2])
+    assert staff[2]._is_immediate_temporal_successor_of(staff[3])
 
     r'''
     \new Staff {
@@ -49,11 +49,11 @@ def test_Component__is_immediate_temporal_successor_of_03():
     the immediate temporal follower of the first.
     '''
 
-    t = Staff([Note(i, (1, 8)) for i in range(4)])
+    staff = Staff([Note(i, (1, 8)) for i in range(4)])
 
-    assert t[0]._is_immediate_temporal_successor_of(t[1])
-    assert t[1]._is_immediate_temporal_successor_of(t[2])
-    assert t[2]._is_immediate_temporal_successor_of(t[3])
+    assert staff[0]._is_immediate_temporal_successor_of(staff[1])
+    assert staff[1]._is_immediate_temporal_successor_of(staff[2])
+    assert staff[2]._is_immediate_temporal_successor_of(staff[3])
 
     r'''
     {
@@ -92,12 +92,12 @@ def test_Component__is_immediate_temporal_successor_of_05():
 
     s1 = Container([Note(i, (1, 8)) for i in range(4)])
     s2 = Container([Note(i, (1, 8)) for i in range(4, 8)])
-    t = Voice([s1, s2])
+    voice = Voice([s1, s2])
 
-    assert t[0]._is_immediate_temporal_successor_of(t[1])
-    assert t[0]._is_immediate_temporal_successor_of(t[1][0])
-    assert t[0][-1]._is_immediate_temporal_successor_of(t[1])
-    assert t[0][-1]._is_immediate_temporal_successor_of(t[1][0])
+    assert voice[0]._is_immediate_temporal_successor_of(voice[1])
+    assert voice[0]._is_immediate_temporal_successor_of(voice[1][0])
+    assert voice[0][-1]._is_immediate_temporal_successor_of(voice[1])
+    assert voice[0][-1]._is_immediate_temporal_successor_of(voice[1][0])
 
     r'''
     \new Voice {
@@ -125,12 +125,12 @@ def test_Component__is_immediate_temporal_successor_of_06():
 
     t1 = tuplettools.FixedDurationTuplet(Duration(2, 8), [Note(i, (1, 8)) for i in range(3)])
     t2 = tuplettools.FixedDurationTuplet(Duration(2, 8), [Note(i, (1, 8)) for i in range(3, 6)])
-    t = Voice([t1, t2])
+    voice = Voice([t1, t2])
 
-    assert t[0]._is_immediate_temporal_successor_of(t[1])
-    assert t[0]._is_immediate_temporal_successor_of(t[1][0])
-    assert t[0][-1]._is_immediate_temporal_successor_of(t[1])
-    assert t[0][-1]._is_immediate_temporal_successor_of(t[1][0])
+    assert voice[0]._is_immediate_temporal_successor_of(voice[1])
+    assert voice[0]._is_immediate_temporal_successor_of(voice[1][0])
+    assert voice[0][-1]._is_immediate_temporal_successor_of(voice[1])
+    assert voice[0][-1]._is_immediate_temporal_successor_of(voice[1][0])
 
     r'''
     \new Voice {
@@ -157,12 +157,12 @@ def test_Component__is_immediate_temporal_successor_of_07():
 
     v1 = Voice([Note(i, (1, 8)) for i in range(4)])
     v2 = Voice([Note(i, (1, 8)) for i in range(4, 8)])
-    t = Staff([v1, v2])
+    staff = Staff([v1, v2])
 
-    assert t[0]._is_immediate_temporal_successor_of(t[1])
-    assert t[0]._is_immediate_temporal_successor_of(t[1][0])
-    assert t[0][-1]._is_immediate_temporal_successor_of(t[1])
-    assert t[0][-1]._is_immediate_temporal_successor_of(t[1][0])
+    assert staff[0]._is_immediate_temporal_successor_of(staff[1])
+    assert staff[0]._is_immediate_temporal_successor_of(staff[1][0])
+    assert staff[0][-1]._is_immediate_temporal_successor_of(staff[1])
+    assert staff[0][-1]._is_immediate_temporal_successor_of(staff[1][0])
 
     r'''
     \new Staff {
@@ -193,11 +193,11 @@ def test_Component__is_immediate_temporal_successor_of_08():
     v1.name = 'foo'
     v2 = Voice([Note(i, (1, 8)) for i in range(4, 88)])
     v2.name = 'foo'
-    t = Staff([v1, v2])
+    staff = Staff([v1, v2])
 
-    assert t[0]._is_immediate_temporal_successor_of(t[1])
-    assert t[0]._is_immediate_temporal_successor_of(t[1][0])
-    assert t[0][-1]._is_immediate_temporal_successor_of(t[1])
+    assert staff[0]._is_immediate_temporal_successor_of(staff[1])
+    assert staff[0]._is_immediate_temporal_successor_of(staff[1][0])
+    assert staff[0][-1]._is_immediate_temporal_successor_of(staff[1])
 
     r'''
     \new Staff {
@@ -228,11 +228,11 @@ def test_Component__is_immediate_temporal_successor_of_09():
     v1.name = 'foo'
     v2 = Voice([Note(i, (1, 8)) for i in range(4, 88)])
     v2.name = 'bar'
-    t = Staff([v1, v2])
+    staff = Staff([v1, v2])
 
-    assert t[0]._is_immediate_temporal_successor_of(t[1])
-    assert t[0]._is_immediate_temporal_successor_of(t[1][0])
-    assert t[0][-1]._is_immediate_temporal_successor_of(t[1])
+    assert staff[0]._is_immediate_temporal_successor_of(staff[1])
+    assert staff[0]._is_immediate_temporal_successor_of(staff[1][0])
+    assert staff[0][-1]._is_immediate_temporal_successor_of(staff[1])
 
     r'''
     \new Staff {

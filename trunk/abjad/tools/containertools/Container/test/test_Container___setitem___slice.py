@@ -7,8 +7,8 @@ def test_Container___setitem___slice_01():
     r'''Containers set single leaves correctly in an unspanned structure.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    t[2:2] = [Note(7, (1, 8))]
+    staff = Staff("c'8 d'8 e'8 f'8")
+    staff[2:2] = [Note(7, (1, 8))]
 
     r'''
     \new Staff {
@@ -20,9 +20,9 @@ def test_Container___setitem___slice_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8
@@ -39,10 +39,10 @@ def test_Container___setitem___slice_02():
     r'''Set single leaf between spanned components.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    p = spannertools.BeamSpanner(t[:])
+    staff = Staff("c'8 d'8 e'8 f'8")
+    p = spannertools.BeamSpanner(staff[:])
     note = Note(7, (1, 8))
-    t[2:2] = [note]
+    staff[2:2] = [note]
 
     r'''
     \new Staff {
@@ -54,9 +54,9 @@ def test_Container___setitem___slice_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8 [
@@ -79,8 +79,8 @@ def test_Container___setitem___slice_03():
     middle = notes[2:4]
     end = notes[4:]
 
-    t = Staff(beginning + end)
-    p = spannertools.BeamSpanner(t[:])
+    staff = Staff(beginning + end)
+    p = spannertools.BeamSpanner(staff[:])
 
     r'''
     \new Staff {
@@ -91,7 +91,7 @@ def test_Container___setitem___slice_03():
     }
     '''
 
-    t[2:2] = middle
+    staff[2:2] = middle
 
     r'''
     \new Staff {
@@ -104,9 +104,9 @@ def test_Container___setitem___slice_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8 [
@@ -124,10 +124,10 @@ def test_Container___setitem___slice_04():
     r'''Replace sequence of spanned components with a single leaf.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    p = spannertools.BeamSpanner(t[:])
+    staff = Staff("c'8 d'8 e'8 f'8")
+    p = spannertools.BeamSpanner(staff[:])
     note = Note(12, (1, 8))
-    t[1:3] = [note]
+    staff[1:3] = [note]
 
     r'''
     \new Staff {
@@ -137,9 +137,9 @@ def test_Container___setitem___slice_04():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8 [
@@ -154,10 +154,10 @@ def test_Container___setitem___slice_05():
     r'''Replace a sequence of multiple components with
         a different sequence of multiple components.'''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    p = spannertools.BeamSpanner(t[:])
+    staff = Staff("c'8 d'8 e'8 f'8")
+    p = spannertools.BeamSpanner(staff[:])
     notes = [Note(11, (1, 8)), Note(9, (1, 8)), Note(7, (1, 8))]
-    t[1:3] = notes
+    staff[1:3] = notes
 
     r'''
     \new Staff {
@@ -169,9 +169,9 @@ def test_Container___setitem___slice_05():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8 [
@@ -188,9 +188,9 @@ def test_Container___setitem___slice_06():
     r'''Donor and recipient container are the same.
     '''
 
-    t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.select_leaves())
+    staff = Staff(Container(notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff.select_leaves())
 
     r'''
     \new Staff {
@@ -205,8 +205,8 @@ def test_Container___setitem___slice_06():
     }
     '''
 
-    sequential = t[0]
-    t[0:1] = sequential.select_leaves()
+    sequential = staff[0]
+    staff[0:1] = sequential.select_leaves()
 
     r'''
     \new Staff {
@@ -219,10 +219,10 @@ def test_Container___setitem___slice_06():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(sequential) == 0
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8 [
@@ -240,9 +240,9 @@ def test_Container___setitem___slice_07():
     r'''Donor and recipient container are the same.
     '''
 
-    t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.select_leaves())
+    staff = Staff(Container(notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff.select_leaves())
 
     r'''
     \new Staff {
@@ -258,7 +258,7 @@ def test_Container___setitem___slice_07():
     }
     '''
 
-    t[0:0] = t[0][:1]
+    staff[0:0] = staff[0][:1]
 
     r'''
     \new Staff {
@@ -273,9 +273,9 @@ def test_Container___setitem___slice_07():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8
@@ -295,9 +295,9 @@ def test_Container___setitem___slice_08():
     r'''Donor and recipient container are the same.
     '''
 
-    t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.select_leaves())
+    staff = Staff(Container(notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff.select_leaves())
 
     r'''
     \new Staff {
@@ -312,7 +312,7 @@ def test_Container___setitem___slice_08():
     }
     '''
 
-    t[0:0] = t[0][:]
+    staff[0:0] = staff[0][:]
 
     r'''
     \new Staff {
@@ -328,7 +328,7 @@ def test_Container___setitem___slice_08():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8
@@ -348,9 +348,9 @@ def test_Container___setitem___slice_09():
     r'''Donor and recipient container are the same.
     '''
 
-    t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.select_leaves())
+    staff = Staff(Container(notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff.select_leaves())
 
     r'''
     \new Staff {
@@ -365,9 +365,9 @@ def test_Container___setitem___slice_09():
     }
     '''
 
-    sequential = t[0]
-    t[0:0] = sequential[:]
-    sequential[0:0] = t[-1][:1]
+    sequential = staff[0]
+    staff[0:0] = sequential[:]
+    sequential[0:0] = staff[-1][:1]
 
     r'''
     \new Staff {
@@ -382,9 +382,9 @@ def test_Container___setitem___slice_09():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8
@@ -404,9 +404,9 @@ def test_Container___setitem___slice_10():
     r'''Donor and recipient container are the same.
     '''
 
-    t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.select_leaves())
+    staff = Staff(Container(notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff.select_leaves())
 
     r'''
     \new Staff {
@@ -421,8 +421,8 @@ def test_Container___setitem___slice_10():
     }
     '''
 
-    t[0:0] = t[0][:1]
-    t[len(t):len(t)] = t[-1][-1:]
+    staff[0:0] = staff[0][:1]
+    staff[len(staff):len(staff)] = staff[-1][-1:]
 
     r'''
     \new Staff {
@@ -437,9 +437,9 @@ def test_Container___setitem___slice_10():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8
@@ -459,9 +459,9 @@ def test_Container___setitem___slice_11():
     r'''Extremely small coequal indices act as zero.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
-    t[-1000:-1000] = [Rest((1, 8))]
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:])
+    voice[-1000:-1000] = [Rest((1, 8))]
 
     r'''
     \new Voice {
@@ -473,9 +473,9 @@ def test_Container___setitem___slice_11():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             r8
@@ -492,9 +492,9 @@ def test_Container___setitem___slice_12():
     r'''Extremely large, coequal indices work correctly.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
-    t[1000:1000] = [Rest((1, 8))]
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:])
+    voice[1000:1000] = [Rest((1, 8))]
 
     r'''
     \new Voice {
@@ -506,9 +506,9 @@ def test_Container___setitem___slice_12():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [

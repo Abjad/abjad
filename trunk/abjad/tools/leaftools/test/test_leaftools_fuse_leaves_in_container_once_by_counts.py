@@ -4,10 +4,10 @@ from abjad import *
 
 def test_leaftools_fuse_leaves_in_container_once_by_counts_01():
 
-    t = Voice(notetools.make_repeated_notes(5, Duration(1, 16)))
-    spannertools.SlurSpanner(t[:])
+    voice = Voice(notetools.make_repeated_notes(5, Duration(1, 16)))
+    spannertools.SlurSpanner(voice[:])
     leaftools.fuse_leaves_in_container_once_by_counts(
-        t,
+        voice,
         [1, 2, 2],
         leaf_class=Note,
         decrease_durations_monotonically=True)
@@ -21,7 +21,7 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_01():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'16 (
@@ -34,10 +34,10 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_01():
 
 def test_leaftools_fuse_leaves_in_container_once_by_counts_02():
 
-    t = Voice(notetools.make_repeated_notes(5))
-    spannertools.SlurSpanner(t[:])
+    voice = Voice(notetools.make_repeated_notes(5))
+    spannertools.SlurSpanner(voice[:])
     leaftools.fuse_leaves_in_container_once_by_counts(
-        t, 
+        voice, 
         [5], 
         leaf_class=Note,
         decrease_durations_monotonically=True)
@@ -50,7 +50,7 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_02():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'2 ( ~
@@ -62,9 +62,9 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_02():
 
 def test_leaftools_fuse_leaves_in_container_once_by_counts_03():
 
-    t = Voice(notetools.make_repeated_notes(5))
+    voice = Voice(notetools.make_repeated_notes(5))
     leaftools.fuse_leaves_in_container_once_by_counts(
-        t, 
+        voice, 
         [1, 2, 2], 
         leaf_class=Rest, 
         decrease_durations_monotonically=True)
@@ -78,7 +78,7 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_03():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             r8

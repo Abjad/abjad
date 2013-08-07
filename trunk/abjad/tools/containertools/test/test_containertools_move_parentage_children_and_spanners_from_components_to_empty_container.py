@@ -8,9 +8,9 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     to empty tuplet.
     '''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.select_leaves())
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.BeamSpanner(voice.select_leaves())
 
     r'''
     \new Voice {
@@ -30,7 +30,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     '''
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(3, 8), [])
-    containertools.move_parentage_children_and_spanners_from_components_to_empty_container(t[:2], tuplet)
+    containertools.move_parentage_children_and_spanners_from_components_to_empty_container(voice[:2], tuplet)
 
     r'''
     \new Voice {
@@ -48,9 +48,9 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             \tweak #'text #tuplet-number::calc-fraction-text
@@ -73,11 +73,11 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     r'''Move parentage, children and spanners from container to empty voice.
     '''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    t.name = 'foo'
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.GlissandoSpanner(t[:])
-    spannertools.BeamSpanner(t.select_leaves())
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
+    voice.name = 'foo'
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.GlissandoSpanner(voice[:])
+    spannertools.BeamSpanner(voice.select_leaves())
 
     r'''
     \context Voice = "foo" {
@@ -98,7 +98,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
     new = Voice()
     new.name = 'foo'
-    containertools.move_parentage_children_and_spanners_from_components_to_empty_container(t[1:2], new)
+    containertools.move_parentage_children_and_spanners_from_components_to_empty_container(voice[1:2], new)
 
     r'''
     \context Voice = "foo" {
@@ -117,9 +117,9 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \context Voice = "foo" {
             {
@@ -143,10 +143,10 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     r'''Move parentage, children and spanners from container to empty tuplet.
     '''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.GlissandoSpanner(t[:])
-    spannertools.BeamSpanner(t.select_leaves())
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.GlissandoSpanner(voice[:])
+    spannertools.BeamSpanner(voice.select_leaves())
 
     r'''
     \new Voice {
@@ -166,7 +166,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     '''
 
     containertools.move_parentage_children_and_spanners_from_components_to_empty_container(
-        t[1:2], tuplettools.FixedDurationTuplet(Duration(3, 16), []))
+        voice[1:2], tuplettools.FixedDurationTuplet(Duration(3, 16), []))
 
     r'''
     \new Voice {
@@ -187,7 +187,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {
@@ -207,7 +207,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
         '''
         )
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_04():
@@ -215,13 +215,13 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     raises exception.
     '''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    spannertools.BeamSpanner(t[:])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
+    spannertools.BeamSpanner(voice[:])
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
 
     assert py.test.raises(
         Exception,
-        'containertools.move_parentage_children_and_spanners_from_components_to_empty_container(t[1:2], Note(4, (1, 4)))')
+        'containertools.move_parentage_children_and_spanners_from_components_to_empty_container(voice[1:2], Note(4, (1, 4)))')
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_05():
@@ -229,14 +229,14 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     to nonempty container raises exception.
     '''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    spannertools.BeamSpanner(t[:])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
+    spannertools.BeamSpanner(voice[:])
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     assert py.test.raises(
         Exception,
-        'containertools.move_parentage_children_and_spanners_from_components_to_empty_container(t[1:2], tuplet)')
+        'containertools.move_parentage_children_and_spanners_from_components_to_empty_container(voice[1:2], tuplet)')
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_06():
@@ -244,9 +244,9 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     that are not parent-contiguous raises exception.
     '''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.select_leaves())
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.BeamSpanner(voice.select_leaves())
 
     r'''
     \new Voice {
@@ -268,7 +268,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     tuplet = tuplettools.FixedDurationTuplet(Duration(3, 8), [])
     assert py.test.raises(
         Exception,
-        'containertools.move_parentage_children_and_spanners_from_components_to_empty_container([t[0], t[2]], tuplet)')
+        'containertools.move_parentage_children_and_spanners_from_components_to_empty_container([voice[0], voice[2]], tuplet)')
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_07():

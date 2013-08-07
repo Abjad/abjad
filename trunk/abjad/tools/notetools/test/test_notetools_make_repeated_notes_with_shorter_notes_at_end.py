@@ -7,7 +7,7 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_01():
     r'''Make train of 1/16th notes equal to 1/4 total duration.
     '''
 
-    t = Voice(notetools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(1, 4)))
+    voice = Voice(notetools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(1, 4)))
 
     r'''
     \new Voice {
@@ -18,9 +18,9 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'16
@@ -36,7 +36,7 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_02():
     r'''Make train of 1/16th notes equal to 9/32 total duration.
     '''
 
-    t = Voice(notetools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(9, 32)))
+    voice = Voice(notetools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(9, 32)))
 
     r'''
     \new Voice {
@@ -48,9 +48,9 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'16
@@ -67,7 +67,7 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_03():
     r'''Make train of 1/16th notes equal to only 1/128 total duration.
     '''
 
-    t = Voice(notetools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(1, 128)))
+    voice = Voice(notetools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(1, 128)))
 
     r'''
     \new Voice {
@@ -75,9 +75,9 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'128
@@ -90,7 +90,7 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_04():
     r'''Make train of 1/16th notes equal to 4/10 total duration.
     '''
 
-    t = Voice(notetools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(4, 10)))
+    voice = Voice(notetools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(4, 10)))
 
     r'''
     \new Voice {
@@ -106,9 +106,9 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_04():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'16

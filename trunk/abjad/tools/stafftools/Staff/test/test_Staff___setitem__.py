@@ -4,139 +4,139 @@ from py.test import raises
 
 
 def test_Staff___setitem___01():
-    t = Staff([Note("c'4"),
+    staff = Staff([Note("c'4"),
             Rest((1, 4)),
             Chord([2, 3, 4], (1, 4)),
             skiptools.Skip((1, 4)),
             tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
-    assert len(t) == 5
-    assert select(t).is_well_formed()
-    assert isinstance(t[0], Note)
-    assert isinstance(t[1], Rest)
-    assert isinstance(t[2], Chord)
-    assert isinstance(t[3], skiptools.Skip)
-    assert isinstance(t[4], tuplettools.FixedDurationTuplet)
-    t[1] = Chord([12, 13, 15], (1, 4))
-    assert len(t) == 5
-    assert select(t).is_well_formed()
-    assert isinstance(t[0], Note)
-    assert isinstance(t[1], Chord)
-    assert isinstance(t[2], Chord)
-    assert isinstance(t[3], skiptools.Skip)
-    assert isinstance(t[4], tuplettools.FixedDurationTuplet)
-    t[0] = Rest((1, 4))
-    assert len(t) == 5
-    assert select(t).is_well_formed()
-    assert isinstance(t[0], Rest)
-    assert isinstance(t[1], Chord)
-    assert isinstance(t[2], Chord)
-    assert isinstance(t[3], skiptools.Skip)
-    assert isinstance(t[4], tuplettools.FixedDurationTuplet)
-    t[-2] = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
-    assert len(t) == 5
-    assert select(t).is_well_formed()
-    assert isinstance(t[0], Rest)
-    assert isinstance(t[1], Chord)
-    assert isinstance(t[2], Chord)
-    assert isinstance(t[3], tuplettools.FixedDurationTuplet)
-    assert isinstance(t[4], tuplettools.FixedDurationTuplet)
-    t[-1] = Note(13, (1, 4))
-    assert len(t) == 5
-    assert select(t).is_well_formed()
-    assert isinstance(t[0], Rest)
-    assert isinstance(t[1], Chord)
-    assert isinstance(t[2], Chord)
-    assert isinstance(t[3], tuplettools.FixedDurationTuplet)
-    assert isinstance(t[4], Note)
-    t[-3] = skiptools.Skip((1, 4))
-    assert len(t) == 5
-    assert select(t).is_well_formed()
-    assert isinstance(t[0], Rest)
-    assert isinstance(t[1], Chord)
-    assert isinstance(t[2], skiptools.Skip)
-    assert isinstance(t[3], tuplettools.FixedDurationTuplet)
-    assert isinstance(t[4], Note)
+    assert len(staff) == 5
+    assert select(staff).is_well_formed()
+    assert isinstance(staff[0], Note)
+    assert isinstance(staff[1], Rest)
+    assert isinstance(staff[2], Chord)
+    assert isinstance(staff[3], skiptools.Skip)
+    assert isinstance(staff[4], tuplettools.FixedDurationTuplet)
+    staff[1] = Chord([12, 13, 15], (1, 4))
+    assert len(staff) == 5
+    assert select(staff).is_well_formed()
+    assert isinstance(staff[0], Note)
+    assert isinstance(staff[1], Chord)
+    assert isinstance(staff[2], Chord)
+    assert isinstance(staff[3], skiptools.Skip)
+    assert isinstance(staff[4], tuplettools.FixedDurationTuplet)
+    staff[0] = Rest((1, 4))
+    assert len(staff) == 5
+    assert select(staff).is_well_formed()
+    assert isinstance(staff[0], Rest)
+    assert isinstance(staff[1], Chord)
+    assert isinstance(staff[2], Chord)
+    assert isinstance(staff[3], skiptools.Skip)
+    assert isinstance(staff[4], tuplettools.FixedDurationTuplet)
+    staff[-2] = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
+    assert len(staff) == 5
+    assert select(staff).is_well_formed()
+    assert isinstance(staff[0], Rest)
+    assert isinstance(staff[1], Chord)
+    assert isinstance(staff[2], Chord)
+    assert isinstance(staff[3], tuplettools.FixedDurationTuplet)
+    assert isinstance(staff[4], tuplettools.FixedDurationTuplet)
+    staff[-1] = Note(13, (1, 4))
+    assert len(staff) == 5
+    assert select(staff).is_well_formed()
+    assert isinstance(staff[0], Rest)
+    assert isinstance(staff[1], Chord)
+    assert isinstance(staff[2], Chord)
+    assert isinstance(staff[3], tuplettools.FixedDurationTuplet)
+    assert isinstance(staff[4], Note)
+    staff[-3] = skiptools.Skip((1, 4))
+    assert len(staff) == 5
+    assert select(staff).is_well_formed()
+    assert isinstance(staff[0], Rest)
+    assert isinstance(staff[1], Chord)
+    assert isinstance(staff[2], skiptools.Skip)
+    assert isinstance(staff[3], tuplettools.FixedDurationTuplet)
+    assert isinstance(staff[4], Note)
 
 
 def test_Staff___setitem___02():
-    r'''Reassign the *entire* contents of t.
+    r'''Reassign the *entire* contents of staff.
     '''
-    t = Staff(Note("c'4") * 4)
-    assert t._contents_duration == Duration(4, 4)
-    t[:] = Note(0, (1, 8)) * 4
-    assert t._contents_duration == Duration(4, 8)
+    staff = Staff(Note("c'4") * 4)
+    assert staff._contents_duration == Duration(4, 4)
+    staff[:] = Note(0, (1, 8)) * 4
+    assert staff._contents_duration == Duration(4, 8)
 
 
 def test_Staff___setitem___03():
-    r'''Item-assign an empty container to t.
+    r'''Item-assign an empty container to staff.
     '''
-    t = Staff(Note("c'4") * 4)
-    t[0] = Voice([])
+    staff = Staff(Note("c'4") * 4)
+    staff[0] = Voice([])
 
 
 def test_Staff___setitem___04():
-    r'''Slice-assign empty containers to t.
+    r'''Slice-assign empty containers to staff.
     '''
-    t = Staff(Note("c'4") * 4)
-    t[0:2] = [Voice([]), Voice([])]
+    staff = Staff(Note("c'4") * 4)
+    staff[0:2] = [Voice([]), Voice([])]
 
 
 def test_Staff___setitem___05():
     r'''Bark when user assigns a slice to an item.
     '''
 
-    t = Staff(Note("c'4") * 4)
+    staff = Staff(Note("c'4") * 4)
 
-    assert raises(AssertionError, 't[0] = [Note(2, (1, 4)), Note(2, (1, 4))]')
+    assert raises(AssertionError, 'staff[0] = [Note(2, (1, 4)), Note(2, (1, 4))]')
 
 
 def test_Staff___setitem___06():
     r'''Bark when user assigns an item to a slice.
     '''
 
-    t = Staff(Note("c'4") * 4)
+    staff = Staff(Note("c'4") * 4)
 
-    assert raises(Exception, 't[0:2] = Note(2, (1, 4))')
+    assert raises(Exception, 'staff[0:2] = Note(2, (1, 4))')
 
 
 def test_Staff___setitem___07():
     r'''Slice-assign notes.
     '''
-    t = Staff(Note(0, (1, 8)) * 8)
-    t[0:4] = Note(2, (1, 8)) * 4
-    assert len(t) == 8
-    for x in t[0:4]:
+    staff = Staff(Note(0, (1, 8)) * 8)
+    staff[0:4] = Note(2, (1, 8)) * 4
+    assert len(staff) == 8
+    for x in staff[0:4]:
         assert x.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 2
-    for x in t[4:8]:
+    for x in staff[4:8]:
         assert x.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 0
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
 
 
 def test_Staff___setitem___08():
     r'''Slice-assign chords.
     '''
-    t = Staff(Note(0, (1, 8)) * 8)
-    t[0:4] = Chord([2, 3, 4], (1, 4)) * 4
-    assert len(t) == 8
-    for x in t[0:4]:
+    staff = Staff(Note(0, (1, 8)) * 8)
+    staff[0:4] = Chord([2, 3, 4], (1, 4)) * 4
+    assert len(staff) == 8
+    for x in staff[0:4]:
         assert x.written_duration == Duration(1, 4)
-    for x in t[4:8]:
+    for x in staff[4:8]:
         assert x.written_duration == Duration(1, 8)
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
 
 
 def test_Staff___setitem___09():
     r'''Slice-assign tuplets.
     '''
-    t = Staff(Note(0, (1, 8)) * 8)
-    t[0:4] = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3) * 2
-    assert len(t) == 6
-    for i, x in enumerate(t):
+    staff = Staff(Note(0, (1, 8)) * 8)
+    staff[0:4] = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3) * 2
+    assert len(staff) == 6
+    for i, x in enumerate(staff):
         if i in [0, 1]:
             assert isinstance(x, tuplettools.FixedDurationTuplet)
         else:
             assert isinstance(x, Note)
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
 
 
 def test_Staff___setitem___10():

@@ -7,8 +7,8 @@ def test_componenttools_all_are_contiguous_components_in_same_thread_01():
     r'''True for strictly contiguous leaves in same staff.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    assert componenttools.all_are_contiguous_components_in_same_thread(t[:])
+    staff = Staff("c'8 d'8 e'8 f'8")
+    assert componenttools.all_are_contiguous_components_in_same_thread(staff[:])
 
 
 def test_componenttools_all_are_contiguous_components_in_same_thread_02():
@@ -24,8 +24,8 @@ def test_componenttools_all_are_contiguous_components_in_same_thread_03():
     r'''False for time reordered leaves in staff.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    assert not componenttools.all_are_contiguous_components_in_same_thread(t[2:] + t[:2],
+    staff = Staff("c'8 d'8 e'8 f'8")
+    assert not componenttools.all_are_contiguous_components_in_same_thread(staff[2:] + staff[:2],
         )
 
 

@@ -13,9 +13,9 @@ def test_Spanner__is_my_first_leaf_01():
         def _copy_keyword_args(self, new):
             pass
 
-    t = Voice(notetools.make_repeated_notes(4))
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
-    p = MockSpanner(t)
+    voice = Voice(notetools.make_repeated_notes(4))
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(voice)
+    p = MockSpanner(voice)
 
     r'''
     \new Voice {
@@ -26,13 +26,13 @@ def test_Spanner__is_my_first_leaf_01():
     }
     '''
 
-    assert p._is_my_first_leaf(t[0])
-    for leaf in t[1:]:
+    assert p._is_my_first_leaf(voice[0])
+    for leaf in voice[1:]:
         assert not p._is_my_first_leaf(leaf)
-    assert p._is_my_last_leaf(t[-1])
-    for leaf in t[:-1]:
+    assert p._is_my_last_leaf(voice[-1])
+    for leaf in voice[:-1]:
         assert not p._is_my_last_leaf(leaf)
-    for leaf in t:
+    for leaf in voice:
         assert not p._is_my_only_leaf(leaf)
 
 
@@ -46,10 +46,10 @@ def test_Spanner__is_my_first_leaf_02():
         def _copy_keyword_args(self, new):
             pass
 
-    t = Voice(notetools.make_repeated_notes(4))
-    t.insert(2, Container(notetools.make_repeated_notes(2)))
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
-    p = MockSpanner(t[:3])
+    voice = Voice(notetools.make_repeated_notes(4))
+    voice.insert(2, Container(notetools.make_repeated_notes(2)))
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(voice)
+    p = MockSpanner(voice[:3])
 
     r'''
     \new Voice {
@@ -64,8 +64,8 @@ def test_Spanner__is_my_first_leaf_02():
     }
     '''
 
-    assert p._is_my_first_leaf(t[0])
-    assert p._is_my_last_leaf(t[2][1])
+    assert p._is_my_first_leaf(voice[0])
+    assert p._is_my_last_leaf(voice[2][1])
 
 # NONSTRUCTURAL in new parallel --> context model
 #def test_Spanner__is_my_first_leaf_03():

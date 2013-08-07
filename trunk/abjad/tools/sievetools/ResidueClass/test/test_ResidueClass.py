@@ -26,50 +26,50 @@ def test_ResidueClass_03():
     r'''modulo may be 1.
     '''
 
-    t = RC(1, 0)
+    rc = RC(1, 0)
 
-    assert t.modulo == 1
-    assert t.residue == 0
+    assert rc.modulo == 1
+    assert rc.residue == 0
 
 
 def test_ResidueClass_04():
 
-    t = RC(2, 0)
+    rc = RC(2, 0)
 
-    assert t.modulo == 2
-    assert t.residue == 0
-    assert t.get_congruent_bases(4) == [0,2,4]
-    assert t.get_boolean_train(4) == [1,0,1,0]
+    assert rc.modulo == 2
+    assert rc.residue == 0
+    assert rc.get_congruent_bases(4) == [0,2,4]
+    assert rc.get_boolean_train(4) == [1,0,1,0]
 
 
 def test_ResidueClass_05():
 
-    t = RC(2, 1)
+    rc = RC(2, 1)
 
-    assert t.modulo == 2
-    assert t.residue == 1
-    assert t.get_congruent_bases(5) == [1,3,5]
-    assert t.get_boolean_train(4) == [0,1,0,1]
+    assert rc.modulo == 2
+    assert rc.residue == 1
+    assert rc.get_congruent_bases(5) == [1,3,5]
+    assert rc.get_boolean_train(4) == [0,1,0,1]
 
 
 def test_ResidueClass_06():
 
-    t = RC(3, 0)
+    rc = RC(3, 0)
 
-    assert t.modulo == 3
-    assert t.residue == 0
-    assert t.get_congruent_bases(6) == [0, 3, 6]
-    assert t.get_boolean_train(6) == [1,0,0,1,0,0]
+    assert rc.modulo == 3
+    assert rc.residue == 0
+    assert rc.get_congruent_bases(6) == [0, 3, 6]
+    assert rc.get_boolean_train(6) == [1,0,0,1,0,0]
 
 
 def test_ResidueClass_07():
 
-    t = RC(3, 1)
+    rc = RC(3, 1)
 
-    assert t.modulo == 3
-    assert t.residue == 1
-    assert t.get_congruent_bases(7) == [1, 4, 7]
-    assert t.get_boolean_train(6) == [0,1,0,0,1,0]
+    assert rc.modulo == 3
+    assert rc.residue == 1
+    assert rc.get_congruent_bases(7) == [1, 4, 7]
+    assert rc.get_boolean_train(6) == [0,1,0,0,1,0]
 
 
 def test_ResidueClass_08():

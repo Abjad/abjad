@@ -4,8 +4,8 @@ import py.test
 
 
 def test_PianoPedalSpanner_01():
-    t = Staff(notetools.make_repeated_notes(4))
-    p = spannertools.PianoPedalSpanner(t[:])
+    staff = Staff(notetools.make_repeated_notes(4))
+    p = spannertools.PianoPedalSpanner(staff[:])
 
     r'''
     \new Staff {
@@ -17,11 +17,11 @@ def test_PianoPedalSpanner_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert p.kind == 'sustain'
     assert p.style == 'mixed'
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \set Staff.pedalSustainStyle = #'mixed
@@ -38,8 +38,8 @@ def test_PianoPedalSpanner_02():
     r'''PianoPedal spanner supports sostenuto pedal.
     '''
 
-    t = Staff(notetools.make_repeated_notes(4))
-    p = spannertools.PianoPedalSpanner(t[:])
+    staff = Staff(notetools.make_repeated_notes(4))
+    p = spannertools.PianoPedalSpanner(staff[:])
     p.kind = 'sostenuto'
 
     r'''
@@ -52,9 +52,9 @@ def test_PianoPedalSpanner_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \set Staff.pedalSustainStyle = #'mixed
@@ -71,8 +71,8 @@ def test_PianoPedalSpanner_03():
     r'''PianoPedal spanner supports una corda pedal.
     '''
 
-    t = Staff(notetools.make_repeated_notes(4))
-    p = spannertools.PianoPedalSpanner(t[:])
+    staff = Staff(notetools.make_repeated_notes(4))
+    p = spannertools.PianoPedalSpanner(staff[:])
     p.kind = 'corda'
 
     r'''
@@ -85,9 +85,9 @@ def test_PianoPedalSpanner_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \set Staff.pedalSustainStyle = #'mixed
@@ -104,8 +104,8 @@ def test_PianoPedalSpanner_04():
     r'''PianoPedal spanner supports text style.
     '''
 
-    t = Staff(notetools.make_repeated_notes(4))
-    p = spannertools.PianoPedalSpanner(t[:])
+    staff = Staff(notetools.make_repeated_notes(4))
+    p = spannertools.PianoPedalSpanner(staff[:])
     assert p.kind == 'sustain'
     p.style = 'text'
 
@@ -119,9 +119,9 @@ def test_PianoPedalSpanner_04():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \set Staff.pedalSustainStyle = #'text
@@ -138,8 +138,8 @@ def test_PianoPedalSpanner_05():
     r'''PianoPedal spanner supports bracket style.
     '''
 
-    t = Staff(notetools.make_repeated_notes(4))
-    p = spannertools.PianoPedalSpanner(t[:])
+    staff = Staff(notetools.make_repeated_notes(4))
+    p = spannertools.PianoPedalSpanner(staff[:])
     assert p.kind == 'sustain'
     p.style = 'bracket'
 
@@ -153,9 +153,9 @@ def test_PianoPedalSpanner_05():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \set Staff.pedalSustainStyle = #'bracket
@@ -172,9 +172,9 @@ def test_PianoPedalSpanner_06():
     r'''Consecutive dovetailing PianoPedal spanners format correctly.
     '''
 
-    t = Staff(notetools.make_repeated_notes(8))
-    spannertools.PianoPedalSpanner(t[:4])
-    spannertools.PianoPedalSpanner(t[3:])
+    staff = Staff(notetools.make_repeated_notes(8))
+    spannertools.PianoPedalSpanner(staff[:4])
+    spannertools.PianoPedalSpanner(staff[3:])
 
     r'''
     \new Staff {
@@ -191,9 +191,9 @@ def test_PianoPedalSpanner_06():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \set Staff.pedalSustainStyle = #'mixed

@@ -6,8 +6,8 @@ def test_SchemeColor___init___01():
     r'''Init scheme color with string.
     '''
 
-    t = Note("c'4")
-    t.override.note_head.color = schemetools.SchemeColor('ForestGreen')
+    note = Note("c'4")
+    note.override.note_head.color = schemetools.SchemeColor('ForestGreen')
 
     r'''
     \once \override NoteHead #'color = #(x11-color 'ForestGreen)
@@ -15,7 +15,7 @@ def test_SchemeColor___init___01():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        note.lilypond_format,
         r'''
         \once \override NoteHead #'color = #(x11-color 'ForestGreen)
         c'4

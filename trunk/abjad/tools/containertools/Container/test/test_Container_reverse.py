@@ -7,12 +7,12 @@ def test_Container_reverse_01():
     r'''Retrograde works on a depth-0 Container with no spanners and no parent.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    leaves_rev = reversed(t.select_leaves())
-    t.reverse()
+    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    leaves_rev = reversed(staff.select_leaves())
+    staff.reverse()
 
-    assert list(leaves_rev) == list(t.select_leaves())
-    assert select(t).is_well_formed()
+    assert list(leaves_rev) == list(staff.select_leaves())
+    assert select(staff).is_well_formed()
 
 
 def test_Container_reverse_02():
@@ -20,14 +20,14 @@ def test_Container_reverse_02():
     attached and no parent.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    beam = spannertools.BeamSpanner(t)
-    leaves_rev = reversed(t.select_leaves())
-    t.reverse()
+    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    beam = spannertools.BeamSpanner(staff)
+    leaves_rev = reversed(staff.select_leaves())
+    staff.reverse()
 
-    assert list(leaves_rev) == list(t.select_leaves())
-    assert beam.components == (t, )
-    assert select(t).is_well_formed()
+    assert list(leaves_rev) == list(staff.select_leaves())
+    assert beam.components == (staff, )
+    assert select(staff).is_well_formed()
 
 
 def test_Container_reverse_03():
@@ -35,14 +35,14 @@ def test_Container_reverse_03():
     to its leaves and with no parent.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    beam = spannertools.BeamSpanner(t.select_leaves())
-    leaves_rev = reversed(t.select_leaves())
-    t.reverse()
+    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    beam = spannertools.BeamSpanner(staff.select_leaves())
+    leaves_rev = reversed(staff.select_leaves())
+    staff.reverse()
 
-    assert list(leaves_rev) == list(t.select_leaves())
-    assert beam.components == tuple(t.select_leaves())
-    assert select(t).is_well_formed()
+    assert list(leaves_rev) == list(staff.select_leaves())
+    assert beam.components == tuple(staff.select_leaves())
+    assert select(staff).is_well_formed()
 
 
 def test_Container_reverse_04():
@@ -50,13 +50,13 @@ def test_Container_reverse_04():
     attached to itself and with a parent.
     '''
 
-    t = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + notetools.make_repeated_notes(2))
-    beam = spannertools.BeamSpanner(t[0])
-    leaves_rev = reversed(t[0].select_leaves())
-    t[0].reverse()
-    assert list(leaves_rev) == list(t[0].select_leaves())
-    assert beam.components == (t[0], )
-    assert select(t).is_well_formed()
+    staff = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + notetools.make_repeated_notes(2))
+    beam = spannertools.BeamSpanner(staff[0])
+    leaves_rev = reversed(staff[0].select_leaves())
+    staff[0].reverse()
+    assert list(leaves_rev) == list(staff[0].select_leaves())
+    assert beam.components == (staff[0], )
+    assert select(staff).is_well_formed()
 
 
 def test_Container_reverse_05():
@@ -64,14 +64,14 @@ def test_Container_reverse_05():
     attached to its leaves and with a parent.
     '''
 
-    t = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + 
+    staff = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + 
         notetools.make_repeated_notes(2))
-    beam = spannertools.BeamSpanner(t[0].select_leaves())
-    leaves_rev = reversed(t[0].select_leaves())
-    t[0].reverse()
-    assert list(leaves_rev) == list(t[0].select_leaves())
-    assert beam.components == tuple(t[0].select_leaves())
-    assert select(t).is_well_formed()
+    beam = spannertools.BeamSpanner(staff[0].select_leaves())
+    leaves_rev = reversed(staff[0].select_leaves())
+    staff[0].reverse()
+    assert list(leaves_rev) == list(staff[0].select_leaves())
+    assert beam.components == tuple(staff[0].select_leaves())
+    assert select(staff).is_well_formed()
 
 
 def test_Container_reverse_06():
@@ -80,13 +80,13 @@ def test_Container_reverse_06():
     '''
 
     notes = [Note("c'8"), Note("d'8")]
-    t = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + notes)
-    beam = spannertools.BeamSpanner(t)
-    leaves_rev = reversed(t[0].select_leaves())
-    t[0].reverse()
-    assert list(leaves_rev) == list(t[0].select_leaves())
-    assert beam.components == tuple([t])
-    assert select(t).is_well_formed()
+    staff = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + notes)
+    beam = spannertools.BeamSpanner(staff)
+    leaves_rev = reversed(staff[0].select_leaves())
+    staff[0].reverse()
+    assert list(leaves_rev) == list(staff[0].select_leaves())
+    assert beam.components == tuple([staff])
+    assert select(staff).is_well_formed()
 
 
 def test_Container_reverse_07():
@@ -96,13 +96,13 @@ def test_Container_reverse_07():
 
     notes = [Note("c'8"), Note("d'8")]
     measure = Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    t = Staff([measure] + notes)
-    beam = spannertools.BeamSpanner(t[:])
-    leaves_rev = reversed(t[0].select_leaves())
-    t[0].reverse()
-    assert list(leaves_rev) == list(t[0].select_leaves())
+    staff = Staff([measure] + notes)
+    beam = spannertools.BeamSpanner(staff[:])
+    leaves_rev = reversed(staff[0].select_leaves())
+    staff[0].reverse()
+    assert list(leaves_rev) == list(staff[0].select_leaves())
     assert beam.components == tuple([measure] + notes)
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
 
 
 # TODO: Add well-formedness check for measure contiguity
@@ -112,8 +112,8 @@ def test_Container_reverse_08():
 
     notes = [Note("c'8"), Note("d'8")]
     measure = Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    t = Staff([measure] + notes)
-    beam = spannertools.BeamSpanner(t[:])
+    staff = Staff([measure] + notes)
+    beam = spannertools.BeamSpanner(staff[:])
 
     r'''
     \new Staff {
@@ -132,7 +132,7 @@ def test_Container_reverse_08():
     '''
 
     # TODO: Make MeasureContiguityError raise here #
-    #assert py.test.raises(MeasureContiguityError, 't.reverse()')
+    #assert py.test.raises(MeasureContiguityError, 'staff.reverse()')
 
 
 def test_Container_reverse_09():

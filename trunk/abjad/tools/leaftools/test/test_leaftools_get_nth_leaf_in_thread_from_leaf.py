@@ -42,17 +42,17 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_02():
     r'''Voice.
     '''
 
-    t = Voice([Note(i, (1,8)) for i in range(4)])
+    voice = Voice([Note(i, (1,8)) for i in range(4)])
 
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[0], 1) is t[1]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[1], 1) is t[2]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[2], 1) is t[3]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[3], 1) is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(voice[0], 1) is voice[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(voice[1], 1) is voice[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(voice[2], 1) is voice[3]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(voice[3], 1) is None
 
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[0], -1) is None
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[1], -1) is t[0]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[2], -1) is t[1]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[3], -1) is t[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(voice[0], -1) is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(voice[1], -1) is voice[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(voice[2], -1) is voice[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(voice[3], -1) is voice[2]
 
     r'''
     \new Voice {
@@ -68,17 +68,17 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_03():
     r'''Staff.
     '''
 
-    t = Staff([Note(i, (1,8)) for i in range(4)])
+    staff = Staff([Note(i, (1,8)) for i in range(4)])
 
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[0], 1) is t[1]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[1], 1) is t[2]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[2], 1) is t[3]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[3], 1) is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff[0], 1) is staff[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff[1], 1) is staff[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff[2], 1) is staff[3]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff[3], 1) is None
 
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[0], -1) is None
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[1], -1) is t[0]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[2], -1) is t[1]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[3], -1) is t[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff[0], -1) is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff[1], -1) is staff[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff[2], -1) is staff[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff[3], -1) is staff[2]
 
     r'''
     \new Staff {
@@ -94,7 +94,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_04():
     r'''Container.
     '''
 
-    t = Container([Note(i, (1,8)) for i in range(4)])
+    container = Container([Note(i, (1,8)) for i in range(4)])
 
     r'''
     {
@@ -105,15 +105,15 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_04():
     }
     '''
 
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[0], 1) is t[1]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[1], 1) is t[2]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[2], 1) is t[3]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[3], 1) is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(container[0], 1) is container[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(container[1], 1) is container[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(container[2], 1) is container[3]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(container[3], 1) is None
 
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[0], -1) is None
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[1], -1) is t[0]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[2], -1) is t[1]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[3], -1) is t[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(container[0], -1) is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(container[1], -1) is container[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(container[2], -1) is container[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(container[3], -1) is container[2]
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_05():
@@ -145,7 +145,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_06():
 
     s1 = Container([Note(i, (1,8)) for i in range(4)])
     s2 = Container([Note(i, (1,8)) for i in range(4,8)])
-    t = Voice([s1, s2])
+    voice = Voice([s1, s2])
 
     r'''
     \new Voice {
@@ -181,7 +181,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_07():
 
     t1 = tuplettools.FixedDurationTuplet(Duration(2,8), [Note(i, (1,8)) for i in range(3)])
     t2 = tuplettools.FixedDurationTuplet(Duration(2,8), [Note(i, (1,8)) for i in range(3,6)])
-    t = Voice([t1, t2])
+    voice = Voice([t1, t2])
 
     r'''
     \new Voice {
@@ -213,7 +213,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_08():
 
     v1 = Voice([Note(i, (1,8)) for i in range(4)])
     v2 = Voice([Note(i, (1,8)) for i in range(4,8)])
-    t = Staff([v1, v2])
+    staff = Staff([v1, v2])
 
     r'''
     \new Staff {
@@ -244,7 +244,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_09():
     v1.name = 'myvoice'
     v2 = Voice([Note(i, (1,8)) for i in range(4,8)])
     v2.name = 'myvoice'
-    t = Staff([v1, v2])
+    staff = Staff([v1, v2])
 
     r'''
     \new Staff {
@@ -282,7 +282,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_10():
     v1.name = 'yourvoice'
     v2 = Voice([Note(i, (1,8)) for i in range(4,8)])
     v2.name = 'myvoice'
-    t = Staff([v1, v2])
+    staff = Staff([v1, v2])
 
     r'''
     \new Staff {
@@ -426,7 +426,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_13():
     s1 = Container([s1])
     s2 = Container([Note(i, (1,8)) for i in range(4,8)])
     s2 = Container([s2])
-    t = Voice([s1, s2])
+    voice = Voice([s1, s2])
 
     r'''
     \new Voice {
@@ -468,7 +468,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_14():
     s2 = Container([Note(i, (1,8)) for i in range(4,8)])
     s2 = Container([s2])
     s2 = Container([s2])
-    t = Voice([s1, s2])
+    voice = Voice([s1, s2])
 
     r'''
     \new Voice {
@@ -510,7 +510,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_15():
     s1 = Container([s1])
     s1 = Container([s1])
     s2 = Container([Note(i, (1,8)) for i in range(4,8)])
-    t = Voice([s1, s2])
+    voice = Voice([s1, s2])
 
     r'''
     \new Voice {
@@ -636,7 +636,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_19():
     v1 = Voice([Note(i , (1,8)) for i in range(3)])
     n = Note(3, (1,8))
     v2 = Voice([Note(i , (1,8)) for i in range(4,8)])
-    t = Staff([v1, n, v2])
+    staff = Staff([v1, n, v2])
 
     r'''
     \new Staff {
@@ -672,7 +672,7 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_20():
     v2.name = 'yourvoice'
     v3 = Voice([Note(i , (1,8)) for i in range(4,8)])
     v3.name = 'myvoice'
-    t = Staff([v1, v2, v3])
+    staff = Staff([v1, v2, v3])
 
     r'''
     \new Staff {

@@ -6,8 +6,8 @@ def test_SequentialLeafSelection_replace_with_01():
     r'''Replace with rests.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    selection = t.select_leaves()
+    staff = Staff("c'8 d'8 e'8 f'8")
+    selection = staff.select_leaves()
     selection.replace_with(Rest)
 
     r'''
@@ -19,9 +19,9 @@ def test_SequentialLeafSelection_replace_with_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             r8

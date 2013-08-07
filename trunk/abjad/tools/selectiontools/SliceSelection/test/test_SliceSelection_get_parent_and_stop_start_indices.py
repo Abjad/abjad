@@ -4,18 +4,18 @@ from abjad import *
 
 def test_SliceSelection_get_parent_and_stop_start_indices_01():
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    parent, start, stop = t[2:]._get_parent_and_start_stop_indices()
-    assert parent is t
+    staff = Staff("c'8 d'8 e'8 f'8")
+    parent, start, stop = staff[2:]._get_parent_and_start_stop_indices()
+    assert parent is staff
     assert start == 2
     assert stop == 3
 
 
 def test_SliceSelection_get_parent_and_stop_start_indices_02():
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    parent, start, stop = t[:2]._get_parent_and_start_stop_indices()
-    assert parent is t
+    staff = Staff("c'8 d'8 e'8 f'8")
+    parent, start, stop = staff[:2]._get_parent_and_start_stop_indices()
+    assert parent is staff
     assert start == 0
     assert stop == 1
 

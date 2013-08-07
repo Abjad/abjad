@@ -4,8 +4,8 @@ from abjad import *
 
 def test_TimeSignatureMark_partial_01():
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    contexttools.TimeSignatureMark((2, 8), partial = Duration(1, 8))(t)
+    staff = Staff("c'8 d'8 e'8 f'8")
+    contexttools.TimeSignatureMark((2, 8), partial = Duration(1, 8))(staff)
 
     r'''
     \new Staff {
@@ -18,9 +18,9 @@ def test_TimeSignatureMark_partial_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \partial 8

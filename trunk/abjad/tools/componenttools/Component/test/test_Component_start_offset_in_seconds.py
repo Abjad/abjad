@@ -7,7 +7,7 @@ def test_Component_start_offset_in_seconds_01():
     r'''Offset seconds can not calculate without excplit tempo indication.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
+    staff = Staff("c'8 d'8 e'8 f'8")
 
     r'''
     \new Staff {
@@ -18,7 +18,7 @@ def test_Component_start_offset_in_seconds_01():
     }
     '''
 
-    statement = 't[0].get_timespan(in_seconds=True).start_offset'
+    statement = 'staff[0].get_timespan(in_seconds=True).start_offset'
     assert py.test.raises(MissingTempoError, statement)
 
 

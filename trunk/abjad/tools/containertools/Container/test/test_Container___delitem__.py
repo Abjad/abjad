@@ -10,11 +10,11 @@ def test_Container___delitem___01():
     Operation always leaves all expressions in tact.
     '''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[:])
-    spannertools.SlurSpanner(t[0][:])
-    spannertools.SlurSpanner(t[1][:])
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.BeamSpanner(voice[:])
+    spannertools.SlurSpanner(voice[0][:])
+    spannertools.SlurSpanner(voice[1][:])
 
     r'''
     \new Voice {
@@ -29,10 +29,10 @@ def test_Container___delitem___01():
     }
     '''
 
-    old = t[0]
-    del(t[0])
+    old = voice[0]
+    del(voice[0])
 
-    "Container t is now ..."
+    "Container voice is now ..."
 
     r'''
     \new Voice {
@@ -43,9 +43,9 @@ def test_Container___delitem___01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {
@@ -81,10 +81,10 @@ def test_Container___delitem___02():
     r'''Delete 1 leaf in container.
     Spanner structure is preserved.'''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:])
 
-    del(t[1])
+    del(voice[1])
 
     r'''
     \new Voice {
@@ -94,9 +94,9 @@ def test_Container___delitem___02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [
@@ -111,10 +111,10 @@ def test_Container___delitem___03():
     r'''Delete slice in middle of container.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:])
 
-    del(t[1:3])
+    del(voice[1:3])
 
     r'''
     \new Voice {
@@ -123,9 +123,9 @@ def test_Container___delitem___03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [
@@ -139,10 +139,10 @@ def test_Container___delitem___04():
     r'''Delete slice from beginning to middle of container.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:])
 
-    del(t[:2])
+    del(voice[:2])
 
     r'''
     \new Voice {
@@ -151,9 +151,9 @@ def test_Container___delitem___04():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             e'8 [
@@ -167,10 +167,10 @@ def test_Container___delitem___05():
     r'''Delete slice from middle to end of container.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:])
 
-    del(t[2:])
+    del(voice[2:])
 
     r'''
     \new Voice {
@@ -179,9 +179,9 @@ def test_Container___delitem___05():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [
@@ -195,19 +195,19 @@ def test_Container___delitem___06():
     r'''Delete slice from beginning to end of container.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:])
 
-    del(t[:])
+    del(voice[:])
 
     r'''
     \new Voice {
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
         }

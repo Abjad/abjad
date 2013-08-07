@@ -6,9 +6,9 @@ def test_LilyFile_01():
     r'''LilyPondFile implements default paper size and global staff size attributes.
     '''
 
-    t = Score([Staff("c'8 d'8 e'8 f'8")])
+    score = Score([Staff("c'8 d'8 e'8 f'8")])
     lilypond_file = lilypondfiletools.LilyPondFile()
-    lilypond_file.append(t)
+    lilypond_file.append(score)
     lilypond_file.default_paper_size = '11x17', 'landscape'
     lilypond_file.global_staff_size = 14
     lilypond_file.file_initial_system_comments = []

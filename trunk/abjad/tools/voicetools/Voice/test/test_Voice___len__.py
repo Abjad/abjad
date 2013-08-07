@@ -6,8 +6,8 @@ def test_Voice___len___01():
     r'''Voice length returns the number of elements in voice.
     '''
 
-    t = Voice()
-    assert len(t) == 0
+    voice = Voice()
+    assert len(voice) == 0
 
 
 def test_Voice___len___02():

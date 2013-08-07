@@ -7,8 +7,8 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_01():
     r'''Copy consecutive notes across tuplet boundary, in staff.
     '''
 
-    t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     r'''
     \new Staff {
@@ -25,7 +25,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_01():
     }
     '''
 
-    u = componenttools.copy_governed_component_subtree_by_leaf_range(t, 1, 5)
+    u = componenttools.copy_governed_component_subtree_by_leaf_range(staff, 1, 5)
 
     r'''
     \new Staff {
@@ -40,7 +40,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
@@ -63,8 +63,8 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_02():
     r'''Copy consecutive notes across tuplet boundary, in voice and staff.
     '''
 
-    t = Staff([Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    staff = Staff([Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)])
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     r'''
     \new Staff {
@@ -83,7 +83,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_02():
     }
     '''
 
-    u = componenttools.copy_governed_component_subtree_by_leaf_range(t, 1, 5)
+    u = componenttools.copy_governed_component_subtree_by_leaf_range(staff, 1, 5)
 
     r'''
     \new Staff {
@@ -100,7 +100,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
@@ -125,12 +125,12 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_03():
     r'''Copy leaves from sequential containers only.
     '''
 
-    t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    t.is_parallel = True
+    staff = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    staff.is_parallel = True
 
     statement = 'componenttools.copy_governed_component_subtree_'
-    statement += 'by_leaf_range(t, 1, 5)'
+    statement += 'by_leaf_range(staff, 1, 5)'
     assert py.test.raises(Exception, statement)
 
 
@@ -138,9 +138,9 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_04():
     r'''Works fine on voices nested inside parallel context.
     '''
 
-    t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
-    t.is_parallel = True
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    staff = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
+    staff.is_parallel = True
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     r'''
     \new Staff <<
@@ -159,7 +159,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_04():
     >>
     '''
 
-    u = componenttools.copy_governed_component_subtree_by_leaf_range(t[0], 1, 3)
+    u = componenttools.copy_governed_component_subtree_by_leaf_range(staff[0], 1, 3)
 
     r'''
     \new Voice {
@@ -168,7 +168,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_04():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
@@ -185,8 +185,8 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_05():
     r'''Copy consecutive notes in measure with power-of-two time signature denominator.
     '''
 
-    t = Measure((4, 8), "c'8 d'8 e'8 f'8")
-    u = componenttools.copy_governed_component_subtree_by_leaf_range(t, 1, 3)
+    measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
+    u = componenttools.copy_governed_component_subtree_by_leaf_range(measure, 1, 3)
 
     r'''
     {
@@ -242,7 +242,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_07():
     Measure without power-of-two time signature denominator results.
     '''
 
-    t = Measure((4, 8), [tuplettools.FixedDurationTuplet(Duration(4, 8), "c'8 d'8 e'8 f'8 g'8")])
+    measure = Measure((4, 8), [tuplettools.FixedDurationTuplet(Duration(4, 8), "c'8 d'8 e'8 f'8 g'8")])
 
     r'''
     {
@@ -257,7 +257,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_07():
     }
     '''
 
-    u = componenttools.copy_governed_component_subtree_by_leaf_range(t, 1, 4)
+    u = componenttools.copy_governed_component_subtree_by_leaf_range(measure, 1, 4)
 
     r'''
     {
@@ -272,7 +272,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_07():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
@@ -296,7 +296,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_08():
     Measure without power-of-two time signature denominator results.
     '''
 
-    t = Voice([Measure((4, 8),
+    voice = Voice([Measure((4, 8),
         [tuplettools.FixedDurationTuplet(Duration(4, 8), "c'8 d'8 e'8 f'8 g'8")])])
 
     r'''
@@ -314,7 +314,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_08():
     }
     '''
 
-    u = componenttools.copy_governed_component_subtree_by_leaf_range(t, 1, 4)
+    u = componenttools.copy_governed_component_subtree_by_leaf_range(voice, 1, 4)
 
     r'''
     \new Voice {
@@ -331,7 +331,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_08():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
@@ -356,9 +356,9 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_09():
     r'''Measures shrink down when we copy a partial tuplet.
     '''
 
-    t = Measure((4, 8),
+    measure = Measure((4, 8),
         tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(measure)
 
     r'''
     {
@@ -376,7 +376,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_09():
     }
     '''
 
-    u = componenttools.copy_governed_component_subtree_by_leaf_range(t, 1)
+    u = componenttools.copy_governed_component_subtree_by_leaf_range(measure, 1)
 
     r'''
     {
@@ -395,7 +395,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_09():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
@@ -422,9 +422,9 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_10():
     r'''Copy consecutive leaves across measure boundary.
     '''
 
-    t = Staff(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -443,7 +443,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_10():
     }
     '''
 
-    u = componenttools.copy_governed_component_subtree_by_leaf_range(t, 2, 4)
+    u = componenttools.copy_governed_component_subtree_by_leaf_range(staff, 2, 4)
     measuretools.set_always_format_time_signature_of_measures_in_expr(u)
 
     r'''
@@ -459,7 +459,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_10():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
@@ -483,8 +483,8 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_11():
         pass start and stop indices local to tuplet.
     '''
 
-    t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     r'''
     \new Staff {
@@ -501,7 +501,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_11():
     }
     '''
 
-    u = componenttools.copy_governed_component_subtree_by_leaf_range(t[1], 1, 3)
+    u = componenttools.copy_governed_component_subtree_by_leaf_range(staff[1], 1, 3)
 
     r'''
     \new Staff {
@@ -512,7 +512,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_11():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,
@@ -532,9 +532,9 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_12():
     pass start and stop indices local to measure.
     '''
 
-    t = Staff(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -553,7 +553,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_12():
     }
     '''
 
-    u = componenttools.copy_governed_component_subtree_by_leaf_range(t[1], 1, 3)
+    u = componenttools.copy_governed_component_subtree_by_leaf_range(staff[1], 1, 3)
     measuretools.set_always_format_time_signature_of_measures_in_expr(u)
 
     r'''
@@ -566,7 +566,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_12():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert select(u).is_well_formed()
     assert testtools.compare(
         u.lilypond_format,

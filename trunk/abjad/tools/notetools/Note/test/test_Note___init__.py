@@ -7,8 +7,8 @@ def test_Note___init___01():
     r'''Init note with pitch in octave zero.
     '''
 
-    t = Note(-37, (1, 4))
-    assert t.lilypond_format == 'b,,,4'
+    note = Note(-37, (1, 4))
+    assert note.lilypond_format == 'b,,,4'
 
 
 def test_Note___init___02():
@@ -22,16 +22,16 @@ def test_Note___init___03():
     r'''Init note with LilyPond-style pitch string.
     '''
 
-    t = Note('c,,', (1, 4))
-    assert t.lilypond_format == 'c,,4'
+    note = Note('c,,', (1, 4))
+    assert note.lilypond_format == 'c,,4'
 
 
 def test_Note___init___04():
     r'''Init note with complete LilyPond-style note string.
     '''
 
-    t = Note('cs8.')
-    assert t.lilypond_format == 'cs8.'
+    note = Note('cs8.')
+    assert note.lilypond_format == 'cs8.'
 
 
 def test_Note___init___05():
@@ -74,11 +74,11 @@ def test_Note___init___08():
     r'''Init note from beamed chord.
     '''
 
-    t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
-    spannertools.BeamSpanner(t[:])
-    note = Note(t[0])
-    assert isinstance(t[0], Chord)
-    assert t[0]._parent is t
+    staff = Staff(Chord([2, 3, 4], (1, 4)) * 3)
+    spannertools.BeamSpanner(staff[:])
+    note = Note(staff[0])
+    assert isinstance(staff[0], Chord)
+    assert staff[0]._parent is staff
     assert isinstance(note, Note)
 
 
@@ -116,12 +116,12 @@ def test_Note___init___11():
     r'''Init note from beamed rest.
     '''
 
-    t = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
-    spannertools.BeamSpanner(t[:])
-    note = Note(t[1])
-    assert isinstance(t[1], Rest)
+    staff = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
+    spannertools.BeamSpanner(staff[:])
+    note = Note(staff[1])
+    assert isinstance(staff[1], Rest)
     assert isinstance(note, Note)
-    assert t[1]._parent is t
+    assert staff[1]._parent is staff
     assert note._parent is None
 
 
@@ -156,12 +156,12 @@ def test_Note___init___14():
     r'''Init note from beamed skip.
     '''
 
-    t = Staff([Note(0, (1, 8)), skiptools.Skip((1, 8)), Note(0, (1, 8))])
-    spannertools.BeamSpanner(t[:])
-    note = Note(t[1])
-    assert isinstance(t[1], skiptools.Skip)
+    staff = Staff([Note(0, (1, 8)), skiptools.Skip((1, 8)), Note(0, (1, 8))])
+    spannertools.BeamSpanner(staff[:])
+    note = Note(staff[1])
+    assert isinstance(staff[1], skiptools.Skip)
     assert isinstance(note, Note)
-    assert t[1]._parent is t
+    assert staff[1]._parent is staff
     assert note._parent is None
 
 
@@ -169,24 +169,24 @@ def test_Note___init___15():
     r'''Init note with cautionary accidental.
     '''
 
-    t = Note("c'?4")
-    assert t.lilypond_format == "c'?4"
+    note = Note("c'?4")
+    assert note.lilypond_format == "c'?4"
 
 
 def test_Note___init___16():
     r'''Init note with forced accidental.
     '''
 
-    t = Note("c'!4")
-    assert t.lilypond_format == "c'!4"
+    note = Note("c'!4")
+    assert note.lilypond_format == "c'!4"
 
 
 def test_Note___init___17():
     r'''Init note with both forced and cautionary accidental.
     '''
 
-    t = Note("c'!?4")
-    assert t.lilypond_format == "c'!?4"
+    note = Note("c'!?4")
+    assert note.lilypond_format == "c'!?4"
 
 
 def test_Note___init___18():

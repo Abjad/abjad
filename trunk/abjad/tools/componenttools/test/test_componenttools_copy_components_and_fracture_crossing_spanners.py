@@ -8,11 +8,11 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_01():
     Fracture spanners that attach to components not in 'components'.
     Return Python list of copied components.'''
 
-    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    slur = spannertools.SlurSpanner(t[:])
-    trill = spannertools.TrillSpanner(t.select_leaves())
-    beam = spannertools.BeamSpanner(t[0][:] + t[1:2] + t[2][:])
+    voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    slur = spannertools.SlurSpanner(voice[:])
+    trill = spannertools.TrillSpanner(voice.select_leaves())
+    beam = spannertools.BeamSpanner(voice[0][:] + voice[1:2] + voice[2][:])
 
     r'''
     \new Voice {
@@ -28,7 +28,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_01():
     }
     '''
 
-    result = componenttools.copy_components_and_fracture_crossing_spanners(t.select_leaves()[2:4])
+    result = componenttools.copy_components_and_fracture_crossing_spanners(voice.select_leaves()[2:4])
     new = Voice(result)
 
     r'''
@@ -38,7 +38,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert select(new).is_well_formed()
     assert testtools.compare(
         new.lilypond_format,
@@ -55,11 +55,11 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_02():
     r'''Copy one measure and fracture spanners.
     '''
 
-    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    slur = spannertools.SlurSpanner(t[:])
-    trill = spannertools.TrillSpanner(t.select_leaves())
-    beam = spannertools.BeamSpanner(t[0][:] + t[1:2] + t[2][:])
+    voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    slur = spannertools.SlurSpanner(voice[:])
+    trill = spannertools.TrillSpanner(voice.select_leaves())
+    beam = spannertools.BeamSpanner(voice[0][:] + voice[1:2] + voice[2][:])
 
     r'''
     \new Voice {
@@ -81,7 +81,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_02():
     }
     '''
 
-    result = componenttools.copy_components_and_fracture_crossing_spanners(t[1:2])
+    result = componenttools.copy_components_and_fracture_crossing_spanners(voice[1:2])
     new = Voice(result)
 
     r'''
@@ -94,7 +94,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert select(new).is_well_formed()
     assert testtools.compare(
         new.lilypond_format,
@@ -114,11 +114,11 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_03():
     r'''Three notes crossing measure boundaries.
     '''
 
-    t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    slur = spannertools.SlurSpanner(t[:])
-    trill = spannertools.TrillSpanner(t.select_leaves())
-    beam = spannertools.BeamSpanner(t[0][:] + t[1:2] + t[2][:])
+    voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    slur = spannertools.SlurSpanner(voice[:])
+    trill = spannertools.TrillSpanner(voice.select_leaves())
+    beam = spannertools.BeamSpanner(voice[0][:] + voice[1:2] + voice[2][:])
 
     r'''
     \new Voice {
@@ -140,7 +140,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_03():
     }
     '''
 
-    result = componenttools.copy_components_and_fracture_crossing_spanners(t.select_leaves()[-3:])
+    result = componenttools.copy_components_and_fracture_crossing_spanners(voice.select_leaves()[-3:])
     new = Voice(result)
 
     r'''
@@ -151,7 +151,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert select(new).is_well_formed()
     assert testtools.compare(
         new.lilypond_format,

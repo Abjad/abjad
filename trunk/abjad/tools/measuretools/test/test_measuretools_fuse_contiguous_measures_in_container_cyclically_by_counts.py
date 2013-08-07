@@ -6,8 +6,8 @@ def test_measuretools_fuse_contiguous_measures_in_container_cyclically_by_counts
     r'''Docs.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 5)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 5)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     r'''
     \new Staff {
@@ -40,7 +40,7 @@ def test_measuretools_fuse_contiguous_measures_in_container_cyclically_by_counts
     '''
 
     part_counts = (2, 1)
-    measuretools.fuse_contiguous_measures_in_container_cyclically_by_counts(t, part_counts)
+    measuretools.fuse_contiguous_measures_in_container_cyclically_by_counts(staff, part_counts)
 
     r'''
     \new Staff {
@@ -66,9 +66,9 @@ def test_measuretools_fuse_contiguous_measures_in_container_cyclically_by_counts
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {

@@ -76,12 +76,12 @@ def test_ResidueClass_operator_and_05():
     r'''AND.
     '''
 
-    t = ResidueClass(2, 0) & ResidueClass(3, 0)
+    residueclass = ResidueClass(2, 0) & ResidueClass(3, 0)
 
-    assert isinstance(t, sievetools.Sieve)
-    assert t.logical_operator == 'and'
-    assert t.get_boolean_train(6) == [1,0,0,0,0,0]
-    assert t.get_congruent_bases(6) == [0, 6]
+    assert isinstance(residueclass, sievetools.Sieve)
+    assert residueclass.logical_operator == 'and'
+    assert residueclass.get_boolean_train(6) == [1,0,0,0,0,0]
+    assert residueclass.get_congruent_bases(6) == [0, 6]
 
 
 def test_ResidueClass_operator_and_06():

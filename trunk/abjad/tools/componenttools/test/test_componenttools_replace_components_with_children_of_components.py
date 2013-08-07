@@ -6,9 +6,9 @@ def test_componenttools_replace_components_with_children_of_components_01():
     r'''Containers can 'slip out' of score structure.
     '''
 
-    t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    p = spannertools.BeamSpanner(t.select_leaves())
+    staff = Staff(Container(notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    p = spannertools.BeamSpanner(staff.select_leaves())
 
     r'''
     \new Staff {
@@ -23,8 +23,8 @@ def test_componenttools_replace_components_with_children_of_components_01():
     }
     '''
 
-    sequential = t[0]
-    componenttools.replace_components_with_children_of_components(t[0:1])
+    sequential = staff[0]
+    componenttools.replace_components_with_children_of_components(staff[0:1])
 
     r'''
     \new Staff {
@@ -37,10 +37,10 @@ def test_componenttools_replace_components_with_children_of_components_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(sequential) == 0
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8 [
@@ -58,11 +58,11 @@ def test_componenttools_replace_components_with_children_of_components_02():
     r'''Slip leaf from parentage and spanners.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
-    spannertools.GlissandoSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:])
+    spannertools.GlissandoSpanner(voice[:])
 
-    note = t[1]
+    note = voice[1]
     componenttools.replace_components_with_children_of_components([note])
 
     r'''
@@ -73,9 +73,9 @@ def test_componenttools_replace_components_with_children_of_components_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [ \glissando
@@ -90,9 +90,9 @@ def test_componenttools_replace_components_with_children_of_components_03():
     r'''Slip multiple leaves.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
-    spannertools.GlissandoSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:])
+    spannertools.GlissandoSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -103,7 +103,7 @@ def test_componenttools_replace_components_with_children_of_components_03():
     }
     '''
 
-    componenttools.replace_components_with_children_of_components(t[:2])
+    componenttools.replace_components_with_children_of_components(voice[:2])
 
     r'''
     \new Voice {
@@ -112,9 +112,9 @@ def test_componenttools_replace_components_with_children_of_components_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             e'8 [ \glissando

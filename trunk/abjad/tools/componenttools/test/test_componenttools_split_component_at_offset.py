@@ -4,12 +4,12 @@ from abjad import *
 
 def test_componenttools_split_component_at_offset_01():
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -27,7 +27,7 @@ def test_componenttools_split_component_at_offset_01():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t.select_leaves()[0], (1, 32), fracture_spanners=False, tie_split_notes=False)
+        staff.select_leaves()[0], (1, 32), fracture_spanners=False, tie_split_notes=False)
 
     r'''
     \new Staff {
@@ -45,12 +45,12 @@ def test_componenttools_split_component_at_offset_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert isinstance(halves, tuple)
     assert isinstance(halves[0], list)
     assert isinstance(halves[1], list)
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -71,12 +71,12 @@ def test_componenttools_split_component_at_offset_01():
 
 def test_componenttools_split_component_at_offset_02():
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -94,7 +94,7 @@ def test_componenttools_split_component_at_offset_02():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t[0], (1, 32), fracture_spanners=False, tie_split_notes=False)
+        staff[0], (1, 32), fracture_spanners=False, tie_split_notes=False)
 
     r'''
     \new Staff {
@@ -115,12 +115,12 @@ def test_componenttools_split_component_at_offset_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert isinstance(halves, tuple)
     assert isinstance(halves[0], list)
     assert isinstance(halves[1], list)
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -144,12 +144,12 @@ def test_componenttools_split_component_at_offset_02():
 
 def test_componenttools_split_component_at_offset_03():
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -167,7 +167,7 @@ def test_componenttools_split_component_at_offset_03():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t, (1, 32), fracture_spanners=False, tie_split_notes=False)
+        staff, (1, 32), fracture_spanners=False, tie_split_notes=False)
 
     "halves[0][0]"
 
@@ -233,12 +233,12 @@ def test_componenttools_split_component_at_offset_04():
     Do not fracture spanners. But do tie after split.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -256,7 +256,7 @@ def test_componenttools_split_component_at_offset_04():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t.select_leaves()[0], (1, 32), fracture_spanners=False, tie_split_notes=True)
+        staff.select_leaves()[0], (1, 32), fracture_spanners=False, tie_split_notes=True)
 
     r'''
     \new Staff {
@@ -274,12 +274,12 @@ def test_componenttools_split_component_at_offset_04():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert isinstance(halves, tuple)
     assert isinstance(halves[0], list)
     assert isinstance(halves[1], list)
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -303,12 +303,12 @@ def test_componenttools_split_component_at_offset_05():
     Do not fracture spanners. But do add tie after split.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -326,7 +326,7 @@ def test_componenttools_split_component_at_offset_05():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t[0], (1, 32), fracture_spanners=False, tie_split_notes=True)
+        staff[0], (1, 32), fracture_spanners=False, tie_split_notes=True)
 
     r'''
     \new Staff {
@@ -347,12 +347,12 @@ def test_componenttools_split_component_at_offset_05():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert isinstance(halves, tuple)
     assert isinstance(halves[0], list)
     assert isinstance(halves[1], list)
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -380,12 +380,12 @@ def test_componenttools_split_component_at_offset_06():
     Do not fracture spanners and do not tie leaves after split.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -404,7 +404,7 @@ def test_componenttools_split_component_at_offset_06():
 
     d = (1, 5)
     halves = componenttools.split_component_at_offset(
-        t[0], d, fracture_spanners=False)
+        staff[0], d, fracture_spanners=False)
 
     r'''
     \new Staff {
@@ -430,7 +430,7 @@ def test_componenttools_split_component_at_offset_06():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(halves) == 2
     # TODO: The tie at the split locus here is a (small) bug. #
     #         Eventually should fix. #
@@ -442,12 +442,12 @@ def test_componenttools_split_component_at_offset_07():
     Do fracture spanners and do tie leaves after split.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -465,7 +465,7 @@ def test_componenttools_split_component_at_offset_07():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t[0], (1, 5), fracture_spanners=False, tie_split_notes=True)
+        staff[0], (1, 5), fracture_spanners=False, tie_split_notes=True)
 
     r'''
     \new Staff {
@@ -491,10 +491,10 @@ def test_componenttools_split_component_at_offset_07():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(halves) == 2
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -525,12 +525,12 @@ def test_componenttools_split_component_at_offset_08():
     r'''Split leaf in score and fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -547,7 +547,7 @@ def test_componenttools_split_component_at_offset_08():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t.select_leaves()[0], (1, 32), fracture_spanners=True, tie_split_notes=False)
+        staff.select_leaves()[0], (1, 32), fracture_spanners=True, tie_split_notes=False)
 
     r'''
     \new Staff {
@@ -565,13 +565,13 @@ def test_componenttools_split_component_at_offset_08():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(halves) == 2
     assert isinstance(halves, tuple)
     assert isinstance(halves[0], list)
     assert isinstance(halves[1], list)
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -594,12 +594,12 @@ def test_componenttools_split_component_at_offset_09():
     r'''Split measure in score and fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -617,7 +617,7 @@ def test_componenttools_split_component_at_offset_09():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t[0], (1, 32), fracture_spanners=True, tie_split_notes=False)
+        staff[0], (1, 32), fracture_spanners=True, tie_split_notes=False)
 
     r'''
     \new Staff {
@@ -638,12 +638,12 @@ def test_componenttools_split_component_at_offset_09():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert isinstance(halves, tuple)
     assert isinstance(halves[0], list)
     assert isinstance(halves[1], list)
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -669,12 +669,12 @@ def test_componenttools_split_component_at_offset_10():
     r'''Split staff outside of score and fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -692,7 +692,7 @@ def test_componenttools_split_component_at_offset_10():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t, (1, 32), fracture_spanners=True, tie_split_notes=False)
+        staff, (1, 32), fracture_spanners=True, tie_split_notes=False)
 
     "halves[0][0]"
 
@@ -759,12 +759,12 @@ def test_componenttools_split_component_at_offset_11():
     Test comes from a bug fix.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -782,7 +782,7 @@ def test_componenttools_split_component_at_offset_11():
     '''
 
     componenttools.split_component_at_offset(
-        t.select_leaves()[1], (1, 32), fracture_spanners=True, tie_split_notes=False)
+        staff.select_leaves()[1], (1, 32), fracture_spanners=True, tie_split_notes=False)
 
     r'''
     \new Staff {
@@ -800,9 +800,9 @@ def test_componenttools_split_component_at_offset_11():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -827,12 +827,12 @@ def test_componenttools_split_component_at_offset_12():
     Test results from bug fix.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -850,7 +850,7 @@ def test_componenttools_split_component_at_offset_12():
     '''
 
     componenttools.split_component_at_offset(
-        t[0], (7, 32), fracture_spanners=True, tie_split_notes=False)
+        staff[0], (7, 32), fracture_spanners=True, tie_split_notes=False)
 
     r'''
     \new Staff {
@@ -871,9 +871,9 @@ def test_componenttools_split_component_at_offset_12():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -899,12 +899,12 @@ def test_componenttools_split_component_at_offset_13():
     r'''Split container between leaves and fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -922,8 +922,8 @@ def test_componenttools_split_component_at_offset_13():
     '''
 
     parts = componenttools.split_component_at_offset(
-        t[0], (1, 8), fracture_spanners=True)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+        staff[0], (1, 8), fracture_spanners=True)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -943,12 +943,12 @@ def test_componenttools_split_component_at_offset_13():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert isinstance(parts, tuple)
     assert isinstance(parts[0], list)
     assert isinstance(parts[1], list)
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -973,12 +973,12 @@ def test_componenttools_split_component_at_offset_14():
     r'''Split leaf outside of score and fracture spanners.
     '''
 
-    t = Note(0, (1, 8))
-    spannertools.BeamSpanner(t)
+    note = Note(0, (1, 8))
+    spannertools.BeamSpanner(note)
 
     "c'8 [ ]"
 
-    halves = componenttools.split_component_at_offset(t, (1, 32), fracture_spanners=True)
+    halves = componenttools.split_component_at_offset(note, (1, 32), fracture_spanners=True)
 
     "c'32 [ ]"
     assert select(halves[0][0]).is_well_formed()
@@ -992,12 +992,12 @@ def test_componenttools_split_component_at_offset_15():
     Tie leaves after split.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -1015,7 +1015,7 @@ def test_componenttools_split_component_at_offset_15():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t.select_leaves()[0], (1, 32), fracture_spanners=True, tie_split_notes=True)
+        staff.select_leaves()[0], (1, 32), fracture_spanners=True, tie_split_notes=True)
 
     r'''
     \new Staff {
@@ -1033,13 +1033,13 @@ def test_componenttools_split_component_at_offset_15():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(halves) == 2
     assert isinstance(halves, tuple)
     assert isinstance(halves[0], list)
     assert isinstance(halves[1], list)
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -1063,12 +1063,12 @@ def test_componenttools_split_component_at_offset_16():
     Tie leaves after split.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -1086,7 +1086,7 @@ def test_componenttools_split_component_at_offset_16():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t[0], (1, 32), fracture_spanners=True, tie_split_notes=True)
+        staff[0], (1, 32), fracture_spanners=True, tie_split_notes=True)
 
     r'''
     \new Staff {
@@ -1107,12 +1107,12 @@ def test_componenttools_split_component_at_offset_16():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert isinstance(halves, tuple)
     assert isinstance(halves[0], list)
     assert isinstance(halves[1], list)
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -1140,12 +1140,12 @@ def test_componenttools_split_component_at_offset_17():
     Do fracture spanners but do not tie leaves after split.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -1163,7 +1163,7 @@ def test_componenttools_split_component_at_offset_17():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t[0], (1, 5), fracture_spanners=True, tie_split_notes=False)
+        staff[0], (1, 5), fracture_spanners=True, tie_split_notes=False)
 
     r'''
     \new Staff {
@@ -1189,10 +1189,10 @@ def test_componenttools_split_component_at_offset_17():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(halves) == 2
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -1225,12 +1225,12 @@ def test_componenttools_split_component_at_offset_18():
     Do fracture spanners and do tie leaves after split.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -1248,7 +1248,7 @@ def test_componenttools_split_component_at_offset_18():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t[0], (1, 5), fracture_spanners=True, tie_split_notes=True)
+        staff[0], (1, 5), fracture_spanners=True, tie_split_notes=True)
 
     r'''
     \new Staff {
@@ -1274,10 +1274,10 @@ def test_componenttools_split_component_at_offset_18():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(halves) == 2
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -1312,11 +1312,11 @@ def test_componenttools_split_component_at_offset_19():
     What's being tested here is contents rederivation.
     '''
 
-    t = Staff(Measure((3, 8), "c'8 d'8 e'8") * 2)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((3, 8), "c'8 d'8 e'8") * 2)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -1336,7 +1336,7 @@ def test_componenttools_split_component_at_offset_19():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t[0], (7, 20), fracture_spanners=True)
+        staff[0], (7, 20), fracture_spanners=True)
 
     r'''
     \new Staff {
@@ -1365,10 +1365,10 @@ def test_componenttools_split_component_at_offset_19():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(halves) == 2
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -1405,13 +1405,13 @@ def test_componenttools_split_component_at_offset_20():
     Halves carry adjusted LilyPond multipliers.
     '''
 
-    t = Note(0, (1, 8))
-    t.lilypond_duration_multiplier = Fraction(1, 2)
+    note = Note(0, (1, 8))
+    note.lilypond_duration_multiplier = Fraction(1, 2)
 
     "c'8 * 1/2"
 
     halves = componenttools.split_component_at_offset(
-        t, (1, 32), fracture_spanners=True, tie_split_notes=False)
+        note, (1, 32), fracture_spanners=True, tie_split_notes=False)
 
     assert len(halves) == 2
     assert select(halves[0][0]).is_well_formed()
@@ -1428,13 +1428,13 @@ def test_componenttools_split_component_at_offset_21():
     Halves carry adjusted LilyPond multipliers.
     '''
 
-    t = Note(0, (1, 8))
-    t.lilypond_duration_multiplier = Fraction(1, 2)
+    note = Note(0, (1, 8))
+    note.lilypond_duration_multiplier = Fraction(1, 2)
 
     "c'8 * 1/2"
 
     halves = componenttools.split_component_at_offset(
-        t, (1, 48), fracture_spanners=True, tie_split_notes=False)
+        note, (1, 48), fracture_spanners=True, tie_split_notes=False)
 
     assert len(halves) == 2
     assert select(halves[0][0]).is_well_formed()
@@ -1450,14 +1450,14 @@ def test_componenttools_split_component_at_offset_22():
     Leaves remain unaltered.
     '''
 
-    t = Staff(Measure((2, 16), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    for leaf in t.select_leaves():
+    staff = Staff(Measure((2, 16), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    for leaf in staff.select_leaves():
         leaf.lilypond_duration_multiplier = Fraction(1, 2)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -1475,8 +1475,8 @@ def test_componenttools_split_component_at_offset_22():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t[0], (1, 16), fracture_spanners=True)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+        staff[0], (1, 16), fracture_spanners=True)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -1496,10 +1496,10 @@ def test_componenttools_split_component_at_offset_22():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(halves) == 2
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -1526,14 +1526,14 @@ def test_componenttools_split_component_at_offset_23():
     Leaf written durations stay the same but multipliers change.
     '''
 
-    t = Staff(Measure((2, 16), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    for leaf in t.select_leaves():
+    staff = Staff(Measure((2, 16), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    for leaf in staff.select_leaves():
         leaf.lilypond_duration_multiplier = Fraction(1, 2)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -1551,7 +1551,7 @@ def test_componenttools_split_component_at_offset_23():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t[0], (3, 32), fracture_spanners=True, tie_split_notes=False)
+        staff[0], (3, 32), fracture_spanners=True, tie_split_notes=False)
 
     r'''
     \new Staff {
@@ -1572,10 +1572,10 @@ def test_componenttools_split_component_at_offset_23():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(halves) == 2
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -1605,14 +1605,14 @@ def test_componenttools_split_component_at_offset_24():
     Leaf multipliers also change.
     '''
 
-    t = Staff(Measure((2, 16), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    for leaf in t.select_leaves():
+    staff = Staff(Measure((2, 16), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    for leaf in staff.select_leaves():
         leaf.lilypond_duration_multiplier = Fraction(1, 2)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -1630,7 +1630,7 @@ def test_componenttools_split_component_at_offset_24():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t[0], (2, 24), fracture_spanners=True, tie_split_notes=False)
+        staff[0], (2, 24), fracture_spanners=True, tie_split_notes=False)
 
     r'''
     \new Staff {
@@ -1655,10 +1655,10 @@ def test_componenttools_split_component_at_offset_24():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(halves) == 2
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -1690,8 +1690,8 @@ def test_componenttools_split_component_at_offset_25():
     Split at through-leaf offset without power-of-two denominator.
     '''
 
-    t = Staff([Measure((5, 16), [skiptools.Skip((1, 1))])])
-    t.select_leaves()[0].lilypond_duration_multiplier = Fraction(5, 16)
+    staff = Staff([Measure((5, 16), [skiptools.Skip((1, 1))])])
+    staff.select_leaves()[0].lilypond_duration_multiplier = Fraction(5, 16)
 
     r'''
     \new Staff {
@@ -1702,7 +1702,7 @@ def test_componenttools_split_component_at_offset_25():
     }
     '''
 
-    halves = componenttools.split_component_at_offset(t[0], (16, 80), fracture_spanners=True)
+    halves = componenttools.split_component_at_offset(staff[0], (16, 80), fracture_spanners=True)
 
     r'''
     \new Staff {
@@ -1721,10 +1721,10 @@ def test_componenttools_split_component_at_offset_25():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(halves) == 2
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -1751,11 +1751,11 @@ def test_componenttools_split_component_at_offset_26():
     Split between leaves but do fracture spanners.
     '''
 
-    t = Staff([Measure((15, 80), notetools.make_notes(
+    staff = Staff([Measure((15, 80), notetools.make_notes(
         0, [Duration(1, 32)] * 7 + [Duration(1, 64)]))])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.SlurSpanner(t.select_leaves())
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.SlurSpanner(staff.select_leaves())
 
     r'''
     \new Staff {
@@ -1775,7 +1775,7 @@ def test_componenttools_split_component_at_offset_26():
     }
     '''
 
-    halves = componenttools.split_component_at_offset(t[0], (14, 80), fracture_spanners=True)
+    halves = componenttools.split_component_at_offset(staff[0], (14, 80), fracture_spanners=True)
 
     r'''
     \new Staff {
@@ -1800,10 +1800,10 @@ def test_componenttools_split_component_at_offset_26():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(halves) == 2
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {

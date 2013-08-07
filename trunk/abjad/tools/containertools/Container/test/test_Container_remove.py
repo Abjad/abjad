@@ -11,9 +11,9 @@ def test_Container_remove_01():
     Leaf returns after removal.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.SlurSpanner(t[:])
-    spannertools.BeamSpanner(t[1])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.SlurSpanner(voice[:])
+    spannertools.BeamSpanner(voice[1])
 
     r'''
     \new Voice {
@@ -24,9 +24,9 @@ def test_Container_remove_01():
     }
     '''
 
-    #result = t.remove(t[1])
-    note = t[1]
-    t.remove(note)
+    #result = voice.remove(voice[1])
+    note = voice[1]
+    voice.remove(note)
 
     r'''
     \new Voice {
@@ -36,9 +36,9 @@ def test_Container_remove_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 (
@@ -64,10 +64,10 @@ def test_Container_remove_02():
     Container returns after removal.
     '''
 
-    t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    sequential = t[0]
-    p = spannertools.BeamSpanner(t[:])
+    staff = Staff(Container(notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    sequential = staff[0]
+    p = spannertools.BeamSpanner(staff[:])
 
     r'''
     \new Staff {
@@ -82,7 +82,7 @@ def test_Container_remove_02():
     }
     '''
 
-    t.remove(sequential)
+    staff.remove(sequential)
 
     r'''
     \new Staff {
@@ -93,9 +93,9 @@ def test_Container_remove_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {

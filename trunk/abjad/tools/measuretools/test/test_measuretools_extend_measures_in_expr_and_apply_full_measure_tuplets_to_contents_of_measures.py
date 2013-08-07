@@ -6,9 +6,9 @@ def test_measuretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_
     r'''Tupletize one measure, supplement one note.
     '''
 
-    t = Measure((4, 8), notetools.make_repeated_notes(4))
+    measure = Measure((4, 8), notetools.make_repeated_notes(4))
     measuretools.extend_measures_in_expr_and_apply_full_measure_tuplets(
-        t, notetools.make_repeated_notes(1))
+        measure, notetools.make_repeated_notes(1))
 
     r'''
     {
@@ -23,9 +23,9 @@ def test_measuretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 4/8

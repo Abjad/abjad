@@ -5,9 +5,9 @@ import py.test
 
 def test_measuretools_get_previous_measure_from_component_01():
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-    Container(t[:2])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
+    Container(staff[:2])
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     r'''
     \new Staff {
@@ -28,21 +28,21 @@ def test_measuretools_get_previous_measure_from_component_01():
     }
     '''
 
-    assert measuretools.get_previous_measure_from_component(t) is t[-1]
-    assert measuretools.get_previous_measure_from_component(t[0]) is t[0][1]
-    #assert py.test.raises(StopIteration, 'measuretools.get_previous_measure_from_component(t[0][0])')
-    assert measuretools.get_previous_measure_from_component(t[0][0]) is None
-    assert measuretools.get_previous_measure_from_component(t[0][1]) is t[0][0]
-    assert measuretools.get_previous_measure_from_component(t[1]) is t[0][1]
-    assert measuretools.get_previous_measure_from_component(t[2]) is t[1]
-    assert measuretools.get_previous_measure_from_component(t.select_leaves()[0]) is t[0][0]
-    assert measuretools.get_previous_measure_from_component(t.select_leaves()[1]) is t[0][0]
-    assert measuretools.get_previous_measure_from_component(t.select_leaves()[2]) is t[0][1]
-    assert measuretools.get_previous_measure_from_component(t.select_leaves()[3]) is t[0][1]
-    assert measuretools.get_previous_measure_from_component(t.select_leaves()[4]) is t[1]
-    assert measuretools.get_previous_measure_from_component(t.select_leaves()[5]) is t[1]
-    assert measuretools.get_previous_measure_from_component(t.select_leaves()[6]) is t[2]
-    assert measuretools.get_previous_measure_from_component(t.select_leaves()[7]) is t[2]
+    assert measuretools.get_previous_measure_from_component(staff) is staff[-1]
+    assert measuretools.get_previous_measure_from_component(staff[0]) is staff[0][1]
+    #assert py.test.raises(StopIteration, 'measuretools.get_previous_measure_from_component(staff[0][0])')
+    assert measuretools.get_previous_measure_from_component(staff[0][0]) is None
+    assert measuretools.get_previous_measure_from_component(staff[0][1]) is staff[0][0]
+    assert measuretools.get_previous_measure_from_component(staff[1]) is staff[0][1]
+    assert measuretools.get_previous_measure_from_component(staff[2]) is staff[1]
+    assert measuretools.get_previous_measure_from_component(staff.select_leaves()[0]) is staff[0][0]
+    assert measuretools.get_previous_measure_from_component(staff.select_leaves()[1]) is staff[0][0]
+    assert measuretools.get_previous_measure_from_component(staff.select_leaves()[2]) is staff[0][1]
+    assert measuretools.get_previous_measure_from_component(staff.select_leaves()[3]) is staff[0][1]
+    assert measuretools.get_previous_measure_from_component(staff.select_leaves()[4]) is staff[1]
+    assert measuretools.get_previous_measure_from_component(staff.select_leaves()[5]) is staff[1]
+    assert measuretools.get_previous_measure_from_component(staff.select_leaves()[6]) is staff[2]
+    assert measuretools.get_previous_measure_from_component(staff.select_leaves()[7]) is staff[2]
 
 
 def test_measuretools_get_previous_measure_from_component_02():

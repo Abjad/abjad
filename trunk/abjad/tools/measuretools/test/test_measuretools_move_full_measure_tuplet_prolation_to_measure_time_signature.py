@@ -6,8 +6,8 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
     r'''Move prolation of full-measure power-of-two tuplet to time signature.
     '''
 
-    t = Measure((2, 8), [tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
-    measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature(t)
+    measure = Measure((2, 8), [tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
+    measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature(measure)
 
     r'''
     {
@@ -20,9 +20,9 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 3/12
@@ -40,9 +40,9 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
     r'''Move prolation of full-measure non-power-of-two tuplet to time signature.
     '''
 
-    t = Measure((3, 16), [
+    measure = Measure((3, 16), [
         tuplettools.FixedDurationTuplet(Duration(3, 16), "c'16 d'16 e'16 f'16 g'16")])
-    measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature(t)
+    measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature(measure)
 
     r'''
     {
@@ -57,9 +57,9 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 15/80
@@ -79,9 +79,9 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
     r'''Subsume 7:6 tuplet.
     '''
 
-    t = Measure((6, 8), [
+    measure = Measure((6, 8), [
         tuplettools.FixedDurationTuplet(Duration(6, 8), "c'8 d'8 e'8 f'8 g'8 a'8 b'8")])
-    measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature(t)
+    measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature(measure)
 
     r'''
     {
@@ -98,9 +98,9 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 21/28
@@ -122,9 +122,9 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
     r'''Subsume tuplet in nonassignable measure.
     '''
 
-    t = Measure((5, 8), [
+    measure = Measure((5, 8), [
         tuplettools.FixedDurationTuplet(Duration(5, 8), "c'8 d'8 e'8 f'8 g'8 a'8")])
-    measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature(t)
+    measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature(measure)
 
     r'''
     {
@@ -146,9 +146,9 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 15/24
@@ -179,8 +179,8 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
     inner = tuplettools.FixedDurationTuplet(Duration(2, 16), notetools.make_repeated_notes(3, Duration(1, 16)))
     notes = notetools.make_repeated_notes(2)
     outer = tuplettools.FixedDurationTuplet(Duration(2, 8), [inner] + notes)
-    t = Measure((2, 8), [outer])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    measure = Measure((2, 8), [outer])
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(measure)
 
     r'''
     {
@@ -197,7 +197,7 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
     }
     '''
 
-    measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature(t)
+    measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature(measure)
 
     r'''
     {
@@ -214,9 +214,9 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 3/12

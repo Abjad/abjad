@@ -6,8 +6,8 @@ def test_labeltools_label_leaves_in_expr_with_pitch_class_numbers_01():
     r'''With number = True.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    labeltools.label_leaves_in_expr_with_pitch_class_numbers(t, number=True)
+    staff = Staff("c'8 d'8 e'8 f'8")
+    labeltools.label_leaves_in_expr_with_pitch_class_numbers(staff, number=True)
 
     r'''
     \new Staff {
@@ -34,9 +34,9 @@ def test_labeltools_label_leaves_in_expr_with_pitch_class_numbers_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             c'8

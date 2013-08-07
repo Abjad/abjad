@@ -52,12 +52,12 @@ def test_Skip___init___05():
     r'''Init skip from beamed chord.
     '''
 
-    t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
-    spannertools.BeamSpanner(t[:])
-    skip = skiptools.Skip(t[0])
-    assert isinstance(t[0], Chord)
+    staff = Staff(Chord([2, 3, 4], (1, 4)) * 3)
+    spannertools.BeamSpanner(staff[:])
+    skip = skiptools.Skip(staff[0])
+    assert isinstance(staff[0], Chord)
     assert isinstance(skip, skiptools.Skip)
-    assert t[0]._parent is t
+    assert staff[0]._parent is staff
     assert skip._parent is None
 
 
@@ -88,12 +88,12 @@ def test_Skip___init___08():
     r'''Init skip from beamed note.
     '''
 
-    t = Staff(Note(0, (1, 8)) * 3)
-    spannertools.BeamSpanner(t[:])
-    skip = skiptools.Skip(t[0])
-    assert isinstance(t[0], Note)
+    staff = Staff(Note(0, (1, 8)) * 3)
+    spannertools.BeamSpanner(staff[:])
+    skip = skiptools.Skip(staff[0])
+    assert isinstance(staff[0], Note)
     assert isinstance(skip, skiptools.Skip)
-    assert t[0]._parent is t
+    assert staff[0]._parent is staff
 
 
 def test_Skip___init___09():

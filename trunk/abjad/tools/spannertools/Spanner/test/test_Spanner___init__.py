@@ -16,8 +16,8 @@ def test_Spanner___init___02():
     r'''Init nonempty spanner.
     '''
 
-    t = Container("c'8 d'8 e'8 f'8")
-    p = spannertools.BeamSpanner(t[:])
+    container = Container("c'8 d'8 e'8 f'8")
+    p = spannertools.BeamSpanner(container[:])
 
     r'''
     {
@@ -29,7 +29,7 @@ def test_Spanner___init___02():
     '''
 
     assert len(p) == 4
-    assert p[:] == t[:]
+    assert p[:] == container[:]
 
 
 def test_Spanner___init___03():

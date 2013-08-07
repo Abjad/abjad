@@ -4,16 +4,16 @@ from abjad import *
 
 def test_leaftools_scale_preprolated_leaf_duration_01():
 
-    t = Note("c'4")
-    leaftools.scale_preprolated_leaf_duration(t, Duration(1, 2))
-    assert t.lilypond_format == "c'8"
+    note = Note("c'4")
+    leaftools.scale_preprolated_leaf_duration(note, Duration(1, 2))
+    assert note.lilypond_format == "c'8"
 
 
 def test_leaftools_scale_preprolated_leaf_duration_02():
 
-    t = Note("c'4")
-    leaftools.scale_preprolated_leaf_duration(t, Duration(2))
-    assert t.lilypond_format == "c'2"
+    note = Note("c'4")
+    leaftools.scale_preprolated_leaf_duration(note, Duration(2))
+    assert note.lilypond_format == "c'2"
 
 
 def test_leaftools_scale_preprolated_leaf_duration_03():

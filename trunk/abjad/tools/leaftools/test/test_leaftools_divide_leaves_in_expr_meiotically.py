@@ -6,9 +6,9 @@ def test_leaftools_divide_leaves_in_expr_meiotically_01():
     r'''Meiose each leaf in two.
     '''
 
-    t = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
-    leaftools.divide_leaves_in_expr_meiotically(t)
+    voice = Voice("c'8 d'8 e'8")
+    spannertools.BeamSpanner(voice[:])
+    leaftools.divide_leaves_in_expr_meiotically(voice)
 
     r'''
     \new Voice {
@@ -21,9 +21,9 @@ def test_leaftools_divide_leaves_in_expr_meiotically_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'16 [

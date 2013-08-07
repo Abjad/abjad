@@ -6,22 +6,22 @@ def test_BendAfter_format_01():
     r'''Bend formats correctly on notes.
     '''
 
-    t = Note("cs'4")
-    marktools.BendAfter(8)(t)
-    assert t.lilypond_format == "cs'4 - \\bendAfter #'8.0"
-    t.select().detach_marks(marktools.BendAfter)
-    assert t.lilypond_format == "cs'4"
+    note = Note("cs'4")
+    marktools.BendAfter(8)(note)
+    assert note.lilypond_format == "cs'4 - \\bendAfter #'8.0"
+    note.select().detach_marks(marktools.BendAfter)
+    assert note.lilypond_format == "cs'4"
 
 
 def test_BendAfter_format_02():
     r'''Bend formats correctly on chords.
     '''
 
-    t = Chord([1, 2, 3], (1, 4))
-    marktools.BendAfter(8)(t)
-    assert t.lilypond_format == "<cs' d' ef'>4 - \\bendAfter #'8.0"
-    t.select().detach_marks(marktools.BendAfter)
-    assert t.lilypond_format == "<cs' d' ef'>4"
+    chord = Chord([1, 2, 3], (1, 4))
+    marktools.BendAfter(8)(chord)
+    assert chord.lilypond_format == "<cs' d' ef'>4 - \\bendAfter #'8.0"
+    chord.select().detach_marks(marktools.BendAfter)
+    assert chord.lilypond_format == "<cs' d' ef'>4"
 
 
 def test_BendAfter_format_03():

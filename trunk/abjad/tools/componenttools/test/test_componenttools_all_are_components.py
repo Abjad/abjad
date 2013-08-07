@@ -8,8 +8,8 @@ def test_componenttools_all_are_components_01():
 
 
 def test_componenttools_all_are_components_02():
-    t = Staff("c'8 d'8 e'8 f'8") * 4
-    assert componenttools.all_are_components(t)
+    staff = Staff("c'8 d'8 e'8 f'8") * 4
+    assert componenttools.all_are_components(staff)
 
 
 def test_componenttools_all_are_components_03():

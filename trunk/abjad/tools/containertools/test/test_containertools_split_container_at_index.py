@@ -7,9 +7,9 @@ def test_containertools_split_container_at_index_01():
     r'''Split tuplet in score and do not fracture spanners.
     '''
 
-    t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    p = spannertools.BeamSpanner(t[:])
+    voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    p = spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -26,7 +26,7 @@ def test_containertools_split_container_at_index_01():
     }
     '''
 
-    containertools.split_container_at_index(t[1], 1, fracture_spanners=False)
+    containertools.split_container_at_index(voice[1], 1, fracture_spanners=False)
 
     r'''
     \new Voice {
@@ -45,9 +45,9 @@ def test_containertools_split_container_at_index_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             \times 2/3 {
@@ -71,9 +71,9 @@ def test_containertools_split_container_at_index_02():
     r'''Split in-score measure with power-of-two denominator and do not fracture spanners.
     '''
 
-    t = Voice(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    p = spannertools.BeamSpanner(t[:])
+    voice = Voice(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    p = spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -92,7 +92,7 @@ def test_containertools_split_container_at_index_02():
     }
     '''
 
-    containertools.split_container_at_index(t[1], 1, fracture_spanners=False)
+    containertools.split_container_at_index(voice[1], 1, fracture_spanners=False)
 
     r'''
     \new Voice {
@@ -114,9 +114,9 @@ def test_containertools_split_container_at_index_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {
@@ -144,9 +144,9 @@ def test_containertools_split_container_at_index_03():
     r'''Split in-score measure without power-of-two denominator and do not frature spanners.
     '''
 
-    t = Voice(Measure((3, 9), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    p = spannertools.BeamSpanner(t[:])
+    voice = Voice(Measure((3, 9), notetools.make_repeated_notes(3)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    p = spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -169,7 +169,7 @@ def test_containertools_split_container_at_index_03():
     }
     '''
 
-    containertools.split_container_at_index(t[1], 1, fracture_spanners=False)
+    containertools.split_container_at_index(voice[1], 1, fracture_spanners=False)
 
     r'''
     \new Voice {
@@ -197,9 +197,9 @@ def test_containertools_split_container_at_index_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {
@@ -226,15 +226,15 @@ def test_containertools_split_container_at_index_03():
         }
         '''
         )
-    #assert t.lilypond_format == "\\new Voice {\n\t{\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\t\\time 3/9\n\t\t\tc'8 [\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t}\n\t{\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\t\\time 1/9\n\t\t\tf'8\n\t\t}\n\t}\n\t{\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\t\\time 2/9\n\t\t\tg'8\n\t\t\ta'8 ]\n\t\t}\n\t}\n}"
+    #assert voice.lilypond_format == "\\new Voice {\n\voice{\n\voice\voice\\scaleDurations #'(8 . 9) {\n\voice\voice\voice\\time 3/9\n\voice\voice\tc'8 [\n\voice\voice\td'8\n\voice\voice\te'8\n\voice\voice}\n\voice}\n\voice{\n\voice\voice\\scaleDurations #'(8 . 9) {\n\voice\voice\voice\\time 1/9\n\voice\voice\tf'8\n\voice\voice}\n\voice}\n\voice{\n\voice\voice\\scaleDurations #'(8 . 9) {\n\voice\voice\voice\\time 2/9\n\voice\voice\tg'8\n\voice\voice\ta'8 ]\n\voice\voice}\n\voice}\n}"
 
 
 def test_containertools_split_container_at_index_04():
     r'''A single container can be index split in two by the middle; no parent.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    t1, t2 = containertools.split_container_at_index(t, 2, fracture_spanners=False)
+    voice = Voice("c'8 d'8 e'8 f'8")
+    t1, t2 = containertools.split_container_at_index(voice, 2, fracture_spanners=False)
 
     r'''
     \new Voice {
@@ -275,8 +275,8 @@ def test_containertools_split_container_at_index_05():
     Original container empties contents.
     '''
 
-    t = Staff([Voice("c'8 d'8 e'8 f'8")])
-    v = t[0]
+    staff = Staff([Voice("c'8 d'8 e'8 f'8")])
+    v = staff[0]
     spannertools.BeamSpanner(v)
     left, right = containertools.split_container_at_index(v, 0, fracture_spanners=False)
 
@@ -291,7 +291,7 @@ def test_containertools_split_container_at_index_05():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
         left.lilypond_format,
         r'''
@@ -311,7 +311,7 @@ def test_containertools_split_container_at_index_05():
         '''
         )
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \new Voice {
@@ -332,11 +332,11 @@ def test_containertools_split_container_at_index_06():
     Original container empties contents.
     '''
 
-    t = Staff([Voice("c'8 d'8 e'8 f'8")])
-    v = t[0]
+    staff = Staff([Voice("c'8 d'8 e'8 f'8")])
+    v = staff[0]
     left, right = containertools.split_container_at_index(v, 10, fracture_spanners=False)
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
         left.lilypond_format,
         r'''
@@ -363,7 +363,7 @@ def test_containertools_split_container_at_index_06():
         '''
         )
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \new Voice {
@@ -381,12 +381,12 @@ def test_containertools_split_container_at_index_07():
     r'''Voice can be index split.
     '''
 
-    t = Staff([Voice("c'8 d'8 e'8 f'8")])
-    v = t[0]
+    staff = Staff([Voice("c'8 d'8 e'8 f'8")])
+    v = staff[0]
     #assert py.test.raises(ContiguityError, 'containertools.split_container_at_index(v, -2, fracture_spanners=False)')
 
     left, right = containertools.split_container_at_index(v, -2, fracture_spanners=False)
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
         left.lilypond_format,
         r'''
@@ -413,7 +413,7 @@ def test_containertools_split_container_at_index_07():
         '''
         )
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \new Voice {
@@ -433,8 +433,8 @@ def test_containertools_split_container_at_index_08():
     r'''Slit container in score and do not fracture spanners.
     '''
 
-    t = Staff([Container("c'8 d'8 e'8 f'8")])
-    v = t[0]
+    staff = Staff([Container("c'8 d'8 e'8 f'8")])
+    v = staff[0]
     spannertools.BeamSpanner(v)
     left, right = containertools.split_container_at_index(v, 2, fracture_spanners=False)
 
@@ -451,7 +451,7 @@ def test_containertools_split_container_at_index_08():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
         left.lilypond_format,
         r'''
@@ -478,7 +478,7 @@ def test_containertools_split_container_at_index_08():
         '''
         )
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -498,8 +498,8 @@ def test_containertools_split_container_at_index_09():
     r'''Split tuplet in score and do not fracture spanners.
     '''
 
-    t = Staff([Voice([Tuplet(Fraction(4, 5), notetools.make_repeated_notes(5))])])
-    v = t[0]
+    staff = Staff([Voice([Tuplet(Fraction(4, 5), notetools.make_repeated_notes(5))])])
+    v = staff[0]
     tuplet = v[0]
     spannertools.BeamSpanner(tuplet)
     left, right = containertools.split_container_at_index(tuplet, 2, fracture_spanners=False)
@@ -520,7 +520,7 @@ def test_containertools_split_container_at_index_09():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
         left.lilypond_format,
         r'''
@@ -564,7 +564,7 @@ def test_containertools_split_container_at_index_09():
         '''
         )
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \new Voice {
@@ -587,12 +587,12 @@ def test_containertools_split_container_at_index_10():
     r'''Split left of leaf in score and do not fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    slur = spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    slur = spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -609,7 +609,7 @@ def test_containertools_split_container_at_index_10():
     }
     '''
 
-    leaf = t.select_leaves()[1]
+    leaf = staff.select_leaves()[1]
     left, right = containertools.split_container_at_index(leaf, -100, fracture_spanners=False)
 
     "Score is unchanged."
@@ -629,11 +629,11 @@ def test_containertools_split_container_at_index_10():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert left is None
     assert right is leaf
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -655,12 +655,12 @@ def test_containertools_split_container_at_index_11():
     r'''Split right of leaf in score and do not fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    slur = spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    slur = spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -677,7 +677,7 @@ def test_containertools_split_container_at_index_11():
     }
     '''
 
-    leaf = t.select_leaves()[1]
+    leaf = staff.select_leaves()[1]
     left, right = containertools.split_container_at_index(leaf, 100, fracture_spanners=False)
 
     "Score is unchanged."
@@ -697,11 +697,11 @@ def test_containertools_split_container_at_index_11():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert left is leaf
     assert right is None
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -723,10 +723,10 @@ def test_containertools_split_container_at_index_12():
     r'''Split triplet, and fracture spanners.
     '''
 
-    t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-    tuplet = t[1]
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[:])
+    voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
+    tuplet = voice[1]
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -762,7 +762,7 @@ def test_containertools_split_container_at_index_12():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
         left.lilypond_format,
         r'''
@@ -782,7 +782,7 @@ def test_containertools_split_container_at_index_12():
         )
     assert tuplet.lilypond_format == ''
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             \times 2/3 {
@@ -807,10 +807,10 @@ def test_containertools_split_container_at_index_13():
     Fracture spanners.
     '''
 
-    t = Voice(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
-    m = t[1]
-    spannertools.BeamSpanner(t[:])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    voice = Voice(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
+    m = voice[1]
+    spannertools.BeamSpanner(voice[:])
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
 
     r'''
     \new Voice {
@@ -851,7 +851,7 @@ def test_containertools_split_container_at_index_13():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
         left.lilypond_format,
         r'''
@@ -873,7 +873,7 @@ def test_containertools_split_container_at_index_13():
         )
     assert py.test.raises(UnderfullContainerError, 'm.lilypond_format')
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {
@@ -901,10 +901,10 @@ def test_containertools_split_container_at_index_14():
     Fracture spanners.
     '''
 
-    t = Voice(Measure((3, 9), notetools.make_repeated_notes(3)) * 2)
-    m = t[1]
-    spannertools.BeamSpanner(t[:])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    voice = Voice(Measure((3, 9), notetools.make_repeated_notes(3)) * 2)
+    m = voice[1]
+    spannertools.BeamSpanner(voice[:])
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
 
     r'''
     \new Voice {
@@ -955,7 +955,7 @@ def test_containertools_split_container_at_index_14():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
         left.lilypond_format,
         r'''
@@ -981,7 +981,7 @@ def test_containertools_split_container_at_index_14():
         )
     assert py.test.raises(UnderfullContainerError, 'm.lilypond_format')
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {
@@ -1015,8 +1015,8 @@ def test_containertools_split_container_at_index_15():
     Fracture spanners.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -1027,7 +1027,7 @@ def test_containertools_split_container_at_index_15():
     }
     '''
 
-    left, right = containertools.split_container_at_index(t, 2, fracture_spanners=True)
+    left, right = containertools.split_container_at_index(voice, 2, fracture_spanners=True)
 
     r'''
     \new Voice {
@@ -1062,7 +1062,7 @@ def test_containertools_split_container_at_index_15():
         '''
         )
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
         }
@@ -1076,8 +1076,8 @@ def test_containertools_split_container_at_index_16():
     Original container empties contents.
     '''
 
-    t = Staff([Voice("c'8 d'8 e'8 f'8")])
-    v = t[0]
+    staff = Staff([Voice("c'8 d'8 e'8 f'8")])
+    v = staff[0]
     spannertools.BeamSpanner(v)
 
     r'''
@@ -1130,7 +1130,7 @@ def test_containertools_split_container_at_index_16():
         '''
         )
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \new Voice {
@@ -1151,8 +1151,8 @@ def test_containertools_split_container_at_index_17():
     Original container empties contents.
     '''
 
-    t = Staff([Voice("c'8 d'8 e'8 f'8")])
-    v = t[0]
+    staff = Staff([Voice("c'8 d'8 e'8 f'8")])
+    v = staff[0]
     spannertools.BeamSpanner(v)
 
     left, right = containertools.split_container_at_index(v, 10, fracture_spanners=True)
@@ -1194,7 +1194,7 @@ def test_containertools_split_container_at_index_17():
         '''
         )
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \new Voice {
@@ -1212,12 +1212,12 @@ def test_containertools_split_container_at_index_18():
     r'''Split measure in score and fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    slur = spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    slur = spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -1234,8 +1234,8 @@ def test_containertools_split_container_at_index_18():
     }
     '''
 
-    left, right = containertools.split_container_at_index(t[0], 1, fracture_spanners=True)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    left, right = containertools.split_container_at_index(staff[0], 1, fracture_spanners=True)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -1255,9 +1255,9 @@ def test_containertools_split_container_at_index_18():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -1282,12 +1282,12 @@ def test_containertools_split_container_at_index_19():
     r'''Split left of leaf in score and fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    slur = spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    slur = spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
 
     r'''
@@ -1305,7 +1305,7 @@ def test_containertools_split_container_at_index_19():
     }
     '''
 
-    leaf = t.select_leaves()[1]
+    leaf = staff.select_leaves()[1]
     left, right = containertools.split_container_at_index(leaf, -100, fracture_spanners=True)
 
     r'''
@@ -1323,11 +1323,11 @@ def test_containertools_split_container_at_index_19():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert left is None
     assert right is leaf
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -1349,12 +1349,12 @@ def test_containertools_split_container_at_index_20():
     r'''Split right of leaf in score and fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
-    slur = spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    spannertools.BeamSpanner(staff[0])
+    spannertools.BeamSpanner(staff[1])
+    slur = spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -1371,7 +1371,7 @@ def test_containertools_split_container_at_index_20():
     }
     '''
 
-    leaf = t.select_leaves()[1]
+    leaf = staff.select_leaves()[1]
     left, right = containertools.split_container_at_index(leaf, 100, fracture_spanners=True)
 
     r'''
@@ -1389,11 +1389,11 @@ def test_containertools_split_container_at_index_20():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert left is leaf
     assert right is None
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {
@@ -1417,10 +1417,10 @@ def test_containertools_split_container_at_index_21():
     Measure contents necessitate denominator change.
     '''
 
-    t = Staff([Measure((3, 12), "c'8. d'8.")])
-    spannertools.BeamSpanner(t[0])
-    spannertools.SlurSpanner(t.select_leaves())
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff([Measure((3, 12), "c'8. d'8.")])
+    spannertools.BeamSpanner(staff[0])
+    spannertools.SlurSpanner(staff.select_leaves())
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -1434,8 +1434,8 @@ def test_containertools_split_container_at_index_21():
     }
     '''
 
-    halves = containertools.split_container_at_index(t[0], 1, fracture_spanners=True)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    halves = containertools.split_container_at_index(staff[0], 1, fracture_spanners=True)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -1454,10 +1454,10 @@ def test_containertools_split_container_at_index_21():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert len(halves) == 2
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {

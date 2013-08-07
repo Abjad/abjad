@@ -7,9 +7,9 @@ def test_measuretools_multiply_and_scale_contents_of_measures_in_expr_01():
         Time signature 3/8 goes to 9/24.
         Numerator and denominator both triple.'''
 
-    t = Measure((3, 8), "c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
-    measuretools.multiply_and_scale_contents_of_measures_in_expr(t, [(3, 3)])
+    measure = Measure((3, 8), "c'8 d'8 e'8")
+    spannertools.BeamSpanner(measure[:])
+    measuretools.multiply_and_scale_contents_of_measures_in_expr(measure, [(3, 3)])
 
     r'''
     {
@@ -28,9 +28,9 @@ def test_measuretools_multiply_and_scale_contents_of_measures_in_expr_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 9/24
@@ -56,9 +56,9 @@ def test_measuretools_multiply_and_scale_contents_of_measures_in_expr_02():
     Numerator quadruples and denominator quintuples.
     '''
 
-    t = Measure((3, 16), "c'16 d'16 e'16")
-    spannertools.BeamSpanner(t[:])
-    measuretools.multiply_and_scale_contents_of_measures_in_expr(t, [(4, 5)])
+    measure = Measure((3, 16), "c'16 d'16 e'16")
+    spannertools.BeamSpanner(measure[:])
+    measuretools.multiply_and_scale_contents_of_measures_in_expr(measure, [(4, 5)])
 
     r'''
     {
@@ -80,9 +80,9 @@ def test_measuretools_multiply_and_scale_contents_of_measures_in_expr_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 12/80
@@ -110,9 +110,9 @@ def test_measuretools_multiply_and_scale_contents_of_measures_in_expr_03():
         Time signature 3/16 goes to 12/64.
         Numerator and denominator both quadruple.'''
 
-    t = Measure((3, 16), "c'16 d'16 e'16")
-    spannertools.BeamSpanner(t[:])
-    measuretools.multiply_and_scale_contents_of_measures_in_expr(t, [(4, 4)])
+    measure = Measure((3, 16), "c'16 d'16 e'16")
+    spannertools.BeamSpanner(measure[:])
+    measuretools.multiply_and_scale_contents_of_measures_in_expr(measure, [(4, 4)])
 
     r'''
     {
@@ -132,9 +132,9 @@ def test_measuretools_multiply_and_scale_contents_of_measures_in_expr_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        measure.lilypond_format,
         r'''
         {
             \time 12/64

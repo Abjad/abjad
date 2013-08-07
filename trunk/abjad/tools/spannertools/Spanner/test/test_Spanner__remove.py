@@ -11,9 +11,9 @@ def test_Spanner__remove_01():
     Follow immediately with operation to remove component from score.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    p = spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    p = spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -37,9 +37,9 @@ def test_Spanner__remove_01():
     }
     '''
 
-    assert not select(t).is_well_formed()
+    assert not select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [
@@ -60,9 +60,9 @@ def test_Spanner__remove_02():
     Note spanner.pop() and spanner.pop_left() are composer-safe.
     '''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    p = spannertools.BeamSpanner(t[:])
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    p = spannertools.BeamSpanner(voice[:])
 
     r'''
     \new Voice {
@@ -100,9 +100,9 @@ def test_Spanner__remove_02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {

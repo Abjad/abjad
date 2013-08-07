@@ -7,11 +7,11 @@ def test_SliceSelection__withdraw_from_crossing_spanners_01():
     r'''Withdraw thread-contiguous components from crossing spanners.
     '''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beam = spannertools.BeamSpanner(t[0][:])
-    slur = spannertools.SlurSpanner(t[1][:])
-    trill = spannertools.TrillSpanner(t.select_leaves())
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    beam = spannertools.BeamSpanner(voice[0][:])
+    slur = spannertools.SlurSpanner(voice[1][:])
+    trill = spannertools.TrillSpanner(voice.select_leaves())
 
     r'''
     \new Voice {
@@ -26,13 +26,13 @@ def test_SliceSelection__withdraw_from_crossing_spanners_01():
     }
     '''
 
-    spanners = spannertools.get_spanners_contained_by_components([t])
+    spanners = spannertools.get_spanners_contained_by_components([voice])
     assert len(spanners) == 3
     assert beam in spanners
     assert slur in spanners
     assert trill in spanners
 
-    voice_selection = selectiontools.SliceSelection([t])
+    voice_selection = selectiontools.SliceSelection([voice])
     voice_selection._withdraw_from_crossing_spanners()
     assert len(spanners) == 3
     assert beam in spanners
@@ -44,11 +44,11 @@ def test_SliceSelection__withdraw_from_crossing_spanners_02():
     r'''Withdraw thread-contiguous components from crossing spanners.
     '''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beam = spannertools.BeamSpanner(t[0][:])
-    slur = spannertools.SlurSpanner(t[1][:])
-    trill = spannertools.TrillSpanner(t.select_leaves())
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    beam = spannertools.BeamSpanner(voice[0][:])
+    slur = spannertools.SlurSpanner(voice[1][:])
+    trill = spannertools.TrillSpanner(voice.select_leaves())
 
     r'''
     \new Voice {
@@ -63,12 +63,12 @@ def test_SliceSelection__withdraw_from_crossing_spanners_02():
     }
     '''
 
-    spanners = spannertools.get_spanners_contained_by_components(t[0:1])
+    spanners = spannertools.get_spanners_contained_by_components(voice[0:1])
     assert len(spanners) == 2
     assert beam in spanners
     assert trill in spanners
 
-    t[:1]._withdraw_from_crossing_spanners()
+    voice[:1]._withdraw_from_crossing_spanners()
 
     r'''
     \new Voice {
@@ -83,12 +83,12 @@ def test_SliceSelection__withdraw_from_crossing_spanners_02():
     }
     '''
 
-    spanners = spannertools.get_spanners_contained_by_components(t[0:1])
+    spanners = spannertools.get_spanners_contained_by_components(voice[0:1])
     assert len(spanners) == 1
     assert beam in spanners
 
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             {

@@ -8,19 +8,19 @@ def test_Measure_number_01():
     '''
 
     time_signature_pairs = [(3, 16), (5, 16), (5, 16)]
-    t = Staff(measuretools.make_measures_with_full_measure_spacer_skips(time_signature_pairs))
+    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(time_signature_pairs))
 
-    assert t[0].measure_number == 1
-    assert t[1].measure_number == 2
-    assert t[2].measure_number == 3
+    assert staff[0].measure_number == 1
+    assert staff[1].measure_number == 2
+    assert staff[2].measure_number == 3
 
 
 def test_Measure_number_02():
     r'''Orphan measures number correctly starting from 1.
     '''
 
-    t = Measure((3, 8), "c'8 d'8 e'8")
-    assert t.measure_number == 1
+    measure = Measure((3, 8), "c'8 d'8 e'8")
+    assert measure.measure_number == 1
 
 
 def test_Measure_number_03():

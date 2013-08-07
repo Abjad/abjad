@@ -5,24 +5,24 @@ import py.test
 
 def test_Component__get_namesake_01():
 
-    t = Staff("c'8 d'8 e'8 f'8")
+    staff = Staff("c'8 d'8 e'8 f'8")
 
-    assert t[0]._get_namesake(0) is t[0]
-    assert t[0]._get_namesake(1) is t[1]
-    assert t[0]._get_namesake(2) is t[2]
-    assert t[0]._get_namesake(3) is t[3]
+    assert staff[0]._get_namesake(0) is staff[0]
+    assert staff[0]._get_namesake(1) is staff[1]
+    assert staff[0]._get_namesake(2) is staff[2]
+    assert staff[0]._get_namesake(3) is staff[3]
 
-    assert t[3]._get_namesake(0) is t[3]
-    assert t[3]._get_namesake(-1) is t[2]
-    assert t[3]._get_namesake(-2) is t[1]
-    assert t[3]._get_namesake(-3) is t[0]
+    assert staff[3]._get_namesake(0) is staff[3]
+    assert staff[3]._get_namesake(-1) is staff[2]
+    assert staff[3]._get_namesake(-2) is staff[1]
+    assert staff[3]._get_namesake(-3) is staff[0]
 
 
 def test_Component__get_namesake_02():
 
-    t = Staff("c'8 d'8 e'8 f'8")
+    staff = Staff("c'8 d'8 e'8 f'8")
 
-    assert t[0]._get_namesake(99) is None
+    assert staff[0]._get_namesake(99) is None
 
 
 def test_Component__get_namesake_03():
@@ -30,11 +30,11 @@ def test_Component__get_namesake_03():
     parentage signatures and thus have no _next_namesake.
     '''
 
-    t = Container(Voice(notetools.make_repeated_notes(2)) * 2)
+    container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
 
-    assert t.select_leaves()[0]._get_namesake(1) is t.select_leaves()[1]
-    assert t.select_leaves()[1]._get_namesake(1) is None
-    assert t.select_leaves()[2]._get_namesake(1) is t.select_leaves()[3]
+    assert container.select_leaves()[0]._get_namesake(1) is container.select_leaves()[1]
+    assert container.select_leaves()[1]._get_namesake(1) is None
+    assert container.select_leaves()[2]._get_namesake(1) is container.select_leaves()[3]
 
 
 def test_Component__get_namesake_04():
@@ -42,9 +42,9 @@ def test_Component__get_namesake_04():
     different parentage signatures and thus have no _next_namesake.
     '''
 
-    t = Container(Voice(notetools.make_repeated_notes(2)) * 2)
+    container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
 
-    assert t[0]._get_namesake(1) is None
+    assert container[0]._get_namesake(1) is None
 
 
 def test_Component__get_namesake_05():
@@ -52,13 +52,13 @@ def test_Component__get_namesake_05():
     and thus do not _next_namesake.
     '''
 
-    t = Container(Voice(notetools.make_repeated_notes(2)) * 2)
-    t[0].name = 'voice'
+    container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
+    container[0].name = 'voice'
 
-    assert t[0]._get_namesake(1) is None
-    assert t.select_leaves()[0]._get_namesake(1) is t.select_leaves()[1]
-    assert t.select_leaves()[1]._get_namesake(1) is None
-    assert t.select_leaves()[2]._get_namesake(1) is t.select_leaves()[3]
+    assert container[0]._get_namesake(1) is None
+    assert container.select_leaves()[0]._get_namesake(1) is container.select_leaves()[1]
+    assert container.select_leaves()[1]._get_namesake(1) is None
+    assert container.select_leaves()[2]._get_namesake(1) is container.select_leaves()[3]
 
 
 def test_Component__get_namesake_06():
@@ -67,38 +67,38 @@ def test_Component__get_namesake_06():
     next namesake Component found.
     '''
 
-    t = Container(Voice(notetools.make_repeated_notes(2)) * 2)
-    t[0].name = 'voice'
-    t[1].name = 'voice'
+    container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
+    container[0].name = 'voice'
+    container[1].name = 'voice'
 
-    assert t[0]._get_namesake(1) is t[1]
-    assert t[1]._get_namesake(1) is None
-    assert t.select_leaves()[1]._get_namesake(1) is t.select_leaves()[2]
+    assert container[0]._get_namesake(1) is container[1]
+    assert container[1]._get_namesake(1) is None
+    assert container.select_leaves()[1]._get_namesake(1) is container.select_leaves()[2]
 
 
 def test_Component__get_namesake_07():
     r'''Components need not be strictly contiguous.
     '''
 
-    t = Container(Voice(notetools.make_repeated_notes(2)) * 2)
-    t[0].name = 'voice'
-    t[1].name = 'voice'
-    t.insert(1, Rest((1, 2)))
+    container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
+    container[0].name = 'voice'
+    container[1].name = 'voice'
+    container.insert(1, Rest((1, 2)))
 
-    assert t[0]._get_namesake(1) is t[2]
-    assert t.select_leaves()[1]._get_namesake(1) is t.select_leaves()[3]
+    assert container[0]._get_namesake(1) is container[2]
+    assert container.select_leaves()[1]._get_namesake(1) is container.select_leaves()[3]
 
 
 def test_Component__get_namesake_08():
-    r'''Components need not thread (Staves don't thread).
+    r'''Components need not thread (Staves don'container thread).
     '''
 
-    t = Container(Staff(notetools.make_repeated_notes(2)) * 2)
-    t[0].name = 'staff'
-    t[1].name = 'staff'
+    container = Container(Staff(notetools.make_repeated_notes(2)) * 2)
+    container[0].name = 'staff'
+    container[1].name = 'staff'
 
-    assert t[0]._get_namesake(1) is t[1]
-    assert t.select_leaves()[1]._get_namesake(1) is t.select_leaves()[2]
+    assert container[0]._get_namesake(1) is container[1]
+    assert container.select_leaves()[1]._get_namesake(1) is container.select_leaves()[2]
 
 
 def test_Component__get_namesake_09():

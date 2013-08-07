@@ -4,12 +4,12 @@ from abjad import *
 
 def test_spannertools_apply_octavation_spanner_to_pitched_components_01():
 
-    t = Staff(notetools.make_notes([24, 26, 27, 29], [(1, 8)]))
-    spannertools.apply_octavation_spanner_to_pitched_components(t, ottava_numbered_diatonic_pitch=14)
+    staff = Staff(notetools.make_notes([24, 26, 27, 29], [(1, 8)]))
+    spannertools.apply_octavation_spanner_to_pitched_components(staff, ottava_numbered_diatonic_pitch=14)
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r"""
         \new Staff {
             \ottava #1

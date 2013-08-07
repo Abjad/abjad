@@ -6,8 +6,8 @@ def test_Staff_time_signature_01():
     r'''Force time signature on nonempty staff.
     '''
 
-    t = Staff(Note("c'4") * 8)
-    contexttools.TimeSignatureMark((2, 4))(t)
+    staff = Staff(Note("c'4") * 8)
+    contexttools.TimeSignatureMark((2, 4))(staff)
 
     r'''
     \new Staff {
@@ -24,7 +24,7 @@ def test_Staff_time_signature_01():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \time 2/4
@@ -45,8 +45,8 @@ def test_Staff_time_signature_02():
     r'''Force time signature on empty staff.
     '''
 
-    t = Staff([])
-    contexttools.TimeSignatureMark((2, 4))(t)
+    staff = Staff([])
+    contexttools.TimeSignatureMark((2, 4))(staff)
 
     r'''
     \new Staff {
@@ -55,7 +55,7 @@ def test_Staff_time_signature_02():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \time 2/4
@@ -68,9 +68,9 @@ def test_Staff_time_signature_03():
     r'''Staff time signature carries over to staff-contained leaves.
     '''
 
-    t = Staff(Note("c'4") * 8)
-    contexttools.TimeSignatureMark((2, 4))(t)
-    for x in t:
+    staff = Staff(Note("c'4") * 8)
+    contexttools.TimeSignatureMark((2, 4))(staff)
+    for x in staff:
         assert x.get_effective_context_mark(contexttools.TimeSignatureMark) \
             == contexttools.TimeSignatureMark((2, 4))
 

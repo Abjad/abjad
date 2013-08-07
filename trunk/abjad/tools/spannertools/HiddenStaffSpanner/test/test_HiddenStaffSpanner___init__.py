@@ -14,9 +14,9 @@ def test_HiddenStaffSpanner___init___02():
     r'''Hide staff around one measure.
     '''
 
-    t = Staff(Measure((2, 8), "c'8 d'8") * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(Measure((2, 8), "c'8 d'8") * 3)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -38,7 +38,7 @@ def test_HiddenStaffSpanner___init___02():
     }
     '''
 
-    spannertools.HiddenStaffSpanner(t[1])
+    spannertools.HiddenStaffSpanner(staff[1])
 
     r'''
     \new Staff {
@@ -62,9 +62,9 @@ def test_HiddenStaffSpanner___init___02():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             {

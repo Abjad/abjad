@@ -3,21 +3,21 @@ from abjad import *
 
 
 def test_Staff_extend_notes_01():
-    t = Staff([Note(n, (1, 8)) for n in range(8)])
-    t.extend(componenttools.copy_components_and_immediate_parent_of_first_component(t[0:1]))
-    assert select(t).is_well_formed()
+    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    staff.extend(componenttools.copy_components_and_immediate_parent_of_first_component(staff[0:1]))
+    assert select(staff).is_well_formed()
 
 
 def test_Staff_extend_notes_02():
-    t = Staff([Note(n, (1, 8)) for n in range(8)])
-    t.extend(componenttools.copy_components_and_immediate_parent_of_first_component(t[0:3]))
-    assert select(t).is_well_formed()
+    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    staff.extend(componenttools.copy_components_and_immediate_parent_of_first_component(staff[0:3]))
+    assert select(staff).is_well_formed()
 
 
 def test_Staff_extend_notes_03():
-    t = Staff([Note(n, (1, 8)) for n in range(8)])
-    t.extend(componenttools.copy_components_and_immediate_parent_of_first_component(t[1:7]))
-    assert select(t).is_well_formed()
+    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    staff.extend(componenttools.copy_components_and_immediate_parent_of_first_component(staff[1:7]))
+    assert select(staff).is_well_formed()
 
 
 def test_Staff_extend_notes_04():

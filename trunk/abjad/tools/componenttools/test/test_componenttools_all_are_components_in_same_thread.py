@@ -19,7 +19,7 @@ def test_componenttools_all_are_components_in_same_thread_02():
     r'''Container and leaves all thread.
     '''
 
-    t = Container("c'8 d'8 e'8 f'8")
+    container = Container("c'8 d'8 e'8 f'8")
 
     r'''
     {
@@ -30,7 +30,7 @@ def test_componenttools_all_are_components_in_same_thread_02():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(list(iterationtools.iterate_components_in_expr(t, Component)))
+    assert componenttools.all_are_components_in_same_thread(list(iterationtools.iterate_components_in_expr(container, Component)))
 
 
 def test_componenttools_all_are_components_in_same_thread_03():
@@ -54,7 +54,7 @@ def test_componenttools_all_are_components_in_same_thread_04():
     r'''Voice and leaves all thread.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
+    voice = Voice("c'8 d'8 e'8 f'8")
 
     r'''
     \new Voice {
@@ -66,14 +66,14 @@ def test_componenttools_all_are_components_in_same_thread_04():
     '''
 
     assert componenttools.all_are_components_in_same_thread(
-        list(iterationtools.iterate_components_in_expr(t, Component)))
+        list(iterationtools.iterate_components_in_expr(voice, Component)))
 
 
 def test_componenttools_all_are_components_in_same_thread_05():
     r'''Anonymous staff and leaves all thread.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
+    staff = Staff("c'8 d'8 e'8 f'8")
 
     r'''
     \new Staff {
@@ -84,15 +84,15 @@ def test_componenttools_all_are_components_in_same_thread_05():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(list(iterationtools.iterate_components_in_expr(t, Component)))
+    assert componenttools.all_are_components_in_same_thread(list(iterationtools.iterate_components_in_expr(staff, Component)))
 
 
 def test_componenttools_all_are_components_in_same_thread_06():
     r'''Voice, sequential and leaves all thread.
     '''
 
-    t = Voice(Container(notetools.make_repeated_notes(4)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    voice = Voice(Container(notetools.make_repeated_notes(4)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
 
     r'''
     \new Voice {
@@ -112,15 +112,15 @@ def test_componenttools_all_are_components_in_same_thread_06():
     '''
 
     assert componenttools.all_are_components_in_same_thread(
-        list(iterationtools.iterate_components_in_expr(t, Component)))
+        list(iterationtools.iterate_components_in_expr(voice, Component)))
 
 
 def test_componenttools_all_are_components_in_same_thread_07():
     r'''Anonymous voice, tuplets and leaves all thread.
     '''
 
-    t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
 
     r'''
     \new Voice {
@@ -137,15 +137,15 @@ def test_componenttools_all_are_components_in_same_thread_07():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(list(iterationtools.iterate_components_in_expr(t, Component)))
+    assert componenttools.all_are_components_in_same_thread(list(iterationtools.iterate_components_in_expr(voice, Component)))
 
 
 def test_componenttools_all_are_components_in_same_thread_08():
     r'''Can not thread across anonymous voices.
     '''
 
-    t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    staff = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     r'''
     \new Staff {
@@ -164,20 +164,20 @@ def test_componenttools_all_are_components_in_same_thread_08():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
-    assert not componenttools.all_are_components_in_same_thread(t[:])
+    assert componenttools.all_are_components_in_same_thread(staff.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(staff.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(staff.select_leaves())
+    assert not componenttools.all_are_components_in_same_thread(staff[:])
 
 
 def test_componenttools_all_are_components_in_same_thread_09():
     r'''Can thread across like-named voices.
     '''
 
-    t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    t[0].name = 'foo'
-    t[1].name = 'foo'
+    staff = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    staff[0].name = 'foo'
+    staff[1].name = 'foo'
 
     r'''
     \new Staff {
@@ -196,17 +196,17 @@ def test_componenttools_all_are_components_in_same_thread_09():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert componenttools.all_are_components_in_same_thread(staff.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_10():
     r'''Can not thread across differently named voices.
     '''
 
-    t = Staff(Voice(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    t[0].name = 'foo'
-    t[1].name = 'bar'
+    staff = Staff(Voice(notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    staff[0].name = 'foo'
+    staff[1].name = 'bar'
 
     r'''
     \new Staff {
@@ -221,7 +221,7 @@ def test_componenttools_all_are_components_in_same_thread_10():
     }
     '''
 
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert not componenttools.all_are_components_in_same_thread(staff.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_11():
@@ -229,8 +229,8 @@ def test_componenttools_all_are_components_in_same_thread_11():
     Can not thread across anonymous staves.
     '''
 
-    t = Container(Staff([Voice(notetools.make_repeated_notes(2))]) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    container = Container(Staff([Voice(notetools.make_repeated_notes(2))]) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(container)
 
     r'''
     {
@@ -249,7 +249,7 @@ def test_componenttools_all_are_components_in_same_thread_11():
     }
     '''
 
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_12():
@@ -257,10 +257,10 @@ def test_componenttools_all_are_components_in_same_thread_12():
     Can not thread across anonymous staves.
     '''
 
-    t = Container(Staff(Voice(notetools.make_repeated_notes(2)) * 2) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    t[0].is_parallel = True
-    t[1].is_parallel = True
+    container = Container(Staff(Voice(notetools.make_repeated_notes(2)) * 2) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(container)
+    container[0].is_parallel = True
+    container[1].is_parallel = True
 
     r'''
     {
@@ -287,15 +287,15 @@ def test_componenttools_all_are_components_in_same_thread_12():
     }
     '''
 
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves()[:4])
 
 
 def test_componenttools_all_are_components_in_same_thread_13():
     r'''Anonymous voice, sequentials and leaves all thread.
     '''
 
-    t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
 
     r'''
     \new Voice {
@@ -310,7 +310,7 @@ def test_componenttools_all_are_components_in_same_thread_13():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert componenttools.all_are_components_in_same_thread(voice.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_14():
@@ -318,10 +318,10 @@ def test_componenttools_all_are_components_in_same_thread_14():
     Can not thread across differently named IMPLICIT voices.
     '''
 
-    t = Container(Staff(Note(0, (1, 8)) * 4) * 2)
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
-    t[0].name = 'foo'
-    t[1].name = 'foo'
+    container = Container(Staff(Note(0, (1, 8)) * 4) * 2)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
+    container[0].name = 'foo'
+    container[1].name = 'foo'
 
     r'''
     {
@@ -340,16 +340,16 @@ def test_componenttools_all_are_components_in_same_thread_14():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[:4])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_15():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
-    t = Container([Container(notetools.make_repeated_notes(4)), Voice(notetools.make_repeated_notes(4))])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    container = Container([Container(notetools.make_repeated_notes(4)), Voice(notetools.make_repeated_notes(4))])
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(container)
 
     r'''
     {
@@ -368,17 +368,17 @@ def test_componenttools_all_are_components_in_same_thread_15():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_16():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
-    t = Container([Voice(notetools.make_repeated_notes(4)), Container(notetools.make_repeated_notes(4))])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    container = Container([Voice(notetools.make_repeated_notes(4)), Container(notetools.make_repeated_notes(4))])
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(container)
 
     r'''
     {
@@ -397,18 +397,18 @@ def test_componenttools_all_are_components_in_same_thread_16():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_17():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
-    t = Container([Container(notetools.make_repeated_notes(4)), Voice(notetools.make_repeated_notes(4))])
-    t[1].name = 'foo'
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    container = Container([Container(notetools.make_repeated_notes(4)), Voice(notetools.make_repeated_notes(4))])
+    container[1].name = 'foo'
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(container)
 
     r'''
     {
@@ -427,18 +427,18 @@ def test_componenttools_all_are_components_in_same_thread_17():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_18():
     r'''Can not thread over differently named IMPLICIT voices.
     '''
 
-    t = Container([Voice(notetools.make_repeated_notes(4)), Container(notetools.make_repeated_notes(4))])
-    t[0].name = 'foo'
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    container = Container([Voice(notetools.make_repeated_notes(4)), Container(notetools.make_repeated_notes(4))])
+    container[0].name = 'foo'
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(container)
 
     r'''
     {
@@ -457,17 +457,17 @@ def test_componenttools_all_are_components_in_same_thread_18():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_19():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
-    t = Container([Container(notetools.make_repeated_notes(4)), Staff(notetools.make_repeated_notes(4))])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    container = Container([Container(notetools.make_repeated_notes(4)), Staff(notetools.make_repeated_notes(4))])
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(container)
 
     r'''
     {
@@ -486,17 +486,17 @@ def test_componenttools_all_are_components_in_same_thread_19():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_20():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
-    t = Container([Staff(Note(0, (1, 8)) * 4), Container(Note(0, (1, 8)) * 4)])
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
+    container = Container([Staff(Note(0, (1, 8)) * 4), Container(Note(0, (1, 8)) * 4)])
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
 
     r'''
     {
@@ -515,17 +515,17 @@ def test_componenttools_all_are_components_in_same_thread_20():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_21():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
-    t = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
+    container = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
 
     r'''
     {
@@ -542,17 +542,17 @@ def test_componenttools_all_are_components_in_same_thread_21():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_22():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
-    t = Container([Voice(Note(0, (1, 8)) * 4)] + Note(0, (1, 8)) * 4)
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
+    container = Container([Voice(Note(0, (1, 8)) * 4)] + Note(0, (1, 8)) * 4)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
 
 
     r'''
@@ -570,18 +570,18 @@ def test_componenttools_all_are_components_in_same_thread_22():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_23():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
-    t = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
-    t[4].name = 'foo'
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
+    container = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
+    container[4].name = 'foo'
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
 
     r'''
     {
@@ -598,9 +598,9 @@ def test_componenttools_all_are_components_in_same_thread_23():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_24():
@@ -610,9 +610,9 @@ def test_componenttools_all_are_components_in_same_thread_24():
     Abjad does not.
     '''
 
-    t = Container([Voice(Note(0, (1, 8)) * 4)] + Note(0, (1, 8)) * 4)
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
-    t[0].name = 'foo'
+    container = Container([Voice(Note(0, (1, 8)) * 4)] + Note(0, (1, 8)) * 4)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
+    container[0].name = 'foo'
 
     r'''
     {
@@ -629,17 +629,17 @@ def test_componenttools_all_are_components_in_same_thread_24():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_25():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
-    t = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
+    container = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
 
     r'''
     {
@@ -656,18 +656,18 @@ def test_componenttools_all_are_components_in_same_thread_25():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_26():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
-    t = Container(notetools.make_repeated_notes(4))
-    t.insert(0, Staff(notetools.make_repeated_notes(4)))
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+    container = Container(notetools.make_repeated_notes(4))
+    container.insert(0, Staff(notetools.make_repeated_notes(4)))
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(container)
 
     r'''
     {
@@ -684,9 +684,9 @@ def test_componenttools_all_are_components_in_same_thread_26():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_27():
@@ -696,7 +696,7 @@ def test_componenttools_all_are_components_in_same_thread_27():
     v = Voice([Note(n, (1, 8)) for n in range(4)])
     q = Container([v])
     notes = [Note(n, (1, 8)) for n in range(4, 8)]
-    t = Container([q] + notes)
+    container = Container([q] + notes)
 
     r'''
     {
@@ -715,9 +715,9 @@ def test_componenttools_all_are_components_in_same_thread_27():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_28():
@@ -728,7 +728,7 @@ def test_componenttools_all_are_components_in_same_thread_28():
     v.name = 'foo'
     q = Container([v])
     notes = [Note(n, (1, 8)) for n in range(4, 8)]
-    t = Container([q] + notes)
+    container = Container([q] + notes)
 
     r'''
     {
@@ -747,9 +747,9 @@ def test_componenttools_all_are_components_in_same_thread_28():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_29():
@@ -761,7 +761,7 @@ def test_componenttools_all_are_components_in_same_thread_29():
     v2 = Voice([v1])
     v2.name = 'bar'
     notes = [Note(n, (1, 8)) for n in range(4, 8)]
-    t = Container([v2] + notes)
+    container = Container([v2] + notes)
 
     r'''
     {
@@ -780,9 +780,9 @@ def test_componenttools_all_are_components_in_same_thread_29():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_30():
@@ -792,7 +792,7 @@ def test_componenttools_all_are_components_in_same_thread_30():
     v1 = Voice([Note(n, (1, 8)) for n in range(4)])
     v2 = Voice([v1])
     notes = [Note(n, (1, 8)) for n in range(4, 8)]
-    t = Container([v2] + notes)
+    container = Container([v2] + notes)
 
     r'''
     {
@@ -811,9 +811,9 @@ def test_componenttools_all_are_components_in_same_thread_30():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_31():
@@ -825,7 +825,7 @@ def test_componenttools_all_are_components_in_same_thread_31():
     vbottom = Voice(Note(0, (1, 8)) * 4)
     p = Container([vtop, vbottom])
     p.is_parallel = True
-    t = Container(notes + [p])
+    container = Container(notes + [p])
 
     r'''
     {
@@ -850,17 +850,17 @@ def test_componenttools_all_are_components_in_same_thread_31():
     }
     '''
 
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves()[:8])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves()[:8])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves()[4:])
 
 
 def test_componenttools_all_are_components_in_same_thread_32():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
-    t = Container([Container(Voice(Note(0, (1, 8)) * 4) * 2)] + Note(0, (1, 8)) * 4)
-    t[0].is_parallel = True
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
+    container = Container([Container(Voice(Note(0, (1, 8)) * 4) * 2)] + Note(0, (1, 8)) * 4)
+    container[0].is_parallel = True
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
 
     r'''
     {
@@ -885,8 +885,8 @@ def test_componenttools_all_are_components_in_same_thread_32():
     }
     '''
 
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves()[:8])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves()[:8])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves()[4:])
 
 
 def test_componenttools_all_are_components_in_same_thread_33():
@@ -894,11 +894,11 @@ def test_componenttools_all_are_components_in_same_thread_33():
     Can not thread across differently named voices.
     '''
 
-    t = Container(Note(0, (1, 8)) * 4)
+    container = Container(Note(0, (1, 8)) * 4)
     a, b = Voice(Note(0, (1, 8)) * 4) * 2
     a.insert(2, b)
-    t.insert(2, a)
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
+    container.insert(2, a)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
 
     outer = (0, 1, 10, 11)
     middle = (2, 3, 8, 9)
@@ -925,10 +925,10 @@ def test_componenttools_all_are_components_in_same_thread_33():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in outer])
-    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in middle])
-    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in inner])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread([container.select_leaves()[i] for i in outer])
+    assert componenttools.all_are_components_in_same_thread([container.select_leaves()[i] for i in middle])
+    assert componenttools.all_are_components_in_same_thread([container.select_leaves()[i] for i in inner])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves()[:4])
 
 
 def test_componenttools_all_are_components_in_same_thread_34():
@@ -936,11 +936,11 @@ def test_componenttools_all_are_components_in_same_thread_34():
     Can not thread across differently named IMPLICIT voices.
     '''
 
-    t = Staff(Note(0, (1, 8)) * 4)
-    a, b = t * 2
+    staff = Staff(Note(0, (1, 8)) * 4)
+    a, b = staff * 2
     a.insert(2, b)
-    t.insert(2, a)
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
+    staff.insert(2, a)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
 
     outer = (0, 1, 10, 11)
     middle = (2, 3, 8, 9)
@@ -967,10 +967,10 @@ def test_componenttools_all_are_components_in_same_thread_34():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in outer])
-    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in middle])
-    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in inner])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread([staff.select_leaves()[i] for i in outer])
+    assert componenttools.all_are_components_in_same_thread([staff.select_leaves()[i] for i in middle])
+    assert componenttools.all_are_components_in_same_thread([staff.select_leaves()[i] for i in inner])
+    assert not componenttools.all_are_components_in_same_thread(staff.select_leaves()[:4])
 
 
 def test_componenttools_all_are_components_in_same_thread_35():
@@ -1048,10 +1048,10 @@ def test_componenttools_all_are_components_in_same_thread_37():
     r'''Can not thread across differently named voices.
     '''
 
-    t = Container(Note(0, (1, 8)) * 4)
-    t.insert(2, Container([Container([Voice(Note(0, (1, 8)) * 4)])]))
-    t[2][0][0].name = 'foo'
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
+    container = Container(Note(0, (1, 8)) * 4)
+    container.insert(2, Container([Container([Voice(Note(0, (1, 8)) * 4)])]))
+    container[2][0][0].name = 'foo'
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
 
     r'''
     {
@@ -1075,19 +1075,19 @@ def test_componenttools_all_are_components_in_same_thread_37():
     outer = (0, 1, 6, 7)
     inner = (2, 3, 4, 5)
 
-    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in outer])
-    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in inner])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert componenttools.all_are_components_in_same_thread([container.select_leaves()[i] for i in outer])
+    assert componenttools.all_are_components_in_same_thread([container.select_leaves()[i] for i in inner])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_38():
     r'''Can not thread over differently named voices.
     '''
 
-    t = Container(Note(0, (1, 8)) * 4)
-    t.insert(0, Container([Container([Voice(Note(0, (1, 8)) * 4)])]))
-    t[0][0][0].name = 'foo'
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
+    container = Container(Note(0, (1, 8)) * 4)
+    container.insert(0, Container([Container([Voice(Note(0, (1, 8)) * 4)])]))
+    container[0][0][0].name = 'foo'
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
 
     r'''
     {
@@ -1108,21 +1108,21 @@ def test_componenttools_all_are_components_in_same_thread_38():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_39():
     r'''Can not nest across differently named implicit voices.
     '''
 
-    t = Container(Note(0, (1, 8)) * 4)
-    t.insert(2, Voice(Note(0, (1, 8)) * 4))
-    t = Container([t])
-    t = Container([t])
-    t = Voice([t])
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
+    container = Container(Note(0, (1, 8)) * 4)
+    container.insert(2, Voice(Note(0, (1, 8)) * 4))
+    container = Container([container])
+    container = Container([container])
+    container = Voice([container])
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
 
     r'''
     \new Voice {
@@ -1148,9 +1148,9 @@ def test_componenttools_all_are_components_in_same_thread_39():
     outer = (0, 1, 6, 7)
     inner = (2, 3, 4, 5)
 
-    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in outer])
-    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in inner])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert componenttools.all_are_components_in_same_thread([container.select_leaves()[i] for i in outer])
+    assert componenttools.all_are_components_in_same_thread([container.select_leaves()[i] for i in inner])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_40():
@@ -1163,10 +1163,10 @@ def test_componenttools_all_are_components_in_same_thread_40():
     q.insert(2, v)
     qq = Container(Note(0, (1, 8)) * 4)
     qq.insert(2, q)
-    t = Voice(Note(0, (1, 8)) * 4)
-    t.insert(2, qq)
-    t.name = 'foo'
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
+    voice = Voice(Note(0, (1, 8)) * 4)
+    voice.insert(2, qq)
+    voice.name = 'foo'
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(voice)
 
     r'''
     \context Voice = "foo" {
@@ -1198,18 +1198,18 @@ def test_componenttools_all_are_components_in_same_thread_40():
     outer = (0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15)
     inner = (6, 7, 8, 9)
 
-    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in outer])
-    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in inner])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert componenttools.all_are_components_in_same_thread([voice.select_leaves()[i] for i in outer])
+    assert componenttools.all_are_components_in_same_thread([voice.select_leaves()[i] for i in inner])
+    assert not componenttools.all_are_components_in_same_thread(voice.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_41():
     r'''Can not thread across differently named anonymous voices.
     '''
 
-    t = Container(notetools.make_repeated_notes(4))
-    t[0:0] = Voice(notetools.make_repeated_notes(4)) * 2
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
+    container = Container(notetools.make_repeated_notes(4))
+    container[0:0] = Voice(notetools.make_repeated_notes(4)) * 2
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
 
     r'''
     {
@@ -1232,12 +1232,12 @@ def test_componenttools_all_are_components_in_same_thread_41():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:8])
-    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[8:])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves()[:8])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[4:8])
+    assert componenttools.all_are_components_in_same_thread(container.select_leaves()[8:])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves()[:8])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(container.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_42():

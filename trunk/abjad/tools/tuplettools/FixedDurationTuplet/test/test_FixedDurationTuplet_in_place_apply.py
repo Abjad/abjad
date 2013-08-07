@@ -3,18 +3,18 @@ from abjad import *
 
 
 def test_FixedDurationTuplet_in_place_apply_01():
-    t = Container([Note(n, (1, 8)) for n in range(8)])
-    leaves_before = t.select_leaves()
-    tuplettools.FixedDurationTuplet(Duration(2, 8), t[0:3])
-    leaves_after = t.select_leaves()
+    container = Container([Note(n, (1, 8)) for n in range(8)])
+    leaves_before = container.select_leaves()
+    tuplettools.FixedDurationTuplet(Duration(2, 8), container[0:3])
+    leaves_after = container.select_leaves()
     assert leaves_before == leaves_after
-    assert len(t) == 6
-    for i, x in enumerate(t):
+    assert len(container) == 6
+    for i, x in enumerate(container):
         if i == 0:
             assert isinstance(x, tuplettools.FixedDurationTuplet)
         else:
             assert isinstance(x, Note)
-    assert select(t).is_well_formed()
+    assert select(container).is_well_formed()
 
 
 def test_FixedDurationTuplet_in_place_apply_02():
@@ -33,51 +33,51 @@ def test_FixedDurationTuplet_in_place_apply_02():
 
 
 def test_FixedDurationTuplet_in_place_apply_03():
-    #t = Tuplet(Fraction(7, 8), [Note(n, (1, 8)) for n in range(8)])
-    t = Tuplet(Fraction(7, 8), [Note(n, (1, 8)) for n in range(8)])
-    leaves_before = t.select_leaves()
-    tuplettools.FixedDurationTuplet(Duration(2, 8), t[0:3])
-    leaves_after = t.select_leaves()
+    #tuplet = Tuplet(Fraction(7, 8), [Note(n, (1, 8)) for n in range(8)])
+    tuplet = Tuplet(Fraction(7, 8), [Note(n, (1, 8)) for n in range(8)])
+    leaves_before = tuplet.select_leaves()
+    tuplettools.FixedDurationTuplet(Duration(2, 8), tuplet[0:3])
+    leaves_after = tuplet.select_leaves()
     assert leaves_before == leaves_after
-    assert len(t) == 6
-    for i, x in enumerate(t):
+    assert len(tuplet) == 6
+    for i, x in enumerate(tuplet):
         if i == 0:
             assert isinstance(x, tuplettools.FixedDurationTuplet)
         else:
             assert isinstance(x, Note)
-    assert select(t).is_well_formed()
+    assert select(tuplet).is_well_formed()
 
 
 def test_FixedDurationTuplet_in_place_apply_04():
-    t = Measure((8, 8), [Note(n, (1, 8)) for n in range(8)])
-    leaves_before = t.select_leaves()
-    tuplettools.FixedDurationTuplet(Duration(2, 8), t[0:3])
-    t.select().detach_marks(contexttools.TimeSignatureMark)
-    contexttools.TimeSignatureMark((7, 8))(t)
-    leaves_after = t.select_leaves()
+    measure = Measure((8, 8), [Note(n, (1, 8)) for n in range(8)])
+    leaves_before = measure.select_leaves()
+    tuplettools.FixedDurationTuplet(Duration(2, 8), measure[0:3])
+    measure.select().detach_marks(contexttools.TimeSignatureMark)
+    contexttools.TimeSignatureMark((7, 8))(measure)
+    leaves_after = measure.select_leaves()
     assert leaves_before == leaves_after
-    assert len(t) == 6
-    for i, x in enumerate(t):
+    assert len(measure) == 6
+    for i, x in enumerate(measure):
         if i == 0:
             assert isinstance(x, tuplettools.FixedDurationTuplet)
         else:
             assert isinstance(x, Note)
-    assert select(t).is_well_formed()
+    assert select(measure).is_well_formed()
 
 
 def test_FixedDurationTuplet_in_place_apply_05():
-    t = Voice([Note(n, (1, 8)) for n in range(8)])
-    leaves_before = t.select_leaves()
-    tuplettools.FixedDurationTuplet(Duration(2, 8), t[0:3])
-    leaves_after = t.select_leaves()
+    voice = Voice([Note(n, (1, 8)) for n in range(8)])
+    leaves_before = voice.select_leaves()
+    tuplettools.FixedDurationTuplet(Duration(2, 8), voice[0:3])
+    leaves_after = voice.select_leaves()
     assert leaves_before == leaves_after
-    assert len(t) == 6
-    for i, x in enumerate(t):
+    assert len(voice) == 6
+    for i, x in enumerate(voice):
         if i == 0:
             assert isinstance(x, tuplettools.FixedDurationTuplet)
         else:
             assert isinstance(x, Note)
-    assert select(t).is_well_formed()
+    assert select(voice).is_well_formed()
 
 
 def test_FixedDurationTuplet_in_place_apply_06():

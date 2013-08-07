@@ -9,8 +9,8 @@ def test_Spanner_insert_01():
         Not composer-safe.
         Inserting into middle of spanner may leave discontiguous spanner.'''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    p = spannertools.BeamSpanner(t[:2])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    p = spannertools.BeamSpanner(voice[:2])
 
     r'''
     \new Voice {
@@ -21,11 +21,11 @@ def test_Spanner_insert_01():
     }
     '''
 
-    p._insert(1, t.select_leaves()[-1])
+    p._insert(1, voice.select_leaves()[-1])
 
     "Interior insert leaves discontiguous spanner: spannertools.BeamSpanner(c'8, f'8, d'8)."
 
-    assert not select(t).is_well_formed()
+    assert not select(voice).is_well_formed()
 
 
 def test_Spanner_insert_02():

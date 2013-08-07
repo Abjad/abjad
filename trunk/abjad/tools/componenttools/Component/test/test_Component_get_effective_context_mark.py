@@ -7,8 +7,8 @@ def test_Component_get_effective_context_mark_01():
     r'''Clef defaults to none.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    for note in t:
+    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    for note in staff:
         assert note.get_effective_context_mark(contexttools.ClefMark) is None
 
 
@@ -16,9 +16,9 @@ def test_Component_get_effective_context_mark_02():
     r'''Clefs carry over to notes following.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    contexttools.ClefMark('treble')(t)
-    for note in t:
+    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    contexttools.ClefMark('treble')(staff)
+    for note in staff:
         assert note.get_effective_context_mark(contexttools.ClefMark) == \
             contexttools.ClefMark('treble')
 
@@ -28,9 +28,9 @@ def test_Component_get_effective_context_mark_03():
     Clefs carry over to notes following.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    contexttools.ClefMark('bass')(t[4])
-    for i, note in enumerate(t):
+    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    contexttools.ClefMark('bass')(staff[4])
+    for i, note in enumerate(staff):
         if i in (0, 1, 2, 3):
             assert note.get_effective_context_mark(contexttools.ClefMark) is None
         else:
@@ -42,11 +42,11 @@ def test_Component_get_effective_context_mark_04():
     r'''Clefs carry over to notes following.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    contexttools.ClefMark('treble')(t[0])
-    contexttools.ClefMark('bass')(t[4])
+    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    contexttools.ClefMark('treble')(staff[0])
+    contexttools.ClefMark('bass')(staff[4])
     assert [note.get_effective_context_mark(contexttools.ClefMark)
-        for note in t] == \
+        for note in staff] == \
         [contexttools.ClefMark(name) for name in ['treble', 'treble', 'treble', 'treble',
         'bass', 'bass', 'bass', 'bass']]
 
@@ -55,12 +55,12 @@ def test_Component_get_effective_context_mark_05():
     r'''None cancels an explicit clef.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    contexttools.ClefMark('treble')(t[0])
-    contexttools.ClefMark('bass')(t[4])
-    clef = t[4].get_effective_context_mark(contexttools.ClefMark)
+    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    contexttools.ClefMark('treble')(staff[0])
+    contexttools.ClefMark('bass')(staff[4])
+    clef = staff[4].get_effective_context_mark(contexttools.ClefMark)
     clef.detach()
-    for note in t:
+    for note in staff:
         assert note.get_effective_context_mark(contexttools.ClefMark) == \
             contexttools.ClefMark('treble')
 
@@ -69,10 +69,10 @@ def test_Component_get_effective_context_mark_06():
     r'''Redudant clefs are allowed.
     '''
 
-    t = Staff(notetools.make_repeated_notes(8))
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
-    contexttools.ClefMark('treble')(t[0])
-    contexttools.ClefMark('treble')(t[4])
+    staff = Staff(notetools.make_repeated_notes(8))
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
+    contexttools.ClefMark('treble')(staff[0])
+    contexttools.ClefMark('treble')(staff[4])
 
     r'''
     \new Staff {
@@ -89,9 +89,9 @@ def test_Component_get_effective_context_mark_06():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \clef "treble"
@@ -113,10 +113,10 @@ def test_Component_get_effective_context_mark_07():
     r'''Clefs with transposition are allowed and work as expected.
     '''
 
-    t = Staff(notetools.make_repeated_notes(8))
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
-    contexttools.ClefMark('treble_8')(t[0])
-    contexttools.ClefMark('treble')(t[4])
+    staff = Staff(notetools.make_repeated_notes(8))
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
+    contexttools.ClefMark('treble_8')(staff[0])
+    contexttools.ClefMark('treble')(staff[4])
 
     r'''
     \new Staff {
@@ -133,9 +133,9 @@ def test_Component_get_effective_context_mark_07():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \clef "treble_8"
@@ -157,12 +157,12 @@ def test_Component_get_effective_context_mark_08():
     r'''InputSetExpression and then clearing works as expected.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    contexttools.ClefMark('alto')(t[0])
-    clef = t[0].get_effective_context_mark(contexttools.ClefMark)
+    staff = Staff("c'8 d'8 e'8 f'8")
+    contexttools.ClefMark('alto')(staff[0])
+    clef = staff[0].get_effective_context_mark(contexttools.ClefMark)
     clef.detach()
 
-    for leaf in t:
+    for leaf in staff:
         assert leaf.get_effective_context_mark(contexttools.ClefMark) is None
 
 
@@ -215,8 +215,8 @@ def test_Component_get_effective_context_mark_11():
     r'''Apply key signature mark.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    contexttools.KeySignatureMark('c', 'major')(t)
+    staff = Staff("c'8 d'8 e'8 f'8")
+    contexttools.KeySignatureMark('c', 'major')(staff)
 
     r'''
     \new Staff {
@@ -228,10 +228,10 @@ def test_Component_get_effective_context_mark_11():
     }
     '''
 
-    assert t.get_effective_context_mark(contexttools.KeySignatureMark) == contexttools.KeySignatureMark('c', 'major')
-    assert select(t).is_well_formed()
+    assert staff.get_effective_context_mark(contexttools.KeySignatureMark) == contexttools.KeySignatureMark('c', 'major')
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \key c \major
@@ -248,17 +248,17 @@ def test_Component_get_effective_context_mark_12():
     r'''There is no default key signature.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    assert t.get_effective_context_mark(contexttools.KeySignatureMark) is None
+    staff = Staff("c'8 d'8 e'8 f'8")
+    assert staff.get_effective_context_mark(contexttools.KeySignatureMark) is None
 
 
 def test_Component_get_effective_context_mark_13():
     r'''Tempo interface works on staves.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    contexttools.TempoMark(Duration(1, 8), 38, target_context = Staff)(t)
-    contexttools.TempoMark(Duration(1, 8), 42, target_context = Staff)(t[2])
+    staff = Staff("c'8 d'8 e'8 f'8")
+    contexttools.TempoMark(Duration(1, 8), 38, target_context = Staff)(staff)
+    contexttools.TempoMark(Duration(1, 8), 42, target_context = Staff)(staff[2])
 
     r'''
     \new Staff {
@@ -271,13 +271,13 @@ def test_Component_get_effective_context_mark_13():
     }
     '''
 
-    assert select(t).is_well_formed()
-    assert t[0].get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 38)
-    assert t[1].get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 38)
-    assert t[2].get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 42)
-    assert t[3].get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 42)
+    assert select(staff).is_well_formed()
+    assert staff[0].get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 38)
+    assert staff[1].get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 38)
+    assert staff[2].get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 42)
+    assert staff[3].get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 42)
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \tempo 8=38
@@ -296,8 +296,8 @@ def test_Component_get_effective_context_mark_14():
     r'''Tempo interface works on chords.
     '''
 
-    t = Staff([Chord([2, 3, 4], (1, 4))])
-    contexttools.TempoMark(Duration(1, 8), 38, target_context = Staff)(t[0])
+    staff = Staff([Chord([2, 3, 4], (1, 4))])
+    contexttools.TempoMark(Duration(1, 8), 38, target_context = Staff)(staff[0])
 
     r'''
     \new Staff {
@@ -307,7 +307,7 @@ def test_Component_get_effective_context_mark_14():
     '''
 
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             \tempo 8=38
@@ -371,7 +371,7 @@ def test_Component_get_effective_context_mark_17():
     r'''The default effective time signature is none.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
+    staff = Staff("c'8 d'8 e'8 f'8")
 
     r'''
     \new Staff {
@@ -382,7 +382,7 @@ def test_Component_get_effective_context_mark_17():
     }
     '''
 
-    for leaf in t:
+    for leaf in staff:
         assert leaf.get_effective_context_mark(
             contexttools.TimeSignatureMark) is None
 
@@ -391,8 +391,8 @@ def test_Component_get_effective_context_mark_18():
     r'''Forced time signature settings propagate to later leaves.
     '''
 
-    t = Staff("c'8 d'8 e'8 f'8")
-    contexttools.TimeSignatureMark((2, 8))(t[0])
+    staff = Staff("c'8 d'8 e'8 f'8")
+    contexttools.TimeSignatureMark((2, 8))(staff[0])
 
     r'''
     \new Staff {
@@ -404,7 +404,7 @@ def test_Component_get_effective_context_mark_18():
     }
     '''
 
-    for leaf in t:
+    for leaf in staff:
         assert leaf.get_effective_context_mark(
             contexttools.TimeSignatureMark) == contexttools.TimeSignatureMark(
                 (2, 8))

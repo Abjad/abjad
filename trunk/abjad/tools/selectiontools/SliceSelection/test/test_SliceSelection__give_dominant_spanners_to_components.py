@@ -10,10 +10,10 @@ def test_SliceSelection__give_dominant_spanners_to_components_01():
     Remove donor_components from parentage immediately after.
     '''
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.CrescendoSpanner(t[:])
-    spannertools.BeamSpanner(t[:2])
-    spannertools.SlurSpanner(t[1:3])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.CrescendoSpanner(voice[:])
+    spannertools.BeamSpanner(voice[:2])
+    spannertools.SlurSpanner(voice[1:3])
 
     r'''
     \new Voice {
@@ -35,9 +35,9 @@ def test_SliceSelection__give_dominant_spanners_to_components_01():
     }
     '''
 
-    t[1:3]._give_dominant_spanners_to_components(recipient[:])
+    voice[1:3]._give_dominant_spanners_to_components(recipient[:])
 
-    "Voice t is now ..."
+    "Voice voice is now ..."
 
     r'''
     \new Voice {
@@ -50,9 +50,9 @@ def test_SliceSelection__give_dominant_spanners_to_components_01():
 
     "Both crescendo and beam are now discontiguous."
 
-    assert not select(t).is_well_formed()
+    assert not select(voice).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        voice.lilypond_format,
         r'''
         \new Voice {
             c'8 [ \<

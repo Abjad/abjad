@@ -6,8 +6,8 @@ def test_HairpinSpanner_include_rests_01():
     r'''Hairpin spanner avoids rests.
     '''
 
-    t = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
-    spannertools.CrescendoSpanner(t[:], include_rests=False)
+    staff = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
+    spannertools.CrescendoSpanner(staff[:], include_rests=False)
 
     r'''
     \new Staff {
@@ -22,9 +22,9 @@ def test_HairpinSpanner_include_rests_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(staff).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        staff.lilypond_format,
         r'''
         \new Staff {
             r8

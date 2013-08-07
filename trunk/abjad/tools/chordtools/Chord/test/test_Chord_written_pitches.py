@@ -7,8 +7,8 @@ def test_Chord_written_pitches_01():
     r'''Returns immutable tuple of pitches in chord.
     '''
 
-    t = Chord([2, 4, 5], (1, 4))
-    pitches = t.written_pitches
+    chord = Chord([2, 4, 5], (1, 4))
+    pitches = chord.written_pitches
 
     assert isinstance(pitches, tuple)
     assert len(pitches) == 3
