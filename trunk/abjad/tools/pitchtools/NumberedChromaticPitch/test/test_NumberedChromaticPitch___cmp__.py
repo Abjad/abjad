@@ -4,51 +4,51 @@ from abjad import *
 
 def test_NumberedChromaticPitch___cmp___01():
 
-    p = pitchtools.NumberedChromaticPitch(12)
-    q = pitchtools.NumberedChromaticPitch(12)
+    pitch_1 = pitchtools.NumberedChromaticPitch(12)
+    pitch_2 = pitchtools.NumberedChromaticPitch(12)
 
-    assert not p <  q
-    assert      p <= q
-    assert      p == q
-    assert not p != q
-    assert not p >  q
-    assert      p >= q
+    assert not pitch_1 <  pitch_2
+    assert      pitch_1 <= pitch_2
+    assert      pitch_1 == pitch_2
+    assert not pitch_1 != pitch_2
+    assert not pitch_1 >  pitch_2
+    assert      pitch_1 >= pitch_2
 
 
 def test_NumberedChromaticPitch___cmp___02():
 
-    p = pitchtools.NumberedChromaticPitch(12)
-    q = pitchtools.NumberedChromaticPitch(13)
+    pitch_1 = pitchtools.NumberedChromaticPitch(12)
+    pitch_2 = pitchtools.NumberedChromaticPitch(13)
 
-    assert not q <  p
-    assert not q <= p
-    assert not q == p
-    assert      q != p
-    assert      q >  p
-    assert      q >= p
+    assert not pitch_2 <  pitch_1
+    assert not pitch_2 <= pitch_1
+    assert not pitch_2 == pitch_1
+    assert      pitch_2 != pitch_1
+    assert      pitch_2 >  pitch_1
+    assert      pitch_2 >= pitch_1
 
 
 def test_NumberedChromaticPitch___cmp___03():
 
-    p = pitchtools.NumberedChromaticPitch(12)
-    q = 12
+    pitch_1 = pitchtools.NumberedChromaticPitch(12)
+    pitch_2 = 12
 
-    assert not p <  q
-    assert      p <= q
-    assert      p == q
-    assert not p != q
-    assert not p >  q
-    assert      p >= q
+    assert not pitch_1 <  pitch_2
+    assert      pitch_1 <= pitch_2
+    assert      pitch_1 == pitch_2
+    assert not pitch_1 != pitch_2
+    assert not pitch_1 >  pitch_2
+    assert      pitch_1 >= pitch_2
 
 
 def test_NumberedChromaticPitch___cmp___04():
 
-    p = pitchtools.NumberedChromaticPitch(12)
-    q = 13
+    pitch_1 = pitchtools.NumberedChromaticPitch(12)
+    pitch_2 = 13
 
-    assert not q <  p
-    assert not q <= p
-    assert not q == p
-    assert      q != p
-    assert      q >  p
-    assert      q >= p
+    assert not pitch_2 <  pitch_1
+    assert not pitch_2 <= pitch_1
+    assert not pitch_2 == pitch_1
+    assert      pitch_2 != pitch_1
+    assert      pitch_2 >  pitch_1
+    assert      pitch_2 >= pitch_1

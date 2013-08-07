@@ -7,11 +7,11 @@ def test_NamedChromaticPitch___init___01():
     r'''Init by name and octave.
     '''
 
-    p = pitchtools.NamedChromaticPitch('df', 5)
-    assert p.lilypond_format == "df''"
-    assert p.named_chromatic_pitch_class == pitchtools.NamedChromaticPitchClass('df')
-    assert p.octave_number == 5
-    assert p.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
+    pitch = pitchtools.NamedChromaticPitch('df', 5)
+    assert pitch.lilypond_format == "df''"
+    assert pitch.named_chromatic_pitch_class == pitchtools.NamedChromaticPitchClass('df')
+    assert pitch.octave_number == 5
+    assert pitch.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
 
 
 def test_NamedChromaticPitch___init___02():
@@ -27,12 +27,12 @@ def test_NamedChromaticPitch___init___03():
     r'''Init by number.
     '''
 
-    p = pitchtools.NamedChromaticPitch(13)
+    pitch = pitchtools.NamedChromaticPitch(13)
 
-    assert p.lilypond_format == "cs''"
-    assert p.named_chromatic_pitch_class == pitchtools.NamedChromaticPitchClass('cs')
-    assert p.octave_number == 5
-    assert p.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
+    assert pitch.lilypond_format == "cs''"
+    assert pitch.named_chromatic_pitch_class == pitchtools.NamedChromaticPitchClass('cs')
+    assert pitch.octave_number == 5
+    assert pitch.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
 
 
 
@@ -40,12 +40,12 @@ def test_NamedChromaticPitch___init___04():
     r'''Init by number and diatonic_pitch_class_name.
     '''
 
-    p = pitchtools.NamedChromaticPitch(13, 'd')
+    pitch = pitchtools.NamedChromaticPitch(13, 'd')
 
-    assert p.lilypond_format == "df''"
-    assert p.named_chromatic_pitch_class == pitchtools.NamedChromaticPitchClass('df')
-    assert p.octave_number == 5
-    assert p.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
+    assert pitch.lilypond_format == "df''"
+    assert pitch.named_chromatic_pitch_class == pitchtools.NamedChromaticPitchClass('df')
+    assert pitch.octave_number == 5
+    assert pitch.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
 
 
 
@@ -53,12 +53,12 @@ def test_NamedChromaticPitch___init___05():
     r'''Init by pair.
     '''
 
-    p = pitchtools.NamedChromaticPitch(('df', 5))
+    pitch = pitchtools.NamedChromaticPitch(('df', 5))
 
-    assert p.lilypond_format == "df''"
-    assert p.named_chromatic_pitch_class == pitchtools.NamedChromaticPitchClass('df')
-    assert p.octave_number == 5
-    assert p.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
+    assert pitch.lilypond_format == "df''"
+    assert pitch.named_chromatic_pitch_class == pitchtools.NamedChromaticPitchClass('df')
+    assert pitch.octave_number == 5
+    assert pitch.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
 
 
 
@@ -79,12 +79,12 @@ def test_NamedChromaticPitch___init___07():
     '''
 
     pitch_1 = pitchtools.NamedChromaticPitch('df', 5)
-    p = pitchtools.NamedChromaticPitch(pitch_1)
+    pitch = pitchtools.NamedChromaticPitch(pitch_1)
 
-    assert p.lilypond_format == "df''"
-    assert p.named_chromatic_pitch_class == pitchtools.NamedChromaticPitchClass('df')
-    assert p.octave_number == 5
-    assert p.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
+    assert pitch.lilypond_format == "df''"
+    assert pitch.named_chromatic_pitch_class == pitchtools.NamedChromaticPitchClass('df')
+    assert pitch.octave_number == 5
+    assert pitch.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
 
 
 def test_NamedChromaticPitch___init___08():
