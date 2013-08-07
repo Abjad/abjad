@@ -1,12 +1,11 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import sequencetools
 
 
 def test_sequencetools_yield_outer_product_of_sequences_01():
 
-    t = list(sequencetools.yield_outer_product_of_sequences([[1, 2, 3], ['a', 'b']]))
-    assert t == [[1, 'a'], [1, 'b'], [2, 'a'], [2, 'b'], [3, 'a'], [3, 'b']]
+    sequence_2 = list(sequencetools.yield_outer_product_of_sequences([[1, 2, 3], ['a', 'b']]))
+    assert sequence_2 == [[1, 'a'], [1, 'b'], [2, 'a'], [2, 'b'], [3, 'a'], [3, 'b']]
 
 
 def test_sequencetools_yield_outer_product_of_sequences_02():
@@ -17,5 +16,5 @@ def test_sequencetools_yield_outer_product_of_sequences_02():
 
 def test_sequencetools_yield_outer_product_of_sequences_03():
 
-    t = list(sequencetools.yield_outer_product_of_sequences([[1, 2, 3], [4, 5], [6, 7, 8]]))
-    assert t == [[1, 4, 6], [1, 4, 7], [1, 4, 8], [1, 5, 6], [1, 5, 7], [1, 5, 8], [2, 4, 6], [2, 4, 7], [2, 4, 8], [2, 5, 6], [2, 5, 7], [2, 5, 8], [3, 4, 6], [3, 4, 7], [3, 4, 8], [3, 5, 6], [3, 5, 7], [3, 5, 8]]
+    sequence_2 = list(sequencetools.yield_outer_product_of_sequences([[1, 2, 3], [4, 5], [6, 7, 8]]))
+    assert sequence_2 == [[1, 4, 6], [1, 4, 7], [1, 4, 8], [1, 5, 6], [1, 5, 7], [1, 5, 8], [2, 4, 6], [2, 4, 7], [2, 4, 8], [2, 5, 6], [2, 5, 7], [2, 5, 8], [3, 4, 6], [3, 4, 7], [3, 4, 8], [3, 5, 6], [3, 5, 7], [3, 5, 8]]

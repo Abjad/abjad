@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import sequencetools
 import py.test
 
 
@@ -15,8 +14,8 @@ def test_sequencetools_repeat_sequence_to_length_02():
     r'''Repeat list to length.
     '''
 
-    t = sequencetools.repeat_sequence_to_length([0, -1, -2, -3, -4], 11)
-    assert t == [0, -1, -2, -3, -4, 0, -1, -2, -3, -4, 0]
+    sequence_2 = sequencetools.repeat_sequence_to_length([0, -1, -2, -3, -4], 11)
+    assert sequence_2 == [0, -1, -2, -3, -4, 0, -1, -2, -3, -4, 0]
 
 
 def test_sequencetools_repeat_sequence_to_length_03():
@@ -32,8 +31,8 @@ def test_sequencetools_repeat_sequence_to_length_04():
     r'''When length is zero, return an empty list.
     '''
 
-    t = sequencetools.repeat_sequence_to_length(range(5), 0)
-    assert t == []
+    sequence_2 = sequencetools.repeat_sequence_to_length(range(5), 0)
+    assert sequence_2 == []
 
 
 def test_sequencetools_repeat_sequence_to_length_05():
@@ -47,18 +46,18 @@ def test_sequencetools_repeat_sequence_to_length_06():
     r'''Optional start index less than length of list.
     '''
 
-    t = sequencetools.repeat_sequence_to_length([1, 2, 3], 10, 2)
+    sequence_2 = sequencetools.repeat_sequence_to_length([1, 2, 3], 10, 2)
 
-    assert t == [3, 1, 2, 3, 1, 2, 3, 1, 2, 3]
+    assert sequence_2 == [3, 1, 2, 3, 1, 2, 3, 1, 2, 3]
 
 
 def test_sequencetools_repeat_sequence_to_length_07():
     r'''Optional start index greater than length of list is OK.
     '''
 
-    t = sequencetools.repeat_sequence_to_length([1, 2, 3], 10, 100)
+    sequence_2 = sequencetools.repeat_sequence_to_length([1, 2, 3], 10, 100)
 
-    assert t == [2, 3, 1, 2, 3, 1, 2, 3, 1, 2]
+    assert sequence_2 == [2, 3, 1, 2, 3, 1, 2, 3, 1, 2]
 
 
 def test_sequencetools_repeat_sequence_to_length_08():

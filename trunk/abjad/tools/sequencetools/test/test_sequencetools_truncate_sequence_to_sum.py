@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import sequencetools
+from abjad import *
 import py.test
 
 
@@ -7,18 +7,18 @@ def test_sequencetools_truncate_sequence_to_sum_01():
     r'''truncate_to_sum can take a list.
     '''
 
-    t = sequencetools.truncate_sequence_to_sum([2, 2, 2], 0)
+    sequence_2 = sequencetools.truncate_sequence_to_sum([2, 2, 2], 0)
 
-    #assert t == [0]
-    assert t == []
-    assert isinstance(t, list)
+    #assert sequence_2 == [0]
+    assert sequence_2 == []
+    assert isinstance(sequence_2, list)
 
 
 #def test_sequencetools_truncate_sequence_to_sum_02():
 #   r'''truncate_to_sum can take a tuple.'''
-#   t = sequencetools.truncate_sequence_to_sum((2, 2, 2), 0)
-#   assert t == (0, )
-#   assert isinstance(t, tuple)
+#   sequence_2 = sequencetools.truncate_sequence_to_sum((2, 2, 2), 0)
+#   assert sequence_2 == (0, )
+#   assert isinstance(sequence_2, tuple)
 
 
 def test_sequencetools_truncate_sequence_to_sum_03():
@@ -34,18 +34,18 @@ def test_sequencetools_truncate_sequence_to_sum_04():
 
     ls = [2, 2, 1]
 
-    t = sequencetools.truncate_sequence_to_sum(ls, 1)
-    assert t == [1]
-    t = sequencetools.truncate_sequence_to_sum(ls, 2)
-    assert t == [2]
-    t = sequencetools.truncate_sequence_to_sum(ls, 3)
-    assert t == [2, 1]
-    t = sequencetools.truncate_sequence_to_sum(ls, 4)
-    assert t == [2, 2]
-    t = sequencetools.truncate_sequence_to_sum(ls, 5)
-    assert t == [2, 2, 1]
-    t = sequencetools.truncate_sequence_to_sum(ls, 6)
-    assert t == [2, 2, 1]
+    sequence_2 = sequencetools.truncate_sequence_to_sum(ls, 1)
+    assert sequence_2 == [1]
+    sequence_2 = sequencetools.truncate_sequence_to_sum(ls, 2)
+    assert sequence_2 == [2]
+    sequence_2 = sequencetools.truncate_sequence_to_sum(ls, 3)
+    assert sequence_2 == [2, 1]
+    sequence_2 = sequencetools.truncate_sequence_to_sum(ls, 4)
+    assert sequence_2 == [2, 2]
+    sequence_2 = sequencetools.truncate_sequence_to_sum(ls, 5)
+    assert sequence_2 == [2, 2, 1]
+    sequence_2 = sequencetools.truncate_sequence_to_sum(ls, 6)
+    assert sequence_2 == [2, 2, 1]
 
 
 # ERRORS #
@@ -55,4 +55,4 @@ def test_sequencetools_truncate_sequence_to_sum_05():
     '''
 
     assert py.test.raises(ValueError,
-        't = sequencetools.truncate_sequence_to_sum([2, 2, 2], -1)')
+        'sequence_2 = sequencetools.truncate_sequence_to_sum([2, 2, 2], -1)')

@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import sequencetools
 import py.test
 
 
@@ -8,20 +7,20 @@ def test_sequencetools_truncate_runs_in_sequence_01():
     r'''Truncate subruns to length 1.
     '''
 
-    t = [1, 1, 2, 3, 3, 3, 9, 4, 4, 4]
-    result = sequencetools.truncate_runs_in_sequence(t)
+    sequence_1 = [1, 1, 2, 3, 3, 3, 9, 4, 4, 4]
+    sequence_2 = sequencetools.truncate_runs_in_sequence(sequence_1)
 
-    assert result == [1, 2, 3, 9, 4]
+    assert sequence_2 == [1, 2, 3, 9, 4]
 
 
 def test_sequencetools_truncate_runs_in_sequence_02():
     r'''Truncate subruns to length 1.
     '''
 
-    t = []
-    result = sequencetools.truncate_runs_in_sequence(t)
+    sequence_1 = []
+    sequence_2 = sequencetools.truncate_runs_in_sequence(sequence_1)
 
-    assert result == []
+    assert sequence_2 == []
 
 
 def test_sequencetools_truncate_runs_in_sequence_03():

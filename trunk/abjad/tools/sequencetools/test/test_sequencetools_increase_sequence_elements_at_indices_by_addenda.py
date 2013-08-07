@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import sequencetools
 
 
 def test_sequencetools_increase_sequence_elements_at_indices_by_addenda_01():
-    r'''Increase elements of list l by the elements of addenda
-        at indices in l.'''
+    r'''Increase elements of list sequence_1 by the elements of addenda
+    at indices in sequence_1.
+    '''
 
-    l = [1, 1, 2, 3, 5, 5, 1, 2, 5, 5, 6]
-    t = sequencetools.increase_sequence_elements_at_indices_by_addenda(l, [0.5, 0.5], [0, 4, 8])
-    assert t == [1.5, 1.5, 2, 3, 5.5, 5.5, 1, 2, 5.5, 5.5, 6]
+    sequence_1 = [1, 1, 2, 3, 5, 5, 1, 2, 5, 5, 6]
+    sequence_2 = sequencetools.increase_sequence_elements_at_indices_by_addenda(sequence_1, [0.5, 0.5], [0, 4, 8])
+    assert sequence_2 == [1.5, 1.5, 2, 3, 5.5, 5.5, 1, 2, 5.5, 5.5, 6]

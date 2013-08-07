@@ -1,19 +1,18 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import sequencetools
 
 
 def test_sequencetools_join_subsequences_by_sign_of_subsequence_elements_01():
 
-    l = [[1, 2], [3, 4], [-5, -6, -7], [-8, -9, -10], [11, 12]]
-    t = sequencetools.join_subsequences_by_sign_of_subsequence_elements(l)
+    sequence_1 = [[1, 2], [3, 4], [-5, -6, -7], [-8, -9, -10], [11, 12]]
+    sequence_2 = sequencetools.join_subsequences_by_sign_of_subsequence_elements(sequence_1)
 
-    assert t == [[1, 2, 3, 4], [-5, -6, -7, -8, -9, -10], [11, 12]]
+    assert sequence_2 == [[1, 2, 3, 4], [-5, -6, -7, -8, -9, -10], [11, 12]]
 
 
 def test_sequencetools_join_subsequences_by_sign_of_subsequence_elements_02():
 
-    l = [[1, 2], [], [], [3, 4, 5], [6, 7]]
-    t = sequencetools.join_subsequences_by_sign_of_subsequence_elements(l)
+    sequence_1 = [[1, 2], [], [], [3, 4, 5], [6, 7]]
+    sequence_2 = sequencetools.join_subsequences_by_sign_of_subsequence_elements(sequence_1)
 
-    assert t == [[1, 2], [], [3, 4, 5, 6, 7]]
+    assert sequence_2 == [[1, 2], [], [3, 4, 5, 6, 7]]
