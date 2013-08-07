@@ -4,27 +4,27 @@ import py.test
 
 
 def test_TimeIntervalTree_duration_01():
-    a = TimeInterval(-1, 2)
-    b = TimeInterval(0, 1)
-    c = TimeInterval(1, 3)
+    time_interval_1 = TimeInterval(-1, 2)
+    time_interval_2 = TimeInterval(0, 1)
+    time_interval_3 = TimeInterval(1, 3)
 
-    tree = TimeIntervalTree(a)
+    tree = TimeIntervalTree(time_interval_1)
     assert tree.duration == 3
 
-    tree = TimeIntervalTree(b)
+    tree = TimeIntervalTree(time_interval_2)
     assert tree.duration == 1
 
-    tree = TimeIntervalTree(c)
+    tree = TimeIntervalTree(time_interval_3)
     assert tree.duration == 2
 
-    tree = TimeIntervalTree([a, b])
+    tree = TimeIntervalTree([time_interval_1, time_interval_2])
     assert tree.duration == 3
 
-    tree = TimeIntervalTree([a, c])
+    tree = TimeIntervalTree([time_interval_1, time_interval_3])
     assert tree.duration == 4
 
-    tree = TimeIntervalTree([b, c])
+    tree = TimeIntervalTree([time_interval_2, time_interval_3])
     assert tree.duration == 3
 
-    tree = TimeIntervalTree([a, b, c])
+    tree = TimeIntervalTree([time_interval_1, time_interval_2, time_interval_3])
     assert tree.duration == 4

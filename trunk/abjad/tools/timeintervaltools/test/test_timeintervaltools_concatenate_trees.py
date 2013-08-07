@@ -5,11 +5,11 @@ import py.test
 
 
 def test_timeintervaltools_concatenate_trees_01():
-    a = TimeInterval(0, 10)
-    b = TimeInterval(5, 15)
-    c = TimeInterval(10, 20)
-    tree_a = TimeIntervalTree([a, b, c])
-    tree_b = TimeIntervalTree([a, b, c])
+    time_interval_1 = TimeInterval(0, 10)
+    time_interval_2 = TimeInterval(5, 15)
+    time_interval_3 = TimeInterval(10, 20)
+    tree_a = TimeIntervalTree([time_interval_1, time_interval_2, time_interval_3])
+    tree_b = TimeIntervalTree([time_interval_1, time_interval_2, time_interval_3])
     concatenated = concatenate_trees([tree_a, tree_b])
 
     target_signatures = [(0, 10), (5, 15), (10, 20), (20, 30), (25, 35), (30, 40)]
@@ -17,16 +17,16 @@ def test_timeintervaltools_concatenate_trees_01():
 
     assert actual_signatures == target_signatures
     assert concatenated.duration == tree_a.duration + tree_b.duration
-    assert a.signature == (0, 10)
-    assert b.signature == (5, 15)
-    assert c.signature == (10, 20)
+    assert time_interval_1.signature == (0, 10)
+    assert time_interval_2.signature == (5, 15)
+    assert time_interval_3.signature == (10, 20)
 
 def test_timeintervaltools_concatenate_trees_02():
-    a = TimeInterval(0, 10)
-    b = TimeInterval(5, 15)
-    c = TimeInterval(10, 20)
-    tree_a = TimeIntervalTree([a, b, c])
-    tree_b = TimeIntervalTree([a, b, c])
+    time_interval_1 = TimeInterval(0, 10)
+    time_interval_2 = TimeInterval(5, 15)
+    time_interval_3 = TimeInterval(10, 20)
+    tree_a = TimeIntervalTree([time_interval_1, time_interval_2, time_interval_3])
+    tree_b = TimeIntervalTree([time_interval_1, time_interval_2, time_interval_3])
     concatenated = concatenate_trees([tree_a, tree_b], padding=Fraction(1, 2))
 
     target_signatures =  [(0, 10), (5, 15), (10, 20), \

@@ -22,30 +22,30 @@ def test_TimeIntervalTree_compute_logical_or_02():
 
 
 def test_TimeIntervalTree_compute_logical_or_03():
-    a = timeintervaltools.TimeInterval(0, 3)
-    b = timeintervaltools.TimeInterval(6, 12)
-    c = timeintervaltools.TimeInterval(9, 15)
-    tree = timeintervaltools.TimeIntervalTree([a, b, c])
-    d = timeintervaltools.TimeInterval(1, 14)
-    logical_or = tree.compute_logical_or(bounding_interval=d)
+    time_interval_1 = timeintervaltools.TimeInterval(0, 3)
+    time_interval_2 = timeintervaltools.TimeInterval(6, 12)
+    time_interval_3 = timeintervaltools.TimeInterval(9, 15)
+    tree = timeintervaltools.TimeIntervalTree([time_interval_1, time_interval_2, time_interval_3])
+    time_interval_4 = timeintervaltools.TimeInterval(1, 14)
+    logical_or = tree.compute_logical_or(bounding_interval=time_interval_4)
     assert [x.signature for x in logical_or] == [(1, 3), (6, 9), (9, 12), (12, 14)]
 
 
 def test_TimeIntervalTree_compute_logical_or_04():
-    a = timeintervaltools.TimeInterval(0, 3)
-    b = timeintervaltools.TimeInterval(6, 12)
-    c = timeintervaltools.TimeInterval(9, 15)
-    tree = timeintervaltools.TimeIntervalTree([a, b, c])
-    d = timeintervaltools.TimeInterval(-1, 16)
-    logical_or = tree.compute_logical_or(bounding_interval=d)
+    time_interval_1 = timeintervaltools.TimeInterval(0, 3)
+    time_interval_2 = timeintervaltools.TimeInterval(6, 12)
+    time_interval_3 = timeintervaltools.TimeInterval(9, 15)
+    tree = timeintervaltools.TimeIntervalTree([time_interval_1, time_interval_2, time_interval_3])
+    time_interval_4 = timeintervaltools.TimeInterval(-1, 16)
+    logical_or = tree.compute_logical_or(bounding_interval=time_interval_4)
     assert [x.signature for x in logical_or] == [(0, 3), (6, 9), (9, 12), (12, 15)]
 
 
 def test_TimeIntervalTree_compute_logical_or_05():
-    a = timeintervaltools.TimeInterval(0, 3)
-    b = timeintervaltools.TimeInterval(6, 12)
-    c = timeintervaltools.TimeInterval(9, 15)
-    tree = timeintervaltools.TimeIntervalTree([a, b, c])
-    d = timeintervaltools.TimeInterval(2001, 2010)
-    logical_or = tree.compute_logical_or(bounding_interval=d)
+    time_interval_1 = timeintervaltools.TimeInterval(0, 3)
+    time_interval_2 = timeintervaltools.TimeInterval(6, 12)
+    time_interval_3 = timeintervaltools.TimeInterval(9, 15)
+    tree = timeintervaltools.TimeIntervalTree([time_interval_1, time_interval_2, time_interval_3])
+    time_interval_4 = timeintervaltools.TimeInterval(2001, 2010)
+    logical_or = tree.compute_logical_or(bounding_interval=time_interval_4)
     assert [x.signature for x in logical_or] == []

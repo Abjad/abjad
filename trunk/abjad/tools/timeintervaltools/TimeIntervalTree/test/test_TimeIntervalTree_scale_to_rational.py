@@ -21,9 +21,9 @@ def test_TimeIntervalTree_scale_to_rational_01():
 
 
 def test_TimeIntervalTree_scale_to_rational_02():
-    a = timeintervaltools.TimeInterval(durationtools.Duration(-1, 2), 1)
-    b = timeintervaltools.TimeInterval(2, durationtools.Duration(7, 3))
-    tree = timeintervaltools.TimeIntervalTree([a, b])
+    time_interval_1 = timeintervaltools.TimeInterval(durationtools.Duration(-1, 2), 1)
+    time_interval_2 = timeintervaltools.TimeInterval(2, durationtools.Duration(7, 3))
+    tree = timeintervaltools.TimeIntervalTree([time_interval_1, time_interval_2])
     rational = 3
     result = tree.scale_to_rational(rational)
     assert result.duration == 3
@@ -33,18 +33,18 @@ def test_TimeIntervalTree_scale_to_rational_02():
 
 
 def test_TimeIntervalTree_scale_to_rational_03():
-    a = timeintervaltools.TimeInterval(durationtools.Duration(-1, 2), 1)
-    b = timeintervaltools.TimeInterval(2, durationtools.Duration(7, 3))
-    tree = timeintervaltools.TimeIntervalTree([a, b])
+    time_interval_1 = timeintervaltools.TimeInterval(durationtools.Duration(-1, 2), 1)
+    time_interval_2 = timeintervaltools.TimeInterval(2, durationtools.Duration(7, 3))
+    tree = timeintervaltools.TimeIntervalTree([time_interval_1, time_interval_2])
     rational = -1
     py.test.raises(AssertionError,
         "result = tree.scale_to_rational(rational)")
 
 
 def test_TimeIntervalTree_scale_to_rational_04():
-    a = timeintervaltools.TimeInterval(durationtools.Duration(-1, 2), 1)
-    b = timeintervaltools.TimeInterval(2, durationtools.Duration(7, 3))
-    tree = timeintervaltools.TimeIntervalTree([a, b])
+    time_interval_1 = timeintervaltools.TimeInterval(durationtools.Duration(-1, 2), 1)
+    time_interval_2 = timeintervaltools.TimeInterval(2, durationtools.Duration(7, 3))
+    tree = timeintervaltools.TimeIntervalTree([time_interval_1, time_interval_2])
     rational = 0
     py.test.raises(AssertionError,
         "result = tree.scale_to_rational(rational)")

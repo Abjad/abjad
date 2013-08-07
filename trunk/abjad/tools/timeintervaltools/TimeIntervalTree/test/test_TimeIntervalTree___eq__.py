@@ -4,18 +4,18 @@ from abjad.tools.timeintervaltools import *
 
 
 def test_TimeIntervalTree___eq___01():
-    a = TimeIntervalTree(timeintervaltools.make_test_intervals())
-    b = TimeIntervalTree(timeintervaltools.make_test_intervals())
-    assert a == b
+    time_interval_1 = TimeIntervalTree(timeintervaltools.make_test_intervals())
+    time_interval_2 = TimeIntervalTree(timeintervaltools.make_test_intervals())
+    assert time_interval_1 == time_interval_2
 
 
 def test_TimeIntervalTree___eq___02():
-    a = TimeIntervalTree(timeintervaltools.make_test_intervals())
-    b = TimeIntervalTree(timeintervaltools.make_test_intervals()[:-1])
-    assert a != b
+    time_interval_1 = TimeIntervalTree(timeintervaltools.make_test_intervals())
+    time_interval_2 = TimeIntervalTree(timeintervaltools.make_test_intervals()[:-1])
+    assert time_interval_1 != time_interval_2
 
 
 def test_TimeIntervalTree___eq___03():
-    a = TimeIntervalTree([])
-    b = TimeIntervalTree([])
-    assert a == b
+    time_interval_1 = TimeIntervalTree([])
+    time_interval_2 = TimeIntervalTree([])
+    assert time_interval_1 == time_interval_2
