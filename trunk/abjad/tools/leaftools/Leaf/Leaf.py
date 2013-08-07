@@ -434,7 +434,7 @@ class Leaf(Component):
     def get_grace_containers(self, kind=None):
         r'''Get grace containers attached to leaf.
 
-        ::
+        Set `kind` to ``'grace'``, ``'after'`` or none.
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
             >>> grace_container = leaftools.GraceContainer(
@@ -509,6 +509,8 @@ class Leaf(Component):
 
     def select_tie_chain(self):
         r'''Select tie chain.
+
+        Return tie chain.
         '''
         from abjad.tools import leaftools
         from abjad.tools import spannertools
@@ -525,6 +527,8 @@ class Leaf(Component):
 
     def shorten(self, duration):
         r'''Shorten leaf by `duration`.
+
+        Return none.
         '''
         from abjad.tools import leaftools
         duration = self.get_duration() - duration

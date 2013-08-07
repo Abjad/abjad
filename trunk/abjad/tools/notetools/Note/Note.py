@@ -416,3 +416,68 @@ class Note(Leaf):
         for markup in down_markup:
             markup(bass)
         return treble, bass
+
+    def get_grace_containers(self, kind=None):
+        r'''Get grace containers attached to note.
+
+        ::
+
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> grace_container = leaftools.GraceContainer(
+            ...     [Note("cs'16")], 
+            ...     kind='grace',
+            ...     )
+            >>> grace_container.attach(staff[1])
+            Note("d'8")
+            >>> after_grace = leaftools.GraceContainer(
+            ...     [Note("ds'16")], 
+            ...     kind='after'
+            ...     )
+            >>> after_grace.attach(staff[1])
+            Note("d'8")
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'8
+                \grace {
+                    cs'16
+                }
+                \afterGrace
+                d'8
+                {
+                    ds'16
+                }
+                e'8
+                f'8
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        Example 1. Get all grace containers attached to note:
+
+        ::
+
+            >>> staff[1].get_grace_containers()
+            (GraceContainer(cs'16), GraceContainer(ds'16))
+
+        Example 2. Get only (proper) grace containers attached to note:
+
+        ::
+
+            >>> staff[1].get_grace_containers(kind='grace')
+            (GraceContainer(cs'16),)
+
+        Example 3. Get only after grace containers attached to note:
+
+        ::
+
+            >>> staff[1].get_grace_containers(kind='after')
+            (GraceContainer(ds'16),)
+
+        Return tuple.
+        '''
+        return super(Note, self).get_grace_containers(kind=kind)
