@@ -18,5 +18,5 @@ def test_Accidental_alphabetic_accidental_abbreviation_03():
 
 
 def test_Accidental_alphabetic_accidental_abbreviation_04():
-    t = pitchtools.Accidental('!')
-    assert t.alphabetic_accidental_abbreviation == '!'
+    accidental = pitchtools.Accidental('!')
+    assert accidental.alphabetic_accidental_abbreviation == '!'

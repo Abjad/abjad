@@ -4,8 +4,8 @@ from abjad import *
 
 def test_labeltools_label_leaves_in_expr_with_leaf_durations_01():
 
-    t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    labeltools.label_leaves_in_expr_with_leaf_durations(t)
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    labeltools.label_leaves_in_expr_with_leaf_durations(tuplet)
 
     r'''
     \new Staff {
@@ -32,9 +32,9 @@ def test_labeltools_label_leaves_in_expr_with_leaf_durations_01():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        tuplet.lilypond_format,
         r'''
         \times 2/3 {
             c'8

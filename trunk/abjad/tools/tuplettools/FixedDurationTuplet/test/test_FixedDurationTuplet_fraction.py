@@ -67,7 +67,7 @@ def test_FixedDurationTuplet_fraction_03():
     r'''Do not fraction format trivial tuplets.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(3, 8), "c'8 d'8 e'8")
+    tuplet = tuplettools.FixedDurationTuplet(Duration(3, 8), "c'8 d'8 e'8")
 
     r'''
     {
@@ -77,9 +77,9 @@ def test_FixedDurationTuplet_fraction_03():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        tuplet.lilypond_format,
         r'''
         {
             c'8

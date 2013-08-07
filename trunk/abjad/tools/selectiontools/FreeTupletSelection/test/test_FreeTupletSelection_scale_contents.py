@@ -274,7 +274,7 @@ def test_FreeTupletSelection_scale_contents_10():
     r'''Target duration without power-of-two denominator.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(4, 8), [Note(0, (2, 8)), Note(0, (3, 8))])
+    tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), [Note(0, (2, 8)), Note(0, (3, 8))])
 
     r'''
     \times 4/5 {
@@ -283,7 +283,7 @@ def test_FreeTupletSelection_scale_contents_10():
     }
     '''
 
-    selection = selectiontools.select_tuplets(t)
+    selection = selectiontools.select_tuplets(tuplet)
     selection.scale_contents(Multiplier(2, 3))
 
     r'''
@@ -293,9 +293,9 @@ def test_FreeTupletSelection_scale_contents_10():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        tuplet.lilypond_format,
         r'''
         \times 8/15 {
             c'4

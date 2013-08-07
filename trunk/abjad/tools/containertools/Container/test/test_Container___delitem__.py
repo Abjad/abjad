@@ -219,10 +219,10 @@ def test_Container___delitem___07():
     r'''Detach leaf from tuplet and spanner.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    spannertools.BeamSpanner(tuplet[:])
 
-    del(t[1])
+    del(tuplet[1])
 
     r'''
     {
@@ -231,9 +231,9 @@ def test_Container___delitem___07():
     }
     '''
 
-    assert select(t).is_well_formed()
+    assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        t.lilypond_format,
+        tuplet.lilypond_format,
         r'''
         {
             c'8 [

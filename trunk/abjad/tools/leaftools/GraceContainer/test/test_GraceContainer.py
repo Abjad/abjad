@@ -167,8 +167,8 @@ def test_GraceContainer_08():
     r'''Grace containers can be extended.
     '''
 
-    t = leaftools.GraceContainer(notetools.make_repeated_notes(2))
+    gracecontainer = leaftools.GraceContainer(notetools.make_repeated_notes(2))
     ns = Note(1, (1, 4)) * 2
-    t.extend(ns)
-    assert len(t) == 4
-    assert t[-2:] == ns
+    gracecontainer.extend(ns)
+    assert len(gracecontainer) == 4
+    assert gracecontainer[-2:] == ns

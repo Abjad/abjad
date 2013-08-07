@@ -5,7 +5,7 @@ from abjad.tools import tonalanalysistools
 
 def test_SuspensionIndicator__init_empty_01():
 
-    t = tonalanalysistools.SuspensionIndicator()
+    suspension_indicator = tonalanalysistools.SuspensionIndicator()
 
-    assert t.start is None
-    assert t.stop is None
+    assert suspension_indicator.start is None
+    assert suspension_indicator.stop is None

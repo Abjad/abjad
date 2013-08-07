@@ -100,7 +100,7 @@ def test_FixedDurationTuplet_trim_08():
 def test_FixedDurationTuplet_trim_09():
     r'''Trimming all leaves raises an exception.
     '''
-    t = tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 8)) * 3)
-    for i, leaf in enumerate(t.select_leaves()):
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 8)) * 3)
+    for i, leaf in enumerate(tuplet.select_leaves()):
         leaf.written_pitch = i
-    raises(AssertionError, 't.trim(0, 100)')
+    raises(AssertionError, 'tuplet.trim(0, 100)')

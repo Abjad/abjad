@@ -14,5 +14,5 @@ def test_FixedDurationTuplet_is_trivial_02():
     r'''True when tuplet ratio equals one.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8")
-    assert t.is_trivial
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8")
+    assert tuplet.is_trivial

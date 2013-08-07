@@ -18,12 +18,12 @@ def test_Cluster___init___01():
 
 
 def test_Cluster___init___02():
-    t = containertools.Cluster(Note(1, (1, 4)) * 4)
-    assert isinstance(t, containertools.Cluster)
-    assert not t.is_parallel
-    assert len(t) == 4
+    cluster = containertools.Cluster(Note(1, (1, 4)) * 4)
+    assert isinstance(cluster, containertools.Cluster)
+    assert not cluster.is_parallel
+    assert len(cluster) == 4
     assert testtools.compare(
-        t.lilypond_format,
+        cluster.lilypond_format,
         r'''
         \makeClusters {
             cs'4

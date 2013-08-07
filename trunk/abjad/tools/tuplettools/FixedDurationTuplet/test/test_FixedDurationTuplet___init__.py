@@ -30,11 +30,11 @@ def test_FixedDurationTuplet___init___02():
     r'''Initialize empty fixed-duration tuplet.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(1, 4), [])
+    tuplet = tuplettools.FixedDurationTuplet(Duration(1, 4), [])
 
-    assert repr(t) == 'FixedDurationTuplet(1/4, [])'
-    assert str(t) == '{@ 1/4 @}'
-    assert len(t) == 0
-    assert t.target_duration == Fraction(1, 4)
-    assert t.multiplier == None
-    assert t.get_duration() == Fraction(1, 4)
+    assert repr(tuplet) == 'FixedDurationTuplet(1/4, [])'
+    assert str(tuplet) == '{@ 1/4 @}'
+    assert len(tuplet) == 0
+    assert tuplet.target_duration == Fraction(1, 4)
+    assert tuplet.multiplier == None
+    assert tuplet.get_duration() == Fraction(1, 4)

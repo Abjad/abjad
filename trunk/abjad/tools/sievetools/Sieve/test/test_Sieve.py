@@ -69,7 +69,7 @@ def test_Sieve_07():
     r'''Logical XOR.
     '''
 
-    t = sievetools.Sieve([ResidueClass(2, 1), ResidueClass(3, 0)], 'xor')
+    sieve = sievetools.Sieve([ResidueClass(2, 1), ResidueClass(3, 0)], 'xor')
 
-    assert t.get_boolean_train(6) == [1, 1, 0, 0, 0, 1]
-    assert t.get_congruent_bases(6) == [0, 1, 5, 6]
+    assert sieve.get_boolean_train(6) == [1, 1, 0, 0, 0, 1]
+    assert sieve.get_congruent_bases(6) == [0, 1, 5, 6]

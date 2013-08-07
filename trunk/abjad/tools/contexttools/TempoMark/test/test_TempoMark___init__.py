@@ -76,5 +76,5 @@ def test_TempoMark___init___09():
     r'''Init tempo mark from length-3 tuple.
     '''
 
-    t = contexttools.TempoMark(('Quick', Duration(1, 4), (120, 133)))
-    assert t.lilypond_format == '\\tempo Quick 4=120~133'
+    tempomark = contexttools.TempoMark(('Quick', Duration(1, 4), (120, 133)))
+    assert tempomark.lilypond_format == '\\tempo Quick 4=120~133'

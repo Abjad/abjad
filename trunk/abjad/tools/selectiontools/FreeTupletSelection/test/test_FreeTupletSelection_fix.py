@@ -88,8 +88,8 @@ def test_FreeTupletSelection_fix_03():
     r'''Halve note durations.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(5, 16), "c'4 d'4 e'4")
-    assert not t.multiplier.is_proper_tuplet_multiplier
+    tuplet = tuplettools.FixedDurationTuplet(Duration(5, 16), "c'4 d'4 e'4")
+    assert not tuplet.multiplier.is_proper_tuplet_multiplier
 
     r'''
     \tweak #'text #tuplet-number::calc-fraction-text
@@ -100,7 +100,7 @@ def test_FreeTupletSelection_fix_03():
     }
     '''
 
-    tuplets = selectiontools.select_tuplets([t])
+    tuplets = selectiontools.select_tuplets([tuplet])
     tuplets.fix()
 
     r'''
@@ -112,10 +112,10 @@ def test_FreeTupletSelection_fix_03():
     }
     '''
 
-    assert select(t).is_well_formed()
-    assert t.multiplier.is_proper_tuplet_multiplier
+    assert select(tuplet).is_well_formed()
+    assert tuplet.multiplier.is_proper_tuplet_multiplier
     assert testtools.compare(
-        t.lilypond_format,
+        tuplet.lilypond_format,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 5/6 {

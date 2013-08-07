@@ -87,11 +87,11 @@ def test_FixedDurationTuplet_05():
     r'''Tuplet.is_invisible formats compressed music.
     '''
 
-    t = tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
-    assert t.is_invisible is None
-    t.is_invisible = True
+    tuplet = tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
+    assert tuplet.is_invisible is None
+    tuplet.is_invisible = True
     assert testtools.compare(
-        t.lilypond_format,
+        tuplet.lilypond_format,
         r'''
         \scaleDurations #'(2 . 3) {
             c'8
@@ -109,9 +109,9 @@ def test_FixedDurationTuplet_05():
     }
     '''
 
-    t.is_invisible = False
+    tuplet.is_invisible = False
     assert testtools.compare(
-        t.lilypond_format,
+        tuplet.lilypond_format,
         r'''
         \times 2/3 {
             c'8
