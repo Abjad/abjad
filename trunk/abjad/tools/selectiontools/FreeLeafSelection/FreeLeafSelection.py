@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.selectiontools.FreeSelection import FreeSelection
+from abjad.tools.selectiontools.Selection import Selection
 
 
-class FreeLeafSelection(FreeSelection):
-    r'''Free selection of leaves.
+class FreeLeafSelection(Selection):
+    r'''A free selection of leaves.
     '''
 
     ### PUBLIC METHODS ###

@@ -3,10 +3,10 @@ from abjad.tools import iterationtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
-from abjad.tools.selectiontools.FreeSelection import FreeSelection
+from abjad.tools.selectiontools.Selection import Selection
 
 
-class TonalAnalysisSelection(FreeSelection):
+class TonalAnalysisSelection(Selection):
     r'''Tonal analysis selection.
 
     ::

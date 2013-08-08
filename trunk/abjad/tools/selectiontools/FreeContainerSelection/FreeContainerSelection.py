@@ -1,8 +1,8 @@
-from abjad.tools.selectiontools.FreeSelection import FreeSelection
+from abjad.tools.selectiontools.Selection import Selection
 
 
-class FreeContainerSelection(FreeSelection):
-    '''Free selection of containers.
+class FreeContainerSelection(Selection):
+    '''A free selection of containers.
     '''
 
     pass

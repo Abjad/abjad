@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 import copy
-from abjad.tools.selectiontools.FreeSelection import FreeSelection
+from abjad.tools.selectiontools.Selection import Selection
 
 
-class ComponentSelection(FreeSelection):
-    r'''Selection of components grouped together for inspection.
+class ComponentSelection(Selection):
+    r'''A selection of components grouped together for inspection.
     '''
 
     ### PUBLIC METHODS ###

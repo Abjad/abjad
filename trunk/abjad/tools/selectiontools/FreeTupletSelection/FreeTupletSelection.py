@@ -3,11 +3,11 @@ import fractions
 import math
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools.selectiontools.FreeSelection import FreeSelection
+from abjad.tools.selectiontools.Selection import Selection
 
 
-class FreeTupletSelection(FreeSelection):
-    r'''Free selection of tuplets.
+class FreeTupletSelection(Selection):
+    r'''A free selection of tuplets.
     '''
 
     ### PUBLIC METHODS ###
