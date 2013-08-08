@@ -1,16 +1,16 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.selectiontools.SliceSelection import SliceSelection
+from abjad.tools.selectiontools.ContiguousSelection import ContiguousSelection
 
 
-class ContiguousLeafSelection(SliceSelection):
-    r'''SliceSelection of leaves.
+class ContiguousLeafSelection(ContiguousSelection):
+    r'''A selection of time-contiguous leaves.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, music=None):
         from abjad.tools import leaftools
-        SliceSelection.__init__(self, music=music)
+        ContiguousSelection.__init__(self, music=music)
         assert all(isinstance(x, leaftools.Leaf) for x in self)
 
     ### PUBLIC METHODS ###
