@@ -157,7 +157,7 @@ class Measure(FixedDurationContainer):
         for mark in self.get_marks():
             new_mark = copy.copy(mark)
             new_mark.attach(new)
-        new.is_parallel = self.is_parallel
+        new.is_simultaneous = self.is_simultaneous
         return new
 
     @property

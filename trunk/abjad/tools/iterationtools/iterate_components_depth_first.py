@@ -78,7 +78,7 @@ def _is_node_forbidden(node, forbid):
     if forbid is None:
         return False
     elif forbid == 'parallel':
-        return getattr(node, 'is_parallel', False)
+        return getattr(node, 'is_simultaneous', False)
     else:
         return isinstance(node, forbid)
 

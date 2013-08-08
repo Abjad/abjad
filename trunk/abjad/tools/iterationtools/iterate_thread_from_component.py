@@ -8,7 +8,7 @@ def iterate_thread_from_component(component, component_class=None, reverse=False
     ::
 
         >>> container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
-        >>> container.is_parallel = True
+        >>> container.is_simultaneous = True
         >>> container[0].name = 'voice 1'
         >>> container[1].name = 'voice 2'
         >>> staff = Staff(container * 2)

@@ -95,7 +95,7 @@ The musical fragment above is constructed with the following code:
    >>> mark = marktools.LilyPondCommandMark('voiceOne')(vB[0])
    >>> mark = marktools.LilyPondCommandMark('voiceTwo')(vC[0])
    >>> p = Container([vB, vC])
-   >>> p.is_parallel = True
+   >>> p.is_simultaneous = True
    >>> staff = Staff([vA, p])
 
 
@@ -349,7 +349,7 @@ one of them starting with a LilyPond skip:
    >>> mark = marktools.LilyPondCommandMark('voiceOne')(vX[0])
    >>> mark = marktools.LilyPondCommandMark('voiceTwo')(vY[0])
    >>> staff = Staff([vX, vY])
-   >>> staff.is_parallel = True
+   >>> staff.is_simultaneous = True
 
 
 ::

@@ -43,7 +43,7 @@ class ContextSpeccedMusic(Music):
             pass # TODO: Implement context mods on contexts. #
 
         if isinstance(self.music, lilypondparsertools.ParallelMusic):
-            context.is_parallel = True
+            context.is_simultaneous = True
         context.extend(music.construct())
 
         return context

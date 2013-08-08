@@ -11,7 +11,7 @@ def test_iterationtools_iterate_semantic_voices_in_expr_01():
     music_voice = Voice("c'4. d'4 e'16 f'4 g'16")
     music_voice.name = 'MusicVoice'
     staff = Staff([time_signature_voice, music_voice])
-    staff.is_parallel = True
+    staff.is_simultaneous = True
 
     r'''
     \new Staff <<
@@ -56,7 +56,7 @@ def test_iterationtools_iterate_semantic_voices_in_expr_02():
     music_voice = Voice("c'4. d'4 e'16 f'4 g'16")
     music_voice.name = 'MusicVoice'
     staff = Staff([time_signature_voice, music_voice])
-    staff.is_parallel = True
+    staff.is_simultaneous = True
 
     r'''
     \new Staff <<

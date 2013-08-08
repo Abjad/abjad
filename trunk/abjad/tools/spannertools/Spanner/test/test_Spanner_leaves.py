@@ -165,7 +165,7 @@ def test_Spanner_leaves_06():
 
     staff = Staff(notetools.make_repeated_notes(4))
     staff.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
-    staff[2].is_parallel = True
+    staff[2].is_simultaneous = True
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
 
     r'''
@@ -212,7 +212,7 @@ def test_Spanner_leaves_07():
 
     staff = Staff(notetools.make_repeated_notes(4))
     staff.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
-    staff[2].is_parallel = True
+    staff[2].is_simultaneous = True
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
 
     r'''

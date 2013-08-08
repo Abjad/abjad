@@ -48,7 +48,7 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice=False):
     ::
 
         >>> measure = Measure((2, 8), 2 * Voice(notetools.make_repeated_notes(2)))
-        >>> measure.is_parallel = True
+        >>> measure.is_simultaneous = True
         >>> t = Staff(measure * 2)
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
         >>> measuretools.pad_measures_in_expr_with_skips(

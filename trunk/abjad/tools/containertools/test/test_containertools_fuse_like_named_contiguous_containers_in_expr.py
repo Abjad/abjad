@@ -162,13 +162,13 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_08():
     v3 = Voice(Note(4, (1, 4))*2)
     v3.name = '3'
     t1 = Staff([v1, v2, v3])
-    t1.is_parallel = True
+    t1.is_simultaneous = True
     t1.name = 'staff1'
     t2 = componenttools.copy_components_and_fracture_crossing_spanners([t1])[0]
-    t2.is_parallel = True
+    t2.is_simultaneous = True
     t2.name = 'staff2'
     t3 = componenttools.copy_components_and_fracture_crossing_spanners([t1])[0]
-    t3.is_parallel = True
+    t3.is_simultaneous = True
     t3.name = 'staff3'
     s1 = scoretools.StaffGroup([t1, t2, t3])
     s1.name = 'sg'
@@ -525,9 +525,9 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_12():
     '''
 
     t1 = Container([Voice(Note("c'4")*2)])
-    t1.is_parallel = True
+    t1.is_simultaneous = True
     t2 = Container([Voice(Note("c'4")*2)])
-    t2.is_parallel = True
+    t2.is_simultaneous = True
     t1[0].name = t2[0].name = 'voiceOne'
     tadd = containertools.fuse_like_named_contiguous_containers_in_expr(
         [t1, t2])
@@ -545,7 +545,7 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_12():
 
     assert select(tadd).is_well_formed()
     assert isinstance(tadd, Container)
-    assert tadd.is_parallel
+    assert tadd.is_simultaneous
     assert len(tadd) == 1
     assert isinstance(tadd[0], Voice)
     assert len(tadd[0]) == 4
@@ -565,9 +565,9 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_13():
     v4 = Voice(Note(1, (1, 4))*2)
     v4.name = '2'
     t1 = Staff([v1, v2])
-    t1.is_parallel = True
+    t1.is_simultaneous = True
     t2 = Staff([v3, v4])
-    t2.is_parallel = True
+    t2.is_simultaneous = True
     t1.name = t2.name = 'staffOne'
     tadd = containertools.fuse_like_named_contiguous_containers_in_expr(
         [t1, t2])
@@ -590,7 +590,7 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_13():
     '''
 
     assert isinstance(tadd, Staff)
-    assert tadd.is_parallel
+    assert tadd.is_simultaneous
     assert len(tadd) == 2
     assert isinstance(tadd[0], Voice)
     assert isinstance(tadd[1], Voice)

@@ -39,7 +39,7 @@ class Cluster(Container):
 
     def __init__(self, music=None, **kwargs):
         Container.__init__(self, music)
-        self.is_parallel = False
+        self.is_simultaneous = False
         self._initialize_keyword_values(**kwargs)
 
     ### SPECIAL METHODS ###
@@ -52,7 +52,7 @@ class Cluster(Container):
     def _format_open_brackets_slot(self, format_contributions):
         result = []
         contributor = ('self_brackets', 'open')
-        if self.is_parallel:
+        if self.is_simultaneous:
             brackets_open = ['<<']
         else:
             brackets_open = ['{']

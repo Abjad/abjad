@@ -79,8 +79,8 @@ def test_BeamSpanner_span_differently_named_02():
     all its sub-contexts are equally named.'''
 
     container = Container(Staff(Voice(notetools.make_repeated_notes(4)) * 2) * 2)
-    container[0].is_parallel = True
-    container[1].is_parallel = True
+    container[0].is_simultaneous = True
+    container[1].is_simultaneous = True
     container[0].name, container[1].name = 'foo', 'foo'
     container[0][0].name, container[1][0].name = 'first', 'first'
     container[0][1].name, container[1][1].name = 'second', 'second'

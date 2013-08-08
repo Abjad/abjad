@@ -159,7 +159,7 @@ We'll name the second of these two voices the `appendix_voice`:
 ::
 
    >>> container = Container([appendix_voice_m4, main_voice_m4])
-   >>> container.is_parallel = True
+   >>> container.is_simultaneous = True
    >>> lower_measures[3].append(container)
 
 
@@ -169,7 +169,7 @@ of the stems in different voices.
 Note that we must put both voices in a parallel container
 because they occur at the same time in the score.
 We do this by creating an Abjad container and then setting
-the ``is_parallel`` attribute of the container to true.
+the ``is_simultaneous`` attribute of the container to true.
 
 We now do a similar thing for the last measure:
 
@@ -194,7 +194,7 @@ We now do a similar thing for the last measure:
 ::
 
    >>> container = Container([appendix_voice_m5, main_voice_m5])
-   >>> container.is_parallel = True
+   >>> container.is_simultaneous = True
    >>> lower_measures[4].append(container)
 
 

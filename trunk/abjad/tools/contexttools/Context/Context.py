@@ -58,7 +58,7 @@ class Context(Container):
             summary = str(len(self))
         else:
             summary = ''
-        if self.is_parallel:
+        if self.is_simultaneous:
             open_bracket_string, close_bracket_string = '<<', '>>'
         else:
             open_bracket_string, close_bracket_string = '{', '}'
@@ -125,7 +125,7 @@ class Context(Container):
 
     def _format_open_brackets_slot(context, format_contributions):
         result = []
-        if context.is_parallel:
+        if context.is_simultaneous:
             brackets_open = ['<<']
         else:
             brackets_open = ['{']

@@ -47,7 +47,7 @@ def copy_governed_component_subtree_from_offset_to(
     Raise contiguity error if asked to slice a parallel container. ::
 
         >>> staff = Staff(Voice("c'8 d'8") * 2)
-        >>> staff.is_parallel = True
+        >>> staff.is_simultaneous = True
         >>> f(staff)
         \new Staff <<
         \new Voice {

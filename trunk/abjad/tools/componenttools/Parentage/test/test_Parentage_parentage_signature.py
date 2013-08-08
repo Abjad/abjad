@@ -49,7 +49,7 @@ def test_Parentage_parentage_signature_04():
 
     voice = Voice(notetools.make_repeated_notes(4))
     voice.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
-    voice[2].is_parallel = True
+    voice[2].is_simultaneous = True
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
     voice.override.note_head.color = 'red'
 

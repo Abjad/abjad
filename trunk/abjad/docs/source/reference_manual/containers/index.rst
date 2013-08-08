@@ -299,31 +299,31 @@ number of note lists together polyphonically.
 Understanding sequential and parallel containers
 ------------------------------------------------
 
-Abjad implements LilyPond ``{ }`` and ``<< >>`` in the container ``is_parallel`` attribute.
+Abjad implements LilyPond ``{ }`` and ``<< >>`` in the container ``is_simultaneous`` attribute.
 
-Some containers set ``is_parallel`` to false at initialization::
+Some containers set ``is_simultaneous`` to false at initialization::
 
     staff = Staff([])
-    staff.is_parallel
+    staff.is_simultaneous
     False
 
-Other containers set ``is_parallel`` to true::
+Other containers set ``is_simultaneous`` to true::
 
     score = Score([])
-    score.is_parallel
+    score.is_simultaneous
     True
 
 Changing sequential and parallel containers
 -------------------------------------------
 
-Set ``is_parallel`` by hand as necessary:
+Set ``is_simultaneous`` by hand as necessary:
 
 ::
 
    >>> voice_1 = Voice(r"e''4 f''4 g''4 g''4 f''4 e''4 d''4 d''4 \fermata")
    >>> voice_2 = Voice(r"c''4 c''4 b'4 c''4 c''8 b'8 c''4 b'4 b'4 \fermata")
    >>> staff = Staff([voice_1, voice_2])
-   >>> staff.is_parallel = True
+   >>> staff.is_simultaneous = True
    >>> marktools.LilyPondCommandMark('voiceOne')(voice_1)
    LilyPondCommandMark('voiceOne')(Voice{8})
    >>> marktools.LilyPondCommandMark('voiceTwo')(voice_2)

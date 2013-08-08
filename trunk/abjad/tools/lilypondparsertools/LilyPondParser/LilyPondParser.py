@@ -448,7 +448,7 @@ class LilyPondParser(abctools.Parser):
                 print x
             pass # TODO: Implement context mods on contexts. #
 
-        context.is_parallel = music.is_parallel
+        context.is_simultaneous = music.is_simultaneous
 
         # add children
         while len(music):
@@ -532,7 +532,7 @@ class LilyPondParser(abctools.Parser):
             return False
 
         container = containertools.Container()
-        container.is_parallel = True
+        container.is_simultaneous = True
 
         # check for voice separators
         groups = []

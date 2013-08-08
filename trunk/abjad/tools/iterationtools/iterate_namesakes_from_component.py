@@ -8,11 +8,11 @@ def iterate_namesakes_from_component(component, reverse=False, start=0, stop=Non
     ::
 
         >>> container = Container(Staff(notetools.make_repeated_notes(2)) * 2)
-        >>> container.is_parallel = True
+        >>> container.is_simultaneous = True
         >>> container[0].name = 'staff 1'
         >>> container[1].name = 'staff 2'
         >>> score = Score([])
-        >>> score.is_parallel = False
+        >>> score.is_simultaneous = False
         >>> score.extend(container * 2)
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(score)
 

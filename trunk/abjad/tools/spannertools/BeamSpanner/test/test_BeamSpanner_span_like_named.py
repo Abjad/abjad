@@ -103,8 +103,8 @@ def test_BeamSpanner_span_like_named_03():
     '''
 
     container = Container(Container(Voice(notetools.make_repeated_notes(4)) * 2) * 2)
-    container[0].is_parallel = True
-    container[1].is_parallel = True
+    container[0].is_simultaneous = True
+    container[1].is_simultaneous = True
     container[0][0].name, container[1][1].name = 'first', 'first'
     container[0][1].name, container[1][0].name = 'second', 'second'
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
@@ -156,8 +156,8 @@ def test_BeamSpanner_span_like_named_04():
     '''
 
     container = Container(Container(Voice(notetools.make_repeated_notes(4)) * 2) * 2)
-    container[0].is_parallel = True
-    container[1].is_parallel = True
+    container[0].is_simultaneous = True
+    container[1].is_simultaneous = True
     container[0][0].name, container[1][0].name = 'first', 'first'
     container[0][1].name, container[1][1].name = 'second', 'second'
     del(container[1][1])

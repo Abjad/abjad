@@ -12,7 +12,7 @@ def test_lily_voice_resolution_01():
 
     voice = Voice(notetools.make_repeated_notes(4))
     voice.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
-    voice[2].is_parallel = True
+    voice[2].is_simultaneous = True
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
     voice.override.note_head.color = 'red'
 
@@ -54,7 +54,7 @@ def test_lily_voice_resolution_02():
     voice = Voice(notetools.make_repeated_notes(4))
     voice.name = 'foo'
     voice.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
-    voice[2].is_parallel = True
+    voice[2].is_simultaneous = True
     voice[2][0].name = 'foo'
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
     voice.override.note_head.color = 'red'
@@ -111,7 +111,7 @@ def test_lily_voice_resolution_04():
 
     container = Container(notetools.make_repeated_notes(2))
     container[1:1] = Container(Voice(notetools.make_repeated_notes(2)) * 2) * 2
-    container[1].is_parallel = True
+    container[1].is_simultaneous = True
     container[1][0].name = 'alto'
     container[1][1].name = 'soprano'
     container[2][0].name = 'alto'

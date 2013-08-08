@@ -12,7 +12,7 @@ def iterate_semantic_voices_in_expr(expr, reverse=False, start=0, stop=None):
         >>> music_voice = Voice("c'4. d'4 e'16 f'4 g'16")
         >>> music_voice.name = 'MusicVoice'
         >>> staff = Staff([time_signature_voice, music_voice])
-        >>> staff.is_parallel = True
+        >>> staff.is_simultaneous = True
 
     ..  doctest::
 

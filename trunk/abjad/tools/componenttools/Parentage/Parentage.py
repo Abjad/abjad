@@ -97,11 +97,11 @@ class Parentage(SimultaneousSelection):
         from abjad.tools import componenttools
         for component in self:
             if isinstance(component, containertools.Container) and \
-                not component.is_parallel:
+                not component.is_simultaneous:
                 if component._parent is None:
                     return component
                 if isinstance(component._parent, containertools.Container) and \
-                    component._parent.is_parallel:
+                    component._parent.is_simultaneous:
                     return component
 
     def _get_spanner(self, spanner_classes=None):

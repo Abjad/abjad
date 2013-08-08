@@ -73,7 +73,7 @@ def test_Spanner__is_my_first_leaf_02():
 #
 #   t = Voice(notetools.make_repeated_notes(4))
 #   t.insert(2, Container(Container(notetools.make_repeated_notes(2)) * 2))
-#   t[2].is_parallel = True
+#   t[2].is_simultaneous = True
 #   pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 #
 #   r'''\new Voice {

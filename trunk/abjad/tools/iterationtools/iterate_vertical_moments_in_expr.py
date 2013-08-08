@@ -125,7 +125,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
         buffer.append(component)
         stop_offsets.append(component.get_timespan().stop_offset)
         if isinstance(component, containertools.Container):
-            if component.is_parallel:
+            if component.is_simultaneous:
                 for x in component:
                     _buffer_components_starting_with(x, buffer, stop_offsets)
             else:
@@ -142,7 +142,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
         if parent is None:
             raise StopIteration
         # can not advance within parallel parent
-        if parent.is_parallel:
+        if parent.is_simultaneous:
             raise StopIteration
         try:
             return parent[start + 1]

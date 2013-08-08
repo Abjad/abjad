@@ -8,7 +8,7 @@ def test_BeamSpanner_span_parallel_container_01():
     '''
 
     container = Container([])
-    container.is_parallel = True
+    container.is_simultaneous = True
     beam = spannertools.BeamSpanner(container)
 
     assert len(beam.components) == 1
@@ -28,7 +28,7 @@ def test_BeamSpanner_span_parallel_container_02():
     '''
 
     container = Container(Voice(notetools.make_repeated_notes(4)) * 2)
-    container.is_parallel = True
+    container.is_simultaneous = True
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
 
     assert py.test.raises(AssertionError, 'beam = spannertools.BeamSpanner(container)')
@@ -59,7 +59,7 @@ def test_BeamSpanner_span_parallel_container_03():
         even lodged within parallel parent container.'''
 
     container = Container(Voice(notetools.make_repeated_notes(4)) * 2)
-    container.is_parallel = True
+    container.is_simultaneous = True
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
     beam = spannertools.BeamSpanner(container[0])
 
@@ -108,7 +108,7 @@ def test_BeamSpanner_span_parallel_container_04():
 
     staff = Staff(notetools.make_repeated_notes(4))
     new = Container(Voice(notetools.make_repeated_notes(4)) * 2)
-    new.is_parallel = True
+    new.is_simultaneous = True
     staff.insert(2, new)
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
 
@@ -121,7 +121,7 @@ def test_BeamSpanner_span_parallel_container_05():
 
     staff = Staff(notetools.make_repeated_notes(4))
     new = Container([])
-    new.is_parallel = True
+    new.is_simultaneous = True
     staff.insert(2, new)
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
     beam = spannertools.BeamSpanner(staff)
@@ -161,7 +161,7 @@ def test_BeamSpanner_span_parallel_container_06():
     staff = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
     staff[0].name, staff[1].name = 'foo', 'foo'
     new = Container(Voice(notetools.make_repeated_notes(4)) * 2)
-    new.is_parallel = True
+    new.is_simultaneous = True
     staff.insert(1, new)
     staff[1][0].name = 'foo'
     staff[1][1].name = 'bar'

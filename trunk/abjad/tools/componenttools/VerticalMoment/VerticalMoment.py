@@ -167,7 +167,7 @@ class VerticalMoment(SimultaneousSelection):
             offset < component.get_timespan().stop_offset:
             result.append(component)
             if hasattr(component, '_music'):
-                if component.is_parallel:
+                if component.is_simultaneous:
                     for x in component:
                         result.extend(VerticalMoment._recurse(x, offset))
                 else:

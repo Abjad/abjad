@@ -124,7 +124,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
                     else:
                         voice_identifier = '{}-{}'.format(
                             staff_number, voice_number)
-                        staff.is_parallel = True
+                        staff.is_simultaneous = True
                     voice = voicetools.Voice(
                         name='Voice {}'.format(voice_identifier))
                     staff.append(voice)

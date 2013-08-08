@@ -123,7 +123,7 @@ def replace_leaves_in_expr_with_parallel_voices(expr):
         stop_idx = parent.index(grouped_leaves[-1])
 
         container = containertools.Container()
-        container.is_parallel = True
+        container.is_simultaneous = True
         upper_voice = voicetools.Voice(componenttools.copy_components_and_detach_spanners(grouped_leaves))
         lower_voice = voicetools.Voice(componenttools.copy_components_and_detach_spanners(grouped_leaves))
         container.extend([upper_voice, lower_voice])

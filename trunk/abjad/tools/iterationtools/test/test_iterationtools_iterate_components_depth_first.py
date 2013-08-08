@@ -7,7 +7,7 @@ import py.test
 
 t = Staff(notetools.make_repeated_notes(4))
 t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
-t[2].is_parallel = True
+t[2].is_simultaneous = True
 pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
 r'''

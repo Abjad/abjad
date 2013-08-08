@@ -229,13 +229,13 @@ class Component(AbjadObject):
             return self
         elif 0 < n:
             if self._parent is not None:
-                if not self._parent.is_parallel:
+                if not self._parent.is_simultaneous:
                     index = self._parent.index(self)
                     if index + n < len(self._parent):
                         return self._parent[index + n]
         elif n < 0:
             if self._parent is not None:
-                if not self._parent.is_parallel:
+                if not self._parent.is_simultaneous:
                     index = self._parent.index(self)
                     if 0 <= index + n:
                         return self._parent[index + n]
@@ -325,7 +325,7 @@ class Component(AbjadObject):
         result = []
         result.append(self)
         if isinstance(self, containertools.Container):
-            if self.is_parallel:
+            if self.is_simultaneous:
                 for x in self:
                     result.extend(x._select_descendants_starting_with())
             elif self:
@@ -337,7 +337,7 @@ class Component(AbjadObject):
         result = []
         result.append(self)
         if isinstance(self, containertools.Container):
-            if self.is_parallel:
+            if self.is_simultaneous:
                 for x in self:
                     result.extend(x._select_descendants_stopping_with())
             elif self:

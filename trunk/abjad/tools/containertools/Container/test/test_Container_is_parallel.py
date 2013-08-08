@@ -3,50 +3,50 @@ from abjad import *
 import py.test
 
 
-def test_Container_is_parallel_01():
+def test_Container_is_simultaneous_01():
     r'''True when container encloses contents in LilyPond << >> brackets,
         otherwise False.'''
 
-    assert not Container([]).is_parallel
-    assert not tuplettools.FixedDurationTuplet(Duration(2, 8), []).is_parallel
-    assert not Tuplet(Fraction(2, 3), []).is_parallel
-    assert scoretools.GrandStaff([]).is_parallel
-    assert not stafftools.make_rhythmic_sketch_staff([]).is_parallel
-    assert not stafftools.RhythmicStaff([]).is_parallel
-    assert not Measure((4, 8), []).is_parallel
-    assert Score([]).is_parallel
-    assert not Container([]).is_parallel
-    assert not Staff([]).is_parallel
-    assert scoretools.StaffGroup([]).is_parallel
-    assert not Voice([]).is_parallel
+    assert not Container([]).is_simultaneous
+    assert not tuplettools.FixedDurationTuplet(Duration(2, 8), []).is_simultaneous
+    assert not Tuplet(Fraction(2, 3), []).is_simultaneous
+    assert scoretools.GrandStaff([]).is_simultaneous
+    assert not stafftools.make_rhythmic_sketch_staff([]).is_simultaneous
+    assert not stafftools.RhythmicStaff([]).is_simultaneous
+    assert not Measure((4, 8), []).is_simultaneous
+    assert Score([]).is_simultaneous
+    assert not Container([]).is_simultaneous
+    assert not Staff([]).is_simultaneous
+    assert scoretools.StaffGroup([]).is_simultaneous
+    assert not Voice([]).is_simultaneous
 
 
-def test_Container_is_parallel_02():
+def test_Container_is_simultaneous_02():
     r'''True when container encloses contents in LilyPond << >> brackets,
         otherwise False.'''
 
     container = Container([])
-    container.is_parallel = True
-    assert container.is_parallel
+    container.is_simultaneous = True
+    assert container.is_simultaneous
 
 
-def test_Container_is_parallel_03():
+def test_Container_is_simultaneous_03():
     r'''Container 'parallel' is settable.
     '''
 
     container = Container([])
-    assert not container.is_parallel
+    assert not container.is_simultaneous
 
-    container.is_parallel = True
-    assert container.is_parallel
+    container.is_simultaneous = True
+    assert container.is_simultaneous
 
 
-def test_Container_is_parallel_04():
+def test_Container_is_simultaneous_04():
     r'''A parallel container can hold Contexts.
     '''
     container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
-    container.is_parallel = True
+    container.is_simultaneous = True
     assert testtools.compare(
         container.lilypond_format,
         r'''
@@ -79,17 +79,17 @@ def test_Container_is_parallel_04():
 
 # Parallel Errors #
 
-def test_Container_is_parallel_05():
+def test_Container_is_simultaneous_05():
     r'''Parallel containers must contain only Contexts.
     It cannot take leaves.'''
 
     container = Container(notetools.make_repeated_notes(4))
-    py.test.raises(AssertionError, 'container.is_parallel = True')
+    py.test.raises(AssertionError, 'container.is_simultaneous = True')
 
 
-def test_Container_is_parallel_06():
+def test_Container_is_simultaneous_06():
     r'''Parallel containers must contain only Contexts.
     It cannot take Containers.'''
 
     container = Container(Container(notetools.make_repeated_notes(4)) * 2)
-    py.test.raises(AssertionError, 'container.is_parallel = True')
+    py.test.raises(AssertionError, 'container.is_simultaneous = True')

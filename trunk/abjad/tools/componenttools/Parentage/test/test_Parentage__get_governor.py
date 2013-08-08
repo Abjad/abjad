@@ -9,7 +9,7 @@ def test_Parentage__get_governor_01( ):
     '''
 
     voice = Voice([Container(Voice(notetools.make_repeated_notes(2)) * 2)])
-    voice[0].is_parallel = True
+    voice[0].is_simultaneous = True
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
     voice[0][0].name = 'voice 1'
     voice[0][1].name = 'voice 2'

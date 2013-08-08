@@ -8,7 +8,7 @@ def test_Container___copy___01():
     '''
 
     container_1 = Container([Voice("c'8 d'8"), Voice("c''8 b'8")])
-    container_1.is_parallel = True
+    container_1.is_simultaneous = True
 
     container_2 = copy.copy(container_1)
 

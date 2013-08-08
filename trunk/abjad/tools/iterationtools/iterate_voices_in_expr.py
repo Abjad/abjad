@@ -10,7 +10,7 @@ def iterate_voices_in_expr(expr, reverse=False, start=0, stop=None):
         >>> voice_1 = Voice("c'8 d'8 e'8 f'8")
         >>> voice_2 = Voice("c'4 b4")
         >>> staff = Staff([voice_1, voice_2])
-        >>> staff.is_parallel = True
+        >>> staff.is_simultaneous = True
 
     ..  doctest::
 

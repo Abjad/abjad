@@ -66,7 +66,7 @@ mark = marktools.LilyPondCommandMark('voiceOne')(vA[0])
 mark = marktools.LilyPondCommandMark('voiceOne')(vB[0])
 mark = marktools.LilyPondCommandMark('voiceTwo')(vC[0])
 p = Container([vB, vC])
-p.is_parallel = True
+p.is_simultaneous = True
 staff = Staff([vA, p])
 </abjad>
 
@@ -229,7 +229,7 @@ vY = Voice([skiptools.Skip((2, 4))] + Note(12, (1, 4)) * 2)
 mark = marktools.LilyPondCommandMark('voiceOne')(vX[0])
 mark = marktools.LilyPondCommandMark('voiceTwo')(vY[0])
 staff = Staff([vX, vY])
-staff.is_parallel = True
+staff.is_simultaneous = True
 </abjad>
 
 <abjad>

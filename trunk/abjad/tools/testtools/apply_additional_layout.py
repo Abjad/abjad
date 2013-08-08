@@ -12,7 +12,7 @@ def apply_additional_layout(lilypond_file):
 
     # configure multiple-voice rhythmic staves
     for staff in iterationtools.iterate_staves_in_expr(lilypond_file.score_block[0]):
-        if staff.is_parallel:
+        if staff.is_simultaneous:
             assert len(staff) == 2
             voice_1 = staff[0]
             voice_1.override.note_head.Y_offset = 0.5

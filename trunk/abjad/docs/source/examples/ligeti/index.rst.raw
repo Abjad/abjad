@@ -68,7 +68,7 @@ Finally we combine the two voices in a parallel Container:
 
 <abjad>
 container = Container([voice_lower, voice_higher])
-container.is_parallel = True
+container.is_simultaneous = True
 </abjad>
 
 This results in the complete *Désordre* *cell*:

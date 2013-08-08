@@ -34,7 +34,7 @@ def make_desordre_cell(pitches):
 
     # combine them together
     container = containertools.Container([lower_voice, upper_voice])
-    container.is_parallel = True
+    container.is_simultaneous = True
 
     # make all 1/8 beats breakable
     for leaf in lower_voice.select_leaves()[:-1]:

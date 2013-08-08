@@ -82,7 +82,7 @@ Finally we combine the two voices in a parallel Container:
 ::
 
    >>> container = Container([voice_lower, voice_higher])
-   >>> container.is_parallel = True
+   >>> container.is_simultaneous = True
 
 
 This results in the complete *Désordre* *cell*:
@@ -124,7 +124,7 @@ Because this *cell* appears over and over again, we want to reuse this code to g
    
        # combine them together
        container = Container([lower_voice, upper_voice])
-       container.is_parallel = True
+       container.is_simultaneous = True
    
        # make all 1/8 beats breakable
        for leaf in lower_voice.leaves[:-1]:

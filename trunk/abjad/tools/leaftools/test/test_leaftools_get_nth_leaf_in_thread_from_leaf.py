@@ -371,10 +371,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_12():
 
     s1 = Staff([vh1, vl1])
     s1.name = 'mystaff'
-    s1.is_parallel = True
+    s1.is_simultaneous = True
     s2 = Staff([vl2, vh2])
     s2.name = 'mystaff'
-    s2.is_parallel = True
+    s2.is_simultaneous = True
 
     seq = Container([s1, s2])
 

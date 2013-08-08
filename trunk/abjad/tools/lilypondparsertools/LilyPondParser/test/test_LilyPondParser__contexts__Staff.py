@@ -18,7 +18,7 @@ def test_LilyPondParser__contexts__Staff_01():
 
 def test_LilyPondParser__contexts__Staff_02():
     target = Staff([])
-    target.is_parallel = True
+    target.is_simultaneous = True
     target.append(Voice(notetools.make_notes([0, 2, 4, 5, 7, 9, 11, 12], (1, 8))))
     target.append(Voice(notetools.make_notes([0, 2, 4, 5, 7, 9, 11, 12], (1, 8))))
 

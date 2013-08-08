@@ -81,7 +81,7 @@ def test_Component_start_offset_10():
     v1 = Voice(notetools.make_repeated_notes(16))
     v2 = Voice(notetools.make_repeated_notes(16))
     staff = Staff([v1, v2])
-    staff.is_parallel = True
+    staff.is_simultaneous = True
     for i, x in enumerate(v1):
         assert x.get_timespan().start_offset == i * Duration(1, 8)
     for i, x in enumerate(v2):
@@ -120,7 +120,7 @@ def test_Component_start_offset_13():
     v1 = Voice(notetools.make_repeated_notes(4))
     v2 = Voice(notetools.make_repeated_notes(4))
     staff = Staff([v1, v2])
-    staff.is_parallel = True
+    staff.is_simultaneous = True
     for i, x in enumerate(v1.select_leaves()):
         assert x.get_timespan().start_offset == i * Duration(1, 8)
     for i, x in enumerate(v2.select_leaves()):
@@ -135,7 +135,7 @@ def test_Component_start_offset_14():
     v2 = Voice(notetools.make_repeated_notes(4))
     v3 = Voice(notetools.make_repeated_notes(4))
     staff = Staff([Container([v1, v2]), v3])
-    staff[0].is_parallel = True
+    staff[0].is_simultaneous = True
     for i, x in enumerate(v3.select_leaves()):
         assert x.get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 2)
 
@@ -148,7 +148,7 @@ def test_Component_start_offset_15():
     v2 = Voice(notetools.make_repeated_notes(4))
     v3 = Voice(notetools.make_repeated_notes(4))
     staff = Staff([v3, Container([v1, v2])])
-    staff[1].is_parallel = True
+    staff[1].is_simultaneous = True
     for i, x in enumerate(v1.select_leaves()):
         assert x.get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 2)
     for i, x in enumerate(v2.select_leaves()):
@@ -235,7 +235,7 @@ def test_Component_start_offset_23():
     v1 = Voice(notetools.make_repeated_notes(4))
     v2 = Voice(notetools.make_repeated_notes(4))
     staff = Staff([v1, v2])
-    staff.is_parallel = True
+    staff.is_simultaneous = True
     assert staff[0].get_timespan().start_offset == 0
     assert staff[1].get_timespan().start_offset == 0
 

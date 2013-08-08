@@ -93,7 +93,7 @@ def copy_governed_component_subtree_by_leaf_range(
         result = result[0]
 
     # copy leaves from sequential containers only
-    if component.is_parallel:
+    if component.is_simultaneous:
         raise Exception('can not copy from parallel container.')
 
     # assert valid start and stop

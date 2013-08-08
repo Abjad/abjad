@@ -259,8 +259,8 @@ def test_componenttools_all_are_components_in_same_thread_12():
 
     container = Container(Staff(Voice(notetools.make_repeated_notes(2)) * 2) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(container)
-    container[0].is_parallel = True
-    container[1].is_parallel = True
+    container[0].is_simultaneous = True
+    container[1].is_simultaneous = True
 
     r'''
     {
@@ -824,7 +824,7 @@ def test_componenttools_all_are_components_in_same_thread_31():
     vtop = Voice(Note(12, (1, 8)) * 4)
     vbottom = Voice(Note(0, (1, 8)) * 4)
     p = Container([vtop, vbottom])
-    p.is_parallel = True
+    p.is_simultaneous = True
     container = Container(notes + [p])
 
     r'''
@@ -859,7 +859,7 @@ def test_componenttools_all_are_components_in_same_thread_32():
     '''
 
     container = Container([Container(Voice(Note(0, (1, 8)) * 4) * 2)] + Note(0, (1, 8)) * 4)
-    container[0].is_parallel = True
+    container[0].is_simultaneous = True
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
 
     r'''
@@ -1245,7 +1245,7 @@ def test_componenttools_all_are_components_in_same_thread_42():
     '''
 
     p = Container(Voice(Note(0, (1, 8)) * 4) * 2)
-    p.is_parallel = True
+    p.is_simultaneous = True
     container = Container(Note(0, (1, 8)) * 4)
     container.insert(2, p)
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)

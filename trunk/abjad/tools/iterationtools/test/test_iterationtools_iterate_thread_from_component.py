@@ -7,7 +7,7 @@ def test_iterationtools_iterate_thread_from_component_01():
     '''
 
     container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
-    container.is_parallel = True
+    container.is_simultaneous = True
     container[0].name = 'voice 1'
     container[1].name = 'vocie 2'
     staff = Staff(container * 2)
@@ -55,7 +55,7 @@ def test_iterationtools_iterate_thread_from_component_02():
     '''
 
     container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
-    container.is_parallel = True
+    container.is_simultaneous = True
     container[0].name = 'voice 1'
     container[1].name = 'vocie 2'
     staff = Staff(container * 2)
@@ -109,7 +109,7 @@ def test_iterationtools_iterate_thread_from_component_02():
 def test_iterationtools_iterate_thread_from_component_03():
 
     container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
-    container.is_parallel = True
+    container.is_simultaneous = True
     container[0].name = 'voice 1'
     container[1].name = 'vocie 2'
     staff = Staff(container * 2)
@@ -155,7 +155,7 @@ def test_iterationtools_iterate_thread_from_component_03():
 def test_iterationtools_iterate_thread_from_component_04():
 
     container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
-    container.is_parallel = True
+    container.is_simultaneous = True
     container[0].name = 'voice 1'
     container[1].name = 'vocie 2'
     staff = Staff(container * 2)

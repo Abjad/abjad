@@ -38,7 +38,7 @@ class Score(Context):
 
     def __init__(self, music=None, context_name='Score', name=None):
         Context.__init__(self, music=music)
-        self.is_parallel = True
+        self.is_simultaneous = True
         self._initialize_keyword_values(context_name=context_name, name=name)
 
     ### PUBLIC METHODS ###

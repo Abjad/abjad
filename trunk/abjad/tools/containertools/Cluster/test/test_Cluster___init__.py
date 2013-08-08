@@ -6,7 +6,7 @@ def test_Cluster___init___01():
     r'''Cluster can be empty.
     '''
     cluster = containertools.Cluster([])
-    assert not cluster.is_parallel
+    assert not cluster.is_simultaneous
     assert len(cluster) == 0
     assert testtools.compare(
         cluster.lilypond_format,
@@ -20,7 +20,7 @@ def test_Cluster___init___01():
 def test_Cluster___init___02():
     cluster = containertools.Cluster(Note(1, (1, 4)) * 4)
     assert isinstance(cluster, containertools.Cluster)
-    assert not cluster.is_parallel
+    assert not cluster.is_simultaneous
     assert len(cluster) == 4
     assert testtools.compare(
         cluster.lilypond_format,

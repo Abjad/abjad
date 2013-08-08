@@ -7,7 +7,7 @@ def test_Component_get_effective_staff_01():
     '''
 
     piano = scoretools.PianoStaff(Staff("c'8 d'8 e'8 f'8") * 2)
-    piano.is_parallel = True
+    piano.is_simultaneous = True
     piano[0].name = 'RH'
     piano[1].name = 'LH'
     contexttools.StaffChangeMark(piano[1])(piano[0][0])
@@ -67,7 +67,7 @@ def test_Component_get_effective_staff_02():
     '''
 
     piano = scoretools.PianoStaff(Staff("c'8 d'8 e'8 f'8") * 2)
-    piano.is_parallel = True
+    piano.is_simultaneous = True
     piano[0].name = 'RH'
     piano[1].name = 'LH'
     contexttools.StaffChangeMark(piano[1])(piano[0][0])
@@ -130,7 +130,7 @@ def test_Component_get_effective_staff_03():
     '''
 
     piano = scoretools.PianoStaff(Staff("c'8 d'8 e'8 f'8") * 2)
-    piano.is_parallel = True
+    piano.is_simultaneous = True
     piano[0].name = 'RH'
     piano[1].name = 'LH'
     contexttools.StaffChangeMark(piano[1])(piano[0][-1])
@@ -181,7 +181,7 @@ def test_Component_get_effective_staff_04():
     '''
 
     piano = scoretools.PianoStaff(Staff("c'8 d'8 e'8 f'8") * 2)
-    piano.is_parallel = True
+    piano.is_simultaneous = True
     piano[0].name = 'RH'
     piano[1].name = 'LH'
     contexttools.StaffChangeMark(piano[1])(piano[0][0])

@@ -127,7 +127,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_03():
 
     staff = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
-    staff.is_parallel = True
+    staff.is_simultaneous = True
 
     statement = 'componenttools.copy_governed_component_subtree_'
     statement += 'by_leaf_range(staff, 1, 5)'
@@ -139,7 +139,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_04():
     '''
 
     staff = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
-    staff.is_parallel = True
+    staff.is_simultaneous = True
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     r'''

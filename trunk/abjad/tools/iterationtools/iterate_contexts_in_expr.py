@@ -10,7 +10,7 @@ def iterate_contexts_in_expr(expr, reverse=False, start=0, stop=None):
         >>> staff = Staff([Voice("c'8 d'8"), Voice("e'8 f'8 g'8")])
         >>> Tuplet(Fraction(2, 3), staff[1][:])
         Tuplet(2/3, [e'8, f'8, g'8])
-        >>> staff.is_parallel = True
+        >>> staff.is_simultaneous = True
 
     ..  doctest::
 

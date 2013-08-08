@@ -93,9 +93,9 @@ class Container(Component):
         '''
         if isinstance(i, int):
             return self._music[i]
-        elif isinstance(i, slice) and not self.is_parallel:
+        elif isinstance(i, slice) and not self.is_simultaneous:
             return selectiontools.SliceSelection(self._music[i])
-        elif isinstance(i, slice) and self.is_parallel:
+        elif isinstance(i, slice) and self.is_simultaneous:
             return selectiontools.SimultaneousSelection(self._music[i])
         elif isinstance(i, str):
             if i not in self._named_children:
@@ -134,14 +134,14 @@ class Container(Component):
 
     @property
     def _compact_representation(self):
-        if not self.is_parallel:
+        if not self.is_simultaneous:
             return '{%s}' % self._summary
         else:
             return '<<%s>>' % self._summary
 
     @property
     def _contents_duration(self):
-        if self.is_parallel:
+        if self.is_simultaneous:
             return max([durationtools.Duration(0)] + 
                 [x._preprolated_duration for x in self])
         else:
@@ -152,7 +152,7 @@ class Container(Component):
 
     @property
     def _duration_in_seconds(self):
-        if self.is_parallel:
+        if self.is_simultaneous:
             return max([durationtools.Duration(0)] + 
                 [x.get_duration(in_seconds=True) for x in self])
         else:
@@ -203,7 +203,7 @@ class Container(Component):
 
     def _copy_with_marks_but_without_children_or_spanners(self):
         new = Component._copy_with_marks_but_without_children_or_spanners(self)
-        new.is_parallel = self.is_parallel
+        new.is_simultaneous = self.is_simultaneous
         return new
 
     def _format_after_slot(self, format_contributions):
@@ -228,7 +228,7 @@ class Container(Component):
 
     def _format_close_brackets_slot(self, format_contributions):
         result = []
-        if self.is_parallel:
+        if self.is_simultaneous:
             brackets_close = ['>>']
         else:
             brackets_close = ['}']
@@ -261,7 +261,7 @@ class Container(Component):
 
     def _format_open_brackets_slot(self, format_contributions):
         result = []
-        if self.is_parallel:
+        if self.is_simultaneous:
             brackets_open = ['<<']
         else:
             brackets_open = ['{']
@@ -377,7 +377,7 @@ class Container(Component):
     ### PUBLIC PROPERTIES ###
 
     @apply
-    def is_parallel():
+    def is_simultaneous():
         def fget(self):
             r'''Set to true to interpret container contents in parallel.
             Set to false to interpret container contents sequentially.
@@ -407,7 +407,7 @@ class Container(Component):
 
                 ::
 
-                    >>> container.is_parallel
+                    >>> container.is_simultaneous
                     False
 
             **Example 2.** Parallel container:
@@ -416,7 +416,7 @@ class Container(Component):
 
                 ::
 
-                    >>> container.is_parallel = True
+                    >>> container.is_simultaneous = True
                     >>> show(container) # doctest: +SKIP
 
                 ..  doctest::
@@ -464,8 +464,8 @@ class Container(Component):
         elif isinstance(music, str):
             parsed = self._parse_string(music)
             self._music = []
-            self.is_parallel = parsed.is_parallel
-            if parsed.is_parallel or \
+            self.is_simultaneous = parsed.is_simultaneous
+            if parsed.is_simultaneous or \
                 not componenttools.all_are_thread_contiguous_components(
                 parsed[:]):
                 while len(parsed):

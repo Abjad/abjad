@@ -6,7 +6,7 @@ def test_iterationtools_iterate_containers_in_expr_01():
 
     staff = Staff([Voice("c'8 d'8"), Voice("e'8 f'8 g'8")])
     tuplet = Tuplet(Fraction(2, 3), staff[1][:])
-    staff.is_parallel = True
+    staff.is_simultaneous = True
 
     containers = iterationtools.iterate_containers_in_expr(staff, reverse=True)
     containers = list(containers)
@@ -20,7 +20,7 @@ def test_iterationtools_iterate_containers_in_expr_02():
 
     staff = Staff([Voice("c'8 d'8"), Voice("e'8 f'8 g'8")])
     tuplet = Tuplet(Fraction(2, 3), staff[1][:])
-    staff.is_parallel = True
+    staff.is_simultaneous = True
 
     containers = iterationtools.iterate_containers_in_expr(staff)
     containers = list(containers)

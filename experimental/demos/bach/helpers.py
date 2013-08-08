@@ -12,8 +12,8 @@ def build_chorale():
     treble_staff = Staff([soprano, alto])
     bass_staff = Staff([tenor, bass])
 
-    treble_staff.is_parallel = True
-    bass_staff.is_parallel = True
+    treble_staff.is_simultaneous = True
+    bass_staff.is_simultaneous = True
 
     contexttools.KeySignatureMark(*es_ist_genug['key'])(treble_staff)
     contexttools.KeySignatureMark(*es_ist_genug['key'])(bass_staff)

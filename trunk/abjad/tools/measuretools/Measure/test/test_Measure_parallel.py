@@ -7,7 +7,7 @@ def test_Measure_parallel_01():
     '''
 
     measure = Measure((2, 8), Voice(notetools.make_repeated_notes(2)) * 2)
-    measure.is_parallel = True
+    measure.is_simultaneous = True
     marktools.LilyPondCommandMark('voiceOne')(measure[0])
     marktools.LilyPondCommandMark('voiceTwo')(measure[1])
 
