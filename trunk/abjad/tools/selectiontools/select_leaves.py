@@ -7,7 +7,7 @@ def select_leaves(
     recurse=True,
     allow_discontiguous_leaves=False,
     ):
-    r'''Select leaves in `expr`.
+    r'''Selects leaves in `expr`.
 
     ..  container:: example
     
@@ -64,7 +64,7 @@ def select_leaves(
             Note("c'8")
             Note("d'8")
 
-    Return contiguous leaf selection or free leaf selection.
+    Returns contiguous leaf selection or free leaf selection.
     '''
     from abjad.tools import componenttools
     from abjad.tools import iterationtools
