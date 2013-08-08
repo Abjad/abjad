@@ -37,7 +37,7 @@ class Container(Component):
         '_formatter', 
         '_music', 
         '_named_children', 
-        '_parallel',
+        '_simultaneous',
         )
 
     _default_positional_input_arguments = (
@@ -53,7 +53,7 @@ class Container(Component):
     def __init__(self, music=None, **kwargs):
         Component.__init__(self)
         self._named_children = {}
-        self._parallel = False
+        self._simultaneous = False
         self._initialize_music(music)
         self._initialize_keyword_values(**kwargs)
 
@@ -379,7 +379,7 @@ class Container(Component):
     @apply
     def is_simultaneous():
         def fget(self):
-            r'''Set to true to interpret container contents in parallel.
+            r'''Set to true to interpret container contents in simultaneous.
             Set to false to interpret container contents sequentially.
 
             **Example 1.** Sequential container:
@@ -410,7 +410,7 @@ class Container(Component):
                     >>> container.is_simultaneous
                     False
 
-            **Example 2.** Parallel container:
+            **Example 2.** simultaneous container:
 
             ..  container:: example
 
@@ -435,7 +435,7 @@ class Container(Component):
 
             Return boolean.
             '''
-            return self._parallel
+            return self._simultaneous
         def fset(self, expr):
             from abjad.tools.contexttools.Context import Context
             from abjad.tools import componenttools
@@ -443,7 +443,7 @@ class Container(Component):
             if expr == True:
                 assert componenttools.all_are_components(
                     self._music, component_classes=(Context, ))
-            self._parallel = expr
+            self._simultaneous = expr
             self._mark_entire_score_tree_for_later_update('prolated')
         return property(**locals())
 

@@ -141,7 +141,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
         assert start == stop
         if parent is None:
             raise StopIteration
-        # can not advance within parallel parent
+        # can not advance within simultaneous parent
         if parent.is_simultaneous:
             raise StopIteration
         try:

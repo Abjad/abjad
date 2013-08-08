@@ -361,10 +361,10 @@ class Parentage(SimultaneousSelection):
         from abjad.tools import tuplettools
         from abjad.tools import componenttools
         result = 0
-        # should probably interate up to only first parallel container 
+        # should probably interate up to only first simultaneous container 
         # in parentage.
         # note that we probably need a named idea for 'parentage 
-        # up to first parallel container'.
+        # up to first simultaneous container'.
         for parent in self[1:]:
             if isinstance(parent, tuplettools.Tuplet):
                 result += 1

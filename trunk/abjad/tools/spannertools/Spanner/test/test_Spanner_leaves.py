@@ -152,9 +152,9 @@ def test_Spanner_leaves_05():
 
 
 def test_Spanner_leaves_06():
-    r'''Spanner attaching to container with some parallel contents.
-    Spanner absolutely does not descend into parallel container.
-    Spanner duration does, however, account for parallel duration.
+    r'''Spanner attaching to container with some simultaneous contents.
+    Spanner absolutely does not descend into simultaneous container.
+    Spanner duration does, however, account for simultaneous duration.
     '''
 
     class MockSpanner(spannertools.Spanner):
@@ -199,9 +199,9 @@ def test_Spanner_leaves_06():
 
 
 def test_Spanner_leaves_07():
-    r'''Spanner attaching to mixture of parallel and leaf components.
-    Spanner absolutely does not descend into parallel container.
-    Spanner duration does, however, account for parallel duration.
+    r'''Spanner attaching to mixture of simultaneous and leaf components.
+    Spanner absolutely does not descend into simultaneous container.
+    Spanner duration does, however, account for simultaneous duration.
     '''
 
     class MockSpanner(spannertools.Spanner):

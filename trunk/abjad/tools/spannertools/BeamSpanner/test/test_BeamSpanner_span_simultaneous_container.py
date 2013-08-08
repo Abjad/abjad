@@ -3,8 +3,8 @@ from abjad import *
 import py.test
 
 
-def test_BeamSpanner_span_parallel_container_01():
-    r'''Abjad spanners will not inspect the contents of parallel containers.
+def test_BeamSpanner_span_simultaneous_container_01():
+    r'''Abjad spanners will not inspect the contents of simultaneous containers.
     '''
 
     container = Container([])
@@ -23,8 +23,8 @@ def test_BeamSpanner_span_parallel_container_01():
         )
 
 
-def test_BeamSpanner_span_parallel_container_02():
-    r'''Nonempty spanned parallel container.
+def test_BeamSpanner_span_simultaneous_container_02():
+    r'''Nonempty spanned simultaneous container.
     '''
 
     container = Container(Voice(notetools.make_repeated_notes(4)) * 2)
@@ -54,9 +54,9 @@ def test_BeamSpanner_span_parallel_container_02():
 #   >>'''
 
 
-def test_BeamSpanner_span_parallel_container_03():
+def test_BeamSpanner_span_simultaneous_container_03():
     r'''Voice accepts spanner,
-        even lodged within parallel parent container.'''
+        even lodged within simultaneous parent container.'''
 
     container = Container(Voice(notetools.make_repeated_notes(4)) * 2)
     container.is_simultaneous = True
@@ -102,7 +102,7 @@ def test_BeamSpanner_span_parallel_container_03():
     >>
     '''
 
-def test_BeamSpanner_span_parallel_container_04():
+def test_BeamSpanner_span_simultaneous_container_04():
     r'''Abjad forbids but LilyPond is happy.
     '''
 
@@ -115,8 +115,8 @@ def test_BeamSpanner_span_parallel_container_04():
     assert py.test.raises(AssertionError, 'beam = spannertools.BeamSpanner(staff)')
 
 
-def test_BeamSpanner_span_parallel_container_05():
-    r'''Abjad ignores empty parallel containers with no leaves.
+def test_BeamSpanner_span_simultaneous_container_05():
+    r'''Abjad ignores empty simultaneous containers with no leaves.
         LilyPond is happy here.'''
 
     staff = Staff(notetools.make_repeated_notes(4))
@@ -154,8 +154,8 @@ def test_BeamSpanner_span_parallel_container_05():
     '''
 
 
-def test_BeamSpanner_span_parallel_container_06():
-    r'''This is the proper way to 'thread through' parallel containers.
+def test_BeamSpanner_span_simultaneous_container_06():
+    r'''This is the proper way to 'thread through' simultaneous containers.
         LilyPond is happy here again.'''
 
     staff = Staff(Voice(notetools.make_repeated_notes(4)) * 2)

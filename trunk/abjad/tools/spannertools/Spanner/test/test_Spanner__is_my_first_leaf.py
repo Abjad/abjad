@@ -67,9 +67,9 @@ def test_Spanner__is_my_first_leaf_02():
     assert spanner._is_my_first_leaf(voice[0])
     assert spanner._is_my_last_leaf(voice[2][1])
 
-# NONSTRUCTURAL in new parallel --> context model
+# NONSTRUCTURAL in new simultaneous --> context model
 #def test_Spanner__is_my_first_leaf_03():
-#   r'''Spanner attached to container with parallel nested contents.'''
+#   r'''Spanner attached to container with simultaneous nested contents.'''
 #
 #   t = Voice(notetools.make_repeated_notes(4))
 #   t.insert(2, Container(Container(notetools.make_repeated_notes(2)) * 2))

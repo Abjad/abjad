@@ -44,7 +44,7 @@ def copy_governed_component_subtree_from_offset_to(
            }
         }
 
-    Raise contiguity error if asked to slice a parallel container. ::
+    Raise contiguity error if asked to slice a simultaneous container. ::
 
         >>> staff = Staff(Voice("c'8 d'8") * 2)
         >>> staff.is_simultaneous = True
@@ -60,7 +60,8 @@ def copy_governed_component_subtree_from_offset_to(
         }
         >>
 
-    Raise contiguity error when attempting to copy fleaves from parallel container.
+    Raise contiguity error when attempting to copy fleaves from 
+    simultaneous container.
 
     But note that cases with ``0 = start`` work correctly:
 

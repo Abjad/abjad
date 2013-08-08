@@ -5,7 +5,7 @@ from abjad import *
 def test_Parentage__get_governor_01( ):
     r'''Return the last sequential container in the parentage of client
     such that the next element in the parentage of client is
-    either a parallel container or None.
+    either a simultaneous container or None.
     '''
 
     voice = Voice([Container(Voice(notetools.make_repeated_notes(2)) * 2)])
@@ -46,7 +46,7 @@ def test_Parentage__get_governor_02( ):
 def test_Parentage__get_governor_03( ):
     r'''Return the last sequential container in the parentage of client
         such that the next element in the parentage of client is
-        either a parallel container or None.'''
+        either a simultaneous container or None.'''
 
     staff = Staff([Voice([Container("c'8 d'8 e'8 f'8")])])
 
@@ -72,7 +72,7 @@ def test_Parentage__get_governor_03( ):
 def test_Parentage__get_governor_04( ):
     r'''Return the last sequential container in the parentage of client
     such that the next element in the parentage of client is
-    either a parallel container or None.
+    either a simultaneous container or None.
     '''
 
     staff = Staff([Voice([Container("c'8 d'8 e'8 f'8")])])

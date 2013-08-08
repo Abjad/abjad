@@ -31,7 +31,7 @@ def test_Container_is_simultaneous_02():
 
 
 def test_Container_is_simultaneous_03():
-    r'''Container 'parallel' is settable.
+    r'''Container 'simultaneous' is settable.
     '''
 
     container = Container([])
@@ -42,7 +42,7 @@ def test_Container_is_simultaneous_03():
 
 
 def test_Container_is_simultaneous_04():
-    r'''A parallel container can hold Contexts.
+    r'''A simultaneous container can hold Contexts.
     '''
     container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
@@ -77,10 +77,10 @@ def test_Container_is_simultaneous_04():
     '''
 
 
-# Parallel Errors #
+# simultaneous Errors #
 
 def test_Container_is_simultaneous_05():
-    r'''Parallel containers must contain only Contexts.
+    r'''simultaneous containers must contain only Contexts.
     It cannot take leaves.'''
 
     container = Container(notetools.make_repeated_notes(4))
@@ -88,7 +88,7 @@ def test_Container_is_simultaneous_05():
 
 
 def test_Container_is_simultaneous_06():
-    r'''Parallel containers must contain only Contexts.
+    r'''simultaneous containers must contain only Contexts.
     It cannot take Containers.'''
 
     container = Container(Container(notetools.make_repeated_notes(4)) * 2)

@@ -102,7 +102,7 @@ def test_Component__get_namesake_08():
 
 
 def test_Component__get_namesake_09():
-    r'''_next_namesake works on parallel structures.
+    r'''_next_namesake works on simultaneous structures.
     '''
 
     a = Container(Voice(notetools.make_repeated_notes(2)) * 2)

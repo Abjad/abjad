@@ -151,7 +151,7 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_07():
 
 
 def test_containertools_fuse_like_named_contiguous_containers_in_expr_08():
-    r'''Fuse parallel voices within parallel staves within parallel
+    r'''Fuse simultaneous voices within simultaneous staves within simultaneous
     staff groups within a single container.
     '''
 
@@ -316,7 +316,7 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_08():
     '''
 
 def test_containertools_fuse_like_named_contiguous_containers_in_expr_09():
-    r'''Fuse nested parallel structures in sequence.
+    r'''Fuse nested simultaneous structures in sequence.
     '''
 
     v1a = Voice(Note(0, (1,4))*2)
@@ -521,7 +521,7 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_11():
 
 
 def test_containertools_fuse_like_named_contiguous_containers_in_expr_12():
-    r'''Fuse matching parallel containers with like-named voices.
+    r'''Fuse matching simultaneous containers with like-named voices.
     '''
 
     t1 = Container([Voice(Note("c'4")*2)])
@@ -552,7 +552,7 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_12():
 
 
 def test_containertools_fuse_like_named_contiguous_containers_in_expr_13():
-    r'''Fuse matching parallel containers with two like-named voices each.
+    r'''Fuse matching simultaneous containers with two like-named voices each.
     '''
 
 

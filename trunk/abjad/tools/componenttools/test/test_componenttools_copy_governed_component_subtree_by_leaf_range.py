@@ -135,7 +135,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_03():
 
 
 def test_componenttools_copy_governed_component_subtree_by_leaf_range_04():
-    r'''Works fine on voices nested inside parallel context.
+    r'''Works fine on voices nested inside simultaneous context.
     '''
 
     staff = Staff(Voice(notetools.make_repeated_notes(4)) * 2)

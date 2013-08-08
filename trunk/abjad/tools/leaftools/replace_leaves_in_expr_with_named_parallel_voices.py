@@ -2,8 +2,8 @@
 import itertools
 
 
-def replace_leaves_in_expr_with_named_parallel_voices(expr, upper_name, lower_name):
-    r'''Replace leaves in `expr` with two parallel voices containing copies of
+def replace_leaves_in_expr_with_named_simultaneous_voices(expr, upper_name, lower_name):
+    r'''Replace leaves in `expr` with two simultaneous voices containing copies of
     leaves in `expr`, with the upper voice named `upper_name` and the lower
     voice named `lower_name`:
 
@@ -20,7 +20,7 @@ def replace_leaves_in_expr_with_named_parallel_voices(expr, upper_name, lower_na
 
     ::
 
-        >>> leaves = leaftools.replace_leaves_in_expr_with_named_parallel_voices(
+        >>> leaves = leaftools.replace_leaves_in_expr_with_named_simultaneous_voices(
         ... c.select_leaves()[1:3], 'upper', 'lower')
 
     ..  doctest::
@@ -41,7 +41,7 @@ def replace_leaves_in_expr_with_named_parallel_voices(expr, upper_name, lower_na
             c4
         }
 
-    If leaves in `expr` have different immediate parents, parallel voices will
+    If leaves in `expr` have different immediate parents, simultaneous voices will
     be created in each parent:
 
     ::
@@ -67,7 +67,7 @@ def replace_leaves_in_expr_with_named_parallel_voices(expr, upper_name, lower_na
 
     ::
 
-        >>> leaves = leaftools.replace_leaves_in_expr_with_named_parallel_voices(
+        >>> leaves = leaftools.replace_leaves_in_expr_with_named_simultaneous_voices(
         ... c.select_leaves()[2:7], 'upper', 'lower')
 
     ..  doctest::

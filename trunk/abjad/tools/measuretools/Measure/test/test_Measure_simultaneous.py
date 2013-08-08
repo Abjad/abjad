@@ -2,8 +2,8 @@
 from abjad import *
 
 
-def test_Measure_parallel_01():
-    r'''Rigid measures may be hold parallel contents.
+def test_Measure_simultaneous_01():
+    r'''Rigid measures may be hold simultaneous contents.
     '''
 
     measure = Measure((2, 8), Voice(notetools.make_repeated_notes(2)) * 2)

@@ -3,7 +3,7 @@ from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
 
 
-def test_LilyPondParser__containers__parallel_01():
+def test_LilyPondParser__containers__simultaneous_01():
     target = Container()
     target.is_simultaneous = True
     parser = LilyPondParser()

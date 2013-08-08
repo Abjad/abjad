@@ -77,7 +77,7 @@ def _advance_node_depth_first(node, rank, direction):
 def _is_node_forbidden(node, forbid):
     if forbid is None:
         return False
-    elif forbid == 'parallel':
+    elif forbid == 'simultaneous':
         return getattr(node, 'is_simultaneous', False)
     else:
         return isinstance(node, forbid)

@@ -5,7 +5,7 @@ import py.test
 
 def test_lily_voice_resolution_01():
     r'''Anonymous voice with a sequence of leaves,
-    in the middle of which there is a parallel,
+    in the middle of which there is a simultaneous,
     which in turn contains two anonymous voices.
     How does LilyPond resolve voices?
     '''
@@ -46,7 +46,7 @@ def test_lily_voice_resolution_01():
 
 def test_lily_voice_resolution_02():
     r'''Named voice with  with a sequence of leaves,
-    in the middle of which there is a parallel,
+    in the middle of which there is a simultaneous,
     which in turn contains one like-named and one differently named voice.
     How does LilyPond resolve voices?
     '''
@@ -106,7 +106,7 @@ def test_lily_voice_resolution_03():
 
 def test_lily_voice_resolution_04():
     r'''Container containing a run of leaves.
-    Two like-structured parallels in the middle of the run.
+    Two like-structured simultaneouss in the middle of the run.
     '''
 
     container = Container(notetools.make_repeated_notes(2))

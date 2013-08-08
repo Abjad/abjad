@@ -73,7 +73,7 @@ def copy_governed_component_subtree_by_leaf_range(
         }
 
     Copy sequential containers in leaves' parentage up to
-    the first parallel container in leaves' parentage.
+    the first simultaneous container in leaves' parentage.
 
     Trim and shrink copied containers as necessary.
 
@@ -94,7 +94,7 @@ def copy_governed_component_subtree_by_leaf_range(
 
     # copy leaves from sequential containers only
     if component.is_simultaneous:
-        raise Exception('can not copy from parallel container.')
+        raise Exception('can not copy from simultaneous container.')
 
     # assert valid start and stop
     leaves = component.select_leaves()

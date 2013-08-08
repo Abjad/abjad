@@ -231,7 +231,7 @@ def test_iterationtools_iterate_components_depth_first_04():
 
     # LEFT-TO-RIGHT #
 
-    g = iterationtools.iterate_components_depth_first(t, forbid='parallel')
+    g = iterationtools.iterate_components_depth_first(t, forbid='simultaneous')
 
     assert g.next() is t
     assert g.next() is t[0]
@@ -252,7 +252,7 @@ def test_iterationtools_iterate_components_depth_first_04():
 
     # RIGHT-TO-LEFT #
 
-    g = iterationtools.iterate_components_depth_first(t, forbid='parallel', direction=Right)
+    g = iterationtools.iterate_components_depth_first(t, forbid='simultaneous', direction=Right)
 
     assert g.next() is t
     assert g.next() is t[4]
@@ -374,7 +374,7 @@ def test_iterationtools_iterate_components_depth_first_06():
 
     # LEFT-TO-RIGHT #
 
-    g = iterationtools.iterate_components_depth_first(t[2], capped=False, forbid='parallel')
+    g = iterationtools.iterate_components_depth_first(t[2], capped=False, forbid='simultaneous')
 
     assert g.next() is t[2]
     assert g.next() is t
@@ -391,7 +391,7 @@ def test_iterationtools_iterate_components_depth_first_06():
     # RIGHT-TO-LEFT #
 
     g = iterationtools.iterate_components_depth_first(
-        t[2], capped=False, forbid='parallel', direction=Right)
+        t[2], capped=False, forbid='simultaneous', direction=Right)
 
     assert g.next() is t[2]
     assert g.next() is t
@@ -412,7 +412,7 @@ def test_iterationtools_iterate_components_depth_first_07():
 
     # LEFT-TO-RIGHT
 
-    g = iterationtools.iterate_components_depth_first(t, forbid='parallel', unique=False)
+    g = iterationtools.iterate_components_depth_first(t, forbid='simultaneous', unique=False)
 
     assert g.next() is t
     assert g.next() is t[0]
@@ -444,7 +444,7 @@ def test_iterationtools_iterate_components_depth_first_07():
     # RIGHT-TO-LEFT #
 
     g = iterationtools.iterate_components_depth_first(
-        t, forbid='parallel', unique=False, direction=Right)
+        t, forbid='simultaneous', unique=False, direction=Right)
 
     assert g.next() is t
     assert g.next() is t[4]
@@ -481,7 +481,7 @@ def test_iterationtools_iterate_components_depth_first_08():
     # LEFT-TO-RIGHT #
 
     g = iterationtools.iterate_components_depth_first(
-        t[2], capped=False, forbid='parallel', unique=False)
+        t[2], capped=False, forbid='simultaneous', unique=False)
 
     assert g.next() is t[2]
     assert g.next() is t
@@ -503,7 +503,7 @@ def test_iterationtools_iterate_components_depth_first_08():
     # RIGHT-TO-LEFT #
 
     g = iterationtools.iterate_components_depth_first(
-        t[2], capped=False, forbid='parallel', unique=False, direction=Right)
+        t[2], capped=False, forbid='simultaneous', unique=False, direction=Right)
 
     assert g.next() is t[2]
     assert g.next() is t
