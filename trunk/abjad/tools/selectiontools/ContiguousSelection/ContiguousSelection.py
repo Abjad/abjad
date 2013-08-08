@@ -88,6 +88,12 @@ class ContiguousSelection(Selection):
             for component in self:
                 spanner._remove(component)
 
+    def _set_parents(self, new_parent):
+        r'''Not composer-safe.
+        '''
+        for component in self._music:
+            component._set_parent(new_parent)
+
     def _withdraw_from_crossing_spanners(self):
         r'''Not composer-safe.
         '''

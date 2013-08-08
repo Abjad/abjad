@@ -69,5 +69,8 @@ def select_tuplets(
             continue
         else:
             tuplets.append(tuplet)
-    selection = selectiontools.FreeTupletSelection(music=tuplets)
+    if recurse:
+        selection = selectiontools.FreeTupletSelection(music=tuplets)
+    else:
+        selection = selectiontools.ContiguousTupletSelection(music=tuplets)
     return selection

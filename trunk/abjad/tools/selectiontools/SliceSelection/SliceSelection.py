@@ -35,11 +35,8 @@ class SliceSelection(ContiguousSelection):
 
     ### PRIVATE METHODS ###
 
-    # TODO: maybe add 
-    #    assert componenttools.all_are_contiguous_components_in_same_parent(
-    #        self)
-    #       at beginning of method?
     def _get_parent_and_start_stop_indices(self):
+        assert self._all_are_contiguous_components_in_same_parent() # new
         if self:
             first, last = self[0], self[-1]
             parent = first._parent
@@ -52,10 +49,8 @@ class SliceSelection(ContiguousSelection):
     def _give_music_to_empty_container(self, container):
         r'''Not composer-safe.
         '''
-        from abjad.tools import componenttools
         from abjad.tools import containertools
-        assert componenttools.all_are_contiguous_components_in_same_parent(
-            self)
+        assert self._all_are_contiguous_components_in_same_parent()
         assert isinstance(container, containertools.Container)
         assert not container
         music = []
@@ -67,10 +62,8 @@ class SliceSelection(ContiguousSelection):
     def _give_position_in_parent_to_container(self, container):
         r'''Not composer-safe.
         '''
-        from abjad.tools import componenttools
         from abjad.tools import containertools
-        assert componenttools.all_are_contiguous_components_in_same_parent(
-            self)
+        assert self._all_are_contiguous_components_in_same_parent()
         assert isinstance(container, containertools.Container)
         parent, start, stop = self._get_parent_and_start_stop_indices()
         if parent is not None:
@@ -78,16 +71,8 @@ class SliceSelection(ContiguousSelection):
             container._set_parent(parent)
             self._set_parents(None)
 
-    # TODO: maybe add all-in-same-parent check at beginning of method?
-    def _set_parents(self, new_parent):
-        r'''Not composer-safe.
-        '''
-        for component in self._music:
-            component._set_parent(new_parent)
-
     ### PUBLIC METHODS ###
 
-    # TODO: maybe add all-in-same-parent check at beginning of method?
     def replace_with_rests(
         self,
         decrease_durations_monotonically=True,
@@ -182,6 +167,7 @@ class SliceSelection(ContiguousSelection):
         Return none.
         '''
         from abjad.tools import resttools
+        assert self._all_are_contiguous_components_in_same_parent()
         if self:
             duration = self._preprolated_duration
             rests = resttools.make_rests(
