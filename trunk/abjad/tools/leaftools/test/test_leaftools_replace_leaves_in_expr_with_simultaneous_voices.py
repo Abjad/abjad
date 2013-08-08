@@ -2,9 +2,9 @@
 from abjad import *
 
 
-def test_leaftools_replace_leaves_in_expr_with_named_parallel_voices_01():
+def test_leaftools_replace_leaves_in_expr_with_simultaneous_voices_01():
     c = p(r'{ c8 \times 2/3 { c8 c c } \times 4/5 { c16 c c c c } c8 }')
-    result = leaftools.replace_leaves_in_expr_with_named_simultaneous_voices(c.select_leaves()[2:7], 'upper', 'lower')
+    result = leaftools.replace_leaves_in_expr_with_simultaneous_voices(c.select_leaves()[2:7])
     assert testtools.compare(
         c.lilypond_format,
         r'''
@@ -13,11 +13,11 @@ def test_leaftools_replace_leaves_in_expr_with_named_parallel_voices_01():
             \times 2/3 {
                 c8
                 <<
-                    \context Voice = "upper" {
+                    \new Voice {
                         c8
                         c8
                     }
-                    \context Voice = "lower" {
+                    \new Voice {
                         c8
                         c8
                     }
@@ -25,12 +25,12 @@ def test_leaftools_replace_leaves_in_expr_with_named_parallel_voices_01():
             }
             \times 4/5 {
                 <<
-                    \context Voice = "upper" {
+                    \new Voice {
                         c16
                         c16
                         c16
                     }
-                    \context Voice = "lower" {
+                    \new Voice {
                         c16
                         c16
                         c16

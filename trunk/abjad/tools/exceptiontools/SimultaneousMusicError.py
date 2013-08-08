@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-class ParallelError(Exception):
+class SimultaneousMusicError(Exception):
     r'''Parallel containers must contain contexts only.
     '''
     pass

@@ -17,7 +17,7 @@
     ``contexttools`` to import the component packages freely at top-level.      
 
     The ``measuretools`` package must not import ``timesignaturetools`` at top
-    level in order to handle ``timesignaturetools`` in parallel to 
+    level in order to handle ``timesignaturetools`` in at the same level as
     ``contexttools``.
 
 '''
