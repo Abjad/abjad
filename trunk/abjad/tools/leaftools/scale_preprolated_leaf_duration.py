@@ -43,7 +43,7 @@ def scale_preprolated_leaf_duration(leaf, multiplier):
         >>> spannertools.BeamSpanner(staff.select_leaves())
         BeamSpanner(c'8, d'8, e'8, f'8)
         >>> leaftools.scale_preprolated_leaf_duration(staff[1], Duration(2, 3))
-        SliceSelection(Note("d'8"),)
+        ContiguousSelection(Note("d'8"),)
 
     ..  doctest::
 

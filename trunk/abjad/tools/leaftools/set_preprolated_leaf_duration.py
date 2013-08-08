@@ -47,7 +47,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
         >>> spannertools.BeamSpanner(staff.select_leaves())
         BeamSpanner(c'8, d'8, e'8, f'8)
         >>> leaftools.set_preprolated_leaf_duration(staff[1], Duration(1, 12))
-        SliceSelection(Note("d'8"),)
+        ContiguousSelection(Note("d'8"),)
 
     ..  doctest::
 
@@ -135,7 +135,8 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
             for x, component in zip(all_leaves, components):
                 x.written_duration = component.written_duration
             leaf.splice(tied_leaves, grow_spanners=True)
-            if not spannertools.is_component_with_spanner_attached(leaf, spannertools.TieSpanner):
+            if not spannertools.is_component_with_spanner_attached(
+                leaf, spannertools.TieSpanner):
                 spannertools.TieSpanner(all_leaves)
             tuplet_multiplier = fmtuplet.multiplier
             tuplettools.Tuplet(tuplet_multiplier, all_leaves)
