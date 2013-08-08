@@ -449,18 +449,18 @@ class Leaf(Component):
 
         Returns tie chain.
         '''
-        from abjad.tools import leaftools
+        from abjad.tools import selectiontools
         from abjad.tools import spannertools
         spanner_classes = (spannertools.TieSpanner,)
         for component in self.select_parentage():
             tie_spanners = component._get_spanners(spanner_classes)
             if len(tie_spanners) == 1:
                 tie_spanner = tie_spanners.pop()
-                return leaftools.TieChain(music=tie_spanner.leaves)
+                return selectiontools.TieChain(music=tie_spanner.leaves)
             elif 1 < len(tie_spanners):
                 raise ExtraSpannerError
         else:
-            return leaftools.TieChain(music=self)
+            return selectiontools.TieChain(music=self)
 
     def shorten(self, duration):
         r'''Shortens leaf by `duration`.

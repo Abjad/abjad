@@ -43,9 +43,10 @@ def fuse_leaves_in_tie_chain_by_immediate_parent(tie_chain):
     Return list of fused notes by parent.
     '''
     from abjad.tools import leaftools
+    from abjad.tools import selectiontools
 
     # check input
-    if not isinstance(tie_chain, leaftools.TieChain):
+    if not isinstance(tie_chain, selectiontools.TieChain):
         raise TypeError('must be tie chain: {!r}.'.format(tie_chain))
 
     # init result

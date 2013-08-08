@@ -21,8 +21,8 @@ def test_iterationtools_iterate_tie_chains_in_expr_01():
 
     chains = list(iterationtools.iterate_tie_chains_in_expr(staff, reverse=True))
 
-    assert chains[0] == leaftools.TieChain((staff[2], staff[3]))
-    assert chains[1] == leaftools.TieChain((staff[0], staff[1]))
+    assert chains[0] == selectiontools.TieChain((staff[2], staff[3]))
+    assert chains[1] == selectiontools.TieChain((staff[0], staff[1]))
 
 
 def test_iterationtools_iterate_tie_chains_in_expr_02():
@@ -42,10 +42,10 @@ def test_iterationtools_iterate_tie_chains_in_expr_02():
 
     chains = list(iterationtools.iterate_tie_chains_in_expr(staff, reverse=True))
 
-    assert chains[0] == leaftools.TieChain(staff[3])
-    assert chains[1] == leaftools.TieChain(staff[2])
-    assert chains[2] == leaftools.TieChain(staff[1])
-    assert chains[3] == leaftools.TieChain(staff[0])
+    assert chains[0] == selectiontools.TieChain(staff[3])
+    assert chains[1] == selectiontools.TieChain(staff[2])
+    assert chains[2] == selectiontools.TieChain(staff[1])
+    assert chains[3] == selectiontools.TieChain(staff[0])
 
 
 def test_iterationtools_iterate_tie_chains_in_expr_03():
@@ -67,8 +67,8 @@ def test_iterationtools_iterate_tie_chains_in_expr_03():
 
     chains = list(iterationtools.iterate_tie_chains_in_expr(staff))
 
-    assert chains[0] == leaftools.TieChain((staff[0], staff[1]))
-    assert chains[1] == leaftools.TieChain((staff[2], staff[3]))
+    assert chains[0] == selectiontools.TieChain((staff[0], staff[1]))
+    assert chains[1] == selectiontools.TieChain((staff[2], staff[3]))
 
 
 def test_iterationtools_iterate_tie_chains_in_expr_04():
@@ -88,7 +88,7 @@ def test_iterationtools_iterate_tie_chains_in_expr_04():
 
     chains = list(iterationtools.iterate_tie_chains_in_expr(staff))
 
-    assert chains[0] == leaftools.TieChain(staff[0])
-    assert chains[1] == leaftools.TieChain(staff[1])
-    assert chains[2] == leaftools.TieChain(staff[2])
-    assert chains[3] == leaftools.TieChain(staff[3])
+    assert chains[0] == selectiontools.TieChain(staff[0])
+    assert chains[1] == selectiontools.TieChain(staff[1])
+    assert chains[2] == selectiontools.TieChain(staff[2])
+    assert chains[3] == selectiontools.TieChain(staff[3])

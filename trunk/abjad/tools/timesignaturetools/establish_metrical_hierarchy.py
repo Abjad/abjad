@@ -2,6 +2,7 @@
 from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import leaftools
+from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 
 
@@ -868,7 +869,7 @@ def establish_metrical_hierarchy(
                 split_offset -= tie_chain_start_offset
                 #print '\tREL:', split_offset
                 #print ''
-                tie_chains = [leaftools.TieChain(shard) for shard in
+                tie_chains = [selectiontools.TieChain(shard) for shard in
                     componenttools.split_components_at_offsets(
                         tie_chain[:], [split_offset])]
                 for tie_chain in tie_chains:
@@ -895,7 +896,7 @@ def establish_metrical_hierarchy(
             split_offset -= tie_chain_start_offset
             #print '\tREL:', split_offset
             #print ''
-            tie_chains = [leaftools.TieChain(shard) for shard in
+            tie_chains = [selectiontools.TieChain(shard) for shard in
                 componenttools.split_components_at_offsets(
                     tie_chain[:], [split_offset])]
             for tie_chain in tie_chains:
@@ -936,7 +937,7 @@ def establish_metrical_hierarchy(
     # Cache results of iterator, as we'll be mutating the underlying collection.
     items = tuple(_iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(components))
     for item in items:
-        if isinstance(item, leaftools.TieChain):
+        if isinstance(item, selectiontools.TieChain):
             #print 'RECURSING:', item
             recurse(item, depth=0)
         else:
@@ -1051,6 +1052,7 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
     from abjad.tools import chordtools
     from abjad.tools import notetools
     from abjad.tools import resttools
+    from abjad.tools import selectiontools
     from abjad.tools import skiptools
     from abjad.tools import spannertools
 
@@ -1066,7 +1068,7 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
             elif current_leaf_group_is_silent or \
                 this_tie_spanner is None or \
                 last_tie_spanner != this_tie_spanner:
-                yield leaftools.TieChain(current_leaf_group)
+                yield selectiontools.TieChain(current_leaf_group)
                 current_leaf_group = []
             current_leaf_group_is_silent = False
             current_leaf_group.append(x)
@@ -1075,14 +1077,14 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
             if current_leaf_group is None:
                 current_leaf_group = []
             elif not current_leaf_group_is_silent:
-                yield leaftools.TieChain(current_leaf_group)
+                yield selectiontools.TieChain(current_leaf_group)
                 current_leaf_group = []
             current_leaf_group_is_silent = True
             current_leaf_group.append(x)
             last_tie_spanner = None
         elif isinstance(x, containertools.Container):
             if current_leaf_group is not None:
-                yield leaftools.TieChain(current_leaf_group)
+                yield selectiontools.TieChain(current_leaf_group)
                 current_leaf_group = None
                 last_tie_spanner = None
             yield x
@@ -1090,4 +1092,4 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
         else:
             raise Exception('unhandled component found {!r}', x)
     if current_leaf_group is not None:
-        yield leaftools.TieChain(current_leaf_group)
+        yield selectiontools.TieChain(current_leaf_group)

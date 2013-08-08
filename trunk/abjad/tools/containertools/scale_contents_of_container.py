@@ -105,7 +105,7 @@ def scale_contents_of_container(container, multiplier):
     for expr in \
         iterationtools.iterate_topmost_tie_chains_and_components_in_expr(
         container[:]):
-        if isinstance(expr, leaftools.TieChain):
+        if isinstance(expr, selectiontools.TieChain):
             new_written_duration = multiplier * expr.written_duration
             expr._add_or_remove_notes_to_achieve_written_duration(
                 new_written_duration)
