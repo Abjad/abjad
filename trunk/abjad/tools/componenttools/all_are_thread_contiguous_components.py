@@ -68,7 +68,7 @@ def all_are_thread_contiguous_components(
         list,
         tuple,
         types.GeneratorType,
-        selectiontools.ContiguousSelection,
+        selectiontools.Selection,
         )
 
     if not isinstance(expr, allowable_types):
