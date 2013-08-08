@@ -1,4 +1,7 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools.selectiontools import more
+
+
 def is_formattable_context_mark_for_component(mark, component):
     r'''Return True if ContextMark `mark` can format for `component`.
     '''
@@ -21,7 +24,7 @@ def is_formattable_context_mark_for_component(mark, component):
                     mark.start_component)
                 if previous_measure is not None:
                     previous_effective_time_signature = \
-                        previous_measure.get_effective_context_mark(
+                        more(previous_measure).get_effective_context_mark(
                             contexttools.TimeSignatureMark)
                 else:
                     previous_effective_time_signature = None

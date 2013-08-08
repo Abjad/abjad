@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import copy
 import re
+from abjad.tools.selectiontools import more
 from abjad.tools.leaftools.Leaf import Leaf
 
 
@@ -151,7 +152,7 @@ class Note(Leaf):
         from abjad.tools import contexttools
         from abjad.tools import pitchtools
         if self.written_pitch_indication_is_at_sounding_pitch:
-            instrument = self.get_effective_context_mark(
+            instrument = more(self).get_effective_context_mark(
                 contexttools.InstrumentMark)
             if not instrument:
                 message = 'effective instrument of note can not be determined.'
@@ -248,7 +249,7 @@ class Note(Leaf):
             if self.written_pitch_indication_is_at_sounding_pitch:
                 return self.written_pitch
             else:
-                instrument = self.get_effective_context_mark(
+                instrument = more(self).get_effective_context_mark(
                     contexttools.InstrumentMark)
                 if not instrument:
                     message = 'effective instrument of note'
@@ -266,7 +267,7 @@ class Note(Leaf):
             if self.written_pitch_indication_is_at_sounding_pitch:
                 self.written_pitch = pitch
             else:
-                instrument = self.get_effective_context_mark(
+                instrument = more(self).get_effective_context_mark(
                     contexttools.InstrumentMark)
                 if not instrument:
                     message = 'effective instrument of note'

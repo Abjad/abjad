@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import skiptools
+from abjad.tools.selectiontools import more
 
 
 def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl=None):
@@ -15,7 +16,7 @@ def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl=None):
         if iterctrl(measure, i):
             skip = skiptools.Skip(1)
             # allow zero-update iteration
-            time_signature = measure.get_effective_context_mark(
+            time_signature = more(measure).get_effective_context_mark(
                 contexttools.TimeSignatureMark)
             skip.lilypond_duration_multiplier = \
                 time_signature.duration / time_signature.implied_prolation

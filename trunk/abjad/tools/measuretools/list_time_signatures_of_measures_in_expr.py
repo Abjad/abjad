@@ -1,4 +1,7 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools.selectiontools import more
+
+
 def list_time_signatures_of_measures_in_expr(components):
     r'''List time signatures of measures in `expr`:
 
@@ -48,7 +51,7 @@ def list_time_signatures_of_measures_in_expr(components):
 
     # iterate measures and store time signature pairs
     for measure in iterationtools.iterate_measures_in_expr(components):
-        time_signature = measure.get_effective_context_mark(
+        time_signature = more(measure).get_effective_context_mark(
             contexttools.TimeSignatureMark)
         result.append(time_signature)
 

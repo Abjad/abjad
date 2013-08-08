@@ -11,6 +11,7 @@ from abjad.tools import resttools
 from abjad.tools import sequencetools
 from abjad.tools import skiptools
 from abjad.tools.abctools import ImmutableAbjadObject
+from abjad.tools.selectiontools import more
 
 
 class QEventSequence(tuple, ImmutableAbjadObject):
@@ -446,7 +447,7 @@ class QEventSequence(tuple, ImmutableAbjadObject):
         assert componenttools.all_are_contiguous_components_in_same_thread(
             leaves) and len(leaves)
         if tempo is None:
-            assert leaves[0].get_effective_context_mark(
+            assert more(leaves[0]).get_effective_context_mark(
                 contexttools.TempoMark) is not None
         else:
             tempo = contexttools.TempoMark(tempo)
@@ -471,7 +472,7 @@ class QEventSequence(tuple, ImmutableAbjadObject):
                     tempo.duration_to_milliseconds(x.get_duration())
                     for x in group)
             else:
-                duration = sum(x.get_effective_context_mark(
+                duration = sum(more(x).get_effective_context_mark(
                     contexttools.TempoMark).duration_to_milliseconds(
                     x.get_duration()) 
                     for x in group)

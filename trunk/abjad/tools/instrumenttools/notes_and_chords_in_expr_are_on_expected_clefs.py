@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import contexttools
 from abjad.tools import iterationtools
+from abjad.tools.selectiontools import more
 
 
 def notes_and_chords_in_expr_are_on_expected_clefs(expr, percussion_clef_is_allowed=True):
@@ -75,11 +76,11 @@ def notes_and_chords_in_expr_are_on_expected_clefs(expr, percussion_clef_is_allo
     '''
 
     for note_or_chord in iterationtools.iterate_notes_and_chords_in_expr(expr):
-        instrument = note_or_chord.get_effective_context_mark(
+        instrument = more(note_or_chord).get_effective_context_mark(
             contexttools.InstrumentMark)
         if not instrument:
             return False
-        clef = note_or_chord.get_effective_context_mark(contexttools.ClefMark)
+        clef = more(note_or_chord).get_effective_context_mark(contexttools.ClefMark)
         if not clef:
             return False
         if clef == contexttools.ClefMark('percussion'):

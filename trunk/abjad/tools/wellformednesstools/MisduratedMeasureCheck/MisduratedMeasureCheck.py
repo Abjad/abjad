@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import contexttools
 from abjad.tools import iterationtools
+from abjad.tools.selectiontools import more
 from abjad.tools.wellformednesstools.Check import Check
 
 
@@ -13,7 +14,7 @@ class MisduratedMeasureCheck(Check):
         violators = []
         total, bad = 0, 0
         for measure in iterationtools.iterate_measures_in_expr(expr):
-            time_signature = measure.get_effective_context_mark(
+            time_signature = more(measure).get_effective_context_mark(
                 contexttools.TimeSignatureMark)
             if time_signature is not None:
                 if measure._preprolated_duration != time_signature.duration:

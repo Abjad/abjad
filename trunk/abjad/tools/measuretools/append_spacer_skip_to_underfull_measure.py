@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import skiptools
+from abjad.tools.selectiontools import more
 
 
 def append_spacer_skip_to_underfull_measure(rigid_measure):
@@ -44,11 +45,12 @@ def append_spacer_skip_to_underfull_measure(rigid_measure):
     assert isinstance(rigid_measure, measuretools.Measure)
 
     if rigid_measure.is_underfull:
-        target_duration = rigid_measure.get_effective_context_mark(
+        target_duration = more(rigid_measure).get_effective_context_mark(
             contexttools.TimeSignatureMark).duration
         duration = rigid_measure.get_duration()
         skip = skiptools.Skip((1, 1))
-        time_signature_multiplier = rigid_measure.get_effective_context_mark(
+        time_signature_multiplier = \
+            more(rigid_measure).get_effective_context_mark(
             contexttools.TimeSignatureMark).implied_prolation
         new_multiplier = (target_duration - duration) / time_signature_multiplier
         skip.lilypond_duration_multiplier = new_multiplier

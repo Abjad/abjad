@@ -2,6 +2,7 @@
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
+from abjad.tools.selectiontools import more
 
 
 # TODO: implement measuretools.set_measure_denominator_and_adjust_contents().
@@ -47,7 +48,7 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
 
     if isinstance(measure, measuretools.Measure):
         # to allow iteration inside zero-update loop
-        old_time_signature = measure.get_effective_context_mark(
+        old_time_signature = more(measure).get_effective_context_mark(
             contexttools.TimeSignatureMark)
         old_time_signature_pair = (old_time_signature.numerator, old_time_signature.denominator)
         new_time_signature = mathtools.NonreducedFraction(old_time_signature_pair)

@@ -1,4 +1,7 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools.selectiontools import more
+
+
 def measure_to_one_line_input_string(measure):
     r'''Change `measure` to one-line input string:
 
@@ -43,7 +46,7 @@ def measure_to_one_line_input_string(measure):
     '''
     from abjad.tools import contexttools
 
-    time_signature = measure.get_effective_context_mark(
+    time_signature = more(measure).get_effective_context_mark(
         contexttools.TimeSignatureMark)
     pair = (time_signature.numerator, time_signature.denominator)
     contents_string = ' '.join([str(x) for x in measure])

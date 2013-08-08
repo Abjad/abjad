@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import itertools
+from abjad.tools.selectiontools import more
 
 
 def report_time_signature_distribution(expr):
@@ -49,7 +50,7 @@ def report_time_signature_distribution(expr):
 
     time_signatures = []
     for measure in iterationtools.iterate_measures_in_expr(expr):
-        time_signatures.append(measure.get_effective_context_mark(
+        time_signatures.append(more(measure).get_effective_context_mark(
             contexttools.TimeSignatureMark))
 
     time_signatures.sort()

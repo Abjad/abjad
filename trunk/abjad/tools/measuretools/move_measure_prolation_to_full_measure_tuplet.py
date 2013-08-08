@@ -2,6 +2,7 @@
 from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
+from abjad.tools.selectiontools import more
 
 
 def move_measure_prolation_to_full_measure_tuplet(expr):
@@ -21,7 +22,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
     from abjad.tools import tuplettools
 
     for measure in iterationtools.iterate_measures_in_expr(expr):
-        effective_time_signature = measure.get_effective_context_mark(
+        effective_time_signature = more(measure).get_effective_context_mark(
             contexttools.TimeSignatureMark)
         if effective_time_signature.has_non_power_of_two_denominator:
 

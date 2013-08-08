@@ -31,16 +31,16 @@ def test_ClefMark___copy___01():
     '''
 
     assert select(staff).is_well_formed()
-    assert staff[0].get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
-    assert staff[1].get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
-    assert staff[2].get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
-    assert staff[3].get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
-    assert staff[4].get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('bass')
-    assert staff[5].get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('bass')
-    assert staff[6].get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('bass')
-    assert staff[7].get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('bass')
-    assert staff[8].get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
-    assert staff[9].get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
+    assert more(staff[0]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
+    assert more(staff[1]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
+    assert more(staff[2]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
+    assert more(staff[3]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
+    assert more(staff[4]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('bass')
+    assert more(staff[5]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('bass')
+    assert more(staff[6]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('bass')
+    assert more(staff[7]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('bass')
+    assert more(staff[8]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
+    assert more(staff[9]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
 
     assert testtools.compare(
         staff.lilypond_format,
@@ -75,16 +75,16 @@ def test_ClefMark___copy___02():
     staff.extend(componenttools.copy_components_and_immediate_parent_of_first_component(staff[2:4]))
 
     assert select(staff).is_well_formed()
-    assert staff[0].get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
-    assert staff[1].get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
-    assert staff[2].get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
-    assert staff[3].get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
-    assert staff[4].get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('bass')
-    assert staff[5].get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('bass')
-    assert staff[6].get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('bass')
-    assert staff[7].get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('bass')
-    assert staff[8].get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('bass')
-    assert staff[9].get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('bass')
+    assert more(staff[0]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
+    assert more(staff[1]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
+    assert more(staff[2]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
+    assert more(staff[3]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
+    assert more(staff[4]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('bass')
+    assert more(staff[5]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('bass')
+    assert more(staff[6]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('bass')
+    assert more(staff[7]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('bass')
+    assert more(staff[8]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('bass')
+    assert more(staff[9]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('bass')
 
     assert testtools.compare(
         staff.lilypond_format,

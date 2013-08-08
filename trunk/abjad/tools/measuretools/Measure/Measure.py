@@ -4,6 +4,7 @@ from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import formattools
 from abjad.tools import mathtools
+from abjad.tools.selectiontools import more
 from abjad.tools.containertools.FixedDurationContainer \
     import FixedDurationContainer
 
@@ -72,14 +73,14 @@ class Measure(FixedDurationContainer):
     def __delitem__(self, i):
         r'''Container item deletion with optional time signature adjustment.
         '''
-        old_time_signature = self.get_effective_context_mark(
+        old_time_signature = more(self).get_effective_context_mark(
             contexttools.TimeSignatureMark)
         old_denominator = getattr(old_time_signature, 'denominator', None)
         FixedDurationContainer.__delitem__(self, i)
         self._conditionally_adjust_time_signature(old_denominator)
 
     def __getnewargs__(self):
-        time_signature = self.get_effective_context_mark(
+        time_signature = more(self).get_effective_context_mark(
             contexttools.TimeSignatureMark)
         return (time_signature.pair, )
 
@@ -106,7 +107,7 @@ class Measure(FixedDurationContainer):
         Measure setitem logic now adjusts time signatue automatically
         when ``adjust_time_signature_automatically`` is true.
         '''
-        old_time_signature = self.get_effective_context_mark(
+        old_time_signature = more(self).get_effective_context_mark(
             contexttools.TimeSignatureMark)
         old_denominator = getattr(old_time_signature, 'denominator', None)
         FixedDurationContainer.__setitem__(self, i, expr)
@@ -115,7 +116,7 @@ class Measure(FixedDurationContainer):
     def __str__(self):
         r'''String form of measure with pipes for single string display.
         '''
-        forced_time_signature = self.get_effective_context_mark(
+        forced_time_signature = more(self).get_effective_context_mark(
             contexttools.TimeSignatureMark)
         summary = self._space_delimited_summary
         length = len(self)
@@ -136,7 +137,7 @@ class Measure(FixedDurationContainer):
         potentially many spanned measures one after the other.
         '''
         return '|{}({})|'.format(
-            self.get_effective_context_mark(
+            more(self).get_effective_context_mark(
                 contexttools.TimeSignatureMark),
             len(self),
             )
@@ -163,7 +164,7 @@ class Measure(FixedDurationContainer):
     @property
     def _preprolated_duration(self):
         from abjad.tools import contexttools
-        time_signature = self.get_effective_context_mark(
+        time_signature = more(self).get_effective_context_mark(
             contexttools.TimeSignatureMark)
         return time_signature.implied_prolation * self._contents_duration
 
@@ -181,7 +182,7 @@ class Measure(FixedDurationContainer):
 
     def _check_duration(self):
         from abjad.tools import contexttools
-        effective_time_signature = self.get_effective_context_mark(
+        effective_time_signature = more(self).get_effective_context_mark(
             contexttools.TimeSignatureMark)
         if effective_time_signature.has_non_power_of_two_denominator and \
             effective_time_signature.suppress:
@@ -313,7 +314,7 @@ class Measure(FixedDurationContainer):
 
         Return boolean.
         '''
-        time_signature = self.get_effective_context_mark(
+        time_signature = more(self).get_effective_context_mark(
             contexttools.TimeSignatureMark)
         return time_signature.has_non_power_of_two_denominator
 
@@ -355,7 +356,7 @@ class Measure(FixedDurationContainer):
 
         Return multiplier.
         '''
-        time_signature = self.get_effective_context_mark(
+        time_signature = more(self).get_effective_context_mark(
             contexttools.TimeSignatureMark)
         return time_signature.implied_prolation
 
@@ -508,5 +509,5 @@ class Measure(FixedDurationContainer):
 
         Return duration.
         '''
-        return self.get_effective_context_mark(
+        return more(self).get_effective_context_mark(
             contexttools.TimeSignatureMark).duration

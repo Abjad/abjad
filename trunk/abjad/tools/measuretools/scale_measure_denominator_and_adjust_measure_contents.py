@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import contexttools
 from abjad.tools import durationtools
+from abjad.tools.selectiontools import more
 
 
 def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
@@ -53,7 +54,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
     from abjad.tools import timesignaturetools
 
     # save old time signature duration
-    old_time_signature_duration = measure.get_effective_context_mark(
+    old_time_signature_duration = more(measure).get_effective_context_mark(
         contexttools.TimeSignatureMark).duration
 
     # find new time signature

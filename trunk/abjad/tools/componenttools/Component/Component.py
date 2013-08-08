@@ -9,6 +9,7 @@ from abjad.tools import mathtools
 from abjad.tools import selectiontools
 from abjad.tools import timespantools
 from abjad.tools.abctools import AbjadObject
+from abjad.tools.selectiontools import more
 
 
 class Component(AbjadObject):
@@ -652,46 +653,6 @@ class Component(AbjadObject):
             parentage = self.select_parentage(include_self=False)
             return parentage.prolation * self._preprolated_duration
 
-    def get_effective_context_mark(
-        self,
-        context_mark_classes=None,
-        ):
-        r'''Gets effective context mark of `context_mark_class` 
-        that governs component.
-
-        Returns context mark or none.
-        '''
-        from abjad.tools import contexttools
-        from abjad.tools import datastructuretools
-        from abjad.tools import measuretools
-        # do special things for time signature marks
-        if context_mark_classes == contexttools.TimeSignatureMark:
-            if isinstance(self, measuretools.Measure):
-                if self._has_mark(contexttools.TimeSignatureMark):
-                    return self.get_mark(contexttools.TimeSignatureMark)
-        # updating marks of entire score tree if necessary
-        self._update_marks_of_entire_score_tree_if_necessary()
-        # gathering candidate marks
-        candidate_marks = datastructuretools.SortedCollection(
-            key=lambda x: x.start_component.get_timespan().start_offset)
-        for parent in self.select_parentage(include_self=True):
-            parent_marks = parent._dependent_context_marks
-            for mark in parent_marks:
-                if isinstance(mark, context_mark_classes):
-                    if mark.effective_context is not None:
-                        candidate_marks.insert(mark)
-                    elif isinstance(mark, contexttools.TimeSignatureMark):
-                        if isinstance(
-                            mark.start_component, measuretools.Measure):
-                            candidate_marks.insert(mark)
-        # elect most recent candidate mark
-        if candidate_marks:
-            try:
-                start_offset = self.get_timespan().start_offset
-                return candidate_marks.find_le(start_offset)
-            except ValueError:
-                pass
-
     def get_effective_staff(self):
         r'''Gets effective staff of component.
 
@@ -699,7 +660,7 @@ class Component(AbjadObject):
         '''
         from abjad.tools import contexttools
         from abjad.tools import stafftools
-        staff_change_mark = self.get_effective_context_mark(
+        staff_change_mark = more(self).get_effective_context_mark(
             contexttools.StaffChangeMark)
         if staff_change_mark is not None:
             effective_staff = staff_change_mark.staff

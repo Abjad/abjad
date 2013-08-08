@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools.selectiontools import more
 from abjad.tools.marktools.Mark import Mark
 
 
@@ -155,8 +156,8 @@ class ContextMark(Mark):
         '''
         from abjad.tools import contexttools
         classes = (type(self), )
-        effective_context_mark = start_component.get_effective_context_mark(
-            classes)
+        effective_context_mark = \
+            more(start_component).get_effective_context_mark(classes)
         if effective_context_mark is not None:
             if effective_context_mark.start_component.get_timespan().start_offset == \
                 start_component.get_timespan().start_offset:

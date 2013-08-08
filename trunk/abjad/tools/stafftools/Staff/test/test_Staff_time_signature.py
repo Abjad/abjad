@@ -71,7 +71,7 @@ def test_Staff_time_signature_03():
     staff = Staff(Note("c'4") * 8)
     contexttools.TimeSignatureMark((2, 4))(staff)
     for x in staff:
-        assert x.get_effective_context_mark(contexttools.TimeSignatureMark) \
+        assert more(x).get_effective_context_mark(contexttools.TimeSignatureMark) \
             == contexttools.TimeSignatureMark((2, 4))
 
 
@@ -81,7 +81,7 @@ def test_Staff_time_signature_04():
 
     staff = Staff(Note("c'4") * 8)
     contexttools.TimeSignatureMark((2, 4))(staff)
-    staff.get_effective_context_mark(contexttools.TimeSignatureMark).detach()
+    more(staff).get_effective_context_mark(contexttools.TimeSignatureMark).detach()
     for leaf in staff:
-        assert leaf.get_effective_context_mark(
+        assert more(leaf).get_effective_context_mark(
             contexttools.TimeSignatureMark) is None

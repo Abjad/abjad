@@ -3,6 +3,7 @@ from abjad.tools import chordtools
 from abjad.tools import notetools
 from abjad.tools import contexttools
 from abjad.tools import stringtools
+from abjad.tools.selectiontools import more
 from abjad.tools.spannertools.DirectedSpanner.DirectedSpanner \
 	import DirectedSpanner
 
@@ -123,7 +124,7 @@ class HairpinSpanner(DirectedSpanner):
                     result.append('%s\\%s' % (
                         direction_string, self.stop_dynamic_string))
                 else:
-                    effective_dynamic = leaf.get_effective_context_mark(
+                    effective_dynamic = more(leaf).get_effective_context_mark(
                         contexttools.DynamicMark)
                     if effective_dynamic is None or \
                         effective_dynamic not in \
@@ -140,7 +141,7 @@ class HairpinSpanner(DirectedSpanner):
                     result.append('%s\\%s' % (
                         direction_string, self.stop_dynamic_string))
                 else:
-                    effective_dynamic = leaf.get_effective_context_mark(
+                    effective_dynamic = more(leaf).get_effective_context_mark(
                         contexttools.DynamicMark)
                     if effective_dynamic is None:
                         result.append('\\!')
