@@ -178,7 +178,7 @@ def split_leaf_at_offset(
 
     # create new leaf
     new_leaf = componenttools.copy_components_and_detach_spanners([leaf])[0]
-    leaf.extend_in_parent([new_leaf], grow_spanners=True)
+    leaf.splice([new_leaf], grow_spanners=True)
 
     # adjust leaf
     leaf.detach_grace_containers(kind='after')

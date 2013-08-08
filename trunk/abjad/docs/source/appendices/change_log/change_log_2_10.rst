@@ -367,12 +367,12 @@ Changes to the ``componenttools`` package:
 
 - Renamed::
 
-    componenttools.extend_in_parent_of_component_and_grow_spanners()
-    componenttools.extend_in_parent_of_component_and_do_not_grow_spanners()
+    componenttools.splice_of_component_and_grow_spanners()
+    componenttools.splice_of_component_and_do_not_grow_spanners()
 
   ::
 
-    componenttools.extend_in_parent_of_component(grow_spanners=[True, False])
+    componenttools.splice_of_component(grow_spanners=[True, False])
 
 - Renamed::
 

@@ -273,11 +273,11 @@ The new name is ``leaftools.list_durations_of_leaves_in_expr()``.
 Renamed ``VerticalMoment.prolated_offset`` to ``VerticalMoment.offset``.
 
 Merged ``componenttools.extend_left_in_parent_of_component()`` into 
-``componenttools.extend_in_parent_of_component()``.
+``componenttools.splice_of_component()``.
 Use the ``left=True`` keyword.
 
 Removed ``componenttools.extend_left_in_parent_of_component()``
-Use ``componenttools.extend_in_parent_of_component(left=True)`` instead.
+Use ``componenttools.splice_of_component(left=True)`` instead.
 
 Removed ``componenttools.get_component_start_offset()``.
 Removed ``componenttools.get_component_stop_offset()``.

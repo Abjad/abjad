@@ -577,7 +577,7 @@ class Component(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def extend_in_parent(
+    def splice(
         self,
         components,
         direction=Right,

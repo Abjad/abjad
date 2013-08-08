@@ -62,7 +62,7 @@ class TieChain(SequentialLeafSelection):
                 if not spannertools.is_component_with_spanner_attached(
                     self[-1], spannertools.TieSpanner):
                     spannertools.TieSpanner(list(self))
-                self[-1].extend_in_parent(extra_leaves, grow_spanners=True)
+                self[-1].splice(extra_leaves, grow_spanners=True)
         else:
             durations = notetools.make_notes(0, new_written_duration)
             assert isinstance(durations[0], tuplettools.Tuplet)
