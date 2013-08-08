@@ -112,40 +112,38 @@ class ContiguousSelection(Selection):
                     crossing_spanner._components.remove(component)
                     component._spanners.discard(crossing_spanner)
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def timespan(self):
-        r'''Timespan of slice selection.
-
-        Return timespan.
-        '''
-        from abjad.tools import timespantools
-        start_offset = min(x.get_timespan().start_offset for x in self)
-        stop_offset = max(x.get_timespan().stop_offset for x in self)
-        return timespantools.Timespan(start_offset, stop_offset)
-
     ### PUBLIC METHODS ###
 
     def get_duration(self, in_seconds=False):
-        r'''Get duration of components in selection.
+        r'''Gets duration of contiguous selection.
 
-        Return duration.
+        Returns duration.
         '''
         return sum(
             component.get_duration(in_seconds=in_seconds) 
             for component in self
             )
 
-    def group_by(self, predicate):
-        '''Group components in selection by `predicate`.
+    def get_timespan(self, in_seconds=False):
+        r'''Gets timespan of contiguous selection.
 
-        Return list of tuples.
+        Returns timespan.
+        '''
+        from abjad.tools import timespantools
+        if in_seconds:
+            raise NotImplementedError
+        start_offset = min(x.get_timespan().start_offset for x in self)
+        stop_offset = max(x.get_timespan().stop_offset for x in self)
+        return timespantools.Timespan(start_offset, stop_offset)
+
+    def group_by(self, predicate):
+        '''Groups components in contiguous selection by `predicate`.
+
+        Returns list of tuples.
         '''
         result = []
         grouper = itertools.groupby(self, predicate)
         for label, generator in grouper:
-            #selection = type(self)(generator)
             selection = tuple(generator)
             result.append(selection)
         return result

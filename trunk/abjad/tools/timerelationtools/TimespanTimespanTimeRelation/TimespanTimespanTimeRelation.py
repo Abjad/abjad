@@ -373,7 +373,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ::
 
-            >>> result.timespan
+            >>> result.get_timespan()
             Timespan(start_offset=Offset(20, 1), stop_offset=Offset(22, 1))
 
         `counttime_components` must belong to a single voice.
