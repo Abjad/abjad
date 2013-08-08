@@ -3,7 +3,7 @@ import copy
 from abjad.tools.selectiontools.Selection import Selection
 
 
-class ComponentSelection(Selection):
+class FreeComponentSelection(Selection):
     r'''A selection of components grouped together for inspection.
     '''
 

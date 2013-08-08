@@ -4,12 +4,7 @@ import types
 
 
 class Selection(object):
-    r'''Selection of components taken from a single score.
-
-    Selections will eventually model all user selections.
-
-    Selections will eventually serve as input
-    to and output from most functions in the API.
+    r'''A selection of components.
     '''
 
     ### CLASS VARIABLES ###

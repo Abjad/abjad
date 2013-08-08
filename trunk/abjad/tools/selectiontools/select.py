@@ -7,11 +7,11 @@ def select(expr=None):
     from abjad.tools import componenttools
     from abjad.tools import selectiontools
     if isinstance(expr, componenttools.Component):
-        return selectiontools.ComponentSelection(expr)
+        return selectiontools.FreeComponentSelection(expr)
     elif hasattr(expr, '_music'):
         music = expr._music
-        return selectiontools.ComponentSelection(music)
+        return selectiontools.FreeComponentSelection(music)
     elif expr is None:
-        return selectiontools.ComponentSelection()
+        return selectiontools.FreeComponentSelection()
     else:
-        return selectiontools.ComponentSelection(expr)
+        return selectiontools.FreeComponentSelection(expr)

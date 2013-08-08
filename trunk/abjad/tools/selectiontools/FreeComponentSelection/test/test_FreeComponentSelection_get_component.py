@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_ComponentSelection_get_component_01():
+def test_FreeComponentSelection_get_component_01():
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
@@ -33,7 +33,7 @@ def test_ComponentSelection_get_component_01():
     assert select(staff).get_component(Measure, 2) is staff[2]
 
 
-def test_ComponentSelection_get_component_02():
+def test_FreeComponentSelection_get_component_02():
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
@@ -44,7 +44,7 @@ def test_ComponentSelection_get_component_02():
     assert select(staff).get_component(Measure, -3) is staff[0]
 
 
-def test_ComponentSelection_get_component_03():
+def test_FreeComponentSelection_get_component_03():
     r'''Read forwards for positive n.
     '''
 
@@ -79,7 +79,7 @@ def test_ComponentSelection_get_component_03():
     assert select(staff).get_component(leaftools.Leaf, 5) is staff[2][1]
 
 
-def test_ComponentSelection_get_component_04():
+def test_FreeComponentSelection_get_component_04():
     r'''Read backwards for negative n.
     '''
 
@@ -114,7 +114,7 @@ def test_ComponentSelection_get_component_04():
     assert select(staff).get_component(leaftools.Leaf, -6) is staff[0][0]
 
 
-def test_ComponentSelection_get_component_05():
+def test_FreeComponentSelection_get_component_05():
 
     staff = Staff([])
     durations = [Duration(n, 16) for n in range(1, 5)]
@@ -149,7 +149,7 @@ def test_ComponentSelection_get_component_05():
     assert select(staff).get_component(Staff, 0) is staff
 
 
-def test_ComponentSelection_get_component_06():
+def test_FreeComponentSelection_get_component_06():
     r'''Iterates backwards with negative values of n.
     '''
 

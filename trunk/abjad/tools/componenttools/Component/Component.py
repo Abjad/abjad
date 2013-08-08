@@ -817,7 +817,7 @@ class Component(AbjadObject):
         Returns sequential selection when `sequential` is true.
         '''
         if not sequential:
-            return selectiontools.ComponentSelection(music=self)
+            return selectiontools.FreeComponentSelection(music=self)
         else:
             return selectiontools.SliceSelection(music=self)
 
@@ -833,7 +833,7 @@ class Component(AbjadObject):
             expr = [self]
         components = iterationtools.iterate_components_in_expr(
             expr, component_class=component_classes)
-        return selectiontools.ComponentSelection(components)
+        return selectiontools.FreeComponentSelection(components)
 
     def select_contents(self, include_self=True):
         r'''Selects contents of component.
