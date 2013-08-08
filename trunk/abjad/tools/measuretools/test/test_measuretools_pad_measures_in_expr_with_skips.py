@@ -184,7 +184,8 @@ def test_measuretools_pad_measures_in_expr_with_skips_03():
 
     measure = Measure((2, 8), "c'8 d'8")
     spannertools.BeamSpanner(measure[:])
-    measuretools.pad_measures_in_expr_with_skips(measure, Duration(1, 32), Duration(1, 64), splice = True)
+    measuretools.pad_measures_in_expr_with_skips(
+        measure, Duration(1, 32), Duration(1, 64), splice=True)
 
     r'''
     {

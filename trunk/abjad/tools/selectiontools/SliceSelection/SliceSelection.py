@@ -2,15 +2,16 @@
 import copy
 import itertools
 import types
-from abjad.tools.selectiontools.Selection import Selection
+from abjad.tools.selectiontools.ContiguousSelection import ContiguousSelection
 
 
-class SliceSelection(Selection):
-    r'''Selection of components sliced from a sequential container.
-
-    **Example**:
+class SliceSelection(ContiguousSelection):
+    r'''A time-contiguous selection of components
+    sliced from a sequential container.
 
     ..  container:: example
+
+        **Example.**
 
         ::
 
@@ -33,21 +34,6 @@ class SliceSelection(Selection):
             SliceSelection(Note("c'4"), Note("d'4"))
 
     '''
-
-    ### INITIALIZER ###
-
-    def __init__(self, music=None):
-        if music is None:
-            music = ()
-        elif isinstance(music, (tuple, list)):
-            music = tuple(music)
-        elif isinstance(music, Selection):
-            music = tuple(music)
-        elif isinstance(music, types.GeneratorType):
-            music = tuple(music)
-        else:
-            music = (music, )
-        self._music = tuple(music)
 
     ### SPECIAL METHODS ###
 
