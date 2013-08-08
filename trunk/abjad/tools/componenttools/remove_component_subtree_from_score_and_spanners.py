@@ -28,7 +28,7 @@ def remove_component_subtree_from_score_and_spanners(components):
 
             >>> componenttools.remove_component_subtree_from_score_and_spanners(
             ...     voice.select_leaves()[1:2])
-            SequentialLeafSelection(Note("d'8"),)
+            ContiguousLeafSelection(Note("d'8"),)
 
         ..  doctest::
 
@@ -67,7 +67,7 @@ def remove_component_subtree_from_score_and_spanners(components):
 
             >>> componenttools.remove_component_subtree_from_score_and_spanners(
             ...     voice.select_leaves()[:2])
-            SequentialLeafSelection(Note("c'8"), Note("d'8"))
+            ContiguousLeafSelection(Note("c'8"), Note("d'8"))
 
         ..  doctest::
 

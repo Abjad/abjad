@@ -2,7 +2,7 @@
 from abjad.tools.selectiontools.SliceSelection import SliceSelection
 
 
-class SequentialLeafSelection(SliceSelection):
+class ContiguousLeafSelection(SliceSelection):
     r'''SliceSelection of leaves.
     '''
 

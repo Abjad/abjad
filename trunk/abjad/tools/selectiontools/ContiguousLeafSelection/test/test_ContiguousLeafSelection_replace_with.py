@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_SequentialLeafSelection_replace_with_01():
+def test_ContiguousLeafSelection_replace_with_01():
     r'''Replace with rests.
     '''
 
@@ -33,7 +33,7 @@ def test_SequentialLeafSelection_replace_with_01():
         )
 
 
-def test_SequentialLeafSelection_replace_with_02():
+def test_ContiguousLeafSelection_replace_with_02():
     r'''Replace with skips.
     '''
 

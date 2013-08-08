@@ -931,14 +931,14 @@ class Container(Component):
             ::
 
                 >>> container.select_leaves()
-                SequentialLeafSelection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"))
+                ContiguousLeafSelection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"))
 
         Return leaf selection.
         '''
         from abjad.tools import iterationtools
         from abjad.tools import selectiontools
         generator = iterationtools.iterate_leaves_in_expr(self)
-        return selectiontools.SequentialLeafSelection(generator)
+        return selectiontools.ContiguousLeafSelection(generator)
 
     def select_notes_and_chords(self):
         r'''Select notes and chords in container.
@@ -950,14 +950,14 @@ class Container(Component):
             ::
 
                 >>> container.select_notes_and_chords()
-                SequentialLeafSelection(Note("c'8"), Note("d'8"), Note("e'8"))
+                ContiguousLeafSelection(Note("c'8"), Note("d'8"), Note("e'8"))
 
         Return leaf selection.
         '''
         from abjad.tools import iterationtools
         from abjad.tools import selectiontools
         generator = iterationtools.iterate_notes_and_chords_in_expr(self)
-        return selectiontools.SequentialLeafSelection(generator)
+        return selectiontools.ContiguousLeafSelection(generator)
 
     def shorten(self, duration):
         r'''Shorten container by `duration`.
