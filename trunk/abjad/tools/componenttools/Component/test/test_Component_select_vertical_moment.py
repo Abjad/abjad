@@ -11,7 +11,8 @@ def test_Component_select_vertical_moment_01():
     piano_staff.append(Staff(notetools.make_repeated_notes(4)))
     contexttools.ClefMark('bass')(piano_staff[1])
     score.append(piano_staff)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(list(reversed(score.select_leaves())))
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
+        list(reversed(score.select_leaves(allow_discontiguous_leaves=True))))
 
     r'''
     \new Score <<
@@ -63,7 +64,8 @@ def test_Component_select_vertical_moment_02():
     piano_staff.append(Staff(notetools.make_repeated_notes(4)))
     contexttools.ClefMark('bass')(piano_staff[1])
     score.append(piano_staff)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(list(reversed(score.select_leaves())))
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
+        list(reversed(score.select_leaves(allow_discontiguous_leaves=True))))
 
     r'''
     \new Score <<

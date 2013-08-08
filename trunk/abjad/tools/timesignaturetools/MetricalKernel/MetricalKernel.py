@@ -127,7 +127,8 @@ class MetricalKernel(AbjadObject):
             ::
 
                 >>> MetricalKernel = timesignaturetools.MetricalKernel
-                >>> leaves = score.select_leaves()
+                >>> leaves = score.select_leaves(
+                ...     allow_discontiguous_leaves=True)
                 >>> counter = MetricalKernel.count_offsets_in_expr(leaves)
                 >>> for offset, count in sorted(counter.items()):
                 ...     offset, count

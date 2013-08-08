@@ -14,7 +14,7 @@ class FreeLeafSelection(Selection):
         ::
 
             >>> note = Note("c'8.")
-            >>> selection = selectiontools.select_leaves(note)
+            >>> selection = selectiontools.FreeLeafSelection(music=note)
 
         ..  container:: example
 

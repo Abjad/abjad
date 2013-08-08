@@ -75,7 +75,7 @@ def test_Parentage_parentage_signature_04():
     '''
 
     signatures = [leaf.select_parentage().parentage_signature 
-        for leaf in voice.select_leaves()]
+        for leaf in voice.select_leaves(allow_discontiguous_leaves=True)]
 
     assert signatures[0] == signatures[1]
     assert signatures[0] != signatures[2]

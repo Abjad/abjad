@@ -2,8 +2,13 @@
 from abjad.tools import componenttools
 
 
-def iterate_thread_from_component(component, component_class=None, reverse=False):
-    r'''Itearte thread forward from `component` and yield instances of `component_class`:
+def iterate_thread_from_component(
+    component, 
+    component_class=None, 
+    reverse=False,
+    ):
+    r'''Itearte thread forward from `component` and yield instances 
+    of `component_class`.
 
     ::
 
@@ -40,10 +45,12 @@ def iterate_thread_from_component(component, component_class=None, reverse=False
             >>
         }
 
-    Starting from the first leaf in score. ::
+    Starting from the first leaf in score:
+
+    ::
 
         >>> for x in iterationtools.iterate_thread_from_component(
-        ...     staff.select_leaves()[0], Note):
+        ...     staff.select_leaves(allow_discontiguous_leaves=True)[0], Note):
         ...     x
         ...
         Note("c'8")
@@ -51,20 +58,24 @@ def iterate_thread_from_component(component, component_class=None, reverse=False
         Note("g'8")
         Note("a'8")
 
-    Starting from the second leaf in score. ::
+    Starting from the second leaf in score:
+
+    ::
 
         >>> for x in iterationtools.iterate_thread_from_component(
-        ...     staff.select_leaves()[1], Note):
+        ...     staff.select_leaves(allow_discontiguous_leaves=True)[1], Note):
         ...     x
         ...
         Note("d'8")
         Note("g'8")
         Note("a'8")
 
-    Yield all components in thread. ::
+    Yield all components in thread:
+
+    ::
 
         >>> for x in iterationtools.iterate_thread_from_component(
-        ...     staff.select_leaves()[0]):
+        ...     staff.select_leaves(allow_discontiguous_leaves=True)[0]):
         ...     x
         ...
         Note("c'8")
@@ -74,11 +85,16 @@ def iterate_thread_from_component(component, component_class=None, reverse=False
         Note("g'8")
         Note("a'8")
 
-    Iterate thread backward from `component` and yield instances of `component_class`,
-    starting from the last leaf in score. ::
+    Iterate thread backward from `component` and yield instances 
+    of `component_class`, starting from the last leaf in score:
+
+    ::
 
         >>> for x in iterationtools.iterate_thread_from_component(
-        ...     staff.select_leaves()[-1], Note, reverse=True):
+        ...     staff.select_leaves(allow_discontiguous_leaves=True)[-1], 
+        ...     Note, 
+        ...     reverse=True,
+        ...     ):
         ...     x
         Note("c''8")
         Note("b'8")
@@ -90,7 +106,9 @@ def iterate_thread_from_component(component, component_class=None, reverse=False
     ::
 
         >>> for x in iterationtools.iterate_thread_from_component(
-        ...     staff.select_leaves()[-1], reverse=True):
+        ...     staff.select_leaves(allow_discontiguous_leaves=True)[-1], 
+        ...     reverse=True,
+        ...     ):
         ...     x
         Note("c''8")
         Voice-"voice 2"{2}

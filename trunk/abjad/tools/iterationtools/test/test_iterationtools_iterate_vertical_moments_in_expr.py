@@ -5,13 +5,15 @@ from abjad import *
 def test_iterationtools_iterate_vertical_moments_in_expr_01():
 
     score = Score([])
-    score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
+    score.append(Staff([tuplettools.FixedDurationTuplet(
+        Duration(4, 8), notetools.make_repeated_notes(3))]))
     piano_staff = scoretools.PianoStaff([])
     piano_staff.append(Staff(notetools.make_repeated_notes(2, Duration(1, 4))))
     piano_staff.append(Staff(notetools.make_repeated_notes(4)))
     contexttools.ClefMark('bass')(piano_staff[1])
     score.append(piano_staff)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(list(reversed(score.select_leaves())))
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
+        list(reversed(score.select_leaves(allow_discontiguous_leaves=True))))
 
     r'''
     \new Score <<
@@ -38,7 +40,8 @@ def test_iterationtools_iterate_vertical_moments_in_expr_01():
     >>
     '''
 
-    moment_generator = iterationtools.iterate_vertical_moments_in_expr(score, reverse=True)
+    moment_generator = iterationtools.iterate_vertical_moments_in_expr(
+        score, reverse=True)
     moments = list(moment_generator)
 
     r'''
@@ -65,17 +68,20 @@ def test_iterationtools_iterate_vertical_moments_in_expr_01():
 def test_iterationtools_iterate_vertical_moments_in_expr_02():
 
     score = Score([])
-    score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
+    score.append(Staff([tuplettools.FixedDurationTuplet(
+        Duration(4, 8), notetools.make_repeated_notes(3))]))
     piano_staff = scoretools.PianoStaff([])
     piano_staff.append(Staff(notetools.make_repeated_notes(2, Duration(1, 4))))
     piano_staff.append(Staff(notetools.make_repeated_notes(4)))
     contexttools.ClefMark('bass')(piano_staff[1])
     score.append(piano_staff)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(list(reversed(score.select_leaves())))
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
+        list(reversed(score.select_leaves(allow_discontiguous_leaves=True))))
 
     # see above for formatted score #
 
-    moment_generator = iterationtools.iterate_vertical_moments_in_expr(piano_staff, reverse=True)
+    moment_generator = iterationtools.iterate_vertical_moments_in_expr(
+        piano_staff, reverse=True)
     moments = list(moment_generator)
 
     r'''
@@ -97,13 +103,15 @@ def test_iterationtools_iterate_vertical_moments_in_expr_02():
 def test_iterationtools_iterate_vertical_moments_in_expr_03():
 
     score = Score([])
-    score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
+    score.append(Staff([tuplettools.FixedDurationTuplet(
+        Duration(4, 8), notetools.make_repeated_notes(3))]))
     piano_staff = scoretools.PianoStaff([])
     piano_staff.append(Staff(notetools.make_repeated_notes(2, Duration(1, 4))))
     piano_staff.append(Staff(notetools.make_repeated_notes(4)))
     contexttools.ClefMark('bass')(piano_staff[1])
     score.append(piano_staff)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(list(reversed(score.select_leaves())))
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
+        list(reversed(score.select_leaves(allow_discontiguous_leaves=True))))
 
     r'''
     \new Score <<
@@ -157,17 +165,20 @@ def test_iterationtools_iterate_vertical_moments_in_expr_03():
 def test_iterationtools_iterate_vertical_moments_in_expr_04():
 
     score = Score([])
-    score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
+    score.append(Staff([tuplettools.FixedDurationTuplet(
+        Duration(4, 8), notetools.make_repeated_notes(3))]))
     piano_staff = scoretools.PianoStaff([])
     piano_staff.append(Staff(notetools.make_repeated_notes(2, Duration(1, 4))))
     piano_staff.append(Staff(notetools.make_repeated_notes(4)))
     contexttools.ClefMark('bass')(piano_staff[1])
     score.append(piano_staff)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(list(reversed(score.select_leaves())))
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
+        list(reversed(score.select_leaves(allow_discontiguous_leaves=True))))
 
     # see above for formatted score #
 
-    moment_generator = iterationtools.iterate_vertical_moments_in_expr(piano_staff)
+    moment_generator = iterationtools.iterate_vertical_moments_in_expr(
+        piano_staff)
     moments = list(moment_generator)
 
     r'''

@@ -589,7 +589,7 @@ class ReducedLyParser(abctools.Parser):
         for x in parsed:
             container.append(x)
         parsed = container
-        leaves = parsed.select_leaves()
+        leaves = parsed.select_leaves(allow_discontiguous_leaves=True)
         if leaves:
             self._apply_spanners(leaves)
         for leaf in leaves:

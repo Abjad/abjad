@@ -157,7 +157,7 @@ class Container(Component):
                 [x.get_duration(in_seconds=True) for x in self])
         else:
             duration = durationtools.Duration(0)
-            for leaf in self.select_leaves():
+            for leaf in self.select_leaves(allow_discontiguous_leaves=True):
                 duration += leaf.get_duration(in_seconds=True)
             return duration
 
@@ -917,12 +917,17 @@ class Container(Component):
         for s in spanners:
             s._components.sort(_offset)
 
-    def select_leaves(self):
+    def select_leaves(
+        self,
+        leaf_classes=None,
+        recurse=True,
+        allow_discontiguous_leaves=False,
+        ):
         r'''Select leaves in container.
 
-        **Example**:
-
         ..  container:: example
+
+            **Example**:
 
             ::
 
@@ -933,12 +938,15 @@ class Container(Component):
                 >>> container.select_leaves()
                 ContiguousLeafSelection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"))
 
-        Return leaf selection.
+        Return contiguous leaf selection or free leaf selection.
         '''
-        from abjad.tools import iterationtools
         from abjad.tools import selectiontools
-        generator = iterationtools.iterate_leaves_in_expr(self)
-        return selectiontools.ContiguousLeafSelection(generator)
+        return selectiontools.select_leaves(
+            expr=self,
+            leaf_classes=leaf_classes,
+            recurse=recurse,
+            allow_discontiguous_leaves=allow_discontiguous_leaves,
+            )
 
     def select_notes_and_chords(self):
         r'''Select notes and chords in container.

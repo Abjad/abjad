@@ -12,7 +12,8 @@ def test_iterationtools_iterate_namesakes_from_component_01():
     score = Score([])
     score.is_simultaneous = False
     score.extend(container * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(score)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
+        score)
 
     r'''
 
@@ -40,7 +41,8 @@ def test_iterationtools_iterate_namesakes_from_component_01():
     }
     '''
 
-    staves = iterationtools.iterate_namesakes_from_component(score[1][0], reverse=True)
+    staves = iterationtools.iterate_namesakes_from_component(
+        score[1][0], reverse=True)
     staves = list(staves)
 
     assert staves[0] is score[1][0]
@@ -59,7 +61,8 @@ def test_iterationtools_iterate_namesakes_from_component_02():
     score = Score([])
     score.is_simultaneous = False
     score.extend(container * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(score)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
+        score)
 
     r'''
 
@@ -87,7 +90,8 @@ def test_iterationtools_iterate_namesakes_from_component_02():
     }
     '''
 
-    notes = iterationtools.iterate_namesakes_from_component(score.select_leaves()[-1], reverse=True)
+    notes = iterationtools.iterate_namesakes_from_component(
+        score.select_leaves(allow_discontiguous_leaves=True)[-1], reverse=True)
     notes = list(notes)
 
     r'''
@@ -106,8 +110,11 @@ def test_iterationtools_iterate_namesakes_from_component_03():
     r'''Optional start and stop keywords.
     '''
 
-    staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    staff = Staff(
+        tuplettools.FixedDurationTuplet(
+        Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
+        staff)
 
     r'''
     \new Staff {
@@ -137,8 +144,11 @@ def test_iterationtools_iterate_namesakes_from_component_04():
     r'''Optional start and stop keywords.
     '''
 
-    staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    staff = Staff(
+        tuplettools.FixedDurationTuplet(
+        Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
+        staff)
 
     r'''
     \new Staff {
@@ -173,7 +183,8 @@ def test_iterationtools_iterate_namesakes_from_component_05():
     score = Score([])
     score.is_simultaneous = False
     score.extend(container * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(score)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
+        score)
 
     r'''
 
@@ -220,7 +231,8 @@ def test_iterationtools_iterate_namesakes_from_component_06():
     score = Score([])
     score.is_simultaneous = False
     score.extend(container * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(score)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
+        score)
 
     r'''
 
@@ -248,7 +260,8 @@ def test_iterationtools_iterate_namesakes_from_component_06():
     }
     '''
 
-    notes = iterationtools.iterate_namesakes_from_component(score.select_leaves()[0])
+    notes = iterationtools.iterate_namesakes_from_component(
+        score.select_leaves(allow_discontiguous_leaves=True)[0])
     notes = list(notes)
 
     for note in notes:
@@ -260,8 +273,11 @@ def test_iterationtools_iterate_namesakes_from_component_07():
     r'''Optional start and stop keywords.
     '''
 
-    staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    staff = Staff(
+        tuplettools.FixedDurationTuplet(
+        Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
+        staff)
 
     r'''
     \new Staff {
@@ -278,7 +294,8 @@ def test_iterationtools_iterate_namesakes_from_component_07():
     }
     '''
 
-    g = iterationtools.iterate_namesakes_from_component(staff.select_leaves()[1], start=0, stop=3)
+    g = iterationtools.iterate_namesakes_from_component(
+        staff.select_leaves()[1], start=0, stop=3)
 
     assert g.next() is staff.select_leaves()[1]
     assert g.next() is staff.select_leaves()[2]
@@ -290,8 +307,11 @@ def test_iterationtools_iterate_namesakes_from_component_08():
     r'''Optional start and stop keywords.
     '''
 
-    staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    staff = Staff(
+        tuplettools.FixedDurationTuplet(
+        Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
+        staff)
 
     r'''
     \new Staff {
@@ -308,7 +328,8 @@ def test_iterationtools_iterate_namesakes_from_component_08():
     }
     '''
 
-    g = iterationtools.iterate_namesakes_from_component(staff.select_leaves()[1], start=2)
+    g = iterationtools.iterate_namesakes_from_component(
+        staff.select_leaves()[1], start=2)
 
     assert g.next() is staff.select_leaves()[3]
     assert g.next() is staff.select_leaves()[4]

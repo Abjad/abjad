@@ -306,7 +306,8 @@ class Parentage(SimultaneousSelection):
 
         ::
 
-            >>> for leaf in score.select_leaves():
+            >>> for leaf in score.select_leaves(
+            ...     allow_discontiguous_leaves=True):
             ...     leaf, leaf.select_parentage().score_index
             ...
             (Note("c'8"), (0, 0, 0))

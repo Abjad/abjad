@@ -2,7 +2,12 @@
 from abjad.tools import componenttools
 
 
-def iterate_thread_in_expr(expr, component_class, containment_signature, reverse=False):
+def iterate_thread_in_expr(
+    expr, 
+    component_class, 
+    containment_signature, 
+    reverse=False,
+    ):
     r'''Yield left-to-right instances of `component_class` in `expr` 
     with `containment_signature`:
 
@@ -43,7 +48,7 @@ def iterate_thread_in_expr(expr, component_class, containment_signature, reverse
 
     ::
 
-        >>> signature = staff.select_leaves()[0].select_parentage().containment_signature
+        >>> signature = staff.select_leaves(allow_discontiguous_leaves=True)[0].select_parentage().containment_signature
         >>> for x in iterationtools.iterate_thread_in_expr(
         ...     staff, Note, signature):
         ...     x
