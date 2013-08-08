@@ -14,4 +14,4 @@ class SimultaneousSelection(Selection):
         r'''Select vertical moment at `offset`.
         '''
         from abjad.tools import componenttools
-        return componenttools.VerticalMoment(self, offset)
+        return selectiontools.VerticalMoment(self, offset)

@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
-from abjad.tools.selectiontools import SimultaneousSelection
+from abjad.tools.selectiontools.SimultaneousSelection \
+    import SimultaneousSelection
 
 
 class VerticalMoment(SimultaneousSelection):

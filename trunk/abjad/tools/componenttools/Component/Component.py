@@ -6,6 +6,7 @@ from abjad.tools import durationtools
 from abjad.tools import formattools
 from abjad.tools import lilypondproxytools
 from abjad.tools import mathtools
+from abjad.tools import selectiontools
 from abjad.tools import timespantools
 from abjad.tools.abctools import AbjadObject
 
@@ -588,7 +589,6 @@ class Component(AbjadObject):
         Returns list of component followed by `components`.
         '''
         from abjad.tools import componenttools
-        from abjad.tools import selectiontools
         from abjad.tools import spannertools
         assert componenttools.all_are_components(components)
         if direction == Right:
@@ -816,7 +816,6 @@ class Component(AbjadObject):
 
         Returns sequential selection when `sequential` is true.
         '''
-        from abjad.tools import selectiontools
         if not sequential:
             return selectiontools.ComponentSelection(music=self)
         else:
@@ -829,7 +828,6 @@ class Component(AbjadObject):
         Returns component selection.
         '''
         from abjad.tools import iterationtools
-        from abjad.tools import selectiontools
         expr = self
         if include_self:
             expr = [self]
@@ -842,7 +840,6 @@ class Component(AbjadObject):
 
         Returns sequential selection.
         '''
-        from abjad.tools import selectiontools
         result = []
         if include_self:
             result.append(self)
@@ -861,7 +858,7 @@ class Component(AbjadObject):
         Returns descendants.
         '''
         from abjad.tools import componenttools
-        return componenttools.Descendants(
+        return selectiontools.Descendants(
             self,
             cross_offset=cross_offset,
             include_self=include_self,
@@ -873,15 +870,14 @@ class Component(AbjadObject):
         Returns lineage.
         '''
         from abjad.tools import componenttools
-        return componenttools.Lineage(self)
+        return selectiontools.Lineage(self)
 
     def select_parentage(self, include_self=True):
         r'''Selects parentage of component.
 
         Returns parentage.
         '''
-        from abjad.tools import componenttools
-        return componenttools.Parentage(self, include_self=include_self)
+        return selectiontools.Parentage(self, include_self=include_self)
 
     def select_vertical_moment(self, governor=None):
         r'''Selects vertical moment starting with component.
@@ -892,7 +888,7 @@ class Component(AbjadObject):
         offset = self.get_timespan().start_offset
         if governor is None:
             governor = self.select_parentage().root
-        return componenttools.VerticalMoment(governor, offset)
+        return selectiontools.VerticalMoment(governor, offset)
 
     def select_vertical_moment_at(self, offset):
         r'''Selects vertical moment at `offset`.
@@ -900,4 +896,4 @@ class Component(AbjadObject):
         Returns vertical moment.
         '''
         from abjad.tools import componenttools
-        return componenttools.VerticalMoment(self, offset)
+        return selectiontools.VerticalMoment(self, offset)

@@ -904,9 +904,9 @@ Implemented new ``NonreducedRatio`` class. Compare with existing ``Ratio`` class
 
 Added new ``componenttools.ScoreSelection`` subclasses. All selections are improper::
 
-    componenttools.Descendants
-    componenttools.Lineage
-    componenttools.Parentage
+    selectiontools.Descendants
+    selectiontools.Lineage
+    selectiontools.Parentage
 
 
 New score selection subclasses are also accessible via::

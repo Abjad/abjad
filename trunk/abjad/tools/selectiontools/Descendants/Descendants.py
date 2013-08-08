@@ -32,7 +32,7 @@ class Descendants(SimultaneousSelection):
 
     ::
 
-        >>> for x in componenttools.Descendants(score): x
+        >>> for x in selectiontools.Descendants(score): x
         ...
         Score<<2>>
         Staff-"Treble Staff"{1}
@@ -44,7 +44,7 @@ class Descendants(SimultaneousSelection):
 
     ::
 
-        >>> for x in componenttools.Descendants(score['Bass Voice']): x
+        >>> for x in selectiontools.Descendants(score['Bass Voice']): x
         ...
         Voice-"Bass Voice"{1}
         Note('b,4')

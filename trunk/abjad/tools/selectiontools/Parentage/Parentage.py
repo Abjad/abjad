@@ -34,13 +34,13 @@ class Parentage(SimultaneousSelection):
 
     ::
 
-        >>> for x in componenttools.Parentage(score): x
+        >>> for x in selectiontools.Parentage(score): x
         ...
         Score<<2>>
 
     ::
 
-        >>> for x in componenttools.Parentage(score['Bass Voice'][0]): x
+        >>> for x in selectiontools.Parentage(score['Bass Voice'][0]): x
         ...
         Note('b,4')
         Voice-"Bass Voice"{1}

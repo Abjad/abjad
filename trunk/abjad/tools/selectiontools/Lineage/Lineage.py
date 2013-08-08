@@ -32,7 +32,7 @@ class Lineage(SimultaneousSelection):
 
     ::
 
-        >>> for x in componenttools.Lineage(score): x
+        >>> for x in selectiontools.Lineage(score): x
         ...
         Score<<2>>
         Staff-"Treble Staff"{1}
@@ -44,7 +44,7 @@ class Lineage(SimultaneousSelection):
 
     ::
 
-        >>> for x in componenttools.Lineage(score['Bass Voice']): x
+        >>> for x in selectiontools.Lineage(score['Bass Voice']): x
         ...
         Score<<2>>
         Staff-"Bass Staff"{1}
