@@ -641,30 +641,6 @@ class Component(AbjadObject):
                     parent.__setitem__(slice(start, start), components)
             return components + [self]
 
-    def get_annotation_value(self, name, default=None):
-        r'''Gets value of annotation with `name` attached to component.
-
-        Returns `default` when no annotation with `name` is attached
-        to component.
-
-        Raises exception when more than one annotation with `name`
-        is attached to component.
-        '''
-        from abjad.tools import marktools
-        annotations = self.get_marks(marktools.Annotation)
-        if not annotations:
-            return default
-        with_correct_name = []
-        for annotation in annotations:
-            if annotation.name == name:
-                with_correct_name.append(annotation)
-        if not with_correct_name:
-            return default
-        if 1 < len(with_correct_name):
-            raise Exception('more than one annotation.')
-        annotation_value = with_correct_name[0].value
-        return annotation_value
-
     def get_duration(self, in_seconds=False):
         r'''Gets duration of component.
 
