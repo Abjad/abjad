@@ -429,7 +429,7 @@ class Leaf(Component):
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
         spanner_classes = (spannertools.TieSpanner,)
-        for component in self.select_parentage():
+        for component in self._select_parentage():
             tie_spanners = component._get_spanners(spanner_classes)
             if len(tie_spanners) == 1:
                 tie_spanner = tie_spanners.pop()
@@ -446,6 +446,6 @@ class Leaf(Component):
         '''
         from abjad.tools import leaftools
         duration = self.get_duration() - duration
-        prolation = self.select_parentage().prolation
+        prolation = self._select_parentage().prolation
         preprolated_duration = duration / prolation
         leaftools.set_preprolated_leaf_duration(self, preprolated_duration)

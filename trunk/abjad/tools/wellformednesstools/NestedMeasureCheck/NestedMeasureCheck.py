@@ -13,7 +13,7 @@ class NestedMeasureCheck(Check):
         violators = []
         total = 0
         for t in iterationtools.iterate_measures_in_expr(expr):
-            parentage = t.select_parentage(include_self=False)
+            parentage = t._select_parentage(include_self=False)
             if parentage.get_first(measuretools.Measure):
                 violators.append(t)
             total += 1

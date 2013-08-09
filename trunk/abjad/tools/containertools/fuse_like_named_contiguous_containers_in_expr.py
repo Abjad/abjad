@@ -60,8 +60,8 @@ def fuse_like_named_contiguous_containers_in_expr(expr):
         if isinstance(next_component, containertools.Container) and \
             not next_component.is_simultaneous and \
             not isinstance(next_component, tuplettools.Tuplet) and \
-            component.select_parentage().root is \
-                next_component.select_parentage().root:
+            component._select_parentage().root is \
+                next_component._select_parentage().root:
                 component.extend(next_component)
                 componenttools.remove_component_subtree_from_score_and_spanners(
                     [next_component])

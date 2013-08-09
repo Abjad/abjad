@@ -108,7 +108,7 @@ def copy_governed_component_subtree_by_leaf_range(
     stop_leaf_in_component = leaves[stop - 1]
 
     # get governor
-    parentage = leaves[start].select_parentage(include_self=True)
+    parentage = leaves[start]._select_parentage(include_self=True)
     governor = parentage._get_governor()
 
     # find start and stop leaves in governor

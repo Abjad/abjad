@@ -127,18 +127,18 @@ def iterate_thread_from_component(
 
     # save thread signature of input component
     component_thread_signature = \
-        component.select_parentage().containment_signature
+        component._select_parentage().containment_signature
 
     # iterate component depth-first allowing to crawl UP into score
     if not reverse:
         for x in iterationtools.iterate_components_depth_first(component, capped=False):
             if isinstance(x, component_class):
-                if x.select_parentage().containment_signature == \
+                if x._select_parentage().containment_signature == \
                     component_thread_signature:
                     yield x
     else:
         for x in iterationtools.iterate_components_depth_first(component, capped=False, direction=Right):
             if isinstance(x, component_class):
-                if x.select_parentage().containment_signature == \
+                if x._select_parentage().containment_signature == \
                     component_thread_signature:
                     yield x

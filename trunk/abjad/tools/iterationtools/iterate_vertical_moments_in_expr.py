@@ -112,7 +112,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
             vertical_moment = selectiontools.VerticalMoment()
             offset = durationtools.Offset(current_offset)
             components = list(buffer)
-            components.sort(key=lambda x: x.select_parentage().score_index)
+            components.sort(key=lambda x: x._select_parentage().score_index)
             vertical_moment._offset = offset
             vertical_moment._governors = governors
             vertical_moment._components = components
@@ -175,4 +175,4 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
                 moments_in_governor.append(offset)
         moments_in_governor.sort()
         for moment_in_governor in reversed(moments_in_governor):
-            yield expr.select_vertical_moment_at(moment_in_governor)
+            yield expr._select_vertical_moment_at(moment_in_governor)

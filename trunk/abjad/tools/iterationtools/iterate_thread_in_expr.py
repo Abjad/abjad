@@ -48,7 +48,8 @@ def iterate_thread_in_expr(
 
     ::
 
-        >>> signature = staff.select_leaves(allow_discontiguous_leaves=True)[0].select_parentage().containment_signature
+        >>> leaf = staff.select_leaves(allow_discontiguous_leaves=True)[0]
+        >>> signature = more(leaf).select_parentage().containment_signature
         >>> for x in iterationtools.iterate_thread_in_expr(
         ...     staff, Note, signature):
         ...     x
@@ -63,7 +64,7 @@ def iterate_thread_in_expr(
     from abjad.tools import iterationtools
 
     if isinstance(expr, component_class) and \
-        expr.select_parentage().containment_signature == containment_signature:
+        expr._select_parentage().containment_signature == containment_signature:
         yield expr
 
     if not reverse:

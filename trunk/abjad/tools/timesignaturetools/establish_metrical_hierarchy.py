@@ -924,7 +924,7 @@ def establish_metrical_hierarchy(
 
     # Build offset inventory, adjusted for initial offset and prolation.
     first_offset = components[0].get_timespan().start_offset
-    prolation = components[0].select_parentage(include_self=False).prolation
+    prolation = components[0]._select_parentage(include_self=False).prolation
     offset_inventory= []
     for offsets in metrical_hierarchy.depthwise_offset_inventory:
         offsets = [(x * prolation) + first_offset for x in offsets]

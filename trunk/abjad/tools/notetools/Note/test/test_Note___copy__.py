@@ -137,9 +137,9 @@ def test_Note___copy___06():
     new_note = copy.deepcopy(note)
 
     assert new_note is not note
-    assert note.select_parentage().parent is staff
-    assert new_note.select_parentage().parent is not staff
-    assert isinstance(new_note.select_parentage().parent, Staff)
+    assert more(note).select_parentage().parent is staff
+    assert more(new_note).select_parentage().parent is not staff
+    assert isinstance(more(new_note).select_parentage().parent, Staff)
     assert new_note.lilypond_format == note.lilypond_format
-    assert note.select_parentage().parent.lilypond_format == \
-        new_note.select_parentage().parent.lilypond_format
+    assert more(note).select_parentage().parent.lilypond_format == \
+        more(new_note).select_parentage().parent.lilypond_format

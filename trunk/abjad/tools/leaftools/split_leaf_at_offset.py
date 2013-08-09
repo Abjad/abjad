@@ -167,7 +167,7 @@ def split_leaf_at_offset(
 
     # calculate durations
     leaf_multiplied_duration = leaf._multiplied_duration
-    prolation = leaf.select_parentage(include_self=False).prolation
+    prolation = leaf._select_parentage(include_self=False).prolation
     preprolated_duration = offset / prolation
 
     # handle boundary cases

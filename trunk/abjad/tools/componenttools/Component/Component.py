@@ -169,7 +169,7 @@ class Component(AbjadObject):
         # gathering candidate marks
         candidate_marks = datastructuretools.SortedCollection(
             key=lambda x: x.start_component.get_timespan().start_offset)
-        for parent in self.select_parentage(include_self=True):
+        for parent in self._select_parentage(include_self=True):
             parent_marks = parent._dependent_context_marks
             for mark in parent_marks:
                 if isinstance(mark, context_mark_classes):
@@ -195,7 +195,7 @@ class Component(AbjadObject):
         if staff_change_mark is not None:
             effective_staff = staff_change_mark.staff
         else:
-            parentage = self.select_parentage()
+            parentage = self._select_parentage()
             effective_staff = parentage.get_first(stafftools.Staff)
         return effective_staff
 
@@ -390,7 +390,7 @@ class Component(AbjadObject):
     def _remove_named_children_from_parentage(self, name_dictionary):
         from abjad.tools import componenttools
         if self._parent is not None and name_dictionary:
-            for parent in self.select_parentage(include_self=False):
+            for parent in self._select_parentage(include_self=False):
                 named_children = parent._named_children
                 for name in name_dictionary:
                     for component in name_dictionary[name]:
@@ -401,13 +401,43 @@ class Component(AbjadObject):
     def _restore_named_children_to_parentage(self, name_dictionary):
         from abjad.tools import componenttools
         if self._parent is not None and name_dictionary:
-            for parent in self.select_parentage(include_self=False):
+            for parent in self._select_parentage(include_self=False):
                 named_children = parent._named_children
                 for name in name_dictionary:
                     if name in named_children:
                         named_children[name].extend(name_dictionary[name])
                     else:
                         named_children[name] = copy.copy(name_dictionary[name])
+
+    def _select_components(self, component_classes=None, include_self=True):
+        from abjad.tools import iterationtools
+        expr = self
+        if include_self:
+            expr = [self]
+        components = iterationtools.iterate_components_in_expr(
+            expr, component_class=component_classes)
+        return selectiontools.FreeComponentSelection(components)
+
+    def _select_contents(self, include_self=True):
+        result = []
+        if include_self:
+            result.append(self)
+        result.extend(getattr(self, '_music', []))
+        result = selectiontools.SliceSelection(result)
+        return result
+
+    # TODO: remove cross_offset keyword
+    def _select_descendants(
+        self,
+        cross_offset=None,
+        include_self=True,
+        ):
+        from abjad.tools import componenttools
+        return selectiontools.Descendants(
+            self,
+            cross_offset=cross_offset,
+            include_self=include_self,
+            )
 
     def _select_descendants_starting_with(self):
         from abjad.tools import containertools
@@ -432,6 +462,24 @@ class Component(AbjadObject):
             elif self:
                 result.extend(self[-1]._select_descendants_stopping_with())
         return result
+        
+    def _select_lineage(self):
+        from abjad.tools import componenttools
+        return selectiontools.Lineage(self)
+
+    def _select_parentage(self, include_self=True):
+        return selectiontools.Parentage(self, include_self=include_self)
+
+    def _select_vertical_moment(self, governor=None):
+        from abjad.tools import componenttools
+        offset = self.get_timespan().start_offset
+        if governor is None:
+            governor = self._select_parentage().root
+        return selectiontools.VerticalMoment(governor, offset)
+
+    def _select_vertical_moment_at(self, offset):
+        from abjad.tools import componenttools
+        return selectiontools.VerticalMoment(self, offset)
 
     def _set_keyword_value(self, key, value):
         attribute_chain = key.split('__')
@@ -491,7 +539,7 @@ class Component(AbjadObject):
         prolated_offset_values_are_current = True
         marks_are_current = True
         offset_values_in_seconds_are_current = True
-        parentage = self.select_parentage()
+        parentage = self._select_parentage()
         for component in parentage:
             if prolated_offset_values_are_current and \
                 not component._prolated_offset_values_are_current:
@@ -514,7 +562,7 @@ class Component(AbjadObject):
             'forbid': None, 
             'direction': 'left',
             }
-        parentage = self.select_parentage()
+        parentage = self._select_parentage()
         components = iterationtools.iterate_components_depth_first(
             parentage.root, **kwargs)
         return components
@@ -524,7 +572,7 @@ class Component(AbjadObject):
 
         Only dynamic measures mark time signature for udpate.
         '''
-        for component in self.select_parentage(include_self=True):
+        for component in self._select_parentage(include_self=True):
             if value == 'prolated':
                 component._prolated_offset_values_are_current = False
             elif value == 'seconds':
@@ -541,7 +589,7 @@ class Component(AbjadObject):
         from abjad.tools import iterationtools
         from abjad.tools import leaftools
         from abjad.tools import measuretools
-        parentage = self.select_parentage()
+        parentage = self._select_parentage()
         score_root = parentage.root
         if isinstance(score_root, contexttools.Context):
             for context in \
@@ -737,7 +785,7 @@ class Component(AbjadObject):
         if in_seconds:
             return self._duration_in_seconds
         else:
-            parentage = self.select_parentage(include_self=False)
+            parentage = self._select_parentage(include_self=False)
             return parentage.prolation * self._preprolated_duration
 
     def get_timespan(self, in_seconds=False):
@@ -768,80 +816,3 @@ class Component(AbjadObject):
             return selectiontools.FreeComponentSelection(music=self)
         else:
             return selectiontools.SliceSelection(music=self)
-
-    def select_components(self, component_classes=None, include_self=True):
-        r'''Selects all components of `component_classes`
-        in the descendants of component.
-
-        Returns component selection.
-        '''
-        from abjad.tools import iterationtools
-        expr = self
-        if include_self:
-            expr = [self]
-        components = iterationtools.iterate_components_in_expr(
-            expr, component_class=component_classes)
-        return selectiontools.FreeComponentSelection(components)
-
-    def select_contents(self, include_self=True):
-        r'''Selects contents of component.
-
-        Returns sequential selection.
-        '''
-        result = []
-        if include_self:
-            result.append(self)
-        result.extend(getattr(self, '_music', []))
-        result = selectiontools.SliceSelection(result)
-        return result
-
-    # TODO: remove cross_offset keyword
-    def select_descendants(
-        self,
-        cross_offset=None,
-        include_self=True,
-        ):
-        r'''Selects descendants of component.
-
-        Returns descendants.
-        '''
-        from abjad.tools import componenttools
-        return selectiontools.Descendants(
-            self,
-            cross_offset=cross_offset,
-            include_self=include_self,
-            )
-
-    def select_lineage(self):
-        r'''Selects lineage of component.
-        
-        Returns lineage.
-        '''
-        from abjad.tools import componenttools
-        return selectiontools.Lineage(self)
-
-    def select_parentage(self, include_self=True):
-        r'''Selects parentage of component.
-
-        Returns parentage.
-        '''
-        return selectiontools.Parentage(self, include_self=include_self)
-
-    def select_vertical_moment(self, governor=None):
-        r'''Selects vertical moment starting with component.
-
-        Returns vertical moment.
-        '''
-        from abjad.tools import componenttools
-        offset = self.get_timespan().start_offset
-        if governor is None:
-            governor = self.select_parentage().root
-        return selectiontools.VerticalMoment(governor, offset)
-
-    def select_vertical_moment_at(self, offset):
-        r'''Selects vertical moment at `offset`.
-
-        Returns vertical moment.
-        '''
-        from abjad.tools import componenttools
-        return selectiontools.VerticalMoment(self, offset)

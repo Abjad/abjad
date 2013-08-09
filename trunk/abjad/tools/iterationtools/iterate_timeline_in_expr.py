@@ -85,8 +85,8 @@ def iterate_timeline_in_expr(expr, component_class=None, reverse=False):
             component_2.get_timespan().stop_offset)
         if result == 0:
             return cmp(
-                component_1.select_parentage().score_index,
-                component_2.select_parentage().score_index)
+                component_1._select_parentage().score_index,
+                component_2._select_parentage().score_index)
         else:
             # note negative result of cmp() is returned
             # for backward time sort
@@ -98,8 +98,8 @@ def iterate_timeline_in_expr(expr, component_class=None, reverse=False):
             component_2.get_timespan().start_offset)
         if result == 0:
             return cmp(
-                component_1.select_parentage().score_index,
-                component_2.select_parentage().score_index)
+                component_1._select_parentage().score_index,
+                component_2._select_parentage().score_index)
         else:
             return result
 

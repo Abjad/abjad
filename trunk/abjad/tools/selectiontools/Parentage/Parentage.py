@@ -155,7 +155,8 @@ class Parentage(SimultaneousSelection):
 
         ::
 
-            >>> score.select_leaves()[0].select_parentage().containment_signature
+            >>> leaf = score.select_leaves()[0]
+            >>> more(leaf).select_parentage().containment_signature
             ContainmentSignature(Note-..., Voice-'CustomVoice', Staff-..., Score-'CustomScore')
 
         Return containment signature object.
@@ -225,7 +226,7 @@ class Parentage(SimultaneousSelection):
             ...     Duration(2, 8), "c'8 d'8 e'8")
             >>> staff = Staff([tuplet])
             >>> note = staff.select_leaves()[0]
-            >>> print note.select_parentage().parentage_signature
+            >>> print more(note).select_parentage().parentage_signature
                 staff: Staff-...
                 self: Note-...
 
@@ -308,7 +309,7 @@ class Parentage(SimultaneousSelection):
 
             >>> for leaf in score.select_leaves(
             ...     allow_discontiguous_leaves=True):
-            ...     leaf, leaf.select_parentage().score_index
+            ...     leaf, more(leaf).select_parentage().score_index
             ...
             (Note("c'8"), (0, 0, 0))
             (Note("d'8"), (0, 0, 1))
@@ -344,17 +345,17 @@ class Parentage(SimultaneousSelection):
 
         ::
 
-            >>> note.select_parentage().tuplet_depth
+            >>> more(note).select_parentage().tuplet_depth
             1
 
         ::
 
-            >>> tuplet.select_parentage().tuplet_depth
+            >>> more(tuplet).select_parentage().tuplet_depth
             0
 
         ::
 
-            >>> staff.select_parentage().tuplet_depth
+            >>> more(staff).select_parentage().tuplet_depth
             0
 
         Return nonnegative integer.

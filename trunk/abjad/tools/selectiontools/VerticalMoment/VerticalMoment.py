@@ -70,7 +70,7 @@ class VerticalMoment(SimultaneousSelection):
         self._offset = offset
         self._governors = tuple(governors)
         components = list(components)
-        components.sort(key=lambda x: x.select_parentage().score_index)
+        components.sort(key=lambda x: x._select_parentage().score_index)
         self._components = tuple(components)
 
     ### SPECIAL METHODS ###
@@ -152,12 +152,12 @@ class VerticalMoment(SimultaneousSelection):
                     raise TypeError(message)
         else:
             raise TypeError(message)
-        governors.sort(key=lambda x: x.select_parentage().score_index)
+        governors.sort(key=lambda x: x._select_parentage().score_index)
         governors = tuple(governors)
         components = []
         for governor in governors:
             components.extend(VerticalMoment._recurse(governor, offset))
-        components.sort(key=lambda x: x.select_parentage().score_index)
+        components.sort(key=lambda x: x._select_parentage().score_index)
         components = tuple(components)
         return governors, components
 
@@ -245,7 +245,7 @@ class VerticalMoment(SimultaneousSelection):
             if leaf.stop < candidate_shortest_leaf.stop:
                 candidate_shortest_leaf = leaf
         next_leaf = candidate_shortest_leaf._get_namesake(1)
-        next_vertical_moment = next_leaf.select_vertical_moment()
+        next_vertical_moment = next_leaf._select_vertical_moment()
         return next_vertical_moment
 
     @property
@@ -259,7 +259,7 @@ class VerticalMoment(SimultaneousSelection):
                 candidate_shortest_leaf.get_timespan().stop_offset:
                 candidate_shortest_leaf = leaf
         next_leaf = candidate_shortest_leaf._get_namesake(1)
-        next_vertical_moment = next_leaf.select_vertical_moment()
+        next_vertical_moment = next_leaf._select_vertical_moment()
         return next_vertical_moment
 
     @property
@@ -360,7 +360,7 @@ class VerticalMoment(SimultaneousSelection):
         if token_leaf is None:
             token_leaf = leaf
             #print 'token_leaf is %s ...' % token_leaf
-        previous_vertical_moment = token_leaf.select_vertical_moment()
+        previous_vertical_moment = token_leaf._select_vertical_moment()
         return previous_vertical_moment
 
     @property

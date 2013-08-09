@@ -88,8 +88,8 @@ def iterate_namesakes_from_component(component, reverse=False, start=0, stop=Non
             prev, capped=False, direction=Right)
         for node in dfs:
             if type(node) == type(component) and \
-                node.select_parentage().parentage_signature == \
-                component.select_parentage().parentage_signature:
+                node._select_parentage().parentage_signature == \
+                component._select_parentage().parentage_signature:
                 return node
 
     def _forward_helper(component):
@@ -102,8 +102,8 @@ def iterate_namesakes_from_component(component, reverse=False, start=0, stop=Non
             next_component, capped=False)
         for node in dfs:
             if type(node) == type(component) and \
-                node.select_parentage().parentage_signature == \
-                component.select_parentage().parentage_signature:
+                node._select_parentage().parentage_signature == \
+                component._select_parentage().parentage_signature:
                 return node
 
     current_component = component

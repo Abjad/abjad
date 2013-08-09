@@ -100,7 +100,7 @@ def get_all_mark_format_contributions(component):
 
     ### handle context marks ###
 
-    for parent in component.select_parentage(include_self=False):
+    for parent in component._select_parentage(include_self=False):
         for mark in parent._start_marks:
             if isinstance(mark, contexttools.ContextMark):
                 if mark not in context_marks:

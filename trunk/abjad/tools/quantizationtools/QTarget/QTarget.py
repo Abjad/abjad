@@ -131,7 +131,7 @@ class QTarget(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _copy_leaf_type_and_pitches(self, leaf_one, leaf_two):
-        index = leaf_two.select_parentage().parent.index(leaf_two)
+        index = leaf_two._select_parentage().parent.index(leaf_two)
         duration = leaf_two.written_duration
         if isinstance(leaf_one, notetools.Note):
             new_leaf = notetools.Note(leaf_one.written_pitch, duration)
@@ -142,7 +142,7 @@ class QTarget(AbjadObject):
         tempo_marks = leaf_two._get_marks(contexttools.TempoMark)
         if tempo_marks:
             tempo_marks[0](new_leaf)
-        leaf_two.select_parentage().parent[index] = new_leaf
+        leaf_two._select_parentage().parent[index] = new_leaf
         return new_leaf
 
     @abc.abstractmethod
@@ -186,8 +186,8 @@ class QTarget(AbjadObject):
                 new_leaf.written_pitch = pitches[0]
             if grace_container:
                 grace_container(new_leaf)
-            leaf.select_parentage().parent[
-                leaf.select_parentage().parent.index(leaf)] = new_leaf
+            leaf._select_parentage().parent[
+                leaf._select_parentage().parent.index(leaf)] = new_leaf
             if tempo_marks:
                 tempo_marks[0](new_leaf)
             spannertools.TieSpanner(new_leaf)

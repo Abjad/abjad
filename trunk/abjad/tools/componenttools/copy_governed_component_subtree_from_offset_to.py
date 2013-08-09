@@ -124,7 +124,7 @@ def copy_governed_component_subtree_from_offset_to(
 
     ::
 
-        >>> new_leaf.select_parentage().parent is None
+        >>> more(new_leaf).select_parentage().parent is None
         True
 
     Return ``(untrimmed_copy, first_dif, second_dif)``.

@@ -104,7 +104,7 @@ class ExtendedComponentInterface(Selection):
 
             ::
 
-                >>> staff[1].get_grace_containers()
+                >>> more(staff[1]).get_grace_containers()
                 (GraceContainer(cs'16), GraceContainer(ds'16))
 
         ..  container:: example
@@ -113,7 +113,7 @@ class ExtendedComponentInterface(Selection):
 
             ::
 
-                >>> staff[1].get_grace_containers(kind='grace')
+                >>> more(staff[1]).get_grace_containers(kind='grace')
                 (GraceContainer(cs'16),)
 
         ..  container:: example
@@ -122,7 +122,7 @@ class ExtendedComponentInterface(Selection):
 
             ::
 
-                >>> staff[1].get_grace_containers(kind='after')
+                >>> more(staff[1]).get_grace_containers(kind='after')
                 (GraceContainer(ds'16),)
 
         Set `kind` to ``'grace'``, ``'after'`` or none.
@@ -178,3 +178,73 @@ class ExtendedComponentInterface(Selection):
         Returns set.
         '''
         return self[0]._get_spanners()
+
+
+    def select_components(self, component_classes=None, include_self=True):
+        r'''Selects all components of `component_classes`
+        in the descendants of component.
+
+        Returns component selection.
+        '''
+        return self[0]._select_components(
+            component_classes=component_classes,
+            include_self=include_self,
+            )
+
+    def select_contents(self, include_self=True):
+        r'''Selects contents of component.
+
+        Returns sequential selection.
+        '''
+        return self[0]._select_contents(
+            include_self=include_self,
+            )
+
+    # TODO: remove cross_offset keyword
+    def select_descendants(
+        self,
+        cross_offset=None,
+        include_self=True,
+        ):
+        r'''Selects descendants of component.
+
+        Returns descendants.
+        '''
+        return self[0]._select_descendants(
+            cross_offset=cross_offset,
+            include_self=include_self,
+            )
+
+    def select_lineage(self):
+        r'''Selects lineage of component.
+        
+        Returns lineage.
+        '''
+        return self[0]._select_lineage()
+
+    def select_parentage(self, include_self=True):
+        r'''Selects parentage of component.
+
+        Returns parentage.
+        '''
+        return self[0]._select_parentage(
+            include_self=include_self,
+            )
+
+    def select_vertical_moment(self, governor=None):
+        r'''Selects vertical moment starting with component.
+
+        Returns vertical moment.
+        '''
+        return self[0]._select_vertical_moment(
+            governor=governor,
+            )
+
+    def select_vertical_moment_at(self, offset):
+        r'''Selects vertical moment at `offset`.
+
+        Returns vertical moment.
+        '''
+        return self[0]._select_vertical_moment_at(
+            offset,
+            )

@@ -27,7 +27,7 @@ class ContainmentSignature(AbjadObject):
 
     ::
 
-        >>> score.select_leaves()[0].select_parentage().containment_signature
+        >>> more(score.select_leaves()[0]).select_parentage().containment_signature
         ContainmentSignature(Note-..., Voice-'CustomVoice', Staff-..., Score-'CustomScore')
 
     Used for thread iteration behind the scenes.

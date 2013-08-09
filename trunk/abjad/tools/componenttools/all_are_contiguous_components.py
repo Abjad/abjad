@@ -51,7 +51,7 @@ def all_are_contiguous_components(
         return False
 
     orphan_components = True
-    if not first.select_parentage().is_orphan:
+    if not first._select_parentage().is_orphan:
         orphan_components = False
 
     strictly_contiguous = True
@@ -60,7 +60,7 @@ def all_are_contiguous_components(
     for current in expr[1:]:
         if not isinstance(current, component_classes):
             return False
-        if not current.select_parentage().is_orphan:
+        if not current._select_parentage().is_orphan:
             orphan_components = False
         if not previous._is_immediate_temporal_successor_of(current):
             strictly_contiguous = False

@@ -162,7 +162,7 @@ def split_component_at_offset(
 
     # get any duration-crossing descendents
     cross_offset = component.get_timespan().start_offset + offset
-    contents = component.select_descendants(cross_offset=cross_offset)
+    contents = component._select_descendants(cross_offset=cross_offset)
 
     # get any duration-crossing measure descendents
     measures = [x for x in contents if isinstance(x, measuretools.Measure)]
@@ -191,7 +191,7 @@ def split_component_at_offset(
                 measure, non_power_of_two_product)
             # rederive duration crosses with possibly new measure contents
             cross_offset = component.get_timespan().start_offset + offset
-            contents = component.select_descendants(cross_offset=cross_offset)
+            contents = component._select_descendants(cross_offset=cross_offset)
     elif 1 < len(measures):
         raise ContainmentError('measures can not nest.')
 
@@ -237,7 +237,7 @@ def split_component_at_offset(
 
     # find component to right of split that is also immediate child of 
     # last duration-crossing container
-    for component in leaf_right_of_split.select_parentage(include_self=True):
+    for component in leaf_right_of_split._select_parentage(include_self=True):
         if component._parent is duration_crossing_containers[-1]:
             highest_level_component_right_of_split = component
             break
@@ -248,7 +248,7 @@ def split_component_at_offset(
     # fracture spanners if requested
     if fracture_spanners:
         start_offset = leaf_right_of_split.get_timespan().start_offset
-        for parent in leaf_right_of_split.select_parentage():
+        for parent in leaf_right_of_split._select_parentage():
             if parent.get_timespan().start_offset == start_offset:
                 spannertools.fracture_spanners_attached_to_component(
                     parent, direction=Left)
@@ -280,8 +280,8 @@ def split_component_at_offset(
     if did_split_leaf:
         if  (tie_split_notes and isinstance(leaf_left_of_split, notetools.Note)) or \
             (tie_split_rests and isinstance(leaf_left_of_split, resttools.Rest)):
-            if leaf_left_of_split.select_parentage().root is \
-                leaf_right_of_split.select_parentage().root:
+            if leaf_left_of_split._select_parentage().root is \
+                leaf_right_of_split._select_parentage().root:
                 leaves_around_split = (leaf_left_of_split, leaf_right_of_split)
                 selection = selectiontools.ContiguousLeafSelection(
                     leaves_around_split)

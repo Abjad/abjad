@@ -102,7 +102,7 @@ def test_iterationtools_iterate_namesakes_from_component_02():
     '''
 
     for note in notes:
-        parentage = note.select_parentage(include_self=True)
+        parentage = note._select_parentage(include_self=True)
         assert parentage.get_first(Staff).name == 'staff 2'
 
 
@@ -265,7 +265,7 @@ def test_iterationtools_iterate_namesakes_from_component_06():
     notes = list(notes)
 
     for note in notes:
-        parentage = note.select_parentage(include_self=True)
+        parentage = more(note).select_parentage(include_self=True)
         assert parentage.get_first(Staff).name == 'staff 1'
 
 

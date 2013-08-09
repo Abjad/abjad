@@ -22,7 +22,7 @@ def pad_measures_in_expr(expr, front, back, pad_class, splice=False):
     if not isinstance(pad_class, (resttools.Rest, skiptools.Skip)):
         raise TypeError
 
-    root = expr[0].select_parentage().root
+    root = expr[0]._select_parentage().root
 
     # forbid updates because self.splice() calls self.stop_offset
     #root._update._forbid_component_update()

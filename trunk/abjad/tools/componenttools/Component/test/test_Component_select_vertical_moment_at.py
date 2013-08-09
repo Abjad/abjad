@@ -40,7 +40,7 @@ def test_Component_select_vertical_moment_at_01():
     '''
 
     def piano_staff_moment(offset):
-        return piano_staff.select_vertical_moment_at(offset)
+        return more(piano_staff).select_vertical_moment_at(offset)
 
     vm = piano_staff_moment(Offset(0, 8))
     assert vm.leaves == (piano_staff[0][0], piano_staff[1][0])
@@ -96,7 +96,7 @@ def test_Component_select_vertical_moment_at_02():
     '''
 
     def scorewide_vertical_moment(offset):
-        return score.select_vertical_moment_at(offset)
+        return more(score).select_vertical_moment_at(offset)
 
     vm = scorewide_vertical_moment(Offset(0, 8))
     assert vm.leaves == (score[0][0][0], piano_staff[0][0], piano_staff[1][0])

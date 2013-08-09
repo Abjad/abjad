@@ -10,9 +10,9 @@ def test_Parentage_parentage_signature_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
 
-    containment = staff.select_parentage().parentage_signature
+    containment = more(staff).select_parentage().parentage_signature
     for component in iterationtools.iterate_components_in_expr(staff):
-        assert component.select_parentage().parentage_signature == containment
+        assert more(component).select_parentage().parentage_signature == containment
 
 
 def test_Parentage_parentage_signature_02():
@@ -23,9 +23,9 @@ def test_Parentage_parentage_signature_02():
     staff = Staff("c'8 d'8 e'8 f'8")
     staff.name = 'foo'
 
-    containment = staff.select_parentage().parentage_signature
+    containment = more(staff).select_parentage().parentage_signature
     for component in iterationtools.iterate_components_in_expr(staff):
-        assert component.select_parentage().parentage_signature == containment
+        assert more(component).select_parentage().parentage_signature == containment
 
 
 def test_Parentage_parentage_signature_03():
@@ -37,9 +37,9 @@ def test_Parentage_parentage_signature_03():
     staff[0].name = 'foo'
     staff[1].name = 'foo'
 
-    containment = staff[0][0].select_parentage().parentage_signature
+    containment = more(staff[0][0]).select_parentage().parentage_signature
     for leaf in staff.select_leaves():
-        assert leaf.select_parentage().parentage_signature == containment
+        assert more(leaf).select_parentage().parentage_signature == containment
 
 
 def test_Parentage_parentage_signature_04():
@@ -74,7 +74,7 @@ def test_Parentage_parentage_signature_04():
     }
     '''
 
-    signatures = [leaf.select_parentage().parentage_signature 
+    signatures = [more(leaf).select_parentage().parentage_signature 
         for leaf in voice.select_leaves(allow_discontiguous_leaves=True)]
 
     assert signatures[0] == signatures[1]
@@ -93,8 +93,8 @@ def test_Parentage_parentage_signature_05():
     t1 = Note(0, (1, 8))
     t2 = Note(0, (1, 8))
 
-    assert t1.select_parentage().parentage_signature != \
-        t2.select_parentage().parentage_signature
+    assert more(t1).select_parentage().parentage_signature != \
+        more(t2).select_parentage().parentage_signature
 
 
 def test_Parentage_parentage_signature_06():
@@ -118,14 +118,14 @@ def test_Parentage_parentage_signature_06():
     }
     '''
 
-    assert container.select_leaves()[0].select_parentage().parentage_signature == \
-        container.select_leaves()[1].select_parentage().parentage_signature
-    assert container.select_leaves()[0].select_parentage().parentage_signature == \
-        container.select_leaves()[2].select_parentage().parentage_signature
-    assert container.select_leaves()[2].select_parentage().parentage_signature == \
-        container.select_leaves()[3].select_parentage().parentage_signature
-    assert container.select_leaves()[2].select_parentage().parentage_signature == \
-        container.select_leaves()[0].select_parentage().parentage_signature
+    assert more(container.select_leaves()[0]).select_parentage().parentage_signature == \
+        more(container.select_leaves()[1]).select_parentage().parentage_signature
+    assert more(container.select_leaves()[0]).select_parentage().parentage_signature == \
+        more(container.select_leaves()[2]).select_parentage().parentage_signature
+    assert more(container.select_leaves()[2]).select_parentage().parentage_signature == \
+        more(container.select_leaves()[3]).select_parentage().parentage_signature
+    assert more(container.select_leaves()[2]).select_parentage().parentage_signature == \
+        more(container.select_leaves()[0]).select_parentage().parentage_signature
 
-    assert container.select_leaves()[0].select_parentage().parentage_signature == \
-        container.select_leaves()[1].select_parentage().parentage_signature
+    assert more(container.select_leaves()[0]).select_parentage().parentage_signature == \
+        more(container.select_leaves()[1]).select_parentage().parentage_signature
