@@ -86,9 +86,9 @@ class Rest(Leaf):
     def _compact_representation(self):
         return 'r%s' % self._formatted_duration
 
-    ### PUBLIC METHODS ###
+    ### PRIVATE METHODS ###
 
-    def divide(self, pitch=None):
+    def _divide(self, pitch=None):
         from abjad.tools import markuptools
         from abjad.tools import pitchtools
         treble = copy.copy(self)

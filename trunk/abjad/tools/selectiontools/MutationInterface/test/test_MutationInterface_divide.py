@@ -2,13 +2,13 @@
 from abjad import *
 
 
-def test_Chord_divide_01():
+def test_MutationInterface_divide_01():
     r'''Divide chord at D4.
     '''
 
     staff = Staff("<d' ef' e'>4")
     pitch = pitchtools.NamedChromaticPitch('D4')
-    treble, bass = staff[0].divide(pitch)
+    treble, bass = mutate(staff[0]).divide(pitch)
     staff.extend([treble, bass])
 
     assert testtools.compare(
@@ -25,13 +25,13 @@ def test_Chord_divide_01():
     assert select(staff).is_well_formed()
 
 
-def test_Chord_divide_02():
+def test_MutationInterface_divide_02():
     r'''Divide chord at Eb4.
     '''
 
     staff = Staff("<d' ef' e'>4")
     pitch = pitchtools.NamedChromaticPitch('Eb4')
-    treble, bass = staff[0].divide(pitch)
+    treble, bass = mutate(staff[0]).divide(pitch)
     staff.extend([treble, bass])
 
     assert testtools.compare(
@@ -48,13 +48,13 @@ def test_Chord_divide_02():
     assert select(staff).is_well_formed()
 
 
-def test_Chord_divide_03():
+def test_MutationInterface_divide_03():
     r'''Divide chord at E4.
     '''
 
     staff = Staff("<d' ef' e'>4")
     pitch = pitchtools.NamedChromaticPitch('E4')
-    treble, bass = staff[0].divide(pitch)
+    treble, bass = mutate(staff[0]).divide(pitch)
     staff.extend([treble, bass])
 
     assert testtools.compare(

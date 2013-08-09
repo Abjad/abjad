@@ -6,22 +6,22 @@ from abjad.tools.leaftools.Leaf import Leaf
 
 
 class Note(Leaf):
-    '''Abjad model of a note:
+    '''A note.
 
-    ::
+    ..  container:: example
+        
+        **Example.**
 
-        >>> note = Note("cs''8.")
+        ::
 
-    ::
+            >>> note = Note("cs''8.")
+            >>> show(note) # doctest: +SKIP
 
-        >>> note
-        Note("cs''8.")
+        ..  doctest::
 
-    ::
+            >>> f(note)
+            cs''8.
 
-        >>> show(note) # doctest: +SKIP
-
-    Return Note instance.
     '''
 
     ### CLASS VARIABLES ###
@@ -116,6 +116,32 @@ class Note(Leaf):
             return '{} ~'.format(self._body[0])
         else:
             return self._body[0]
+
+    ### PRIVATE METHODS ###
+
+    def _divide(self, pitch=None):
+        from abjad.tools import markuptools
+        from abjad.tools import pitchtools
+        from abjad.tools import resttools
+        pitch = pitch or pitchtools.NamedChromaticPitch('b', 3)
+        pitch = pitchtools.NamedChromaticPitch(pitch)
+        treble = copy.copy(self)
+        bass = copy.copy(self)
+        treble.select().detach_marks(mark_classes=markuptools.Markup)
+        bass.select().detach_marks(mark_classes=markuptools.Markup)
+        if treble.written_pitch < pitch:
+            treble = resttools.Rest(treble)
+        if pitch <= bass.written_pitch:
+            bass = resttools.Rest(bass)
+        up_markup = self._get_markup(direction=Up)
+        up_markup = [copy.copy(markup) for markup in up_markup]
+        down_markup = self._get_markup(direction=Down)
+        down_markup = [copy.copy(markup) for markup in down_markup]
+        for markup in up_markup:
+            markup(treble)
+        for markup in down_markup:
+            markup(bass)
+        return treble, bass
 
     ### PUBLIC PROPERTIES ###
 
@@ -322,59 +348,58 @@ class Note(Leaf):
     ### PUBLIC METHODS ###
 
     def add_artificial_harmonic(self, melodic_diatonic_interval=None):
-        r'''Add artifical harmonic to note at `melodic_diatonic_interval`:
+        r'''Adds artifical harmonic to note at `melodic_diatonic_interval`.
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> spannertools.BeamSpanner(staff[:])
-            BeamSpanner(c'8, d'8, e'8, f'8)
+            **Example.** Add artificial harmonic to note 
+            at the perfect fourth above.
 
-        ..  doctest::
+            ::
 
-            >>> f(staff)
-            \new Staff {
-                c'8 [
-                d'8
-                e'8
-                f'8 ]
-            }
+                >>> staff = Staff("c'4 d'4 e'4 f'4")
+                >>> spannertools.BeamSpanner(staff[:])
+                BeamSpanner(c'4, d'4, e'4, f'4)
+                >>> show(staff) # doctest: +SKIP
 
-        ::
+            ..  doctest::
 
-            >>> show(staff) # doctest: +SKIP
+                >>> f(staff)
+                \new Staff {
+                    c'4 [
+                    d'4
+                    e'4
+                    f'4 ]
+                }
 
-        ::
+            ::
 
-            >>> staff[0].add_artificial_harmonic()
-            Chord("<c' f'>8")
+                >>> staff[0].add_artificial_harmonic()
+                Chord("<c' f'>4")
+                >>> show(staff) # doctest: +SKIP
+    
+            ..  doctest::
 
-        ..  doctest::
+                >>> f(staff)
+                \new Staff {
+                    <
+                        c'
+                        \tweak #'style #'harmonic
+                        f'
+                    >4 [
+                    d'4
+                    e'4
+                    f'4 ]
+                }
 
-            >>> f(staff)
-            \new Staff {
-                <
-                    c'
-                    \tweak #'style #'harmonic
-                    f'
-                >8 [
-                d'8
-                e'8
-                f'8 ]
-            }
+        Sets `melodic_diatonic_interval` to a perfect fourth
+        above when ``melodic_diatonic_interval=None``.
 
-        ::
+        Creates new chord from `note`.
 
-            >>> show(staff) # doctest: +SKIP
+        Moves parentage and spanners from `note` to chord.
 
-
-        When ``melodic_diatonic_interval=None`` set to a perfect fourth.
-
-        Create new artificial harmonic chord from `note`.
-
-        Move parentage and spanners from `note` to artificial harmonic chord.
-
-        Return chord.
+        Returns chord.
         '''
         from abjad.tools import chordtools
         from abjad.tools import componenttools
@@ -392,28 +417,3 @@ class Note(Leaf):
         componenttools.move_parentage_and_spanners_from_components_to_components(
             [self], [chord])
         return chord
-
-
-    def divide(self, pitch=None):
-        from abjad.tools import markuptools
-        from abjad.tools import pitchtools
-        from abjad.tools import resttools
-        pitch = pitch or pitchtools.NamedChromaticPitch('b', 3)
-        pitch = pitchtools.NamedChromaticPitch(pitch)
-        treble = copy.copy(self)
-        bass = copy.copy(self)
-        treble.select().detach_marks(mark_classes=markuptools.Markup)
-        bass.select().detach_marks(mark_classes=markuptools.Markup)
-        if treble.written_pitch < pitch:
-            treble = resttools.Rest(treble)
-        if pitch <= bass.written_pitch:
-            bass = resttools.Rest(bass)
-        up_markup = self._get_markup(direction=Up)
-        up_markup = [copy.copy(markup) for markup in up_markup]
-        down_markup = self._get_markup(direction=Down)
-        down_markup = [copy.copy(markup) for markup in down_markup]
-        for markup in up_markup:
-            markup(treble)
-        for markup in down_markup:
-            markup(bass)
-        return treble, bass

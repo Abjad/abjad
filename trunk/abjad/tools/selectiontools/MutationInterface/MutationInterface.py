@@ -8,6 +8,43 @@ class MutationInterface(Selection):
 
     ### PUBLIC METHODS ###
 
+    def divide(self, pitch=None):
+        r'''Divides leaf at `pitch`.
+
+        ..  container:: example
+
+            **Example.** Divide chord at ``Eb4``:
+
+                >>> chord = Chord("<d' ef' e'>4")
+                >>> show(chord) # doctest: +SKIP
+
+            ::
+
+                >>> pitch = pitchtools.NamedChromaticPitch('Eb4')
+                >>> upper, lower = mutate(chord).divide(pitch=pitch)
+                >>> staff = Staff([upper, lower])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    <ef' e'>4
+                    d'4
+                }
+
+        Set `pitch` to pitch, pitch name, pitch number or none.
+
+        Sets `pitch` equal to ``B3`` when `pitch` is none.
+
+        Defined against leaves only; not defined against containers.
+
+        Returns pair of newly created leaves.
+        '''
+        return self[0]._divide(
+            pitch=pitch,
+            )
+
     def splice(
         self,
         components,

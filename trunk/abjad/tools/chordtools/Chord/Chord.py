@@ -162,6 +162,52 @@ class Chord(Leaf):
             new.append(new_note_head)
         return new
 
+    def _divide(self, pitch=None):
+        from abjad.tools import chordtools
+        from abjad.tools import markuptools
+        from abjad.tools import notetools
+        from abjad.tools import pitchtools
+        from abjad.tools import resttools
+        pitch = pitch or pitchtools.NamedChromaticPitch('b', 3)
+        pitch = pitchtools.NamedChromaticPitch(pitch)
+        treble = copy.copy(self)
+        bass = copy.copy(self)
+        treble.select().detach_marks(mark_classes=markuptools.Markup)
+        bass.select().detach_marks(mark_classes=markuptools.Markup)
+        if isinstance(treble, notetools.Note):
+            if treble.written_pitch < pitch:
+                treble = resttools.Rest(treble)
+        elif isinstance(treble, resttools.Rest):
+            pass
+        elif isinstance(treble, chordtools.Chord):
+            for note_head in treble.note_heads:
+                if note_head.written_pitch < pitch:
+                    treble.remove(note_head)
+        else:
+            raise TypeError
+        if isinstance(bass, notetools.Note):
+            if pitch <= bass.written_pitch:
+                bass = resttools.Rest(bass)
+        elif isinstance(bass, resttools.Rest):
+            pass
+        elif isinstance(bass, chordtools.Chord):
+            for note_head in bass.note_heads:
+                if pitch <= note_head.written_pitch:
+                    bass.remove(note_head)
+        else:
+            raise TypeError
+        treble = self._cast_defective_chord(treble)
+        bass = self._cast_defective_chord(bass)
+        up_markup = more(self).get_markup(direction=Up)
+        up_markup = [copy.copy(markup) for markup in up_markup]
+        down_markup = more(self).get_markup(direction=Down)
+        down_markup = [copy.copy(markup) for markup in down_markup]
+        for markup in up_markup:
+            markup(treble)
+        for markup in down_markup:
+            markup(bass)
+        return treble, bass
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -547,82 +593,6 @@ class Chord(Leaf):
         note_head._client = self
         self._note_heads.append(note_head)
         self._note_heads.sort()
-
-    def divide(self, pitch=None):
-        r'''Divides chord at `pitch`.
-
-        ..  container:: example
-
-            **Example.** Divide chord at ``Eb4``:
-
-                >>> chord = Chord("<d' ef' e'>4")
-                >>> show(chord) # doctest: +SKIP
-
-            ::
-
-                >>> pitch = pitchtools.NamedChromaticPitch('Eb4')
-                >>> upper, lower = chord.divide(pitch=pitch)
-                >>> staff = Staff([upper, lower])
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff {
-                    <ef' e'>4
-                    d'4
-                }
-
-        Set `pitch` to pitch, pitch name, pitch number or none.
-
-        Sets `pitch` equal to ``B3`` when `pitch` is none.
-
-        Returns pair of newly created leaves.
-        '''
-        from abjad.tools import chordtools
-        from abjad.tools import markuptools
-        from abjad.tools import notetools
-        from abjad.tools import pitchtools
-        from abjad.tools import resttools
-        pitch = pitch or pitchtools.NamedChromaticPitch('b', 3)
-        pitch = pitchtools.NamedChromaticPitch(pitch)
-        treble = copy.copy(self)
-        bass = copy.copy(self)
-        treble.select().detach_marks(mark_classes=markuptools.Markup)
-        bass.select().detach_marks(mark_classes=markuptools.Markup)
-        if isinstance(treble, notetools.Note):
-            if treble.written_pitch < pitch:
-                treble = resttools.Rest(treble)
-        elif isinstance(treble, resttools.Rest):
-            pass
-        elif isinstance(treble, chordtools.Chord):
-            for note_head in treble.note_heads:
-                if note_head.written_pitch < pitch:
-                    treble.remove(note_head)
-        else:
-            raise TypeError
-        if isinstance(bass, notetools.Note):
-            if pitch <= bass.written_pitch:
-                bass = resttools.Rest(bass)
-        elif isinstance(bass, resttools.Rest):
-            pass
-        elif isinstance(bass, chordtools.Chord):
-            for note_head in bass.note_heads:
-                if pitch <= note_head.written_pitch:
-                    bass.remove(note_head)
-        else:
-            raise TypeError
-        treble = self._cast_defective_chord(treble)
-        bass = self._cast_defective_chord(bass)
-        up_markup = more(self).get_markup(direction=Up)
-        up_markup = [copy.copy(markup) for markup in up_markup]
-        down_markup = more(self).get_markup(direction=Down)
-        down_markup = [copy.copy(markup) for markup in down_markup]
-        for markup in up_markup:
-            markup(treble)
-        for markup in down_markup:
-            markup(bass)
-        return treble, bass
 
     def extend(self, note_heads):
         r'''Extends chord with `note_heads`.

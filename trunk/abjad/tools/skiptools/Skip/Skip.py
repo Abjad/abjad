@@ -4,14 +4,23 @@ from abjad.tools.leaftools.Leaf import Leaf
 
 
 class Skip(Leaf):
-    r'''Abjad model of a LilyPond skip:
+    r'''A LilyPond skip.
 
-    ::
+    ..  container:: example
 
-        >>> skiptools.Skip((3, 16))
-        Skip('s8.')
+        **Example.**
 
-    Return Skip instance.
+        ::
+
+            >>> skip = skiptools.Skip((3, 16))
+            >>> skip
+            Skip('s8.')
+
+        ..  doctest::
+
+            >>> f(skip)
+            s8.
+
     '''
 
     ### CLASS VARIABLES ###
