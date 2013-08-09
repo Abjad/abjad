@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_Leaf_get_grace_containers_01():
+def test_ExtendedComponentInterface_get_grace_containers_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
 
@@ -14,7 +14,7 @@ def test_Leaf_get_grace_containers_01():
         [Note("ds'16")], kind='after')
     after_grace_container(staff[1])
 
-    grace_containers = staff[1].get_grace_containers()
+    grace_containers = more(staff[1]).get_grace_containers()
 
     assert len(grace_containers) == 2
 

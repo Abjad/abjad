@@ -100,7 +100,7 @@ class ContiguousLeafSelection(ContiguousSelection):
         '''
         result = []
         for leaf in self:
-            grace_containers = leaf.detach_grace_containers(kind=kind)
+            grace_containers = leaf._detach_grace_containers(kind=kind)
             result.extend(grace_containers)
         return tuple(result)
 

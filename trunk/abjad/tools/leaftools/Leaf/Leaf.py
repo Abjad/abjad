@@ -122,7 +122,7 @@ class Leaf(Component):
 
     def _copy_with_marks_but_without_children_or_spanners(self):
         new = Component._copy_with_marks_but_without_children_or_spanners(self)
-        for grace_container in self.get_grace_containers():
+        for grace_container in self._get_grace_containers():
             new_grace_container = \
                 grace_container._copy_with_children_and_marks_but_without_spanners()
             new_grace_container(new)
@@ -420,30 +420,6 @@ class Leaf(Component):
         return property(**locals())
 
     ### PUBLIC METHODS ###
-
-    def detach_grace_containers(self, kind=None):
-        r'''Detaches grace containers attached to leaf.
-
-        Returns tuple.
-        '''
-        grace_containers = self.get_grace_containers(kind=kind)
-        for grace_container in grace_containers:
-            grace_container.detach()
-        return grace_containers
-
-    def get_grace_containers(self, kind=None):
-        r'''Gets grace containers attached to leaf.
-
-        Set `kind` to ``'grace'``, ``'after'`` or none.
-
-        Returns tuple.
-        '''
-        result = []
-        if kind in (None, 'grace') and hasattr(self, '_grace'):
-            result.append(self._grace)
-        if kind in (None, 'after') and hasattr(self, '_after_grace'):
-            result.append(self._after_grace)
-        return tuple(result)
 
     def select_tie_chain(self):
         r'''Selects tie chain that governs leaf.

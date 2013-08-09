@@ -133,6 +133,12 @@ class Component(AbjadObject):
             new_mark.attach(new)
         return new
 
+    def _detach_grace_containers(self, kind=None):
+        grace_containers = self._get_grace_containers(kind=kind)
+        for grace_container in grace_containers:
+            grace_container.detach()
+        return grace_containers
+
     def _detach_marks(
         self,
         mark_classes=None,
@@ -192,6 +198,14 @@ class Component(AbjadObject):
             parentage = self.select_parentage()
             effective_staff = parentage.get_first(stafftools.Staff)
         return effective_staff
+
+    def _get_grace_containers(self, kind=None):
+        result = []
+        if kind in (None, 'grace') and hasattr(self, '_grace'):
+            result.append(self._grace)
+        if kind in (None, 'after') and hasattr(self, '_after_grace'):
+            result.append(self._after_grace)
+        return tuple(result)
 
     def _format_after_slot(self, format_contributions):
         pass

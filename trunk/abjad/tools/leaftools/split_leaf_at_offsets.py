@@ -302,18 +302,18 @@ def split_leaf_at_offsets(
 
     # adjust first leaf
     first_leaf = flattened_result[0]
-    leaf.detach_grace_containers(kind='after')
+    leaf._detach_grace_containers(kind='after')
 
     # adjust any middle leaves
     for middle_leaf in flattened_result[1:-1]:
-        middle_leaf.detach_grace_containers(kind='grace')
-        leaf.detach_grace_containers(kind='after')
+        middle_leaf._detach_grace_containers(kind='grace')
+        leaf._detach_grace_containers(kind='after')
         middle_leaf.select().detach_marks()
         middle_leaf.select().detach_marks(contexttools.ContextMark)
 
     # adjust last leaf
     last_leaf = flattened_result[-1]
-    last_leaf.detach_grace_containers(kind='grace')
+    last_leaf._detach_grace_containers(kind='grace')
     last_leaf.select().detach_marks()
     last_leaf.select().detach_marks(contexttools.ContextMark)
 

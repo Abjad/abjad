@@ -63,7 +63,7 @@ def test_Note___copy___04():
     '''
 
     note_2 = copy.copy(note_1)
-    grace_container_2 = note_2.get_grace_containers()[0]
+    grace_container_2 = more(note_2).get_grace_containers()[0]
 
     r'''
     \afterGrace

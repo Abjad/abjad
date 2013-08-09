@@ -181,10 +181,10 @@ def split_leaf_at_offset(
     leaf.splice([new_leaf], grow_spanners=True)
 
     # adjust leaf
-    leaf.detach_grace_containers(kind='after')
+    leaf._detach_grace_containers(kind='after')
 
     # adjust new leaf
-    new_leaf.detach_grace_containers(kind='grace')
+    new_leaf._detach_grace_containers(kind='grace')
     new_leaf.select().detach_marks()
     new_leaf.select().detach_marks(contexttools.ContextMark)
 

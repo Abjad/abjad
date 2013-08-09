@@ -8,6 +8,15 @@ class ExtendedComponentInterface(Selection):
 
     ### PUBLIC METHODS ###
 
+    def detach_grace_containers(self, kind=None):
+        r'''Detaches grace containers attached to component.
+
+        Returns tuple.
+        '''
+        return self[0]._detach_grace_containers(
+            kind=kind,
+            )
+
     def get_annotation_value(self, name, default=None):
         r'''Gets value of annotation with `name` attached to component.
 
@@ -51,6 +60,78 @@ class ExtendedComponentInterface(Selection):
         Returns staff or none.
         '''
         return self[0]._get_effective_staff()
+
+    def get_grace_containers(self, kind=None):
+        r'''Gets grace containers attached to leaf.
+
+        ..  container:: example
+
+            **Example 1.** Get all grace containers attached to note:
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> grace_container = leaftools.GraceContainer(
+                ...     [Note("cs'16")], 
+                ...     kind='grace',
+                ...     )
+                >>> grace_container.attach(staff[1])
+                Note("d'8")
+                >>> after_grace = leaftools.GraceContainer(
+                ...     [Note("ds'16")], 
+                ...     kind='after'
+                ...     )
+                >>> after_grace.attach(staff[1])
+                Note("d'8")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    \grace {
+                        cs'16
+                    }
+                    \afterGrace
+                    d'8
+                    {
+                        ds'16
+                    }
+                    e'8
+                    f'8
+                }
+
+            ::
+
+                >>> staff[1].get_grace_containers()
+                (GraceContainer(cs'16), GraceContainer(ds'16))
+
+        ..  container:: example
+
+            **Example 2.** Get only (proper) grace containers attached to note:
+
+            ::
+
+                >>> staff[1].get_grace_containers(kind='grace')
+                (GraceContainer(cs'16),)
+
+        ..  container:: example
+
+            **Example 3.** Get only after grace containers attached to note:
+
+            ::
+
+                >>> staff[1].get_grace_containers(kind='after')
+                (GraceContainer(ds'16),)
+
+        Set `kind` to ``'grace'``, ``'after'`` or none.
+
+        Returns tuple.
+        '''
+        return self[0]._get_grace_containers(
+            kind=kind,
+            )
 
     def get_mark(
         self,

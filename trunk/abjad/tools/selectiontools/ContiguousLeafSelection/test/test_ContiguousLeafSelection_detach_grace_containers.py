@@ -14,7 +14,7 @@ def test_ContiguousLeafSelection_detach_grace_containers_01():
         [Note("ds'16")], kind='after')
     after_grace_container(staff[1])
 
-    grace_containers = staff[1].get_grace_containers()
+    grace_containers = more(staff[1]).get_grace_containers()
 
     assert len(grace_containers) == 2
 
