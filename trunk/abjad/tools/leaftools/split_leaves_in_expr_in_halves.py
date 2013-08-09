@@ -2,7 +2,7 @@
 from abjad.tools import componenttools
 
 
-def divide_leaves_in_expr_meiotically(expr, n=2):
+def split_leaves_in_expr_in_halves(expr, n=2):
     r'''Divide leaves meiotically in `expr` `n` times:
 
     ::
@@ -20,7 +20,7 @@ def divide_leaves_in_expr_meiotically(expr, n=2):
 
     ::
 
-        >>> leaftools.divide_leaves_in_expr_meiotically(staff[2:], n=4)
+        >>> leaftools.split_leaves_in_expr_in_halves(staff[2:], n=4)
 
     ..  doctest::
 
@@ -54,4 +54,4 @@ def divide_leaves_in_expr_meiotically(expr, n=2):
 
     # can not wrap with update control because of self._splice()
     for leaf in iterationtools.iterate_leaves_in_expr(expr, reverse=True):
-        leaftools.divide_leaf_meiotically(leaf, n)
+        leaftools.split_leaf_in_halves(leaf, n)

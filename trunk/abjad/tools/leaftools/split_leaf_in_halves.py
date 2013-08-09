@@ -4,7 +4,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 
 
-def divide_leaf_meiotically(leaf, n=2):
+def split_leaf_in_halves(leaf, n=2):
     r'''Divide `leaf` meiotically `n` times:
 
     ::
@@ -22,7 +22,7 @@ def divide_leaf_meiotically(leaf, n=2):
 
     ::
 
-        >>> leaftools.divide_leaf_meiotically(staff[0], n=4)
+        >>> leaftools.split_leaf_in_halves(staff[0], n=4)
 
     ..  doctest::
 

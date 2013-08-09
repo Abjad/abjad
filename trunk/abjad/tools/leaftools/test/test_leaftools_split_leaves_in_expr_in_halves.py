@@ -2,13 +2,13 @@
 from abjad import *
 
 
-def test_leaftools_divide_leaves_in_expr_meiotically_01():
+def test_leaftools_split_leaves_in_expr_in_halves_01():
     r'''Meiose each leaf in two.
     '''
 
     voice = Voice("c'8 d'8 e'8")
     spannertools.BeamSpanner(voice[:])
-    leaftools.divide_leaves_in_expr_meiotically(voice)
+    leaftools.split_leaves_in_expr_in_halves(voice)
 
     r'''
     \new Voice {
@@ -37,13 +37,13 @@ def test_leaftools_divide_leaves_in_expr_meiotically_01():
         )
 
 
-def test_leaftools_divide_leaves_in_expr_meiotically_02():
+def test_leaftools_split_leaves_in_expr_in_halves_02():
     r'''Meiose one leaf in four.
     '''
 
     voice = Voice("c'8 d'8 e'8")
     spannertools.BeamSpanner(voice[:])
-    leaftools.divide_leaves_in_expr_meiotically(voice[0], 4)
+    leaftools.split_leaves_in_expr_in_halves(voice[0], 4)
 
     r'''
     \new Voice {
