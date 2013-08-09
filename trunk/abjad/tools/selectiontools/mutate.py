@@ -2,9 +2,11 @@
 
 
 def mutate(expr):
-    r'''Wraps `expr` in a contiguous selection for subsequent mutation.
+    r'''Wraps `expr` in the Abjad mutation interface.
 
-    Returns contiguous selection.
+    Returns mutation interface.
     '''
+    from abjad.tools import componenttools
     from abjad.tools import selectiontools
-    return selectiontools.ContiguousSelection(music=expr)
+    assert isinstance(expr, componenttools.Component)
+    return selectiontools.MutationInterface(music=expr)
