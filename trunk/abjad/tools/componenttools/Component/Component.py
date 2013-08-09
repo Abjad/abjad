@@ -330,7 +330,7 @@ class Component(AbjadObject):
         if not isinstance(spanner_classes, tuple):
             spanner_classes = (spanner_classes, )
         spanners = set()
-        for spanner in self.get_spanners():
+        for spanner in set(self._spanners):
             if isinstance(spanner, spanner_classes):
                 spanners.add(spanner)
         return spanners
@@ -725,13 +725,6 @@ class Component(AbjadObject):
         else:
             parentage = self.select_parentage(include_self=False)
             return parentage.prolation * self._preprolated_duration
-
-    def get_spanners(self):
-        r'''Gets spanners attached to component.
-
-        Returns set.
-        '''
-        return set(self._spanners)
 
     def get_timespan(self, in_seconds=False):
         r'''Gets timespan of component.

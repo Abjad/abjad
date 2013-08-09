@@ -15,7 +15,7 @@ def get_spanners_on_components_or_component_children(components):
     # accumulate spanners
     spanners = set([])
     for component in components:
-        for spanner in component.get_spanners():
+        for spanner in component._get_spanners():
             spanners.update((spanner, ))
 
     # return spanners

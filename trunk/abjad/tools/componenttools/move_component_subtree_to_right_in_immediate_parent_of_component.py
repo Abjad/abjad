@@ -86,11 +86,11 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
 
     # swap positions in spanners ... tricky!
     component_spanners = {}
-    for spanner in component.get_spanners():
+    for spanner in component._get_spanners():
         component_spanners[spanner] = spanner.index(component)
         spanner._sever_component(component)
     next_spanners = {}
-    for spanner in next_component.get_spanners():
+    for spanner in next_component._get_spanners():
         next_spanners[spanner] = spanner.index(next_component)
         spanner._sever_component(next_component)
     for key, value in next_spanners.items():

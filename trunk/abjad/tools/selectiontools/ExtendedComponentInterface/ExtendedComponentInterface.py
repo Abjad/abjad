@@ -96,4 +96,4 @@ class ExtendedComponentInterface(Selection):
 
         Returns set.
         '''
-        return set(self[0]._spanners)
+        return self[0]._get_spanners()

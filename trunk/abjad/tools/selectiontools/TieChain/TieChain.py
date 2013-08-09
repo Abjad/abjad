@@ -54,7 +54,7 @@ class TieChain(ContiguousLeafSelection):
                 difference = len(durations) - len(self)
                 extra_leaves = self[0] * difference
                 for extra_leaf in extra_leaves:
-                    for spanner in extra_leaf.get_spanners():
+                    for spanner in extra_leaf._get_spanners():
                         spanner._remove(extra_leaf)
                 extra_tokens = durations[len(self):]
                 for leaf, token in zip(extra_leaves, extra_tokens):

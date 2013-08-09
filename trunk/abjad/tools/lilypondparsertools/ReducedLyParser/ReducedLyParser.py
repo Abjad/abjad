@@ -534,7 +534,7 @@ class ReducedLyParser(abctools.Parser):
                         message = 'unterminated %s at %s.'
                         raise Exception(message % (current_class.__name__, leaf))
                     previous_tie = [
-                        x for x in leaf.get_spanners() 
+                        x for x in leaf._get_spanners() 
                         if isinstance(x, spannertools.TieSpanner)
                         ]
                     if previous_tie:

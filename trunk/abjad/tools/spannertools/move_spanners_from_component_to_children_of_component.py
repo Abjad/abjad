@@ -9,7 +9,7 @@ def move_spanners_from_component_to_children_of_component(donor):
 
     children = donor[:]
 
-    for spanner in donor.get_spanners():
+    for spanner in donor._get_spanners():
         i = spanner.index(donor)
         # to avoid pychecker slice assignment bug
         #spanner._components[i:i+1] = children

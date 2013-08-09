@@ -87,7 +87,7 @@ def test_LilyPondParser__spanners__BeamSpanner_05():
 def test_LilyPondParser__spanners__BeamSpanner_06():
     input = "{ c'4 c'4 c'4 c'4 ] }"
     result = LilyPondParser()(input)
-    assert not result[-1].get_spanners()
+    assert not more(result[-1]).get_spanners()
 
 
 def test_LilyPondParser__spanners__BeamSpanner_07():

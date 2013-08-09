@@ -48,7 +48,7 @@ def get_spanners_attached_to_any_improper_parent_of_component(
     # iterate parentage
     result = set([])
     for parent in component.select_parentage(include_self=True):
-        for spanner in parent.get_spanners():
+        for spanner in parent._get_spanners():
             for spanner_class in spanner_classes:
                 if isinstance(spanner, spanner_class):
                     result.add(spanner)
