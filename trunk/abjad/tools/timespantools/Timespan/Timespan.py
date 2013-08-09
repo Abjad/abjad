@@ -944,6 +944,75 @@ class Timespan(BoundedObject):
         result = [type(self)(*offset_pair) for offset_pair in offset_pairs]
         return tuple(result)
 
+    def get_overlap_with_timespan(self, timespan):
+        '''Get duration of overlap with `timespan`:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 15)
+            >>> timespan_2 = timespantools.Timespan(5, 10)
+            >>> timespan_3 = timespantools.Timespan(6, 6)
+            >>> timespan_4 = timespantools.Timespan(12, 22)
+
+
+        ::
+
+            >>> timespan_1.get_overlap_with_timespan(timespan_1)
+            Duration(15, 1)
+
+        ::
+
+            >>> timespan_1.get_overlap_with_timespan(timespan_2)
+            Duration(5, 1)
+
+        ::
+
+            >>> timespan_1.get_overlap_with_timespan(timespan_3)
+            Duration(0, 1)
+
+        ::
+
+            >>> timespan_1.get_overlap_with_timespan(timespan_4)
+            Duration(3, 1)
+
+        ::
+
+            >>> timespan_2.get_overlap_with_timespan(timespan_2)
+            Duration(5, 1)
+
+        ::
+
+            >>> timespan_2.get_overlap_with_timespan(timespan_3)
+            Duration(0, 1)
+
+        ::
+
+            >>> timespan_2.get_overlap_with_timespan(timespan_4)
+            Duration(0, 1)
+
+        ::
+
+            >>> timespan_3.get_overlap_with_timespan(timespan_3)
+            Duration(0, 1)
+
+        ::
+
+            >>> timespan_3.get_overlap_with_timespan(timespan_4)
+            Duration(0, 1)
+
+        ::
+
+            >>> timespan_4.get_overlap_with_timespan(timespan_4)
+            Duration(10, 1)
+
+
+        Return duration.
+        '''
+        if self._implements_timespan_interface(timespan):
+            result = durationtools.Duration(
+                sum(x.duration for x in self & timespan))
+            return result
+
     def happens_during_timespan(self, timespan):
         r'''True when timespan happens during `timespan`. Otherwise false:
 
