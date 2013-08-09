@@ -244,7 +244,7 @@ class Selection(object):
     def _get_marks(self, mark_classes=None, recurse=True):
         result = []
         for component in self._iterate_components(recurse=recurse):
-            marks = component.get_marks(mark_classes=mark_classes)
+            marks = component._get_marks(mark_classes=mark_classes)
             result.extend(marks)
         return tuple(result)
 

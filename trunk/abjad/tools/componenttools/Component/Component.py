@@ -128,7 +128,7 @@ class Component(AbjadObject):
             new._override = copy.copy(self.override)
         if getattr(self, '_set', None) is not None:
             new._set = copy.copy(self.set)
-        for mark in self.get_marks():
+        for mark in self._get_marks():
             new_mark = copy.copy(mark)
             new_mark.attach(new)
         return new
@@ -138,7 +138,7 @@ class Component(AbjadObject):
         mark_classes=None,
         ):
         marks = []
-        for mark in self.get_marks(mark_classes=mark_classes):
+        for mark in self._get_marks(mark_classes=mark_classes):
             mark.detach()
             marks.append(mark)
         return tuple(marks)
@@ -148,6 +148,50 @@ class Component(AbjadObject):
         for spanner in spanners:
             spanner.detach()
         return spanners
+
+    def _get_effective_context_mark(self, context_mark_classes=None):
+        from abjad.tools import contexttools
+        from abjad.tools import datastructuretools
+        from abjad.tools import measuretools
+        # do special things for time signature marks
+        if context_mark_classes == contexttools.TimeSignatureMark:
+            if isinstance(self, measuretools.Measure):
+                if self._has_mark(contexttools.TimeSignatureMark):
+                    return self._get_mark(contexttools.TimeSignatureMark)
+        # updating marks of entire score tree if necessary
+        self._update_marks_of_entire_score_tree_if_necessary()
+        # gathering candidate marks
+        candidate_marks = datastructuretools.SortedCollection(
+            key=lambda x: x.start_component.get_timespan().start_offset)
+        for parent in self.select_parentage(include_self=True):
+            parent_marks = parent._dependent_context_marks
+            for mark in parent_marks:
+                if isinstance(mark, context_mark_classes):
+                    if mark.effective_context is not None:
+                        candidate_marks.insert(mark)
+                    elif isinstance(mark, contexttools.TimeSignatureMark):
+                        if isinstance(
+                            mark.start_component, measuretools.Measure):
+                            candidate_marks.insert(mark)
+        # elect most recent candidate mark
+        if candidate_marks:
+            try:
+                start_offset = self.get_timespan().start_offset
+                return candidate_marks.find_le(start_offset)
+            except ValueError:
+                pass
+
+    def _get_effective_staff(self):
+        from abjad.tools import contexttools
+        from abjad.tools import stafftools
+        staff_change_mark = self._get_effective_context_mark(
+            contexttools.StaffChangeMark)
+        if staff_change_mark is not None:
+            effective_staff = staff_change_mark.staff
+        else:
+            parentage = self.select_parentage()
+            effective_staff = parentage.get_first(stafftools.Staff)
+        return effective_staff
 
     def _format_after_slot(self, format_contributions):
         pass
@@ -211,6 +255,35 @@ class Component(AbjadObject):
             result.extend(contributions)
         return result
 
+    def _get_mark(self, mark_classes=None):
+        marks = self._get_marks(mark_classes=mark_classes)
+        if not marks:
+            raise MissingMarkError
+        elif 1 < len(marks):
+            raise ExtraMarkError
+        else:
+            return marks[0]
+
+    def _get_marks(self, mark_classes=None):
+        from abjad.tools import marktools
+        mark_classes = mark_classes or (marktools.Mark,)
+        if not isinstance(mark_classes, tuple):
+            mark_classes = (mark_classes,)
+        marks = []
+        for mark in self._start_marks:
+            if isinstance(mark, mark_classes):
+                marks.append(mark)
+        return tuple(marks)
+
+    def _get_markup(self, direction=None):
+        from abjad.tools import markuptools
+        markup = self._get_marks(mark_classes=(markuptools.Markup,))
+        if direction is Up:
+            return tuple(x for x in markup if x.direction is Up)
+        elif direction is Down:
+            return tuple(x for x in markup if x.direction is Down)
+        return markup
+
     def _get_namesake(self, n):
         from abjad.tools import iterationtools
         if 0 <= n:
@@ -263,7 +336,7 @@ class Component(AbjadObject):
         return spanners
 
     def _has_mark(self, mark_classes=None):
-        marks = self.get_marks(mark_classes=mark_classes)
+        marks = self._get_marks(mark_classes=mark_classes)
         return bool(marks)
 
     def _has_spanner(self, spanner_classes=None):
@@ -290,7 +363,7 @@ class Component(AbjadObject):
 
     def _move_marks(self, recipient_component):
         result = []
-        for mark in self.get_marks():
+        for mark in self._get_marks():
             result.append(mark.attach(recipient_component))
         return tuple(result)
 
@@ -652,75 +725,6 @@ class Component(AbjadObject):
         else:
             parentage = self.select_parentage(include_self=False)
             return parentage.prolation * self._preprolated_duration
-
-    def get_effective_staff(self):
-        r'''Gets effective staff of component.
-
-        Returns staff or none.
-        '''
-        from abjad.tools import contexttools
-        from abjad.tools import stafftools
-        staff_change_mark = more(self).get_effective_context_mark(
-            contexttools.StaffChangeMark)
-        if staff_change_mark is not None:
-            effective_staff = staff_change_mark.staff
-        else:
-            parentage = self.select_parentage()
-            effective_staff = parentage.get_first(stafftools.Staff)
-        return effective_staff
-
-    def get_mark(
-        self,
-        mark_classes=None,
-        ):
-        r'''Gets exactly one mark of `mark_classes` attached to component.
-
-        Raises exception when no mark of `mark_classes` is attached
-        to component.
-
-        Returns mark.
-        '''
-        marks = self.get_marks(mark_classes=mark_classes)
-        if not marks:
-            raise MissingMarkError
-        elif 1 < len(marks):
-            raise ExtraMarkError
-        else:
-            return marks[0]
-
-    def get_marks(
-        self,
-        mark_classes=None,
-        ):
-        r'''Get all marks of `mark_classes` attached to component.
-
-        Return tuple.
-        '''
-        from abjad.tools import marktools
-        mark_classes = mark_classes or (marktools.Mark,)
-        if not isinstance(mark_classes, tuple):
-            mark_classes = (mark_classes,)
-        marks = []
-        for mark in self._start_marks:
-            if isinstance(mark, mark_classes):
-                marks.append(mark)
-        return tuple(marks)
-
-    def get_markup(
-        self,
-        direction=None,
-        ):
-        r'''Gets all markup attached to component.
-
-        Returns tuple.
-        '''
-        from abjad.tools import markuptools
-        markup = self.get_marks(mark_classes=(markuptools.Markup,))
-        if direction is Up:
-            return tuple(x for x in markup if x.direction is Up)
-        elif direction is Down:
-            return tuple(x for x in markup if x.direction is Down)
-        return markup
 
     def get_spanners(self):
         r'''Gets spanners attached to component.

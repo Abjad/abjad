@@ -20,7 +20,7 @@ def test_QGrid___call___01():
     assert isinstance(result, list) and len(result) == 1
     assert result[0].lilypond_format == "c'4"
 
-    annotation = result[0].get_mark(marktools.Annotation)
+    annotation = more(result[0]).get_mark(marktools.Annotation)
 
     assert isinstance(annotation.value, tuple) and len(annotation.value) == 4
     assert annotation.value[0].attachments == ('A',)
@@ -63,16 +63,16 @@ def test_QGrid___call___02():
         )
 
     leaf = result[0].select_leaves()[0]
-    annotation = leaf.get_marks(marktools.Annotation)[0]
+    annotation = more(leaf).get_marks(marktools.Annotation)[0]
     assert isinstance(annotation.value, tuple) and len(annotation.value) == 2
     assert annotation.value[0].attachments == ('A',)
     assert annotation.value[1].attachments == ('B',)
 
     leaf = result[0].select_leaves()[1]
-    assert not leaf.get_marks(marktools.Annotation)
+    assert not more(leaf).get_marks(marktools.Annotation)
 
     leaf = result[0].select_leaves()[2]
-    annotation = leaf.get_mark(marktools.Annotation)
+    annotation = more(leaf).get_mark(marktools.Annotation)
 
     assert isinstance(annotation.value, tuple) and len(annotation.value) == 3
     assert annotation.value[0].attachments == ('C',)
@@ -80,7 +80,7 @@ def test_QGrid___call___02():
     assert annotation.value[2].attachments == ('E',)
 
     for leaf in result[0].select_leaves()[3:6]:
-        assert not leaf.get_marks(marktools.Annotation)
+        assert not more(leaf).get_marks(marktools.Annotation)
 
 
 def test_QGrid___call___03():

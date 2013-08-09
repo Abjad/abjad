@@ -156,7 +156,7 @@ class GuileProxy(AbjadObject):
         from abjad.tools import lilypondparsertools
         self._make_unrelativable(music)
         def recurse(music):
-            key_signatures = music.get_marks(contexttools.KeySignatureMark)
+            key_signatures = music._get_marks(contexttools.KeySignatureMark)
             if key_signatures:
                 for x in key_signatures:
                     tonic = pitchtools.NamedChromaticPitch(x.tonic, 4)
@@ -196,7 +196,7 @@ class GuileProxy(AbjadObject):
     ### HELPER FUNCTIONS ###
 
     def _is_unrelativable(self, music):
-        annotations = music.get_marks(marktools.Annotation)
+        annotations = music._get_marks(marktools.Annotation)
         if 'UnrelativableMusic' in [x.name for x in annotations]:
             return True
         return False

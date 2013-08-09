@@ -95,9 +95,9 @@ class Rest(Leaf):
         bass = copy.copy(self)
         treble.select().detach_marks(mark_classes=markuptools.Markup)
         bass.select().detach_marks(mark_classes=markuptools.Markup)
-        up_markup = self.get_markup(direction=Up)
+        up_markup = self._get_markup(direction=Up)
         up_markup = [copy.copy(markup) for markup in up_markup]
-        down_markup = self.get_markup(direction=Down)
+        down_markup = self._get_markup(direction=Down)
         down_markup = [copy.copy(markup) for markup in down_markup]
         for markup in up_markup:
             markup(treble)

@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def get_markup_format_contributions(component):
     '''Get markup format contributions for `component`.
 
@@ -7,7 +9,7 @@ def get_markup_format_contributions(component):
     from abjad.tools import markuptools
 
     result = []
-    markup = component.get_markup()
+    markup = component._get_markup()
     up_markup, down_markup, neutral_markup = [], [], []
 
     for markup_object in markup:

@@ -41,5 +41,5 @@ def remove_markup_from_leaves_in_expr(expr):
     '''
 
     for leaf in iterationtools.iterate_leaves_in_expr(expr):
-        for markup in leaf.get_markup():
+        for markup in leaf._get_markup():
             markup()

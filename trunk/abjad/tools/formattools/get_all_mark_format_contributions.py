@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import inspect
+from abjad.tools.selectiontools import more
 
 
 def get_all_mark_format_contributions(component):
@@ -7,7 +8,8 @@ def get_all_mark_format_contributions(component):
 
     The first level of keys represent format slots.
 
-    The second level of keys represent format contributor ('articulations', 'markup', etc.).
+    The second level of keys represent format contributor 
+    ('articulations', 'markup', etc.).
 
     Return dict.
     '''
@@ -27,7 +29,7 @@ def get_all_mark_format_contributions(component):
 
     contributions = {}
 
-    marks = component.get_marks()
+    marks = more(component).get_marks()
 
     up_markup, down_markup, neutral_markup = [], [], []
 

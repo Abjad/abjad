@@ -139,7 +139,7 @@ class QTarget(AbjadObject):
             new_leaf = chordtools.Chord(leaf_one.written_pitches, duration)
         else:
             new_leaf = resttools.Rest(duration)
-        tempo_marks = leaf_two.get_marks(contexttools.TempoMark)
+        tempo_marks = leaf_two._get_marks(contexttools.TempoMark)
         if tempo_marks:
             tempo_marks[0](new_leaf)
         leaf_two.select_parentage().parent[index] = new_leaf
@@ -159,7 +159,7 @@ class QTarget(AbjadObject):
             leaf_one, leaf_two = leaves[i], leaves[i + 1]
             leaf_one = self._notate_one_leaf(leaf_one, grace_handler)
             leaves[i] = leaf_one
-            if not leaf_two.get_marks(marktools.Annotation):
+            if not leaf_two._get_marks(marktools.Annotation):
                 spanner_classes = (spannertools.TieSpanner, )
                 spanner = tuple(
                     spannertools.get_spanners_attached_to_component(
@@ -172,8 +172,8 @@ class QTarget(AbjadObject):
         self._notate_one_leaf(leaves[-1], grace_handler)
 
     def _notate_one_leaf(self, leaf, grace_handler):
-        leaf_annotations = leaf.get_marks(marktools.Annotation)
-        tempo_marks = leaf.get_marks(contexttools.TempoMark)
+        leaf_annotations = leaf._get_marks(marktools.Annotation)
+        tempo_marks = leaf._get_marks(contexttools.TempoMark)
         if leaf_annotations:
             pitches, grace_container = grace_handler(leaf_annotations[0].value)
             if not pitches:

@@ -85,10 +85,12 @@ class Measure(FixedDurationContainer):
         return (time_signature.pair, )
 
     def __repr__(self):
-        r'''String form of measure with parentheses for interpreter display.
+        r'''Interpreter representation of measure.
+
+        Returns string.
         '''
         class_name = self._class_name
-        forced_time_signature = self.get_mark(contexttools.TimeSignatureMark)
+        forced_time_signature = self._get_mark(contexttools.TimeSignatureMark)
         summary = self._summary
         length = len(self)
         if forced_time_signature and length:
@@ -155,7 +157,7 @@ class Measure(FixedDurationContainer):
             new._override = copy.copy(self.override)
         if getattr(self, '_set', None) is not None:
             new._set = copy.copy(self.set)
-        for mark in self.get_marks():
+        for mark in self._get_marks():
             new_mark = copy.copy(mark)
             new_mark.attach(new)
         new.is_simultaneous = self.is_simultaneous

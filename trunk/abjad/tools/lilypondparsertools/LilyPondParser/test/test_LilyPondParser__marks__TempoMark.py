@@ -21,7 +21,7 @@ def test_LilyPondParser__marks__TempoMark_01():
     result = parser(target.lilypond_format)
     assert target.lilypond_format == result.lilypond_format and target is not result
     leaf = result.select_leaves()[0]
-    tempo_marks = leaf.get_marks(contexttools.TempoMark)
+    tempo_marks = more(leaf).get_marks(contexttools.TempoMark)
     assert len(tempo_marks) == 1
 
 
@@ -42,7 +42,7 @@ def test_LilyPondParser__marks__TempoMark_02():
     result = parser(target.lilypond_format)
     assert target.lilypond_format == result.lilypond_format and target is not result
     leaf = result.select_leaves()[0]
-    tempo_marks = leaf.get_marks(contexttools.TempoMark)
+    tempo_marks = more(leaf).get_marks(contexttools.TempoMark)
     assert len(tempo_marks) == 1
 
 
@@ -63,7 +63,7 @@ def test_LilyPondParser__marks__TempoMark_03():
     result = parser(target.lilypond_format)
     assert target.lilypond_format == result.lilypond_format and target is not result
     leaf = result.select_leaves()[0]
-    tempo_marks = leaf.get_marks(contexttools.TempoMark)
+    tempo_marks = more(leaf).get_marks(contexttools.TempoMark)
     assert len(tempo_marks) == 1
 
 
@@ -85,7 +85,7 @@ def test_LilyPondParser__marks__TempoMark_04():
     result = parser(target.lilypond_format)
     assert target.lilypond_format == result.lilypond_format and target is not result
     leaf = result.select_leaves()[0]
-    tempo_marks = leaf.get_marks(contexttools.TempoMark)
+    tempo_marks = more(leaf).get_marks(contexttools.TempoMark)
     assert len(tempo_marks) == 1
 
 
@@ -107,5 +107,5 @@ def test_LilyPondParser__marks__TempoMark_05():
     result = parser(target.lilypond_format)
     assert target.lilypond_format == result.lilypond_format and target is not result
     leaf = result.select_leaves()[0]
-    tempo_marks = leaf.get_marks(contexttools.TempoMark)
+    tempo_marks = more(leaf).get_marks(contexttools.TempoMark)
     assert len(tempo_marks) == 1

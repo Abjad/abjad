@@ -309,7 +309,7 @@ class Container(Component):
         # cache context marks attached to expr
         expr_context_marks = []
         for component in iterationtools.iterate_components_in_expr(expr):
-            context_marks = component.get_marks(contexttools.ContextMark)
+            context_marks = component._get_marks(contexttools.ContextMark)
             expr_context_marks.extend(context_marks)
         # item assignment
         if isinstance(i, int):
