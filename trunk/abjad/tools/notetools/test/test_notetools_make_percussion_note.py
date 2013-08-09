@@ -14,7 +14,7 @@ def test_notetools_make_percussion_note_01():
     assert isinstance(note[1], Rest)
     assert note[0].written_duration == Duration(1, 16)
     assert note[1].written_duration == Duration(1, 64)
-    assert all(len(x.select_tie_chain()) == 1 for x in note)
+    assert all(len(more(x).select_tie_chain()) == 1 for x in note)
 
 
 def test_notetools_make_percussion_note_02():
@@ -28,7 +28,7 @@ def test_notetools_make_percussion_note_02():
     assert isinstance(note[1], Rest)
     assert note[0].written_duration == Duration(1, 64)
     assert note[1].written_duration == Duration(1, 16)
-    assert all(len(x.select_tie_chain()) == 1 for x in note)
+    assert all(len(more(x).select_tie_chain()) == 1 for x in note)
 
 
 def test_notetools_make_percussion_note_03():
@@ -53,4 +53,4 @@ def test_notetools_make_percussion_note_04():
     assert isinstance(t[1], Rest)
     assert t[0].written_duration == Duration(1, 64)
     assert t[1].written_duration == Duration(1, 32)
-    assert all(len(x.select_tie_chain()) == 1 for x in t)
+    assert all(len(more(x).select_tie_chain()) == 1 for x in t)

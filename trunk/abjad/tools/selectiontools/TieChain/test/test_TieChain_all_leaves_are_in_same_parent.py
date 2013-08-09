@@ -8,7 +8,7 @@ def test_TieChain_all_leaves_are_in_same_parent_01():
     staff = notetools.make_repeated_notes(4)
     spannertools.TieSpanner(staff[:])
 
-    assert staff[0].select_tie_chain().all_leaves_are_in_same_parent
+    assert more(staff[0]).select_tie_chain().all_leaves_are_in_same_parent
 
 
 def test_TieChain_all_leaves_are_in_same_parent_02():
@@ -27,10 +27,10 @@ def test_TieChain_all_leaves_are_in_same_parent_02():
     }
     '''
 
-    assert staff.select_leaves()[0].select_tie_chain().all_leaves_are_in_same_parent
-    assert not staff.select_leaves()[1].select_tie_chain().all_leaves_are_in_same_parent
-    assert not staff.select_leaves()[2].select_tie_chain().all_leaves_are_in_same_parent
-    assert staff.select_leaves()[3].select_tie_chain().all_leaves_are_in_same_parent
+    assert more(staff.select_leaves()[0]).select_tie_chain().all_leaves_are_in_same_parent
+    assert not more(staff.select_leaves()[1]).select_tie_chain().all_leaves_are_in_same_parent
+    assert not more(staff.select_leaves()[2]).select_tie_chain().all_leaves_are_in_same_parent
+    assert more(staff.select_leaves()[3]).select_tie_chain().all_leaves_are_in_same_parent
 
 
 def test_TieChain_all_leaves_are_in_same_parent_03():
@@ -52,9 +52,9 @@ def test_TieChain_all_leaves_are_in_same_parent_03():
     }
     '''
 
-    assert staff.select_leaves()[0].select_tie_chain().all_leaves_are_in_same_parent
-    assert staff.select_leaves()[1].select_tie_chain().all_leaves_are_in_same_parent
-    assert not staff.select_leaves()[2].select_tie_chain().all_leaves_are_in_same_parent
-    assert not staff.select_leaves()[3].select_tie_chain().all_leaves_are_in_same_parent
-    assert staff.select_leaves()[4].select_tie_chain().all_leaves_are_in_same_parent
-    assert staff.select_leaves()[5].select_tie_chain().all_leaves_are_in_same_parent
+    assert more(staff.select_leaves()[0]).select_tie_chain().all_leaves_are_in_same_parent
+    assert more(staff.select_leaves()[1]).select_tie_chain().all_leaves_are_in_same_parent
+    assert not more(staff.select_leaves()[2]).select_tie_chain().all_leaves_are_in_same_parent
+    assert not more(staff.select_leaves()[3]).select_tie_chain().all_leaves_are_in_same_parent
+    assert more(staff.select_leaves()[4]).select_tie_chain().all_leaves_are_in_same_parent
+    assert more(staff.select_leaves()[5]).select_tie_chain().all_leaves_are_in_same_parent

@@ -231,6 +231,13 @@ class Inspector(Selection):
             include_self=include_self,
             )
 
+    def select_tie_chain(self):
+        r'''Selects tie chain that governs leaf.
+
+        Returns tie chain.
+        '''
+        return self[0]._select_tie_chain()
+
     def select_vertical_moment(self, governor=None):
         r'''Selects vertical moment starting with component.
 

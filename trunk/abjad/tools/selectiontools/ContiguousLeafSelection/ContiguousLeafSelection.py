@@ -22,8 +22,8 @@ class ContiguousLeafSelection(ContiguousSelection):
         left_leaf, right_leaf = self
         assert isinstance(left_leaf, leaftools.Leaf)
         assert isinstance(right_leaf, leaftools.Leaf)
-        left_tie_chain = left_leaf.select_tie_chain()
-        right_tie_chain = right_leaf.select_tie_chain()
+        left_tie_chain = left_leaf._select_tie_chain()
+        right_tie_chain = right_leaf._select_tie_chain()
         spanner_classes = (spannertools.TieSpanner,)
         if left_tie_chain == right_tie_chain:
             return

@@ -15,7 +15,7 @@ class TieChain(ContiguousLeafSelection):
 
     ::
 
-        >>> staff[2].select_tie_chain()
+        >>> more(staff[2]).select_tie_chain()
         TieChain(Note("e'4"), Note("e'4"))
 
     Tie chains are immutable score selections.
@@ -68,12 +68,12 @@ class TieChain(ContiguousLeafSelection):
             assert isinstance(durations[0], tuplettools.Tuplet)
             fmtuplet = durations[0]
             new_chain_written = \
-                fmtuplet[0].select_tie_chain()._preprolated_duration
+                fmtuplet[0]._select_tie_chain()._preprolated_duration
             self._add_or_remove_notes_to_achieve_written_duration(
                 new_chain_written)
             multiplier = fmtuplet.multiplier
             tuplettools.Tuplet(multiplier, self.leaves)
-        return self[0].select_tie_chain()
+        return self[0]._select_tie_chain()
 
     ### PUBLIC PROPERTIES ###
 
@@ -208,7 +208,7 @@ class TieChain(ContiguousLeafSelection):
 
             ::
 
-                >>> tie_chain = staff[0].select_tie_chain()
+                >>> tie_chain = more(staff[0]).select_tie_chain()
                 >>> tie_chain.to_tuplet([2, 1, 1, 1], is_diminution=True)
                 FixedDurationTuplet(3/16, [c'8, c'16, c'16, c'16])
 
@@ -264,7 +264,7 @@ class TieChain(ContiguousLeafSelection):
 
             ::
 
-                >>> tie_chain = staff[0].select_tie_chain()
+                >>> tie_chain = more(staff[0]).select_tie_chain()
                 >>> tie_chain.to_tuplet([2, 1, 1, 1], is_diminution=False)
                 FixedDurationTuplet(3/16, [c'16, c'32, c'32, c'32])
 

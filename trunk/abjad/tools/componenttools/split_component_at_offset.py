@@ -271,8 +271,8 @@ def split_component_at_offset(
     # NOTE: If tie chain here is convenience, then fusing is good.
     #       If tie chain here is user-given, then fusing is less good.
     #       Maybe later model difference between user tie chains and not.
-    left_tie_chain = leaf_left_of_split.select_tie_chain()
-    right_tie_chain = leaf_right_of_split.select_tie_chain()
+    left_tie_chain = leaf_left_of_split._select_tie_chain()
+    right_tie_chain = leaf_right_of_split._select_tie_chain()
     leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(left_tie_chain)
     leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(right_tie_chain)
 

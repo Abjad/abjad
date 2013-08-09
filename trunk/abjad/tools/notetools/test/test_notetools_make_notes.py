@@ -11,7 +11,7 @@ def test_notetools_make_notes_01():
     assert len(note) == 1
     assert isinstance(note[0], Note)
     assert note[0].written_duration == Duration(1, 4)
-    assert all(len(x.select_tie_chain()) == 1 for x in note)
+    assert all(len(more(x).select_tie_chain()) == 1 for x in note)
 
 
 def test_notetools_make_notes_02():
@@ -24,7 +24,7 @@ def test_notetools_make_notes_02():
     assert isinstance(note[1], Note)
     assert note[0].written_duration == Duration(4, 8)
     assert note[1].written_duration == Duration(1, 8)
-    assert all(len(x.select_tie_chain()) == 2 for x in note)
+    assert all(len(more(x).select_tie_chain()) == 2 for x in note)
 
 
 def test_notetools_make_notes_03():

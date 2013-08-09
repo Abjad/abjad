@@ -26,7 +26,7 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_01():
     '''
 
     result = leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(
-        staff.select_leaves()[1].select_tie_chain())
+        more(staff.select_leaves()[1]).select_tie_chain())
 
     r'''
     \new Staff {
@@ -77,7 +77,7 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_02():
     '''
 
     result = leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(
-        staff.select_leaves()[1].select_tie_chain())
+        more(staff.select_leaves()[1]).select_tie_chain())
 
     assert select(staff).is_well_formed()
     assert len(result) == 1
@@ -97,6 +97,6 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_03():
 
     note = Note("c'4")
     result = leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(
-        note.select_tie_chain())
+        more(note).select_tie_chain())
     assert len(result) == 1
     assert select(note).is_well_formed()
