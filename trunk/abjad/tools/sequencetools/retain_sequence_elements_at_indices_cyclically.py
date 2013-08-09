@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def retain_sequence_elements_at_indices_cyclically(sequence, indices, period, offset=0):
     '''Retain `sequence` elements at `indices` mod `period` plus `offset`:
 

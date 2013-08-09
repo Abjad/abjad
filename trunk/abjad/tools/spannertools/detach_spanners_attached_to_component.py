@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def detach_spanners_attached_to_component(component, spanner_classes=None):
     r'''Destroy spanners of `spanner_classes` attached to `component`:
 

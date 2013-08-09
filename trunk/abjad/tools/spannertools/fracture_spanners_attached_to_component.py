@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def fracture_spanners_attached_to_component(
     component, direction=None, spanner_classes=None):
     r'''Fracture all spanners attached to `component` according to `direction`:

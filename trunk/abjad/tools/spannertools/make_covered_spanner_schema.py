@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def make_covered_spanner_schema(components):
     r'''Make schema of spanners covered by `components`:
 

@@ -8,7 +8,10 @@ class Flageolet(AbjadObject):
     Abstract base class.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __metaclass__ = abc.ABCMeta
+
     __slots__ = ()
 
     ### PUBLIC PROPERTIES ###

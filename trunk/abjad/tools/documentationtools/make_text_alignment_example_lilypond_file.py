@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def make_text_alignment_example_lilypond_file(music=None):
     r'''Make text-alignment example LilyPond file with `music`.
 

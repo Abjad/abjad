@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def get_context_setting_format_contributions(component):
     r'''Get context setting format contributions for `component`.
 

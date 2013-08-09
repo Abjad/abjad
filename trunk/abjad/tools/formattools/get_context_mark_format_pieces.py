@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def get_context_mark_format_pieces(mark):
     r'''Get context mark format pieces for `mark`.
 

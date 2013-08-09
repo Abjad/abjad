@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def rewrite_duration_under_new_tempo(duration, tempo_mark_1, tempo_mark_2):
     r'''Rewrite prolated `duration` under new tempo.
 

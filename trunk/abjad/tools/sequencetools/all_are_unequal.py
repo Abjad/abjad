@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def all_are_unequal(expr):
     '''True when `expr` is a sequence all elements in `expr` are unequal:
 

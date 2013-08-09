@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def label_tie_chains_in_expr_with_tie_chain_duration(
     expr, markup_direction=Down):
     r'''Label tie chains in `expr` with tie chain durations:

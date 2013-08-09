@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def iterate_sequence_pairwise_strict(sequence):
     '''Iterate `sequence` pairwise strict:
 

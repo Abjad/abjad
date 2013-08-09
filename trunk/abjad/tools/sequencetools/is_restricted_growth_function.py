@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def is_restricted_growth_function(expr):
     '''True when `expr` is a sequence and `expr` meets the criteria for a restricted
     growth function:

@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def remove_terminal_rests_from_sequence(sequence):
     r'''Remove terminal rests from `sequence`:
 

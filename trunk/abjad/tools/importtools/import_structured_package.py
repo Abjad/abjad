@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def import_structured_package(path, namespace, package_root_name='abjad'):
     r'''Import public names from `path` into `namespace`.
 

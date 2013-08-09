@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def alphabetic_accidental_abbreviation_to_symbolic_accidental_string(alphabetic_accidental_abbreviation):
     '''Change `alphabetic_accidental_abbreviation` to symbolic accidental string:
 

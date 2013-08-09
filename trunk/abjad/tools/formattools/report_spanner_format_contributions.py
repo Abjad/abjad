@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def report_spanner_format_contributions(spanner):
     r'''Report spanner format contributions for every leaf 
     to which spanner attaches:

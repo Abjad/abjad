@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def yield_outer_product_of_sequences(sequences):
     '''Yield outer product of `sequences`:
 

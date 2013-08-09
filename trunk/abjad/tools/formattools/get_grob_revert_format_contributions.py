@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def get_grob_revert_format_contributions(component):
     '''Get grob revert format contributions.
 

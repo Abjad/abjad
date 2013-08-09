@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def expr_has_leaf_with_dotted_written_duration(expr):
     '''True when `expr` has at least one leaf with dotted writtern duration:
 

@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def get_parent_and_start_stop_indices_of_components(components):
     r'''Get parent and start / stop indices of `components`:
 

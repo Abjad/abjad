@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def all_are_chromatic_pitch_class_name_octave_number_pairs(expr):
     '''True when all elements of `expr` are pitch tokens. Otherwise false:
 

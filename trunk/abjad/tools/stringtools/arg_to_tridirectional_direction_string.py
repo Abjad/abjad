@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def arg_to_tridirectional_direction_string(arg):
     r'''Convert `arg` to tridirectional direction string:
 

@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def default_instrument_name_to_instrument_class(default_instrument_name):
     r'''Change `default_instrument_name` to class name:
 

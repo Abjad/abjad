@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def transpose_chromatic_pitch_class_number_to_chromatic_pitch_number_neighbor(
     chromatic_pitch_number, chromatic_pitch_class_number):
     '''Transpose `chromatic_pitch_class_number` by octaves to nearest neighbor

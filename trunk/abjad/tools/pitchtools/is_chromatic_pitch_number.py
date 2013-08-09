@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def is_chromatic_pitch_number(expr):
     '''True `expr` is a chromatic pitch number. Otherwise false:
 

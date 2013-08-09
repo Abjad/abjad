@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def get_spanners_attached_to_any_proper_child_of_component(
     component, spanner_classes=None):
     r'''Get all spanners attached to any proper children of `component`:

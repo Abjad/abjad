@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def offset_happens_when_timespan_starts(timespan=None, offset=None, hold=False):
     r'''Make time relation indicating that `offset` happens when `timespan` starts:
 

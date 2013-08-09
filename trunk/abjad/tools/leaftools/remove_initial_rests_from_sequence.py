@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def remove_initial_rests_from_sequence(sequence):
     r'''Remove initial rests from `sequence`:
 

@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def increase_sequence_elements_cyclically_by_addenda(sequence, addenda, shield=True):
     '''Increase `sequence` cyclically by `addenda`:
 

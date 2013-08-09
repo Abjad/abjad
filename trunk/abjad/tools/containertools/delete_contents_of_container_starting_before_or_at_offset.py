@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def delete_contents_of_container_starting_before_or_at_offset(container, prolated_offset):
     r'''Delete contents of `container` starting before or at `prolated_offset`:
 

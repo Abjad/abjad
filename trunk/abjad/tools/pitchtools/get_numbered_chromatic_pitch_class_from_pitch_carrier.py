@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def get_numbered_chromatic_pitch_class_from_pitch_carrier(pitch_carrier):
     '''Get numbered chromatic pitch-class from `pitch_carrier`:
 

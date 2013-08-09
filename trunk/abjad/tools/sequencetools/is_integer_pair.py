@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def is_integer_pair(expr):
     r'''True when `expr` is an integer tuple of length ``2``:
 

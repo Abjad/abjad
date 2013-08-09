@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def sign(n):
     r'''Return ``-1`` on negative `n`:
 

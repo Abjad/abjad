@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def capitalize_string_start(string):
     r'''Capitalize `string`:
 

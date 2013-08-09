@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def yield_nonreduced_fractions():
     '''Yield positive nonreduced fractions in Cantor diagonalized order:
 

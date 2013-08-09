@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def timespan_2_stops_during_timespan_1(timespan_1=None, timespan_2=None, hold=False):
     r'''Make time relation indicating that `timespan_2` stops during `timespan_1`:
 

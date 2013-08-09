@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def is_diatonic_pitch_number(expr):
     '''True when `expr` is a diatonic pitch number. Otherwise false:
 

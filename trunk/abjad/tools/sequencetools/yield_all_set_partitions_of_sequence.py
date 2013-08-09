@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def yield_all_set_partitions_of_sequence(sequence):
     '''Yield all set partitions of `sequence` in restricted growth function order:
 

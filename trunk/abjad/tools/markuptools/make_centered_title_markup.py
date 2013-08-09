@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def make_centered_title_markup(title, font_name='Times', font_size=18, vspace_before=6, vspace_after=12):
     r'''Make centered `title` markup:
 

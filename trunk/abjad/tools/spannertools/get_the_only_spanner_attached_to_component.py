@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def get_the_only_spanner_attached_to_component(
     component, spanner_classes=None):
     r'''Get the only spanner attached to `component`:

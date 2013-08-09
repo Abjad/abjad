@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def chromatic_pitch_name_to_diatonic_pitch_name(chromatic_pitch_name):
     '''Change `chromatic_pitch_name` to diatonic pitch name:
 

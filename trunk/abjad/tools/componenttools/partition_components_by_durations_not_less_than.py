@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def partition_components_by_durations_not_less_than(
     components,
     durations,

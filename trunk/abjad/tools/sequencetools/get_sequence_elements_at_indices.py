@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def get_sequence_elements_at_indices(sequence, indices):
     '''Get `sequence` elements at `indices`:
 

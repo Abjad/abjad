@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def chromatic_pitch_number_to_chromatic_pitch_class_number(chromatic_pitch_number):
     '''Change `chromatic_pitch_number` to chromatic pitch-class number:
 

@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def is_pitch_carrier(expr):
     '''True when `expr` is an Abjad pitch, note, note-head of chord instance.
     Otherwise false:

@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def reverse_sequence(sequence):
     '''Reverse `sequence`:
 

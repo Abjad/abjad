@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def get_indices_of_sequence_elements_equal_to_true(sequence):
     '''Get indices of `sequence` elements equal to true:
 

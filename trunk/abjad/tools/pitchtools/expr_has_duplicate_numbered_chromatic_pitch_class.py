@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def expr_has_duplicate_numbered_chromatic_pitch_class(expr):
     '''True when `expr` has duplicate numbered chromatic pitch-class.
     Otherwise false:

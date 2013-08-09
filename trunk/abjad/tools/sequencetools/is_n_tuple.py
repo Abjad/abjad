@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def is_n_tuple(expr, n):
     r'''True when `expr` is a tuple of length `n`:
 

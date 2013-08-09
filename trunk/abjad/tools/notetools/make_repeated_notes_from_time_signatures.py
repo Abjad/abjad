@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def make_repeated_notes_from_time_signatures(time_signatures, pitch="c'"):
     '''Make repated notes from `time_signatures`:
 

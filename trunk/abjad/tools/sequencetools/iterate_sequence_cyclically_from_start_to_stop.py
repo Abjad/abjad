@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def iterate_sequence_cyclically_from_start_to_stop(sequence, start, stop):
     '''Iterate `sequence` cyclically from `start` to `stop`:
 

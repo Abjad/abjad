@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def scale_preprolated_leaf_duration(leaf, multiplier):
     r'''Scale preprolated `leaf` leaf duration by dotted `multiplier`:
 

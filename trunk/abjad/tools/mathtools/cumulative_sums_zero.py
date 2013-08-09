@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def cumulative_sums_zero(sequence):
     r'''Cumulative sums of `sequence` starting from ``0``:
 

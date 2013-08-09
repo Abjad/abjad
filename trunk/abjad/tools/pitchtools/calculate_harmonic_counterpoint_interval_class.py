@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def calculate_harmonic_counterpoint_interval_class(pitch_carrier_1, pitch_carrier_2):
     '''Calculate harmonic counterpoint interval-class from `pitch_carrier_1` to
     `pitch_carrier_2`:

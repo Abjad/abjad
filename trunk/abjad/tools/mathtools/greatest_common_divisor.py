@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def greatest_common_divisor(*integers):
     '''Calculate greatest common divisor of `integers`:
 

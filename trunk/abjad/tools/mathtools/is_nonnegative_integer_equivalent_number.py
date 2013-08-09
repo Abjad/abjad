@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def is_nonnegative_integer_equivalent_number(expr):
     '''True when `expr` is a nonnegative integer-equivalent number. Otherwise false:
 

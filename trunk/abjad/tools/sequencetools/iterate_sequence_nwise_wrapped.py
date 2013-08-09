@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def iterate_sequence_nwise_wrapped(sequence, n):
     '''Iterate elements in `sequence` `n` at a time wrapped to beginning:
 

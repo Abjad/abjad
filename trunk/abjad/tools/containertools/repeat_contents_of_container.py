@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def repeat_contents_of_container(container, total=2):
     r'''Repeat contents of `container`:
 

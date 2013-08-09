@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def get_leaf_in_expr_with_maximum_duration(expr):
     r'''Get leaf in `expr` with maximum prolated duration:
 

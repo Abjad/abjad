@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def iterate_sequence_pairwise_wrapped(sequence):
     '''Iterate `sequence` pairwise wrapped:
 

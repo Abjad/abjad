@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def weight(sequence):
     r'''Sum of the absolute value of the elements in `sequence`:
 

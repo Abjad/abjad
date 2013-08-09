@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def partition_integer_into_parts_less_than_double(n, m):
     r'''Partition integer `n` into parts less than double integer `m`.
 

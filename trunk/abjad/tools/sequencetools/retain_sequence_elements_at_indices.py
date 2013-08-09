@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def retain_sequence_elements_at_indices(sequence, indices):
     '''Retain `sequence` elements at `indices`:
 

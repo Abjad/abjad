@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def move_component_subtree_to_right_in_immediate_parent_of_component(component):
     r'''Move `component` subtree to right in immediate parent of `component`:
 

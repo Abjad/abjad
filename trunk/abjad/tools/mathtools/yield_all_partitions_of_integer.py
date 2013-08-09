@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def yield_all_partitions_of_integer(n):
     r'''Yield all partitions of positive integer `n` in descending lex order:
 

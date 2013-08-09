@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def yield_prolation_rewrite_pairs(duration, minimum_written_duration=None):
     r'''Yield all prolation rewrite pairs of `duration` in 
     Cantor diagonalized order.

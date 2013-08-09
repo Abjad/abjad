@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def all_are_pairs(expr):
     r'''True when `expr` is a sequence whose members are all sequences of length 2:
 

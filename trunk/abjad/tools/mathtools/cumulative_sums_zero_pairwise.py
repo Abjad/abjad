@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def cumulative_sums_zero_pairwise(sequence):
     r'''List pairwise cumulative sums of `sequence` from ``0``:
 

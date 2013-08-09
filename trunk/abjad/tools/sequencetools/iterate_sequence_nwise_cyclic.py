@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def iterate_sequence_nwise_cyclic(sequence, n):
     '''Iterate elements in `sequence` cyclically `n` at a time:
 

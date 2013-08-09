@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def remove_sequence_elements_at_indices(sequence, indices):
     '''Remove `sequence` elements at `indices`:
 

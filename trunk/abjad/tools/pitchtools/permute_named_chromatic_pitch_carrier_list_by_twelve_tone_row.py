@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def permute_named_chromatic_pitch_carrier_list_by_twelve_tone_row(pitches, row):
     '''Permute named chromatic pitch carrier list by twelve-tone `row`:
 

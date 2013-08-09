@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def partition_sequence_by_weights_exactly(sequence, weights, cyclic=False, overhang=False):
     r'''Partition `sequence` by `weights` exactly.
 

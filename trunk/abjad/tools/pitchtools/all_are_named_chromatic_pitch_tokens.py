@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def all_are_named_chromatic_pitch_tokens(expr):
     '''True when `expr` is a sequence of named chromatic pitch tokens:
 

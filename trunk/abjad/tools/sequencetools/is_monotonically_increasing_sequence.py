@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def is_monotonically_increasing_sequence(expr):
     r'''True when `expr` is a sequence and the elements in `expr` increase monotonically:
 

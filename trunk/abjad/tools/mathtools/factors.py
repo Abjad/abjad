@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def factors(n):
     r'''Integer factors of positive integer `n` in increasing order:
 

@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def find_spanner_component_starting_at_exactly_score_offset(spanner, score_offset):
     r'''Find `spanner` component starting at exactly `score_offset`:
 

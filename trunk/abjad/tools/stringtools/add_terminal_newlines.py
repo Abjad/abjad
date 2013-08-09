@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def add_terminal_newlines(lines):
     r'''Add terminal newlines to `lines`:
 

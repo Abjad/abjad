@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def remove_powers_of_two(n):
     r'''Remove powers of ``2`` from the factors of positive integer `n`:
 

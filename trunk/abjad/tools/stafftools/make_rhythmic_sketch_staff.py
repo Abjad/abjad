@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def make_rhythmic_sketch_staff(music):
     r'''Make rhythmic staff with transparent time_signature and transparent bar lines.
     '''

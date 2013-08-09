@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def make_empty_piano_score():
     r'''Make empty piano score:
 

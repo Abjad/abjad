@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def is_integer_singleton(expr):
     r'''True when `expr` is an integer tuple of of length ``1``:
 

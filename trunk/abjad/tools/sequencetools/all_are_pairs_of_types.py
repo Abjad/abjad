@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def all_are_pairs_of_types(expr, first_type, second_type):
     r'''True when `expr` is a sequence whose members are all sequences of length 2,
     and where the first member of each pair is an instance of `first_type` and

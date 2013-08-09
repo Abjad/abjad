@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 def get_sequence_degree_of_rotational_symmetry(sequence):
     '''Change `sequence` to degree of rotational symmetry:
 
