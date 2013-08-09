@@ -77,7 +77,7 @@ class Leaf(Component):
     @property
     def _duration_in_seconds(self):
         from abjad.tools import contexttools
-        tempo = more(self).get_effective_context_mark(contexttools.TempoMark)
+        tempo = self._get_effective_context_mark(contexttools.TempoMark)
         if tempo is not None and not tempo.is_imprecise:
             result = self.get_duration() / tempo.duration / tempo.units_per_minute * 60
             return durationtools.Duration(result)

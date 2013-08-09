@@ -25,8 +25,7 @@ def scale_contents_of_measures_in_expr(expr, multiplier=1):
         if multiplier == durationtools.Duration(1):
             continue
 
-        old_time_signature = more(measure).get_effective_context_mark(
-            contexttools.TimeSignatureMark)
+        old_time_signature = measure.time_signature
 
         if mathtools.is_nonnegative_integer_power_of_two(multiplier) and 1 <= multiplier:
             old_numerator = old_time_signature.numerator

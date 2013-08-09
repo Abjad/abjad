@@ -102,7 +102,7 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(
                     if measure_to_fuse is None:
                         break
                 time_signature_sum_str = ' + '.join([
-                    str(more(x).get_effective_context_mark(
+                    str(x._get_effective_context_mark(
                         contexttools.TimeSignatureMark))
                         for x in measures_to_fuse])
                 time_signature_sum_str = '"%s"' % time_signature_sum_str

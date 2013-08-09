@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_Measure_simultaneous_01():
-    r'''Rigid measures may be hold simultaneous contents.
+    r'''Measures may be hold simultaneous contents.
     '''
 
     measure = Measure((2, 8), Voice(notetools.make_repeated_notes(2)) * 2)

@@ -35,7 +35,7 @@ def is_bar_line_crossing_leaf(leaf):
     '''
     from abjad.tools import contexttools
 
-    time_signature = more(leaf).get_effective_context_mark(
+    time_signature = leaf._get_effective_context_mark(
         contexttools.TimeSignatureMark)
 
     if time_signature is None:

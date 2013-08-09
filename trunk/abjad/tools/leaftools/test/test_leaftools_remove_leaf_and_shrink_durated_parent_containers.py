@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_01():
-    r'''Excise leaf from tuplet and rigid measure.
+    r'''Excise leaf from tuplet and measure.
     '''
 
     measure = Measure((4, 4), tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
@@ -295,8 +295,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_04():
         '''
 
     assert isinstance(measure, Measure)
-    assert more(measure).get_effective_context_mark(contexttools.TimeSignatureMark) \
-        == contexttools.TimeSignatureMark((11, 14))
+    assert measure.time_signature == contexttools.TimeSignatureMark((11, 14))
     assert len(measure) == 2
     tuplet = measure[0]
     assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
@@ -374,8 +373,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_05():
         '''
 
     assert isinstance(measure, Measure)
-    assert more(measure).get_effective_context_mark(contexttools.TimeSignatureMark) \
-        == contexttools.TimeSignatureMark((11, 14))
+    assert measure.time_signature == contexttools.TimeSignatureMark((11, 14))
     assert len(measure) == 4
     tuplet = measure[0]
     assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
@@ -444,8 +442,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_06():
         '''
 
     assert isinstance(measure, Measure)
-    assert more(measure).get_effective_context_mark(contexttools.TimeSignatureMark) \
-        == contexttools.TimeSignatureMark((4, 6))
+    assert measure.time_signature == contexttools.TimeSignatureMark((4, 6))
     assert len(measure) == 3
     tuplet = measure[0]
     assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
@@ -485,8 +482,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_07():
     leaftools.remove_leaf_and_shrink_durated_parent_containers(measure.select_leaves()[-1])
     measure = measure
     assert isinstance(measure, Measure)
-    assert more(measure).get_effective_context_mark(contexttools.TimeSignatureMark) \
-        == contexttools.TimeSignatureMark((8, 9))
+    assert measure.time_signature == contexttools.TimeSignatureMark((8, 9))
     assert len(measure) == 1
     tuplet = measure[0]
     assert isinstance(tuplet, tuplettools.FixedDurationTuplet)

@@ -50,7 +50,7 @@ def transpose_from_sounding_pitch_to_written_pitch(expr):
     for note_or_chord in iterationtools.iterate_notes_and_chords_in_expr(expr):
         if not note_or_chord.written_pitch_indication_is_at_sounding_pitch:
             continue
-        instrument = more(note_or_chord).get_effective_context_mark(
+        instrument = note_or_chord._get_effective_context_mark(
             contexttools.InstrumentMark)
         if not instrument:
             continue

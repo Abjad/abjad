@@ -15,8 +15,7 @@ def fill_measures_in_expr_with_repeated_notes(expr, written_duration, iterctrl=N
     written_duration = durationtools.Duration(written_duration)
     for i, measure in enumerate(iterationtools.iterate_measures_in_expr(expr)):
         if iterctrl(measure, i):
-            time_signature = more(measure).get_effective_context_mark(
-                contexttools.TimeSignatureMark)
+            time_signature = measure.time_signature
             total_duration = time_signature.duration
             prolation = time_signature.implied_prolation
             notes = notetools.make_repeated_notes_with_shorter_notes_at_end(

@@ -16,8 +16,7 @@ def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl=None):
         if iterctrl(measure, i):
             skip = skiptools.Skip(1)
             # allow zero-update iteration
-            time_signature = more(measure).get_effective_context_mark(
-                contexttools.TimeSignatureMark)
+            time_signature = measure.time_signature
             skip.lilypond_duration_multiplier = \
                 time_signature.duration / time_signature.implied_prolation
             measure[:] = [skip]

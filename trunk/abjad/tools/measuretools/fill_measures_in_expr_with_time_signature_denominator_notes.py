@@ -47,8 +47,7 @@ def fill_measures_in_expr_with_time_signature_denominator_notes(expr, iterctrl=N
         iterctrl = lambda measure, i: True
     for i, measure in enumerate(iterationtools.iterate_measures_in_expr(expr)):
         if iterctrl(measure, i):
-            time_signature = more(measure).get_effective_context_mark(
-                contexttools.TimeSignatureMark)
+            time_signature = measure.time_signature
             denominator = mathtools.greatest_power_of_two_less_equal(
                 time_signature.denominator)
             numerator = time_signature.numerator

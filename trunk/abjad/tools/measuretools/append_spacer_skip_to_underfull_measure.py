@@ -3,7 +3,7 @@ from abjad.tools import skiptools
 from abjad.tools.selectiontools import more
 
 
-def append_spacer_skip_to_underfull_measure(rigid_measure):
+def append_spacer_skip_to_underfull_measure(measure):
     r'''Append spacer skip to underfull `measure`:
 
     ::
@@ -42,18 +42,16 @@ def append_spacer_skip_to_underfull_measure(rigid_measure):
     from abjad.tools import contexttools
     from abjad.tools import measuretools
 
-    assert isinstance(rigid_measure, measuretools.Measure)
+    assert isinstance(measure, measuretools.Measure)
 
-    if rigid_measure.is_underfull:
-        target_duration = more(rigid_measure).get_effective_context_mark(
-            contexttools.TimeSignatureMark).duration
-        duration = rigid_measure.get_duration()
+    if measure.is_underfull:
+        target_duration = measure.time_signature.duration
+        duration = measure.get_duration()
         skip = skiptools.Skip((1, 1))
         time_signature_multiplier = \
-            more(rigid_measure).get_effective_context_mark(
-            contexttools.TimeSignatureMark).implied_prolation
+            measure.time_signature.implied_prolation
         new_multiplier = (target_duration - duration) / time_signature_multiplier
         skip.lilypond_duration_multiplier = new_multiplier
-        rigid_measure.append(skip)
+        measure.append(skip)
 
-    return rigid_measure
+    return measure

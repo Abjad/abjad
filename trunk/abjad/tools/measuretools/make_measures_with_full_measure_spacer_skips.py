@@ -28,7 +28,7 @@ def make_measures_with_full_measure_spacer_skips(time_signatures):
             }
         }
 
-    Return list of rigid measures.
+    Return list of measures.
     '''
     from abjad.tools import contexttools
     from abjad.tools import measuretools

@@ -53,8 +53,7 @@ def multiply_contents_of_measures_in_expr(expr, n):
     assert 0 < n
 
     for measure in iterationtools.iterate_measures_in_expr(expr):
-        old_time_signature = more(measure).get_effective_context_mark(
-            contexttools.TimeSignatureMark)
+        old_time_signature = measure.time_signature
         containertools.repeat_contents_of_container(measure, n)
         old_pair = (old_time_signature.numerator, old_time_signature.denominator)
         new_pair = mathtools.NonreducedFraction(old_pair)

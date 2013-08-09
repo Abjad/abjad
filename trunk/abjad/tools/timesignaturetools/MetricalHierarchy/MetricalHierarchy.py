@@ -213,7 +213,7 @@ class MetricalHierarchy(AbjadObject):
             if isinstance(arg, tuple):
                 fraction = mathtools.NonreducedFraction(arg)
             elif isinstance(arg, measuretools.Measure):
-                time_signature = more(arg).get_effective_context_mark(
+                time_signature = arg._get_effective_context_mark(
                     contexttools.TimeSignatureMark)
                 fraction = mathtools.NonreducedFraction(
                     time_signature.numerator, time_signature.denominator)

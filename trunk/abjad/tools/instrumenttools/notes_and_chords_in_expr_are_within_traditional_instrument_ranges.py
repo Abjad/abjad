@@ -39,7 +39,7 @@ def notes_and_chords_in_expr_are_within_traditional_instrument_ranges(expr):
     '''
 
     for note_or_chord in iterationtools.iterate_notes_and_chords_in_expr(expr):
-        instrument = more(note_or_chord).get_effective_context_mark(
+        instrument = note_or_chord._get_effective_context_mark(
             contexttools.InstrumentMark)
         if note_or_chord not in instrument.default_pitch_range:
             return False

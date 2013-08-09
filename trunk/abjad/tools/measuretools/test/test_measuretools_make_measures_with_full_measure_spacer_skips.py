@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_measuretools_make_measures_with_full_measure_spacer_skips_01():
-    r'''Make list of skip-populated rigid measures.
+    r'''Make list of skip-populated measures.
     '''
 
     staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (5, 16), (5, 16), (1, 4)]))

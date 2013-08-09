@@ -41,8 +41,7 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
                 tuplet_multiplier = tuplet.multiplier
                 tuplet_denominator = tuplet_multiplier.denominator
                 reduced_denominator = mathtools.remove_powers_of_two(tuplet_denominator)
-                time_signature = more(measure).get_effective_context_mark(
-                    contexttools.TimeSignatureMark)
+                time_signature = measure.time_signature
                 time_signature_rational = durationtools.Duration(
                     time_signature.numerator, time_signature.denominator)
                 numerator = time_signature_rational.numerator * reduced_denominator
@@ -51,8 +50,7 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
                 measure.select().detach_marks(contexttools.TimeSignatureMark)
                 time_signature.attach(measure)
                 time_signature_multiplier = \
-                    more(measure).get_effective_context_mark(
-                    contexttools.TimeSignatureMark).implied_prolation
+                    measure.time_signature.implied_prolation
                 written_adjustment = tuplet_multiplier / time_signature_multiplier
                 componenttools.move_parentage_and_spanners_from_components_to_components(
                     [tuplet], tuplet[:])

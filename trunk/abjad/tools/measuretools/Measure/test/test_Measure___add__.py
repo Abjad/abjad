@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_Measure___add___01():
-    r'''Add outside-of-score rigid measures.
+    r'''Add outside-of-score measures.
     '''
 
     t1 = Measure((1, 8), "c'16 d'16")
@@ -58,7 +58,7 @@ def test_Measure___add___01():
 
 
 def test_Measure___add___02():
-    r'''Add rigid measures in score.
+    r'''Add measures in score.
     '''
 
     t1 = Measure((1, 8), "c'16 d'16")

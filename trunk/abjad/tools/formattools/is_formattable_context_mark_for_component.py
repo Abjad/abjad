@@ -24,8 +24,7 @@ def is_formattable_context_mark_for_component(mark, component):
                     mark.start_component)
                 if previous_measure is not None:
                     previous_effective_time_signature = \
-                        more(previous_measure).get_effective_context_mark(
-                            contexttools.TimeSignatureMark)
+                        previous_measure.time_signature
                 else:
                     previous_effective_time_signature = None
                 if not mark == previous_effective_time_signature:
