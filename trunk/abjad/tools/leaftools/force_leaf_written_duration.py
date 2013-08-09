@@ -2,7 +2,7 @@
 from abjad.tools import durationtools
 
 
-def change_written_leaf_duration_and_preserve_preprolated_leaf_duration(
+def force_leaf_written_duration(
     leaf, written_duration):
     '''Change `leaf` written duration to `written_duration`
     and preserve preprolated `leaf` duration:
@@ -20,7 +20,7 @@ def change_written_leaf_duration_and_preserve_preprolated_leaf_duration(
 
     ::
 
-        >>> leaftools.change_written_leaf_duration_and_preserve_preprolated_leaf_duration(
+        >>> leaftools.force_leaf_written_duration(
         ...     note, Duration(3, 16))
         Note("c'8. * 4/3")
 

@@ -448,4 +448,4 @@ class Leaf(Component):
         duration = self.get_duration() - duration
         prolation = self._select_parentage().prolation
         preprolated_duration = duration / prolation
-        leaftools.set_preprolated_leaf_duration(self, preprolated_duration)
+        leaftools.set_leaf_duration(self, preprolated_duration)

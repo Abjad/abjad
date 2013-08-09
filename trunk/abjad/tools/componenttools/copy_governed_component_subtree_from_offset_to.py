@@ -168,7 +168,7 @@ def _copy_leaf_from_start_offset_to_stop_offset(leaf, start, stop):
         return None
 
     new_leaf = componenttools.copy_components_and_fracture_crossing_spanners([leaf])[0]
-    leaftools.set_preprolated_leaf_duration(new_leaf, total)
+    leaftools.set_leaf_duration(new_leaf, total)
 
     return new_leaf
 

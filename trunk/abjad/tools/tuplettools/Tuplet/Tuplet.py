@@ -217,7 +217,7 @@ class Tuplet(Container):
             if isinstance(component, leaftools.Leaf):
                 old_written_duration = component.written_duration
                 new_written_duration = leaf_multiplier * old_written_duration
-                leaftools.set_preprolated_leaf_duration(
+                leaftools.set_leaf_duration(
                     component, new_written_duration)
 
     def _format_after_slot(self, format_contributions):

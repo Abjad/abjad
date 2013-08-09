@@ -537,12 +537,12 @@ class FreeTupletSelection(Selection):
                 if multiplier.is_assignable:
                     for component in tuplet[:]:
                         if isinstance(component, leaftools.Leaf):
-                            leaftools.scale_preprolated_leaf_duration(
+                            leaftools.scale_leaf_duration(
                                 component, multiplier)
             else:
                 for component in tuplet[:]:
                     if isinstance(component, leaftools.Leaf):
-                        leaftools.scale_preprolated_leaf_duration(
+                        leaftools.scale_leaf_duration(
                             component, multiplier)
         self.fix()
 

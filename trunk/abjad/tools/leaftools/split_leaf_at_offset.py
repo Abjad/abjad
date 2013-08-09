@@ -189,9 +189,9 @@ def split_leaf_at_offset(
     new_leaf.select().detach_marks(contexttools.ContextMark)
 
     left_leaf_list = \
-        leaftools.set_preprolated_leaf_duration(leaf, preprolated_duration)
+        leaftools.set_leaf_duration(leaf, preprolated_duration)
     right_preprolated_duration = leaf_multiplied_duration - preprolated_duration
-    right_leaf_list = leaftools.set_preprolated_leaf_duration(
+    right_leaf_list = leaftools.set_leaf_duration(
         new_leaf, right_preprolated_duration)
 
     leaf_left_of_split = left_leaf_list[-1]

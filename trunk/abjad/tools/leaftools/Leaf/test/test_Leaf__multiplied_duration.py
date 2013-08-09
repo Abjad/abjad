@@ -21,12 +21,12 @@ def test_Leaf__multiplied_duration_03():
     r'''Mulplied leaf duration can be set and then unset.
     '''
     note = Note("c'4")
-    leaftools.change_written_leaf_duration_and_preserve_preprolated_leaf_duration(
+    leaftools.force_leaf_written_duration(
         note, Duration(3, 8))
     assert note.written_duration == Duration(3, 8)
     assert note.lilypond_duration_multiplier == Duration(2, 3)
     assert note._multiplied_duration == Duration(1, 4)
-    leaftools.change_written_leaf_duration_and_preserve_preprolated_leaf_duration(
+    leaftools.force_leaf_written_duration(
         note, Duration(1, 4))
     assert note.written_duration == Duration(1, 4)
     assert note.lilypond_duration_multiplier is None
