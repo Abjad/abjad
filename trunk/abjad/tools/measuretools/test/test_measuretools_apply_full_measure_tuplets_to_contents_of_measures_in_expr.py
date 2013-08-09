@@ -46,7 +46,7 @@ def test_measuretools_apply_full_measure_tuplets_to_contents_of_measures_in_expr
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {

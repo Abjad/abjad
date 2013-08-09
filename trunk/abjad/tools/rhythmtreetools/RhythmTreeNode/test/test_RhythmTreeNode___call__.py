@@ -25,7 +25,7 @@ def test_RhythmTreeNode___call___02():
     assert len(result) == 1
     assert isinstance(result[0], tuplettools.FixedDurationTuplet)
     assert testtools.compare(
-        result[0].lilypond_format,
+        result[0],
         r'''
         \times 4/5 {
             c'16
@@ -47,7 +47,7 @@ def test_RhythmTreeNode___call___03():
     result = tree((1, 4))
 
     assert testtools.compare(
-        result[0].lilypond_format,
+        result[0],
         r'''
         \times 4/5 {
             c'16

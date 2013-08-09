@@ -28,7 +28,7 @@ def test_Spanner_append_01():
     '''
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -67,7 +67,7 @@ def test_Spanner_append_01():
     '''
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -113,7 +113,7 @@ def test_Spanner_append_02():
     '''
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -152,7 +152,7 @@ def test_Spanner_append_02():
     '''
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {

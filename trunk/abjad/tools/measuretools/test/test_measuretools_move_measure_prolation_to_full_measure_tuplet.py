@@ -30,7 +30,7 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01():
     '''
 
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 3/12
@@ -67,7 +67,7 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 2/8
@@ -114,7 +114,7 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02():
     '''
 
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 15/24
@@ -155,7 +155,7 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 5/8

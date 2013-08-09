@@ -8,7 +8,7 @@ def test_GroupedRhythmicStavesScoreTemplate___call___01():
     score = template()
 
     assert testtools.compare(
-        score.lilypond_format,
+        score,
         r'''
         \context Score = "Grouped Rhythmic Staves Score" <<
             \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
@@ -40,7 +40,7 @@ def test_GroupedRhythmicStavesScoreTemplate___call___02():
     score = template()
 
     assert testtools.compare(
-        score.lilypond_format,
+        score,
         r'''
         \context Score = "Grouped Rhythmic Staves Score" <<
             \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<

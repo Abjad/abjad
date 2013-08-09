@@ -33,7 +33,7 @@ def test_TimeSignatureMark_numerator_02():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \time 2/8

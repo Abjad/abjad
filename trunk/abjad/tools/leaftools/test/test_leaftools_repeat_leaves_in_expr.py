@@ -23,7 +23,7 @@ def test_leaftools_repeat_leaves_in_expr_01():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [
@@ -61,7 +61,7 @@ def test_leaftools_repeat_leaves_in_expr_02():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [

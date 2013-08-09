@@ -22,7 +22,7 @@ def test_Container___setitem___slice_01():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8
@@ -56,7 +56,7 @@ def test_Container___setitem___slice_02():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 [
@@ -106,7 +106,7 @@ def test_Container___setitem___slice_03():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 [
@@ -139,7 +139,7 @@ def test_Container___setitem___slice_04():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 [
@@ -171,7 +171,7 @@ def test_Container___setitem___slice_05():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 [
@@ -222,7 +222,7 @@ def test_Container___setitem___slice_06():
     assert select(staff).is_well_formed()
     assert len(sequential) == 0
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 [
@@ -275,7 +275,7 @@ def test_Container___setitem___slice_07():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8
@@ -328,7 +328,7 @@ def test_Container___setitem___slice_08():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8
@@ -384,7 +384,7 @@ def test_Container___setitem___slice_09():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8
@@ -439,7 +439,7 @@ def test_Container___setitem___slice_10():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8
@@ -475,7 +475,7 @@ def test_Container___setitem___slice_11():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             r8
@@ -508,7 +508,7 @@ def test_Container___setitem___slice_12():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [
@@ -562,7 +562,7 @@ def test_Container___setitem___slice_13():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8
@@ -582,7 +582,7 @@ def test_Container___setitem___slice_13():
 
     # inner container leaves DO withdraw from all spanners
     assert testtools.compare(
-        inner.lilypond_format,
+        inner,
         r'''
         {
             d'8
@@ -618,7 +618,7 @@ def test_Container___setitem___slice_13():
 
     # inner container leaves DO NOT withdraw from spanners
     assert testtools.compare(
-        inner.lilypond_format,
+        inner,
         r'''
         {
             d'8 [

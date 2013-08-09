@@ -18,7 +18,7 @@ def test_PhrasingSlurSpanner_direction_01():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 ^ \(
@@ -46,7 +46,7 @@ def test_PhrasingSlurSpanner_direction_02():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 _ \(

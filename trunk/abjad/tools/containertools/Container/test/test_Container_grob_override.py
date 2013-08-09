@@ -21,7 +21,7 @@ def test_Container_grob_override_01():
     '''
 
     assert testtools.compare(
-        container.lilypond_format,
+        container,
         r'''
         {
             \override Glissando #'thickness = #3

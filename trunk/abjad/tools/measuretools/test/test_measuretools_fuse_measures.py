@@ -48,7 +48,7 @@ def test_measuretools_fuse_measures_01():
     assert len(t2) == 0
     assert select(new).is_well_formed()
     assert testtools.compare(
-        new.lilypond_format,
+        new,
         r'''
         {
             \time 2/8
@@ -103,7 +103,7 @@ def test_measuretools_fuse_measures_02():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -160,7 +160,7 @@ def test_measuretools_fuse_measures_03():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -219,7 +219,7 @@ def test_measuretools_fuse_measures_04():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -301,7 +301,7 @@ def test_measuretools_fuse_measures_07():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -417,7 +417,7 @@ def test_measuretools_fuse_measures_09():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {

@@ -18,7 +18,7 @@ def test_TextSpanner_position_01():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 \startTextSpan
@@ -47,7 +47,7 @@ def test_TextSpanner_position_02():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \textSpannerNeutral
@@ -77,7 +77,7 @@ def test_TextSpanner_position_03():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \textSpannerUp
@@ -107,7 +107,7 @@ def test_TextSpanner_position_04():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \textSpannerDown
@@ -137,7 +137,7 @@ def test_TextSpanner_position_05():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 \startTextSpan

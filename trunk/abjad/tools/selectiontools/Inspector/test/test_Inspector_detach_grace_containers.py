@@ -35,7 +35,7 @@ def test_Inspector_detach_grace_containers_01():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8

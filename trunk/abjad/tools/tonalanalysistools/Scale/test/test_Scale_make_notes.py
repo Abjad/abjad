@@ -20,7 +20,7 @@ def test_Scale_make_notes_01():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'4 ~

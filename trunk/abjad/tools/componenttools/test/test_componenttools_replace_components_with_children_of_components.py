@@ -40,7 +40,7 @@ def test_componenttools_replace_components_with_children_of_components_01():
     assert select(staff).is_well_formed()
     assert len(sequential) == 0
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 [
@@ -75,7 +75,7 @@ def test_componenttools_replace_components_with_children_of_components_02():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [ \glissando
@@ -114,7 +114,7 @@ def test_componenttools_replace_components_with_children_of_components_03():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             e'8 [ \glissando
@@ -167,7 +167,7 @@ def test_componenttools_replace_components_with_children_of_components_04():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [ \glissando

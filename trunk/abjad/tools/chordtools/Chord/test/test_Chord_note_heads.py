@@ -84,7 +84,7 @@ def test_Chord_note_heads_07():
     chord[2].tweak.color = 'blue'
 
     assert testtools.compare(
-        chord.lilypond_format,
+        chord,
         r'''
         <
             \tweak #'color #red

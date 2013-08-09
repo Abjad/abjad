@@ -17,7 +17,7 @@ def test_Note_grace_01():
     '''
 
     assert testtools.compare(
-        note.lilypond_format,
+        note,
         r'''
         \grace {
             d'16
@@ -44,7 +44,7 @@ def test_Note_grace_02():
     '''
 
     assert testtools.compare(
-        note.lilypond_format,
+        note,
         r'''
         \grace {
             c'16
@@ -71,7 +71,7 @@ def test_Note_grace_03():
     '''
 
     assert testtools.compare(
-        note.lilypond_format,
+        note,
         r'''
         \appoggiatura {
             d'16
@@ -96,7 +96,7 @@ def test_Note_grace_04():
     '''
 
     assert testtools.compare(
-        note.lilypond_format,
+        note,
         r'''
         \acciaccatura {
             d'16
@@ -122,7 +122,7 @@ def test_Note_grace_05():
     '''
 
     assert testtools.compare(
-        note.lilypond_format,
+        note,
         r'''
         \afterGrace
         c'4

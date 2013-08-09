@@ -28,7 +28,7 @@ def test_FreeTupletSelection_diminished_to_augmented_01():
 
     assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 4/3 {

@@ -23,7 +23,7 @@ def test_OctavationSpanner_01():
 
     assert o.start == o.stop == 0
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \ottava #0
@@ -59,7 +59,7 @@ def test_OctavationSpanner_02():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \ottava #1
@@ -99,7 +99,7 @@ def test_OctavationSpanner_03():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \ottava #1
@@ -127,7 +127,7 @@ def test_OctavationSpanner_04():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \ottava #1
@@ -171,7 +171,7 @@ def test_OctavationSpanner_05():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \ottava #1
@@ -219,7 +219,7 @@ def test_OctavationSpanner_06():
 
     assert not checker.check(staff)
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \ottava #1

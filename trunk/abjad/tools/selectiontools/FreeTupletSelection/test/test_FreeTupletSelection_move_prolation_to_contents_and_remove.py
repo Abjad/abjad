@@ -42,7 +42,7 @@ def test_FreeTupletSelection_move_prolation_to_contents_and_remove_01():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8. [
@@ -104,7 +104,7 @@ def test_FreeTupletSelection_move_prolation_to_contents_and_remove_02():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             \times 2/3 {

@@ -24,7 +24,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_01():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 3/12
@@ -58,7 +58,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_02():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 3/8
@@ -89,7 +89,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_03():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 9/16
@@ -120,7 +120,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_04():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 3/8
@@ -159,7 +159,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_05():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 9/24
@@ -198,7 +198,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_06():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 3/4
@@ -233,7 +233,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_07():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 6/32
@@ -271,7 +271,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_08():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 6/64
@@ -309,7 +309,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_09():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 6/8
@@ -347,7 +347,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_10():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 6/4

@@ -17,7 +17,7 @@ def test_FixedDurationTuplet_force_fraction_01():
     '''
 
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 2/3 {

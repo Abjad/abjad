@@ -48,7 +48,7 @@ def test_Container_is_simultaneous_04():
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
     container.is_simultaneous = True
     assert testtools.compare(
-        container.lilypond_format,
+        container,
         r'''
         <<
             \new Voice {

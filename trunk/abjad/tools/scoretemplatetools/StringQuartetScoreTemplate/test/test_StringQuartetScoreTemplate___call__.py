@@ -43,7 +43,7 @@ def test_StringQuartetScoreTemplate___call___01():
     '''
 
     assert testtools.compare(
-        score.lilypond_format,
+        score,
         r'''
         \context Score = "String Quartet Score" <<
             \context StaffGroup = "String Quartet Staff Group" <<

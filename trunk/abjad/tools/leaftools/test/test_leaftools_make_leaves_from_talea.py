@@ -19,7 +19,7 @@ def test_leaftools_make_leaves_from_talea_01():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'4.

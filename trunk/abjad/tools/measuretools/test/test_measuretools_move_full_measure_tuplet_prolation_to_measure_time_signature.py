@@ -22,7 +22,7 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 3/12
@@ -59,7 +59,7 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 15/80
@@ -100,7 +100,7 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 21/28
@@ -148,7 +148,7 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 15/24
@@ -216,7 +216,7 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 3/12
@@ -271,7 +271,7 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 15/48

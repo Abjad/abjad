@@ -29,7 +29,7 @@ def test_LilyFile_01():
     '''
 
     assert testtools.compare(
-        lilypond_file.lilypond_format,
+        lilypond_file,
         r'''
         #(set-default-paper-size "11x17" 'landscape)
         #(set-global-staff-size 14)

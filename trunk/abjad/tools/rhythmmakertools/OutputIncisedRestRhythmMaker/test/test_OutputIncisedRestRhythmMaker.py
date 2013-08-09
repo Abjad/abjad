@@ -45,7 +45,7 @@ def test_OutputIncisedRestRhythmMaker_01():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -111,7 +111,7 @@ def test_OutputIncisedRestRhythmMaker_02():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -173,7 +173,7 @@ def test_OutputIncisedRestRhythmMaker_03():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -240,7 +240,7 @@ def test_OutputIncisedRestRhythmMaker_04():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -321,7 +321,7 @@ def test_OutputIncisedRestRhythmMaker_05():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {

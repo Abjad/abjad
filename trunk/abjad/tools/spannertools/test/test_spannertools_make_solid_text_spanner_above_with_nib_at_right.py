@@ -27,7 +27,7 @@ def test_spannertools_make_solid_text_spanner_above_with_nib_at_right_01():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \override TextSpanner #'bound-details #'left #'text = \markup { foo }

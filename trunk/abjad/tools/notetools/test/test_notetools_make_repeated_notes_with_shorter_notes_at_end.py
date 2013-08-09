@@ -20,7 +20,7 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_01():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'16
@@ -50,7 +50,7 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_02():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'16
@@ -77,7 +77,7 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_03():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'128
@@ -108,7 +108,7 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_04():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'16
@@ -147,7 +147,7 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_05():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 5/18

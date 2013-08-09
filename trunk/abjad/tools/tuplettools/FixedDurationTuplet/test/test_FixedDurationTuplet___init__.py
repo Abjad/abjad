@@ -11,7 +11,7 @@ def test_FixedDurationTuplet___init___01():
     assert repr(tuplet) == "FixedDurationTuplet(1/4, [c'8, c'8, c'8])"
     assert str(tuplet) == "{@ 3:2 c'8, c'8, c'8 @}"
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \times 2/3 {
             c'8

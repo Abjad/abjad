@@ -23,7 +23,7 @@ def test_spannertools_fracture_spanners_that_cross_components_01():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 [ ]
@@ -54,7 +54,7 @@ def test_spannertools_fracture_spanners_that_cross_components_02():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 [ ]
@@ -121,7 +121,7 @@ def test_spannertools_fracture_spanners_that_cross_components_04():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -189,7 +189,7 @@ def test_spannertools_fracture_spanners_that_cross_components_05():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {

@@ -41,7 +41,7 @@ def test_labeltools_label_notes_in_expr_with_note_indices_01():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8

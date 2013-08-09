@@ -9,7 +9,7 @@ def test_labeltools_label_leaves_in_expr_with_melodic_counterpoint_interval_clas
     labeltools.label_leaves_in_expr_with_melodic_counterpoint_interval_classes(staff)
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r"""
         \new Staff {
             c'8 ^ \markup { +8 }

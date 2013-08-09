@@ -18,7 +18,7 @@ def test_HairpinSpanner_shape_string_01():
 
     assert hairpin.shape_string == '<'
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 \<
@@ -42,7 +42,7 @@ def test_HairpinSpanner_shape_string_01():
 
     assert hairpin.shape_string == '>'
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 \>

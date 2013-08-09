@@ -20,7 +20,7 @@ def test_LayoutBlock_contexts_01():
     '''
 
     assert testtools.compare(
-        layout_block.lilypond_format,
+        layout_block,
         r'''
         \layout {
             \context {

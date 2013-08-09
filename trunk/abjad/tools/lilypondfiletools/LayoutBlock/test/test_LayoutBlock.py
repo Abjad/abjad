@@ -16,7 +16,7 @@ def test_LayoutBlock_01():
     '''
 
     assert testtools.compare(
-        lb.lilypond_format,
+        lb,
         r'''
         \layout {
             indent = #0
@@ -39,7 +39,7 @@ def test_LayoutBlock_02():
     '''
 
     assert testtools.compare(
-        lb.lilypond_format,
+        lb,
         r'''
         \layout {
             \accidentalStyle modern

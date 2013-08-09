@@ -30,7 +30,7 @@ def test_Tuplet___copy___01():
     '''
 
     assert testtools.compare(
-        tuplet_2.lilypond_format,
+        tuplet_2,
         r'''
         \override NoteHead #'color = #red
         \times 2/3 {

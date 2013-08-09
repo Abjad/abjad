@@ -59,7 +59,7 @@ def test_containertools_repeat_last_n_elements_of_container_01():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -143,7 +143,7 @@ def test_containertools_repeat_last_n_elements_of_container_02():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             \times 2/3 {

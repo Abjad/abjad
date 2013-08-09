@@ -35,7 +35,7 @@ def test_Staff___copy___01():
     '''
 
     assert testtools.compare(
-        staff_2.lilypond_format,
+        staff_2,
         r'''
         \new Staff \with {
             \override NoteHead #'color = #red

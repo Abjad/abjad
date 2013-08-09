@@ -30,7 +30,7 @@ def test_Container_extend_01():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [
@@ -71,7 +71,7 @@ def test_Container_extend_02():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [
@@ -100,7 +100,7 @@ def test_Container_extend_03():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [
@@ -127,7 +127,7 @@ def test_Container_extend_04():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [
@@ -200,7 +200,7 @@ def test_Container_extend_07():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [
@@ -222,7 +222,7 @@ def test_Container_extend_07():
 
     assert select(u).is_well_formed()
     assert testtools.compare(
-        u.lilypond_format,
+        u,
         r'''
         \new Voice {
             c'8 [
@@ -275,7 +275,7 @@ def test_Container_extend_08():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [
@@ -297,7 +297,7 @@ def test_Container_extend_08():
 
     assert select(u).is_well_formed()
     assert testtools.compare(
-        u.lilypond_format,
+        u,
         r'''
         \new Voice {
             c'8 [
@@ -325,7 +325,7 @@ def test_Container_extend_09():
 
     assert select(container).is_well_formed()
     assert testtools.compare(
-        container.lilypond_format,
+        container,
         r'''
         {
             c'4 (

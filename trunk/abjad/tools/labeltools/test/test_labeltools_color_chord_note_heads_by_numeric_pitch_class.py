@@ -30,7 +30,7 @@ def test_labeltools_color_chord_note_heads_by_numeric_pitch_class_01():
 
     assert select(chord).is_well_formed()
     assert testtools.compare(
-        chord.lilypond_format,
+        chord,
         r'''
         <
             \tweak #'color #red
@@ -66,7 +66,7 @@ def test_labeltools_color_chord_note_heads_by_numeric_pitch_class_02():
 
     assert select(note).is_well_formed()
     assert testtools.compare(
-        note.lilypond_format,
+        note,
         r'''
         \once \override NoteHead #'color = #red
         c'4

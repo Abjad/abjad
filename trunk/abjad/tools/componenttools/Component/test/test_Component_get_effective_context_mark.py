@@ -91,7 +91,7 @@ def test_Component_get_effective_context_mark_06():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \clef "treble"
@@ -135,7 +135,7 @@ def test_Component_get_effective_context_mark_07():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \clef "treble_8"
@@ -231,7 +231,7 @@ def test_Component_get_effective_context_mark_11():
     assert more(staff).get_effective_context_mark(contexttools.KeySignatureMark) == contexttools.KeySignatureMark('c', 'major')
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \key c \major
@@ -277,7 +277,7 @@ def test_Component_get_effective_context_mark_13():
     assert more(staff[2]).get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 42)
     assert more(staff[3]).get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 42)
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \tempo 8=38
@@ -307,7 +307,7 @@ def test_Component_get_effective_context_mark_14():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \tempo 8=38
@@ -332,7 +332,7 @@ def test_Component_get_effective_context_mark_15():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \tempo 8=38
@@ -358,7 +358,7 @@ def test_Component_get_effective_context_mark_16():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'4

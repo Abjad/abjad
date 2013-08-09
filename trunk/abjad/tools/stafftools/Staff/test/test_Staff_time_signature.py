@@ -24,7 +24,7 @@ def test_Staff_time_signature_01():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \time 2/4
@@ -55,7 +55,7 @@ def test_Staff_time_signature_02():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \time 2/4

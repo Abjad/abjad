@@ -1,5 +1,8 @@
 def compare(string_1, string_2):
 
+    if not isinstance(string_1, str):
+        string_1 = string_1.lilypond_format
+
     split_lines = string_2.split('\n')
 
     if not split_lines[0] or split_lines[0].isspace():

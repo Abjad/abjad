@@ -21,7 +21,7 @@ def test_LayoutBlock_context_blocks_01():
     '''
 
     assert testtools.compare(
-        layout_block.lilypond_format,
+        layout_block,
         r'''
         \layout {
             \context {

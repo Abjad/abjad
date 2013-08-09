@@ -32,7 +32,7 @@ def test_leaftools_set_preprolated_leaf_duration_01():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [
@@ -109,7 +109,7 @@ def test_leaftools_set_preprolated_leaf_duration_03():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [
@@ -154,7 +154,7 @@ def test_leaftools_set_preprolated_leaf_duration_04():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [
@@ -201,7 +201,7 @@ def test_leaftools_set_preprolated_leaf_duration_05():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [

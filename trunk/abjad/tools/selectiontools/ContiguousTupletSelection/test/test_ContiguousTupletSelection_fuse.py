@@ -48,7 +48,7 @@ def test_ContiguousTupletSelection_fuse_01():
     assert new is not t1 and new is not t2
 
     assert testtools.compare(
-        new.lilypond_format,
+        new,
         r'''
         \times 2/3 {
             c'8 [
@@ -106,7 +106,7 @@ def test_ContiguousTupletSelection_fuse_02():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             \times 2/3 {
@@ -169,7 +169,7 @@ def test_ContiguousTupletSelection_fuse_03():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             \times 2/3 {
@@ -246,7 +246,7 @@ def test_ContiguousTupletSelection_fuse_06():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             \times 2/3 {

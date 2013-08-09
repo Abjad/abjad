@@ -18,7 +18,7 @@ def test_LilyPondCommandMark_format_01():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             #(set-accidental-style 'forget)
@@ -47,7 +47,7 @@ def test_LilyPondCommandMark_format_02():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8
@@ -73,7 +73,7 @@ def test_LilyPondCommandMark_format_03():
     '''
 
     assert testtools.compare(
-        note.lilypond_format,
+        note,
         r'''
         c'4
         \break
@@ -95,7 +95,7 @@ def test_LilyPondCommandMark_format_04():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \break
@@ -136,7 +136,7 @@ def test_LilyPondCommandMark_format_07():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \compressFullBarRests
@@ -159,7 +159,7 @@ def test_LilyPondCommandMark_format_08():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \expandFullBarRests
@@ -177,7 +177,7 @@ def test_LilyPondCommandMark_format_09():
     marktools.LilyPondCommandMark('voiceOne')(voice[0])
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             \voiceOne
@@ -198,7 +198,7 @@ def test_LilyPondCommandMark_format_10():
     voice = Voice(notetools.make_repeated_notes(4))
     marktools.LilyPondCommandMark('voiceOne')(voice[0])
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             \voiceOne
@@ -213,7 +213,7 @@ def test_LilyPondCommandMark_format_10():
     select(voice[0]).detach_marks()
     marktools.LilyPondCommandMark('voiceTwo')(voice[0])
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             \voiceTwo
@@ -228,7 +228,7 @@ def test_LilyPondCommandMark_format_10():
     select(voice[0]).detach_marks()
     marktools.LilyPondCommandMark('voiceThree')(voice[0])
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             \voiceThree
@@ -243,7 +243,7 @@ def test_LilyPondCommandMark_format_10():
     select(voice[0]).detach_marks()
     marktools.LilyPondCommandMark('voiceFour')(voice[0])
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             \voiceFour
@@ -257,7 +257,7 @@ def test_LilyPondCommandMark_format_10():
 
     select(voice[0]).detach_marks()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8
@@ -277,7 +277,7 @@ def test_LilyPondCommandMark_format_11():
     marktools.LilyPondCommandMark('voiceOne')(voice)
     marktools.LilyPondCommandMark('voiceTwo')(voice[1])
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             \voiceOne

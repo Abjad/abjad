@@ -10,7 +10,7 @@ def test_LayoutBlock_lilypond_command_mark_01():
     lilypond_file.layout_block.append(marktools.LilyPondCommandMark('accidentalStyle forget'))
 
     assert testtools.compare(
-        lilypond_file.layout_block.lilypond_format,
+        lilypond_file.layout_block,
         r'''
         \layout {
             \accidentalStyle forget

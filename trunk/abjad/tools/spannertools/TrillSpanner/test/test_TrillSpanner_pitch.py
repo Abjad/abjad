@@ -22,7 +22,7 @@ def test_TrillSpanner_pitch_01():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \pitchedTrill
@@ -55,7 +55,7 @@ def test_TrillSpanner_pitch_02():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \pitchedTrill
@@ -88,7 +88,7 @@ def test_TrillSpanner_pitch_03():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 \startTrillSpan

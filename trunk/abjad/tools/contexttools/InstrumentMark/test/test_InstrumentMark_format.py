@@ -19,7 +19,7 @@ def test_InstrumentMark_format_01():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \set Staff.instrumentName = \markup { Flute }

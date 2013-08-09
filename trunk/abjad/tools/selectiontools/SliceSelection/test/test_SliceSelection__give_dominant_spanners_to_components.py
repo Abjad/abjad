@@ -52,7 +52,7 @@ def test_SliceSelection__give_dominant_spanners_to_components_01():
 
     assert not select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [ \<
@@ -77,7 +77,7 @@ def test_SliceSelection__give_dominant_spanners_to_components_01():
 
     assert not select(recipient).is_well_formed()
     assert testtools.compare(
-        recipient.lilypond_format,
+        recipient,
         r'''
         \new Voice {
             c'16 [ (
@@ -129,7 +129,7 @@ def test_SliceSelection__give_dominant_spanners_to_components_02():
     '''
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -156,7 +156,7 @@ def test_SliceSelection__give_dominant_spanners_to_components_02():
     '''
 
     assert testtools.compare(
-        recipient.lilypond_format,
+        recipient,
         r'''
         \new Voice {
             c'8 [

@@ -29,7 +29,7 @@ def test_measuretools_append_spacer_skip_to_underfull_measure_01():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 5/12
@@ -70,7 +70,7 @@ def test_measuretools_append_spacer_skip_to_underfull_measure_02():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 5/8

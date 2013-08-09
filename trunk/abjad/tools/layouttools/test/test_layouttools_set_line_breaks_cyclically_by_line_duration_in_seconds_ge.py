@@ -71,7 +71,7 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_in_seconds_ge_0
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \tempo 8=44

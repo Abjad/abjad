@@ -9,7 +9,7 @@ def test_LilyPondTweaksReservoir___setattr___01():
     chord[0].tweak.transparent = True
 
     assert testtools.compare(
-        chord.lilypond_format,
+        chord,
         r'''
         <
             \tweak #'transparent ##t
@@ -29,7 +29,7 @@ def test_LilyPondTweaksReservoir___setattr___02():
     chord[0].tweak.style = 'harmonic'
 
     assert testtools.compare(
-        chord.lilypond_format,
+        chord,
         r'''
         <
             \tweak #'style #'harmonic

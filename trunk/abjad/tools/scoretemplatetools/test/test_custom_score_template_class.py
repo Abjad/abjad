@@ -37,7 +37,7 @@ def test_custom_score_template_class_01():
     '''
 
     assert testtools.compare(
-        score.lilypond_format,
+        score,
         r'''
         \context Score = "Green Score" <<
             \context Staff = "Red Staff" {
@@ -85,7 +85,7 @@ def test_custom_score_template_class_02():
     '''
 
     assert testtools.compare(
-        score.lilypond_format,
+        score,
         r'''
         \new Score <<
             \new CustomStaff {
@@ -151,7 +151,7 @@ def test_custom_score_template_class_02():
     '''
 
     assert testtools.compare(
-        lilypond_file.layout_block.lilypond_format,
+        lilypond_file.layout_block,
         r'''
         \layout {
             \context {
@@ -194,7 +194,7 @@ def test_custom_score_template_class_02():
     '''
 
     assert testtools.compare(
-        lilypond_file.score_block.lilypond_format,
+        lilypond_file.score_block,
         r'''
         \score {
             \new Score <<

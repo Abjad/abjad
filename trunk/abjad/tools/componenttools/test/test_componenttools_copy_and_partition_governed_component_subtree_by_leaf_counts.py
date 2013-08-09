@@ -23,7 +23,7 @@ def test_componenttools_copy_and_partition_governed_component_subtree_by_leaf_co
 
     assert select(left).is_well_formed()
     assert testtools.compare(
-        left.lilypond_format,
+        left,
         r'''
         \new Voice {
             \times 2/3 {
@@ -44,7 +44,7 @@ def test_componenttools_copy_and_partition_governed_component_subtree_by_leaf_co
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        right.lilypond_format,
+        right,
         r'''
         \new Voice {
             \times 2/3 {
@@ -74,7 +74,7 @@ def test_componenttools_copy_and_partition_governed_component_subtree_by_leaf_co
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [
@@ -92,7 +92,7 @@ def test_componenttools_copy_and_partition_governed_component_subtree_by_leaf_co
 
     assert select(result[0]).is_well_formed()
     assert testtools.compare(
-        result[0].lilypond_format,
+        result[0],
         r'''
         \new Voice {
             c'8 [ ]
@@ -109,7 +109,7 @@ def test_componenttools_copy_and_partition_governed_component_subtree_by_leaf_co
 
     assert select(result[-1]).is_well_formed()
     assert testtools.compare(
-        result[-1].lilypond_format,
+        result[-1],
         r'''
         \new Voice {
             d'8 [

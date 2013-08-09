@@ -12,7 +12,7 @@ def test_Chord_append_01():
     chord.append(note_head)
 
     assert testtools.compare(
-        chord.lilypond_format,
+        chord,
         r'''
         <
             c'

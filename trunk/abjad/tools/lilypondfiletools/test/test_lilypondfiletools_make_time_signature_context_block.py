@@ -24,7 +24,7 @@ def test_lilypondfiletools_make_time_signature_context_block_01():
     '''
 
     assert testtools.compare(
-        context_block.lilypond_format,
+        context_block,
         r'''
         \context {
             \name TimeSignatureContext

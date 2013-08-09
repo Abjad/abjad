@@ -21,7 +21,7 @@ def test_scoretools_make_empty_piano_score_01():
 
     assert select(score).is_well_formed()
     assert testtools.compare(
-        score.lilypond_format,
+        score,
         r'''
         \new Score <<
             \new PianoStaff <<

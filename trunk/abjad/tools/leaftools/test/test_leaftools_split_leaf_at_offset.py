@@ -35,7 +35,7 @@ def test_leaftools_split_leaf_at_offset_01():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 [
@@ -80,7 +80,7 @@ def test_leaftools_split_leaf_at_offset_02():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 [
@@ -124,7 +124,7 @@ def test_leaftools_split_leaf_at_offset_03():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 [
@@ -165,7 +165,7 @@ def test_leaftools_split_leaf_at_offset_04():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 [
@@ -210,7 +210,7 @@ def test_leaftools_split_leaf_at_offset_05():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 [
@@ -262,7 +262,7 @@ def test_leaftools_split_leaf_at_offset_06():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [

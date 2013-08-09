@@ -32,7 +32,7 @@ def test_Chord___setitem___03():
     chord[0] = note_head
 
     assert testtools.compare(
-        chord.lilypond_format,
+        chord,
         r'''
         <
             \tweak #'color #red

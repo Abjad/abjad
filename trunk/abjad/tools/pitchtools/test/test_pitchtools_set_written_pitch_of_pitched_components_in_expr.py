@@ -27,7 +27,7 @@ def test_pitchtools_set_written_pitch_of_pitched_components_in_expr_01():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'4

@@ -7,7 +7,7 @@ def test_SlurSpanner_direction_01():
     slur = spannertools.SlurSpanner(voice, direction=Up)
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 ^ (

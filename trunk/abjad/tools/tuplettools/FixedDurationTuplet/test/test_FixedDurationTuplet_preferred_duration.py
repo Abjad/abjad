@@ -20,7 +20,7 @@ def test_FixedDurationTuplet_preferred_duration_01():
 
     assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \times 4/6 {
             c'8

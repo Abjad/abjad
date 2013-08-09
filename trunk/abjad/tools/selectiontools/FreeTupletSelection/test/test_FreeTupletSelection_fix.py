@@ -31,7 +31,7 @@ def test_FreeTupletSelection_fix_01():
     assert select(tuplet).is_well_formed()
     assert tuplet.multiplier.is_proper_tuplet_multiplier
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \times 2/3 {
             c'8
@@ -72,7 +72,7 @@ def test_FreeTupletSelection_fix_02():
     assert select(tuplet).is_well_formed()
     assert tuplet.multiplier.is_proper_tuplet_multiplier
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 4/3 {
@@ -115,7 +115,7 @@ def test_FreeTupletSelection_fix_03():
     assert select(tuplet).is_well_formed()
     assert tuplet.multiplier.is_proper_tuplet_multiplier
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 5/6 {

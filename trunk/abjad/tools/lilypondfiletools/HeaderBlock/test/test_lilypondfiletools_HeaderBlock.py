@@ -16,7 +16,7 @@ def test_lilypondfiletools_HeaderBlock_01():
     '''
 
     assert testtools.compare(
-        header_block.lilypond_format,
+        header_block,
         r'''
         \header {
             composer = \markup { Josquin }

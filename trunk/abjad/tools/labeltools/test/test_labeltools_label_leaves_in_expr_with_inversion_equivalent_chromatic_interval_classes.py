@@ -8,7 +8,7 @@ def test_labeltools_label_leaves_in_expr_with_inversion_equivalent_chromatic_int
     labeltools.label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes(staff)
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r"""
         \new Staff {
             c'8 ^ \markup { 1 }

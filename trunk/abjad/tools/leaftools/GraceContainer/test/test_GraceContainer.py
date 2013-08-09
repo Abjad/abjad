@@ -12,7 +12,7 @@ def test_GraceContainer_01():
     assert isinstance(gracecontainer, Container)
     assert len(gracecontainer) == 3
     assert testtools.compare(
-        gracecontainer.lilypond_format,
+        gracecontainer,
         r'''
         \grace {
             c'16
@@ -55,7 +55,7 @@ def test_GraceContainer_03():
     gracecontainer = leaftools.GraceContainer(notetools.make_repeated_notes(3))
     gracecontainer.kind = 'grace'
     assert testtools.compare(
-        gracecontainer.lilypond_format,
+        gracecontainer,
         r'''
         \grace {
             c'8
@@ -81,7 +81,7 @@ def test_GraceContainer_04():
     gracecontainer = leaftools.GraceContainer(notetools.make_repeated_notes(3))
     gracecontainer.kind = 'acciaccatura'
     assert testtools.compare(
-        gracecontainer.lilypond_format,
+        gracecontainer,
         r'''
         \acciaccatura {
             c'8
@@ -107,7 +107,7 @@ def test_GraceContainer_05():
     gracecontainer = leaftools.GraceContainer(notetools.make_repeated_notes(3))
     gracecontainer.kind = 'appoggiatura'
     assert testtools.compare(
-        gracecontainer.lilypond_format,
+        gracecontainer,
         r'''
         \appoggiatura {
             c'8
@@ -133,7 +133,7 @@ def test_GraceContainer_06():
     gracecontainer = leaftools.GraceContainer(notetools.make_repeated_notes(3))
     gracecontainer.kind = 'after'
     assert testtools.compare(
-        gracecontainer.lilypond_format,
+        gracecontainer,
         r'''
         {
             c'8

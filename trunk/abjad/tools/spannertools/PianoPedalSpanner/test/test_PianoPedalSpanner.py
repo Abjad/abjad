@@ -21,7 +21,7 @@ def test_PianoPedalSpanner_01():
     assert piano_pedal.kind == 'sustain'
     assert piano_pedal.style == 'mixed'
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \set Staff.pedalSustainStyle = #'mixed
@@ -54,7 +54,7 @@ def test_PianoPedalSpanner_02():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \set Staff.pedalSustainStyle = #'mixed
@@ -87,7 +87,7 @@ def test_PianoPedalSpanner_03():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \set Staff.pedalSustainStyle = #'mixed
@@ -121,7 +121,7 @@ def test_PianoPedalSpanner_04():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \set Staff.pedalSustainStyle = #'text
@@ -155,7 +155,7 @@ def test_PianoPedalSpanner_05():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \set Staff.pedalSustainStyle = #'bracket
@@ -193,7 +193,7 @@ def test_PianoPedalSpanner_06():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \set Staff.pedalSustainStyle = #'mixed

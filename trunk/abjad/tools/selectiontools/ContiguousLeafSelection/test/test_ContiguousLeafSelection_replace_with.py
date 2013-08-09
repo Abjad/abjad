@@ -21,7 +21,7 @@ def test_ContiguousLeafSelection_replace_with_01():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             r8
@@ -52,7 +52,7 @@ def test_ContiguousLeafSelection_replace_with_02():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             s8

@@ -44,7 +44,7 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_01():
     assert select(staff).is_well_formed()
     assert len(result) == 2
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -82,7 +82,7 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_02():
     assert select(staff).is_well_formed()
     assert len(result) == 1
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'2

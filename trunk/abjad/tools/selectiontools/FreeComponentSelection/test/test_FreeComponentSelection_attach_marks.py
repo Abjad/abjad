@@ -20,7 +20,7 @@ def test_FreeComponentSelection_attach_marks_01():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 -\marcato -\staccato
@@ -55,7 +55,7 @@ def test_FreeComponentSelection_attach_marks_02():
         assert new_stem_tremolo is not stem_tremolo
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 :16

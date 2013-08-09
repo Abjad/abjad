@@ -17,7 +17,7 @@ def test_BeamSpanner_span_like_named_01():
     assert isinstance(beam.components[0], Staff)
     assert len(beam.leaves) == 8
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \context Voice = "foo" {
@@ -43,7 +43,7 @@ def test_BeamSpanner_span_like_named_01():
         assert isinstance(x, Voice)
     assert len(beam.leaves) == 8
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \context Voice = "foo" {
@@ -168,7 +168,7 @@ def test_BeamSpanner_span_like_named_04():
     assert len(beam.leaves) == 8
 
     assert testtools.compare(
-        container.lilypond_format,
+        container,
         r'''
         {
             <<

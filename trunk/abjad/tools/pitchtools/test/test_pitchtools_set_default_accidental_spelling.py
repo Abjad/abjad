@@ -24,7 +24,7 @@ def test_pitchtools_set_default_accidental_spelling_01():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8
@@ -67,7 +67,7 @@ def test_pitchtools_set_default_accidental_spelling_02():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8
@@ -112,7 +112,7 @@ def test_pitchtools_set_default_accidental_spelling_03():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8
@@ -159,7 +159,7 @@ def test_pitchtools_set_default_accidental_spelling_04():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8

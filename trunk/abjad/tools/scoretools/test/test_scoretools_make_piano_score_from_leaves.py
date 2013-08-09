@@ -38,7 +38,7 @@ def test_scoretools_make_piano_score_from_leaves_01():
 
     assert select(score).is_well_formed()
     assert testtools.compare(
-        score.lilypond_format,
+        score,
         r"""
         \new Score <<
             \new PianoStaff <<
@@ -110,7 +110,7 @@ def test_scoretools_make_piano_score_from_leaves_02():
     '''
 
     assert testtools.compare(
-        score.lilypond_format,
+        score,
         r'''
         \new Score <<
             \new PianoStaff <<

@@ -54,7 +54,7 @@ def test_FixedDurationTuplet_03():
     assert repr(tuplet) == "FixedDurationTuplet(1/4, [c'8, c'8])"
     assert str(tuplet) == "{@ 1:1 c'8, c'8 @}"
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         {
             c'8
@@ -73,7 +73,7 @@ def test_FixedDurationTuplet_04():
     assert repr(tuplet) == "FixedDurationTuplet(1/4, [c'8, c'8])"
     assert str(tuplet) == "{@ 1:1 c'8, c'8 @}"
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         {
             c'8
@@ -91,7 +91,7 @@ def test_FixedDurationTuplet_05():
     assert tuplet.is_invisible is None
     tuplet.is_invisible = True
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \scaleDurations #'(2 . 3) {
             c'8
@@ -111,7 +111,7 @@ def test_FixedDurationTuplet_05():
 
     tuplet.is_invisible = False
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \times 2/3 {
             c'8

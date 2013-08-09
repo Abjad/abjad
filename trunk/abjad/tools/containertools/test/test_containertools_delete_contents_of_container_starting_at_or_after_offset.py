@@ -16,7 +16,7 @@ def test_containertools_delete_contents_of_container_starting_at_or_after_offset
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 [ ]
@@ -40,7 +40,7 @@ def test_containertools_delete_contents_of_container_starting_at_or_after_offset
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 [

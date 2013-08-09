@@ -25,7 +25,7 @@ def test_measuretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 4/8
@@ -64,7 +64,7 @@ def test_measuretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 4/8

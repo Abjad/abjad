@@ -20,7 +20,7 @@ def test_SlurSpanner_01():
 
     assert more(voice).get_spanners() == set([slur])
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 (
@@ -43,7 +43,7 @@ def test_SlurSpanner_02():
     for leaf in voice.select_leaves():
         assert more(leaf).get_spanners() == set([slur])
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 (

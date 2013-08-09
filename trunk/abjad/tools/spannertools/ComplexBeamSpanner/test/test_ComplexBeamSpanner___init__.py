@@ -32,7 +32,7 @@ def test_ComplexBeamSpanner___init___02():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \set stemLeftBeamCount = #0

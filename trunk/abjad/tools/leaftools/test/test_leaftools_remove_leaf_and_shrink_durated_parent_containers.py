@@ -46,7 +46,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_01():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 5/6
@@ -118,7 +118,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_02():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 9/10
@@ -207,7 +207,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_03():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 11/15
@@ -791,7 +791,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_21():
 
     assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \times 2/3 {
             c'4
@@ -842,7 +842,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_22():
 
     assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \times 2/3 {
             c'4
@@ -886,7 +886,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_23():
 
     assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \times 4/5 {
             d'8
@@ -928,7 +928,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_24():
 
     assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \times 4/5 {
             d'8
@@ -974,7 +974,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_25():
 
     assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \times 2/3 {
             c'2
@@ -1024,7 +1024,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_26():
 
     assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \times 2/3 {
             c'2

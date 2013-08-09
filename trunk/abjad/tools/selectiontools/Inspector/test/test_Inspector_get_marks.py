@@ -12,7 +12,7 @@ def test_Inspector_get_marks_01():
         marktools.LilyPondCommandMark('slurUp')(staff[0])
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \slurDotted
@@ -41,7 +41,7 @@ def test_Inspector_get_marks_02():
         marktools.LilyPondCommandMark('slurDotted')(staff[0])
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             % beginning of note content
@@ -67,7 +67,7 @@ def test_Inspector_get_marks_03():
     dynamic_mark = contexttools.DynamicMark('p')(staff[0])
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \clef "treble"
@@ -91,7 +91,7 @@ def test_Inspector_get_marks_04():
     dynamic_mark = contexttools.DynamicMark('p')(staff[0])
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \clef "treble"
@@ -115,7 +115,7 @@ def test_Inspector_get_marks_05():
     annotation_2 = marktools.Annotation('annotation 2')(staff[0])
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8
@@ -137,7 +137,7 @@ def test_Inspector_get_marks_06():
     comment_mark_2 = marktools.LilyPondComment('comment 2')(staff[0])
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             % comment 1

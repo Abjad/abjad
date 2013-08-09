@@ -41,7 +41,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_01():
     assert select(voice).is_well_formed()
     assert select(new).is_well_formed()
     assert testtools.compare(
-        new.lilypond_format,
+        new,
         r'''
         \new Voice {
             e'8 \startTrillSpan
@@ -97,7 +97,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_02():
     assert select(voice).is_well_formed()
     assert select(new).is_well_formed()
     assert testtools.compare(
-        new.lilypond_format,
+        new,
         r'''
         \new Voice {
             {
@@ -154,7 +154,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_03():
     assert select(voice).is_well_formed()
     assert select(new).is_well_formed()
     assert testtools.compare(
-        new.lilypond_format,
+        new,
         r'''
         \new Voice {
             f'8 \startTrillSpan
@@ -222,7 +222,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_04():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        new.lilypond_format,
+        new,
         r'''
         \new Voice {
             {

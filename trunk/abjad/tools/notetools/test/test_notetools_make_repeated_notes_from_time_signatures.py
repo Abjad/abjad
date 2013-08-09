@@ -24,7 +24,7 @@ def test_notetools_make_repeated_notes_from_time_signatures_01():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             d''8

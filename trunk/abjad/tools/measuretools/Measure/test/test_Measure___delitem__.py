@@ -14,7 +14,7 @@ def test_Measure___delitem___01():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 3/8
@@ -38,7 +38,7 @@ def test_Measure___delitem___02():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 3/8
@@ -62,7 +62,7 @@ def test_Measure___delitem___03():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 2/8
@@ -85,7 +85,7 @@ def test_Measure___delitem___04():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 7/16
@@ -121,7 +121,7 @@ def test_Measure___delitem___05():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 3/9
@@ -171,7 +171,7 @@ def test_Measure___delitem___06():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 5/18

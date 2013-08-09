@@ -178,7 +178,7 @@ def test_Rest___init___13():
     '''
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [
@@ -210,7 +210,7 @@ def test_Rest___init___14():
     '''
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             r8 [

@@ -36,7 +36,7 @@ def test_TaleaRhythmMaker_tie_split_notes_01():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -101,7 +101,7 @@ def test_TaleaRhythmMaker_tie_split_notes_02():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {

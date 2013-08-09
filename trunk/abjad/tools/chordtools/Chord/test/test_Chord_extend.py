@@ -17,7 +17,7 @@ def test_Chord_extend_01():
     chord.extend(note_heads)
 
     assert testtools.compare(
-        chord.lilypond_format,
+        chord,
         r'''
         <
             ef'

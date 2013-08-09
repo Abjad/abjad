@@ -36,7 +36,7 @@ def test_labeltools_label_leaves_in_expr_with_pitch_class_numbers_01():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8
@@ -86,7 +86,7 @@ def test_labeltools_label_leaves_in_expr_with_pitch_class_numbers_02():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \once \override NoteHead #'color = #(x11-color 'red)

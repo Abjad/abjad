@@ -27,7 +27,7 @@ def test_PitchArrayRow_to_measure_01():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 4/8

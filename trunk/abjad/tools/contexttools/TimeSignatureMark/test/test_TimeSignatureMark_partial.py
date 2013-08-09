@@ -20,7 +20,7 @@ def test_TimeSignatureMark_partial_01():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \partial 8
@@ -67,7 +67,7 @@ def test_TimeSignatureMark_partial_03():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \partial 4
@@ -97,7 +97,7 @@ def test_TimeSignatureMark_partial_03():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \time 4/8

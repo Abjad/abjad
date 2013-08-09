@@ -20,7 +20,7 @@ def test_FixedDurationTuplet_fraction_01():
 
     assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 3/4 {
@@ -51,7 +51,7 @@ def test_FixedDurationTuplet_fraction_02():
 
     assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 4/3 {
@@ -79,7 +79,7 @@ def test_FixedDurationTuplet_fraction_03():
 
     assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         {
             c'8

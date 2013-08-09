@@ -6,7 +6,7 @@ def test_leaftools_replace_leaves_in_expr_with_named_simultaneous_voices_01():
     c = p(r'{ c8 \times 2/3 { c8 c c } \times 4/5 { c16 c c c c } c8 }')
     result = leaftools.replace_leaves_in_expr_with_named_simultaneous_voices(c.select_leaves()[2:7], 'upper', 'lower')
     assert testtools.compare(
-        c.lilypond_format,
+        c,
         r'''
         {
             c8

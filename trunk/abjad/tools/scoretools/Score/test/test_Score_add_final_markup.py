@@ -32,7 +32,7 @@ def test_Score_add_final_markup_01():
     '''
 
     assert testtools.compare(
-        score.lilypond_format,
+        score,
         r'''
         \new Score <<
             \new Staff {

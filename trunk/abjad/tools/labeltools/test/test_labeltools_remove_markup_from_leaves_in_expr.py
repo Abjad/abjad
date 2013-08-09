@@ -29,7 +29,7 @@ def test_labeltools_remove_markup_from_leaves_in_expr_01():
 
     assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \times 2/3 {
             c'8

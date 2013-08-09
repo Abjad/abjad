@@ -19,7 +19,7 @@ def test_BeamSpanner_span_anonymous_01():
     assert isinstance(beam.components[0], Container)
     assert len(beam.leaves) == 0
     assert testtools.compare(
-        container.lilypond_format,
+        container,
         r'''
         {
         }
@@ -51,7 +51,7 @@ def test_BeamSpanner_span_anonymous_02():
     assert isinstance(beam.components[0], Container)
     assert len(beam.leaves) == 8
     assert testtools.compare(
-        container.lilypond_format,
+        container,
         r'''
         {
             c'8 [
@@ -97,7 +97,7 @@ def test_BeamSpanner_span_anonymous_03():
     assert len(beam.leaves) == 8
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -142,7 +142,7 @@ def test_BeamSpanner_span_anonymous_04():
     assert len(beam.leaves) == 6
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -185,7 +185,7 @@ def test_BeamSpanner_span_anonymous_05():
     assert len(beam.leaves) == 6
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -226,7 +226,7 @@ def test_BeamSpanner_span_anonymous_06():
     assert len(beam.leaves) == 6
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -265,7 +265,7 @@ def test_BeamSpanner_span_anonymous_07():
     assert len(beam.leaves) == 0
     
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -310,7 +310,7 @@ def test_BeamSpanner_span_anonymous_08():
     assert len(beam.leaves) == 8
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -361,7 +361,7 @@ def test_BeamSpanner_span_anonymous_09():
     assert len(beam.leaves) == 4
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {

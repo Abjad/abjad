@@ -45,7 +45,7 @@ def test_lilypondfiletools_make_basic_lily_file_01():
     assert lilypond_file.score_block[0] is score
 
     assert testtools.compare(
-        lilypond_file.lilypond_format,
+        lilypond_file,
         r'''
         \header {
             composer = \markup { Josquin }

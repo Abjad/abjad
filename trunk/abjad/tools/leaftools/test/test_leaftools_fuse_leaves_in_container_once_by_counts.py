@@ -21,7 +21,7 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_01():
     '''
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'16 (
@@ -50,7 +50,7 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_02():
     '''
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'2 ( ~
@@ -78,7 +78,7 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_03():
     '''
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             r8
@@ -107,7 +107,7 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_04():
     '''
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 ( ~

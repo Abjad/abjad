@@ -11,7 +11,7 @@ def test_FreeLeafSelection_to_tuplets_with_ratio_01():
 
     tuplets = selection.to_tuplets_with_ratio([1], is_diminution=False)
     assert testtools.compare(
-        tuplets[0].lilypond_format,
+        tuplets[0],
         r'''
         {
             c'8.
@@ -21,7 +21,7 @@ def test_FreeLeafSelection_to_tuplets_with_ratio_01():
 
     tuplets = selection.to_tuplets_with_ratio([1, 2], is_diminution=False)
     assert testtools.compare(
-        tuplets[0].lilypond_format,
+        tuplets[0],
         r'''
         {
             c'16
@@ -36,7 +36,7 @@ def test_FreeLeafSelection_to_tuplets_with_ratio_01():
 
     tuplets = selection.to_tuplets_with_ratio([1, 2, 2, 3], is_diminution=False)
     assert testtools.compare(
-        tuplets[0].lilypond_format,
+        tuplets[0],
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 3/2 {
@@ -50,7 +50,7 @@ def test_FreeLeafSelection_to_tuplets_with_ratio_01():
 
     tuplets = selection.to_tuplets_with_ratio([1, 2, 2, 3, 3], is_diminution=False)
     assert testtools.compare(
-        tuplets[0].lilypond_format,
+        tuplets[0],
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 12/11 {
@@ -65,7 +65,7 @@ def test_FreeLeafSelection_to_tuplets_with_ratio_01():
 
     tuplets = selection.to_tuplets_with_ratio([1, 2, 2, 3, 3, 4], is_diminution=False)
     assert testtools.compare(
-        tuplets[0].lilypond_format,
+        tuplets[0],
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 8/5 {
@@ -87,7 +87,7 @@ def test_FreeLeafSelection_to_tuplets_with_ratio_02():
 
     tuplets = selection.to_tuplets_with_ratio([1], is_diminution=True)
     assert testtools.compare(
-        tuplets[0].lilypond_format,
+        tuplets[0],
         r'''
         {
             c'8.
@@ -97,7 +97,7 @@ def test_FreeLeafSelection_to_tuplets_with_ratio_02():
 
     tuplets = selection.to_tuplets_with_ratio([1, 2], is_diminution=True)
     assert testtools.compare(
-        tuplets[0].lilypond_format,
+        tuplets[0],
         r'''
         {
             c'16
@@ -112,7 +112,7 @@ def test_FreeLeafSelection_to_tuplets_with_ratio_02():
 
     tuplets = selection.to_tuplets_with_ratio([1, 2, 2, 3], is_diminution=True)
     assert testtools.compare(
-        tuplets[0].lilypond_format,
+        tuplets[0],
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 3/4 {
@@ -126,7 +126,7 @@ def test_FreeLeafSelection_to_tuplets_with_ratio_02():
 
     tuplets = selection.to_tuplets_with_ratio([1, 2, 2, 3, 3], is_diminution=True)
     assert testtools.compare(
-        tuplets[0].lilypond_format,
+        tuplets[0],
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 6/11 {
@@ -141,7 +141,7 @@ def test_FreeLeafSelection_to_tuplets_with_ratio_02():
 
     tuplets = selection.to_tuplets_with_ratio([1, 2, 2, 3, 3, 4], is_diminution=True)
     assert testtools.compare(
-        tuplets[0].lilypond_format,
+        tuplets[0],
         r'''
         \times 4/5 {
             c'64
@@ -164,7 +164,7 @@ def test_FreeLeafSelection_to_tuplets_with_ratio_03():
 
     tuplets =selection.to_tuplets_with_ratio(1 * [1], is_diminution=False)
     assert testtools.compare(
-        tuplets[0].lilypond_format,
+        tuplets[0],
         r'''
         {
             c'8.
@@ -174,7 +174,7 @@ def test_FreeLeafSelection_to_tuplets_with_ratio_03():
 
     tuplets =selection.to_tuplets_with_ratio(2 * [1], is_diminution=False)
     assert testtools.compare(
-        tuplets[0].lilypond_format,
+        tuplets[0],
         r'''
         {
             c'16.
@@ -185,7 +185,7 @@ def test_FreeLeafSelection_to_tuplets_with_ratio_03():
 
     tuplets =selection.to_tuplets_with_ratio(3 * [1], is_diminution=False)
     assert testtools.compare(
-        tuplets[0].lilypond_format,
+        tuplets[0],
         r'''
         {
             c'16
@@ -197,7 +197,7 @@ def test_FreeLeafSelection_to_tuplets_with_ratio_03():
 
     tuplets =selection.to_tuplets_with_ratio(4 * [1], is_diminution=False)
     assert testtools.compare(
-        tuplets[0].lilypond_format,
+        tuplets[0],
         r'''
         {
             c'32.
@@ -210,7 +210,7 @@ def test_FreeLeafSelection_to_tuplets_with_ratio_03():
 
     tuplets =selection.to_tuplets_with_ratio(5 * [1], is_diminution=False)
     assert testtools.compare(
-        tuplets[0].lilypond_format,
+        tuplets[0],
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 8/5 {
@@ -233,7 +233,7 @@ def test_FreeLeafSelection_to_tuplets_with_ratio_04():
 
     tuplets =selection.to_tuplets_with_ratio(1 * [1], is_diminution=True)
     assert testtools.compare(
-        tuplets[0].lilypond_format,
+        tuplets[0],
         r'''
         {
             c'8.
@@ -243,7 +243,7 @@ def test_FreeLeafSelection_to_tuplets_with_ratio_04():
 
     tuplets =selection.to_tuplets_with_ratio(2 * [1], is_diminution=True)
     assert testtools.compare(
-        tuplets[0].lilypond_format,
+        tuplets[0],
         r'''
         {
             c'16.
@@ -254,7 +254,7 @@ def test_FreeLeafSelection_to_tuplets_with_ratio_04():
 
     tuplets =selection.to_tuplets_with_ratio(3 * [1], is_diminution=True)
     assert testtools.compare(
-        tuplets[0].lilypond_format,
+        tuplets[0],
         r'''
         {
             c'16
@@ -266,7 +266,7 @@ def test_FreeLeafSelection_to_tuplets_with_ratio_04():
 
     tuplets =selection.to_tuplets_with_ratio(4 * [1], is_diminution=True)
     assert testtools.compare(
-        tuplets[0].lilypond_format,
+        tuplets[0],
         r'''
         {
             c'32.

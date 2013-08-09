@@ -33,7 +33,7 @@ def test_Chord_lilypond_format_03():
     marktools.LilyPondCommandMark('glissando', 'right')(chord)
 
     assert testtools.compare(
-        chord.lilypond_format,
+        chord,
         r'''
         <
             \tweak #'color #red

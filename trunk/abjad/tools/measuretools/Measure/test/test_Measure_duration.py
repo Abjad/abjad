@@ -23,7 +23,7 @@ def test_Measure_duration_01():
     assert measure.get_duration() == Duration(3, 8)
 
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 3/8
@@ -57,7 +57,7 @@ def test_Measure_duration_02():
     assert measure.get_duration() == Duration(3, 10)
 
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 3/10

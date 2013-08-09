@@ -27,7 +27,7 @@ def test_FreeTupletSelection_augmented_to_diminished_01():
 
     assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \times 2/3 {
             c'4

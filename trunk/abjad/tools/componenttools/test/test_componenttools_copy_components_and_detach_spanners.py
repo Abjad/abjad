@@ -71,7 +71,7 @@ def test_componenttools_copy_components_and_detach_spanners_01():
     assert select(voice).is_well_formed()
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -163,7 +163,7 @@ def test_componenttools_copy_components_and_detach_spanners_02():
     assert select(voice).is_well_formed()
     assert select(new).is_well_formed()
     assert testtools.compare(
-        new.lilypond_format,
+        new,
         r'''
         \new Voice {
             {
@@ -242,7 +242,7 @@ def test_componenttools_copy_components_and_detach_spanners_03():
     assert select(voice).is_well_formed()
     assert select(new).is_well_formed()
     assert testtools.compare(
-        new.lilypond_format,
+        new,
         r'''
         \new Voice {
             c'8
@@ -316,7 +316,7 @@ def test_componenttools_copy_components_and_detach_spanners_04():
     assert select(voice).is_well_formed()
     assert select(new).is_well_formed()
     assert testtools.compare(
-        new.lilypond_format,
+        new,
         r'''
         \new Voice {
             {
@@ -414,7 +414,7 @@ def test_componenttools_copy_components_and_detach_spanners_05():
 
     assert select(new).is_well_formed()
     assert testtools.compare(
-        new.lilypond_format,
+        new,
         r'''
         \new Voice {
             {

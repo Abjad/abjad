@@ -50,7 +50,7 @@ def test_componenttools_split_components_at_offsets_01():
     assert select(staff).is_well_formed()
     assert len(parts) == 3
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -117,7 +117,7 @@ def test_componenttools_split_components_at_offsets_02():
     assert select(staff).is_well_formed()
     assert len(parts) == 6
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -188,7 +188,7 @@ def test_componenttools_split_components_at_offsets_03():
     assert select(staff).is_well_formed()
     assert len(parts) == 3
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -273,7 +273,7 @@ def test_componenttools_split_components_at_offsets_04():
     assert select(staff).is_well_formed()
     assert len(parts) == 6
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -356,7 +356,7 @@ def test_componenttools_split_components_at_offsets_05():
     assert select(staff).is_well_formed()
     assert len(parts) == 6
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -436,7 +436,7 @@ def test_componenttools_split_components_at_offsets_06():
     assert select(staff).is_well_formed()
     assert len(parts) == 4
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -502,7 +502,7 @@ def test_componenttools_split_components_at_offsets_07():
     assert select(staff).is_well_formed()
     assert len(parts) == 8
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -574,7 +574,7 @@ def test_componenttools_split_components_at_offsets_08():
     assert select(staff).is_well_formed()
     assert len(parts) == 4
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -660,7 +660,7 @@ def test_componenttools_split_components_at_offsets_09():
     assert select(staff).is_well_formed()
     assert len(parts) == 6
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -744,7 +744,7 @@ def test_componenttools_split_components_at_offsets_10():
     assert select(staff).is_well_formed()
     assert len(parts) == 3
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -809,7 +809,7 @@ def test_componenttools_split_components_at_offsets_11():
     assert select(staff).is_well_formed()
     assert len(parts) == 6
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -880,7 +880,7 @@ def test_componenttools_split_components_at_offsets_12():
     assert select(staff).is_well_formed()
     assert len(parts) == 3
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -965,7 +965,7 @@ def test_componenttools_split_components_at_offsets_13():
     assert select(staff).is_well_formed()
     assert len(parts) == 6
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -1028,7 +1028,7 @@ def test_componenttools_split_components_at_offsets_14():
     assert select(staff).is_well_formed()
     assert len(parts) == 6
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'16. ~
@@ -1092,7 +1092,7 @@ def test_componenttools_split_components_at_offsets_15():
     assert select(staff).is_well_formed()
     assert len(parts) == 6
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -1172,7 +1172,7 @@ def test_componenttools_split_components_at_offsets_16():
     assert select(staff).is_well_formed()
     assert len(parts) == 4
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -1238,7 +1238,7 @@ def test_componenttools_split_components_at_offsets_17():
     assert select(staff).is_well_formed()
     assert len(parts) == 8
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -1310,7 +1310,7 @@ def test_componenttools_split_components_at_offsets_18():
     assert select(staff).is_well_formed()
     assert len(parts) == 4
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -1396,7 +1396,7 @@ def test_componenttools_split_components_at_offsets_19():
     assert select(staff).is_well_formed()
     assert len(parts) == 6
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -1482,7 +1482,7 @@ def test_componenttools_split_components_at_offsets_20():
     assert select(staff).is_well_formed()
     assert len(parts) == 3
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -1561,7 +1561,7 @@ def test_componenttools_split_components_at_offsets_21():
     assert select(staff).is_well_formed()
     assert len(parts) == 4
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -1641,7 +1641,7 @@ def test_componenttools_split_components_at_offsets_22():
     assert select(staff).is_well_formed()
     assert len(parts) == 3
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -1721,7 +1721,7 @@ def test_componenttools_split_components_at_offsets_23():
     assert select(staff).is_well_formed()
     assert len(parts) == 4
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -1775,7 +1775,7 @@ def test_componenttools_split_components_at_offsets_24():
     assert select(staff).is_well_formed()
     assert len(parts) == 3
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'32 ~
@@ -1814,7 +1814,7 @@ def test_componenttools_split_components_at_offsets_25():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'64 [ ] ~

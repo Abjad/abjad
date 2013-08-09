@@ -26,7 +26,7 @@ def test_LilyPondComment_after_01():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             \override Beam #'thickness = #3
@@ -59,7 +59,7 @@ def test_LilyPondComment_after_02():
 
     assert select(note).is_well_formed()
     assert testtools.compare(
-        note.lilypond_format,
+        note,
         r'''
         \once \override Beam #'thickness = #3
         c'8

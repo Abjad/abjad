@@ -9,7 +9,7 @@ def test_Cluster___init___01():
     assert not cluster.is_simultaneous
     assert len(cluster) == 0
     assert testtools.compare(
-        cluster.lilypond_format,
+        cluster,
         r'''
         \makeClusters {
         }
@@ -23,7 +23,7 @@ def test_Cluster___init___02():
     assert not cluster.is_simultaneous
     assert len(cluster) == 4
     assert testtools.compare(
-        cluster.lilypond_format,
+        cluster,
         r'''
         \makeClusters {
             cs'4

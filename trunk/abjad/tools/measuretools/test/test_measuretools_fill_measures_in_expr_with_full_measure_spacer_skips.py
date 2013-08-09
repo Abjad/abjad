@@ -20,7 +20,7 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_01():
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 5/18
@@ -98,7 +98,7 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_02():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -181,7 +181,7 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_03():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {

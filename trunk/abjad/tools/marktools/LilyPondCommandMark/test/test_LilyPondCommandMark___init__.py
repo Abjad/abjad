@@ -24,7 +24,7 @@ def test_LilyPondCommandMark___init___01():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \slurDotted
@@ -58,7 +58,7 @@ def test_LilyPondCommandMark___init___02():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \slurUp

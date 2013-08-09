@@ -25,7 +25,7 @@ def test_Container_append_01():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [
@@ -58,7 +58,7 @@ def test_Container_append_02():
 
     assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \times 4/7 {
             c'8 [
@@ -125,7 +125,7 @@ def test_Container_append_04():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [
@@ -148,7 +148,7 @@ def test_Container_append_04():
 
     assert select(u).is_well_formed()
     assert testtools.compare(
-        u.lilypond_format,
+        u,
         r'''
         \new Voice {
             c'8 [
@@ -188,7 +188,7 @@ def test_Container_append_05():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [

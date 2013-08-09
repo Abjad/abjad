@@ -22,7 +22,7 @@ def test_labeltools_label_leaves_in_expr_with_melodic_chromatic_intervals_01():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 ^ \markup { +2 }
@@ -45,7 +45,7 @@ def test_labeltools_label_leaves_in_expr_with_melodic_chromatic_intervals_02():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r"""
         \new Staff {
             c'8 ^ \markup { +25 }
@@ -72,7 +72,7 @@ def test_labeltools_label_leaves_in_expr_with_melodic_chromatic_intervals_03():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r"""
         \new Staff {
             c'8 ^ \markup { +25.5 }

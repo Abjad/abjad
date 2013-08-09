@@ -24,7 +24,7 @@ def test_LilyPondParser__lilypondfile__HeaderBlock_01():
     assert len(result) == 2
 
     assert testtools.compare(
-        result[0].lilypond_format,
+        result[0],
         r'''
         \header {
             globalvariable = #"This overrides the global variable"
@@ -51,7 +51,7 @@ def test_LilyPondParser__lilypondfile__HeaderBlock_01():
     '''
 
     assert testtools.compare(
-        result[1].lilypond_format,
+        result[1],
         r'''
         \score {
             \new Staff {

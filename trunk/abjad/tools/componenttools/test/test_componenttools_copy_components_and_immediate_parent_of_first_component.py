@@ -19,7 +19,7 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
     assert select(staff).is_well_formed()
     assert select(u).is_well_formed()
     assert testtools.compare(
-        u.lilypond_format,
+        u,
         r'''
         \new Staff {
             c'8
@@ -46,7 +46,7 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
     assert select(staff).is_well_formed()
     assert select(u).is_well_formed()
     assert testtools.compare(
-        u.lilypond_format,
+        u,
         r'''
         \new Staff {
             e'8
@@ -77,7 +77,7 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
     assert len(u) == 3
 
     assert testtools.compare(
-        u.lilypond_format,
+        u,
         r'''
         \times 4/5 {
             c'8
@@ -114,7 +114,7 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
     assert select(staff).is_well_formed()
     assert select(u).is_well_formed()
     assert testtools.compare(
-        u.lilypond_format,
+        u,
         r'''
         \new Staff {
             \times 2/3 {

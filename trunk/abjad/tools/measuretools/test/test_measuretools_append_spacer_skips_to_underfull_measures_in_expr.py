@@ -43,7 +43,7 @@ def test_measuretools_append_spacer_skips_to_underfull_measures_in_expr_01():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {

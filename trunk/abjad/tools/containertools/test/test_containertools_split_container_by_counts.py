@@ -54,7 +54,7 @@ def test_containertools_split_container_by_counts_01():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -118,7 +118,7 @@ def test_containertools_split_container_by_counts_02():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -190,7 +190,7 @@ def test_containertools_split_container_by_counts_03():
     assert select(voice).is_well_formed()
     assert len(parts) == 4
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -255,7 +255,7 @@ def test_containertools_split_container_by_counts_04():
     assert select(voice).is_well_formed()
     assert len(parts) == 4
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -313,7 +313,7 @@ def test_containertools_split_container_by_counts_05():
     assert len(parts) == 1
     assert container is not voice[0]
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -366,7 +366,7 @@ def test_containertools_split_container_by_counts_06():
     assert select(voice).is_well_formed()
     assert len(parts) == 2
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -418,7 +418,7 @@ def test_containertools_split_container_by_counts_07():
     assert select(voice).is_well_formed()
     assert len(parts) == 1
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -481,7 +481,7 @@ def test_containertools_split_container_by_counts_08():
     assert select(voice).is_well_formed()
     assert len(parts) == 3
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -552,7 +552,7 @@ def test_containertools_split_container_by_counts_09():
     assert select(voice).is_well_formed()
     assert len(parts) == 3
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -612,7 +612,7 @@ def test_containertools_split_container_by_counts_10():
     assert len(parts) == 1
     assert container is not voice[0]
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -664,7 +664,7 @@ def test_containertools_split_container_by_counts_11():
     assert select(voice).is_well_formed()
     assert len(parts) == 2
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -715,7 +715,7 @@ def test_containertools_split_container_by_counts_12():
     assert select(voice).is_well_formed()
     assert len(parts) == 1
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {

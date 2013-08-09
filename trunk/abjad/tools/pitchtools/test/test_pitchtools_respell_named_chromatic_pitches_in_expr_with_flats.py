@@ -54,7 +54,7 @@ def test_pitchtools_respell_named_chromatic_pitches_in_expr_with_flats_04():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c''8

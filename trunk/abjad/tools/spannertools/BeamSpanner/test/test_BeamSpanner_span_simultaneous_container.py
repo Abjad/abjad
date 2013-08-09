@@ -15,7 +15,7 @@ def test_BeamSpanner_span_simultaneous_container_01():
     assert beam.components[0] is container
     assert len(beam.leaves) == 0
     assert testtools.compare(
-        container.lilypond_format,
+        container,
         r'''
         <<
         >>
@@ -66,7 +66,7 @@ def test_BeamSpanner_span_simultaneous_container_03():
     assert len(beam.components) == 1
     assert isinstance(beam.components[0], Container)
     assert testtools.compare(
-        container.lilypond_format,
+        container,
         r'''
         <<
             \new Voice {
@@ -129,7 +129,7 @@ def test_BeamSpanner_span_simultaneous_container_05():
     assert len(beam.components) == 1
     assert len(beam.leaves) == 4
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 [
@@ -174,7 +174,7 @@ def test_BeamSpanner_span_simultaneous_container_06():
     assert beam.components[2] is staff[2]
     assert len(beam.leaves) == 12
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \context Voice = "foo" {

@@ -98,7 +98,7 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_06():
     assert len(result[0][0]) == 4
     assert len(result[0][1]) == 4
     assert testtools.compare(
-        result.lilypond_format,
+        result,
         r'''
         {
             \context Staff = "staffOne" {
@@ -179,7 +179,7 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_08():
     containertools.fuse_like_named_contiguous_containers_in_expr(container)
     assert len(container) == 1
     assert testtools.compare(
-        container.lilypond_format,
+        container,
         r'''
         {
             \context StaffGroup = "sg" <<
@@ -341,7 +341,7 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_09():
     seq = containertools.fuse_like_named_contiguous_containers_in_expr([sg_g, componenttools.copy_components_and_fracture_crossing_spanners([sg_g])[0]])
 
     assert testtools.compare(
-        seq.lilypond_format,
+        seq,
         r'''
         \context StaffGroup = "topGroup" <<
             \context StaffGroup = "groupOne" <<
@@ -467,7 +467,7 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_10():
     tadd = containertools.fuse_like_named_contiguous_containers_in_expr(
         [t1, t2])
     assert testtools.compare(
-        tadd.lilypond_format,
+        tadd,
         r'''
         {
             c'4
@@ -495,7 +495,7 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_11():
     assert isinstance(tadd[0], Voice)
     assert len(tadd[0]) == 4
     assert testtools.compare(
-        tadd.lilypond_format,
+        tadd,
         r'''
         \context Staff = "staffOne" {
             \context Voice = "voiceOne" {

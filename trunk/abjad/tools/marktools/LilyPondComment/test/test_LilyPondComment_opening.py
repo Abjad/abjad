@@ -24,7 +24,7 @@ def test_LilyPondComment_opening_01():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             % Voice opening comments here.
@@ -56,7 +56,7 @@ def test_LilyPondComment_opening_02():
 
     assert select(note).is_well_formed()
     assert testtools.compare(
-        note.lilypond_format,
+        note,
         r'''
         \once \override Beam #'thickness = #3
         % Leaf opening comments here.

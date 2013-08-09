@@ -9,7 +9,7 @@ def test_Note_add_artificial_harmonic_01():
     note = Note("c'4")
     note = note.add_artificial_harmonic()
     assert testtools.compare(
-        note.lilypond_format,
+        note,
         r'''
         <
             c'
@@ -36,7 +36,7 @@ def test_Note_add_artificial_harmonic_02():
     diatonic_interval = pitchtools.MelodicDiatonicInterval('minor', 3)
     note = note.add_artificial_harmonic(diatonic_interval)
     assert testtools.compare(
-        note.lilypond_format,
+        note,
         r'''
         <
             c'
@@ -81,7 +81,7 @@ def test_Note_add_artificial_harmonic_03():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8

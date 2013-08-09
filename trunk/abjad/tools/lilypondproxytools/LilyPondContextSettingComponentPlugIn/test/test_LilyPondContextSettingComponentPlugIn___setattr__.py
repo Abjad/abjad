@@ -22,7 +22,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___01():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff \with {
             autoBeaming = ##t
@@ -55,7 +55,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___02():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8
@@ -86,7 +86,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___03():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \set Score.currentBarNumber = #12
@@ -126,7 +126,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___04():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -164,7 +164,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___05():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff \with {
             fontSize = #-3
@@ -198,7 +198,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___06():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff \with {
             instrumentName = "Violini I"
@@ -232,7 +232,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___07():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff \with {
             instrumentName = \markup { \circle { V } }
@@ -268,7 +268,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___08():
 
     assert select(score).is_well_formed()
     assert testtools.compare(
-        score.lilypond_format,
+        score,
         r'''
         \new Score \with {
             proportionalNotationDuration = #(ly:make-moment 1 56)
@@ -304,7 +304,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___09():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff \with {
             shortInstrumentName = "Vni. I"
@@ -338,7 +338,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___10():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff \with {
             shortInstrumentName = \markup { \circle { V } }
@@ -372,7 +372,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___11():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff \with {
             suggestAccidentals = ##t
@@ -405,7 +405,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___12():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8
@@ -435,7 +435,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___13():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff \with {
             tupletFullLength = ##t
@@ -456,7 +456,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___13():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff \with {
             tupletFullLength = ##f
@@ -475,7 +475,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___13():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
         }

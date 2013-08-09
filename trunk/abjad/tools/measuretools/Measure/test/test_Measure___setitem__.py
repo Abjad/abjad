@@ -20,7 +20,7 @@ def test_Measure___setitem___02():
 
     assert not measure.is_underfull
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 3/8

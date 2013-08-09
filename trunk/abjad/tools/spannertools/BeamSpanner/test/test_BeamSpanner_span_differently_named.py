@@ -54,7 +54,7 @@ def test_BeamSpanner_span_differently_named_01():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \context Voice = "foo" {

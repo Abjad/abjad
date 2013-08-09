@@ -31,7 +31,7 @@ def test_measuretools_make_measures_with_full_measure_spacer_skips_01():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {

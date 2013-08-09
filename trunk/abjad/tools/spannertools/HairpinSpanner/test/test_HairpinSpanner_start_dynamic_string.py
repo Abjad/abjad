@@ -18,7 +18,7 @@ def test_HairpinSpanner_start_dynamic_string_01():
 
     assert hairpin.start_dynamic_string == 'p'
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 \< \p
@@ -42,7 +42,7 @@ def test_HairpinSpanner_start_dynamic_string_01():
 
     assert hairpin.start_dynamic_string == 'mf'
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 \< \mf

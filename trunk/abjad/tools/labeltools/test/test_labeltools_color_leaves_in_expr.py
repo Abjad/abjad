@@ -29,7 +29,7 @@ def test_labeltools_color_leaves_in_expr_01():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \once \override Accidental #'color = #red

@@ -7,7 +7,7 @@ def test_FixedDurationContainer_format_01():
 
     container = containertools.FixedDurationContainer((3, 8), "c'8 d'8 e'8")
     assert testtools.compare(
-        container.lilypond_format,
+        container,
         r'''
         {
             c'8

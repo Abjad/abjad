@@ -39,7 +39,7 @@ def test_measuretools_comment_measures_in_container_with_measure_numbers_01():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             % start measure 1
@@ -101,7 +101,7 @@ def test_measuretools_comment_measures_in_container_with_measure_numbers_02():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {

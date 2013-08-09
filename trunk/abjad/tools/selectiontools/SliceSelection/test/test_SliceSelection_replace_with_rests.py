@@ -16,7 +16,7 @@ def test_SliceSelection_replace_with_rests_01():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             r2
@@ -41,7 +41,7 @@ def test_SliceSelection_replace_with_rests_02():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8
@@ -66,7 +66,7 @@ def test_SliceSelection_replace_with_rests_03():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             r8
@@ -91,7 +91,7 @@ def test_SliceSelection_replace_with_rests_04():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8

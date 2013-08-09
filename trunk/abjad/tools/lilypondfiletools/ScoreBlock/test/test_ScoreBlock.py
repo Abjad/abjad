@@ -33,7 +33,7 @@ def test_ScoreBlock_01():
     '''
 
     assert testtools.compare(
-        score_block.lilypond_format,
+        score_block,
         r'''
         \score {
             \new Score <<

@@ -48,7 +48,7 @@ def test_Quantizer___call___01():
     '''
 
     assert testtools.compare(
-        score.lilypond_format,
+        score,
         r'''
         \new Score <<
             \new Staff {
@@ -112,7 +112,7 @@ def test_Quantizer___call___02():
     '''
 
     assert testtools.compare(
-        result.lilypond_format,
+        result,
         r'''
         \new Voice {
             {
@@ -190,7 +190,7 @@ def test_Quantizer___call___03():
     '''
 
     assert testtools.compare(
-        result.lilypond_format,
+        result,
         r'''
         \new Voice {
             \grace {

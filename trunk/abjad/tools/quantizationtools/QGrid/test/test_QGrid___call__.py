@@ -47,7 +47,7 @@ def test_QGrid___call___02():
 
     assert isinstance(result, list) and len(result) == 1
     assert testtools.compare(
-        result[0].lilypond_format,
+        result[0],
         r'''
         \times 2/3 {
             c'8
@@ -104,7 +104,7 @@ def test_QGrid___call___03():
 
     assert isinstance(result, list) and len(result) == 1
     assert testtools.compare(
-        result[0].lilypond_format,
+        result[0],
         r'''
         \times 2/3 {
             c'4

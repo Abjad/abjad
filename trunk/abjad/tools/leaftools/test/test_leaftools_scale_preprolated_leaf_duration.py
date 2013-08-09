@@ -33,7 +33,7 @@ def test_leaftools_scale_preprolated_leaf_duration_03():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 [
@@ -64,7 +64,7 @@ def test_leaftools_scale_preprolated_leaf_duration_04():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 [

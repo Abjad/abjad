@@ -40,7 +40,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 [ ] \<
@@ -94,7 +94,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c''16 [ \<
@@ -148,7 +148,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c''16 [ \<
@@ -200,7 +200,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c''16 \<
@@ -250,7 +250,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c''16 \<
@@ -300,7 +300,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 [

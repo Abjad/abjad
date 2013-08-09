@@ -12,7 +12,7 @@ def test_Chord_divide_01():
     staff.extend([treble, bass])
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             <d' ef' e'>4
@@ -35,7 +35,7 @@ def test_Chord_divide_02():
     staff.extend([treble, bass])
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             <d' ef' e'>4
@@ -58,7 +58,7 @@ def test_Chord_divide_03():
     staff.extend([treble, bass])
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             <d' ef' e'>4

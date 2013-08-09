@@ -88,7 +88,7 @@ def test_SliceSelection__withdraw_from_crossing_spanners_02():
     assert beam in spanners
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {

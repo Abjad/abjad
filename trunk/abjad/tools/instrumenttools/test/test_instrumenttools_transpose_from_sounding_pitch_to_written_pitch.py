@@ -31,7 +31,7 @@ def test_instrumenttools_transpose_from_sounding_pitch_to_written_pitch_01():
             assert not leaf.written_pitch_indication_is_at_sounding_pitch
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \set Staff.instrumentName = \markup { Clarinet in B-flat }

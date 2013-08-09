@@ -31,7 +31,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [
@@ -73,7 +73,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [
@@ -114,7 +114,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [
@@ -161,7 +161,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -213,7 +213,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -278,7 +278,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -352,7 +352,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {

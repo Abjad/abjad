@@ -24,7 +24,7 @@ def test_LilypondContextProxy___setattr___01():
     '''
 
     assert testtools.compare(
-        score.lilypond_format,
+        score,
         r'''
         \new Score \with {
             tempoWholesPerMinute = #(ly:make-moment 24 1)
@@ -61,7 +61,7 @@ def test_LilypondContextProxy___setattr___02():
     '''
 
     assert testtools.compare(
-        score.lilypond_format,
+        score,
         r'''
         \new Score <<
             \new Staff {

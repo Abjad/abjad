@@ -116,7 +116,7 @@ def test_leaftools_make_leaves_08():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             <cs'' df''>4
@@ -141,7 +141,7 @@ def test_leaftools_make_leaves_09():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             cs''4
@@ -168,7 +168,7 @@ def test_leaftools_make_leaves_10():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             cs''4

@@ -50,7 +50,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             \tweak #'text #tuplet-number::calc-fraction-text
@@ -119,7 +119,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \context Voice = "foo" {
             {
@@ -187,7 +187,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     '''
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -302,7 +302,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     '''
 
     assert testtools.compare(
-        u.lilypond_format,
+        u,
         r'''
         {
             \time 4/8

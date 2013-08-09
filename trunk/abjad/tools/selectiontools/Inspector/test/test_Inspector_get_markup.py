@@ -10,7 +10,7 @@ def test_Inspector_get_markup_01():
     markup_2 = markuptools.Markup('bar')(staff[0])
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 (

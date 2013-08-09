@@ -18,7 +18,7 @@ def test_CrescendoSpanner_direction_01():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 ^ \<

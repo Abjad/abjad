@@ -33,7 +33,7 @@ def test_Container_pop_01():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 (
@@ -82,7 +82,7 @@ def test_Container_pop_02():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -102,7 +102,7 @@ def test_Container_pop_02():
     '''
 
     assert testtools.compare(
-        sequential.lilypond_format,
+        sequential,
         r'''
         {
             e'8

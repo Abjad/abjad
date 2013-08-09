@@ -24,7 +24,7 @@ def test_skiptools_make_repeated_skips_from_time_signatures_01():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             r8

@@ -18,7 +18,7 @@ def test_PaperBlock_01():
     '''
 
     assert testtools.compare(
-        paper_block.lilypond_format,
+        paper_block,
         r'''
         \paper {
             left-margin = #15
@@ -43,7 +43,7 @@ def test_PaperBlock_02():
     '''
 
     assert testtools.compare(
-        paper_block.lilypond_format,
+        paper_block,
         r'''
         \paper {
             system-system-spacing = #'((basic-distance . 0) (minimum-distance . 0) (padding . 12) (stretchability . 0))
@@ -72,7 +72,7 @@ def test_PaperBlock_03():
     '''
 
     assert testtools.compare(
-        paper_block.lilypond_format,
+        paper_block,
         r'''
         \paper {
             #(define fonts (make-pango-font-tree "Baskerville" "Baskerville" "Baskerville" (/ 14 20)))

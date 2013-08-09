@@ -30,7 +30,7 @@ def test_TupletMonadRhythmMaker___call___01():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \times 4/5 {

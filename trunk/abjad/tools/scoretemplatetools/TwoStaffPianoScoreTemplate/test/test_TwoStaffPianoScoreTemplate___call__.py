@@ -27,7 +27,7 @@ def test_TwoStaffPianoScoreTemplate___call___01():
     '''
 
     assert testtools.compare(
-        score.lilypond_format,
+        score,
         r'''
         \context Score = "Two-Staff Piano Score" <<
             \context PianoStaff = "Piano Staff" <<

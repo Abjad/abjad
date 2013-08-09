@@ -21,7 +21,7 @@ def test_Score_add_double_bar_01():
     '''
 
     assert testtools.compare(
-        score.lilypond_format,
+        score,
         r'''
         \new Score <<
             \new Staff {

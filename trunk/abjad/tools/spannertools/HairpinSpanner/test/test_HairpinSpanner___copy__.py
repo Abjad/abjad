@@ -30,7 +30,7 @@ def test_HairpinSpanner___copy___02():
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     spannertools.CrescendoSpanner(staff[:4])
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 \<
@@ -47,7 +47,7 @@ def test_HairpinSpanner___copy___02():
     #staff.extend(staff.copy(0, 3))
     staff.extend(componenttools.copy_components_and_immediate_parent_of_first_component(staff[0:4]))
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 \<

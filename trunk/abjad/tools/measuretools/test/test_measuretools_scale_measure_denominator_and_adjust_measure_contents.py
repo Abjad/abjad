@@ -33,7 +33,7 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_01()
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 3/12
@@ -79,7 +79,7 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_02()
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 5/20
@@ -125,7 +125,7 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_03()
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 7/28
@@ -171,7 +171,7 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_04()
 
     assert select(measure).is_well_formed()
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 9/36

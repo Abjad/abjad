@@ -20,7 +20,7 @@ def test_DynamicTextSpanner_01():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [ \f

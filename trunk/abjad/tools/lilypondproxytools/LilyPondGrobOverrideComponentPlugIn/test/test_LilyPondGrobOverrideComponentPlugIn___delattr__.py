@@ -25,7 +25,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___delattr___01():
     '''
 
     assert testtools.compare(
-        note.lilypond_format,
+        note,
         r'''
         \once \override Dots #'thicknes = #2
         c'4
@@ -51,7 +51,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___delattr___02():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8

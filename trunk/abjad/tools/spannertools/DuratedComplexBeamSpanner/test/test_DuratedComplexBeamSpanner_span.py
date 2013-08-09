@@ -28,7 +28,7 @@ def test_DuratedComplexBeamSpanner_span_01():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             \set stemLeftBeamCount = #0
@@ -75,7 +75,7 @@ def test_DuratedComplexBeamSpanner_span_02():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             \set stemLeftBeamCount = #0

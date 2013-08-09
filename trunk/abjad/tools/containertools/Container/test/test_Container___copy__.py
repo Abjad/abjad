@@ -28,7 +28,7 @@ def test_Container___copy___01():
 
     assert container_1 is not container_2
     assert testtools.compare(
-        container_2.lilypond_format,
+        container_2,
         r'''
         <<
         >>

@@ -23,7 +23,7 @@ def test_TimeSignatureMark_suppress_01():
     '''
 
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             c'8

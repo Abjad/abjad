@@ -21,7 +21,7 @@ def test_labeltools_label_leaves_in_expr_with_melodic_diatonic_intervals_01():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 ^ \markup { +M2 }
@@ -58,7 +58,7 @@ def test_labeltools_label_leaves_in_expr_with_melodic_diatonic_intervals_02():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 ^ \markup { +aug8 }

@@ -21,7 +21,7 @@ def test_Component_shorten_01():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             \times 4/5 {
@@ -50,7 +50,7 @@ def test_Component_shorten_02():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             d'16 [

@@ -20,7 +20,7 @@ def test_FreeTupletSelection_set_denominator_to_at_least_01():
     '''
 
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 6/10 {
@@ -52,7 +52,7 @@ def test_FreeTupletSelection_set_denominator_to_at_least_02():
     '''
 
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 12/20 {
@@ -84,7 +84,7 @@ def test_FreeTupletSelection_set_denominator_to_at_least_03():
     '''
 
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 3/5 {

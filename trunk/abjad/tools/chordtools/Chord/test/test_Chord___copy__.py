@@ -69,7 +69,7 @@ def test_Chord___copy___04():
     assert chord_1[2] is not chord_2[2]
 
     assert testtools.compare(
-        chord_1.lilypond_format,
+        chord_1,
         r'''
         <
             \tweak #'color #red
@@ -80,7 +80,7 @@ def test_Chord___copy___04():
         '''
         )
     assert testtools.compare(
-        chord_2.lilypond_format,
+        chord_2,
         r'''
         <
             \tweak #'color #red

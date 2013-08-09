@@ -32,7 +32,7 @@ def test_Component_detach_marks_01():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \clef "treble"
@@ -65,7 +65,7 @@ def test_Component_detach_marks_02():
 
     assert detached_instrument_marks[0] is instrument_mark
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'4
@@ -95,7 +95,7 @@ def test_Component_detach_marks_03():
 
     assert result[0] is time_signature_mark
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'4
@@ -167,7 +167,7 @@ def test_Component_detach_marks_06():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 (
@@ -210,7 +210,7 @@ def test_Component_detach_marks_07():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 (

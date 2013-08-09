@@ -18,7 +18,7 @@ def test_BeamSpanner_direction_01():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 ^ [
@@ -47,7 +47,7 @@ def test_BeamSpanner_direction_02():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 _ [
@@ -76,7 +76,7 @@ def test_BeamSpanner_direction_03():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 - [

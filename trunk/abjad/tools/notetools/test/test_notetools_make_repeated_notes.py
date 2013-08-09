@@ -18,7 +18,7 @@ def test_notetools_make_repeated_notes_01():
     '''
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'4 ~

@@ -13,7 +13,7 @@ def test_Inspector_get_effective_staff_01():
     contexttools.StaffChangeMark(piano[1])(piano[0][0])
 
     assert testtools.compare(
-        piano.lilypond_format,
+        piano,
         r'''
         \new PianoStaff <<
             \context Staff = "RH" {
@@ -56,7 +56,7 @@ def test_Inspector_get_effective_staff_02():
     contexttools.StaffChangeMark(piano[0])(piano[0][2])
 
     assert testtools.compare(
-        piano.lilypond_format,
+        piano,
         r'''
         \new PianoStaff <<
             \context Staff = "RH" {
@@ -100,7 +100,7 @@ def test_Inspector_get_effective_staff_03():
 
     assert select(piano).is_well_formed()
     assert testtools.compare(
-        piano.lilypond_format,
+        piano,
         r'''
         \new PianoStaff <<
             \context Staff = "RH" {
@@ -133,7 +133,7 @@ def test_Inspector_get_effective_staff_04():
     contexttools.StaffChangeMark(piano[1])(piano[0][1])
 
     assert testtools.compare(
-        piano.lilypond_format,
+        piano,
         r'''
         \new PianoStaff <<
             \context Staff = "RH" {

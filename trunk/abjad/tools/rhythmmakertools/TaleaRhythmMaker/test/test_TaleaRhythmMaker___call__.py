@@ -42,7 +42,7 @@ def test_TaleaRhythmMaker___call___01():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -113,7 +113,7 @@ def test_TaleaRhythmMaker___call___02():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {

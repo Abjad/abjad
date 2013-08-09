@@ -18,7 +18,7 @@ def test_containertools_delete_contents_of_container_starting_strictly_before_of
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             d'8 [
@@ -44,7 +44,7 @@ def test_containertools_delete_contents_of_container_starting_strictly_before_of
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             e'8 [
@@ -73,7 +73,7 @@ def test_containertools_delete_contents_of_container_starting_strictly_before_of
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 [
@@ -100,7 +100,7 @@ def test_containertools_delete_contents_of_container_starting_strictly_before_of
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
         }

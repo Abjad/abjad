@@ -21,7 +21,7 @@ def test_TaleaRhythmMaker_beam_each_cell_01():
     score.set.autoBeaming = False
 
     assert testtools.compare(
-        score.lilypond_format,
+        score,
         r'''
         \new Score \with {
             autoBeaming = ##f

@@ -43,7 +43,7 @@ def test_Voice___copy___01():
     '''
 
     assert testtools.compare(
-        voice_2.lilypond_format,
+        voice_2,
         r'''
         \context Voice = "SopranoVoice" \with {
             \remove Forbid_line_break_engraver
@@ -82,7 +82,7 @@ def test_Voice___copy___02():
 
     assert voice_2.is_nonsemantic
     assert testtools.compare(
-        voice_2.lilypond_format,
+        voice_2,
         r'''
         \context Voice = "SkipVoice" {
         }

@@ -9,7 +9,7 @@ def test_spannertools_apply_octavation_spanner_to_pitched_components_01():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r"""
         \new Staff {
             \ottava #1
@@ -31,7 +31,7 @@ def test_spannertools_apply_octavation_spanner_to_pitched_components_02():
         ottava_numbered_diatonic_pitch = 15, quindecisima_numbered_diatonic_pitch=19)
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r"""
         \new Voice {
             \ottava #1

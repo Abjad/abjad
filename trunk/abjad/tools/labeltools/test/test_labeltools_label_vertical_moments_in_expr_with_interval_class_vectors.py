@@ -51,7 +51,7 @@ def test_labeltools_label_vertical_moments_in_expr_with_interval_class_vectors_0
 
     assert select(score).is_well_formed()
     assert testtools.compare(
-        score.lilypond_format,
+        score,
         r'''
         \new Score <<
             \new Staff {
@@ -110,7 +110,7 @@ def test_labeltools_label_vertical_moments_in_expr_with_interval_class_vectors_0
     '''
 
     assert testtools.compare(
-        chord.lilypond_format,
+        chord,
         r'''
         <bf bqf a'>4
             _ \markup {

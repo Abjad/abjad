@@ -33,7 +33,7 @@ def test_Scale_make_score_01():
     '''
 
     assert testtools.compare(
-        score.lilypond_format,
+        score,
         r'''
         \new Score \with {
             tempoWholesPerMinute = #(ly:make-moment 30 1)

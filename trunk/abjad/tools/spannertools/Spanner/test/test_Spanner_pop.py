@@ -47,7 +47,7 @@ def test_Spanner_pop_01():
     '''
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {

@@ -24,7 +24,7 @@ def test_Measure_append_02():
 
     assert not measure.is_misfilled
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 4/4

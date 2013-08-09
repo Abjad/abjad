@@ -43,7 +43,7 @@ def test_ClefMark___copy___01():
     assert more(staff[9]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \clef "treble"
@@ -87,7 +87,7 @@ def test_ClefMark___copy___02():
     assert more(staff[9]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('bass')
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \clef "treble"

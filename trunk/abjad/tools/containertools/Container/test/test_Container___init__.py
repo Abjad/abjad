@@ -15,7 +15,7 @@ def test_Container___init___01():
 
     assert isinstance(container, Container)
     assert testtools.compare(
-        container.lilypond_format,
+        container,
         r'''
         {
         }
@@ -39,7 +39,7 @@ def test_Container___init___02():
 
     assert isinstance(container, Container)
     assert testtools.compare(
-        container.lilypond_format,
+        container,
         r'''
         {
             c'8
@@ -77,7 +77,7 @@ def test_Container___init___03():
 
     assert isinstance(container, Container)
     assert testtools.compare(
-        container.lilypond_format,
+        container,
         r'''
         {
             \times 2/3 {
@@ -114,7 +114,7 @@ def test_Container___init___04():
 
     assert isinstance(container, Container)
     assert testtools.compare(
-        container.lilypond_format,
+        container,
         r'''
         {
             \times 2/3 {

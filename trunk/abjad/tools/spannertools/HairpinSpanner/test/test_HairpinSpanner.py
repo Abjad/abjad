@@ -27,7 +27,7 @@ def test_HairpinSpanner_01():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 \<
@@ -66,7 +66,7 @@ def test_HairpinSpanner_02():
 
     assert not checker.check(staff)
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 \< \!
@@ -106,7 +106,7 @@ def test_HairpinSpanner_03():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 \p \<
@@ -158,7 +158,7 @@ def test_HairpinSpanner_05():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'8 \p \<
@@ -197,7 +197,7 @@ def test_HairpinSpanner_06():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             r8 \<
@@ -230,7 +230,7 @@ def test_HairpinSpanner_07():
         staff[0], spanner_classes=spanner_classes)
     assert len(spanner.components) == len(staff)
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             r8

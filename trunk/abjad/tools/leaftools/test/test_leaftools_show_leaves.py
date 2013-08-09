@@ -37,7 +37,7 @@ def test_leaftools_show_leaves_01():
 
     assert select(score).is_well_formed()
     assert testtools.compare(
-        score.lilypond_format,
+        score,
         r'''
         \new Score \with {
             \override BarLine #'stencil = ##f

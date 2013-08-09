@@ -8,7 +8,7 @@ def test_rhythmtreetools_parse_rtm_syntax_01():
     result = rhythmtreetools.parse_rtm_syntax(rtm)
 
     assert testtools.compare(
-        result.lilypond_format,
+        result,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 3/4 {

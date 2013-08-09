@@ -22,7 +22,7 @@ def test_LilyPondComment___init___01():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             % beginning of note content

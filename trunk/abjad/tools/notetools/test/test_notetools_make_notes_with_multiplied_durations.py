@@ -9,7 +9,7 @@ def test_notetools_make_notes_with_multiplied_durations_01():
     staff = Staff(notes)
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             c'4 * 2

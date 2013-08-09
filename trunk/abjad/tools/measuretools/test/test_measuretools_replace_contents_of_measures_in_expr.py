@@ -44,7 +44,7 @@ def test_measuretools_replace_contents_of_measures_in_expr_01():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -119,7 +119,7 @@ def test_measuretools_replace_contents_of_measures_in_expr_02():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -197,7 +197,7 @@ def test_measuretools_replace_contents_of_measures_in_expr_05():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -244,7 +244,7 @@ def test_measuretools_replace_contents_of_measures_in_expr_06():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {

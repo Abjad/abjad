@@ -24,7 +24,7 @@ def test_RhythmTreeContainer___call___01():
     '''
 
     assert testtools.compare(
-        result[0].lilypond_format,
+        result[0],
         r'''
         \times 4/5 {
             c'16

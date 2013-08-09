@@ -24,7 +24,7 @@ def test_layouttools_set_accidental_style_on_sequential_contexts_in_expr_01():
 
     assert select(score).is_well_formed()
     assert testtools.compare(
-        score.lilypond_format,
+        score,
         r'''
         \new Score <<
             \new Staff {
@@ -65,7 +65,7 @@ def test_layouttools_set_accidental_style_on_sequential_contexts_in_expr_02():
     '''
 
     assert testtools.compare(
-        score.lilypond_format,
+        score,
         r'''
         \new Score <<
             \new Staff {

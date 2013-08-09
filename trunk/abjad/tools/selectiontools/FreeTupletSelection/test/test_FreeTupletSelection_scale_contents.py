@@ -20,7 +20,7 @@ def test_FreeTupletSelection_scale_contents_01():
 
     assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \times 2/3 {
             c'4
@@ -49,7 +49,7 @@ def test_FreeTupletSelection_scale_contents_02():
 
     assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \times 2/3 {
             c'16
@@ -78,7 +78,7 @@ def test_FreeTupletSelection_scale_contents_03():
 
     assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \times 2/3 {
             c'2
@@ -107,7 +107,7 @@ def test_FreeTupletSelection_scale_contents_04():
 
     assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \times 2/3 {
             c'32
@@ -136,7 +136,7 @@ def test_FreeTupletSelection_scale_contents_05():
 
     assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \times 2/3 {
             c'8.
@@ -165,7 +165,7 @@ def test_FreeTupletSelection_scale_contents_06():
 
     assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \times 8/9 {
             c'16
@@ -194,7 +194,7 @@ def test_FreeTupletSelection_scale_contents_07():
 
     assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \times 4/5 {
             c'16
@@ -223,7 +223,7 @@ def test_FreeTupletSelection_scale_contents_08():
 
     assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         {
             c'8.
@@ -260,7 +260,7 @@ def test_FreeTupletSelection_scale_contents_09():
 
     assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \times 4/5 {
             c'8
@@ -295,7 +295,7 @@ def test_FreeTupletSelection_scale_contents_10():
 
     assert select(tuplet).is_well_formed()
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \times 8/15 {
             c'4

@@ -64,7 +64,7 @@ def test_containertools_replace_contents_of_target_container_with_contents_of_so
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \times 2/3 {

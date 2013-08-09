@@ -47,7 +47,7 @@ def test_containertools_split_container_at_index_01():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             \times 2/3 {
@@ -116,7 +116,7 @@ def test_containertools_split_container_at_index_02():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -199,7 +199,7 @@ def test_containertools_split_container_at_index_03():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -250,7 +250,7 @@ def test_containertools_split_container_at_index_04():
     assert select(t1).is_well_formed()
     assert select(t2).is_well_formed()
     assert testtools.compare(
-        t1.lilypond_format,
+        t1,
         r'''
         \new Voice {
             c'8
@@ -259,7 +259,7 @@ def test_containertools_split_container_at_index_04():
         '''
         )
     assert testtools.compare(
-        t2.lilypond_format,
+        t2,
         r'''
         \new Voice {
             e'8
@@ -293,14 +293,14 @@ def test_containertools_split_container_at_index_05():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        left.lilypond_format,
+        left,
         r'''
         \new Voice {
         }
         '''
         )
     assert testtools.compare(
-        right.lilypond_format,
+        right,
         r'''
         \new Voice {
             c'8 [
@@ -311,7 +311,7 @@ def test_containertools_split_container_at_index_05():
         '''
         )
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \new Voice {
@@ -338,7 +338,7 @@ def test_containertools_split_container_at_index_06():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        left.lilypond_format,
+        left,
         r'''
         \new Voice {
             c'8
@@ -349,21 +349,21 @@ def test_containertools_split_container_at_index_06():
         '''
         )
     assert testtools.compare(
-        right.lilypond_format,
+        right,
         r'''
         \new Voice {
         }
         '''
         )
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
         }
         '''
         )
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \new Voice {
@@ -388,7 +388,7 @@ def test_containertools_split_container_at_index_07():
     left, right = containertools.split_container_at_index(voice, -2, fracture_spanners=False)
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        left.lilypond_format,
+        left,
         r'''
         \new Voice {
             c'8
@@ -397,7 +397,7 @@ def test_containertools_split_container_at_index_07():
         '''
         )
     assert testtools.compare(
-        right.lilypond_format,
+        right,
         r'''
         \new Voice {
             e'8
@@ -406,14 +406,14 @@ def test_containertools_split_container_at_index_07():
         '''
         )
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
         }
         '''
         )
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \new Voice {
@@ -453,7 +453,7 @@ def test_containertools_split_container_at_index_08():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        left.lilypond_format,
+        left,
         r'''
         {
             c'8 [
@@ -462,7 +462,7 @@ def test_containertools_split_container_at_index_08():
         '''
         )
     assert testtools.compare(
-        right.lilypond_format,
+        right,
         r'''
         {
             e'8
@@ -471,14 +471,14 @@ def test_containertools_split_container_at_index_08():
         '''
         )
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         {
         }
         '''
         )
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -522,7 +522,7 @@ def test_containertools_split_container_at_index_09():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        left.lilypond_format,
+        left,
         r'''
         \times 4/5 {
             c'8 [
@@ -531,7 +531,7 @@ def test_containertools_split_container_at_index_09():
         '''
         )
     assert testtools.compare(
-        right.lilypond_format,
+        right,
         r'''
         \times 4/5 {
             c'8
@@ -541,14 +541,14 @@ def test_containertools_split_container_at_index_09():
         '''
         )
     assert testtools.compare(
-        tuplet.lilypond_format,
+        tuplet,
         r'''
         \times 4/5 {
         }
         '''
         )
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             \times 4/5 {
@@ -564,7 +564,7 @@ def test_containertools_split_container_at_index_09():
         '''
         )
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \new Voice {
@@ -633,7 +633,7 @@ def test_containertools_split_container_at_index_10():
     assert left is None
     assert right is leaf
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -701,7 +701,7 @@ def test_containertools_split_container_at_index_11():
     assert left is leaf
     assert right is None
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -764,7 +764,7 @@ def test_containertools_split_container_at_index_12():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        left.lilypond_format,
+        left,
         r'''
         \times 2/3 {
             f'8 ]
@@ -772,7 +772,7 @@ def test_containertools_split_container_at_index_12():
         '''
         )
     assert testtools.compare(
-        right.lilypond_format,
+        right,
         r'''
         \times 2/3 {
             g'8 [
@@ -782,7 +782,7 @@ def test_containertools_split_container_at_index_12():
         )
     assert tuplet.lilypond_format == ''
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             \times 2/3 {
@@ -853,7 +853,7 @@ def test_containertools_split_container_at_index_13():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        left.lilypond_format,
+        left,
         r'''
         {
             \time 1/8
@@ -862,7 +862,7 @@ def test_containertools_split_container_at_index_13():
         '''
         )
     assert testtools.compare(
-        right.lilypond_format,
+        right,
         r'''
         {
             \time 2/8
@@ -873,7 +873,7 @@ def test_containertools_split_container_at_index_13():
         )
     assert py.test.raises(UnderfullContainerError, 'm.lilypond_format')
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -957,7 +957,7 @@ def test_containertools_split_container_at_index_14():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        left.lilypond_format,
+        left,
         r'''
         {
             \time 1/9
@@ -968,7 +968,7 @@ def test_containertools_split_container_at_index_14():
         '''
         )
     assert testtools.compare(
-        right.lilypond_format,
+        right,
         r'''
         {
             \time 2/9
@@ -981,7 +981,7 @@ def test_containertools_split_container_at_index_14():
         )
     assert py.test.raises(UnderfullContainerError, 'm.lilypond_format')
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -1044,7 +1044,7 @@ def test_containertools_split_container_at_index_15():
     '''
 
     assert testtools.compare(
-        left.lilypond_format,
+        left,
         r'''
         \new Voice {
             c'8 [
@@ -1053,7 +1053,7 @@ def test_containertools_split_container_at_index_15():
         '''
         )
     assert testtools.compare(
-        right.lilypond_format,
+        right,
         r'''
         \new Voice {
             e'8
@@ -1062,7 +1062,7 @@ def test_containertools_split_container_at_index_15():
         '''
         )
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
         }
@@ -1105,14 +1105,14 @@ def test_containertools_split_container_at_index_16():
     '''
 
     assert testtools.compare(
-        left.lilypond_format,
+        left,
         r'''
         \new Voice {
         }
         '''
         )
     assert testtools.compare(
-        right.lilypond_format,
+        right,
         r'''
         \new Voice {
             c'8 [
@@ -1123,14 +1123,14 @@ def test_containertools_split_container_at_index_16():
         '''
         )
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
         }
         '''
         )
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \new Voice {
@@ -1169,7 +1169,7 @@ def test_containertools_split_container_at_index_17():
     '''
 
     assert testtools.compare(
-        left.lilypond_format,
+        left,
         r'''
         \new Voice {
             c'8 [
@@ -1180,21 +1180,21 @@ def test_containertools_split_container_at_index_17():
         '''
         )
     assert testtools.compare(
-        right.lilypond_format,
+        right,
         r'''
         \new Voice {
         }
         '''
         )
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
         }
         '''
         )
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \new Voice {
@@ -1257,7 +1257,7 @@ def test_containertools_split_container_at_index_18():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -1327,7 +1327,7 @@ def test_containertools_split_container_at_index_19():
     assert left is None
     assert right is leaf
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -1393,7 +1393,7 @@ def test_containertools_split_container_at_index_20():
     assert left is leaf
     assert right is None
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -1457,7 +1457,7 @@ def test_containertools_split_container_at_index_21():
     assert select(staff).is_well_formed()
     assert len(halves) == 2
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -1518,7 +1518,7 @@ def test_containertools_split_container_at_index_22():
     assert select(staff).is_well_formed()
     assert len(halves) == 2
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {

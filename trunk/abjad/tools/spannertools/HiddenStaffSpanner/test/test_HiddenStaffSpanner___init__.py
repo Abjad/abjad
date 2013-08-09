@@ -64,7 +64,7 @@ def test_HiddenStaffSpanner___init___02():
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -104,7 +104,7 @@ def test_HiddenStaffSpanner___init___03():
 
     assert select(note).is_well_formed()
     assert testtools.compare(
-        note.lilypond_format,
+        note,
         r'''
         \stopStaff
         c'8

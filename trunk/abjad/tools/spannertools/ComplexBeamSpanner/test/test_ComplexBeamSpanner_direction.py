@@ -24,7 +24,7 @@ def test_ComplexBeamSpanner_direction_01():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \set stemLeftBeamCount = #0
@@ -65,7 +65,7 @@ def test_ComplexBeamSpanner_direction_02():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \set stemLeftBeamCount = #0

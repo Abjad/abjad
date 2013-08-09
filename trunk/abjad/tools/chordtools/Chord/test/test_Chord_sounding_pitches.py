@@ -9,7 +9,7 @@ def test_Chord_sounding_pitches_01():
     instrumenttools.transpose_from_sounding_pitch_to_written_pitch(staff)
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             \set Staff.instrumentName = \markup { Glockenspiel }

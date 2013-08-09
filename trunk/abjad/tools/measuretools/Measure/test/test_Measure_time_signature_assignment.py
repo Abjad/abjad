@@ -32,7 +32,7 @@ def test_Measure_time_signature_assignment_01():
     '''
 
     assert testtools.compare(
-        measure.lilypond_format,
+        measure,
         r'''
         {
             \time 3/8

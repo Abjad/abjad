@@ -51,7 +51,7 @@ def test_DivisionIncisedNoteRhythmMaker___call___01():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -134,7 +134,7 @@ def test_DivisionIncisedNoteRhythmMaker___call___02():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -212,7 +212,7 @@ def test_DivisionIncisedNoteRhythmMaker___call___03():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -279,7 +279,7 @@ def test_DivisionIncisedNoteRhythmMaker___call___04():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -352,7 +352,7 @@ def test_DivisionIncisedNoteRhythmMaker___call___05():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {
@@ -444,7 +444,7 @@ def test_DivisionIncisedNoteRhythmMaker___call___06():
     '''
 
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {

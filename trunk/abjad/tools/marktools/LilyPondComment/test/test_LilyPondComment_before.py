@@ -27,7 +27,7 @@ def test_LilyPondComment_before_01():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         % Voice before comments here.
         % More voice before comments.
@@ -60,7 +60,7 @@ def test_LilyPondComment_before_02():
 
     assert select(note).is_well_formed()
     assert testtools.compare(
-        note.lilypond_format,
+        note,
         r'''
         % Leaf comments before here.
         % More comments before.

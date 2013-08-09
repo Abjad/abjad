@@ -24,7 +24,7 @@ def test_pitchtools_set_ascending_named_chromatic_pitches_on_tie_chains_in_expr_
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 ~

@@ -48,7 +48,7 @@ def test_scoretools_make_piano_sketch_staff_from_leaves_01():
     '''
 
     assert testtools.compare(
-        score.lilypond_format,
+        score,
         r'''
         \new Score \with {
             \override BarLine #'stencil = ##f

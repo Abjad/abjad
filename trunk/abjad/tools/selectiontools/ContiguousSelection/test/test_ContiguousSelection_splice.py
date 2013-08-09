@@ -15,7 +15,7 @@ def test_ContiguousSelection_splice_01():
     assert select(voice).is_well_formed()
     assert result == voice[-4:]
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [
@@ -42,7 +42,7 @@ def test_ContiguousSelection_splice_02():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [
@@ -69,7 +69,7 @@ def test_ContiguousSelection_splice_03():
     assert select(voice).is_well_formed()
     assert result == voice[:]
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             \times 2/3 {
@@ -100,7 +100,7 @@ def test_ContiguousSelection_splice_04():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -132,7 +132,7 @@ def test_ContiguousSelection_splice_05():
         )
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [
@@ -162,7 +162,7 @@ def test_ContiguousSelection_splice_06():
         )
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [
@@ -191,7 +191,7 @@ def test_ContiguousSelection_splice_07():
         )
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'16 [
@@ -221,7 +221,7 @@ def test_ContiguousSelection_splice_08():
         )
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [
@@ -249,7 +249,7 @@ def test_ContiguousSelection_splice_09():
         )
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             \times 2/3 {
@@ -284,7 +284,7 @@ def test_ContiguousSelection_splice_10():
         )
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -318,7 +318,7 @@ def test_ContiguousSelection_splice_11():
         )
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'16
@@ -348,7 +348,7 @@ def test_ContiguousSelection_splice_12():
         )
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             c'8 [

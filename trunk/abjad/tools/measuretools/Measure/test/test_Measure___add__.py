@@ -44,7 +44,7 @@ def test_Measure___add___01():
     assert len(t2) == 0
     assert select(new).is_well_formed()
     assert testtools.compare(
-        new.lilypond_format,
+        new,
         r'''
         {
             \time 2/8
@@ -99,7 +99,7 @@ def test_Measure___add___02():
     assert len(t2) == 0
     assert select(staff).is_well_formed()
     assert testtools.compare(
-        staff.lilypond_format,
+        staff,
         r'''
         \new Staff {
             {

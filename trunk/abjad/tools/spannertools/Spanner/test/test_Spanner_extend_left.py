@@ -48,7 +48,7 @@ def test_Spanner_extend_left_01():
 
     assert select(voice).is_well_formed()
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
@@ -113,7 +113,7 @@ def test_Spanner_extend_left_02():
     '''
 
     assert testtools.compare(
-        voice.lilypond_format,
+        voice,
         r'''
         \new Voice {
             {
