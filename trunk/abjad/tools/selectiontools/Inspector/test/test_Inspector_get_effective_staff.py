@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_ExtendedComponentInterface_get_effective_staff_01():
+def test_Inspector_get_effective_staff_01():
     r'''Staff changes work on the first note of a staff.
     '''
 
@@ -44,7 +44,7 @@ def test_ExtendedComponentInterface_get_effective_staff_01():
     assert more(piano[1][3]).get_effective_staff() is piano[1]
 
 
-def test_ExtendedComponentInterface_get_effective_staff_02():
+def test_Inspector_get_effective_staff_02():
     r'''Staff changes work on middle notes of a staff.
     '''
 
@@ -88,7 +88,7 @@ def test_ExtendedComponentInterface_get_effective_staff_02():
     assert more(piano[1][3]).get_effective_staff() is piano[1]
 
 
-def test_ExtendedComponentInterface_get_effective_staff_03():
+def test_Inspector_get_effective_staff_03():
     r'''Staff changes work on the last note of a staff.
     '''
 
@@ -121,7 +121,7 @@ def test_ExtendedComponentInterface_get_effective_staff_03():
         )
 
 
-def test_ExtendedComponentInterface_get_effective_staff_04():
+def test_Inspector_get_effective_staff_04():
     r'''Redudant staff changes are allowed.
     '''
 

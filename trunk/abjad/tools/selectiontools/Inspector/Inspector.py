@@ -2,7 +2,7 @@
 from abjad.tools.selectiontools.Selection import Selection
 
 
-class ExtendedComponentInterface(Selection):
+class Inspector(Selection):
     r'''Access to extended component methods.
     '''
 

@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_ExtendedComponentInterface_detach_grace_containers_01():
+def test_Inspector_get_grace_containers_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
 
@@ -20,28 +20,3 @@ def test_ExtendedComponentInterface_detach_grace_containers_01():
 
     assert grace_container in grace_containers
     assert after_grace_container in grace_containers
-
-    grace_containers = more(staff[1]).detach_grace_containers()
-
-    assert len(grace_containers) == 2
-
-    r'''
-    \new Staff {
-        c'8
-        d'8
-        e'8
-        f'8
-    }
-    '''
-
-    assert testtools.compare(
-        staff.lilypond_format,
-        r'''
-        \new Staff {
-            c'8
-            d'8
-            e'8
-            f'8
-        }
-        '''
-        )

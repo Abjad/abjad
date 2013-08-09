@@ -7,4 +7,4 @@ def more(component):
     Returns extended component interface.
     '''
     from abjad.tools import selectiontools
-    return selectiontools.ExtendedComponentInterface(component)
+    return selectiontools.Inspector(component)
