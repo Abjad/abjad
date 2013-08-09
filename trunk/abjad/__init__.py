@@ -36,6 +36,7 @@ from abjad.tools.notetools import Note
 from abjad.tools.resttools import Rest
 from abjad.tools.scoretools import Score
 from abjad.tools.selectiontools import more
+from abjad.tools.selectiontools import mutate
 from abjad.tools.selectiontools import select
 from abjad.tools.stafftools import Staff
 from abjad.tools.tuplettools import Tuplet

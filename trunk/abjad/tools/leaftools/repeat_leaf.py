@@ -41,7 +41,7 @@ def repeat_leaf(leaf, total=1):
     Return none.
     '''
 
-    leaf.splice(
+    leaf._splice(
         componenttools.copy_components_and_detach_spanners([leaf], total - 1),
         grow_spanners=True,
         )

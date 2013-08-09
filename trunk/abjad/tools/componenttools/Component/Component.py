@@ -527,6 +527,65 @@ class Component(AbjadObject):
         self._restore_named_children_to_parentage(named_children)
         self._mark_entire_score_tree_for_later_update('prolated')
 
+    def _splice(
+        self,
+        components,
+        direction=Right,
+        grow_spanners=True,
+        ):
+        from abjad.tools import componenttools
+        from abjad.tools import spannertools
+        assert componenttools.all_are_components(components)
+        if direction == Right:
+            if grow_spanners:
+                insert_offset = self.get_timespan().stop_offset
+                receipt = spannertools.get_spanners_that_dominate_components(
+                    [self])
+                for spanner, index in receipt:
+                    insert_component = \
+                        spannertools.find_spanner_component_starting_at_exactly_score_offset(
+                        spanner, insert_offset)
+                    if insert_component is not None:
+                        insert_index = spanner.index(insert_component)
+                    else:
+                        insert_index = len(spanner)
+                    for component in reversed(components):
+                        spanner._insert(insert_index, component)
+                        component._spanners.add(spanner)
+            selection = self.select(sequential=True)
+            parent, start, stop = selection._get_parent_and_start_stop_indices()
+            if parent is not None:
+                if grow_spanners:
+                    for component in reversed(components):
+                        component._set_parent(parent)
+                        parent._music.insert(start + 1, component)
+                else:
+                    after = stop + 1
+                    parent.__setitem__(slice(after, after), components)
+            return [self] + components
+        else:
+            if grow_spanners:
+                offset= self.get_timespan().start_offset
+                receipt = spannertools.get_spanners_that_dominate_components(
+                    [self])
+                for spanner, x in receipt:
+                    index = \
+                        spannertools.find_index_of_spanner_component_at_score_offset(
+                        spanner, offset)
+                    for component in reversed(components):
+                        spanner._insert(index, component)
+                        component._spanners.add(spanner)
+            selection = self.select(sequential=True)
+            parent, start, stop = selection._get_parent_and_start_stop_indices()
+            if parent is not None:
+                if grow_spanners:
+                    for component in reversed(components):
+                        component._set_parent(parent)
+                        parent._music.insert(start, component)
+                else:
+                    parent.__setitem__(slice(start, start), components)
+            return components + [self]
+
     ### UPDATE METHODS ###
 
     def _allow_component_update(self):
@@ -713,69 +772,6 @@ class Component(AbjadObject):
         return super(Component, self).storage_format
 
     ### PUBLIC METHODS ###
-
-    def splice(
-        self,
-        components,
-        direction=Right,
-        grow_spanners=True,
-        ):
-        r'''Extends `components` in parent of component.
-
-        Returns list of component followed by `components`.
-        '''
-        from abjad.tools import componenttools
-        from abjad.tools import spannertools
-        assert componenttools.all_are_components(components)
-        if direction == Right:
-            if grow_spanners:
-                insert_offset = self.get_timespan().stop_offset
-                receipt = spannertools.get_spanners_that_dominate_components(
-                    [self])
-                for spanner, index in receipt:
-                    insert_component = \
-                        spannertools.find_spanner_component_starting_at_exactly_score_offset(
-                        spanner, insert_offset)
-                    if insert_component is not None:
-                        insert_index = spanner.index(insert_component)
-                    else:
-                        insert_index = len(spanner)
-                    for component in reversed(components):
-                        spanner._insert(insert_index, component)
-                        component._spanners.add(spanner)
-            selection = self.select(sequential=True)
-            parent, start, stop = selection._get_parent_and_start_stop_indices()
-            if parent is not None:
-                if grow_spanners:
-                    for component in reversed(components):
-                        component._set_parent(parent)
-                        parent._music.insert(start + 1, component)
-                else:
-                    after = stop + 1
-                    parent.__setitem__(slice(after, after), components)
-            return [self] + components
-        else:
-            if grow_spanners:
-                offset= self.get_timespan().start_offset
-                receipt = spannertools.get_spanners_that_dominate_components(
-                    [self])
-                for spanner, x in receipt:
-                    index = \
-                        spannertools.find_index_of_spanner_component_at_score_offset(
-                        spanner, offset)
-                    for component in reversed(components):
-                        spanner._insert(index, component)
-                        component._spanners.add(spanner)
-            selection = self.select(sequential=True)
-            parent, start, stop = selection._get_parent_and_start_stop_indices()
-            if parent is not None:
-                if grow_spanners:
-                    for component in reversed(components):
-                        component._set_parent(parent)
-                        parent._music.insert(start, component)
-                else:
-                    parent.__setitem__(slice(start, start), components)
-            return components + [self]
 
     def get_duration(self, in_seconds=False):
         r'''Gets duration of component.

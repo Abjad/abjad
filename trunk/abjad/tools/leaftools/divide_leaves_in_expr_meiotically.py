@@ -52,6 +52,6 @@ def divide_leaves_in_expr_meiotically(expr, n=2):
     from abjad.tools import iterationtools
     from abjad.tools import leaftools
 
-    # can not wrap with update control because of self.splice()
+    # can not wrap with update control because of self._splice()
     for leaf in iterationtools.iterate_leaves_in_expr(expr, reverse=True):
         leaftools.divide_leaf_meiotically(leaf, n)
