@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools.quantizationtools.QSchemaItem import QSchemaItem
 
@@ -10,65 +9,71 @@ class BeatwiseQSchemaItem(QSchemaItem):
 
     ::
 
-        >>> quantizationtools.BeatwiseQSchemaItem()
-        BeatwiseQSchemaItem()
+        >>> q_schema_item = quantizationtools.BeatwiseQSchemaItem()
+        >>> z(q_schema_item)
+        quantizationtools.BeatwiseQSchemaItem()
 
     Define a change in tempo:
 
     ::
 
-        >>> quantizationtools.BeatwiseQSchemaItem(tempo=((1, 4), 60))
-        BeatwiseQSchemaItem(
+        >>> q_schema_item = quantizationtools.BeatwiseQSchemaItem(
+        ...     tempo=((1, 4), 60),
+        ...     )
+        >>> z(q_schema_item)
+        quantizationtools.BeatwiseQSchemaItem(
             tempo=contexttools.TempoMark(
-                    durationtools.Duration(1, 4),
-                    60
-                    ),
+                durationtools.Duration(1, 4),
+                60
+                )
             )
 
     Define a change in beatspan:
 
     ::
 
-        >>> quantizationtools.BeatwiseQSchemaItem(beatspan=(1, 8))
-        BeatwiseQSchemaItem(
-            beatspan=durationtools.Duration(1, 8),
+        >>> q_schema_item = quantizationtools.BeatwiseQSchemaItem(
+        ...     beatspan=(1, 8),
+        ...     )
+        >>> z(q_schema_item)
+        quantizationtools.BeatwiseQSchemaItem(
+            beatspan=durationtools.Duration(1, 8)
             )
 
-    `BeatwiseQSchemaItem` is immutable.
-
-    Return `BeatwiseQSchemaItem` instance.
+    Return beat-wise q-schema item.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
-
-    _fields = (
-        'beatspan', 
-        'search_tree', 
-        'tempo',
+    __slots__ = (
+        '_beatspan',
         )
 
-    ### INITIALIZER & CONSTRUCTOR ###
+    ### INITIALIZER ###
 
-    def __init__(self, beatspan=None, search_tree=None, tempo=None):
-        pass
-
-    def __new__(cls, beatspan=None, search_tree=None, tempo=None):
+    def __init__(self, 
+        beatspan=None, 
+        search_tree=None, 
+        tempo=None,
+        ):
         from abjad.tools import quantizationtools
-
+        QSchemaItem.__init__(self,
+            search_tree=search_tree,
+            tempo=tempo,
+            )
         if beatspan is not None:
             beatspan = durationtools.Duration(beatspan)
             assert 0 < beatspan
+        self._beatspan = beatspan
 
-        if search_tree is not None:
-            assert isinstance(search_tree, quantizationtools.SearchTree)
+    ### SPECIAL METHODS ###
 
-        if tempo is not None:
-            tempo = contexttools.TempoMark(tempo)
-            assert not tempo.is_imprecise
-
-        return tuple.__new__(cls, (beatspan, search_tree, tempo))
+    def __getnewargs__(self):
+        return tuple(
+            self.beatspan,
+            self.search_tree,
+            self.tempo,
+            )
 
     ### PUBLIC PROPERTIES ###
 
@@ -76,22 +81,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
     def beatspan(self):
         r'''The optionally defined beatspan duration.
 
-        Return `Duration` or `None`.
+        Return duration or none.
         '''
-        return self[0]
+        return self._beatspan
 
-    @property
-    def search_tree(self):
-        r'''The optionally defined search tree.
-
-        Return `OldSearchTree` or `None`.
-        '''
-        return self[1]
-
-    @property
-    def tempo(self):
-        r'''The optionally defined `TempoMark`.
-
-        Return `TempoMark` or `None`.
-        '''
-        return self[2]

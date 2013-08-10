@@ -1,10 +1,11 @@
 # -*- encoding: utf-8 -*-
 import abc
 import collections
-from abjad.tools.abctools import ImmutableAbjadObject
+from abjad.tools import contexttools
+from abjad.tools.abctools import AbjadObject
 
 
-class QSchemaItem(tuple, ImmutableAbjadObject):
+class QSchemaItem(AbjadObject):
     '''`QSchemaItem` represents a change of state in the timeline of a 
     quantization process.
 
@@ -14,33 +15,46 @@ class QSchemaItem(tuple, ImmutableAbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_search_tree',
+        '_tempo',
         )
 
-    ### CONSTRUCTOR ###
+    ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __new__(cls):
-        raise Exception
+    def __init__(self,
+        search_tree=None,
+        tempo=None,
+        ):
+        from abjad.tools import quantizationtools
+        if search_tree is not None:
+            assert isinstance(search_tree, quantizationtools.SearchTree)
+        self._search_tree = search_tree
+        if tempo is not None:
+            tempo = contexttools.TempoMark(tempo)
+            assert not tempo.is_imprecise
+        self._tempo = tempo
 
     ### SPECIAL METHODS ###
 
+    @abc.abstractmethod
     def __getnewargs__(self):
         'Return self as a plain tuple.  Used by copy and pickle.'
-        return tuple(self)
-
-    def __repr__(self):
-        pieces = \
-            self._get_tools_package_qualified_keyword_argument_repr_pieces()
-        if pieces:
-            result = ['{}('.format(self._class_name)]
-            result.extend(
-                self._get_tools_package_qualified_keyword_argument_repr_pieces())
-            result.append('\t)')
-            return '\n'.join(result)
-        return '{}()'.format(self._class_name)
-
-    ### SPECIAL PROPERTIES ###
+        raise NotImplementedError
 
     @property
-    def __dict__(self):
-        return collections.OrderedDict(zip(self._fields, self))
+    def search_tree(self):
+        r'''The optionally defined search tree.
+
+        Return search tree or none.
+        '''
+        return self._search_tree
+
+    @property
+    def tempo(self):
+        r'''The optionally defined tempo mark.
+
+        Return tempo mark or none.
+        '''
+        return self._tempo
+

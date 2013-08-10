@@ -10,37 +10,44 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
     ::
 
-        >>> quantizationtools.MeasurewiseQSchemaItem()
-        MeasurewiseQSchemaItem()
+        >>> q_schema_item = quantizationtools.MeasurewiseQSchemaItem()
+        >>> z(q_schema_item)
+        quantizationtools.MeasurewiseQSchemaItem()
 
     Define a change in tempo:
 
     ::
 
-        >>> quantizationtools.MeasurewiseQSchemaItem(tempo=((1, 4), 60))
-        MeasurewiseQSchemaItem(
+        >>> q_schema_item = quantizationtools.MeasurewiseQSchemaItem(
+        ...     tempo=((1, 4), 60),
+        ...     )
+        >>> z(q_schema_item)
+        quantizationtools.MeasurewiseQSchemaItem(
             tempo=contexttools.TempoMark(
                 durationtools.Duration(1, 4),
                 60
-                ),
+                )
             )
 
     Define a change in time signature:
 
     ::
 
-        >>> quantizationtools.MeasurewiseQSchemaItem(time_signature=((6, 8)))
-        MeasurewiseQSchemaItem(
+        >>> q_schema_item = quantizationtools.MeasurewiseQSchemaItem(
+        ...     time_signature=(6, 8),
+        ...     )
+        >>> z(q_schema_item)
+        quantizationtools.MeasurewiseQSchemaItem(
             time_signature=contexttools.TimeSignatureMark(
                 (6, 8)
-                ),
+                )
             )
 
     Test for beatspan, given a defined time signature:
 
     ::
 
-        >>> _.beatspan
+        >>> q_schema_item.beatspan
         Duration(1, 8)
 
     `MeasurewiseQSchemaItem` is immutable.
@@ -51,37 +58,38 @@ class MeasurewiseQSchemaItem(QSchemaItem):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_time_signature',
+        '_use_full_measure',
         )
 
-    _fields = (
-        'search_tree', 
-        'tempo', 
-        'time_signature', 
-        'use_full_measure',
-        )
+    ### INITIALIZER ###
 
-    ### CONSTRUCTOR ###
-
-    def __new__(cls, 
+    def __init__(self, 
         search_tree=None, 
-        tempo=None, time_signature=None, use_full_measure=None):
-        from abjad.tools import quantizationtools
-
-        if search_tree is not None:
-            assert isinstance(search_tree, quantizationtools.SearchTree)
-
-        if tempo is not None:
-            tempo = contexttools.TempoMark(tempo)
-            assert not tempo.is_imprecise
-
+        tempo=None,
+        time_signature=None,
+        use_full_measure=None
+        ):
+        QSchemaItem.__init__(self,
+            search_tree=search_tree,
+            tempo=tempo,
+            )
         if time_signature is not None:
             time_signature = contexttools.TimeSignatureMark(time_signature)
-
+        self._time_signature = time_signature
         if use_full_measure is not None:
             use_full_measure = bool(use_full_measure)
+        self._use_full_measure = use_full_measure
 
-        return tuple.__new__(cls, (
-            search_tree, tempo, time_signature, use_full_measure))
+    ### SPECIAL METHODS ###
+
+    def __getnewargs__(self):
+        return tuple(
+            self.search_tree,
+            self.tempo,
+            self.time_signature,
+            self.use_full_measure,
+            )
 
     ### PUBLIC PROPERTIES ###
 
@@ -89,7 +97,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
     def beatspan(self):
         r'''The beatspan duration, if a time signature was defined.
 
-        Return `Duration` or `None`.
+        Return duration or none.
         '''
         if self.time_signature is not None:
             if self.use_full_measure:
@@ -100,33 +108,17 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         return None
 
     @property
-    def search_tree(self):
-        r'''The optionally defined search tree.
-
-        Return `OldSearchTree` or `None`.
-        '''
-        return self[0]
-
-    @property
-    def tempo(self):
-        r'''The optionally defined `TempoMark`.
-
-        Return `TempoMark` or `None`.
-        '''
-        return self[1]
-
-    @property
     def time_signature(self):
         r'''The optionally defined TimeSignatureMark.
 
-        Return `TimeSignatureMark` or None.
+        Return time signature mark or none
         '''
-        return self[2]
+        return self._time_signature
 
     @property
     def use_full_measure(self):
         r'''If True, use the full measure as the beatspan.
 
-        Return bool or None.
+        Return boolean or none.
         '''
-        return self[3]
+        return self._use_full_measure

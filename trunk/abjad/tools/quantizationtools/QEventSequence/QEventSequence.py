@@ -97,6 +97,12 @@ class QEventSequence(AbjadObject):
     def __contains__(self, expr):
         return expr in self._sequence
 
+    def __eq__(self, expr):
+        if type(self) == type(expr):
+            if self.sequence == expr.sequence:
+                return True
+        return False
+
     def __getitem__(self, expr):
         return self._sequence[expr]
 
