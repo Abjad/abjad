@@ -155,6 +155,13 @@ class Component(AbjadObject):
             spanner.detach()
         return spanners
 
+    def _get_duration(self, in_seconds=False):
+        if in_seconds:
+            return self._duration_in_seconds
+        else:
+            parentage = self._select_parentage(include_self=False)
+            return parentage.prolation * self._preprolated_duration
+
     def _get_effective_context_mark(self, context_mark_classes=None):
         from abjad.tools import contexttools
         from abjad.tools import datastructuretools

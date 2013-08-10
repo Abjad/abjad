@@ -120,7 +120,7 @@ class ContiguousSelection(Selection):
         Returns duration.
         '''
         return sum(
-            component.get_duration(in_seconds=in_seconds) 
+            component._get_duration(in_seconds=in_seconds) 
             for component in self
             )
 

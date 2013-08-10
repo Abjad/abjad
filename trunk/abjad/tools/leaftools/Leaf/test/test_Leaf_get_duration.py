@@ -23,10 +23,10 @@ def test_Leaf_get_duration_01():
     }
     '''
 
-    assert staff[0].get_duration(in_seconds=True) == Duration(15, 19)
-    assert staff[1].get_duration(in_seconds=True) == Duration(15, 19)
-    assert staff[2].get_duration(in_seconds=True) == Duration(5, 7)
-    assert staff[3].get_duration(in_seconds=True) == Duration(5, 7)
+    assert more(staff[0]).get_duration(in_seconds=True) == Duration(15, 19)
+    assert more(staff[1]).get_duration(in_seconds=True) == Duration(15, 19)
+    assert more(staff[2]).get_duration(in_seconds=True) == Duration(5, 7)
+    assert more(staff[3]).get_duration(in_seconds=True) == Duration(5, 7)
 
 
 def test_Leaf_get_duration_02():
@@ -34,4 +34,5 @@ def test_Leaf_get_duration_02():
     '''
 
     note = Note("c'4")
-    assert py.test.raises(MissingTempoError, 'note.get_duration(in_seconds=True)')
+    assert py.test.raises(MissingTempoError, 
+        'more(note).get_duration(in_seconds=True)')

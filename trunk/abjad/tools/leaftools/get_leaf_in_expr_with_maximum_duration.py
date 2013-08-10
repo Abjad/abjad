@@ -32,8 +32,8 @@ def get_leaf_in_expr_with_maximum_duration(expr):
     for leaf in iterationtools.iterate_leaves_in_expr(expr):
         if leaf_with_maximum_prolated_duration is None:
             leaf_with_maximum_prolated_duration = leaf
-        elif leaf.get_duration() > \
-            leaf_with_maximum_prolated_duration.get_duration():
+        elif leaf._get_duration() > \
+            leaf_with_maximum_prolated_duration._get_duration():
             leaf_with_maximum_prolated_duration = leaf
 
     return leaf_with_maximum_prolated_duration

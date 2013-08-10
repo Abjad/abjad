@@ -15,7 +15,7 @@ def test_Measure_empty_02():
     assert py.test.raises(UnderfullContainerError, 'measure.lilypond_format')
     assert len(measure) == 0
     assert measure._preprolated_duration == 0
-    assert measure.get_duration() == 0
+    assert more(measure).get_duration() == 0
     assert not select(measure).is_well_formed()
 
 
@@ -26,5 +26,5 @@ def test_Measure_empty_03():
     assert py.test.raises(UnderfullContainerError, 'measure.lilypond_format')
     assert len(measure) == 0
     assert measure._preprolated_duration == 0
-    assert measure.get_duration() == 0
+    assert more(measure).get_duration() == 0
     assert not select(measure).is_well_formed()

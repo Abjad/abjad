@@ -12,7 +12,7 @@ def update_offset_values_of_component(component):
         start_offset = prev._stop_offset
     else:
         start_offset = durationtools.Offset(0)
-    stop_offset = start_offset + component.get_duration()
+    stop_offset = start_offset + component._get_duration()
     component._start_offset = start_offset
     component._stop_offset = stop_offset
     component._timespan._start_offset = start_offset

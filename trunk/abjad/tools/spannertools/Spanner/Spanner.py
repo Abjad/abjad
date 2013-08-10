@@ -131,7 +131,7 @@ class Spanner(AbjadObject):
     def _duration_in_seconds(self):
         duration = durationtools.Duration(0)
         for leaf in self.leaves:
-            duration += leaf.get_duration(in_seconds=True)
+            duration += leaf._get_duration(in_seconds=True)
         return duration
 
     @property
@@ -683,7 +683,7 @@ class Spanner(AbjadObject):
         Return duration.
         '''
         return sum(
-            component.get_duration(in_seconds=in_seconds)
+            component._get_duration(in_seconds=in_seconds)
             for component in self
             )
 

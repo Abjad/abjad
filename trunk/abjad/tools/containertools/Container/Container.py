@@ -154,11 +154,11 @@ class Container(Component):
     def _duration_in_seconds(self):
         if self.is_simultaneous:
             return max([durationtools.Duration(0)] + 
-                [x.get_duration(in_seconds=True) for x in self])
+                [x._get_duration(in_seconds=True) for x in self])
         else:
             duration = durationtools.Duration(0)
             for leaf in self.select_leaves(allow_discontiguous_leaves=True):
-                duration += leaf.get_duration(in_seconds=True)
+                duration += leaf._get_duration(in_seconds=True)
             return duration
 
     @property
@@ -973,7 +973,7 @@ class Container(Component):
         accumulated_duration = durationtools.Duration(0)
         components = []
         for component in self:
-            current_duration = component.get_duration()
+            current_duration = component._get_duration()
             if accumulated_duration + current_duration <= duration:
                 components.append(component)
                 accumulated_duration += current_duration

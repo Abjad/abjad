@@ -301,18 +301,18 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_04():
     assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
     assert len(tuplet) == 5
     assert tuplet.target_duration == Duration(7, 8)
-    assert tuplet.get_duration() == Duration(2, 4)
+    assert more(tuplet).get_duration() == Duration(2, 4)
     note = measure[0][0]
     assert note.written_duration == Duration(1, 4)
-    assert note.get_duration() == Duration(1, 10)
+    assert more(note).get_duration() == Duration(1, 10)
     tuplet = measure[1]
     assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
     assert len(tuplet) == 6
     assert tuplet.target_duration == Duration(4, 8)
-    assert tuplet.get_duration() == Duration(2, 7)
+    assert more(tuplet).get_duration() == Duration(2, 7)
     note = measure[1][0]
     assert note.written_duration == Duration(1, 8)
-    assert note.get_duration() == Duration(1, 21)
+    assert more(note).get_duration() == Duration(1, 21)
     assert select(measure).is_well_formed()
 
 
@@ -379,18 +379,18 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_05():
     assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
     assert len(tuplet) == 6
     assert tuplet.target_duration == Duration(2, 4)
-    assert tuplet.get_duration() == Duration(2, 7)
+    assert more(tuplet).get_duration() == Duration(2, 7)
     note = measure[0][0]
     assert note.written_duration == Duration(1, 8)
-    assert note.get_duration() == Duration(1, 21)
+    assert more(note).get_duration() == Duration(1, 21)
     tuplet = measure[1]
     assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
     assert len(tuplet) == 1
     assert tuplet.target_duration == Duration(7, 24)
-    assert tuplet.get_duration() == Duration(1, 6)
+    assert more(tuplet).get_duration() == Duration(1, 6)
     note = measure[1][0]
     assert note.written_duration == Duration(1, 4)
-    assert note.get_duration() == Duration(1, 6)
+    assert more(note).get_duration() == Duration(1, 6)
     assert select(measure).is_well_formed()
 
 
@@ -448,13 +448,13 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_06():
     assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
     assert len(tuplet) == 7
     assert tuplet.target_duration == Duration(2, 4)
-    assert tuplet.get_duration() == Duration(2, 6)
+    assert more(tuplet).get_duration() == Duration(2, 6)
     note = measure[0][0]
     assert note.written_duration == Duration(1, 8)
-    assert note.get_duration() == Duration(1, 21)
+    assert more(note).get_duration() == Duration(1, 21)
     note = measure[1]
     assert note.written_duration == Duration(1, 4)
-    assert note.get_duration() == Duration(1, 6)
+    assert more(note).get_duration() == Duration(1, 6)
     assert select(measure).is_well_formed()
 
 
@@ -488,22 +488,22 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_07():
     assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
     assert len(tuplet) == 3
     assert tuplet.target_duration == Duration(1)
-    assert tuplet.get_duration() == Duration(8, 9)
+    assert more(tuplet).get_duration() == Duration(8, 9)
     assert tuplet.multiplier == Duration(3, 4)
     note = measure[0][0]
     assert isinstance(note, Note)
     assert note.written_duration == Duration(1, 2)
-    assert note.get_duration() == Duration(1, 3)
+    assert more(note).get_duration() == Duration(1, 3)
     tuplet = measure[0][-1]
     assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
     assert len(tuplet) == 2
     assert tuplet.target_duration == Duration(1, 3)
-    assert tuplet.get_duration() == Duration(2, 9)
+    assert more(tuplet).get_duration() == Duration(2, 9)
     assert tuplet.multiplier == Duration(2, 3)
     note = measure[0][-1][0]
     assert isinstance(note, Note)
     assert note.written_duration == Duration(1, 4)
-    assert note.get_duration() == Duration(1, 9)
+    assert more(note).get_duration() == Duration(1, 9)
 
     r'''
     \time 8/9
@@ -530,10 +530,10 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_08():
     assert isinstance(container, Container)
     assert len(container) == 5
     assert container._preprolated_duration == Duration(5, 4)
-    assert container.get_duration() == Duration(5, 4)
+    assert more(container).get_duration() == Duration(5, 4)
     assert isinstance(container[0], Note)
     assert container[0].written_duration == Duration(1, 4)
-    assert container[0].get_duration() == Duration(1, 4)
+    assert more(container[0]).get_duration() == Duration(1, 4)
     assert select(container).is_well_formed()
 
 
@@ -546,10 +546,10 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_09():
     assert isinstance(container, Container)
     assert len(container) == 5
     assert container._preprolated_duration == Duration(5, 4)
-    assert container.get_duration() == Duration(5, 4)
+    assert more(container).get_duration() == Duration(5, 4)
     assert isinstance(container[0], Note)
     assert container[0].written_duration == Duration(1, 4)
-    assert container[0].get_duration() == Duration(1, 4)
+    assert more(container[0]).get_duration() == Duration(1, 4)
     assert select(container).is_well_formed()
 
 
@@ -562,10 +562,10 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_10():
     assert isinstance(voice, Voice)
     assert len(voice) == 5
     assert voice._preprolated_duration == Duration(5, 4)
-    assert voice.get_duration() == Duration(5, 4)
+    assert more(voice).get_duration() == Duration(5, 4)
     assert isinstance(voice[0], Note)
     assert voice[0].written_duration == Duration(1, 4)
-    assert voice[0].get_duration() == Duration(1, 4)
+    assert more(voice[0]).get_duration() == Duration(1, 4)
     assert select(voice).is_well_formed()
 
 
@@ -578,10 +578,10 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_11():
     assert isinstance(staff, Staff)
     assert len(staff) == 5
     assert staff._preprolated_duration == Duration(5, 4)
-    assert staff.get_duration() == Duration(5, 4)
+    assert more(staff).get_duration() == Duration(5, 4)
     assert isinstance(staff[0], Note)
     assert staff[0].written_duration == Duration(1, 4)
-    assert staff[0].get_duration() == Duration(1, 4)
+    assert more(staff[0]).get_duration() == Duration(1, 4)
     assert select(staff).is_well_formed()
 
 
@@ -594,13 +594,13 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_12():
     assert isinstance(container, Container)
     assert len(container) == 1
     assert container._preprolated_duration == Duration(2, 4)
-    assert container.get_duration() == Duration(2, 4)
+    assert more(container).get_duration() == Duration(2, 4)
     assert isinstance(container[0], tuplettools.FixedDurationTuplet)
     assert container[0].target_duration == Duration(2, 4)
-    assert container[0].get_duration() == Duration(2, 4)
+    assert more(container[0]).get_duration() == Duration(2, 4)
     assert isinstance(container[0][0], Note)
     assert container[0][0].written_duration == Duration(1, 4)
-    assert container[0][0].get_duration() == Duration(1, 6)
+    assert more(container[0][0]).get_duration() == Duration(1, 6)
     assert select(container).is_well_formed()
 
 
@@ -613,13 +613,13 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_13():
     assert isinstance(container, Container)
     assert len(container) == 1
     assert container._preprolated_duration == Duration(2, 4)
-    assert container.get_duration() == Duration(2, 4)
+    assert more(container).get_duration() == Duration(2, 4)
     assert isinstance(container[0], tuplettools.FixedDurationTuplet)
     assert container[0].target_duration == Duration(2, 4)
-    assert container[0].get_duration() == Duration(2, 4)
+    assert more(container[0]).get_duration() == Duration(2, 4)
     assert isinstance(container[0][0], Note)
     assert container[0][0].written_duration == Duration(1, 4)
-    assert container[0][0].get_duration() == Duration(1, 6)
+    assert more(container[0][0]).get_duration() == Duration(1, 6)
     assert select(container).is_well_formed()
 
 
@@ -632,13 +632,13 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_14():
     assert isinstance(voice, Voice)
     assert len(voice) == 1
     assert voice._preprolated_duration == Duration(2, 4)
-    assert voice.get_duration() == Duration(2, 4)
+    assert more(voice).get_duration() == Duration(2, 4)
     assert isinstance(voice[0], tuplettools.FixedDurationTuplet)
     assert voice[0].target_duration == Duration(2, 4)
-    assert voice[0].get_duration() == Duration(2, 4)
+    assert more(voice[0]).get_duration() == Duration(2, 4)
     assert isinstance(voice[0][0], Note)
     assert voice[0][0].written_duration == Duration(1, 4)
-    assert voice[0][0].get_duration() == Duration(1, 6)
+    assert more(voice[0][0]).get_duration() == Duration(1, 6)
     assert select(voice).is_well_formed()
 
 
@@ -651,13 +651,13 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_15():
     assert isinstance(staff, Staff)
     assert len(staff) == 1
     assert staff._preprolated_duration == Duration(2, 4)
-    assert staff.get_duration() == Duration(2, 4)
+    assert more(staff).get_duration() == Duration(2, 4)
     assert isinstance(staff[0], tuplettools.FixedDurationTuplet)
     assert staff[0].target_duration == Duration(2, 4)
-    assert staff[0].get_duration() == Duration(2, 4)
+    assert more(staff[0]).get_duration() == Duration(2, 4)
     assert isinstance(staff[0][0], Note)
     assert staff[0][0].written_duration == Duration(1, 4)
-    assert staff[0][0].get_duration() == Duration(1, 6)
+    assert more(staff[0][0]).get_duration() == Duration(1, 6)
     assert select(staff).is_well_formed()
 
 
@@ -670,13 +670,13 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_16():
     assert isinstance(staff, Staff)
     assert len(staff) == 2
     assert staff._preprolated_duration == Duration(5, 6)
-    assert staff.get_duration() == Duration(5, 6)
+    assert more(staff).get_duration() == Duration(5, 6)
     assert isinstance(staff[0], tuplettools.FixedDurationTuplet)
     assert staff[0].target_duration == Duration(2, 6)
-    assert staff[0].get_duration() == Duration(2, 6)
+    assert more(staff[0]).get_duration() == Duration(2, 6)
     assert isinstance(staff[0][0], Note)
     assert staff[0][0].written_duration == Duration(1, 4)
-    assert staff[0][0].get_duration() == Duration(1, 6)
+    assert more(staff[0][0]).get_duration() == Duration(1, 6)
     assert select(staff).is_well_formed()
 
 
@@ -689,13 +689,13 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_17():
     assert isinstance(container, Container)
     assert len(container) == 2
     assert container._preprolated_duration == Duration(5, 6)
-    assert container.get_duration() == Duration(5, 6)
+    assert more(container).get_duration() == Duration(5, 6)
     assert isinstance(container[0], tuplettools.FixedDurationTuplet)
     assert container[0].target_duration == Duration(2, 6)
-    assert container[0].get_duration() == Duration(2, 6)
+    assert more(container[0]).get_duration() == Duration(2, 6)
     assert isinstance(container[0][0], Note)
     assert container[0][0].written_duration == Duration(1, 4)
-    assert container[0][0].get_duration() == Duration(1, 6)
+    assert more(container[0][0]).get_duration() == Duration(1, 6)
     assert select(container).is_well_formed()
 
 
@@ -708,13 +708,13 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_18():
     assert isinstance(voice, Voice)
     assert len(voice) == 2
     assert voice._preprolated_duration == Duration(5, 6)
-    assert voice.get_duration() == Duration(5, 6)
+    assert more(voice).get_duration() == Duration(5, 6)
     assert isinstance(voice[0], tuplettools.FixedDurationTuplet)
     assert voice[0].target_duration == Duration(2, 6)
-    assert voice[0].get_duration() == Duration(2, 6)
+    assert more(voice[0]).get_duration() == Duration(2, 6)
     assert isinstance(voice[0][0], Note)
     assert voice[0][0].written_duration == Duration(1, 4)
-    assert voice[0][0].get_duration() == Duration(1, 6)
+    assert more(voice[0][0]).get_duration() == Duration(1, 6)
     assert select(voice).is_well_formed()
 
 
@@ -727,13 +727,13 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_19():
     assert isinstance(staff, Staff)
     assert len(staff) == 2
     assert staff._preprolated_duration == Duration(5, 6)
-    assert staff.get_duration() == Duration(5, 6)
+    assert more(staff).get_duration() == Duration(5, 6)
     assert isinstance(staff[0], tuplettools.FixedDurationTuplet)
     assert staff[0].target_duration == Duration(2, 6)
-    assert staff[0].get_duration() == Duration(2, 6)
+    assert more(staff[0]).get_duration() == Duration(2, 6)
     assert isinstance(staff[0][0], Note)
     assert staff[0][0].written_duration == Duration(1, 4)
-    assert staff[0][0].get_duration() == Duration(1, 6)
+    assert more(staff[0][0]).get_duration() == Duration(1, 6)
     assert select(staff).is_well_formed()
 
 
@@ -750,10 +750,10 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_20():
     assert len(tuplet) == 2
     assert tuplet.target_duration == Duration(2, 6)
     assert tuplet.multiplier == Duration(2, 3)
-    assert tuplet.get_duration() == Duration(2, 6)
+    assert more(tuplet).get_duration() == Duration(2, 6)
     assert isinstance(tuplet[0], Note)
     assert tuplet[0].written_duration == Duration(1, 4)
-    assert tuplet[0].get_duration() == Duration(1, 6)
+    assert more(tuplet[0]).get_duration() == Duration(1, 6)
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_21():

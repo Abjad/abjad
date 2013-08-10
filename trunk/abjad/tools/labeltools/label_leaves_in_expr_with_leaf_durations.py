@@ -131,7 +131,7 @@ def label_leaves_in_expr_with_leaf_durations(
                 markuptools.Markup(label, markup_direction)(leaf)
             if label_durations:
                 label = markuptools.MarkupCommand(
-                    'small', str(leaf.get_duration()))
+                    'small', str(leaf._get_duration()))
                 markuptools.Markup(label, markup_direction)(leaf)
         elif tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
             tie = tie_spanners.pop()
@@ -140,6 +140,6 @@ def label_leaves_in_expr_with_leaf_durations(
                 label = markuptools.MarkupCommand('small', str(written))
                 markuptools.Markup(label, markup_direction)(leaf)
             if label_durations:
-                prolated = sum([x.get_duration() for x in tie])
+                prolated = sum([x._get_duration() for x in tie])
                 label = markuptools.MarkupCommand('small', str(prolated))
                 markuptools.Markup(label, markup_direction)(leaf)

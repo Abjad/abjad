@@ -12,7 +12,7 @@ def test_Tuplet_01():
     assert len(u) == 3
     assert u.multiplier == Duration(2, 3)
     assert u._preprolated_duration == Duration(1, 4)
-    assert u.get_duration() == Duration(1, 4)
+    assert more(u).get_duration() == Duration(1, 4)
 
 
 def test_Tuplet_02():
@@ -25,7 +25,7 @@ def test_Tuplet_02():
     assert len(u) == 0
     assert u._preprolated_duration == 0
     assert u.multiplier == Duration(2, 3)
-    assert u.get_duration() == 0
+    assert more(u).get_duration() == 0
 
 
 def test_Tuplet_03():
@@ -41,13 +41,13 @@ def test_Tuplet_03():
     assert len(u) == 3
     assert u._preprolated_duration == Duration(1, 2)
     assert u.multiplier == Duration(2, 3)
-    assert u.get_duration() == Duration(1, 2)
+    assert more(u).get_duration() == Duration(1, 2)
     assert repr(u[0]) == "Tuplet(4/5, [c'16, c'16, c'16, c'16, c'16])"
     assert str(u[0]) == "{* 5:4 c'16, c'16, c'16, c'16, c'16 *}"
     assert len(u[0]) == 5
     assert u[0]._preprolated_duration == Duration(1, 4)
     assert u[0].multiplier == Duration(4, 5)
-    assert u[0].get_duration() == Duration(1, 6)
+    assert more(u[0]).get_duration() == Duration(1, 6)
 
 
 def test_Tuplet_04():
@@ -63,10 +63,10 @@ def test_Tuplet_04():
     assert len(u) == 3
     assert u._preprolated_duration == Duration(1, 3)
     assert u.multiplier == Duration(2, 3)
-    assert u.get_duration() == Duration(1, 3)
+    assert more(u).get_duration() == Duration(1, 3)
     assert repr(u[0]) == 'Tuplet(4/5, [])'
     assert str(u[0]) == '{* 4/5 *}'
     assert len(u[0]) == 0
     assert u[0]._preprolated_duration == Duration(0)
     assert u[0].multiplier == Duration(4, 5)
-    assert u[0].get_duration() == Duration(0)
+    assert more(u[0]).get_duration() == Duration(0)

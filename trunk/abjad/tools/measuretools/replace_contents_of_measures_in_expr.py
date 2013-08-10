@@ -80,7 +80,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
         multiplier = current_time_signature.implied_prolation
         preprolated_duration = current_element._preprolated_duration
         duration = multiplier * preprolated_duration
-        candidate_duration = current_measure.get_duration() + duration
+        candidate_duration = current_measure._get_duration() + duration
 
         # if new element fits in current measure
         if candidate_duration <= current_time_signature.duration:

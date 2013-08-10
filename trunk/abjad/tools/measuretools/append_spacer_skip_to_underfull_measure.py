@@ -46,7 +46,7 @@ def append_spacer_skip_to_underfull_measure(measure):
 
     if measure.is_underfull:
         target_duration = measure.time_signature.duration
-        duration = measure.get_duration()
+        duration = more(measure).get_duration()
         skip = skiptools.Skip((1, 1))
         time_signature_multiplier = \
             measure.time_signature.implied_prolation

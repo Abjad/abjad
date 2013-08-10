@@ -255,15 +255,15 @@ def split_leaf_at_offsets(
 
     if cyclic:
         offsets = sequencetools.repeat_sequence_to_weight_exactly(
-            offsets, leaf.get_duration())
+            offsets, leaf._get_duration())
 
     durations = [durationtools.Duration(offset) for offset in offsets]
 
-    if sum(durations) < leaf.get_duration():
-        last_duration = leaf.get_duration() - sum(durations)
+    if sum(durations) < leaf._get_duration():
+        last_duration = leaf._get_duration() - sum(durations)
         durations.append(last_duration)
 
-    sequencetools.truncate_sequence_to_weight(durations, leaf.get_duration())
+    sequencetools.truncate_sequence_to_weight(durations, leaf._get_duration())
 
     result = []
     leaf_prolation = leaf._select_parentage(include_self=False).prolation

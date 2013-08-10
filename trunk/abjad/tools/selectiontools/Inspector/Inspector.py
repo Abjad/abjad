@@ -41,6 +41,15 @@ class Inspector(Selection):
         annotation_value = with_correct_name[0].value
         return annotation_value
 
+    def get_duration(self, in_seconds=False):
+        r'''Gets duration of component.
+
+        Returns duration.
+        '''
+        return self[0]._get_duration(
+            in_seconds=in_seconds,
+            )
+
     def get_effective_context_mark(
         self,
         context_mark_classes=None,
