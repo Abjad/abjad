@@ -164,7 +164,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             if hasattr(self.payload, 'duration'):
                 payload_duration = self.payload.duration
             else:
-                payload_duration = self.payload.get_duration()
+                payload_duration = self.payload._get_duration()
             duration_to_keep = payload_duration - duration_to_trim
             result = self._split_payload_at_offsets([duration_to_keep])
             trimmed_payload = result[0]
@@ -222,6 +222,8 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
     def _get_duration_of_expr(self, expr):
         if hasattr(expr, 'duration'):
             return expr.duration
+        elif hasattr(expr, '_get_duration'):
+            return expr._get_duration()
         elif hasattr(expr, 'duration'):
             return expr.duration
         elif isinstance(expr, numbers.Number):

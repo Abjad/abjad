@@ -64,7 +64,7 @@ def test_Leaf___copy___07():
     assert u.written_pitch.numbered_chromatic_pitch == staff.select_leaves()[4].written_pitch.numbered_chromatic_pitch
     assert u.written_duration == staff.select_leaves()[4].written_duration
     assert id(u) != id(staff.select_leaves()[4])
-    assert more(u).get_duration() != staff.select_leaves()[4].get_duration()
+    assert more(u).get_duration() != more(staff.select_leaves()[4]).get_duration()
 
 
 def test_Leaf___copy___08():
@@ -74,4 +74,4 @@ def test_Leaf___copy___08():
     assert u.written_pitch.numbered_chromatic_pitch == staff.select_leaves()[5].written_pitch.numbered_chromatic_pitch
     assert u.written_duration == staff.select_leaves()[5].written_duration
     assert id(u) != id(staff.select_leaves()[5])
-    assert more(u).get_duration() != staff.select_leaves()[5].get_duration()
+    assert more(u).get_duration() != more(staff.select_leaves()[5]).get_duration()

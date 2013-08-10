@@ -793,17 +793,6 @@ class Component(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def get_duration(self, in_seconds=False):
-        r'''Gets duration of component.
-
-        Returns duration.
-        '''
-        if in_seconds:
-            return self._duration_in_seconds
-        else:
-            parentage = self._select_parentage(include_self=False)
-            return parentage.prolation * self._preprolated_duration
-
     def select(self, sequential=False):
         r'''Selects component.
 

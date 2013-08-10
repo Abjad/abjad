@@ -23,7 +23,7 @@ class TerracedDynamicsHandler(DynamicHandler):
         for i, note_or_chord in enumerate(
             iterationtools.iterate_notes_and_chords_in_expr(expr)):
             dynamic_name = dynamics[offset+i]
-            if self.minimum_duration <= note_or_chord.get_duration():
+            if self.minimum_duration <= note_or_chord._get_duration():
                 #contexttools.DynamicMark(dynamic_name)(note_or_chord)
                 marktools.LilyPondCommandMark(dynamic_name, 'right')(
                     note_or_chord)
