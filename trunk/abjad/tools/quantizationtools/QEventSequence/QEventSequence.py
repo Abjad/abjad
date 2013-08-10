@@ -10,24 +10,17 @@ from abjad.tools import notetools
 from abjad.tools import resttools
 from abjad.tools import sequencetools
 from abjad.tools import skiptools
-from abjad.tools.abctools import ImmutableAbjadObject
+from abjad.tools.abctools import AbjadObject
 from abjad.tools.selectiontools import more
 
 
-class QEventSequence(tuple, ImmutableAbjadObject):
-    r'''A well-formed sequence of 
-    :class:`~abjad.tools.quantizationtools.QEvent.QEvent.QEvent`
-    instances, containing only 
-    :class:`~abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent` 
-    instances and 
-    :class:`~abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent` 
-    instances, and terminating
-    with a single 
-    :class:`~abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent`
-    instance.
+class QEventSequence(AbjadObject):
+    r'''A well-formed sequence of q-events.
 
-    A q-event sequence is the primary input to the
-    :class:`~abjad.tools.quantizationtools.Quantizer.Quantizer.Quantizer`.
+    Contains only pitched q-events and silent q-events, and terminates with a 
+    single terminal q-event.
+
+    A q-event sequence is the primary input to the quantizer.
 
     A q-event sequence provides a number of convenience functions to
     assist with instantiating new sequences:
@@ -73,32 +66,46 @@ class QEventSequence(tuple, ImmutableAbjadObject):
             durationtools.Offset(4000, 1)
             )
 
-    Return ``QEventSequence`` instance.
+    Return q-event sequence.
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_sequence',
         )
 
     ### INITIALIZER ###
 
-    def __new__(cls, args):
+    def __init__(self, sequence):
         from abjad.tools import quantizationtools
-        clses = (
-            quantizationtools.PitchedQEvent, quantizationtools.SilentQEvent)
-        assert 1 < len(args)
-        assert all(isinstance(x, clses) for x in args[:-1])
-        assert isinstance(args[-1], quantizationtools.TerminalQEvent)
+        q_event_classes = (
+            quantizationtools.PitchedQEvent,
+            quantizationtools.SilentQEvent,
+            )
+        assert 1 < len(sequence)
+        assert all(isinstance(q_event, q_event_classes) 
+            for q_event in sequence[:-1])
+        assert isinstance(sequence[-1], quantizationtools.TerminalQEvent)
         assert sequencetools.is_monotonically_increasing_sequence(
-            [x.offset for x in args])
-        assert 0 <= args[0].offset
-        return tuple.__new__(cls, args)
+            x.offset for x in sequence)
+        assert 0 <= sequence[0].offset
+        self._sequence = tuple(sequence)
 
     ### SPECIAL METHODS ###
 
-    def __repr__(self):
-        return '{}({})'.format(self._class_name, tuple.__repr__(self))
+    def __contains__(self, expr):
+        return expr in self._sequence
+
+    def __getitem__(self, expr):
+        return self._sequence[expr]
+
+    def __iter__(self):
+        for x in self._sequence:
+            yield x
+
+    def __len__(self):
+        return len(self._sequence)
 
     ### PUBLIC PROPERTIES ###
 
@@ -114,6 +121,46 @@ class QEventSequence(tuple, ImmutableAbjadObject):
         Return ``Duration`` instance.
         '''
         return durationtools.Duration(self[-1].offset)
+
+    @property
+    def sequence(self):
+        r'''The sequence of q-events:
+
+        ::
+
+            >>> for q_event in sequence.sequence:
+            ...     z(q_event)
+            ...
+            quantizationtools.PitchedQEvent(
+                durationtools.Offset(0, 1),
+                (NamedChromaticPitch("c'"),),
+                attachments=()
+                )
+            quantizationtools.SilentQEvent(
+                durationtools.Offset(1000, 1),
+                attachments=()
+                )
+            quantizationtools.PitchedQEvent(
+                durationtools.Offset(1500, 1),
+                (NamedChromaticPitch("c'"),),
+                attachments=()
+                )
+            quantizationtools.SilentQEvent(
+                durationtools.Offset(2750, 1),
+                attachments=()
+                )
+            quantizationtools.PitchedQEvent(
+                durationtools.Offset(3250, 1),
+                (NamedChromaticPitch("c'"),),
+                attachments=()
+                )
+            quantizationtools.TerminalQEvent(
+                durationtools.Offset(4000, 1)
+                )
+
+        Return tuple.
+        '''
+        return self._sequence
 
     ### PUBLIC METHODS ###
 
@@ -167,7 +214,9 @@ class QEventSequence(tuple, ImmutableAbjadObject):
         '''
         from abjad.tools import quantizationtools
         if fuse_silences:
-            durations = [x for x in sequencetools.sum_consecutive_sequence_elements_by_sign(milliseconds, sign=[-1]) if x]
+            durations = [x for x in \
+                sequencetools.sum_consecutive_sequence_elements_by_sign(
+                    milliseconds, sign=[-1]) if x]
         else:
             durations = milliseconds
         offsets = mathtools.cumulative_sums_zero([abs(x) for x in durations])
@@ -180,7 +229,8 @@ class QEventSequence(tuple, ImmutableAbjadObject):
             else:
                 q_event = quantizationtools.PitchedQEvent(offset, [0])
             q_events.append(q_event)
-        q_events.append(quantizationtools.TerminalQEvent(durationtools.Offset(offsets[-1])))
+        q_events.append(quantizationtools.TerminalQEvent(
+            durationtools.Offset(offsets[-1])))
         return cls(q_events)
 
     @classmethod
@@ -234,13 +284,15 @@ class QEventSequence(tuple, ImmutableAbjadObject):
         Return ``QEventSequence`` instance.
         '''
         from abjad.tools import quantizationtools
-        q_events = [quantizationtools.PitchedQEvent(x, [0]) for x in offsets[:-1]]
+        q_events = [quantizationtools.PitchedQEvent(x, [0]) 
+            for x in offsets[:-1]]
         q_events.append(quantizationtools.TerminalQEvent(offsets[-1]))
         return cls(q_events)
 
     @classmethod
     def from_millisecond_pitch_pairs(cls, pairs):
-        r'''Convert millisecond-duration:pitch pairs ``pairs`` into a ``QEventSequence``:
+        r'''Convert millisecond-duration:pitch pairs ``pairs`` into a 
+        ``QEventSequence``:
 
         ::
 
@@ -294,7 +346,8 @@ class QEventSequence(tuple, ImmutableAbjadObject):
         assert all(len(x) == 2 for x in pairs)
         assert all(0 < x[0] for x in pairs)
         for pair in pairs:
-            assert isinstance(pair[1], (numbers.Number, type(None), collections.Iterable))
+            assert isinstance(pair[1], (
+                numbers.Number, type(None), collections.Iterable))
             if isinstance(pair[1], collections.Iterable):
                 assert 0 < len(pair[1])
                 assert all(isinstance(x, numbers.Number) for x in pair[1])
@@ -321,7 +374,8 @@ class QEventSequence(tuple, ImmutableAbjadObject):
                 q_events.append(quantizationtools.SilentQEvent(offset))
             elif isinstance(pitches, numbers.Number):
                 q_events.append(quantizationtools.PitchedQEvent(offset, [pitches]))
-        q_events.append(quantizationtools.TerminalQEvent(durationtools.Offset(offsets[-1])))
+        q_events.append(quantizationtools.TerminalQEvent(
+            durationtools.Offset(offsets[-1])))
         return cls(q_events)
 
     @classmethod
@@ -394,8 +448,8 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
     @classmethod
     def from_tempo_scaled_leaves(cls, leaves, tempo=None):
-        r'''Convert ``leaves``, optionally with ``tempo`` 
-        into a ``QEventSequence``:
+        r'''Convert ``leaves``, optionally with ``tempo`` into a 
+        ``QEventSequence``:
 
         ::
 
