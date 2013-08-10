@@ -5,34 +5,34 @@ from abjad import *
 def test_Component_start_offset_01():
     voice = Voice(notetools.make_repeated_notes(16))
     for i, x in enumerate(voice):
-        assert x.get_timespan().start_offset == i * Duration(1, 8)
+        assert more(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
 def test_Component_start_offset_02():
     staff = Staff(notetools.make_repeated_notes(16))
     for i, x in enumerate(staff):
-        assert x.get_timespan().start_offset == i * Duration(1, 8)
+        assert more(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
 def test_Component_start_offset_03():
     staff = Staff(notetools.make_repeated_notes(16))
     staff[10] = Rest((1, 8))
     for i, x in enumerate(staff):
-        assert x.get_timespan().start_offset == i * Duration(1, 8)
+        assert more(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
 def test_Component_start_offset_04():
     staff = Staff(notetools.make_repeated_notes(16))
     staff[10:10] = [Rest((1, 8))]
     for i, x in enumerate(staff):
-        assert x.get_timespan().start_offset == i * Duration(1, 8)
+        assert more(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
 def test_Component_start_offset_05():
     staff = Staff(notetools.make_repeated_notes(16))
     staff[10:12] = [Rest((1, 8))]
     for i, x in enumerate(staff):
-        assert x.get_timespan().start_offset == i * Duration(1, 8)
+        assert more(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
 def test_Component_start_offset_06():
@@ -44,13 +44,13 @@ def test_Component_start_offset_06():
     v1.name = v2.name = 'voice'
     container = Container([v1, v2])
     for i, x in enumerate(container.select_leaves()):
-        assert x.get_timespan().start_offset == i * Duration(1, 8)
+        assert more(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
 def test_Component_start_offset_07():
     tuplet = tuplettools.FixedDurationTuplet(Duration(1,4), notetools.make_repeated_notes(3))
     for i, x in enumerate(tuplet):
-        assert x.get_timespan().start_offset == i * Duration(1, 12)
+        assert more(x).get_timespan().start_offset == i * Duration(1, 12)
 
 
 def test_Component_start_offset_08():
@@ -58,7 +58,7 @@ def test_Component_start_offset_08():
     voice = Voice([Note(0, (1, 8)), tp, Note(0, (1, 8))])
     offset = 0
     for x, d in zip(voice.select_leaves(), [(1, 8), (1, 12), (1, 12), (1, 12), (1, 8)]):
-        assert x.get_timespan().start_offset == offset
+        assert more(x).get_timespan().start_offset == offset
         offset += Duration(*d)
 
 
@@ -70,7 +70,7 @@ def test_Component_start_offset_09():
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), tp, Note("c'4")])
     offset = 0
     for x, d in zip(tuplet.select_leaves(), [(1, 6), (1, 18), (1, 18), (1, 18), (1, 6)]):
-        assert x.get_timespan().start_offset == offset
+        assert more(x).get_timespan().start_offset == offset
         offset += Duration(*d)
 
 
@@ -83,9 +83,9 @@ def test_Component_start_offset_10():
     staff = Staff([v1, v2])
     staff.is_simultaneous = True
     for i, x in enumerate(v1):
-        assert x.get_timespan().start_offset == i * Duration(1, 8)
+        assert more(x).get_timespan().start_offset == i * Duration(1, 8)
     for i, x in enumerate(v2):
-        assert x.get_timespan().start_offset == i * Duration(1, 8)
+        assert more(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
 def test_Component_start_offset_11():
@@ -95,9 +95,9 @@ def test_Component_start_offset_11():
     voice = Voice(notetools.make_repeated_notes(4))
     staff = Staff([Note(0, (1, 8)), voice, Note(0, (1, 8))])
     for i, x in enumerate(staff.select_leaves()):
-        assert x.get_timespan().start_offset == i * Duration(1, 8)
+        assert more(x).get_timespan().start_offset == i * Duration(1, 8)
     for i, x in enumerate(voice.select_leaves()):
-        assert x.get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 8)
+        assert more(x).get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 8)
 
 
 def test_Component_start_offset_12():
@@ -108,9 +108,9 @@ def test_Component_start_offset_12():
     v2 = Voice(notetools.make_repeated_notes(4))
     staff = Staff([v1, v2])
     for i, x in enumerate(v1.select_leaves()):
-        assert x.get_timespan().start_offset == i * Duration(1, 8)
+        assert more(x).get_timespan().start_offset == i * Duration(1, 8)
     for i, x in enumerate(v2.select_leaves()):
-        assert x.get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 2)
+        assert more(x).get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 2)
 
 
 def test_Component_start_offset_13():
@@ -122,9 +122,9 @@ def test_Component_start_offset_13():
     staff = Staff([v1, v2])
     staff.is_simultaneous = True
     for i, x in enumerate(v1.select_leaves()):
-        assert x.get_timespan().start_offset == i * Duration(1, 8)
+        assert more(x).get_timespan().start_offset == i * Duration(1, 8)
     for i, x in enumerate(v2.select_leaves()):
-        assert x.get_timespan().start_offset == i * Duration(1, 8)
+        assert more(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
 def test_Component_start_offset_14():
@@ -137,7 +137,7 @@ def test_Component_start_offset_14():
     staff = Staff([Container([v1, v2]), v3])
     staff[0].is_simultaneous = True
     for i, x in enumerate(v3.select_leaves()):
-        assert x.get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 2)
+        assert more(x).get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 2)
 
 
 def test_Component_start_offset_15():
@@ -150,9 +150,9 @@ def test_Component_start_offset_15():
     staff = Staff([v3, Container([v1, v2])])
     staff[1].is_simultaneous = True
     for i, x in enumerate(v1.select_leaves()):
-        assert x.get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 2)
+        assert more(x).get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 2)
     for i, x in enumerate(v2.select_leaves()):
-        assert x.get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 2)
+        assert more(x).get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 2)
 
 
 def test_Component_start_offset_16():
@@ -162,7 +162,7 @@ def test_Component_start_offset_16():
     staff = Staff([Voice(notetools.make_repeated_notes(4)), Voice(notetools.make_repeated_notes(4))])
     staff[0].name = staff[1].name = 'voice'
     for i, x in enumerate(staff):
-        assert x.get_timespan().start_offset == i * Duration(4, 8)
+        assert more(x).get_timespan().start_offset == i * Duration(4, 8)
 
 
 def test_Component_start_offset_17():
@@ -171,8 +171,8 @@ def test_Component_start_offset_17():
 
     container = Container([Staff(notetools.make_repeated_notes(4)), Staff(notetools.make_repeated_notes(4))])
     container[0].name = container[1].name = 'staff'
-    assert container[0].get_timespan().start_offset == Duration(0)
-    assert container[1].get_timespan().start_offset == Duration(1, 2)
+    assert more(container[0]).get_timespan().start_offset == Duration(0)
+    assert more(container[1]).get_timespan().start_offset == Duration(1, 2)
 
 
 def test_Component_start_offset_18():
@@ -181,7 +181,7 @@ def test_Component_start_offset_18():
 
     staff = Staff([Voice(notetools.make_repeated_notes(4)), Voice(notetools.make_repeated_notes(4))])
     for i, x in enumerate(staff):
-        assert x.get_timespan().start_offset == i * Duration(4, 8)
+        assert more(x).get_timespan().start_offset == i * Duration(4, 8)
 
 
 def test_Component_start_offset_19():
@@ -189,9 +189,9 @@ def test_Component_start_offset_19():
     '''
 
     voice = Voice(tuplettools.FixedDurationTuplet(Duration(1, 4), notetools.make_repeated_notes(3)) * 3)
-    assert voice[0].get_timespan().start_offset == 0 * Duration(1, 4)
-    assert voice[1].get_timespan().start_offset == 1 * Duration(1, 4)
-    assert voice[2].get_timespan().start_offset == 2 * Duration(1, 4)
+    assert more(voice[0]).get_timespan().start_offset == 0 * Duration(1, 4)
+    assert more(voice[1]).get_timespan().start_offset == 1 * Duration(1, 4)
+    assert more(voice[2]).get_timespan().start_offset == 2 * Duration(1, 4)
 
 
 def test_Component_start_offset_20():
@@ -200,9 +200,9 @@ def test_Component_start_offset_20():
 
     tp = tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
     voice = Voice([Note(0, (1, 8)), tp, Note(0, (1, 8))])
-    assert voice[0].get_timespan().start_offset == 0 * Duration(1, 8)
-    assert voice[1].get_timespan().start_offset == 1 * Duration(1, 8)
-    assert voice[2].get_timespan().start_offset == 3 * Duration(1, 8)
+    assert more(voice[0]).get_timespan().start_offset == 0 * Duration(1, 8)
+    assert more(voice[1]).get_timespan().start_offset == 1 * Duration(1, 8)
+    assert more(voice[2]).get_timespan().start_offset == 3 * Duration(1, 8)
 
 
 def test_Component_start_offset_21():
@@ -211,9 +211,9 @@ def test_Component_start_offset_21():
 
     tp = tuplettools.FixedDurationTuplet(Duration(1, 4), notetools.make_repeated_notes(3))
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), tp, Note("c'4")])
-    assert tuplet[0].get_timespan().start_offset == 0 * Duration(1, 6)
-    assert tuplet[1].get_timespan().start_offset == 1 * Duration(1, 6)
-    assert tuplet[2].get_timespan().start_offset == 2 * Duration(1, 6)
+    assert more(tuplet[0]).get_timespan().start_offset == 0 * Duration(1, 6)
+    assert more(tuplet[1]).get_timespan().start_offset == 1 * Duration(1, 6)
+    assert more(tuplet[2]).get_timespan().start_offset == 2 * Duration(1, 6)
 
 
 def test_Component_start_offset_22():
@@ -224,8 +224,8 @@ def test_Component_start_offset_22():
     vout = Voice([Note(0, (1, 8)), vin])
     vin.name = vout.name = 'voice'
     staff = Staff([Note(1, (1, 8)), vout])
-    assert vin.get_timespan().start_offset == Duration(2, 8)
-    assert vout.get_timespan().start_offset == Duration(1, 8)
+    assert more(vin).get_timespan().start_offset == Duration(2, 8)
+    assert more(vout).get_timespan().start_offset == Duration(1, 8)
 
 
 def test_Component_start_offset_23():
@@ -236,8 +236,8 @@ def test_Component_start_offset_23():
     v2 = Voice(notetools.make_repeated_notes(4))
     staff = Staff([v1, v2])
     staff.is_simultaneous = True
-    assert staff[0].get_timespan().start_offset == 0
-    assert staff[1].get_timespan().start_offset == 0
+    assert more(staff[0]).get_timespan().start_offset == 0
+    assert more(staff[1]).get_timespan().start_offset == 0
 
 
 def test_Component_start_offset_24():
@@ -252,7 +252,7 @@ def test_Component_start_offset_24():
     s1 = Staff([v1, v1b])
     s2 = Staff([v2, v2b])
     gs = scoretools.GrandStaff([s1, s2])
-    assert v1.get_timespan().start_offset == 0
-    assert v2.get_timespan().start_offset == 0
-    assert v1b.get_timespan().start_offset == Duration(4, 8)
-    assert v2b.get_timespan().start_offset == Duration(4, 8)
+    assert more(v1).get_timespan().start_offset == 0
+    assert more(v2).get_timespan().start_offset == 0
+    assert more(v1b).get_timespan().start_offset == Duration(4, 8)
+    assert more(v2b).get_timespan().start_offset == Duration(4, 8)

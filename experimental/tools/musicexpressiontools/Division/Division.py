@@ -162,6 +162,14 @@ class Division(NonreducedFraction, BoundedObject):
 
     ### PUBLIC METHODS ###
 
+    # TODO: maybe keep only _get_timespan?
+    def _get_timespan(self):
+        '''Get timespan of division.
+
+        Return timespan.
+        '''
+        return timespantools.Timespan(self.start_offset, self.stop_offset)
+
     def get_timespan(self):
         '''Get timespan of division.
 

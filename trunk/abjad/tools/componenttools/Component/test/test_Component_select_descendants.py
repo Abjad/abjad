@@ -20,7 +20,7 @@ def test_Component_select_descendants_01():
     }
     '''
 
-    cross_offset = staff.get_timespan().start_offset + Duration(1, 8)
+    cross_offset = more(staff).get_timespan().start_offset + Duration(1, 8)
     result = more(staff).select_descendants(cross_offset=cross_offset)
 
     assert result == [staff, staff[0]]
@@ -44,7 +44,7 @@ def test_Component_select_descendants_02():
     }
     '''
 
-    cross_offset = staff.get_timespan().start_offset + Duration(1, 16)
+    cross_offset = more(staff).get_timespan().start_offset + Duration(1, 16)
     result = more(staff).select_descendants(cross_offset=cross_offset)
 
     assert result == [staff, staff[0], staff[0][0]]
@@ -68,7 +68,7 @@ def test_Component_select_descendants_03():
     }
     '''
 
-    cross_offset = staff.get_timespan().start_offset + Duration(0)
+    cross_offset = more(staff).get_timespan().start_offset + Duration(0)
     result = more(staff).select_descendants(cross_offset=cross_offset)
 
     assert result == []
@@ -92,7 +92,7 @@ def test_Component_select_descendants_04():
     }
     '''
 
-    cross_offset = staff.get_timespan().start_offset + Duration(100)
+    cross_offset = more(staff).get_timespan().start_offset + Duration(100)
     result = more(staff).select_descendants(cross_offset=cross_offset)
 
     assert result == []

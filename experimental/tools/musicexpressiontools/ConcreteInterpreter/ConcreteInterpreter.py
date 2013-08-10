@@ -96,9 +96,9 @@ class ConcreteInterpreter(Interpreter):
                     voice.name]
             for leaf in iterationtools.iterate_leaves_in_expr(voice):
                 voice_proxy.leaf_start_offsets.append(
-                    leaf.get_timespan().start_offset)
+                    leaf._get_timespan().start_offset)
                 voice_proxy.leaf_stop_offsets.append(
-                    leaf.get_timespan().stop_offset)
+                    leaf._get_timespan().stop_offset)
                 voice_proxy.leaves.append(leaf)
 
     def calculate_score_and_segment_timespans(self):

@@ -179,7 +179,7 @@ class Spanner(AbjadObject):
         raise NotImplemented
 
     def _duration_offset_in_me(self, leaf):
-        leaf_start_offset = leaf.get_timespan().start_offset
+        leaf_start_offset = leaf._get_timespan().start_offset
         self_start_offset = self.get_timespan().start_offset
         return leaf_start_offset - self_start_offset
 
@@ -690,12 +690,12 @@ class Spanner(AbjadObject):
     def get_timespan(self, in_seconds=False):
         if len(self):
             start_offset = \
-                self[0].get_timespan(in_seconds=in_seconds).start_offset
+                self[0]._get_timespan(in_seconds=in_seconds).start_offset
         else:
             start_offset = Duration(0)
         if len(self):
             stop_offset = \
-                self[-1].get_timespan(in_seconds=in_seconds).stop_offset
+                self[-1]._get_timespan(in_seconds=in_seconds).stop_offset
         else:
             stop_offset = Duration(0)
         return timespantools.Timespan(

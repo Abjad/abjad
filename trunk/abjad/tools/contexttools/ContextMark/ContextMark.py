@@ -159,8 +159,8 @@ class ContextMark(Mark):
         effective_context_mark = \
             start_component._get_effective_context_mark(classes)
         if effective_context_mark is not None:
-            if effective_context_mark.start_component.get_timespan().start_offset == \
-                start_component.get_timespan().start_offset:
+            if effective_context_mark.start_component._get_timespan().start_offset == \
+                start_component._get_timespan().start_offset:
                 message = 'effective context mark already attached'
                 message += ' to component starting at same time.'
                 raise ExtraMarkError(message)

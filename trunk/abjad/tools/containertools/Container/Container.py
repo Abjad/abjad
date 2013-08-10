@@ -904,9 +904,9 @@ class Container(Component):
         from abjad.tools import containertools
         from abjad.tools import spannertools
         def _offset(x, y):
-            if x.get_timespan().start_offset < y.get_timespan().start_offset:
+            if x._get_timespan().start_offset < y._get_timespan().start_offset:
                 return -1
-            elif y.get_timespan().start_offset < x.get_timespan().start_offset:
+            elif y._get_timespan().start_offset < x._get_timespan().start_offset:
                 return 1
             else:
                 return 0

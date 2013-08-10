@@ -26,5 +26,5 @@ def get_first_element_starting_strictly_before_offset(
     prolated_offset = durationtools.Duration(prolated_offset)
 
     for element in reversed(container):
-        if element.get_timespan().start_offset < prolated_offset:
+        if element._get_timespan().start_offset < prolated_offset:
             return element

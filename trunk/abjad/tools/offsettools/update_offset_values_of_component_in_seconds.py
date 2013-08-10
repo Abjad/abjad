@@ -12,7 +12,7 @@ def update_offset_values_of_component_in_seconds(component):
             component, -1)
         if prev is not None:
             component._start_offset_in_seconds = \
-                prev.get_timespan(in_seconds=True).stop_offset
+                prev._get_timespan(in_seconds=True).stop_offset
         else:
             component._start_offset_in_seconds = durationtools.Offset(0)
         # this one case is possible for containers only

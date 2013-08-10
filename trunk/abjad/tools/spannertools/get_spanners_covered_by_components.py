@@ -9,8 +9,8 @@ def get_spanners_covered_by_components(components):
     within the time bounds of thread-contiguous components.
 
     A spanner `p` is covered by timespan `t` when and only when
-    ``t.start_ofset <= p.get_timespan().start_offset and 
-    p.get_timespan().stop_offset <= t.stop_offset``.
+    ``t.start_ofset <= more(p).get_timespan().start_offset and 
+    more(p).get_timespan().stop_offset <= t.stop_offset``.
     '''
     from abjad.tools import spannertools
 
@@ -20,8 +20,8 @@ def get_spanners_covered_by_components(components):
         return set([])
 
     first, last = components[0], components[-1]
-    components_begin = first.get_timespan().start_offset
-    components_end = last.get_timespan().stop_offset
+    components_begin = first._get_timespan().start_offset
+    components_end = last._get_timespan().stop_offset
 
     result = spannertools.get_spanners_contained_by_components(components)
     for spanner in list(result):

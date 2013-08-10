@@ -23,11 +23,11 @@ def test_Tuplet_get_timespan_01():
     >>
     '''
 
-    assert staff.get_timespan(in_seconds=True) == \
+    assert more(staff).get_timespan(in_seconds=True) == \
         timespantools.Timespan(0, 4)
-    assert staff[0].get_timespan(in_seconds=True) == \
+    assert more(staff[0]).get_timespan(in_seconds=True) == \
         timespantools.Timespan(0, 1)
-    assert staff[1].get_timespan(in_seconds=True) == \
+    assert more(staff[1]).get_timespan(in_seconds=True) == \
         timespantools.Timespan(1, 2)
-    assert staff[-1].get_timespan(in_seconds=True) == \
+    assert more(staff[-1]).get_timespan(in_seconds=True) == \
         timespantools.Timespan(2, 4)

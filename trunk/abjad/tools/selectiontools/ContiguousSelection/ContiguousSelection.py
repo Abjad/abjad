@@ -66,8 +66,8 @@ class ContiguousSelection(Selection):
     def _get_offset_lists(self):
         start_offsets, stop_offsets = [], []
         for component in self:
-            start_offsets.append(component.get_timespan().start_offset)
-            stop_offsets.append(component.get_timespan().stop_offset)
+            start_offsets.append(component._get_timespan().start_offset)
+            stop_offsets.append(component._get_timespan().stop_offset)
         return start_offsets, stop_offsets
 
     def _give_dominant_spanners_to_components(self, recipients):
@@ -132,8 +132,8 @@ class ContiguousSelection(Selection):
         from abjad.tools import timespantools
         if in_seconds:
             raise NotImplementedError
-        start_offset = min(x.get_timespan().start_offset for x in self)
-        stop_offset = max(x.get_timespan().stop_offset for x in self)
+        start_offset = min(x._get_timespan().start_offset for x in self)
+        stop_offset = max(x._get_timespan().stop_offset for x in self)
         return timespantools.Timespan(start_offset, stop_offset)
 
     def group_by(self, predicate):

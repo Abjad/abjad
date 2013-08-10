@@ -32,10 +32,10 @@ def get_spanners_that_dominate_component_pair(left, right):
             right)
     dominant_spanners = left_contained & right_contained
 
-    right_start_offset = right.get_timespan().start_offset
+    right_start_offset = right._get_timespan().start_offset
     components_after_gap = []
     for component in right._select_lineage():
-        if component.get_timespan().start_offset == right_start_offset:
+        if component._get_timespan().start_offset == right_start_offset:
             components_after_gap.append(component)
 
     receipt = set([])

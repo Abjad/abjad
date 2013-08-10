@@ -31,7 +31,7 @@ def find_index_of_spanner_component_at_score_offset(spanner, score_offset):
     '''
 
     for component in spanner:
-        if component.get_timespan().start_offset == score_offset:
+        if component._get_timespan().start_offset == score_offset:
             return spanner.index(component)
 
     message = 'no component in spanner at this score offset.'

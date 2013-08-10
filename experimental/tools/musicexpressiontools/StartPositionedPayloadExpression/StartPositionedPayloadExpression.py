@@ -226,6 +226,8 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             return expr.duration
         elif isinstance(expr, numbers.Number):
             return durationtools.Duration(expr)
+        elif hasattr(expr, '_get_timespan'):
+            return expr._get_timespan().duration
         elif hasattr(expr, 'get_timespan'):
             return expr.get_timespan().duration
         elif hasattr(expr, 'timespan'):
@@ -260,8 +262,10 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         if len(self.elements):
             last_element = self.elements[0]
             for current_element in self.elements[1:]:
-                if not last_element.get_timespan().stop_offset == \
-                    current_element.get_timespan().start_offset:
+                #if not last_element.get_timespan().stop_offset == \
+                #    current_element.get_timespan().start_offset:
+                if not last_element._get_timespan().stop_offset == \
+                    current_element._get_timespan().start_offset:
                     return False
                 last_element = current_element
         return True

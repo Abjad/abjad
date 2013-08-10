@@ -168,7 +168,7 @@ class Component(AbjadObject):
         self._update_marks_of_entire_score_tree_if_necessary()
         # gathering candidate marks
         candidate_marks = datastructuretools.SortedCollection(
-            key=lambda x: x.start_component.get_timespan().start_offset)
+            key=lambda x: x.start_component._get_timespan().start_offset)
         for parent in self._select_parentage(include_self=True):
             parent_marks = parent._dependent_context_marks
             for mark in parent_marks:
@@ -182,7 +182,7 @@ class Component(AbjadObject):
         # elect most recent candidate mark
         if candidate_marks:
             try:
-                start_offset = self.get_timespan().start_offset
+                start_offset = self._get_timespan().start_offset
                 return candidate_marks.find_le(start_offset)
             except ValueError:
                 pass
@@ -206,6 +206,19 @@ class Component(AbjadObject):
         if kind in (None, 'after') and hasattr(self, '_after_grace'):
             result.append(self._after_grace)
         return tuple(result)
+
+    def _get_timespan(self, in_seconds=False):
+        if in_seconds:
+            self._update_offset_values_in_seconds_of_entire_score_tree_if_necessary()
+            if self._start_offset_in_seconds is None:
+                raise MissingTempoError
+            return timespantools.Timespan(
+                start_offset=self._start_offset_in_seconds, 
+                stop_offset=self._stop_offset_in_seconds,
+                )
+        else:
+            self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
+            return self._timespan
 
     def _format_after_slot(self, format_contributions):
         pass
@@ -472,7 +485,7 @@ class Component(AbjadObject):
 
     def _select_vertical_moment(self, governor=None):
         from abjad.tools import componenttools
-        offset = self.get_timespan().start_offset
+        offset = self._get_timespan().start_offset
         if governor is None:
             governor = self._select_parentage().root
         return selectiontools.VerticalMoment(governor, offset)
@@ -538,7 +551,7 @@ class Component(AbjadObject):
         assert componenttools.all_are_components(components)
         if direction == Right:
             if grow_spanners:
-                insert_offset = self.get_timespan().stop_offset
+                insert_offset = self._get_timespan().stop_offset
                 receipt = spannertools.get_spanners_that_dominate_components(
                     [self])
                 for spanner, index in receipt:
@@ -565,7 +578,7 @@ class Component(AbjadObject):
             return [self] + components
         else:
             if grow_spanners:
-                offset= self.get_timespan().start_offset
+                offset= self._get_timespan().start_offset
                 receipt = spannertools.get_spanners_that_dominate_components(
                     [self])
                 for spanner, x in receipt:
@@ -783,23 +796,6 @@ class Component(AbjadObject):
         else:
             parentage = self._select_parentage(include_self=False)
             return parentage.prolation * self._preprolated_duration
-
-    def get_timespan(self, in_seconds=False):
-        r'''Gets timespan of component.
-
-        Returns timespan.
-        '''
-        if in_seconds:
-            self._update_offset_values_in_seconds_of_entire_score_tree_if_necessary()
-            if self._start_offset_in_seconds is None:
-                raise MissingTempoError
-            return timespantools.Timespan(
-                start_offset=self._start_offset_in_seconds, 
-                stop_offset=self._stop_offset_in_seconds,
-                )
-        else:
-            self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
-            return self._timespan
 
     def select(self, sequential=False):
         r'''Selects component.

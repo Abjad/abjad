@@ -172,6 +172,15 @@ class Inspector(Selection):
             direction=direction,
             )
 
+    def get_timespan(self, in_seconds=False):
+        r'''Gets timespan of component.
+
+        Returns timespan.
+        '''
+        return self[0]._get_timespan(
+            in_seconds=in_seconds,
+            )
+
     def get_spanners(self):
         r'''Gets spanners attached to component.
 

@@ -18,7 +18,7 @@ def test_Component_start_offset_in_seconds_01():
     }
     '''
 
-    statement = 'staff[0].get_timespan(in_seconds=True).start_offset'
+    statement = 'more(staff[0]).get_timespan(in_seconds=True).start_offset'
     assert py.test.raises(MissingTempoError, statement)
 
 
@@ -39,5 +39,5 @@ def test_Component_start_offset_in_seconds_02():
     }
     '''
 
-    assert staff[0].get_timespan(in_seconds=True).start_offset == Duration(0)
-    assert staff[1].get_timespan(in_seconds=True).start_offset == Duration(5, 4)
+    assert more(staff[0]).get_timespan(in_seconds=True).start_offset == Duration(0)
+    assert more(staff[1]).get_timespan(in_seconds=True).start_offset == Duration(5, 4)

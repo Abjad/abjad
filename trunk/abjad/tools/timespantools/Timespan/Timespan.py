@@ -624,6 +624,9 @@ class Timespan(BoundedObject):
     def _get_timespan(self, expr):
         if isinstance(expr, Timespan):
             start_offset, stop_offset = expr.offsets
+        elif hasattr(expr, '_get_timespan'):
+            start_offset, stop_offset = expr._get_timespan().offsets
+        # TODO: remove this branch in favor of the _get_timespan above
         elif hasattr(expr, 'get_timespan'):
             start_offset, stop_offset = expr.get_timespan().offsets
         else:
@@ -634,6 +637,9 @@ class Timespan(BoundedObject):
         if hasattr(timespan, 'start_offset') and \
             hasattr(timespan, 'stop_offset'):
             return True
+        if hasattr(expr, '_get_timespan'):
+            return True
+        # TODO: remove this branch in favor of the _get_timespan above
         if hasattr(expr, 'get_timespan'):
             return True
         if hasattr(timespan, 'timespan'):

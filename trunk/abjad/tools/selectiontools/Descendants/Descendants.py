@@ -84,8 +84,8 @@ class Descendants(SimultaneousSelection):
         else:
             for x in music:
                 append_x = True
-                if not (x.get_timespan().start_offset < cross_offset and 
-                    cross_offset < x.get_timespan().stop_offset):
+                if not (x._get_timespan().start_offset < cross_offset and 
+                    cross_offset < x._get_timespan().stop_offset):
                     append_x = False
                 if append_x:
                     result.append(x)
