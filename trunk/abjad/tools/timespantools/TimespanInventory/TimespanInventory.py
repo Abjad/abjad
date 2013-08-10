@@ -899,6 +899,149 @@ class TimespanInventory(ObjectInventory):
         self.sort()
         return self
 
+    def compute_overlap_factor(self, timespan=None):
+        r'''Compute overlap factor of timespans:
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 10),
+            ...     timespantools.Timespan(5, 15),
+            ...     timespantools.Timespan(20, 25),
+            ...     timespantools.Timespan(20, 30),
+            ...     ])
+        
+        ..  container:: example
+
+            **Example 1.** Compute overlap factor across the entire inventory:
+
+            ::
+
+                >>> timespan_inventory.compute_overlap_factor()
+                Multiplier(7, 6)
+
+        ..  container:: example
+
+            **Example 2a.** Compute overlap factor within a specific timespan:
+
+            ::
+
+                >>> timespan_inventory.compute_overlap_factor(
+                ...     timespan=timespantools.Timespan(-15, 0))
+                Multiplier(0, 1)
+
+        ..  container:: example
+
+            **Example 2b:**
+
+            ::
+
+                >>> timespan_inventory.compute_overlap_factor(
+                ...     timespan=timespantools.Timespan(-10, 5))
+                Multiplier(1, 3)
+
+        ..  container:: example
+
+            **Example 2c:**
+
+            ::
+
+                >>> timespan_inventory.compute_overlap_factor(
+                ...     timespan=timespantools.Timespan(-5, 10))
+                Multiplier(1, 1)
+
+        ..  container:: example
+
+            **Example 2d:**
+
+            ::
+
+                >>> timespan_inventory.compute_overlap_factor(
+                ...     timespan=timespantools.Timespan(0, 15))
+                Multiplier(4, 3)
+
+        ..  container:: example
+
+            **Example 2e:**
+
+            ::
+
+                >>> timespan_inventory.compute_overlap_factor(
+                ...     timespan=timespantools.Timespan(5, 20))
+                Multiplier(1, 1)
+
+        ..  container:: example
+
+            **Example 2f:**
+
+            ::
+
+                >>> timespan_inventory.compute_overlap_factor(
+                ...     timespan=timespantools.Timespan(10, 25))
+                Multiplier(1, 1)
+
+        ..  container:: example
+
+            **Example 2g:**
+
+            ::
+
+                >>> timespan_inventory.compute_overlap_factor(
+                ...     timespan=timespantools.Timespan(15, 30))
+                Multiplier(1, 1)
+
+        Return multiplier.
+        '''
+        from abjad.tools import timespantools
+        if timespan is None:
+            timespan = self.timespan
+        time_relation = timerelationtools.timespan_2_intersects_timespan_1(
+            timespan_1=timespan)
+        timespan_inventory = self.get_timespans_that_satisfy_time_relation(
+            time_relation)
+        total_overlap = durationtools.Duration(sum(
+            x.get_overlap_with_timespan(timespan) for x in timespan_inventory))
+        overlap_factor = total_overlap / timespan.duration
+        return overlap_factor
+
+    def compute_overlap_factor_mapping(self):
+        r'''Compute overlap factor for each consecutive offset pair in 
+        timespans:
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 10),
+            ...     timespantools.Timespan(5, 15),
+            ...     timespantools.Timespan(20, 25),
+            ...     timespantools.Timespan(20, 30),
+            ...     ])
+
+        ::
+
+            >>> mapping = timespan_inventory.compute_overlap_factor_mapping()
+            >>> for timespan, overlap_factor in mapping.iteritems():
+            ...     timespan.start_offset, timespan.stop_offset, overlap_factor
+            ...
+            (Offset(0, 1), Offset(5, 1), Multiplier(1, 1))
+            (Offset(5, 1), Offset(10, 1), Multiplier(2, 1))
+            (Offset(10, 1), Offset(15, 1), Multiplier(1, 1))
+            (Offset(15, 1), Offset(20, 1), Multiplier(0, 1))
+            (Offset(20, 1), Offset(25, 1), Multiplier(2, 1))
+            (Offset(25, 1), Offset(30, 1), Multiplier(1, 1))
+
+        Return mapping.
+        '''
+        from abjad.tools import timespantools
+        mapping = collections.OrderedDict()
+        for start_offset, stop_offset in \
+            sequencetools.iterate_sequence_pairwise_strict(sorted(
+                self.count_offsets())):
+            timespan = timespantools.Timespan(start_offset, stop_offset)
+            overlap_factor = self.compute_overlap_factor(timespan=timespan)
+            mapping[timespan] = overlap_factor
+        return mapping
+
     def count_offsets(self):
         r'''Count offsets in inventory:
 
@@ -997,6 +1140,289 @@ class TimespanInventory(ObjectInventory):
             counter[timespan.start_offset] += 1
             counter[timespan.stop_offset] += 1
         return counter
+
+    def explode(self, inventory_count=None):
+        r'''Explode timespans into inventories, avoiding overlap, and
+        distributing density as evenly as possible.
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 3),
+            ...     timespantools.Timespan(5, 13),
+            ...     timespantools.Timespan(6, 10),
+            ...     timespantools.Timespan(8, 9),
+            ...     timespantools.Timespan(15, 23),
+            ...     timespantools.Timespan(16, 21),
+            ...     timespantools.Timespan(17, 19),
+            ...     timespantools.Timespan(19, 20),
+            ...     timespantools.Timespan(25, 30),
+            ...     timespantools.Timespan(26, 29),
+            ...     timespantools.Timespan(32, 34),
+            ...     timespantools.Timespan(34, 37),
+            ...     ])
+
+        ..  container:: example
+
+            **Example 1.** Explode timespans into the optimal number of 
+            non-overlapping inventories:
+
+            ::
+
+                >>> for exploded_inventory in timespan_inventory.explode():
+                ...     z(exploded_inventory)
+                ...
+                timespantools.TimespanInventory([
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(0, 1),
+                        stop_offset=durationtools.Offset(3, 1)
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(5, 1),
+                        stop_offset=durationtools.Offset(13, 1)
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(17, 1),
+                        stop_offset=durationtools.Offset(19, 1)
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(19, 1),
+                        stop_offset=durationtools.Offset(20, 1)
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(34, 1),
+                        stop_offset=durationtools.Offset(37, 1)
+                        )
+                    ])
+                timespantools.TimespanInventory([
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(6, 1),
+                        stop_offset=durationtools.Offset(10, 1)
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(16, 1),
+                        stop_offset=durationtools.Offset(21, 1)
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(25, 1),
+                        stop_offset=durationtools.Offset(30, 1)
+                        )
+                    ])
+                timespantools.TimespanInventory([
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(8, 1),
+                        stop_offset=durationtools.Offset(9, 1)
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(15, 1),
+                        stop_offset=durationtools.Offset(23, 1)
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(26, 1),
+                        stop_offset=durationtools.Offset(29, 1)
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(32, 1),
+                        stop_offset=durationtools.Offset(34, 1)
+                        )
+                    ])
+
+        ..  container:: example
+
+            **Example 2.** Explode timespans into a less-than-optimal number of
+            overlapping inventories:
+
+            ::
+
+                >>> for exploded_inventory in timespan_inventory.explode(
+                ...     inventory_count=2):
+                ...     z(exploded_inventory)
+                ...
+                timespantools.TimespanInventory([
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(5, 1),
+                        stop_offset=durationtools.Offset(13, 1)
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(15, 1),
+                        stop_offset=durationtools.Offset(23, 1)
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(25, 1),
+                        stop_offset=durationtools.Offset(30, 1)
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(34, 1),
+                        stop_offset=durationtools.Offset(37, 1)
+                        )
+                    ])
+                timespantools.TimespanInventory([
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(0, 1),
+                        stop_offset=durationtools.Offset(3, 1)
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(6, 1),
+                        stop_offset=durationtools.Offset(10, 1)
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(8, 1),
+                        stop_offset=durationtools.Offset(9, 1)
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(16, 1),
+                        stop_offset=durationtools.Offset(21, 1)
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(17, 1),
+                        stop_offset=durationtools.Offset(19, 1)
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(19, 1),
+                        stop_offset=durationtools.Offset(20, 1)
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(26, 1),
+                        stop_offset=durationtools.Offset(29, 1)
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(32, 1),
+                        stop_offset=durationtools.Offset(34, 1)
+                        )
+                    ])
+
+        ..  container:: example
+
+            **Example 3.** Explode timespans into a greater-than-optimal number 
+            of non-overlapping inventories:
+
+            ::
+
+                >>> for exploded_inventory in timespan_inventory.explode(
+                ...     inventory_count=6):
+                ...     z(exploded_inventory)
+                ...
+                timespantools.TimespanInventory([
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(16, 1),
+                        stop_offset=durationtools.Offset(21, 1)
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(34, 1),
+                        stop_offset=durationtools.Offset(37, 1)
+                        )
+                    ])
+                timespantools.TimespanInventory([
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(15, 1),
+                        stop_offset=durationtools.Offset(23, 1)
+                        )
+                    ])
+                timespantools.TimespanInventory([
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(8, 1),
+                        stop_offset=durationtools.Offset(9, 1)
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(17, 1),
+                        stop_offset=durationtools.Offset(19, 1)
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(19, 1),
+                        stop_offset=durationtools.Offset(20, 1)
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(26, 1),
+                        stop_offset=durationtools.Offset(29, 1)
+                        )
+                    ])
+                timespantools.TimespanInventory([
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(6, 1),
+                        stop_offset=durationtools.Offset(10, 1)
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(32, 1),
+                        stop_offset=durationtools.Offset(34, 1)
+                        )
+                    ])
+                timespantools.TimespanInventory([
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(5, 1),
+                        stop_offset=durationtools.Offset(13, 1)
+                        )
+                    ])
+                timespantools.TimespanInventory([
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(0, 1),
+                        stop_offset=durationtools.Offset(3, 1)
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(25, 1),
+                        stop_offset=durationtools.Offset(30, 1)
+                        )
+                    ])
+
+        Return inventories.
+        '''
+        from abjad.tools import timespantools
+         
+        assert isinstance(inventory_count, (type(None), int))
+        if isinstance(inventory_count, int):
+            assert 0 < inventory_count
+
+        bounding_timespan = self.timespan
+        global_overlap_factors = []
+        empty_inventory_pairs = []
+        result_inventories = []
+
+        if inventory_count is not None:
+            for i in range(inventory_count):
+                global_overlap_factors.append(0)
+                result_inventory = type(self)([])
+                empty_inventory_pairs.append((i, result_inventory))
+                result_inventories.append(result_inventory)
+
+        for current_timespan in self:
+
+            current_overlap_factor = \
+                current_timespan.duration / bounding_timespan.duration
+            if empty_inventory_pairs:
+                i, empty_inventory = empty_inventory_pairs.pop()
+                empty_inventory.append(current_timespan)
+                global_overlap_factors[i] = current_overlap_factor
+                continue
+
+            nonoverlapping_inventories = []
+            overlapping_inventories = []
+            for i, result_inventory in enumerate(result_inventories):
+                local_overlap_factor = result_inventory.compute_overlap_factor(
+                    current_timespan)
+                global_overlap_factor = global_overlap_factors[i]
+                if not local_overlap_factor:
+                    nonoverlapping_inventories.append(
+                        (i, global_overlap_factor))
+                else:
+                    overlapping_inventories.append(
+                        (i, local_overlap_factor, global_overlap_factor))
+            nonoverlapping_inventories.sort(key=lambda x: x[1])
+            overlapping_inventories.sort(key=lambda x: (x[1], x[2]))
+
+            if not nonoverlapping_inventories and inventory_count is None:
+                result_inventory = type(self)([current_timespan])
+                global_overlap_factors.append(current_overlap_factor)
+                result_inventories.append(result_inventory)
+                continue
+
+            if nonoverlapping_inventories:
+                i = nonoverlapping_inventories[0][0]
+            else:
+                i = overlapping_inventories[0][0]
+            result_inventory = result_inventories[i]
+            result_inventory.append(current_timespan)
+            global_overlap_factors[i] += current_overlap_factor
+
+        return tuple(result_inventories)
 
     def get_timespan_that_satisfies_time_relation(self, time_relation):
         r'''Get timespan that satisifies `time_relation`:
