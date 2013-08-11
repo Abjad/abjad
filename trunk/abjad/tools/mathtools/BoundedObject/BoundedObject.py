@@ -14,11 +14,11 @@ class BoundedObject(AbjadObject):
     __slots__ = (
         )
 
-    ### INITIALIZER ###
-
-    @abc.abstractmethod
-    def __init__(self):
-        pass
+#    ### INITIALIZER ###
+#
+#    @abc.abstractmethod
+#    def __init__(self):
+#        pass
 
     ### PUBLIC PROPERTIES ###
 

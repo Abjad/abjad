@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools.ImmutableAbjadObject import ImmutableAbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class OrdinalConstant(ImmutableAbjadObject):
+class OrdinalConstant(AbjadObject):
     r'''Ordinal constant.
 
     Initialize with `dimension`, `value` and `representation`:

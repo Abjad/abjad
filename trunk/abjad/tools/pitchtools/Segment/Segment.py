@@ -1,10 +1,9 @@
 # -*- encoding: utf-8 -*-
 import abc
+from abjad.tools.abctools import AbjadObject
 
-from abjad.tools.abctools import ImmutableAbjadObject
 
-
-class Segment(tuple, ImmutableAbjadObject):
+class Segment(tuple, AbjadObject):
     '''Mix-in base class for ordered collections of pitch objects.
     '''
 

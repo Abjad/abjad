@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools.ImmutableAbjadObject import ImmutableAbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class NonreducedRatio(ImmutableAbjadObject, tuple):
+class NonreducedRatio(AbjadObject, tuple):
     '''Nonreduced ratio of one or more nonzero integers.
 
     Initialize from one or more nonzero integers:
@@ -55,5 +55,5 @@ class NonreducedRatio(ImmutableAbjadObject, tuple):
     # do not indent in storage
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
         return [''.join(
-            ImmutableAbjadObject._get_tools_package_qualified_repr_pieces(
+            AbjadObject._get_tools_package_qualified_repr_pieces(
             self, is_indented=False))]

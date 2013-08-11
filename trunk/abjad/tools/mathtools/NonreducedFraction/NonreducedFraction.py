@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 import fractions
-from abjad.tools.abctools.ImmutableAbjadObject import ImmutableAbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
+class NonreducedFraction(AbjadObject, fractions.Fraction):
     r'''Initialize with an integer numerator and integer denominator:
 
     ::
@@ -68,7 +68,7 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
 
         >>> iotools.count_function_calls(
         ...     'mathtools.NonreducedFraction(3, 6)', globals())
-        31
+        30
 
     Nonreduced fractions are immutable.
     '''
@@ -140,14 +140,14 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
             >>> a = mathtools.NonreducedFraction(3, 6)
             >>> b = mathtools.NonreducedFraction(3, 12)
             >>> iotools.count_function_calls('a + b', globals())
-            68
+            67
 
         Adding an integer is even faster:
 
         ::
 
             >>> iotools.count_function_calls('a + 10', globals())
-            36
+            35
 
         Return nonreduced fraction.
         '''
@@ -393,7 +393,7 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
     # do not indent in storage
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
         return [''.join(
-            ImmutableAbjadObject._get_tools_package_qualified_repr_pieces(
+            AbjadObject._get_tools_package_qualified_repr_pieces(
             self, is_indented=False))]
 
     ### PUBLIC PROPERTIES ###

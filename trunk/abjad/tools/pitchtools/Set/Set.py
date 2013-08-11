@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 import abc
-from abjad.tools.abctools import ImmutableAbjadObject
+from abjad.tools.abctools import AbjadObject
 
 
-class Set(frozenset, ImmutableAbjadObject):
+class Set(frozenset, AbjadObject):
     '''Music-theoretic set base class.
     '''
 
