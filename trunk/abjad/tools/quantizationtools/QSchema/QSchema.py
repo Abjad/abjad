@@ -70,7 +70,7 @@ class QSchema(AbjadObject):
         if items:
             assert 0 <= min(items)
 
-        self._items = datastructuretools.ImmutableDictionary(items)
+        self._items = dict(items)
 
         self._lookups = self._create_lookups()
 
@@ -185,9 +185,8 @@ class QSchema(AbjadObject):
                 value = getattr(item, field)
                 if value is not None:
                     lookups[field][position] = value
-            lookups[field] = datastructuretools.ImmutableDictionary(
-                lookups[field])
-        return datastructuretools.ImmutableDictionary(lookups)
+            lookups[field] = dict(lookups[field])
+        return dict(lookups)
 
     def _get_tools_package_qualified_repr_pieces(self):
         if not len(self.items):

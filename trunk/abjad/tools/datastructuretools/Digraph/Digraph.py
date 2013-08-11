@@ -69,10 +69,8 @@ class Digraph(AbjadObject):
             if parent not in child_graph:
                 child_graph[parent] = set([])
 
-        self._parent_graph = \
-            datastructuretools.ImmutableDictionary(parent_graph)
-        self._child_graph = \
-            datastructuretools.ImmutableDictionary(child_graph)
+        self._parent_graph = dict(parent_graph)
+        self._child_graph = dict(child_graph)
         self._cyclic_nodes = self._find_cyclic_nodes()
         self._root_nodes = tuple(sorted(
             [child for child in child_graph if not child_graph[child]]))
