@@ -3,101 +3,104 @@ import fractions
 import math
 import re
 from abjad.tools import mathtools
-from abjad.tools.abctools import ImmutableAbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class Duration(ImmutableAbjadObject, fractions.Fraction):
-    r'''Abjad model of musical duration.
+class Duration(AbjadObject, fractions.Fraction):
+    r'''A musical duration.
 
-    Initialize from integer numerator:
+    ..  container:: example
 
-    ::
+        **Initializer examples.**
 
-        >>> Duration(3)
-        Duration(3, 1)
+        Initialize from integer numerator:
 
-    Initialize from integer numerator and denominator:
+        ::
 
-    ::
+            >>> Duration(3)
+            Duration(3, 1)
 
-        >>> Duration(3, 16)
-        Duration(3, 16)
+        Initialize from integer numerator and denominator:
 
-    Initialize from integer-equivalent numeric numerator:
+        ::
 
-    ::
+            >>> Duration(3, 16)
+            Duration(3, 16)
 
-        >>> Duration(3.0)
-        Duration(3, 1)
+        Initialize from integer-equivalent numeric numerator:
 
-    Initialize from integer-equivalent numeric numerator and denominator:
+        ::
 
-    ::
+            >>> Duration(3.0)
+            Duration(3, 1)
 
-        >>> Duration(3.0, 16)
-        Duration(3, 16)
+        Initialize from integer-equivalent numeric numerator and denominator:
 
-    Initialize from integer-equivalent singleton:
+        ::
 
-    ::
+            >>> Duration(3.0, 16)
+            Duration(3, 16)
 
-        >>> Duration((3,))
-        Duration(3, 1)
+        Initialize from integer-equivalent singleton:
 
-    Initialize from integer-equivalent pair:
+        ::
 
-    ::
+            >>> Duration((3,))
+            Duration(3, 1)
 
-        >>> Duration((3, 16))
-        Duration(3, 16)
+        Initialize from integer-equivalent pair:
 
-    Initialize from other duration:
+        ::
 
-    ::
+            >>> Duration((3, 16))
+            Duration(3, 16)
 
-        >>> Duration(Duration(3, 16))
-        Duration(3, 16)
+        Initialize from other duration:
 
-    Intialize from fraction:
+        ::
 
-    ::
+            >>> Duration(Duration(3, 16))
+            Duration(3, 16)
 
-        >>> Duration(Fraction(3, 16))
-        Duration(3, 16)
+        Intialize from fraction:
 
-    Initialize from solidus string:
+        ::
 
-    ::
+            >>> Duration(Fraction(3, 16))
+            Duration(3, 16)
 
-        >>> Duration('3/16')
-        Duration(3, 16)
+        Initialize from solidus string:
 
-    Initialize from nonreduced fraction:
+        ::
 
-    ::
+            >>> Duration('3/16')
+            Duration(3, 16)
 
-        >>> Duration(mathtools.NonreducedFraction(3, 16))
-        Duration(3, 16)
+        Initialize from nonreduced fraction:
 
-    Durations inherit from built-in fraction:
+        ::
 
-    ::
+            >>> Duration(mathtools.NonreducedFraction(3, 16))
+            Duration(3, 16)
 
-        >>> isinstance(Duration(3, 16), Fraction)
-        True
+        Durations inherit from built-in fraction:
 
-    Durations are numeric:
+        ::
 
-    ::
+            >>> isinstance(Duration(3, 16), Fraction)
+            True
 
-        >>> import numbers
+        Durations are numeric:
 
-    ::
+        ::
 
-        >>> isinstance(Duration(3, 16), numbers.Number)
-        True
+            >>> import numbers
 
-    Durations are immutable.
+        ::
+
+            >>> isinstance(Duration(3, 16), numbers.Number)
+            True
+
     '''
 
     ### CONSTRUCTOR ###
@@ -214,7 +217,7 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
 
     def __repr__(self):
         return '%s(%s, %s)' % (
-            self._class_name, self.numerator, self.denominator)
+            self.__class__.__name__, self.numerator, self.denominator)
 
     def __rmod__(self, *args):
         return type(self)(fractions.Fraction.__rmod__(self, *args))
@@ -259,7 +262,7 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
     # do not indent in storage
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
         return [''.join(
-            ImmutableAbjadObject._get_tools_package_qualified_repr_pieces(
+            AbjadObject._get_tools_package_qualified_repr_pieces(
                 self, is_indented=False))]
 
     @staticmethod

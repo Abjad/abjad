@@ -17,12 +17,6 @@ class AbjadObject(object):
 
     __slots__ = ()
 
-    ### INITIALIZER ###
-
-    @abc.abstractmethod
-    def __init__(self, *args, **kwargs):
-        pass
-
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
