@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import durationtools
 from abjad.tools.selectiontools.Selection import Selection
 
 
@@ -197,6 +198,59 @@ class Inspector(Selection):
         '''
         return self[0]._get_spanners()
 
+    def is_bar_line_crossing(self):
+        r'''True when component crosses bar line.
+        Otherwise false.
+
+        ..  container:: example
+
+            **Example.**
+
+            ::
+
+            >>> staff = Staff("c'4 d'4 e'4")
+            >>> time_signature = contexttools.TimeSignatureMark((3, 8))
+            >>> time_signature.attach(staff)
+            TimeSignatureMark((3, 8))(Staff{3})
+            >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \time 3/8
+                    c'4
+                    d'4
+                    e'4
+                }
+
+            ::
+
+                >>> for note in staff:
+                ...     result = more(note).is_bar_line_crossing()
+                ...     print '{}\t{}'.format(note, result)
+                c'4 False
+                d'4 True
+                e'4 False
+
+        Returns boolean.
+        '''
+        from abjad.tools import contexttools
+        time_signature = self[0]._get_effective_context_mark(
+            contexttools.TimeSignatureMark)
+        if time_signature is None:
+            time_signature_duration = durationtools.Duration(4, 4)
+        else:
+            time_signature_duration = time_signature.duration
+        partial = getattr(time_signature, 'partial', 0)
+        partial = partial or 0
+        start_offset = self[0]._get_timespan().start_offset
+        shifted_start = start_offset - partial
+        shifted_start %= time_signature_duration
+        stop_offset = self[0]._get_duration() + shifted_start
+        if time_signature_duration < stop_offset:
+            return True
+        return False
 
     def select_components(self, component_classes=None, include_self=True):
         r'''Selects all components of `component_classes`
