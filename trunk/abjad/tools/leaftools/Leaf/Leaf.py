@@ -317,6 +317,13 @@ class Leaf(Component):
             self._format_after_slot(format_contributions))
         return report
 
+    def _shorten(self, duration):
+        from abjad.tools import leaftools
+        duration = self._get_duration() - duration
+        prolation = self._select_parentage().prolation
+        preprolated_duration = duration / prolation
+        leaftools.set_leaf_duration(self, preprolated_duration)
+
     def _to_tuplet_with_ratio(self, proportions, is_diminution=True):
         from abjad.tools import componenttools
         from abjad.tools import leaftools
@@ -432,16 +439,3 @@ class Leaf(Component):
             if expr == True:
                 self.written_pitch_indication_is_at_sounding_pitch = False
         return property(**locals())
-
-    ### PUBLIC METHODS ###
-
-    def shorten(self, duration):
-        r'''Shortens leaf by `duration`.
-
-        Returns none.
-        '''
-        from abjad.tools import leaftools
-        duration = self._get_duration() - duration
-        prolation = self._select_parentage().prolation
-        preprolated_duration = duration / prolation
-        leaftools.set_leaf_duration(self, preprolated_duration)

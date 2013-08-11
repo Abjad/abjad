@@ -45,6 +45,13 @@ class MutationInterface(Selection):
             pitch=pitch,
             )
 
+    def shorten(self, duration):
+        r'''Shortens component by `duration`.
+
+        Returns none.
+        '''
+        return self[0]._shorten(duration)
+
     def splice(
         self,
         components,

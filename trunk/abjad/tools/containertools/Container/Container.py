@@ -502,6 +502,20 @@ class Container(Component):
             assert isinstance(parsed, Container)
         return parsed
 
+    def _shorten(self, duration):
+        accumulated_duration = durationtools.Duration(0)
+        components = []
+        for component in self:
+            current_duration = component._get_duration()
+            if accumulated_duration + current_duration <= duration:
+                components.append(component)
+                accumulated_duration += current_duration
+            else:
+                break
+        del(self[:len(components)])
+        remaining_subtrahend_duration = duration - accumulated_duration
+        self[0]._shorten(remaining_subtrahend_duration)
+
     ### PUBLIC METHODS ###
 
     def append(self, component):
@@ -966,19 +980,3 @@ class Container(Component):
         from abjad.tools import selectiontools
         generator = iterationtools.iterate_notes_and_chords_in_expr(self)
         return selectiontools.ContiguousLeafSelection(generator)
-
-    def shorten(self, duration):
-        r'''Shorten container by `duration`.
-        '''
-        accumulated_duration = durationtools.Duration(0)
-        components = []
-        for component in self:
-            current_duration = component._get_duration()
-            if accumulated_duration + current_duration <= duration:
-                components.append(component)
-                accumulated_duration += current_duration
-            else:
-                break
-        del(self[:len(components)])
-        remaining_subtrahend_duration = duration - accumulated_duration
-        self[0].shorten(remaining_subtrahend_duration)
