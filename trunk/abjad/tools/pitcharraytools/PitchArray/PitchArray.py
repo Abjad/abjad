@@ -441,8 +441,9 @@ class PitchArray(AbjadObject):
             [0], time_intervals)
         for leaf_iterable, pitch_array_row in \
             zip(score, pitch_array.rows):
-            durations = \
-                leaftools.list_durations_of_leaves_in_expr(leaf_iterable)
+            durations = []
+            for leaf in iterationtools.iterate_leaves_in_expr(leaf_iterable):
+                durations.append(leaf._get_duration())
             parts = componenttools.split_components_at_offsets(
                 tokens,
                 durations,

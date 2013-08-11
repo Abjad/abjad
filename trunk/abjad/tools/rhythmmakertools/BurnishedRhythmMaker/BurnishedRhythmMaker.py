@@ -181,8 +181,7 @@ class BurnishedRhythmMaker(RhythmMaker):
     def _add_ties(self, result):
         from abjad.tools import selectiontools
         leaves = list(iterationtools.iterate_leaves_in_expr(result))
-        written_durations = \
-            leaftools.list_written_durations_of_leaves_in_expr(leaves)
+        written_durations = [leaf.written_duration for leaf in leaves]
         weights = [durationtools.Duration(numerator, self.talea_denominator) 
             for numerator in self.talea]
         parts = sequencetools.partition_sequence_by_weights_exactly(
