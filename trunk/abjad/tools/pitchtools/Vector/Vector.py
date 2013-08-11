@@ -1,10 +1,9 @@
 # -*- encoding: utf-8 -*-
 import abc
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
-from abjad.tools.datastructuretools import ImmutableDictionary
 
-
-class Vector(ImmutableDictionary):
+class Vector(dict, AbjadObject):
     '''Music theoretic vector base class.
     '''
 
