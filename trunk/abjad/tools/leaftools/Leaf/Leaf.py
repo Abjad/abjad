@@ -324,6 +324,19 @@ class Leaf(Component):
         preprolated_duration = duration / prolation
         leaftools.set_leaf_duration(self, preprolated_duration)
 
+    def _split_in_halves(self, n=2):
+        from abjad.tools import leaftools
+        from abjad.tools import componenttools
+        assert mathtools.is_nonnegative_integer_power_of_two(n)
+        assert 0 < n
+        new_leaves = componenttools.copy_components_and_detach_spanners(
+            [self], n - 1)
+        self._splice(new_leaves, grow_spanners=True)
+        adjustment_multiplier = durationtools.Duration(1, n)
+        self.written_duration *= adjustment_multiplier
+        for new_leaf in new_leaves:
+            new_leaf.written_duration *= adjustment_multiplier
+            
     def _to_tuplet_with_ratio(self, proportions, is_diminution=True):
         from abjad.tools import componenttools
         from abjad.tools import leaftools

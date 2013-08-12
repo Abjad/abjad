@@ -71,3 +71,55 @@ class MutationInterface(Selection):
             direction=direction, 
             grow_spanners=grow_spanners,
             )
+
+    def split_in_halves(self, n=2):
+        r'''Splits notes, rests and chords in halves.
+
+        ::
+
+            >>> staff = Staff("c'4 ( e'4 d'4 f'4 )")
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'4 (
+                e'4
+                d'4
+                f'4 )
+            }
+
+        ::
+
+            >>> mutate(staff[0]).split_in_halves(n=4)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'16 (
+                c'16
+                c'16
+                c'16
+                e'4
+                d'4
+                f'4 )
+            }
+
+        Set `n` to  ``1, 2, 4, 8, 16, ...`` or some other
+        nonnegative integer power of ``2``.
+
+        Replaces note, rest or chord with `n` new notes, rests or chords.
+
+        Preserves spanners.
+
+        Produces only notes, rests or chords and 
+        never tuplets or other containers.
+
+        Returns none.
+        '''
+        return self[0]._split_in_halves(
+            n=n,
+            )
