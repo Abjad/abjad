@@ -7,7 +7,7 @@ from abjad.tools import pitchtools
 # TODO: This should be replaced in favor of leaftools.split_leaf_at_offsets().
 #       The precondition is that leaftools.split_leaf_at_offsets() must be
 #       extended to handle graces.
-#       Also important to migrate over the (large-ish) set of tests for this i
+#       Also important to migrate over the (large-ish) set of tests for this
 #       function.
 def split_leaf_at_offset(
     leaf, 
@@ -16,7 +16,7 @@ def split_leaf_at_offset(
     tie_split_notes=True, 
     tie_split_rests=False,
     ):
-    r'''Split `leaf` at `offset`.
+    r'''Splits `leaf` at `offset`.
 
     ..  container:: example
     
@@ -28,16 +28,11 @@ def split_leaf_at_offset(
             >>> staff = Staff(r"abj: | 2/8 c'8 ( d'8 || 2/8 e'8 f'8 ) |")
             >>> select(staff[:]).attach_spanners(spannertools.BeamSpanner)
             (BeamSpanner(|2/8(2)|), BeamSpanner(|2/8(2)|))
-
-        ::
-
             >>> contexttools.DynamicMark('f')(staff.select_leaves()[0])
             DynamicMark('f')(c'8)
-
-        ::
-
             >>> marktools.Articulation('accent')(staff.select_leaves()[0])
             Articulation('accent')(c'8)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -62,6 +57,7 @@ def split_leaf_at_offset(
             ...     tie_split_notes=False,
             ...     )
             ([Note("c'32")], [Note("c'16.")])
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -88,16 +84,11 @@ def split_leaf_at_offset(
             >>> staff = Staff(r"abj: | 2/8 c'8 ( d'8 || 2/8 e'8 f'8 ) |")
             >>> select(staff[:]).attach_spanners(spannertools.BeamSpanner)
             (BeamSpanner(|2/8(2)|), BeamSpanner(|2/8(2)|))
-
-        ::
-
             >>> leaftools.GraceContainer("cs'16")(staff.select_leaves()[0])
             Note("c'8")
-
-        ::
-
             >>> leaftools.GraceContainer("ds'16", kind='after')(staff.select_leaves()[0])
             Note("c'8")
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -129,6 +120,7 @@ def split_leaf_at_offset(
             ...     tie_split_notes=False,
             ...     )
             ([Note("c'32")], [Note("c'16.")])
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -153,7 +145,7 @@ def split_leaf_at_offset(
                 }
             }
 
-    Return pair.
+    Returns pair.
     '''
     from abjad.tools import contexttools
     from abjad.tools import leaftools
@@ -190,7 +182,8 @@ def split_leaf_at_offset(
 
     left_leaf_list = \
         leaftools.set_leaf_duration(leaf, preprolated_duration)
-    right_preprolated_duration = leaf_multiplied_duration - preprolated_duration
+    right_preprolated_duration = \
+        leaf_multiplied_duration - preprolated_duration
     right_leaf_list = leaftools.set_leaf_duration(
         new_leaf, right_preprolated_duration)
 

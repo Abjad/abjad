@@ -14,7 +14,7 @@ def split_leaf_at_offsets(
     tie_split_notes=True,
     tie_split_rests=False,
     ):
-    r'''Split `leaf` at `offsets`.
+    r'''Splits `leaf` at `offsets`.
 
     ..  container:: example
     
@@ -23,6 +23,7 @@ def split_leaf_at_offsets(
         ::
 
             >>> staff = Staff("c'1 ( d'1 )")
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -34,16 +35,13 @@ def split_leaf_at_offsets(
 
         ::
 
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
             >>> leaftools.split_leaf_at_offsets(
             ...     staff[0], 
             ...     [(3, 8)],
             ...     tie_split_notes=True,
             ...     )
             [[Note("c'4.")], [Note("c'2"), Note("c'8")]]
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -55,10 +53,6 @@ def split_leaf_at_offsets(
                 d'1 )
             }
 
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
     ..  container:: example
     
         **Example 2.** Split note cyclically at `offsets` and tie split notes:
@@ -66,6 +60,7 @@ def split_leaf_at_offsets(
         ::
 
             >>> staff = Staff("c'1 ( d'1 )")
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -77,10 +72,6 @@ def split_leaf_at_offsets(
 
         ::
 
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
             >>> leaftools.split_leaf_at_offsets(
             ...     staff[0], 
             ...     [(3, 8)], 
@@ -88,6 +79,7 @@ def split_leaf_at_offsets(
             ...     tie_split_notes=True,
             ...     )
             [[Note("c'4.")], [Note("c'4.")], [Note("c'4")]]
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -99,10 +91,6 @@ def split_leaf_at_offsets(
                 d'1 )
             }
 
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
     ..  container:: example
     
         **Example 3.** Split note once at `offsets` and do no tie split notes:
@@ -110,6 +98,7 @@ def split_leaf_at_offsets(
         ::
 
             >>> staff = Staff("c'1 ( d'1 )")
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -121,16 +110,13 @@ def split_leaf_at_offsets(
 
         ::
 
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
             >>> leaftools.split_leaf_at_offsets(
             ...     staff[0], 
             ...     [(3, 8)],
             ...     tie_split_notes=False,
             ...     )
             [[Note("c'4.")], [Note("c'2"), Note("c'8")]]
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -142,17 +128,15 @@ def split_leaf_at_offsets(
                 d'1 )
             }
 
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
     ..  container:: example
     
-        **Example 4.** Split note cyclically at `offsets` and do not tie split notes:
+        **Example 4.** Split note cyclically at `offsets` and do not 
+        tie split notes:
 
         ::
 
             >>> staff = Staff("c'1 ( d'1 )")
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -164,10 +148,6 @@ def split_leaf_at_offsets(
 
         ::
 
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
             >>> leaftools.split_leaf_at_offsets(
             ...     staff[0], 
             ...     [(3, 8)], 
@@ -175,6 +155,7 @@ def split_leaf_at_offsets(
             ...     tie_split_notes=False,
             ...     )
             [[Note("c'4.")], [Note("c'4.")], [Note("c'4")]]
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -186,17 +167,15 @@ def split_leaf_at_offsets(
                 d'1 )
             }
 
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
     ..  container:: example
     
-        **Example 5.** Split tupletted note once at `offsets` and tie split notes:
+        **Example 5.** Split tupletted note once at `offsets` 
+        and tie split notes:
 
         ::
 
             >>> staff = Staff(r"\times 2/3 { c'2 ( d'2 e'2 ) }")
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -211,10 +190,6 @@ def split_leaf_at_offsets(
 
         ::
 
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
             >>> leaftools.split_leaf_at_offsets(
             ...     staff.select_leaves()[1], 
             ...     [(1, 6)], 
@@ -222,6 +197,7 @@ def split_leaf_at_offsets(
             ...     tie_split_notes=True,
             ...     )
             [[Note("d'4")], [Note("d'4")]]
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -235,13 +211,9 @@ def split_leaf_at_offsets(
                 }
             }
 
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
     .. note:: Add examples showing mark and context mark handling.
 
-    Return list of shards.
+    Returns list of shards.
     '''
     from abjad.tools import contexttools
     from abjad.tools import iterationtools
