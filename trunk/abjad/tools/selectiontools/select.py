@@ -9,7 +9,8 @@ def select(expr=None, contiguous=False):
     from abjad.tools import componenttools
     from abjad.tools import selectiontools
     if contiguous:
-        assert componenttools.all_are_thread_contiguous_components(expr)
+        if isinstance(expr, list):
+            assert componenttools.all_are_thread_contiguous_components(expr)
         return selectiontools.ContiguousSelection(expr)
     elif isinstance(expr, componenttools.Component):
         return selectiontools.FreeComponentSelection(expr)

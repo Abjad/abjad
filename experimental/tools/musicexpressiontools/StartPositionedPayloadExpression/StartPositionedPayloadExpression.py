@@ -9,6 +9,7 @@ from abjad.tools import sequencetools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
 from abjad.tools import wellformednesstools
+from abjad.tools.selectiontools import select
 from experimental.tools.musicexpressiontools.IterablePayloadExpression \
     import IterablePayloadExpression
 
@@ -124,14 +125,11 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         Return timespan inventory.
         '''
         assert self._can_fuse(expr)
-        #payload = self.payload + expr.payload
         if isinstance(self.payload, containertools.Container):
-            left = \
-                componenttools.copy_components_and_fracture_crossing_spanners(
-                [self.payload])[0]
-            right = \
-                componenttools.copy_components_and_fracture_crossing_spanners(
-                [expr.payload])[0]
+            selection = select(self.payload, contiguous=True)
+            left = selection.copy_and_fracture_crossing_spanners()[0]
+            selection = select(expr.payload, contiguous=True)
+            right = selection.copy_and_fracture_crossing_spanners()[0]
             payload = \
                 containertools.fuse_like_named_contiguous_containers_in_expr(
                 [left, right])
