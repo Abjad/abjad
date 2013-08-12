@@ -15,28 +15,52 @@ def copy_components_and_fracture_crossing_spanners(components, n=1):
 
     ::
 
-        >>> voice = Voice(r"abj: | 2/8 c'8 [ d'8 || 2/8 e'8 f'8 ] |")
-        >>> voice.append(r"abj: | 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
+        >>> staff = Staff(r"c'8 ( d'8 e'8 f'8 )")
+        >>> staff.append(r"g'8 a'8 b'8 c''8")
+        >>> time_signature = contexttools.TimeSignatureMark((2, 4))
+        >>> time_signature = time_signature.attach(staff)
+        >>> show(staff) # doctest: +SKIP
+
+    ..  doctest:: 
+    
+        >>> f(staff)
+        \new Staff {
+            \time 2/4
+            c'8 (
+            d'8
+            e'8
+            f'8 )
+            g'8
+            a'8
+            b'8
+            c''8
+        }
 
     ::
 
-        >>> show(voice) # doctest: +SKIP
-
-    ::
-
+        >>> selection = staff.select_leaves()[2:4]
         >>> result = \
         ...     componenttools.copy_components_and_fracture_crossing_spanners(
-        ...     voice.select_leaves()[2:4])
-        >>> new_voice = Voice(result)
+        ...     selection)
+        >>> new_staff = Staff(result)
+        >>> show(new_staff) # doctest: +SKIP
+
+    ..  doctest::
+
+        >>> f(new_staff)
+        \new Staff {
+            e'8 (
+            f'8 )
+        }
 
     ::
 
-        >>> voice.select_leaves()[2] is new_voice.select_leaves()[0]
+        >>> staff.select_leaves()[2] is new_staff.select_leaves()[0]
         False
 
     ::
 
-        >>> show(new_voice) # doctest: +SKIP
+        >>> show(new_staff) # doctest: +SKIP
 
     Copy `components` a total of `n` times:
     
@@ -44,19 +68,29 @@ def copy_components_and_fracture_crossing_spanners(components, n=1):
 
         >>> result = \
         ...     componenttools.copy_components_and_fracture_crossing_spanners(
-        ...     voice.select_leaves()[2:4], n=4)
-        >>> new_voice = Voice(result)
+        ...     staff.select_leaves()[2:4], n=4)
+        >>> new_staff = Staff(result)
+        >>> show(new_staff) # doctest: +SKIP
 
     ::
 
-        >>> show(new_voice) # doctest: +SKIP
+        >>> f(new_staff)
+        \new Staff {
+            e'8 (
+            f'8 )
+            e'8 (
+            f'8 )
+            e'8 (
+            f'8 )
+            e'8 (
+            f'8 )
+        }
 
     Return new components.
     '''
     from abjad.tools import spannertools
     from abjad.tools import componenttools
     from abjad.tools import iterationtools
-
 
     # check input
     assert componenttools.all_are_thread_contiguous_components(components), \

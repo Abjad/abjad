@@ -3,6 +3,7 @@ from abjad.tools import componenttools
 from abjad.tools import durationtools
 from abjad.tools import marktools
 from abjad.tools import notetools
+from abjad.tools import selectiontools
 from abjad.tools import spannertools
 
 
@@ -11,7 +12,9 @@ def edit_second_violin_voice(score, durated_reservoir):
     voice = score['Second Violin Voice']
     descents = durated_reservoir['Second Violin']
 
-    copied_descent = list(componenttools.copy_components_and_detach_spanners(descents[-1]))
+    last_descent = selectiontools.ContiguousSelection(descents[-1])
+    copied_descent = last_descent.copy_and_detach_spanners()
+    copied_descent = list(copied_descent)
     copied_descent[-1].written_duration = durationtools.Duration(1, 1)
     copied_descent.append(notetools.Note('a2'))
     for leaf in copied_descent:

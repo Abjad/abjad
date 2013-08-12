@@ -199,7 +199,6 @@ class ContiguousSelection(Selection):
         from abjad.tools import selectiontools
         assert self._all_are_thread_contiguous_components()
         if n < 1:
-            #return selectiontools.SliceSelection()
             return type(self)()
         result = []
         for component in self:
@@ -210,6 +209,14 @@ class ContiguousSelection(Selection):
             result += self.copy_and_detach_spanners()
         result = type(self)(result)
         return result
+        # TODO: use the following wrapper instead of the implementation above
+#        from abjad.tools import componenttools
+#        from abjad.tools import spannertools
+#        result = componenttools.copy_components_and_fracture_crossing_spanners(
+#            self, n=n)
+#        spannertools.detach_spanners_attached_to_components_in_expr(result)
+#        result = type(self)(result)
+#        return result
         
     def get_duration(self, in_seconds=False):
         r'''Gets duration of contiguous selection.
