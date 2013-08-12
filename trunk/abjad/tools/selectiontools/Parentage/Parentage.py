@@ -162,8 +162,13 @@ class Parentage(SimultaneousSelection):
         ::
 
             >>> leaf = score.select_leaves()[0]
-            >>> more(leaf).select_parentage().containment_signature
-            ContainmentSignature(Note-..., Voice-'CustomVoice', Staff-..., Score-'CustomScore')
+            >>> parentage = more(leaf).select_parentage()
+            >>> print parentage.containment_signature
+             root_str: Score-'CustomScore'
+                score: Score-'CustomScore'
+                staff: Staff-...
+                voice: Voice-'CustomVoice'
+                 self: Note-...
 
         Return containment signature object.
         '''
@@ -233,8 +238,9 @@ class Parentage(SimultaneousSelection):
             >>> staff = Staff([tuplet])
             >>> note = staff.select_leaves()[0]
             >>> print more(note).select_parentage().parentage_signature
+             root_str: Staff-...
                 staff: Staff-...
-                self: Note-...
+                 self: Note-...
 
         Return parentage signature.
         '''

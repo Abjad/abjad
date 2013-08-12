@@ -27,8 +27,13 @@ class ContainmentSignature(AbjadObject):
 
     ::
 
-        >>> more(score.select_leaves()[0]).select_parentage().containment_signature
-        ContainmentSignature(Note-..., Voice-'CustomVoice', Staff-..., Score-'CustomScore')
+        >>> parentage = more(score.select_leaves()[0]).select_parentage()
+        >>> print parentage.containment_signature
+         root_str: Score-'CustomScore'
+            score: Score-'CustomScore'
+            staff: Staff-...
+            voice: Voice-'CustomVoice'
+             self: Note-...
 
     Used for thread iteration behind the scenes.
     '''
@@ -73,7 +78,7 @@ class ContainmentSignature(AbjadObject):
     @property
     def _parts(self):
         result = []
-        attrs = ('self', 'voice', 'staff', 'staff_group', 'score')
+        attrs = ('self', 'voice', 'staff', 'staff_group', 'score', 'root_str')
         for attr in attrs:
             if getattr(self, '_' + attr, None) is not None:
                 result.append((attr, getattr(self, '_' + attr)))
