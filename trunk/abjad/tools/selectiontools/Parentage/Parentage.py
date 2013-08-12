@@ -195,11 +195,10 @@ class Parentage(SimultaneousSelection):
             elif isinstance(component, scoretools.Score) and \
                 signature._score is None:
                 signature._score = self._id_string(component)
-#        else:
-#            # root components must be the same object 
-#            # for containment signatures to compare true
-#            signature._root = id(component)
-#            signature._root_str = self._id_string(component)
+        # root components must be the same object 
+        # for containment signatures to compare true
+        signature._root = id(component)
+        signature._root_str = self._id_string(component)
         return signature
 
     @property
@@ -265,10 +264,9 @@ class Parentage(SimultaneousSelection):
             elif isinstance(component, scoretools.Score) and \
                 not signature._score:
                 signature._score = self._id_string(component)
-        else:
-            # root components must be manifestly equal to compare true
-            signature._root = id(component)
-            signature._root_str = self._id_string(component)
+        # root components must be manifestly equal to compare true
+        signature._root = id(component)
+        signature._root_str = self._id_string(component)
         return signature
 
     @property

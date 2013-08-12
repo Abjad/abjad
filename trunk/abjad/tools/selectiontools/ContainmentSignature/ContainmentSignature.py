@@ -52,12 +52,21 @@ class ContainmentSignature(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
-        return isinstance(arg, ContainmentSignature) and \
-            self._voice == arg._voice and \
-            self._staff == arg._staff and \
-            self._staff_group == arg._staff_group and \
-            self._score == arg._score and \
-            self._root == arg._root
+        if not isinstance(arg, ContainmentSignature):
+            return False
+        if not self._voice == arg._voice:
+            return False
+        if not self._staff == arg._staff:
+            return False
+        if not self._staff_group == arg._staff_group:
+            return False
+        if not self._score == arg._score:
+            return False
+        #if self._root_is_context and not (self._root == arg._root):
+        #    return False
+        if not self._root == arg._root:
+            return False
+        return True
 
     def __ne__(self, arg):
         return not self == arg
