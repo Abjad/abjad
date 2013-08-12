@@ -62,9 +62,7 @@ class ContainmentSignature(AbjadObject):
             return False
         if not self._score == arg._score:
             return False
-        #if self._root_is_context and not (self._root == arg._root):
-        #    return False
-        if not self._root == arg._root:
+        if self._should_compare_roots and not (self._root == arg._root):
             return False
         return True
 

@@ -102,6 +102,7 @@ def all_are_thread_contiguous_components(
             orphan_components = False
         if not cur._select_parentage().containment_signature == first_thread:
             same_thread = False
+            #print 'NOT SAME THREAD'
         if not prev._is_immediate_temporal_successor_of(cur):
             if not _are_thread_proper(prev, cur):
                 thread_proper = False

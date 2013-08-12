@@ -243,14 +243,15 @@ def test_Parentage_containment_signature_07():
 
 
 def test_Parentage_containment_signature_08():
-    r'''Unicorporated leaves carry different containment signatures.
+    r'''Unicorporated leaves carry equivalent containment signatures.
     '''
 
-    t1 = Note(0, (1, 8))
-    t2 = Note(0, (1, 8))
+    note_1 = Note(0, (1, 8))
+    note_2 = Note(0, (1, 8))
 
-    assert more(t1).select_parentage().containment_signature != \
-        more(t2).select_parentage().containment_signature
+    signature_1 = more(note_1).select_parentage().containment_signature
+    signature_2 = more(note_2).select_parentage().containment_signature
+    assert signature_1 == signature_2
 
 
 def test_Parentage_containment_signature_09():

@@ -173,6 +173,7 @@ class Parentage(SimultaneousSelection):
         Return containment signature object.
         '''
         from abjad.tools import componenttools
+        from abjad.tools import contexttools
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         from abjad.tools import stafftools
@@ -199,6 +200,7 @@ class Parentage(SimultaneousSelection):
         # for containment signatures to compare true
         signature._root = id(component)
         signature._root_str = self._id_string(component)
+        signature._should_compare_roots = False
         return signature
 
     @property
@@ -245,6 +247,7 @@ class Parentage(SimultaneousSelection):
         Return parentage signature.
         '''
         from abjad.tools import componenttools
+        from abjad.tools import contexttools
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         from abjad.tools import stafftools
@@ -267,6 +270,7 @@ class Parentage(SimultaneousSelection):
         # root components must be manifestly equal to compare true
         signature._root = id(component)
         signature._root_str = self._id_string(component)
+        signature._should_compare_roots = True
         return signature
 
     @property
