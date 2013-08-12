@@ -11,9 +11,8 @@ def edit_first_violin_voice(score, durated_reservoir):
     descents = durated_reservoir['First Violin']
     descents = selectiontools.ContiguousSelection(descents)
 
-    last_descent = selectiontools.ContiguousSelection(descents[-1])
-    copied_descent = last_descent.copy_and_detach_spanners()
-
+    last_descent = selectiontools.select(descents[-1], contiguous=True)
+    copied_descent = last_descent.copy_and_fracture_crossing_spanners()
     voice.extend(copied_descent)
 
     final_sustain_rhythm = [(6, 4)] * 43 + [(1, 2)]

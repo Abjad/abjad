@@ -14,8 +14,8 @@ def edit_viola_voice(score, durated_reservoir):
     for leaf in descents[-1]:
         marktools.Articulation('accent')(leaf)
         marktools.Articulation('tenuto')(leaf)
-    last_descent = selectiontools.ContiguousSelection(descents[-1])
-    copied_descent = last_descent.copy_and_detach_spanners()
+    last_descent = selectiontools.select(descents[-1], contiguous=True)
+    copied_descent = last_descent.copy_and_fracture_crossing_spanners()
     for leaf in copied_descent:
         if leaf.written_duration == durationtools.Duration(4, 4):
             leaf.written_duration = durationtools.Duration(8, 4)
