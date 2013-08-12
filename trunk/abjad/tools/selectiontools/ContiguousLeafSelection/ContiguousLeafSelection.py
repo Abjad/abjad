@@ -4,6 +4,32 @@ from abjad.tools.selectiontools.ContiguousSelection import ContiguousSelection
 
 class ContiguousLeafSelection(ContiguousSelection):
     r'''A selection of time-contiguous leaves.
+
+    ..  container:: example
+
+        **Example.**
+
+        ::
+
+            >>> staff = Staff("c'4 d'4 e'4 f'4")
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+        ::
+
+            >>> selection = staff.select_leaves()
+            >>> selection
+            ContiguousLeafSelection(Note("c'4"), ..., Note("f'4"))
+            
     '''
 
     ### INITIALIZER ###
