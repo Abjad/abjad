@@ -537,13 +537,16 @@ class FreeTupletSelection(Selection):
                 if multiplier.is_assignable:
                     for component in tuplet[:]:
                         if isinstance(component, leaftools.Leaf):
-                            leaftools.scale_leaf_duration(
-                                component, multiplier)
+                            new_duration = \
+                                multiplier * component.written_duration
+                            leaftools.set_leaf_duration(
+                                component, new_duration)
             else:
                 for component in tuplet[:]:
                     if isinstance(component, leaftools.Leaf):
-                        leaftools.scale_leaf_duration(
-                            component, multiplier)
+                        new_duration = \
+                            multiplier * component.written_duration
+                        leaftools.set_leaf_duration(component, new_duration)
         self.fix()
 
     def set_denominator_to_at_least(self, n):

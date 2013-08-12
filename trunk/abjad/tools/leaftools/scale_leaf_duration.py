@@ -4,6 +4,8 @@
 def scale_leaf_duration(leaf, multiplier):
     r'''Scale `leaf` duration by `multiplier`.
 
+    ..  note:: Deprecated. Use ``set_leaf_duration()`` instead.
+
     ..  container:: example
 
         **Example 1.** Scale leaf duration by dotted `multiplier`:
