@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import copy
 import itertools
 import types
 from abjad.tools.selectiontools.Selection import Selection
@@ -196,30 +197,146 @@ class ContiguousSelection(Selection):
 
         Returns contiguous selection.
         '''
-
-#        from abjad.tools import selectiontools
-#        assert self._all_are_thread_contiguous_components()
-#        if n < 1:
-#            return type(self)()
-#        result = []
-#        for component in self:
-#            new = \
-#                component._copy_with_children_and_marks_but_without_spanners()
-#            result.append(new)
-#        for i in range(n - 1):
-#            result += self.copy_and_detach_spanners()
-#        result = type(self)(result)
-#        return result
-
-        # TODO: use the following wrapper instead of the implementation above
-        from abjad.tools import componenttools
         from abjad.tools import spannertools
-        result = componenttools.copy_components_and_fracture_crossing_spanners(
-            self, n=n)
+        result = self.copy_and_fracture_crossing_spanners(n=n)
         spannertools.detach_spanners_attached_to_components_in_expr(result)
         result = type(self)(result)
         return result
-        
+
+    def copy_and_fracture_crossing_spanners(self, n=1):
+        r'''Copies components in selection and fractures crossing spanners.
+
+        Components in selection must be thread-contiguous.
+
+        The steps this function takes are as follows:
+
+            * Deep copy `components`.
+
+            * Deep copy spanners that attach to any component in `components`.
+
+            * Fracture spanners that attach to components not in `components`.
+
+            * Return Python list of copied components.
+
+        ..  container:: example
+
+            **Example 1.** Copy components one time:
+
+            ::
+
+                >>> staff = Staff(r"c'8 ( d'8 e'8 f'8 )")
+                >>> staff.append(r"g'8 a'8 b'8 c''8")
+                >>> time_signature = contexttools.TimeSignatureMark((2, 4))
+                >>> time_signature = time_signature.attach(staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest:: 
+            
+                >>> f(staff)
+                \new Staff {
+                    \time 2/4
+                    c'8 (
+                    d'8
+                    e'8
+                    f'8 )
+                    g'8
+                    a'8
+                    b'8
+                    c''8
+                }
+
+            ::
+
+                >>> selection = staff.select_leaves()[2:4]
+                >>> result = selection.copy_and_fracture_crossing_spanners()
+                >>> new_staff = Staff(result)
+                >>> show(new_staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(new_staff)
+                \new Staff {
+                    e'8 (
+                    f'8 )
+                }
+
+            ::
+
+                >>> staff.select_leaves()[2] is new_staff.select_leaves()[0]
+                False
+
+        ..  container:: example
+
+            **Example 2.** Copy components multiple times:
+
+            Copy `components` a total of `n` times:
+            
+            ::
+
+                >>> selection = staff.select_leaves()[2:4]
+                >>> result = selection.copy_and_fracture_crossing_spanners(n=4)
+                >>> new_staff = Staff(result)
+                >>> show(new_staff) # doctest: +SKIP
+
+            ::
+
+                >>> f(new_staff)
+                \new Staff {
+                    e'8 (
+                    f'8 )
+                    e'8 (
+                    f'8 )
+                    e'8 (
+                    f'8 )
+                    e'8 (
+                    f'8 )
+                }
+
+        Returns contiguous selection.
+        '''
+        from abjad.tools import spannertools
+        from abjad.tools import componenttools
+        from abjad.tools import iterationtools
+        # check input
+        assert self._all_are_thread_contiguous_components()
+        # return empty list when nothing to copy
+        if n < 1:
+            return []
+        new_components = [
+            component._copy_with_children_and_marks_but_without_spanners() 
+            for component in self
+            ]
+        new_components = type(self)(new_components)
+        # make schema of spanners contained by components
+        schema = spannertools.make_spanner_schema(self)
+        # copy spanners covered by components
+        for covered_spanner, component_indices in schema.items():
+            new_covered_spanner = copy.copy(covered_spanner)
+            del(schema[covered_spanner])
+            schema[new_covered_spanner] = component_indices
+        # reverse schema
+        reversed_schema = {}
+        for new_covered_spanner, component_indices in schema.items():
+            for component_index in component_indices:
+                try:
+                    reversed_schema[component_index].append(new_covered_spanner)
+                except KeyError:
+                    reversed_schema[component_index] = [new_covered_spanner]
+        # iterate components and add new components to new spanners
+        for component_index, new_component in enumerate(
+            iterationtools.iterate_components_in_expr(new_components)):
+            try:
+                new_covered_spanners = reversed_schema[component_index]
+                for new_covered_spanner in new_covered_spanners:
+                    new_covered_spanner.append(new_component)
+            except KeyError:
+                pass
+        # repeat as specified by input
+        for i in range(n - 1):
+            new_components += self.copy_and_fracture_crossing_spanners()
+        # return new components
+        return new_components
+            
     def get_duration(self, in_seconds=False):
         r'''Gets duration of contiguous selection.
 
