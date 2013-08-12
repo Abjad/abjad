@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools.selectiontools import more
+from abjad.tools.selectiontools import mutate
+from abjad.tools.selectiontools import select
 
 
 def copy_components_and_immediate_parent_of_first_component(components):
@@ -97,15 +98,13 @@ def copy_components_and_immediate_parent_of_first_component(components):
     parent._music = []
 
     # copy parent without music
-    result = componenttools.copy_components_and_fracture_crossing_spanners(
-        [parent])[0]
+    result = mutate(parent).copy_and_fracture_crossing_spanners()
 
     # give music back to parent
     parent._music = parents_music
 
-    new_components = \
-        componenttools.copy_components_and_fracture_crossing_spanners(
-        components)
+    selection = select(components, contiguous=True)
+    new_components = selection.copy_and_fracture_crossing_spanners()
 
     result.extend(new_components)
 

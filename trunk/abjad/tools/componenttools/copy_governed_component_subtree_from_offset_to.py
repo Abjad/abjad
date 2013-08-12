@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
+from abjad.tools.selectiontools import mutate
 
 
 def copy_governed_component_subtree_from_offset_to(
@@ -167,7 +168,7 @@ def _copy_leaf_from_start_offset_to_stop_offset(leaf, start, stop):
     if total == 0:
         return None
 
-    new_leaf = componenttools.copy_components_and_fracture_crossing_spanners([leaf])[0]
+    new_leaf = mutate(leaf).copy_and_fracture_crossing_spanners()
     leaftools.set_leaf_duration(new_leaf, total)
 
     return new_leaf

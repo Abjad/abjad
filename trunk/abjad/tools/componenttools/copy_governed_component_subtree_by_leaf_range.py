@@ -1,4 +1,7 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools.selectiontools import mutate
+
+
 # TODO: bind to GovernorSelection?
 #       it might make sense to force the composer to select
 #       from `component` up to the governor of component;
@@ -87,10 +90,7 @@ def copy_governed_component_subtree_by_leaf_range(
 
     # trivial leaf lcopy
     if isinstance(component, leaftools.Leaf):
-        result = \
-            componenttools.copy_components_and_fracture_crossing_spanners(
-                [component])
-        result = result[0]
+        result = mutate(leaf).copy_and_fracture_crossing_spanners()
 
     # copy leaves from sequential containers only
     if component.is_simultaneous:
@@ -121,9 +121,7 @@ def copy_governed_component_subtree_by_leaf_range(
             stop_index_in_governor = i
 
     # copy governor
-    governor_copy = \
-        componenttools.copy_components_and_fracture_crossing_spanners(
-            [governor])[0]
+    governor_copy = mutate(governor).copy_and_fracture_crossing_spanners()
     copy_leaves = governor_copy.select_leaves()
 
     # find start and stop leaves in copy of governor
@@ -154,3 +152,4 @@ def copy_governed_component_subtree_by_leaf_range(
 
     # return trimmed governor copy
     return governor_copy
+    new_leaf = mutate(leaf).copy_and_fracture_crossing_spanners()

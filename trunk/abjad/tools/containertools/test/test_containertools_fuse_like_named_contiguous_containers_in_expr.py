@@ -164,15 +164,15 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_08():
     t1 = Staff([v1, v2, v3])
     t1.is_simultaneous = True
     t1.name = 'staff1'
-    t2 = componenttools.copy_components_and_fracture_crossing_spanners([t1])[0]
+    t2 = mutate(t1).copy_and_fracture_crossing_spanners()
     t2.is_simultaneous = True
     t2.name = 'staff2'
-    t3 = componenttools.copy_components_and_fracture_crossing_spanners([t1])[0]
+    t3 = mutate(t1).copy_and_fracture_crossing_spanners()
     t3.is_simultaneous = True
     t3.name = 'staff3'
     s1 = scoretools.StaffGroup([t1, t2, t3])
     s1.name = 'sg'
-    s2 = componenttools.copy_components_and_fracture_crossing_spanners([s1])[0]
+    s2 = mutate(s1).copy_and_fracture_crossing_spanners()
     s2.name = 'sg'
     container = Container([s1, s2])
 
@@ -334,11 +334,13 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_09():
 
     sg1 = scoretools.StaffGroup([s1, s2])
     sg1.name ='groupOne'
-    sg2 = componenttools.copy_components_and_fracture_crossing_spanners([sg1])[0]
+    sg2 = mutate(sg1).copy_and_fracture_crossing_spanners()
     sg2.name ='groupTwo'
     sg_g = scoretools.StaffGroup([sg1, sg2])
     sg_g.name = 'topGroup'
-    seq = containertools.fuse_like_named_contiguous_containers_in_expr([sg_g, componenttools.copy_components_and_fracture_crossing_spanners([sg_g])[0]])
+    new_sg_g = mutate(sg_g).copy_and_fracture_crossing_spanners()
+    seq = containertools.fuse_like_named_contiguous_containers_in_expr([
+        sg_g, new_sg_g])
 
     assert testtools.compare(
         seq,
