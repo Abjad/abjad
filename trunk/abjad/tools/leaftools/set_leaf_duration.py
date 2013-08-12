@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import copy
 from abjad.tools import componenttools
 from abjad.tools import durationtools
 
@@ -63,7 +64,7 @@ def set_leaf_duration(leaf, new_preprolated_duration):
             >>> spannertools.BeamSpanner(staff.select_leaves())
             BeamSpanner(c'8, d'8, e'8, f'8)
             >>> leaftools.set_leaf_duration(staff[1], Duration(1, 12))
-            ContiguousSelection(Note("d'8"),)
+            [Note("d'8")]
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -131,12 +132,12 @@ def set_leaf_duration(leaf, new_preprolated_duration):
     assert isinstance(leaf, leaftools.Leaf)
     new_preprolated_duration = durationtools.Duration(new_preprolated_duration)
 
-    # if leaf carries LilyPond multiplier, change only LilyPond multiplier.
+    # if leaf carries LilyPond multiplier, change only LilyPond multiplier
     if leaf.lilypond_duration_multiplier is not None:
         leaf.lilypond_duration_multiplier = new_preprolated_duration / leaf.written_duration
         return [leaf]
 
-    # if leaf does not carry LilyPond multiplier, change other values.
+    # if leaf does not carry LilyPond multiplier, change other values
     try:
         leaf.written_duration = new_preprolated_duration
         all_leaves = [leaf]
@@ -144,8 +145,7 @@ def set_leaf_duration(leaf, new_preprolated_duration):
         components = notetools.make_notes(0, new_preprolated_duration)
         if isinstance(components[0], leaftools.Leaf):
             num_tied_leaves = len(components) - 1
-            tied_leaves = componenttools.copy_components_and_detach_spanners(
-                [leaf], num_tied_leaves)
+            tied_leaves = num_tied_leaves * leaf
             all_leaves = [leaf] + tied_leaves
             for x, component in zip(all_leaves, components):
                 x.written_duration = component.written_duration
@@ -157,8 +157,7 @@ def set_leaf_duration(leaf, new_preprolated_duration):
             fmtuplet = components[0]
             components = fmtuplet[:]
             num_tied_leaves = len(components) - 1
-            tied_leaves = componenttools.copy_components_and_detach_spanners(
-                [leaf], num_tied_leaves)
+            tied_leaves = num_tied_leaves * leaf
             all_leaves = [leaf] + tied_leaves
             for x, component in zip(all_leaves, components):
                 x.written_duration = component.written_duration

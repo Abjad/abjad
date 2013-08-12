@@ -239,10 +239,9 @@ def split_leaf_at_offsets(
 
     result = []
     leaf_prolation = leaf._select_parentage(include_self=False).prolation
-    leaf_copy = componenttools.copy_components_and_detach_spanners([leaf])[0]
+    leaf_copy = copy.copy(leaf)
     for duration in durations:
-        new_leaf = \
-            componenttools.copy_components_and_detach_spanners([leaf])[0]
+        new_leaf = copy.copy(leaf)
         preprolated_duration = duration / leaf_prolation
         shard = leaftools.set_leaf_duration(
             new_leaf, preprolated_duration)

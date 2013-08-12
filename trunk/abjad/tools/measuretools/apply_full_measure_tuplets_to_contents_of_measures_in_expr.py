@@ -2,12 +2,16 @@
 import copy
 
 
-def apply_full_measure_tuplets_to_contents_of_measures_in_expr(expr, supplement=None):
-    r'''Apply full-measure tuplets to contents of measures in `expr`:
+def apply_full_measure_tuplets_to_contents_of_measures_in_expr(
+    expr, supplement=None):
+    r'''Applies full-measure tuplets to contents of measures in `expr`:
 
     ::
 
-        >>> staff = Staff([Measure((2, 8), "c'8 d'8"), Measure((3, 8), "e'8 f'8 g'8")])
+        >>> staff = Staff([
+        ...     Measure((2, 8), "c'8 d'8"), 
+        ...     Measure((3, 8), "e'8 f'8 g'8")])
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -29,6 +33,7 @@ def apply_full_measure_tuplets_to_contents_of_measures_in_expr(expr, supplement=
     ::
 
         >>> measuretools.apply_full_measure_tuplets_to_contents_of_measures_in_expr(staff)
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -51,14 +56,18 @@ def apply_full_measure_tuplets_to_contents_of_measures_in_expr(expr, supplement=
             }
         }
 
-    Return none.
+    Returns none.
     '''
-    from abjad.tools import componenttools
     from abjad.tools import iterationtools
+    from abjad.tools import selectiontools
     from abjad.tools import tuplettools
+
+    supplement = selectiontools.ContiguousSelection(supplement)
+    assert isinstance(supplement, selectiontools.ContiguousSelection)
 
     for measure in iterationtools.iterate_measures_in_expr(expr):
         target_duration = measure._preprolated_duration
         tuplet = tuplettools.FixedDurationTuplet(target_duration, measure[:])
         if supplement:
-            tuplet.extend(componenttools.copy_components_and_detach_spanners(supplement))
+            new_supplement = supplement.copy_and_detach_spanners()
+            tuplet.extend(new_supplement)

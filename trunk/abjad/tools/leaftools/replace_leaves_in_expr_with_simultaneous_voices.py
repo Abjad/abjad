@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
+import copy
 import itertools
+from abjad.tools import selectiontools
 
 
 def replace_leaves_in_expr_with_simultaneous_voices(expr):
@@ -119,13 +121,17 @@ def replace_leaves_in_expr_with_simultaneous_voices(expr):
 
     for parent, group in itertools.groupby(leaves, lambda x: x._parent):
         grouped_leaves = list(group)
+        grouped_leaves = selectiontools.ContiguousSelection(grouped_leaves)
         start_idx = parent.index(grouped_leaves[0])
         stop_idx = parent.index(grouped_leaves[-1])
 
         container = containertools.Container()
         container.is_simultaneous = True
-        upper_voice = voicetools.Voice(componenttools.copy_components_and_detach_spanners(grouped_leaves))
-        lower_voice = voicetools.Voice(componenttools.copy_components_and_detach_spanners(grouped_leaves))
+        new_leaves = grouped_leaves.copy_and_detach_spanners()
+        upper_voice = voicetools.Voice(new_leaves)
+        new_leaves = grouped_leaves.copy_and_detach_spanners()
+        lower_voice = voicetools.Voice(new_leaves)
+
         container.extend([upper_voice, lower_voice])
 
         upper_leaves.extend(upper_voice[:])

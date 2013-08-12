@@ -7,6 +7,7 @@ from abjad.tools import notetools
 from abjad.tools import pitchtools
 from abjad.tools import schemetools
 from abjad.tools import scoretools
+from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools import stafftools
 from abjad.tools.pitchtools.NamedChromaticPitchClassSegment \
@@ -227,8 +228,7 @@ class Scale(NamedChromaticPitchClassSegment):
         Return score.
         '''
         ascending_notes = self.make_notes(8, durationtools.Duration(1, 8))
-        descending_notes = componenttools.copy_components_and_detach_spanners(
-            ascending_notes[:-1])
+        descending_notes = copy.deepcopy(ascending_notes[:-1])
         descending_notes.reverse()
         notes = ascending_notes + descending_notes
         notes[-1].written_duration = durationtools.Duration(1, 4)

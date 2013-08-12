@@ -329,8 +329,7 @@ class Leaf(Component):
         from abjad.tools import componenttools
         assert mathtools.is_nonnegative_integer_power_of_two(n)
         assert 0 < n
-        new_leaves = componenttools.copy_components_and_detach_spanners(
-            [self], n - 1)
+        new_leaves = (n - 1) * self
         self._splice(new_leaves, grow_spanners=True)
         adjustment_multiplier = durationtools.Duration(1, n)
         self.written_duration *= adjustment_multiplier

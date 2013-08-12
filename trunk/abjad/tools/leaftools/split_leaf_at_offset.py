@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import copy
 from abjad.tools import componenttools
 from abjad.tools import durationtools
 from abjad.tools import pitchtools
@@ -169,7 +170,7 @@ def split_leaf_at_offset(
         return ([leaf], [])
 
     # create new leaf
-    new_leaf = componenttools.copy_components_and_detach_spanners([leaf])[0]
+    new_leaf = copy.copy(leaf)
     leaf._splice([new_leaf], grow_spanners=True)
 
     # adjust leaf

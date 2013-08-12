@@ -83,8 +83,10 @@ class Component(AbjadObject):
 
         Returns list of new components.
         '''
-        from abjad.tools import componenttools
-        return componenttools.copy_components_and_detach_spanners([self], n)
+        selection = selectiontools.ContiguousSelection(self)
+        result = selection.copy_and_detach_spanners(n=n)
+        result = list(result)
+        return result
 
     def __rmul__(self, n):
         '''Copies component `n` times and detach spanners.

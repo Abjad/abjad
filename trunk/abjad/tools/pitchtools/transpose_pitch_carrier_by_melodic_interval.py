@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import copy
 import numbers
 
 
@@ -63,15 +64,13 @@ def transpose_pitch_carrier_by_melodic_interval(
             return _transpose_pitch_by_melodic_diatonic_interval(
                 pitch_carrier, mdi)
         elif isinstance(pitch_carrier, notetools.Note):
-            new_note = componenttools.copy_components_and_detach_spanners(
-                [pitch_carrier])[0]
+            new_note = copy.copy(pitch_carrier)
             new_pitch = _transpose_pitch_by_melodic_diatonic_interval(
                 pitch_carrier.written_pitch, mdi)
             new_note.written_pitch = new_pitch
             return new_note
         elif isinstance(pitch_carrier, chordtools.Chord):
-            new_chord = componenttools.copy_components_and_detach_spanners(
-                [pitch_carrier])[0]
+            new_chord = copy.copy(pitch_carrier)
             for new_nh, old_nh in \
                 zip(new_chord.note_heads, pitch_carrier.note_heads):
                 new_pitch = _transpose_pitch_by_melodic_diatonic_interval(
@@ -93,16 +92,14 @@ def transpose_pitch_carrier_by_melodic_interval(
                 pitch_carrier, mci)
             return result.chromatic_pitch_number
         elif isinstance(pitch_carrier, notetools.Note):
-            new_note = componenttools.copy_components_and_detach_spanners(
-                [pitch_carrier])[0]
+            new_note = copy.copy(pitch_carrier)
             number = abs(pitch_carrier.written_pitch.numbered_chromatic_pitch)
             number += mci.number
             new_pitch = pitchtools.NamedChromaticPitch(number)
             new_note.written_pitch = new_pitch
             return new_note
         elif isinstance(pitch_carrier, chordtools.Chord):
-            new_chord = componenttools.copy_components_and_detach_spanners(
-                [pitch_carrier])[0]
+            new_chord = copy.copy(pitch_carrier)
             for new_nh, old_nh in \
                 zip(new_chord.note_heads, pitch_carrier.note_heads):
                 number = abs(old_nh.written_pitch.numbered_chromatic_pitch)

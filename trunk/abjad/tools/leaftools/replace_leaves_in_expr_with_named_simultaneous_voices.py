@@ -1,11 +1,13 @@
 # -*- encoding: utf-8 -*-
 import itertools
+from abjad.tools import selectiontools
 
 
-def replace_leaves_in_expr_with_named_simultaneous_voices(expr, upper_name, lower_name):
-    r'''Replace leaves in `expr` with two simultaneous voices containing copies of
-    leaves in `expr`, with the upper voice named `upper_name` and the lower
-    voice named `lower_name`:
+def replace_leaves_in_expr_with_named_simultaneous_voices(
+    expr, upper_name, lower_name):
+    r'''Replace leaves in `expr` with two simultaneous voices containing 
+    copies of leaves in `expr`, with the upper voice named `upper_name` and 
+    the lower voice named `lower_name`:
 
     ::
 
@@ -41,8 +43,8 @@ def replace_leaves_in_expr_with_named_simultaneous_voices(expr, upper_name, lowe
             c4
         }
 
-    If leaves in `expr` have different immediate parents, simultaneous voices will
-    be created in each parent:
+    If leaves in `expr` have different immediate parents, simultaneous 
+    voices will be created in each parent:
 
     ::
 
@@ -121,13 +123,16 @@ def replace_leaves_in_expr_with_named_simultaneous_voices(expr, upper_name, lowe
 
     for parent, group in itertools.groupby(leaves, lambda x: x._parent):
         grouped_leaves = list(group)
+        grouped_leaves = selectiontools.ContiguousSelection(grouped_leaves)
         start_idx = parent.index(grouped_leaves[0])
         stop_idx = parent.index(grouped_leaves[-1])
 
         container = containertools.Container()
         container.is_simultaneous = True
-        upper_voice = voicetools.Voice(componenttools.copy_components_and_detach_spanners(grouped_leaves))
-        lower_voice = voicetools.Voice(componenttools.copy_components_and_detach_spanners(grouped_leaves))
+        new_leaves = grouped_leaves.copy_and_detach_spanners()
+        upper_voice = voicetools.Voice(new_leaves)
+        new_leaves = grouped_leaves.copy_and_detach_spanners()
+        lower_voice = voicetools.Voice(new_leaves)
         upper_voice.name = upper_name
         lower_voice.name = lower_name
         container.extend([upper_voice, lower_voice])
