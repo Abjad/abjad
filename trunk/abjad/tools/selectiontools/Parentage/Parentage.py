@@ -92,6 +92,12 @@ class Parentage(SimultaneousSelection):
 
     ### PRIVATE METHODS ###
 
+    @staticmethod
+    def _id_string(component):
+        lhs = component._class_name
+        rhs = getattr(component, 'name', None) or id(component)
+        return '{}-{!r}'.format(lhs, rhs)
+
     def _get_governor(self):
         from abjad.tools import containertools
         from abjad.tools import componenttools
@@ -166,11 +172,11 @@ class Parentage(SimultaneousSelection):
         from abjad.tools import stafftools
         from abjad.tools import voicetools
         signature = componenttools.ContainmentSignature()
-        signature._self = self[0]._id_string
+        signature._self = self._id_string(self[0])
         for component in self:
             if isinstance(component, voicetools.Voice) and \
                 signature._voice is None:
-                signature._voice = component._id_string
+                signature._voice = self._id_string(component)
             elif isinstance(component, stafftools.Staff) and \
                 signature._staff is None:
                 # leaves inside different staves have diff 
@@ -179,15 +185,15 @@ class Parentage(SimultaneousSelection):
                     component._class_name, id(component))
             elif isinstance(component, scoretools.StaffGroup) and \
                 signature._staff_group is None:
-                signature._staff_group = component._id_string
+                signature._staff_group = self._id_string(component)
             elif isinstance(component, scoretools.Score) and \
                 signature._score is None:
-                signature._score = component._id_string
+                signature._score = self._id_string(component)
         else:
             # root components must be the same object 
             # for containment signatures to compare true
             signature._root = id(component)
-            signature._root_str = component._id_string
+            signature._root_str = self._id_string(component)
         return signature
 
     @property
@@ -237,24 +243,24 @@ class Parentage(SimultaneousSelection):
         from abjad.tools import stafftools
         from abjad.tools import voicetools
         signature = componenttools.ContainmentSignature()
-        signature._self = self[0]._id_string
+        signature._self = self._id_string(self[0])
         for component in self:
             if isinstance(component, voicetools.Voice) and \
                 not signature._voice:
-                signature._voice = component._id_string
+                signature._voice = self._id_string(component)
             elif isinstance(component, stafftools.Staff) and \
                 not signature._staff:
-                signature._staff = component._id_string
+                signature._staff = self._id_string(component)
             elif isinstance(component, scoretools.StaffGroup) and \
                 not signature._staff_group:
-                signature._staff_group = component._id_string
+                signature._staff_group = self._id_string(component)
             elif isinstance(component, scoretools.Score) and \
                 not signature._score:
-                signature._score = component._id_string
+                signature._score = self._id_string(component)
         else:
             # root components must be manifestly equal to compare true
             signature._root = id(component)
-            signature._root_str = component._id_string
+            signature._root_str = self._id_string(component)
         return signature
 
     @property

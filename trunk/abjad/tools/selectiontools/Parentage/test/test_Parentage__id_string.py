@@ -2,18 +2,20 @@
 from abjad import *
 
 
-def test_Component_id_string_01():
+def test_Parentage__id_string_01():
     r'''Return component name if it exists, otherwise Python ID.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    assert staff._id_string.startswith('Staff-')
+    parentage = more(staff).select_parentage()
+    assert parentage._id_string(staff).startswith('Staff-')
 
 
-def test_Component_id_string_02():
+def test_Parentage__id_string_02():
     r'''Return component name if it exists, otherwise Python ID.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
+    parentage = more(staff).select_parentage()
     staff.name = 'foo'
-    assert staff._id_string == "Staff-'foo'"
+    assert parentage._id_string(staff) == "Staff-'foo'"

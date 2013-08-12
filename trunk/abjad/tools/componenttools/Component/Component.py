@@ -101,12 +101,6 @@ class Component(AbjadObject):
     def _format_pieces(self):
         return self._format_component(pieces=True)
 
-    @property
-    def _id_string(self):
-        lhs = self._class_name
-        rhs = getattr(self, 'name', None) or id(self)
-        return '{}-{!r}'.format(lhs, rhs)
-
     ### PRIVATE METHODS ###
 
     def _cache_named_children(self):
