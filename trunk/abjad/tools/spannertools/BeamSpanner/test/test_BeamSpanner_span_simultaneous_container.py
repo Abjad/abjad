@@ -116,7 +116,7 @@ def test_BeamSpanner_span_simultaneous_container_04():
     assert py.test.raises(AssertionError, 'beam = spannertools.BeamSpanner(staff)')
 
 
-def test_BeamSpanner_span_simultaneous_container_06():
+def test_BeamSpanner_span_simultaneous_container_05():
     r'''This is the proper way to 'thread through' simultaneous containers.
         LilyPond is happy here again.'''
 

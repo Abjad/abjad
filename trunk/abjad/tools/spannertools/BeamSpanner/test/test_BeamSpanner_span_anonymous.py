@@ -279,7 +279,7 @@ def test_BeamSpanner_span_anonymous_07():
         )
 
 
-def test_BeamSpanner_span_anonymous_09():
+def test_BeamSpanner_span_anonymous_08():
     r'''Staff with empty containers at the edges.
     '''
 
@@ -326,7 +326,7 @@ def test_BeamSpanner_span_anonymous_09():
         )
 
 
-def test_BeamSpanner_span_anonymous_10():
+def test_BeamSpanner_span_anonymous_09():
     r'''Deeply nested containers of equal depth.
     '''
 
@@ -381,7 +381,7 @@ def test_BeamSpanner_span_anonymous_10():
     assert len(beam.leaves) == 8
 
 
-def test_BeamSpanner_span_anonymous_11():
+def test_BeamSpanner_span_anonymous_10():
     r'''Deeply nested containers of unequal depth.
     '''
 
@@ -433,7 +433,7 @@ def test_BeamSpanner_span_anonymous_11():
     beam.detach()
 
 
-def test_BeamSpanner_span_anonymous_12():
+def test_BeamSpanner_span_anonymous_11():
     r'''Voice with containers and top-level leaves.
     '''
 
@@ -466,7 +466,7 @@ def test_BeamSpanner_span_anonymous_12():
     beam.detach()
 
 
-def test_BeamSpanner_span_anonymous_13():
+def test_BeamSpanner_span_anonymous_12():
     r'''Voice with tuplets and top-level leaves.
     '''
 
@@ -501,7 +501,7 @@ def test_BeamSpanner_span_anonymous_13():
     beam.detach()
 
 
-def test_BeamSpanner_span_anonymous_14():
+def test_BeamSpanner_span_anonymous_13():
     r'''Nested tuplets.
     '''
 
@@ -530,7 +530,7 @@ def test_BeamSpanner_span_anonymous_14():
     assert len(beam.leaves) == 5
 
 
-def test_BeamSpanner_span_anonymous_15():
+def test_BeamSpanner_span_anonymous_14():
     r'''Beams cannot cross voice boundaries.
     '''
 
