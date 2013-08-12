@@ -106,10 +106,15 @@ def all_are_thread_contiguous_components(
         if not prev._is_immediate_temporal_successor_of(cur):
             if not _are_thread_proper(prev, cur):
                 thread_proper = False
-        if (not allow_orphans or 
-            (allow_orphans and not orphan_components)) and \
-            (not same_thread or not thread_proper):
-            return False
+                #print 'NOT THREAD-PROPER'
+        #print 'allow_orphans: ', allow_orphans
+        #print 'orphan_components: ', orphan_components
+        if not allow_orphans:
+            if not same_thread or not thread_proper:
+                return False
+        if allow_orphans and not orphan_components:
+            if not same_thread or not thread_proper:
+                return False
         prev = cur
 
     return True
