@@ -13,6 +13,7 @@ def all_are_thread_contiguous_components(
         >>> inner_voice = Voice("e'8 f'8")
         >>> container_2 = Container("g'8 a'8")
         >>> outer_voice = Voice([container_1, inner_voice, container_2])
+        >>> show(outer_voice) # doctest: +SKIP
 
     ..  doctest::
 
@@ -36,27 +37,36 @@ def all_are_thread_contiguous_components(
 
         >>> show(outer_voice) # doctest: +SKIP
 
-    ::
+    The first two notes belong to the same thread and are time-contiguous:
 
-        >>> components = [container_1, container_2]
+        >>> components = container_1.select_leaves()
         >>> componenttools.all_are_thread_contiguous_components(components)
         True
 
-    ::
+    The middle two notes belong to the same thread and are time-contiguous:
 
-        >>> components = container_1.select_leaves() + container_2.select_leaves()
+        >>> components = inner_voice.select_leaves()
         >>> componenttools.all_are_thread_contiguous_components(components)
         True
 
-    ::
+    The middle two notes belong to the same thread and are time-contiguous:
 
-        >>> components = (container_1, ) + container_2.select_leaves()
+        >>> components = container_1.select_leaves()
         >>> componenttools.all_are_thread_contiguous_components(components)
         True
 
-    ::
+    But the six leaves taken together belong to different threads:
 
-        >>> components = [container_1, inner_voice]
+        >>> components = outer_voice.select_leaves()
+        >>> componenttools.all_are_thread_contiguous_components(components)
+        False
+
+    The first two leaves and the last two leaves belong to the same thread.
+    But the first two leaves and the last two leaves are not
+    time-contiguous:
+
+        >>> components = container_1.select_leaves()
+        >>> components += container_2.select_leaves()
         >>> componenttools.all_are_thread_contiguous_components(components)
         False
 
@@ -86,90 +96,104 @@ def all_are_thread_contiguous_components(
     if not isinstance(first, component_classes):
         return False
 
-    orphan_components = True
-    if not first._select_parentage().is_orphan:
-        orphan_components = False
+    #orphan_components = True
+    #if not first._select_parentage().is_orphan:
+    #    orphan_components = False
+    total_orphan_components = 0
+    if first._select_parentage().is_orphan:
+        total_orphan_components += 1
 
     same_thread = True
     thread_proper = True
 
-    first_thread = first._select_parentage().containment_signature
-    prev = first
-    for cur in expr[1:]:
-        if not isinstance(cur, component_classes):
+    first_parentage = first._select_parentage()
+    first_containment_signature = first_parentage.containment_signature
+    first_root = first_containment_signature._root
+    previous = first
+    for current in expr[1:]:
+        current_parentage = current._select_parentage()
+        if not isinstance(current, component_classes):
             return False
-        if not cur._select_parentage().is_orphan:
-            orphan_components = False
-        if not cur._select_parentage().containment_signature == first_thread:
-            same_thread = False
+        if current_parentage.is_orphan:
+            total_orphan_components += 1
+        if not allow_orphans and 1 < total_orphan_components:
+            return False
+            #print 'TOO MANY ORPHANS'
+        current_containment_signature = current_parentage.containment_signature
+        if current_containment_signature != first_containment_signature:
             #print 'NOT SAME THREAD'
-        if not prev._is_immediate_temporal_successor_of(cur):
-            if not _are_thread_proper(prev, cur):
-                thread_proper = False
-                #print 'NOT THREAD-PROPER'
-        #print 'allow_orphans: ', allow_orphans
-        #print 'orphan_components: ', orphan_components
-        if not allow_orphans:
-            if not same_thread or not thread_proper:
+            return False
+        current_root = current_containment_signature._root
+        if current_containment_signature._root == first_root:
+            if not previous._is_immediate_temporal_successor_of(current):
+                #previous_stop = previous._get_timespan().stop_offset
+                #current_start = current._get_timespan().start_offset
+                #if previous_stop != current_start:
+                #    print 'COMPONENTS IN SAME THREAD MUST BE CONTIGUOUS'
+                #    return False
+                #print 'COMPONENTS IN SAME THREAD MUST BE CONTIGUOUS'
                 return False
-        if allow_orphans and not orphan_components:
-            if not same_thread or not thread_proper:
-                return False
-        prev = cur
+#        if not previous._is_immediate_temporal_successor_of(current):
+#            if not _are_thread_proper(previous, current):
+#                thread_proper = False
+#        if not allow_orphans and not thread_proper:
+#            print 'NOT THREAD PROPER'
+#            return False
+        previous = current
 
     return True
 
 
-def _are_thread_proper(component_1, component_2, component_classes=None):
-    r'''True when
-
-        1. component_1 and component_2 are both Abjad components,
-        2. component_1 and component_2 share the same thread,
-        3. component_1 precedes component_2 in temporal order, and
-        4. there exists no intervening component x that both shares
-            the same thread as component_1 and component_2 and
-            that intervenes temporally between component_1 and _2.
-
-    Otherwise False.
-    '''
-    from abjad.tools import componenttools
-    from abjad.tools import iterationtools
-
-    if component_classes is None:
-        component_classes = (componenttools.Component,)
-
-    # if either input parameter are not Abjad tokens
-    if not isinstance(component_1, component_classes) or \
-        not isinstance(component_2, component_classes):
-        return False
-
-    # if component_1 and component_2 do not share a thread
-    first_thread = component_1._select_parentage().containment_signature
-    if not first_thread == component_2._select_parentage().containment_signature:
-        return False
-
-    # find component_1 offset end time and component_2 offset begin
-    first_end = component_1._get_timespan().stop_offset
-    second_begin = component_2._get_timespan().start_offset
-
-    # if component_1 does not preced component_2
-    if not first_end <= second_begin:
-        return False
-
-    # if there exists an intervening component of the same thread
-    dfs = iterationtools.iterate_components_depth_first(
-        component_1, capped=False)
-    for node in dfs:
-        if node is component_2:
-            break
-        node_thread = node._select_parentage().containment_signature
-        if node_thread == first_thread:
-            node_begin = node._get_timespan().start_offset
-            if first_end <= node_begin < second_begin:
-                message = 'component %s intervenes between %s and %s.'
-                message %= (node, component_1, component_2)
-                print message
-                return False
-
-    # otherwise, return True
-    return True
+#def _are_thread_proper(component_1, component_2, component_classes=None):
+#    r'''True when
+#
+#        1. component_1 and component_2 are both Abjad components,
+#        2. component_1 and component_2 share the same thread,
+#        3. component_1 precedes component_2 in temporal order, and
+#        4. there exists no intervening component x that both shares
+#            the same thread as component_1 and component_2 and
+#            that intervenes temporally between component_1 and _2.
+#
+#    Otherwise False.
+#    '''
+#    from abjad.tools import componenttools
+#    from abjad.tools import iterationtools
+#
+#    if component_classes is None:
+#        component_classes = (componenttools.Component,)
+#
+#    # if either input parameter are not Abjad tokens
+#    if not isinstance(component_1, component_classes) or \
+#        not isinstance(component_2, component_classes):
+#        return False
+#
+#    # if component_1 and component_2 do not share a thread
+#    first_thread = component_1._select_parentage().containment_signature
+#    if not first_thread == component_2._select_parentage().containment_signature:
+#        return False
+#
+#    # find component_1 offset end time and component_2 offset begin
+#    first_end = component_1._get_timespan().stop_offset
+#    second_begin = component_2._get_timespan().start_offset
+#
+#    # if component_1 does not preced component_2
+#    if not first_end <= second_begin:
+#        return False
+#
+#    # if there exists an intervening component of the same thread
+#    dfs = iterationtools.iterate_components_depth_first(
+#        component_1, capped=False)
+#    for node in dfs:
+#        if node is component_2:
+#            break
+#        node_thread = node._select_parentage().containment_signature
+#        if node_thread == first_thread:
+#            node_begin = node._get_timespan().start_offset
+#            if first_end <= node_begin < second_begin:
+#                message = 'component %s intervenes between %s and %s.'
+#                message %= (node, component_1, component_2)
+#                print message
+#                return False
+#
+#    # otherwise, return True
+#    return True

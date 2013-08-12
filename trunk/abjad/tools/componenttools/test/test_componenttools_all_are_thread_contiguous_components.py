@@ -5,7 +5,9 @@ import py.test
 
 def test_componenttools_all_are_thread_contiguous_components_01():
     r'''True for thread contiguous components even when
-        components are not strictly contiguous.'''
+    components are not strictly contiguous.
+    '''
+    py.test.skip('maybe this should be removed.')
 
     voice = Voice(notetools.make_repeated_notes(4))
     voice.insert(2, Voice(notetools.make_repeated_notes(2)))
@@ -25,13 +27,16 @@ def test_componenttools_all_are_thread_contiguous_components_01():
     '''
 
     outer = (0, 1, 4, 5)
-    assert componenttools.all_are_thread_contiguous_components([voice.select_leaves()[i] for i in outer])
+    assert componenttools.all_are_thread_contiguous_components(
+        [voice.select_leaves()[i] for i in outer])
 
 
 def test_componenttools_all_are_thread_contiguous_components_02():
     r'''Temporal gaps between components are OK.
-        So long as gaps are filled with foreign components
-        that do not belong to thread.'''
+    So long as gaps are filled with foreign components
+    that do not belong to thread.
+    '''
+    py.test.skip('maybe this should be removed.')
 
     voice = Voice(notetools.make_repeated_notes(4))
     voice.insert(2, Voice(notetools.make_repeated_notes(2)))
@@ -56,15 +61,20 @@ def test_componenttools_all_are_thread_contiguous_components_02():
     }
     '''
 
-    assert componenttools.all_are_thread_contiguous_components(voice[0:1] + voice[-1:])
-    assert componenttools.all_are_thread_contiguous_components(voice[0][:] + voice[-1:])
-    assert componenttools.all_are_thread_contiguous_components(voice[0:1] + voice[-1][:])
-    assert componenttools.all_are_thread_contiguous_components(voice[0][:] + voice[-1][:])
+    assert componenttools.all_are_thread_contiguous_components(
+        voice[0:1] + voice[-1:])
+    assert componenttools.all_are_thread_contiguous_components(
+        voice[0][:] + voice[-1:])
+    assert componenttools.all_are_thread_contiguous_components(
+        voice[0:1] + voice[-1][:])
+    assert componenttools.all_are_thread_contiguous_components(
+        voice[0][:] + voice[-1][:])
 
 
 def test_componenttools_all_are_thread_contiguous_components_03():
     r'''Components that start at the same moment are bad.
-        Even if components are all part of the same thread.'''
+    Even if components are all part of the same thread.
+    '''
 
     voice = Voice(notetools.make_repeated_notes(4))
     voice.insert(2, Voice(notetools.make_repeated_notes(2)))
@@ -89,9 +99,12 @@ def test_componenttools_all_are_thread_contiguous_components_03():
     }
     '''
 
-    assert not componenttools.all_are_thread_contiguous_components([voice, voice[0]])
-    assert not componenttools.all_are_thread_contiguous_components(voice[0:1] + voice[0][:])
-    assert not componenttools.all_are_thread_contiguous_components(voice[-1:] + voice[-1][:])
+    assert not componenttools.all_are_thread_contiguous_components(
+        [voice, voice[0]])
+    assert not componenttools.all_are_thread_contiguous_components(
+        voice[0:1] + voice[0][:])
+    assert not componenttools.all_are_thread_contiguous_components(
+        voice[-1:] + voice[-1][:])
 
 
 def test_componenttools_all_are_thread_contiguous_components_04():

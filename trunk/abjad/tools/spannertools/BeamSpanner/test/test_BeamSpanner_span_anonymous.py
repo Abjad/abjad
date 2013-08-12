@@ -279,59 +279,6 @@ def test_BeamSpanner_span_anonymous_07():
         )
 
 
-def test_BeamSpanner_span_anonymous_08():
-    r'''Staff with empty containers in the middle.
-    '''
-
-    staff = Staff("{ c'8 c'8 c'8 c'8 } {} { c'8 c'8 c'8 c'8 }")
-    beam = spannertools.BeamSpanner(staff[:])
-
-    r'''
-    \new Staff {
-        {
-            c'8 [
-            c'8
-            c'8
-            c'8
-        }
-        {
-        }
-        {
-            c'8
-            c'8
-            c'8
-            c'8 ]
-        }
-    }
-    '''
-
-    assert len(beam.components) == 3
-    assert all(type(x) is Container for x in beam.components)
-    assert len(beam.leaves) == 8
-
-    assert testtools.compare(
-        staff,
-        r'''
-        \new Staff {
-            {
-                c'8 [
-                c'8
-                c'8
-                c'8
-            }
-            {
-            }
-            {
-                c'8
-                c'8
-                c'8
-                c'8 ]
-            }
-        }
-        '''
-        )
-
-
 def test_BeamSpanner_span_anonymous_09():
     r'''Staff with empty containers at the edges.
     '''

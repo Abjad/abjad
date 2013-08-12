@@ -102,6 +102,7 @@ def test_BeamSpanner_span_simultaneous_container_03():
     >>
     '''
 
+
 def test_BeamSpanner_span_simultaneous_container_04():
     r'''Abjad forbids but LilyPond is happy.
     '''
@@ -113,45 +114,6 @@ def test_BeamSpanner_span_simultaneous_container_04():
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
 
     assert py.test.raises(AssertionError, 'beam = spannertools.BeamSpanner(staff)')
-
-
-def test_BeamSpanner_span_simultaneous_container_05():
-    r'''Abjad ignores empty simultaneous containers with no leaves.
-        LilyPond is happy here.'''
-
-    staff = Staff(notetools.make_repeated_notes(4))
-    new = Container([])
-    new.is_simultaneous = True
-    staff.insert(2, new)
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
-    beam = spannertools.BeamSpanner(staff)
-
-    assert len(beam.components) == 1
-    assert len(beam.leaves) == 4
-    assert testtools.compare(
-        staff,
-        r'''
-        \new Staff {
-            c'8 [
-            cs'8
-            <<
-            >>
-            d'8
-            ef'8 ]
-        }
-        '''
-        )
-
-    r'''
-    \new Staff {
-        c'8 [
-        cs'8
-        <<
-        >>
-        d'8
-        ef'8 ]
-    }
-    '''
 
 
 def test_BeamSpanner_span_simultaneous_container_06():
@@ -206,34 +168,3 @@ def test_BeamSpanner_span_simultaneous_container_06():
         }
         '''
         )
-
-    r'''
-    \new Staff {
-        \context Voice = "foo" {
-            c'8 [
-            cs'8
-            d'8
-            ef'8
-        }
-        <<
-            \context Voice = "foo" {
-                e'8
-                f'8
-                fs'8
-                g'8
-            }
-            \context Voice = "bar" {
-                af'8
-                a'8
-                bf'8
-                b'8
-            }
-        >>
-        \context Voice = "foo" {
-            c''8
-            cs''8
-            d''8
-            ef''8 ]
-        }
-    }
-    '''
