@@ -174,9 +174,10 @@ class Parentage(SimultaneousSelection):
         '''
         from abjad.tools import componenttools
         from abjad.tools import scoretools
+        from abjad.tools import selectiontools
         from abjad.tools import stafftools
         from abjad.tools import voicetools
-        signature = componenttools.ContainmentSignature()
+        signature = selectiontools.ContainmentSignature()
         signature._self = self._id_string(self[0])
         for component in self:
             if isinstance(component, voicetools.Voice) and \
@@ -194,11 +195,11 @@ class Parentage(SimultaneousSelection):
             elif isinstance(component, scoretools.Score) and \
                 signature._score is None:
                 signature._score = self._id_string(component)
-        else:
-            # root components must be the same object 
-            # for containment signatures to compare true
-            signature._root = id(component)
-            signature._root_str = self._id_string(component)
+#        else:
+#            # root components must be the same object 
+#            # for containment signatures to compare true
+#            signature._root = id(component)
+#            signature._root_str = self._id_string(component)
         return signature
 
     @property
@@ -246,9 +247,10 @@ class Parentage(SimultaneousSelection):
         '''
         from abjad.tools import componenttools
         from abjad.tools import scoretools
+        from abjad.tools import selectiontools
         from abjad.tools import stafftools
         from abjad.tools import voicetools
-        signature = componenttools.ContainmentSignature()
+        signature = selectiontools.ContainmentSignature()
         signature._self = self._id_string(self[0])
         for component in self:
             if isinstance(component, voicetools.Voice) and \
