@@ -112,6 +112,7 @@ def replace_leaves_in_expr_with_simultaneous_voices(expr):
     from abjad.tools import componenttools
     from abjad.tools import containertools
     from abjad.tools import iterationtools
+    from abjad.tools import spannertools
     from abjad.tools import voicetools
 
     leaves = [leaf for leaf in iterationtools.iterate_leaves_in_expr(expr)]
@@ -127,9 +128,11 @@ def replace_leaves_in_expr_with_simultaneous_voices(expr):
 
         container = containertools.Container()
         container.is_simultaneous = True
-        new_leaves = grouped_leaves.copy_and_detach_spanners()
+        new_leaves = grouped_leaves.copy_and_fracture_crossing_spanners()
+        spannertools.detach_spanners_attached_to_components_in_expr(new_leaves)
         upper_voice = voicetools.Voice(new_leaves)
-        new_leaves = grouped_leaves.copy_and_detach_spanners()
+        new_leaves = grouped_leaves.copy_and_fracture_crossing_spanners()
+        spannertools.detach_spanners_attached_to_components_in_expr(new_leaves)
         lower_voice = voicetools.Voice(new_leaves)
 
         container.extend([upper_voice, lower_voice])

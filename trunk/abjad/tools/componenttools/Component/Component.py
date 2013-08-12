@@ -9,7 +9,7 @@ from abjad.tools import mathtools
 from abjad.tools import selectiontools
 from abjad.tools import timespantools
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.selectiontools import more
+from abjad.tools.selectiontools import mutate
 
 
 class Component(AbjadObject):
@@ -83,9 +83,13 @@ class Component(AbjadObject):
 
         Returns list of new components.
         '''
-        selection = selectiontools.ContiguousSelection(self)
-        result = selection.copy_and_detach_spanners(n=n)
-        result = list(result)
+        from abjad.tools import spannertools
+        result = mutate(self).copy_and_fracture_crossing_spanners(n=n)
+        spannertools.detach_spanners_attached_to_components_in_expr(result)
+        if isinstance(result, type(self)):
+            result = [result]
+        else:
+            result = list(result)
         return result
 
     def __rmul__(self, n):

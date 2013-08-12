@@ -69,5 +69,5 @@ def apply_full_measure_tuplets_to_contents_of_measures_in_expr(
         target_duration = measure._preprolated_duration
         tuplet = tuplettools.FixedDurationTuplet(target_duration, measure[:])
         if supplement:
-            new_supplement = supplement.copy_and_detach_spanners()
+            new_supplement = supplement.copy_and_fracture_crossing_spanners()
             tuplet.extend(new_supplement)
