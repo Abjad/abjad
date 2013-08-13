@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_Component__select_descendants_01():
+def test_Inspector_select_descendants_01():
     r'''Staff and first measure cross offset at 1/8.
     '''
 
@@ -26,7 +26,7 @@ def test_Component__select_descendants_01():
     assert result == [staff, staff[0]]
 
 
-def test_Component__select_descendants_02():
+def test_Inspector_select_descendants_02():
     r'''Staff, first measure and first note cross 1/16.
     '''
 
@@ -50,7 +50,7 @@ def test_Component__select_descendants_02():
     assert result == [staff, staff[0], staff[0][0]]
 
 
-def test_Component__select_descendants_03():
+def test_Inspector_select_descendants_03():
     r'''Nothing crosses 0.
     '''
 
@@ -74,7 +74,7 @@ def test_Component__select_descendants_03():
     assert result == []
 
 
-def test_Component__select_descendants_04():
+def test_Inspector_select_descendants_04():
     r'''Nothing crosses 100.
     '''
 

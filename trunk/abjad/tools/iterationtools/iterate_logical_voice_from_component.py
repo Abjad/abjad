@@ -130,12 +130,14 @@ def iterate_logical_voice_from_component(
 
     # iterate component depth-first allowing to crawl UP into score
     if not reverse:
-        for x in iterationtools.iterate_components_depth_first(component, capped=False):
+        for x in iterationtools.iterate_components_depth_first(
+            component, capped=False):
             if isinstance(x, component_class):
                 if x._select_parentage().containment_signature == signature:
                     yield x
     else:
-        for x in iterationtools.iterate_components_depth_first(component, capped=False, direction=Right):
+        for x in iterationtools.iterate_components_depth_first(
+            component, capped=False, direction=Right):
             if isinstance(x, component_class):
                 if x._select_parentage().containment_signature == signature:
                     yield x

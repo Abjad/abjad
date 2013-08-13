@@ -2,90 +2,102 @@
 from abjad.tools import componenttools
 
 
-def iterate_namesakes_from_component(component, reverse=False, start=0, stop=None):
-    r'''Iterate namesakes forward from `component`:
+def iterate_namesakes_from_component(
+    component, reverse=False, start=0, stop=None):
+    r'''Iterates namesakes from `component`.
 
-    ::
+    ..  container:: example
 
-        >>> container = Container(Staff(notetools.make_repeated_notes(2)) * 2)
-        >>> container.is_simultaneous = True
-        >>> container[0].name = 'staff 1'
-        >>> container[1].name = 'staff 2'
-        >>> score = Score([])
-        >>> score.is_simultaneous = False
-        >>> score.extend(container * 2)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(score)
+        **Example 1.** Iterate namesakes forward from component:
 
-    ..  doctest::
+        ::
 
-        >>> f(score)
-        \new Score {
-            <<
-                \context Staff = "staff 1" {
-                    c'8
-                    d'8
-                }
-                \context Staff = "staff 2" {
-                    e'8
-                    f'8
-                }
-            >>
-            <<
-                \context Staff = "staff 1" {
-                    g'8
-                    a'8
-                }
-                \context Staff = "staff 2" {
-                    b'8
-                    c''8
-                }
-            >>
-        }
+            >>> score = Score([])
+            >>> score.is_simultaneous = False
+            >>> container_1 = Container([Staff("c'8 d'8"), Staff("e'8 f'8")])
+            >>> container_1.is_simultaneous = True
+            >>> container_1[0].name = 'staff 1'
+            >>> container_1[1].name = 'staff 2'
+            >>> score.append(container_1)
+            >>> container_2 = Container([Staff("g'8 a'8"), Staff("b'8 c''8")])
+            >>> container_2.is_simultaneous = True
+            >>> container_2[0].name = 'staff 1'
+            >>> container_2[1].name = 'staff 2'
+            >>> score.append(container_2)
+            >>> show(score) # doctest: +SKIP
 
-    ::
+        ..  doctest::
 
-        >>> for staff in iterationtools.iterate_namesakes_from_component(score[0][0]):
-        ...     print staff.lilypond_format
-        ...
-        \context Staff = "staff 1" {
-            c'8
-            d'8
-        }
-        \context Staff = "staff 1" {
-            g'8
-            a'8
-        }
+            >>> f(score)
+            \new Score {
+                <<
+                    \context Staff = "staff 1" {
+                        c'8
+                        d'8
+                    }
+                    \context Staff = "staff 2" {
+                        e'8
+                        f'8
+                    }
+                >>
+                <<
+                    \context Staff = "staff 1" {
+                        g'8
+                        a'8
+                    }
+                    \context Staff = "staff 2" {
+                        b'8
+                        c''8
+                    }
+                >>
+            }
 
-    Iterate namesakes backward from `component`:
+        ::
 
-    ::
+            >>> for staff in iterationtools.iterate_namesakes_from_component(
+            ...     container_1[0]):
+            ...     print staff.lilypond_format
+            ...
+            \context Staff = "staff 1" {
+                c'8
+                d'8
+            }
+            \context Staff = "staff 1" {
+                g'8
+                a'8
+            }
 
-    ::
+    ..  container:: example
 
-        >>> for staff in iterationtools.iterate_namesakes_from_component(
-        ...     score[-1][0], reverse=True):
-        ...     print staff.lilypond_format
-        ...
-        \context Staff = "staff 1" {
-            g'8
-            a'8
-        }
-        \context Staff = "staff 1" {
-            c'8
-            d'8
-        }
+        **Example 2.** Iterate namesakes backward from component:
 
-    Return generator.
+        ::
+
+            >>> for staff in iterationtools.iterate_namesakes_from_component(
+            ...     container_2[0], reverse=True):
+            ...     print staff.lilypond_format
+            ...
+            \context Staff = "staff 1" {
+                g'8
+                a'8
+            }
+            \context Staff = "staff 1" {
+                c'8
+                d'8
+            }
+
+    Returns generator.
     '''
     from abjad.tools import iterationtools
 
     def _backward_helper(component):
-        prev = componenttools.get_nth_component_in_time_order_from_component(
+        previous_component = \
+            componenttools.get_nth_component_in_time_order_from_component(
             component, -1)
-        if prev is None:
+        if previous_component is None:
             return
         dfs = iterationtools.iterate_components_depth_first(
-            prev, capped=False, direction=Right)
+            previous_component, capped=False, direction=Right)
         for node in dfs:
             if type(node) == type(component) and \
                 node._select_parentage().parentage_signature == \

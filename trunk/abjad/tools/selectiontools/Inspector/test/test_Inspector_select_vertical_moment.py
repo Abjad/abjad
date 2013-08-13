@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_Component__select_vertical_moment_01():
+def test_Inspector_select_vertical_moment_01():
 
     score = Score([])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
@@ -55,7 +55,7 @@ def test_Component__select_vertical_moment_01():
     assert vm.leaves == (piano_staff[0][1], piano_staff[1][3])
 
 
-def test_Component__select_vertical_moment_02():
+def test_Inspector_select_vertical_moment_02():
 
     score = Score([])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))

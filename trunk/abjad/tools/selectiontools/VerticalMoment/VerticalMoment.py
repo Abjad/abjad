@@ -235,18 +235,18 @@ class VerticalMoment(SimultaneousSelection):
         result = tuple(result)
         return result
 
-    @property
-    def next_vertical_moment(self):
-        r'''Reference to next vertical moment forward in time.
-        '''
-        from abjad.tools import componenttools
-        candidate_shortest_leaf = self.leaves[0]
-        for leaf in self.leaves[1:]:
-            if leaf.stop < candidate_shortest_leaf.stop:
-                candidate_shortest_leaf = leaf
-        next_leaf = candidate_shortest_leaf._get_namesake(1)
-        next_vertical_moment = next_leaf._select_vertical_moment()
-        return next_vertical_moment
+#    @property
+#    def next_vertical_moment(self):
+#        r'''Reference to next vertical moment forward in time.
+#        '''
+#        from abjad.tools import componenttools
+#        candidate_shortest_leaf = self.leaves[0]
+#        for leaf in self.leaves[1:]:
+#            if leaf.stop < candidate_shortest_leaf.stop:
+#                candidate_shortest_leaf = leaf
+#        next_leaf = candidate_shortest_leaf._get_namesake(1)
+#        next_vertical_moment = next_leaf._select_vertical_moment()
+#        return next_vertical_moment
 
     @property
     def next_vertical_moment(self):
