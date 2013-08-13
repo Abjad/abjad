@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_Component_detach_marks_01():
+def test_Component__detach_marks_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     clef_mark = contexttools.ClefMark('treble')(staff)
@@ -45,7 +45,7 @@ def test_Component_detach_marks_01():
         )
 
 
-def test_Component_detach_marks_02():
+def test_Component__detach_marks_02():
 
     staff = Staff("c'4 d'4 e'4 f'4")
     instrument_mark = contexttools.InstrumentMark('Violin', 'Vn.')
@@ -77,7 +77,7 @@ def test_Component_detach_marks_02():
         )
 
 
-def test_Component_detach_marks_03():
+def test_Component__detach_marks_03():
 
     staff = Staff("c'4 d'4 e'4 f'4")
     time_signature_mark = contexttools.TimeSignatureMark((4, 4))(staff[0])
@@ -107,7 +107,7 @@ def test_Component_detach_marks_03():
         )
 
 
-def test_Component_detach_marks_04():
+def test_Component__detach_marks_04():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = spannertools.SlurSpanner(staff.select_leaves())
@@ -121,7 +121,7 @@ def test_Component_detach_marks_04():
     assert len(annotations) == 0
 
 
-def test_Component_detach_marks_05():
+def test_Component__detach_marks_05():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = spannertools.SlurSpanner(staff.select_leaves())
@@ -136,7 +136,7 @@ def test_Component_detach_marks_05():
     assert len(articulations) == 0
 
 
-def test_Component_detach_marks_06():
+def test_Component__detach_marks_06():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = spannertools.SlurSpanner(staff.select_leaves())
@@ -179,7 +179,7 @@ def test_Component_detach_marks_06():
         )
 
 
-def test_Component_detach_marks_07():
+def test_Component__detach_marks_07():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = spannertools.SlurSpanner(staff.select_leaves())
@@ -222,7 +222,7 @@ def test_Component_detach_marks_07():
         )
 
 
-def test_Component_detach_marks_08():
+def test_Component__detach_marks_08():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = spannertools.SlurSpanner(staff.select_leaves())
@@ -237,7 +237,7 @@ def test_Component_detach_marks_08():
     assert len(marks) == 0
 
 
-def test_Component_detach_marks_09():
+def test_Component__detach_marks_09():
 
     staff = Staff("c'4 \staccato d' \marcato e' \staccato f' \marcato")
     assert len(select(staff).get_marks()) == 4
@@ -252,7 +252,7 @@ def test_Component_detach_marks_09():
     assert not len(more(staff).get_marks())
 
 
-def test_Component_detach_marks_10():
+def test_Component__detach_marks_10():
 
     note = Note("c'4")
     stem_tremolo = marktools.StemTremolo(16)(note)

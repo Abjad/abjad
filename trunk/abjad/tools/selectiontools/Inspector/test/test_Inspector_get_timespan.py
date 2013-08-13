@@ -1,41 +1,42 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
+import py
 
 
-def test_Component_start_offset_01():
+def test_Inspector_get_timespan_01():
     voice = Voice(notetools.make_repeated_notes(16))
     for i, x in enumerate(voice):
         assert more(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
-def test_Component_start_offset_02():
+def test_Inspector_get_timespan_02():
     staff = Staff(notetools.make_repeated_notes(16))
     for i, x in enumerate(staff):
         assert more(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
-def test_Component_start_offset_03():
+def test_Inspector_get_timespan_03():
     staff = Staff(notetools.make_repeated_notes(16))
     staff[10] = Rest((1, 8))
     for i, x in enumerate(staff):
         assert more(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
-def test_Component_start_offset_04():
+def test_Inspector_get_timespan_04():
     staff = Staff(notetools.make_repeated_notes(16))
     staff[10:10] = [Rest((1, 8))]
     for i, x in enumerate(staff):
         assert more(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
-def test_Component_start_offset_05():
+def test_Inspector_get_timespan_05():
     staff = Staff(notetools.make_repeated_notes(16))
     staff[10:12] = [Rest((1, 8))]
     for i, x in enumerate(staff):
         assert more(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
-def test_Component_start_offset_06():
+def test_Inspector_get_timespan_06():
     r'''Offset works with voices.
     '''
 
@@ -47,13 +48,13 @@ def test_Component_start_offset_06():
         assert more(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
-def test_Component_start_offset_07():
+def test_Inspector_get_timespan_07():
     tuplet = tuplettools.FixedDurationTuplet(Duration(1,4), notetools.make_repeated_notes(3))
     for i, x in enumerate(tuplet):
         assert more(x).get_timespan().start_offset == i * Duration(1, 12)
 
 
-def test_Component_start_offset_08():
+def test_Inspector_get_timespan_08():
     tp = tuplettools.FixedDurationTuplet(Duration(1, 4), notetools.make_repeated_notes(3))
     voice = Voice([Note(0, (1, 8)), tp, Note(0, (1, 8))])
     offset = 0
@@ -62,7 +63,7 @@ def test_Component_start_offset_08():
         offset += Duration(*d)
 
 
-def test_Component_start_offset_09():
+def test_Inspector_get_timespan_09():
     r'''Offset works on nested tuplets.
     '''
 
@@ -74,7 +75,7 @@ def test_Component_start_offset_09():
         offset += Duration(*d)
 
 
-def test_Component_start_offset_10():
+def test_Inspector_get_timespan_10():
     r'''Offset works with simultaneous structures.
     '''
 
@@ -88,7 +89,7 @@ def test_Component_start_offset_10():
         assert more(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
-def test_Component_start_offset_11():
+def test_Inspector_get_timespan_11():
     r'''Offset on leaves works in nested contexts.
     '''
 
@@ -100,7 +101,7 @@ def test_Component_start_offset_11():
         assert more(x).get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 8)
 
 
-def test_Component_start_offset_12():
+def test_Inspector_get_timespan_12():
     r'''Offset on leaves works in sequential contexts.
     '''
 
@@ -113,7 +114,7 @@ def test_Component_start_offset_12():
         assert more(x).get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 2)
 
 
-def test_Component_start_offset_13():
+def test_Inspector_get_timespan_13():
     r'''Offset on leaves works in nested simultaneous contexts.
     '''
 
@@ -127,7 +128,7 @@ def test_Component_start_offset_13():
         assert more(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
-def test_Component_start_offset_14():
+def test_Inspector_get_timespan_14():
     r'''Offset on leaves works in nested simultaneous and sequential contexts.
     '''
 
@@ -140,7 +141,7 @@ def test_Component_start_offset_14():
         assert more(x).get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 2)
 
 
-def test_Component_start_offset_15():
+def test_Inspector_get_timespan_15():
     r'''Offset on leaves works in nested simultaneous and sequential contexts.
     '''
 
@@ -155,7 +156,7 @@ def test_Component_start_offset_15():
         assert more(x).get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 2)
 
 
-def test_Component_start_offset_16():
+def test_Inspector_get_timespan_16():
     r'''Offsets works on sequential voices.
     '''
 
@@ -165,7 +166,7 @@ def test_Component_start_offset_16():
         assert more(x).get_timespan().start_offset == i * Duration(4, 8)
 
 
-def test_Component_start_offset_17():
+def test_Inspector_get_timespan_17():
     r'''Prolated offset does NOT go across sequential staves.
     '''
 
@@ -175,7 +176,7 @@ def test_Component_start_offset_17():
     assert more(container[1]).get_timespan().start_offset == Duration(1, 2)
 
 
-def test_Component_start_offset_18():
+def test_Inspector_get_timespan_18():
     r'''Offsets works with nested voices.
     '''
 
@@ -184,7 +185,7 @@ def test_Component_start_offset_18():
         assert more(x).get_timespan().start_offset == i * Duration(4, 8)
 
 
-def test_Component_start_offset_19():
+def test_Inspector_get_timespan_19():
     r'''Offsets works on sequential tuplets.
     '''
 
@@ -194,7 +195,7 @@ def test_Component_start_offset_19():
     assert more(voice[2]).get_timespan().start_offset == 2 * Duration(1, 4)
 
 
-def test_Component_start_offset_20():
+def test_Inspector_get_timespan_20():
     r'''Offsets work on tuplets between notes.
     '''
 
@@ -205,7 +206,7 @@ def test_Component_start_offset_20():
     assert more(voice[2]).get_timespan().start_offset == 3 * Duration(1, 8)
 
 
-def test_Component_start_offset_21():
+def test_Inspector_get_timespan_21():
     r'''Offsets work on nested tuplets.
     '''
 
@@ -216,7 +217,7 @@ def test_Component_start_offset_21():
     assert more(tuplet[2]).get_timespan().start_offset == 2 * Duration(1, 6)
 
 
-def test_Component_start_offset_22():
+def test_Inspector_get_timespan_22():
     r'''Offsets work on nested contexts.
     '''
 
@@ -228,7 +229,7 @@ def test_Component_start_offset_22():
     assert more(vout).get_timespan().start_offset == Duration(1, 8)
 
 
-def test_Component_start_offset_23():
+def test_Inspector_get_timespan_23():
     r'''Offsets work on nested simultaneous contexts.
      '''
 
@@ -240,7 +241,7 @@ def test_Component_start_offset_23():
     assert more(staff[1]).get_timespan().start_offset == 0
 
 
-def test_Component_start_offset_24():
+def test_Inspector_get_timespan_24():
     r'''Offsets works in nested simultaneous and sequential contexts.
     '''
 
@@ -256,3 +257,43 @@ def test_Component_start_offset_24():
     assert more(v2).get_timespan().start_offset == 0
     assert more(v1b).get_timespan().start_offset == Duration(4, 8)
     assert more(v2b).get_timespan().start_offset == Duration(4, 8)
+
+
+def test_Inspector_get_timespan_25():
+    r'''Offset seconds can not calculate without excplit tempo indication.
+    '''
+
+    staff = Staff("c'8 d'8 e'8 f'8")
+
+    r'''
+    \new Staff {
+        c'8
+        d'8
+        e'8
+        f'8
+    }
+    '''
+
+    statement = 'more(staff[0]).get_timespan(in_seconds=True).start_offset'
+    assert py.test.raises(MissingTempoError, statement)
+
+
+def test_Inspector_get_timespan_26():
+    r'''Offset seconds work with explicit tempo indication.
+    '''
+
+    staff = Staff("c'8 d'8 e'8 f'8")
+    contexttools.TempoMark(Duration(1, 8), 48, target_context=Staff)(staff)
+
+    r'''
+    \new Staff {
+        \tempo 8=48
+        c'8
+        d'8
+        e'8
+        f'8
+    }
+    '''
+
+    assert more(staff[0]).get_timespan(in_seconds=True).start_offset == Duration(0)
+    assert more(staff[1]).get_timespan(in_seconds=True).start_offset == Duration(5, 4)

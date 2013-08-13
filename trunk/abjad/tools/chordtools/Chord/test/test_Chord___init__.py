@@ -139,7 +139,7 @@ def test_Chord___init___13():
     assert more(chord).select_parentage().parent is None
 
 
-def test_Chord___init___15():
+def test_Chord___init___14():
     r'''Initialize chord from note.
     '''
 
@@ -152,7 +152,7 @@ def test_Chord___init___15():
     assert select(chord).is_well_formed()
 
 
-def test_Chord___init___16():
+def test_Chord___init___15():
     r'''Initialize chord from tupletized note.
     '''
 
@@ -164,7 +164,7 @@ def test_Chord___init___16():
     assert more(chord).select_parentage().parent is None
 
 
-def test_Chord___init___17():
+def test_Chord___init___16():
     r'''Initialize chord from spanned note.
     '''
 
@@ -176,7 +176,7 @@ def test_Chord___init___17():
     assert more(chord).select_parentage().parent is None
 
 
-def test_Chord___init___18():
+def test_Chord___init___17():
     r'''Initialize empty chord from LilyPond input string.
     '''
 
@@ -186,7 +186,7 @@ def test_Chord___init___18():
     assert not len(chord)
 
 
-def test_Chord___init___19():
+def test_Chord___init___18():
     r'''Initialize chord from LilyPond input string with forced and 
     cautionary accidentals.
     '''
@@ -196,7 +196,7 @@ def test_Chord___init___19():
     assert chord.lilypond_format == '<c!? e? g! b>4'
 
 
-def test_Chord___init___20():
+def test_Chord___init___19():
     r'''Initialize chord from note with forced and cautionary accidentals.
     '''
 
