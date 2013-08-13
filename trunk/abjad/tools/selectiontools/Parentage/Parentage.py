@@ -134,7 +134,7 @@ class Parentage(SimultaneousSelection):
         return self._component
 
     @property
-    def containment_signature(self):
+    def logical_voice_indicator(self):
         r'''Containment signature of component:
 
         ::
@@ -163,7 +163,7 @@ class Parentage(SimultaneousSelection):
 
             >>> leaf = score.select_leaves()[0]
             >>> parentage = more(leaf).select_parentage()
-            >>> print parentage.containment_signature
+            >>> print parentage.logical_voice_indicator
              root_str: Score-'CustomScore'
                 score: Score-'CustomScore'
                 staff: Staff-...

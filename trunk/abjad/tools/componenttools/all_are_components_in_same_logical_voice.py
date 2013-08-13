@@ -53,14 +53,14 @@ def all_are_components_in_same_logical_voice(expr, classes=None, allow_orphans=T
 
     same_logical_voice = True
 
-    first_signature = first._select_parentage().containment_signature
+    first_signature = first._select_parentage().logical_voice_indicator
     for component in expr[1:]:
         parentage = component._select_parentage()
         if not parentage.is_orphan:
             orphan_components = False
         if not allow_orphans and orphan_components:
             return False
-        if parentage.containment_signature != first_signature:
+        if parentage.logical_voice_indicator != first_signature:
             same_logical_voice = False
         if not allow_orphans and not same_logical_voice:
             return False

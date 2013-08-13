@@ -28,7 +28,7 @@ class LogicalVoiceIndicator(AbjadObject):
     ::
 
         >>> parentage = more(score.select_leaves()[0]).select_parentage()
-        >>> print parentage.containment_signature
+        >>> print parentage.logical_voice_indicator
          root_str: Score-'CustomScore'
             score: Score-'CustomScore'
             staff: Staff-...

@@ -231,8 +231,8 @@ The function is now bound to parentage as the ``Component.parentage.tuplet_depth
 Moved ``componenttools.component_to_score_index()``.
 The function is now bound to parentage as the ``Component.parentage.score_index`` property.
 
-Moved ``componenttools.component_to_containment_signature()``.
-The function is now bound to parentage as the ``Component.parentage.containment_signature`` property.
+Moved ``componenttools.component_to_logical_voice_indicator()``.
+The function is now bound to parentage as the ``Component.parentage.logical_voice_indicator`` property.
 
 Moved ``componenttools.component_to_parentage_signature()``.
 The function is now bound to parentage as the ``Component.parentage.parentage_signature`` property.

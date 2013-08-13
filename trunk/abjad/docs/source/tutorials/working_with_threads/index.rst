@@ -190,7 +190,7 @@ iterator on the `staff`:
 
 ::
 
-   >>> vA_thread_signature = vA.parentage.containment_signature
+   >>> vA_thread_signature = vA.parentage.logical_voice_indicator
    >>> notes = iterationtools.iterate_logical_voice_in_expr(staff, Note, vA_thread_signature)
    >>> print list(notes)
    [Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8")]
@@ -198,7 +198,7 @@ iterator on the `staff`:
 
 ::
 
-   >>> vB_thread_signature = vB.parentage.containment_signature
+   >>> vB_thread_signature = vB.parentage.logical_voice_indicator
    >>> notes = iterationtools.iterate_logical_voice_in_expr(staff, Note, vB_thread_signature)
    >>> print list(notes)
    [Note("c''8"), Note("b'8"), Note("a'4")]
@@ -206,7 +206,7 @@ iterator on the `staff`:
 
 ::
 
-   >>> vC_thread_signature = vC.parentage.containment_signature
+   >>> vC_thread_signature = vC.parentage.logical_voice_indicator
    >>> notes = iterationtools.iterate_logical_voice_in_expr(staff, Note, vC_thread_signature)
    >>> print list(notes)
    [Note("c''4"), Note("c''4")]
@@ -221,21 +221,21 @@ by printing it:
 
 ::
 
-   >>> vA_thread_signature = vA.parentage.containment_signature
+   >>> vA_thread_signature = vA.parentage.logical_voice_indicator
    >>> vA_thread_signature
    LogicalVoiceIndicator(Voice-151537580, Voice-151537580, Staff-156803500)
 
 
 ::
 
-   >>> vB_thread_signature = vB.parentage.containment_signature
+   >>> vB_thread_signature = vB.parentage.logical_voice_indicator
    >>> vB_thread_signature
    LogicalVoiceIndicator(Voice-151536940, Voice-151536940, Staff-156803500)
 
 
 ::
 
-   >>> vC_thread_signature = vC.parentage.containment_signature
+   >>> vC_thread_signature = vC.parentage.logical_voice_indicator
    >>> vC_thread_signature
    LogicalVoiceIndicator(Voice-156803372, Voice-156803372, Staff-156803500)
 
@@ -274,7 +274,7 @@ Note how the thread signatures have changed:
 
 ::
 
-   >>> vA_thread_signature = vA.parentage.containment_signature
+   >>> vA_thread_signature = vA.parentage.logical_voice_indicator
    >>> print vA_thread_signature
         staff: Staff-156803500
         voice: Voice-'piccolo'
@@ -283,7 +283,7 @@ Note how the thread signatures have changed:
 
 ::
 
-   >>> vB_thread_signature = vB.parentage.containment_signature
+   >>> vB_thread_signature = vB.parentage.logical_voice_indicator
    >>> print vB_thread_signature
         staff: Staff-156803500
         voice: Voice-'piccolo'
@@ -292,7 +292,7 @@ Note how the thread signatures have changed:
 
 ::
 
-   >>> vC_thread_signature = vC.parentage.containment_signature
+   >>> vC_thread_signature = vC.parentage.logical_voice_indicator
    >>> print vC_thread_signature
         staff: Staff-156803500
         voice: Voice-156803372

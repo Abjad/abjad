@@ -3,29 +3,29 @@ from abjad import *
 import py.test
 
 
-def test_Parentage_containment_signature_01():
+def test_Parentage_logical_voice_indicator_01():
     r'''An anonymous staff and its contained unvoiced leaves share the same signature.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
 
-    containment = more(staff).select_parentage().containment_signature
+    containment = more(staff).select_parentage().logical_voice_indicator
     for component in iterationtools.iterate_components_in_expr(staff):
-        assert more(component).select_parentage().containment_signature == containment
+        assert more(component).select_parentage().logical_voice_indicator == containment
 
 
-def test_Parentage_containment_signature_02():
+def test_Parentage_logical_voice_indicator_02():
     r'''A named staff and its contained unvoiced leaves share the same signature.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
     staff.name = 'foo'
 
-    containment = more(staff).select_parentage().containment_signature
+    containment = more(staff).select_parentage().logical_voice_indicator
     for component in iterationtools.iterate_components_in_expr(staff):
-        assert more(component).select_parentage().containment_signature == containment
+        assert more(component).select_parentage().logical_voice_indicator == containment
 
-def test_Parentage_containment_signature_03():
+def test_Parentage_logical_voice_indicator_03():
     r'''Leaves inside equally named sequential voices inside a staff
     share the same signature.
     '''
@@ -34,12 +34,12 @@ def test_Parentage_containment_signature_03():
     staff[0].name = 'foo'
     staff[1].name = 'foo'
 
-    containment = more(staff[0][0]).select_parentage().containment_signature
+    containment = more(staff[0][0]).select_parentage().logical_voice_indicator
     for leaf in staff.select_leaves():
-        assert more(leaf).select_parentage().containment_signature == containment
+        assert more(leaf).select_parentage().logical_voice_indicator == containment
 
 
-def test_Parentage_containment_signature_04():
+def test_Parentage_logical_voice_indicator_04():
     r'''Return LogicalVoiceIndicator giving the root and
     first voice, staff and score in the parentage of component.
     '''
@@ -71,7 +71,7 @@ def test_Parentage_containment_signature_04():
     }
     '''
 
-    signatures = [more(leaf).select_parentage().containment_signature 
+    signatures = [more(leaf).select_parentage().logical_voice_indicator 
         for leaf in voice.select_leaves(allow_discontiguous_leaves=True)]
 
     assert signatures[0] == signatures[1]
@@ -83,7 +83,7 @@ def test_Parentage_containment_signature_04():
     assert signatures[2] != signatures[4]
 
 
-def test_Parentage_containment_signature_05():
+def test_Parentage_logical_voice_indicator_05():
     r'''Return LogicalVoiceIndicator giving the root and
     first voice, staff and score in parentage of component.
     '''
@@ -117,7 +117,7 @@ def test_Parentage_containment_signature_05():
     }
     '''
 
-    signatures = [more(leaf).select_parentage().containment_signature 
+    signatures = [more(leaf).select_parentage().logical_voice_indicator 
         for leaf in voice.select_leaves(allow_discontiguous_leaves=True)]
 
     signatures[0] == signatures[1]
@@ -136,7 +136,7 @@ def test_Parentage_containment_signature_05():
     signatures[4] == signatures[6]
 
 
-def test_Parentage_containment_signature_06():
+def test_Parentage_logical_voice_indicator_06():
     r'''Return LogicalVoiceIndicator giving the root and
     first voice, staff and score in parentage of component.
     '''
@@ -169,7 +169,7 @@ def test_Parentage_containment_signature_06():
     }
     '''
 
-    signatures = [more(leaf).select_parentage().containment_signature 
+    signatures = [more(leaf).select_parentage().logical_voice_indicator 
         for leaf in leaves]
 
     signatures[0] == signatures[1]
@@ -179,7 +179,7 @@ def test_Parentage_containment_signature_06():
     signatures[2] == signatures[3]
 
 
-def test_Parentage_containment_signature_07():
+def test_Parentage_logical_voice_indicator_07():
     r'''Return LogicalVoiceIndicator giving the root and
     first voice, staff and score in parentage of component.
     '''
@@ -221,7 +221,7 @@ def test_Parentage_containment_signature_07():
     }
     '''
 
-    signatures = [more(leaf).select_parentage().containment_signature 
+    signatures = [more(leaf).select_parentage().logical_voice_indicator 
         for leaf in container.select_leaves(allow_discontiguous_leaves=True)]
 
     signatures[0] != signatures[1]
@@ -243,19 +243,19 @@ def test_Parentage_containment_signature_07():
     signatures[2] != signatures[5]
 
 
-def test_Parentage_containment_signature_08():
+def test_Parentage_logical_voice_indicator_08():
     r'''Unicorporated leaves carry equivalent containment signatures.
     '''
 
     note_1 = Note(0, (1, 8))
     note_2 = Note(0, (1, 8))
 
-    signature_1 = more(note_1).select_parentage().containment_signature
-    signature_2 = more(note_2).select_parentage().containment_signature
+    signature_1 = more(note_1).select_parentage().logical_voice_indicator
+    signature_2 = more(note_2).select_parentage().logical_voice_indicator
     assert signature_1 == signature_2
 
 
-def test_Parentage_containment_signature_09():
+def test_Parentage_logical_voice_indicator_09():
     r'''Components here carry the same containment signature EXCEPT FOR root.
     Component containment signatures do not compare True.
     '''
@@ -268,12 +268,12 @@ def test_Parentage_containment_signature_09():
     t2.name = 'staff'
     t2[0].name = 'voice'
 
-    t1_leaf_signature = more(t1.select_leaves()[0]).select_parentage().containment_signature
-    t2_leaf_signature = more(t2.select_leaves()[0]).select_parentage().containment_signature
+    t1_leaf_signature = more(t1.select_leaves()[0]).select_parentage().logical_voice_indicator
+    t2_leaf_signature = more(t2.select_leaves()[0]).select_parentage().logical_voice_indicator
     assert t1_leaf_signature != t2_leaf_signature
 
 
-def test_Parentage_containment_signature_10():
+def test_Parentage_logical_voice_indicator_10():
     r'''Measure and leaves must carry same logical voice signature.
     '''
 
@@ -290,15 +290,15 @@ def test_Parentage_containment_signature_10():
     }
     '''
 
-    assert more(staff[0]).select_parentage().containment_signature == \
-        more(staff[-1]).select_parentage().containment_signature
-    assert more(staff[0]).select_parentage().containment_signature == \
-        more(staff[0][0]).select_parentage().containment_signature
-    assert more(staff[0][0]).select_parentage().containment_signature == \
-        more(staff[-1]).select_parentage().containment_signature
+    assert more(staff[0]).select_parentage().logical_voice_indicator == \
+        more(staff[-1]).select_parentage().logical_voice_indicator
+    assert more(staff[0]).select_parentage().logical_voice_indicator == \
+        more(staff[0][0]).select_parentage().logical_voice_indicator
+    assert more(staff[0][0]).select_parentage().logical_voice_indicator == \
+        more(staff[-1]).select_parentage().logical_voice_indicator
 
 
-def test_Parentage_containment_signature_11():
+def test_Parentage_logical_voice_indicator_11():
     r'''Leaves inside different staves have different logical voice 
     signatures, even when the staves have the same name.
     '''
@@ -320,11 +320,11 @@ def test_Parentage_containment_signature_11():
     '''
 
     leaves = container.select_leaves(allow_discontiguous_leaves=True)
-    assert more(leaves[0]).select_parentage().containment_signature == \
-        more(leaves[1]).select_parentage().containment_signature
-    assert more(leaves[0]).select_parentage().containment_signature != \
-        more(leaves[2]).select_parentage().containment_signature
-    assert more(leaves[2]).select_parentage().containment_signature == \
-        more(leaves[3]).select_parentage().containment_signature
-    assert more(leaves[2]).select_parentage().containment_signature != \
-        more(leaves[0]).select_parentage().containment_signature
+    assert more(leaves[0]).select_parentage().logical_voice_indicator == \
+        more(leaves[1]).select_parentage().logical_voice_indicator
+    assert more(leaves[0]).select_parentage().logical_voice_indicator != \
+        more(leaves[2]).select_parentage().logical_voice_indicator
+    assert more(leaves[2]).select_parentage().logical_voice_indicator == \
+        more(leaves[3]).select_parentage().logical_voice_indicator
+    assert more(leaves[2]).select_parentage().logical_voice_indicator != \
+        more(leaves[0]).select_parentage().logical_voice_indicator

@@ -5,11 +5,11 @@ from abjad.tools import componenttools
 def iterate_logical_voice_in_expr(
     expr, 
     component_class, 
-    containment_signature, 
+    logical_voice_indicator, 
     reverse=False,
     ):
     r'''Yield left-to-right instances of `component_class` in `expr` 
-    with `containment_signature`:
+    with `logical_voice_indicator`:
 
     ::
 
@@ -49,7 +49,7 @@ def iterate_logical_voice_in_expr(
     ::
 
         >>> leaf = staff.select_leaves(allow_discontiguous_leaves=True)[0]
-        >>> signature = more(leaf).select_parentage().containment_signature
+        >>> signature = more(leaf).select_parentage().logical_voice_indicator
         >>> for x in iterationtools.iterate_logical_voice_in_expr(
         ...     staff, Note, signature):
         ...     x
@@ -64,28 +64,28 @@ def iterate_logical_voice_in_expr(
     from abjad.tools import iterationtools
 
     if isinstance(expr, component_class) and \
-        expr._select_parentage().containment_signature == containment_signature:
+        expr._select_parentage().logical_voice_indicator == logical_voice_indicator:
         yield expr
 
     if not reverse:
         if isinstance(expr, (list, tuple)):
             for m in expr:
                 for x in iterationtools.iterate_logical_voice_in_expr(
-                    m, component_class, containment_signature):
+                    m, component_class, logical_voice_indicator):
                     yield x
         if hasattr(expr, '_music'):
             for m in expr._music:
                 for x in iterationtools.iterate_logical_voice_in_expr(
-                    m, component_class, containment_signature):
+                    m, component_class, logical_voice_indicator):
                     yield x
     else:
         if isinstance(expr, (list, tuple)):
             for m in reversed(expr):
                 for x in iterationtools.iterate_logical_voice_in_expr(
-                    m, component_class, containment_signature, reverse=True):
+                    m, component_class, logical_voice_indicator, reverse=True):
                     yield x
         if hasattr(expr, '_music'):
             for m in reversed(expr._music):
                 for x in iterationtools.iterate_logical_voice_in_expr(
-                    m, component_class, containment_signature, reverse=True):
+                    m, component_class, logical_voice_indicator, reverse=True):
                     yield x

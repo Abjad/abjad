@@ -103,16 +103,16 @@ def all_are_contiguous_components_in_same_logical_voice(
         return False
 
     first_parentage = first._select_parentage()
-    first_containment_signature = first_parentage.containment_signature
-    first_root = first_containment_signature._root
+    first_logical_voice_indicator = first_parentage.logical_voice_indicator
+    first_root = first_logical_voice_indicator._root
     total_orphan_components = 0
     if first._select_parentage().is_orphan:
         total_orphan_components += 1
     previous = first
     for current in expr[1:]:
         current_parentage = current._select_parentage()
-        current_containment_signature = current_parentage.containment_signature
-        current_root = current_containment_signature._root
+        current_logical_voice_indicator = current_parentage.logical_voice_indicator
+        current_root = current_logical_voice_indicator._root
         if current_parentage.is_orphan:
             total_orphan_components += 1
         # false if wrong type of component found
@@ -122,10 +122,10 @@ def all_are_contiguous_components_in_same_logical_voice(
         if not allow_orphans and 1 < total_orphan_components:
             return False
         # false if nonorphan components in different logical voices
-        if current_containment_signature != first_containment_signature:
+        if current_logical_voice_indicator != first_logical_voice_indicator:
             return False
         # false if components in same logical voice are discontiguous
-        if current_containment_signature._root == first_root:
+        if current_logical_voice_indicator._root == first_root:
             if not previous._is_immediate_temporal_successor_of(current):
                 return False
         previous = current

@@ -110,19 +110,19 @@ Observe the behavior of the
 iterator on the `staff`:
 
 <abjad>
-vA_thread_signature = vA.parentage.containment_signature
+vA_thread_signature = vA.parentage.logical_voice_indicator
 notes = iterationtools.iterate_logical_voice_in_expr(staff, Note, vA_thread_signature)
 print list(notes)
 </abjad>
 
 <abjad>
-vB_thread_signature = vB.parentage.containment_signature
+vB_thread_signature = vB.parentage.logical_voice_indicator
 notes = iterationtools.iterate_logical_voice_in_expr(staff, Note, vB_thread_signature)
 print list(notes)
 </abjad>
 
 <abjad>
-vC_thread_signature = vC.parentage.containment_signature
+vC_thread_signature = vC.parentage.logical_voice_indicator
 notes = iterationtools.iterate_logical_voice_in_expr(staff, Note, vC_thread_signature)
 print list(notes)
 </abjad>
@@ -135,17 +135,17 @@ We can see that the thread signature of each voice is indeed different
 by printing it:
 
 <abjad>
-vA_thread_signature = vA.parentage.containment_signature
+vA_thread_signature = vA.parentage.logical_voice_indicator
 vA_thread_signature
 </abjad>
 
 <abjad>
-vB_thread_signature = vB.parentage.containment_signature
+vB_thread_signature = vB.parentage.logical_voice_indicator
 vB_thread_signature
 </abjad>
 
 <abjad>
-vC_thread_signature = vC.parentage.containment_signature
+vC_thread_signature = vC.parentage.logical_voice_indicator
 vC_thread_signature
 </abjad>
 
@@ -175,17 +175,17 @@ vA_thread_signature == vB_thread_signature
 Note how the thread signatures have changed:
 
 <abjad>
-vA_thread_signature = vA.parentage.containment_signature
+vA_thread_signature = vA.parentage.logical_voice_indicator
 print vA_thread_signature
 </abjad>
 
 <abjad>
-vB_thread_signature = vB.parentage.containment_signature
+vB_thread_signature = vB.parentage.logical_voice_indicator
 print vB_thread_signature
 </abjad>
 
 <abjad>
-vC_thread_signature = vC.parentage.containment_signature
+vC_thread_signature = vC.parentage.logical_voice_indicator
 print vC_thread_signature
 </abjad>
 

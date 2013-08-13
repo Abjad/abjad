@@ -830,7 +830,7 @@ Changes to end-user functionality:
     componenttools.iterate_thread_backward_in_expr()
     componenttools.iterate_thread_forward_from_component()
     componenttools.iterate_thread_forward_in_expr()
-    componenttools.component_to_containment_signature()
+    componenttools.component_to_logical_voice_indicator()
 
 - Removed the read-only ``Component.marks`` property entirely.
 
