@@ -289,22 +289,21 @@ class Component(AbjadObject):
             result.extend(contributions)
         return result
 
-    # TODO: this should completely replace self._get_namesake()
     def _get_in_my_logical_voice(self, n, component_class=None):
         from abjad.tools import iterationtools
         if 0 <= n:
             generator = iterationtools.iterate_logical_voice_from_component(
                 self, component_class=component_class, reverse=False)
-            for i, namesake in enumerate(generator):
+            for i, component in enumerate(generator):
                 if i == n:
-                    return namesake
+                    return component
         else:
             n = abs(n)
             generator = iterationtools.iterate_logical_voice_from_component(
                 self, component_class=component_class, reverse=True)
-            for i, namesake in enumerate(generator):
+            for i, component in enumerate(generator):
                 if i == n:
-                    return namesake
+                    return component
 
     def _get_mark(self, mark_classes=None):
         marks = self._get_marks(mark_classes=mark_classes)
@@ -334,21 +333,6 @@ class Component(AbjadObject):
         elif direction is Down:
             return tuple(x for x in markup if x.direction is Down)
         return markup
-
-    def _get_namesake(self, n):
-        from abjad.tools import iterationtools
-        if 0 <= n:
-            for i, namesake in enumerate(
-                iterationtools.iterate_namesakes_from_component(self)):
-                if i == n:
-                    return namesake
-        else:
-            n = abs(n)
-            for i, namesake in enumerate(
-                iterationtools.iterate_namesakes_from_component(
-                    self, reverse=True)):
-                if i == n:
-                    return namesake
 
     def _get_sibling(self, n):
         if n == 0:
