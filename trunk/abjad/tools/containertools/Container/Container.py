@@ -317,7 +317,7 @@ class Container(Component):
                 expr = self._parse_string(expr)[:]
                 assert len(expr) == 1, repr(expr)
                 expr = expr[0]
-            assert componenttools.all_are_components([expr]), repr([expr])
+            assert all(isinstance(x, componenttools.Component) for x in [expr])
             if any(isinstance(x, leaftools.GraceContainer) for x in [expr]):
                 message = 'must attach grace container to note or chord.'
                 raise GraceContainerError(message)
@@ -344,7 +344,7 @@ class Container(Component):
                 len(expr) == 1 and \
                 isinstance(expr[0], str):
                 expr = self._parse_string(expr[0])[:]
-            assert componenttools.all_are_components(expr), repr(expr)
+            assert all(isinstance(x, componenttools.Component) for x in expr)
             if any(isinstance(x, leaftools.GraceContainer) for x in expr):
                 message = 'must attach grace container to note or chord.'
                 raise GraceContainerError(message)
@@ -442,8 +442,7 @@ class Container(Component):
             from abjad.tools import componenttools
             assert isinstance(expr, bool), repr(expr)
             if expr == True:
-                assert componenttools.all_are_components(
-                    self._music, component_classes=(Context, ))
+                assert all(isinstance(x, Context) for x in self._music)
             self._simultaneous = expr
             self._mark_entire_score_tree_for_later_update('prolated')
         return property(**locals())

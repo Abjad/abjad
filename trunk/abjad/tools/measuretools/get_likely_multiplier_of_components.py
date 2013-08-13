@@ -76,7 +76,7 @@ def get_likely_multiplier_of_components(components):
     from abjad.tools import leaftools
     from abjad.tools import selectiontools
 
-    assert componenttools.all_are_components(components)
+    assert all(isinstance(x, componenttools.Component) for x in components)
 
     chain_duration_numerators = []
     for expr in \

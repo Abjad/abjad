@@ -48,8 +48,7 @@ def replace_components_with_children_of_components(components):
     '''
     from abjad.tools import componenttools
 
-    assert componenttools.all_are_components(components)
-
+    assert all(isinstance(x, componenttools.Component) for x in components)
     for component in components:
         selection = component.select(sequential=True)
         parent, start, stop = selection._get_parent_and_start_stop_indices()

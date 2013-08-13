@@ -412,7 +412,7 @@ def split_components_at_offsets(components, offsets,
     from abjad.tools import selectiontools
 
     # check input
-    assert componenttools.all_are_components(components), repr(components)
+    assert all(isinstance(x, componenttools.Component) for x in components)
     if not isinstance(components, selectiontools.SliceSelection):
         components = selectiontools.SliceSelection(components)
     offsets = [durationtools.Offset(offset) for offset in offsets]

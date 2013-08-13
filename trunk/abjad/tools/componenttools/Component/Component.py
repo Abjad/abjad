@@ -555,7 +555,7 @@ class Component(AbjadObject):
         ):
         from abjad.tools import componenttools
         from abjad.tools import spannertools
-        assert componenttools.all_are_components(components)
+        assert all(isinstance(x, componenttools.Component) for x in components)
         if direction == Right:
             if grow_spanners:
                 insert_offset = self._get_timespan().stop_offset
