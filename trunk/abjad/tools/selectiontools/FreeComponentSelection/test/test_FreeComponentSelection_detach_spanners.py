@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_FreeComponentSelection_detach_marks_01():
+def test_FreeComponentSelection_detach_spanners_01():
     r'''Detach tie spanners.
     '''
 
@@ -43,7 +43,7 @@ def test_FreeComponentSelection_detach_marks_01():
         )
 
 
-def test_FreeComponentSelection_detach_marks_02():
+def test_FreeComponentSelection_detach_spanners_02():
     r'''Handles empty selection without exception.
     '''
 
