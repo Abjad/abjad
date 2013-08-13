@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import collections
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools.selectiontools.SimultaneousSelection \
@@ -163,38 +164,43 @@ class Parentage(SimultaneousSelection):
 
             >>> leaf = score.select_leaves()[0]
             >>> parentage = more(leaf).select_parentage()
-            >>> print parentage.logical_voice_indicator
-                score: Score-'CustomScore'
-                staff: Staff-...
-                voice: Voice-'CustomVoice'
+            >>> indicator = parentage.logical_voice_indicator
+            >>> for key, value in indicator.iteritems():
+            ...     print '%12s: %s' % (key, value)
+            ...
+                     score: Score-'CustomScore'
+               staff group: 
+                     staff: Staff-'CustomStaff'
+                     voice: Voice-'CustomVoice'
 
-        Return logical voice indicator.
+        Return ordered dictionary.
         '''
         from abjad.tools import componenttools
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         from abjad.tools import stafftools
         from abjad.tools import voicetools
-        signature = selectiontools.LogicalVoiceIndicator()
+        keys = ('score', 'staff group', 'staff', 'voice')
+        indicator = collections.OrderedDict.fromkeys(keys, '')
         for component in self:
-            if isinstance(component, voicetools.Voice) and \
-                signature._voice is None:
-                signature._voice = self._id_string(component)
-            elif isinstance(component, stafftools.Staff) and \
-                signature._staff is None:
-                signature._staff = self._id_string(component)
-                # an explicit staff implies a nested voice:
-                # so if no explicit voice has been found,
-                # indicate implicit voice here with random integer
-                if signature._voice is None:
-                    signature._voice = id(component)
-            elif isinstance(component, scoretools.StaffGroup) and \
-                signature._staff_group is None:
-                signature._staff_group = self._id_string(component)
-            elif isinstance(component, scoretools.Score) and \
-                signature._score is None:
-                signature._score = self._id_string(component)
-        return signature
+            if isinstance(component, voicetools.Voice):
+                if not indicator['voice']:
+                    indicator['voice'] = self._id_string(component)
+            elif isinstance(component, stafftools.Staff):
+                if not indicator['staff']:
+                    indicator['staff'] = self._id_string(component)
+                    # explicit staff demands a nested voice:
+                    # if no explicit voice has been found,
+                    # create implicit voice here with random integer
+                    if not indicator['voice']:
+                        indicator['voice'] = id(component)
+            elif isinstance(component, scoretools.StaffGroup):
+                if not indicator['staff group']:
+                    indicator['staff group'] = self._id_string(component)
+            elif isinstance(component, scoretools.Score):
+                if not indicator['score']:
+                    indicator['score'] = self._id_string(component)
+        return indicator
 
     @property
     def depth(self):
