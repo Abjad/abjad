@@ -453,7 +453,10 @@ class Container(Component):
         from abjad.tools import componenttools
         if music is None:
             music = []
-        if componenttools.all_are_contiguous_components_in_same_logical_voice(music):
+        # TODO: use the commented out line instead of the one that follows it
+        #if componenttools.all_are_logical_voice_contiguous_components(music):
+        if componenttools.all_are_contiguous_components_in_same_logical_voice(
+            music):
             music = selectiontools.SliceSelection(music)
             parent, start, stop = music._get_parent_and_start_stop_indices()
             self._music = list(music)

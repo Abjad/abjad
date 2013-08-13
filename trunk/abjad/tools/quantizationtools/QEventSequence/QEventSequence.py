@@ -504,7 +504,7 @@ class QEventSequence(AbjadObject):
         Return ``QEventSequence`` instance.
         '''
         from abjad.tools import quantizationtools
-        assert componenttools.all_are_contiguous_components_in_same_logical_voice(
+        assert componenttools.all_are_logical_voice_contiguous_components(
             leaves) and len(leaves)
         if tempo is None:
             assert leaves[0]._get_effective_context_mark(

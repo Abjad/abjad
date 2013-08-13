@@ -9,7 +9,7 @@ def get_spanners_on_components_or_component_children(components):
     '''
 
     # check input
-    assert componenttools.all_are_contiguous_components_in_same_logical_voice(
+    assert componenttools.all_are_logical_voice_contiguous_components(
         components)
 
     # accumulate spanners
