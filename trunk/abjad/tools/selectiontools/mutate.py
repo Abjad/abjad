@@ -9,4 +9,4 @@ def mutate(expr):
     from abjad.tools import componenttools
     from abjad.tools import selectiontools
     assert isinstance(expr, componenttools.Component)
-    return selectiontools.MutationInterface(music=expr)
+    return selectiontools.SingleComponentMutationInterface(music=expr)

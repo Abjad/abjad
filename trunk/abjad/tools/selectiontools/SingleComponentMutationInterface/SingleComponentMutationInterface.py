@@ -2,9 +2,16 @@
 from abjad.tools.selectiontools.Selection import Selection
 
 
-class MutationInterface(Selection):
+class SingleComponentMutationInterface(Selection):
     r'''The Abjad mutators defined against a single component.
     '''
+
+    ### INITIALIZER ###
+
+    def __init__(self, music=None):
+        from abjad.tools import componenttools
+        assert isinstance(music, componenttools.Component), expr(music)
+        Selection.__init__(self, music=music)
 
     ### PUBLIC METHODS ###
 

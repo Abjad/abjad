@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_MutationInterface_shorten_01():
+def test_SingleComponentMutationInterface_shorten_01():
 
     voice = Voice("c'8 d'8 e'8 f'8")
     spannertools.BeamSpanner(voice[:])
@@ -23,7 +23,7 @@ def test_MutationInterface_shorten_01():
         )
 
 
-def test_MutationInterface_shorten_02():
+def test_SingleComponentMutationInterface_shorten_02():
 
     voice = Voice("c'8 d'8 e'8 f'8")
     spannertools.BeamSpanner(voice[:])

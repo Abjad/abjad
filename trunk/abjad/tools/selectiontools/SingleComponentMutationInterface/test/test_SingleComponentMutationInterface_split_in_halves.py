@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_MutationInterface_split_in_halves_01():
+def test_SingleComponentMutationInterface_split_in_halves_01():
 
     staff = Staff("c'8 ( d'8 e'8 f'8 )")
     mutate(staff[0]).split_in_halves(n=4)
