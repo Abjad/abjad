@@ -6,7 +6,11 @@ from abjad.tools import selectiontools
 def all_are_contiguous_components_in_same_logical_voice(
     expr, component_classes=None, allow_orphans=True):
     '''True when elements in `expr` are all contiguous components in same 
-    logical voice. Otherwise false:
+    logical voice. Otherwise false.
+
+    ..  note:: Deprecated. Use 
+        ``componenttools.all_are_logical_voice_contiguous_components()``
+        instead.
 
     ::
 
@@ -29,52 +33,8 @@ def all_are_contiguous_components_in_same_logical_voice(
     '''
     from abjad.tools import componenttools
 
-    allowable_types = (
-        list,
-        tuple,
-        types.GeneratorType,
-        selectiontools.Selection,
+    return componenttools.all_are_logical_voice_contiguous_components(
+        expr,
+        component_classes=component_classes,
+        allow_orphans=allow_orphans,
         )
-
-    if not isinstance(expr, allowable_types):
-        return False
-
-    component_classes = component_classes or (componenttools.Component, )
-    if not isinstance(component_classes, tuple):
-        component_classes = (component_classes, )
-    assert isinstance(component_classes, tuple)
-
-    if len(expr) == 0:
-        return True
-
-    first = expr[0]
-    if not isinstance(first, component_classes):
-        return False
-
-    orphan_components = True
-    if not first._select_parentage().is_orphan:
-        orphan_components = False
-
-    same_logical_voice = True
-    strictly_contiguous = True
-
-    first_signature = first._select_parentage().containment_signature
-    previous = first
-    for current in expr[1:]:
-        if not isinstance(current, component_classes):
-            return False
-        if not current._select_parentage().is_orphan:
-            orphan_components = False
-        currentrent_signature = \
-            current._select_parentage().containment_signature
-        if not currentrent_signature == first_signature:
-            same_logical_voice = False
-        if not previous._is_immediate_temporal_successor_of(current):
-            strictly_contiguous = False
-        if (not allow_orphans or 
-            (allow_orphans and not orphan_components)) and \
-            (not same_logical_voice or not strictly_contiguous):
-            return False
-        previous = current
-
-    return True
