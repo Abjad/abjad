@@ -143,3 +143,48 @@ def test_Note___copy___06():
     assert new_note.lilypond_format == note.lilypond_format
     assert more(note).select_parentage().parent.lilypond_format == \
         more(new_note).select_parentage().parent.lilypond_format
+
+
+def test_Note___copy___07():
+    r'''Copying note does note copy hairpin.
+    '''
+
+    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    spannertools.CrescendoSpanner(staff[:4])
+
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            c'8 \<
+            cs'8
+            d'8
+            ef'8 \!
+            e'8
+            f'8
+            fs'8
+            g'8
+        }
+        '''
+        )
+
+    new_note = copy.copy(staff[0])
+    staff.append(new_note)
+
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            c'8 \<
+            cs'8
+            d'8
+            ef'8 \!
+            e'8
+            f'8
+            fs'8
+            g'8
+            c'8
+        }
+        '''
+        )
+    assert select(staff).is_well_formed()

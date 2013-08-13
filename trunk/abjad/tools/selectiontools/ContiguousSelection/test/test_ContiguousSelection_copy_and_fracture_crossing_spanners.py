@@ -553,3 +553,51 @@ def test_ContiguousSelection_copy_and_fracture_crossing_spanners_09():
         '''
         )
     assert select(new_voice).is_well_formed()
+
+
+def test_ContiguousSelection_copy_and_fracture_crossing_spanners_10():
+    r'''Copies hairpin.
+    '''
+
+    staff = Staff([Note(n, (1, 8)) for n in range(8)])
+    spannertools.CrescendoSpanner(staff[:4])
+
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            c'8 \<
+            cs'8
+            d'8
+            ef'8 \!
+            e'8
+            f'8
+            fs'8
+            g'8
+        }
+        '''
+        )
+
+    new_notes = staff[:4].copy_and_fracture_crossing_spanners()
+    staff.extend(new_notes)
+
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            c'8 \<
+            cs'8
+            d'8
+            ef'8 \!
+            e'8
+            f'8
+            fs'8
+            g'8
+            c'8 \<
+            cs'8
+            d'8
+            ef'8 \!
+        }
+        '''
+        )
+    assert select(staff).is_well_formed()
