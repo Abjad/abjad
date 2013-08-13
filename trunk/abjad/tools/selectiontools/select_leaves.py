@@ -80,8 +80,7 @@ def select_leaves(
     if allow_discontiguous_leaves:
         selection = selectiontools.FreeLeafSelection(music=music)
     else:
-        assert componenttools.all_are_contiguous_components(music)
         assert componenttools.all_are_logical_voice_contiguous_components(
-            music), repr(music)
+            music)
         selection = selectiontools.ContiguousLeafSelection(music=music)
     return selection

@@ -35,9 +35,11 @@ class ContiguousLeafSelection(ContiguousSelection):
     ### INITIALIZER ###
 
     def __init__(self, music=None):
+        from abjad.tools import componenttools
         from abjad.tools import leaftools
         ContiguousSelection.__init__(self, music=music)
         assert all(isinstance(x, leaftools.Leaf) for x in self)
+        assert self._all_are_logical_voice_contiguous_components()
 
     ### PUBLIC METHODS ###
 

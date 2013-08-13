@@ -69,8 +69,9 @@ def all_are_logical_voice_contiguous_components(
     voice. But the first two leaves and the last two leaves are not
     time-contiguous:
 
-        >>> components = container_1.select_leaves()
-        >>> components += container_2.select_leaves()
+        >>> container_1_leaves = container_1.select_leaves()
+        >>> container_2_leaves = container_2.select_leaves()
+        >>> leaves = container_1_leaves + container_2_leaves
         >>> componenttools.all_are_logical_voice_contiguous_components(
         ...     components)
         False

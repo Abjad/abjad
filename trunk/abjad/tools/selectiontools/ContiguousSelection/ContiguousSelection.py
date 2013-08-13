@@ -31,15 +31,17 @@ class ContiguousSelection(Selection):
 
         Return new slice selection.
         '''
-        assert isinstance(expr, (type(self), list, tuple))
+        from abjad.tools import componenttools
+        from abjad.tools import selectiontools
+        assert isinstance(expr, (Selection, list, tuple))
         if isinstance(expr, type(self)):
             music = self._music + expr._music
-            return type(self)(music)
-        # eventually remove this permissive branch 
-        # and force the use of selections only
         elif isinstance(expr, (tuple, list)):
             music = self._music + tuple(expr)
-        return type(self)(music)
+        if componenttools.all_are_logical_voice_contiguous_components(music):
+            return type(self)(music)
+        else:
+            return selectiontools.FreeComponentSelection(music) 
 
     def __radd__(self, expr):
         '''Add slice selection to `expr`.

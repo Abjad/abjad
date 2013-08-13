@@ -39,12 +39,10 @@ class Selection(object):
 
         Return new selection.
         '''
-        assert isinstance(expr, (type(self), list, tuple))
-        if isinstance(expr, type(self)):
+        assert isinstance(expr, (Selection, list, tuple))
+        if isinstance(expr, Selection):
             music = self._music + expr._music
             return type(self)(music)
-        # eventually remove this permissive branch 
-        # and force the use of selections only
         elif isinstance(expr, (tuple, list)):
             music = self._music + tuple(expr)
         return type(self)(music)
