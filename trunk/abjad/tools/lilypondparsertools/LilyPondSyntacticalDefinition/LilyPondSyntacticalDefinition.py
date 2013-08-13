@@ -1115,7 +1115,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         chord = chordtools.Chord(pitches, duration)
         self.client._chord_pitch_orders[chord] = pitches
         if p[2].multiplier is not None:
-            chord.duration_multiplier = p[2].multiplier
+            chord.lilypond_duration_multiplier = p[2].multiplier
         self.client._process_post_events(chord, p[3])
         marktools.Annotation('UnrelativableMusic')(chord)
         if self.client._last_chord not in self.client._repeated_chords:
@@ -2443,7 +2443,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         post_events.extend(p[3])
         self.client._chord_pitch_orders[chord] = pitches
         if p[2].multiplier is not None:
-            chord.duration_multiplier = p[2].multiplier
+            chord.lilypond_duration_multiplier = p[2].multiplier
         self.client._process_post_events(chord, post_events)
         p[0] = chord
 

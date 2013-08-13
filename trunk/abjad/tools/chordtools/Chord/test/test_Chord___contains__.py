@@ -4,7 +4,7 @@ from abjad import *
 
 def test_Chord___contains___01():
 
-    chord = Chord([3, 13, 17], (1, 4))
+    chord = Chord("<ef' cs'' f''>4")
 
     assert 17 in chord
     assert 17.0 in chord
@@ -16,7 +16,7 @@ def test_Chord___contains___01():
 
 def test_Chord___contains___02():
 
-    chord = Chord([3, 13, 17], (1, 4))
+    chord = Chord("<ef' cs'' f''>4")
 
     assert not 18 in chord
     assert not 18.0 in chord

@@ -4,10 +4,8 @@ import copy
 
 
 def test_Chord___copy___01():
-    r'''Copy chord.
-    '''
 
-    chord_1 = Chord([3, 13, 17], (1, 4))
+    chord_1 = Chord("<ef' cs'' f''>4")
     chord_2 = copy.copy(chord_1)
 
     assert isinstance(chord_1, Chord)
@@ -17,10 +15,10 @@ def test_Chord___copy___01():
 
 
 def test_Chord___copy___02():
-    r'''Copy chord with LilyPond multiplier.
+    r'''Chord copies LilyPond duration multiplier.
     '''
 
-    chord_1 = Chord([3, 13, 17], (1, 4), (1, 2))
+    chord_1 = Chord("<ef' cs'' f''>4 * 1/2")
     chord_2 = copy.copy(chord_1)
 
     assert isinstance(chord_1, Chord)
@@ -30,10 +28,10 @@ def test_Chord___copy___02():
 
 
 def test_Chord___copy___03():
-    r'''Copy chord with LilyPond grob overrides and LilyPond context settings.
+    r'''Chord copies LilyPond grob overrides and LilyPond context settings.
     '''
 
-    chord_1 = Chord([3, 13, 17], (1, 4))
+    chord_1 = Chord("<ef' cs'' f''>4")
     chord_1.override.staff.note_head.color = 'red'
     chord_1.override.accidental.color = 'red'
     chord_1.set.tuplet_full_length = True
@@ -46,12 +44,36 @@ def test_Chord___copy___03():
 
 
 def test_Chord___copy___04():
-    r'''Ensure deepcopied note heads attach correctly to chord.
+    r'''Chord copies tweaked note heads.
     '''
 
     chord_1 = Chord("<c' e' g'>4")
     chord_1[0].tweak.color = 'red'
     chord_2 = copy.copy(chord_1)
+
+    assert testtools.compare(
+        chord_1,
+        r'''
+        <
+            \tweak #'color #red
+            c'
+            e'
+            g'
+        >4
+        '''
+        )
+
+    assert testtools.compare(
+        chord_2,
+        r'''
+        <
+            \tweak #'color #red
+            c'
+            e'
+            g'
+        >4
+        '''
+        )
 
     assert chord_2[0]._client is chord_2
     assert chord_2[1]._client is chord_2
@@ -68,32 +90,9 @@ def test_Chord___copy___04():
     assert chord_1[1] is not chord_2[1]
     assert chord_1[2] is not chord_2[2]
 
-    assert testtools.compare(
-        chord_1,
-        r'''
-        <
-            \tweak #'color #red
-            c'
-            e'
-            g'
-        >4
-        '''
-        )
-    assert testtools.compare(
-        chord_2,
-        r'''
-        <
-            \tweak #'color #red
-            c'
-            e'
-            g'
-        >4
-        '''
-        )
-
 
 def test_Chord___copy___05():
-    r'''Copy chord with articulations and markup.
+    r'''Chord coipes articulations and markup.
     '''
 
     chord_1 = Chord("<ef' cs'' f''>4")
