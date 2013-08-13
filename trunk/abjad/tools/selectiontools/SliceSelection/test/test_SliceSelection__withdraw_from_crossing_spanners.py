@@ -4,7 +4,7 @@ import py.test
 
 
 def test_SliceSelection__withdraw_from_crossing_spanners_01():
-    r'''Withdraw thread-contiguous components from crossing spanners.
+    r'''Withdraw logical-voice-contiguous components from crossing spanners.
     '''
 
     voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
@@ -41,7 +41,7 @@ def test_SliceSelection__withdraw_from_crossing_spanners_01():
 
 
 def test_SliceSelection__withdraw_from_crossing_spanners_02():
-    r'''Withdraw thread-contiguous components from crossing spanners.
+    r'''Withdraw logical-voice-contiguous components from crossing spanners.
     '''
 
     voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
@@ -105,7 +105,7 @@ def test_SliceSelection__withdraw_from_crossing_spanners_02():
 
 
 def test_SliceSelection__withdraw_from_crossing_spanners_03():
-    r'''Withdraw thread-contiguous components from crossing spanners.
+    r'''Withdraw logical-voice-contiguous components from crossing spanners.
     '''
 
     voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)

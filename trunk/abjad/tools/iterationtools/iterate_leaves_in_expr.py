@@ -107,7 +107,7 @@ def iterate_leaves_in_expr(expr, reverse=False, start=0, stop=None):
         Note("f'8")
         Note("e'8")
 
-    Ignore threads.
+    Iterates across different logical voices.
 
     Return generator.
     '''

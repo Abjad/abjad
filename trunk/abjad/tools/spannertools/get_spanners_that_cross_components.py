@@ -3,10 +3,10 @@ from abjad.tools import componenttools
 
 
 def get_spanners_that_cross_components(components):
-    r'''Assert thread-contiguous components.
+    r'''Assert logical-voice-contiguous components.
     Collect spanners that attach to any component in 'components'.
     Return unordered set of crossing spanners.
-    A spanner P crosses a list of thread-contiguous components C
+    A spanner P crosses a list of logical-voice-contiguous components C
     when P and C share at least one component and when it is the
     case that NOT ALL of the components in P are also in C.
     In other words, there is some intersection -- but not total

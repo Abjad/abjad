@@ -177,7 +177,7 @@ Is it then that the allowable chaining together of restrictions is l(p(t(g())))?
 
 ### GENERALIZED COMPONENT SELECTION ###
 
-It might suffice to identify g() with thread contiguity. We'll run with that idea.
+It might suffice to identify g() with logical voice contiguity. We'll run with that idea.
 So then we've got a four-step process to generalize the selection of any component
 (or any slice of components) whatever.
 
@@ -186,17 +186,17 @@ component? Noncontext components are leaves, tuplets, containers and measures. N
 components make up all the scoretree content that lives a level lower than the voice.)
 
 (Sidenote that this exposes an important principle to be backported to the main codebase.
-Thread contiguity should be defined on noncontext components only. No attempt should be
-made to evaluate staves nor even voices for thread contiguity. Also it still makes very
-good sense to replace 'thread' with 'implicit voice'.)
+Logical voice contiguity should be defined on noncontext components only. No attempt should be
+made to evaluate staves nor even voices for logical voice contiguity. Also it still makes very
+good sense to replace 'logical voice' with 'implicit voice'.)
 
-First g() select thread-contiguous components. Then t() filter by timespan.
+First g() select logical-voice-contiguous components. Then t() filter by timespan.
 Then p() filter by predicate. Then l() index or slice as many times as necessary.
 
-These functions are thread-selection, timespan-restriction, attribute-restriction
+These functions are logical-voice-selection, timespan-restriction, attribute-restriction
 and output-slicing, respectively. Perhaps these are not the best names for g(),
 t(), p(), l() but they will do for now. Interestingly, these are all basically
-different types of restriction that can be placed on the a list of thread-contiguous
+different types of restriction that can be placed on the a list of logica-voice-contiguous
 components.
 
 

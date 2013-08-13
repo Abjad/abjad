@@ -9,7 +9,7 @@ def fracture_spanners_that_cross_components(components):
     Do not fracture spanners of any components at lower levels of score.
     Return components.
 
-    Components must be thread-contiguous.
+    Components must be logical-voice-contiguous.
 
     Some spanners may copy during fracture.
 

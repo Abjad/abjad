@@ -87,7 +87,7 @@ def iterate_measures_in_expr(expr, reverse=False, start=0, stop=None):
         Measure(2/8, [g'8, a'8])
         Measure(2/8, [e'8, f'8])
 
-    Ignore threads.
+    Iterates across different logical voices.
 
     Return generator.
     '''

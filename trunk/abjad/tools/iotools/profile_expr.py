@@ -21,24 +21,24 @@ def profile_expr(
         >>> iotools.profile_expr('Staff(notetools.make_repeated_notes(8))') # doctest: +SKIP
         Tue Apr  5 20:32:40 2011    _tmp_abj_profile
 
-                 2852 function calls (2829 primitive calls) in 0.006 CPU seconds
+                2852 function calls (2829 primitive calls) in 0.006 CPU seconds
 
         Ordered by: cumulative time
         List reduced from 118 to 12 due to restriction <12>
 
         ncalls  tottime  percall  cumtime  percall filename:lineno(function)
                 1    0.000    0.000    0.006    0.006 <string>:1(<module>)
-                1    0.000    0.000    0.003    0.003 make_repeated_notes.py:5(make_repeated
-                1    0.001    0.001    0.003    0.003 make_notes.py:12(make_notes)
+                1    0.000    0.000    0.003    0.003 make_repeated_notes.py:5(
+                1    0.001    0.001    0.003    0.003 make_notes.py:12(make_not
                 1    0.000    0.000    0.003    0.003 Staff.py:21(__init__)
                 1    0.000    0.000    0.003    0.003 Context.py:11(__init__)
                 1    0.000    0.000    0.003    0.003 Container.py:23(__init__)
-                1    0.000    0.000    0.003    0.003 Container.py:271(_initialize_music)
-                2    0.000    0.000    0.002    0.001 all_are_logical_voice_contiguous_components.p
-               52    0.001    0.000    0.002    0.000 component_to_thread_signature.py:5(com
-                1    0.000    0.000    0.002    0.002 _construct_unprolated_notes.py:4(_cons
-                8    0.000    0.000    0.002    0.000 make_tied_note.py:5(make_tied_note)
-                8    0.000    0.000    0.002    0.000 make_tied_leaf.py:5(make_tied_leaf)
+                1    0.000    0.000    0.003    0.003 Container.py:271(_initial
+                2    0.000    0.000    0.002    0.001 all_are_logical_voice_con
+               52    0.001    0.000    0.002    0.000 component_to_logical_voic
+                1    0.000    0.000    0.002    0.002 _construct_unprolated_not
+                8    0.000    0.000    0.002    0.000 make_tied_note.py:5(make_
+                8    0.000    0.000    0.002    0.000 make_tied_leaf.py:5(make_
 
     Function wraps the built-in Python ``cProfile`` module.
 

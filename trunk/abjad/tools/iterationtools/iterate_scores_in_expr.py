@@ -29,7 +29,7 @@ def iterate_scores_in_expr(expr, reverse=False, start=0, stop=None):
         Score<<2>>
         Score<<1>>
 
-    Ignore threads.
+    Iterates across different logical voices.
 
     Return generator.
     '''

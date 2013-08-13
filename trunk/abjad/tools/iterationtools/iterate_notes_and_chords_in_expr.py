@@ -39,7 +39,7 @@ def iterate_notes_and_chords_in_expr(expr, reverse=False, start=0, stop=None):
         Note("a'8")
         Chord("<e' g' c''>8")
 
-    Ignore threads.
+    Iterates across different logical voices.
 
     Return generator.
     '''

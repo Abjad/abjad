@@ -5,7 +5,7 @@ from abjad.tools import selectiontools
 
 def all_are_logical_voice_contiguous_components(
     expr, component_classes=None, allow_orphans=True):
-    r'''True when elements in `expr` are all thread-contiguous components:
+    r'''True when elements in `expr` are all logical-voice-contiguous components:
 
     ::
 
@@ -37,32 +37,35 @@ def all_are_logical_voice_contiguous_components(
 
         >>> show(outer_voice) # doctest: +SKIP
 
-    The first two notes belong to the same thread and are time-contiguous:
+    The first two notes belong to the same logical voice 
+    and are time-contiguous:
 
         >>> components = container_1.select_leaves()
         >>> componenttools.all_are_logical_voice_contiguous_components(components)
         True
 
-    The middle two notes belong to the same thread and are time-contiguous:
+    The middle two notes belong to the same logical voice 
+    and are time-contiguous:
 
         >>> components = inner_voice.select_leaves()
         >>> componenttools.all_are_logical_voice_contiguous_components(components)
         True
 
-    The middle two notes belong to the same thread and are time-contiguous:
+    The middle two notes belong to the same logical voice 
+    and are time-contiguous:
 
         >>> components = container_1.select_leaves()
         >>> componenttools.all_are_logical_voice_contiguous_components(components)
         True
 
-    But the six leaves taken together belong to different threads:
+    But the six leaves taken together belong to different logical voices:
 
         >>> components = outer_voice.select_leaves()
         >>> componenttools.all_are_logical_voice_contiguous_components(components)
         False
 
-    The first two leaves and the last two leaves belong to the same thread.
-    But the first two leaves and the last two leaves are not
+    The first two leaves and the last two leaves belong to the same logical
+    voice. But the first two leaves and the last two leaves are not
     time-contiguous:
 
         >>> components = container_1.select_leaves()

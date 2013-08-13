@@ -35,7 +35,7 @@ class ContainmentSignature(AbjadObject):
             voice: Voice-'CustomVoice'
              self: Note-...
 
-    Used for thread iteration behind the scenes.
+    Used for logical voice iteration behind the scenes.
     '''
 
     ### INITIALIZER ###

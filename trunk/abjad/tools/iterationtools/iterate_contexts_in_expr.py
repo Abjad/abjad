@@ -47,7 +47,7 @@ def iterate_contexts_in_expr(expr, reverse=False, start=0, stop=None):
         Voice{1}
         Voice{2}
 
-    Ignore threads.
+    Iterates across different logical voices.
 
     Return generator.
     '''

@@ -5,7 +5,9 @@ import py.test
 
 def test_spannertools_get_spanners_that_cross_components_01():
     r'''Return unordered set of spanners crossing
-        over the begin- or end-bounds of thread-contiguous components.'''
+    over the begin- or end-bounds of logical-voice-contiguous 
+    components.
+    '''
 
     voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)

@@ -40,7 +40,7 @@ class Spanner(AbjadObject):
     @abc.abstractmethod
     def __init__(self, components=None):
         self._components = []
-        self._contiguity_constraint = 'thread'
+        self._contiguity_constraint = 'logical voice'
         self._initialize_components(components)
 
     ### SPECIAL METHODS ###
@@ -240,7 +240,7 @@ class Spanner(AbjadObject):
             components = []
         # TODO: Author staff-level contiguity check in tools/check.
         #       Include optional staff-level contiguity check here.
-        if self._contiguity_constraint == 'thread':
+        if self._contiguity_constraint == 'logical voice':
             leaves = list(iterationtools.iterate_leaves_in_expr(components))
             assert componenttools.all_are_logical_voice_contiguous_components(leaves)
         self.extend(components)
@@ -456,7 +456,7 @@ class Spanner(AbjadObject):
 
         Return none.
         '''
-        if self._contiguity_constraint == 'thread':
+        if self._contiguity_constraint == 'logical voice':
             components = self[-1:] + [component]
             assert componenttools.all_are_logical_voice_contiguous_components(
                 components), repr(components)
@@ -536,7 +536,7 @@ class Spanner(AbjadObject):
         '''
         component_input = self[-1:]
         component_input.extend(components)
-        if self._contiguity_constraint == 'thread':
+        if self._contiguity_constraint == 'logical voice':
             assert componenttools.all_are_logical_voice_contiguous_components(
                 component_input), repr(component_input)
         for component in components:

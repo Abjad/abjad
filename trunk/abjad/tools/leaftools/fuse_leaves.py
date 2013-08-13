@@ -3,7 +3,7 @@ from abjad.tools import componenttools
 
 
 def fuse_leaves(leaves):
-    r'''Fuse thread-contiguous `leaves`:
+    r'''Fuse logical-voice-contiguous `leaves`:
 
     ::
 

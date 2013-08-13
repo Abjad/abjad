@@ -7,8 +7,8 @@ def test_iterationtools_iterate_logical_voice_in_expr_01():
     '''
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    thread_signature = more(staff[-1]).select_parentage().containment_signature
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Rest, thread_signature, reverse=True)
+    signature = more(staff[-1]).select_parentage().containment_signature
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Rest, signature, reverse=True)
     assert len(list(iter)) == 0
 
 
@@ -17,8 +17,8 @@ def test_iterationtools_iterate_logical_voice_in_expr_02():
     '''
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    thread_signature = more(staff[-1]).select_parentage().containment_signature
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Tuplet, thread_signature, reverse=True)
+    signature = more(staff[-1]).select_parentage().containment_signature
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Tuplet, signature, reverse=True)
     assert len(list(iter)) == 3
 
 
@@ -27,8 +27,8 @@ def test_iterationtools_iterate_logical_voice_in_expr_03():
     '''
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    thread_signature = more(staff[-1]).select_parentage().containment_signature
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, thread_signature, reverse=True)
+    signature = more(staff[-1]).select_parentage().containment_signature
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature, reverse=True)
     assert len(list(iter)) == 9
 
 
@@ -38,8 +38,8 @@ def test_iterationtools_iterate_logical_voice_in_expr_04():
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     from abjad.tools.leaftools.Leaf import Leaf
-    thread_signature = more(staff[-1][-1]).select_parentage().containment_signature
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Leaf, thread_signature, reverse=True)
+    signature = more(staff[-1][-1]).select_parentage().containment_signature
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Leaf, signature, reverse=True)
     assert len(list(iter)) == 9
 
 
@@ -51,8 +51,8 @@ def test_iterationtools_iterate_logical_voice_in_expr_05():
     v2 = Voice(Note(2, (1, 4)) * 2)
     v1.name = v2.name = 'piccolo'
     staff = Staff([v1, v2])
-    thread_signature = more(staff[-1]).select_parentage().containment_signature
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, thread_signature, reverse=True)
+    signature = more(staff[-1]).select_parentage().containment_signature
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature, reverse=True)
     iter = list(iter)
 
     assert len(iter) == 4
@@ -61,14 +61,14 @@ def test_iterationtools_iterate_logical_voice_in_expr_05():
 
 
 def test_iterationtools_iterate_logical_voice_in_expr_06():
-    r'''Yield only Notes matching the given thread signature.
+    r'''Yield only Notes matching the given logical voice signature.
     '''
 
     v1 = Voice(Note("c'4") * 2)
     v2 = Voice(Note(2, (1, 4)) * 2)
     staff = Staff([v1, v2])
-    thread_signature = more(staff[-1]).select_parentage().containment_signature
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, thread_signature, reverse=True)
+    signature = more(staff[-1]).select_parentage().containment_signature
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature, reverse=True)
     iter = list(iter)
 
     assert len(iter) == 2
@@ -78,7 +78,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_06():
 
 
 def test_iterationtools_iterate_logical_voice_in_expr_07():
-    r'''Yield only Notes matching the given thread signature.
+    r'''Yield only Notes matching the given logical voice signature.
     '''
 
     v1 = Voice(Note("c'4") * 2)
@@ -86,8 +86,8 @@ def test_iterationtools_iterate_logical_voice_in_expr_07():
     v1.name = 'flute'
     v2.name = 'piccolo'
     staff = Staff([v1, v2])
-    thread_signature = more(staff[-1]).select_parentage().containment_signature
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, thread_signature, reverse=True)
+    signature = more(staff[-1]).select_parentage().containment_signature
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature, reverse=True)
     iter = list(iter)
 
     assert len(iter) == 2
@@ -101,8 +101,8 @@ def test_iterationtools_iterate_logical_voice_in_expr_08():
     '''
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    thread_signature = more(staff[0]).select_parentage().containment_signature
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Rest, thread_signature)
+    signature = more(staff[0]).select_parentage().containment_signature
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Rest, signature)
     assert len(list(iter)) == 0
 
 
@@ -111,8 +111,8 @@ def test_iterationtools_iterate_logical_voice_in_expr_09():
     '''
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    thread_signature = more(staff[0]).select_parentage().containment_signature
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Tuplet, thread_signature)
+    signature = more(staff[0]).select_parentage().containment_signature
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Tuplet, signature)
     assert len(list(iter)) == 3
 
 
@@ -121,8 +121,8 @@ def test_iterationtools_iterate_logical_voice_in_expr_10():
     '''
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    thread_signature = more(staff[0]).select_parentage().containment_signature
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, thread_signature)
+    signature = more(staff[0]).select_parentage().containment_signature
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature)
     assert len(list(iter)) == 9
 
 
@@ -132,8 +132,8 @@ def test_iterationtools_iterate_logical_voice_in_expr_11():
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     from abjad.tools.leaftools.Leaf import Leaf
-    thread_signature = more(staff[0][0]).select_parentage().containment_signature
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Leaf, thread_signature)
+    signature = more(staff[0][0]).select_parentage().containment_signature
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Leaf, signature)
     assert len(list(iter)) == 9
 
 
@@ -145,8 +145,8 @@ def test_iterationtools_iterate_logical_voice_in_expr_12():
     v2 = Voice(Note(2, (1, 4)) * 2)
     v1.name = v2.name = 'piccolo'
     staff = Staff([v1, v2])
-    thread_signature = more(staff[0]).select_parentage().containment_signature
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, thread_signature)
+    signature = more(staff[0]).select_parentage().containment_signature
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature)
     iter = list(iter)
 
     assert len(iter) == 4
@@ -155,14 +155,14 @@ def test_iterationtools_iterate_logical_voice_in_expr_12():
 
 
 def test_iterationtools_iterate_logical_voice_in_expr_13():
-    r'''Yield only Notes matching the given thread signature.
+    r'''Yield only Notes matching the given logical voice signature.
     '''
 
     v1 = Voice(Note("c'4") * 2)
     v2 = Voice(Note(2, (1, 4)) * 2)
     staff = Staff([v1, v2])
-    thread_signature = more(staff[0]).select_parentage().containment_signature
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, thread_signature)
+    signature = more(staff[0]).select_parentage().containment_signature
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature)
     iter = list(iter)
 
     assert len(iter) == 2
@@ -172,7 +172,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_13():
 
 
 def test_iterationtools_iterate_logical_voice_in_expr_14():
-    r'''Yield only Notes matching the given thread signature.
+    r'''Yield only Notes matching the given logical voice signature.
     '''
 
     v1 = Voice(Note("c'4") * 2)
@@ -180,8 +180,8 @@ def test_iterationtools_iterate_logical_voice_in_expr_14():
     v1.name = 'flute'
     v2.name = 'piccolo'
     staff = Staff([v1, v2])
-    thread_signature = more(staff[0]).select_parentage().containment_signature
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, thread_signature)
+    signature = more(staff[0]).select_parentage().containment_signature
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature)
     iter = list(iter)
 
     assert len(iter) == 2

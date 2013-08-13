@@ -37,7 +37,7 @@ def iterate_rests_in_expr(expr, reverse=False, start=0, stop=None):
         Rest('r2')
         Rest('r8')
 
-    Ignore threads.
+    Iterates across different logical voices.
 
     Return generator.
     '''

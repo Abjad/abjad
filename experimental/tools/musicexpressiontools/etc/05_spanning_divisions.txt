@@ -155,7 +155,7 @@ Then what should the LilyPond output files look like?
 
 (3) Tests show that there is a LilyPond limitation as regards a score comprised
 of successive staff group chunks taken in succession. (The first limitation is that
-the thread research from three or four years ago still holds. Notes must be housed
+the logical voice research from three or four years ago still holds. Notes must be housed
 in an excplicitly named voice. And all components in the parentage from the voice
 up must be named the same.) And the limitation is that for any given staff group
 chunk, all voices in the chunk must be of equal duration. That is *LilyPond allows

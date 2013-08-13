@@ -273,7 +273,7 @@ def test_Parentage_containment_signature_09():
 
 
 def test_Parentage_containment_signature_10():
-    r'''Measure and leaves must carry same thread signature.
+    r'''Measure and leaves must carry same logical voice signature.
     '''
 
     staff = Staff([Measure((2, 8), "c'8 d'8")] + notetools.make_repeated_notes(2))
@@ -298,8 +298,8 @@ def test_Parentage_containment_signature_10():
 
 
 def test_Parentage_containment_signature_11():
-    r'''Leaves inside different staves have different thread signatures,
-    even when the staves have the same name.
+    r'''Leaves inside different staves have different logical voice 
+    signatures, even when the staves have the same name.
     '''
 
     container = Container(Staff(notetools.make_repeated_notes(2)) * 2)

@@ -49,7 +49,7 @@ def iterate_containers_in_expr(expr, reverse=False, start=0, stop=None):
         Tuplet(2/3, [e'8, f'8, g'8])
         Voice{2}
 
-    Ignore threads.
+    Iterates across different logical voices.
 
     Return generator.
     '''

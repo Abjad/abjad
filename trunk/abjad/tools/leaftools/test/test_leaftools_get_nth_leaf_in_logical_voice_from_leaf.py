@@ -461,7 +461,8 @@ def test_leaftools_get_nth_leaf_in_logical_voice_from_leaf_13():
 
 
 def test_leaftools_get_nth_leaf_in_logical_voice_from_leaf_14():
-    r'''Tautological parentage asymmetries result in symmetric (balanced) threaded parentage.
+    r'''Tautological parentage asymmetries result in symmetric (balanced) 
+    logical voice parentage.
     '''
 
     s1 = Container([Note(i, (1,8)) for i in range(4)])
@@ -503,7 +504,8 @@ def test_leaftools_get_nth_leaf_in_logical_voice_from_leaf_14():
 
 
 def test_leaftools_get_nth_leaf_in_logical_voice_from_leaf_15():
-    r'''Tautological parentage asymmetries result in symmetric (balanced) threaded parentage.
+    r'''Tautological parentage asymmetries result in symmetric (balanced) 
+    lgoical voice parentage.
     '''
 
     s1 = Container([Note(i, (1,8)) for i in range(4)])
@@ -630,7 +632,7 @@ def test_leaftools_get_nth_leaf_in_logical_voice_from_leaf_18():
 
 
 def test_leaftools_get_nth_leaf_in_logical_voice_from_leaf_19():
-    r'''Return none in asymmetric thread parentage structures.
+    r'''Return none in asymmetric logical voice parentage structures.
     '''
 
     v1 = Voice([Note(i , (1,8)) for i in range(3)])
@@ -663,7 +665,7 @@ def test_leaftools_get_nth_leaf_in_logical_voice_from_leaf_19():
 
 
 def test_leaftools_get_nth_leaf_in_logical_voice_from_leaf_20():
-    r'''Non-contiguous or broken threads do not connect.
+    r'''Non-contiguous or broken logical voices do not connect.
     '''
 
     v1 = Voice([Note(i , (1,8)) for i in range(3)])

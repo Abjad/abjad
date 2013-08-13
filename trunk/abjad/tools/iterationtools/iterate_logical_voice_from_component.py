@@ -7,7 +7,7 @@ def iterate_logical_voice_from_component(
     component_class=None, 
     reverse=False,
     ):
-    r'''Itearte thread forward from `component` and yield instances 
+    r'''Itearte logical voice forward from `component` and yield instances 
     of `component_class`.
 
     ::
@@ -70,7 +70,7 @@ def iterate_logical_voice_from_component(
         Note("g'8")
         Note("a'8")
 
-    Yield all components in thread:
+    Yield all components in logical voice:
 
     ::
 
@@ -85,7 +85,7 @@ def iterate_logical_voice_from_component(
         Note("g'8")
         Note("a'8")
 
-    Iterate thread backward from `component` and yield instances 
+    Iterate logical voice backward from `component` and yield instances 
     of `component_class`, starting from the last leaf in score:
 
     ::
@@ -101,7 +101,7 @@ def iterate_logical_voice_from_component(
         Note("f'8")
         Note("e'8")
 
-    Yield all components in thread:
+    Yield all components in logical voice:
 
     ::
 
@@ -125,20 +125,17 @@ def iterate_logical_voice_from_component(
     if component_class is None:
         component_class = componenttools.Component
 
-    # save thread signature of input component
-    component_thread_signature = \
-        component._select_parentage().containment_signature
+    # save logical voice signature of input component
+    signature = component._select_parentage().containment_signature
 
     # iterate component depth-first allowing to crawl UP into score
     if not reverse:
         for x in iterationtools.iterate_components_depth_first(component, capped=False):
             if isinstance(x, component_class):
-                if x._select_parentage().containment_signature == \
-                    component_thread_signature:
+                if x._select_parentage().containment_signature == signature:
                     yield x
     else:
         for x in iterationtools.iterate_components_depth_first(component, capped=False, direction=Right):
             if isinstance(x, component_class):
-                if x._select_parentage().containment_signature == \
-                    component_thread_signature:
+                if x._select_parentage().containment_signature == signature:
                     yield x

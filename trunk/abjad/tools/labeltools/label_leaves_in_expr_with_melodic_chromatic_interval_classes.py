@@ -39,10 +39,10 @@ def label_leaves_in_expr_with_melodic_chromatic_interval_classes(expr, markup_di
     """
 
     for note in iterationtools.iterate_notes_in_expr(expr):
-        thread_iterator = iterationtools.iterate_logical_voice_from_component(note, leaftools.Leaf)
+        logical_voice_iterator = iterationtools.iterate_logical_voice_from_component(note, leaftools.Leaf)
         try:
-            thread_iterator.next()
-            next_leaf = thread_iterator.next()
+            logical_voice_iterator.next()
+            next_leaf = logical_voice_iterator.next()
             if isinstance(next_leaf, notetools.Note):
                 mdi = note.written_pitch - next_leaf.written_pitch
                 mci = mdi.melodic_chromatic_interval

@@ -117,8 +117,10 @@ def test_BeamSpanner_span_simultaneous_container_04():
 
 
 def test_BeamSpanner_span_simultaneous_container_05():
-    r'''This is the proper way to 'thread through' simultaneous containers.
-        LilyPond is happy here again.'''
+    r'''This is the proper way to follow a logical voice
+    through simultaneous containers.
+    LilyPond is happy here again.
+    '''
 
     staff = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
     staff[0].name, staff[1].name = 'foo', 'foo'

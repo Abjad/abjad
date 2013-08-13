@@ -5,7 +5,7 @@ import py.test
 
 def test_componenttools_all_are_logical_voice_contiguous_components_01():
     r'''Components that start at the same moment are bad.
-    Even if components are all part of the same thread.
+    Even if components are all part of the same logical voice.
     '''
 
     voice = Voice(notetools.make_repeated_notes(4))
@@ -79,7 +79,7 @@ def test_componenttools_all_are_logical_voice_contiguous_components_06():
 
 
 def test_componenttools_all_are_logical_voice_contiguous_components_07():
-    r'''False when components belonging to same thread are ommitted.
+    r'''False when components belonging to same logical voice are ommitted.
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8 g'8 a'8")
@@ -100,7 +100,7 @@ def test_componenttools_all_are_logical_voice_contiguous_components_07():
 
 
 def test_componenttools_all_are_logical_voice_contiguous_components_08():
-    r'''False when components belonging to same thread are ommitted.
+    r'''False when components belonging to same logical voice are ommitted.
     '''
 
     voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)

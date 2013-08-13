@@ -8,7 +8,7 @@ def get_spanners_that_dominate_component_pair(left, right):
     'right' must be either an Abjad component or None.
 
     If both 'left' and 'right' are components,
-    then 'left' and 'right' must be thread-contiguous.
+    then 'left' and 'right' must be logical-voice-contiguous.
 
     This is a special version of 
     spannertools.get_spanners_that_dominate_components().

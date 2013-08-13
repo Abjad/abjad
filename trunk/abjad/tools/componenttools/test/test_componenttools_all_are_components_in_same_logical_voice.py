@@ -5,7 +5,7 @@ import py.test
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_01():
-    r'''Unincorporated leaves do not thread.
+    r'''Unincorporated leaves do not logical voice.
     Unicorporated leaves do not share a root component.
     False if not allow orphans; True if allow orphans.
     '''
@@ -16,7 +16,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_01():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_02():
-    r'''Container and leaves all thread.
+    r'''Container and leaves all logical voice.
     '''
 
     container = Container("c'8 d'8 e'8 f'8")
@@ -34,7 +34,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_02():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_03():
-    r'''Tuplet and leaves all thread.
+    r'''Tuplet and leaves all logical voice.
     '''
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -51,7 +51,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_03():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_04():
-    r'''Voice and leaves all thread.
+    r'''Voice and leaves all appear in same logical voice.
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
@@ -70,7 +70,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_04():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_05():
-    r'''Anonymous staff and leaves all thread.
+    r'''Anonymous staff and leaves all appear in same logical voice.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
@@ -88,7 +88,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_05():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_06():
-    r'''Voice, sequential and leaves all thread.
+    r'''Voice, sequential and leaves all appear in same logical voice.
     '''
 
     voice = Voice(Container(notetools.make_repeated_notes(4)) * 2)
@@ -116,7 +116,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_06():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_07():
-    r'''Anonymous voice, tuplets and leaves all thread.
+    r'''Anonymous voice, tuplets and leaves all appear in same logical voice.
     '''
 
     voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
@@ -141,7 +141,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_07():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_08():
-    r'''Can not thread across anonymous voices.
+    r'''Logical voice does not extend across anonymous voices.
     '''
 
     staff = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
@@ -171,7 +171,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_08():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_09():
-    r'''Can thread across like-named voices.
+    r'''Logical voice encompasses across like-named voices.
     '''
 
     staff = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
@@ -200,7 +200,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_09():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_10():
-    r'''Can not thread across differently named voices.
+    r'''Logical voice does not extend across differently named voices.
     '''
 
     staff = Staff(Voice(notetools.make_repeated_notes(2)) * 2)
@@ -225,8 +225,8 @@ def test_componenttools_all_are_components_in_same_logical_voice_10():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_11():
-    r'''Can not thread across anonymous voices.
-    Can not thread across anonymous staves.
+    r'''Logical voice does not across anonymous voices.
+    Logical voice does not extend across anonymous staves.
     '''
 
     container = Container(Staff([Voice(notetools.make_repeated_notes(2))]) * 2)
@@ -253,8 +253,8 @@ def test_componenttools_all_are_components_in_same_logical_voice_11():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_12():
-    r'''Can not thread across anonymous voices.
-    Can not thread across anonymous staves.
+    r'''Logical voice does not extend across anonymous voices.
+    Logical voice does not extend across anonymous staves.
     '''
 
     container = Container(Staff(Voice(notetools.make_repeated_notes(2)) * 2) * 2)
@@ -292,7 +292,8 @@ def test_componenttools_all_are_components_in_same_logical_voice_12():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_13():
-    r'''Anonymous voice, sequentials and leaves all thread.
+    r'''Anonymous voice, sequentials and leaves all appear in same 
+    logical voice.
     '''
 
     voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
@@ -316,8 +317,8 @@ def test_componenttools_all_are_components_in_same_logical_voice_13():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_14():
-    r'''Can thread across like-named staves.
-    Can not thread across differently named IMPLICIT voices.
+    r'''Logical voice can extend across like-named staves.
+    Logical voice can not extend across differently named IMPLICIT voices.
     '''
 
     container = Container(Staff(Note(0, (1, 8)) * 4) * 2)
@@ -347,7 +348,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_14():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_15():
-    r'''Can not thread across differently named IMPLICIT voices.
+    r'''Logical voice can not extend across differently named IMPLICIT voices.
     '''
 
     container = Container([
@@ -382,7 +383,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_15():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_16():
-    r'''Can not thread across differently named IMPLICIT voices.
+    r'''Logical voice can not extend across differently named IMPLICIT voices.
     '''
 
     container = Container([Voice(notetools.make_repeated_notes(4)), Container(notetools.make_repeated_notes(4))])
@@ -414,7 +415,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_16():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_17():
-    r'''Can not thread across differently named IMPLICIT voices.
+    r'''Logical voice can not extend across differently named IMPLICIT voices.
     '''
 
     container = Container([
@@ -450,7 +451,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_17():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_18():
-    r'''Can not thread over differently named IMPLICIT voices.
+    r'''Logical voice can not extend acrossdifferently named IMPLICIT voices.
     '''
 
     container = Container([
@@ -486,7 +487,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_18():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_19():
-    r'''Can not thread across differently named IMPLICIT voices.
+    r'''Logical voice can not extend across differently named IMPLICIT voices.
     '''
 
     container = Container([Container(notetools.make_repeated_notes(4)), Staff(notetools.make_repeated_notes(4))])
@@ -518,7 +519,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_19():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_20():
-    r'''Can not thread across differently named IMPLICIT voices.
+    r'''Logical voice can not extend across differently named IMPLICIT voices.
     '''
 
     container = Container([Staff(Note(0, (1, 8)) * 4), Container(Note(0, (1, 8)) * 4)])
@@ -550,7 +551,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_20():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_21():
-    r'''Can not thread across differently named IMPLICIT voices.
+    r'''Logical voice can not extend across differently named IMPLICIT voices.
     '''
 
     container = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
@@ -580,7 +581,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_21():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_22():
-    r'''Can not thread across differently named IMPLICIT voices.
+    r'''Logical voice can not extend across differently named IMPLICIT voices.
     '''
 
     container = Container([Voice(Note(0, (1, 8)) * 4)] + Note(0, (1, 8)) * 4)
@@ -611,7 +612,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_22():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_23():
-    r'''Can not thread across differently named IMPLICIT voices.
+    r'''Logical voice can not extend across differently named IMPLICIT voices.
     '''
 
     container = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
@@ -642,9 +643,9 @@ def test_componenttools_all_are_components_in_same_logical_voice_23():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_24():
-    r'''Can not thread across differently named IMPLICIT voices.
+    r'''Logical voice can not extend across differently named IMPLICIT voices.
     NOTE: THIS IS THE LILYPOND LACUNA.
-    LilyPond *does* thread in this case.
+    LilyPond *does* extend logical voice in this case.
     Abjad does not.
     '''
 
@@ -676,7 +677,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_24():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_25():
-    r'''Can not thread across differently named IMPLICIT voices.
+    r'''Logical voice can not extend across differently named IMPLICIT voices.
     '''
 
     container = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
@@ -706,7 +707,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_25():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_26():
-    r'''Can not thread across differently named IMPLICIT voices.
+    r'''Logical voice can not extend across differently named IMPLICIT voices.
     '''
 
     container = Container(notetools.make_repeated_notes(4))
@@ -737,7 +738,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_26():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_27():
-    r'''Can not thread across differently named IMPLICIT voices.
+    r'''Logical voice can not extend across differently named IMPLICIT voices.
     '''
 
     voice = Voice([Note(n, (1, 8)) for n in range(4)])
@@ -771,7 +772,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_27():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_28():
-    r'''Can not thread across differently named IMPLICIT voices.
+    r'''Logical voice can not extend across differently named IMPLICIT voices.
     '''
 
     voice = Voice([Note(n, (1, 8)) for n in range(4)])
@@ -806,7 +807,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_28():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_29():
-    r'''Can not thread across differently named IMPLICIT voices.
+    r'''Logical voice can not extend across differently named IMPLICIT voices.
     '''
 
     v1 = Voice([Note(n, (1, 8)) for n in range(4)])
@@ -842,7 +843,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_29():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_30():
-    r'''Can not thread across differently named IMPLICIT voices.
+    r'''Logical voice can not extend across differently named IMPLICIT voices.
     '''
 
     v1 = Voice([Note(n, (1, 8)) for n in range(4)])
@@ -876,7 +877,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_30():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_31():
-    r'''Can not thread across differently named IMPLICIT voices.
+    r'''Logical voice can not extend across differently named IMPLICIT voices.
     '''
 
     notes = [Note(n, (1, 8)) for n in range(4)]
@@ -916,7 +917,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_31():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_32():
-    r'''Can not thread across differently named IMPLICIT voices.
+    r'''Logical voice can not extend across differently named IMPLICIT voices.
     '''
 
     container = Container([Container(Voice(Note(0, (1, 8)) * 4) * 2)] + Note(0, (1, 8)) * 4)
@@ -953,8 +954,8 @@ def test_componenttools_all_are_components_in_same_logical_voice_32():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_33():
-    r'''Can thread across gaps.
-    Can not thread across differently named voices.
+    r'''Logical voice does extend across gaps.
+    Logical voice can not extend across differently named voices.
     '''
 
     container = Container(Note(0, (1, 8)) * 4)
@@ -999,8 +1000,8 @@ def test_componenttools_all_are_components_in_same_logical_voice_33():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_34():
-    r'''Can thread across gaps.
-    Can not thread across differently named IMPLICIT voices.
+    r'''Logical voice does extend across gaps.
+    Logical voice can not extend across differently named IMPLICIT voices.
     '''
 
     staff = Staff(Note(0, (1, 8)) * 4)
@@ -1045,7 +1046,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_34():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_35():
-    r'''Containers and leaves all thread.
+    r'''Containers and leaves all appear in same logical voice.
     '''
 
     a, b, t = Container(Note(0, (1, 8)) * 4) * 3
@@ -1079,7 +1080,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_35():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_36():
-    r'''Tuplets and leaves all thread.
+    r'''Tuplets and leaves all appear in same logical voice.
     '''
 
     a, b, t = tuplettools.FixedDurationTuplet(Duration(3, 8), Note(0, (1, 8)) * 4) * 3
@@ -1118,7 +1119,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_36():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_37():
-    r'''Can not thread across differently named voices.
+    r'''Logical voice can not extend across differently named voices.
     '''
 
     container = Container(Note(0, (1, 8)) * 4)
@@ -1157,7 +1158,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_37():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_38():
-    r'''Can not thread over differently named voices.
+    r'''Logical voice does not extend over differently named voices.
     '''
 
     container = Container(Note(0, (1, 8)) * 4)
@@ -1230,7 +1231,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_39():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_40():
-    r'''Can not thread across differently named voices.
+    r'''Logical voice can not extend across differently named voices.
     '''
 
     voice = Voice(Note(0, (1, 8)) * 4)
@@ -1280,7 +1281,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_40():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_41():
-    r'''Can not thread across differently named anonymous voices.
+    r'''Logical voice can not extend across differently named anonymous voices.
     '''
 
     container = Container(notetools.make_repeated_notes(4))
@@ -1317,7 +1318,7 @@ def test_componenttools_all_are_components_in_same_logical_voice_41():
 
 
 def test_componenttools_all_are_components_in_same_logical_voice_42():
-    r'''Can not thread across differently named anonymous voices.
+    r'''Logical voice can not extend across differently named anonymous voices.
     '''
 
     p = Container(Voice(Note(0, (1, 8)) * 4) * 2)

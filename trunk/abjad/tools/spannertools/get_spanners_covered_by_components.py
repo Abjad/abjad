@@ -6,7 +6,7 @@ def get_spanners_covered_by_components(components):
     '''Get spanners covered by `components`.
 
     Return unordered set of  spanners completely contained
-    within the time bounds of thread-contiguous components.
+    within the time bounds of logical-voice-contiguous components.
 
     A spanner `p` is covered by timespan `t` when and only when
     ``t.start_ofset <= more(p).get_timespan().start_offset and 

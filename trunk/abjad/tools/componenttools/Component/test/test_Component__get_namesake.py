@@ -90,7 +90,7 @@ def test_Component__get_namesake_07():
 
 
 def test_Component__get_namesake_08():
-    r'''Components need not thread (Staves don'container thread).
+    r'''Components need not appear in the same logical voice.
     '''
 
     container = Container(Staff(notetools.make_repeated_notes(2)) * 2)

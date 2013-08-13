@@ -4,7 +4,7 @@ from abjad.tools import selectiontools
 
 
 def all_are_components_in_same_logical_voice(expr, classes=None, allow_orphans=True):
-    '''True when elements in `expr` are all components in same thread. 
+    '''True when elements in `expr` are all components in same logical voice. 
     Otherwise false:
 
     ::
@@ -13,7 +13,7 @@ def all_are_components_in_same_logical_voice(expr, classes=None, allow_orphans=T
         >>> componenttools.all_are_components_in_same_logical_voice(voice.select_leaves())
         True
 
-    True when elements in `expr` are all `classes` in same thread. 
+    True when elements in `expr` are all `classes` in same logical voice. 
     Otherwise false:
 
     ::
@@ -51,7 +51,7 @@ def all_are_components_in_same_logical_voice(expr, classes=None, allow_orphans=T
     if not first._select_parentage().is_orphan:
         orphan_components = False
 
-    same_thread = True
+    same_logical_voice = True
 
     first_signature = first._select_parentage().containment_signature
     for component in expr[1:]:
@@ -61,10 +61,10 @@ def all_are_components_in_same_logical_voice(expr, classes=None, allow_orphans=T
         if not allow_orphans and orphan_components:
             return False
         if parentage.containment_signature != first_signature:
-            same_thread = False
-        if not allow_orphans and not same_thread:
+            same_logical_voice = False
+        if not allow_orphans and not same_logical_voice:
             return False
-        if allow_orphans and not orphan_components and not same_thread:
+        if allow_orphans and not orphan_components and not same_logical_voice:
             return False
 
     return True

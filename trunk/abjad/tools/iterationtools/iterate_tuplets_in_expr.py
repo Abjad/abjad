@@ -46,7 +46,7 @@ def iterate_tuplets_in_expr(expr, reverse=False, start=0, stop=None):
         Tuplet(2/3, [a'8, b'8, c''8])
         Tuplet(2/3, [c'8, d'8, e'8])
 
-    Ignore threads.
+    Iterates across different logical voices.
 
     Return generator.
     '''

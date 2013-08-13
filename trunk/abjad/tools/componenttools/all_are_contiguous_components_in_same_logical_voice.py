@@ -5,8 +5,8 @@ from abjad.tools import selectiontools
 
 def all_are_contiguous_components_in_same_logical_voice(
     expr, component_classes=None, allow_orphans=True):
-    '''True when elements in `expr` are all contiguous components in same thread.
-    Otherwise false:
+    '''True when elements in `expr` are all contiguous components in same 
+    logical voice. Otherwise false:
 
     ::
 
@@ -16,7 +16,7 @@ def all_are_contiguous_components_in_same_logical_voice(
         True
 
     True when elements in `expr` are all contiguous instances 
-    of `component_classes` in same thread. Otherwise false:
+    of `component_classes` in same logical voice. Otherwise false:
 
     ::
 
@@ -55,7 +55,7 @@ def all_are_contiguous_components_in_same_logical_voice(
     if not first._select_parentage().is_orphan:
         orphan_components = False
 
-    same_thread = True
+    same_logical_voice = True
     strictly_contiguous = True
 
     first_signature = first._select_parentage().containment_signature
@@ -68,12 +68,12 @@ def all_are_contiguous_components_in_same_logical_voice(
         currentrent_signature = \
             current._select_parentage().containment_signature
         if not currentrent_signature == first_signature:
-            same_thread = False
+            same_logical_voice = False
         if not previous._is_immediate_temporal_successor_of(current):
             strictly_contiguous = False
         if (not allow_orphans or 
             (allow_orphans and not orphan_components)) and \
-            (not same_thread or not strictly_contiguous):
+            (not same_logical_voice or not strictly_contiguous):
             return False
         previous = current
 

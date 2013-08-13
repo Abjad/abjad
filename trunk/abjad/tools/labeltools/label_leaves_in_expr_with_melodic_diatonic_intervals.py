@@ -40,10 +40,10 @@ def label_leaves_in_expr_with_melodic_diatonic_intervals(expr, markup_direction=
     """
 
     for note in iterationtools.iterate_notes_in_expr(expr):
-        thread_iterator = iterationtools.iterate_logical_voice_from_component(note, leaftools.Leaf)
+        logical_voice_iterator = iterationtools.iterate_logical_voice_from_component(note, leaftools.Leaf)
         try:
-            thread_iterator.next()
-            next_leaf = thread_iterator.next()
+            logical_voice_iterator.next()
+            next_leaf = logical_voice_iterator.next()
             if isinstance(next_leaf, notetools.Note):
                 mdi = pitchtools.calculate_melodic_diatonic_interval(
                     note, next_leaf)

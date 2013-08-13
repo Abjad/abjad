@@ -118,7 +118,7 @@ class ContiguousSelection(Selection):
     def copy_and_fracture_crossing_spanners(self, n=1):
         r'''Copies components in selection and fractures crossing spanners.
 
-        Components in selection must be thread-contiguous.
+        Components in selection must be logical-voice-contiguous.
 
         The steps this function takes are as follows:
 
@@ -210,7 +210,7 @@ class ContiguousSelection(Selection):
         from abjad.tools import componenttools
         from abjad.tools import iterationtools
         # check input
-        assert self._all_are_thread_contiguous_components()
+        assert self._all_are_logical_voice_contiguous_components()
         # return empty list when nothing to copy
         if n < 1:
             return []

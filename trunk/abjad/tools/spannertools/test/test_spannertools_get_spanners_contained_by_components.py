@@ -5,7 +5,7 @@ import py.test
 
 def test_spannertools_get_spanners_contained_by_components_01():
     r'''Return unordered set of spanners contained
-        within any of the list of thread-contiguous components.'''
+        within any of the list of logical-voice-contiguous components.'''
 
     voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
