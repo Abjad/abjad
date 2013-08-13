@@ -2,11 +2,8 @@
 from abjad.tools.selectiontools import mutate
 
 
-# TODO: bind to GovernorSelection?
-#       it might make sense to force the composer to select
-#       from `component` up to the governor of component;
-#       that operation would return a GovernorSelection;
-#       this method could be bound to GovernorSelection.
+# TODO: trigger this subroutine from a keyword implemented on
+#       select(expr).copy_and_fracture_crossing_spanners(climb_parentage=True)
 def copy_governed_component_subtree_by_leaf_range(
     component, start=0, stop=None):
     r'''Copy governed `component` subtree by leaf range.
@@ -21,9 +18,6 @@ def copy_governed_component_subtree_by_leaf_range(
         >>> voice = Voice(r"\times 2/3 { c'4 d'4 e'4 }")
         >>> voice.append(r"\times 2/3 { f'4 g'4 a'4 }")
         >>> staff = Staff([voice])
-
-    ::
-
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
@@ -49,14 +43,6 @@ def copy_governed_component_subtree_by_leaf_range(
         >>> result = \
         ...     componenttools.copy_governed_component_subtree_by_leaf_range(
         ...     staff, 1, 5)
-
-    ::
-
-        >>> result
-        Staff{1}
-
-    ::
-
         >>> show(result) # doctest: +SKIP
 
     ..  doctest::
@@ -129,27 +115,26 @@ def copy_governed_component_subtree_by_leaf_range(
     stop_leaf = copy_leaves[stop_index_in_governor]
 
     # trim governor copy forwards from first leaf
-    _found_start_leaf = False
+    found_start_leaf = False
 
-    while not _found_start_leaf:
+    while not found_start_leaf:
         leaf = iterationtools.iterate_leaves_in_expr(governor_copy).next()
         if leaf is start_leaf:
-            _found_start_leaf = True
+            found_start_leaf = True
         else:
             leaftools.remove_leaf_and_shrink_durated_parent_containers(leaf)
 
     # trim governor copy backwards from last leaf
-    _found_stop_leaf = False
+    found_stop_leaf = False
 
-    while not _found_stop_leaf:
+    while not found_stop_leaf:
         reverse_iterator = iterationtools.iterate_leaves_in_expr(
             governor_copy, reverse=True)
         leaf = reverse_iterator.next()
         if leaf is stop_leaf:
-            _found_stop_leaf = True
+            found_stop_leaf = True
         else:
             leaftools.remove_leaf_and_shrink_durated_parent_containers(leaf)
 
     # return trimmed governor copy
     return governor_copy
-    new_leaf = mutate(leaf).copy_and_fracture_crossing_spanners()
