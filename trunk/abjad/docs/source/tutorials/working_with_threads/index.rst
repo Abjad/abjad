@@ -159,7 +159,7 @@ To attach the slur spanner to the voices we could try either:
      File "/home/josiah/Documents/Development/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 45, in __init__
        self._initialize_components(components)
      File "/home/josiah/Documents/Development/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 220, in _initialize_components
-       assert componenttools.all_are_logical_voice_contiguous_components(leaves)
+       assert componenttools.all_are_contiguous_components_in_same_logical_voice(leaves)
    AssertionError
 
 
@@ -177,7 +177,7 @@ To attach the slur spanner to the voices we could try either:
      File "/home/josiah/Documents/Development/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 45, in __init__
        self._initialize_components(components)
      File "/home/josiah/Documents/Development/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 220, in _initialize_components
-       assert componenttools.all_are_logical_voice_contiguous_components(leaves)
+       assert componenttools.all_are_contiguous_components_in_same_logical_voice(leaves)
    AssertionError
 
 

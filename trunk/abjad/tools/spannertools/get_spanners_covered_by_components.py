@@ -14,7 +14,7 @@ def get_spanners_covered_by_components(components):
     '''
     from abjad.tools import spannertools
 
-    assert componenttools.all_are_logical_voice_contiguous_components(components)
+    assert componenttools.all_are_contiguous_components_in_same_logical_voice(components)
 
     if not len(components):
         return set([])

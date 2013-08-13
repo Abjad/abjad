@@ -3,7 +3,7 @@ import types
 from abjad.tools import selectiontools
 
 
-def all_are_logical_voice_contiguous_components(
+def all_are_contiguous_components_in_same_logical_voice(
     expr, component_classes=None, allow_orphans=True):
     r'''True when elements in `expr` are all logical-voice-contiguous components:
 
@@ -41,28 +41,28 @@ def all_are_logical_voice_contiguous_components(
     and are time-contiguous:
 
         >>> components = container_1.select_leaves()
-        >>> componenttools.all_are_logical_voice_contiguous_components(components)
+        >>> componenttools.all_are_contiguous_components_in_same_logical_voice(components)
         True
 
     The middle two notes belong to the same logical voice 
     and are time-contiguous:
 
         >>> components = inner_voice.select_leaves()
-        >>> componenttools.all_are_logical_voice_contiguous_components(components)
+        >>> componenttools.all_are_contiguous_components_in_same_logical_voice(components)
         True
 
     The middle two notes belong to the same logical voice 
     and are time-contiguous:
 
         >>> components = container_1.select_leaves()
-        >>> componenttools.all_are_logical_voice_contiguous_components(components)
+        >>> componenttools.all_are_contiguous_components_in_same_logical_voice(components)
         True
 
     But the six leaves taken together belong to different logical voices:
 
         >>> components = outer_voice.select_leaves(
         ...     allow_discontiguous_leaves=True)
-        >>> componenttools.all_are_logical_voice_contiguous_components(components)
+        >>> componenttools.all_are_contiguous_components_in_same_logical_voice(components)
         False
 
     The first two leaves and the last two leaves belong to the same logical
@@ -72,7 +72,7 @@ def all_are_logical_voice_contiguous_components(
         >>> container_1_leaves = container_1.select_leaves()
         >>> container_2_leaves = container_2.select_leaves()
         >>> leaves = container_1_leaves + container_2_leaves
-        >>> componenttools.all_are_logical_voice_contiguous_components(
+        >>> componenttools.all_are_contiguous_components_in_same_logical_voice(
         ...     components)
         False
 

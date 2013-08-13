@@ -33,7 +33,7 @@ def get_parent_and_start_stop_indices_of_components(components):
     '''
     from abjad.tools import componenttools
 
-    assert componenttools.all_are_logical_voice_contiguous_components(components)
+    assert componenttools.all_are_contiguous_components_in_same_logical_voice(components)
 
     if 0 < len(components):
         first, last = components[0], components[-1]

@@ -466,7 +466,7 @@ class Container(Component):
         if self._all_are_orphan_components(music):
             self._music = list(music)
             self[:]._set_parents(self)
-        elif componenttools.all_are_logical_voice_contiguous_components(music):
+        elif componenttools.all_are_contiguous_components_in_same_logical_voice(music):
             music = selectiontools.SliceSelection(music)
             parent, start, stop = music._get_parent_and_start_stop_indices()
             self._music = list(music)
@@ -479,7 +479,7 @@ class Container(Component):
             self._music = []
             self.is_simultaneous = parsed.is_simultaneous
             if parsed.is_simultaneous or \
-                not componenttools.all_are_logical_voice_contiguous_components(
+                not componenttools.all_are_contiguous_components_in_same_logical_voice(
                 parsed[:]):
                 while len(parsed):
                     self.append(parsed.pop(0))

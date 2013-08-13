@@ -22,7 +22,7 @@ def get_spanners_that_cross_components(components):
     from abjad.tools import iterationtools
     from abjad.tools import spannertools
 
-    assert componenttools.all_are_logical_voice_contiguous_components(components)
+    assert componenttools.all_are_contiguous_components_in_same_logical_voice(components)
 
     all_components = set(iterationtools.iterate_components_in_expr(components))
     contained_spanners = spannertools.get_spanners_contained_by_components(components)

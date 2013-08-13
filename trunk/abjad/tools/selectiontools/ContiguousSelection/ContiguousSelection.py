@@ -38,7 +38,7 @@ class ContiguousSelection(Selection):
             music = self._music + expr._music
         elif isinstance(expr, (tuple, list)):
             music = self._music + tuple(expr)
-        if componenttools.all_are_logical_voice_contiguous_components(music):
+        if componenttools.all_are_contiguous_components_in_same_logical_voice(music):
             return type(self)(music)
         else:
             return selectiontools.FreeComponentSelection(music) 
@@ -82,8 +82,8 @@ class ContiguousSelection(Selection):
         '''
         from abjad.tools import componenttools
         from abjad.tools import spannertools
-        assert componenttools.all_are_logical_voice_contiguous_components(self)
-        assert componenttools.all_are_logical_voice_contiguous_components(recipients)
+        assert componenttools.all_are_contiguous_components_in_same_logical_voice(self)
+        assert componenttools.all_are_contiguous_components_in_same_logical_voice(recipients)
         receipt = spannertools.get_spanners_that_dominate_components(self)
         for spanner, index in receipt:
             for recipient in reversed(recipients):
@@ -103,7 +103,7 @@ class ContiguousSelection(Selection):
         from abjad.tools import componenttools
         from abjad.tools import iterationtools
         from abjad.tools import spannertools
-        assert componenttools.all_are_logical_voice_contiguous_components(self)
+        assert componenttools.all_are_contiguous_components_in_same_logical_voice(self)
         crossing_spanners = \
             spannertools.get_spanners_that_cross_components(self)
         components_including_children = \

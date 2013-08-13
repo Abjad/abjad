@@ -65,7 +65,7 @@ def fracture_spanners_that_cross_components(components):
     '''
     from abjad.tools import spannertools
 
-    assert componenttools.all_are_logical_voice_contiguous_components(components)
+    assert componenttools.all_are_contiguous_components_in_same_logical_voice(components)
 
     if 0 < len(components):
 
