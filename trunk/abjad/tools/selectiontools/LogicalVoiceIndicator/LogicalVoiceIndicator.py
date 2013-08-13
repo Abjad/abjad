@@ -29,11 +29,9 @@ class LogicalVoiceIndicator(AbjadObject):
 
         >>> parentage = more(score.select_leaves()[0]).select_parentage()
         >>> print parentage.logical_voice_indicator
-         root_str: Score-'CustomScore'
             score: Score-'CustomScore'
             staff: Staff-...
             voice: Voice-'CustomVoice'
-             self: Note-...
 
     Used for logical voice iteration behind the scenes.
     '''
@@ -42,8 +40,6 @@ class LogicalVoiceIndicator(AbjadObject):
 
     def __init__(self):
         self._root = None
-        self._root_str = ''
-        self._self = None
         self._score = None
         self._staff = None
         self._staff_group = None
@@ -61,8 +57,6 @@ class LogicalVoiceIndicator(AbjadObject):
         if not self._staff_group == arg._staff_group:
             return False
         if not self._score == arg._score:
-            return False
-        if self._should_compare_roots and not (self._root == arg._root):
             return False
         return True
 
@@ -85,7 +79,7 @@ class LogicalVoiceIndicator(AbjadObject):
     @property
     def _parts(self):
         result = []
-        attrs = ('self', 'voice', 'staff', 'staff_group', 'score', 'root_str')
+        attrs = ('voice', 'staff', 'staff_group', 'score')
         for attr in attrs:
             if getattr(self, '_' + attr, None) is not None:
                 result.append((attr, getattr(self, '_' + attr)))

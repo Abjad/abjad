@@ -135,7 +135,7 @@ class Parentage(SimultaneousSelection):
 
     @property
     def logical_voice_indicator(self):
-        r'''Containment signature of component:
+        r'''Logical voice indicator of component.
 
         ::
 
@@ -164,13 +164,11 @@ class Parentage(SimultaneousSelection):
             >>> leaf = score.select_leaves()[0]
             >>> parentage = more(leaf).select_parentage()
             >>> print parentage.logical_voice_indicator
-             root_str: Score-'CustomScore'
                 score: Score-'CustomScore'
                 staff: Staff-...
                 voice: Voice-'CustomVoice'
-                 self: Note-...
 
-        Return containment signature object.
+        Return logical voice indicator.
         '''
         from abjad.tools import componenttools
         from abjad.tools import contexttools
@@ -179,15 +177,12 @@ class Parentage(SimultaneousSelection):
         from abjad.tools import stafftools
         from abjad.tools import voicetools
         signature = selectiontools.LogicalVoiceIndicator()
-        signature._self = self._id_string(self[0])
         for component in self:
             if isinstance(component, voicetools.Voice) and \
                 signature._voice is None:
                 signature._voice = self._id_string(component)
             elif isinstance(component, stafftools.Staff) and \
                 signature._staff is None:
-                # leaves inside different staves have diff 
-                # containment signatures regardless of staff name
                 signature._staff = '{}-{}'.format(
                     component._class_name, id(component))
             elif isinstance(component, scoretools.StaffGroup) and \
@@ -196,11 +191,7 @@ class Parentage(SimultaneousSelection):
             elif isinstance(component, scoretools.Score) and \
                 signature._score is None:
                 signature._score = self._id_string(component)
-        # root components must be the same object 
-        # for containment signatures to compare true
         signature._root = id(component)
-        signature._root_str = self._id_string(component)
-        signature._should_compare_roots = False
         return signature
 
     @property
