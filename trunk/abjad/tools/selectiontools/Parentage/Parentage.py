@@ -171,7 +171,6 @@ class Parentage(SimultaneousSelection):
         Return logical voice indicator.
         '''
         from abjad.tools import componenttools
-        from abjad.tools import contexttools
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         from abjad.tools import stafftools
@@ -183,8 +182,12 @@ class Parentage(SimultaneousSelection):
                 signature._voice = self._id_string(component)
             elif isinstance(component, stafftools.Staff) and \
                 signature._staff is None:
-                signature._staff = '{}-{}'.format(
-                    component._class_name, id(component))
+                signature._staff = self._id_string(component)
+                # an explicit staff implies a nested voice:
+                # so if no explicit voice has been found,
+                # indicate implicit voice here with random integer
+                if signature._voice is None:
+                    signature._voice = id(component)
             elif isinstance(component, scoretools.StaffGroup) and \
                 signature._staff_group is None:
                 signature._staff_group = self._id_string(component)

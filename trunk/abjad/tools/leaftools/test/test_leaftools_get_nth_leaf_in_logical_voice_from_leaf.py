@@ -325,7 +325,8 @@ def test_leaftools_get_nth_leaf_in_logical_voice_from_leaf_10():
 
 
 def test_leaftools_get_nth_leaf_in_logical_voice_from_leaf_11():
-    r'''Does not connect through unequally named staves.
+    r'''Does connect through like-named staves
+    containing like-named voices.
     '''
 
     v1 = Voice([Note(i, (1,8)) for i in range(4)])
@@ -340,33 +341,37 @@ def test_leaftools_get_nth_leaf_in_logical_voice_from_leaf_11():
 
     seq = Container([s1, s2])
 
-    r'''
-    {
-        \context Staff = "mystaff" {
-            \context Voice = "low" {
-                c'8
-                cs'8
-                d'8
-                ef'8
+    assert testtools.compare(
+        seq,
+        r'''
+        {
+            \context Staff = "mystaff" {
+                \context Voice = "low" {
+                    c'8
+                    cs'8
+                    d'8
+                    ef'8
+                }
+            }
+            \context Staff = "mystaff" {
+                \context Voice = "low" {
+                    e'8
+                    f'8
+                    fs'8
+                    g'8
+                }
             }
         }
-        \context Staff = "mystaff" {
-            \context Voice = "low" {
-                e'8
-                f'8
-                fs'8
-                g'8
-            }
-        }
-    }
-    '''
+        '''
+        )
 
-    assert not leaftools.get_nth_leaf_in_logical_voice_from_leaf(v1[3], 1) is v2[0]
-    assert not leaftools.get_nth_leaf_in_logical_voice_from_leaf(v2[0], -1) is v1[3]
+    assert leaftools.get_nth_leaf_in_logical_voice_from_leaf(v1[3], 1) is v2[0]
+    assert leaftools.get_nth_leaf_in_logical_voice_from_leaf(v2[0], -1) is v1[3]
 
 
 def test_leaftools_get_nth_leaf_in_logical_voice_from_leaf_12():
-    r'''Does not connect through equally named staves.
+    r'''Does connect through like-named staves containing
+    like-named voices.
     '''
 
     vl1 = Voice([Note(i, (1,8)) for i in range(4)])
@@ -387,44 +392,47 @@ def test_leaftools_get_nth_leaf_in_logical_voice_from_leaf_12():
 
     seq = Container([s1, s2])
 
-    r'''
-    {
-        \context Staff = "mystaff" <<
-            \context Voice = "high" {
-                c''8
-                cs''8
-                d''8
-                ef''8
-            }
-            \context Voice = "low" {
-                c'8
-                cs'8
-                d'8
-                ef'8
-            }
-        >>
-        \context Staff = "mystaff" <<
-            \context Voice = "low" {
-                e'8
-                f'8
-                fs'8
-                g'8
-            }
-            \context Voice = "high" {
-                e''8
-                f''8
-                fs''8
-                g''8
-            }
-        >>
-    }
-    '''
+    assert testtools.compare(
+        seq,
+        r'''
+        {
+            \context Staff = "mystaff" <<
+                \context Voice = "high" {
+                    c''8
+                    cs''8
+                    d''8
+                    ef''8
+                }
+                \context Voice = "low" {
+                    c'8
+                    cs'8
+                    d'8
+                    ef'8
+                }
+            >>
+            \context Staff = "mystaff" <<
+                \context Voice = "low" {
+                    e'8
+                    f'8
+                    fs'8
+                    g'8
+                }
+                \context Voice = "high" {
+                    e''8
+                    f''8
+                    fs''8
+                    g''8
+                }
+            >>
+        }
+        '''
+        )
 
-    assert not leaftools.get_nth_leaf_in_logical_voice_from_leaf(vl1[3], 1) is vl2[0]
-    assert not leaftools.get_nth_leaf_in_logical_voice_from_leaf(vh1[3], 1) is vh2[0]
+    assert leaftools.get_nth_leaf_in_logical_voice_from_leaf(vl1[3], 1) is vl2[0]
+    assert leaftools.get_nth_leaf_in_logical_voice_from_leaf(vh1[3], 1) is vh2[0]
 
-    assert not leaftools.get_nth_leaf_in_logical_voice_from_leaf(vl2[0], 1) is vl1[0]
-    assert not leaftools.get_nth_leaf_in_logical_voice_from_leaf(vh2[0], 1) is vh1[3]
+    assert leaftools.get_nth_leaf_in_logical_voice_from_leaf(vl2[0], -1) is vl1[3]
+    assert leaftools.get_nth_leaf_in_logical_voice_from_leaf(vh2[0], -1) is vh1[3]
 
 
 def test_leaftools_get_nth_leaf_in_logical_voice_from_leaf_13():

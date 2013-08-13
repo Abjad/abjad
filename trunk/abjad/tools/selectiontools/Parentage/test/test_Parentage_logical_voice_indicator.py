@@ -256,8 +256,7 @@ def test_Parentage_logical_voice_indicator_08():
 
 
 def test_Parentage_logical_voice_indicator_09():
-    r'''Components here carry the same containment signature EXCEPT FOR root.
-    Component containment signatures do not compare True.
+    r'''Notes appear in the same logical voice.
     '''
 
     t1 = Staff([Voice([Note(0, (1, 8))])])
@@ -270,7 +269,7 @@ def test_Parentage_logical_voice_indicator_09():
 
     t1_leaf_signature = more(t1.select_leaves()[0]).select_parentage().logical_voice_indicator
     t2_leaf_signature = more(t2.select_leaves()[0]).select_parentage().logical_voice_indicator
-    assert t1_leaf_signature != t2_leaf_signature
+    assert t1_leaf_signature == t2_leaf_signature
 
 
 def test_Parentage_logical_voice_indicator_10():
