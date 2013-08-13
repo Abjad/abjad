@@ -3,7 +3,10 @@ from abjad.tools import componenttools
 
 
 def repeat_last_n_elements_of_container(container, n=1, total=2):
-    r'''Repeat last `n` elements of `container`:
+    r'''Repeats last `n` elements of `container`.
+
+    ..  note:: Deprecated. Use
+        container[-n:].copy_and_fracture_crossing_spanners() instead.
 
     ::
 
@@ -40,20 +43,10 @@ def repeat_last_n_elements_of_container(container, n=1, total=2):
             f'8 ]
         }
 
-    Return `container`.
+    Returns `container`.
     '''
 
-    # get start and stop indices
-    stop = len(container)
-    start = stop - n
-
-    # for the total number of elements less one
-    for x in range(total - 1):
-
-        # copy last n elements of container
-        addendum = componenttools.copy_components_and_immediate_parent_of_first_component(container[start:stop])
-
-        # extend container with addendum
-        container.extend(addendum)
-
+    new_components = \
+        container[-n:].copy_and_fracture_crossing_spanners(n=total-1)
+    container.extend(new_components)
     return container
