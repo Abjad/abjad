@@ -60,7 +60,8 @@ def all_are_logical_voice_contiguous_components(
 
     But the six leaves taken together belong to different logical voices:
 
-        >>> components = outer_voice.select_leaves()
+        >>> components = outer_voice.select_leaves(
+        ...     allow_discontiguous_leaves=True)
         >>> componenttools.all_are_logical_voice_contiguous_components(components)
         False
 
@@ -70,7 +71,8 @@ def all_are_logical_voice_contiguous_components(
 
         >>> components = container_1.select_leaves()
         >>> components += container_2.select_leaves()
-        >>> componenttools.all_are_logical_voice_contiguous_components(components)
+        >>> componenttools.all_are_logical_voice_contiguous_components(
+        ...     components)
         False
 
     Return boolean.

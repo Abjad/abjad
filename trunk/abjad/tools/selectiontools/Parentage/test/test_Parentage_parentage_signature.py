@@ -118,14 +118,15 @@ def test_Parentage_parentage_signature_06():
     }
     '''
 
-    assert more(container.select_leaves()[0]).select_parentage().parentage_signature == \
-        more(container.select_leaves()[1]).select_parentage().parentage_signature
-    assert more(container.select_leaves()[0]).select_parentage().parentage_signature == \
-        more(container.select_leaves()[2]).select_parentage().parentage_signature
-    assert more(container.select_leaves()[2]).select_parentage().parentage_signature == \
-        more(container.select_leaves()[3]).select_parentage().parentage_signature
-    assert more(container.select_leaves()[2]).select_parentage().parentage_signature == \
-        more(container.select_leaves()[0]).select_parentage().parentage_signature
+    leaves = container.select_leaves(allow_discontiguous_leaves=True)
+    assert more(leaves[0]).select_parentage().parentage_signature == \
+        more(leaves[1]).select_parentage().parentage_signature
+    assert more(leaves[0]).select_parentage().parentage_signature == \
+        more(leaves[2]).select_parentage().parentage_signature
+    assert more(leaves[2]).select_parentage().parentage_signature == \
+        more(leaves[3]).select_parentage().parentage_signature
+    assert more(leaves[2]).select_parentage().parentage_signature == \
+        more(leaves[0]).select_parentage().parentage_signature
 
-    assert more(container.select_leaves()[0]).select_parentage().parentage_signature == \
-        more(container.select_leaves()[1]).select_parentage().parentage_signature
+    assert more(leaves[0]).select_parentage().parentage_signature == \
+        more(leaves[1]).select_parentage().parentage_signature

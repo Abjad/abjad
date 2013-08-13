@@ -95,7 +95,7 @@ def test_Inspector_get_timespan_11():
 
     voice = Voice(notetools.make_repeated_notes(4))
     staff = Staff([Note(0, (1, 8)), voice, Note(0, (1, 8))])
-    for i, x in enumerate(staff.select_leaves()):
+    for i, x in enumerate(staff.select_leaves(allow_discontiguous_leaves=True)):
         assert more(x).get_timespan().start_offset == i * Duration(1, 8)
     for i, x in enumerate(voice.select_leaves()):
         assert more(x).get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 8)

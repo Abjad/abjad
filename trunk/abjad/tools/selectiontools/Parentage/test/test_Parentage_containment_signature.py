@@ -148,8 +148,9 @@ def test_Parentage_containment_signature_06():
     container[1][0].name = 'voicefoo'
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(container)
     assert py.test.raises(AssertionError, 'spannertools.BeamSpanner(container.select_leaves())')
-    spannertools.BeamSpanner(container.select_leaves()[:2])
-    spannertools.BeamSpanner(container.select_leaves()[2:])
+    leaves = container.select_leaves(allow_discontiguous_leaves=True)
+    spannertools.BeamSpanner(leaves[:2])
+    spannertools.BeamSpanner(leaves[2:])
 
     r'''
     {
@@ -169,7 +170,7 @@ def test_Parentage_containment_signature_06():
     '''
 
     signatures = [more(leaf).select_parentage().containment_signature 
-        for leaf in container.select_leaves()]
+        for leaf in leaves]
 
     signatures[0] == signatures[1]
     signatures[0] != signatures[2]
@@ -318,11 +319,12 @@ def test_Parentage_containment_signature_11():
     }
     '''
 
-    assert more(container.select_leaves()[0]).select_parentage().containment_signature == \
-        more(container.select_leaves()[1]).select_parentage().containment_signature
-    assert more(container.select_leaves()[0]).select_parentage().containment_signature != \
-        more(container.select_leaves()[2]).select_parentage().containment_signature
-    assert more(container.select_leaves()[2]).select_parentage().containment_signature == \
-        more(container.select_leaves()[3]).select_parentage().containment_signature
-    assert more(container.select_leaves()[2]).select_parentage().containment_signature != \
-        more(container.select_leaves()[0]).select_parentage().containment_signature
+    leaves = container.select_leaves(allow_discontiguous_leaves=True)
+    assert more(leaves[0]).select_parentage().containment_signature == \
+        more(leaves[1]).select_parentage().containment_signature
+    assert more(leaves[0]).select_parentage().containment_signature != \
+        more(leaves[2]).select_parentage().containment_signature
+    assert more(leaves[2]).select_parentage().containment_signature == \
+        more(leaves[3]).select_parentage().containment_signature
+    assert more(leaves[2]).select_parentage().containment_signature != \
+        more(leaves[0]).select_parentage().containment_signature
