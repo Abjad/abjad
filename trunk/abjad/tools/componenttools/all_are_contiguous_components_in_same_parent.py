@@ -47,6 +47,18 @@ def all_are_contiguous_components_in_same_parent(
     if len(expr) == 0:
         return True
 
+    all_are_orphans_of_correct_type = True
+    if allow_orphans:
+        for component in expr:
+            if not isinstance(component, component_classes):
+                all_are_orphans_of_correct_type = False
+                break
+            if not component._select_parentage().is_orphan:
+                all_are_orphans_of_correct_type = False
+                break
+        if all_are_orphans_of_correct_type:
+            return True
+
     first = expr[0]
     if not isinstance(first, component_classes):
         return False

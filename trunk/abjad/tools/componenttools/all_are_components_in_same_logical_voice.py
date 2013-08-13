@@ -3,7 +3,8 @@ import types
 from abjad.tools import selectiontools
 
 
-def all_are_components_in_same_logical_voice(expr, classes=None, allow_orphans=True):
+def all_are_components_in_same_logical_voice(
+    expr, component_classes=None, allow_orphans=True):
     '''True when elements in `expr` are all components in same logical voice. 
     Otherwise false:
 
@@ -13,14 +14,14 @@ def all_are_components_in_same_logical_voice(expr, classes=None, allow_orphans=T
         >>> componenttools.all_are_components_in_same_logical_voice(voice.select_leaves())
         True
 
-    True when elements in `expr` are all `classes` in same logical voice. 
-    Otherwise false:
+    True when elements in `expr` are all `component_classes` in 
+    same logical voice. Otherwise false:
 
     ::
 
         >>> voice = Voice("c'8 d'8 e'8")
         >>> componenttools.all_are_components_in_same_logical_voice(
-        ...     voice.select_leaves(), classes=Note)
+        ...     voice.select_leaves(), component_classes=Note)
         True
 
     Return boolean.
@@ -37,14 +38,28 @@ def all_are_components_in_same_logical_voice(expr, classes=None, allow_orphans=T
     if not isinstance(expr, allowable_types):
         return False
 
-    if classes is None:
-        classes = componenttools.Component
+    component_classes = component_classes or (componenttools.Component, )
+    if not isinstance(component_classes, tuple):
+        component_classes = (component_classes, )
+    assert isinstance(component_classes, tuple)
 
     if len(expr) == 0:
         return True
 
+    all_are_orphans_of_correct_type = True
+    if allow_orphans:
+        for component in expr:
+            if not isinstance(component, component_classes):
+                all_are_orphans_of_correct_type = False
+                break
+            if not component._select_parentage().is_orphan:
+                all_are_orphans_of_correct_type = False
+                break
+        if all_are_orphans_of_correct_type:
+            return True
+
     first = expr[0]
-    if not isinstance(first, classes):
+    if not isinstance(first, component_classes):
         return False
 
     orphan_components = True
