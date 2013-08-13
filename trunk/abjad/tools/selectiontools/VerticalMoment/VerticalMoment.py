@@ -235,30 +235,19 @@ class VerticalMoment(SimultaneousSelection):
         result = tuple(result)
         return result
 
-#    @property
-#    def next_vertical_moment(self):
-#        r'''Reference to next vertical moment forward in time.
-#        '''
-#        from abjad.tools import componenttools
-#        candidate_shortest_leaf = self.leaves[0]
-#        for leaf in self.leaves[1:]:
-#            if leaf.stop < candidate_shortest_leaf.stop:
-#                candidate_shortest_leaf = leaf
-#        next_leaf = candidate_shortest_leaf._get_namesake(1)
-#        next_vertical_moment = next_leaf._select_vertical_moment()
-#        return next_vertical_moment
-
     @property
     def next_vertical_moment(self):
         r'''Reference to next vertical moment forward in time.
         '''
         from abjad.tools import componenttools
+        from abjad.tools import leaftools
         candidate_shortest_leaf = self.leaves[0]
         for leaf in self.leaves[1:]:
             if leaf._get_timespan().stop_offset < \
                 candidate_shortest_leaf._get_timespan().stop_offset:
                 candidate_shortest_leaf = leaf
-        next_leaf = candidate_shortest_leaf._get_namesake(1)
+        next_leaf = candidate_shortest_leaf._get_in_my_logical_voice(
+            1, component_class=leaftools.Leaf)
         next_vertical_moment = next_leaf._select_vertical_moment()
         return next_vertical_moment
 
@@ -332,6 +321,7 @@ class VerticalMoment(SimultaneousSelection):
         r'''Reference to prev vertical moment backward in time.
         '''
         from abjad.tools import componenttools
+        from abjad.tools import leaftools
         if self.offset == 0:
             raise IndexError
         most_recent_start_offset = durationtools.Offset(0)
@@ -348,7 +338,8 @@ class VerticalMoment(SimultaneousSelection):
             else:
                 #print 'found leaf starting on this moment ...'
                 try:
-                    previous_leaf = leaf._get_namesake(-1)
+                    previous_leaf = leaf._get_in_my_logical_voice(
+                        -1, component_class=leaftools.Leaf)
                     start = previous_leaf._get_timespan().start_offset
                     #print previous_leaf, start
                     if most_recent_start_offset <= start:

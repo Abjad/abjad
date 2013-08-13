@@ -188,8 +188,10 @@ class TonalAnalysisSelection(Selection):
         from abjad.tools import tonalanalysistools
         if not isinstance(note, notetools.Note):
             raise TypeError('must be note: {!r}.'.format(note))
-        previous_note = note._get_namesake(-1)
-        next_note = note._get_namesake(1)
+        previous_note = note._get_in_my_logical_voice(
+            -1, component_class=notetools.Note)
+        next_note = note._get_in_my_logical_voice(
+            1, component_class=notetools.Note)
         if previous_note is None:
             return False
         if next_note is None:
@@ -213,8 +215,10 @@ class TonalAnalysisSelection(Selection):
         from abjad.tools import tonalanalysistools
         if not isinstance(note, notetools.Note):
             raise TypeError('must be note: {!r}'.format(note))
-        previous_note = note._get_namesake(-1)
-        next_note = note._get_namesake(1)
+        previous_note = note._get_in_my_logical_voice(
+            -1, component_class=notetools.Note)
+        next_note = note._get_in_my_logical_voice(
+            1, component_class=notetools.Note)
         if previous_note is None or next_note is None:
             return False
         notes = [previous_note, note, next_note]

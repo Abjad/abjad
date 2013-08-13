@@ -289,6 +289,23 @@ class Component(AbjadObject):
             result.extend(contributions)
         return result
 
+    # TODO: this should completely replace self._get_namesake()
+    def _get_in_my_logical_voice(self, n, component_class=None):
+        from abjad.tools import iterationtools
+        if 0 <= n:
+            generator = iterationtools.iterate_logical_voice_from_component(
+                self, component_class=component_class, reverse=False)
+            for i, namesake in enumerate(generator):
+                if i == n:
+                    return namesake
+        else:
+            n = abs(n)
+            generator = iterationtools.iterate_logical_voice_from_component(
+                self, component_class=component_class, reverse=True)
+            for i, namesake in enumerate(generator):
+                if i == n:
+                    return namesake
+
     def _get_mark(self, mark_classes=None):
         marks = self._get_marks(mark_classes=mark_classes)
         if not marks:
