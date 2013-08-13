@@ -449,21 +449,31 @@ class Container(Component):
 
     ### PRIVATE METHODS ###
 
+    @staticmethod
+    def _all_are_orphan_components(expr):
+        from abjad.tools import componenttools
+        for component in expr:
+            if not isinstance(component, componenttools.Component):
+                return False
+            if not component._select_parentage().is_orphan:
+                return False
+        return True
+
     def _initialize_music(self, music):
         from abjad.tools import componenttools
         if music is None:
             music = []
-        # TODO: use the commented out line instead of the one that follows it
-        #if componenttools.all_are_logical_voice_contiguous_components(music):
-        if componenttools.all_are_contiguous_components_in_same_logical_voice(
-            music):
+        if self._all_are_orphan_components(music):
+            self._music = list(music)
+            self[:]._set_parents(self)
+        elif componenttools.all_are_logical_voice_contiguous_components(music):
             music = selectiontools.SliceSelection(music)
             parent, start, stop = music._get_parent_and_start_stop_indices()
             self._music = list(music)
             self[:]._set_parents(self)
-            if parent is not None:
-                parent._music.insert(start, self)
-                self._set_parent(parent)
+            assert parent is not None
+            parent._music.insert(start, self)
+            self._set_parent(parent)
         elif isinstance(music, str):
             parsed = self._parse_string(music)
             self._music = []
