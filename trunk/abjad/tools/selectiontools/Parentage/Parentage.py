@@ -178,7 +178,7 @@ class Parentage(SimultaneousSelection):
         from abjad.tools import selectiontools
         from abjad.tools import stafftools
         from abjad.tools import voicetools
-        signature = selectiontools.ContainmentSignature()
+        signature = selectiontools.LogicalVoiceIndicator()
         signature._self = self._id_string(self[0])
         for component in self:
             if isinstance(component, voicetools.Voice) and \

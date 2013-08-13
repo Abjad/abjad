@@ -2,7 +2,7 @@
 from abjad.tools.abctools import AbjadObject
 
 
-class ContainmentSignature(AbjadObject):
+class LogicalVoiceIndicator(AbjadObject):
     r'''Containment signature of Abjad component:
 
     ::
@@ -52,7 +52,7 @@ class ContainmentSignature(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
-        if not isinstance(arg, ContainmentSignature):
+        if not isinstance(arg, LogicalVoiceIndicator):
             return False
         if not self._voice == arg._voice:
             return False

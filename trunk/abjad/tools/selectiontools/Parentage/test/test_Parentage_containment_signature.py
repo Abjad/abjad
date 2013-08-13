@@ -40,7 +40,7 @@ def test_Parentage_containment_signature_03():
 
 
 def test_Parentage_containment_signature_04():
-    r'''Return ContainmentSignature giving the root and
+    r'''Return LogicalVoiceIndicator giving the root and
     first voice, staff and score in the parentage of component.
     '''
 
@@ -84,7 +84,7 @@ def test_Parentage_containment_signature_04():
 
 
 def test_Parentage_containment_signature_05():
-    r'''Return ContainmentSignature giving the root and
+    r'''Return LogicalVoiceIndicator giving the root and
     first voice, staff and score in parentage of component.
     '''
 
@@ -137,7 +137,7 @@ def test_Parentage_containment_signature_05():
 
 
 def test_Parentage_containment_signature_06():
-    r'''Return ContainmentSignature giving the root and
+    r'''Return LogicalVoiceIndicator giving the root and
     first voice, staff and score in parentage of component.
     '''
 
@@ -180,7 +180,7 @@ def test_Parentage_containment_signature_06():
 
 
 def test_Parentage_containment_signature_07():
-    r'''Return ContainmentSignature giving the root and
+    r'''Return LogicalVoiceIndicator giving the root and
     first voice, staff and score in parentage of component.
     '''
 

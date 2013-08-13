@@ -223,21 +223,21 @@ by printing it:
 
    >>> vA_thread_signature = vA.parentage.containment_signature
    >>> vA_thread_signature
-   ContainmentSignature(Voice-151537580, Voice-151537580, Staff-156803500)
+   LogicalVoiceIndicator(Voice-151537580, Voice-151537580, Staff-156803500)
 
 
 ::
 
    >>> vB_thread_signature = vB.parentage.containment_signature
    >>> vB_thread_signature
-   ContainmentSignature(Voice-151536940, Voice-151536940, Staff-156803500)
+   LogicalVoiceIndicator(Voice-151536940, Voice-151536940, Staff-156803500)
 
 
 ::
 
    >>> vC_thread_signature = vC.parentage.containment_signature
    >>> vC_thread_signature
-   ContainmentSignature(Voice-156803372, Voice-156803372, Staff-156803500)
+   LogicalVoiceIndicator(Voice-156803372, Voice-156803372, Staff-156803500)
 
 
 And by comparing them with the binary equality operator:
