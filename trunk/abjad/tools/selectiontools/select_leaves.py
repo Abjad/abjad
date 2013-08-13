@@ -77,10 +77,11 @@ def select_leaves(
             component for component in expr
             if isinstance(component, leaf_classes)
             ]
-    if componenttools.all_are_contiguous_components(music):
-        selection = selectiontools.ContiguousLeafSelection(music=music)
-    elif not allow_discontiguous_leaves:
-        raise Exception('leaves must be contiguous.')
-    else:
+    if allow_discontiguous_leaves:
         selection = selectiontools.FreeLeafSelection(music=music)
+    else:
+        assert componenttools.all_are_contiguous_components(music)
+        #assert componenttools.all_are_logical_voice_contiguous_components(
+        #    music), repr(music)
+        selection = selectiontools.ContiguousLeafSelection(music=music)
     return selection
