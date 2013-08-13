@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_Chord___init___01():
-    r'''Init empty chord.
+    r'''Initialize empty chord.
     '''
 
     chord = Chord([], (1, 4))
@@ -11,7 +11,7 @@ def test_Chord___init___01():
 
 
 def test_Chord___init___02():
-    r'''Init chord with numbers.
+    r'''Initialize chord with pitch numbers.
     '''
 
     chord = Chord([2, 4, 5], (1, 4))
@@ -19,7 +19,7 @@ def test_Chord___init___02():
 
 
 def test_Chord___init___03():
-    r'''Init chord with pitch tokens.
+    r'''Initialize chord with pitch tokens.
     '''
 
     chord = Chord([('ds', 4), ('ef', 4)], (1, 4))
@@ -27,31 +27,36 @@ def test_Chord___init___03():
 
 
 def test_Chord___init___04():
-    r'''Init chord with pitches.
+    r'''Initialize chord with pitches.
     '''
 
-    chord = Chord([pitchtools.NamedChromaticPitch('ds', 4), pitchtools.NamedChromaticPitch('ef', 4)], (1, 4))
+    pitches = []
+    pitches.append(pitchtools.NamedChromaticPitch('ds', 4))
+    pitches.append(pitchtools.NamedChromaticPitch('ef', 4))
+    chord = Chord(pitches, (1, 4))
     assert chord.lilypond_format == "<ds' ef'>4"
 
 
 def test_Chord___init___05():
-    r'''Init chord with pitch token and pitch together.
+    r'''Initialize chord with pitches and pitch numbers together.
     '''
 
-    chord = Chord([2, ('ef', 4), pitchtools.NamedChromaticPitch(4)], (1, 4))
+    pitches = [2, ('ef', 4), pitchtools.NamedChromaticPitch(4)]
+    chord = Chord(pitches, (1, 4))
     assert chord.lilypond_format == "<d' ef' e'>4"
 
 
 def test_Chord___init___06():
-    r'''Init chord with list of pitch names.
+    r'''Initialize chord with list of pitch names.
     '''
 
-    chord = Chord(["d'", "ef'", "e'"], (1, 4))
+    pitches = ["d'", "ef'", "e'"]
+    chord = Chord(pitches, (1, 4))
     assert chord.lilypond_format == "<d' ef' e'>4"
 
 
 def test_Chord___init___07():
-    r'''Init chord with LilyPond input string.
+    r'''Initialize chord with LilyPond input string.
     '''
 
     chord = Chord("<d' ef' e'>4")
@@ -59,166 +64,143 @@ def test_Chord___init___07():
 
 
 def test_Chord___init___08():
-    r'''Init chord from skip.
+    r'''Initialize chord from skip.
     '''
 
-    skip = skiptools.Skip((1, 8))
-    d = skip.written_duration
-    c = Chord(skip)
-    assert isinstance(c, Chord)
-    assert dir(skip) == dir(skiptools.Skip((1, 4)))
-    assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
-    assert c._parent is None
-    assert c.written_duration == d
+    skip = skiptools.Skip('s8')
+    chord = Chord(skip)
+
+    assert skip.lilypond_format == 's8'
+    assert chord.lilypond_format == '<>8'
+
+    assert select(skip).is_well_formed()
+    assert select(chord).is_well_formed()
 
 
 def test_Chord___init___09():
-    r'''Init chord from skip.
+    r'''Initialize chord from tupletized skip.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), skiptools.Skip((1, 8)) * 3)
-    d = tuplet[0].written_duration
+    tuplet = Tuplet((2, 3), 's8 s8 s8')
     chord = Chord(tuplet[0])
-    assert isinstance(tuplet[0], skiptools.Skip)
-    assert isinstance(chord, Chord)
-    assert tuplet[0]._parent is tuplet
-    assert tuplet[0].written_duration == d
-    assert chord._parent is None
+
+    assert chord.lilypond_format == '<>8'
+    assert more(chord).select_parentage().parent is None
+    assert select(chord).is_well_formed()
 
 
 def test_Chord___init___10():
-    r'''Init chord from containerized skip.
+    r'''Initialize chord from containerized skip.
     '''
 
-    voice = Voice(skiptools.Skip((1, 8)) * 3)
-    d = voice[0].written_duration
-    chord = Chord(voice[0])
-    assert isinstance(voice[0], skiptools.Skip)
-    assert isinstance(chord, Chord)
-    assert voice[0]._parent is voice
-    assert voice[0].written_duration == d
-    assert chord._parent is None
+    tuplet = Voice('s8 s8 s8')
+    chord = Chord(tuplet[0])
+
+    assert chord.lilypond_format == '<>8'
+    assert more(chord).select_parentage().parent is None
+    assert select(chord).is_well_formed()
+
 
 
 def test_Chord___init___11():
-    r'''Init chord from beamed skip.
+    r'''Initialize chord from beamed skip.
     '''
 
-    staff = Staff([Note(0, (1, 8)), skiptools.Skip((1, 8)), Note(0, (1, 8))])
-    spannertools.BeamSpanner(staff[:])
+    staff = Staff("c'8 [ s8 c'8 ]")
     chord = Chord(staff[1])
-    assert isinstance(staff[1], skiptools.Skip)
-    assert isinstance(chord, Chord)
-    assert staff[1]._parent is staff
+
+    assert chord.lilypond_format == '<>8'
+    assert more(chord).select_parentage().parent is None
+    assert select(chord).is_well_formed()
 
 
 def test_Chord___init___12():
-    r'''Init chord from rest.
+    r'''Initialize chord from rest.
     '''
 
-    rest = Rest((1, 8))
-    d = rest.written_duration
-    c = Chord(rest)
-    assert isinstance(c, Chord)
-    assert dir(rest) == dir(Rest((1, 4)))
-    assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
-    assert c._parent is None
-    assert c.written_duration == d
+    rest = Rest('r8')
+    chord = Chord(rest)
+
+    assert rest.lilypond_format == 'r8'
+    assert chord.lilypond_format == '<>8'
+    assert select(rest).is_well_formed()
+    assert select(chord).is_well_formed()
 
 
 def test_Chord___init___13():
-    r'''Init chord from tupletized rest.
+    r'''Initialize chord from tupletized rest.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), Rest((1, 8)) * 3)
-    d = tuplet[0].written_duration
-    chord = Chord(tuplet[0])
-    assert isinstance(tuplet[0], Rest)
-    assert isinstance(chord, Chord)
-    assert tuplet[0]._parent is tuplet
-    assert tuplet[0].written_duration == d
-    assert chord._parent is None
+    tuplet = Tuplet((2, 3), 'r8 r8 r8')
+    chord = Chord(tuplet[1])
 
-
-def test_Chord___init___14():
-    r'''Init chord from rest.
-    '''
-
-    staff = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
-    spannertools.BeamSpanner(staff[:])
-    chord = Chord(staff[1])
-    assert isinstance(staff[1], Rest)
-    assert isinstance(chord, Chord)
-    assert staff[1]._parent is staff
-    assert chord._parent is None
+    assert chord.lilypond_format == '<>8'
+    assert select(chord).is_well_formed()
+    assert more(chord).select_parentage().parent is None
 
 
 def test_Chord___init___15():
-    r'''Init chord from note.
+    r'''Initialize chord from note.
     '''
 
-    note = Note(2, (1, 8))
-    h, p, d = note.note_head, note.written_pitch, note.written_duration
-    c = Chord(note)
-    assert isinstance(c, Chord)
-    assert dir(note) == dir(Note("c'4"))
-    assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
-    assert c.lilypond_format == "<d'>8"
-    assert c._parent is None
-    assert c.note_heads[0] is not h
-    assert c.written_pitches[0] == p
-    assert c.written_duration == d
+    note = Note("d'8")
+    chord = Chord(note)
+    
+    assert note.lilypond_format == "d'8"
+    assert chord.lilypond_format == "<d'>8"
+    assert select(note).is_well_formed()
+    assert select(chord).is_well_formed()
 
 
 def test_Chord___init___16():
-    r'''Init chord from tupletized note.
+    r'''Initialize chord from tupletized note.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
-    h, p, d = tuplet[0].note_head, tuplet[0].written_pitch, tuplet[0].written_duration
-    chord = Chord(tuplet[0])
-    assert isinstance(tuplet[0], Note)
-    assert isinstance(chord, Chord)
+    tuplet = Tuplet((2, 3), "c'8 c'8 c'8")
+    chord = Chord(tuplet[1])
+
     assert chord.lilypond_format == "<c'>8"
-    assert tuplet[0]._parent is tuplet
-    assert chord.note_heads[0] is not h
-    assert chord.written_pitches[0] == p
-    assert chord.written_duration == d
+    assert select(chord).is_well_formed()
+    assert more(chord).select_parentage().parent is None
 
 
 def test_Chord___init___17():
-    r'''Init chord from beamed note.
+    r'''Initialize chord from spanned note.
     '''
 
-    staff = Staff(Note(0, (1, 8)) * 3)
-    spannertools.BeamSpanner(staff[:])
-    chord = Chord(staff[0])
-    assert isinstance(staff[0], Note)
-    assert isinstance(chord, Chord)
-    assert staff[0]._parent is staff
+    staff = Staff("c'8 ( d'8 e'8 f'8 )")
+    chord = Chord(staff[1])
+
+    assert chord.lilypond_format == "<d'>8"
+    assert select(chord).is_well_formed()
+    assert more(chord).select_parentage().parent is None
 
 
 def test_Chord___init___18():
-    r'''Init empty chord from LilyPond input string.
+    r'''Initialize empty chord from LilyPond input string.
     '''
 
     chord = Chord('<>8.')
-    assert isinstance(chord, Chord)
-    assert len(chord) == 0
+
+    assert chord.lilypond_format == '<>8.'
+    assert not len(chord)
 
 
 def test_Chord___init___19():
-    r'''Init with forced and cautionary accidentals.
+    r'''Initialize chord from LilyPond input string with forced and 
+    cautionary accidentals.
     '''
 
     chord = Chord('<c!? e? g! b>4')
+
     assert chord.lilypond_format == '<c!? e? g! b>4'
 
 
 def test_Chord___init___20():
-    r'''Init from Note with forced and cautionary accidentals.
+    r'''Initialize chord from note with forced and cautionary accidentals.
     '''
 
     note = Note("c'!?4")
     chord = Chord(note)
+
     assert chord.lilypond_format == "<c'!?>4"

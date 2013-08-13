@@ -6,7 +6,7 @@ def test_Chord___repr___01():
     r'''Chord repr is evaluable.
     '''
 
-    chord_1 = Chord([3, 13, 17], (1, 4))
+    chord_1 = Chord("<ef' cs'' f''>4")
     chord_2 = eval(repr(chord_1))
 
     assert isinstance(chord_1, Chord)
@@ -16,5 +16,8 @@ def test_Chord___repr___01():
 
 
 def test_Chord___repr___02():
+    '''Chord repr works with forced and cautionary accidentals.
+    '''
+
     chord = Chord('<c! e? g!? b>4')
     assert "Chord('{}')".format(chord.lilypond_format) == repr(chord)

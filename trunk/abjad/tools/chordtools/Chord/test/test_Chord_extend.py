@@ -28,3 +28,5 @@ def test_Chord_extend_01():
         >4
         '''
         )
+
+    assert select(chord).is_well_formed()

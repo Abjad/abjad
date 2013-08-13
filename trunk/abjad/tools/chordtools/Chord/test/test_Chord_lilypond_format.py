@@ -43,3 +43,5 @@ def test_Chord_lilypond_format_03():
         >4 \glissando
         '''
         )
+
+    assert select(chord).is_well_formed()

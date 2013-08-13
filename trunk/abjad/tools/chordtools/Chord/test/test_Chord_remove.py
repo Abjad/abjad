@@ -3,6 +3,8 @@ from abjad import *
 
 
 def test_Chord_remove_01():
+    '''Remove note head from chord.
+    '''
 
     chord = Chord("<ef' cs'' f''>4")
     note_head = chord[1]

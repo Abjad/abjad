@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_Chord___setitem___01():
-    r'''Set item with pitch number.
+    r'''Set note head with pitch number.
     '''
 
     chord = Chord("<c' d'>4")
@@ -13,7 +13,7 @@ def test_Chord___setitem___01():
 
 
 def test_Chord___setitem___02():
-    '''Set item with pitch.
+    '''Set note head with pitch.
     '''
 
     chord = Chord("<c' d'>4")
@@ -23,7 +23,7 @@ def test_Chord___setitem___02():
 
 
 def test_Chord___setitem___03():
-    r'''Set item with tweaked note head.
+    r'''Set note head with tweaked note head.
     '''
 
     chord = Chord("<c' cs'' f''>4")
@@ -42,3 +42,5 @@ def test_Chord___setitem___03():
         >4
         '''
         )
+
+    assert select(chord).is_well_formed()

@@ -4,12 +4,36 @@ import copy
 
 
 def test_Chord___deepcopy___01():
-    r'''Ensure deepcopied note heads attach correctly to chord.
+    r'''Chord deepchopies note heads.
     '''
 
     chord_1 = Chord("<c' e' g'>4")
     chord_1[0].tweak.color = 'red'
     chord_2 = copy.deepcopy(chord_1)
+
+    assert testtools.compare(
+        chord_1,
+        r'''
+        <
+            \tweak #'color #red
+            c'
+            e'
+            g'
+        >4
+        '''
+        )
+
+    assert testtools.compare(
+        chord_2,
+        r'''
+        <
+            \tweak #'color #red
+            c'
+            e'
+            g'
+        >4
+        '''
+        )
 
     assert chord_2[0]._client is chord_2
     assert chord_2[1]._client is chord_2
@@ -25,26 +49,3 @@ def test_Chord___deepcopy___01():
     assert chord_1[0] is not chord_2[0]
     assert chord_1[1] is not chord_2[1]
     assert chord_1[2] is not chord_2[2]
-
-    assert testtools.compare(
-        chord_1,
-        r'''
-        <
-            \tweak #'color #red
-            c'
-            e'
-            g'
-        >4
-        '''
-        )
-    assert testtools.compare(
-        chord_2,
-        r'''
-        <
-            \tweak #'color #red
-            c'
-            e'
-            g'
-        >4
-        '''
-        )

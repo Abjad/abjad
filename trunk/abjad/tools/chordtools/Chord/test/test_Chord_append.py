@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_Chord_append_01():
-    r'''Append tweaked note head.
+    r'''Append tweaked note head to chord.
     '''
 
     chord = Chord("<c' d'>4")

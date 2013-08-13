@@ -27,6 +27,8 @@ def test_Chord_written_pitches_02():
 
 
 def test_Chord_written_pitches_03():
+    '''Transpose sounding pitches to written pitches.
+    '''
 
     staff = Staff("<c''' e'''>4 <d''' fs'''>4")
     glockenspiel = instrumenttools.Glockenspiel()(staff)

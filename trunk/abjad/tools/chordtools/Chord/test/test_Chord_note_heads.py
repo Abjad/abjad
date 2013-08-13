@@ -30,7 +30,7 @@ def test_Chord_note_heads_03():
     r'''Set note heads with pitch numbers.
     '''
 
-    chord = Chord([], (1, 4))
+    chord = Chord('<>4')
     chord.note_heads = [4, 3, 2]
 
     assert chord.lilypond_format == "<d' ef' e'>4"
@@ -40,7 +40,7 @@ def test_Chord_note_heads_04():
     r'''Set note heads with pitches.
     '''
 
-    chord = Chord([], (1, 4))
+    chord = Chord('<>4')
     chord.note_heads = [
         pitchtools.NamedChromaticPitch(4), 
         pitchtools.NamedChromaticPitch(3), 
@@ -54,7 +54,7 @@ def test_Chord_note_heads_05():
     r'''Set note heads with both pitches and pitch numbers.
     '''
 
-    chord = Chord([], (1, 4))
+    chord = Chord('<>4')
     chord.note_heads = [
         pitchtools.NamedChromaticPitch(4), 
         3, 
