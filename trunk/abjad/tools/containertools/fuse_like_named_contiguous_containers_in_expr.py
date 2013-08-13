@@ -2,48 +2,55 @@
 from abjad.tools import componenttools
 
 
-# TODO: change interface to fuse.containers_by_name() to pass containers-to-be-fused explicitly.
+# TODO: change interface to fuse.containers_by_name() to pass 
+#       containers-to-be-fused explicitly.
 def fuse_like_named_contiguous_containers_in_expr(expr):
-    r'''Fuse like-named contiguous containers in `expr`:
+    r'''Fuses like-named contiguous containers in `expr`.
 
-    ::
+    ..  container:: example
 
-        >>> staff = Staff(r"\new Voice { c'8 d'8 } \new Voice { e'8 f'8 }")
-        >>> staff[0].name = 'soprano'
-        >>> staff[1].name = 'soprano'
+        **Example.**
 
-    ..  doctest::
+        ::
 
-        >>> f(staff)
-        \new Staff {
-            \context Voice = "soprano" {
-                c'8
-                d'8
+            >>> staff = Staff(r"\new Voice { c'8 d'8 } \new Voice { e'8 f'8 }")
+            >>> staff[0].name = 'soprano'
+            >>> staff[1].name = 'soprano'
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                \context Voice = "soprano" {
+                    c'8
+                    d'8
+                }
+                \context Voice = "soprano" {
+                    e'8
+                    f'8
+                }
             }
-            \context Voice = "soprano" {
-                e'8
-                f'8
+
+        ::
+
+            >>> containertools.fuse_like_named_contiguous_containers_in_expr(staff)
+            Staff{1}
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                \context Voice = "soprano" {
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                }
             }
-        }
 
-    ::
-
-        >>> containertools.fuse_like_named_contiguous_containers_in_expr(staff)
-        Staff{1}
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            \context Voice = "soprano" {
-                c'8
-                d'8
-                e'8
-                f'8
-            }
-        }
-
-    Return `expr`.
+    Returns `expr`.
     '''
     from abjad.tools import containertools
     from abjad.tools import iterationtools
