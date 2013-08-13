@@ -230,50 +230,6 @@ class Parentage(SimultaneousSelection):
             return self[1]
 
     @property
-    def parentage_signature(self):
-        r'''Parentage signature of component:
-
-        ::
-
-            >>> tuplet = tuplettools.FixedDurationTuplet(
-            ...     Duration(2, 8), "c'8 d'8 e'8")
-            >>> staff = Staff([tuplet])
-            >>> note = staff.select_leaves()[0]
-            >>> print more(note).select_parentage().parentage_signature
-             root_str: Staff-...
-                staff: Staff-...
-                 self: Note-...
-
-        Return parentage signature.
-        '''
-        from abjad.tools import componenttools
-        from abjad.tools import contexttools
-        from abjad.tools import scoretools
-        from abjad.tools import selectiontools
-        from abjad.tools import stafftools
-        from abjad.tools import voicetools
-        signature = selectiontools.ContainmentSignature()
-        signature._self = self._id_string(self[0])
-        for component in self:
-            if isinstance(component, voicetools.Voice) and \
-                not signature._voice:
-                signature._voice = self._id_string(component)
-            elif isinstance(component, stafftools.Staff) and \
-                not signature._staff:
-                signature._staff = self._id_string(component)
-            elif isinstance(component, scoretools.StaffGroup) and \
-                not signature._staff_group:
-                signature._staff_group = self._id_string(component)
-            elif isinstance(component, scoretools.Score) and \
-                not signature._score:
-                signature._score = self._id_string(component)
-        # root components must be manifestly equal to compare true
-        signature._root = id(component)
-        signature._root_str = self._id_string(component)
-        signature._should_compare_roots = True
-        return signature
-
-    @property
     def prolation(self):
         prolations = [durationtools.Multiplier(1)] + self._prolations
         products = mathtools.cumulative_products(prolations)
