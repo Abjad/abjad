@@ -5,37 +5,36 @@ from abjad.tools import selectiontools
 
 def all_are_contiguous_components_in_same_logical_voice(
     expr, component_classes=None, allow_orphans=True):
-    r'''True when elements in `expr` are all logical-voice-contiguous components:
+    r'''True when all elements in `expr` are contiguous components
+    in the same logical voice. Otherwise false.
 
-    ::
+    ..  container:: example
 
-        >>> container_1 = Container("c'8 d'8")
-        >>> inner_voice = Voice("e'8 f'8")
-        >>> container_2 = Container("g'8 a'8")
-        >>> outer_voice = Voice([container_1, inner_voice, container_2])
-        >>> show(outer_voice) # doctest: +SKIP
+        Score for examples:
 
-    ..  doctest::
+            >>> container_1 = Container("c'8 d'8")
+            >>> inner_voice = Voice("e'8 f'8")
+            >>> container_2 = Container("g'8 a'8")
+            >>> outer_voice = Voice([container_1, inner_voice, container_2])
+            >>> show(outer_voice) # doctest: +SKIP
 
-        >>> f(outer_voice)
-        \new Voice {
-            {
-                c'8
-                d'8
-            }
+        ..  doctest::
+
+            >>> f(outer_voice)
             \new Voice {
-                e'8
-                f'8
+                {
+                    c'8
+                    d'8
+                }
+                \new Voice {
+                    e'8
+                    f'8
+                }
+                {
+                    g'8
+                    a'8
+                }
             }
-            {
-                g'8
-                a'8
-            }
-        }
-
-    ::
-
-        >>> show(outer_voice) # doctest: +SKIP
 
     The first two notes belong to the same logical voice 
     and are time-contiguous:
@@ -76,7 +75,7 @@ def all_are_contiguous_components_in_same_logical_voice(
         ...     components)
         False
 
-    Return boolean.
+    Returns boolean.
     '''
     from abjad.tools import componenttools
 
@@ -110,6 +109,10 @@ def all_are_contiguous_components_in_same_logical_voice(
         if all_are_orphans_of_correct_type:
             return True
 
+    if not allow_orphans:
+        if any(x._select_parentage().is_orphan for x in expr):
+            return False
+
     first = expr[0]
     if not isinstance(first, component_classes):
         return False
@@ -117,23 +120,15 @@ def all_are_contiguous_components_in_same_logical_voice(
     first_parentage = first._select_parentage()
     first_logical_voice_indicator = first_parentage.logical_voice_indicator
     first_root = first_logical_voice_indicator._root
-    total_orphan_components = 0
-    if first._select_parentage().is_orphan:
-        total_orphan_components += 1
     previous = first
     for current in expr[1:]:
         current_parentage = current._select_parentage()
         current_logical_voice_indicator = current_parentage.logical_voice_indicator
         current_root = current_logical_voice_indicator._root
-        if current_parentage.is_orphan:
-            total_orphan_components += 1
         # false if wrong type of component found
         if not isinstance(current, component_classes):
             return False
-        # false if multiple orphan components appear in input
-        if not allow_orphans and 1 < total_orphan_components:
-            return False
-        # false if nonorphan components in different logical voices
+        # false if in different logical voices
         if current_logical_voice_indicator != first_logical_voice_indicator:
             return False
         # false if components in same logical voice are discontiguous
