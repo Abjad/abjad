@@ -119,20 +119,20 @@ def all_are_contiguous_components_in_same_logical_voice(
 
     first_parentage = first._select_parentage()
     first_logical_voice_indicator = first_parentage.logical_voice_indicator
-    first_root = first_logical_voice_indicator._root
+    first_root = first_parentage.root
     previous = first
     for current in expr[1:]:
         current_parentage = current._select_parentage()
-        current_logical_voice_indicator = current_parentage.logical_voice_indicator
-        current_root = current_logical_voice_indicator._root
+        current_logical_voice_indicator = \
+            current_parentage.logical_voice_indicator
         # false if wrong type of component found
         if not isinstance(current, component_classes):
             return False
         # false if in different logical voices
         if current_logical_voice_indicator != first_logical_voice_indicator:
             return False
-        # false if components in same logical voice are discontiguous
-        if current_logical_voice_indicator._root == first_root:
+        # false if components are in same score and are discontiguous
+        if current_parentage.root == first_root:
             if not previous._is_immediate_temporal_successor_of(current):
                 return False
         previous = current

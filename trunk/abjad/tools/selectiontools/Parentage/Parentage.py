@@ -191,7 +191,6 @@ class Parentage(SimultaneousSelection):
             elif isinstance(component, scoretools.Score) and \
                 signature._score is None:
                 signature._score = self._id_string(component)
-        signature._root = id(component)
         return signature
 
     @property

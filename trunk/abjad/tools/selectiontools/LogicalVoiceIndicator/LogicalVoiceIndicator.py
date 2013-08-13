@@ -39,7 +39,6 @@ class LogicalVoiceIndicator(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self):
-        self._root = None
         self._score = None
         self._staff = None
         self._staff_group = None
