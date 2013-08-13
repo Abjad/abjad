@@ -208,11 +208,11 @@ class Inspector(Selection):
 
             ::
 
-            >>> staff = Staff("c'4 d'4 e'4")
-            >>> time_signature = contexttools.TimeSignatureMark((3, 8))
-            >>> time_signature.attach(staff)
-            TimeSignatureMark((3, 8))(Staff{3})
-            >>> show(staff) # doctest: +SKIP
+                >>> staff = Staff("c'4 d'4 e'4")
+                >>> time_signature = contexttools.TimeSignatureMark((3, 8))
+                >>> time_signature.attach(staff)
+                TimeSignatureMark((3, 8))(Staff{3})
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 

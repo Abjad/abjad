@@ -2,7 +2,7 @@
 from abjad.tools import componenttools
 
 
-def iterate_thread_from_component(
+def iterate_logical_voice_from_component(
     component, 
     component_class=None, 
     reverse=False,
@@ -49,7 +49,7 @@ def iterate_thread_from_component(
 
     ::
 
-        >>> for x in iterationtools.iterate_thread_from_component(
+        >>> for x in iterationtools.iterate_logical_voice_from_component(
         ...     staff.select_leaves(allow_discontiguous_leaves=True)[0], Note):
         ...     x
         ...
@@ -62,7 +62,7 @@ def iterate_thread_from_component(
 
     ::
 
-        >>> for x in iterationtools.iterate_thread_from_component(
+        >>> for x in iterationtools.iterate_logical_voice_from_component(
         ...     staff.select_leaves(allow_discontiguous_leaves=True)[1], Note):
         ...     x
         ...
@@ -74,7 +74,7 @@ def iterate_thread_from_component(
 
     ::
 
-        >>> for x in iterationtools.iterate_thread_from_component(
+        >>> for x in iterationtools.iterate_logical_voice_from_component(
         ...     staff.select_leaves(allow_discontiguous_leaves=True)[0]):
         ...     x
         ...
@@ -90,7 +90,7 @@ def iterate_thread_from_component(
 
     ::
 
-        >>> for x in iterationtools.iterate_thread_from_component(
+        >>> for x in iterationtools.iterate_logical_voice_from_component(
         ...     staff.select_leaves(allow_discontiguous_leaves=True)[-1], 
         ...     Note, 
         ...     reverse=True,
@@ -105,7 +105,7 @@ def iterate_thread_from_component(
 
     ::
 
-        >>> for x in iterationtools.iterate_thread_from_component(
+        >>> for x in iterationtools.iterate_logical_voice_from_component(
         ...     staff.select_leaves(allow_discontiguous_leaves=True)[-1], 
         ...     reverse=True,
         ...     ):

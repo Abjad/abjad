@@ -34,7 +34,7 @@ def profile_expr(
                 1    0.000    0.000    0.003    0.003 Context.py:11(__init__)
                 1    0.000    0.000    0.003    0.003 Container.py:23(__init__)
                 1    0.000    0.000    0.003    0.003 Container.py:271(_initialize_music)
-                2    0.000    0.000    0.002    0.001 all_are_thread_contiguous_components.p
+                2    0.000    0.000    0.002    0.001 all_are_logical_voice_contiguous_components.p
                52    0.001    0.000    0.002    0.000 component_to_thread_signature.py:5(com
                 1    0.000    0.000    0.002    0.002 _construct_unprolated_notes.py:4(_cons
                 8    0.000    0.000    0.002    0.000 make_tied_note.py:5(make_tied_note)

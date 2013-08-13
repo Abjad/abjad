@@ -4,18 +4,18 @@ from abjad.tools.componenttools.Component import Component
 import py.test
 
 
-def test_componenttools_all_are_components_in_same_thread_01():
+def test_componenttools_all_are_components_in_same_logical_voice_01():
     r'''Unincorporated leaves do not thread.
     Unicorporated leaves do not share a root component.
     False if not allow orphans; True if allow orphans.
     '''
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
-    assert componenttools.all_are_components_in_same_thread(notes)
-    assert not componenttools.all_are_components_in_same_thread(notes, allow_orphans=False)
+    assert componenttools.all_are_components_in_same_logical_voice(notes)
+    assert not componenttools.all_are_components_in_same_logical_voice(notes, allow_orphans=False)
 
 
-def test_componenttools_all_are_components_in_same_thread_02():
+def test_componenttools_all_are_components_in_same_logical_voice_02():
     r'''Container and leaves all thread.
     '''
 
@@ -30,10 +30,10 @@ def test_componenttools_all_are_components_in_same_thread_02():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(list(iterationtools.iterate_components_in_expr(container, Component)))
+    assert componenttools.all_are_components_in_same_logical_voice(list(iterationtools.iterate_components_in_expr(container, Component)))
 
 
-def test_componenttools_all_are_components_in_same_thread_03():
+def test_componenttools_all_are_components_in_same_logical_voice_03():
     r'''Tuplet and leaves all thread.
     '''
 
@@ -47,10 +47,10 @@ def test_componenttools_all_are_components_in_same_thread_03():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(list(iterationtools.iterate_components_in_expr(tuplet, Component)))
+    assert componenttools.all_are_components_in_same_logical_voice(list(iterationtools.iterate_components_in_expr(tuplet, Component)))
 
 
-def test_componenttools_all_are_components_in_same_thread_04():
+def test_componenttools_all_are_components_in_same_logical_voice_04():
     r'''Voice and leaves all thread.
     '''
 
@@ -65,11 +65,11 @@ def test_componenttools_all_are_components_in_same_thread_04():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         list(iterationtools.iterate_components_in_expr(voice, Component)))
 
 
-def test_componenttools_all_are_components_in_same_thread_05():
+def test_componenttools_all_are_components_in_same_logical_voice_05():
     r'''Anonymous staff and leaves all thread.
     '''
 
@@ -84,10 +84,10 @@ def test_componenttools_all_are_components_in_same_thread_05():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(list(iterationtools.iterate_components_in_expr(staff, Component)))
+    assert componenttools.all_are_components_in_same_logical_voice(list(iterationtools.iterate_components_in_expr(staff, Component)))
 
 
-def test_componenttools_all_are_components_in_same_thread_06():
+def test_componenttools_all_are_components_in_same_logical_voice_06():
     r'''Voice, sequential and leaves all thread.
     '''
 
@@ -111,11 +111,11 @@ def test_componenttools_all_are_components_in_same_thread_06():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         list(iterationtools.iterate_components_in_expr(voice, Component)))
 
 
-def test_componenttools_all_are_components_in_same_thread_07():
+def test_componenttools_all_are_components_in_same_logical_voice_07():
     r'''Anonymous voice, tuplets and leaves all thread.
     '''
 
@@ -137,10 +137,10 @@ def test_componenttools_all_are_components_in_same_thread_07():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(list(iterationtools.iterate_components_in_expr(voice, Component)))
+    assert componenttools.all_are_components_in_same_logical_voice(list(iterationtools.iterate_components_in_expr(voice, Component)))
 
 
-def test_componenttools_all_are_components_in_same_thread_08():
+def test_componenttools_all_are_components_in_same_logical_voice_08():
     r'''Can not thread across anonymous voices.
     '''
 
@@ -164,13 +164,13 @@ def test_componenttools_all_are_components_in_same_thread_08():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(staff.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert componenttools.all_are_components_in_same_thread(staff.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not componenttools.all_are_components_in_same_thread(staff.select_leaves(allow_discontiguous_leaves=True))
-    assert not componenttools.all_are_components_in_same_thread(staff[:])
+    assert componenttools.all_are_components_in_same_logical_voice(staff.select_leaves(allow_discontiguous_leaves=True)[:4])
+    assert componenttools.all_are_components_in_same_logical_voice(staff.select_leaves(allow_discontiguous_leaves=True)[4:])
+    assert not componenttools.all_are_components_in_same_logical_voice(staff.select_leaves(allow_discontiguous_leaves=True))
+    assert not componenttools.all_are_components_in_same_logical_voice(staff[:])
 
 
-def test_componenttools_all_are_components_in_same_thread_09():
+def test_componenttools_all_are_components_in_same_logical_voice_09():
     r'''Can thread across like-named voices.
     '''
 
@@ -196,10 +196,10 @@ def test_componenttools_all_are_components_in_same_thread_09():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(staff.select_leaves(allow_discontiguous_leaves=True))
+    assert componenttools.all_are_components_in_same_logical_voice(staff.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_10():
+def test_componenttools_all_are_components_in_same_logical_voice_10():
     r'''Can not thread across differently named voices.
     '''
 
@@ -221,10 +221,10 @@ def test_componenttools_all_are_components_in_same_thread_10():
     }
     '''
 
-    assert not componenttools.all_are_components_in_same_thread(staff.select_leaves(allow_discontiguous_leaves=True))
+    assert not componenttools.all_are_components_in_same_logical_voice(staff.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_11():
+def test_componenttools_all_are_components_in_same_logical_voice_11():
     r'''Can not thread across anonymous voices.
     Can not thread across anonymous staves.
     '''
@@ -249,10 +249,10 @@ def test_componenttools_all_are_components_in_same_thread_11():
     }
     '''
 
-    assert not componenttools.all_are_components_in_same_thread(container.select_leaves(allow_discontiguous_leaves=True))
+    assert not componenttools.all_are_components_in_same_logical_voice(container.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_12():
+def test_componenttools_all_are_components_in_same_logical_voice_12():
     r'''Can not thread across anonymous voices.
     Can not thread across anonymous staves.
     '''
@@ -287,11 +287,11 @@ def test_componenttools_all_are_components_in_same_thread_12():
     }
     '''
 
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[:4])
 
 
-def test_componenttools_all_are_components_in_same_thread_13():
+def test_componenttools_all_are_components_in_same_logical_voice_13():
     r'''Anonymous voice, sequentials and leaves all thread.
     '''
 
@@ -311,11 +311,11 @@ def test_componenttools_all_are_components_in_same_thread_13():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         voice.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_14():
+def test_componenttools_all_are_components_in_same_logical_voice_14():
     r'''Can thread across like-named staves.
     Can not thread across differently named IMPLICIT voices.
     '''
@@ -342,11 +342,11 @@ def test_componenttools_all_are_components_in_same_thread_14():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert not componenttools.all_are_components_in_same_thread(container.select_leaves(allow_discontiguous_leaves=True))
+    assert componenttools.all_are_components_in_same_logical_voice(container.select_leaves(allow_discontiguous_leaves=True)[:4])
+    assert not componenttools.all_are_components_in_same_logical_voice(container.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_15():
+def test_componenttools_all_are_components_in_same_logical_voice_15():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
@@ -373,15 +373,15 @@ def test_componenttools_all_are_components_in_same_thread_15():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_16():
+def test_componenttools_all_are_components_in_same_logical_voice_16():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
@@ -405,15 +405,15 @@ def test_componenttools_all_are_components_in_same_thread_16():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_17():
+def test_componenttools_all_are_components_in_same_logical_voice_17():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
@@ -441,15 +441,15 @@ def test_componenttools_all_are_components_in_same_thread_17():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_18():
+def test_componenttools_all_are_components_in_same_logical_voice_18():
     r'''Can not thread over differently named IMPLICIT voices.
     '''
 
@@ -477,15 +477,15 @@ def test_componenttools_all_are_components_in_same_thread_18():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_19():
+def test_componenttools_all_are_components_in_same_logical_voice_19():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
@@ -509,15 +509,15 @@ def test_componenttools_all_are_components_in_same_thread_19():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_20():
+def test_componenttools_all_are_components_in_same_logical_voice_20():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
@@ -541,15 +541,15 @@ def test_componenttools_all_are_components_in_same_thread_20():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_21():
+def test_componenttools_all_are_components_in_same_logical_voice_21():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
@@ -571,15 +571,15 @@ def test_componenttools_all_are_components_in_same_thread_21():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_22():
+def test_componenttools_all_are_components_in_same_logical_voice_22():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
@@ -602,15 +602,15 @@ def test_componenttools_all_are_components_in_same_thread_22():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_23():
+def test_componenttools_all_are_components_in_same_logical_voice_23():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
@@ -633,15 +633,15 @@ def test_componenttools_all_are_components_in_same_thread_23():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_24():
+def test_componenttools_all_are_components_in_same_logical_voice_24():
     r'''Can not thread across differently named IMPLICIT voices.
     NOTE: THIS IS THE LILYPOND LACUNA.
     LilyPond *does* thread in this case.
@@ -667,15 +667,15 @@ def test_componenttools_all_are_components_in_same_thread_24():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_25():
+def test_componenttools_all_are_components_in_same_logical_voice_25():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
@@ -697,15 +697,15 @@ def test_componenttools_all_are_components_in_same_thread_25():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_26():
+def test_componenttools_all_are_components_in_same_logical_voice_26():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
@@ -728,15 +728,15 @@ def test_componenttools_all_are_components_in_same_thread_26():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_27():
+def test_componenttools_all_are_components_in_same_logical_voice_27():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
@@ -762,15 +762,15 @@ def test_componenttools_all_are_components_in_same_thread_27():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_28():
+def test_componenttools_all_are_components_in_same_logical_voice_28():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
@@ -797,15 +797,15 @@ def test_componenttools_all_are_components_in_same_thread_28():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_29():
+def test_componenttools_all_are_components_in_same_logical_voice_29():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
@@ -833,15 +833,15 @@ def test_componenttools_all_are_components_in_same_thread_29():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_30():
+def test_componenttools_all_are_components_in_same_logical_voice_30():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
@@ -867,15 +867,15 @@ def test_componenttools_all_are_components_in_same_thread_30():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_31():
+def test_componenttools_all_are_components_in_same_logical_voice_31():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
@@ -909,13 +909,13 @@ def test_componenttools_all_are_components_in_same_thread_31():
     }
     '''
 
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[:8])
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[4:])
 
 
-def test_componenttools_all_are_components_in_same_thread_32():
+def test_componenttools_all_are_components_in_same_logical_voice_32():
     r'''Can not thread across differently named IMPLICIT voices.
     '''
 
@@ -946,13 +946,13 @@ def test_componenttools_all_are_components_in_same_thread_32():
     }
     '''
 
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[:8])
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[4:])
 
 
-def test_componenttools_all_are_components_in_same_thread_33():
+def test_componenttools_all_are_components_in_same_logical_voice_33():
     r'''Can thread across gaps.
     Can not thread across differently named voices.
     '''
@@ -988,17 +988,17 @@ def test_componenttools_all_are_components_in_same_thread_33():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         [container.select_leaves(allow_discontiguous_leaves=True)[i] for i in outer])
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         [container.select_leaves(allow_discontiguous_leaves=True)[i] for i in middle])
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         [container.select_leaves(allow_discontiguous_leaves=True)[i] for i in inner])
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[:4])
 
 
-def test_componenttools_all_are_components_in_same_thread_34():
+def test_componenttools_all_are_components_in_same_logical_voice_34():
     r'''Can thread across gaps.
     Can not thread across differently named IMPLICIT voices.
     '''
@@ -1034,17 +1034,17 @@ def test_componenttools_all_are_components_in_same_thread_34():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         [staff.select_leaves(allow_discontiguous_leaves=True)[i] for i in outer])
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         [staff.select_leaves(allow_discontiguous_leaves=True)[i] for i in middle])
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         [staff.select_leaves(allow_discontiguous_leaves=True)[i] for i in inner])
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         staff.select_leaves(allow_discontiguous_leaves=True)[:4])
 
 
-def test_componenttools_all_are_components_in_same_thread_35():
+def test_componenttools_all_are_components_in_same_logical_voice_35():
     r'''Containers and leaves all thread.
     '''
 
@@ -1074,11 +1074,11 @@ def test_componenttools_all_are_components_in_same_thread_35():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         list(iterationtools.iterate_components_in_expr(t, Component)))
 
 
-def test_componenttools_all_are_components_in_same_thread_36():
+def test_componenttools_all_are_components_in_same_logical_voice_36():
     r'''Tuplets and leaves all thread.
     '''
 
@@ -1113,11 +1113,11 @@ def test_componenttools_all_are_components_in_same_thread_36():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         list(iterationtools.iterate_components_in_expr(t, Component)))
 
 
-def test_componenttools_all_are_components_in_same_thread_37():
+def test_componenttools_all_are_components_in_same_logical_voice_37():
     r'''Can not thread across differently named voices.
     '''
 
@@ -1148,15 +1148,15 @@ def test_componenttools_all_are_components_in_same_thread_37():
     outer = (0, 1, 6, 7)
     inner = (2, 3, 4, 5)
 
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         [container.select_leaves(allow_discontiguous_leaves=True)[i] for i in outer])
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         [container.select_leaves(allow_discontiguous_leaves=True)[i] for i in inner])
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_38():
+def test_componenttools_all_are_components_in_same_logical_voice_38():
     r'''Can not thread over differently named voices.
     '''
 
@@ -1184,12 +1184,12 @@ def test_componenttools_all_are_components_in_same_thread_38():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert componenttools.all_are_components_in_same_thread(container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not componenttools.all_are_components_in_same_thread(container.select_leaves(allow_discontiguous_leaves=True))
+    assert componenttools.all_are_components_in_same_logical_voice(container.select_leaves(allow_discontiguous_leaves=True)[:4])
+    assert componenttools.all_are_components_in_same_logical_voice(container.select_leaves(allow_discontiguous_leaves=True)[4:])
+    assert not componenttools.all_are_components_in_same_logical_voice(container.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_39():
+def test_componenttools_all_are_components_in_same_logical_voice_39():
     r'''Can not nest across differently named implicit voices.
     '''
 
@@ -1224,12 +1224,12 @@ def test_componenttools_all_are_components_in_same_thread_39():
     outer = (0, 1, 6, 7)
     inner = (2, 3, 4, 5)
 
-    assert componenttools.all_are_components_in_same_thread([container.select_leaves(allow_discontiguous_leaves=True)[i] for i in outer])
-    assert componenttools.all_are_components_in_same_thread([container.select_leaves(allow_discontiguous_leaves=True)[i] for i in inner])
-    assert not componenttools.all_are_components_in_same_thread(container.select_leaves(allow_discontiguous_leaves=True))
+    assert componenttools.all_are_components_in_same_logical_voice([container.select_leaves(allow_discontiguous_leaves=True)[i] for i in outer])
+    assert componenttools.all_are_components_in_same_logical_voice([container.select_leaves(allow_discontiguous_leaves=True)[i] for i in inner])
+    assert not componenttools.all_are_components_in_same_logical_voice(container.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_40():
+def test_componenttools_all_are_components_in_same_logical_voice_40():
     r'''Can not thread across differently named voices.
     '''
 
@@ -1274,12 +1274,12 @@ def test_componenttools_all_are_components_in_same_thread_40():
     outer = (0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15)
     inner = (6, 7, 8, 9)
 
-    assert componenttools.all_are_components_in_same_thread([voice.select_leaves(allow_discontiguous_leaves=True)[i] for i in outer])
-    assert componenttools.all_are_components_in_same_thread([voice.select_leaves(allow_discontiguous_leaves=True)[i] for i in inner])
-    assert not componenttools.all_are_components_in_same_thread(voice.select_leaves(allow_discontiguous_leaves=True))
+    assert componenttools.all_are_components_in_same_logical_voice([voice.select_leaves(allow_discontiguous_leaves=True)[i] for i in outer])
+    assert componenttools.all_are_components_in_same_logical_voice([voice.select_leaves(allow_discontiguous_leaves=True)[i] for i in inner])
+    assert not componenttools.all_are_components_in_same_logical_voice(voice.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_41():
+def test_componenttools_all_are_components_in_same_logical_voice_41():
     r'''Can not thread across differently named anonymous voices.
     '''
 
@@ -1308,15 +1308,15 @@ def test_componenttools_all_are_components_in_same_thread_41():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert componenttools.all_are_components_in_same_thread(container.select_leaves(allow_discontiguous_leaves=True)[4:8])
-    assert componenttools.all_are_components_in_same_thread(container.select_leaves(allow_discontiguous_leaves=True)[8:])
-    assert not componenttools.all_are_components_in_same_thread(container.select_leaves(allow_discontiguous_leaves=True)[:8])
-    assert not componenttools.all_are_components_in_same_thread(container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not componenttools.all_are_components_in_same_thread(container.select_leaves(allow_discontiguous_leaves=True))
+    assert componenttools.all_are_components_in_same_logical_voice(container.select_leaves(allow_discontiguous_leaves=True)[:4])
+    assert componenttools.all_are_components_in_same_logical_voice(container.select_leaves(allow_discontiguous_leaves=True)[4:8])
+    assert componenttools.all_are_components_in_same_logical_voice(container.select_leaves(allow_discontiguous_leaves=True)[8:])
+    assert not componenttools.all_are_components_in_same_logical_voice(container.select_leaves(allow_discontiguous_leaves=True)[:8])
+    assert not componenttools.all_are_components_in_same_logical_voice(container.select_leaves(allow_discontiguous_leaves=True)[4:])
+    assert not componenttools.all_are_components_in_same_logical_voice(container.select_leaves(allow_discontiguous_leaves=True))
 
 
-def test_componenttools_all_are_components_in_same_thread_42():
+def test_componenttools_all_are_components_in_same_logical_voice_42():
     r'''Can not thread across differently named anonymous voices.
     '''
 
@@ -1351,13 +1351,13 @@ def test_componenttools_all_are_components_in_same_thread_42():
 
     outer = (0, 1, 10, 11)
 
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         [container.select_leaves(allow_discontiguous_leaves=True)[i] for i in outer])
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[2:6])
-    assert componenttools.all_are_components_in_same_thread(
+    assert componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[6:10])
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True)[:6])
-    assert not componenttools.all_are_components_in_same_thread(
+    assert not componenttools.all_are_components_in_same_logical_voice(
         container.select_leaves(allow_discontiguous_leaves=True))

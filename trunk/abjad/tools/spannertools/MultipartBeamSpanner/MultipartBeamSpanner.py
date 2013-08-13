@@ -56,10 +56,10 @@ class MultipartBeamSpanner(BeamSpanner):
             direction_string = '%s ' % self.direction
         if self.is_beamable_component(leaf):
             if 1 < len(self.leaves):
-                prev = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, -1)
+                prev = leaftools.get_nth_leaf_in_logical_voice_from_leaf(leaf, -1)
                 if id(prev) not in [id(x) for x in self.leaves]:
                     prev = None
-                next = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1)
+                next = leaftools.get_nth_leaf_in_logical_voice_from_leaf(leaf, 1)
                 if id(next) not in [id(x) for x in self.leaves]:
                     next = None
                 if self._is_my_first_leaf(leaf):
@@ -76,7 +76,7 @@ class MultipartBeamSpanner(BeamSpanner):
                         if self.is_beamable_component(prev):
                             result.append(']')
                 else:
-                    next = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1)
+                    next = leaftools.get_nth_leaf_in_logical_voice_from_leaf(leaf, 1)
                     if next is not None and \
                         not self.is_beamable_component(next):
                         result.append(']')

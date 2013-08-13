@@ -909,7 +909,7 @@ def establish_metrical_hierarchy(
             leaftools.fuse_leaves(tie_chain[:])
 
     # Validate arguments.
-    assert componenttools.all_are_thread_contiguous_components(components)
+    assert componenttools.all_are_logical_voice_contiguous_components(components)
     if not isinstance(metrical_hierarchy,
         timesignaturetools.MetricalHierarchy):
         metrical_hierarchy = \

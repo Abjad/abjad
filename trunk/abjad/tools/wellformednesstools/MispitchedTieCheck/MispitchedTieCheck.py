@@ -24,7 +24,7 @@ class MispitchedTieCheck(Check):
             if spanners:
                 spanner = spanners.pop()
                 if not spanner._is_my_last_leaf(leaf):
-                    next_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(
+                    next_leaf = leaftools.get_nth_leaf_in_logical_voice_from_leaf(
                         leaf, 1)
                     if next_leaf:
                         if leaf.written_pitch != next_leaf.written_pitch:

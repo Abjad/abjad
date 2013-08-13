@@ -130,7 +130,7 @@ class Selection(object):
     def _all_are_components_in_same_thread(
         self, classes=None, allow_orphans=True):
         from abjad.tools import componenttools
-        return componenttool.all_are_components_in_same_thread(
+        return componenttool.all_are_components_in_same_logical_voice(
             classes=classes,
             allow_orphans=allow_orphans,
             )
@@ -156,7 +156,7 @@ class Selection(object):
     def _all_are_contiguous_components_in_same_thread(
         self, component_classes=None, allow_orphans=True):
         from abjad.tools import componenttools
-        return componenttools.all_are_contiguous_components_in_same_thread(
+        return componenttools.all_are_contiguous_components_in_same_logical_voice(
             self,
             component_classes=component_classes,
             allow_orphans=allow_orphans,
@@ -165,7 +165,7 @@ class Selection(object):
     def _all_are_thread_contiguous_components(
         self, component_classes=None, allow_orphans=True):
         from abjad.tools import componenttools
-        return componenttools.all_are_thread_contiguous_components(
+        return componenttools.all_are_logical_voice_contiguous_components(
             self,
             component_classes=component_classes,
             allow_orphans=allow_orphans,

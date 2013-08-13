@@ -2,7 +2,7 @@
 from abjad.tools import componenttools
 
 
-def get_nth_leaf_in_thread_from_leaf(leaf, n=0):
+def get_nth_leaf_in_logical_voice_from_leaf(leaf, n=0):
     r'''Get `n` th leaf in thread from `leaf`:
 
     ::
@@ -31,7 +31,7 @@ def get_nth_leaf_in_thread_from_leaf(leaf, n=0):
     ::
 
         >>> for n in range(8):
-        ...     print n, leaftools.get_nth_leaf_in_thread_from_leaf(staff[0][0], n)
+        ...     print n, leaftools.get_nth_leaf_in_logical_voice_from_leaf(staff[0][0], n)
         ...
         0 c'8
         1 d'8
@@ -56,7 +56,7 @@ def get_nth_leaf_in_thread_from_leaf(leaf, n=0):
         candidates = new_component._select_descendants_starting_with()
         candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
         for candidate in candidates:
-            if componenttools.all_are_components_in_same_thread([component, candidate]):
+            if componenttools.all_are_components_in_same_logical_voice([component, candidate]):
                 return candidate
 
     def _prev(component):
@@ -66,7 +66,7 @@ def get_nth_leaf_in_thread_from_leaf(leaf, n=0):
         candidates = new_component._select_descendants_stopping_with()
         candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
         for candidate in candidates:
-            if componenttools.all_are_components_in_same_thread([component, candidate]):
+            if componenttools.all_are_components_in_same_logical_voice([component, candidate]):
                 return candidate
 
     current_leaf = leaf

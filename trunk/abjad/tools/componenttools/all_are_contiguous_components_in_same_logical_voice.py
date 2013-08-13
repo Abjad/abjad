@@ -3,7 +3,7 @@ import types
 from abjad.tools import selectiontools
 
 
-def all_are_contiguous_components_in_same_thread(
+def all_are_contiguous_components_in_same_logical_voice(
     expr, component_classes=None, allow_orphans=True):
     '''True when elements in `expr` are all contiguous components in same thread.
     Otherwise false:
@@ -11,7 +11,7 @@ def all_are_contiguous_components_in_same_thread(
     ::
 
         >>> staff = Staff("c'8 d'8 e'8")
-        >>> componenttools.all_are_contiguous_components_in_same_thread(
+        >>> componenttools.all_are_contiguous_components_in_same_logical_voice(
         ...     staff.select_leaves())
         True
 
@@ -21,7 +21,7 @@ def all_are_contiguous_components_in_same_thread(
     ::
 
         >>> staff = Staff("c'8 d'8 e'8")
-        >>> componenttools.all_are_contiguous_components_in_same_thread(
+        >>> componenttools.all_are_contiguous_components_in_same_logical_voice(
         ...     staff.select_leaves(), component_classes=Note)
         True
 

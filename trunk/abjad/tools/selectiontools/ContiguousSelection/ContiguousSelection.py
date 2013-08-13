@@ -80,8 +80,8 @@ class ContiguousSelection(Selection):
         '''
         from abjad.tools import componenttools
         from abjad.tools import spannertools
-        assert componenttools.all_are_thread_contiguous_components(self)
-        assert componenttools.all_are_thread_contiguous_components(recipients)
+        assert componenttools.all_are_logical_voice_contiguous_components(self)
+        assert componenttools.all_are_logical_voice_contiguous_components(recipients)
         receipt = spannertools.get_spanners_that_dominate_components(self)
         for spanner, index in receipt:
             for recipient in reversed(recipients):
@@ -101,7 +101,7 @@ class ContiguousSelection(Selection):
         from abjad.tools import componenttools
         from abjad.tools import iterationtools
         from abjad.tools import spannertools
-        assert componenttools.all_are_thread_contiguous_components(self)
+        assert componenttools.all_are_logical_voice_contiguous_components(self)
         crossing_spanners = \
             spannertools.get_spanners_that_cross_components(self)
         components_including_children = \

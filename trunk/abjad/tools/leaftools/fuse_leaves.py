@@ -28,7 +28,7 @@ def fuse_leaves(leaves):
     from abjad.tools import leaftools
     from abjad.tools import selectiontools
 
-    assert componenttools.all_are_thread_contiguous_components(leaves)
+    assert componenttools.all_are_logical_voice_contiguous_components(leaves)
     if not isinstance(leaves, selectiontools.SliceSelection):
         leaves = selectiontools.SliceSelection(leaves)
 

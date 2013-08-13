@@ -3,7 +3,7 @@ import types
 from abjad.tools import selectiontools
 
 
-def all_are_thread_contiguous_components(
+def all_are_logical_voice_contiguous_components(
     expr, component_classes=None, allow_orphans=True):
     r'''True when elements in `expr` are all thread-contiguous components:
 
@@ -40,25 +40,25 @@ def all_are_thread_contiguous_components(
     The first two notes belong to the same thread and are time-contiguous:
 
         >>> components = container_1.select_leaves()
-        >>> componenttools.all_are_thread_contiguous_components(components)
+        >>> componenttools.all_are_logical_voice_contiguous_components(components)
         True
 
     The middle two notes belong to the same thread and are time-contiguous:
 
         >>> components = inner_voice.select_leaves()
-        >>> componenttools.all_are_thread_contiguous_components(components)
+        >>> componenttools.all_are_logical_voice_contiguous_components(components)
         True
 
     The middle two notes belong to the same thread and are time-contiguous:
 
         >>> components = container_1.select_leaves()
-        >>> componenttools.all_are_thread_contiguous_components(components)
+        >>> componenttools.all_are_logical_voice_contiguous_components(components)
         True
 
     But the six leaves taken together belong to different threads:
 
         >>> components = outer_voice.select_leaves()
-        >>> componenttools.all_are_thread_contiguous_components(components)
+        >>> componenttools.all_are_logical_voice_contiguous_components(components)
         False
 
     The first two leaves and the last two leaves belong to the same thread.
@@ -67,7 +67,7 @@ def all_are_thread_contiguous_components(
 
         >>> components = container_1.select_leaves()
         >>> components += container_2.select_leaves()
-        >>> componenttools.all_are_thread_contiguous_components(components)
+        >>> componenttools.all_are_logical_voice_contiguous_components(components)
         False
 
     Return boolean.

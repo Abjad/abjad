@@ -18,7 +18,7 @@ class DiscontiguousSpannerCheck(Check):
             spannertools.get_spanners_attached_to_any_improper_child_of_component(
             expr):
             if spanner._contiguity_constraint == 'thread':
-                if not componenttools.all_are_thread_contiguous_components(
+                if not componenttools.all_are_logical_voice_contiguous_components(
                     spanner[:]):
                     violators.append(spanner)
             total += 1

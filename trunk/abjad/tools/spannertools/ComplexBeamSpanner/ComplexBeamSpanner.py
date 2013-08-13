@@ -92,8 +92,8 @@ class ComplexBeamSpanner(BeamSpanner):
         #if leaf.beam.beamable:
         if self.is_beamable_component(leaf):
             previous_leaf = \
-                leaftools.get_nth_leaf_in_thread_from_leaf(leaf, -1)
-            next_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1)
+                leaftools.get_nth_leaf_in_logical_voice_from_leaf(leaf, -1)
+            next_leaf = leaftools.get_nth_leaf_in_logical_voice_from_leaf(leaf, 1)
             # lone
             if self._is_my_only_leaf(leaf):
                 if self.lone:
@@ -127,12 +127,12 @@ class ComplexBeamSpanner(BeamSpanner):
             left, right = self._get_left_right_for_lone_leaf(leaf)
         # first
         elif self._is_my_first_leaf(leaf) or \
-            not leaftools.get_nth_leaf_in_thread_from_leaf(leaf, -1):
+            not leaftools.get_nth_leaf_in_logical_voice_from_leaf(leaf, -1):
             left = 0
             right = leaf.written_duration.flag_count
         # last
         elif self._is_my_last_leaf(leaf) or \
-            not leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1):
+            not leaftools.get_nth_leaf_in_logical_voice_from_leaf(leaf, 1):
             left = leaf.written_duration.flag_count
             right = 0
         else:
@@ -146,10 +146,10 @@ class ComplexBeamSpanner(BeamSpanner):
         Four cases total for beamability of surrounding leaves.
         '''
         from abjad.tools import leaftools
-        previous_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, -1)
+        previous_leaf = leaftools.get_nth_leaf_in_logical_voice_from_leaf(leaf, -1)
         previous_written = previous_leaf.written_duration
         current_written = leaf.written_duration
-        next_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1)
+        next_leaf = leaftools.get_nth_leaf_in_logical_voice_from_leaf(leaf, 1)
         next_written = next_leaf.written_duration
         previous_flag_count = previous_written.flag_count
         current_flag_count = current_written.flag_count

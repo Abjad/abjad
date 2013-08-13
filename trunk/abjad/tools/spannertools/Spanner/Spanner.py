@@ -242,7 +242,7 @@ class Spanner(AbjadObject):
         #       Include optional staff-level contiguity check here.
         if self._contiguity_constraint == 'thread':
             leaves = list(iterationtools.iterate_leaves_in_expr(components))
-            assert componenttools.all_are_thread_contiguous_components(leaves)
+            assert componenttools.all_are_logical_voice_contiguous_components(leaves)
         self.extend(components)
 
     def _insert(self, i, component):
@@ -261,8 +261,8 @@ class Spanner(AbjadObject):
             return True
         elif self._is_my_last_leaf(leaf):
             return True
-        elif not leaftools.get_nth_leaf_in_thread_from_leaf(leaf, -1) and \
-            not leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1):
+        elif not leaftools.get_nth_leaf_in_logical_voice_from_leaf(leaf, -1) and \
+            not leaftools.get_nth_leaf_in_logical_voice_from_leaf(leaf, 1):
             return True
         else:
             return False
@@ -458,7 +458,7 @@ class Spanner(AbjadObject):
         '''
         if self._contiguity_constraint == 'thread':
             components = self[-1:] + [component]
-            assert componenttools.all_are_thread_contiguous_components(
+            assert componenttools.all_are_logical_voice_contiguous_components(
                 components), repr(components)
         component._spanners.add(self)
         self._components.append(component)
@@ -482,7 +482,7 @@ class Spanner(AbjadObject):
         Return none.
         '''
         components = [component] + self[:1]
-        assert componenttools.all_are_thread_contiguous_components(components)
+        assert componenttools.all_are_logical_voice_contiguous_components(components)
         component._spanners.add(self)
         self._components.insert(0, component)
 
@@ -537,7 +537,7 @@ class Spanner(AbjadObject):
         component_input = self[-1:]
         component_input.extend(components)
         if self._contiguity_constraint == 'thread':
-            assert componenttools.all_are_thread_contiguous_components(
+            assert componenttools.all_are_logical_voice_contiguous_components(
                 component_input), repr(component_input)
         for component in components:
             self.append(component)
@@ -561,7 +561,7 @@ class Spanner(AbjadObject):
         Return none.
         '''
         component_input = components + self[:1]
-        assert componenttools.all_are_thread_contiguous_components(
+        assert componenttools.all_are_logical_voice_contiguous_components(
             component_input)
         for component in reversed(components):
             self.append_left(component)

@@ -453,7 +453,7 @@ class Container(Component):
         from abjad.tools import componenttools
         if music is None:
             music = []
-        if componenttools.all_are_contiguous_components_in_same_thread(music):
+        if componenttools.all_are_contiguous_components_in_same_logical_voice(music):
             music = selectiontools.SliceSelection(music)
             parent, start, stop = music._get_parent_and_start_stop_indices()
             self._music = list(music)
@@ -466,7 +466,7 @@ class Container(Component):
             self._music = []
             self.is_simultaneous = parsed.is_simultaneous
             if parsed.is_simultaneous or \
-                not componenttools.all_are_thread_contiguous_components(
+                not componenttools.all_are_logical_voice_contiguous_components(
                 parsed[:]):
                 while len(parsed):
                     self.append(parsed.pop(0))
@@ -776,13 +776,13 @@ class Container(Component):
         result = []
         component._set_parent(self)
         self._music.insert(i, component)
-        previous_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(
+        previous_leaf = leaftools.get_nth_leaf_in_logical_voice_from_leaf(
             component, -1)
         if previous_leaf:
             result.extend(
                 spannertools.fracture_spanners_attached_to_component(
                     previous_leaf, direction=Right))
-        next_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(component, 1)
+        next_leaf = leaftools.get_nth_leaf_in_logical_voice_from_leaf(component, 1)
         if next_leaf:
             result.extend(
                 spannertools.fracture_spanners_attached_to_component(

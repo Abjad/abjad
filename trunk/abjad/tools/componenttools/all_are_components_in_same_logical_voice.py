@@ -3,14 +3,14 @@ import types
 from abjad.tools import selectiontools
 
 
-def all_are_components_in_same_thread(expr, classes=None, allow_orphans=True):
+def all_are_components_in_same_logical_voice(expr, classes=None, allow_orphans=True):
     '''True when elements in `expr` are all components in same thread. 
     Otherwise false:
 
     ::
 
         >>> voice = Voice("c'8 d'8 e'8")
-        >>> componenttools.all_are_components_in_same_thread(voice.select_leaves())
+        >>> componenttools.all_are_components_in_same_logical_voice(voice.select_leaves())
         True
 
     True when elements in `expr` are all `classes` in same thread. 
@@ -19,7 +19,7 @@ def all_are_components_in_same_thread(expr, classes=None, allow_orphans=True):
     ::
 
         >>> voice = Voice("c'8 d'8 e'8")
-        >>> componenttools.all_are_components_in_same_thread(
+        >>> componenttools.all_are_components_in_same_logical_voice(
         ...     voice.select_leaves(), classes=Note)
         True
 

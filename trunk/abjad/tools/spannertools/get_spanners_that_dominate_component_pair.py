@@ -22,7 +22,7 @@ def get_spanners_that_dominate_component_pair(left, right):
     if left is None or right is None:
         return set([])
 
-    assert componenttools.all_are_thread_contiguous_components([left, right])
+    assert componenttools.all_are_logical_voice_contiguous_components([left, right])
 
     left_contained = \
         spannertools.get_spanners_attached_to_any_improper_child_of_component(

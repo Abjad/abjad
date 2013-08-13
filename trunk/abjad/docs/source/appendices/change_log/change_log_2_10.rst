@@ -37,8 +37,8 @@ All iteration functions are now housed in the new ``iterationtools`` package:
     iterationtools.iterate_components_depth_first()
     iterationtools.iterate_components_in_expr(reverse=[True, False])
     iterationtools.iterate_namesakes_from_component(reverse=[True, False])
-    iterationtools.iterate_thread_from_component(reverse=[True, False])
-    iterationtools.iterate_thread_in_expr(reverse=[True, False])
+    iterationtools.iterate_logical_voice_from_component(reverse=[True, False])
+    iterationtools.iterate_logical_voice_in_expr(reverse=[True, False])
     iterationtools.iterate_timeline_from_component(reverse=[True, False])
     iterationtools.iterate_timeline_in_expr(reverse=[True, False])
 

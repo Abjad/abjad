@@ -13,7 +13,7 @@ def withdraw_components_from_spanners_covered_by_components(components):
     from abjad.tools import spannertools
 
     # check components
-    assert componenttools.all_are_thread_contiguous_components(components)
+    assert componenttools.all_are_logical_voice_contiguous_components(components)
 
     # withdraw from covered spanners
     for spanner in spannertools.get_spanners_covered_by_components(components):

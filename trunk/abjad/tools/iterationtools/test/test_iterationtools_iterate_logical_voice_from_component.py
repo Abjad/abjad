@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_iterationtools_iterate_thread_from_component_01():
+def test_iterationtools_iterate_logical_voice_from_component_01():
     r'''Iterate only notes.
     '''
 
@@ -39,7 +39,7 @@ def test_iterationtools_iterate_thread_from_component_01():
     }
     '''
 
-    notes = iterationtools.iterate_thread_from_component(
+    notes = iterationtools.iterate_logical_voice_from_component(
         staff.select_leaves(allow_discontiguous_leaves=True)[-1], 
         Note, 
         reverse=True)
@@ -54,7 +54,7 @@ def test_iterationtools_iterate_thread_from_component_01():
     assert notes[3] is voice_2_first_half[0]
 
 
-def test_iterationtools_iterate_thread_from_component_02():
+def test_iterationtools_iterate_logical_voice_from_component_02():
     r'''Iterate all components.
     '''
 
@@ -91,7 +91,7 @@ def test_iterationtools_iterate_thread_from_component_02():
     }
     '''
 
-    components = iterationtools.iterate_thread_from_component(
+    components = iterationtools.iterate_logical_voice_from_component(
         staff.select_leaves(allow_discontiguous_leaves=True)[-1], reverse=True)
     components = list(components)
 
@@ -114,7 +114,7 @@ def test_iterationtools_iterate_thread_from_component_02():
     assert components[5] is staff[0][1][0]
 
 
-def test_iterationtools_iterate_thread_from_component_03():
+def test_iterationtools_iterate_logical_voice_from_component_03():
 
     container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
     container.is_simultaneous = True
@@ -149,7 +149,7 @@ def test_iterationtools_iterate_thread_from_component_03():
     }
     '''
 
-    notes = iterationtools.iterate_thread_from_component(
+    notes = iterationtools.iterate_logical_voice_from_component(
         staff.select_leaves(allow_discontiguous_leaves=True)[0], Note)
     notes = list(notes)
 
@@ -162,7 +162,7 @@ def test_iterationtools_iterate_thread_from_component_03():
     assert notes[3] is voice_1_second_half[1]
 
 
-def test_iterationtools_iterate_thread_from_component_04():
+def test_iterationtools_iterate_logical_voice_from_component_04():
 
     container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
     container.is_simultaneous = True
@@ -197,7 +197,7 @@ def test_iterationtools_iterate_thread_from_component_04():
     }
     '''
 
-    components = iterationtools.iterate_thread_from_component(
+    components = iterationtools.iterate_logical_voice_from_component(
         staff.select_leaves(allow_discontiguous_leaves=True)[0])
     components = list(components)
 

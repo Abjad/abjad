@@ -2,7 +2,7 @@
 from abjad.tools import componenttools
 
 
-def iterate_thread_in_expr(
+def iterate_logical_voice_in_expr(
     expr, 
     component_class, 
     containment_signature, 
@@ -50,7 +50,7 @@ def iterate_thread_in_expr(
 
         >>> leaf = staff.select_leaves(allow_discontiguous_leaves=True)[0]
         >>> signature = more(leaf).select_parentage().containment_signature
-        >>> for x in iterationtools.iterate_thread_in_expr(
+        >>> for x in iterationtools.iterate_logical_voice_in_expr(
         ...     staff, Note, signature):
         ...     x
         ...
@@ -70,22 +70,22 @@ def iterate_thread_in_expr(
     if not reverse:
         if isinstance(expr, (list, tuple)):
             for m in expr:
-                for x in iterationtools.iterate_thread_in_expr(
+                for x in iterationtools.iterate_logical_voice_in_expr(
                     m, component_class, containment_signature):
                     yield x
         if hasattr(expr, '_music'):
             for m in expr._music:
-                for x in iterationtools.iterate_thread_in_expr(
+                for x in iterationtools.iterate_logical_voice_in_expr(
                     m, component_class, containment_signature):
                     yield x
     else:
         if isinstance(expr, (list, tuple)):
             for m in reversed(expr):
-                for x in iterationtools.iterate_thread_in_expr(
+                for x in iterationtools.iterate_logical_voice_in_expr(
                     m, component_class, containment_signature, reverse=True):
                     yield x
         if hasattr(expr, '_music'):
             for m in reversed(expr._music):
-                for x in iterationtools.iterate_thread_in_expr(
+                for x in iterationtools.iterate_logical_voice_in_expr(
                     m, component_class, containment_signature, reverse=True):
                     yield x

@@ -17,7 +17,7 @@ def get_spanners_that_dominate_components(components):
     '''
     from abjad.tools import spannertools
 
-    assert componenttools.all_are_thread_contiguous_components(components,
+    assert componenttools.all_are_logical_voice_contiguous_components(components,
         allow_orphans = False)
 
     receipt = set([])

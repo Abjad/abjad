@@ -228,7 +228,7 @@ def split_component_at_offset(
             if leaf._get_timespan().start_offset == global_split_point:
                 leaf_right_of_split = leaf
                 leaf_left_of_split = \
-                    leaftools.get_nth_leaf_in_thread_from_leaf(
+                    leaftools.get_nth_leaf_in_logical_voice_from_leaf(
                     leaf_right_of_split, -1)
                 break
         else:

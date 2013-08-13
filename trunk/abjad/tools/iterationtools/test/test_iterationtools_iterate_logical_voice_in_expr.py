@@ -2,48 +2,48 @@
 from abjad import *
 
 
-def test_iterationtools_iterate_thread_in_expr_01():
+def test_iterationtools_iterate_logical_voice_in_expr_01():
     r'''Yield nothing when class not present.
     '''
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     thread_signature = more(staff[-1]).select_parentage().containment_signature
-    iter = iterationtools.iterate_thread_in_expr(staff, Rest, thread_signature, reverse=True)
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Rest, thread_signature, reverse=True)
     assert len(list(iter)) == 0
 
 
-def test_iterationtools_iterate_thread_in_expr_02():
+def test_iterationtools_iterate_logical_voice_in_expr_02():
     r'''Yield internal nodes only.
     '''
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     thread_signature = more(staff[-1]).select_parentage().containment_signature
-    iter = iterationtools.iterate_thread_in_expr(staff, Tuplet, thread_signature, reverse=True)
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Tuplet, thread_signature, reverse=True)
     assert len(list(iter)) == 3
 
 
-def test_iterationtools_iterate_thread_in_expr_03():
+def test_iterationtools_iterate_logical_voice_in_expr_03():
     r'''Yield exact leaves.
     '''
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     thread_signature = more(staff[-1]).select_parentage().containment_signature
-    iter = iterationtools.iterate_thread_in_expr(staff, Note, thread_signature, reverse=True)
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, thread_signature, reverse=True)
     assert len(list(iter)) == 9
 
 
-def test_iterationtools_iterate_thread_in_expr_04():
+def test_iterationtools_iterate_logical_voice_in_expr_04():
     r'''Yield leaves based on names higher in inheritence hierarchy.
     '''
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     from abjad.tools.leaftools.Leaf import Leaf
     thread_signature = more(staff[-1][-1]).select_parentage().containment_signature
-    iter = iterationtools.iterate_thread_in_expr(staff, Leaf, thread_signature, reverse=True)
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Leaf, thread_signature, reverse=True)
     assert len(list(iter)) == 9
 
 
-def test_iterationtools_iterate_thread_in_expr_05():
+def test_iterationtools_iterate_logical_voice_in_expr_05():
     r'''Yield Notes in two contiguous Voices with the same name.
     '''
 
@@ -52,7 +52,7 @@ def test_iterationtools_iterate_thread_in_expr_05():
     v1.name = v2.name = 'piccolo'
     staff = Staff([v1, v2])
     thread_signature = more(staff[-1]).select_parentage().containment_signature
-    iter = iterationtools.iterate_thread_in_expr(staff, Note, thread_signature, reverse=True)
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, thread_signature, reverse=True)
     iter = list(iter)
 
     assert len(iter) == 4
@@ -60,7 +60,7 @@ def test_iterationtools_iterate_thread_in_expr_05():
         assert isinstance(e, Note)
 
 
-def test_iterationtools_iterate_thread_in_expr_06():
+def test_iterationtools_iterate_logical_voice_in_expr_06():
     r'''Yield only Notes matching the given thread signature.
     '''
 
@@ -68,7 +68,7 @@ def test_iterationtools_iterate_thread_in_expr_06():
     v2 = Voice(Note(2, (1, 4)) * 2)
     staff = Staff([v1, v2])
     thread_signature = more(staff[-1]).select_parentage().containment_signature
-    iter = iterationtools.iterate_thread_in_expr(staff, Note, thread_signature, reverse=True)
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, thread_signature, reverse=True)
     iter = list(iter)
 
     assert len(iter) == 2
@@ -77,7 +77,7 @@ def test_iterationtools_iterate_thread_in_expr_06():
         assert e.written_pitch.numbered_chromatic_pitch == 2
 
 
-def test_iterationtools_iterate_thread_in_expr_07():
+def test_iterationtools_iterate_logical_voice_in_expr_07():
     r'''Yield only Notes matching the given thread signature.
     '''
 
@@ -87,7 +87,7 @@ def test_iterationtools_iterate_thread_in_expr_07():
     v2.name = 'piccolo'
     staff = Staff([v1, v2])
     thread_signature = more(staff[-1]).select_parentage().containment_signature
-    iter = iterationtools.iterate_thread_in_expr(staff, Note, thread_signature, reverse=True)
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, thread_signature, reverse=True)
     iter = list(iter)
 
     assert len(iter) == 2
@@ -96,48 +96,48 @@ def test_iterationtools_iterate_thread_in_expr_07():
         assert e.written_pitch.numbered_chromatic_pitch == 2
 
 
-def test_iterationtools_iterate_thread_in_expr_08():
+def test_iterationtools_iterate_logical_voice_in_expr_08():
     r'''Yield nothing when class not present.
     '''
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     thread_signature = more(staff[0]).select_parentage().containment_signature
-    iter = iterationtools.iterate_thread_in_expr(staff, Rest, thread_signature)
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Rest, thread_signature)
     assert len(list(iter)) == 0
 
 
-def test_iterationtools_iterate_thread_in_expr_09():
+def test_iterationtools_iterate_logical_voice_in_expr_09():
     r'''Yield internal nodes only.
     '''
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     thread_signature = more(staff[0]).select_parentage().containment_signature
-    iter = iterationtools.iterate_thread_in_expr(staff, Tuplet, thread_signature)
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Tuplet, thread_signature)
     assert len(list(iter)) == 3
 
 
-def test_iterationtools_iterate_thread_in_expr_10():
+def test_iterationtools_iterate_logical_voice_in_expr_10():
     r'''Yield exact leaves.
     '''
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     thread_signature = more(staff[0]).select_parentage().containment_signature
-    iter = iterationtools.iterate_thread_in_expr(staff, Note, thread_signature)
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, thread_signature)
     assert len(list(iter)) == 9
 
 
-def test_iterationtools_iterate_thread_in_expr_11():
+def test_iterationtools_iterate_logical_voice_in_expr_11():
     r'''Yield leaves based on names higher in inheritence hierarchy.
     '''
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     from abjad.tools.leaftools.Leaf import Leaf
     thread_signature = more(staff[0][0]).select_parentage().containment_signature
-    iter = iterationtools.iterate_thread_in_expr(staff, Leaf, thread_signature)
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Leaf, thread_signature)
     assert len(list(iter)) == 9
 
 
-def test_iterationtools_iterate_thread_in_expr_12():
+def test_iterationtools_iterate_logical_voice_in_expr_12():
     r'''Yield Notes in two contiguous Voices with the same name.
     '''
 
@@ -146,7 +146,7 @@ def test_iterationtools_iterate_thread_in_expr_12():
     v1.name = v2.name = 'piccolo'
     staff = Staff([v1, v2])
     thread_signature = more(staff[0]).select_parentage().containment_signature
-    iter = iterationtools.iterate_thread_in_expr(staff, Note, thread_signature)
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, thread_signature)
     iter = list(iter)
 
     assert len(iter) == 4
@@ -154,7 +154,7 @@ def test_iterationtools_iterate_thread_in_expr_12():
         assert isinstance(e, Note)
 
 
-def test_iterationtools_iterate_thread_in_expr_13():
+def test_iterationtools_iterate_logical_voice_in_expr_13():
     r'''Yield only Notes matching the given thread signature.
     '''
 
@@ -162,7 +162,7 @@ def test_iterationtools_iterate_thread_in_expr_13():
     v2 = Voice(Note(2, (1, 4)) * 2)
     staff = Staff([v1, v2])
     thread_signature = more(staff[0]).select_parentage().containment_signature
-    iter = iterationtools.iterate_thread_in_expr(staff, Note, thread_signature)
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, thread_signature)
     iter = list(iter)
 
     assert len(iter) == 2
@@ -171,7 +171,7 @@ def test_iterationtools_iterate_thread_in_expr_13():
         assert e.written_pitch.numbered_chromatic_pitch == 0
 
 
-def test_iterationtools_iterate_thread_in_expr_14():
+def test_iterationtools_iterate_logical_voice_in_expr_14():
     r'''Yield only Notes matching the given thread signature.
     '''
 
@@ -181,7 +181,7 @@ def test_iterationtools_iterate_thread_in_expr_14():
     v2.name = 'piccolo'
     staff = Staff([v1, v2])
     thread_signature = more(staff[0]).select_parentage().containment_signature
-    iter = iterationtools.iterate_thread_in_expr(staff, Note, thread_signature)
+    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, thread_signature)
     iter = list(iter)
 
     assert len(iter) == 2
