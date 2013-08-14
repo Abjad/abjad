@@ -13,12 +13,12 @@ def test_Spanner__is_my_first_leaf_01():
         def _copy_keyword_args(self, new):
             pass
 
-    voice = Voice(notetools.make_repeated_notes(4))
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(voice)
-    spanner = MockSpanner(voice)
+    container = Container(notetools.make_repeated_notes(4))
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
+    spanner = MockSpanner(container)
 
     r'''
-    \new Voice {
+    {
         c'8
         cs'8
         d'8
@@ -26,13 +26,13 @@ def test_Spanner__is_my_first_leaf_01():
     }
     '''
 
-    assert spanner._is_my_first_leaf(voice[0])
-    for leaf in voice[1:]:
+    assert spanner._is_my_first_leaf(container[0])
+    for leaf in container[1:]:
         assert not spanner._is_my_first_leaf(leaf)
-    assert spanner._is_my_last_leaf(voice[-1])
-    for leaf in voice[:-1]:
+    assert spanner._is_my_last_leaf(container[-1])
+    for leaf in container[:-1]:
         assert not spanner._is_my_last_leaf(leaf)
-    for leaf in voice:
+    for leaf in container:
         assert not spanner._is_my_only_leaf(leaf)
 
 
@@ -46,13 +46,13 @@ def test_Spanner__is_my_first_leaf_02():
         def _copy_keyword_args(self, new):
             pass
 
-    voice = Voice(notetools.make_repeated_notes(4))
-    voice.insert(2, Container(notetools.make_repeated_notes(2)))
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(voice)
-    spanner = MockSpanner(voice[:3])
+    container = Container(notetools.make_repeated_notes(4))
+    container.insert(2, Container(notetools.make_repeated_notes(2)))
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
+    spanner = MockSpanner(container[:3])
 
     r'''
-    \new Voice {
+    {
         c'8
         cs'8
         {
@@ -64,35 +64,5 @@ def test_Spanner__is_my_first_leaf_02():
     }
     '''
 
-    assert spanner._is_my_first_leaf(voice[0])
-    assert spanner._is_my_last_leaf(voice[2][1])
-
-# NONSTRUCTURAL in new simultaneous --> context model
-#def test_Spanner__is_my_first_leaf_03():
-#   r'''Spanner attached to container with simultaneous nested contents.'''
-#
-#   t = Voice(notetools.make_repeated_notes(4))
-#   t.insert(2, Container(Container(notetools.make_repeated_notes(2)) * 2))
-#   t[2].is_simultaneous = True
-#   pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
-#
-#   r'''\new Voice {
-#      c'8
-#      cs'8
-#      <<
-#         {
-#            d'8
-#            ef'8
-#         }
-#         {
-#            e'8
-#            f'8
-#         }
-#      >>
-#      fs'8
-#      g'8
-#   }'''
-#
-#   assert py.test.raises(ContiguityError, 'spanner = spannertools.Spanner(t[:3])')
-#   #assert spanner._is_my_first_leaf(t[0])
-#   #assert spanner._is_my_last_leaf(t[1])
+    assert spanner._is_my_first_leaf(container[0])
+    assert spanner._is_my_last_leaf(container[2][1])

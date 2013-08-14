@@ -6,23 +6,13 @@ def test_SlurSpanner_01():
     r'''Slur spanner can attach to a container.
     '''
 
-    voice = Voice("c'8 d'8 e'8 f'8")
-    slur = spannertools.SlurSpanner(voice)
+    container = Container("c'8 d'8 e'8 f'8")
+    slur = spannertools.SlurSpanner(container)
 
-    r'''
-    \new Voice {
-        c'8 (
-        d'8
-        e'8
-        f'8 )
-    }
-    '''
-
-    assert more(voice).get_spanners() == set([slur])
     assert testtools.compare(
-        voice,
+        container,
         r'''
-        \new Voice {
+        {
             c'8 (
             d'8
             e'8
@@ -30,22 +20,21 @@ def test_SlurSpanner_01():
         }
         '''
         )
+
+    assert more(container).get_spanners() == set([slur])
 
 
 def test_SlurSpanner_02():
     r'''Slur spanner can attach to leaves.
     '''
 
-    voice = Voice("c'8 d'8 e'8 f'8")
-    slur = spannertools.SlurSpanner(voice[:])
+    container = Container("c'8 d'8 e'8 f'8")
+    slur = spannertools.SlurSpanner(container[:])
 
-    assert len(more(voice).get_spanners()) == 0
-    for leaf in voice.select_leaves():
-        assert more(leaf).get_spanners() == set([slur])
     assert testtools.compare(
-        voice,
+        container,
         r'''
-        \new Voice {
+        {
             c'8 (
             d'8
             e'8
@@ -53,3 +42,7 @@ def test_SlurSpanner_02():
         }
         '''
         )
+
+    assert len(more(container).get_spanners()) == 0
+    for leaf in container.select_leaves():
+        assert more(leaf).get_spanners() == set([slur])

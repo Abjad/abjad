@@ -39,7 +39,7 @@ def test_Component__get_in_my_logical_voice_03():
     assert container[0]._get_in_my_logical_voice(1, Voice) is None
 
 
-def test_Component__get_in_my_logical_voice_05():
+def test_Component__get_in_my_logical_voice_04():
     r'''Differently named contexts create different logical voices.
     '''
 
@@ -53,7 +53,7 @@ def test_Component__get_in_my_logical_voice_05():
     assert leaves[2]._get_in_my_logical_voice(1, Note) is leaves[3]
 
 
-def test_Component__get_in_my_logical_voice_06():
+def test_Component__get_in_my_logical_voice_05():
     r'''Like-named contexts create the same logical voice.
     '''
 
@@ -67,7 +67,7 @@ def test_Component__get_in_my_logical_voice_06():
     assert leaves[1]._get_in_my_logical_voice(1, Note) is leaves[2]
 
 
-def test_Component__get_in_my_logical_voice_07():
+def test_Component__get_in_my_logical_voice_06():
     r'''Like-named contexts create the same logical voice.
     The intervening rest exists in a different logical voice.
     '''
@@ -81,7 +81,7 @@ def test_Component__get_in_my_logical_voice_07():
     assert leaves[1]._get_in_my_logical_voice(1, Note) is leaves[3]
 
 
-def test_Component__get_in_my_logical_voice_08():
+def test_Component__get_in_my_logical_voice_07():
     r'''Get component in same logical voice across simultaneous containers.
     '''
 

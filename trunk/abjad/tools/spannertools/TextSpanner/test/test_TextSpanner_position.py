@@ -8,15 +8,6 @@ def test_TextSpanner_position_01():
     staff = Staff(notetools.make_repeated_notes(4))
     text_spanner = spannertools.TextSpanner(staff[:])
 
-    r'''
-    \new Staff {
-        c'8 \startTextSpan
-        c'8
-        c'8
-        c'8 \stopTextSpan
-    }
-    '''
-
     assert testtools.compare(
         staff,
         r'''
@@ -35,16 +26,6 @@ def test_TextSpanner_position_02():
     staff = Staff(notetools.make_repeated_notes(4))
     text_spanner = spannertools.TextSpanner(staff[:])
     marktools.LilyPondCommandMark('textSpannerNeutral')(text_spanner[0])
-
-    r'''
-    \new Staff {
-        \textSpannerNeutral
-        c'8 \startTextSpan
-        c'8
-        c'8
-        c'8 \stopTextSpan
-    }
-    '''
 
     assert testtools.compare(
         staff,
@@ -66,16 +47,6 @@ def test_TextSpanner_position_03():
     text_spanner = spannertools.TextSpanner(staff[:])
     marktools.LilyPondCommandMark('textSpannerUp')(text_spanner[0])
 
-    r'''
-    \new Staff {
-        \textSpannerUp
-        c'8 \startTextSpan
-        c'8
-        c'8
-        c'8 \stopTextSpan
-    }
-    '''
-
     assert testtools.compare(
         staff,
         r'''
@@ -96,16 +67,6 @@ def test_TextSpanner_position_04():
     text_spanner = spannertools.TextSpanner(staff[:])
     marktools.LilyPondCommandMark('textSpannerDown')(text_spanner[0])
 
-    r'''
-    \new Staff {
-        \textSpannerDown
-        c'8 \startTextSpan
-        c'8
-        c'8
-        c'8 \stopTextSpan
-    }
-    '''
-
     assert testtools.compare(
         staff,
         r'''
@@ -124,22 +85,13 @@ def test_TextSpanner_position_05():
     r'''TextSpanner attaching to container formats correctly.
     '''
 
-    staff = Staff(notetools.make_repeated_notes(4))
-    text_spanner = spannertools.TextSpanner(staff)
-
-    r'''
-    \new Staff {
-        c'8 \startTextSpan
-        c'8
-        c'8
-        c'8 \stopTextSpan
-    }
-    '''
+    container = Container(notetools.make_repeated_notes(4))
+    text_spanner = spannertools.TextSpanner(container)
 
     assert testtools.compare(
-        staff,
+        container,
         r'''
-        \new Staff {
+        {
             c'8 \startTextSpan
             c'8
             c'8

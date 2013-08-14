@@ -6,24 +6,28 @@ def test_spannertools_get_spanners_on_components_or_component_children_01():
     r'''Get all spanners attaching directly to any component in list.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    b1 = spannertools.BeamSpanner(staff[:2])
-    b2 = spannertools.BeamSpanner(staff[2:])
-    crescendo = spannertools.CrescendoSpanner(staff)
+    container = Container("c'8 d'8 e'8 f'8")
+    beam_1 = spannertools.BeamSpanner(container[:2])
+    beam_2 = spannertools.BeamSpanner(container[2:])
+    crescendo = spannertools.CrescendoSpanner(container)
 
-    r'''
-    \new Staff {
-        c'8 [ \<
-        d'8 ]
-        e'8 [
-        f'8 ] \!
-    }
-    '''
+    assert testtools.compare(
+        container,
+        r'''
+        {
+            c'8 [ \<
+            d'8 ]
+            e'8 [
+            f'8 ] \!
+        }
+        '''
+        )
 
-    spanners = spannertools.get_spanners_on_components_or_component_children(staff[:])
+    spanners = spannertools.get_spanners_on_components_or_component_children(
+        container[:])
 
-    assert b1 in spanners
-    assert b2 in spanners
+    assert beam_1 in spanners
+    assert beam_2 in spanners
     assert crescendo not in spanners
 
 
@@ -31,7 +35,8 @@ def test_spannertools_get_spanners_on_components_or_component_children_02():
     r'''Accept empty component list.
     '''
 
-    spanners = spannertools.get_spanners_on_components_or_component_children([])
+    spanners = spannertools.get_spanners_on_components_or_component_children(
+        [])
 
     assert spanners == set([])
 
@@ -40,7 +45,8 @@ def test_spannertools_get_spanners_on_components_or_component_children_03():
     r'''Return empty set when no spanners.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    spanners = spannertools.get_spanners_on_components_or_component_children(staff[:])
+    container = Container("c'8 d'8 e'8 f'8")
+    spanners = spannertools.get_spanners_on_components_or_component_children(
+        container[:])
 
     assert spanners == set([])

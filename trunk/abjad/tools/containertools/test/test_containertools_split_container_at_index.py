@@ -11,41 +11,9 @@ def test_containertools_split_container_at_index_01():
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
     p = spannertools.BeamSpanner(voice[:])
 
-    r'''
-    \new Voice {
-        \times 2/3 {
-            c'8
-            d'8
-            e'8
-        }
-        \times 2/3 {
-            f'8
-            g'8
-            a'8
-        }
-    }
-    '''
+    containertools.split_container_at_index(
+        voice[1], 1, fracture_spanners=False)
 
-    containertools.split_container_at_index(voice[1], 1, fracture_spanners=False)
-
-    r'''
-    \new Voice {
-        \times 2/3 {
-            c'8 [
-            d'8
-            e'8
-        }
-        \times 2/3 {
-            f'8
-        }
-        \times 2/3 {
-            g'8
-            a'8 ]
-        }
-    }
-    '''
-
-    assert select(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -66,55 +34,21 @@ def test_containertools_split_container_at_index_01():
         '''
         )
 
+    assert select(voice).is_well_formed()
+
 
 def test_containertools_split_container_at_index_02():
-    r'''Split in-score measure with power-of-two denominator and do not fracture spanners.
+    r'''Split in-score measure with power-of-two denominator and 
+    do not fracture spanners.
     '''
 
     voice = Voice(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
     p = spannertools.BeamSpanner(voice[:])
 
-    r'''
-    \new Voice {
-        {
-            \time 3/8
-            c'8 [
-            d'8
-            e'8
-        }
-        {
-            \time 3/8
-            f'8
-            g'8
-            a'8 ]
-        }
-    }
-    '''
+    containertools.split_container_at_index(
+        voice[1], 1, fracture_spanners=False)
 
-    containertools.split_container_at_index(voice[1], 1, fracture_spanners=False)
-
-    r'''
-    \new Voice {
-        {
-            \time 3/8
-            c'8 [
-            d'8
-            e'8
-        }
-        {
-            \time 1/8
-            f'8
-        }
-        {
-            \time 2/8
-            g'8
-            a'8 ]
-        }
-    }
-    '''
-
-    assert select(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -138,66 +72,21 @@ def test_containertools_split_container_at_index_02():
         '''
         )
 
+    assert select(voice).is_well_formed()
 
 
 def test_containertools_split_container_at_index_03():
-    r'''Split in-score measure without power-of-two denominator and do not frature spanners.
+    r'''Split in-score measure without power-of-two denominator 
+    and do not frature spanners.
     '''
 
     voice = Voice(Measure((3, 9), notetools.make_repeated_notes(3)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
     p = spannertools.BeamSpanner(voice[:])
 
-    r'''
-    \new Voice {
-        {
-            \time 3/9
-            \scaleDurations #'(8 . 9) {
-                c'8 [
-                d'8
-                e'8
-            }
-        }
-        {
-            \time 3/9
-            \scaleDurations #'(8 . 9) {
-                f'8
-                g'8
-                a'8 ]
-            }
-        }
-    }
-    '''
+    containertools.split_container_at_index(
+        voice[1], 1, fracture_spanners=False)
 
-    containertools.split_container_at_index(voice[1], 1, fracture_spanners=False)
-
-    r'''
-    \new Voice {
-        {
-            \time 3/9
-            \scaleDurations #'(8 . 9) {
-                c'8 [
-                d'8
-                e'8
-            }
-        }
-        {
-            \time 1/9
-            \scaleDurations #'(8 . 9) {
-                f'8
-            }
-        }
-        {
-            \time 2/9
-            \scaleDurations #'(8 . 9) {
-                g'8
-                a'8 ]
-            }
-        }
-    }
-    '''
-
-    assert select(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -226,7 +115,8 @@ def test_containertools_split_container_at_index_03():
         }
         '''
         )
-    #assert voice.lilypond_format == "\\new Voice {\n\voice{\n\voice\voice\\scaleDurations #'(8 . 9) {\n\voice\voice\voice\\time 3/9\n\voice\voice\tc'8 [\n\voice\voice\td'8\n\voice\voice\te'8\n\voice\voice}\n\voice}\n\voice{\n\voice\voice\\scaleDurations #'(8 . 9) {\n\voice\voice\voice\\time 1/9\n\voice\voice\tf'8\n\voice\voice}\n\voice}\n\voice{\n\voice\voice\\scaleDurations #'(8 . 9) {\n\voice\voice\voice\\time 2/9\n\voice\voice\tg'8\n\voice\voice\ta'8 ]\n\voice\voice}\n\voice}\n}"
+
+    assert select(voice).is_well_formed()
 
 
 def test_containertools_split_container_at_index_04():
@@ -234,21 +124,11 @@ def test_containertools_split_container_at_index_04():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    t1, t2 = containertools.split_container_at_index(voice, 2, fracture_spanners=False)
+    t1, t2 = containertools.split_container_at_index(
+        voice, 2, fracture_spanners=False)
 
-    r'''
-    \new Voice {
-        c'8
-        d'8
-    }
-    \new Voice {
-        e'8
-        f'8
-    }
-    '''
+    assert select(voice).is_well_formed()
 
-    assert select(t1).is_well_formed()
-    assert select(t2).is_well_formed()
     assert testtools.compare(
         t1,
         r'''
@@ -258,6 +138,9 @@ def test_containertools_split_container_at_index_04():
         }
         '''
         )
+
+    assert select(t1).is_well_formed()
+
     assert testtools.compare(
         t2,
         r'''
@@ -268,6 +151,8 @@ def test_containertools_split_container_at_index_04():
         '''
         )
 
+    assert select(t2).is_well_formed()
+
 
 def test_containertools_split_container_at_index_05():
     r'''A single container 'split' at index 0 gives
@@ -275,51 +160,44 @@ def test_containertools_split_container_at_index_05():
     Original container empties contents.
     '''
 
-    staff = Staff([Voice("c'8 d'8 e'8 f'8")])
-    voice = staff[0]
-    spannertools.BeamSpanner(voice)
-    left, right = containertools.split_container_at_index(voice, 0, fracture_spanners=False)
+    staff = Staff([Container("c'8 d'8 e'8 f'8")])
+    container = staff[0]
+    spannertools.BeamSpanner(container)
+    left, right = containertools.split_container_at_index(
+        container, 0, fracture_spanners=False)
 
-    r'''
-    \new Staff {
-        \new Voice {
-            c'8 [
-            d'8
-            e'8
-            f'8 ]
-        }
-    }
-    '''
-
-    assert select(staff).is_well_formed()
-    assert testtools.compare(
-        left,
-        r'''
-        \new Voice {
-        }
-        '''
-        )
-    assert testtools.compare(
-        right,
-        r'''
-        \new Voice {
-            c'8 [
-            d'8
-            e'8
-            f'8 ]
-        }
-        '''
-        )
     assert testtools.compare(
         staff,
         r'''
         \new Staff {
-            \new Voice {
+            {
                 c'8 [
                 d'8
                 e'8
                 f'8 ]
             }
+        }
+        '''
+        )
+
+    assert select(staff).is_well_formed()
+
+    assert testtools.compare(
+        left,
+        r'''
+        {
+        }
+        '''
+        )
+
+    assert testtools.compare(
+        right,
+        r'''
+        {
+            c'8 [
+            d'8
+            e'8
+            f'8 ]
         }
         '''
         )
@@ -1076,45 +954,25 @@ def test_containertools_split_container_at_index_16():
     Original container empties contents.
     '''
 
-    staff = Staff([Voice("c'8 d'8 e'8 f'8")])
-    voice = staff[0]
-    spannertools.BeamSpanner(voice)
+    staff = Staff([Container("c'8 d'8 e'8 f'8")])
+    container = staff[0]
+    spannertools.BeamSpanner(container)
 
-    r'''
-    \new Staff {
-        \new Voice {
-            c'8 [
-            d'8
-            e'8
-            f'8 ]
-        }
-    }
-    '''
-
-    left, right = containertools.split_container_at_index(voice, 0, fracture_spanners=True)
-
-    r'''
-    \new Staff {
-        \new Voice {
-            c'8 [
-            d'8
-            e'8
-            f'8 ]
-        }
-    }
-    '''
+    left, right = containertools.split_container_at_index(
+        container, 0, fracture_spanners=True)
 
     assert testtools.compare(
         left,
         r'''
-        \new Voice {
+        {
         }
         '''
         )
+
     assert testtools.compare(
         right,
         r'''
-        \new Voice {
+        {
             c'8 [
             d'8
             e'8
@@ -1122,18 +980,20 @@ def test_containertools_split_container_at_index_16():
         }
         '''
         )
+
     assert testtools.compare(
-        voice,
+        container,
         r'''
-        \new Voice {
+        {
         }
         '''
         )
+
     assert testtools.compare(
         staff,
         r'''
         \new Staff {
-            \new Voice {
+            {
                 c'8 [
                 d'8
                 e'8
@@ -1151,15 +1011,15 @@ def test_containertools_split_container_at_index_17():
     Original container empties contents.
     '''
 
-    staff = Staff([Voice("c'8 d'8 e'8 f'8")])
-    voice = staff[0]
-    spannertools.BeamSpanner(voice)
+    staff = Staff([Container("c'8 d'8 e'8 f'8")])
+    container = staff[0]
+    spannertools.BeamSpanner(container)
 
-    left, right = containertools.split_container_at_index(voice, 10, fracture_spanners=True)
+    left, right = containertools.split_container_at_index(container, 10, fracture_spanners=True)
 
     r'''
     \new Staff {
-        \new Voice {
+        {
             c'8 [
             d'8
             e'8
@@ -1171,7 +1031,7 @@ def test_containertools_split_container_at_index_17():
     assert testtools.compare(
         left,
         r'''
-        \new Voice {
+        {
             c'8 [
             d'8
             e'8
@@ -1182,14 +1042,14 @@ def test_containertools_split_container_at_index_17():
     assert testtools.compare(
         right,
         r'''
-        \new Voice {
+        {
         }
         '''
         )
     assert testtools.compare(
-        voice,
+        container,
         r'''
-        \new Voice {
+        {
         }
         '''
         )
@@ -1197,7 +1057,7 @@ def test_containertools_split_container_at_index_17():
         staff,
         r'''
         \new Staff {
-            \new Voice {
+            {
                 c'8 [
                 d'8
                 e'8

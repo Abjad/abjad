@@ -25,7 +25,7 @@ def test_SliceSelection__give_dominant_spanners_to_components_01():
     '''
 
     recipient = Voice(notetools.make_repeated_notes(3, Duration(1, 16)))
-    spannertools.BeamSpanner(recipient)
+    spannertools.BeamSpanner(recipient[:])
 
     r'''
     \new Voice {

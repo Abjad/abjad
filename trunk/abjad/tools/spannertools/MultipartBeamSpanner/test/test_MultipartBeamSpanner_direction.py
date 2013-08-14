@@ -4,24 +4,13 @@ from abjad import *
 
 def test_MultipartBeamSpanner_direction_01():
 
-    staff = Staff("c'8 d'8 r8 e'8 f'8 g'4")
-    spanner = spannertools.MultipartBeamSpanner(staff, direction=Up)
-
-    r'''
-    \new Staff {
-        c'8 ^ [
-        d'8 ]
-        r8
-        e'8 ^ [
-        f'8 ]
-        g'4
-    }
-    '''
+    container = Container("c'8 d'8 r8 e'8 f'8 g'4")
+    spanner = spannertools.MultipartBeamSpanner(container, direction=Up)
 
     assert testtools.compare(
-        staff,
+        container,
         r'''
-        \new Staff {
+        {
             c'8 ^ [
             d'8 ]
             r8
@@ -35,9 +24,9 @@ def test_MultipartBeamSpanner_direction_01():
     spanner.direction = Down
 
     assert testtools.compare(
-        staff,
+        container,
         r'''
-        \new Staff {
+        {
             c'8 _ [
             d'8 ]
             r8

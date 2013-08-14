@@ -3,13 +3,14 @@ from abjad import *
 
 
 def test_SlurSpanner_direction_01():
-    voice = Voice("c'8 d'8 e'8 f'8")
-    slur = spannertools.SlurSpanner(voice, direction=Up)
+
+    container = Container("c'8 d'8 e'8 f'8")
+    slur = spannertools.SlurSpanner(container, direction=Up)
 
     assert testtools.compare(
-        voice,
+        container,
         r'''
-        \new Voice {
+        {
             c'8 ^ (
             d'8
             e'8
@@ -18,4 +19,4 @@ def test_SlurSpanner_direction_01():
         '''
         )
 
-    assert more(voice).get_spanners() == set([slur])
+    assert more(container).get_spanners() == set([slur])

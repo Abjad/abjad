@@ -10,28 +10,22 @@ def test_leaftools_split_leaf_at_offset_01():
 
     staff = Staff("c'8 [ d'8 e'8 ]")
 
-    r'''
-    \new Staff {
-        c'8 [
-        d'8
-        e'8 ]
-    }
-    '''
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            c'8 [
+            d'8
+            e'8 ]
+        }
+        '''
+        )
 
     halves = leaftools.split_leaf_at_offset(
         staff.select_leaves()[1],
         (1, 32), fracture_spanners=False,
         tie_split_notes=False,
         )
-
-    r'''
-    \new Staff {
-        c'8 [
-        d'32
-        d'16.
-        e'8 ]
-    }
-    '''
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
@@ -54,13 +48,16 @@ def test_leaftools_split_leaf_at_offset_02():
 
     staff = Staff("c'8 [ d'8 e'8 ]")
 
-    r'''
-    \new Staff {
-        c'8 [
-        d'8
-        e'8 ]
-    }
-    '''
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            c'8 [
+            d'8
+            e'8 ]
+        }
+        '''
+        )
 
     halves = leaftools.split_leaf_at_offset(
         staff.select_leaves()[1],
@@ -69,16 +66,6 @@ def test_leaftools_split_leaf_at_offset_02():
         tie_split_notes=False,
         )
 
-    r'''
-    \new Staff {
-        c'8 [
-        d'32 ]
-        d'16. [
-        e'8 ]
-    }
-    '''
-
-    assert select(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -91,6 +78,8 @@ def test_leaftools_split_leaf_at_offset_02():
         '''
         )
 
+    assert select(staff).is_well_formed()
+
 
 def test_leaftools_split_leaf_at_offset_03():
     r'''Split note into assignable notes.
@@ -99,13 +88,16 @@ def test_leaftools_split_leaf_at_offset_03():
 
     staff = Staff("c'8 [ d'8 e'8 ]")
 
-    r'''
-    \new Staff {
-        c'8 [
-        d'8
-        e'8 ]
-    }
-    '''
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            c'8 [
+            d'8
+            e'8 ]
+        }
+        '''
+        )
 
     halves = leaftools.split_leaf_at_offset(
         staff.select_leaves()[1],
@@ -113,16 +105,6 @@ def test_leaftools_split_leaf_at_offset_03():
         tie_split_notes=True,
         )
 
-    r'''
-    \new Staff {
-        c'8 [
-        d'32 ~
-        d'16.
-        e'8 ]
-    }
-    '''
-
-    assert select(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -135,6 +117,8 @@ def test_leaftools_split_leaf_at_offset_03():
         '''
         )
 
+    assert select(staff).is_well_formed()
+
 
 def test_leaftools_split_leaf_at_offset_04():
     r'''Split note into assignable notes.
@@ -143,25 +127,8 @@ def test_leaftools_split_leaf_at_offset_04():
 
     staff = Staff("c'8 [ d'8 e'8 ]")
 
-    r'''
-    \new Staff {
-        c'8 [
-        d'8
-        e'8 ]
-    }
-    '''
-
     halves = leaftools.split_leaf_at_offset(
         staff.select_leaves()[1], (1, 32), fracture_spanners=True, tie_split_notes=True)
-
-    r'''
-    \new Staff {
-        c'8 [
-        d'32 ] ~
-        d'16. [
-        e'8 ]
-    }
-    '''
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
@@ -184,29 +151,8 @@ def test_leaftools_split_leaf_at_offset_05():
 
     staff = Staff("c'8 [ d'8 e'8 ]")
 
-    r'''
-    \new Staff {
-        c'8 [
-        d'8
-        e'8 ]
-    }
-    '''
-
     halves = leaftools.split_leaf_at_offset(
         staff.select_leaves()[1], (1, 24), tie_split_notes=False)
-
-    r'''
-    \new Staff {
-        c'8 [
-        \times 2/3 {
-            d'16
-        }
-        \times 2/3 {
-            d'8
-        }
-        e'8 ]
-    }
-    '''
 
     assert select(staff).is_well_formed()
     assert testtools.compare(
@@ -225,42 +171,39 @@ def test_leaftools_split_leaf_at_offset_05():
         '''
         )
 
+    assert select(staff).is_well_formed()
+
 
 def test_leaftools_split_leaf_at_offset_06():
     r'''Notehead-assignable duration produces two notes.
     This test comes from a container-crossing spanner bug.
     '''
 
-    voice = Voice(notetools.make_repeated_notes(1) + [tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3))])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice = Voice(
+        notetools.make_repeated_notes(1) + 
+        [tuplettools.FixedDurationTuplet(
+            Duration(2, 8), notetools.make_repeated_notes(3))])
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
+        voice)
     spannertools.BeamSpanner(voice.select_leaves())
 
-    r'''
-    \new Voice {
-        c'8 [
-        \times 2/3 {
-            d'8
-            e'8
-            f'8 ]
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            c'8 [
+            \times 2/3 {
+                d'8
+                e'8
+                f'8 ]
+            }
         }
-    }
-    '''
+        '''
+        )
 
-    halves = leaftools.split_leaf_at_offset(voice.select_leaves()[1], Duration(1, 24), tie_split_notes=False)
+    halves = leaftools.split_leaf_at_offset(
+        voice.select_leaves()[1], Duration(1, 24), tie_split_notes=False)
 
-    r'''
-    \new Voice {
-        c'8 [
-        \times 2/3 {
-            d'16
-            d'16
-            e'8
-            f'8 ]
-        }
-    }
-    '''
-
-    assert select(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -275,6 +218,8 @@ def test_leaftools_split_leaf_at_offset_06():
         }
         '''
         )
+
+    assert select(voice).is_well_formed()
 
 
 def test_leaftools_split_leaf_at_offset_07():
@@ -425,23 +370,25 @@ def test_leaftools_split_leaf_at_offset_14():
 
 
 def test_leaftools_split_leaf_at_offset_15():
-    r'''Split leaf is not tied again when a container containing it is already tie-spanned.
+    r'''Split leaf is not tied again when a container containing it 
+    is already tie-spanned.
     '''
 
-    staff = Staff(notetools.make_repeated_notes(4))
-    tie = spannertools.TieSpanner(staff)
-    halves = leaftools.split_leaf_at_offset(staff[0], Duration(5, 64))
+    container = Container(notetools.make_repeated_notes(4))
+    tie = spannertools.TieSpanner(container)
+    halves = leaftools.split_leaf_at_offset(container[0], Duration(5, 64))
 
-    assert spannertools.get_the_only_spanner_attached_to_component(staff,
+    assert spannertools.get_the_only_spanner_attached_to_component(container,
     spannertools.TieSpanner) is tie
-    assert tie.components == (staff, )
-    for l in staff.select_leaves():
+    assert tie.components == (container, )
+    for l in container.select_leaves():
         assert not more(l).get_spanners()
-    assert select(staff).is_well_formed()
+    assert select(container).is_well_formed()
 
 
 def test_leaftools_split_leaf_at_offset_16():
-    r'''Split leaf is not tied again when a container containing it is already tie-spanned.
+    r'''Split leaf is not tied again when a container containing it 
+    is already tie-spanned.
     '''
 
     staff = Staff(Container(notetools.make_repeated_notes(4)) * 2)
