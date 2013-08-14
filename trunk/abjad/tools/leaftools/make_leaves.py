@@ -4,6 +4,7 @@ import numbers
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
+from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 
 
@@ -19,7 +20,8 @@ def make_leaves(
 
     ..  container:: example
     
-        **Example 1.** Integer and string elements in `pitches` result in notes:
+        **Example 1.** Integer and string elements in `pitches` result in 
+        notes:
 
         ::
 
@@ -143,8 +145,8 @@ def make_leaves(
 
     ..  container:: example
             
-        **Example 6.** Read `durations` cyclically when the length of `durations`
-        is less than the length of `pitches`:
+        **Example 6.** Read `durations` cyclically when the length of 
+        `durations` is less than the length of `pitches`:
 
         ::
 
@@ -169,9 +171,9 @@ def make_leaves(
 
     ..  container:: example
             
-        **Example 7.** Elements in `durations` with non-power-of-two denominators
-        result in tuplet-nested leaves:
-
+        **Example 7.** Elements in `durations` with non-power-of-two 
+        denominators result in tuplet-nested leaves: 
+        
         ::
 
             >>> pitches = ['D5']
@@ -196,8 +198,8 @@ def make_leaves(
 
     ..  container:: example
             
-        **Example 8.** Set `decrease_durations_monotonically` to true to return
-        nonassignable durations tied from greatest to least:
+        **Example 8.** Set `decrease_durations_monotonically` to true to 
+        return nonassignable durations tied from greatest to least:
 
         ::
 
@@ -205,7 +207,8 @@ def make_leaves(
             >>> durations = [Duration(13, 16)]
             >>> leaves = leaftools.make_leaves(pitches, durations)
             >>> staff = Staff(leaves)
-            >>> time_signature = contexttools.TimeSignatureMark((13, 16))(staff)
+            >>> time_signature = contexttools.TimeSignatureMark((13, 16))
+            >>> time_signature = time_signature.attach(staff)
 
         ..  doctest::
 
@@ -222,8 +225,8 @@ def make_leaves(
 
     ..  container:: example
             
-        **Example 9.** Set `decrease_durations_monotonically` to false to return
-        nonassignable durations tied from least to greatest:
+        **Example 9.** Set `decrease_durations_monotonically` to false 
+        to return nonassignable durations tied from least to greatest:
 
         ::
 
@@ -235,7 +238,8 @@ def make_leaves(
             ...     decrease_durations_monotonically=False,
             ...     )
             >>> staff = Staff(leaves)
-            >>> time_signature = contexttools.TimeSignatureMark((13, 16))(staff)
+            >>> time_signature = contexttools.TimeSignatureMark((13, 16))
+            >>> time_signature = time_signature.attach(staff)
 
         ..  doctest::
 
@@ -260,9 +264,14 @@ def make_leaves(
 
             >>> pitches = [None]
             >>> durations = [Duration(5, 8)]
-            >>> leaves = leaftools.make_leaves(pitches, durations, tie_rests=True)
+            >>> leaves = leaftools.make_leaves(
+            ...     pitches, 
+            ...     durations, 
+            ...     tie_rests=True,
+            ...     )
             >>> staff = stafftools.RhythmicStaff(leaves)
-            >>> time_signature = contexttools.TimeSignatureMark((5, 8))(staff)
+            >>> time_signature = contexttools.TimeSignatureMark((5, 8))
+            >>> time_signature = time_signature.attach(staff)
 
         ..  doctest::
 
@@ -279,8 +288,8 @@ def make_leaves(
 
     ..  container:: example
     
-        **Example 11.** Set `forbidden_written_duration` to avoid notes greater
-        than or equal to a certain written duration:
+        **Example 11.** Set `forbidden_written_duration` to avoid notes 
+        greater than or equal to a certain written duration:
 
         ::
 
@@ -292,7 +301,8 @@ def make_leaves(
             ...     forbidden_written_duration=Duration(1, 2),
             ...     )
             >>> staff = Staff(leaves)
-            >>> time_signature = contexttools.TimeSignatureMark((5, 4))(staff)
+            >>> time_signature = contexttools.TimeSignatureMark((5, 4))
+            >>> time_signature = time_signature.attach(staff)
 
         ..  doctest::
 
@@ -327,7 +337,8 @@ def make_leaves(
             ...     decrease_durations_monotonically=False,
             ...     )
             >>> staff = Staff(leaves)
-            >>> time_signature = contexttools.TimeSignatureMark((5, 4))(staff)
+            >>> time_signature = contexttools.TimeSignatureMark((5, 4))
+            >>> time_siganture = time_signature.attach(staff)
 
         ..  doctest::
 
@@ -346,7 +357,7 @@ def make_leaves(
 
             >>> show(staff) # doctest: +SKIP
 
-    Return list of leaves.
+    Return selection of unincorporated leaves.
     '''
     from abjad.tools import chordtools
     from abjad.tools import notetools
@@ -416,6 +427,7 @@ def make_leaves(
             tuplet = tuplettools.Tuplet(multiplier, tuplet_leaves)
             result.append(tuplet)
 
+    result = selectiontools.UnincorporatedCounttimeComponentSelection(result)
     return result
 
 
