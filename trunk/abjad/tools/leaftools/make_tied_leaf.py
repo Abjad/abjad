@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import mathtools
+from abjad.tools import selectiontools
 
 
 def make_tied_leaf(
@@ -26,6 +27,7 @@ def make_tied_leaf(
             ...     )
             >>> staff = Staff(leaves)
             >>> time_signature = contexttools.TimeSignatureMark((2, 4))(staff)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -34,10 +36,6 @@ def make_tied_leaf(
                 \time 2/4
                 cs''2
             }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
 
     ..  container:: example
     
@@ -53,6 +51,7 @@ def make_tied_leaf(
             ...     )
             >>> staff = Staff(leaves)
             >>> time_signature = contexttools.TimeSignatureMark((2, 4))(staff)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -62,10 +61,6 @@ def make_tied_leaf(
                 cs''4 ~
                 cs''4
             }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
 
     ..  container:: example
     
@@ -83,6 +78,7 @@ def make_tied_leaf(
             ...     )
             >>> staff = Staff(leaves)
             >>> time_signature = contexttools.TimeSignatureMark((9, 8))(staff)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -95,10 +91,6 @@ def make_tied_leaf(
                 cs''4 ~
                 cs''8
             }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
 
     ..  container:: example
     
@@ -116,6 +108,7 @@ def make_tied_leaf(
             ...     )
             >>> staff = Staff(leaves)
             >>> time_signature = contexttools.TimeSignatureMark((9, 8))(staff)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -129,11 +122,7 @@ def make_tied_leaf(
                 cs''4
             }
 
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
-    Return list of leaves.
+    Return selection of unincorporated leaves.
     '''
     from abjad.tools import spannertools
 
@@ -199,4 +188,5 @@ def make_tied_leaf(
         spannertools.TieSpanner(result)
 
     # return result
+    result = selectiontools.UnincorporatedCounttimeComponentSelection(result)
     return result

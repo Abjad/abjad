@@ -2,44 +2,55 @@
 
 
 def flatten_sequence(sequence, classes=None, depth=-1):
-    '''Flatten `sequence`:
+    '''Flattens `sequence`.
 
-    ::
+    ..  container:: example
 
-        >>> sequencetools.flatten_sequence([1, [2, 3, [4]], 5, [6, 7, [8]]])
-        [1, 2, 3, 4, 5, 6, 7, 8]
+        Faltten sequence completely:
 
-    Flatten `sequence` to depth ``1``:
+        ::
 
-    ::
+            >>> sequence = [1, [2, 3, [4]], 5, [6, 7, [8]]]
+            >>> sequencetools.flatten_sequence(sequence)
+            [1, 2, 3, 4, 5, 6, 7, 8]
 
-        >>> sequencetools.flatten_sequence([1, [2, 3, [4]], 5, [6, 7, [8]]], depth=1)
-        [1, 2, 3, [4], 5, 6, 7, [8]]
+    ..  container:: example
 
-    Flatten `sequence` to depth ``2``:
+        Flatten `sequence` to depth ``1``:
 
-    ::
+        ::
 
-        >>> sequencetools.flatten_sequence([1, [2, 3, [4]], 5, [6, 7, [8]]], depth=2)
-        [1, 2, 3, 4, 5, 6, 7, 8]
+            >>> sequence = [1, [2, 3, [4]], 5, [6, 7, [8]]]
+            >>> sequencetools.flatten_sequence(sequence, depth=1)
+            [1, 2, 3, [4], 5, 6, 7, [8]]
 
-    Leave `sequence` unchanged.
+    ..  container:: example
 
-    Return newly constructed `sequence` object.
+        Flatten `sequence` to depth ``2``:
+
+        ::
+
+            >>> sequence = [1, [2, 3, [4]], 5, [6, 7, [8]]]
+            >>> sequencetools.flatten_sequence(sequence, depth=2)
+            [1, 2, 3, 4, 5, 6, 7, 8]
+
+    Leaves `sequence` unchanged.
+
+    Returns new object of `sequence` type.
     '''
+    from abjad.tools import selectiontools
 
     if classes is None:
-        classes = (list, tuple)
+        classes = (list, tuple, selectiontools.Selection)
 
     assert isinstance(sequence, classes), repr(sequence)
     sequence_type = type(sequence)
     return sequence_type(_flatten_helper(sequence, classes, depth))
 
 
-# Creates an iterator that can generate a flattened list,
-# descending down into child elements to a depth given in the
-# argments.
-# Note: depth < 0 is effectively equivalent to "infinity"
+# creates an iterator that can generate a flattened list,
+# descending down into child elements to a depth given in the arguments.
+# note that depth < 0 is effectively equivalent to infinity.
 def _flatten_helper(sequence, classes, depth):
     if not isinstance(sequence, classes):
         yield sequence

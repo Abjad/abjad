@@ -4,29 +4,66 @@ from abjad.tools import leaftools
 
 
 def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
-    '''Make percussion note:
+    r'''Makes short note with `max_note_duration` followed
+    by rests together totaling `total_duration`.
 
-    ::
+    ..  container:: example
 
-        >>> notetools.make_percussion_note(2, (1, 4), (1, 8))
-        [Note("d'8"), Rest('r8')]
+            >>> leaves = notetools.make_percussion_note(2, (1, 4), (1, 8))
+            >>> staff = Staff(leaves)
+            >>> show(staff) # doctest: +SKIP
 
-    ::
+        ..  doctest::
 
-        >>> notetools.make_percussion_note(2, (1, 64), (1, 8))
-        [Note("d'64")]
+            >>> f(staff)
+            \new Staff {
+                d'8
+                r8
+            }
 
-    ::
+    ..  container:: example
 
-        >>> notetools.make_percussion_note(2, (5, 64), (1, 8))
-        [Note("d'16"), Rest('r64')]
+            >>> leaves = notetools.make_percussion_note(2, (1, 64), (1, 8))
+            >>> staff = Staff(leaves)
+            >>> show(staff) # doctest: +SKIP
 
-    ::
+        ..  doctest::
 
-        >>> notetools.make_percussion_note(2, (5, 4), (1, 8))
-        [Note("d'8"), Rest('r1'), Rest('r8')]
+            >>> f(staff)
+            \new Staff {
+                d'64
+            }
 
-    Return list of newly constructed note followed by zero or 
+    ..  container:: example
+
+            >>> leaves = notetools.make_percussion_note(2, (5, 64), (1, 8))
+            >>> staff = Staff(leaves)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                d'16
+                r64
+            }
+
+    ..  container:: example
+
+            >>> leaves = notetools.make_percussion_note(2, (5, 4), (1, 8))
+            >>> staff = Staff(leaves)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                d'8
+                r1 ~
+                r8
+            }
+
+    Returns list of newly constructed note followed by zero or 
     more newly constructed rests.
 
     Durations of note and rests returned will sum to `total_duration`.
@@ -67,8 +104,12 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
             tie_parts=False,
             )
         if 1 < len(notes):
+            new_notes = []
+            new_notes.append(notes[0])
             for i in range(1, len(notes)):
-                notes[i] = resttools.Rest(notes[i])
+                rest = resttools.Rest(notes[i])
+                new_notes.append(rest)
+            notes = new_notes
         rests = []
 
     # return list of percussion note followed by rest

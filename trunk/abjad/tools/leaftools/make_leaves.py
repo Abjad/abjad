@@ -29,6 +29,7 @@ def make_leaves(
             >>> duration = Duration(1, 4)
             >>> leaves = leaftools.make_leaves(pitches, duration)
             >>> staff = Staff(leaves)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -40,10 +41,6 @@ def make_leaves(
                 gs''4
             }
 
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
     ..  container:: example
     
         **Example 2.** Tuple elements in `pitches` result in chords:
@@ -54,6 +51,7 @@ def make_leaves(
             >>> duration = Duration(1, 2)
             >>> leaves = leaftools.make_leaves(pitches, duration)
             >>> staff = Staff(leaves)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -62,10 +60,6 @@ def make_leaves(
                 <c' d' e'>2
                 <fs'' gs'' as''>2
             }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
 
     ..  container:: example
         
@@ -77,6 +71,7 @@ def make_leaves(
             >>> durations = [Duration(1, 4)]
             >>> leaves = leaftools.make_leaves(pitches, durations)
             >>> staff = stafftools.RhythmicStaff(leaves)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -88,10 +83,6 @@ def make_leaves(
                 r4
             }
 
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
     ..  container:: example
         
         **Example 4.** You can mix and match values passed to `pitches`:
@@ -102,6 +93,7 @@ def make_leaves(
             >>> durations = [Duration(1, 4)]
             >>> leaves = leaftools.make_leaves(pitches, durations)
             >>> staff = Staff(leaves)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -112,10 +104,6 @@ def make_leaves(
                 cs''4
                 ds''4
             }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
 
     ..  container:: example
             
@@ -128,6 +116,7 @@ def make_leaves(
             >>> durations = 2 * [Duration(3, 8), Duration(1, 8)]
             >>> leaves = leaftools.make_leaves(pitches, durations)
             >>> staff = Staff(leaves)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -138,10 +127,6 @@ def make_leaves(
                 c''4.
                 c''8
             }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
 
     ..  container:: example
             
@@ -154,6 +139,7 @@ def make_leaves(
             >>> durations = [Duration(1, 4)]
             >>> leaves = leaftools.make_leaves(pitches, durations)
             >>> staff = Staff(leaves)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -164,10 +150,6 @@ def make_leaves(
                 e''4
                 f''4
             }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
 
     ..  container:: example
             
@@ -180,6 +162,7 @@ def make_leaves(
             >>> durations = [Duration(1, 3), Duration(1, 3), Duration(1, 3)]
             >>> leaves = leaftools.make_leaves(pitches, durations)
             >>> staff = Staff(leaves)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -191,10 +174,6 @@ def make_leaves(
                     d''2
                 }
             }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
 
     ..  container:: example
             
@@ -209,6 +188,7 @@ def make_leaves(
             >>> staff = Staff(leaves)
             >>> time_signature = contexttools.TimeSignatureMark((13, 16))
             >>> time_signature = time_signature.attach(staff)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -218,10 +198,6 @@ def make_leaves(
                 ds''2. ~
                 ds''16
             }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
 
     ..  container:: example
             
@@ -240,6 +216,7 @@ def make_leaves(
             >>> staff = Staff(leaves)
             >>> time_signature = contexttools.TimeSignatureMark((13, 16))
             >>> time_signature = time_signature.attach(staff)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -249,10 +226,6 @@ def make_leaves(
                 e''16 ~
                 e''2.
             }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
 
     ..  container:: example
         
@@ -272,6 +245,7 @@ def make_leaves(
             >>> staff = stafftools.RhythmicStaff(leaves)
             >>> time_signature = contexttools.TimeSignatureMark((5, 8))
             >>> time_signature = time_signature.attach(staff)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -281,10 +255,6 @@ def make_leaves(
                 r2 ~
                 r8
             }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
 
     ..  container:: example
     
@@ -303,6 +273,7 @@ def make_leaves(
             >>> staff = Staff(leaves)
             >>> time_signature = contexttools.TimeSignatureMark((5, 4))
             >>> time_signature = time_signature.attach(staff)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -316,10 +287,6 @@ def make_leaves(
                 g'4 ~
                 g'8
             }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
 
     ..  container:: example
         
@@ -339,6 +306,7 @@ def make_leaves(
             >>> staff = Staff(leaves)
             >>> time_signature = contexttools.TimeSignatureMark((5, 4))
             >>> time_siganture = time_signature.attach(staff)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -352,10 +320,6 @@ def make_leaves(
                 g'4 ~
                 g'4
             }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
 
     Return selection of unincorporated leaves.
     '''

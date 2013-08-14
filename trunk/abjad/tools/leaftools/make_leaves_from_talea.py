@@ -1,10 +1,15 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
+from abjad.tools import selectiontools
 
 
-def make_leaves_from_talea(talea, talea_denominator,
-    decrease_durations_monotonically=True, tie_rests=False,
-    forbidden_written_duration=None):
+def make_leaves_from_talea(
+    talea, 
+    talea_denominator,
+    decrease_durations_monotonically=True, 
+    tie_rests=False,
+    forbidden_written_duration=None,
+    ):
     r'''Make leaves from `talea`.
 
     Interpret positive elements in `talea` as notes numerators.
@@ -22,6 +27,7 @@ def make_leaves_from_talea(talea, talea_denominator,
             >>> leaves = leaftools.make_leaves_from_talea([3, -3, 5, -5], 16)
             >>> staff = stafftools.RhythmicStaff(leaves)
             >>> time_signature = contexttools.TimeSignatureMark((4, 4))(staff)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -36,10 +42,6 @@ def make_leaves_from_talea(talea, talea_denominator,
                 r16
             }
 
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
     ..  container:: example
     
         **Example 2.** Increase durations monotonically:
@@ -51,6 +53,7 @@ def make_leaves_from_talea(talea, talea_denominator,
             ...     decrease_durations_monotonically=False)
             >>> staff = stafftools.RhythmicStaff(leaves)
             >>> time_signature = contexttools.TimeSignatureMark((4, 4))(staff)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -65,13 +68,10 @@ def make_leaves_from_talea(talea, talea_denominator,
                 r4
             }
 
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
     ..  container:: example
     
-        **Example 3.** Forbid written durations greater than or equal to a half note:
+        **Example 3.** Forbid written durations greater than or equal 
+        to a half note:
 
         ::
 
@@ -80,6 +80,7 @@ def make_leaves_from_talea(talea, talea_denominator,
             ...     forbidden_written_duration=Duration(1, 4))
             >>> staff = stafftools.RhythmicStaff(leaves)
             >>> time_signature = contexttools.TimeSignatureMark((4, 4))(staff)
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -96,17 +97,12 @@ def make_leaves_from_talea(talea, talea_denominator,
                 r16
             }
 
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
     Return list of leaves.
     '''
     from abjad.tools import leaftools
 
     assert all(x != 0 for x in talea), repr(talea)
 
-    # make leaves
     result = []
     for note_value in talea:
         if 0 < note_value:
@@ -114,10 +110,13 @@ def make_leaves_from_talea(talea, talea_denominator,
         else:
             pitches = [None]
         leaves = leaftools.make_leaves(
-            pitches, [durationtools.Duration(abs(note_value), talea_denominator)],
+            pitches, 
+            [durationtools.Duration(abs(note_value), talea_denominator)],
             decrease_durations_monotonically=decrease_durations_monotonically,
-            tie_rests=tie_rests, forbidden_written_duration=forbidden_written_duration)
+            tie_rests=tie_rests, 
+            forbidden_written_duration=forbidden_written_duration,
+            )
         result.extend(leaves)
 
-    # return result
+    #result = selectiontools.UnincorporatedCounttimeComponentSelection(result)
     return result

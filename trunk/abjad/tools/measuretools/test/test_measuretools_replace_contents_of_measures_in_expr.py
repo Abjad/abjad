@@ -224,25 +224,11 @@ def test_measuretools_replace_contents_of_measures_in_expr_06():
     leaf_lists = maker(durations)
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
-    measures = measuretools.make_measures_with_full_measure_spacer_skips(durations)
+    measures = measuretools.make_measures_with_full_measure_spacer_skips(
+        durations)
     staff = Staff(measures)
     measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
 
-    r'''
-    \new Staff {
-        {
-            \time 5/16
-            c'4 ~
-            c'16
-        }
-        {
-            \time 3/16
-            c'8.
-        }
-    }
-    '''
-
-    assert select(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -259,3 +245,5 @@ def test_measuretools_replace_contents_of_measures_in_expr_06():
         }
         '''
         )
+
+    assert select(staff).is_well_formed()
