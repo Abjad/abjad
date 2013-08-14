@@ -111,11 +111,11 @@ class Selection(object):
 
     @staticmethod
     def _all_are_components_in_same_logical_voice(
-        expr, classes=None, allow_orphans=True):
+        expr, component_classes=None, allow_orphans=True):
         from abjad.tools import componenttools
-        return componenttool.all_are_components_in_same_logical_voice(
+        return componenttools.all_are_components_in_same_logical_voice(
             expr,
-            classes=classes,
+            component_classes=component_classes,
             allow_orphans=allow_orphans,
             )
     
