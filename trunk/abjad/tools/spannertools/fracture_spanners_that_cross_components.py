@@ -27,7 +27,7 @@ def fracture_spanners_that_cross_components(components):
             >>> crescendo = spannertools.CrescendoSpanner(container)
             >>> beam = spannertools.BeamSpanner(container[:])
             >>> trill = spannertools.TrillSpanner(container.select_leaves())
-            >>> show(conatiner) # doctest: +SKIP
+            >>> show(container) # doctest: +SKIP
 
         ..  doctest::
 
