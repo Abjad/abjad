@@ -15,20 +15,20 @@ def split_container_by_counts(components, counts, fracture_spanners=False, cycli
 
     ..  container:: example
 
-        **Example 1.** Split container cyclically by counts and do not fracture
-        crossing spanners:
+        **Example 1.** Split container cyclically by counts and do not 
+        fracture crossing spanners:
 
         ::
 
-            >>> container = Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-            >>> voice = Voice([container])
-            >>> beam = spannertools.BeamSpanner(voice)
-            >>> slur = spannertools.SlurSpanner(container)
+            >>> container = Container("{ c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8 }")
+            >>> beam = spannertools.BeamSpanner(container)
+            >>> slur = spannertools.SlurSpanner(container[0])
+            >>> show(container) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> f(voice)
-            \new Voice {
+            >>> f(container)
+            {
                 {
                     c'8 [ (
                     d'8
@@ -43,18 +43,22 @@ def split_container_by_counts(components, counts, fracture_spanners=False, cycli
 
         ::
 
-            >>> show(voice) # doctest: +SKIP
 
         ::
 
             >>> containertools.split_container_by_counts(
-            ...     container, [1, 3], cyclic=True, fracture_spanners=False)
+            ...     container[0], 
+            ...     [1, 3], 
+            ...     cyclic=True, 
+            ...     fracture_spanners=False,
+            ...     )
             [[{c'8}], [{d'8, e'8, f'8}], [{g'8}], [{a'8, b'8, c''8}]]
+            >>> show(container) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> f(voice)
-            \new Voice {
+            >>> f(container)
+            {
                 {
                     c'8 [ (
                 }
@@ -72,10 +76,6 @@ def split_container_by_counts(components, counts, fracture_spanners=False, cycli
                     c''8 ] )
                 }
             }
-
-        ::
-
-            >>> show(voice) # doctest: +SKIP
 
     ..  container:: example
 
@@ -84,15 +84,15 @@ def split_container_by_counts(components, counts, fracture_spanners=False, cycli
 
         ::
 
-            >>> container = Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-            >>> voice = Voice([container])
-            >>> beam = spannertools.BeamSpanner(voice)
-            >>> slur = spannertools.SlurSpanner(container)
+            >>> container = Container("{ c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8 }")
+            >>> beam = spannertools.BeamSpanner(container)
+            >>> slur = spannertools.SlurSpanner(container[0])
+            >>> show(container) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> f(voice)
-            \new Voice {
+            >>> f(container)
+            {
                 {
                     c'8 [ (
                     d'8
@@ -107,18 +107,19 @@ def split_container_by_counts(components, counts, fracture_spanners=False, cycli
 
         ::
 
-            >>> show(voice) # doctest: +SKIP
-
-        ::
-
             >>> containertools.split_container_by_counts(
-            ...     container, [1, 3], cyclic=True, fracture_spanners=True)
+            ...     container[0], 
+            ...     [1, 3], 
+            ...     cyclic=True, 
+            ...     fracture_spanners=True,
+            ...     )
             [[{c'8}], [{d'8, e'8, f'8}], [{g'8}], [{a'8, b'8, c''8}]]
+            >>> show(container) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> f(voice)
-            \new Voice {
+            >>> f(container)
+            {
                 {
                     c'8 [ ( )
                 }
@@ -137,10 +138,6 @@ def split_container_by_counts(components, counts, fracture_spanners=False, cycli
                 }
             }
 
-        ::
-
-            >>> show(voice) # doctest: +SKIP
-
     ..  container:: example
 
         **Example 3.** Split container once by counts and do not fracture 
@@ -148,15 +145,15 @@ def split_container_by_counts(components, counts, fracture_spanners=False, cycli
 
         ::
 
-            >>> container = Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-            >>> voice = Voice([container])
-            >>> beam = spannertools.BeamSpanner(voice)
-            >>> slur = spannertools.SlurSpanner(container)
+            >>> container = Container("{ c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8 }")
+            >>> beam = spannertools.BeamSpanner(container)
+            >>> slur = spannertools.SlurSpanner(container[0])
+            >>> show(container) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> f(voice)
-            \new Voice {
+            >>> f(container)
+            {
                 {
                     c'8 [ (
                     d'8
@@ -168,21 +165,22 @@ def split_container_by_counts(components, counts, fracture_spanners=False, cycli
                     c''8 ] )
                 }
             }
-
-        ::
-
-            >>> show(voice) # doctest: +SKIP
 
         ::
 
             >>> containertools.split_container_by_counts(
-            ...     container, [1, 3], cyclic=False, fracture_spanners=False)
+            ...     container[0], 
+            ...     [1, 3], 
+            ...     cyclic=False, 
+            ...     fracture_spanners=False,
+            ...     )
             [[{c'8}], [{d'8, e'8, f'8}], [{g'8, a'8, b'8, c''8}]]
+            >>> show(container) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> f(voice)
-            \new Voice {
+            >>> f(container)
+            {
                 {
                     c'8 [ (
                 }
@@ -198,10 +196,6 @@ def split_container_by_counts(components, counts, fracture_spanners=False, cycli
                     c''8 ] )
                 }
             }
-
-        ::
-
-            >>> show(voice) # doctest: +SKIP
 
     ..  container:: example
 
@@ -210,15 +204,15 @@ def split_container_by_counts(components, counts, fracture_spanners=False, cycli
 
         ::
 
-            >>> container = Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-            >>> voice = Voice([container])
-            >>> beam = spannertools.BeamSpanner(voice)
-            >>> slur = spannertools.SlurSpanner(container)
+            >>> container = Container("{ c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8 }")
+            >>> beam = spannertools.BeamSpanner(container)
+            >>> slur = spannertools.SlurSpanner(container[0])
+            >>> show(container) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> f(voice)
-            \new Voice {
+            >>> f(container)
+            {
                 {
                     c'8 [ (
                     d'8
@@ -233,18 +227,19 @@ def split_container_by_counts(components, counts, fracture_spanners=False, cycli
 
         ::
 
-            >>> show(voice) # doctest: +SKIP
-
-        ::
-
             >>> containertools.split_container_by_counts(
-            ...     container, [1, 3], cyclic=False, fracture_spanners=True)
+            ...     container[0], 
+            ...     [1, 3], 
+            ...     cyclic=False, 
+            ...     fracture_spanners=True,
+            ...     )
             [[{c'8}], [{d'8, e'8, f'8}], [{g'8, a'8, b'8, c''8}]]
+            >>> show(container) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> f(voice)
-            \new Voice {
+            >>> f(container)
+            {
                 {
                     c'8 [ ( )
                 }
@@ -261,9 +256,6 @@ def split_container_by_counts(components, counts, fracture_spanners=False, cycli
                 }
             }
 
-        ::
-
-            >>> show(voice) # doctest: +SKIP
 
     Return list of split parts.
     '''

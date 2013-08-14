@@ -2,19 +2,20 @@
 
 
 def detach_spanners_attached_to_component(component, spanner_classes=None):
-    r'''Destroy spanners of `spanner_classes` attached to `component`:
+    r'''Detach spanners of `spanner_classes` attached to `component`.
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> beam = spannertools.BeamSpanner(staff.select_leaves())
-        >>> slur = spannertools.SlurSpanner(staff.select_leaves())
-        >>> trill = spannertools.TrillSpanner(staff)
+        >>> container = Container("c'8 d'8 e'8 f'8")
+        >>> beam = spannertools.BeamSpanner(container.select_leaves())
+        >>> slur = spannertools.SlurSpanner(container.select_leaves())
+        >>> trill = spannertools.TrillSpanner(container)
+        >>> show(container) # doctest: +SKIP
 
     ..  doctest::
 
-        >>> f(staff)
-        \new Staff {
+        >>> f(container)
+        {
             c'8 [ ( \startTrillSpan
             d'8
             e'8
@@ -24,19 +25,20 @@ def detach_spanners_attached_to_component(component, spanner_classes=None):
     ::
 
         >>> spanners = spannertools.detach_spanners_attached_to_component(
-        ...     staff[0])
+        ...     container[0])
+        >>> show(container) # doctest: +SKIP
 
     ..  doctest::
 
-        >>> f(staff)
-        \new Staff {
+        >>> f(container)
+        {
             c'8 \startTrillSpan
             d'8
             e'8
             f'8 \stopTrillSpan
         }
 
-    Destroy all spanners when `spanner_classes` is none.
+    Detach all spanners when `spanner_classes` is none.
 
     Return unordered set of zero or more empty spanners.
     '''

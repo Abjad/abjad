@@ -3,16 +3,20 @@
 
 def get_the_only_spanner_attached_to_component(
     component, spanner_classes=None):
-    r'''Get the only spanner attached to `component`:
+    r'''Get the only spanner attached to `component`.
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> beam = spannertools.BeamSpanner(staff.select_leaves())
-        >>> slur = spannertools.SlurSpanner(staff.select_leaves())
-        >>> trill = spannertools.TrillSpanner(staff)
-        >>> f(staff)
-        \new Staff {
+        >>> container = Container("c'8 d'8 e'8 f'8")
+        >>> beam = spannertools.BeamSpanner(container.select_leaves())
+        >>> slur = spannertools.SlurSpanner(container.select_leaves())
+        >>> trill = spannertools.TrillSpanner(container)
+        >>> show(container) # doctest: +SKIP
+
+    ..  doctest::
+
+        >>> f(container)
+        {
             c'8 [ ( \startTrillSpan
             d'8
             e'8
@@ -22,7 +26,7 @@ def get_the_only_spanner_attached_to_component(
     ::
 
         >>> print spannertools.get_the_only_spanner_attached_to_component(
-        ...     staff)
+        ...     container)
         TrillSpanner({c'8, d'8, e'8, f'8})
 
     Raise missing spanner error when no spanner attached to `component`.

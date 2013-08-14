@@ -4,20 +4,21 @@ from abjad.tools import componenttools
 
 def get_spanners_attached_to_any_improper_child_of_component(
     component, spanner_classes=None):
-    r'''Get all spanners attached to any improper children of `component`:
+    r'''Get all spanners attached to any improper children of `component`.
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> beam = spannertools.BeamSpanner(staff.select_leaves())
-        >>> first_slur = spannertools.SlurSpanner(staff.select_leaves()[:2])
-        >>> second_slur = spannertools.SlurSpanner(staff.select_leaves()[2:])
-        >>> trill = spannertools.TrillSpanner(staff)
+        >>> container = Container("c'8 d'8 e'8 f'8")
+        >>> beam = spannertools.BeamSpanner(container.select_leaves())
+        >>> first_slur = spannertools.SlurSpanner(container.select_leaves()[:2])
+        >>> second_slur = spannertools.SlurSpanner(container.select_leaves()[2:])
+        >>> trill = spannertools.TrillSpanner(container)
+        >>> show(container) # doctest: +SKIP
 
     ..  doctest::
 
-        >>> f(staff)
-        \new Staff {
+        >>> f(container)
+        {
             c'8 [ ( \startTrillSpan
             d'8 )
             e'8 (
@@ -28,7 +29,7 @@ def get_spanners_attached_to_any_improper_child_of_component(
 
         >>> len(
         ...     spannertools.get_spanners_attached_to_any_improper_child_of_component(
-        ...     staff))
+        ...     container))
         4
 
     Get all spanners of `spanner_classes` attached to any proper children 
@@ -39,7 +40,7 @@ def get_spanners_attached_to_any_improper_child_of_component(
         >>> spanner_classes = (spannertools.SlurSpanner, )
         >>> result = \
         ...     spannertools.get_spanners_attached_to_any_proper_child_of_component(
-        ...     staff, spanner_classes=spanner_classes)
+        ...     container, spanner_classes=spanner_classes)
 
     ::
 
@@ -54,7 +55,7 @@ def get_spanners_attached_to_any_improper_child_of_component(
         >>> spanner_classes = (spannertools.SlurSpanner, spannertools.BeamSpanner)
         >>> result = \
         ...     spannertools.get_spanners_attached_to_any_proper_child_of_component(
-        ...     staff, spanner_classes=spanner_classes)
+        ...     container, spanner_classes=spanner_classes)
 
     ::
 

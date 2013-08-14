@@ -4,16 +4,16 @@ from abjad.tools import componenttools
 
 def get_spanners_attached_to_any_proper_parent_of_component(
     component, spanner_classes=None):
-    r'''Get all spanners attached to any proper parent of `component`:
+    r'''Get all spanners attached to any proper parent of `component`.
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> beam = spannertools.BeamSpanner(staff.select_leaves())
-        >>> slur = spannertools.SlurSpanner(staff.select_leaves())
-        >>> trill = spannertools.TrillSpanner(staff)
-        >>> f(staff)
-        \new Staff {
+        >>> container = Container("c'8 d'8 e'8 f'8")
+        >>> beam = spannertools.BeamSpanner(container.select_leaves())
+        >>> slur = spannertools.SlurSpanner(container.select_leaves())
+        >>> trill = spannertools.TrillSpanner(container)
+        >>> f(container)
+        {
             c'8 [ ( \startTrillSpan
             d'8
             e'8
@@ -23,7 +23,7 @@ def get_spanners_attached_to_any_proper_parent_of_component(
     ::
 
         >>> spannertools.get_spanners_attached_to_any_proper_parent_of_component(
-        ...     staff[0])
+        ...     container[0])
         set([TrillSpanner({c'8, d'8, e'8, f'8})])
 
     Return unordered set of zero or more spanners.

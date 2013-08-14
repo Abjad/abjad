@@ -4,16 +4,20 @@ from abjad.tools import componenttools
 
 def get_spanners_attached_to_any_improper_parent_of_component(
     component, spanner_classes=None):
-    r'''Get all spanners attached to improper parentage of `component`:
+    r'''Get all spanners attached to improper parentage of `component`.
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Container("c'8 d'8 e'8 f'8")
         >>> beam = spannertools.BeamSpanner(staff.select_leaves())
         >>> slur = spannertools.SlurSpanner(staff.select_leaves())
         >>> trill = spannertools.TrillSpanner(staff)
+        >>> show(staff) # doctest: +SKIP
+
+    ..  doctest::
+
         >>> f(staff)
-        \new Staff {
+        {
             c'8 [ ( \startTrillSpan
             d'8
             e'8

@@ -15,20 +15,24 @@ def fracture_spanners_that_cross_components(components):
 
     This helper is public-safe.
 
-    ..  container:: 
+    ..  container:: example
 
         **Example:**
 
         ::
 
-            >>> t = Staff(Container(notetools.make_repeated_notes(2)) * 3)
-            >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-            >>> crescendo = spannertools.CrescendoSpanner(t)
-            >>> beam = spannertools.BeamSpanner(t[:])
-            >>> trill = spannertools.TrillSpanner(t.select_leaves())
+            >>> container = Container(Container(notetools.make_repeated_notes(2)) * 3)
+            >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
+            ...     container)
+            >>> crescendo = spannertools.CrescendoSpanner(container)
+            >>> beam = spannertools.BeamSpanner(container[:])
+            >>> trill = spannertools.TrillSpanner(container.select_leaves())
+            >>> show(conatiner) # doctest: +SKIP
 
-            >>> f(t)
-            \new Staff {
+        ..  doctest::
+
+            >>> f(container)
+            {
                 {
                     c'8 [ \< \startTrillSpan
                     d'8
@@ -40,13 +44,20 @@ def fracture_spanners_that_cross_components(components):
                 {
                     g'8
                     a'8 ] \! \stopTrillSpan
-                }   }
+                }
+            }
 
-            >>> spannertools.fracture_spanners_that_cross_components(t[1:2])
+        ::
+
+            >>> spannertools.fracture_spanners_that_cross_components(
+            ...     container[1:2])
             SliceSelection({e'8, f'8},)
+            >>> show(container) # doctest: +SKIP
 
-            >>> f(t)
-            \new Staff {
+        ::
+
+            >>> f(container)
+            {
                 {
                     c'8 [ \< \startTrillSpan
                     d'8 ]
@@ -65,7 +76,8 @@ def fracture_spanners_that_cross_components(components):
     '''
     from abjad.tools import spannertools
 
-    assert componenttools.all_are_contiguous_components_in_same_logical_voice(components)
+    assert componenttools.all_are_contiguous_components_in_same_logical_voice(
+        components)
 
     if 0 < len(components):
 

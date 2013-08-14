@@ -3,16 +3,21 @@
 
 def fracture_spanners_attached_to_component(
     component, direction=None, spanner_classes=None):
-    r'''Fracture all spanners attached to `component` according to `direction`:
+    r'''Fracture all spanners attached to `component` according to 
+    `direction`.
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> beam = spannertools.BeamSpanner(staff.select_leaves())
-        >>> slur = spannertools.SlurSpanner(staff.select_leaves())
-        >>> trill = spannertools.TrillSpanner(staff)
-        >>> f(staff)
-        \new Staff {
+        >>> container = Container("c'8 d'8 e'8 f'8")
+        >>> beam = spannertools.BeamSpanner(container.select_leaves())
+        >>> slur = spannertools.SlurSpanner(container.select_leaves())
+        >>> trill = spannertools.TrillSpanner(container)
+        >>> show(container) # doctest: +SKIP
+
+    ..  doctest::
+
+        >>> f(container)
+        {
             c'8 [ ( \startTrillSpan
             d'8
             e'8
@@ -22,12 +27,13 @@ def fracture_spanners_attached_to_component(
     ::
 
         >>> parts = spannertools.fracture_spanners_attached_to_component(
-        ...     staff[1], direction=Right)
+        ...     container[1], direction=Right)
+        >>> show(container) # doctest: +SKIP
 
     ..  doctest::
 
-        >>> f(staff)
-        \new Staff {
+        >>> f(container)
+        {
             c'8 [ ( \startTrillSpan
             d'8 ] )
             e'8 [ (
