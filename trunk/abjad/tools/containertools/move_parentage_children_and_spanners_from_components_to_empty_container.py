@@ -57,9 +57,10 @@ def move_parentage_children_and_spanners_from_components_to_empty_container(
     '''
     from abjad.tools import containertools
     from abjad.tools import selectiontools
+    Selection = selectiontools.Selection
 
     # check input
-    assert componenttools.all_are_contiguous_components_in_same_parent(
+    assert Selection._all_are_contiguous_components_in_same_parent(
         components)
     assert isinstance(container, containertools.Container), repr(container)
     assert not container, repr(container)

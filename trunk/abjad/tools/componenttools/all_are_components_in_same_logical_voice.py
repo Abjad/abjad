@@ -6,27 +6,15 @@ from abjad.tools import selectiontools
 def all_are_components_in_same_logical_voice(
     expr, component_classes=None, allow_orphans=True):
     '''True when elements in `expr` are all components in same logical voice. 
-    Otherwise false:
+    Otherwise false.
 
-    ::
-
-        >>> voice = Voice("c'8 d'8 e'8")
-        >>> componenttools.all_are_components_in_same_logical_voice(voice.select_leaves())
-        True
-
-    True when elements in `expr` are all `component_classes` in 
-    same logical voice. Otherwise false:
-
-    ::
-
-        >>> voice = Voice("c'8 d'8 e'8")
-        >>> componenttools.all_are_components_in_same_logical_voice(
-        ...     voice.select_leaves(), component_classes=Note)
-        True
+    .. note:: Deprecated.
 
     Return boolean.
     '''
     from abjad.tools import componenttools
+
+    raise Exception
 
     allowable_types = (
         list,

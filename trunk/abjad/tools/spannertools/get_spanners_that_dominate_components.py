@@ -15,10 +15,12 @@ def get_spanners_that_dominate_components(components):
 
     This operation always leaves all expressions in tact.
     '''
+    from abjad.tools import selectiontools
     from abjad.tools import spannertools
+    Selection = selectiontools.Selection
 
-    assert componenttools.all_are_contiguous_components_in_same_logical_voice(components,
-        allow_orphans=True)
+    assert Selection._all_are_contiguous_components_in_same_logical_voice(
+        components, allow_orphans=True)
 
     receipt = set([])
 
@@ -31,7 +33,8 @@ def get_spanners_that_dominate_components(components):
     stop_components = last._select_descendants_stopping_with()
     stop_components = set(stop_components)
     for component in start_components:
-        for spanner in spannertools.get_spanners_attached_to_component(component):
+        for spanner in \
+            spannertools.get_spanners_attached_to_component(component):
             if set(spanner[:]) & stop_components != set([]):
                 index = spanner.index(component)
                 receipt.add((spanner, index))

@@ -5,8 +5,10 @@ from abjad.tools import componenttools
 from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import lilypondproxytools
+from abjad.tools import selectiontools
 from abjad.tools import timespantools
 from abjad.tools.abctools import AbjadObject
+Selection = selectiontools.Selection
 
 
 class Spanner(AbjadObject):
@@ -244,7 +246,7 @@ class Spanner(AbjadObject):
             for x in components), repr(components)
         if self._contiguity_constraint == 'logical voice':
             leaves = list(iterationtools.iterate_leaves_in_expr(components))
-            assert componenttools.all_are_contiguous_components_in_same_logical_voice(leaves)
+            assert Selection._all_are_contiguous_components_in_same_logical_voice(leaves)
         self.extend(components)
 
     def _insert(self, i, component):
@@ -460,7 +462,7 @@ class Spanner(AbjadObject):
         '''
         if self._contiguity_constraint == 'logical voice':
             components = self[-1:] + [component]
-            assert componenttools.all_are_contiguous_components_in_same_logical_voice(
+            assert Selection._all_are_contiguous_components_in_same_logical_voice(
                 components), repr(components)
         component._spanners.add(self)
         self._components.append(component)
@@ -484,7 +486,7 @@ class Spanner(AbjadObject):
         Return none.
         '''
         components = [component] + self[:1]
-        assert componenttools.all_are_contiguous_components_in_same_logical_voice(components)
+        assert Selection._all_are_contiguous_components_in_same_logical_voice(components)
         component._spanners.add(self)
         self._components.insert(0, component)
 
@@ -539,7 +541,7 @@ class Spanner(AbjadObject):
         component_input = self[-1:]
         component_input.extend(components)
         if self._contiguity_constraint == 'logical voice':
-            assert componenttools.all_are_contiguous_components_in_same_logical_voice(
+            assert Selection._all_are_contiguous_components_in_same_logical_voice(
                 component_input), repr(component_input)
         for component in components:
             self.append(component)
@@ -563,7 +565,7 @@ class Spanner(AbjadObject):
         Return none.
         '''
         component_input = components + self[:1]
-        assert componenttools.all_are_contiguous_components_in_same_logical_voice(
+        assert Selection._all_are_contiguous_components_in_same_logical_voice(
             component_input)
         for component in reversed(components):
             self.append_left(component)

@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import componenttools
+from abjad.tools import selectiontools
+Selection = selectiontools.Selection
 
 
 def fuse_leaves(leaves):
@@ -28,7 +30,8 @@ def fuse_leaves(leaves):
     from abjad.tools import leaftools
     from abjad.tools import selectiontools
 
-    assert componenttools.all_are_contiguous_components_in_same_logical_voice(leaves)
+    assert Selection._all_are_contiguous_components_in_same_logical_voice(
+        leaves)
     if not isinstance(leaves, selectiontools.SliceSelection):
         leaves = selectiontools.SliceSelection(leaves)
 

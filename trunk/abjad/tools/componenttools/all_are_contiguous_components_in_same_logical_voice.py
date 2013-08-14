@@ -8,76 +8,13 @@ def all_are_contiguous_components_in_same_logical_voice(
     r'''True when all elements in `expr` are contiguous components
     in the same logical voice. Otherwise false.
 
-    ..  container:: example
-
-        Score for examples:
-
-            >>> container_1 = Container("c'8 d'8")
-            >>> inner_voice = Voice("e'8 f'8")
-            >>> container_2 = Container("g'8 a'8")
-            >>> outer_voice = Voice([container_1, inner_voice, container_2])
-            >>> show(outer_voice) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> f(outer_voice)
-            \new Voice {
-                {
-                    c'8
-                    d'8
-                }
-                \new Voice {
-                    e'8
-                    f'8
-                }
-                {
-                    g'8
-                    a'8
-                }
-            }
-
-    The first two notes belong to the same logical voice 
-    and are time-contiguous:
-
-        >>> components = container_1.select_leaves()
-        >>> componenttools.all_are_contiguous_components_in_same_logical_voice(components)
-        True
-
-    The middle two notes belong to the same logical voice 
-    and are time-contiguous:
-
-        >>> components = inner_voice.select_leaves()
-        >>> componenttools.all_are_contiguous_components_in_same_logical_voice(components)
-        True
-
-    The middle two notes belong to the same logical voice 
-    and are time-contiguous:
-
-        >>> components = container_1.select_leaves()
-        >>> componenttools.all_are_contiguous_components_in_same_logical_voice(components)
-        True
-
-    But the six leaves taken together belong to different logical voices:
-
-        >>> components = outer_voice.select_leaves(
-        ...     allow_discontiguous_leaves=True)
-        >>> componenttools.all_are_contiguous_components_in_same_logical_voice(components)
-        False
-
-    The first two leaves and the last two leaves belong to the same logical
-    voice. But the first two leaves and the last two leaves are not
-    time-contiguous:
-
-        >>> container_1_leaves = container_1.select_leaves()
-        >>> container_2_leaves = container_2.select_leaves()
-        >>> leaves = container_1_leaves + container_2_leaves
-        >>> componenttools.all_are_contiguous_components_in_same_logical_voice(
-        ...     components)
-        False
+    .. note:: Deprecated.
 
     Returns boolean.
     '''
     from abjad.tools import componenttools
+
+    raise Exception
 
     allowable_types = (
         list,

@@ -7,9 +7,11 @@ def get_spanners_on_components_or_component_children(components):
     component in `components` or attaching to any of the children
     of any of the components in `components`.
     '''
+    from abjad.tools import selectiontools
+    Selection = selectiontools.Selection
 
     # check input
-    assert componenttools.all_are_contiguous_components_in_same_logical_voice(
+    assert Selection._all_are_contiguous_components_in_same_logical_voice(
         components)
 
     # accumulate spanners

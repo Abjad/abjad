@@ -10,10 +10,13 @@ def withdraw_components_from_spanners_covered_by_components(components):
 
     Return components.
     '''
+    from abjad.tools import selectiontools
     from abjad.tools import spannertools
+    Selection = selectiontools.Selection
 
     # check components
-    assert componenttools.all_are_contiguous_components_in_same_logical_voice(components)
+    assert Selection._all_are_contiguous_components_in_same_logical_voice(
+        components)
 
     # withdraw from covered spanners
     for spanner in spannertools.get_spanners_covered_by_components(components):

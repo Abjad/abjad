@@ -7,9 +7,12 @@ def get_spanners_contained_by_components(components):
     any component in list of logical-voice-contiguous components.
     Getter for t.spanners.contained across logical-voice-contiguous components.
     '''
+    from abjad.tools import selectiontools
     from abjad.tools import spannertools
+    Selection = selectiontools.Selection
 
-    assert componenttools.all_are_contiguous_components_in_same_logical_voice(components)
+    assert Selection._all_are_contiguous_components_in_same_logical_voice(
+        components)
 
     result = set([])
     for component in components:

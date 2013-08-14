@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import componenttools
+from abjad.tools import selectiontools
+Selection = selectiontools.Selection
 
 
 def get_spanners_that_dominate_component_pair(left, right):
@@ -22,7 +24,8 @@ def get_spanners_that_dominate_component_pair(left, right):
     if left is None or right is None:
         return set([])
 
-    assert componenttools.all_are_contiguous_components_in_same_logical_voice([left, right])
+    assert Selection._all_are_contiguous_components_in_same_logical_voice(
+        [left, right])
 
     left_contained = \
         spannertools.get_spanners_attached_to_any_improper_child_of_component(

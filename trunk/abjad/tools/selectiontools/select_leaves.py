@@ -70,6 +70,7 @@ def select_leaves(
     from abjad.tools import iterationtools
     from abjad.tools import leaftools
     from abjad.tools import selectiontools
+    Selection = selectiontools.Selection
     leaf_classes = leaf_classes or (leaftools.Leaf,)
     if recurse:
         expr = iterationtools.iterate_leaves_in_expr(expr)
@@ -80,7 +81,7 @@ def select_leaves(
     if allow_discontiguous_leaves:
         selection = selectiontools.FreeLeafSelection(music=music)
     else:
-        assert componenttools.all_are_contiguous_components_in_same_logical_voice(
+        assert Selection._all_are_contiguous_components_in_same_logical_voice(
             music)
         selection = selectiontools.ContiguousLeafSelection(music=music)
     return selection

@@ -45,6 +45,8 @@ def get_nth_leaf_in_logical_voice_from_leaf(leaf, n=0):
     Return leaf or none.
     '''
     from abjad.tools import leaftools
+    from abjad.tools import selectiontools
+    Selection = selectiontools.Selection
 
     if not isinstance(leaf, leaftools.Leaf):
         return None
@@ -56,7 +58,7 @@ def get_nth_leaf_in_logical_voice_from_leaf(leaf, n=0):
         candidates = new_component._select_descendants_starting_with()
         candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
         for candidate in candidates:
-            if componenttools.all_are_components_in_same_logical_voice([component, candidate]):
+            if Selection._all_are_components_in_same_logical_voice([component, candidate]):
                 return candidate
 
     def _prev(component):
@@ -66,7 +68,7 @@ def get_nth_leaf_in_logical_voice_from_leaf(leaf, n=0):
         candidates = new_component._select_descendants_stopping_with()
         candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
         for candidate in candidates:
-            if componenttools.all_are_components_in_same_logical_voice([component, candidate]):
+            if Selection._all_are_components_in_same_logical_voice([component, candidate]):
                 return candidate
 
     current_leaf = leaf

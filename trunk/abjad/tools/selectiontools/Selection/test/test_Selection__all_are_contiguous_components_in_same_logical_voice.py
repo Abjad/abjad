@@ -1,6 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import py.test
+from abjad import *
+Selection = selectiontools.Selection
+
 
 
 def test_Selection__all_are_contiguous_components_in_same_logical_voice_01():
@@ -31,11 +33,11 @@ def test_Selection__all_are_contiguous_components_in_same_logical_voice_01():
     }
     '''
 
-    assert not componenttools.all_are_contiguous_components_in_same_logical_voice(
+    assert not Selection._all_are_contiguous_components_in_same_logical_voice(
         [voice, voice[0]])
-    assert not componenttools.all_are_contiguous_components_in_same_logical_voice(
+    assert not Selection._all_are_contiguous_components_in_same_logical_voice(
         voice[0:1] + voice[0][:])
-    assert not componenttools.all_are_contiguous_components_in_same_logical_voice(
+    assert not Selection._all_are_contiguous_components_in_same_logical_voice(
         voice[-1:] + voice[-1][:])
 
 
@@ -44,7 +46,7 @@ def test_Selection__all_are_contiguous_components_in_same_logical_voice_02():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    assert componenttools.all_are_contiguous_components_in_same_logical_voice(staff[:])
+    assert Selection._all_are_contiguous_components_in_same_logical_voice(staff[:])
 
 
 def test_Selection__all_are_contiguous_components_in_same_logical_voice_03():
@@ -52,8 +54,8 @@ def test_Selection__all_are_contiguous_components_in_same_logical_voice_03():
         False for orphan components when allow_orphans is False.'''
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
-    assert componenttools.all_are_contiguous_components_in_same_logical_voice(notes)
-    assert not componenttools.all_are_contiguous_components_in_same_logical_voice(notes, allow_orphans=False)
+    assert Selection._all_are_contiguous_components_in_same_logical_voice(notes)
+    assert not Selection._all_are_contiguous_components_in_same_logical_voice(notes, allow_orphans=False)
 
 
 def test_Selection__all_are_contiguous_components_in_same_logical_voice_04():
@@ -61,21 +63,21 @@ def test_Selection__all_are_contiguous_components_in_same_logical_voice_04():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    assert not componenttools.all_are_contiguous_components_in_same_logical_voice(staff[2:] + staff[:2])
+    assert not Selection._all_are_contiguous_components_in_same_logical_voice(staff[2:] + staff[:2])
 
 
 def test_Selection__all_are_contiguous_components_in_same_logical_voice_05():
     r'''True for unincorporated component.
     '''
 
-    assert componenttools.all_are_contiguous_components_in_same_logical_voice([Staff("c'8 d'8 e'8 f'8")])
+    assert Selection._all_are_contiguous_components_in_same_logical_voice([Staff("c'8 d'8 e'8 f'8")])
 
 
 def test_Selection__all_are_contiguous_components_in_same_logical_voice_06():
     r'''True for empty list.
     '''
 
-    assert componenttools.all_are_contiguous_components_in_same_logical_voice([])
+    assert Selection._all_are_contiguous_components_in_same_logical_voice([])
 
 
 def test_Selection__all_are_contiguous_components_in_same_logical_voice_07():
@@ -96,7 +98,7 @@ def test_Selection__all_are_contiguous_components_in_same_logical_voice_07():
     }
     '''
 
-    assert not componenttools.all_are_contiguous_components_in_same_logical_voice(voice[:2] + voice[-2:])
+    assert not Selection._all_are_contiguous_components_in_same_logical_voice(voice[:2] + voice[-2:])
 
 
 def test_Selection__all_are_contiguous_components_in_same_logical_voice_08():
@@ -124,4 +126,4 @@ def test_Selection__all_are_contiguous_components_in_same_logical_voice_08():
     }
     '''
 
-    assert not componenttools.all_are_contiguous_components_in_same_logical_voice(voice[:1] + voice[-1:])
+    assert not Selection._all_are_contiguous_components_in_same_logical_voice(voice[:1] + voice[-1:])

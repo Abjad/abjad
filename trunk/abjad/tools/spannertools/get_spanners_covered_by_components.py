@@ -12,9 +12,11 @@ def get_spanners_covered_by_components(components):
     ``t.start_ofset <= more(p).get_timespan().start_offset and 
     more(p).get_timespan().stop_offset <= t.stop_offset``.
     '''
+    from abjad.tools import selectiontools
     from abjad.tools import spannertools
+    Selection = selectiontools.Selection
 
-    assert componenttools.all_are_contiguous_components_in_same_logical_voice(components)
+    assert Selection._all_are_contiguous_components_in_same_logical_voice(components)
 
     if not len(components):
         return set([])

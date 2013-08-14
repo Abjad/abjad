@@ -4,7 +4,7 @@ from abjad.tools import containertools
 from abjad.tools import leaftools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
-
+Selection = selectiontools.Selection
 
 
 def establish_metrical_hierarchy(
@@ -909,7 +909,8 @@ def establish_metrical_hierarchy(
             leaftools.fuse_leaves(tie_chain[:])
 
     # Validate arguments.
-    assert componenttools.all_are_contiguous_components_in_same_logical_voice(components)
+    assert Selection._all_are_contiguous_components_in_same_logical_voice(
+        components)
     if not isinstance(metrical_hierarchy,
         timesignaturetools.MetricalHierarchy):
         metrical_hierarchy = \

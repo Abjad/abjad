@@ -77,10 +77,11 @@ def fuse_measures(measures):
     from abjad.tools import measuretools
     from abjad.tools import selectiontools
     from abjad.tools import timesignaturetools
+    Selection = selectiontools.Selection
 
     # check input
     assert isinstance(measures, selectiontools.SliceSelection), repr(measures)
-    assert componenttools.all_are_contiguous_components_in_same_parent(
+    assert Selection._all_are_contiguous_components_in_same_parent(
         measures, component_classes=(measuretools.Measure, ))
 
     # return none on empty measures

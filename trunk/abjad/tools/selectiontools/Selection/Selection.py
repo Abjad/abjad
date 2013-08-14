@@ -113,31 +113,175 @@ class Selection(object):
     def _all_are_components_in_same_logical_voice(
         expr, component_classes=None, allow_orphans=True):
         from abjad.tools import componenttools
-        return componenttools.all_are_components_in_same_logical_voice(
-            expr,
-            component_classes=component_classes,
-            allow_orphans=allow_orphans,
+        from abjad.tools import selectiontools
+        allowable_types = (
+            list,
+            tuple,
+            types.GeneratorType,
+            selectiontools.Selection,
             )
+        if not isinstance(expr, allowable_types):
+            return False
+        component_classes = component_classes or (componenttools.Component,)
+        if not isinstance(component_classes, tuple):
+            component_classes = (component_classes, )
+        assert isinstance(component_classes, tuple)
+        if len(expr) == 0:
+            return True
+        all_are_orphans_of_correct_type = True
+        if allow_orphans:
+            for component in expr:
+                if not isinstance(component, component_classes):
+                    all_are_orphans_of_correct_type = False
+                    break
+                if not component._select_parentage().is_orphan:
+                    all_are_orphans_of_correct_type = False
+                    break
+            if all_are_orphans_of_correct_type:
+                return True
+        first = expr[0]
+        if not isinstance(first, component_classes):
+            return False
+        orphan_components = True
+        if not first._select_parentage().is_orphan:
+            orphan_components = False
+        same_logical_voice = True
+        first_signature = first._select_parentage().logical_voice_indicator
+        for component in expr[1:]:
+            parentage = component._select_parentage()
+            if not parentage.is_orphan:
+                orphan_components = False
+            if not allow_orphans and orphan_components:
+                return False
+            if parentage.logical_voice_indicator != first_signature:
+                same_logical_voice = False
+            if not allow_orphans and not same_logical_voice:
+                return False
+            if allow_orphans and not orphan_components and \
+                not same_logical_voice:
+                return False
+        return True
     
     @staticmethod
     def _all_are_contiguous_components_in_same_logical_voice(
         expr, component_classes=None, allow_orphans=True):
+#        from abjad.tools import componenttools
+#        return componenttools.all_are_contiguous_components_in_same_logical_voice(
+#            expr,
+#            component_classes=component_classes,
+#            allow_orphans=allow_orphans,
+#            )
         from abjad.tools import componenttools
-        return componenttools.all_are_contiguous_components_in_same_logical_voice(
-            expr,
-            component_classes=component_classes,
-            allow_orphans=allow_orphans,
+        from abjad.tools import selectiontools
+        allowable_types = (
+            list,
+            tuple,
+            types.GeneratorType,
+            selectiontools.Selection,
             )
+        if not isinstance(expr, allowable_types):
+            return False
+        component_classes = component_classes or (componenttools.Component,)
+        if not isinstance(component_classes, tuple):
+            component_classes = (component_classes, )
+        assert isinstance(component_classes, tuple)
+        if len(expr) == 0:
+            return True
+        all_are_orphans_of_correct_type = True
+        if allow_orphans:
+            for component in expr:
+                if not isinstance(component, component_classes):
+                    all_are_orphans_of_correct_type = False
+                    break
+                if not component._select_parentage().is_orphan:
+                    all_are_orphans_of_correct_type = False
+                    break
+            if all_are_orphans_of_correct_type:
+                return True
+        if not allow_orphans:
+            if any(x._select_parentage().is_orphan for x in expr):
+                return False
+        first = expr[0]
+        if not isinstance(first, component_classes):
+            return False
+        first_parentage = first._select_parentage()
+        first_logical_voice_indicator = first_parentage.logical_voice_indicator
+        first_root = first_parentage.root
+        previous = first
+        for current in expr[1:]:
+            current_parentage = current._select_parentage()
+            current_logical_voice_indicator = \
+                current_parentage.logical_voice_indicator
+            # false if wrong type of component found
+            if not isinstance(current, component_classes):
+                return False
+            # false if in different logical voices
+            if current_logical_voice_indicator != first_logical_voice_indicator:
+                return False
+            # false if components are in same score and are discontiguous
+            if current_parentage.root == first_root:
+                if not previous._is_immediate_temporal_successor_of(current):
+                    return False
+            previous = current
+        return True
 
     @staticmethod
     def _all_are_contiguous_components_in_same_parent(
         expr, component_classes=None, allow_orphans=True):
         from abjad.tools import componenttools
-        return componenttools.all_are_contiguous_components_in_same_parent(
-            expr,
-            component_classes=component_classes,
-            allow_orphans=allow_orphans,
+        from abjad.tools import selectiontools
+        allowable_types = (
+            list,
+            tuple,
+            types.GeneratorType,
+            selectiontools.Selection,
             )
+        if not isinstance(expr, allowable_types):
+            return False
+        component_classes = component_classes or (componenttools.Component, )
+        if not isinstance(component_classes, tuple):
+            component_classes = (component_classes, )
+        assert isinstance(component_classes, tuple)
+        if len(expr) == 0:
+            return True
+        all_are_orphans_of_correct_type = True
+        if allow_orphans:
+            for component in expr:
+                if not isinstance(component, component_classes):
+                    all_are_orphans_of_correct_type = False
+                    break
+                if not component._select_parentage().is_orphan:
+                    all_are_orphans_of_correct_type = False
+                    break
+            if all_are_orphans_of_correct_type:
+                return True
+        first = expr[0]
+        if not isinstance(first, component_classes):
+            return False
+        first_parent = first._parent
+        if first_parent is None:
+            if allow_orphans:
+                orphan_components = True
+            else:
+                return False
+        same_parent = True
+        strictly_contiguous = True
+        previous = first
+        for current in expr[1:]:
+            if not isinstance(current, component_classes):
+                return False
+            if not current._select_parentage().is_orphan:
+                orphan_components = False
+            if not current._parent is first_parent:
+                same_parent = False
+            if not previous._is_immediate_temporal_successor_of(current):
+                strictly_contiguous = False
+            if (not allow_orphans or 
+                (allow_orphans and not orphan_components)) and \
+                (not same_parent or not strictly_contiguous):
+                return False
+            previous = current
+        return True
 
     def _attach_marks(self, marks, recurse=False):
         from abjad.tools import marktools

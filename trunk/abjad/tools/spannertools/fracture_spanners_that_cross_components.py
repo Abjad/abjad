@@ -74,9 +74,11 @@ def fracture_spanners_that_cross_components(components):
 
     Return selection.
     '''
+    from abjad.tools import selectiontools
     from abjad.tools import spannertools
+    Selection = selectiontools.Selection
 
-    assert componenttools.all_are_contiguous_components_in_same_logical_voice(
+    assert Selection._all_are_contiguous_components_in_same_logical_voice(
         components)
 
     if 0 < len(components):

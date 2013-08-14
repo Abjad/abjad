@@ -1,7 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import componenttools
+from abjad.tools import selectiontools
 from abjad.tools import spannertools
 from abjad.tools.wellformednesstools.Check import Check
+Selection = selectiontools.Selection
 
 
 class DiscontiguousSpannerCheck(Check):
@@ -18,7 +20,7 @@ class DiscontiguousSpannerCheck(Check):
             spannertools.get_spanners_attached_to_any_improper_child_of_component(
             expr):
             if spanner._contiguity_constraint == 'logical voice':
-                if not componenttools.all_are_contiguous_components_in_same_logical_voice(
+                if not Selection._all_are_contiguous_components_in_same_logical_voice(
                     spanner[:]):
                     violators.append(spanner)
             total += 1

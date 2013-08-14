@@ -8,26 +8,13 @@ def all_are_contiguous_components_in_same_parent(
     '''True when elements in `expr` are all contiguous components in same parent.
     Otherwise false:
 
-    ::
-
-        >>> staff = Staff("c'8 d'8 e'8")
-        >>> componenttools.all_are_contiguous_components_in_same_parent(
-        ...     staff.select_leaves())
-        True
-
-    True when elements in `expr` are all contiguous instances
-    of `component_classes` in same parent. Otherwise false:
-
-    ::
-
-        >>> staff = Staff("c'8 d'8 e'8")
-        >>> componenttools.all_are_contiguous_components_in_same_parent(
-        ...     staff.select_leaves(), component_classes=(Note,))
-        True
+    .. note:: Deprecated.
 
     Return boolean.
     '''
     from abjad.tools import componenttools
+
+    raise Exception
 
     allowable_types = (
         list,

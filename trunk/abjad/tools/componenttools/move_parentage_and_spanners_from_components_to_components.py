@@ -17,11 +17,12 @@ def move_parentage_and_spanners_from_components_to_components(
     '''
     from abjad.tools import componenttools
     from abjad.tools import selectiontools
+    Selection = selectiontools.Selection
 
     # check input
-    assert componenttools.all_are_contiguous_components_in_same_parent(
+    assert Selection._all_are_contiguous_components_in_same_parent(
         donors)
-    assert componenttools.all_are_contiguous_components_in_same_parent(
+    assert Selection._all_are_contiguous_components_in_same_parent(
         recipients)
 
     # coerce input
