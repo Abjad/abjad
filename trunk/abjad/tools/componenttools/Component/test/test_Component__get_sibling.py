@@ -3,6 +3,8 @@ from abjad import *
 
 
 def test_Component__get_sibling_01():
+    '''Return component when index is in range.
+    '''
 
     staff = Staff("c' d' e' f'")
     assert staff[1]._get_sibling(2) is staff[3]

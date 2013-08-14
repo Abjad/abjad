@@ -25,7 +25,6 @@ def test_Component__has_mark_03():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     marktools.LilyPondCommandMark('break', 'closing')(staff[-1])
-    f(staff)
 
     assert not staff[0]._has_mark(marktools.LilyPondCommandMark)
     assert not staff[1]._has_mark(marktools.LilyPondCommandMark)
@@ -70,5 +69,4 @@ def test_Component__has_mark_07():
     assert not staff[1]._has_mark(contexttools.ContextMark)
     assert not staff[2]._has_mark(contexttools.ContextMark)
     assert not staff[3]._has_mark(contexttools.ContextMark)
-
     assert not staff._has_mark(contexttools.ContextMark)

@@ -3,395 +3,341 @@ from abjad import *
 
 
 def test_Component__is_immediate_temporal_successor_of_01():
-    r'''The second of two leaves in the same voice is
-    the immediate temporal follower of the first.
-    '''
 
-    voice = Voice([Note(i, (1, 8)) for i in range(4)])
+    voice = Voice("c'8 d'8 e'8 f'8")
 
     assert voice[0]._is_immediate_temporal_successor_of(voice[1])
     assert voice[1]._is_immediate_temporal_successor_of(voice[2])
     assert voice[2]._is_immediate_temporal_successor_of(voice[3])
 
-    r'''
-    \new Voice {
-        c'8
-        cs'8
-        d'8
-        ef'8
-    }
-    '''
-
 
 def test_Component__is_immediate_temporal_successor_of_02():
-    r'''The second of two leaves in the same staff is
-    the immediate temporal follower of the first.
-    '''
 
-    staff = Staff([Note(i, (1, 8)) for i in range(4)])
+    staff = Staff("c'8 d'8 e'8 f'8")
 
     assert staff[0]._is_immediate_temporal_successor_of(staff[1])
     assert staff[1]._is_immediate_temporal_successor_of(staff[2])
     assert staff[2]._is_immediate_temporal_successor_of(staff[3])
-
-    r'''
-    \new Staff {
-        c'8
-        cs'8
-        d'8
-        ef'8
-    }
-    '''
 
 
 def test_Component__is_immediate_temporal_successor_of_03():
-    r'''The second of two leaves in the same sequential is
-    the immediate temporal follower of the first.
-    '''
 
-    staff = Staff([Note(i, (1, 8)) for i in range(4)])
+    container = Container("c'8 d'8 e'8 f'8")
 
-    assert staff[0]._is_immediate_temporal_successor_of(staff[1])
-    assert staff[1]._is_immediate_temporal_successor_of(staff[2])
-    assert staff[2]._is_immediate_temporal_successor_of(staff[3])
-
-    r'''
-    {
-        c'8
-        cs'8
-        d'8
-        ef'8
-    }
-    '''
+    assert container[0]._is_immediate_temporal_successor_of(container[1])
+    assert container[1]._is_immediate_temporal_successor_of(container[2])
+    assert container[2]._is_immediate_temporal_successor_of(container[3])
 
 
 def test_Component__is_immediate_temporal_successor_of_04():
-    r'''The second of two leaves in the same tuplet is
-    the immediate temporal follower of the first.
-    '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), [Note(i, (1, 8)) for i in range(3)])
+    tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
 
     assert tuplet[0]._is_immediate_temporal_successor_of(tuplet[1])
     assert tuplet[1]._is_immediate_temporal_successor_of(tuplet[2])
 
-    r'''
-    \times 2/3 {
-        c'8
-        cs'8
-        d'8
-    }
-    '''
-
 
 def test_Component__is_immediate_temporal_successor_of_05():
-    r'''The second sequential and the first note of the second sequential
-    both temporally follow the first sequential and the last
-    note of the first sequential immediately.
-    '''
 
-    s1 = Container([Note(i, (1, 8)) for i in range(4)])
-    s2 = Container([Note(i, (1, 8)) for i in range(4, 8)])
-    voice = Voice([s1, s2])
+    voice = Voice("{ c'8 d'8 e'8 f'8 } { g'8 a'8 b'8 c''8 }")
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8
+                d'8
+                e'8
+                f'8
+            }
+            {
+                g'8
+                a'8
+                b'8
+                c''8
+            }
+        }
+        '''
+        )
 
     assert voice[0]._is_immediate_temporal_successor_of(voice[1])
     assert voice[0]._is_immediate_temporal_successor_of(voice[1][0])
     assert voice[0][-1]._is_immediate_temporal_successor_of(voice[1])
     assert voice[0][-1]._is_immediate_temporal_successor_of(voice[1][0])
-
-    r'''
-    \new Voice {
-        {
-            c'8
-            cs'8
-            d'8
-            ef'8
-        }
-        {
-            e'8
-            f'8
-            fs'8
-            g'8
-        }
-    }
-    '''
 
 
 def test_Component__is_immediate_temporal_successor_of_06():
-    r'''The second tuplet and the first note of the second tuplet
-    both temporally follow the first tuplet and the last
-    note of the first tuplet immediately.
-    '''
 
-    t1 = tuplettools.FixedDurationTuplet(Duration(2, 8), [Note(i, (1, 8)) for i in range(3)])
-    t2 = tuplettools.FixedDurationTuplet(Duration(2, 8), [Note(i, (1, 8)) for i in range(3, 6)])
-    voice = Voice([t1, t2])
+    voice = Voice(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 e'8 d'8 }")
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            \times 2/3 {
+                c'8
+                d'8
+                e'8
+            }
+            \times 2/3 {
+                f'8
+                e'8
+                d'8
+            }
+        }
+        '''
+        )
 
     assert voice[0]._is_immediate_temporal_successor_of(voice[1])
     assert voice[0]._is_immediate_temporal_successor_of(voice[1][0])
     assert voice[0][-1]._is_immediate_temporal_successor_of(voice[1])
     assert voice[0][-1]._is_immediate_temporal_successor_of(voice[1][0])
 
-    r'''
-    \new Voice {
-        \times 2/3 {
-            c'8
-            cs'8
-            d'8
-        }
-        \times 2/3 {
-            ef'8
-            e'8
-            f'8
-        }
-    }
-    '''
 
 
 def test_Component__is_immediate_temporal_successor_of_07():
-    r'''The second (anonymous) voice and the first note of the
-    second (anonymous) voice both temporally follow the
-    first (anonymous) voice and the last note of the
-    first (anonymous) voice immediately.
-    '''
 
-    v1 = Voice([Note(i, (1, 8)) for i in range(4)])
-    v2 = Voice([Note(i, (1, 8)) for i in range(4, 8)])
-    staff = Staff([v1, v2])
+    staff = Staff([Voice("c'8 d'8 e'8 f'8"), Voice("g'8 a'8 b'8 c''8")])
+
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            \new Voice {
+                c'8
+                d'8
+                e'8
+                f'8
+            }
+            \new Voice {
+                g'8
+                a'8
+                b'8
+                c''8
+            }
+        }
+        '''
+        )
 
     assert staff[0]._is_immediate_temporal_successor_of(staff[1])
     assert staff[0]._is_immediate_temporal_successor_of(staff[1][0])
     assert staff[0][-1]._is_immediate_temporal_successor_of(staff[1])
     assert staff[0][-1]._is_immediate_temporal_successor_of(staff[1][0])
 
-    r'''
-    \new Staff {
-        \new Voice {
-            c'8
-            cs'8
-            d'8
-            ef'8
-        }
-        \new Voice {
-            e'8
-            f'8
-            fs'8
-            g'8
-        }
-    }
-    '''
-
 
 def test_Component__is_immediate_temporal_successor_of_08():
-    r'''The second (like-named) voice and the first note of the
-    second (like-named) voice both temporally follow the
-    first (like-named) voice and the last note of the
-    first (like-named) voice immediately.
-    '''
 
-    v1 = Voice([Note(i, (1, 8)) for i in range(4)])
-    v1.name = 'foo'
-    v2 = Voice([Note(i, (1, 8)) for i in range(4, 88)])
-    v2.name = 'foo'
-    staff = Staff([v1, v2])
+    staff = Staff([Voice("c'8 d'8 e'8 f'8"), Voice("g'8 a'8 b'8 c''8")])
+    staff[0].name = 'foo'
+    staff[1].name = 'foo'
+    
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            \context Voice = "foo" {
+                c'8
+                d'8
+                e'8
+                f'8
+            }
+            \context Voice = "foo" {
+                g'8
+                a'8
+                b'8
+                c''8
+            }
+        }
+        '''
+        )
 
     assert staff[0]._is_immediate_temporal_successor_of(staff[1])
     assert staff[0]._is_immediate_temporal_successor_of(staff[1][0])
     assert staff[0][-1]._is_immediate_temporal_successor_of(staff[1])
 
-    r'''
-    \new Staff {
-        \context Voice = "foo" {
-            c'8
-            cs'8
-            d'8
-            ef'8
-        }
-        \context Voice = "foo" {
-            e'8
-            f'8
-            fs'8
-            g'8
-        }
-    }
-    '''
 
 
 def test_Component__is_immediate_temporal_successor_of_09():
-    r'''The second (differently named) voice and the first note of the
-    second (differently named) voice both temporally follow the
-    first (differently named) voice and the last note of the
-    first (differently named) voice immediately.
-    '''
 
-    v1 = Voice([Note(i, (1, 8)) for i in range(4)])
-    v1.name = 'foo'
-    v2 = Voice([Note(i, (1, 8)) for i in range(4, 88)])
-    v2.name = 'bar'
-    staff = Staff([v1, v2])
+    staff = Staff([Voice("c'8 d'8 e'8 f'8"), Voice("g'8 a'8 b'8 c''8")])
+    staff[0].name = 'foo'
+    staff[1].name = 'bar'
+    
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            \context Voice = "foo" {
+                c'8
+                d'8
+                e'8
+                f'8
+            }
+            \context Voice = "bar" {
+                g'8
+                a'8
+                b'8
+                c''8
+            }
+        }
+        '''
+        )
 
     assert staff[0]._is_immediate_temporal_successor_of(staff[1])
     assert staff[0]._is_immediate_temporal_successor_of(staff[1][0])
     assert staff[0][-1]._is_immediate_temporal_successor_of(staff[1])
 
-    r'''
-    \new Staff {
-        \context Voice = "foo" {
-            c'8
-            cs'8
-            d'8
-            ef'8
-        }
-        \context Voice = "bar" {
-            e'8
-            f'8
-            fs'8
-            g'8
-        }
-    }
-    '''
-
 
 def test_Component__is_immediate_temporal_successor_of_10():
-    r'''Each of ...
-        * the first (anonymous) staff
-        * the first (anonymous) voice
-        * the last note in the first (anonymous) voice
-    ... is followed in immediate temporal order by each of ...
-        * the second (anonymous) staff
-        * the second (anonymous) voice
-        * the first note in the second (anonymous) voice.
-    '''
 
-    v1 = Voice([Note(i, (1, 8)) for i in range(4)])
-    v2 = Voice([Note(i, (1, 8)) for i in range(4, 8)])
-    s1 = Staff([v1])
-    s2 = Staff([v2])
-    seq = Container([s1, s2])
+    staff_1 = Staff([Voice("c'8 d'8 e'8 f'8")])
+    staff_2 = Staff([Voice("g'8 a'8 b'8 c''8")])
+    container = Container([staff_1, staff_2])
 
-    assert seq[0]._is_immediate_temporal_successor_of(seq[1])
-    assert seq[0]._is_immediate_temporal_successor_of(seq[1][0])
-    assert seq[0]._is_immediate_temporal_successor_of(seq[1][0][0])
-
-    assert seq[0][0]._is_immediate_temporal_successor_of(seq[1])
-    assert seq[0][0]._is_immediate_temporal_successor_of(seq[1][0])
-    assert seq[0][0]._is_immediate_temporal_successor_of(seq[1][0][0])
-
-    assert seq[0][0][-1]._is_immediate_temporal_successor_of(seq[1])
-    assert seq[0][0][-1]._is_immediate_temporal_successor_of(seq[1][0])
-    assert seq[0][0][-1]._is_immediate_temporal_successor_of(seq[1][0][0])
-
-    r'''
-    {
-        \new Staff {
-            \new Voice {
-                c'8
-                cs'8
-                d'8
-                ef'8
+    assert testtools.compare(
+        container,
+        r'''
+        {
+            \new Staff {
+                \new Voice {
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                }
+            }
+            \new Staff {
+                \new Voice {
+                    g'8
+                    a'8
+                    b'8
+                    c''8
+                }
             }
         }
-        \new Staff {
-            \new Voice {
-                e'8
-                f'8
-                fs'8
-                g'8
-            }
-        }
-    }
-    '''
+        '''
+        )
+
+    assert staff_1._is_immediate_temporal_successor_of(staff_2)
+    assert staff_1._is_immediate_temporal_successor_of(staff_2[0])
+    assert staff_1._is_immediate_temporal_successor_of(staff_2[0][0])
+
+    assert staff_1[0]._is_immediate_temporal_successor_of(staff_2)
+    assert staff_1[0]._is_immediate_temporal_successor_of(staff_2[0])
+    assert staff_1[0]._is_immediate_temporal_successor_of(staff_2[0][0])
+
+    assert staff_1[0][-1]._is_immediate_temporal_successor_of(staff_2)
+    assert staff_1[0][-1]._is_immediate_temporal_successor_of(staff_2[0])
+    assert staff_1[0][-1]._is_immediate_temporal_successor_of(staff_2[0][0])
 
 
 def test_Component__is_immediate_temporal_successor_of_11():
-    r'''Everything at the beginning of the second staff temporally
-    follows everything at the end of the first staff immediately.
-    '''
 
-    vl1 = Voice([Note(i, (1, 8)) for i in range(4)])
-    vl2 = Voice([Note(i, (1, 8)) for i in range(4, 8)])
-    vh1 = Voice([Note(i, (1, 8)) for i in range(12, 16)])
-    vh2 = Voice([Note(i, (1, 8)) for i in range(16, 20)])
-    s1 = Staff([vh1, vl1])
-    s1.is_simultaneous = True
-    s2 = Staff([vl2, vh2])
-    s2.is_simultaneous = True
-    seq = Container([s1, s2])
+    upper_voice_1 = Voice("c''8 d''8 e''8 f''8")
+    upper_voice_2 = Voice("g''8 a''8 b''8 c''8")
+    lower_voice_1 = Voice("c'8 d'8 e'8 f'8")
+    lower_voice_2 = Voice("g'8 a'8 b'8 c''8")
+    staff_1 = Staff([upper_voice_1, lower_voice_1])
+    staff_2 = Staff([upper_voice_2, lower_voice_2])
+    staff_1.is_simultaneous = True
+    staff_2.is_simultaneous = True
+    container = Container([staff_1, staff_2])
 
-    assert seq[0]._is_immediate_temporal_successor_of(seq[1])
-    assert seq[0]._is_immediate_temporal_successor_of(seq[1][0])
-    assert seq[0]._is_immediate_temporal_successor_of(seq[1][0][0])
-    assert seq[0]._is_immediate_temporal_successor_of(seq[1][1])
-    assert seq[0]._is_immediate_temporal_successor_of(seq[1][1][0])
+    assert testtools.compare(
+        container,
+        r'''
+        {
+            \new Staff <<
+                \new Voice {
+                    c''8
+                    d''8
+                    e''8
+                    f''8
+                }
+                \new Voice {
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                }
+            >>
+            \new Staff <<
+                \new Voice {
+                    g''8
+                    a''8
+                    b''8
+                    c''8
+                }
+                \new Voice {
+                    g'8
+                    a'8
+                    b'8
+                    c''8
+                }
+            >>
+        }
+        '''
+        )
 
-    assert seq[0][0]._is_immediate_temporal_successor_of(seq[1])
-    assert seq[0][0]._is_immediate_temporal_successor_of(seq[1][0])
-    assert seq[0][0]._is_immediate_temporal_successor_of(seq[1][0][0])
-    assert seq[0][0]._is_immediate_temporal_successor_of(seq[1][1])
-    assert seq[0][0]._is_immediate_temporal_successor_of(seq[1][1][0])
+    assert staff_1._is_immediate_temporal_successor_of(staff_2)
+    assert staff_1._is_immediate_temporal_successor_of(staff_2[0])
+    assert staff_1._is_immediate_temporal_successor_of(staff_2[0][0])
+    assert staff_1._is_immediate_temporal_successor_of(staff_2[1])
+    assert staff_1._is_immediate_temporal_successor_of(staff_2[1][0])
 
-    assert seq[0][0][-1]._is_immediate_temporal_successor_of(seq[1])
-    assert seq[0][0][-1]._is_immediate_temporal_successor_of(seq[1][0])
-    assert seq[0][0][-1]._is_immediate_temporal_successor_of(seq[1][0][0])
-    assert seq[0][0][-1]._is_immediate_temporal_successor_of(seq[1][1])
-    assert seq[0][0][-1]._is_immediate_temporal_successor_of(seq[1][1][0])
+    assert staff_1[0]._is_immediate_temporal_successor_of(staff_2)
+    assert staff_1[0]._is_immediate_temporal_successor_of(staff_2[0])
+    assert staff_1[0]._is_immediate_temporal_successor_of(staff_2[0][0])
+    assert staff_1[0]._is_immediate_temporal_successor_of(staff_2[1])
+    assert staff_1[0]._is_immediate_temporal_successor_of(staff_2[1][0])
 
-    assert seq[0][1]._is_immediate_temporal_successor_of(seq[1])
-    assert seq[0][1]._is_immediate_temporal_successor_of(seq[1][0])
-    assert seq[0][1]._is_immediate_temporal_successor_of(seq[1][0][0])
-    assert seq[0][1]._is_immediate_temporal_successor_of(seq[1][1])
-    assert seq[0][1]._is_immediate_temporal_successor_of(seq[1][1][0])
+    assert staff_1[0][-1]._is_immediate_temporal_successor_of(staff_2)
+    assert staff_1[0][-1]._is_immediate_temporal_successor_of(staff_2[0])
+    assert staff_1[0][-1]._is_immediate_temporal_successor_of(staff_2[0][0])
+    assert staff_1[0][-1]._is_immediate_temporal_successor_of(staff_2[1])
+    assert staff_1[0][-1]._is_immediate_temporal_successor_of(staff_2[1][0])
 
-    assert seq[0][1][-1]._is_immediate_temporal_successor_of(seq[1])
-    assert seq[0][1][-1]._is_immediate_temporal_successor_of(seq[1][0])
-    assert seq[0][1][-1]._is_immediate_temporal_successor_of(seq[1][0][0])
-    assert seq[0][1][-1]._is_immediate_temporal_successor_of(seq[1][1])
-    assert seq[0][1][-1]._is_immediate_temporal_successor_of(seq[1][1][0])
+    assert staff_1[1]._is_immediate_temporal_successor_of(staff_2)
+    assert staff_1[1]._is_immediate_temporal_successor_of(staff_2[0])
+    assert staff_1[1]._is_immediate_temporal_successor_of(staff_2[0][0])
+    assert staff_1[1]._is_immediate_temporal_successor_of(staff_2[1])
+    assert staff_1[1]._is_immediate_temporal_successor_of(staff_2[1][0])
 
-    r'''
-    {
-        \new Staff <<
-            \new Voice {
-                c''8
-                cs''8
-                d''8
-                ef''8
-            }
-            \new Voice {
-                c'8
-                cs'8
-                d'8
-                ef'8
-            }
-        >>
-        \new Staff <<
-            \new Voice {
-                e'8
-                f'8
-                fs'8
-                g'8
-            }
-            \new Voice {
-                e''8
-                f''8
-                fs''8
-                g''8
-            }
-        >>
-    }
-    '''
+    assert staff_1[1][-1]._is_immediate_temporal_successor_of(staff_2)
+    assert staff_1[1][-1]._is_immediate_temporal_successor_of(staff_2[0])
+    assert staff_1[1][-1]._is_immediate_temporal_successor_of(staff_2[0][0])
+    assert staff_1[1][-1]._is_immediate_temporal_successor_of(staff_2[1])
+    assert staff_1[1][-1]._is_immediate_temporal_successor_of(staff_2[1][0])
 
 
 def test_Component__is_immediate_temporal_successor_of_12():
-    r'''Everything at the beginning of the second sequential temporally
-    follows everything at the end of the first sequential immediately.
-    '''
 
-    s1 = Container([Note(i, (1, 8)) for i in range(4)])
-    s1 = Container([s1])
-    s2 = Container([Note(i, (1, 8)) for i in range(4, 8)])
-    s2 = Container([s2])
-    voice = Voice([s1, s2])
+    voice = Voice("{ { c'8 d'8 e'8 f'8 } } { { g'8 a'8 b'8 c''8 } }")
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                {
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                }
+            }
+            {
+                {
+                    g'8
+                    a'8
+                    b'8
+                    c''8
+                }
+            }
+        }
+        '''
+        )
 
     assert voice[0]._is_immediate_temporal_successor_of(voice[1])
     assert voice[0]._is_immediate_temporal_successor_of(voice[1][0])
@@ -404,24 +350,3 @@ def test_Component__is_immediate_temporal_successor_of_12():
     assert voice[0][0][-1]._is_immediate_temporal_successor_of(voice[1])
     assert voice[0][0][-1]._is_immediate_temporal_successor_of(voice[1][0])
     assert voice[0][0][-1]._is_immediate_temporal_successor_of(voice[1][0][0])
-
-    r'''
-    \new Voice {
-        {
-            {
-                c'8
-                cs'8
-                d'8
-                ef'8
-            }
-        }
-        {
-            {
-                e'8
-                f'8
-                fs'8
-                g'8
-            }
-        }
-    }
-    '''

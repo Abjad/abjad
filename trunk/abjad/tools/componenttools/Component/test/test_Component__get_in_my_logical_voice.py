@@ -26,9 +26,7 @@ def test_Component__get_in_my_logical_voice_02():
 
 
 def test_Component__get_in_my_logical_voice_03():
-    r'''Leaves within different anonymous parents have different
-    parentage signatures and thus have no next leaf
-    in logical voice.
+    r'''Different anonymous contexts create different logical voices.
     '''
 
     container = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
@@ -38,22 +36,11 @@ def test_Component__get_in_my_logical_voice_03():
     assert leaves[0]._get_in_my_logical_voice(1, Note) is leaves[1]
     assert leaves[1]._get_in_my_logical_voice(1, Note) is None
     assert leaves[2]._get_in_my_logical_voice(1, Note) is leaves[3]
-
-
-def test_Component__get_in_my_logical_voice_04():
-    r'''Anonymous containers with the same parentage structure have
-    different parentage signatures and thus have no follower
-    in logical voice.
-    '''
-
-    container = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
-
     assert container[0]._get_in_my_logical_voice(1, Voice) is None
 
 
 def test_Component__get_in_my_logical_voice_05():
-    r'''Differently named containers have different parentage signatures
-    and thus have no follower in logical voice.
+    r'''Differently named contexts create different logical voices.
     '''
 
     container = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
@@ -67,10 +54,7 @@ def test_Component__get_in_my_logical_voice_05():
 
 
 def test_Component__get_in_my_logical_voice_06():
-    r'''Getting the logical voice follower from a named component 
-    when another component with the same type and name exists after 
-    the caller returns the first component found in the same logical
-    voice.
+    r'''Like-named contexts create the same logical voice.
     '''
 
     container = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
@@ -84,7 +68,8 @@ def test_Component__get_in_my_logical_voice_06():
 
 
 def test_Component__get_in_my_logical_voice_07():
-    r'''Components need not be strictly contiguous.
+    r'''Like-named contexts create the same logical voice.
+    The intervening rest exists in a different logical voice.
     '''
 
     container = Container([Voice("c'8 d'8"), Rest('r2'), Voice("e'8 f'8")])
