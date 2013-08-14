@@ -239,10 +239,9 @@ class Spanner(AbjadObject):
             components = [components]
         elif not components:
             components = []
-        # TODO: integrate this constraint
-        #assert not any(
-        #    isinstance(x, contexttools.Context) 
-        #    for x in components), repr(components)
+        assert not any(
+            isinstance(x, contexttools.Context) 
+            for x in components), repr(components)
         if self._contiguity_constraint == 'logical voice':
             leaves = list(iterationtools.iterate_leaves_in_expr(components))
             assert componenttools.all_are_contiguous_components_in_same_logical_voice(leaves)
