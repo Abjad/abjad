@@ -30,6 +30,8 @@ class Leaf(Component):
         'grace',
         )
 
+    _is_counttime_component = True
+
     ### INITIALIZER ###
 
     def __init__(self, written_duration, lilypond_duration_multiplier=None):

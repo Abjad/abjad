@@ -3,7 +3,7 @@ from abjad.tools.containertools.Container import Container
 
 
 class Cluster(Container):
-    '''Abjad model of a tone cluster container:
+    '''A cluster.
 
     ::
 
@@ -34,6 +34,8 @@ class Cluster(Container):
 
     __slots__ = (
         )
+
+    _is_counttime_component = True
 
     ### INITIALIZER ###
 

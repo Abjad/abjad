@@ -44,6 +44,8 @@ class Component(AbjadObject):
         'lilypond_file',
         )
 
+    _is_counttime_component = False
+
     ### INITIALIZER ###
 
     def __init__(self):

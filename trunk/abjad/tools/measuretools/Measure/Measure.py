@@ -42,6 +42,8 @@ class Measure(FixedDurationContainer):
         '_measure_number',
         )
 
+    _is_counttime_component = True
+
     ### INITIALIZER ###
 
     def __init__(self, time_signature, music=None, **kwargs):
