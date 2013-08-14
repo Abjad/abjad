@@ -233,13 +233,16 @@ class Spanner(AbjadObject):
             return leaf
 
     def _initialize_components(self, components):
+        from abjad.tools import contexttools
         from abjad.tools import iterationtools
         if isinstance(components, componenttools.Component):
             components = [components]
         elif not components:
             components = []
-        # TODO: Author staff-level contiguity check in tools/check.
-        #       Include optional staff-level contiguity check here.
+        # TODO: integrate this constraint
+        #assert not any(
+        #    isinstance(x, contexttools.Context) 
+        #    for x in components), repr(components)
         if self._contiguity_constraint == 'logical voice':
             leaves = list(iterationtools.iterate_leaves_in_expr(components))
             assert componenttools.all_are_contiguous_components_in_same_logical_voice(leaves)
