@@ -36,8 +36,8 @@ def test_componenttools_partition_components_by_durations_not_greater_than_01():
         '''
         )
 
-    parts = componenttools.partition_components_by_durations_not_greater_than(
-        staff.select_leaves(), 
+    leaves = staff.select_leaves()
+    parts = leaves.partition_by_durations_not_greater_than(
         [0.75], 
         cyclic=True, 
         in_seconds=True, 
@@ -97,8 +97,8 @@ def test_componenttools_partition_components_by_durations_not_greater_than_02():
         '''
         )
 
-    parts = componenttools.partition_components_by_durations_not_greater_than(
-        staff.select_leaves(), 
+    leaves = staff.select_leaves()
+    parts = leaves.partition_by_durations_not_greater_than(
         [Duration(3, 16)], 
         cyclic=True, 
         in_seconds=False, 
@@ -135,8 +135,8 @@ def test_componenttools_partition_components_by_durations_not_greater_than_03():
     tempo = contexttools.TempoMark(Duration(1, 4), 60, target_context=Staff)
     tempo.attach(staff)
 
-    parts = componenttools.partition_components_by_durations_not_greater_than(
-        staff.select_leaves(), 
+    leaves = staff.select_leaves()
+    parts = leaves.partition_by_durations_not_greater_than(
         [0.75], 
         cyclic=False, 
         in_seconds=True, 
@@ -155,8 +155,8 @@ def test_componenttools_partition_components_by_durations_not_greater_than_04():
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
         staff)
 
-    parts = componenttools.partition_components_by_durations_not_greater_than(
-        staff.select_leaves(), 
+    leaves = staff.select_leaves()
+    parts = leaves.partition_by_durations_not_greater_than(
         [Duration(3, 16)], 
         cyclic=False, 
         in_seconds=False, 

@@ -33,8 +33,8 @@ def test_componenttools_partition_components_by_durations_not_less_than_01():
         '''
         )
 
-    parts = componenttools.partition_components_by_durations_not_less_than(
-        staff.select_leaves(), 
+    leaves = staff.select_leaves()
+    parts = leaves.partition_by_durations_not_less_than(
         [Duration(3, 16), Duration(1, 16)], 
         cyclic=True, 
         in_seconds=False, 

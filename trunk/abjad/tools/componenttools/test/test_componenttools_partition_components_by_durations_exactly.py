@@ -37,8 +37,8 @@ def test_componenttools_partition_components_by_durations_exactly_01():
         )
 
 
-    parts = componenttools.partition_components_by_durations_exactly(
-        staff.select_leaves(), 
+    leaves = staff.select_leaves()
+    parts = leaves.partition_by_durations_exactly(
         [1.5], 
         cyclic=True, 
         in_seconds=True, 
@@ -91,8 +91,8 @@ def test_componenttools_partition_components_by_durations_exactly_02():
         '''
         )
 
-    parts = componenttools.partition_components_by_durations_exactly(
-        staff.select_leaves(), 
+    leaves = staff.select_leaves()
+    parts = leaves.partition_by_durations_exactly(
         [1.5], 
         cyclic=True, 
         in_seconds=True, 
@@ -144,8 +144,8 @@ def test_componenttools_partition_components_by_durations_exactly_03():
         '''
         )
 
-    parts = componenttools.partition_components_by_durations_exactly(
-        staff.select_leaves(), 
+    leaves = staff.select_leaves()
+    parts = leaves.partition_by_durations_exactly(
         [Duration(3, 8)], 
         cyclic=True, 
         in_seconds=False, 
@@ -200,8 +200,8 @@ def test_componenttools_partition_components_by_durations_exactly_04():
         '''
         )
 
-    parts = componenttools.partition_components_by_durations_exactly(
-        staff.select_leaves(), 
+    leaves = staff.select_leaves()
+    parts = leaves.partition_by_durations_exactly(
         [1.5], 
         cyclic=False, 
         in_seconds=True, 
@@ -245,8 +245,8 @@ def test_componenttools_partition_components_by_durations_exactly_05():
         '''
         )
 
-    parts = componenttools.partition_components_by_durations_exactly(
-        staff.select_leaves(), 
+    leaves = staff.select_leaves()
+    parts = leaves.partition_by_durations_exactly(
         [Duration(3, 8)], 
         cyclic=False, 
         in_seconds=False, 

@@ -2,6 +2,8 @@
 import copy
 import itertools
 import types
+from abjad.tools import durationtools
+from abjad.tools import sequencetools
 from abjad.tools.selectiontools.Selection import Selection
 
 
@@ -212,7 +214,7 @@ class ContiguousSelection(Selection):
         from abjad.tools import componenttools
         from abjad.tools import iterationtools
         # check input
-        assert self._all_are_logical_voice_contiguous_components()
+        assert self._all_are_contiguous_components_in_same_logical_voice()
         # return empty list when nothing to copy
         if n < 1:
             return []
@@ -284,3 +286,147 @@ class ContiguousSelection(Selection):
             selection = tuple(generator)
             result.append(selection)
         return result
+
+    def partition_by_durations(
+        self,
+        durations,
+        cyclic=False,
+        fill='exact',
+        in_seconds=False,
+        overhang=False,
+        ):
+        r'''Partitions `components` according to `durations`.
+
+        When `fill` is ``'exact'`` then parts must equal `durations` exactly.
+
+        When `fill` is ``'less'`` then parts must be 
+        less than or equal to `durations`.
+
+        When `fill` is ``'greater'`` then parts must be 
+        greater or equal to `durations`.
+
+        Reads `durations` cyclically when `cyclic` is true.
+
+        Reads component durations in seconds when `in_seconds` is true.
+
+        Returns remaining components at end in final part when `overhang` 
+        is true.
+        '''
+        assert self._all_are_contiguous_components_in_same_logical_voice()
+        durations = [durationtools.Duration(x) for x in durations]
+        if cyclic:
+            durations = sequencetools.CyclicTuple(durations)
+        result = []
+        part = []
+        current_duration_index = 0
+        target_duration = durations[current_duration_index]
+        cumulative_duration = durationtools.Duration(0)
+        components_copy = list(self)
+        while True:
+            try:
+                component = components_copy.pop(0)
+            except IndexError:
+                break
+            component_duration = component._get_duration()
+            if in_seconds:
+                component_duration = component._get_duration(in_seconds=True)
+            candidate_duration = cumulative_duration + component_duration
+            if candidate_duration < target_duration:
+                part.append(component)
+                cumulative_duration = candidate_duration
+            elif candidate_duration == target_duration:
+                part.append(component)
+                result.append(part)
+                part = []
+                cumulative_duration = durationtools.Duration(0)
+                current_duration_index += 1
+                try:
+                    target_duration = durations[current_duration_index]
+                except IndexError:
+                    break
+            elif target_duration < candidate_duration:
+                if fill == 'exact':
+                    raise PartitionError
+                elif fill == 'less':
+                    result.append(part)
+                    part = [component]
+                    if in_seconds:
+                        cumulative_duration = \
+                            sum([x._get_duration(in_seconds=True) 
+                            for x in part])
+                    else:
+                        cumulative_duration = \
+                            sum([x._get_duration() for x in part])
+                    current_duration_index += 1
+                    try:
+                        target_duration = durations[current_duration_index]
+                    except IndexError:
+                        break
+                    if target_duration < cumulative_duration:
+                        message = 'target duration {}'
+                        message += ' is less than cumulative duration {}.'
+                        message = message.format(
+                            target_duration, cumulative_duration)
+                        raise PartitionError(message)
+                elif fill == 'greater':
+                    part.append(component)
+                    result.append(part)
+                    part = []
+                    cumulative_duration = durationtools.Duration(0)
+                    current_duration_index += 1
+                    try:
+                        target_duration = durations[current_duration_index]
+                    except IndexError:
+                        break
+        if len(part):
+            if overhang:
+                result.append(part)
+        if len(components_copy):
+            if overhang:
+                result.append(components_copy)
+        return result
+
+    def partition_by_durations_exactly(
+        self,
+        durations,
+        cyclic=False,
+        in_seconds=False,
+        overhang=False,
+        ):
+        return self.partition_by_durations(
+            durations,
+            cyclic=cyclic,
+            fill='exact',
+            in_seconds=in_seconds,
+            overhang=overhang,
+            )
+
+    def partition_by_durations_not_greater_than(
+        self,
+        durations,
+        cyclic=False,
+        in_seconds=False,
+        overhang=False,
+        ):
+        return self.partition_by_durations(
+            durations,
+            cyclic=cyclic,
+            fill='less',
+            in_seconds=in_seconds,
+            overhang=overhang,
+            )
+
+    def partition_by_durations_not_less_than(
+        self,
+        durations,
+        cyclic=False,
+        in_seconds=False,
+        overhang=False,
+        ):
+        return self.partition_by_durations(
+            durations,
+            cyclic=cyclic,
+            fill='greater',
+            in_seconds=in_seconds,
+            overhang=overhang,
+            )
