@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_SliceSelection_get_parent_and_stop_start_indices_01():
+def test_SliceSelection__get_parent_and_start_stop_indices_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     parent, start, stop = staff[2:]._get_parent_and_start_stop_indices()
@@ -11,7 +11,7 @@ def test_SliceSelection_get_parent_and_stop_start_indices_01():
     assert stop == 3
 
 
-def test_SliceSelection_get_parent_and_stop_start_indices_02():
+def test_SliceSelection__get_parent_and_start_stop_indices_02():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     parent, start, stop = staff[:2]._get_parent_and_start_stop_indices()
@@ -20,7 +20,7 @@ def test_SliceSelection_get_parent_and_stop_start_indices_02():
     assert stop == 1
 
 
-def test_SliceSelection_get_parent_and_stop_start_indices_03():
+def test_SliceSelection__get_parent_and_start_stop_indices_03():
 
     selection = selectiontools.SliceSelection()
     parent, start, stop = selection._get_parent_and_start_stop_indices()

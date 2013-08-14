@@ -36,7 +36,7 @@ class SliceSelection(ContiguousSelection):
     ### PRIVATE METHODS ###
 
     def _get_parent_and_start_stop_indices(self):
-        assert self._all_are_contiguous_components_in_same_parent() # new
+        assert self._all_are_contiguous_components_in_same_parent()
         if self:
             first, last = self[0], self[-1]
             parent = first._parent
