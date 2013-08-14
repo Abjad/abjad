@@ -39,7 +39,7 @@ class ContiguousLeafSelection(ContiguousSelection):
         from abjad.tools import leaftools
         ContiguousSelection.__init__(self, music=music)
         assert all(isinstance(x, leaftools.Leaf) for x in self)
-        assert self._all_are_contiguous_components_in_same_logical_voice()
+        assert self._all_are_contiguous_components_in_same_logical_voice(self)
 
     ### PUBLIC METHODS ###
 

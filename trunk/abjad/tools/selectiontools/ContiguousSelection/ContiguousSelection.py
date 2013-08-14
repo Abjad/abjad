@@ -205,7 +205,7 @@ class ContiguousSelection(Selection):
         from abjad.tools import componenttools
         from abjad.tools import iterationtools
         # check input
-        assert self._all_are_contiguous_components_in_same_logical_voice()
+        assert self._all_are_contiguous_components_in_same_logical_voice(self)
         # return empty list when nothing to copy
         if n < 1:
             return []
@@ -303,7 +303,7 @@ class ContiguousSelection(Selection):
         Returns remaining components at end in final part when `overhang` 
         is true.
         '''
-        assert self._all_are_contiguous_components_in_same_logical_voice()
+        assert self._all_are_contiguous_components_in_same_logical_voice(self)
         durations = [durationtools.Duration(x) for x in durations]
         if cyclic:
             durations = sequencetools.CyclicTuple(durations)

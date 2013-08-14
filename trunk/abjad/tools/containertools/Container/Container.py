@@ -363,7 +363,8 @@ class Container(Component):
             # otherwise circular withdraw ensues!
             if withdraw_components_in_expr_from_crossing_spanners:
                 selection = selectiontools.SliceSelection(expr)
-                if selection._all_are_contiguous_components_in_same_logical_voice():
+                if selection._all_are_contiguous_components_in_same_logical_voice(
+                    selection):
                     selection._withdraw_from_crossing_spanners()
             self._music.__setitem__(slice(start, start), expr)
             for component in expr:

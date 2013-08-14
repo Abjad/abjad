@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_componenttools_all_are_contiguous_components_in_same_logical_voice_01():
+def test_Selection__all_are_contiguous_components_in_same_logical_voice_01():
     r'''Components that start at the same moment are bad.
     Even if components are all part of the same logical voice.
     '''
@@ -39,7 +39,7 @@ def test_componenttools_all_are_contiguous_components_in_same_logical_voice_01()
         voice[-1:] + voice[-1][:])
 
 
-def test_componenttools_all_are_contiguous_components_in_same_logical_voice_02():
+def test_Selection__all_are_contiguous_components_in_same_logical_voice_02():
     r'''True for strictly contiguous leaves in same staff.
     '''
 
@@ -47,7 +47,7 @@ def test_componenttools_all_are_contiguous_components_in_same_logical_voice_02()
     assert componenttools.all_are_contiguous_components_in_same_logical_voice(staff[:])
 
 
-def test_componenttools_all_are_contiguous_components_in_same_logical_voice_03():
+def test_Selection__all_are_contiguous_components_in_same_logical_voice_03():
     r'''True for orphan components when allow_orphans is True.
         False for orphan components when allow_orphans is False.'''
 
@@ -56,7 +56,7 @@ def test_componenttools_all_are_contiguous_components_in_same_logical_voice_03()
     assert not componenttools.all_are_contiguous_components_in_same_logical_voice(notes, allow_orphans=False)
 
 
-def test_componenttools_all_are_contiguous_components_in_same_logical_voice_04():
+def test_Selection__all_are_contiguous_components_in_same_logical_voice_04():
     r'''False for time reordered leaves in staff.
     '''
 
@@ -64,21 +64,21 @@ def test_componenttools_all_are_contiguous_components_in_same_logical_voice_04()
     assert not componenttools.all_are_contiguous_components_in_same_logical_voice(staff[2:] + staff[:2])
 
 
-def test_componenttools_all_are_contiguous_components_in_same_logical_voice_05():
+def test_Selection__all_are_contiguous_components_in_same_logical_voice_05():
     r'''True for unincorporated component.
     '''
 
     assert componenttools.all_are_contiguous_components_in_same_logical_voice([Staff("c'8 d'8 e'8 f'8")])
 
 
-def test_componenttools_all_are_contiguous_components_in_same_logical_voice_06():
+def test_Selection__all_are_contiguous_components_in_same_logical_voice_06():
     r'''True for empty list.
     '''
 
     assert componenttools.all_are_contiguous_components_in_same_logical_voice([])
 
 
-def test_componenttools_all_are_contiguous_components_in_same_logical_voice_07():
+def test_Selection__all_are_contiguous_components_in_same_logical_voice_07():
     r'''False when components belonging to same logical voice are ommitted.
     '''
 
@@ -99,7 +99,7 @@ def test_componenttools_all_are_contiguous_components_in_same_logical_voice_07()
     assert not componenttools.all_are_contiguous_components_in_same_logical_voice(voice[:2] + voice[-2:])
 
 
-def test_componenttools_all_are_contiguous_components_in_same_logical_voice_08():
+def test_Selection__all_are_contiguous_components_in_same_logical_voice_08():
     r'''False when components belonging to same logical voice are ommitted.
     '''
 

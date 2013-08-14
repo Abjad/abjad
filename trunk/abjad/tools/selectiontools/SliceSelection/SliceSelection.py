@@ -46,7 +46,7 @@ class SliceSelection(ContiguousSelection):
     ### PRIVATE METHODS ###
 
     def _get_parent_and_start_stop_indices(self):
-        assert self._all_are_contiguous_components_in_same_parent()
+        assert self._all_are_contiguous_components_in_same_parent(self)
         if self:
             first, last = self[0], self[-1]
             parent = first._parent
@@ -60,7 +60,7 @@ class SliceSelection(ContiguousSelection):
         r'''Not composer-safe.
         '''
         from abjad.tools import containertools
-        assert self._all_are_contiguous_components_in_same_parent()
+        assert self._all_are_contiguous_components_in_same_parent(self)
         assert isinstance(container, containertools.Container)
         assert not container
         music = []
@@ -73,7 +73,7 @@ class SliceSelection(ContiguousSelection):
         r'''Not composer-safe.
         '''
         from abjad.tools import containertools
-        assert self._all_are_contiguous_components_in_same_parent()
+        assert self._all_are_contiguous_components_in_same_parent(self)
         assert isinstance(container, containertools.Container)
         parent, start, stop = self._get_parent_and_start_stop_indices()
         if parent is not None:
@@ -177,7 +177,7 @@ class SliceSelection(ContiguousSelection):
         Return none.
         '''
         from abjad.tools import resttools
-        assert self._all_are_contiguous_components_in_same_parent()
+        assert self._all_are_contiguous_components_in_same_parent(self)
         if self:
             duration = self._preprolated_duration
             rests = resttools.make_rests(

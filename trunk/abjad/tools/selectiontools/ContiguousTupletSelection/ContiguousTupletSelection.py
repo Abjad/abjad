@@ -86,7 +86,7 @@ class ContiguousTupletSelection(ContiguousSelection):
         from abjad.tools import containertools
         from abjad.tools import tuplettools
         assert self._all_are_contiguous_components_in_same_parent(
-            component_classes=(tuplettools.Tuplet,))
+            self, component_classes=(tuplettools.Tuplet,))
         if len(self) == 0:
             return None
         first = self[0]
