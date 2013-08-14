@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_componenttools_partition_components_by_durations_exactly_01():
+def test_ContiguousSelection_partition_by_durations_exactly_01():
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
@@ -57,7 +57,7 @@ def test_componenttools_partition_components_by_durations_exactly_01():
     assert parts[1] == list(staff.select_leaves()[3:6])
 
 
-def test_componenttools_partition_components_by_durations_exactly_02():
+def test_ContiguousSelection_partition_by_durations_exactly_02():
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
@@ -113,7 +113,7 @@ def test_componenttools_partition_components_by_durations_exactly_02():
     assert parts[2] == list(staff.select_leaves()[6:8])
 
 
-def test_componenttools_partition_components_by_durations_exactly_03():
+def test_ContiguousSelection_partition_by_durations_exactly_03():
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
@@ -166,7 +166,7 @@ def test_componenttools_partition_components_by_durations_exactly_03():
     assert parts[2] == list(staff.select_leaves()[6:8])
 
 
-def test_componenttools_partition_components_by_durations_exactly_04():
+def test_ContiguousSelection_partition_by_durations_exactly_04():
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
@@ -214,7 +214,7 @@ def test_componenttools_partition_components_by_durations_exactly_04():
     assert parts[0] == list(staff.select_leaves()[:3])
 
 
-def test_componenttools_partition_components_by_durations_exactly_05():
+def test_ContiguousSelection_partition_by_durations_exactly_05():
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(

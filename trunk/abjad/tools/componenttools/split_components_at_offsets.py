@@ -4,32 +4,28 @@ from abjad.tools import sequencetools
 
 
 # TODO: fix bug that unintentionally fractures ties.
-def split_components_at_offsets(components, offsets,
-    fracture_spanners=False, cyclic=False, tie_split_notes=True, tie_split_rests=False):
+def split_components_at_offsets(
+    components, 
+    offsets,
+    fracture_spanners=False, 
+    cyclic=False, 
+    tie_split_notes=True, 
+    tie_split_rests=False,
+    ):
     r'''Split components at offsets.
     
     ..  container:: example
 
-        **Example 1.** Split components cyclically and do not fracture crossing spanners:
+        **Example 1.** Split components cyclically and do not 
+        fracture crossing spanners:
 
         ::
 
             >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-
-        ::
-
-            >>> spannertools.BeamSpanner(staff[0])
-            BeamSpanner(|2/8(2)|)
-
-        ::
-
-            >>> spannertools.BeamSpanner(staff[1])
-            BeamSpanner(|2/8(2)|)
-
-        ::
-
-            >>> spannertools.SlurSpanner(staff.select_leaves())
-            SlurSpanner(c'8, d'8, e'8, f'8)
+            >>> beam_1 = spannertools.BeamSpanner(staff[0])
+            >>> beam_2 = spannertools.BeamSpanner(staff[1])
+            >>> slur = spannertools.SlurSpanner(staff.select_leaves())
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -48,15 +44,12 @@ def split_components_at_offsets(components, offsets,
 
         ::
 
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
             >>> result = componenttools.split_components_at_offsets(
             ...     staff.select_leaves(), 
             ...     [Duration(3, 32)], 
             ...     cyclic=True,
             ...     )
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -76,10 +69,6 @@ def split_components_at_offsets(components, offsets,
                     f'32 ] )
                 }
             }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
 
     ..  container:: example
 
@@ -135,7 +124,8 @@ def split_components_at_offsets(components, offsets,
         ::
 
             >>> result
-            [[Note("c'16.")], [Note("c'32"), Note("d'16")], [Note("d'16"), Note("e'32")],
+            [[Note("c'16.")], 
+            [Note("c'32"), Note("d'16")], [Note("d'16"), Note("e'32")],
             [Note("e'16.")], [Note("f'16.")], [Note("f'32")]]
 
         ..  doctest::
@@ -163,7 +153,8 @@ def split_components_at_offsets(components, offsets,
 
     ..  container:: example
 
-        **Example 3.** Split components once and do not fracture crossing spanners:
+        **Example 3.** Split components once and do not fracture 
+        crossing spanners:
 
         ::
 
@@ -326,7 +317,8 @@ def split_components_at_offsets(components, offsets,
 
     ..  container:: example
 
-        **Example 5.** Split tupletted components once and fracture crossing spanners:
+        **Example 5.** Split tupletted components once and fracture 
+        crossing spanners:
 
         ::
 
@@ -423,12 +415,14 @@ def split_components_at_offsets(components, offsets,
 
     # calculate offsets
     if cyclic:
-        offsets = sequencetools.repeat_sequence_to_weight_exactly(offsets, total_component_duration)
+        offsets = sequencetools.repeat_sequence_to_weight_exactly(
+            offsets, total_component_duration)
     elif total_offset_duration < total_component_duration:
         final_offset = total_component_duration - sum(offsets)
         offsets.append(final_offset)
     elif total_component_duration < total_offset_duration:
-        offsets = sequencetools.truncate_sequence_to_weight(offsets, total_component_duration)
+        offsets = sequencetools.truncate_sequence_to_weight(
+            offsets, total_component_duration)
 
     #print offsets, 'offsets'
 
@@ -446,7 +440,8 @@ def split_components_at_offsets(components, offsets,
     remaining_components = list(components[:])
     advance_to_next_offset = True
 
-    # loop and build shards by grabbing next component and next offset each time through loop
+    # loop and build shards by grabbing next component and next offset 
+    # each time through loop
     while True:
 
         # grab next split point
@@ -471,7 +466,6 @@ def split_components_at_offsets(components, offsets,
         # find where current component endpoint will position us
         candidate_shard_duration = current_shard_duration + \
             current_component._get_duration()
-        #print current_component, offset_index, current_shard_duration, next_split_point
 
         # if current component would fill current shard exactly
         if candidate_shard_duration == next_split_point:
@@ -487,33 +481,43 @@ def split_components_at_offsets(components, offsets,
 
             local_split_duration = next_split_point - current_shard_duration
             #print 'local_split_duration {}'.format(local_split_duration)
-            #print current_shard_duration, next_split_point, current_component, shard, local_split_duration
 
             if isinstance(current_component, leaftools.Leaf):
                 #print 'splitting leaf ...'
                 leaf_split_durations = [local_split_duration]
                 additional_required_duration = \
                     current_component._get_duration() - local_split_duration
-                #print 'additional_required_duration {}'.format(additional_required_duration)
                 #print 'offsets {}'.format(offsets)
                 split_offsets = sequencetools.split_sequence_by_weights(
-                    offsets, [additional_required_duration], cyclic=False, overhang=True)
+                    offsets, 
+                    [additional_required_duration], 
+                    cyclic=False, 
+                    overhang=True,
+                    )
                 #print 'split_offsets {}\n'.format(split_offsets)
                 additional_offsets = split_offsets[0]
                 leaf_split_durations.extend(additional_offsets)
                 offsets = split_offsets[-1]
                 leaf_shards = leaftools.split_leaf_at_offsets(
-                    current_component, leaf_split_durations,
-                    cyclic=False, fracture_spanners=fracture_spanners,tie_split_rests=tie_split_rests)
+                    current_component, 
+                    leaf_split_durations,
+                    cyclic=False, 
+                    fracture_spanners=fracture_spanners,
+                    tie_split_rests=tie_split_rests,
+                    )
                 shard.extend(leaf_shards)
                 result.append(shard)
                 offset_index += len(additional_offsets)
             else:
                 #print 'splitting container ...'
-                left_list, right_list = componenttools.split_component_at_offset(
-                    current_component, local_split_duration, fracture_spanners=fracture_spanners,
-                    tie_split_notes=tie_split_notes, tie_split_rests=tie_split_rests)
-                #print 'left_list, right_list {}, {}'.format(left_list, right_list)
+                left_list, right_list = \
+                    componenttools.split_component_at_offset(
+                    current_component, 
+                    local_split_duration, 
+                    fracture_spanners=fracture_spanners,
+                    tie_split_notes=tie_split_notes, 
+                    tie_split_rests=tie_split_rests,
+                    )
                 shard.extend(left_list)
                 result.append(shard)
                 # to avoid slice assignment pychecker errors
@@ -543,7 +547,8 @@ def split_components_at_offsets(components, offsets,
 
     # group split components according to input durations
     result = sequencetools.flatten_sequence(result)
-    result = componenttools.partition_components_by_durations_exactly(result, offsets_copy)
+    result = selectiontools.ContiguousSelection(result)
+    result = result.partition_by_durations_exactly(offsets_copy)
 
     # return list of shards
     return result

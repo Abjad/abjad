@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_componenttools_partition_components_by_durations_not_less_than_01():
+def test_ContiguousSelection_partition_by_durations_not_less_than_01():
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
