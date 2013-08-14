@@ -14,16 +14,7 @@ class ContiguousSelection(Selection):
     ### INITIALIZER ###
 
     def __init__(self, music=None):
-        if music is None:
-            music = ()
-        elif isinstance(music, (tuple, list)):
-            music = tuple(music)
-        elif isinstance(music, Selection):
-            music = tuple(music)
-        elif isinstance(music, types.GeneratorType):
-            music = tuple(music)
-        else:
-            music = (music, )
+        music = self._coerce_music(music)
         self._music = tuple(music)
 
     ### SPECIAL METHODS ###

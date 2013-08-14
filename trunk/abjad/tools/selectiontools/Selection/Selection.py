@@ -20,16 +20,7 @@ class Selection(object):
     ### INITIALIZER ###
 
     def __init__(self, music=None):
-        if music is None:
-            music = ()
-        elif isinstance(music, (tuple, list)):
-            music = tuple(music)
-        elif isinstance(music, Selection):
-            music = tuple(music)
-        elif isinstance(music, types.GeneratorType):
-            music = tuple(music)
-        else:
-            music = (music, )
+        music = self._coerce_music(music)
         self._music = tuple(music)
 
     ### SPECIAL METHODS ###
@@ -182,6 +173,20 @@ class Selection(object):
             copied_spanner.attach([component])
             spanners.append(copied_spanner)
         return tuple(spanners)
+
+    @staticmethod
+    def _coerce_music(music):
+        if music is None:
+            music = ()
+        elif isinstance(music, (tuple, list)):
+            music = tuple(music)
+        elif isinstance(music, Selection):
+            music = tuple(music)
+        elif isinstance(music, types.GeneratorType):
+            music = tuple(music)
+        else:
+            music = (music, )
+        return music
 
     def _detach_marks(self, mark_classes=None, recurse=True):
         marks = []
