@@ -27,6 +27,10 @@ def partition_components_by_durations(
 
     Return remaining components at end in final part when `overhang` is true.
     '''
+    from abjad.tools import componenttools
+
+    assert componenttools.all_are_contiguous_components_in_same_logical_voice(
+        components), repr(components)
 
     # coerce input
     durations = [durationtools.Duration(x) for x in durations]
@@ -74,7 +78,8 @@ def partition_components_by_durations(
                     cumulative_duration = \
                         sum([x._get_duration(in_seconds=True) for x in part])
                 else:
-                    cumulative_duration = sum([x._get_duration() for x in part])
+                    cumulative_duration = \
+                        sum([x._get_duration() for x in part])
                 current_duration_index += 1
                 try:
                     target_duration = durations[current_duration_index]
