@@ -9,6 +9,28 @@ class OffsetManager(AbjadObject):
     ### PRIVATE METHODS ###
 
     @staticmethod
+    def _get_score_tree_state_flags(component):
+        offsets_are_current = True
+        marks_are_current = True
+        offsets_in_seconds_are_current = True
+        parentage = component._select_parentage()
+        for component in parentage:
+            if offsets_are_current:
+                if not component._offsets_are_current:
+                    offsets_are_current = False
+            if marks_are_current:
+                if not component._marks_are_current:
+                    marks_are_current = False
+            if offsets_in_seconds_are_current:
+                if not component._offsets_in_seconds_are_current:
+                    offsets_in_seconds_are_current = False
+        return (
+            offsets_are_current,
+            marks_are_current,
+            offsets_in_seconds_are_current,
+            )
+
+    @staticmethod
     def _iterate_entire_score(component):
         from abjad.tools import iterationtools
         parentage = component._select_parentage(include_self=True)
@@ -20,6 +42,29 @@ class OffsetManager(AbjadObject):
             direction='left',
             )
         return components
+
+    @staticmethod
+    def _update(
+        component, 
+        offsets=False, 
+        offsets_in_seconds=False, 
+        marks=False,
+        ):
+        if component._is_forbidden_to_update:
+            return
+        state_flags = OffsetManager._get_score_tree_state_flags(component)
+        offsets_are_current = state_flags[0]
+        marks_are_current = state_flags[1]
+        offsets_in_seconds_are_current = state_flags[2]
+        if offsets and not offsets_are_current:
+            OffsetManager._update_all_offsets(component)
+            OffsetManager._update_all_leaf_indices_and_measure_numbers(
+                component)
+        if offsets_in_seconds and not offsets_in_seconds_are_current:
+            OffsetManager._update_all_offsets_in_seconds(component)
+        if marks and not marks_are_current:
+            OffsetManager._update_all_marks(component)
+            OffsetManager._update_all_offsets_in_seconds(component)
 
     @staticmethod
     def _update_all_leaf_indices_and_measure_numbers(component):

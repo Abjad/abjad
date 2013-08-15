@@ -24,18 +24,16 @@ class Component(AbjadObject):
     __metaclass__ = abc.ABCMeta
 
     __slots__ = (
-        '_duration', 
+        '_dependent_context_marks',
         '_is_forbidden_to_update', 
         '_marks_are_current',
-        '_dependent_context_marks',
-        '_start_marks',
-        #'_offset', 
         '_offsets_are_current', 
         '_offsets_in_seconds_are_current', 
         '_override', 
         '_parent',
         '_set', 
         '_spanners',
+        '_start_marks',
         '_start_offset', 
         '_start_offset_in_seconds', 
         '_stop_offset', 
@@ -49,13 +47,13 @@ class Component(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self):
+        self._dependent_context_marks = list()
         self._is_forbidden_to_update = False
         self._marks_are_current = False
-        self._dependent_context_marks = list()
         self._start_marks = list()
         self._offsets_in_seconds_are_current = False
-        self._parent = None
         self._offsets_are_current = False
+        self._parent = None
         self._spanners = set([])
         self._start_offset = None
         self._start_offset_in_seconds = None
@@ -612,27 +610,6 @@ class Component(AbjadObject):
 
     ### UPDATE METHODS ###
 
-    def _get_score_tree_state_flags(self):
-        offsets_are_current = True
-        marks_are_current = True
-        offsets_in_seconds_are_current = True
-        parentage = self._select_parentage()
-        for component in parentage:
-            if offsets_are_current:
-                if not component._offsets_are_current:
-                    offsets_are_current = False
-            if marks_are_current:
-                if not component._marks_are_current:
-                    marks_are_current = False
-            if offsets_in_seconds_are_current:
-                if not component._offsets_in_seconds_are_current:
-                    offsets_in_seconds_are_current = False
-        return (
-            offsets_are_current,
-            marks_are_current,
-            offsets_in_seconds_are_current,
-            )
-
     # call immediately after modifying score tree
     def _mark_for_update(self, offsets=False, offsets_in_seconds=False):
         assert offsets or offsets_in_seconds
@@ -646,21 +623,12 @@ class Component(AbjadObject):
     # call self._update(marks=True) immediately before reading effective mark
     def _update(self, offsets=False, offsets_in_seconds=False, marks=False):
         from abjad.tools import offsettools
-        OffsetManager = offsettools.OffsetManager
-        if self._is_forbidden_to_update:
-            return
-        state_flags = self._get_score_tree_state_flags()
-        offsets_are_current = state_flags[0]
-        marks_are_current = state_flags[1]
-        offsets_in_seconds_are_current = state_flags[2]
-        if offsets and not offsets_are_current:
-            OffsetManager._update_all_offsets(self)
-            OffsetManager._update_all_leaf_indices_and_measure_numbers(self)
-        if offsets_in_seconds and not offsets_in_seconds_are_current:
-            OffsetManager._update_all_offsets_in_seconds(self)
-        if marks and not marks_are_current:
-            OffsetManager._update_all_marks(self)
-            OffsetManager._update_all_offsets_in_seconds(self)
+        return offsettools.OffsetManager._update(
+            self,
+            offsets=offsets,
+            offsets_in_seconds=offsets_in_seconds,
+            marks=marks,
+            )
 
     ### PUBLIC PROPERTIES ###
 
