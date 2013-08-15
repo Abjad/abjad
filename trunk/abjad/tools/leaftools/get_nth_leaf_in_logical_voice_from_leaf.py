@@ -3,12 +3,13 @@ from abjad.tools import componenttools
 
 
 def get_nth_leaf_in_logical_voice_from_leaf(leaf, n=0):
-    r'''Get `n` th leaf in logical voice from `leaf`:
+    r'''Gets `n` th leaf in logical voice from `leaf`.
 
     ::
 
         >>> staff = Staff(2 * Voice("c'8 d'8 e'8 f'8"))
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
+        ...     staff)
 
     ..  doctest::
 
@@ -31,7 +32,8 @@ def get_nth_leaf_in_logical_voice_from_leaf(leaf, n=0):
     ::
 
         >>> for n in range(8):
-        ...     print n, leaftools.get_nth_leaf_in_logical_voice_from_leaf(staff[0][0], n)
+        ...     print n, leaftools.get_nth_leaf_in_logical_voice_from_leaf(
+        ...     staff[0][0], n)
         ...
         0 c'8
         1 d'8
@@ -51,38 +53,40 @@ def get_nth_leaf_in_logical_voice_from_leaf(leaf, n=0):
     if not isinstance(leaf, leaftools.Leaf):
         return None
 
-    def _next(component):
-        new_component = componenttools.get_nth_component_in_time_order_from_component(component, 1)
+    def next(component):
+        new_component = component._get_nth_component_in_time_order_from(1)
         if new_component is None:
             return
         candidates = new_component._select_descendants_starting_with()
         candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
         for candidate in candidates:
-            if Selection._all_are_components_in_same_logical_voice([component, candidate]):
+            if Selection._all_are_components_in_same_logical_voice(
+                [component, candidate]):
                 return candidate
 
-    def _prev(component):
-        new_component = componenttools.get_nth_component_in_time_order_from_component(component, -1)
+    def previous(component):
+        new_component = component._get_nth_component_in_time_order_from(-1)
         if new_component is None:
             return
         candidates = new_component._select_descendants_stopping_with()
         candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
         for candidate in candidates:
-            if Selection._all_are_components_in_same_logical_voice([component, candidate]):
+            if Selection._all_are_components_in_same_logical_voice(
+                [component, candidate]):
                 return candidate
 
     current_leaf = leaf
 
     if n < 0:
         for i in range(abs(n)):
-            current_leaf = _prev(current_leaf)
+            current_leaf = previous(current_leaf)
             if current_leaf is None:
                 break
     elif n == 0:
         pass
     else:
         for i in range(n):
-            current_leaf = _next(current_leaf)
+            current_leaf = next(current_leaf)
             if current_leaf is None:
                 break
 
