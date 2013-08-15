@@ -27,7 +27,7 @@ def _find_initializers():
             if 'experimental' in initializer_file_path:
                 package_root_path = 'experimental'
             output.write(
-                "importtools.import_structured_package(__path__[0], globals(), package_root_name='{}')\n".format(package_root_path)
+                "importtools.ImportManager.import_structured_package(__path__[0], globals(), package_root_name='{}')\n".format(package_root_path)
                 )
             output.close()
             manual_initializer_count += 1

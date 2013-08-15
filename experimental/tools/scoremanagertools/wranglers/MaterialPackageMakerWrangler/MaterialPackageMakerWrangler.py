@@ -374,7 +374,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         initializer.write(line)
         initializer.write('\n')
         initializer.write(
-            "importtools.import_structured_package(__path__[0], globals())\n")
+            "importtools.ImportManager.import_structured_package(__path__[0], globals())\n")
         initializer.close()
 
     # TODO: change to boilerplate
