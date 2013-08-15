@@ -498,8 +498,7 @@ def split_components_at_offsets(
                 additional_offsets = split_offsets[0]
                 leaf_split_durations.extend(additional_offsets)
                 offsets = split_offsets[-1]
-                leaf_shards = leaftools.split_leaf_at_offsets(
-                    current_component, 
+                leaf_shards = current_component._split_at_offsets(
                     leaf_split_durations,
                     cyclic=False, 
                     fracture_spanners=fracture_spanners,
