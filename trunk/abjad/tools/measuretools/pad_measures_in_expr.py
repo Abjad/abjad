@@ -26,7 +26,7 @@ def pad_measures_in_expr(expr, front, back, pad_class, splice=False):
 
     # TODO: maybe create ForbidUpdates context manager?
     # forbid updates because self._splice() calls self.stop_offset
-    root._update_offset_values_of_entire_score_tree_if_necessary()
+    root._update(offsets=True)
     root._is_forbidden_to_update = True
 
     for measure in iterationtools.iterate_measures_in_expr(expr):

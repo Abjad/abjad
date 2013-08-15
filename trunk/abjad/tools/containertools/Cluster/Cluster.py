@@ -66,5 +66,5 @@ class Cluster(Container):
 
     @property
     def lilypond_format(self):
-        self._update_marks_of_entire_score_tree_if_necessary()
+        self._update(marks=True)
         return self._format_component()

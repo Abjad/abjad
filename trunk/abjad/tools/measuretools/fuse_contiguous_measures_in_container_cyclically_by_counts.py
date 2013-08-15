@@ -82,9 +82,9 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(
     assert isinstance(container, containertools.Container)
     assert isinstance(counts, (tuple, list))
 
-    # TODO: maybe create ForbidUpdates context manager?
+    # TODO: maybe create ForbidUpdate context manager?
     try:
-        container._update_marks_of_entire_score_tree_if_necessary()
+        container._update(marks=True)
         container._is_forbidden_to_update = True
         len_parts = len(counts)
         part_index = 0

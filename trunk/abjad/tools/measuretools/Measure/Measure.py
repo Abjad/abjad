@@ -494,7 +494,7 @@ class Measure(FixedDurationContainer):
 
         Return positive integer.
         '''
-        self._update_offset_values_of_entire_score_tree_if_necessary()
+        self._update(offsets=True)
         return self._measure_number
 
     @property

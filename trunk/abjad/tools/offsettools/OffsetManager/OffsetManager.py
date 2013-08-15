@@ -76,7 +76,7 @@ class OffsetManager(AbjadObject):
         for component in components:
             OffsetManager.update_offset_values_of_component_in_seconds(
                 component)
-            component._offset_values_in_seconds_are_current = True
+            component._offsets_in_seconds_are_current = True
 
     @staticmethod
     def _update_offset_values_of_entire_score_tree(component):
@@ -88,7 +88,7 @@ class OffsetManager(AbjadObject):
             OffsetManager._iterate_score_components_depth_first(component)
         for component in components:
             OffsetManager.update_offset_values_of_component(component)
-            component._offset_values_are_current = True
+            component._offsets_are_current = True
 
     ### PUBLIC METHODS ###
 

@@ -29,11 +29,11 @@ class Component(AbjadObject):
         '_marks_are_current',
         '_dependent_context_marks',
         '_start_marks',
-        '_offset', 
-        '_offset_values_in_seconds_are_current', 
+        #'_offset', 
+        '_offsets_are_current', 
+        '_offsets_in_seconds_are_current', 
         '_override', 
         '_parent',
-        '_offset_values_are_current', 
         '_set', 
         '_spanners',
         '_start_offset', 
@@ -53,9 +53,9 @@ class Component(AbjadObject):
         self._marks_are_current = False
         self._dependent_context_marks = list()
         self._start_marks = list()
-        self._offset_values_in_seconds_are_current = False
+        self._offsets_in_seconds_are_current = False
         self._parent = None
-        self._offset_values_are_current = False
+        self._offsets_are_current = False
         self._spanners = set([])
         self._start_offset = None
         self._start_offset_in_seconds = None
@@ -213,7 +213,7 @@ class Component(AbjadObject):
                 if self._has_mark(contexttools.TimeSignatureMark):
                     return self._get_mark(contexttools.TimeSignatureMark)
         # updating marks of entire score tree if necessary
-        self._update_marks_of_entire_score_tree_if_necessary()
+        self._update(marks=True)
         # gathering candidate marks
         candidate_marks = datastructuretools.SortedCollection(
             key=lambda x: x.start_component._get_timespan().start_offset)
@@ -361,7 +361,7 @@ class Component(AbjadObject):
 
     def _get_timespan(self, in_seconds=False):
         if in_seconds:
-            self._update_offset_values_in_seconds_of_entire_score_tree_if_necessary()
+            self._update(offsets_in_seconds=True)
             if self._start_offset_in_seconds is None:
                 raise MissingTempoError
             return timespantools.Timespan(
@@ -369,7 +369,7 @@ class Component(AbjadObject):
                 stop_offset=self._stop_offset_in_seconds,
                 )
         else:
-            self._update_offset_values_of_entire_score_tree_if_necessary()
+            self._update(offsets=True)
             return self._timespan
 
     def _has_mark(self, mark_classes=None):
@@ -613,67 +613,54 @@ class Component(AbjadObject):
     ### UPDATE METHODS ###
 
     def _get_score_tree_state_flags(self):
-        offset_values_are_current = True
+        offsets_are_current = True
         marks_are_current = True
-        offset_values_in_seconds_are_current = True
+        offsets_in_seconds_are_current = True
         parentage = self._select_parentage()
         for component in parentage:
-            if offset_values_are_current and \
-                not component._offset_values_are_current:
-                offset_values_are_current = False
-            if marks_are_current and not component._marks_are_current:
-                marks_are_current = False
-            if offset_values_in_seconds_are_current and \
-                not component._offset_values_in_seconds_are_current:
-                offset_values_in_seconds_are_current = False
-        return (offset_values_are_current,
+            if offsets_are_current:
+                if not component._offsets_are_current:
+                    offsets_are_current = False
+            if marks_are_current:
+                if not component._marks_are_current:
+                    marks_are_current = False
+            if offsets_in_seconds_are_current:
+                if not component._offsets_in_seconds_are_current:
+                    offsets_in_seconds_are_current = False
+        return (
+            offsets_are_current,
             marks_are_current,
-            offset_values_in_seconds_are_current)
+            offsets_in_seconds_are_current,
+            )
 
+    # call immediately after modifying score tree
     def _mark_for_update(self, offsets=False, offsets_in_seconds=False):
-        r'''Call immediately after modifying score tree.
-        '''
         assert offsets or offsets_in_seconds
         for component in self._select_parentage(include_self=True):
             if offsets:
-                component._offset_values_are_current = False
+                component._offsets_are_current = False
             elif offsets_in_seconds:
-                component._offset_values_in_seconds_are_current = False
+                component._offsets_in_seconds_are_current = False
 
-    def _update_marks_of_entire_score_tree_if_necessary(self):
-        r'''Call immediately before reading effective mark.
-        '''
+    # call self._update(offsets=True) immediately after modifying score tree;
+    # call self._update(marks=True) immediately before reading effective mark
+    def _update(self, offsets=False, offsets_in_seconds=False, marks=False):
         from abjad.tools import offsettools
         OffsetManager = offsettools.OffsetManager
         if self._is_forbidden_to_update:
             return
         state_flags = self._get_score_tree_state_flags()
+        offsets_are_current = state_flags[0]
         marks_are_current = state_flags[1]
-        if not marks_are_current:
-            OffsetManager._update_marks_of_entire_score_tree(self)
-            OffsetManager._update_offset_values_in_seconds_of_entire_score_tree(self)
-
-    def _update_offset_values_in_seconds_of_entire_score_tree_if_necessary(
-        self):
-        from abjad.tools import offsettools
-        OffsetManager = offsettools.OffsetManager
-        if self._is_forbidden_to_update:
-            return
-        state_flags = self._get_score_tree_state_flags()
-        offset_values_in_seconds_are_current = state_flags[2]
-        if not offset_values_in_seconds_are_current:
-            OffsetManager._update_offset_values_in_seconds_of_entire_score_tree(self)
-
-    def _update_offset_values_of_entire_score_tree_if_necessary(self):
-        from abjad.tools import offsettools
-        OffsetManager = offsettools.OffsetManager
-        if self._is_forbidden_to_update:
-            return
-        state_flags = self._get_score_tree_state_flags()
-        offset_values_are_current = state_flags[0]
-        if not offset_values_are_current:
+        offsets_in_seconds_are_current = state_flags[2]
+        if offsets and not offsets_are_current:
             OffsetManager._update_offset_values_of_entire_score_tree(self)
             OffsetManager._update_leaf_indices_and_measure_numbers_in_score_tree(self)
+        if offsets_in_seconds and not offsets_in_seconds_are_current:
+            OffsetManager._update_offset_values_in_seconds_of_entire_score_tree(self)
+        if marks and not marks_are_current:
+            OffsetManager._update_marks_of_entire_score_tree(self)
+            OffsetManager._update_offset_values_in_seconds_of_entire_score_tree(self)
 
     ### PUBLIC PROPERTIES ###
 
@@ -683,7 +670,7 @@ class Component(AbjadObject):
 
         Returns string.
         '''
-        self._update_marks_of_entire_score_tree_if_necessary()
+        self._update(marks=True)
         return self._format_component()
 
     @property
