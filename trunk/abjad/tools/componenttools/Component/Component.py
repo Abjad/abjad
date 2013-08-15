@@ -321,6 +321,30 @@ class Component(AbjadObject):
             return tuple(x for x in markup if x.direction is Down)
         return markup
 
+    def _get_nth_component_in_time_order_from(self, n):
+        from abjad.tools import componenttools
+        assert mathtools.is_integer_equivalent_expr(n)
+        def next(component):
+            if component is not None:
+                for parent in component._select_parentage(include_self=True):
+                    next_sibling = parent._get_sibling(1)
+                    if next_sibling is not None:
+                        return next_sibling
+        def previous(component):
+            if component is not None:
+                for parent in component._select_parentage(include_self=True):
+                    next_sibling = parent._get_sibling(-1)
+                    if next_sibling is not None:
+                        return next_sibling
+        result = self
+        if 0 < n:
+            for i in range(n):
+                result = next(result)
+        elif n < 0:
+            for i in range(abs(n)):
+                result = previous(result)
+        return result
+
     def _get_sibling(self, n):
         if n == 0:
             return self

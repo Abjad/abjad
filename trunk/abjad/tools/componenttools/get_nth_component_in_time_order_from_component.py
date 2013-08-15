@@ -81,32 +81,34 @@ def get_nth_component_in_time_order_from_component(component, n):
 
     Return component or none.
     '''
-    from abjad.tools import componenttools
+#    from abjad.tools import componenttools
+#
+#    assert isinstance(component, componenttools.Component)
+#    assert mathtools.is_integer_equivalent_expr(n)
+#
+#    def _next(component):
+#        if component is not None:
+#            for parent in component._select_parentage(include_self=True):
+#                next_sibling = parent._get_sibling(1)
+#                if next_sibling is not None:
+#                    return next_sibling
+#
+#    def _prev(component):
+#        if component is not None:
+#            for parent in component._select_parentage(include_self=True):
+#                next_sibling = parent._get_sibling(-1)
+#                if next_sibling is not None:
+#                    return next_sibling
+#
+#    result = component
+#
+#    if 0 < n:
+#        for i in range(n):
+#            result = _next(result)
+#    elif n < 0:
+#        for i in range(abs(n)):
+#            result = _prev(result)
+#
+#    return result
 
-    assert isinstance(component, componenttools.Component)
-    assert mathtools.is_integer_equivalent_expr(n)
-
-    def _next(component):
-        if component is not None:
-            for parent in component._select_parentage(include_self=True):
-                next_sibling = parent._get_sibling(1)
-                if next_sibling is not None:
-                    return next_sibling
-
-    def _prev(component):
-        if component is not None:
-            for parent in component._select_parentage(include_self=True):
-                next_sibling = parent._get_sibling(-1)
-                if next_sibling is not None:
-                    return next_sibling
-
-    result = component
-
-    if 0 < n:
-        for i in range(n):
-            result = _next(result)
-    elif n < 0:
-        for i in range(abs(n)):
-            result = _prev(result)
-
-    return result
+    return component._get_nth_component_in_time_order_from(n)
