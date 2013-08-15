@@ -930,7 +930,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             new_payload = right_half + left_half
             self.payload._music = new_payload
             for component in new_payload:
-                component._mark_for_update(offsets=True)
+                component._update_later(offsets=True)
             for spanner in \
                 spannertools.get_spanners_attached_to_any_improper_child_of_component(
                     self.payload):

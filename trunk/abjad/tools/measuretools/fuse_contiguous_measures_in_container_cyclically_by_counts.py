@@ -84,7 +84,7 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(
 
     # TODO: maybe create ForbidUpdate context manager?
     try:
-        container._update(marks=True)
+        container._update_now(marks=True)
         container._is_forbidden_to_update = True
         len_parts = len(counts)
         part_index = 0

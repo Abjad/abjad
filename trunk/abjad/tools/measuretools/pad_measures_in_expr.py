@@ -26,7 +26,7 @@ def pad_measures_in_expr(expr, front, back, pad_class, splice=False):
 
     # TODO: maybe create ForbidUpdates context manager?
     # forbid updates because self._splice() calls self.stop_offset
-    root._update(offsets=True)
+    root._update_now(offsets=True)
     root._is_forbidden_to_update = True
 
     for measure in iterationtools.iterate_measures_in_expr(expr):
@@ -75,5 +75,5 @@ def pad_measures_in_expr(expr, front, back, pad_class, splice=False):
             new_time_signature.attach(measure)
 
     # allow updates after all calls to spanner-growing functions are done
-    root._mark_for_update(offsets=True)
+    root._update_later(offsets=True)
     root._is_forbidden_to_update = False

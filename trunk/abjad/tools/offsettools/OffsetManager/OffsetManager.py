@@ -44,7 +44,7 @@ class OffsetManager(AbjadObject):
         return components
 
     @staticmethod
-    def _update(
+    def _update_now(
         component, 
         offsets=False, 
         offsets_in_seconds=False, 

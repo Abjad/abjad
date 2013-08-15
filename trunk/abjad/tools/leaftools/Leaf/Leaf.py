@@ -267,7 +267,7 @@ class Leaf(Component):
         return result
 
     def _get_leaf_index(self):
-        self._update(offsets=True)
+        self._update_now(offsets=True)
         return self._leaf_index
 
     def _process_contribution_packet(self, contribution_packet):

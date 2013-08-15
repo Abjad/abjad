@@ -179,11 +179,11 @@ class TempoMark(ContextMark):
     def _bind_correct_effective_context(self, correct_effective_context):
         ContextMark._bind_correct_effective_context(
             self, correct_effective_context)
-        correct_effective_context._mark_for_update(offsets_in_seconds=True)
+        correct_effective_context._update_later(offsets_in_seconds=True)
 
     def _bind_start_component(self, start_component):
         ContextMark._bind_start_component(self, start_component)
-        self._start_component._mark_for_update(offsets_in_seconds=True)
+        self._start_component._update_later(offsets_in_seconds=True)
 
     ### PRIVATE PROPERTIES ###
 

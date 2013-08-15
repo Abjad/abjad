@@ -127,7 +127,7 @@ class ContextMark(Mark):
         Return context mark or none.
         '''
         if self.start_component is not None:
-            self.start_component._update(marks=True)
+            self.start_component._update_now(marks=True)
         return self._effective_context
 
     @property

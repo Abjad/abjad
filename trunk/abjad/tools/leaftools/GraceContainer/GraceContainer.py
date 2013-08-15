@@ -190,7 +190,7 @@ class GraceContainer(Container):
 
     @property
     def lilypond_format(self):
-        self._update(marks=True)
+        self._update_now(marks=True)
         return self._format_component()
 
     ### PUBLIC METHODS ###

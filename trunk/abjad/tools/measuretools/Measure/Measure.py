@@ -494,7 +494,7 @@ class Measure(FixedDurationContainer):
 
         Return positive integer.
         '''
-        self._update(offsets=True)
+        self._update_now(offsets=True)
         return self._measure_number
 
     @property

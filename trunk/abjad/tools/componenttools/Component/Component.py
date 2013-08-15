@@ -211,7 +211,7 @@ class Component(AbjadObject):
                 if self._has_mark(contexttools.TimeSignatureMark):
                     return self._get_mark(contexttools.TimeSignatureMark)
         # updating marks of entire score tree if necessary
-        self._update(marks=True)
+        self._update_now(marks=True)
         # gathering candidate marks
         candidate_marks = datastructuretools.SortedCollection(
             key=lambda x: x.start_component._get_timespan().start_offset)
@@ -359,7 +359,7 @@ class Component(AbjadObject):
 
     def _get_timespan(self, in_seconds=False):
         if in_seconds:
-            self._update(offsets_in_seconds=True)
+            self._update_now(offsets_in_seconds=True)
             if self._start_offset_in_seconds is None:
                 raise MissingTempoError
             return timespantools.Timespan(
@@ -367,7 +367,7 @@ class Component(AbjadObject):
                 stop_offset=self._stop_offset_in_seconds,
                 )
         else:
-            self._update(offsets=True)
+            self._update_now(offsets=True)
             return self._timespan
 
     def _has_mark(self, mark_classes=None):
@@ -403,7 +403,7 @@ class Component(AbjadObject):
         return tuple(result)
 
     def _remove_from_parent(self):
-        self._mark_for_update(offsets=True)
+        self._update_later(offsets=True)
         if self._parent is not None:
             self._parent._music.remove(self)
         self._parent = None
@@ -546,7 +546,7 @@ class Component(AbjadObject):
         self._remove_from_parent()
         self._parent = new_parent
         self._restore_named_children_to_parentage(named_children)
-        self._mark_for_update(offsets=True)
+        self._update_later(offsets=True)
 
     def _splice(
         self,
@@ -608,10 +608,7 @@ class Component(AbjadObject):
                     parent.__setitem__(slice(start, start), components)
             return components + [self]
 
-    ### UPDATE METHODS ###
-
-    # call immediately after modifying score tree
-    def _mark_for_update(self, offsets=False, offsets_in_seconds=False):
+    def _update_later(self, offsets=False, offsets_in_seconds=False):
         assert offsets or offsets_in_seconds
         for component in self._select_parentage(include_self=True):
             if offsets:
@@ -619,11 +616,14 @@ class Component(AbjadObject):
             elif offsets_in_seconds:
                 component._offsets_in_seconds_are_current = False
 
-    # call self._update(offsets=True) immediately after modifying score tree;
-    # call self._update(marks=True) immediately before reading effective mark
-    def _update(self, offsets=False, offsets_in_seconds=False, marks=False):
+    def _update_now(
+        self, 
+        offsets=False, 
+        offsets_in_seconds=False, 
+        marks=False,
+        ):
         from abjad.tools import offsettools
-        return offsettools.OffsetManager._update(
+        return offsettools.OffsetManager._update_now(
             self,
             offsets=offsets,
             offsets_in_seconds=offsets_in_seconds,
@@ -638,7 +638,7 @@ class Component(AbjadObject):
 
         Returns string.
         '''
-        self._update(marks=True)
+        self._update_now(marks=True)
         return self._format_component()
 
     @property

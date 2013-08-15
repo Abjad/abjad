@@ -489,7 +489,7 @@ class Tuplet(Container):
 
         Return string.
         '''
-        self._update(marks=True)
+        self._update_now(marks=True)
         return self._format_component()
 
     @property
