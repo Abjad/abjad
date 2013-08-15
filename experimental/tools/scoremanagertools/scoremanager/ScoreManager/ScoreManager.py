@@ -247,7 +247,7 @@ class ScoreManager(ScoreManagerObject):
 
         Return string.
         '''
-        return super(ScoreManager, self).storage_format
+        return self._tools_package_qualified_indented_repr
 
     @property
     def stylesheet_file_wrangler(self):

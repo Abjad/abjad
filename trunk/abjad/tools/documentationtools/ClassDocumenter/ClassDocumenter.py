@@ -128,8 +128,6 @@ class ClassDocumenter(Documenter):
         :noindex:
         <BLANKLINE>
 
-
-
     Returns ``ClassDocumenter`` instance.
     '''
 

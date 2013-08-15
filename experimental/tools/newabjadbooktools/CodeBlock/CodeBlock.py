@@ -291,6 +291,14 @@ class CodeBlock(AbjadObject):
         }
 
     @property
+    def storage_format(self):
+        r'''Storage format of code block.
+
+        Returns string.
+        '''
+        return self._tools_package_qualified_indented_repr
+
+    @property
     def strip_prompt(self):
         return self._strip_prompt
 

@@ -79,6 +79,16 @@ class CyclicTree(Tree):
     def _initialize_children_list(self):
         return CyclicList([])
 
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def storage_format(self):
+        r'''Storage format of cyclic tree.
+
+        Returns string.
+        '''
+        return self._tools_package_qualified_indented_repr
+
     ### PUBLIC METHODS ###
 
     def get_next_n_nodes_at_level(self, n, level):

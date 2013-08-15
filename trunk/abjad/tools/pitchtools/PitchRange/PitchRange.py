@@ -422,3 +422,11 @@ class PitchRange(AbjadObject):
         if self._stop is None:
             return True
         return self._stop[1] == 'inclusive'
+
+    @property
+    def storage_format(self):
+        r'''Storage format of pitch range.
+
+        Returns string.
+        '''
+        return self._tools_package_qualified_indented_repr

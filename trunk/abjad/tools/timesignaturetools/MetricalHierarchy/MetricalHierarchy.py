@@ -586,7 +586,7 @@ class MetricalHierarchy(AbjadObject):
 
         Return string.
         '''
-        return AbjadObject.storage_format.fget(self)
+        return self._tools_package_qualified_indented_repr
 
     ### PRIVATE METHODS ###
 

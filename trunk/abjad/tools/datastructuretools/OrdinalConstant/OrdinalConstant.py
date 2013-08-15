@@ -135,3 +135,13 @@ class OrdinalConstant(AbjadObject):
     # ordinal constants appear as constants in storage format
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
         return [repr(self)]
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def storage_format(self):
+        r'''Storage format of ordinal constant.
+
+        Returns string.
+        '''
+        return self._tools_package_qualified_indented_repr

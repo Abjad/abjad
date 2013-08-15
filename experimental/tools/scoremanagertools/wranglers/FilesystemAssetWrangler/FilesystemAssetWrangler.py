@@ -179,6 +179,14 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def asset_proxy_class(self):
         pass
 
+    @property
+    def storage_format(self):
+        r'''Storage format of filesystem asset wrangler.
+
+        Returns string.
+        '''
+        return self._tools_package_qualified_indented_repr
+
     ### PUBLIC METHODS ###
 
     @abc.abstractmethod

@@ -390,7 +390,6 @@ class Tree(AbjadObject):
                     )
         return graph
 
-
     @property
     def improper_parentage(self):
         r'''Improper parentage of node:
@@ -611,7 +610,7 @@ class Tree(AbjadObject):
 
         Return string.
         '''
-        return AbjadObject.storage_format.fget(self)
+        return self._tools_package_qualified_indented_repr
 
     @property
     def width(self):

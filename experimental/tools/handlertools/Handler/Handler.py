@@ -32,6 +32,16 @@ class Handler(abctools.AbjadObject):
     def _tools_package_name(self):
         pass
 
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def storage_format(self):
+        r'''Storage format of handler.
+
+        Returns string.
+        '''
+        return self._tools_package_qualified_indented_repr
+
     ### PUBLIC METHODS ###
 
     def new(self, *args, **kwargs):

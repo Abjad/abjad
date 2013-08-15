@@ -667,11 +667,9 @@ class Component(AbjadObject):
     def storage_format(self):
         r'''Storage format of component.
 
-        ..  note:: Attribute will be removed in Abjad 2.14.
-
         Returns string.
         '''
-        return super(Component, self).storage_format
+        return self._tools_package_qualified_indented_repr
 
     ### PUBLIC METHODS ###
 

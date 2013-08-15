@@ -20,14 +20,14 @@ class AbjadObject(object):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''True when id of `expr` equals id of Abjad object.
+        r'''True when ID of `expr` equals ID of Abjad object.
 
         Returns boolean.
         '''
         return id(self) == id(expr)
 
     def __ne__(self, expr):
-        r'''True when id of `expr` does not equal id of Abjad object.
+        r'''True when ID of `expr` does not equal ID of Abjad object.
 
         Returns boolean.
         '''
@@ -320,13 +320,3 @@ class AbjadObject(object):
             else:
                 result.append(')')
         return tuple(result)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def storage_format(self):
-        r'''Storage format of Abjad object.
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr

@@ -128,6 +128,14 @@ class Mark(AbjadObject):
         '''
         return self._start_component
 
+    @property
+    def storage_format(self):
+        r'''Storage format of mark.
+
+        Returns string.
+        '''
+        return self._tools_package_qualified_indented_repr
+
     ### PUBLIC METHODS ###
 
     def attach(self, start_component):

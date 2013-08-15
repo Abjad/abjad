@@ -35,3 +35,11 @@ class Specifier(AbjadObject):
     @abc.abstractproperty
     def _one_line_menuing_summary(self):
         pass
+
+    @property
+    def storage_format(self):
+        r'''Storage format of specifier.
+
+        Returns string.
+        '''
+        return self._tools_package_qualified_indented_repr

@@ -746,6 +746,14 @@ class Duration(AbjadObject, fractions.Fraction):
         '''
         return type(self)(self.denominator, self.numerator)
 
+    @property
+    def storage_format(self):
+        r'''Storage format of duration.
+
+        Returns string.
+        '''
+        return self._tools_package_qualified_indented_repr
+
     ### PUBLIC FUNCTIONS ###
 
     @staticmethod

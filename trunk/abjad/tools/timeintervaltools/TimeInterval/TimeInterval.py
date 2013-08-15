@@ -106,6 +106,14 @@ class TimeInterval(TimeIntervalMixin, collections.MutableMapping):
         '''
         return self._stop
 
+    @property
+    def storage_format(self):
+        r'''Storage format of time interval.
+
+        Returns string.
+        '''
+        return self._tools_package_qualified_indented_repr
+
     ### PRIVATE METHODS ###
 
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):

@@ -156,3 +156,11 @@ class InstrumentationSpecifier(AbjadObject):
                     for x in performers)
                 self._performers[:] = list(performers[:])
         return property(**locals())
+
+    @property
+    def storage_format(self):
+        r'''Storage format of instrumentation specifier.
+
+        Returns string.
+        '''
+        return self._tools_package_qualified_indented_repr

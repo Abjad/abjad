@@ -92,6 +92,14 @@ class ObjectInventory(list, AbjadObject):
             self._name = _name
         return property(**locals())
 
+    @property
+    def storage_format(self):
+        r'''Storage format of object inventory.
+
+        Returns string.
+        '''
+        return self._tools_package_qualified_indented_repr
+
     ### PRIVATE METHODS ###
 
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):

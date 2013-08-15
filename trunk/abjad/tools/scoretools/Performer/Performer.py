@@ -162,6 +162,14 @@ class Performer(AbjadObject):
                 performer_names.add((performer_name, performer_abbreviation))
         return list(sorted(performer_names))
 
+    @property
+    def storage_format(self):
+        r'''Storage format of performer.
+
+        Returns string.
+        '''
+        return self._tools_package_qualified_indented_repr
+
     ### PUBLIC PROPERTIES ###
 
     @property
