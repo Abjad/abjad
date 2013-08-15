@@ -267,7 +267,7 @@ class Leaf(Component):
         return result
 
     def _get_leaf_index(self):
-        self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
+        self._update_offset_values_of_entire_score_tree_if_necessary()
         return self._leaf_index
 
     def _process_contribution_packet(self, contribution_packet):

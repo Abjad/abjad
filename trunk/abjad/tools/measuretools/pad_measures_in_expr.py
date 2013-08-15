@@ -26,7 +26,7 @@ def pad_measures_in_expr(expr, front, back, pad_class, splice=False):
 
     # forbid updates because self._splice() calls self.stop_offset
     #root._update._forbid_component_update()
-    root._update_prolated_offset_values_of_entire_score_tree_if_necessary()
+    root._update_offset_values_of_entire_score_tree_if_necessary()
     root._forbid_component_update()
 
     for measure in iterationtools.iterate_measures_in_expr(expr):

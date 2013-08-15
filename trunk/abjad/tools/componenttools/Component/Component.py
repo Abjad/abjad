@@ -33,7 +33,7 @@ class Component(AbjadObject):
         '_offset_values_in_seconds_are_current', 
         '_override', 
         '_parent',
-        '_prolated_offset_values_are_current', 
+        '_offset_values_are_current', 
         '_set', 
         '_spanners',
         '_start_offset', 
@@ -55,7 +55,7 @@ class Component(AbjadObject):
         self._start_marks = list()
         self._offset_values_in_seconds_are_current = False
         self._parent = None
-        self._prolated_offset_values_are_current = False
+        self._offset_values_are_current = False
         self._spanners = set([])
         self._start_offset = None
         self._start_offset_in_seconds = None
@@ -157,6 +157,45 @@ class Component(AbjadObject):
             spanner.detach()
         return spanners
 
+    def _format_after_slot(self, format_contributions):
+        pass
+
+    def _format_before_slot(self, format_contributions):
+        pass
+
+    def _format_close_brackets_slot(self, format_contributions):
+        pass
+
+    def _format_closing_slot(self, format_contributions):
+        pass
+
+    def _format_component(self, pieces=False):
+        result = []
+        format_contributions = formattools.get_all_format_contributions(self)
+        result.extend(self._format_before_slot(format_contributions))
+        result.extend(self._format_open_brackets_slot(format_contributions))
+        result.extend(self._format_opening_slot(format_contributions))
+        result.extend(self._format_contents_slot(format_contributions))
+        result.extend(self._format_closing_slot(format_contributions))
+        result.extend(self._format_close_brackets_slot(format_contributions))
+        result.extend(self._format_after_slot(format_contributions))
+        contributions = []
+        for contributor, contribution in result:
+            contributions.extend(contribution)
+        if pieces:
+            return contributions
+        else:
+            return '\n'.join(contributions)
+
+    def _format_contents_slot(self, format_contributions):
+        pass
+
+    def _format_open_brackets_slot(self, format_contributions):
+        pass
+
+    def _format_opening_slot(self, format_contributions):
+        pass
+
     def _get_duration(self, in_seconds=False):
         if in_seconds:
             return self._duration_in_seconds
@@ -208,66 +247,6 @@ class Component(AbjadObject):
             effective_staff = parentage.get_first(stafftools.Staff)
         return effective_staff
 
-    def _get_grace_containers(self, kind=None):
-        result = []
-        if kind in (None, 'grace') and hasattr(self, '_grace'):
-            result.append(self._grace)
-        if kind in (None, 'after') and hasattr(self, '_after_grace'):
-            result.append(self._after_grace)
-        return tuple(result)
-
-    def _get_timespan(self, in_seconds=False):
-        if in_seconds:
-            self._update_offset_values_in_seconds_of_entire_score_tree_if_necessary()
-            if self._start_offset_in_seconds is None:
-                raise MissingTempoError
-            return timespantools.Timespan(
-                start_offset=self._start_offset_in_seconds, 
-                stop_offset=self._stop_offset_in_seconds,
-                )
-        else:
-            self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
-            return self._timespan
-
-    def _format_after_slot(self, format_contributions):
-        pass
-
-    def _format_before_slot(self, format_contributions):
-        pass
-
-    def _format_close_brackets_slot(self, format_contributions):
-        pass
-
-    def _format_closing_slot(self, format_contributions):
-        pass
-
-    def _format_component(self, pieces=False):
-        result = []
-        format_contributions = formattools.get_all_format_contributions(self)
-        result.extend(self._format_before_slot(format_contributions))
-        result.extend(self._format_open_brackets_slot(format_contributions))
-        result.extend(self._format_opening_slot(format_contributions))
-        result.extend(self._format_contents_slot(format_contributions))
-        result.extend(self._format_closing_slot(format_contributions))
-        result.extend(self._format_close_brackets_slot(format_contributions))
-        result.extend(self._format_after_slot(format_contributions))
-        contributions = []
-        for contributor, contribution in result:
-            contributions.extend(contribution)
-        if pieces:
-            return contributions
-        else:
-            return '\n'.join(contributions)
-
-    def _format_contents_slot(self, format_contributions):
-        pass
-
-    def _format_open_brackets_slot(self, format_contributions):
-        pass
-
-    def _format_opening_slot(self, format_contributions):
-        pass
-
     def _get_format_contributions_for_slot(self, n, format_contributions=None):
         if format_contributions is None:
             format_contributions = \
@@ -290,6 +269,14 @@ class Component(AbjadObject):
         for source, contributions in attr(format_contributions):
             result.extend(contributions)
         return result
+
+    def _get_grace_containers(self, kind=None):
+        result = []
+        if kind in (None, 'grace') and hasattr(self, '_grace'):
+            result.append(self._grace)
+        if kind in (None, 'after') and hasattr(self, '_after_grace'):
+            result.append(self._after_grace)
+        return tuple(result)
 
     def _get_in_my_logical_voice(self, n, component_class=None):
         from abjad.tools import iterationtools
@@ -371,6 +358,19 @@ class Component(AbjadObject):
             if isinstance(spanner, spanner_classes):
                 spanners.add(spanner)
         return spanners
+
+    def _get_timespan(self, in_seconds=False):
+        if in_seconds:
+            self._update_offset_values_in_seconds_of_entire_score_tree_if_necessary()
+            if self._start_offset_in_seconds is None:
+                raise MissingTempoError
+            return timespantools.Timespan(
+                start_offset=self._start_offset_in_seconds, 
+                stop_offset=self._stop_offset_in_seconds,
+                )
+        else:
+            self._update_offset_values_of_entire_score_tree_if_necessary()
+            return self._timespan
 
     def _has_mark(self, mark_classes=None):
         marks = self._get_marks(mark_classes=mark_classes)
@@ -599,7 +599,8 @@ class Component(AbjadObject):
                         spanner._insert(index, component)
                         component._spanners.add(spanner)
             selection = self.select(sequential=True)
-            parent, start, stop = selection._get_parent_and_start_stop_indices()
+            parent, start, stop = \
+                selection._get_parent_and_start_stop_indices()
             if parent is not None:
                 if grow_spanners:
                     for component in reversed(components):
@@ -618,20 +619,20 @@ class Component(AbjadObject):
         self._is_forbidden_to_update = True
 
     def _get_score_tree_state_flags(self):
-        prolated_offset_values_are_current = True
+        offset_values_are_current = True
         marks_are_current = True
         offset_values_in_seconds_are_current = True
         parentage = self._select_parentage()
         for component in parentage:
-            if prolated_offset_values_are_current and \
-                not component._prolated_offset_values_are_current:
-                prolated_offset_values_are_current = False
+            if offset_values_are_current and \
+                not component._offset_values_are_current:
+                offset_values_are_current = False
             if marks_are_current and not component._marks_are_current:
                 marks_are_current = False
             if offset_values_in_seconds_are_current and \
                 not component._offset_values_in_seconds_are_current:
                 offset_values_in_seconds_are_current = False
-        return (prolated_offset_values_are_current,
+        return (offset_values_are_current,
             marks_are_current,
             offset_values_in_seconds_are_current)
 
@@ -656,7 +657,7 @@ class Component(AbjadObject):
         '''
         for component in self._select_parentage(include_self=True):
             if value == 'prolated':
-                component._prolated_offset_values_are_current = False
+                component._offset_values_are_current = False
             elif value == 'seconds':
                 component._offset_values_in_seconds_are_current = False
             else:
@@ -694,8 +695,9 @@ class Component(AbjadObject):
 
     def _update_marks_of_entire_score_tree(self):
         r'''Updating marks does not cause prolated offset values to update.
-        On the other hand, getting effective mark causes prolated offset values
-        to update when at least one mark of appropriate type attaches to score.
+        On the other hand, getting effective mark causes prolated offset 
+        values to update when at least one mark of appropriate type attaches 
+        to score.
         '''
         components = self._iterate_score_components_depth_first()
         for component in components:
@@ -720,7 +722,8 @@ class Component(AbjadObject):
         OffsetManager = offsettools.OffsetManager
         components = self._iterate_score_components_depth_first()
         for component in components:
-            OffsetManager.update_offset_values_of_component_in_seconds(component)
+            OffsetManager.update_offset_values_of_component_in_seconds(
+                component)
             component._offset_values_in_seconds_are_current = True
 
     def _update_offset_values_in_seconds_of_entire_score_tree_if_necessary(
@@ -732,7 +735,7 @@ class Component(AbjadObject):
         if not offset_values_in_seconds_are_current:
             self._update_offset_values_in_seconds_of_entire_score_tree()
 
-    def _update_prolated_offset_values_of_entire_score_tree(self):
+    def _update_offset_values_of_entire_score_tree(self):
         r'''Updating prolated offset values does NOT update marks.
         Updating prolated offset values does NOT update offset values 
         in seconds.
@@ -742,15 +745,15 @@ class Component(AbjadObject):
         components = self._iterate_score_components_depth_first()
         for component in components:
             OffsetManager.update_offset_values_of_component(component)
-            component._prolated_offset_values_are_current = True
+            component._offset_values_are_current = True
 
-    def _update_prolated_offset_values_of_entire_score_tree_if_necessary(self):
+    def _update_offset_values_of_entire_score_tree_if_necessary(self):
         if self._is_forbidden_to_update:
             return
         state_flags = self._get_score_tree_state_flags()
-        prolated_offset_values_are_current = state_flags[0]
-        if not prolated_offset_values_are_current:
-            self._update_prolated_offset_values_of_entire_score_tree()
+        offset_values_are_current = state_flags[0]
+        if not offset_values_are_current:
+            self._update_offset_values_of_entire_score_tree()
             self._update_leaf_indices_and_measure_numbers_in_score_tree()
 
     ### PUBLIC PROPERTIES ###
