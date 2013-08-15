@@ -326,6 +326,491 @@ class Leaf(Component):
         preprolated_duration = duration / prolation
         leaftools.set_leaf_duration(self, preprolated_duration)
 
+    # TODO: This should be replaced in favor of self._split_at_offsets().
+    #       The precondition is that self._split_at_offsets() must be
+    #       extended to handle graces.
+    #       Also important to migrate over the (large-ish) set of tests for 
+    #       this method.
+    def _split_at_offset(
+        self, 
+        offset, 
+        fracture_spanners=False,
+        tie_split_notes=True, 
+        tie_split_rests=False,
+        ):
+        r'''Splits `leaf` at `offset`.
+
+        ..  container:: example
+        
+            **Example 1.** Split note at assignable offset. Two notes result. 
+            Do not tie notes:
+
+            ::
+
+                >>> staff = Staff(r"abj: | 2/8 c'8 ( d'8 || 2/8 e'8 f'8 ) |")
+                >>> select(staff[:]).attach_spanners(spannertools.BeamSpanner)
+                (BeamSpanner(|2/8(2)|), BeamSpanner(|2/8(2)|))
+                >>> contexttools.DynamicMark('f')(staff.select_leaves()[0])
+                DynamicMark('f')(c'8)
+                >>> marktools.Articulation('accent')(staff.select_leaves()[0])
+                Articulation('accent')(c'8)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        c'8 -\accent \f [ (
+                        d'8 ]
+                    }
+                    {
+                        e'8 [
+                        f'8 ] )
+                    }
+                }
+
+            ::
+
+                >>> leaftools.split_leaf_at_offset(
+                ...     staff.select_leaves()[0], 
+                ...     (1, 32),
+                ...     tie_split_notes=False,
+                ...     )
+                ([Note("c'32")], [Note("c'16.")])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        c'32 -\accent \f [ (
+                        c'16.
+                        d'8 ]
+                    }
+                    {
+                        e'8 [
+                        f'8 ] )
+                    }
+                }
+
+        ..  container:: example
+        
+            **Example 2.** Handle grace and after grace containers correctly.
+
+            ::
+
+                >>> staff = Staff(r"abj: | 2/8 c'8 ( d'8 || 2/8 e'8 f'8 ) |")
+                >>> select(staff[:]).attach_spanners(spannertools.BeamSpanner)
+                (BeamSpanner(|2/8(2)|), BeamSpanner(|2/8(2)|))
+                >>> leaftools.GraceContainer("cs'16")(staff.select_leaves()[0])
+                Note("c'8")
+                >>> leaftools.GraceContainer("ds'16", kind='after')(staff.select_leaves()[0])
+                Note("c'8")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        \grace {
+                            cs'16
+                        }
+                        \afterGrace
+                        c'8 [ (
+                        {
+                            ds'16
+                        }
+                        d'8 ]
+                    }
+                    {
+                        e'8 [
+                        f'8 ] )
+                    }
+                }
+
+            ::
+
+                >>> leaftools.split_leaf_at_offset(
+                ...     staff.select_leaves()[0], 
+                ...     (1, 32),
+                ...     tie_split_notes=False,
+                ...     )
+                ([Note("c'32")], [Note("c'16.")])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        \grace {
+                            cs'16
+                        }
+                        c'32 [ (
+                        \afterGrace
+                        c'16.
+                        {
+                            ds'16
+                        }
+                        d'8 ]
+                    }
+                    {
+                        e'8 [
+                        f'8 ] )
+                    }
+                }
+
+        Returns pair.
+        '''
+        from abjad.tools import contexttools
+        from abjad.tools import leaftools
+        from abjad.tools import marktools
+        from abjad.tools import pitchtools
+        from abjad.tools import selectiontools
+        from abjad.tools import spannertools
+        # check input
+        offset = durationtools.Offset(offset)
+        # calculate durations
+        leaf_multiplied_duration = self._multiplied_duration
+        prolation = self._select_parentage(include_self=False).prolation
+        preprolated_duration = offset / prolation
+        # handle boundary cases
+        if preprolated_duration <= 0:
+            return ([], [self])
+        if leaf_multiplied_duration <= preprolated_duration:
+            return ([self], [])
+        # create new leaf
+        new_leaf = copy.copy(self)
+        self._splice([new_leaf], grow_spanners=True)
+        # adjust leaf
+        self._detach_grace_containers(kind='after')
+        # adjust new leaf
+        new_leaf._detach_grace_containers(kind='grace')
+        new_leaf.select().detach_marks()
+        new_leaf.select().detach_marks(contexttools.ContextMark)
+        left_leaf_list = \
+            leaftools.set_leaf_duration(self, preprolated_duration)
+        right_preprolated_duration = \
+            leaf_multiplied_duration - preprolated_duration
+        right_leaf_list = leaftools.set_leaf_duration(
+            new_leaf, right_preprolated_duration)
+        leaf_left_of_split = left_leaf_list[-1]
+        leaf_right_of_split = right_leaf_list[0]
+        leaves_around_split = (leaf_left_of_split, leaf_right_of_split)
+        if fracture_spanners:
+            spannertools.fracture_spanners_attached_to_component(
+                leaf_left_of_split,
+                direction=Right,
+                )
+        # tie split notes, rests and chords as specified
+        if  (pitchtools.is_pitch_carrier(self) and tie_split_notes) or \
+            (not pitchtools.is_pitch_carrier(self) and tie_split_rests):
+            selection = selectiontools.ContiguousLeafSelection(
+                leaves_around_split)
+            selection._attach_tie_spanner_to_leaf_pair()
+        return left_leaf_list, right_leaf_list
+        # TODO: make this substitution work
+        #return self._split_leaf_at_offsets(
+        #    leaf, 
+        #    [offset], 
+        #    cyclic=False,
+        #    fracture_spanners=fracture_spanners, 
+        #    tie_split_notes=tie_split_notes,
+        #    tie_split_rests=tie_split_rests,
+        #    )
+
+    def _split_at_offsets(
+        self,
+        offsets,
+        cyclic=False,
+        fracture_spanners=False,
+        tie_split_notes=True,
+        tie_split_rests=False,
+        ):
+        r'''Splits `leaf` at `offsets`.
+
+        ..  container:: example
+        
+            **Example 1.** Split note once at `offsets` and tie split notes:
+
+            ::
+
+                >>> staff = Staff("c'1 ( d'1 )")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'1 (
+                    d'1 )
+                }
+
+            ::
+
+                >>> leaftools.split_leaf_at_offsets(
+                ...     staff[0], 
+                ...     [(3, 8)],
+                ...     tie_split_notes=True,
+                ...     )
+                [[Note("c'4.")], [Note("c'2"), Note("c'8")]]
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4. ( ~
+                    c'2 ~
+                    c'8
+                    d'1 )
+                }
+
+        ..  container:: example
+        
+            **Example 2.** Split note cyclically at `offsets` and tie split notes:
+
+            ::
+
+                >>> staff = Staff("c'1 ( d'1 )")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'1 (
+                    d'1 )
+                }
+
+            ::
+
+                >>> leaftools.split_leaf_at_offsets(
+                ...     staff[0], 
+                ...     [(3, 8)], 
+                ...     cyclic=True,
+                ...     tie_split_notes=True,
+                ...     )
+                [[Note("c'4.")], [Note("c'4.")], [Note("c'4")]]
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4. ( ~
+                    c'4. ~
+                    c'4
+                    d'1 )
+                }
+
+        ..  container:: example
+        
+            **Example 3.** Split note once at `offsets` and do no tie split notes:
+
+            ::
+
+                >>> staff = Staff("c'1 ( d'1 )")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'1 (
+                    d'1 )
+                }
+
+            ::
+
+                >>> leaftools.split_leaf_at_offsets(
+                ...     staff[0], 
+                ...     [(3, 8)],
+                ...     tie_split_notes=False,
+                ...     )
+                [[Note("c'4.")], [Note("c'2"), Note("c'8")]]
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4. (
+                    c'2 ~
+                    c'8
+                    d'1 )
+                }
+
+        ..  container:: example
+        
+            **Example 4.** Split note cyclically at `offsets` and do not 
+            tie split notes:
+
+            ::
+
+                >>> staff = Staff("c'1 ( d'1 )")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'1 (
+                    d'1 )
+                }
+
+            ::
+
+                >>> leaftools.split_leaf_at_offsets(
+                ...     staff[0], 
+                ...     [(3, 8)], 
+                ...     cyclic=True,
+                ...     tie_split_notes=False,
+                ...     )
+                [[Note("c'4.")], [Note("c'4.")], [Note("c'4")]]
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4. (
+                    c'4.
+                    c'4
+                    d'1 )
+                }
+
+        ..  container:: example
+        
+            **Example 5.** Split tupletted note once at `offsets` 
+            and tie split notes:
+
+            ::
+
+                >>> staff = Staff(r"\times 2/3 { c'2 ( d'2 e'2 ) }")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \times 2/3 {
+                        c'2 (
+                        d'2
+                        e'2 )
+                    }
+                }
+
+            ::
+
+                >>> leaftools.split_leaf_at_offsets(
+                ...     staff.select_leaves()[1], 
+                ...     [(1, 6)], 
+                ...     cyclic=False,
+                ...     tie_split_notes=True,
+                ...     )
+                [[Note("d'4")], [Note("d'4")]]
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \times 2/3 {
+                        c'2 (
+                        d'4 ~
+                        d'4
+                        e'2 )
+                    }
+                }
+
+        .. note:: Add examples showing mark and context mark handling.
+
+        Returns list of shards.
+        '''
+        from abjad.tools import componenttools
+        from abjad.tools import contexttools
+        from abjad.tools import iterationtools
+        from abjad.tools import leaftools
+        from abjad.tools import marktools
+        from abjad.tools import pitchtools
+        from abjad.tools import selectiontools
+        from abjad.tools import spannertools
+        offsets = [durationtools.Offset(offset) for offset in offsets]
+        if cyclic:
+            offsets = sequencetools.repeat_sequence_to_weight_exactly(
+                offsets, self._get_duration())
+        durations = [durationtools.Duration(offset) for offset in offsets]
+        if sum(durations) < self._get_duration():
+            last_duration = self._get_duration() - sum(durations)
+            durations.append(last_duration)
+        sequencetools.truncate_sequence_to_weight(
+            durations, self._get_duration())
+        result = []
+        leaf_prolation = self._select_parentage(include_self=False).prolation
+        leaf_copy = copy.copy(self)
+        for duration in durations:
+            new_leaf = copy.copy(self)
+            preprolated_duration = duration / leaf_prolation
+            shard = leaftools.set_leaf_duration(
+                new_leaf, preprolated_duration)
+            shard = [x._select_parentage().root for x in shard]
+            result.append(shard)
+        flattened_result = sequencetools.flatten_sequence(result)
+        flattened_result = selectiontools.SliceSelection(flattened_result)
+        spanner_classes = (spannertools.TieSpanner,)
+        if spannertools.get_spanners_attached_to_any_improper_parent_of_component(
+            self, spanner_classes=spanner_classes):
+            selection = selectiontools.select(flattened_result)
+            selection.detach_spanners(spanner_classes=spanner_classes)
+        componenttools.move_parentage_and_spanners_from_components_to_components(
+            [self], flattened_result)
+        if fracture_spanners:
+            first_shard = result[0]
+            spannertools.fracture_spanners_attached_to_component(
+                first_shard[-1], direction=Right)
+            last_shard = result[-1]
+            spannertools.fracture_spanners_attached_to_component(
+                last_shard[0], direction=Left)
+            for middle_shard in result[1:-1]:
+                spannertools.fracture_spanners_attached_to_component(
+                    middle_shard[0], direction=Left)
+                spannertools.fracture_spanners_attached_to_component(
+                    middle_shard[-1], direction=Right)
+        # adjust first leaf
+        first_leaf = flattened_result[0]
+        self._detach_grace_containers(kind='after')
+        # adjust any middle leaves
+        for middle_leaf in flattened_result[1:-1]:
+            middle_leaf._detach_grace_containers(kind='grace')
+            self._detach_grace_containers(kind='after')
+            middle_leaf.select().detach_marks()
+            middle_leaf.select().detach_marks(contexttools.ContextMark)
+        # adjust last leaf
+        last_leaf = flattened_result[-1]
+        last_leaf._detach_grace_containers(kind='grace')
+        last_leaf.select().detach_marks()
+        last_leaf.select().detach_marks(contexttools.ContextMark)
+        # tie split notes, rests and chords as specified
+        if  (pitchtools.is_pitch_carrier(self) and tie_split_notes) or \
+            (not pitchtools.is_pitch_carrier(self) and tie_split_rests):
+            flattened_result_leaves = iterationtools.iterate_leaves_in_expr(
+                flattened_result)
+            # TODO: implement SliceSelection._attach_tie_spanner_to_leaves()
+            for leaf_pair in sequencetools.iterate_sequence_pairwise_strict(
+                flattened_result_leaves):
+                selection = selectiontools.ContiguousLeafSelection(leaf_pair)
+                selection._attach_tie_spanner_to_leaf_pair()
+        # return result
+        return result
+
     def _split_in_halves(self, n=2):
         from abjad.tools import leaftools
         from abjad.tools import componenttools

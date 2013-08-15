@@ -215,89 +215,11 @@ def split_leaf_at_offsets(
 
     Returns list of shards.
     '''
-    from abjad.tools import contexttools
-    from abjad.tools import iterationtools
-    from abjad.tools import leaftools
-    from abjad.tools import marktools
-    from abjad.tools import selectiontools
-    from abjad.tools import spannertools
 
-    assert isinstance(leaf, leaftools.Leaf)
-    offsets = [durationtools.Offset(offset) for offset in offsets]
-
-    if cyclic:
-        offsets = sequencetools.repeat_sequence_to_weight_exactly(
-            offsets, leaf._get_duration())
-
-    durations = [durationtools.Duration(offset) for offset in offsets]
-
-    if sum(durations) < leaf._get_duration():
-        last_duration = leaf._get_duration() - sum(durations)
-        durations.append(last_duration)
-
-    sequencetools.truncate_sequence_to_weight(durations, leaf._get_duration())
-
-    result = []
-    leaf_prolation = leaf._select_parentage(include_self=False).prolation
-    leaf_copy = copy.copy(leaf)
-    for duration in durations:
-        new_leaf = copy.copy(leaf)
-        preprolated_duration = duration / leaf_prolation
-        shard = leaftools.set_leaf_duration(
-            new_leaf, preprolated_duration)
-        shard = [x._select_parentage().root for x in shard]
-        result.append(shard)
-
-    flattened_result = sequencetools.flatten_sequence(result)
-    flattened_result = selectiontools.SliceSelection(flattened_result)
-    spanner_classes = (spannertools.TieSpanner,)
-    if spannertools.get_spanners_attached_to_any_improper_parent_of_component(
-        leaf, spanner_classes=spanner_classes):
-        selection = selectiontools.select(flattened_result)
-        selection.detach_spanners(spanner_classes=spanner_classes)
-    componenttools.move_parentage_and_spanners_from_components_to_components(
-        [leaf], flattened_result)
-
-    if fracture_spanners:
-        first_shard = result[0]
-        spannertools.fracture_spanners_attached_to_component(
-            first_shard[-1], direction=Right)
-        last_shard = result[-1]
-        spannertools.fracture_spanners_attached_to_component(
-            last_shard[0], direction=Left)
-        for middle_shard in result[1:-1]:
-            spannertools.fracture_spanners_attached_to_component(
-                middle_shard[0], direction=Left)
-            spannertools.fracture_spanners_attached_to_component(
-                middle_shard[-1], direction=Right)
-
-    # adjust first leaf
-    first_leaf = flattened_result[0]
-    leaf._detach_grace_containers(kind='after')
-
-    # adjust any middle leaves
-    for middle_leaf in flattened_result[1:-1]:
-        middle_leaf._detach_grace_containers(kind='grace')
-        leaf._detach_grace_containers(kind='after')
-        middle_leaf.select().detach_marks()
-        middle_leaf.select().detach_marks(contexttools.ContextMark)
-
-    # adjust last leaf
-    last_leaf = flattened_result[-1]
-    last_leaf._detach_grace_containers(kind='grace')
-    last_leaf.select().detach_marks()
-    last_leaf.select().detach_marks(contexttools.ContextMark)
-
-    # tie split notes, rests and chords as specified
-    if  (pitchtools.is_pitch_carrier(leaf) and tie_split_notes) or \
-        (not pitchtools.is_pitch_carrier(leaf) and tie_split_rests):
-        flattened_result_leaves = iterationtools.iterate_leaves_in_expr(
-            flattened_result)
-        # TODO: implement SliceSelection._attach_tie_spanner_to_leaves()
-        for leaf_pair in sequencetools.iterate_sequence_pairwise_strict(
-            flattened_result_leaves):
-            selection = selectiontools.ContiguousLeafSelection(leaf_pair)
-            selection._attach_tie_spanner_to_leaf_pair()
-
-    # return result
-    return result
+    return leaf._split_at_offsets(
+        offsets,
+        cyclic=cyclic,
+        fracture_spanners=fracture_spanners,
+        tie_split_notes=tie_split_notes,
+        tie_split_rests=tie_split_rests,
+        )

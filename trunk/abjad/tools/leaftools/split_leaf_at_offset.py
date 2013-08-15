@@ -148,65 +148,10 @@ def split_leaf_at_offset(
 
     Returns pair.
     '''
-    from abjad.tools import contexttools
-    from abjad.tools import leaftools
-    from abjad.tools import marktools
-    from abjad.tools import selectiontools
-    from abjad.tools import spannertools
 
-    # check input
-    assert isinstance(leaf, leaftools.Leaf)
-    offset = durationtools.Offset(offset)
-
-    # calculate durations
-    leaf_multiplied_duration = leaf._multiplied_duration
-    prolation = leaf._select_parentage(include_self=False).prolation
-    preprolated_duration = offset / prolation
-
-    # handle boundary cases
-    if preprolated_duration <= 0:
-        return ([], [leaf])
-    if leaf_multiplied_duration <= preprolated_duration:
-        return ([leaf], [])
-
-    # create new leaf
-    new_leaf = copy.copy(leaf)
-    leaf._splice([new_leaf], grow_spanners=True)
-
-    # adjust leaf
-    leaf._detach_grace_containers(kind='after')
-
-    # adjust new leaf
-    new_leaf._detach_grace_containers(kind='grace')
-    new_leaf.select().detach_marks()
-    new_leaf.select().detach_marks(contexttools.ContextMark)
-
-    left_leaf_list = \
-        leaftools.set_leaf_duration(leaf, preprolated_duration)
-    right_preprolated_duration = \
-        leaf_multiplied_duration - preprolated_duration
-    right_leaf_list = leaftools.set_leaf_duration(
-        new_leaf, right_preprolated_duration)
-
-    leaf_left_of_split = left_leaf_list[-1]
-    leaf_right_of_split = right_leaf_list[0]
-    leaves_around_split = (leaf_left_of_split, leaf_right_of_split)
-
-    if fracture_spanners:
-        spannertools.fracture_spanners_attached_to_component(
-            leaf_left_of_split,
-            direction=Right,
-            )
-
-    # tie split notes, rests and chords as specified
-    if  (pitchtools.is_pitch_carrier(leaf) and tie_split_notes) or \
-        (not pitchtools.is_pitch_carrier(leaf) and tie_split_rests):
-        selection = selectiontools.ContiguousLeafSelection(leaves_around_split)
-        selection._attach_tie_spanner_to_leaf_pair()
-
-    return left_leaf_list, right_leaf_list
-
-    # TODO: make this substitution work
-#    return leaftools.split_leaf_at_offsets(leaf, [offset], cyclic=False,
-#        fracture_spanners=fracture_spanners, tie_split_notes=tie_split_notes,
-#        tie_split_rests=tie_split_rests)
+    return leaf._split_at_offset(
+        offset, 
+        fracture_spanners=fracture_spanners,
+        tie_split_notes=tie_split_notes, 
+        tie_split_rests=tie_split_rests,
+        )
