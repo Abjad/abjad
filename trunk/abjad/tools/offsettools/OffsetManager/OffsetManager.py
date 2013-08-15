@@ -6,6 +6,90 @@ class OffsetManager(AbjadObject):
     '''Update start and stop offsets of all components in score.
     '''
 
+    ### PRIVATE METHODS ###
+
+    @staticmethod
+    def _iterate_score_components_depth_first(component):
+        from abjad.tools import componenttools
+        from abjad.tools import iterationtools
+        kwargs = {
+            'capped': True, 
+            'unique': True, 
+            'forbid': None, 
+            'direction': 'left',
+            }
+        parentage = component._select_parentage()
+        components = iterationtools.iterate_components_depth_first(
+            parentage.root, **kwargs)
+        return components
+
+    @staticmethod
+    def _update_leaf_indices_and_measure_numbers_in_score_tree(component):
+        r'''Call only when updating prolated offset of score components.
+        No separate state flags for leaf indices or measure numbers.
+        '''
+        from abjad.tools import componenttools
+        from abjad.tools import contexttools
+        from abjad.tools import iterationtools
+        from abjad.tools import leaftools
+        from abjad.tools import measuretools
+        parentage = component._select_parentage()
+        score_root = parentage.root
+        if isinstance(score_root, contexttools.Context):
+            for context in \
+                iterationtools.iterate_contexts_in_expr(score_root):
+                for leaf_index, leaf in enumerate(
+                    iterationtools.iterate_leaves_in_expr(context)):
+                    leaf._leaf_index = leaf_index
+                for measure_index, measure in enumerate(
+                    iterationtools.iterate_measures_in_expr(context)):
+                    measure_number = measure_index + 1
+                    measure._measure_number = measure_number
+        else:
+            for leaf_index, leaf in enumerate(
+                iterationtools.iterate_leaves_in_expr(score_root)):
+                leaf._leaf_index = leaf_index
+            for measure_index, measure in enumerate(
+                iterationtools.iterate_measures_in_expr(score_root)):
+                measure_number = measure_index + 1
+                measure._measure_number = measure_number
+
+    @staticmethod
+    def _update_marks_of_entire_score_tree(component):
+        r'''Updating marks does not cause prolated offset values to update.
+        On the other hand, getting effective mark causes prolated offset 
+        values to update when at least one mark of appropriate type attaches 
+        to score.
+        '''
+        components = \
+            OffsetManager._iterate_score_components_depth_first(component)
+        for component in components:
+            for mark in component._start_marks:
+                if hasattr(mark, '_update_effective_context'):
+                    mark._update_effective_context()
+            component._marks_are_current = True
+
+    @staticmethod
+    def _update_offset_values_in_seconds_of_entire_score_tree(component):
+        components = \
+            OffsetManager._iterate_score_components_depth_first(component)
+        for component in components:
+            OffsetManager.update_offset_values_of_component_in_seconds(
+                component)
+            component._offset_values_in_seconds_are_current = True
+
+    @staticmethod
+    def _update_offset_values_of_entire_score_tree(component):
+        r'''Updating prolated offset values does NOT update marks.
+        Updating prolated offset values does NOT update offset values 
+        in seconds.
+        '''
+        components = \
+            OffsetManager._iterate_score_components_depth_first(component)
+        for component in components:
+            OffsetManager.update_offset_values_of_component(component)
+            component._offset_values_are_current = True
+
     ### PUBLIC METHODS ###
 
     @staticmethod
