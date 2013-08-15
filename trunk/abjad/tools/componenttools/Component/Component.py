@@ -717,9 +717,10 @@ class Component(AbjadObject):
 
     def _update_offset_values_in_seconds_of_entire_score_tree(self):
         from abjad.tools import offsettools
+        OffsetManager = offsettools.OffsetManager
         components = self._iterate_score_components_depth_first()
         for component in components:
-            offsettools.update_offset_values_of_component_in_seconds(component)
+            OffsetManager.update_offset_values_of_component_in_seconds(component)
             component._offset_values_in_seconds_are_current = True
 
     def _update_offset_values_in_seconds_of_entire_score_tree_if_necessary(
@@ -737,9 +738,10 @@ class Component(AbjadObject):
         in seconds.
         '''
         from abjad.tools import offsettools
+        OffsetManager = offsettools.OffsetManager
         components = self._iterate_score_components_depth_first()
         for component in components:
-            offsettools.update_offset_values_of_component(component)
+            OffsetManager.update_offset_values_of_component(component)
             component._prolated_offset_values_are_current = True
 
     def _update_prolated_offset_values_of_entire_score_tree_if_necessary(self):
