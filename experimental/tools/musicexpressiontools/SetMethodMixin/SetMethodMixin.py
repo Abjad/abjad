@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import copy
 from abjad.tools import contexttools
+from abjad.tools import datastructuretools
 from abjad.tools import iotools
 from abjad.tools import marktools
 from abjad.tools import pitchtools
@@ -61,7 +62,8 @@ class SetMethodMixin(AbjadObject):
             return expr
         elif self._all_are_expressions(expr):
             return musicexpressiontools.ExpressionInventory(expr)
-        elif isinstance(expr, (tuple, list)):
+        elif isinstance(expr,
+            (tuple, list, datastructuretools.ObjectInventory)):
             return musicexpressiontools.IterablePayloadExpression(expr)
         elif isinstance(expr, (str)):
             component = iotools.p(expr)

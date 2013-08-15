@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import numbers
+from abjad.tools import datastructuretools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -62,7 +63,8 @@ class PitchRange(AbjadObject):
             object.__setattr__(self, '_stop', stop)
         elif len(args) == 1 and isinstance(args[0], str):
             self._init_by_symbolic_pitch_range_string(*args)
-        elif len(args) == 1 and isinstance(args[0], (tuple, list)):
+        elif len(args) == 1 and isinstance(args[0], 
+            (tuple, list, datastructuretools.ObjectInventory)):
             start, stop = args[0]
             type(self).__init__(self, start, stop)
         else:

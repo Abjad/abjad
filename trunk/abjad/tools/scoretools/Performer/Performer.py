@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import collections
+from abjad.tools import datastructuretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -200,7 +201,8 @@ class Performer(AbjadObject):
             from abjad.tools.instrumenttools.Instrument import Instrument
             if instruments is None:
                 self._instruments[:] = []
-            elif isinstance(instruments, list):
+            elif isinstance(instruments,
+                (list, datastructuretools.ObjectInventory)):
                 assert all(isinstance(x, Instrument) for x in instruments)
                 self._instruments[:] = instruments[:]
             else:

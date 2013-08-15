@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import datastructuretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.scoretools.PerformerInventory import PerformerInventory
 
@@ -148,7 +149,8 @@ class InstrumentationSpecifier(AbjadObject):
             return self._performers
         def fset(self, performers):
             from abjad.tools import scoretools
-            assert isinstance(performers, (list, type(None)))
+            assert isinstance(performers, 
+                (list, datastructuretools.ObjectInventory, type(None)))
             if performers is None:
                 self._performers[:] = []
             else:

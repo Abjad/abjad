@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import collections
+from abjad.tools import datastructuretools
 from abjad.tools import timespantools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.tools.musicexpressiontools.AttributeNameEnumeration \
@@ -29,7 +30,8 @@ class AttributeDictionary(AbjadObject, collections.OrderedDict):
 
     def __setitem__(self, key, value):
         assert isinstance(key, str), repr(key)
-        assert isinstance(value, list), repr(value)
+        assert isinstance(value, (list, datastructuretools.ObjectInventory)), \
+            repr(value)
         collections.OrderedDict.__setitem__(self, key, value)
 
     ### PRIVATE PROPERTIES ###

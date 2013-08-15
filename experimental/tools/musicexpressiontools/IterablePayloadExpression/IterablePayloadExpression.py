@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import containertools
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import rhythmmakertools
@@ -39,9 +40,13 @@ class IterablePayloadExpression(PayloadExpression):
         from experimental.tools import musicexpressiontools
         assert not isinstance(payload, rhythmmakertools.RhythmMaker)
         assert not isinstance(payload, musicexpressiontools.StatalServerCursor)
-        assert isinstance(payload, 
-            (str, tuple, list, selectiontools.SliceSelection,
-            musicexpressiontools.DivisionList, containertools.Container))
+        assert isinstance(payload, (
+            str, tuple, list, 
+            containertools.Container,
+            datastructuretools.ObjectInventory,
+            musicexpressiontools.DivisionList,
+            selectiontools.SliceSelection,
+            ))
         if isinstance(payload, list):
             payload = tuple(payload)
         PayloadExpression.__init__(self, payload)
