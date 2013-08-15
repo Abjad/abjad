@@ -22,7 +22,7 @@ class OffsetManager(AbjadObject):
         return components
 
     @staticmethod
-    def _update_leaf_indices_and_measure_numbers(component):
+    def _update_all_leaf_indices_and_measure_numbers(component):
         r'''Call only when updating offsets.
         No separate state flags exist for leaf indices or measure numbers.
         '''
@@ -50,7 +50,7 @@ class OffsetManager(AbjadObject):
                 measure._measure_number = measure_number
 
     @staticmethod
-    def _update_marks(component):
+    def _update_all_marks(component):
         r'''Updating marks does not update offsets.
         On the other hand, getting effective mark updates offsets
         when at least one mark of appropriate type attaches to score.
@@ -63,27 +63,24 @@ class OffsetManager(AbjadObject):
             component._marks_are_current = True
 
     @staticmethod
-    def _update_offsets(component):
+    def _update_all_offsets(component):
         r'''Updating offsets does not update marks.
         Updating offsets does not update offsets in seconds.
         '''
         components = OffsetManager._iterate_entire_score(component)
         for component in components:
-            OffsetManager.update_offset_values_of_component(component)
+            OffsetManager._update_component_offsets(component)
             component._offsets_are_current = True
 
     @staticmethod
-    def _update_offsets_in_seconds(component):
+    def _update_all_offsets_in_seconds(component):
         components = OffsetManager._iterate_entire_score(component)
         for component in components:
-            OffsetManager.update_offset_values_of_component_in_seconds(
-                component)
+            OffsetManager._update_component_offsets_in_seconds(component)
             component._offsets_in_seconds_are_current = True
 
-    ### PUBLIC METHODS ###
-
     @staticmethod
-    def update_offset_values_of_component(component):
+    def _update_component_offsets(component):
         from abjad.tools import componenttools
         previous = \
             componenttools.get_nth_component_in_time_order_from_component(
@@ -99,7 +96,7 @@ class OffsetManager(AbjadObject):
         component._timespan._stop_offset = stop_offset
 
     @staticmethod
-    def update_offset_values_of_component_in_seconds(component):
+    def _update_component_offsets_in_seconds(component):
         from abjad.tools import componenttools
         try:
             current_duration_in_seconds = \
