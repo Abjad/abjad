@@ -654,13 +654,13 @@ class Component(AbjadObject):
         marks_are_current = state_flags[1]
         offsets_in_seconds_are_current = state_flags[2]
         if offsets and not offsets_are_current:
-            OffsetManager._update_offset_values_of_entire_score_tree(self)
-            OffsetManager._update_leaf_indices_and_measure_numbers_in_score_tree(self)
+            OffsetManager._update_offsets(self)
+            OffsetManager._update_leaf_indices_and_measure_numbers(self)
         if offsets_in_seconds and not offsets_in_seconds_are_current:
-            OffsetManager._update_offset_values_in_seconds_of_entire_score_tree(self)
+            OffsetManager._update_offsets_in_seconds(self)
         if marks and not marks_are_current:
-            OffsetManager._update_marks_of_entire_score_tree(self)
-            OffsetManager._update_offset_values_in_seconds_of_entire_score_tree(self)
+            OffsetManager._update_marks(self)
+            OffsetManager._update_offsets_in_seconds(self)
 
     ### PUBLIC PROPERTIES ###
 
