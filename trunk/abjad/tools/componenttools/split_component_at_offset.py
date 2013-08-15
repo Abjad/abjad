@@ -206,8 +206,7 @@ def split_component_at_offset(
         did_split_leaf = True
         split_point_in_bottom = \
             global_split_point - bottom._get_timespan().start_offset
-        left_list, right_list = leaftools.split_leaf_at_offset(
-            bottom,
+        left_list, right_list = bottom._split_at_offset(
             split_point_in_bottom,
             fracture_spanners=fracture_spanners,
             tie_split_notes=tie_split_notes,
