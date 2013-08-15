@@ -14,7 +14,7 @@ The following packages now load by default when you start Abjad::
     'developerscripttools', 'durationtools', 'formattools', 'gracetools', 'instrumenttools', 
     'introspectiontools', 'iotools', 'iterationtools', 'labeltools', 'layouttools', 'leaftools', 
     'lilypondfiletools', 'marktools', 'markuptools', 'mathtools', 'measuretools', 'notetools', '
-    'offsettools', 'pitcharraytools', 'pitchtools', 'resttools', 'rhythmtreetools', 'schemetools', 
+    'updatetools', 'pitcharraytools', 'pitchtools', 'resttools', 'rhythmtreetools', 'schemetools', 
     'scoretemplatetools', 'scoretools', 'sequencetools', 'sievetools', 'skiptools', 'spannertools', 
     'stafftools', 'stringtools', 'tempotools', 'tietools', 'timeintervaltools', 'timesignaturetools', 
     'rhythmmakertools', 'tonalanalysistools', 'tuplettools', 'verticalitytools', 'voicetools']

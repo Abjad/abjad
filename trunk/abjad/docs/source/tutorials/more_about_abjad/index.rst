@@ -18,7 +18,7 @@ Use Python's ``dir()`` built-in to get a sense of the answer::
     'durationtools', 'exceptiontools', 'f', 'formattools', 'gracetools', 'importtools', 'instrumenttools',
     'introspectiontools', 'iotools', 'iterationtools', 'labeltools', 'layouttools', 'leaftools',
     'lilypondfiletools', 'lilypondparsertools', 'lilypondproxytools', 'marktools', 'markuptools', 'mathtools',
-    'measuretools', 'notetools', 'offsettools', 'p', 'pitcharraytools', 'pitchtools', 'play', 'resttools',
+    'measuretools', 'notetools', 'updatetools', 'p', 'pitcharraytools', 'pitchtools', 'play', 'resttools',
     'rhythmtreetools', 'schemetools', 'scoretemplatetools', 'scoretools', 'sequencetools', 'show', 'sievetools',
     'skiptools', 'spannertools', 'stafftools', 'stringtools', 'tempotools', 'tietools', 'timeintervaltools',
     'timesignaturetools', 'rhythmmakertools', 'tonalanalysistools', 'tuplettools', 'verticalitytools', 'voicetools',

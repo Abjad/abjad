@@ -38,7 +38,7 @@ from abjad.tools import marktools
 from abjad.tools import markuptools
 from abjad.tools import measuretools
 from abjad.tools import notetools
-from abjad.tools import offsettools
+from abjad.tools import updatetools
 from abjad.tools import pitcharraytools
 from abjad.tools import pitchtools
 from abjad.tools import quantizationtools

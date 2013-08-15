@@ -622,8 +622,8 @@ class Component(AbjadObject):
         offsets_in_seconds=False, 
         marks=False,
         ):
-        from abjad.tools import offsettools
-        return offsettools.OffsetManager._update_now(
+        from abjad.tools import updatetools
+        return updatetools.UpdateManager._update_now(
             self,
             offsets=offsets,
             offsets_in_seconds=offsets_in_seconds,

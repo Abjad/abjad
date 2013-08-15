@@ -2,7 +2,7 @@ from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadObject
 
 
-class OffsetManager(AbjadObject):
+class UpdateManager(AbjadObject):
     '''Update start offset, stop offsets and marks everywhere in score.
     '''
 
@@ -52,19 +52,19 @@ class OffsetManager(AbjadObject):
         ):
         if component._is_forbidden_to_update:
             return
-        state_flags = OffsetManager._get_score_tree_state_flags(component)
+        state_flags = UpdateManager._get_score_tree_state_flags(component)
         offsets_are_current = state_flags[0]
         marks_are_current = state_flags[1]
         offsets_in_seconds_are_current = state_flags[2]
         if offsets and not offsets_are_current:
-            OffsetManager._update_all_offsets(component)
-            OffsetManager._update_all_leaf_indices_and_measure_numbers(
+            UpdateManager._update_all_offsets(component)
+            UpdateManager._update_all_leaf_indices_and_measure_numbers(
                 component)
         if offsets_in_seconds and not offsets_in_seconds_are_current:
-            OffsetManager._update_all_offsets_in_seconds(component)
+            UpdateManager._update_all_offsets_in_seconds(component)
         if marks and not marks_are_current:
-            OffsetManager._update_all_marks(component)
-            OffsetManager._update_all_offsets_in_seconds(component)
+            UpdateManager._update_all_marks(component)
+            UpdateManager._update_all_offsets_in_seconds(component)
 
     @staticmethod
     def _update_all_leaf_indices_and_measure_numbers(component):
@@ -100,7 +100,7 @@ class OffsetManager(AbjadObject):
         On the other hand, getting effective mark updates offsets
         when at least one mark of appropriate type attaches to score.
         '''
-        components = OffsetManager._iterate_entire_score(component)
+        components = UpdateManager._iterate_entire_score(component)
         for component in components:
             for mark in component._start_marks:
                 if hasattr(mark, '_update_effective_context'):
@@ -112,16 +112,16 @@ class OffsetManager(AbjadObject):
         r'''Updating offsets does not update marks.
         Updating offsets does not update offsets in seconds.
         '''
-        components = OffsetManager._iterate_entire_score(component)
+        components = UpdateManager._iterate_entire_score(component)
         for component in components:
-            OffsetManager._update_component_offsets(component)
+            UpdateManager._update_component_offsets(component)
             component._offsets_are_current = True
 
     @staticmethod
     def _update_all_offsets_in_seconds(component):
-        components = OffsetManager._iterate_entire_score(component)
+        components = UpdateManager._iterate_entire_score(component)
         for component in components:
-            OffsetManager._update_component_offsets_in_seconds(component)
+            UpdateManager._update_component_offsets_in_seconds(component)
             component._offsets_in_seconds_are_current = True
 
     @staticmethod
