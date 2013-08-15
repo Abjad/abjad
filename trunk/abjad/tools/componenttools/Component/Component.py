@@ -405,7 +405,7 @@ class Component(AbjadObject):
         return tuple(result)
 
     def _remove_from_parent(self):
-        self._mark_entire_score_tree_for_later_update('prolated')
+        self._mark_for_update(offsets=True)
         if self._parent is not None:
             self._parent._music.remove(self)
         self._parent = None
@@ -548,7 +548,7 @@ class Component(AbjadObject):
         self._remove_from_parent()
         self._parent = new_parent
         self._restore_named_children_to_parentage(named_children)
-        self._mark_entire_score_tree_for_later_update('prolated')
+        self._mark_for_update(offsets=True)
 
     def _splice(
         self,
@@ -612,12 +612,6 @@ class Component(AbjadObject):
 
     ### UPDATE METHODS ###
 
-    def _allow_component_update(self):
-        self._is_forbidden_to_update = False
-
-    def _forbid_component_update(self):
-        self._is_forbidden_to_update = True
-
     def _get_score_tree_state_flags(self):
         offset_values_are_current = True
         marks_are_current = True
@@ -636,16 +630,15 @@ class Component(AbjadObject):
             marks_are_current,
             offset_values_in_seconds_are_current)
 
-    def _mark_entire_score_tree_for_later_update(self, value):
+    def _mark_for_update(self, offsets=False, offsets_in_seconds=False):
         r'''Call immediately after modifying score tree.
         '''
+        assert offsets or offsets_in_seconds
         for component in self._select_parentage(include_self=True):
-            if value == 'prolated':
+            if offsets:
                 component._offset_values_are_current = False
-            elif value == 'seconds':
+            elif offsets_in_seconds:
                 component._offset_values_in_seconds_are_current = False
-            else:
-                raise ValueError('unknown value: {!r}'.format(value))
 
     def _update_marks_of_entire_score_tree_if_necessary(self):
         r'''Call immediately before reading effective mark.

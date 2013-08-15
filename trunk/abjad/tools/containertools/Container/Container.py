@@ -445,7 +445,7 @@ class Container(Component):
             if expr == True:
                 assert all(isinstance(x, Context) for x in self._music)
             self._simultaneous = expr
-            self._mark_entire_score_tree_for_later_update('prolated')
+            self._mark_for_update(offsets=True)
         return property(**locals())
 
     ### PRIVATE METHODS ###
@@ -940,7 +940,7 @@ class Container(Component):
             else:
                 return 0
         self._music.reverse()
-        self._mark_entire_score_tree_for_later_update('prolated')
+        self._mark_for_update(offsets=True)
         spanners = spannertools.get_spanners_attached_to_any_improper_child_of_component(
             self)
         for s in spanners:
