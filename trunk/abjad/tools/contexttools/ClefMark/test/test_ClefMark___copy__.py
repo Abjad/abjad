@@ -10,7 +10,7 @@ def test_ClefMark___copy___01():
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
     contexttools.ClefMark('treble')(staff[0])
     contexttools.ClefMark('bass')(staff[4])
-    copied_notes = staff[:2].copy_and_fracture_crossing_spanners()
+    copied_notes = staff[:2].copy()
     staff.extend(copied_notes)
 
     assert testtools.compare(
@@ -55,7 +55,7 @@ def test_ClefMark___copy___02():
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
     contexttools.ClefMark('treble')(staff[0])
     contexttools.ClefMark('bass')(staff[4])
-    copied_notes = staff[2:4].copy_and_fracture_crossing_spanners()
+    copied_notes = staff[2:4].copy()
     staff.extend(copied_notes)
 
     assert select(staff).is_well_formed()

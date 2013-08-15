@@ -61,6 +61,6 @@ def repeat_contents_of_container(container, total=2):
 
     # reproduce container contents when total is greater than zero
     n = len(container)
-    new = container[-n:].copy_and_fracture_crossing_spanners(n=total-1)
+    new = container[-n:].copy(n=total-1)
     container.extend(new)
     return container

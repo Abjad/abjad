@@ -110,7 +110,7 @@ class ContiguousSelection(Selection):
 
     ### PUBLIC METHODS ###
 
-    def copy_and_fracture_crossing_spanners(self, n=1):
+    def copy(self, n=1):
         r'''Copies components in selection and fractures crossing spanners.
 
         Components in selection must be logical-voice-contiguous.
@@ -155,7 +155,7 @@ class ContiguousSelection(Selection):
             ::
 
                 >>> selection = staff.select_leaves()[2:4]
-                >>> result = selection.copy_and_fracture_crossing_spanners()
+                >>> result = selection.copy()
                 >>> new_staff = Staff(result)
                 >>> show(new_staff) # doctest: +SKIP
 
@@ -181,7 +181,7 @@ class ContiguousSelection(Selection):
             ::
 
                 >>> selection = staff.select_leaves()[2:4]
-                >>> result = selection.copy_and_fracture_crossing_spanners(n=4)
+                >>> result = selection.copy(n=4)
                 >>> new_staff = Staff(result)
                 >>> show(new_staff) # doctest: +SKIP
 
@@ -240,7 +240,7 @@ class ContiguousSelection(Selection):
                 pass
         # repeat as specified by input
         for i in range(n - 1):
-            new_components += self.copy_and_fracture_crossing_spanners()
+            new_components += self.copy()
         # return new components
         return new_components
             

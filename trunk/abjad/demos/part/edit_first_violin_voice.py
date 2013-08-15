@@ -12,7 +12,7 @@ def edit_first_violin_voice(score, durated_reservoir):
     descents = selectiontools.ContiguousSelection(descents)
 
     last_descent = selectiontools.select(descents[-1], contiguous=True)
-    copied_descent = last_descent.copy_and_fracture_crossing_spanners()
+    copied_descent = last_descent.copy()
     voice.extend(copied_descent)
 
     final_sustain_rhythm = [(6, 4)] * 43 + [(1, 2)]

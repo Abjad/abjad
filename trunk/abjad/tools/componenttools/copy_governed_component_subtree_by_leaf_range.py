@@ -3,7 +3,7 @@ from abjad.tools.selectiontools import mutate
 
 
 # TODO: trigger this subroutine from a keyword implemented on
-#       select(expr).copy_and_fracture_crossing_spanners(climb_parentage=True)
+#       select(expr).copy(climb_parentage=True)
 def copy_governed_component_subtree_by_leaf_range(
     component, start=0, stop=None):
     r'''Copy governed `component` subtree by leaf range.
@@ -76,7 +76,7 @@ def copy_governed_component_subtree_by_leaf_range(
 
     # trivial leaf lcopy
     if isinstance(component, leaftools.Leaf):
-        result = mutate(leaf).copy_and_fracture_crossing_spanners()
+        result = mutate(leaf).copy()
 
     # copy leaves from sequential containers only
     if component.is_simultaneous:
@@ -107,7 +107,7 @@ def copy_governed_component_subtree_by_leaf_range(
             stop_index_in_governor = i
 
     # copy governor
-    governor_copy = mutate(governor).copy_and_fracture_crossing_spanners()
+    governor_copy = mutate(governor).copy()
     copy_leaves = governor_copy.select_leaves()
 
     # find start and stop leaves in copy of governor

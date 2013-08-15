@@ -128,10 +128,10 @@ def replace_leaves_in_expr_with_simultaneous_voices(expr):
 
         container = containertools.Container()
         container.is_simultaneous = True
-        new_leaves = grouped_leaves.copy_and_fracture_crossing_spanners()
+        new_leaves = grouped_leaves.copy()
         spannertools.detach_spanners_attached_to_components_in_expr(new_leaves)
         upper_voice = voicetools.Voice(new_leaves)
-        new_leaves = grouped_leaves.copy_and_fracture_crossing_spanners()
+        new_leaves = grouped_leaves.copy()
         spannertools.detach_spanners_attached_to_components_in_expr(new_leaves)
         lower_voice = voicetools.Voice(new_leaves)
 

@@ -84,7 +84,7 @@ class Component(AbjadObject):
         Returns list of new components.
         '''
         from abjad.tools import spannertools
-        result = mutate(self).copy_and_fracture_crossing_spanners(n=n)
+        result = mutate(self).copy(n=n)
         spannertools.detach_spanners_attached_to_components_in_expr(result)
         if isinstance(result, type(self)):
             result = [result]

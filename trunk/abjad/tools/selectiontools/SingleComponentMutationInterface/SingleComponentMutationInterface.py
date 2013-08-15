@@ -15,14 +15,14 @@ class SingleComponentMutationInterface(Selection):
 
     ### PUBLIC METHODS ###
 
-    def copy_and_fracture_crossing_spanners(self, n=1):
+    def copy(self, n=1):
         r'''Copies component and fractures crossing spanners.
 
         Returns new component.
         '''
         from abjad.tools import selectiontools
         selection = selectiontools.ContiguousSelection(self)
-        result = selection.copy_and_fracture_crossing_spanners(n=n)
+        result = selection.copy(n=n)
         if len(result) == 1:
             result = result[0]
         return result

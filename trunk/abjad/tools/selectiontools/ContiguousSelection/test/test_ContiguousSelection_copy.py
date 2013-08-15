@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_ContiguousSelection_copy_and_fracture_crossing_spanners_01():
+def test_ContiguousSelection_copy_01():
     r'''Deep copy components in 'components'.
     Deep copy spanners that attach to any component in 'components'.
     Fracture spanners that attach to components not in 'components'.
@@ -36,7 +36,7 @@ def test_ContiguousSelection_copy_and_fracture_crossing_spanners_01():
         )
 
     selection = voice.select_leaves()[2:4]
-    result = selection.copy_and_fracture_crossing_spanners()
+    result = selection.copy()
     new = Voice(result)
 
     assert testtools.compare(
@@ -52,7 +52,7 @@ def test_ContiguousSelection_copy_and_fracture_crossing_spanners_01():
     assert select(new).is_well_formed()
 
 
-def test_ContiguousSelection_copy_and_fracture_crossing_spanners_02():
+def test_ContiguousSelection_copy_02():
     r'''Copy one measure and fracture spanners.
     '''
 
@@ -83,7 +83,7 @@ def test_ContiguousSelection_copy_and_fracture_crossing_spanners_02():
         '''
         )
 
-    result = voice[1:2].copy_and_fracture_crossing_spanners()
+    result = voice[1:2].copy()
     new = Voice(result)
 
     assert testtools.compare(
@@ -102,7 +102,7 @@ def test_ContiguousSelection_copy_and_fracture_crossing_spanners_02():
     assert select(new).is_well_formed()
 
 
-def test_ContiguousSelection_copy_and_fracture_crossing_spanners_03():
+def test_ContiguousSelection_copy_03():
     r'''Three notes crossing measure boundaries.
     '''
 
@@ -134,7 +134,7 @@ def test_ContiguousSelection_copy_and_fracture_crossing_spanners_03():
         )
 
     selection = voice.select_leaves()[-3:]
-    result = selection.copy_and_fracture_crossing_spanners()
+    result = selection.copy()
     new = Voice(result)
 
     assert testtools.compare(
@@ -151,7 +151,7 @@ def test_ContiguousSelection_copy_and_fracture_crossing_spanners_03():
     assert select(new).is_well_formed()
 
 
-def test_ContiguousSelection_copy_and_fracture_crossing_spanners_04():
+def test_ContiguousSelection_copy_04():
     r'''Optional 'n' argument for multiple copies.
     '''
 
@@ -185,7 +185,7 @@ def test_ContiguousSelection_copy_and_fracture_crossing_spanners_04():
         '''
         )
 
-    result = voice[1:2].copy_and_fracture_crossing_spanners(n=3)
+    result = voice[1:2].copy(n=3)
     new = Voice(result)
     measuretools.set_always_format_time_signature_of_measures_in_expr(new)
 
@@ -214,7 +214,7 @@ def test_ContiguousSelection_copy_and_fracture_crossing_spanners_04():
     assert select(voice).is_well_formed()
 
 
-def test_ContiguousSelection_copy_and_fracture_crossing_spanners_05():
+def test_ContiguousSelection_copy_05():
 
     voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
@@ -251,7 +251,7 @@ def test_ContiguousSelection_copy_and_fracture_crossing_spanners_05():
         )
 
     selection = selectiontools.ContiguousSelection(music=voice)
-    new_selection = selection.copy_and_fracture_crossing_spanners()
+    new_selection = selection.copy()
     new_voice = new_selection[0]
     spannertools.detach_spanners_attached_to_components_in_expr(new_voice)
     measuretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
@@ -286,7 +286,7 @@ def test_ContiguousSelection_copy_and_fracture_crossing_spanners_05():
     assert select(new_voice).is_well_formed()
 
 
-def test_ContiguousSelection_copy_and_fracture_crossing_spanners_06():
+def test_ContiguousSelection_copy_06():
 
     voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
@@ -322,7 +322,7 @@ def test_ContiguousSelection_copy_and_fracture_crossing_spanners_06():
         '''
         )
 
-    result = voice[1:].copy_and_fracture_crossing_spanners()
+    result = voice[1:].copy()
     new_voice = Voice(result)
     spannertools.detach_spanners_attached_to_components_in_expr(new_voice)
     measuretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
@@ -353,7 +353,7 @@ def test_ContiguousSelection_copy_and_fracture_crossing_spanners_06():
     assert select(new_voice).is_well_formed()
 
 
-def test_ContiguousSelection_copy_and_fracture_crossing_spanners_07():
+def test_ContiguousSelection_copy_07():
 
     voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
@@ -389,7 +389,7 @@ def test_ContiguousSelection_copy_and_fracture_crossing_spanners_07():
         '''
         )
 
-    result = voice.select_leaves()[:6].copy_and_fracture_crossing_spanners()
+    result = voice.select_leaves()[:6].copy()
     new_voice = Voice(result)
     spannertools.detach_spanners_attached_to_components_in_expr(new_voice)
     measuretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
@@ -411,7 +411,7 @@ def test_ContiguousSelection_copy_and_fracture_crossing_spanners_07():
     assert select(new_voice).is_well_formed()
 
 
-def test_ContiguousSelection_copy_and_fracture_crossing_spanners_08():
+def test_ContiguousSelection_copy_08():
 
     voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
@@ -447,7 +447,7 @@ def test_ContiguousSelection_copy_and_fracture_crossing_spanners_08():
         '''
         )
 
-    result = voice[-2:].copy_and_fracture_crossing_spanners()
+    result = voice[-2:].copy()
     new_voice = Voice(result)
     spannertools.detach_spanners_attached_to_components_in_expr(new_voice)
     measuretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
@@ -474,7 +474,7 @@ def test_ContiguousSelection_copy_and_fracture_crossing_spanners_08():
     assert select(new_voice).is_well_formed()
 
 
-def test_ContiguousSelection_copy_and_fracture_crossing_spanners_09():
+def test_ContiguousSelection_copy_09():
 
     voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
@@ -510,7 +510,7 @@ def test_ContiguousSelection_copy_and_fracture_crossing_spanners_09():
         '''
         )
 
-    result = voice[-2:].copy_and_fracture_crossing_spanners(n=3)
+    result = voice[-2:].copy(n=3)
     new_voice = Voice(result)
     spannertools.detach_spanners_attached_to_components_in_expr(new_voice)
     measuretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
@@ -555,7 +555,7 @@ def test_ContiguousSelection_copy_and_fracture_crossing_spanners_09():
     assert select(new_voice).is_well_formed()
 
 
-def test_ContiguousSelection_copy_and_fracture_crossing_spanners_10():
+def test_ContiguousSelection_copy_10():
     r'''Copies hairpin.
     '''
 
@@ -578,7 +578,7 @@ def test_ContiguousSelection_copy_and_fracture_crossing_spanners_10():
         '''
         )
 
-    new_notes = staff[:4].copy_and_fracture_crossing_spanners()
+    new_notes = staff[:4].copy()
     staff.extend(new_notes)
 
     assert testtools.compare(

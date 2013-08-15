@@ -127,9 +127,9 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         assert self._can_fuse(expr)
         if isinstance(self.payload, containertools.Container):
             selection = select(self.payload[0], contiguous=True)
-            left = selection.copy_and_fracture_crossing_spanners()[0]
+            left = selection.copy()[0]
             selection = select(expr.payload[0], contiguous=True)
-            right = selection.copy_and_fracture_crossing_spanners()[0]
+            right = selection.copy()[0]
             payload = containertools.Container([left, right])
             componenttools.replace_components_with_children_of_components(
                 payload[:])

@@ -13,7 +13,7 @@ def test_DuratedComplexBeamSpanner___copy___01():
     beam = spannertools.DuratedComplexBeamSpanner(
         staff[:], durations=durations, span=2, direction=Down)
 
-    new_staff = mutate(staff).copy_and_fracture_crossing_spanners()
+    new_staff = mutate(staff).copy()
     new_beam = new_staff[0]._get_spanner(spannertools.BeamSpanner)
 
     assert staff.lilypond_format == new_staff.lilypond_format

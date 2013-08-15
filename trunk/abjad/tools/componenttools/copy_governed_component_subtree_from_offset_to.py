@@ -4,7 +4,7 @@ from abjad.tools.selectiontools import mutate
 
 
 # TODO: trigger this subroutine from a keyword implemented on
-#       select(expr).copy_and_fracture_crossing_spanners(climb_parentage=True)
+#       select(expr).copy(climb_parentage=True)
 def copy_governed_component_subtree_from_offset_to(
     component, start_offset=0, stop_offset=None):
     r'''Copies governed `component` subtree from `start_offset`
@@ -198,7 +198,7 @@ def _copy_leaf_from_start_offset_to_stop_offset(leaf, start, stop):
     total = stop - start
     if total == 0:
         return None
-    new_leaf = mutate(leaf).copy_and_fracture_crossing_spanners()
+    new_leaf = mutate(leaf).copy()
     leaftools.set_leaf_duration(new_leaf, total)
     return new_leaf
 
