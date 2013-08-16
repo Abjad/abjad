@@ -40,3 +40,12 @@ class Pitch(SortableAttributeEqualityAbjadObject):
 
     def __repr__(self):
         return '%s(%s)' % (self._class_name, self._format_string)
+
+    ### PRIVATE METHODS ###
+
+    # do not indent in storage
+    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
+        from abjad.tools import abctools
+        return [''.join(
+            abctools.AbjadObject._get_tools_package_qualified_repr_pieces(
+                self, is_indented=False))]

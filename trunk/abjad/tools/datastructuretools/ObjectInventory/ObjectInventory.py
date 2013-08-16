@@ -4,15 +4,45 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class ObjectInventory(AbjadObject):
-    '''Ordered collection of custom objects.
+    '''Ordered collection of objects, which optionally coerces its contents
+    to the same type:
 
-    Object inventories extend ``append()``, ``extend()`` and
-    ``__contains__()`` and allow token input.
+    ::
 
-    Object inventories inherit from list and are mutable.
+        >>> object_inventory = datastructuretools.ObjectInventory()
+        >>> object_inventory.append(23)
+        >>> object_inventory.append('foo')
+        >>> object_inventory.append(False)
+        >>> object_inventory.append((1, 2, 3))
+        >>> object_inventory.append(3.14159)
+        >>> z(object_inventory)
+        datastructuretools.ObjectInventory([
+            23,
+            'foo',
+            False,
+            (1, 2, 3),
+            3.14159
+            ])
 
-    This class is an abstract base class that can not instantiate
-    and should be subclassed.
+    ::
+
+        >>> pitch_inventory = datastructuretools.ObjectInventory(
+        ...     item_class=pitchtools.NamedChromaticPitch)
+        >>> pitch_inventory.append(0)
+        >>> pitch_inventory.append("d'")
+        >>> pitch_inventory.append(('e', 4))
+        >>> pitch_inventory.append(pitchtools.NamedChromaticPitch("f'"))
+        >>> z(pitch_inventory)
+        datastructuretools.ObjectInventory([
+            pitchtools.NamedChromaticPitch("c'"),
+            pitchtools.NamedChromaticPitch("d'"),
+            pitchtools.NamedChromaticPitch("e'"),
+            pitchtools.NamedChromaticPitch("f'")
+            ],
+            item_class=pitchtools.NamedChromaticPitch
+            )
+
+    Implements the list interface.
     '''
 
     ### CLASS VARIABLES ###
@@ -48,49 +78,29 @@ class ObjectInventory(AbjadObject):
 
         ::
 
-            >>> inventory = datastructuretools.ObjectInventory(
-            ...     tokens=[
-            ...         0, 
-            ...         "d'", 
-            ...         ('e', 4),
-            ...         pitchtools.NamedChromaticPitch("f'"),
-            ...         ],
-            ...     item_class=pitchtools.NamedChromaticPitch,
-            ...     )
-
-        ::
-
-            >>> z(inventory)
+            >>> z(pitch_inventory)
             datastructuretools.ObjectInventory([
-                pitchtools.NamedChromaticPitch(
-                    "c'"
-                    ),
-                pitchtools.NamedChromaticPitch(
-                    "d'"
-                    ),
-                pitchtools.NamedChromaticPitch(
-                    "e'"
-                    ),
-                pitchtools.NamedChromaticPitch(
-                    "f'"
-                    )
+                pitchtools.NamedChromaticPitch("c'"),
+                pitchtools.NamedChromaticPitch("d'"),
+                pitchtools.NamedChromaticPitch("e'"),
+                pitchtools.NamedChromaticPitch("f'")
                 ],
                 item_class=pitchtools.NamedChromaticPitch
                 )
 
         ::
 
-            >>> pitchtools.NamedChromaticPitch("c'") in inventory
+            >>> pitchtools.NamedChromaticPitch("c'") in pitch_inventory
             True
 
         ::
 
-            >>> pitchtools.NamedChromaticPitch("d'") in inventory
+            >>> pitchtools.NamedChromaticPitch("d'") in pitch_inventory
             True
 
         ::
 
-            >>> pitchtools.NamedChromaticPitch("e'") in inventory
+            >>> pitchtools.NamedChromaticPitch("e'") in pitch_inventory
             True
 
         Return boolean.

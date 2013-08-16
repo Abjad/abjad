@@ -25,17 +25,13 @@ class OctaveTranspositionMappingInventory(ObjectInventory):
                     pitchtools.PitchRange(
                         '[A0, C4)'
                         ),
-                    pitchtools.NumberedChromaticPitch(
-                        15
-                        )
+                    pitchtools.NumberedChromaticPitch(15)
                     ),
                 pitchtools.OctaveTranspositionMappingComponent(
                     pitchtools.PitchRange(
                         '[C4, C8)'
                         ),
-                    pitchtools.NumberedChromaticPitch(
-                        27
-                        )
+                    pitchtools.NumberedChromaticPitch(27)
                     )
                 ]),
             pitchtools.OctaveTranspositionMapping([
@@ -43,9 +39,7 @@ class OctaveTranspositionMappingInventory(ObjectInventory):
                     pitchtools.PitchRange(
                         '[A0, C8]'
                         ),
-                    pitchtools.NumberedChromaticPitch(
-                        -18
-                        )
+                    pitchtools.NumberedChromaticPitch(-18)
                     )
                 ])
             ])
