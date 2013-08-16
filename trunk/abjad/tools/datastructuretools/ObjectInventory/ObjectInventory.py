@@ -18,13 +18,16 @@ class ObjectInventory(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_item_class',
         '_list',
         '_name',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, tokens=None, name=None):
+    def __init__(self, tokens=None, item_class=None, name=None):
+        assert isinstance(item_class, (type(None), type))
+        self._item_class = item_class
         self._list = []
         if isinstance(tokens, type(self)):
             for token in tokens:
@@ -84,7 +87,9 @@ class ObjectInventory(AbjadObject):
 
     @property
     def _item_callable(self):
-        return lambda x: x
+        if self._item_class is None:
+            return lambda x: x
+        return self._item_class
 
     @property
     def _keyword_argument_names(self):
@@ -110,6 +115,10 @@ class ObjectInventory(AbjadObject):
         return tuple(self)
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def item_class(self):
+        return self._item_class
 
     @apply
     def name():

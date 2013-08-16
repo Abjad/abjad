@@ -27,7 +27,10 @@ class MusicSpecifier(Specifier, ObjectInventory):
         source=None,
         ):
         contributions = contributions or []
-        ObjectInventory.__init__(self, contributions)
+        ObjectInventory.__init__(self,
+            tokens=contributions,
+            item_class=MusicContributionSpecifier,
+            )
         Specifier.__init__(
             self,
             description=description,
@@ -37,9 +40,9 @@ class MusicSpecifier(Specifier, ObjectInventory):
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _item_class(self):
-        return MusicContributionSpecifer
+#    @property
+#    def _item_class(self):
+#        return MusicContributionSpecifer
 
     @property
     def _keyword_argument_names(self):
