@@ -13,46 +13,31 @@ def test_containertools_split_container_at_indices_01():
     spannertools.BeamSpanner(voice[0])
     spannertools.SlurSpanner(voice[0].select_leaves())
 
-    r'''
-    \new Voice {
-        {
-            c'8 [ (
-            d'8
-            e'8
-            f'8
-            g'8
-            a'8
-            b'8
-            c''8 ] )
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+                d'8
+                e'8
+                f'8
+                g'8
+                a'8
+                b'8
+                c''8 ] )
+            }
         }
-    }
-    '''
+        '''
+        )
 
-    containertools.split_container_at_indices(voice[0], [1, 3], cyclic=True, fracture_spanners=False)
+    containertools.split_container_at_indices(
+        voice[0], 
+        [1, 3], 
+        cyclic=True, 
+        fracture_spanners=False,
+        )
 
-    r'''
-    \new Voice {
-        {
-            c'8 [ (
-        }
-        {
-            d'8
-            e'8
-            f'8
-        }
-        {
-            g'8
-        }
-        {
-            a'8
-            b'8
-            c''8 ] )
-        }
-    }
-    '''
-
-
-    assert select(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -77,46 +62,38 @@ def test_containertools_split_container_at_indices_01():
         '''
         )
 
+    assert select(voice).is_well_formed()
+
 
 def test_containertools_split_container_at_indices_02():
-    r'''Cyclic by [1] splits all elements in container.
+    r'''Cyclic 1 splits all elements in container.
     '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8")])
     spannertools.BeamSpanner(voice[0])
     spannertools.SlurSpanner(voice[0].select_leaves())
 
-    r'''
-    \new Voice {
-        {
-            c'8 [ (
-            d'8
-            e'8
-            f'8 ] )
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+                d'8
+                e'8
+                f'8 ] )
+            }
         }
-    }
-    '''
+        '''
+        )
 
-    containertools.split_container_at_indices(voice[0], [1], cyclic=True, fracture_spanners=False)
+    containertools.split_container_at_indices(
+        voice[0], 
+        [1], 
+        cyclic=True, 
+        fracture_spanners=False,
+        )
 
-    r'''
-    \new Voice {
-        {
-            c'8 [ (
-        }
-        {
-            d'8
-        }
-        {
-            e'8
-        }
-        {
-            f'8 ] )
-        }
-    }
-    '''
-
-    assert select(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -137,6 +114,8 @@ def test_containertools_split_container_at_indices_02():
         '''
         )
 
+    assert select(voice).is_well_formed()
+
 
 def test_containertools_split_container_at_indices_03():
     r'''Partition container into parts of lengths equal to counts.
@@ -149,46 +128,31 @@ def test_containertools_split_container_at_indices_03():
     spannertools.BeamSpanner(voice[0])
     spannertools.SlurSpanner(voice[0].select_leaves())
 
-    r'''
-    \new Voice {
-        {
-            c'8 [ (
-            d'8
-            e'8
-            f'8
-            g'8
-            a'8
-            b'8
-            c''8 ] )
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+                d'8
+                e'8
+                f'8
+                g'8
+                a'8
+                b'8
+                c''8 ] )
+            }
         }
-    }
-    '''
+        '''
+        )
 
-    parts = containertools.split_container_at_indices(voice[0], [1, 3], cyclic=True, fracture_spanners=True)
+    parts = containertools.split_container_at_indices(
+        voice[0], 
+        [1, 3], 
+        cyclic=True, 
+        fracture_spanners=True,
+        )
 
-    r'''
-    \new Voice {
-        {
-            c'8 [ ] (
-        }
-        {
-            d'8 [
-            e'8
-            f'8 ]
-        }
-        {
-            g'8 [ ]
-        }
-        {
-            a'8 [
-            b'8
-            c''8 ] )
-        }
-    }
-    '''
-
-    assert select(voice).is_well_formed()
-    assert len(parts) == 4
     assert testtools.compare(
         voice,
         r'''
@@ -213,47 +177,39 @@ def test_containertools_split_container_at_indices_03():
         '''
         )
 
+    assert select(voice).is_well_formed()
+    assert len(parts) == 4
+
 
 def test_containertools_split_container_at_indices_04():
-    r'''Cyclic by [1] splits all elements in container.
+    r'''Cyclic by 1 splits all elements in container.
     '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8")])
     spannertools.BeamSpanner(voice[0])
     spannertools.SlurSpanner(voice[0].select_leaves())
 
-    r'''
-    \new Voice {
-        {
-            c'8 [ (
-            d'8
-            e'8
-            f'8 ] )
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+                d'8
+                e'8
+                f'8 ] )
+            }
         }
-    }
-    '''
+        '''
+        )
 
-    parts = containertools.split_container_at_indices(voice[0], [1], cyclic=True, fracture_spanners=True)
+    parts = containertools.split_container_at_indices(
+        voice[0], 
+        [1], 
+        cyclic=True, 
+        fracture_spanners=True,
+        )
 
-    r'''
-    \new Voice {
-        {
-            c'8 [ ] (
-        }
-        {
-            d'8 [ ]
-        }
-        {
-            e'8 [ ]
-        }
-        {
-            f'8 [ ] )
-        }
-    }
-    '''
-
-    assert select(voice).is_well_formed()
-    assert len(parts) == 4
     assert testtools.compare(
         voice,
         r'''
@@ -273,6 +229,9 @@ def test_containertools_split_container_at_indices_04():
         }
         '''
         )
+
+    assert select(voice).is_well_formed()
+    assert len(parts) == 4
 
 
 def test_containertools_split_container_at_indices_05():
@@ -333,34 +292,27 @@ def test_containertools_split_container_at_indices_06():
     spannertools.BeamSpanner(voice[0])
     spannertools.SlurSpanner(voice[0].select_leaves())
 
-    r'''
-    \new Voice {
-        {
-            c'8 [ (
-            d'8
-            e'8
-            f'8 ] )
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+                d'8
+                e'8
+                f'8 ] )
+            }
         }
-    }
-    '''
+        '''
+        )
 
-    parts = containertools.split_container_at_indices(voice[0], [2, 2, 2, 2, 2], cyclic=True, fracture_spanners=True)
+    parts = containertools.split_container_at_indices(
+        voice[0], 
+        [2, 2, 2, 2, 2], 
+        cyclic=True, 
+        fracture_spanners=True,
+        )
 
-    r'''
-    \new Voice {
-        {
-            c'8 [ (
-            d'8 ]
-        }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
-
-    assert select(voice).is_well_formed()
-    assert len(parts) == 2
     assert testtools.compare(
         voice,
         r'''
@@ -377,6 +329,9 @@ def test_containertools_split_container_at_indices_06():
         '''
         )
 
+    assert select(voice).is_well_formed()
+    assert len(parts) == 2
+
 
 def test_containertools_split_container_at_indices_07():
     r'''Partition by large empty part counts list.
@@ -387,32 +342,6 @@ def test_containertools_split_container_at_indices_07():
     spannertools.BeamSpanner(voice[0])
     spannertools.SlurSpanner(voice[0].select_leaves())
 
-    r'''
-    \new Voice {
-        {
-            c'8 [ (
-            d'8
-            e'8
-            f'8 ] )
-        }
-    }
-    '''
-
-    parts = containertools.split_container_at_indices(voice[0], [], cyclic=True, fracture_spanners=True)
-
-    r'''
-    \new Voice {
-        {
-            c'8 [ (
-            d'8
-            e'8
-            f'8 ] )
-        }
-    }
-    '''
-
-    assert select(voice).is_well_formed()
-    assert len(parts) == 1
     assert testtools.compare(
         voice,
         r'''
@@ -427,55 +356,67 @@ def test_containertools_split_container_at_indices_07():
         '''
         )
 
+    parts = containertools.split_container_at_indices(
+        voice[0], 
+        [], 
+        cyclic=True, 
+        fracture_spanners=True,
+        )
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+                d'8
+                e'8
+                f'8 ] )
+            }
+        }
+        '''
+        )
+
+    assert select(voice).is_well_formed()
+    assert len(parts) == 1
+
 
 def test_containertools_split_container_at_indices_08():
     r'''Partition container into parts of lengths equal to counts.
-        Read list of counts only once; do not cycle.
-        Fracture spanners attaching directly to container.
-        Leave spanner attaching to container contents untouched.'''
+    Read list of counts only once; do not cycle.
+    Fracture spanners attaching directly to container.
+    Leave spanner attaching to container contents untouched.
+    '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
     spannertools.BeamSpanner(voice[0])
     spannertools.SlurSpanner(voice[0].select_leaves())
 
-    r'''
-    \new Voice {
-        {
-            c'8 [ (
-            d'8
-            e'8
-            f'8
-            g'8
-            a'8
-            b'8
-            c''8 ] )
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+                d'8
+                e'8
+                f'8
+                g'8
+                a'8
+                b'8
+                c''8 ] )
+            }
         }
-    }
-    '''
+        '''
+        )
 
-    parts = containertools.split_container_at_indices(voice[0], [1, 3], cyclic=False, fracture_spanners=False)
+    parts = containertools.split_container_at_indices(
+        voice[0], 
+        [1, 3], 
+        cyclic=False, 
+        fracture_spanners=False,
+        )
 
-    r'''
-    \new Voice {
-        {
-            c'8 [ (
-        }
-        {
-            d'8
-            e'8
-            f'8
-        }
-        {
-            g'8
-            a'8
-            b'8
-            c''8 ] )
-        }
-    }
-    '''
-
-    assert select(voice).is_well_formed()
-    assert len(parts) == 3
     assert testtools.compare(
         voice,
         r'''
@@ -498,55 +439,46 @@ def test_containertools_split_container_at_indices_08():
         '''
         )
 
+    assert select(voice).is_well_formed()
+    assert len(parts) == 3
+
 
 def test_containertools_split_container_at_indices_09():
     r'''Partition container into parts of lengths equal to counts.
     Read list of counts only once; do not cycle.
     Fracture spanners attaching directly to container.
-    Leave spanner attaching to container contents untouched.'''
+    Leave spanner attaching to container contents untouched.
+    '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
     spannertools.BeamSpanner(voice[0])
     spannertools.SlurSpanner(voice[0].select_leaves())
 
-    r'''
-    \new Voice {
-        {
-            c'8 [ (
-            d'8
-            e'8
-            f'8
-            g'8
-            a'8
-            b'8
-            c''8 ] )
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+                d'8
+                e'8
+                f'8
+                g'8
+                a'8
+                b'8
+                c''8 ] )
+            }
         }
-    }
-    '''
+        '''
+        )
 
-    parts = containertools.split_container_at_indices(voice[0], [1, 3], cyclic=False, fracture_spanners=True)
+    parts = containertools.split_container_at_indices(
+        voice[0], 
+        [1, 3], 
+        cyclic=False, 
+        fracture_spanners=True,
+        )
 
-    r'''
-    \new Voice {
-        {
-            c'8 [ ] (
-        }
-        {
-            d'8 [
-            e'8
-            f'8 ]
-        }
-        {
-            g'8 [
-            a'8
-            b'8
-            c''8 ] )
-        }
-    }
-    '''
-
-    assert select(voice).is_well_formed()
-    assert len(parts) == 3
     assert testtools.compare(
         voice,
         r'''
@@ -569,44 +501,41 @@ def test_containertools_split_container_at_indices_09():
         '''
         )
 
+    assert select(voice).is_well_formed()
+    assert len(parts) == 3
+
 
 def test_containertools_split_container_at_indices_11():
     r'''Partition by large number of part counts.
     First part counts apply and extra part counts do not apply.
-    Result contains no empty parts.'''
+    Result contains no empty parts.
+    '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8")])
     spannertools.BeamSpanner(voice[0])
     spannertools.SlurSpanner(voice[0].select_leaves())
 
-    r'''
-    \new Voice {
-        {
-            c'8 [ (
-            d'8
-            e'8
-            f'8 ] )
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+                d'8
+                e'8
+                f'8 ] )
+            }
         }
-    }
-    '''
+        '''
+        )
 
-    parts = containertools.split_container_at_indices(voice[0], [2, 2, 2, 2, 2], cyclic=False, fracture_spanners=True)
+    parts = containertools.split_container_at_indices(
+        voice[0], 
+        [2, 2, 2, 2, 2], 
+        cyclic=False, 
+        fracture_spanners=True,
+        )
 
-    r'''
-    \new Voice {
-        {
-            c'8 [ (
-            d'8 ]
-        }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
-
-    assert select(voice).is_well_formed()
-    assert len(parts) == 2
     assert testtools.compare(
         voice,
         r'''
@@ -623,41 +552,19 @@ def test_containertools_split_container_at_indices_11():
         '''
         )
 
+    assert select(voice).is_well_formed()
+    assert len(parts) == 2
+
 
 def test_containertools_split_container_at_indices_12():
     r'''Partition by empty part counts list.
-    Input container returns within one-element result list.'''
+    Input container returns within one-element result list.
+    '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8")])
     spannertools.BeamSpanner(voice[0])
     spannertools.SlurSpanner(voice[0].select_leaves())
 
-    r'''
-    \new Voice {
-        {
-            c'8 [ (
-            d'8
-            e'8
-            f'8 ] )
-        }
-    }
-    '''
-
-    parts = containertools.split_container_at_indices(voice[0], [], cyclic=False, fracture_spanners=True)
-
-    r'''
-    \new Voice {
-        {
-            c'8 [ (
-            d'8
-            e'8
-            f'8 ] )
-        }
-    }
-    '''
-
-    assert select(voice).is_well_formed()
-    assert len(parts) == 1
     assert testtools.compare(
         voice,
         r'''
@@ -671,3 +578,27 @@ def test_containertools_split_container_at_indices_12():
         }
         '''
         )
+
+    parts = containertools.split_container_at_indices(
+        voice[0], 
+        [], 
+        cyclic=False, 
+        fracture_spanners=True,
+        )
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+                d'8
+                e'8
+                f'8 ] )
+            }
+        }
+        '''
+        )
+
+    assert select(voice).is_well_formed()
+    assert len(parts) == 1
