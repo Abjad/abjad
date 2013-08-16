@@ -390,6 +390,19 @@ class ObjectInventory(AbjadObject):
 
         ::
 
+            >>> integer_inventory = datastructuretools.ObjectInventory(
+            ...     item_class=int)
+            >>> integer_inventory[:]
+            []
+
+        ::
+
+            >>> integer_inventory.append(True)
+            >>> integer_inventory.append(2)
+            >>> integer_inventory.append(3.4)
+            >>> integer_inventory[:]
+            [1, 2, 3]
+
         Return none.
         '''
         item = self._item_callable(token)
