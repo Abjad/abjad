@@ -453,6 +453,9 @@ class SingleComponentMutationInterface(Selection):
     def split_in_halves(self, n=2):
         r'''Splits notes, rests and chords in halves.
 
+        .. note:: Deprecated. Use mutate(leaf).split_component_by_durations()
+            instead.
+
         ::
 
             >>> staff = Staff("c'4 ( e'4 d'4 f'4 )")
