@@ -257,6 +257,15 @@ class ObjectInventory(AbjadObject):
 
     @property
     def item_class(self):
+        r'''Item class to coerce tokens into:
+
+        ::
+
+            >>> print pitch_inventory.item_class.__name__
+            NamedChromaticPitch
+
+        Return type or none.
+        '''
         return self._item_class
 
     @apply
@@ -272,7 +281,56 @@ class ObjectInventory(AbjadObject):
 
     @property
     def storage_format(self):
-        r'''Storage format of object inventory.
+        r'''Storage format of object inventory:
+
+        ::
+
+            >>> markup_inventory = datastructuretools.ObjectInventory(
+            ...     item_class=markuptools.Markup,
+            ...     name='Indications',
+            ...     )
+
+        ::
+
+            >>> markup_inventory.append(r'\italic Quickly')
+            >>> markup_inventory.append(r'\italic { With delicacy }')
+            >>> markup_inventory.append(r'\italic Uncertain \tiny { (quiet) }')
+
+        ::
+
+            >>> print markup_inventory.storage_format
+            datastructuretools.ObjectInventory([
+                markuptools.Markup((
+                    markuptools.MarkupCommand(
+                        'italic',
+                        'Quickly'
+                        ),
+                    )),
+                markuptools.Markup((
+                    markuptools.MarkupCommand(
+                        'italic',
+                        [
+                            'With',
+                            'delicacy'
+                        ]
+                        ),
+                    )),
+                markuptools.Markup((
+                    markuptools.MarkupCommand(
+                        'italic',
+                        'Uncertain'
+                        ),
+                    markuptools.MarkupCommand(
+                        'tiny',
+                        [
+                            '(quiet)'
+                        ]
+                        )
+                    ))
+                ],
+                item_class=markuptools.Markup,
+                name='Indications'
+                )
 
         Returns string.
         '''
@@ -328,52 +386,93 @@ class ObjectInventory(AbjadObject):
     ### PUBLIC METHODS ###
 
     def append(self, token):
-        r'''Change `token` to item and append.
+        r'''Change `token` to item and append:
+
+        ::
+
+        Return none.
         '''
         item = self._item_callable(token)
         self._list.append(item)
 
     def count(self, token):
         r'''Change `token` to item and return count.
+
+        ::
+
+            >>> integer_inventory = datastructuretools.ObjectInventory(
+            ...     tokens=[0, False, '0', 99],
+            ...     item_class=int)
+            >>> integer_inventory[:]
+            [0, 0, 0, 99]
+
+        ::
+
+            >>> integer_inventory.count(0)
+            3
+
+        Return count.
         '''
         item = self._item_callable(token)
         return self._list.count(item)
 
     def extend(self, tokens):
         r'''Change `tokens` to items and extend.
+
+        ::
+
+            >>> integer_inventory = datastructuretools.ObjectInventory(
+            ...     item_class=int)
+            >>> integer_inventory.extend((False, True, 2, 3.14159))
+            >>> integer_inventory[:]
+            [0, 1, 2, 3]
+
+        Return none.
         '''
         for token in tokens:
             self.append(token)
 
     def index(self, token):
         r'''Change `token` to item and return index.
+
+        Return index.
         '''
         item = self._item_callable(token)
         return self._list.index(item)
 
     def insert(self, i, token):
         r'''Change `token` to item and insert.
+
+        Return none.
         '''
         item = self._item_callable(token)
         return self._list.insert(i, item)
 
     def pop(self, i=-1):
         r'''Pop item at index `i`.
+
+        Return item.
         '''
         return self._list.pop(i)
 
     def remove(self, token):
         r'''Change `token` to item and remove.
+
+        Return none.
         '''
         item = self._item_callable(token)
         self._list.remove(item)
 
     def reverse(self):
         r'''Reverse items in place.
+
+        Return none.
         '''
         self._list.reverse()
 
     def sort(self, cmp=None, key=None, reverse=False):
         r'''Sort items in place.
+
+        Return none.
         '''
         self._list.sort(cmp=cmp, key=key, reverse=reverse)
