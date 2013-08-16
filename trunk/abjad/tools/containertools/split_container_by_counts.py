@@ -3,12 +3,12 @@ from abjad.tools import sequencetools
 
 
 def split_container_by_counts(
-    components, 
+    container, 
     counts, 
     fracture_spanners=False, 
     cyclic=False,
     ):
-    r'''Split `components` by `counts`.
+    r'''Split `container` by `counts`.
 
     ..  container:: example
 
@@ -252,78 +252,31 @@ def split_container_by_counts(
     Returns list of split parts.
     '''
     from abjad.tools import containertools
-    from abjad.tools import leaftools
 
-    # check input
-    assert isinstance(components, containertools.Container)
-    components = [components]
-
+    assert isinstance(container, containertools.Container)
     assert sequencetools.all_are_positive_integers(counts)
 
-    # handle empty counts boundary case
     if counts == []:
-        return [components[:]]
+        return [[container]]
 
-    # initialize loop variables
+    counts = sequencetools.truncate_sequence_to_sum(counts, len(container))
+    if cyclic:
+        counts = sequencetools.repeat_sequence_to_weight_exactly(
+            counts, 
+            len(container),
+            )
+    if sum(counts) == len(container):
+        counts = counts[:-1]
+
     result = []
-    part = []
-    i = 0
-    len_counts = len(counts)
-    cum_comp_in_this_part = 0
-    xx = components[:]
+    remaining = container
+    for count in counts:
+        left, remaining = containertools.split_container_at_index(
+            remaining, 
+            count, 
+            fracture_spanners=fracture_spanners,
+            )
+        result.append([left])
+    result.append([remaining])
 
-    # grab one component per loop, but grab new part size only as needed
-    while True:
-        # get size of next part only if time to fill next part
-        if cum_comp_in_this_part == 0:
-            # find size of part and store as 'count'
-            try:
-                if cyclic:
-                    count = counts[i % len_counts]
-                else:
-                    count = counts[i]
-            except IndexError:
-                break
-        # grab new component from list every time through loop
-        try:
-            x = xx.pop(0)
-        except IndexError:
-            break
-        # if current component is a leaf, add to part
-        if isinstance(x, leaftools.Leaf):
-            part.append(x)
-            cum_comp_in_this_part += 1
-            comp_still_needed = count - cum_comp_in_this_part
-            # if part is now full, fracture spanners right of leaf
-            if comp_still_needed == 0:
-                containertools.split_container_at_index(x, 100, fracture_spanners=fracture_spanners)
-        # if current component is container
-        else:
-            # try to grab enough container contents to fill current part
-            comp_still_needed = count - cum_comp_in_this_part
-            left, right = containertools.split_container_at_index(
-                x, comp_still_needed, fracture_spanners=fracture_spanners)
-            # accept whatever num of container contents came back and append
-            part.append(left)
-            cum_comp_in_this_part += len(left)
-            # put unused (right) half of partition back on stack
-            if len(right):
-                xx.insert(0, right)
-            comp_still_needed = count - cum_comp_in_this_part
-        # if part is now full, appent part and reset loop variables
-        if comp_still_needed == 0:
-            result.append(part)
-            i += 1
-            cum_comp_in_this_part = 0
-            part = []
-
-    # append stub part, if any
-    if len(part):
-        result.append(part)
-
-    # append unexamined components, if any
-    if len(xx):
-        result.append(xx)
-
-    # return list of parts, each of which is, in turn, a list
     return result

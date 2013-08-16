@@ -276,42 +276,14 @@ def test_containertools_split_container_by_counts_04():
 
 
 def test_containertools_split_container_by_counts_05():
-    r'''Partition by large part count.
-        Input container cedes contents to new instance.
-        Expression appears unaltered.'''
+    r'''Split by large count. Container remains unchanged.
+    '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8")])
     spannertools.BeamSpanner(voice[0])
     spannertools.SlurSpanner(voice[0].select_leaves())
     container = voice[0]
 
-    r'''
-    \new Voice {
-        {
-            c'8 [ (
-            d'8
-            e'8
-            f'8 ] )
-        }
-    }
-    '''
-
-    parts = containertools.split_container_by_counts(voice[0], [100], cyclic=True, fracture_spanners=True)
-
-    r'''
-    \new Voice {
-        {
-            c'8 [ (
-            d'8
-            e'8
-            f'8 ] )
-        }
-    }
-    '''
-
-    assert select(voice).is_well_formed()
-    assert len(parts) == 1
-    assert container is not voice[0]
     assert testtools.compare(
         voice,
         r'''
@@ -325,6 +297,30 @@ def test_containertools_split_container_by_counts_05():
         }
         '''
         )
+
+    parts = containertools.split_container_by_counts(
+        voice[0], 
+        [100], 
+        cyclic=True, 
+        fracture_spanners=True,
+        )
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+                d'8
+                e'8
+                f'8 ] )
+            }
+        }
+        '''
+        )
+
+    assert select(voice).is_well_formed()
+    assert len(parts) == 1
 
 
 def test_containertools_split_container_by_counts_06():
@@ -568,58 +564,6 @@ def test_containertools_split_container_by_counts_09():
                 a'8
                 b'8
                 c''8 ] )
-            }
-        }
-        '''
-        )
-
-
-def test_containertools_split_container_by_counts_10():
-    r'''Partition by large part count.
-    Input container cedes contents to new instance.
-    Expression appears unaltered.'''
-
-    voice = Voice([Container("c'8 d'8 e'8 f'8")])
-    spannertools.BeamSpanner(voice[0])
-    spannertools.SlurSpanner(voice[0].select_leaves())
-    container = voice[0]
-
-    r'''
-    \new Voice {
-        {
-            c'8 [ (
-            d'8
-            e'8
-            f'8 ] )
-        }
-    }
-    '''
-
-    parts = containertools.split_container_by_counts(voice[0], [100], cyclic=False, fracture_spanners=True)
-
-    r'''
-    \new Voice {
-        {
-            c'8 [ (
-            d'8
-            e'8
-            f'8 ] )
-        }
-    }
-    '''
-
-    assert select(voice).is_well_formed()
-    assert len(parts) == 1
-    assert container is not voice[0]
-    assert testtools.compare(
-        voice,
-        r'''
-        \new Voice {
-            {
-                c'8 [ (
-                d'8
-                e'8
-                f'8 ] )
             }
         }
         '''
