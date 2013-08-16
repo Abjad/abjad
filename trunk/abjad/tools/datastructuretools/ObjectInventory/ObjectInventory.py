@@ -44,6 +44,57 @@ class ObjectInventory(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __contains__(self, token):
+        '''Change `token` to item and return true if item exists in inventory:
+
+        ::
+
+            >>> inventory = datastructuretools.ObjectInventory(
+            ...     tokens=[
+            ...         0, 
+            ...         "d'", 
+            ...         ('e', 4),
+            ...         pitchtools.NamedChromaticPitch("f'"),
+            ...         ],
+            ...     item_class=pitchtools.NamedChromaticPitch,
+            ...     )
+
+        ::
+
+            >>> z(inventory)
+            datastructuretools.ObjectInventory([
+                pitchtools.NamedChromaticPitch(
+                    "c'"
+                    ),
+                pitchtools.NamedChromaticPitch(
+                    "d'"
+                    ),
+                pitchtools.NamedChromaticPitch(
+                    "e'"
+                    ),
+                pitchtools.NamedChromaticPitch(
+                    "f'"
+                    )
+                ],
+                item_class=pitchtools.NamedChromaticPitch
+                )
+
+        ::
+
+            >>> pitchtools.NamedChromaticPitch("c'") in inventory
+            True
+
+        ::
+
+            >>> pitchtools.NamedChromaticPitch("d'") in inventory
+            True
+
+        ::
+
+            >>> pitchtools.NamedChromaticPitch("e'") in inventory
+            True
+
+        Return boolean.
+        '''
         try:
             item = self._item_callable(token)
         except ValueError:
