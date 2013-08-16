@@ -272,10 +272,8 @@ class Inspector(Selection):
             include_self=include_self,
             )
 
-    # TODO: remove cross_offset keyword
     def select_descendants(
         self,
-        cross_offset=None,
         include_self=True,
         ):
         r'''Selects descendants of component.
@@ -283,7 +281,6 @@ class Inspector(Selection):
         Returns descendants.
         '''
         return self[0]._select_descendants(
-            cross_offset=cross_offset,
             include_self=include_self,
             )
 

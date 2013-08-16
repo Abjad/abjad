@@ -471,16 +471,12 @@ class Component(AbjadObject):
         result = selectiontools.SliceSelection(result)
         return result
 
-    # TODO: remove cross_offset keyword
     def _select_descendants(
         self,
-        cross_offset=None,
         include_self=True,
         ):
-        from abjad.tools import componenttools
         return selectiontools.Descendants(
             self,
-            cross_offset=cross_offset,
             include_self=include_self,
             )
 
@@ -507,23 +503,20 @@ class Component(AbjadObject):
             elif self:
                 result.extend(self[-1]._select_descendants_stopping_with())
         return result
-        
+
     def _select_lineage(self):
-        from abjad.tools import componenttools
         return selectiontools.Lineage(self)
 
     def _select_parentage(self, include_self=True):
         return selectiontools.Parentage(self, include_self=include_self)
 
     def _select_vertical_moment(self, governor=None):
-        from abjad.tools import componenttools
         offset = self._get_timespan().start_offset
         if governor is None:
             governor = self._select_parentage().root
         return selectiontools.VerticalMoment(governor, offset)
 
     def _select_vertical_moment_at(self, offset):
-        from abjad.tools import componenttools
         return selectiontools.VerticalMoment(self, offset)
 
     def _set_keyword_value(self, key, value):

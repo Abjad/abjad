@@ -162,10 +162,18 @@ def split_component_at_offset(
 
     # get any duration-crossing descendents
     cross_offset = component._get_timespan().start_offset + offset
-    contents = component._select_descendants(cross_offset=cross_offset)
+    duration_crossing_descendants = []
+    for descendant in component._select_descendants():
+        start_offset = descendant._get_timespan().start_offset
+        stop_offset = descendant._get_timespan().stop_offset
+        if start_offset < cross_offset < stop_offset:
+            duration_crossing_descendants.append(descendant)
 
     # get any duration-crossing measure descendents
-    measures = [x for x in contents if isinstance(x, measuretools.Measure)]
+    measures = [
+        x for x in duration_crossing_descendants 
+        if isinstance(x, measuretools.Measure)
+        ]
 
     # if we must split a power-of-two measure at a non-power-of-two split point
     # go ahead and transform the power-of-two measure to non-power-of-two 
@@ -191,12 +199,17 @@ def split_component_at_offset(
                 measure, non_power_of_two_product)
             # rederive duration crosses with possibly new measure contents
             cross_offset = component._get_timespan().start_offset + offset
-            contents = component._select_descendants(cross_offset=cross_offset)
+            duration_crossing_descendants = []
+            for descendant in component._select_descendants():
+                start_offset = descendant._get_timespan().start_offset
+                stop_offset = descendant._get_timespan().stop_offset
+                if start_offset < cross_offset < stop_offset:
+                    duration_crossing_descendants.append(descendant)
     elif 1 < len(measures):
-        raise ContainmentError('measures can not nest.')
+        raise Exception('measures can not nest.')
 
     # any duration-crossing leaf will be at end of list
-    bottom = contents[-1]
+    bottom = duration_crossing_descendants[-1]
 
     did_split_leaf = False
 
@@ -215,14 +228,14 @@ def split_component_at_offset(
         right = right_list[0]
         leaf_right_of_split = right
         leaf_left_of_split = left_list[-1]
-        duration_crossing_containers = contents[:-1]
+        duration_crossing_containers = duration_crossing_descendants[:-1]
         if not len(duration_crossing_containers):
             return left_list, right_list
     # if split point falls between leaves
     # then find leaf to immediate right of split point
     # in order to start upward crawl through duration-crossing containers
     else:
-        duration_crossing_containers = contents[:]
+        duration_crossing_containers = duration_crossing_descendants[:]
         for leaf in iterationtools.iterate_leaves_in_expr(bottom):
             if leaf._get_timespan().start_offset == global_split_point:
                 leaf_right_of_split = leaf
