@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_containertools_split_container_by_indices_01():
+def test_containertools_split_container_at_indices_01():
     r'''Partition container into parts of lengths equal to counts.
     Read list of counts cyclically.
     Fracture spanners attaching directly to container.
@@ -28,7 +28,7 @@ def test_containertools_split_container_by_indices_01():
     }
     '''
 
-    containertools.split_container_by_indices(voice[0], [1, 3], cyclic=True, fracture_spanners=False)
+    containertools.split_container_at_indices(voice[0], [1, 3], cyclic=True, fracture_spanners=False)
 
     r'''
     \new Voice {
@@ -78,7 +78,7 @@ def test_containertools_split_container_by_indices_01():
         )
 
 
-def test_containertools_split_container_by_indices_02():
+def test_containertools_split_container_at_indices_02():
     r'''Cyclic by [1] splits all elements in container.
     '''
 
@@ -97,7 +97,7 @@ def test_containertools_split_container_by_indices_02():
     }
     '''
 
-    containertools.split_container_by_indices(voice[0], [1], cyclic=True, fracture_spanners=False)
+    containertools.split_container_at_indices(voice[0], [1], cyclic=True, fracture_spanners=False)
 
     r'''
     \new Voice {
@@ -138,7 +138,7 @@ def test_containertools_split_container_by_indices_02():
         )
 
 
-def test_containertools_split_container_by_indices_03():
+def test_containertools_split_container_at_indices_03():
     r'''Partition container into parts of lengths equal to counts.
     Read list of counts cyclically.
     Fracture spanners attaching directly to container.
@@ -164,7 +164,7 @@ def test_containertools_split_container_by_indices_03():
     }
     '''
 
-    parts = containertools.split_container_by_indices(voice[0], [1, 3], cyclic=True, fracture_spanners=True)
+    parts = containertools.split_container_at_indices(voice[0], [1, 3], cyclic=True, fracture_spanners=True)
 
     r'''
     \new Voice {
@@ -214,7 +214,7 @@ def test_containertools_split_container_by_indices_03():
         )
 
 
-def test_containertools_split_container_by_indices_04():
+def test_containertools_split_container_at_indices_04():
     r'''Cyclic by [1] splits all elements in container.
     '''
 
@@ -233,7 +233,7 @@ def test_containertools_split_container_by_indices_04():
     }
     '''
 
-    parts = containertools.split_container_by_indices(voice[0], [1], cyclic=True, fracture_spanners=True)
+    parts = containertools.split_container_at_indices(voice[0], [1], cyclic=True, fracture_spanners=True)
 
     r'''
     \new Voice {
@@ -275,7 +275,7 @@ def test_containertools_split_container_by_indices_04():
         )
 
 
-def test_containertools_split_container_by_indices_05():
+def test_containertools_split_container_at_indices_05():
     r'''Split by large count. Container remains unchanged.
     '''
 
@@ -298,7 +298,7 @@ def test_containertools_split_container_by_indices_05():
         '''
         )
 
-    parts = containertools.split_container_by_indices(
+    parts = containertools.split_container_at_indices(
         voice[0], 
         [100], 
         cyclic=True, 
@@ -323,7 +323,7 @@ def test_containertools_split_container_by_indices_05():
     assert len(parts) == 1
 
 
-def test_containertools_split_container_by_indices_06():
+def test_containertools_split_container_at_indices_06():
     r'''Partition by large number of part counts.
     First part counts apply and extra part counts do not apply.
     Result contains no empty parts.
@@ -344,7 +344,7 @@ def test_containertools_split_container_by_indices_06():
     }
     '''
 
-    parts = containertools.split_container_by_indices(voice[0], [2, 2, 2, 2, 2], cyclic=True, fracture_spanners=True)
+    parts = containertools.split_container_at_indices(voice[0], [2, 2, 2, 2, 2], cyclic=True, fracture_spanners=True)
 
     r'''
     \new Voice {
@@ -378,7 +378,7 @@ def test_containertools_split_container_by_indices_06():
         )
 
 
-def test_containertools_split_container_by_indices_07():
+def test_containertools_split_container_at_indices_07():
     r'''Partition by large empty part counts list.
     Empty list returns and expression remains unaltered.
     '''
@@ -398,7 +398,7 @@ def test_containertools_split_container_by_indices_07():
     }
     '''
 
-    parts = containertools.split_container_by_indices(voice[0], [], cyclic=True, fracture_spanners=True)
+    parts = containertools.split_container_at_indices(voice[0], [], cyclic=True, fracture_spanners=True)
 
     r'''
     \new Voice {
@@ -428,7 +428,7 @@ def test_containertools_split_container_by_indices_07():
         )
 
 
-def test_containertools_split_container_by_indices_08():
+def test_containertools_split_container_at_indices_08():
     r'''Partition container into parts of lengths equal to counts.
         Read list of counts only once; do not cycle.
         Fracture spanners attaching directly to container.
@@ -453,7 +453,7 @@ def test_containertools_split_container_by_indices_08():
     }
     '''
 
-    parts = containertools.split_container_by_indices(voice[0], [1, 3], cyclic=False, fracture_spanners=False)
+    parts = containertools.split_container_at_indices(voice[0], [1, 3], cyclic=False, fracture_spanners=False)
 
     r'''
     \new Voice {
@@ -499,7 +499,7 @@ def test_containertools_split_container_by_indices_08():
         )
 
 
-def test_containertools_split_container_by_indices_09():
+def test_containertools_split_container_at_indices_09():
     r'''Partition container into parts of lengths equal to counts.
     Read list of counts only once; do not cycle.
     Fracture spanners attaching directly to container.
@@ -524,7 +524,7 @@ def test_containertools_split_container_by_indices_09():
     }
     '''
 
-    parts = containertools.split_container_by_indices(voice[0], [1, 3], cyclic=False, fracture_spanners=True)
+    parts = containertools.split_container_at_indices(voice[0], [1, 3], cyclic=False, fracture_spanners=True)
 
     r'''
     \new Voice {
@@ -570,7 +570,7 @@ def test_containertools_split_container_by_indices_09():
         )
 
 
-def test_containertools_split_container_by_indices_11():
+def test_containertools_split_container_at_indices_11():
     r'''Partition by large number of part counts.
     First part counts apply and extra part counts do not apply.
     Result contains no empty parts.'''
@@ -590,7 +590,7 @@ def test_containertools_split_container_by_indices_11():
     }
     '''
 
-    parts = containertools.split_container_by_indices(voice[0], [2, 2, 2, 2, 2], cyclic=False, fracture_spanners=True)
+    parts = containertools.split_container_at_indices(voice[0], [2, 2, 2, 2, 2], cyclic=False, fracture_spanners=True)
 
     r'''
     \new Voice {
@@ -624,7 +624,7 @@ def test_containertools_split_container_by_indices_11():
         )
 
 
-def test_containertools_split_container_by_indices_12():
+def test_containertools_split_container_at_indices_12():
     r'''Partition by empty part counts list.
     Input container returns within one-element result list.'''
 
@@ -643,7 +643,7 @@ def test_containertools_split_container_by_indices_12():
     }
     '''
 
-    parts = containertools.split_container_by_indices(voice[0], [], cyclic=False, fracture_spanners=True)
+    parts = containertools.split_container_at_indices(voice[0], [], cyclic=False, fracture_spanners=True)
 
     r'''
     \new Voice {

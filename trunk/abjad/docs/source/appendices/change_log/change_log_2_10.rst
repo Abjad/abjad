@@ -481,7 +481,7 @@ Changeds to the ``continertools`` package:
 
   ::
 
-    containertools.split_container_by_indices(fracture_spanners=[True, False], cyclic=[True, False])
+    containertools.split_container_at_indices(fracture_spanners=[True, False], cyclic=[True, False])
 
 Changes to the ``durationtools`` package:
 
