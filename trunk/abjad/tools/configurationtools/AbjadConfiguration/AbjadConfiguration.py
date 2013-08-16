@@ -330,13 +330,13 @@ class AbjadConfiguration(Configuration):
     @property
     def abjad_directory_path(self):
         module_parts = self.__module__.split('.')
-        filepath_parts = os.path.abspath(__file__).rpartition('.py')
-        filepath_parts = filepath_parts[0].split(os.path.sep)
+        file_path_parts = os.path.abspath(__file__).rpartition('.py')
+        file_path_parts = file_path_parts[0].split(os.path.sep)
         for part in reversed(module_parts):
             if part == 'abjad':
                 break
-            filepath_parts.pop()
-        return os.path.sep.join(filepath_parts)
+            file_path_parts.pop()
+        return os.path.sep.join(file_path_parts)
 
     @property
     def abjad_experimental_directory_path(self):
