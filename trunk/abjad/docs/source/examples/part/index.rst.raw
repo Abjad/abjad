@@ -114,7 +114,7 @@ for i, descent in enumerate(descents[1:], 1):
     markup = markuptools.Markup(r'\rounded-box \bold {}'.format(i), Up)(descent[0])
 
 staff = Staff(sequencetools.flatten_sequence(descents))
-shards = componenttools.split_components_at_offsets(staff[:], [(3, 2)], cyclic=True)
+shards = componenttools.split_components_by_durations(staff[:], [(3, 2)], cyclic=True)
 time_signature = contexttools.TimeSignatureMark((6, 4))(staff)
 show(staff)
 </abjad>

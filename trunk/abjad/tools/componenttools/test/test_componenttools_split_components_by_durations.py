@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_componenttools_split_components_at_offsets_01():
+def test_componenttools_split_components_by_durations_01():
     r'''Cyclically split note in score. Don't fracture spanners.
     '''
 
@@ -24,7 +24,7 @@ def test_componenttools_split_components_at_offsets_01():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(
+    parts = componenttools.split_components_by_durations(
         staff[0][1:2], 
         [(3, 64)],
         cyclic=True,
@@ -69,7 +69,7 @@ def test_componenttools_split_components_at_offsets_01():
         )
 
 
-def test_componenttools_split_components_at_offsets_02():
+def test_componenttools_split_components_by_durations_02():
     r'''Cyclically split consecutive notes in score. Don't fracture spanners.
     '''
 
@@ -91,7 +91,7 @@ def test_componenttools_split_components_at_offsets_02():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(
+    parts = componenttools.split_components_by_durations(
         staff.select_leaves(), 
         [(3, 32)], cyclic=True,
         fracture_spanners=False,
@@ -138,7 +138,7 @@ def test_componenttools_split_components_at_offsets_02():
         )
 
 
-def test_componenttools_split_components_at_offsets_03():
+def test_componenttools_split_components_by_durations_03():
     r'''Cyclically split measure in score. Don't fracture spanners.
     '''
 
@@ -160,7 +160,7 @@ def test_componenttools_split_components_at_offsets_03():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(staff[:1], [(3, 32)],
+    parts = componenttools.split_components_by_durations(staff[:1], [(3, 32)],
         cyclic=True, fracture_spanners=False, tie_split_notes=False)
 
     r'''
@@ -213,7 +213,7 @@ def test_componenttools_split_components_at_offsets_03():
         )
 
 
-def test_componenttools_split_components_at_offsets_04():
+def test_componenttools_split_components_by_durations_04():
     r'''Cyclically split consecutive measures in score. Don't fracture spanners.
     '''
 
@@ -235,7 +235,7 @@ def test_componenttools_split_components_at_offsets_04():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(staff[:], [(3, 32)],
+    parts = componenttools.split_components_by_durations(staff[:], [(3, 32)],
         cyclic=True, fracture_spanners=False, tie_split_notes=False)
 
     r'''
@@ -308,14 +308,14 @@ def test_componenttools_split_components_at_offsets_04():
         )
 
 
-def test_componenttools_split_components_at_offsets_05():
+def test_componenttools_split_components_by_durations_05():
     r'''Cyclically split orphan measures. Don't fracture spanners.
     '''
 
     measures = [Measure((2, 8), "c'8 d'8"), Measure((2, 8), "e'8 f'8")]
     select(measures).attach_spanners(spannertools.BeamSpanner)
 
-    parts = componenttools.split_components_at_offsets(measures, [(3, 32)],
+    parts = componenttools.split_components_by_durations(measures, [(3, 32)],
         cyclic=True, fracture_spanners=False, tie_split_notes=False)
 
     music = sequencetools.flatten_sequence(parts)
@@ -391,7 +391,7 @@ def test_componenttools_split_components_at_offsets_05():
         )
 
 
-def test_componenttools_split_components_at_offsets_06():
+def test_componenttools_split_components_by_durations_06():
     r'''Cyclically split note in score. Don't fracture spanners.
     '''
 
@@ -413,7 +413,7 @@ def test_componenttools_split_components_at_offsets_06():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(staff[0][1:], [(1, 32)],
+    parts = componenttools.split_components_by_durations(staff[0][1:], [(1, 32)],
         cyclic=True, fracture_spanners=False, tie_split_notes=True)
 
     r'''
@@ -456,7 +456,7 @@ def test_componenttools_split_components_at_offsets_06():
         )
 
 
-def test_componenttools_split_components_at_offsets_07():
+def test_componenttools_split_components_by_durations_07():
     r'''Cyclically split consecutive notes in score. Don't fracture spanners.
     '''
 
@@ -478,7 +478,7 @@ def test_componenttools_split_components_at_offsets_07():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(staff.select_leaves(), [(1, 16)],
+    parts = componenttools.split_components_by_durations(staff.select_leaves(), [(1, 16)],
         cyclic=True, fracture_spanners=False, tie_split_notes=True)
 
     r'''
@@ -523,7 +523,7 @@ def test_componenttools_split_components_at_offsets_07():
         )
 
 
-def test_componenttools_split_components_at_offsets_08():
+def test_componenttools_split_components_by_durations_08():
     r'''Cyclically split measure in score. Don't fracture spanners.
     '''
 
@@ -545,7 +545,7 @@ def test_componenttools_split_components_at_offsets_08():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(staff[:1], [(1, 16)],
+    parts = componenttools.split_components_by_durations(staff[:1], [(1, 16)],
         cyclic=True, fracture_spanners=False, tie_split_notes=True)
 
     r'''
@@ -600,7 +600,7 @@ def test_componenttools_split_components_at_offsets_08():
         )
 
 
-def test_componenttools_split_components_at_offsets_09():
+def test_componenttools_split_components_by_durations_09():
     r'''Cyclically split consecutive measures in score. Don't fracture spanners.
     '''
 
@@ -622,7 +622,7 @@ def test_componenttools_split_components_at_offsets_09():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(staff[:], [(3, 32)],
+    parts = componenttools.split_components_by_durations(staff[:], [(3, 32)],
         cyclic=True, fracture_spanners=False, tie_split_notes=True)
 
     r'''
@@ -695,7 +695,7 @@ def test_componenttools_split_components_at_offsets_09():
         )
 
 
-def test_componenttools_split_components_at_offsets_10():
+def test_componenttools_split_components_by_durations_10():
     r'''Cyclically split note in score. Fracture spanners.
     '''
 
@@ -717,7 +717,7 @@ def test_componenttools_split_components_at_offsets_10():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(
+    parts = componenttools.split_components_by_durations(
         staff[0][1:2], 
         [(3, 64)], 
         cyclic=True,
@@ -763,7 +763,7 @@ def test_componenttools_split_components_at_offsets_10():
         )
 
 
-def test_componenttools_split_components_at_offsets_11():
+def test_componenttools_split_components_by_durations_11():
     r'''Cyclically split consecutive notes in score. Fracture spanners.
     '''
 
@@ -785,7 +785,7 @@ def test_componenttools_split_components_at_offsets_11():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(
+    parts = componenttools.split_components_by_durations(
         staff.select_leaves(), [(3, 32)], cyclic=True, fracture_spanners=True)
 
     r'''
@@ -830,7 +830,7 @@ def test_componenttools_split_components_at_offsets_11():
         )
 
 
-def test_componenttools_split_components_at_offsets_12():
+def test_componenttools_split_components_by_durations_12():
     r'''Cyclically split measure in score. Fracture spanners.
     '''
 
@@ -852,7 +852,7 @@ def test_componenttools_split_components_at_offsets_12():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(staff[:1], [(3, 32)],
+    parts = componenttools.split_components_by_durations(staff[:1], [(3, 32)],
         cyclic=True, fracture_spanners=True, tie_split_notes=False)
 
     r'''
@@ -905,7 +905,7 @@ def test_componenttools_split_components_at_offsets_12():
         )
 
 
-def test_componenttools_split_components_at_offsets_13():
+def test_componenttools_split_components_by_durations_13():
     r'''Cyclically split consecutive measures in score. Fracture spanners.
     '''
 
@@ -927,7 +927,7 @@ def test_componenttools_split_components_at_offsets_13():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(staff[:], [(3, 32)],
+    parts = componenttools.split_components_by_durations(staff[:], [(3, 32)],
         cyclic=True, fracture_spanners=True, tie_split_notes=False)
 
     r'''
@@ -1000,13 +1000,13 @@ def test_componenttools_split_components_at_offsets_13():
         )
 
 
-def test_componenttools_split_components_at_offsets_14():
+def test_componenttools_split_components_by_durations_14():
     r'''Cyclically split orphan notes.
     '''
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
 
-    parts = componenttools.split_components_at_offsets(
+    parts = componenttools.split_components_by_durations(
         notes, [(3, 32)], cyclic=True, fracture_spanners=True)
 
     music = sequencetools.flatten_sequence(parts)
@@ -1044,14 +1044,14 @@ def test_componenttools_split_components_at_offsets_14():
         )
 
 
-def test_componenttools_split_components_at_offsets_15():
+def test_componenttools_split_components_by_durations_15():
     r'''Cyclically split orphan measures. Fracture spanners.
     '''
 
     measures = [Measure((2, 8), "c'8 d'8"), Measure((2, 8), "e'8 f'8")]
     select(measures).attach_spanners(spannertools.BeamSpanner)
 
-    parts = componenttools.split_components_at_offsets(measures, [(3, 32)],
+    parts = componenttools.split_components_by_durations(measures, [(3, 32)],
         cyclic=True, fracture_spanners=True, tie_split_notes=False)
 
     music = sequencetools.flatten_sequence(parts)
@@ -1127,7 +1127,7 @@ def test_componenttools_split_components_at_offsets_15():
         )
 
 
-def test_componenttools_split_components_at_offsets_16():
+def test_componenttools_split_components_by_durations_16():
     r'''Cyclically split note in score. Fracture spanners.
     '''
 
@@ -1149,7 +1149,7 @@ def test_componenttools_split_components_at_offsets_16():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(staff[0][1:], [(1, 32)],
+    parts = componenttools.split_components_by_durations(staff[0][1:], [(1, 32)],
         cyclic=True, fracture_spanners=True, tie_split_notes=True)
 
     r'''
@@ -1192,7 +1192,7 @@ def test_componenttools_split_components_at_offsets_16():
         )
 
 
-def test_componenttools_split_components_at_offsets_17():
+def test_componenttools_split_components_by_durations_17():
     r'''Cyclically split consecutive notes in score. Fracture spanners.
     '''
 
@@ -1214,7 +1214,7 @@ def test_componenttools_split_components_at_offsets_17():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(staff.select_leaves(), [(1, 16)],
+    parts = componenttools.split_components_by_durations(staff.select_leaves(), [(1, 16)],
         cyclic=True, fracture_spanners=True, tie_split_notes=True)
 
     r'''
@@ -1259,7 +1259,7 @@ def test_componenttools_split_components_at_offsets_17():
         )
 
 
-def test_componenttools_split_components_at_offsets_18():
+def test_componenttools_split_components_by_durations_18():
     r'''Cyclically split measure in score. Fracture spanners.
     '''
 
@@ -1281,7 +1281,7 @@ def test_componenttools_split_components_at_offsets_18():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(staff[:1], [(1, 16)],
+    parts = componenttools.split_components_by_durations(staff[:1], [(1, 16)],
         cyclic=True, fracture_spanners=True, tie_split_notes=True)
 
     r'''
@@ -1336,7 +1336,7 @@ def test_componenttools_split_components_at_offsets_18():
         )
 
 
-def test_componenttools_split_components_at_offsets_19():
+def test_componenttools_split_components_by_durations_19():
     r'''Cyclically split consecutive measures in score. Fracture spanners.
     '''
 
@@ -1358,7 +1358,7 @@ def test_componenttools_split_components_at_offsets_19():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(staff[:], [(3, 32)],
+    parts = componenttools.split_components_by_durations(staff[:], [(3, 32)],
         cyclic=True, fracture_spanners=True, tie_split_notes=True)
 
     r'''
@@ -1431,7 +1431,7 @@ def test_componenttools_split_components_at_offsets_19():
         )
 
 
-def test_componenttools_split_components_at_offsets_20():
+def test_componenttools_split_components_by_durations_20():
     r'''Force split measure in score. Do not fracture spanners.
     '''
 
@@ -1453,7 +1453,7 @@ def test_componenttools_split_components_at_offsets_20():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(
+    parts = componenttools.split_components_by_durations(
         staff[:1], [(1, 32), (3, 32), (5, 32)],
         cyclic=False, fracture_spanners=False, tie_split_notes=False)
 
@@ -1507,7 +1507,7 @@ def test_componenttools_split_components_at_offsets_20():
         )
 
 
-def test_componenttools_split_components_at_offsets_21():
+def test_componenttools_split_components_by_durations_21():
     r'''Force split consecutive measures in score. Do not fracture spanners.
     '''
 
@@ -1528,7 +1528,7 @@ def test_componenttools_split_components_at_offsets_21():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(
+    parts = componenttools.split_components_by_durations(
         staff[:], [(1, 32), (3, 32), (5, 32)],
         cyclic=False, fracture_spanners=False, tie_split_notes=False)
 
@@ -1590,7 +1590,7 @@ def test_componenttools_split_components_at_offsets_21():
         )
 
 
-def test_componenttools_split_components_at_offsets_22():
+def test_componenttools_split_components_by_durations_22():
     r'''Force split measure in score. Fracture spanners.
     '''
 
@@ -1612,7 +1612,7 @@ def test_componenttools_split_components_at_offsets_22():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(
+    parts = componenttools.split_components_by_durations(
         staff[:1], [(1, 32), (3, 32), (5, 32)],
         cyclic=False, fracture_spanners=True, tie_split_notes=False)
 
@@ -1666,7 +1666,7 @@ def test_componenttools_split_components_at_offsets_22():
         )
 
 
-def test_componenttools_split_components_at_offsets_23():
+def test_componenttools_split_components_by_durations_23():
     r'''Force split consecutive measures in score. Fracture spanners.
     '''
 
@@ -1688,7 +1688,7 @@ def test_componenttools_split_components_at_offsets_23():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(
+    parts = componenttools.split_components_by_durations(
         staff[:], [(1, 32), (3, 32), (5, 32)],
         cyclic=False, fracture_spanners=True, tie_split_notes=False)
 
@@ -1750,13 +1750,13 @@ def test_componenttools_split_components_at_offsets_23():
         )
 
 
-def test_componenttools_split_components_at_offsets_24():
+def test_componenttools_split_components_by_durations_24():
     r'''Force split orphan note. Offsets sum to less than note duration.
     '''
 
     note = Note("c'4")
 
-    parts = componenttools.split_components_at_offsets(
+    parts = componenttools.split_components_by_durations(
         [note], [(1, 32), (5, 32)],
         cyclic=False, fracture_spanners=True, tie_split_notes=False)
 
@@ -1787,7 +1787,7 @@ def test_componenttools_split_components_at_offsets_24():
         )
 
 
-def test_componenttools_split_components_at_offsets_25():
+def test_componenttools_split_components_by_durations_25():
     r'''Force split note in score. Fracture spanners.
     '''
 
@@ -1799,7 +1799,7 @@ def test_componenttools_split_components_at_offsets_25():
     }
     '''
 
-    parts = componenttools.split_components_at_offsets(
+    parts = componenttools.split_components_by_durations(
         staff[:], [(1, 64), (5, 64)],
         cyclic=False, fracture_spanners=True, tie_split_notes=False)
 

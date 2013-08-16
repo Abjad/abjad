@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_componenttools_split_component_at_offset_01():
+def test_componenttools_split_component_by_duration_01():
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
@@ -26,7 +26,7 @@ def test_componenttools_split_component_at_offset_01():
     }
     '''
 
-    halves = componenttools.split_component_at_offset(
+    halves = componenttools.split_component_by_duration(
         staff.select_leaves()[0], (1, 32), fracture_spanners=False, tie_split_notes=False)
 
     r'''
@@ -69,7 +69,7 @@ def test_componenttools_split_component_at_offset_01():
         )
 
 
-def test_componenttools_split_component_at_offset_02():
+def test_componenttools_split_component_by_duration_02():
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
@@ -93,7 +93,7 @@ def test_componenttools_split_component_at_offset_02():
     }
     '''
 
-    halves = componenttools.split_component_at_offset(
+    halves = componenttools.split_component_by_duration(
         staff[0], (1, 32), fracture_spanners=False, tie_split_notes=False)
 
     r'''
@@ -142,7 +142,7 @@ def test_componenttools_split_component_at_offset_02():
         )
 
 
-def test_componenttools_split_component_at_offset_03():
+def test_componenttools_split_component_by_duration_03():
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
@@ -166,7 +166,7 @@ def test_componenttools_split_component_at_offset_03():
     }
     '''
 
-    halves = componenttools.split_component_at_offset(
+    halves = componenttools.split_component_by_duration(
         staff, (1, 32), fracture_spanners=False, tie_split_notes=False)
 
     "halves[0][0]"
@@ -228,7 +228,7 @@ def test_componenttools_split_component_at_offset_03():
         )
 
 
-def test_componenttools_split_component_at_offset_04():
+def test_componenttools_split_component_by_duration_04():
     r'''Split one leaf in score.
     Do not fracture spanners. But do tie after split.
     '''
@@ -255,7 +255,7 @@ def test_componenttools_split_component_at_offset_04():
     }
     '''
 
-    halves = componenttools.split_component_at_offset(
+    halves = componenttools.split_component_by_duration(
         staff.select_leaves()[0], (1, 32), fracture_spanners=False, tie_split_notes=True)
 
     r'''
@@ -298,7 +298,7 @@ def test_componenttools_split_component_at_offset_04():
         )
 
 
-def test_componenttools_split_component_at_offset_05():
+def test_componenttools_split_component_by_duration_05():
     r'''Split one measure in score.
     Do not fracture spanners. But do add tie after split.
     '''
@@ -325,7 +325,7 @@ def test_componenttools_split_component_at_offset_05():
     }
     '''
 
-    halves = componenttools.split_component_at_offset(
+    halves = componenttools.split_component_by_duration(
         staff[0], (1, 32), fracture_spanners=False, tie_split_notes=True)
 
     r'''
@@ -374,7 +374,7 @@ def test_componenttools_split_component_at_offset_05():
         )
 
 
-def test_componenttools_split_component_at_offset_06():
+def test_componenttools_split_component_by_duration_06():
     r'''Split in-score measure with power-of-two time signature denominator
     at split offset without power-of-two denominator.
     Do not fracture spanners and do not tie leaves after split.
@@ -403,7 +403,7 @@ def test_componenttools_split_component_at_offset_06():
     '''
 
     d = (1, 5)
-    halves = componenttools.split_component_at_offset(
+    halves = componenttools.split_component_by_duration(
         staff[0], d, fracture_spanners=False)
 
     r'''
@@ -436,7 +436,7 @@ def test_componenttools_split_component_at_offset_06():
     #         Eventually should fix. #
 
 
-def test_componenttools_split_component_at_offset_07():
+def test_componenttools_split_component_by_duration_07():
     r'''Split in-score measure with power-of-two time signature denominator
     at split offset without power-of-two denominator.
     Do fracture spanners and do tie leaves after split.
@@ -464,7 +464,7 @@ def test_componenttools_split_component_at_offset_07():
     }
     '''
 
-    halves = componenttools.split_component_at_offset(
+    halves = componenttools.split_component_by_duration(
         staff[0], (1, 5), fracture_spanners=False, tie_split_notes=True)
 
     r'''
@@ -521,7 +521,7 @@ def test_componenttools_split_component_at_offset_07():
         )
 
 
-def test_componenttools_split_component_at_offset_08():
+def test_componenttools_split_component_by_duration_08():
     r'''Split leaf in score and fracture spanners.
     '''
 
@@ -546,7 +546,7 @@ def test_componenttools_split_component_at_offset_08():
     }
     '''
 
-    halves = componenttools.split_component_at_offset(
+    halves = componenttools.split_component_by_duration(
         staff.select_leaves()[0], (1, 32), fracture_spanners=True, tie_split_notes=False)
 
     r'''
@@ -590,7 +590,7 @@ def test_componenttools_split_component_at_offset_08():
         )
 
 
-def test_componenttools_split_component_at_offset_09():
+def test_componenttools_split_component_by_duration_09():
     r'''Split measure in score and fracture spanners.
     '''
 
@@ -616,7 +616,7 @@ def test_componenttools_split_component_at_offset_09():
     }
     '''
 
-    halves = componenttools.split_component_at_offset(
+    halves = componenttools.split_component_by_duration(
         staff[0], (1, 32), fracture_spanners=True, tie_split_notes=False)
 
     r'''
@@ -665,7 +665,7 @@ def test_componenttools_split_component_at_offset_09():
         )
 
 
-def test_componenttools_split_component_at_offset_10():
+def test_componenttools_split_component_by_duration_10():
     r'''Split staff outside of score and fracture spanners.
     '''
 
@@ -691,7 +691,7 @@ def test_componenttools_split_component_at_offset_10():
     }
     '''
 
-    halves = componenttools.split_component_at_offset(
+    halves = componenttools.split_component_by_duration(
         staff, (1, 32), fracture_spanners=True, tie_split_notes=False)
 
     "halves[0][0]"
@@ -753,7 +753,7 @@ def test_componenttools_split_component_at_offset_10():
         )
 
 
-def test_componenttools_split_component_at_offset_11():
+def test_componenttools_split_component_by_duration_11():
     r'''Split leaf in score at nonzero index.
     Fracture spanners.
     Test comes from a bug fix.
@@ -781,7 +781,7 @@ def test_componenttools_split_component_at_offset_11():
     }
     '''
 
-    componenttools.split_component_at_offset(
+    componenttools.split_component_by_duration(
         staff.select_leaves()[1], (1, 32), fracture_spanners=True, tie_split_notes=False)
 
     r'''
@@ -821,7 +821,7 @@ def test_componenttools_split_component_at_offset_11():
         )
 
 
-def test_componenttools_split_component_at_offset_12():
+def test_componenttools_split_component_by_duration_12():
     r'''Split container over leaf at nonzero index.
     Fracture spanners.
     Test results from bug fix.
@@ -849,7 +849,7 @@ def test_componenttools_split_component_at_offset_12():
     }
     '''
 
-    componenttools.split_component_at_offset(
+    componenttools.split_component_by_duration(
         staff[0], (7, 32), fracture_spanners=True, tie_split_notes=False)
 
     r'''
@@ -895,7 +895,7 @@ def test_componenttools_split_component_at_offset_12():
         )
 
 
-def test_componenttools_split_component_at_offset_13():
+def test_componenttools_split_component_by_duration_13():
     r'''Split container between leaves and fracture spanners.
     '''
 
@@ -921,7 +921,7 @@ def test_componenttools_split_component_at_offset_13():
     }
     '''
 
-    parts = componenttools.split_component_at_offset(
+    parts = componenttools.split_component_by_duration(
         staff[0], (1, 8), fracture_spanners=True)
     measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
@@ -969,7 +969,7 @@ def test_componenttools_split_component_at_offset_13():
         )
 
 
-def test_componenttools_split_component_at_offset_14():
+def test_componenttools_split_component_by_duration_14():
     r'''Split leaf outside of score and fracture spanners.
     '''
 
@@ -978,7 +978,7 @@ def test_componenttools_split_component_at_offset_14():
 
     "c'8 [ ]"
 
-    halves = componenttools.split_component_at_offset(note, (1, 32), fracture_spanners=True)
+    halves = componenttools.split_component_by_duration(note, (1, 32), fracture_spanners=True)
 
     "c'32 [ ]"
     assert select(halves[0][0]).is_well_formed()
@@ -987,7 +987,7 @@ def test_componenttools_split_component_at_offset_14():
     assert select(halves[1][0]).is_well_formed()
 
 
-def test_componenttools_split_component_at_offset_15():
+def test_componenttools_split_component_by_duration_15():
     r'''Split leaf in score and fracture spanners.
     Tie leaves after split.
     '''
@@ -1014,7 +1014,7 @@ def test_componenttools_split_component_at_offset_15():
     }
     '''
 
-    halves = componenttools.split_component_at_offset(
+    halves = componenttools.split_component_by_duration(
         staff.select_leaves()[0], (1, 32), fracture_spanners=True, tie_split_notes=True)
 
     r'''
@@ -1058,7 +1058,7 @@ def test_componenttools_split_component_at_offset_15():
         )
 
 
-def test_componenttools_split_component_at_offset_16():
+def test_componenttools_split_component_by_duration_16():
     r'''Split measure in score and fracture spanners.
     Tie leaves after split.
     '''
@@ -1085,7 +1085,7 @@ def test_componenttools_split_component_at_offset_16():
     }
     '''
 
-    halves = componenttools.split_component_at_offset(
+    halves = componenttools.split_component_by_duration(
         staff[0], (1, 32), fracture_spanners=True, tie_split_notes=True)
 
     r'''
@@ -1134,7 +1134,7 @@ def test_componenttools_split_component_at_offset_16():
         )
 
 
-def test_componenttools_split_component_at_offset_17():
+def test_componenttools_split_component_by_duration_17():
     r'''Split in-score measure with power-of-two time signature denominator
     at split offset without power-of-two denominator.
     Do fracture spanners but do not tie leaves after split.
@@ -1162,7 +1162,7 @@ def test_componenttools_split_component_at_offset_17():
     }
     '''
 
-    halves = componenttools.split_component_at_offset(
+    halves = componenttools.split_component_by_duration(
         staff[0], (1, 5), fracture_spanners=True, tie_split_notes=False)
 
     r'''
@@ -1219,7 +1219,7 @@ def test_componenttools_split_component_at_offset_17():
         )
 
 
-def test_componenttools_split_component_at_offset_18():
+def test_componenttools_split_component_by_duration_18():
     r'''Split in-score measure with power-of-two time signature denominator at
     split offset without power-of-two denominator.
     Do fracture spanners and do tie leaves after split.
@@ -1247,7 +1247,7 @@ def test_componenttools_split_component_at_offset_18():
     }
     '''
 
-    halves = componenttools.split_component_at_offset(
+    halves = componenttools.split_component_by_duration(
         staff[0], (1, 5), fracture_spanners=True, tie_split_notes=True)
 
     r'''
@@ -1304,7 +1304,7 @@ def test_componenttools_split_component_at_offset_18():
         )
 
 
-def test_componenttools_split_component_at_offset_19():
+def test_componenttools_split_component_by_duration_19():
     r'''Split measure with power-of-two time signature denominator at
     split offset without power-of-two denominator.
     Do fracture spanners but do not tie across split locus.
@@ -1335,7 +1335,7 @@ def test_componenttools_split_component_at_offset_19():
     }
     '''
 
-    halves = componenttools.split_component_at_offset(
+    halves = componenttools.split_component_by_duration(
         staff[0], (7, 20), fracture_spanners=True)
 
     r'''
@@ -1398,7 +1398,7 @@ def test_componenttools_split_component_at_offset_19():
         )
 
 
-def test_componenttools_split_component_at_offset_20():
+def test_componenttools_split_component_by_duration_20():
     r'''Split leaf with LilyPond multiplier.
     Split at split offset with power-of-two denominator.
     Halves carry original written duration.
@@ -1410,7 +1410,7 @@ def test_componenttools_split_component_at_offset_20():
 
     "c'8 * 1/2"
 
-    halves = componenttools.split_component_at_offset(
+    halves = componenttools.split_component_by_duration(
         note, (1, 32), fracture_spanners=True, tie_split_notes=False)
 
     assert len(halves) == 2
@@ -1421,7 +1421,7 @@ def test_componenttools_split_component_at_offset_20():
     assert halves[1][0].lilypond_format == "c'8 * 1/4"
 
 
-def test_componenttools_split_component_at_offset_21():
+def test_componenttools_split_component_by_duration_21():
     r'''Split leaf with LilyPond multiplier.
     Split at offset without power-of-two denominator.
     Halves carry original written duration.
@@ -1433,7 +1433,7 @@ def test_componenttools_split_component_at_offset_21():
 
     "c'8 * 1/2"
 
-    halves = componenttools.split_component_at_offset(
+    halves = componenttools.split_component_by_duration(
         note, (1, 48), fracture_spanners=True, tie_split_notes=False)
 
     assert len(halves) == 2
@@ -1444,7 +1444,7 @@ def test_componenttools_split_component_at_offset_21():
     assert halves[1][0].lilypond_format == "c'8 * 1/3"
 
 
-def test_componenttools_split_component_at_offset_22():
+def test_componenttools_split_component_by_duration_22():
     r'''Split measure with power-of-two time signature denominator with multiplied leaes.
     Split at between-leaf offset with power-of-two denominator.
     Leaves remain unaltered.
@@ -1474,7 +1474,7 @@ def test_componenttools_split_component_at_offset_22():
     }
     '''
 
-    halves = componenttools.split_component_at_offset(
+    halves = componenttools.split_component_by_duration(
         staff[0], (1, 16), fracture_spanners=True)
     measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
@@ -1520,7 +1520,7 @@ def test_componenttools_split_component_at_offset_22():
         )
 
 
-def test_componenttools_split_component_at_offset_23():
+def test_componenttools_split_component_by_duration_23():
     r'''Split measure with power-of-two time signature denominator with multiplied leaves.
     Split at through-leaf offset with power-of-two denominator.
     Leaf written durations stay the same but multipliers change.
@@ -1550,7 +1550,7 @@ def test_componenttools_split_component_at_offset_23():
     }
     '''
 
-    halves = componenttools.split_component_at_offset(
+    halves = componenttools.split_component_by_duration(
         staff[0], (3, 32), fracture_spanners=True, tie_split_notes=False)
 
     r'''
@@ -1597,7 +1597,7 @@ def test_componenttools_split_component_at_offset_23():
         )
 
 
-def test_componenttools_split_component_at_offset_24():
+def test_componenttools_split_component_by_duration_24():
     r'''Split measure with power-of-two time signature denominator with multiplied leaves.
     Split at through-leaf offset without power-of-two denominator.
     Leaf written durations adjust for change from power-of-two denominator
@@ -1629,7 +1629,7 @@ def test_componenttools_split_component_at_offset_24():
     }
     '''
 
-    halves = componenttools.split_component_at_offset(
+    halves = componenttools.split_component_by_duration(
         staff[0], (2, 24), fracture_spanners=True, tie_split_notes=False)
 
     r'''
@@ -1684,7 +1684,7 @@ def test_componenttools_split_component_at_offset_24():
         )
 
 
-def test_componenttools_split_component_at_offset_25():
+def test_componenttools_split_component_by_duration_25():
     r'''Split measure with power-of-two time signature denominator with multiplied leaves.
     Time signature carries numerator that necessitates ties.
     Split at through-leaf offset without power-of-two denominator.
@@ -1702,7 +1702,7 @@ def test_componenttools_split_component_at_offset_25():
     }
     '''
 
-    halves = componenttools.split_component_at_offset(staff[0], (16, 80), fracture_spanners=True)
+    halves = componenttools.split_component_by_duration(staff[0], (16, 80), fracture_spanners=True)
 
     r'''
     \new Staff {
@@ -1744,7 +1744,7 @@ def test_componenttools_split_component_at_offset_25():
         )
 
 
-def test_componenttools_split_component_at_offset_26():
+def test_componenttools_split_component_by_duration_26():
     r'''Split measure without power-of-two time signature denominator
     at split offset without power-of-two denominator.
     Measure multiplier and split offset multiplier match.
@@ -1775,7 +1775,7 @@ def test_componenttools_split_component_at_offset_26():
     }
     '''
 
-    halves = componenttools.split_component_at_offset(staff[0], (14, 80), fracture_spanners=True)
+    halves = componenttools.split_component_by_duration(staff[0], (14, 80), fracture_spanners=True)
 
     r'''
     \new Staff {
@@ -1829,11 +1829,11 @@ def test_componenttools_split_component_at_offset_26():
         )
 
 
-def test_componenttools_split_component_at_offset_27():
+def test_componenttools_split_component_by_duration_27():
     r'''Make sure tie (re)application happens only where sensible.
     '''
 
-    halves = componenttools.split_component_at_offset(
+    halves = componenttools.split_component_by_duration(
         Container("c'4"), (3, 16), fracture_spanners=True)
 
     assert select(halves[0][0]).is_well_formed()

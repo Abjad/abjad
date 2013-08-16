@@ -187,7 +187,7 @@ function:
    
        # chop all string parts into 6/4 measures
        for voice in iterationtools.iterate_voices_in_expr(score['Strings Staff Group']):
-           for shard in componenttools.split_components_at_offsets(voice[:],
+           for shard in componenttools.split_components_by_durations(voice[:],
                [(6, 4)], cyclic=True):
                measuretools.Measure((6, 4), shard)
 
@@ -402,7 +402,7 @@ crosses the bar lines accidentally:
    ...     markup = markuptools.Markup(r'\rounded-box \bold {}'.format(i), Up)(descent[0])
    ... 
    >>> staff = Staff(sequencetools.flatten_sequence(descents))
-   >>> shards = componenttools.split_components_at_offsets(staff[:], [(3, 2)], cyclic=True)
+   >>> shards = componenttools.split_components_by_durations(staff[:], [(3, 2)], cyclic=True)
    >>> time_signature = contexttools.TimeSignatureMark((6, 4))(staff)
    >>> show(staff)
 
@@ -666,7 +666,7 @@ We apply expressive marks the same way we applied our dynamics:
        voice = score['Bass Voice']
        markuptools.Markup('div.', Up)(voice[14][0])
        markuptools.Markup(r'\italic { espr. }', Down)(voice[86][0])
-       componenttools.split_components_at_offsets(voice[88][:], [Duration(1, 1), Duration(1, 2)])
+       componenttools.split_components_by_durations(voice[88][:], [Duration(1, 1), Duration(1, 2)])
        markuptools.Markup(r'\italic { molto espr. }', Down)(voice[88][1])
        markuptools.Markup('uniti', Up)(voice[99][1])
    

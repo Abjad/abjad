@@ -444,7 +444,7 @@ class PitchArray(AbjadObject):
             durations = []
             for leaf in iterationtools.iterate_leaves_in_expr(leaf_iterable):
                 durations.append(leaf._get_duration())
-            parts = componenttools.split_components_at_offsets(
+            parts = componenttools.split_components_by_durations(
                 tokens,
                 durations,
                 cyclic=False,

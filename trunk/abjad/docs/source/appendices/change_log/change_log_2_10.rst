@@ -330,7 +330,7 @@ Renamed ``prolated_duration`` to ``offset`` in some functions::
 
 ::
 
-    componenttools.split_component_at_offset()
+    componenttools.split_component_by_duration()
     componenttools.split_components_by_offsets()
     leaftools.split_leaf_at_offset()
     leaftools.split_leaf_at_offset_and_rest_right_half()
@@ -349,7 +349,7 @@ Renamed all functions that contained ``as_string``::
 
 Changes to the ``componenttools`` package:
 
-- The ``componenttools.split_components_at_offsets()`` function no longer 
+- The ``componenttools.split_components_by_durations()`` function no longer 
   implements a ``tie_after keyword``.
   Use the new ``tie_split_notes`` and ``tie_split_rests`` keywords.
   Note that the new ``tie_split_rests``
@@ -422,7 +422,7 @@ Changes to the ``componenttools`` package:
 
   ::
 
-    componenttools.split_component_at_offset(fracture_spanners=[True, False])
+    componenttools.split_component_by_duration(fracture_spanners=[True, False])
 
 - Renamed::
 
@@ -433,7 +433,7 @@ Changes to the ``componenttools`` package:
 
   ::
 
-    componenttools.split_components_at_offsets(fracture_spanners=[True, False], cyclic=[True, False])
+    componenttools.split_components_by_durations(fracture_spanners=[True, False], cyclic=[True, False])
 
 Changeds to the ``continertools`` package:
 

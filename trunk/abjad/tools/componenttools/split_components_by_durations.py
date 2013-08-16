@@ -4,7 +4,7 @@ from abjad.tools import sequencetools
 
 
 # TODO: fix bug that unintentionally fractures ties.
-def split_components_at_offsets(
+def split_components_by_durations(
     components, 
     offsets,
     fracture_spanners=False, 
@@ -44,7 +44,7 @@ def split_components_at_offsets(
 
         ::
 
-            >>> result = componenttools.split_components_at_offsets(
+            >>> result = componenttools.split_components_by_durations(
             ...     staff.select_leaves(), 
             ...     [Duration(3, 32)], 
             ...     cyclic=True,
@@ -114,7 +114,7 @@ def split_components_at_offsets(
 
         ::
 
-            >>> result = componenttools.split_components_at_offsets(
+            >>> result = componenttools.split_components_by_durations(
             ...     staff.select_leaves(), 
             ...     [Duration(3, 32)], 
             ...     cyclic=True, 
@@ -200,7 +200,7 @@ def split_components_at_offsets(
 
         ::
 
-            >>> shards = componenttools.split_components_at_offsets(
+            >>> shards = componenttools.split_components_by_durations(
             ...    staff[:1], 
             ...     offsets, 
             ...     cyclic=False, 
@@ -280,7 +280,7 @@ def split_components_at_offsets(
         ::
 
             >>> offsets = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
-            >>> shards = componenttools.split_components_at_offsets(
+            >>> shards = componenttools.split_components_by_durations(
             ...     staff[:1], 
             ...     offsets, 
             ...     cyclic=False, 
@@ -362,7 +362,7 @@ def split_components_at_offsets(
         ::
 
             >>> offsets = [(1, 8)]
-            >>> shards = componenttools.split_components_at_offsets(
+            >>> shards = componenttools.split_components_by_durations(
             ...     staff.select_leaves(), 
             ...     offsets, 
             ...     cyclic=False, 
@@ -510,7 +510,7 @@ def split_components_at_offsets(
             else:
                 #print 'splitting container ...'
                 left_list, right_list = \
-                    componenttools.split_component_at_offset(
+                    componenttools.split_component_by_duration(
                     current_component, 
                     local_split_duration, 
                     fracture_spanners=fracture_spanners,

@@ -3,7 +3,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 
 
-def split_component_at_offset(
+def split_component_by_duration(
     component,
     offset,
     fracture_spanners=False,
@@ -51,7 +51,7 @@ def split_component_at_offset(
 
         ::
 
-            >>> halves = componenttools.split_component_at_offset(
+            >>> halves = componenttools.split_component_by_duration(
             ... staff.select_leaves()[0], (1, 32), fracture_spanners=False, tie_split_notes=False)
 
         ..  doctest::
@@ -113,7 +113,7 @@ def split_component_at_offset(
 
         ::
 
-            >>> halves = componenttools.split_component_at_offset(
+            >>> halves = componenttools.split_component_by_duration(
             ... staff.select_leaves()[0], (1, 32), fracture_spanners=True, tie_split_notes=False)
 
         ..  doctest::

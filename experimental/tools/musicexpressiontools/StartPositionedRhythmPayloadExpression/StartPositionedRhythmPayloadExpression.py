@@ -373,7 +373,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         assert isinstance(self.payload, containertools.Container)
         music = self.payload
         self._payload = containertools.Container()
-        shards = componenttools.split_components_at_offsets(
+        shards = componenttools.split_components_by_durations(
             [music], offsets, cyclic=False, fracture_spanners=True)
         shards = [shard[0] for shard in shards]
         for shard in shards:
@@ -889,7 +889,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         if split_offset == payload_duration:
             return self
         if fracture_spanners:
-            result = componenttools.split_components_at_offsets(
+            result = componenttools.split_components_by_durations(
                 [self.payload],
                 [split_offset],
                 cyclic=False,
@@ -903,7 +903,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             assert select(payload).is_well_formed()
             self._payload = payload
         else:
-            result = componenttools.split_components_at_offsets(
+            result = componenttools.split_components_by_durations(
                 self.payload[:],
                 [split_offset],
                 cyclic=False,

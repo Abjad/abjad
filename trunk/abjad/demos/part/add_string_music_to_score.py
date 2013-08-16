@@ -45,6 +45,6 @@ def add_string_music_to_score(score):
 
     # chop all string parts into 6/4 measures
     for voice in iterationtools.iterate_voices_in_expr(score['Strings Staff Group']):
-        for shard in componenttools.split_components_at_offsets(voice[:],
+        for shard in componenttools.split_components_by_durations(voice[:],
             [(6, 4)], cyclic=True):
             measuretools.Measure((6, 4), shard)

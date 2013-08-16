@@ -44,7 +44,7 @@ def rest_leaf_at_offset(leaf, offset):
 
     offset = durationtools.Offset(offset)
 
-    left, right = componenttools.split_component_at_offset(
+    left, right = componenttools.split_component_by_duration(
         leaf, offset, fracture_spanners=False, tie_split_notes=False)
 
     for leaf in right:
