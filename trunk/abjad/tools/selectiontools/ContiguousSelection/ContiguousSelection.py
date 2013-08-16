@@ -303,7 +303,8 @@ class ContiguousSelection(Selection):
         Returns remaining components at end in final part when `overhang` 
         is true.
         '''
-        assert self._all_are_contiguous_components_in_same_logical_voice(self)
+        # TODO: decide on correct assertion
+        #assert self._all_are_contiguous_components_in_same_logical_voice(self)
         durations = [durationtools.Duration(x) for x in durations]
         if cyclic:
             durations = sequencetools.CyclicTuple(durations)

@@ -505,7 +505,7 @@ def test_containertools_split_container_at_indices_09():
     assert len(parts) == 3
 
 
-def test_containertools_split_container_at_indices_11():
+def test_containertools_split_container_at_indices_10():
     r'''Partition by large number of part counts.
     First part counts apply and extra part counts do not apply.
     Result contains no empty parts.
@@ -556,7 +556,7 @@ def test_containertools_split_container_at_indices_11():
     assert len(parts) == 2
 
 
-def test_containertools_split_container_at_indices_12():
+def test_containertools_split_container_at_indices_11():
     r'''Partition by empty part counts list.
     Input container returns within one-element result list.
     '''
