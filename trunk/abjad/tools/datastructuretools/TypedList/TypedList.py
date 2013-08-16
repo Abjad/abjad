@@ -1,21 +1,20 @@
 # -*- encoding: utf-8 -*-
-import types
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
 
-class TypedList(AbjadObject):
+class TypedList(TypedCollection):
     '''Ordered collection of objects, which optionally coerces its contents
     to the same type:
 
     ::
 
-        >>> object_inventory = datastructuretools.TypedList()
-        >>> object_inventory.append(23)
-        >>> object_inventory.append('foo')
-        >>> object_inventory.append(False)
-        >>> object_inventory.append((1, 2, 3))
-        >>> object_inventory.append(3.14159)
-        >>> z(object_inventory)
+        >>> object_collection = datastructuretools.TypedList()
+        >>> object_collection.append(23)
+        >>> object_collection.append('foo')
+        >>> object_collection.append(False)
+        >>> object_collection.append((1, 2, 3))
+        >>> object_collection.append(3.14159)
+        >>> z(object_collection)
         datastructuretools.TypedList([
             23,
             'foo',
@@ -26,13 +25,13 @@ class TypedList(AbjadObject):
 
     ::
 
-        >>> pitch_inventory = datastructuretools.TypedList(
+        >>> pitch_collection = datastructuretools.TypedList(
         ...     item_class=pitchtools.NamedChromaticPitch)
-        >>> pitch_inventory.append(0)
-        >>> pitch_inventory.append("d'")
-        >>> pitch_inventory.append(('e', 4))
-        >>> pitch_inventory.append(pitchtools.NamedChromaticPitch("f'"))
-        >>> z(pitch_inventory)
+        >>> pitch_collection.append(0)
+        >>> pitch_collection.append("d'")
+        >>> pitch_collection.append(('e', 4))
+        >>> pitch_collection.append(pitchtools.NamedChromaticPitch("f'"))
+        >>> z(pitch_collection)
         datastructuretools.TypedList([
             pitchtools.NamedChromaticPitch("c'"),
             pitchtools.NamedChromaticPitch("d'"),
@@ -48,47 +47,48 @@ class TypedList(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_collection',
         '_item_class',
-        '_list',
         '_name',
         )
 
     ### INITIALIZER ###
 
     def __init__(self, tokens=None, item_class=None, name=None):
-        assert isinstance(item_class, (type(None), type))
-        self._item_class = item_class
-        self._list = []
+        TypedCollection.__init__(self, 
+            item_class=item_class, 
+            name=name,
+            tokens=tokens,
+            )
+        self._collection = []
         if isinstance(tokens, type(self)):
             for token in tokens:
                 self.append(self._item_callable(token))
-            self.name = tokens.name or name
         else:
             tokens = tokens or []
             items = []
             for token in tokens:
                 items.append(self._item_callable(token))
             self.extend(items)
-            self.name = name
 
     ### SPECIAL METHODS ###
 
     def __contains__(self, token):
-        '''Change `token` to item and return true if item exists in inventory:
+        '''Change `token` to item and return true if item exists in collection:
 
         ::
 
-            >>> pitchtools.NamedChromaticPitch("c'") in pitch_inventory
+            >>> pitchtools.NamedChromaticPitch("c'") in pitch_collection
             True
 
         ::
 
-            >>> pitchtools.NamedChromaticPitch("d'") in pitch_inventory
+            >>> pitchtools.NamedChromaticPitch("d'") in pitch_collection
             True
 
         ::
 
-            >>> pitchtools.NamedChromaticPitch("e'") in pitch_inventory
+            >>> pitchtools.NamedChromaticPitch("e'") in pitch_collection
             True
 
         Return boolean.
@@ -97,12 +97,12 @@ class TypedList(AbjadObject):
             item = self._item_callable(token)
         except ValueError:
             return False
-        return self._list.__contains__(item)
+        return self._collection.__contains__(item)
 
     def __delitem__(self, i):
         '''Aliases list.__delitem__().
         '''
-        del(self._list[i])
+        del(self._collection[i])
 
     def __eq__(self, expr):
         '''Compares equally with other object inventories, or lists with
@@ -110,42 +110,38 @@ class TypedList(AbjadObject):
 
         ::
         
-            >>> object_inventory == object_inventory
+            >>> object_collection == object_collection
             True
 
         ::
 
-            >>> object_inventory == [23, 'foo', False, (1, 2, 3), 3.14159]
+            >>> object_collection == [23, 'foo', False, (1, 2, 3), 3.14159]
             True
 
         ::
 
-            >>> object_inventory == pitch_inventory
+            >>> object_collection == pitch_collection
             False
 
         Return boolean.
         '''
-        if isinstance(expr, type(self)):
-            return self._list == expr._list
-        elif isinstance(expr, type(self._list)):
-            return self._list == expr
-        return False
+        return TypedCollection.__eq__(self, expr)
 
     def __getitem__(self, i):
         '''Aliases list.__getitem__().
         '''
-        return self._list[i]
+        return self._collection[i]
 
     def __iadd__(self, expr):
         '''Change tokens in `expr` to items and extend:
 
         ::
 
-            >>> dynamic_inventory = datastructuretools.TypedList(
+            >>> dynamic_collection = datastructuretools.TypedList(
             ...     item_class=contexttools.DynamicMark)
-            >>> dynamic_inventory.append('ppp')
-            >>> dynamic_inventory += ['p', 'mp', 'mf', 'fff']
-            >>> z(dynamic_inventory)
+            >>> dynamic_collection.append('ppp')
+            >>> dynamic_collection += ['p', 'mp', 'mf', 'fff']
+            >>> z(dynamic_collection)
             datastructuretools.TypedList([
                 contexttools.DynamicMark(
                     'ppp',
@@ -171,7 +167,7 @@ class TypedList(AbjadObject):
                 item_class=contexttools.DynamicMark
                 )
 
-        Return inventory.
+        Return collection.
         '''
         self.extend(expr)
         return self
@@ -179,25 +175,25 @@ class TypedList(AbjadObject):
     def __iter__(self):
         '''Aliases list.__iter__().
         '''
-        return self._list.__iter__()
+        return self._collection.__iter__()
 
     def __len__(self):
         '''Aliases list.__len__().
         '''
-        return len(self._list)
+        return len(self._collection)
 
     def __reversed__(self):
         '''Aliases list.__reversed__().
         '''
-        return self._list.__reversed__()
+        return self._collection.__reversed__()
 
     def __setitem__(self, i, expr):
         '''Change tokens in `expr` to items and set:
 
         ::
 
-            >>> pitch_inventory[-1] = 'gqs,'
-            >>> z(pitch_inventory)
+            >>> pitch_collection[-1] = 'gqs,'
+            >>> z(pitch_collection)
             datastructuretools.TypedList([
                 pitchtools.NamedChromaticPitch("c'"),
                 pitchtools.NamedChromaticPitch("d'"),
@@ -209,8 +205,8 @@ class TypedList(AbjadObject):
 
         ::
 
-            >>> pitch_inventory[-1:] = ["f'", "g'", "a'", "b'", "c''"]
-            >>> z(pitch_inventory)
+            >>> pitch_collection[-1:] = ["f'", "g'", "a'", "b'", "c''"]
+            >>> z(pitch_collection)
             datastructuretools.TypedList([
                 pitchtools.NamedChromaticPitch("c'"),
                 pitchtools.NamedChromaticPitch("d'"),
@@ -227,27 +223,12 @@ class TypedList(AbjadObject):
         '''
         if isinstance(i, int):
             item = self._item_callable(expr)
-            self._list[i] = item
+            self._collection[i] = item
         elif isinstance(i, slice):
             items = [self._item_callable(token) for token in expr]
-            self._list[i] = items
+            self._collection[i] = items
 
     ### PRIVATE PROPERTIES ###
-
-    @property
-    def _item_callable(self):
-        if self._item_class is None:
-            return lambda x: x
-        return self._item_class
-
-    @property
-    def _keyword_argument_names(self):
-        result = AbjadObject._keyword_argument_names.fget(self)
-        result = list(result)
-        if 'tokens' in result:
-            result.remove('tokens')
-        result = tuple(result)
-        return result
 
     @property
     def _positional_argument_repr_string(self):
@@ -262,89 +243,6 @@ class TypedList(AbjadObject):
     @property
     def _positional_argument_values(self):
         return tuple(self)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def item_class(self):
-        r'''Item class to coerce tokens into:
-
-        ::
-
-            >>> print pitch_inventory.item_class.__name__
-            NamedChromaticPitch
-
-        Return type or none.
-        '''
-        return self._item_class
-
-    @apply
-    def name():
-        def fget(self):
-            r'''Read / write name of inventory.
-            '''
-            return self._name
-        def fset(self, _name):
-            assert isinstance(_name, (str, type(None)))
-            self._name = _name
-        return property(**locals())
-
-    @property
-    def storage_format(self):
-        r'''Storage format of object inventory:
-
-        ::
-
-            >>> markup_inventory = datastructuretools.TypedList(
-            ...     item_class=markuptools.Markup,
-            ...     name='Indications',
-            ...     )
-
-        ::
-
-            >>> markup_inventory.append(r'\italic Quickly')
-            >>> markup_inventory.append(r'\italic { With delicacy }')
-            >>> markup_inventory.append(r'\italic Uncertain \tiny { (quiet) }')
-
-        ::
-
-            >>> print markup_inventory.storage_format
-            datastructuretools.TypedList([
-                markuptools.Markup((
-                    markuptools.MarkupCommand(
-                        'italic',
-                        'Quickly'
-                        ),
-                    )),
-                markuptools.Markup((
-                    markuptools.MarkupCommand(
-                        'italic',
-                        [
-                            'With',
-                            'delicacy'
-                        ]
-                        ),
-                    )),
-                markuptools.Markup((
-                    markuptools.MarkupCommand(
-                        'italic',
-                        'Uncertain'
-                        ),
-                    markuptools.MarkupCommand(
-                        'tiny',
-                        [
-                            '(quiet)'
-                        ]
-                        )
-                    ))
-                ],
-                item_class=markuptools.Markup,
-                name='Indications'
-                )
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr
 
     ### PRIVATE METHODS ###
 
@@ -400,54 +298,54 @@ class TypedList(AbjadObject):
 
         ::
 
-            >>> integer_inventory = datastructuretools.TypedList(
+            >>> integer_collection = datastructuretools.TypedList(
             ...     item_class=int)
-            >>> integer_inventory[:]
+            >>> integer_collection[:]
             []
 
         ::
 
-            >>> integer_inventory.append(True)
-            >>> integer_inventory.append(2)
-            >>> integer_inventory.append(3.4)
-            >>> integer_inventory[:]
+            >>> integer_collection.append(True)
+            >>> integer_collection.append(2)
+            >>> integer_collection.append(3.4)
+            >>> integer_collection[:]
             [1, 2, 3]
 
         Return none.
         '''
         item = self._item_callable(token)
-        self._list.append(item)
+        self._collection.append(item)
 
     def count(self, token):
         r'''Change `token` to item and return count.
 
         ::
 
-            >>> integer_inventory = datastructuretools.TypedList(
+            >>> integer_collection = datastructuretools.TypedList(
             ...     tokens=[0, False, '0', 99],
             ...     item_class=int)
-            >>> integer_inventory[:]
+            >>> integer_collection[:]
             [0, 0, 0, 99]
 
         ::
 
-            >>> integer_inventory.count(0)
+            >>> integer_collection.count(0)
             3
 
         Return count.
         '''
         item = self._item_callable(token)
-        return self._list.count(item)
+        return self._collection.count(item)
 
     def extend(self, tokens):
         r'''Change `tokens` to items and extend.
 
         ::
 
-            >>> integer_inventory = datastructuretools.TypedList(
+            >>> integer_collection = datastructuretools.TypedList(
             ...     item_class=int)
-            >>> integer_inventory.extend((False, True, 2, 3.14159))
-            >>> integer_inventory[:]
+            >>> integer_collection.extend((False, True, 2, 3.14159))
+            >>> integer_collection[:]
             [0, 1, 2, 3]
 
         Return none.
@@ -460,78 +358,78 @@ class TypedList(AbjadObject):
 
         ::
 
-            >>> pitch_inventory = datastructuretools.TypedList(
+            >>> pitch_collection = datastructuretools.TypedList(
             ...     tokens=('cqf', "as'", 'b,', 'dss'),
             ...     item_class=pitchtools.NamedChromaticPitch)
-            >>> pitch_inventory.index("as'")
+            >>> pitch_collection.index("as'")
             1
 
         Return index.
         '''
         item = self._item_callable(token)
-        return self._list.index(item)
+        return self._collection.index(item)
 
     def insert(self, i, token):
         r'''Change `token` to item and insert.
 
         ::
 
-            >>> integer_inventory = datastructuretools.TypedList(
+            >>> integer_collection = datastructuretools.TypedList(
             ...     item_class=int)
-            >>> integer_inventory.extend((True, 2, 4.3))
-            >>> integer_inventory[:]
+            >>> integer_collection.extend((True, 2, 4.3))
+            >>> integer_collection[:]
             [1, 2, 4]
 
         ::
 
-            >>> integer_inventory.insert(0, False)
-            >>> integer_inventory[:]
+            >>> integer_collection.insert(0, False)
+            >>> integer_collection[:]
             [0, 1, 2, 4]
 
         ::
 
-            >>> integer_inventory.insert(1, '9')
-            >>> integer_inventory[:]
+            >>> integer_collection.insert(1, '9')
+            >>> integer_collection[:]
             [0, 9, 1, 2, 4]
 
         Return none.
         '''
         item = self._item_callable(token)
-        return self._list.insert(i, item)
+        return self._collection.insert(i, item)
 
     def pop(self, i=-1):
         r'''Aliases list.pop().
         '''
-        return self._list.pop(i)
+        return self._collection.pop(i)
 
     def remove(self, token):
         r'''Change `token` to item and remove.
 
         ::
 
-            >>> integer_inventory = datastructuretools.TypedList(
+            >>> integer_collection = datastructuretools.TypedList(
             ...     item_class=int)
-            >>> integer_inventory.extend((False, True, 2, 3.14159))
-            >>> integer_inventory[:]
+            >>> integer_collection.extend((False, True, 2, 3.14159))
+            >>> integer_collection[:]
             [0, 1, 2, 3]
 
         ::
 
-            >>> integer_inventory.remove('1')
-            >>> integer_inventory[:]
+            >>> integer_collection.remove('1')
+            >>> integer_collection[:]
             [0, 2, 3]
 
         Return none.
         '''
         item = self._item_callable(token)
-        self._list.remove(item)
+        self._collection.remove(item)
 
     def reverse(self):
         r'''Aliases list.reverse().
         '''
-        self._list.reverse()
+        self._collection.reverse()
 
     def sort(self, cmp=None, key=None, reverse=False):
         r'''Aliases list.sort().
         '''
-        self._list.sort(cmp=cmp, key=key, reverse=reverse)
+        self._collection.sort(cmp=cmp, key=key, reverse=reverse)
