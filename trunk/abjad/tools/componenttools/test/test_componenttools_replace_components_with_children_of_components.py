@@ -8,7 +8,7 @@ def test_componenttools_replace_components_with_children_of_components_01():
 
     staff = Staff(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
-    p = spannertools.BeamSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner(staff.select_leaves())
 
     r'''
     \new Staff {

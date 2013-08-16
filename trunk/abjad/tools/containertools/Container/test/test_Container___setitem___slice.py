@@ -40,7 +40,7 @@ def test_Container___setitem___slice_02():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    p = spannertools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner(staff[:])
     note = Note(7, (1, 8))
     staff[2:2] = [note]
 
@@ -80,7 +80,7 @@ def test_Container___setitem___slice_03():
     end = notes[4:]
 
     staff = Staff(beginning + end)
-    p = spannertools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner(staff[:])
 
     r'''
     \new Staff {
@@ -125,7 +125,7 @@ def test_Container___setitem___slice_04():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    p = spannertools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner(staff[:])
     note = Note(12, (1, 8))
     staff[1:3] = [note]
 
@@ -155,7 +155,7 @@ def test_Container___setitem___slice_05():
         a different sequence of multiple components.'''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    p = spannertools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner(staff[:])
     notes = [Note(11, (1, 8)), Note(9, (1, 8)), Note(7, (1, 8))]
     staff[1:3] = notes
 

@@ -8,13 +8,13 @@ def iterate_components_in_spanner(
 
     ::
 
-        >>> t = Staff("c'8 d'8 e'8 f'8")
-        >>> p = spannertools.BeamSpanner(t[2:])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> beam = spannertools.BeamSpanner(staff[2:])
 
     ::
 
         >>> notes = spannertools.iterate_components_in_spanner(
-        ...     p, component_classes=(Note, ))
+        ...     beam, component_classes=(Note,))
 
     ::
 
@@ -28,7 +28,7 @@ def iterate_components_in_spanner(
     ::
 
         >>> notes = spannertools.iterate_components_in_spanner(
-        ...     p, component_classes=(Note, ), reverse=True)
+        ...     beam, component_classes=(Note,), reverse=True)
 
     ::
 

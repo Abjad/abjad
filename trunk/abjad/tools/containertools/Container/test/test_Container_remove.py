@@ -67,7 +67,7 @@ def test_Container_remove_02():
     staff = Staff(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
     sequential = staff[0]
-    p = spannertools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner(staff[:])
 
     r'''
     \new Staff {

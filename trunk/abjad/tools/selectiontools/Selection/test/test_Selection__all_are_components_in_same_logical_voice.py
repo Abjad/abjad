@@ -1503,10 +1503,10 @@ def test_Selection__all_are_components_in_same_logical_voice_42():
     r'''Logical voice can not extend across differently named anonymous voices.
     '''
 
-    p = Container(Voice(Note(0, (1, 8)) * 4) * 2)
-    p.is_simultaneous = True
+    simultaneous_container = Container(Voice(Note(0, (1, 8)) * 4) * 2)
+    simultaneous_container.is_simultaneous = True
     container = Container(Note(0, (1, 8)) * 4)
-    container.insert(2, p)
+    container.insert(2, simultaneous_container)
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(
         container)
 

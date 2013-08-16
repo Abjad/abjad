@@ -155,8 +155,8 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___05():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    p = spannertools.BeamSpanner(voice[:])
-    p.override.beam.positions = (4, 4)
+    beam = spannertools.BeamSpanner(voice[:])
+    beam.override.beam.positions = (4, 4)
 
     r'''
     \new Voice {
@@ -323,8 +323,8 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___10():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    p = spannertools.HairpinSpanner(voice[:], 'p < f')
-    p.override.dynamic_line_spanner.staff_padding = 4
+    hairpin = spannertools.HairpinSpanner(voice[:], 'p < f')
+    hairpin.override.dynamic_line_spanner.staff_padding = 4
 
     r'''
     \new Voice {
@@ -394,8 +394,8 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___12():
 
     voice = Voice("c'8 d'8 e'8 f'8")
     spannertools.BeamSpanner(voice[:])
-    p = spannertools.DynamicTextSpanner(voice[:], 'f')
-    p.override.dynamic_text.thickness = 3
+    dynamic_text_spanner = spannertools.DynamicTextSpanner(voice[:], 'f')
+    dynamic_text_spanner.override.dynamic_text.thickness = 3
 
     r'''
     \new Voice {
@@ -501,8 +501,8 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___15():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    p = spannertools.GlissandoSpanner(voice[:])
-    p.override.glissando.thickness = 3
+    glissando = spannertools.GlissandoSpanner(voice[:])
+    glissando.override.glissando.thickness = 3
 
     r'''
     \new Voice {
@@ -937,8 +937,8 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___30():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    p = spannertools.OctavationSpanner(voice[:], 1)
-    p.override.staff.ottava_bracket.staff_position = 4
+    octavation_spanner = spannertools.OctavationSpanner(voice[:], 1)
+    octavation_spanner.override.staff.ottava_bracket.staff_position = 4
 
     r'''
     \new Voice {
@@ -1102,10 +1102,10 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___35():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    p = spannertools.BeamSpanner(staff[:])
-    p.override.score.spacing_spanner.strict_grace_spacing = True
-    p.override.score.spacing_spanner.strict_note_spacing = True
-    p.override.score.spacing_spanner.uniform_stretching = True
+    beam = spannertools.BeamSpanner(staff[:])
+    beam.override.score.spacing_spanner.strict_grace_spacing = True
+    beam.override.score.spacing_spanner.strict_note_spacing = True
+    beam.override.score.spacing_spanner.uniform_stretching = True
 
     r'''
     \new Staff {
@@ -1151,10 +1151,10 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___36():
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
-    p = spannertools.BeamSpanner(staff[:])
-    p.override.score.spacing_spanner.strict_grace_spacing = True
-    p.override.score.spacing_spanner.strict_note_spacing = True
-    p.override.score.spacing_spanner.uniform_stretching = True
+    beam = spannertools.BeamSpanner(staff[:])
+    beam.override.score.spacing_spanner.strict_grace_spacing = True
+    beam.override.score.spacing_spanner.strict_note_spacing = True
+    beam.override.score.spacing_spanner.uniform_stretching = True
     measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
@@ -1533,8 +1533,8 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___46():
     '''
 
     staff = Staff(notetools.make_repeated_notes(4))
-    p = spannertools.TextSpanner(staff[:])
-    p.override.text_spanner.font_shape = 'italic'
+    text_spanner = spannertools.TextSpanner(staff[:])
+    text_spanner.override.text_spanner.font_shape = 'italic'
 
     r'''
     \new Staff {
@@ -1722,8 +1722,8 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___52():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    p = spannertools.TrillSpanner(voice[:])
-    p.override.trill_spanner.color = 'red'
+    trill = spannertools.TrillSpanner(voice[:])
+    trill.override.trill_spanner.color = 'red'
 
     r'''
     \new Voice {

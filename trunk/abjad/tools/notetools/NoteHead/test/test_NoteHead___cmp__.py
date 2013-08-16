@@ -4,51 +4,51 @@ from abjad import *
 
 def test_NoteHead___cmp___01():
 
-    p = notetools.NoteHead(12)
-    q = notetools.NoteHead(12)
+    note_head_1 = notetools.NoteHead(12)
+    note_head_2 = notetools.NoteHead(12)
 
-    assert not p <  q
-    assert      p <= q
-    assert      p == q
-    assert not p != q
-    assert not p >  q
-    assert      p >= q
+    assert not note_head_1 <  note_head_2
+    assert      note_head_1 <= note_head_2
+    assert      note_head_1 == note_head_2
+    assert not note_head_1 != note_head_2
+    assert not note_head_1 >  note_head_2
+    assert      note_head_1 >= note_head_2
 
 
 def test_NoteHead___cmp___02():
 
-    p = notetools.NoteHead(12)
-    q = notetools.NoteHead(13)
+    note_head_1 = notetools.NoteHead(12)
+    note_head_2 = notetools.NoteHead(13)
 
-    assert not q <  p
-    assert not q <= p
-    assert not q == p
-    assert      q != p
-    assert      q >  p
-    assert      q >= p
+    assert not note_head_2 <  note_head_1
+    assert not note_head_2 <= note_head_1
+    assert not note_head_2 == note_head_1
+    assert      note_head_2 != note_head_1
+    assert      note_head_2 >  note_head_1
+    assert      note_head_2 >= note_head_1
 
 
 def test_NoteHead___cmp___03():
 
-    p = notetools.NoteHead(12)
-    q = 12
+    note_head_1 = notetools.NoteHead(12)
+    note_head_2 = 12
 
-    assert not p <  q
-    assert      p <= q
-    assert      p == q
-    assert not p != q
-    assert not p >  q
-    assert      p >= q
+    assert not note_head_1 <  note_head_2
+    assert      note_head_1 <= note_head_2
+    assert      note_head_1 == note_head_2
+    assert not note_head_1 != note_head_2
+    assert not note_head_1 >  note_head_2
+    assert      note_head_1 >= note_head_2
 
 
 def test_NoteHead___cmp___04():
 
-    p = notetools.NoteHead(12)
-    q = 13
+    note_head_1 = notetools.NoteHead(12)
+    note_head_2 = 13
 
-    assert not q <  p
-    assert not q <= p
-    assert not q == p
-    assert      q != p
-    assert      q >  p
-    assert      q >= p
+    assert not note_head_2 <  note_head_1
+    assert not note_head_2 <= note_head_1
+    assert not note_head_2 == note_head_1
+    assert      note_head_2 != note_head_1
+    assert      note_head_2 >  note_head_1
+    assert      note_head_2 >= note_head_1
