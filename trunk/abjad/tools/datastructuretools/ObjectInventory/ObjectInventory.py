@@ -78,18 +78,6 @@ class ObjectInventory(AbjadObject):
 
         ::
 
-            >>> z(pitch_inventory)
-            datastructuretools.ObjectInventory([
-                pitchtools.NamedChromaticPitch("c'"),
-                pitchtools.NamedChromaticPitch("d'"),
-                pitchtools.NamedChromaticPitch("e'"),
-                pitchtools.NamedChromaticPitch("f'")
-                ],
-                item_class=pitchtools.NamedChromaticPitch
-                )
-
-        ::
-
             >>> pitchtools.NamedChromaticPitch("c'") in pitch_inventory
             True
 
@@ -115,6 +103,26 @@ class ObjectInventory(AbjadObject):
         del(self._list[i])
 
     def __eq__(self, expr):
+        '''Compares equally with other object inventories, or lists with
+        identical contents:
+
+        ::
+        
+            >>> object_inventory == object_inventory
+            True
+
+        ::
+
+            >>> object_inventory == [23, 'foo', False, (1, 2, 3), 3.14159]
+            True
+
+        ::
+
+            >>> object_inventory == pitch_inventory
+            False
+
+        Return boolean.
+        '''
         if isinstance(expr, type(self)):
             return self._list == expr._list
         elif isinstance(expr, type(self._list)):
@@ -124,8 +132,45 @@ class ObjectInventory(AbjadObject):
     def __getitem__(self, i):
         return self._list[i]
 
-    def __iadd__(self, token):
-        item = self._item_callable(token)
+    def __iadd__(self, expr):
+        '''Change tokens in `expr` to items and extend:
+
+        ::
+
+            >>> dynamic_inventory = datastructuretools.ObjectInventory(
+            ...     item_class=contexttools.DynamicMark)
+            >>> dynamic_inventory.append('ppp')
+            >>> dynamic_inventory += ['p', 'mp', 'mf', 'fff']
+            >>> z(dynamic_inventory)
+            datastructuretools.ObjectInventory([
+                contexttools.DynamicMark(
+                    'ppp',
+                    target_context=stafftools.Staff
+                    ),
+                contexttools.DynamicMark(
+                    'p',
+                    target_context=stafftools.Staff
+                    ),
+                contexttools.DynamicMark(
+                    'mp',
+                    target_context=stafftools.Staff
+                    ),
+                contexttools.DynamicMark(
+                    'mf',
+                    target_context=stafftools.Staff
+                    ),
+                contexttools.DynamicMark(
+                    'fff',
+                    target_context=stafftools.Staff
+                    )
+                ],
+                item_class=contexttools.DynamicMark
+                )
+
+        Return inventory.
+        '''
+        self.extend(expr)
+        return self
 
     def __iter__(self):
         return self._list.__iter__()
@@ -137,6 +182,39 @@ class ObjectInventory(AbjadObject):
         return self._list.__reversed__()
 
     def __setitem__(self, i, expr):
+        '''Change tokens in `expr` to items and set:
+
+        ::
+
+            >>> pitch_inventory[-1] = 'gqs,'
+            >>> z(pitch_inventory)
+            datastructuretools.ObjectInventory([
+                pitchtools.NamedChromaticPitch("c'"),
+                pitchtools.NamedChromaticPitch("d'"),
+                pitchtools.NamedChromaticPitch("e'"),
+                pitchtools.NamedChromaticPitch('gqs,')
+                ],
+                item_class=pitchtools.NamedChromaticPitch
+                )
+
+        ::
+
+            >>> pitch_inventory[-1:] = ["f'", "g'", "a'", "b'", "c''"]
+            >>> z(pitch_inventory)
+            datastructuretools.ObjectInventory([
+                pitchtools.NamedChromaticPitch("c'"),
+                pitchtools.NamedChromaticPitch("d'"),
+                pitchtools.NamedChromaticPitch("e'"),
+                pitchtools.NamedChromaticPitch("f'"),
+                pitchtools.NamedChromaticPitch("g'"),
+                pitchtools.NamedChromaticPitch("a'"),
+                pitchtools.NamedChromaticPitch("b'"),
+                pitchtools.NamedChromaticPitch("c''")
+                ],
+                item_class=pitchtools.NamedChromaticPitch
+                )
+
+        '''
         if isinstance(i, int):
             item = self._item_callable(expr)
             self._list[i] = item
