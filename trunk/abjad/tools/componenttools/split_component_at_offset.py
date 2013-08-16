@@ -157,6 +157,14 @@ def split_component_at_offset(
     if offset == 0:
         return [], component
 
+    if isinstance(component, leaftools.Leaf):
+        return component._split_at_offset(
+            offset,
+            fracture_spanners=fracture_spanners,
+            tie_split_notes=tie_split_notes,
+            tie_split_rests=tie_split_rests,
+            )
+
     # get split point score offset
     global_split_point = component._get_timespan().start_offset + offset
 
