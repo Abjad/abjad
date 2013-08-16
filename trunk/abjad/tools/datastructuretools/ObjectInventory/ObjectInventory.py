@@ -100,6 +100,8 @@ class ObjectInventory(AbjadObject):
         return self._list.__contains__(item)
 
     def __delitem__(self, i):
+        '''Aliases list.__delitem__().
+        '''
         del(self._list[i])
 
     def __eq__(self, expr):
@@ -130,6 +132,8 @@ class ObjectInventory(AbjadObject):
         return False
 
     def __getitem__(self, i):
+        '''Aliases list.__getitem__().
+        '''
         return self._list[i]
 
     def __iadd__(self, expr):
@@ -173,12 +177,18 @@ class ObjectInventory(AbjadObject):
         return self
 
     def __iter__(self):
+        '''Aliases list.__iter__().
+        '''
         return self._list.__iter__()
 
     def __len__(self):
+        '''Aliases list.__len__().
+        '''
         return len(self._list)
 
     def __reversed__(self):
+        '''Aliases list.__reversed__().
+        '''
         return self._list.__reversed__()
 
     def __setitem__(self, i, expr):
@@ -448,6 +458,14 @@ class ObjectInventory(AbjadObject):
     def index(self, token):
         r'''Change `token` to item and return index.
 
+        ::
+
+            >>> pitch_inventory = datastructuretools.ObjectInventory(
+            ...     tokens=('cqf', "as'", 'b,', 'dss'),
+            ...     item_class=pitchtools.NamedChromaticPitch)
+            >>> pitch_inventory.index("as'")
+            1
+
         Return index.
         '''
         item = self._item_callable(token)
@@ -456,20 +474,52 @@ class ObjectInventory(AbjadObject):
     def insert(self, i, token):
         r'''Change `token` to item and insert.
 
+        ::
+
+            >>> integer_inventory = datastructuretools.ObjectInventory(
+            ...     item_class=int)
+            >>> integer_inventory.extend((True, 2, 4.3))
+            >>> integer_inventory[:]
+            [1, 2, 4]
+
+        ::
+
+            >>> integer_inventory.insert(0, False)
+            >>> integer_inventory[:]
+            [0, 1, 2, 4]
+
+        ::
+
+            >>> integer_inventory.insert(1, '9')
+            >>> integer_inventory[:]
+            [0, 9, 1, 2, 4]
+
         Return none.
         '''
         item = self._item_callable(token)
         return self._list.insert(i, item)
 
     def pop(self, i=-1):
-        r'''Pop item at index `i`.
-
-        Return item.
+        r'''Aliases list.pop().
         '''
         return self._list.pop(i)
 
     def remove(self, token):
         r'''Change `token` to item and remove.
+
+        ::
+
+            >>> integer_inventory = datastructuretools.ObjectInventory(
+            ...     item_class=int)
+            >>> integer_inventory.extend((False, True, 2, 3.14159))
+            >>> integer_inventory[:]
+            [0, 1, 2, 3]
+
+        ::
+
+            >>> integer_inventory.remove('1')
+            >>> integer_inventory[:]
+            [0, 2, 3]
 
         Return none.
         '''
@@ -477,15 +527,11 @@ class ObjectInventory(AbjadObject):
         self._list.remove(item)
 
     def reverse(self):
-        r'''Reverse items in place.
-
-        Return none.
+        r'''Aliases list.reverse().
         '''
         self._list.reverse()
 
     def sort(self, cmp=None, key=None, reverse=False):
-        r'''Sort items in place.
-
-        Return none.
+        r'''Aliases list.sort().
         '''
         self._list.sort(cmp=cmp, key=key, reverse=reverse)
