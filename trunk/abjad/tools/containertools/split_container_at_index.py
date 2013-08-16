@@ -6,26 +6,19 @@ from abjad.tools.selectiontools import more
 
 
 def split_container_at_index(component, i, fracture_spanners=False):
-    r'''General component index split algorithm.
-
-    Works on leaves, tuplets, measures, contexts and unqualified containers.
-    Keyword controls spanner behavior at split time.
-
-    Use containertools.split_container_at_index_and_fracture_crossing_spanners()
-    to fracture spanners.
-
-    Use containertools.split_container_at_index_and_do_not_fracture_crossing_spanners()
-    to leave spanners unchanged.
+    r'''Splits `component` at index `i` when `component` is a container.
 
     ..  container:: example
 
-        **Example 1.** Split container and do not fracture crossing spanners:
+        **Example 1.** Split container:
 
         ::
 
-            >>> voice = Voice(Measure((3, 8), "c'8 c'8 c'8") * 2)
-            >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
-            >>> beam = spannertools.BeamSpanner(voice[:])
+            >>> voice = Voice()
+            >>> voice.append(Measure((3, 8), "c'8 d'8 e'8"))
+            >>> voice.append(Measure((3, 8), "f'8 g'8 a'8"))
+            >>> slur = spannertools.SlurSpanner(voice[:])
+            >>> show(voice) # doctest: +SKIP
 
         ..  doctest::
 
@@ -33,21 +26,26 @@ def split_container_at_index(component, i, fracture_spanners=False):
             \new Voice {
                 {
                     \time 3/8
-                    c'8 [
+                    c'8 (
                     d'8
                     e'8
                 }
                 {
                     f'8
                     g'8
-                    a'8 ]
+                    a'8 )
                 }
             }
 
         ::
 
-            >>> containertools.split_container_at_index(voice[1], 1, fracture_spanners=False)
+            >>> containertools.split_container_at_index(
+            ...     voice[1], 
+            ...     1, 
+            ...     fracture_spanners=False,
+            ...     )
             (Measure(1/8, [f'8]), Measure(2/8, [g'8, a'8]))
+            >>> show(voice) # doctest: +SKIP
 
         ..  doctest::
 
@@ -55,7 +53,7 @@ def split_container_at_index(component, i, fracture_spanners=False):
             \new Voice {
                 {
                     \time 3/8
-                    c'8 [
+                    c'8 (
                     d'8
                     e'8
                 }
@@ -66,7 +64,7 @@ def split_container_at_index(component, i, fracture_spanners=False):
                 {
                     \time 2/8
                     g'8
-                    a'8 ]
+                    a'8 )
                 }
             }
 
@@ -76,59 +74,68 @@ def split_container_at_index(component, i, fracture_spanners=False):
 
         ::
 
-            >>> voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 c'8 c'8") * 2)
-            >>> tuplet = voice[1]
-            >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
-            >>> beam = spannertools.BeamSpanner(voice[:])
+            >>> voice = Voice()
+            >>> voice.append(Measure((3, 8), "c'8 d'8 e'8"))
+            >>> voice.append(Measure((3, 8), "f'8 g'8 a'8"))
+            >>> slur = spannertools.SlurSpanner(voice[:])
+            >>> show(voice) # doctest: +SKIP
 
         ..  doctest::
 
             >>> f(voice)
             \new Voice {
-                \times 2/3 {
-                    c'8 [
+                {
+                    \time 3/8
+                    c'8 (
                     d'8
                     e'8
                 }
-                \times 2/3 {
+                {
                     f'8
                     g'8
-                    a'8 ]
+                    a'8 )
                 }
             }
 
         ::
 
             >>> left, right = containertools.split_container_at_index(
-            ...         tuplet, 1, fracture_spanners=True)
+            ...     voice[1], 
+            ...     1, 
+            ...     fracture_spanners=True
+            ...     )
+            >>> show(voice) # doctest: +SKIP
 
         ..  doctest::
 
             >>> f(voice)
             \new Voice {
-                \times 2/3 {
-                    c'8 [
+                {
+                    \time 3/8
+                    c'8 (
                     d'8
                     e'8
                 }
-                \times 2/3 {
-                    f'8 ]
+                {
+                    \time 1/8
+                    f'8 )
                 }
-                \times 2/3 {
-                    g'8 [
-                    a'8 ]
+                {
+                    \time 2/8
+                    g'8 (
+                    a'8 )
                 }
             }
 
-    Leave spanners and leaves untouched.
+    Preserves tuplet multiplier when `component` is a tuplet.
 
-    Resize resizable containers.
+    Preserves time signature denominator when `component` is a measure.
 
-    Preserve container multiplier.
+    Resizes resizable containers.
 
-    Preserve time signature denominator.
+    Returns split parts.
 
-    Return split parts.
+    Returns `component` unchanged when `component` is a leaf.
     '''
     from abjad.tools import spannertools
     from abjad.tools import containertools
@@ -139,14 +146,15 @@ def split_container_at_index(component, i, fracture_spanners=False):
 
     # convenience leaf index split definition
     if isinstance(component, leaftools.Leaf):
-        #raise Exception # debug
         if i <= 0:
             if fracture_spanners:
-                spannertools.fracture_spanners_attached_to_component(component, direction=Left)
+                spannertools.fracture_spanners_attached_to_component(
+                    component, direction=Left)
             return None, component
         else:
             if fracture_spanners:
-                spannertools.fracture_spanners_attached_to_component(component, direction=Right)
+                spannertools.fracture_spanners_attached_to_component(
+                    component, direction=Right)
             return component, None
 
     # remember container multiplier, if any
@@ -162,12 +170,14 @@ def split_container_at_index(component, i, fracture_spanners=False):
             contexttools.TimeSignatureMark).denominator
         left_duration = sum([x._get_duration() for x in left_music])
         left_pair = mathtools.NonreducedFraction(left_duration)
-        left_pair = left_pair.with_multiple_of_denominator(time_signature_denominator)
+        left_pair = left_pair.with_multiple_of_denominator(
+            time_signature_denominator)
         left_time_signature = contexttools.TimeSignatureMark(left_pair)
         left = component.__class__(left_time_signature, left_music)
         right_duration = sum([x._get_duration() for x in right_music])
         right_pair = mathtools.NonreducedFraction(right_duration)
-        right_pair = right_pair.with_multiple_of_denominator(time_signature_denominator)
+        right_pair = right_pair.with_multiple_of_denominator(
+            time_signature_denominator)
         right_time_signature = contexttools.TimeSignatureMark(right_pair)
         right = component.__class__(right_time_signature, right_music)
     elif isinstance(component, tuplettools.FixedDurationTuplet):
@@ -208,7 +218,8 @@ def split_container_at_index(component, i, fracture_spanners=False):
     # fracture spanners, if requested
     if fracture_spanners:
         if len(halves) == 2:
-            spannertools.fracture_spanners_attached_to_component(left, direction=Right)
+            spannertools.fracture_spanners_attached_to_component(
+                left, direction=Right)
 
     # return new left and right halves
     return left, right

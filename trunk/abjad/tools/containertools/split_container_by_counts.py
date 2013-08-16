@@ -2,65 +2,58 @@
 from abjad.tools import sequencetools
 
 
-def split_container_by_counts(components, counts, fracture_spanners=False, cyclic=False):
-    r'''Partition Python list of zero or more Abjad components.
-
-    Partition by zero or more positive integers in counts list.
-
-    Fracture spanners or not according to keyword.
-
-    Read counts in list cyclically or not according to keyword.
-
-    Return list of component lists.
+def split_container_by_counts(
+    components, 
+    counts, 
+    fracture_spanners=False, 
+    cyclic=False,
+    ):
+    r'''Split `components` by `counts`.
 
     ..  container:: example
 
-        **Example 1.** Split container cyclically by counts and do not 
-        fracture crossing spanners:
+        **Example 1.** Split container cyclically by counts:
 
         ::
 
-            >>> container = Container("{ c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8 }")
-            >>> beam = spannertools.BeamSpanner(container)
-            >>> slur = spannertools.SlurSpanner(container[0])
+            >>> container = Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+            >>> staff = Staff([container])
+            >>> slur = spannertools.SlurSpanner(container)
             >>> show(container) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> f(container)
-            {
+            >>> f(staff)
+            \new Staff {
                 {
-                    c'8 [ (
+                    c'8 (
                     d'8
                     e'8
                     f'8
                     g'8
                     a'8
                     b'8
-                    c''8 ] )
+                    c''8 )
                 }
             }
 
         ::
 
-
-        ::
-
             >>> containertools.split_container_by_counts(
-            ...     container[0], 
+            ...     container, 
             ...     [1, 3], 
             ...     cyclic=True, 
             ...     fracture_spanners=False,
             ...     )
             [[{c'8}], [{d'8, e'8, f'8}], [{g'8}], [{a'8, b'8, c''8}]]
-            >>> show(container) # doctest: +SKIP
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> f(container)
-            {
+            >>> f(staff)
+            \new Staff {
                 {
-                    c'8 [ (
+                    c'8 (
                 }
                 {
                     d'8
@@ -73,7 +66,7 @@ def split_container_by_counts(components, counts, fracture_spanners=False, cycli
                 {
                     a'8
                     b'8
-                    c''8 ] )
+                    c''8 )
                 }
             }
 
@@ -256,8 +249,7 @@ def split_container_by_counts(components, counts, fracture_spanners=False, cycli
                 }
             }
 
-
-    Return list of split parts.
+    Returns list of split parts.
     '''
     from abjad.tools import containertools
     from abjad.tools import leaftools

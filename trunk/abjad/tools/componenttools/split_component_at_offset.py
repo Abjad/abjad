@@ -183,7 +183,7 @@ def split_component_at_offset(
         if isinstance(x, measuretools.Measure)
         ]
 
-    # if we must split a power-of-two measure at a non-power-of-two split point
+    # if we must split a power-of-two measure at non-power-of-two split point
     # go ahead and transform the power-of-two measure to non-power-of-two 
     # equivalent now; code that crawls and splits later on will be happier
     if len(measures) == 1:
