@@ -479,17 +479,6 @@ class Leaf(Component):
         # return result
         return result
 
-    def _split_in_halves(self, n=2):
-        assert mathtools.is_nonnegative_integer_power_of_two(n)
-        assert 0 < n
-        duration = self._get_duration()
-        each_duration = duration / n
-        durations = n * [each_duration]
-        self._split_by_durations(
-            durations,
-            tie_split_notes=False,
-            )
-            
     def _to_tuplet_with_ratio(self, proportions, is_diminution=True):
         from abjad.tools import componenttools
         from abjad.tools import leaftools
