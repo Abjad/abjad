@@ -498,7 +498,7 @@ def split_components_by_durations(
                 additional_offsets = split_offsets[0]
                 leaf_split_durations.extend(additional_offsets)
                 offsets = split_offsets[-1]
-                leaf_shards = current_component._split_at_offsets(
+                leaf_shards = current_component._split_by_durations(
                     leaf_split_durations,
                     cyclic=False, 
                     fracture_spanners=fracture_spanners,

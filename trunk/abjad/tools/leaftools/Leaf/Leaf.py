@@ -326,12 +326,12 @@ class Leaf(Component):
         preprolated_duration = duration / prolation
         leaftools.set_leaf_duration(self, preprolated_duration)
 
-    # TODO: This should be replaced in favor of self._split_at_offsets().
-    #       The precondition is that self._split_at_offsets() must be
+    # TODO: This should be replaced in favor of self._split_by_durations().
+    #       The precondition is that self._split_by_durations() must be
     #       extended to handle graces.
     #       Also important to migrate over the (large-ish) set of tests for 
     #       this method.
-    def _split_at_offset(
+    def _split_by_duration(
         self, 
         offset, 
         fracture_spanners=False,
@@ -386,7 +386,7 @@ class Leaf(Component):
             selection._attach_tie_spanner_to_leaf_pair()
         return left_leaf_list, right_leaf_list
         # TODO: make this substitution work
-        #return self._split_leaf_at_offsets(
+        #return self._split_leaf_by_durations(
         #    leaf, 
         #    [offset], 
         #    cyclic=False,
@@ -395,7 +395,7 @@ class Leaf(Component):
         #    tie_split_rests=tie_split_rests,
         #    )
 
-    def _split_at_offsets(
+    def _split_by_durations(
         self,
         offsets,
         cyclic=False,

@@ -332,8 +332,8 @@ Renamed ``prolated_duration`` to ``offset`` in some functions::
 
     componenttools.split_component_by_duration()
     componenttools.split_components_by_offsets()
-    leaftools.split_leaf_at_offset()
-    leaftools.split_leaf_at_offset_and_rest_right_half()
+    leaftools.split_leaf_by_duration()
+    leaftools.split_leaf_by_duration_and_rest_right_half()
 
 Renamed all functions that contained ``as_string``::
 
@@ -546,7 +546,7 @@ Chnages to the ``leaftools`` package:
 
 - Renamed::
 
-    leaftools.split_leaf_at_offset_and_rest_right_half()
+    leaftools.split_leaf_by_duration_and_rest_right_half()
 
   ::
 

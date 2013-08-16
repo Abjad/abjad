@@ -158,7 +158,7 @@ def split_component_by_duration(
         return [], component
 
     if isinstance(component, leaftools.Leaf):
-        return component._split_at_offset(
+        return component._split_by_duration(
             offset,
             fracture_spanners=fracture_spanners,
             tie_split_notes=tie_split_notes,
@@ -227,7 +227,7 @@ def split_component_by_duration(
         did_split_leaf = True
         split_point_in_bottom = \
             global_split_point - bottom._get_timespan().start_offset
-        left_list, right_list = bottom._split_at_offset(
+        left_list, right_list = bottom._split_by_duration(
             split_point_in_bottom,
             fracture_spanners=fracture_spanners,
             tie_split_notes=tie_split_notes,

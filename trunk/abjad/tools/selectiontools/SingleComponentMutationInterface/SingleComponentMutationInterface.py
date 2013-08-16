@@ -91,7 +91,7 @@ class SingleComponentMutationInterface(Selection):
             grow_spanners=grow_spanners,
             )
 
-    def split_leaf_at_offset(
+    def split_leaf_by_duration(
         self, 
         offset, 
         fracture_spanners=False,
@@ -133,7 +133,7 @@ class SingleComponentMutationInterface(Selection):
 
             ::
 
-                >>> mutate(staff.select_leaves()[0]).split_leaf_at_offset(
+                >>> mutate(staff.select_leaves()[0]).split_leaf_by_duration(
                 ...     Duration(1, 32),
                 ...     tie_split_notes=False,
                 ...     )
@@ -195,7 +195,7 @@ class SingleComponentMutationInterface(Selection):
 
             ::
 
-                >>> mutate(staff.select_leaves()[0]).split_leaf_at_offset(
+                >>> mutate(staff.select_leaves()[0]).split_leaf_by_duration(
                 ...     Duration(1, 32),
                 ...     tie_split_notes=False,
                 ...     )
@@ -229,14 +229,14 @@ class SingleComponentMutationInterface(Selection):
         '''
         from abjad.tools import leaftools
         assert isinstance(self[0], leaftools.Leaf)
-        return self[0]._split_at_offset(
+        return self[0]._split_by_duration(
             offset, 
             fracture_spanners=fracture_spanners,
             tie_split_notes=tie_split_notes, 
             tie_split_rests=tie_split_rests,
             )
 
-    def split_leaf_at_offsets(
+    def split_leaf_by_durations(
         self,
         offsets,
         cyclic=False,
@@ -265,7 +265,7 @@ class SingleComponentMutationInterface(Selection):
 
             ::
 
-                >>> mutate(staff[0]).split_leaf_at_offsets(
+                >>> mutate(staff[0]).split_leaf_by_durations(
                 ...     [(3, 8)],
                 ...     tie_split_notes=True,
                 ...     )
@@ -301,7 +301,7 @@ class SingleComponentMutationInterface(Selection):
 
             ::
 
-                >>> mutate(staff[0]).split_leaf_at_offsets(
+                >>> mutate(staff[0]).split_leaf_by_durations(
                 ...     [(3, 8)], 
                 ...     cyclic=True,
                 ...     tie_split_notes=True,
@@ -338,7 +338,7 @@ class SingleComponentMutationInterface(Selection):
 
             ::
 
-                >>> mutate(staff[0]).split_leaf_at_offsets(
+                >>> mutate(staff[0]).split_leaf_by_durations(
                 ...     [(3, 8)],
                 ...     tie_split_notes=False,
                 ...     )
@@ -375,7 +375,7 @@ class SingleComponentMutationInterface(Selection):
 
             ::
 
-                >>> mutate(staff[0]).split_leaf_at_offsets(
+                >>> mutate(staff[0]).split_leaf_by_durations(
                 ...     [(3, 8)], 
                 ...     cyclic=True,
                 ...     tie_split_notes=False,
@@ -416,7 +416,7 @@ class SingleComponentMutationInterface(Selection):
 
             ::
 
-                >>> mutate(staff.select_leaves()[1]).split_leaf_at_offsets(
+                >>> mutate(staff.select_leaves()[1]).split_leaf_by_durations(
                 ...     [(1, 6)], 
                 ...     cyclic=False,
                 ...     tie_split_notes=True,
@@ -442,7 +442,7 @@ class SingleComponentMutationInterface(Selection):
         '''
         from abjad.tools import leaftools
         assert isinstance(self[0], leaftools.Leaf)
-        return self[0]._split_at_offsets(
+        return self[0]._split_by_durations(
             offsets,
             cyclic=cyclic,
             fracture_spanners=fracture_spanners,
