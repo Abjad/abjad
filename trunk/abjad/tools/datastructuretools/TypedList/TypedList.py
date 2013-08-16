@@ -3,20 +3,20 @@ import types
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class ObjectInventory(AbjadObject):
+class TypedList(AbjadObject):
     '''Ordered collection of objects, which optionally coerces its contents
     to the same type:
 
     ::
 
-        >>> object_inventory = datastructuretools.ObjectInventory()
+        >>> object_inventory = datastructuretools.TypedList()
         >>> object_inventory.append(23)
         >>> object_inventory.append('foo')
         >>> object_inventory.append(False)
         >>> object_inventory.append((1, 2, 3))
         >>> object_inventory.append(3.14159)
         >>> z(object_inventory)
-        datastructuretools.ObjectInventory([
+        datastructuretools.TypedList([
             23,
             'foo',
             False,
@@ -26,14 +26,14 @@ class ObjectInventory(AbjadObject):
 
     ::
 
-        >>> pitch_inventory = datastructuretools.ObjectInventory(
+        >>> pitch_inventory = datastructuretools.TypedList(
         ...     item_class=pitchtools.NamedChromaticPitch)
         >>> pitch_inventory.append(0)
         >>> pitch_inventory.append("d'")
         >>> pitch_inventory.append(('e', 4))
         >>> pitch_inventory.append(pitchtools.NamedChromaticPitch("f'"))
         >>> z(pitch_inventory)
-        datastructuretools.ObjectInventory([
+        datastructuretools.TypedList([
             pitchtools.NamedChromaticPitch("c'"),
             pitchtools.NamedChromaticPitch("d'"),
             pitchtools.NamedChromaticPitch("e'"),
@@ -141,12 +141,12 @@ class ObjectInventory(AbjadObject):
 
         ::
 
-            >>> dynamic_inventory = datastructuretools.ObjectInventory(
+            >>> dynamic_inventory = datastructuretools.TypedList(
             ...     item_class=contexttools.DynamicMark)
             >>> dynamic_inventory.append('ppp')
             >>> dynamic_inventory += ['p', 'mp', 'mf', 'fff']
             >>> z(dynamic_inventory)
-            datastructuretools.ObjectInventory([
+            datastructuretools.TypedList([
                 contexttools.DynamicMark(
                     'ppp',
                     target_context=stafftools.Staff
@@ -198,7 +198,7 @@ class ObjectInventory(AbjadObject):
 
             >>> pitch_inventory[-1] = 'gqs,'
             >>> z(pitch_inventory)
-            datastructuretools.ObjectInventory([
+            datastructuretools.TypedList([
                 pitchtools.NamedChromaticPitch("c'"),
                 pitchtools.NamedChromaticPitch("d'"),
                 pitchtools.NamedChromaticPitch("e'"),
@@ -211,7 +211,7 @@ class ObjectInventory(AbjadObject):
 
             >>> pitch_inventory[-1:] = ["f'", "g'", "a'", "b'", "c''"]
             >>> z(pitch_inventory)
-            datastructuretools.ObjectInventory([
+            datastructuretools.TypedList([
                 pitchtools.NamedChromaticPitch("c'"),
                 pitchtools.NamedChromaticPitch("d'"),
                 pitchtools.NamedChromaticPitch("e'"),
@@ -295,7 +295,7 @@ class ObjectInventory(AbjadObject):
 
         ::
 
-            >>> markup_inventory = datastructuretools.ObjectInventory(
+            >>> markup_inventory = datastructuretools.TypedList(
             ...     item_class=markuptools.Markup,
             ...     name='Indications',
             ...     )
@@ -309,7 +309,7 @@ class ObjectInventory(AbjadObject):
         ::
 
             >>> print markup_inventory.storage_format
-            datastructuretools.ObjectInventory([
+            datastructuretools.TypedList([
                 markuptools.Markup((
                     markuptools.MarkupCommand(
                         'italic',
@@ -400,7 +400,7 @@ class ObjectInventory(AbjadObject):
 
         ::
 
-            >>> integer_inventory = datastructuretools.ObjectInventory(
+            >>> integer_inventory = datastructuretools.TypedList(
             ...     item_class=int)
             >>> integer_inventory[:]
             []
@@ -423,7 +423,7 @@ class ObjectInventory(AbjadObject):
 
         ::
 
-            >>> integer_inventory = datastructuretools.ObjectInventory(
+            >>> integer_inventory = datastructuretools.TypedList(
             ...     tokens=[0, False, '0', 99],
             ...     item_class=int)
             >>> integer_inventory[:]
@@ -444,7 +444,7 @@ class ObjectInventory(AbjadObject):
 
         ::
 
-            >>> integer_inventory = datastructuretools.ObjectInventory(
+            >>> integer_inventory = datastructuretools.TypedList(
             ...     item_class=int)
             >>> integer_inventory.extend((False, True, 2, 3.14159))
             >>> integer_inventory[:]
@@ -460,7 +460,7 @@ class ObjectInventory(AbjadObject):
 
         ::
 
-            >>> pitch_inventory = datastructuretools.ObjectInventory(
+            >>> pitch_inventory = datastructuretools.TypedList(
             ...     tokens=('cqf', "as'", 'b,', 'dss'),
             ...     item_class=pitchtools.NamedChromaticPitch)
             >>> pitch_inventory.index("as'")
@@ -476,7 +476,7 @@ class ObjectInventory(AbjadObject):
 
         ::
 
-            >>> integer_inventory = datastructuretools.ObjectInventory(
+            >>> integer_inventory = datastructuretools.TypedList(
             ...     item_class=int)
             >>> integer_inventory.extend((True, 2, 4.3))
             >>> integer_inventory[:]
@@ -509,7 +509,7 @@ class ObjectInventory(AbjadObject):
 
         ::
 
-            >>> integer_inventory = datastructuretools.ObjectInventory(
+            >>> integer_inventory = datastructuretools.TypedList(
             ...     item_class=int)
             >>> integer_inventory.extend((False, True, 2, 3.14159))
             >>> integer_inventory[:]

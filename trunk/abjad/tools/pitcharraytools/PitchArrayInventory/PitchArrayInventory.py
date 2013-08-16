@@ -2,10 +2,10 @@
 from abjad.tools import measuretools
 from abjad.tools import scoretools
 from abjad.tools import stafftools
-from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
+from abjad.tools.datastructuretools.TypedList import TypedList
 
 
-class PitchArrayInventory(ObjectInventory):
+class PitchArrayInventory(TypedList):
     r'''Ordered collection of pitch arrays:
 
         >>> array_1 = pitcharraytools.PitchArray([

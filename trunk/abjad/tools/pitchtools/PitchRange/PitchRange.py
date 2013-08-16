@@ -64,7 +64,7 @@ class PitchRange(AbjadObject):
         elif len(args) == 1 and isinstance(args[0], str):
             self._init_by_symbolic_pitch_range_string(*args)
         elif len(args) == 1 and isinstance(args[0], 
-            (tuple, list, datastructuretools.ObjectInventory)):
+            (tuple, list, datastructuretools.TypedList)):
             start, stop = args[0]
             type(self).__init__(self, start, stop)
         else:

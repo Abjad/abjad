@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
+from abjad.tools.datastructuretools.TypedList import TypedList
 
 
-class CallbackInventory(ObjectInventory):
+class CallbackInventory(TypedList):
     r'''Callback inventory.
     '''
 

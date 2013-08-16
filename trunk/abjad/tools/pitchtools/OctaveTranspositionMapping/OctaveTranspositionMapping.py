@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
+from abjad.tools.datastructuretools.TypedList import TypedList
 from abjad.tools.pitchtools.OctaveTranspositionMappingComponent \
 	import OctaveTranspositionMappingComponent
 
 
-class OctaveTranspositionMapping(ObjectInventory):
+class OctaveTranspositionMapping(TypedList):
     '''Octave transposition mapping:
 
     ::
@@ -116,4 +116,4 @@ class OctaveTranspositionMapping(ObjectInventory):
 
         Return string.
         '''
-        return ObjectInventory.storage_format.fget(self)
+        return TypedList.storage_format.fget(self)

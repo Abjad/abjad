@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
+from abjad.tools.datastructuretools.TypedList import TypedList
 
 
-class InstrumentInventory(ObjectInventory):
+class InstrumentInventory(TypedList):
     r'''Abjad model of an ordered list of instruments:
 
     ::

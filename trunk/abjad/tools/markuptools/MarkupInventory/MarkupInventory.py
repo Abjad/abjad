@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.markuptools.Markup import Markup
-from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
+from abjad.tools.datastructuretools.TypedList import TypedList
 
 
-class MarkupInventory(ObjectInventory):
+class MarkupInventory(TypedList):
     '''Abjad model of an ordered list of markup:
 
     ::

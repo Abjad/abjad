@@ -202,7 +202,7 @@ class Performer(AbjadObject):
             if instruments is None:
                 self._instruments[:] = []
             elif isinstance(instruments,
-                (list, datastructuretools.ObjectInventory)):
+                (list, datastructuretools.TypedList)):
                 assert all(isinstance(x, Instrument) for x in instruments)
                 self._instruments[:] = instruments[:]
             else:

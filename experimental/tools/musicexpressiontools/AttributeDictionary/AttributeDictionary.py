@@ -30,7 +30,7 @@ class AttributeDictionary(AbjadObject, collections.OrderedDict):
 
     def __setitem__(self, key, value):
         assert isinstance(key, str), repr(key)
-        assert isinstance(value, (list, datastructuretools.ObjectInventory)), \
+        assert isinstance(value, (list, datastructuretools.TypedList)), \
             repr(value)
         collections.OrderedDict.__setitem__(self, key, value)
 

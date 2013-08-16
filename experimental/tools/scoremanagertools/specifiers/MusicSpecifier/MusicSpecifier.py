@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
+from abjad.tools.datastructuretools.TypedList import TypedList
 from experimental.tools.scoremanagertools.specifiers.MusicContributionSpecifier \
     import MusicContributionSpecifier
 from experimental.tools.scoremanagertools.specifiers.Specifier \
     import Specifier
 
 
-class MusicSpecifier(Specifier, ObjectInventory):
+class MusicSpecifier(Specifier, TypedList):
 
     ### CLASS VARIABLES ###
 
@@ -27,7 +27,7 @@ class MusicSpecifier(Specifier, ObjectInventory):
         source=None,
         ):
         contributions = contributions or []
-        ObjectInventory.__init__(self,
+        TypedList.__init__(self,
             tokens=contributions,
             item_class=MusicContributionSpecifier,
             )

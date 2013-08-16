@@ -63,7 +63,7 @@ class SetMethodMixin(AbjadObject):
         elif self._all_are_expressions(expr):
             return musicexpressiontools.ExpressionInventory(expr)
         elif isinstance(expr,
-            (tuple, list, datastructuretools.ObjectInventory)):
+            (tuple, list, datastructuretools.TypedList)):
             return musicexpressiontools.IterablePayloadExpression(expr)
         elif isinstance(expr, (str)):
             component = iotools.p(expr)

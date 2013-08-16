@@ -186,7 +186,7 @@ def test_IterablePayloadExpression__callbacks_09():
 def test_IterablePayloadExpression__callbacks_10():
     r'''Logical AND of divisions and timespan.
     '''
-    py.test.skip('FIXME: Broke after ObjectInventory stopped inheriting from list.')
+    py.test.skip('FIXME: Broke after TypedList stopped inheriting from list.')
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     material_manager = musicexpressiontools.MaterialManager()

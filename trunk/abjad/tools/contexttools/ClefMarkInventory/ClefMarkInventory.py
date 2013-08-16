@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.contexttools.ClefMark import ClefMark
-from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
+from abjad.tools.datastructuretools.TypedList import TypedList
 
 
-class ClefMarkInventory(ObjectInventory):
+class ClefMarkInventory(TypedList):
     '''Abjad model of an ordered list of clefs:
 
     ::

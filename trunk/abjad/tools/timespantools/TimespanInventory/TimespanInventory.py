@@ -5,10 +5,10 @@ import math
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
 from abjad.tools import timerelationtools
-from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
+from abjad.tools.datastructuretools.TypedList import TypedList
 
 
-class TimespanInventory(ObjectInventory):
+class TimespanInventory(TypedList):
     r'''Timespan inventory.
 
     ..  container:: example

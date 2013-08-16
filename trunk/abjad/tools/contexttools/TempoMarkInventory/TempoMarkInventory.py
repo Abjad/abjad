@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.contexttools.TempoMark import TempoMark
-from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
+from abjad.tools.datastructuretools.TypedList import TypedList
 
 
-class TempoMarkInventory(ObjectInventory):
+class TempoMarkInventory(TypedList):
     r'''Abjad model of an ordered list of tempo marks:
 
     ::

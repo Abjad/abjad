@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
+from abjad.tools.datastructuretools.TypedList import TypedList
 from abjad.tools.pitchtools.PitchRange import PitchRange
 
 
-class PitchRangeInventory(ObjectInventory):
+class PitchRangeInventory(TypedList):
     r'''Abjad model of an ordered list of pitch ranges:
 
     ::

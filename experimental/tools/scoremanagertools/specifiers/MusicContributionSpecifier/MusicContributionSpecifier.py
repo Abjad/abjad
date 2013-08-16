@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
+from abjad.tools.datastructuretools.TypedList import TypedList
 from experimental.tools.scoremanagertools.specifiers.Specifier \
     import Specifier
 from experimental.tools.scoremanagertools.specifiers.ArticulationSpecifier \
     import ArticulationSpecifier
 
 
-class MusicContributionSpecifier(Specifier, ObjectInventory):
+class MusicContributionSpecifier(Specifier, TypedList):
 
     def __init__(
         self,
@@ -15,7 +15,7 @@ class MusicContributionSpecifier(Specifier, ObjectInventory):
         name=None,
         source=None,
         ):
-        ObjectInventory.__init__(self, parameter_specifiers)
+        TypedList.__init__(self, parameter_specifiers)
         Specifier.__init__(
             self,
             description=description,

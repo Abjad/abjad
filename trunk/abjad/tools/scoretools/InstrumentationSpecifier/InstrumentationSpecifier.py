@@ -150,7 +150,7 @@ class InstrumentationSpecifier(AbjadObject):
         def fset(self, performers):
             from abjad.tools import scoretools
             assert isinstance(performers, 
-                (list, datastructuretools.ObjectInventory, type(None)))
+                (list, datastructuretools.TypedList, type(None)))
             if performers is None:
                 self._performers[:] = []
             else:

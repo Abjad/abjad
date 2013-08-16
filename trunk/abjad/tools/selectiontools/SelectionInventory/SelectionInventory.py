@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.datastructuretools import ObjectInventory
+from abjad.tools.datastructuretools import TypedList
 
 
-class SelectionInventory(ObjectInventory):
+class SelectionInventory(TypedList):
     r'''An inventory of component selections:
 
     ::

@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 import copy
-from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
+from abjad.tools.datastructuretools.TypedList import TypedList
 from experimental.tools.musicexpressiontools.IterablePayloadExpression \
     import IterablePayloadExpression
 
 
-class ExpressionInventory(ObjectInventory, IterablePayloadExpression):
+class ExpressionInventory(TypedList, IterablePayloadExpression):
     r'''Expression inventory.
     '''
 

@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
+from abjad.tools.datastructuretools.TypedList import TypedList
 from abjad.tools.pitchtools.OctaveTranspositionMapping \
 	import OctaveTranspositionMapping
 
 
-class OctaveTranspositionMappingInventory(ObjectInventory):
+class OctaveTranspositionMappingInventory(TypedList):
     '''Model of an ordered list of octave transposition mappings:
 
     ::

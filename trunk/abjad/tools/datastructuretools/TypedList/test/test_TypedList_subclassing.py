@@ -1,19 +1,19 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
+from abjad.tools.datastructuretools.TypedList import TypedList
 
 
-class SpecialObjectInventory(ObjectInventory):
+class SpecialObjectInventory(TypedList):
     def __init__(self, *args, **kwargs):
         self.flavor = kwargs.get('flavor', None)
         self.color = kwargs.get('color', None)
         kwargs.pop('flavor', None)
         kwargs.pop('color', None)
-        ObjectInventory.__init__(self, *args, **kwargs)
+        TypedList.__init__(self, *args, **kwargs)
     @property
     def _keyword_argument_names(self):
         result = []
-        result.extend(ObjectInventory._keyword_argument_names.fget(self))
+        result.extend(TypedList._keyword_argument_names.fget(self))
         result.extend(['name', 'flavor', 'color'])
         return tuple(sorted(result))
     @property
@@ -21,7 +21,7 @@ class SpecialObjectInventory(ObjectInventory):
         return 'specialtools'
 
 
-def test_ObjectInventory_subclassing_01():
+def test_TypedList_subclassing_01():
     r'''Inherited keyword argument names.
     '''
 
@@ -29,7 +29,7 @@ def test_ObjectInventory_subclassing_01():
     assert foo._keyword_argument_names == ('color', 'flavor', 'name')
 
 
-def test_ObjectInventory_subclassing_02():
+def test_TypedList_subclassing_02():
     r'''Empty inventory. No keywords.
     '''
 
@@ -39,7 +39,7 @@ def test_ObjectInventory_subclassing_02():
     assert foo._tools_package_qualified_indented_repr == 'specialtools.SpecialObjectInventory([])'
 
 
-def test_ObjectInventory_subclassing_03():
+def test_TypedList_subclassing_03():
     r'''Empty inventory. With keywords.
     '''
 
@@ -49,7 +49,7 @@ def test_ObjectInventory_subclassing_03():
     assert foo._tools_package_qualified_indented_repr == "specialtools.SpecialObjectInventory([],\n\tcolor='red',\n\tname='foo'\n\t)"
 
 
-def test_ObjectInventory_subclassing_04():
+def test_TypedList_subclassing_04():
     r'''Populated inventory. No keywords.
     '''
 
@@ -59,7 +59,7 @@ def test_ObjectInventory_subclassing_04():
     assert foo._tools_package_qualified_indented_repr == "specialtools.SpecialObjectInventory([\n\t'foo',\n\t99\n\t])"
 
 
-def test_ObjectInventory_subclassing_05():
+def test_TypedList_subclassing_05():
     r'''Populated inventory. With keywords.
     '''
 

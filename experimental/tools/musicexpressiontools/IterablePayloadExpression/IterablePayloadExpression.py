@@ -43,7 +43,7 @@ class IterablePayloadExpression(PayloadExpression):
         assert isinstance(payload, (
             str, tuple, list, 
             containertools.Container,
-            datastructuretools.ObjectInventory,
+            datastructuretools.TypedList,
             musicexpressiontools.DivisionList,
             selectiontools.SliceSelection,
             ))

@@ -139,7 +139,7 @@ Add the new ``datastructuretools`` package.
 
     datastructuretools.Digraph
     datastructuretools.ImmutableDictionary
-    datastructuretools.ObjectInventory
+    datastructuretools.TypedList
 
 - Use ``datastructuretools.Digraph`` to detect cycles in any collection of hashable objects::
 
@@ -163,7 +163,7 @@ Add the new ``datastructuretools`` package.
     >>> digraph.is_cyclic
     True
 
-- Use ``datastructuretools.ObjectInventory`` as the base class for an ordered collection
+- Use ``datastructuretools.TypedList`` as the base class for an ordered collection
   of system objects.
 
 - Object inventories inherit from ``list`` and are mutable.

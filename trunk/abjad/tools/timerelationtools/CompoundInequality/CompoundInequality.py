@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
-from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
+from abjad.tools.datastructuretools.TypedList import TypedList
 
 
-class CompoundInequality(ObjectInventory):
+class CompoundInequality(TypedList):
     '''Compound inequality:
 
     ::
@@ -58,7 +58,7 @@ class CompoundInequality(ObjectInventory):
     ### INITIALIZER ###
 
     def __init__(self, tokens=None, logical_operator='and', name=None):
-        ObjectInventory.__init__(self, tokens=tokens, name=name)
+        TypedList.__init__(self, tokens=tokens, name=name)
         self._logical_operator = logical_operator
 
     ### PRIVATE PROPERTIES ###
