@@ -26,21 +26,21 @@ def _reindent_3_spaces_as_4():
 
 
 def _strip_trailing_whitespace(file, path):
-    filepath = os.path.join(path, file)
-    f = open(filepath, 'r')
+    file_path = os.path.join(path, file)
+    f = open(file_path, 'r')
     lines = f.read().split('\n')
     f.close()
     for i, line in enumerate(lines):
         lines[i] = line.rstrip()
-    f = open(filepath, 'w')
+    f = open(file_path, 'w')
     f.write('\n'.join(lines))
     f.close()
 
 
 def _find_indent_gcd(file, path):
     indents = [ ]
-    filepath = os.path.join(path, file)
-    f = open(filepath, 'r')
+    file_path = os.path.join(path, file)
+    f = open(file_path, 'r')
     lines = f.read().split('\n')
     f.close()
     for i, line in enumerate(lines):
@@ -56,8 +56,8 @@ def _find_indent_gcd(file, path):
 
 def _find_inconsistent_indents(file, path):
     inconsistencies = [ ]
-    filepath = os.path.join(path, file)
-    f = open(filepath, 'r')
+    file_path = os.path.join(path, file)
+    f = open(file_path, 'r')
     lines = f.read().split('\n')
     f.close()
     for i, line in enumerate(lines):
@@ -70,15 +70,15 @@ def _find_inconsistent_indents(file, path):
 
 
 def _reindent(file, path):
-    filepath = os.path.join(path, file)
-    f = open(filepath, 'r')
+    file_path = os.path.join(path, file)
+    f = open(file_path, 'r')
     lines = f.read().split('\n')
     f.close()
     for i, line in enumerate(lines):
         indent = len(line) - len(line.lstrip())
         div, mod = divmod(indent, 3)
         if mod != 0:
-            print 'Unexpected indent (%d, %d) in %s:%d' % (div, mod, filepath, mod)
+            print 'Unexpected indent (%d, %d) in %s:%d' % (div, mod, file_path, mod)
             if 0 < i:
                 print '%d:\t"%s"' % (i - 1, lines[i - 1])
             print '%d:\t"%s"' % (i, line)
@@ -86,7 +86,7 @@ def _reindent(file, path):
                 print '%d:\t"%s"' % (i + 1, lines[i + 1])
             raise Exception()
         lines[i] = lines[i].replace('   ' * div, '    ' * div)
-    f = open(filepath, 'w')
+    f = open(file_path, 'w')
     f.write('\n'.join(lines))
     f.close()
 

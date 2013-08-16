@@ -13,9 +13,9 @@ def test_AbjadBookProcessor___call___01():
     else:
         directory = os.path.dirname(__file__)
 
-    filepath = os.path.join(directory, 'text.rst.raw')
+    file_path = os.path.join(directory, 'text.rst.raw')
 
-    with open(filepath, 'r') as f:
+    with open(file_path, 'r') as f:
         lines = f.read().split('\n')
 
     book = abjadbooktools.AbjadBookProcessor(

@@ -24,9 +24,9 @@ class LilyPondGrammarGenerator(AbjadObject):
 
     def _extract_productions_from_parser_output(
         self, 
-        filepath,
+        file_path,
         ):
-        with open(filepath, 'r') as f:
+        with open(file_path, 'r') as f:
             lines = f.read().split('\n')
         productions = { }
         nonterminal = None
@@ -63,9 +63,9 @@ class LilyPondGrammarGenerator(AbjadObject):
 
     def _extract_token_names_from_parser_tab_hh(
         self,
-        filepath,
+        file_path,
         ):
-        with open(filepath, 'r') as f:
+        with open(file_path, 'r') as f:
             lines = f.read().split('\n')
         token_names = { }
         in_enum = False
@@ -87,9 +87,9 @@ class LilyPondGrammarGenerator(AbjadObject):
     
     def _extract_token_values_from_parser_output(
         self, 
-        filepath,
+        file_path,
         ):
-        with open(filepath, 'r') as f:
+        with open(file_path, 'r') as f:
             lines = f.read().split('\n')
         token_values = { }
         in_token_list = False

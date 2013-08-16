@@ -41,15 +41,15 @@ class Documenter(abctools.Maker):
         return type(self)(obj=obj, prefix=prefix)
 
     @staticmethod
-    def write(filepath, restructured_text):
+    def write(file_path, restructured_text):
         should_write = True
-        if os.path.exists(filepath):
-            with open(filepath, 'r') as f:
+        if os.path.exists(file_path):
+            with open(file_path, 'r') as f:
                 if f.read() == restructured_text:
                     should_write = False
         if should_write:
-            print 'WRITING {}'.format(os.path.relpath(filepath))
-            with open(filepath, 'w') as f:
+            print 'WRITING {}'.format(os.path.relpath(file_path))
+            with open(file_path, 'w') as f:
                 f.write(restructured_text)
 
     ### PUBLIC PROPERTIES ###
