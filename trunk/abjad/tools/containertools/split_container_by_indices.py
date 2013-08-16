@@ -2,7 +2,7 @@
 from abjad.tools import sequencetools
 
 
-def split_container_by_counts(
+def split_container_by_indices(
     container, 
     counts, 
     fracture_spanners=False, 
@@ -39,7 +39,7 @@ def split_container_by_counts(
 
         ::
 
-            >>> containertools.split_container_by_counts(
+            >>> containertools.split_container_by_indices(
             ...     container, 
             ...     [1, 3], 
             ...     cyclic=True, 
@@ -100,7 +100,7 @@ def split_container_by_counts(
 
         ::
 
-            >>> containertools.split_container_by_counts(
+            >>> containertools.split_container_by_indices(
             ...     container[0], 
             ...     [1, 3], 
             ...     cyclic=True, 
@@ -161,7 +161,7 @@ def split_container_by_counts(
 
         ::
 
-            >>> containertools.split_container_by_counts(
+            >>> containertools.split_container_by_indices(
             ...     container[0], 
             ...     [1, 3], 
             ...     cyclic=False, 
@@ -220,7 +220,7 @@ def split_container_by_counts(
 
         ::
 
-            >>> containertools.split_container_by_counts(
+            >>> containertools.split_container_by_indices(
             ...     container[0], 
             ...     [1, 3], 
             ...     cyclic=False, 
