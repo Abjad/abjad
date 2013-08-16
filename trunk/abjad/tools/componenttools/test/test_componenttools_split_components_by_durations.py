@@ -6,49 +6,36 @@ def test_componenttools_split_components_by_durations_01():
     r'''Cyclically split note in score. Don't fracture spanners.
     '''
 
-    staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    staff = Staff()
+    staff.append(Measure((2, 8), "c'8 d'8"))
+    staff.append(Measure((2, 8), "e'8 f'8"))
     select(staff[:]).attach_spanners(spannertools.BeamSpanner)
     spannertools.SlurSpanner(staff.select_leaves())
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8 [ (
-            d'8 ]
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
         }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
+        '''
+        )
 
     parts = componenttools.split_components_by_durations(
         staff[0][1:2], 
-        [(3, 64)],
+        [Duration(3, 64)],
         cyclic=True,
         fracture_spanners=False,
         )
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8 [ (
-            d'32. ~
-            d'32. ~
-            d'32 ]
-        }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
-
-    assert select(staff).is_well_formed()
-    assert len(parts) == 3
     assert testtools.compare(
         staff,
         r'''
@@ -68,6 +55,9 @@ def test_componenttools_split_components_by_durations_01():
         '''
         )
 
+    assert select(staff).is_well_formed()
+    assert len(parts) == 3
+
 
 def test_componenttools_split_components_by_durations_02():
     r'''Cyclically split consecutive notes in score. Don't fracture spanners.
@@ -77,45 +67,30 @@ def test_componenttools_split_components_by_durations_02():
     select(staff[:]).attach_spanners(spannertools.BeamSpanner)
     spannertools.SlurSpanner(staff.select_leaves())
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8 [ (
-            d'8 ]
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
         }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
+        '''
+        )
 
     parts = componenttools.split_components_by_durations(
         staff.select_leaves(), 
-        [(3, 32)], cyclic=True,
+        [Duration(3, 32)], 
+        cyclic=True,
         fracture_spanners=False,
         )
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'16. [ ( ~
-            c'32
-            d'16. ~
-            d'32 ]
-        }
-        {
-            e'16. [ ~
-            e'32
-            f'8 ] )
-        }
-    }
-    '''
-
-    assert select(staff).is_well_formed()
-    assert len(parts) == 6
     assert testtools.compare(
         staff,
         r'''
@@ -137,6 +112,9 @@ def test_componenttools_split_components_by_durations_02():
         '''
         )
 
+    assert select(staff).is_well_formed()
+    assert len(parts) == 6
+
 
 def test_componenttools_split_components_by_durations_03():
     r'''Cyclically split measure in score. Don't fracture spanners.
@@ -146,47 +124,31 @@ def test_componenttools_split_components_by_durations_03():
     select(staff[:]).attach_spanners(spannertools.BeamSpanner)
     spannertools.SlurSpanner(staff.select_leaves())
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8 [ (
-            d'8 ]
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
         }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
+        '''
+        )
 
-    parts = componenttools.split_components_by_durations(staff[:1], [(3, 32)],
-        cyclic=True, fracture_spanners=False, tie_split_notes=False)
+    parts = componenttools.split_components_by_durations(
+        staff[:1], 
+        [Duration(3, 32)],
+        cyclic=True, 
+        fracture_spanners=False, 
+        tie_split_notes=False,
+        )
 
-    r'''
-    \new Staff {
-        {
-            \time 3/32
-            c'16. [ (
-        }
-        {
-            c'32
-            d'16
-        }
-        {
-            \time 2/32
-            d'16 ]
-        }
-        {
-            \time 2/8
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
-
-    assert select(staff).is_well_formed()
-    assert len(parts) == 3
     assert testtools.compare(
         staff,
         r'''
@@ -212,66 +174,44 @@ def test_componenttools_split_components_by_durations_03():
         '''
         )
 
+    assert select(staff).is_well_formed()
+    assert len(parts) == 3
+
 
 def test_componenttools_split_components_by_durations_04():
-    r'''Cyclically split consecutive measures in score. Don't fracture spanners.
+    r'''Cyclically split consecutive measures in score. 
+    Don't fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     select(staff[:]).attach_spanners(spannertools.BeamSpanner)
     spannertools.SlurSpanner(staff.select_leaves())
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8 [ (
-            d'8 ]
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
         }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
+        '''
+        )
 
-    parts = componenttools.split_components_by_durations(staff[:], [(3, 32)],
-        cyclic=True, fracture_spanners=False, tie_split_notes=False)
+    parts = componenttools.split_components_by_durations(
+        staff[:], 
+        [Duration(3, 32)],
+        cyclic=True, 
+        fracture_spanners=False, 
+        tie_split_notes=False,
+        )
 
-    r'''
-    \new Staff {
-        {
-            \time 3/32
-            c'16. [ (
-        }
-        {
-            c'32
-            d'16
-        }
-        {
-            \time 2/32
-            d'16 ]
-        }
-        {
-            \time 1/32
-            e'32 [
-        }
-        {
-            \time 3/32
-            e'16.
-        }
-        {
-            f'16.
-        }
-        {
-            \time 1/32
-            f'32 ] )
-        }
-    }
-    '''
-
-    assert select(staff).is_well_formed()
-    assert len(parts) == 6
     assert testtools.compare(
         staff,
         r'''
@@ -307,6 +247,9 @@ def test_componenttools_split_components_by_durations_04():
         '''
         )
 
+    assert select(staff).is_well_formed()
+    assert len(parts) == 6
+
 
 def test_componenttools_split_components_by_durations_05():
     r'''Cyclically split orphan measures. Don't fracture spanners.
@@ -315,46 +258,17 @@ def test_componenttools_split_components_by_durations_05():
     measures = [Measure((2, 8), "c'8 d'8"), Measure((2, 8), "e'8 f'8")]
     select(measures).attach_spanners(spannertools.BeamSpanner)
 
-    parts = componenttools.split_components_by_durations(measures, [(3, 32)],
-        cyclic=True, fracture_spanners=False, tie_split_notes=False)
+    parts = componenttools.split_components_by_durations(
+        measures, 
+        [Duration(3, 32)],
+        cyclic=True, 
+        fracture_spanners=False, 
+        tie_split_notes=False,
+        )
 
     music = sequencetools.flatten_sequence(parts)
     staff = Staff(music)
 
-    r'''
-    \new Staff {
-        {
-            \time 3/32
-            c'16. [
-        }
-        {
-            c'32
-            d'16
-        }
-        {
-            \time 2/32
-            d'16 ]
-        }
-        {
-            \time 1/32
-            e'32 [
-        }
-        {
-            \time 3/32
-            e'16.
-        }
-        {
-            f'16.
-        }
-        {
-            \time 1/32
-            f'32 ]
-        }
-    }
-    '''
-
-    assert select(staff).is_well_formed()
-    assert len(parts) == 6
     assert testtools.compare(
         staff,
         r'''
@@ -390,6 +304,9 @@ def test_componenttools_split_components_by_durations_05():
         '''
         )
 
+    assert select(staff).is_well_formed()
+    assert len(parts) == 6
+
 
 def test_componenttools_split_components_by_durations_06():
     r'''Cyclically split note in score. Don't fracture spanners.
@@ -399,42 +316,31 @@ def test_componenttools_split_components_by_durations_06():
     select(staff[:]).attach_spanners(spannertools.BeamSpanner)
     spannertools.SlurSpanner(staff.select_leaves())
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8 [ (
-            d'8 ]
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
         }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
+        '''
+        )
 
-    parts = componenttools.split_components_by_durations(staff[0][1:], [(1, 32)],
-        cyclic=True, fracture_spanners=False, tie_split_notes=True)
+    parts = componenttools.split_components_by_durations(
+        staff[0][1:], 
+        [Duration(1, 32)],
+        cyclic=True, 
+        fracture_spanners=False, 
+        tie_split_notes=True,
+        )
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8 [ (
-            d'32 ~
-            d'32 ~
-            d'32 ~
-            d'32 ]
-        }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
-
-    assert select(staff).is_well_formed()
-    assert len(parts) == 4
     assert testtools.compare(
         staff,
         r'''
@@ -455,6 +361,9 @@ def test_componenttools_split_components_by_durations_06():
         '''
         )
 
+    assert select(staff).is_well_formed()
+    assert len(parts) == 4
+
 
 def test_componenttools_split_components_by_durations_07():
     r'''Cyclically split consecutive notes in score. Don't fracture spanners.
@@ -464,43 +373,31 @@ def test_componenttools_split_components_by_durations_07():
     select(staff[:]).attach_spanners(spannertools.BeamSpanner)
     spannertools.SlurSpanner(staff.select_leaves())
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8 [ (
-            d'8 ]
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
         }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
+        '''
+        )
 
-    parts = componenttools.split_components_by_durations(staff.select_leaves(), [(1, 16)],
-        cyclic=True, fracture_spanners=False, tie_split_notes=True)
+    parts = componenttools.split_components_by_durations(
+        staff.select_leaves(), 
+        [Duration(1, 16)],
+        cyclic=True, 
+        fracture_spanners=False, 
+        tie_split_notes=True,
+        )
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'16 [ ( ~
-            c'16
-            d'16 ~
-            d'16 ]
-        }
-        {
-            e'16 [ ~
-            e'16
-            f'16 ~
-            f'16 ] )
-        }
-    }
-    '''
-
-    assert select(staff).is_well_formed()
-    assert len(parts) == 8
     assert testtools.compare(
         staff,
         r'''
@@ -522,6 +419,9 @@ def test_componenttools_split_components_by_durations_07():
         '''
         )
 
+    assert select(staff).is_well_formed()
+    assert len(parts) == 8
+
 
 def test_componenttools_split_components_by_durations_08():
     r'''Cyclically split measure in score. Don't fracture spanners.
@@ -531,48 +431,31 @@ def test_componenttools_split_components_by_durations_08():
     select(staff[:]).attach_spanners(spannertools.BeamSpanner)
     spannertools.SlurSpanner(staff.select_leaves())
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8 [ (
-            d'8 ]
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
         }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
+        '''
+        )
 
-    parts = componenttools.split_components_by_durations(staff[:1], [(1, 16)],
-        cyclic=True, fracture_spanners=False, tie_split_notes=True)
+    parts = componenttools.split_components_by_durations(
+        staff[:1], 
+        [Duration(1, 16)],
+        cyclic=True, 
+        fracture_spanners=False, 
+        tie_split_notes=True,
+        )
 
-    r'''
-    \new Staff {
-        {
-            \time 1/16
-            c'16 [ ( ~
-        }
-        {
-            c'16
-        }
-        {
-            d'16 ~
-        }
-        {
-            d'16 ]
-        }
-        {
-            \time 2/8
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
-
-    assert select(staff).is_well_formed()
-    assert len(parts) == 4
     assert testtools.compare(
         staff,
         r'''
@@ -599,66 +482,44 @@ def test_componenttools_split_components_by_durations_08():
         '''
         )
 
+    assert select(staff).is_well_formed()
+    assert len(parts) == 4
+
 
 def test_componenttools_split_components_by_durations_09():
-    r'''Cyclically split consecutive measures in score. Don't fracture spanners.
+    r'''Cyclically split consecutive measures in score. 
+    Don't fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     select(staff[:]).attach_spanners(spannertools.BeamSpanner)
     spannertools.SlurSpanner(staff.select_leaves())
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8 [ (
-            d'8 ]
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
         }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
+        '''
+        )
 
-    parts = componenttools.split_components_by_durations(staff[:], [(3, 32)],
-        cyclic=True, fracture_spanners=False, tie_split_notes=True)
+    parts = componenttools.split_components_by_durations(
+        staff[:], 
+        [Duration(3, 32)],
+        cyclic=True, 
+        fracture_spanners=False, 
+        tie_split_notes=True,
+        )
 
-    r'''
-    \new Staff {
-        {
-            \time 3/32
-            c'16. [ ( ~
-        }
-        {
-            c'32
-            d'16 ~
-        }
-        {
-            \time 2/32
-            d'16 ]
-        }
-        {
-            \time 1/32
-            e'32 [ ~
-        }
-        {
-            \time 3/32
-            e'16.
-        }
-        {
-            f'16. ~
-        }
-        {
-            \time 1/32
-            f'32 ] )
-        }
-    }
-    '''
-
-    assert select(staff).is_well_formed()
-    assert len(parts) == 6
     assert testtools.compare(
         staff,
         r'''
@@ -694,6 +555,9 @@ def test_componenttools_split_components_by_durations_09():
         '''
         )
 
+    assert select(staff).is_well_formed()
+    assert len(parts) == 6
+
 
 def test_componenttools_split_components_by_durations_10():
     r'''Cyclically split note in score. Fracture spanners.
@@ -703,46 +567,30 @@ def test_componenttools_split_components_by_durations_10():
     select(staff[:]).attach_spanners(spannertools.BeamSpanner)
     spannertools.SlurSpanner(staff.select_leaves())
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8 [ (
-            d'8 ]
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
         }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
+        '''
+        )
 
     parts = componenttools.split_components_by_durations(
         staff[0][1:2], 
-        [(3, 64)], 
+        [Duration(3, 64)], 
         cyclic=True,
         fracture_spanners=True,
         )
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8 [ (
-            d'32. )
-            d'32. ( )
-            d'64 ( ~
-            d'64 ]
-        }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
-
-    assert select(staff).is_well_formed()
-    assert len(parts) == 3
     assert testtools.compare(
         staff,
         r'''
@@ -762,6 +610,9 @@ def test_componenttools_split_components_by_durations_10():
         '''
         )
 
+    assert select(staff).is_well_formed()
+    assert len(parts) == 3
+
 
 def test_componenttools_split_components_by_durations_11():
     r'''Cyclically split consecutive notes in score. Fracture spanners.
@@ -771,43 +622,30 @@ def test_componenttools_split_components_by_durations_11():
     select(staff[:]).attach_spanners(spannertools.BeamSpanner)
     spannertools.SlurSpanner(staff.select_leaves())
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8 [ (
-            d'8 ]
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
         }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
+        '''
+        )
 
     parts = componenttools.split_components_by_durations(
-        staff.select_leaves(), [(3, 32)], cyclic=True, fracture_spanners=True)
+        staff.select_leaves(), 
+        [Duration(3, 32)], 
+        cyclic=True, 
+        fracture_spanners=True,
+        )
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'16. [ ( ) ~
-            c'32 (
-            d'16 ) ~
-            d'16 ] (
-        }
-        {
-            e'32 [ ) ~
-            e'16. (
-            f'16. ) ~
-            f'32 ] ( )
-        }
-    }
-    '''
-
-    assert select(staff).is_well_formed()
-    assert len(parts) == 6
     assert testtools.compare(
         staff,
         r'''
@@ -829,6 +667,9 @@ def test_componenttools_split_components_by_durations_11():
         '''
         )
 
+    assert select(staff).is_well_formed()
+    assert len(parts) == 6
+
 
 def test_componenttools_split_components_by_durations_12():
     r'''Cyclically split measure in score. Fracture spanners.
@@ -838,47 +679,31 @@ def test_componenttools_split_components_by_durations_12():
     select(staff[:]).attach_spanners(spannertools.BeamSpanner)
     spannertools.SlurSpanner(staff.select_leaves())
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8 [ (
-            d'8 ]
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
         }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
+        '''
+        )
 
-    parts = componenttools.split_components_by_durations(staff[:1], [(3, 32)],
-        cyclic=True, fracture_spanners=True, tie_split_notes=False)
+    parts = componenttools.split_components_by_durations(
+        staff[:1], 
+        [Duration(3, 32)],
+        cyclic=True, 
+        fracture_spanners=True, 
+        tie_split_notes=False,
+        )
 
-    r'''
-    \new Staff {
-        {
-            \time 3/32
-            c'16. [ ] ( )
-        }
-        {
-            c'32 [ (
-            d'16 ] )
-        }
-        {
-            \time 2/32
-            d'16 [ ] (
-        }
-        {
-            \time 2/8
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
-
-    assert select(staff).is_well_formed()
-    assert len(parts) == 3
     assert testtools.compare(
         staff,
         r'''
@@ -904,6 +729,9 @@ def test_componenttools_split_components_by_durations_12():
         '''
         )
 
+    assert select(staff).is_well_formed()
+    assert len(parts) == 3
+
 
 def test_componenttools_split_components_by_durations_13():
     r'''Cyclically split consecutive measures in score. Fracture spanners.
@@ -913,57 +741,31 @@ def test_componenttools_split_components_by_durations_13():
     select(staff[:]).attach_spanners(spannertools.BeamSpanner)
     spannertools.SlurSpanner(staff.select_leaves())
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8 [ (
-            d'8 ]
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
         }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
+        '''
+        )
 
-    parts = componenttools.split_components_by_durations(staff[:], [(3, 32)],
-        cyclic=True, fracture_spanners=True, tie_split_notes=False)
+    parts = componenttools.split_components_by_durations(
+        staff[:], 
+        [Duration(3, 32)],
+        cyclic=True, 
+        fracture_spanners=True, 
+        tie_split_notes=False,
+        )
 
-    r'''
-    \new Staff {
-        {
-            \time 3/32
-            c'16. [ ] ( )
-        }
-        {
-            c'32 [ (
-            d'16 ] )
-        }
-        {
-            \time 2/32
-            d'16 [ ] (
-        }
-        {
-            \time 1/32
-            e'32 [ ] )
-        }
-        {
-            \time 3/32
-            e'16. [ ] ( )
-        }
-        {
-            f'16. [ ] ( )
-        }
-        {
-            \time 1/32
-            f'32 [ ] ( )
-        }
-    }
-    '''
-
-    assert select(staff).is_well_formed()
-    assert len(parts) == 6
     assert testtools.compare(
         staff,
         r'''
@@ -999,6 +801,9 @@ def test_componenttools_split_components_by_durations_13():
         '''
         )
 
+    assert select(staff).is_well_formed()
+    assert len(parts) == 6
+
 
 def test_componenttools_split_components_by_durations_14():
     r'''Cyclically split orphan notes.
@@ -1007,26 +812,15 @@ def test_componenttools_split_components_by_durations_14():
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
 
     parts = componenttools.split_components_by_durations(
-        notes, [(3, 32)], cyclic=True, fracture_spanners=True)
+        notes, 
+        [Duration(3, 32)], 
+        cyclic=True, 
+        fracture_spanners=True,
+        )
 
     music = sequencetools.flatten_sequence(parts)
     staff = Staff(music)
 
-    r'''
-    \new Staff {
-        c'16. ~
-        c'32
-        d'16 ~
-        d'16
-        e'32 ~
-        e'16.
-        f'16. ~
-        f'32
-    }
-    '''
-
-    assert select(staff).is_well_formed()
-    assert len(parts) == 6
     assert testtools.compare(
         staff,
         r'''
@@ -1043,6 +837,9 @@ def test_componenttools_split_components_by_durations_14():
         '''
         )
 
+    assert select(staff).is_well_formed()
+    assert len(parts) == 6
+
 
 def test_componenttools_split_components_by_durations_15():
     r'''Cyclically split orphan measures. Fracture spanners.
@@ -1051,46 +848,17 @@ def test_componenttools_split_components_by_durations_15():
     measures = [Measure((2, 8), "c'8 d'8"), Measure((2, 8), "e'8 f'8")]
     select(measures).attach_spanners(spannertools.BeamSpanner)
 
-    parts = componenttools.split_components_by_durations(measures, [(3, 32)],
-        cyclic=True, fracture_spanners=True, tie_split_notes=False)
+    parts = componenttools.split_components_by_durations(
+        measures, 
+        [Duration(3, 32)],
+        cyclic=True, 
+        fracture_spanners=True, 
+        tie_split_notes=False,
+        )
 
     music = sequencetools.flatten_sequence(parts)
     staff = Staff(music)
 
-    r'''
-    \new Staff {
-        {
-            \time 3/32
-            c'16. [ ]
-        }
-        {
-            c'32 [
-            d'16 ]
-        }
-        {
-            \time 2/32
-            d'16 [ ]
-        }
-        {
-            \time 1/32
-            e'32 [ ]
-        }
-        {
-            \time 3/32
-            e'16. [ ]
-        }
-        {
-            f'16. [ ]
-        }
-        {
-            \time 1/32
-            f'32 [ ]
-        }
-    }
-    '''
-
-    assert select(staff).is_well_formed()
-    assert len(parts) == 6
     assert testtools.compare(
         staff,
         r'''
@@ -1126,6 +894,9 @@ def test_componenttools_split_components_by_durations_15():
         '''
         )
 
+    assert select(staff).is_well_formed()
+    assert len(parts) == 6
+
 
 def test_componenttools_split_components_by_durations_16():
     r'''Cyclically split note in score. Fracture spanners.
@@ -1135,42 +906,31 @@ def test_componenttools_split_components_by_durations_16():
     select(staff[:]).attach_spanners(spannertools.BeamSpanner)
     spannertools.SlurSpanner(staff.select_leaves())
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8 [ (
-            d'8 ]
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
         }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
+        '''
+        )
 
-    parts = componenttools.split_components_by_durations(staff[0][1:], [(1, 32)],
-        cyclic=True, fracture_spanners=True, tie_split_notes=True)
+    parts = componenttools.split_components_by_durations(
+        staff[0][1:], 
+        [Duration(1, 32)],
+        cyclic=True, 
+        fracture_spanners=True, 
+        tie_split_notes=True,
+        )
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8 [ (
-            d'32 ) ~
-            d'32 ( ) ~
-            d'32 ( ) ~
-            d'32 ] (
-        }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
-
-    assert select(staff).is_well_formed()
-    assert len(parts) == 4
     assert testtools.compare(
         staff,
         r'''
@@ -1191,6 +951,9 @@ def test_componenttools_split_components_by_durations_16():
         '''
         )
 
+    assert select(staff).is_well_formed()
+    assert len(parts) == 4
+
 
 def test_componenttools_split_components_by_durations_17():
     r'''Cyclically split consecutive notes in score. Fracture spanners.
@@ -1200,43 +963,31 @@ def test_componenttools_split_components_by_durations_17():
     select(staff[:]).attach_spanners(spannertools.BeamSpanner)
     spannertools.SlurSpanner(staff.select_leaves())
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8 [ (
-            d'8 ]
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
         }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
+        '''
+        )
 
-    parts = componenttools.split_components_by_durations(staff.select_leaves(), [(1, 16)],
-        cyclic=True, fracture_spanners=True, tie_split_notes=True)
+    parts = componenttools.split_components_by_durations(
+        staff.select_leaves(), 
+        [Duration(1, 16)],
+        cyclic=True, 
+        fracture_spanners=True, 
+        tie_split_notes=True,
+        )
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'16 [ ( ) ~
-            c'16 (
-            d'16 ) ~
-            d'16 ] (
-        }
-        {
-            e'16 [ ) ~
-            e'16 (
-            f'16 ) ~
-            f'16 ] ( )
-        }
-    }
-    '''
-
-    assert select(staff).is_well_formed()
-    assert len(parts) == 8
     assert testtools.compare(
         staff,
         r'''
@@ -1258,6 +1009,9 @@ def test_componenttools_split_components_by_durations_17():
         '''
         )
 
+    assert select(staff).is_well_formed()
+    assert len(parts) == 8
+
 
 def test_componenttools_split_components_by_durations_18():
     r'''Cyclically split measure in score. Fracture spanners.
@@ -1267,48 +1021,31 @@ def test_componenttools_split_components_by_durations_18():
     select(staff[:]).attach_spanners(spannertools.BeamSpanner)
     spannertools.SlurSpanner(staff.select_leaves())
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8 [ (
-            d'8 ]
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
         }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
+        '''
+        )
 
-    parts = componenttools.split_components_by_durations(staff[:1], [(1, 16)],
-        cyclic=True, fracture_spanners=True, tie_split_notes=True)
+    parts = componenttools.split_components_by_durations(
+        staff[:1], 
+        [Duration(1, 16)],
+        cyclic=True, 
+        fracture_spanners=True, 
+        tie_split_notes=True,
+        )
 
-    r'''
-    \new Staff {
-        {
-            \time 1/16
-            c'16 [ ] ( ) ~
-        }
-        {
-            c'16 [ ] ( )
-        }
-        {
-            d'16 [ ] ( ) ~
-        }
-        {
-            d'16 [ ] (
-        }
-        {
-            \time 2/8
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
-
-    assert select(staff).is_well_formed()
-    assert len(parts) == 4
     assert testtools.compare(
         staff,
         r'''
@@ -1335,6 +1072,9 @@ def test_componenttools_split_components_by_durations_18():
         '''
         )
 
+    assert select(staff).is_well_formed()
+    assert len(parts) == 4
+
 
 def test_componenttools_split_components_by_durations_19():
     r'''Cyclically split consecutive measures in score. Fracture spanners.
@@ -1344,57 +1084,31 @@ def test_componenttools_split_components_by_durations_19():
     select(staff[:]).attach_spanners(spannertools.BeamSpanner)
     spannertools.SlurSpanner(staff.select_leaves())
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8 [ (
-            d'8 ]
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
         }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
+        '''
+        )
 
-    parts = componenttools.split_components_by_durations(staff[:], [(3, 32)],
-        cyclic=True, fracture_spanners=True, tie_split_notes=True)
+    parts = componenttools.split_components_by_durations(
+        staff[:], 
+        [Duration(3, 32)],
+        cyclic=True, 
+        fracture_spanners=True, 
+        tie_split_notes=True,
+        )
 
-    r'''
-    \new Staff {
-        {
-            \time 3/32
-            c'16. [ ] ( ) ~
-        }
-        {
-            c'32 [ (
-            d'16 ] ) ~
-        }
-        {
-            \time 2/32
-            d'16 [ ] (
-        }
-        {
-            \time 1/32
-            e'32 [ ] ) ~
-        }
-        {
-            \time 3/32
-            e'16. [ ] ( )
-        }
-        {
-            f'16. [ ] ( ) ~
-        }
-        {
-            \time 1/32
-            f'32 [ ] ( )
-        }
-    }
-    '''
-
-    assert select(staff).is_well_formed()
-    assert len(parts) == 6
     assert testtools.compare(
         staff,
         r'''
@@ -1430,6 +1144,9 @@ def test_componenttools_split_components_by_durations_19():
         '''
         )
 
+    assert select(staff).is_well_formed()
+    assert len(parts) == 6
+
 
 def test_componenttools_split_components_by_durations_20():
     r'''Force split measure in score. Do not fracture spanners.
@@ -1439,48 +1156,31 @@ def test_componenttools_split_components_by_durations_20():
     select(staff[:]).attach_spanners(spannertools.BeamSpanner)
     spannertools.SlurSpanner(staff.select_leaves())
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8 [ (
-            d'8 ]
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
         }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
+        '''
+        )
 
     parts = componenttools.split_components_by_durations(
-        staff[:1], [(1, 32), (3, 32), (5, 32)],
-        cyclic=False, fracture_spanners=False, tie_split_notes=False)
+        staff[:1], 
+        [Duration(1, 32), Duration(3, 32), Duration(5, 32)],
+        cyclic=False, 
+        fracture_spanners=False, 
+        tie_split_notes=False,
+        )
 
-    r'''
-    \new Staff {
-        {
-            \time 1/32
-            c'32 [ (
-        }
-        {
-            \time 3/32
-            c'16.
-        }
-        {
-            \time 4/32
-            d'8 ]
-        }
-        {
-            \time 2/8
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
-
-    assert select(staff).is_well_formed()
-    assert len(parts) == 3
     assert testtools.compare(
         staff,
         r'''
@@ -1506,6 +1206,9 @@ def test_componenttools_split_components_by_durations_20():
         '''
         )
 
+    assert select(staff).is_well_formed()
+    assert len(parts) == 3
+
 
 def test_componenttools_split_components_by_durations_21():
     r'''Force split consecutive measures in score. Do not fracture spanners.
@@ -1515,51 +1218,31 @@ def test_componenttools_split_components_by_durations_21():
     select(staff[:]).attach_spanners(spannertools.BeamSpanner)
     spannertools.SlurSpanner(staff.select_leaves())
 
-    r'''
-    \new Staff {
-        {
-            c'8 [ (
-            d'8 ]
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
         }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
+        '''
+        )
 
     parts = componenttools.split_components_by_durations(
-        staff[:], [(1, 32), (3, 32), (5, 32)],
-        cyclic=False, fracture_spanners=False, tie_split_notes=False)
+        staff[:], 
+        [Duration(1, 32), Duration(3, 32), Duration(5, 32)],
+        cyclic=False, 
+        fracture_spanners=False, 
+        tie_split_notes=False,
+        )
 
-    r'''
-    \new Staff {
-        {
-            \time 1/32
-            c'32 [ (
-        }
-        {
-            \time 3/32
-            c'16.
-        }
-        {
-            \time 4/32
-            d'8 ]
-        }
-        {
-            \time 1/32
-            e'32 [
-        }
-        {
-            \time 7/32
-            e'16.
-            f'8 ] )
-        }
-    }
-    '''
-
-    assert select(staff).is_well_formed()
-    assert len(parts) == 4
     assert testtools.compare(
         staff,
         r'''
@@ -1589,6 +1272,9 @@ def test_componenttools_split_components_by_durations_21():
         '''
         )
 
+    assert select(staff).is_well_formed()
+    assert len(parts) == 4
+
 
 def test_componenttools_split_components_by_durations_22():
     r'''Force split measure in score. Fracture spanners.
@@ -1598,48 +1284,31 @@ def test_componenttools_split_components_by_durations_22():
     select(staff[:]).attach_spanners(spannertools.BeamSpanner)
     spannertools.SlurSpanner(staff.select_leaves())
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8 [ (
-            d'8 ]
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
         }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
+        '''
+        )
 
     parts = componenttools.split_components_by_durations(
-        staff[:1], [(1, 32), (3, 32), (5, 32)],
-        cyclic=False, fracture_spanners=True, tie_split_notes=False)
+        staff[:1], 
+        [Duration(1, 32), Duration(3, 32), Duration(5, 32)],
+        cyclic=False, 
+        fracture_spanners=True, 
+        tie_split_notes=False,
+        )
 
-    r'''
-    \new Staff {
-        {
-            \time 1/32
-            c'32 [ ] ( )
-        }
-        {
-            \time 3/32
-            c'16. [ ] ( )
-        }
-        {
-            \time 4/32
-            d'8 [ ] (
-        }
-        {
-            \time 2/8
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
-
-    assert select(staff).is_well_formed()
-    assert len(parts) == 3
     assert testtools.compare(
         staff,
         r'''
@@ -1665,6 +1334,9 @@ def test_componenttools_split_components_by_durations_22():
         '''
         )
 
+    assert select(staff).is_well_formed()
+    assert len(parts) == 3
+
 
 def test_componenttools_split_components_by_durations_23():
     r'''Force split consecutive measures in score. Fracture spanners.
@@ -1674,23 +1346,29 @@ def test_componenttools_split_components_by_durations_23():
     select(staff[:]).attach_spanners(spannertools.BeamSpanner)
     spannertools.SlurSpanner(staff.select_leaves())
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8 [ (
-            d'8 ]
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
         }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
+        '''
+        )
 
     parts = componenttools.split_components_by_durations(
-        staff[:], [(1, 32), (3, 32), (5, 32)],
-        cyclic=False, fracture_spanners=True, tie_split_notes=False)
+        staff[:], 
+        [Duration(1, 32), Duration(3, 32), Duration(5, 32)],
+        cyclic=False, 
+        fracture_spanners=True, 
+        tie_split_notes=False)
 
     r'''
     \new Staff {
@@ -1757,23 +1435,16 @@ def test_componenttools_split_components_by_durations_24():
     note = Note("c'4")
 
     parts = componenttools.split_components_by_durations(
-        [note], [(1, 32), (5, 32)],
-        cyclic=False, fracture_spanners=True, tie_split_notes=False)
+        [note], 
+        [(1, 32), (5, 32)],
+        cyclic=False, 
+        fracture_spanners=True, 
+        tie_split_notes=False,
+        )
 
     notes = sequencetools.flatten_sequence(parts)
     staff = Staff(notes)
 
-    r'''
-    \new Staff {
-        c'32 ~
-        c'8 ~
-        c'32 ~
-        c'16
-    }
-    '''
-
-    assert select(staff).is_well_formed()
-    assert len(parts) == 3
     assert testtools.compare(
         staff,
         r'''
@@ -1786,6 +1457,9 @@ def test_componenttools_split_components_by_durations_24():
         '''
         )
 
+    assert select(staff).is_well_formed()
+    assert len(parts) == 3
+
 
 def test_componenttools_split_components_by_durations_25():
     r'''Force split note in score. Fracture spanners.
@@ -1793,26 +1467,23 @@ def test_componenttools_split_components_by_durations_25():
 
     staff = Staff("c'8 [ ]")
 
-    r'''
-    \new Staff {
-        c'8 [ ]
-    }
-    '''
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            c'8 [ ]
+        }
+        '''
+        )
 
     parts = componenttools.split_components_by_durations(
-        staff[:], [(1, 64), (5, 64)],
-        cyclic=False, fracture_spanners=True, tie_split_notes=False)
+        staff[:], 
+        [Duration(1, 64), Duration(5, 64)],
+        cyclic=False, 
+        fracture_spanners=True, 
+        tie_split_notes=False,
+        )
 
-    r'''
-    \new Staff {
-        c'64 [ ]
-        c'16 [ ~
-        c'64 ] ~
-        c'32 [ ]
-    }
-    '''
-
-    assert select(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -1824,3 +1495,5 @@ def test_componenttools_split_components_by_durations_25():
         }
         '''
         )
+
+    assert select(staff).is_well_formed()
