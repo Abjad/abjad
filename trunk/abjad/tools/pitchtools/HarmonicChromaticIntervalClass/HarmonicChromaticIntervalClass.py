@@ -1,12 +1,9 @@
 # -*- encoding: utf-8 -*-
 import numbers
-from abjad.tools.pitchtools.ChromaticIntervalClass \
-	import ChromaticIntervalClass
 from abjad.tools.pitchtools.HarmonicIntervalClass import HarmonicIntervalClass
 
 
-class HarmonicChromaticIntervalClass(
-    ChromaticIntervalClass, HarmonicIntervalClass):
+class HarmonicChromaticIntervalClass(HarmonicIntervalClass):
     '''Abjad model of harmonic chromatic interval-class:
 
     ::
@@ -35,8 +32,17 @@ class HarmonicChromaticIntervalClass(
 
     ### SPECIAL METHODS ###
 
+    def __abs__(self):
+        return type(self)(abs(self._number))
+
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
             if self.number == arg.number:
                 return True
         return False
+
+    def __float__(self):
+        return float(self._number)
+
+    def __int__(self):
+        return self._number

@@ -1,13 +1,10 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import mathtools
-from abjad.tools.pitchtools.ChromaticIntervalClass \
-	import ChromaticIntervalClass
 from abjad.tools.pitchtools.MelodicIntervalClass import MelodicIntervalClass
 import numbers
 
 
-class MelodicChromaticIntervalClass(
-    ChromaticIntervalClass, MelodicIntervalClass):
+class MelodicChromaticIntervalClass(MelodicIntervalClass):
     '''Abjad model of melodic chromatic interval-class:
 
     ::
@@ -54,8 +51,17 @@ class MelodicChromaticIntervalClass(
 
     ### SPECIAL METHODS ###
 
+    def __abs__(self):
+        return type(self)(abs(self._number))
+
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
             if self.number == arg.number:
                 return True
         return False
+
+    def __float__(self):
+        return float(self._number)
+
+    def __int__(self):
+        return self._number
