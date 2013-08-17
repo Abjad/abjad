@@ -1,11 +1,10 @@
 # -*- encoding: utf-8 -*-
 import abc
 
-from abjad.tools.pitchtools.NumberedObject import NumberedObject
 from abjad.tools.pitchtools.Pitch import Pitch
 
 
-class NumberedPitch(Pitch, NumberedObject):
+class NumberedPitch(Pitch):
     '''Numbered pitch base class from which concrete classes inherit.
     '''
 
