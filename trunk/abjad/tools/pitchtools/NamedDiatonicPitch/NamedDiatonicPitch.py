@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.pitchtools.DiatonicPitch import DiatonicPitch
+from abjad.tools.pitchtools.Pitch import Pitch
 
 
-class NamedDiatonicPitch(DiatonicPitch):
+class NamedDiatonicPitch(Pitch):
     '''Abjad model of a named diatonic pitch:
 
     ::
