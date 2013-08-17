@@ -1,11 +1,10 @@
 # -*- encoding: utf-8 -*-
 import abc
 from abjad.tools import mathtools
-from abjad.tools.pitchtools.DiatonicObject import DiatonicObject
 from abjad.tools.pitchtools.Interval import Interval
 
 
-class DiatonicInterval(Interval, DiatonicObject):
+class DiatonicInterval(Interval):
     '''Diatonic interval base class.
     '''
 

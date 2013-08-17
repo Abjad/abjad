@@ -1,11 +1,10 @@
 # -*- encoding: utf-8 -*-
 import abc
 
-from abjad.tools.pitchtools.DiatonicObject import DiatonicObject
 from abjad.tools.pitchtools.PitchClass import PitchClass
 
 
-class DiatonicPitchClass(PitchClass, DiatonicObject):
+class DiatonicPitchClass(PitchClass):
     '''Diatonic pitch-class base class.
     '''
 
