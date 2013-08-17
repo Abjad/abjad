@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.pitchtools.IntervalSet import IntervalSet
+from abjad.tools.pitchtools.Set import Set
 
 
-class HarmonicDiatonicIntervalSet(IntervalSet):
+class HarmonicDiatonicIntervalSet(Set):
     '''Abjad model of harmonic diatonic interval set:
 
     ::

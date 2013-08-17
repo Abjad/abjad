@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.pitchtools.IntervalSet import IntervalSet
+from abjad.tools.pitchtools.Set import Set
 
 
-class MelodicChromaticIntervalSet(IntervalSet):
+class MelodicChromaticIntervalSet(Set):
     '''Abjad model of melodic chromatic interval set:
 
     ::
