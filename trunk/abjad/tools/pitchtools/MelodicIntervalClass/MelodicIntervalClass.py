@@ -1,10 +1,9 @@
 # -*- encoding: utf-8 -*-
 import abc
 from abjad.tools.pitchtools.IntervalClass import IntervalClass
-from abjad.tools.pitchtools.MelodicObject import MelodicObject
 
 
-class MelodicIntervalClass(IntervalClass, MelodicObject):
+class MelodicIntervalClass(IntervalClass):
     '''Melodic interval-class base class.
     '''
 

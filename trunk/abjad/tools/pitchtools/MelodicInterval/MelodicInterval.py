@@ -2,7 +2,6 @@
 import abc
 
 from abjad.tools.pitchtools.Interval import Interval
-from abjad.tools.pitchtools.MelodicObject import MelodicObject
 
 
 class MelodicInterval(Interval):
