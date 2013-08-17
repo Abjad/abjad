@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.pitchtools.PitchSet import PitchSet
+from abjad.tools.pitchtools.Set import Set
 
 
-class NamedChromaticPitchSet(PitchSet):
+class NamedChromaticPitchSet(Set):
     '''Abjad model of a named chromatic pitch set:
 
     ::
