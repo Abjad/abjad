@@ -349,7 +349,7 @@ Renamed all functions that contained ``as_string``::
 
 Changes to the ``componenttools`` package:
 
-- The ``componenttools.split_components_by_durations()`` function no longer 
+- The ``componenttools.split()`` function no longer 
   implements a ``tie_after keyword``.
   Use the new ``tie_split_notes`` and ``tie_split_rests`` keywords.
   Note that the new ``tie_split_rests``
@@ -433,7 +433,7 @@ Changes to the ``componenttools`` package:
 
   ::
 
-    componenttools.split_components_by_durations(fracture_spanners=[True, False], cyclic=[True, False])
+    componenttools.split(fracture_spanners=[True, False], cyclic=[True, False])
 
 Changeds to the ``continertools`` package:
 

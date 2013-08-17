@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_componenttools_split_components_by_durations_01():
+def test_componenttools_split_01():
     r'''Cyclically split note in score. Don't fracture spanners.
     '''
 
@@ -29,7 +29,7 @@ def test_componenttools_split_components_by_durations_01():
         '''
         )
 
-    parts = componenttools.split_components_by_durations(
+    parts = componenttools.split(
         staff[0][1:2], 
         [Duration(3, 64)],
         cyclic=True,
@@ -59,7 +59,7 @@ def test_componenttools_split_components_by_durations_01():
     assert len(parts) == 3
 
 
-def test_componenttools_split_components_by_durations_02():
+def test_componenttools_split_02():
     r'''Cyclically split consecutive notes in score. Don't fracture spanners.
     '''
 
@@ -84,7 +84,7 @@ def test_componenttools_split_components_by_durations_02():
         '''
         )
 
-    parts = componenttools.split_components_by_durations(
+    parts = componenttools.split(
         staff.select_leaves(), 
         [Duration(3, 32)], 
         cyclic=True,
@@ -116,7 +116,7 @@ def test_componenttools_split_components_by_durations_02():
     assert len(parts) == 6
 
 
-def test_componenttools_split_components_by_durations_03():
+def test_componenttools_split_03():
     r'''Cyclically split measure in score. Don't fracture spanners.
     '''
 
@@ -141,7 +141,7 @@ def test_componenttools_split_components_by_durations_03():
         '''
         )
 
-    parts = componenttools.split_components_by_durations(
+    parts = componenttools.split(
         staff[:1], 
         [Duration(3, 32)],
         cyclic=True, 
@@ -178,7 +178,7 @@ def test_componenttools_split_components_by_durations_03():
     assert len(parts) == 3
 
 
-def test_componenttools_split_components_by_durations_04():
+def test_componenttools_split_04():
     r'''Cyclically split consecutive measures in score. 
     Don't fracture spanners.
     '''
@@ -204,7 +204,7 @@ def test_componenttools_split_components_by_durations_04():
         '''
         )
 
-    parts = componenttools.split_components_by_durations(
+    parts = componenttools.split(
         staff[:], 
         [Duration(3, 32)],
         cyclic=True, 
@@ -251,14 +251,14 @@ def test_componenttools_split_components_by_durations_04():
     assert len(parts) == 6
 
 
-def test_componenttools_split_components_by_durations_05():
+def test_componenttools_split_05():
     r'''Cyclically split orphan measures. Don't fracture spanners.
     '''
 
     measures = [Measure((2, 8), "c'8 d'8"), Measure((2, 8), "e'8 f'8")]
     select(measures).attach_spanners(spannertools.BeamSpanner)
 
-    parts = componenttools.split_components_by_durations(
+    parts = componenttools.split(
         measures, 
         [Duration(3, 32)],
         cyclic=True, 
@@ -308,7 +308,7 @@ def test_componenttools_split_components_by_durations_05():
     assert len(parts) == 6
 
 
-def test_componenttools_split_components_by_durations_06():
+def test_componenttools_split_06():
     r'''Cyclically split note in score. Don't fracture spanners.
     '''
 
@@ -333,7 +333,7 @@ def test_componenttools_split_components_by_durations_06():
         '''
         )
 
-    parts = componenttools.split_components_by_durations(
+    parts = componenttools.split(
         staff[0][1:], 
         [Duration(1, 32)],
         cyclic=True, 
@@ -365,7 +365,7 @@ def test_componenttools_split_components_by_durations_06():
     assert len(parts) == 4
 
 
-def test_componenttools_split_components_by_durations_07():
+def test_componenttools_split_07():
     r'''Cyclically split consecutive notes in score. Don't fracture spanners.
     '''
 
@@ -390,7 +390,7 @@ def test_componenttools_split_components_by_durations_07():
         '''
         )
 
-    parts = componenttools.split_components_by_durations(
+    parts = componenttools.split(
         staff.select_leaves(), 
         [Duration(1, 16)],
         cyclic=True, 
@@ -423,7 +423,7 @@ def test_componenttools_split_components_by_durations_07():
     assert len(parts) == 8
 
 
-def test_componenttools_split_components_by_durations_08():
+def test_componenttools_split_08():
     r'''Cyclically split measure in score. Don't fracture spanners.
     '''
 
@@ -448,7 +448,7 @@ def test_componenttools_split_components_by_durations_08():
         '''
         )
 
-    parts = componenttools.split_components_by_durations(
+    parts = componenttools.split(
         staff[:1], 
         [Duration(1, 16)],
         cyclic=True, 
@@ -486,7 +486,7 @@ def test_componenttools_split_components_by_durations_08():
     assert len(parts) == 4
 
 
-def test_componenttools_split_components_by_durations_09():
+def test_componenttools_split_09():
     r'''Cyclically split consecutive measures in score. 
     Don't fracture spanners.
     '''
@@ -512,7 +512,7 @@ def test_componenttools_split_components_by_durations_09():
         '''
         )
 
-    parts = componenttools.split_components_by_durations(
+    parts = componenttools.split(
         staff[:], 
         [Duration(3, 32)],
         cyclic=True, 
@@ -559,7 +559,7 @@ def test_componenttools_split_components_by_durations_09():
     assert len(parts) == 6
 
 
-def test_componenttools_split_components_by_durations_10():
+def test_componenttools_split_10():
     r'''Cyclically split note in score. Fracture spanners.
     '''
 
@@ -584,7 +584,7 @@ def test_componenttools_split_components_by_durations_10():
         '''
         )
 
-    parts = componenttools.split_components_by_durations(
+    parts = componenttools.split(
         staff[0][1:2], 
         [Duration(3, 64)], 
         cyclic=True,
@@ -614,7 +614,7 @@ def test_componenttools_split_components_by_durations_10():
     assert len(parts) == 3
 
 
-def test_componenttools_split_components_by_durations_11():
+def test_componenttools_split_11():
     r'''Cyclically split consecutive notes in score. Fracture spanners.
     '''
 
@@ -639,7 +639,7 @@ def test_componenttools_split_components_by_durations_11():
         '''
         )
 
-    parts = componenttools.split_components_by_durations(
+    parts = componenttools.split(
         staff.select_leaves(), 
         [Duration(3, 32)], 
         cyclic=True, 
@@ -671,7 +671,7 @@ def test_componenttools_split_components_by_durations_11():
     assert len(parts) == 6
 
 
-def test_componenttools_split_components_by_durations_12():
+def test_componenttools_split_12():
     r'''Cyclically split measure in score. Fracture spanners.
     '''
 
@@ -696,7 +696,7 @@ def test_componenttools_split_components_by_durations_12():
         '''
         )
 
-    parts = componenttools.split_components_by_durations(
+    parts = componenttools.split(
         staff[:1], 
         [Duration(3, 32)],
         cyclic=True, 
@@ -733,7 +733,7 @@ def test_componenttools_split_components_by_durations_12():
     assert len(parts) == 3
 
 
-def test_componenttools_split_components_by_durations_13():
+def test_componenttools_split_13():
     r'''Cyclically split consecutive measures in score. Fracture spanners.
     '''
 
@@ -758,7 +758,7 @@ def test_componenttools_split_components_by_durations_13():
         '''
         )
 
-    parts = componenttools.split_components_by_durations(
+    parts = componenttools.split(
         staff[:], 
         [Duration(3, 32)],
         cyclic=True, 
@@ -805,13 +805,13 @@ def test_componenttools_split_components_by_durations_13():
     assert len(parts) == 6
 
 
-def test_componenttools_split_components_by_durations_14():
+def test_componenttools_split_14():
     r'''Cyclically split orphan notes.
     '''
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
 
-    parts = componenttools.split_components_by_durations(
+    parts = componenttools.split(
         notes, 
         [Duration(3, 32)], 
         cyclic=True, 
@@ -841,14 +841,14 @@ def test_componenttools_split_components_by_durations_14():
     assert len(parts) == 6
 
 
-def test_componenttools_split_components_by_durations_15():
+def test_componenttools_split_15():
     r'''Cyclically split orphan measures. Fracture spanners.
     '''
 
     measures = [Measure((2, 8), "c'8 d'8"), Measure((2, 8), "e'8 f'8")]
     select(measures).attach_spanners(spannertools.BeamSpanner)
 
-    parts = componenttools.split_components_by_durations(
+    parts = componenttools.split(
         measures, 
         [Duration(3, 32)],
         cyclic=True, 
@@ -898,7 +898,7 @@ def test_componenttools_split_components_by_durations_15():
     assert len(parts) == 6
 
 
-def test_componenttools_split_components_by_durations_16():
+def test_componenttools_split_16():
     r'''Cyclically split note in score. Fracture spanners.
     '''
 
@@ -923,7 +923,7 @@ def test_componenttools_split_components_by_durations_16():
         '''
         )
 
-    parts = componenttools.split_components_by_durations(
+    parts = componenttools.split(
         staff[0][1:], 
         [Duration(1, 32)],
         cyclic=True, 
@@ -955,7 +955,7 @@ def test_componenttools_split_components_by_durations_16():
     assert len(parts) == 4
 
 
-def test_componenttools_split_components_by_durations_17():
+def test_componenttools_split_17():
     r'''Cyclically split consecutive notes in score. Fracture spanners.
     '''
 
@@ -980,7 +980,7 @@ def test_componenttools_split_components_by_durations_17():
         '''
         )
 
-    parts = componenttools.split_components_by_durations(
+    parts = componenttools.split(
         staff.select_leaves(), 
         [Duration(1, 16)],
         cyclic=True, 
@@ -1013,7 +1013,7 @@ def test_componenttools_split_components_by_durations_17():
     assert len(parts) == 8
 
 
-def test_componenttools_split_components_by_durations_18():
+def test_componenttools_split_18():
     r'''Cyclically split measure in score. Fracture spanners.
     '''
 
@@ -1038,7 +1038,7 @@ def test_componenttools_split_components_by_durations_18():
         '''
         )
 
-    parts = componenttools.split_components_by_durations(
+    parts = componenttools.split(
         staff[:1], 
         [Duration(1, 16)],
         cyclic=True, 
@@ -1076,7 +1076,7 @@ def test_componenttools_split_components_by_durations_18():
     assert len(parts) == 4
 
 
-def test_componenttools_split_components_by_durations_19():
+def test_componenttools_split_19():
     r'''Cyclically split consecutive measures in score. Fracture spanners.
     '''
 
@@ -1101,7 +1101,7 @@ def test_componenttools_split_components_by_durations_19():
         '''
         )
 
-    parts = componenttools.split_components_by_durations(
+    parts = componenttools.split(
         staff[:], 
         [Duration(3, 32)],
         cyclic=True, 
@@ -1148,7 +1148,7 @@ def test_componenttools_split_components_by_durations_19():
     assert len(parts) == 6
 
 
-def test_componenttools_split_components_by_durations_20():
+def test_componenttools_split_20():
     r'''Force split measure in score. Do not fracture spanners.
     '''
 
@@ -1173,7 +1173,7 @@ def test_componenttools_split_components_by_durations_20():
         '''
         )
 
-    parts = componenttools.split_components_by_durations(
+    parts = componenttools.split(
         staff[:1], 
         [Duration(1, 32), Duration(3, 32), Duration(5, 32)],
         cyclic=False, 
@@ -1210,7 +1210,7 @@ def test_componenttools_split_components_by_durations_20():
     assert len(parts) == 3
 
 
-def test_componenttools_split_components_by_durations_21():
+def test_componenttools_split_21():
     r'''Force split consecutive measures in score. Do not fracture spanners.
     '''
 
@@ -1235,7 +1235,7 @@ def test_componenttools_split_components_by_durations_21():
         '''
         )
 
-    parts = componenttools.split_components_by_durations(
+    parts = componenttools.split(
         staff[:], 
         [Duration(1, 32), Duration(3, 32), Duration(5, 32)],
         cyclic=False, 
@@ -1276,7 +1276,7 @@ def test_componenttools_split_components_by_durations_21():
     assert len(parts) == 4
 
 
-def test_componenttools_split_components_by_durations_22():
+def test_componenttools_split_22():
     r'''Force split measure in score. Fracture spanners.
     '''
 
@@ -1301,7 +1301,7 @@ def test_componenttools_split_components_by_durations_22():
         '''
         )
 
-    parts = componenttools.split_components_by_durations(
+    parts = componenttools.split(
         staff[:1], 
         [Duration(1, 32), Duration(3, 32), Duration(5, 32)],
         cyclic=False, 
@@ -1338,7 +1338,7 @@ def test_componenttools_split_components_by_durations_22():
     assert len(parts) == 3
 
 
-def test_componenttools_split_components_by_durations_23():
+def test_componenttools_split_23():
     r'''Force split consecutive measures in score. Fracture spanners.
     '''
 
@@ -1363,7 +1363,7 @@ def test_componenttools_split_components_by_durations_23():
         '''
         )
 
-    parts = componenttools.split_components_by_durations(
+    parts = componenttools.split(
         staff[:], 
         [Duration(1, 32), Duration(3, 32), Duration(5, 32)],
         cyclic=False, 
@@ -1428,13 +1428,13 @@ def test_componenttools_split_components_by_durations_23():
         )
 
 
-def test_componenttools_split_components_by_durations_24():
+def test_componenttools_split_24():
     r'''Force split orphan note. Offsets sum to less than note duration.
     '''
 
     note = Note("c'4")
 
-    parts = componenttools.split_components_by_durations(
+    parts = componenttools.split(
         [note], 
         [(1, 32), (5, 32)],
         cyclic=False, 
@@ -1461,7 +1461,7 @@ def test_componenttools_split_components_by_durations_24():
     assert len(parts) == 3
 
 
-def test_componenttools_split_components_by_durations_25():
+def test_componenttools_split_25():
     r'''Force split note in score. Fracture spanners.
     '''
 
@@ -1476,7 +1476,7 @@ def test_componenttools_split_components_by_durations_25():
         '''
         )
 
-    parts = componenttools.split_components_by_durations(
+    parts = componenttools.split(
         staff[:], 
         [Duration(1, 64), Duration(5, 64)],
         cyclic=False, 

@@ -30,7 +30,7 @@ def apply_expressive_marks(score):
     voice = score['Bass Voice']
     markuptools.Markup('div.', Up)(voice[14][0])
     markuptools.Markup(r'\italic { espr. }', Down)(voice[86][0])
-    componenttools.split_components_by_durations(voice[88][:], [Duration(1, 1), Duration(1, 2)])
+    componenttools.split(voice[88][:], [Duration(1, 1), Duration(1, 2)])
     markuptools.Markup(r'\italic { molto espr. }', Down)(voice[88][1])
     markuptools.Markup('uniti', Up)(voice[99][1])
 

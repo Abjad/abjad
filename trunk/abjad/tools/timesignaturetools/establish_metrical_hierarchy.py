@@ -870,7 +870,7 @@ def establish_metrical_hierarchy(
                 #print '\tREL:', split_offset
                 #print ''
                 tie_chains = [selectiontools.TieChain(shard) for shard in
-                    componenttools.split_components_by_durations(
+                    componenttools.split(
                         tie_chain[:], [split_offset])]
                 for tie_chain in tie_chains:
                     recurse(tie_chain, depth=depth)
@@ -897,7 +897,7 @@ def establish_metrical_hierarchy(
             #print '\tREL:', split_offset
             #print ''
             tie_chains = [selectiontools.TieChain(shard) for shard in
-                componenttools.split_components_by_durations(
+                componenttools.split(
                     tie_chain[:], [split_offset])]
             for tie_chain in tie_chains:
                 recurse(tie_chain, depth=depth)

@@ -12,7 +12,7 @@ def test_containertools_split_container_at_index_01():
     voice.append(Tuplet((2, 3), "f'8 g'8 a'8"))
     beam = spannertools.BeamSpanner(voice[:])
 
-    componenttools.split_components_by_durations(
+    componenttools.split(
         voice[1:2],
         [Duration(1, 12)],
         fracture_spanners=False,
@@ -51,7 +51,7 @@ def test_containertools_split_container_at_index_02():
     voice.append(Measure((3, 8), "f'8 g'8 a'8"))
     beam = spannertools.BeamSpanner(voice[:])
 
-    componenttools.split_components_by_durations(
+    componenttools.split(
         voice[1:2], 
         [Duration(1, 8)], 
         fracture_spanners=False,
@@ -93,7 +93,7 @@ def test_containertools_split_container_at_index_03():
     voice.append(Measure((3, 9), "f'8 g'8 a'8"))
     beam = spannertools.BeamSpanner(voice[:])
 
-    componenttools.split_components_by_durations(
+    componenttools.split(
         voice[1:2], 
         [Duration(1, 9)], 
         fracture_spanners=False,
@@ -137,7 +137,7 @@ def test_containertools_split_container_at_index_04():
 
     voice = Voice("c'8 d'8 e'8 f'8")
 
-    result = componenttools.split_components_by_durations(
+    result = componenttools.split(
         [voice], 
         [Duration(1, 4)], 
         fracture_spanners=False,
@@ -180,7 +180,7 @@ def test_containertools_split_container_at_index_05():
     staff = Staff([Voice("c'8 d'8 e'8 f'8")])
     voice = staff[0]
 
-    result = componenttools.split_components_by_durations(
+    result = componenttools.split(
         [voice], 
         #-2, 
         [Duration(1, 4)],
@@ -245,7 +245,7 @@ def test_containertools_split_container_at_index_06():
     voice = staff[0]
     spannertools.BeamSpanner(voice)
 
-    result = componenttools.split_components_by_durations(
+    result = componenttools.split(
         [voice], 
         #2, 
         [Duration(1, 4)],
@@ -327,7 +327,7 @@ def test_containertools_split_container_at_index_07():
     staff = Staff([voice])
     spannertools.BeamSpanner(tuplet)
 
-    result = componenttools.split_components_by_durations(
+    result = componenttools.split(
         [tuplet], 
         #2, 
         [Duration(1, 5)],
@@ -452,7 +452,7 @@ def test_containertools_split_container_at_index_08():
         '''
         )
 
-    result = componenttools.split_components_by_durations(
+    result = componenttools.split(
         [tuplet], 
         #1, 
         [Duration(1, 12)],
@@ -536,7 +536,7 @@ def test_containertools_split_container_at_index_09():
         '''
         )
 
-    result = componenttools.split_components_by_durations(
+    result = componenttools.split(
         [measure], 
         #1, 
         [Duration(1, 8)],
@@ -629,7 +629,7 @@ def test_containertools_split_container_at_index_10():
         '''
         )
 
-    result = componenttools.split_components_by_durations(
+    result = componenttools.split(
         [measure], 
         #1, 
         [Duration(1, 9)],
@@ -718,7 +718,7 @@ def test_containertools_split_container_at_index_11():
         '''
         )
 
-    result = componenttools.split_components_by_durations(
+    result = componenttools.split(
         [voice], 
         #2, 
         [Duration(1, 4)],
@@ -785,7 +785,7 @@ def test_containertools_split_container_at_index_12():
         '''
         )
 
-    result = componenttools.split_components_by_durations(
+    result = componenttools.split(
         staff[:1], 
         #1, 
         [Duration(1, 8)],
@@ -819,7 +819,7 @@ def test_containertools_split_container_at_index_12():
 
 
 # containertools.split_container_at_index() works here;
-# componenttools.split_components_by_durations() doesn't work here.
+# componenttools.split() doesn't work here.
 # hook in old function.
 def test_containertools_split_container_at_index_13():
     r'''Split in-score measure without power-of-two time signature denominator.
@@ -847,7 +847,7 @@ def test_containertools_split_container_at_index_13():
         '''
         )
 
-    halves = componenttools.split_components_by_durations(
+    halves = componenttools.split(
         staff[:1], 
         #1, 
         [Duration(3, 24)],
@@ -901,7 +901,7 @@ def test_containertools_split_container_at_index_14():
         '''
         )
 
-    halves = componenttools.split_components_by_durations(
+    halves = componenttools.split(
         staff[:1], 
         #1, 
         [Duration(3, 16)],
