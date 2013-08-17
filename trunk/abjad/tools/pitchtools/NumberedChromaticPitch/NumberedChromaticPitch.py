@@ -1,9 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.pitchtools.ChromaticPitch import ChromaticPitch
 from abjad.tools.pitchtools.NumberedPitch import NumberedPitch
 
 
-class NumberedChromaticPitch(ChromaticPitch, NumberedPitch):
+class NumberedChromaticPitch(NumberedPitch):
     '''Abjad model of a numbered chromatic pitch:
 
     ::
