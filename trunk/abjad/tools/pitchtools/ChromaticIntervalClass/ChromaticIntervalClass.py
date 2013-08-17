@@ -1,10 +1,9 @@
 # -*- encoding: utf-8 -*-
 import abc
-from abjad.tools.pitchtools.ChromaticObject import ChromaticObject
 from abjad.tools.pitchtools.IntervalClass import IntervalClass
 
 
-class ChromaticIntervalClass(IntervalClass, ChromaticObject):
+class ChromaticIntervalClass(IntervalClass):
     '''Chromatic interval-class base class.
     '''
 
