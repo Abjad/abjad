@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import mathtools
-from abjad.tools.pitchtools.PitchSegment import PitchSegment
+from abjad.tools.pitchtools.Segment import Segment
 
 
-class NamedChromaticPitchSegment(PitchSegment):
+class NamedChromaticPitchSegment(Segment):
     '''Abjad model of a named chromatic pitch segment:
 
     ::
