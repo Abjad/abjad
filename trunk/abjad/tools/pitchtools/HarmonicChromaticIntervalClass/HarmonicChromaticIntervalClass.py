@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 import numbers
-from abjad.tools.pitchtools.HarmonicIntervalClass import HarmonicIntervalClass
+from abjad.tools.pitchtools.IntervalClass import IntervalClass
 
 
-class HarmonicChromaticIntervalClass(HarmonicIntervalClass):
+class HarmonicChromaticIntervalClass(IntervalClass):
     '''Abjad model of harmonic chromatic interval-class:
 
     ::

@@ -1,10 +1,8 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.pitchtools.DiatonicIntervalClass import DiatonicIntervalClass
-from abjad.tools.pitchtools.HarmonicIntervalClass import HarmonicIntervalClass
 
 
-class HarmonicDiatonicIntervalClass(
-    DiatonicIntervalClass, HarmonicIntervalClass):
+class HarmonicDiatonicIntervalClass(DiatonicIntervalClass):
     '''Abjad model harmonic diatonic interval-class:
 
     ::
