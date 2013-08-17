@@ -1,10 +1,9 @@
 # -*- encoding: utf-8 -*-
 import abc
-from abjad.tools.pitchtools.CounterpointObject import CounterpointObject
 from abjad.tools.pitchtools.Interval import Interval
 
 
-class CounterpointInterval(Interval, CounterpointObject):
+class CounterpointInterval(Interval):
     '''Counterpoint interval base class.
     '''
 
