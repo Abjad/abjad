@@ -25,7 +25,6 @@ class TypedCounter(TypedCollection):
     '''
     __cmp__
     __contains__
-    __eq__
     __ge__
     __getattribute__
     __getitem__
@@ -33,12 +32,9 @@ class TypedCounter(TypedCollection):
     __hash__
     __iter__
     __le__
-    __len__
     __lt__
     __ne__
-    __new__
     __setitem__
-    __sizeof__
     '''
 
     def __add__(self, expr):
@@ -108,22 +104,15 @@ class TypedCounter(TypedCollection):
     ### PUBLIC METHODS ###
 
     '''
-    clear
     get
     has_key
-    items
-    iteritems
-    iterkeys
-    itervalues
-    keys
     pop
     popitem
     setdefault
-    values
-    viewitems
-    viewkeys
-    viewvalues
     '''
+
+    def clear(self):
+        self._collection.clear()
 
     def copy(self):
         return self.__class__(self)
@@ -138,6 +127,21 @@ class TypedCounter(TypedCollection):
             'Use {}(iterable) instead.'.format(cls.__name__, cls.__name__)
             )
 
+    def items(self):
+        return self._collection.items()
+
+    def iteritems(self):
+        return self._collection.iteritems()
+
+    def iterkeys(self):
+        return self._collection.iterkeys()
+
+    def itervalues(self):
+        return self._collection.itervalues()
+
+    def keys(self):
+        return self._collection.keys()
+
     def most_common(self, n=None):
         return self._collection(n=n)
 
@@ -149,3 +153,14 @@ class TypedCounter(TypedCollection):
         items, itemdict = self._coerce_arguments(iterable, **kwargs)
         self._collection.update(items, **itemdict)
 
+    def values(self):
+        return self._collection.values()
+
+    def viewitems(self):
+        return self._collection.viewitems()
+
+    def viewkeys(self):
+        return self._collection.viewkeys()
+
+    def viewvalues(self):
+        return self._collection.viewvalues()

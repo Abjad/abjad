@@ -172,16 +172,6 @@ class TypedList(TypedCollection):
         self.extend(expr)
         return self
 
-    def __iter__(self):
-        '''Aliases list.__iter__().
-        '''
-        return self._collection.__iter__()
-
-    def __len__(self):
-        '''Aliases list.__len__().
-        '''
-        return len(self._collection)
-
     def __reversed__(self):
         '''Aliases list.__reversed__().
         '''

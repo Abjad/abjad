@@ -35,6 +35,12 @@ class TypedCollection(AbjadObject):
     def __getnewargs__(self):
         return tuple((self._collection, self.item_class, self.name))
 
+    def __iter__(self):
+        return self._collection.__iter__()
+
+    def __len__(self):
+        return len(self._collection)
+
     ### PRIVATE PROPERTIES ###
 
     @property

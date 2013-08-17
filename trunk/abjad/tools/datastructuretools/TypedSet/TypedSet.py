@@ -25,16 +25,13 @@ class TypedSet(TypedCollection):
     '''
     __and__
     __contains__
-    __eq__
     __ge__
     __gt__
     __iand__
     __ior__
     __isub__
-    __iter__
     __ixor__
     __le__
-    __len__
     __lt__
     __ne__
     __or__
