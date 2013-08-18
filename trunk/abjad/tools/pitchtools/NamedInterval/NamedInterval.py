@@ -4,7 +4,7 @@ from abjad.tools import mathtools
 from abjad.tools.pitchtools.Interval import Interval
 
 
-class DiatonicInterval(Interval):
+class NamedInterval(Interval):
     '''Diatonic interval base class.
     '''
 

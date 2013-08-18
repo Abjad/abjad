@@ -19,7 +19,7 @@ class HarmonicCounterpointInterval(CounterpointInterval):
         from abjad.tools import pitchtools
         if isinstance(token, int):
             _number = abs(token)
-        elif isinstance(token, pitchtools.DiatonicInterval):
+        elif isinstance(token, pitchtools.NamedInterval):
             _number = abs(token.number)
         else:
             raise TypeError('must be number or diatonic interval.')

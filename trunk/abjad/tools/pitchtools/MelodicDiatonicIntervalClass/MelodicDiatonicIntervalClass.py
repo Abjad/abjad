@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import mathtools
-from abjad.tools.pitchtools.DiatonicIntervalClass import DiatonicIntervalClass
+from abjad.tools.pitchtools.NamedIntervalClass import NamedIntervalClass
 from abjad.tools.pitchtools.MelodicIntervalClass import MelodicIntervalClass
 
 
 class MelodicDiatonicIntervalClass(
-    DiatonicIntervalClass, MelodicIntervalClass):
+    NamedIntervalClass, MelodicIntervalClass):
     '''Abjad model of melodic diatonic interval-class:
 
     ::
@@ -36,7 +36,7 @@ class MelodicDiatonicIntervalClass(
                 direction_string, quality_abbreviation, number_string = \
                     match.groups()
                 quality_string = \
-                    DiatonicIntervalClass._quality_abbreviation_to_quality_string[
+                    NamedIntervalClass._quality_abbreviation_to_quality_string[
                         quality_abbreviation]
                 number = int(direction_string + number_string)
             else:
@@ -44,7 +44,7 @@ class MelodicDiatonicIntervalClass(
         else:
             quality_string, number = args
         if quality_string not in \
-            DiatonicIntervalClass._acceptable_quality_strings:
+            NamedIntervalClass._acceptable_quality_strings:
             raise ValueError('not acceptable quality string.')
         if not isinstance(number, int):
             raise TypeError('must be integer.')

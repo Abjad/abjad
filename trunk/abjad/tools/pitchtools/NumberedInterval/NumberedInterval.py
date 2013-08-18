@@ -4,7 +4,7 @@ from abjad.tools import mathtools
 from abjad.tools.pitchtools.Interval import Interval
 
 
-class ChromaticInterval(Interval):
+class NumberedInterval(Interval):
     '''Chromatic interval base class.
     '''
 

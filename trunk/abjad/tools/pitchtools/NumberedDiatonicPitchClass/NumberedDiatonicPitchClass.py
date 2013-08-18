@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.pitchtools.DiatonicPitchClass import DiatonicPitchClass
+from abjad.tools.pitchtools.PitchClass import PitchClass
 
 
-class NumberedDiatonicPitchClass(DiatonicPitchClass):
+class NumberedDiatonicPitchClass(PitchClass):
     '''Abjad model of a numbered diatonic pitch-class:
 
     ::
@@ -51,6 +51,15 @@ class NumberedDiatonicPitchClass(DiatonicPitchClass):
             self, '_format_string', diatonic_pitch_class_number)
 
     ### SPECIAL METHODS ###
+
+    def __abs__(self):
+        return self._number
+
+    def __float__(self):
+        return float(self._number)
+
+    def __int__(self):
+        return self._number
 
     def __repr__(self):
         return '%s(%s)' % (self._class_name, str(self))

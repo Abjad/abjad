@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.pitchtools.DiatonicIntervalClass import DiatonicIntervalClass
+from abjad.tools.pitchtools.NamedIntervalClass import NamedIntervalClass
 
 
-class HarmonicDiatonicIntervalClass(DiatonicIntervalClass):
+class HarmonicDiatonicIntervalClass(NamedIntervalClass):
     '''Abjad model harmonic diatonic interval-class:
 
     ::
@@ -31,7 +31,7 @@ class HarmonicDiatonicIntervalClass(DiatonicIntervalClass):
                 direction_string, quality_abbreviation, number_string = \
                     match.groups()
                 quality_string = \
-                    DiatonicIntervalClass._quality_abbreviation_to_quality_string[
+                    NamedIntervalClass._quality_abbreviation_to_quality_string[
                         quality_abbreviation]
                 number = int(number_string)
             elif isinstance(args[0], tuple) and len(args[0]) == 2:
@@ -41,7 +41,7 @@ class HarmonicDiatonicIntervalClass(DiatonicIntervalClass):
         else:
             quality_string, number = args
         if quality_string not in \
-            DiatonicIntervalClass._acceptable_quality_strings:
+            NamedIntervalClass._acceptable_quality_strings:
             raise ValueError('not acceptable quality string.')
         object.__setattr__(self, '_quality_string', quality_string)
         if not isinstance(number, int):

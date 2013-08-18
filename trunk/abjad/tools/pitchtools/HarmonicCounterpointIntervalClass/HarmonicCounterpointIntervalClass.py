@@ -21,7 +21,7 @@ class HarmonicCounterpointIntervalClass(CounterpointIntervalClass):
         if isinstance(token, int):
             _number = token
         elif isinstance(token, (
-            pitchtools.DiatonicInterval,
+            pitchtools.NamedInterval,
             pitchtools.CounterpointInterval)):
             _number = token.number
         if _number == 0:

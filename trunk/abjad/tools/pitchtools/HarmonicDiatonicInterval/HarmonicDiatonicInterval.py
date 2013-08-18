@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import mathtools
-from abjad.tools.pitchtools.DiatonicInterval import DiatonicInterval
+from abjad.tools.pitchtools.NamedInterval import NamedInterval
 
 
-class HarmonicDiatonicInterval(DiatonicInterval):
+class HarmonicDiatonicInterval(NamedInterval):
     '''Abjad model harmonic diatonic interval:
 
     ::
@@ -19,7 +19,7 @@ class HarmonicDiatonicInterval(DiatonicInterval):
     def __init__(self, *args):
         from abjad.tools.pitchtools.is_harmonic_diatonic_interval_abbreviation \
             import harmonic_diatonic_interval_abbreviation_regex
-        if len(args) == 1 and isinstance(args[0], DiatonicInterval):
+        if len(args) == 1 and isinstance(args[0], NamedInterval):
             _quality_string = args[0].quality_string
             _number = abs(args[0].number)
         elif len(args) == 1 and isinstance(args[0], str):
@@ -30,7 +30,7 @@ class HarmonicDiatonicInterval(DiatonicInterval):
                 raise ValueError(message % args[0])
             quality_abbreviation, number_string = match.groups()
             _quality_string = \
-                DiatonicInterval._quality_abbreviation_to_quality_string[
+                NamedInterval._quality_abbreviation_to_quality_string[
                     quality_abbreviation]
             _number = int(number_string)
         elif len(args) == 2:
@@ -132,4 +132,4 @@ class HarmonicDiatonicInterval(DiatonicInterval):
     def staff_spaces(self):
         if self.quality_string == 'perfect' and self.number == 1:
             return 0
-        return abs(DiatonicInterval.staff_spaces.fget(self))
+        return abs(NamedInterval.staff_spaces.fget(self))

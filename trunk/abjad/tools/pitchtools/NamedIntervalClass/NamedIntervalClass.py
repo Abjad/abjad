@@ -3,7 +3,7 @@ import abc
 from abjad.tools.pitchtools.IntervalClass import IntervalClass
 
 
-class DiatonicIntervalClass(IntervalClass):
+class NamedIntervalClass(IntervalClass):
     '''Diatonic interval-class base class.
     '''
 
