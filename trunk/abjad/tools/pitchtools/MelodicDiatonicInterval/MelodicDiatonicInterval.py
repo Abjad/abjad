@@ -163,11 +163,6 @@ class MelodicDiatonicInterval(NamedInterval, MelodicInterval):
         return pitchtools.HarmonicChromaticInterval(self)
 
     @property
-    def harmonic_counterpoint_interval(self):
-        from abjad.tools import pitchtools
-        return pitchtools.HarmonicCounterpointInterval(self)
-
-    @property
     def harmonic_diatonic_interval(self):
         from abjad.tools import pitchtools
         return pitchtools.HarmonicDiatonicInterval(self)
@@ -185,11 +180,6 @@ class MelodicDiatonicInterval(NamedInterval, MelodicInterval):
     def melodic_chromatic_interval(self):
         from abjad.tools import pitchtools
         return pitchtools.MelodicChromaticInterval(self)
-
-    @property
-    def melodic_counterpoint_interval(self):
-        from abjad.tools import pitchtools
-        return pitchtools.MelodicCounterpointInterval(self.number)
 
     @property
     def melodic_diatonic_interval_class(self):

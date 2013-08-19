@@ -108,11 +108,6 @@ class HarmonicDiatonicInterval(NamedInterval):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def harmonic_counterpoint_interval(self):
-        from abjad.tools import pitchtools
-        return pitchtools.HarmonicCounterpointInterval(self)
-
-    @property
     def harmonic_diatonic_interval_class(self):
         from abjad.tools import pitchtools
         return pitchtools.HarmonicDiatonicIntervalClass(self)
