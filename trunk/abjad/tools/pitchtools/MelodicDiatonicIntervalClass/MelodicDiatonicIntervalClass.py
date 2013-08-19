@@ -93,6 +93,30 @@ class MelodicDiatonicIntervalClass(
         strings.extend([self._quality_string, self._interval_string])
         return ' '.join(strings)
 
+    ### PUBLIC METHODS ###
+
+    @classmethod
+    def from_pitch_carriers(cls, pitch_carrier_1, pitch_carrier_2):
+        '''Calculate melodic diatonic interval-class from `pitch_carrier_1` to
+        `pitch_carrier_2`:
+
+        ::
+
+            >>> pitchtools.MelodicDiatonicIntervalClass.from_pitch_carriers(
+            ...     pitchtools.NamedChromaticPitch(-2),
+            ...     pitchtools.NamedChromaticPitch(12),
+            ...     )
+            MelodicDiatonicIntervalClass('+M2')
+
+        Return melodic diatonic interval-class.
+        '''
+        from abjad.tools import pitchtools
+        # get melodic diatonic interval
+        mdi = pitchtools.MelodicDiatonicInterval.from_pitch_carriers(
+            pitch_carrier_1, pitch_carrier_2)
+        # return melodic diatonic interval-class
+        return mdi.melodic_diatonic_interval_class
+
     ### PUBLIC PROPERTIES ###
 
     @property
