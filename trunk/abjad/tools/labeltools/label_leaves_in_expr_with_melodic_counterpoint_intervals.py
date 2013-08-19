@@ -46,7 +46,7 @@ def label_leaves_in_expr_with_melodic_counterpoint_intervals(expr, markup_direct
             next_leaf = logical_voice_iterator.next()
             if isinstance(next_leaf, notetools.Note):
                 cpi = \
-                    pitchtools.calculate_melodic_counterpoint_interval(
+                    pitchtools.MelodicCounterpointInterval.from_pitch_carriers(
                     note, next_leaf)
                 markuptools.Markup(cpi, markup_direction)(note)
         except StopIteration:
