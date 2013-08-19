@@ -2365,3 +2365,515 @@ def test_componenttools_split_38():
 
     assert select(staff).is_well_formed()
     assert len(halves) == 2
+
+
+def test_componenttools_split_39():
+    r'''Partition container into parts of lengths equal to counts.
+    Read list of counts cyclically.
+    Fracture spanners attaching directly to container.
+    Leave spanner attaching to container contents untouched.
+    '''
+
+    voice = Voice([Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
+    spannertools.BeamSpanner(voice[0])
+    spannertools.SlurSpanner(voice[0].select_leaves())
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+                d'8
+                e'8
+                f'8
+                g'8
+                a'8
+                b'8
+                c''8 ] )
+            }
+        }
+        '''
+        )
+
+    componenttools.split(
+        voice[0], 
+        #[1, 3], 
+        [Duration(1, 8), Duration(3, 8)],
+        cyclic=True, 
+        fracture_spanners=False,
+        )
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+            }
+            {
+                d'8
+                e'8
+                f'8
+            }
+            {
+                g'8
+            }
+            {
+                a'8
+                b'8
+                c''8 ] )
+            }
+        }
+        '''
+        )
+
+    assert select(voice).is_well_formed()
+
+
+def test_componenttools_split_40():
+    r'''Cyclic 1 splits all elements in container.
+    '''
+
+    voice = Voice([Container("c'8 d'8 e'8 f'8")])
+    spannertools.BeamSpanner(voice[0])
+    spannertools.SlurSpanner(voice[0].select_leaves())
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+                d'8
+                e'8
+                f'8 ] )
+            }
+        }
+        '''
+        )
+
+    componenttools.split(
+        voice[0], 
+        #[1], 
+        [Duration(1, 8)],
+        cyclic=True, 
+        fracture_spanners=False,
+        )
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+            }
+            {
+                d'8
+            }
+            {
+                e'8
+            }
+            {
+                f'8 ] )
+            }
+        }
+        '''
+        )
+
+    assert select(voice).is_well_formed()
+
+
+def test_componenttools_split_41():
+    r'''Partition container into parts of lengths equal to counts.
+    Read list of counts cyclically.
+    Fracture spanners attaching directly to container.
+    Leave spanner attaching to container contents untouched.
+    '''
+
+    voice = Voice([Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
+    spannertools.BeamSpanner(voice[0])
+    spannertools.SlurSpanner(voice[0].select_leaves())
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+                d'8
+                e'8
+                f'8
+                g'8
+                a'8
+                b'8
+                c''8 ] )
+            }
+        }
+        '''
+        )
+
+    result = componenttools.split(
+        voice[0], 
+        #[1, 3], 
+        [Duration(1, 8), Duration(3, 8)],
+        cyclic=True, 
+        fracture_spanners=True,
+        )
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ ] ( )
+            }
+            {
+                d'8 [ (
+                e'8
+                f'8 ] )
+            }
+            {
+                g'8 [ ] ( )
+            }
+            {
+                a'8 [ (
+                b'8
+                c''8 ] )
+            }
+        }
+        '''
+        )
+
+    assert select(voice).is_well_formed()
+    assert len(result) == 4
+
+
+def test_componenttools_split_42():
+    r'''Cyclic by 1 splits all elements in container.
+    '''
+
+    voice = Voice([Container("c'8 d'8 e'8 f'8")])
+    spannertools.BeamSpanner(voice[0])
+    spannertools.SlurSpanner(voice[0].select_leaves())
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+                d'8
+                e'8
+                f'8 ] )
+            }
+        }
+        '''
+        )
+
+    result = componenttools.split(
+        voice[0], 
+        #[1], 
+        [Duration(1, 8)],
+        cyclic=True, 
+        fracture_spanners=True,
+        )
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ ] ( )
+            }
+            {
+                d'8 [ ] ( )
+            }
+            {
+                e'8 [ ] ( )
+            }
+            {
+                f'8 [ ] ( )
+            }
+        }
+        '''
+        )
+
+    assert select(voice).is_well_formed()
+    assert len(result) == 4
+
+
+def test_componenttools_split_43():
+    r'''Partition by large number of part counts.
+    First part counts apply and extra part counts do not apply.
+    Result contains no empty parts.
+    '''
+
+    voice = Voice([Container("c'8 d'8 e'8 f'8")])
+    spannertools.BeamSpanner(voice[0])
+    spannertools.SlurSpanner(voice[0].select_leaves())
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+                d'8
+                e'8
+                f'8 ] )
+            }
+        }
+        '''
+        )
+
+    result = componenttools.split(
+        voice[0], 
+        5 * [Duration(2, 8)],
+        cyclic=True, 
+        fracture_spanners=True,
+        )
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+                d'8 ] )
+            }
+            {
+                e'8 [ (
+                f'8 ] )
+            }
+        }
+        '''
+        )
+
+    assert select(voice).is_well_formed()
+    assert len(result) == 2
+
+
+def test_componenttools_split_44():
+    r'''Partition by large empty part counts list.
+    Expression remains unaltered.
+    '''
+
+    voice = Voice([Container("c'8 d'8 e'8 f'8")])
+    spannertools.BeamSpanner(voice[0])
+    spannertools.SlurSpanner(voice[0].select_leaves())
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+                d'8
+                e'8
+                f'8 ] )
+            }
+        }
+        '''
+        )
+
+    result = componenttools.split(
+        voice[0], 
+        [], 
+        cyclic=True, 
+        fracture_spanners=True,
+        )
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+                d'8
+                e'8
+                f'8 ] )
+            }
+        }
+        '''
+        )
+
+    assert select(voice).is_well_formed()
+    assert len(result) == 2
+
+
+def test_componenttools_split_45():
+    r'''Partition container into parts of lengths equal to counts.
+    Read list of counts only once; do not cycle.
+    Fracture spanners attaching directly to container.
+    Leave spanner attaching to container contents untouched.
+    '''
+
+    voice = Voice([Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
+    spannertools.BeamSpanner(voice[0])
+    spannertools.SlurSpanner(voice[0].select_leaves())
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+                d'8
+                e'8
+                f'8
+                g'8
+                a'8
+                b'8
+                c''8 ] )
+            }
+        }
+        '''
+        )
+
+    result = componenttools.split(
+        voice[0], 
+        #[1, 3], 
+        [Duration(1, 8), Duration(3, 8)],
+        cyclic=False, 
+        fracture_spanners=False,
+        )
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+            }
+            {
+                d'8
+                e'8
+                f'8
+            }
+            {
+                g'8
+                a'8
+                b'8
+                c''8 ] )
+            }
+        }
+        '''
+        )
+
+    assert select(voice).is_well_formed()
+    assert len(result) == 3
+
+
+def test_componenttools_split_46():
+    r'''Partition container into parts of lengths equal to counts.
+    Read list of counts only once; do not cycle.
+    Fracture spanners attaching directly to container.
+    Leave spanner attaching to container contents untouched.
+    '''
+
+    voice = Voice([Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
+    spannertools.BeamSpanner(voice[0])
+    spannertools.SlurSpanner(voice[0].select_leaves())
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+                d'8
+                e'8
+                f'8
+                g'8
+                a'8
+                b'8
+                c''8 ] )
+            }
+        }
+        '''
+        )
+
+    result = componenttools.split(
+        voice[0], 
+        #[1, 3], 
+        [Duration(1, 8), Duration(3, 8)],
+        cyclic=False, 
+        fracture_spanners=True,
+        )
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ ] ( )
+            }
+            {
+                d'8 [ (
+                e'8
+                f'8 ] )
+            }
+            {
+                g'8 [ (
+                a'8
+                b'8
+                c''8 ] )
+            }
+        }
+        '''
+        )
+
+    assert select(voice).is_well_formed()
+    assert len(result) == 3
+
+
+def test_componenttools_split_47():
+    r'''Partition by large number of part counts.
+    First part counts apply and extra part counts do not apply.
+    Result contains no empty parts.
+    '''
+
+    voice = Voice([Container("c'8 d'8 e'8 f'8")])
+    spannertools.BeamSpanner(voice[0])
+    spannertools.SlurSpanner(voice[0].select_leaves())
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+                d'8
+                e'8
+                f'8 ] )
+            }
+        }
+        '''
+        )
+
+    result = componenttools.split(
+        voice[0], 
+        5 * [Duration(2, 8)],
+        cyclic=False, 
+        fracture_spanners=True,
+        )
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+                d'8 ] )
+            }
+            {
+                e'8 [ (
+                f'8 ] )
+            }
+        }
+        '''
+        )
+
+    assert select(voice).is_well_formed()
+    assert len(result) == 2

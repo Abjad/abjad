@@ -317,6 +317,9 @@ def split(
         components = selectiontools.SliceSelection(components)
     durations = [durationtools.Duration(x) for x in durations]
 
+    if not durations:
+        return [], components
+
     # calculate total component duration
     total_component_duration = components.get_duration()
     total_split_duration = sum(durations)
