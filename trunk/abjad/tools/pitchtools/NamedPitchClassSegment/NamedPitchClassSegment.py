@@ -66,12 +66,12 @@ class NamedPitchClassSegment(PitchClassSegment):
     @property
     def numbered_chromatic_pitch_class_segment(self):
         from abjad.tools import pitchtools
-        return pitchtools.NumberedChromaticPitchClassSegment(self)
+        return pitchtools.NumberedPitchClassSegment(self)
 
     @property
     def numbered_chromatic_pitch_class_set(self):
         from abjad.tools import pitchtools
-        return pitchtools.NumberedChromaticPitchClassSet(self)
+        return pitchtools.NumberedPitchClassSet(self)
 
     @property
     def numbered_chromatic_pitch_classes(self):

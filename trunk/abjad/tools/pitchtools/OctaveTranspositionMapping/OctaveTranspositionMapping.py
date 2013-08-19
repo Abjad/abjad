@@ -104,13 +104,13 @@ class OctaveTranspositionMapping(TypedList):
                     pitchtools.PitchRange(
                         '[A0, C4)'
                         ),
-                    pitchtools.NumberedChromaticPitch(15)
+                    pitchtools.NumberedPitch(15)
                     ),
                 pitchtools.OctaveTranspositionMappingComponent(
                     pitchtools.PitchRange(
                         '[C4, C8)'
                         ),
-                    pitchtools.NumberedChromaticPitch(27)
+                    pitchtools.NumberedPitch(27)
                     )
                 ])
 

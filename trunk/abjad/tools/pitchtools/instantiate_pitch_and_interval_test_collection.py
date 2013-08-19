@@ -20,8 +20,8 @@ def instantiate_pitch_and_interval_test_collection():
         MelodicDiatonicIntervalClass('+M2')
         NamedPitch('c')
         NamedPitchClass('c')
-        NumberedChromaticPitch(1)
-        NumberedChromaticPitchClass(1)
+        NumberedPitch(1)
+        NumberedPitchClass(1)
 
     Use to test pitch and interval interface consistency.
 
@@ -42,6 +42,6 @@ def instantiate_pitch_and_interval_test_collection():
     result.append(pitchtools.MelodicDiatonicIntervalClass('M2'))
     result.append(pitchtools.NamedPitch('c'))
     result.append(pitchtools.NamedPitchClass('c'))
-    result.append(pitchtools.NumberedChromaticPitch(1))
-    result.append(pitchtools.NumberedChromaticPitchClass(1))
+    result.append(pitchtools.NumberedPitch(1))
+    result.append(pitchtools.NumberedPitchClass(1))
     return result

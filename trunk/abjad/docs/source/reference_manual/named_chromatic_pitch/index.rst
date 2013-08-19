@@ -174,7 +174,7 @@ To a numbered chromatic pitch:
 ::
 
    >>> named_chromatic_pitch.numbered_chromatic_pitch
-   NumberedChromaticPitch(13)
+   NumberedPitch(13)
 
 
 Or to a numbered diatonic pitch:
@@ -210,7 +210,7 @@ To a numbered chromatic pitch-class:
 ::
 
    >>> named_chromatic_pitch.numbered_chromatic_pitch_class
-   NumberedChromaticPitchClass(1)
+   NumberedPitchClass(1)
 
 
 Or to a numbered diatonic pitch-class:

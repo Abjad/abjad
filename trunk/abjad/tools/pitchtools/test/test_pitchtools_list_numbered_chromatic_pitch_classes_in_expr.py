@@ -7,7 +7,7 @@ def test_pitchtools_list_numbered_chromatic_pitch_classes_in_expr_01():
     '''
 
     note = Note(13, (1, 4))
-    assert pitchtools.list_numbered_chromatic_pitch_classes_in_expr(note) == (pitchtools.NumberedChromaticPitchClass(1), )
+    assert pitchtools.list_numbered_chromatic_pitch_classes_in_expr(note) == (pitchtools.NumberedPitchClass(1), )
 
 
 def test_pitchtools_list_numbered_chromatic_pitch_classes_in_expr_02():
@@ -16,9 +16,9 @@ def test_pitchtools_list_numbered_chromatic_pitch_classes_in_expr_02():
 
     chord = Chord([13, 14, 15], (1, 4))
     assert pitchtools.list_numbered_chromatic_pitch_classes_in_expr(chord) == (
-        pitchtools.NumberedChromaticPitchClass(1),
-        pitchtools.NumberedChromaticPitchClass(2),
-        pitchtools.NumberedChromaticPitchClass(3))
+        pitchtools.NumberedPitchClass(1),
+        pitchtools.NumberedPitchClass(2),
+        pitchtools.NumberedPitchClass(3))
 
 
 def test_pitchtools_list_numbered_chromatic_pitch_classes_in_expr_03():
@@ -26,7 +26,7 @@ def test_pitchtools_list_numbered_chromatic_pitch_classes_in_expr_03():
     '''
 
     chord = Chord([13], (1, 4))
-    assert pitchtools.list_numbered_chromatic_pitch_classes_in_expr(chord) == (pitchtools.NumberedChromaticPitchClass(1), )
+    assert pitchtools.list_numbered_chromatic_pitch_classes_in_expr(chord) == (pitchtools.NumberedPitchClass(1), )
 
 
 def test_pitchtools_list_numbered_chromatic_pitch_classes_in_expr_04():

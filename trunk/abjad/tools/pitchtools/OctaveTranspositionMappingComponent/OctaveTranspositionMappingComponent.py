@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.pitchtools.NamedPitch import NamedPitch
-from abjad.tools.pitchtools.NumberedChromaticPitch \
-	import NumberedChromaticPitch
+from abjad.tools.pitchtools.NumberedPitch \
+	import NumberedPitch
 from abjad.tools.pitchtools.PitchRange import PitchRange
 
 
@@ -134,12 +134,12 @@ class OctaveTranspositionMappingComponent(AbjadObject):
             ::
 
                 >>> mc.target_octave_start_pitch
-                NumberedChromaticPitch(15)
+                NumberedPitch(15)
 
             Return numbered chromatic pitch or none.
             '''
             return self._target_octave_start_pitch
         def fset(self, target_octave_start_pitch):
-            self._target_octave_start_pitch = NumberedChromaticPitch(
+            self._target_octave_start_pitch = NumberedPitch(
                 target_octave_start_pitch)
         return property(**locals())

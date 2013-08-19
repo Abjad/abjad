@@ -16,8 +16,8 @@ def test_sequencetools_reverse_sequence_02():
     r'''Reverse sequence.
     '''
 
-    segment = pitchtools.NumberedChromaticPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
-    reversed_segment = pitchtools.NumberedChromaticPitchClassSegment([7, 10.5, 7, 6, 10.5, 10])
+    segment = pitchtools.NumberedPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+    reversed_segment = pitchtools.NumberedPitchClassSegment([7, 10.5, 7, 6, 10.5, 10])
 
     assert sequencetools.reverse_sequence(segment) == reversed_segment
 

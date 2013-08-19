@@ -87,7 +87,7 @@ def transpose_pitch_carrier_by_melodic_interval(
             number = pitch_carrier.chromatic_pitch_number + mci.semitones
             return type(pitch_carrier)(number)
         elif isinstance(pitch_carrier, numbers.Number):
-            pitch_carrier = pitchtools.NumberedChromaticPitch(pitch_carrier)
+            pitch_carrier = pitchtools.NumberedPitch(pitch_carrier)
             result = _transpose_pitch_carrier_by_melodic_chromatic_interval(
                 pitch_carrier, mci)
             return result.chromatic_pitch_number

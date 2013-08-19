@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.pitchtools.NumberedChromaticPitchClassSegment \
-    import NumberedChromaticPitchClassSegment
+from abjad.tools.pitchtools.NumberedPitchClassSegment \
+    import NumberedPitchClassSegment
 
 
-class TwelveToneRow(NumberedChromaticPitchClassSegment):
+class TwelveToneRow(NumberedPitchClassSegment):
     '''Abjad model of twelve-tone row:
 
     ::
@@ -33,9 +33,9 @@ class TwelveToneRow(NumberedChromaticPitchClassSegment):
     def __new__(cls, pitch_classes):
         from abjad.tools import pitchtools
         pitch_classes = [
-            pitchtools.NumberedChromaticPitchClass(pc) 
+            pitchtools.NumberedPitchClass(pc) 
             for pc in pitch_classes]
-        self = pitchtools.NumberedChromaticPitchClassSegment.__new__(
+        self = pitchtools.NumberedPitchClassSegment.__new__(
             cls, pitch_classes)
         self._validate_pitch_classes(pitch_classes)
         return self
@@ -51,17 +51,17 @@ class TwelveToneRow(NumberedChromaticPitchClassSegment):
         return False
 
     def __getslice__(self, start, stop):
-        return NumberedChromaticPitchClassSegment(
+        return NumberedPitchClassSegment(
             tuple.__getslice__(self, start, stop))
 
     def __mul__(self, n):
-        return NumberedChromaticPitchClassSegment(tuple.__mul__(self, n))
+        return NumberedPitchClassSegment(tuple.__mul__(self, n))
 
     def __ne__(self, arg):
         return not self == arg
 
     def __rmul__(self, n):
-        return NumberedChromaticPitchClassSegment(tuple.__rmul__(self, n))
+        return NumberedPitchClassSegment(tuple.__rmul__(self, n))
 
     ### PRIVATE PROPERTIES ###
 

@@ -171,12 +171,12 @@ class NamedPitchClass(PitchClass):
         ::
 
             >>> ncpc.numbered_chromatic_pitch_class
-            NumberedChromaticPitchClass(1)
+            NumberedPitchClass(1)
 
         Return numbered chromatic pitch-class.
         '''
         from abjad.tools import pitchtools
-        return pitchtools.NumberedChromaticPitchClass(
+        return pitchtools.NumberedPitchClass(
             self._chromatic_pitch_class_name)
 
     ### PUBLIC METHODS ###

@@ -6,10 +6,10 @@ def transpose_chromatic_pitch_by_melodic_chromatic_interval_segment(pitch, segme
 
     ::
 
-        >>> ncp = pitchtools.NumberedChromaticPitch(0)
+        >>> ncp = pitchtools.NumberedPitch(0)
         >>> mcis = pitchtools.MelodicChromaticIntervalSegment([0, -1, 2])
         >>> pitchtools.transpose_chromatic_pitch_by_melodic_chromatic_interval_segment(ncp, mcis)
-        [NumberedChromaticPitch(0), NumberedChromaticPitch(-1), NumberedChromaticPitch(1)]
+        [NumberedPitch(0), NumberedPitch(-1), NumberedPitch(1)]
 
     Transpose by each interval in `segment` such that each tranposition
     transposes the resulting pitch of the previous transposition.
@@ -20,7 +20,7 @@ def transpose_chromatic_pitch_by_melodic_chromatic_interval_segment(pitch, segme
 
     # check input
     if not isinstance(pitch, (
-        pitchtools.NumberedChromaticPitch,
+        pitchtools.NumberedPitch,
         pitchtools.NamedPitch,
         )):
         raise TypeError

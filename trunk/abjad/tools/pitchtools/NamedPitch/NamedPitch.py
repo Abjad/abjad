@@ -498,12 +498,12 @@ class NamedPitch(Pitch):
         ::
 
             >>> pitch.numbered_chromatic_pitch_class
-            NumberedChromaticPitchClass(1)
+            NumberedPitchClass(1)
 
         Return numbered chromatic pitch-class.
         '''
         from abjad.tools import pitchtools
-        return pitchtools.NumberedChromaticPitch(self._chromatic_pitch_name)
+        return pitchtools.NumberedPitch(self._chromatic_pitch_name)
 
     @property
     def numbered_chromatic_pitch_class(self):
@@ -512,12 +512,12 @@ class NamedPitch(Pitch):
         ::
 
             >>> pitch.numbered_chromatic_pitch_class
-            NumberedChromaticPitchClass(1)
+            NumberedPitchClass(1)
 
         Return numbered chromatic pitch-class.
         '''
-        from abjad.tools.pitchtools import NumberedChromaticPitchClass
-        return NumberedChromaticPitchClass(self._chromatic_pitch_name)
+        from abjad.tools.pitchtools import NumberedPitchClass
+        return NumberedPitchClass(self._chromatic_pitch_name)
 
     @property
     def octave_number(self):

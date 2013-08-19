@@ -16,7 +16,7 @@ def test_pitchtools_TwelveToneRow___init___02():
     '''
 
     numbers = [10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11]
-    pitch_classes = [pitchtools.NumberedChromaticPitchClass(number) for number in numbers]
+    pitch_classes = [pitchtools.NumberedPitchClass(number) for number in numbers]
     row = pitchtools.TwelveToneRow(pitch_classes)
 
 

@@ -12,26 +12,26 @@ def inventory_aggregate_subsets():
         4096
         >>> for pcset in U_star[:20]:
         ...   pcset
-        NumberedChromaticPitchClassSet([])
-        NumberedChromaticPitchClassSet([0])
-        NumberedChromaticPitchClassSet([1])
-        NumberedChromaticPitchClassSet([0, 1])
-        NumberedChromaticPitchClassSet([2])
-        NumberedChromaticPitchClassSet([0, 2])
-        NumberedChromaticPitchClassSet([1, 2])
-        NumberedChromaticPitchClassSet([0, 1, 2])
-        NumberedChromaticPitchClassSet([3])
-        NumberedChromaticPitchClassSet([0, 3])
-        NumberedChromaticPitchClassSet([1, 3])
-        NumberedChromaticPitchClassSet([0, 1, 3])
-        NumberedChromaticPitchClassSet([2, 3])
-        NumberedChromaticPitchClassSet([0, 2, 3])
-        NumberedChromaticPitchClassSet([1, 2, 3])
-        NumberedChromaticPitchClassSet([0, 1, 2, 3])
-        NumberedChromaticPitchClassSet([4])
-        NumberedChromaticPitchClassSet([0, 4])
-        NumberedChromaticPitchClassSet([1, 4])
-        NumberedChromaticPitchClassSet([0, 1, 4])
+        NumberedPitchClassSet([])
+        NumberedPitchClassSet([0])
+        NumberedPitchClassSet([1])
+        NumberedPitchClassSet([0, 1])
+        NumberedPitchClassSet([2])
+        NumberedPitchClassSet([0, 2])
+        NumberedPitchClassSet([1, 2])
+        NumberedPitchClassSet([0, 1, 2])
+        NumberedPitchClassSet([3])
+        NumberedPitchClassSet([0, 3])
+        NumberedPitchClassSet([1, 3])
+        NumberedPitchClassSet([0, 1, 3])
+        NumberedPitchClassSet([2, 3])
+        NumberedPitchClassSet([0, 2, 3])
+        NumberedPitchClassSet([1, 2, 3])
+        NumberedPitchClassSet([0, 1, 2, 3])
+        NumberedPitchClassSet([4])
+        NumberedPitchClassSet([0, 4])
+        NumberedPitchClassSet([1, 4])
+        NumberedPitchClassSet([0, 1, 4])
 
     There are 4096 subsets of the aggregate.
 
@@ -51,7 +51,7 @@ def inventory_aggregate_subsets():
     for x in range(4096):
         subset = ''.join(list(reversed(mathtools.integer_to_binary_string(x).zfill(12))))
         subset = _helper(subset)
-        subset = pitchtools.NumberedChromaticPitchClassSet(subset)
+        subset = pitchtools.NumberedPitchClassSet(subset)
         result.append(subset)
 
     return result

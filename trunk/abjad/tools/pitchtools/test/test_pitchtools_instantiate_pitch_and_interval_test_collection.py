@@ -19,6 +19,6 @@ def test_pitchtools_instantiate_pitch_and_interval_test_collection_01():
         pitchtools.MelodicDiatonicIntervalClass('+M2'),
         pitchtools.NamedPitch('c'),
         pitchtools.NamedPitchClass('c'),
-        pitchtools.NumberedChromaticPitch(1),
-        pitchtools.NumberedChromaticPitchClass(1),
+        pitchtools.NumberedPitch(1),
+        pitchtools.NumberedPitchClass(1),
         ]

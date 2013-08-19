@@ -12,7 +12,7 @@ def test_labeltools_color_chord_note_heads_in_expr_by_pitch_class_color_map_01()
 
     pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]]
     colors = ['red', 'blue', 'green']
-    color_map = pitchtools.NumberedChromaticPitchClassColorMap(pitches, colors)
+    color_map = pitchtools.NumberedPitchClassColorMap(pitches, colors)
     labeltools.color_chord_note_heads_in_expr_by_pitch_class_color_map(chord, color_map)
 
     r'''

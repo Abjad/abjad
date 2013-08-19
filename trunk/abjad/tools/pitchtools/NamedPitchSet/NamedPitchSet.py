@@ -84,7 +84,7 @@ class NamedPitchSet(Set):
             if pitch_class in pitch_classes:
                 duplicate_pitch_classes.append(pitch_class)
             pitch_classes.append(pitch_class)
-        return pitchtools.NumberedChromaticPitchClassSet(
+        return pitchtools.NumberedPitchClassSet(
             duplicate_pitch_classes)
 
     @property
@@ -100,7 +100,7 @@ class NamedPitchSet(Set):
     #def pitch_class_set(self):
     def numbered_chromatic_pitch_class_set(self):
         from abjad.tools import pitchtools
-        return pitchtools.NumberedChromaticPitchClassSet(self)
+        return pitchtools.NumberedPitchClassSet(self)
 
     @property
     #def pitch_classes(self):

@@ -13,9 +13,9 @@ def list_numbered_chromatic_pitch_classes_in_expr(expr):
         >>> for x in pitchtools.list_numbered_chromatic_pitch_classes_in_expr(chord):
         ...     x
         ...
-        NumberedChromaticPitchClass(1)
-        NumberedChromaticPitchClass(2)
-        NumberedChromaticPitchClass(3)
+        NumberedPitchClass(1)
+        NumberedPitchClass(2)
+        NumberedPitchClass(3)
 
     Works with notes, chords, defective chords.
 
@@ -24,6 +24,6 @@ def list_numbered_chromatic_pitch_classes_in_expr(expr):
     from abjad.tools import pitchtools
 
     pitches = pitchtools.list_named_chromatic_pitches_in_expr(expr)
-    pitch_classes = [pitchtools.NumberedChromaticPitchClass(pitch) for pitch in pitches]
+    pitch_classes = [pitchtools.NumberedPitchClass(pitch) for pitch in pitches]
     pitch_classes = tuple(pitch_classes)
     return pitch_classes

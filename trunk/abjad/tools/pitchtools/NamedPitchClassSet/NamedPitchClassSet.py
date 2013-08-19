@@ -140,7 +140,7 @@ class NamedPitchClassSet(PitchClassSet):
     @property
     def numbered_chromatic_pitch_class_set(self):
         from abjad.tools import pitchtools
-        return pitchtools.NumberedChromaticPitchClassSet(self)
+        return pitchtools.NumberedPitchClassSet(self)
 
     ### PUBLIC METHODS ###
 
