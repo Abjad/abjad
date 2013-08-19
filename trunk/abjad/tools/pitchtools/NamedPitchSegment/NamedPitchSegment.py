@@ -74,7 +74,7 @@ class NamedPitchSegment(Segment):
         from abjad.tools import pitchtools
         result = list(mathtools.difference_series(self.pitches))
         result = [-x for x in result]
-        return pitchtools.HarmonicDiatonicIntervalSegment(result)
+        return pitchtools.NamedHarmonicIntervalSegment(result)
 
     @property
     def inflection_point_count(self):

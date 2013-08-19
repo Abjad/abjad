@@ -638,12 +638,12 @@ Changes to the ``pitchtools`` package:
 
   ::
 
-    pitchtools.HarmonicChromaticIntervalClass.from_pitch_carriers()
-    pitchtools.HarmonicChromaticInterval.from_pitch_carriers()
+    pitchtools.NumberedHarmonicIntervalClass.from_pitch_carriers()
+    pitchtools.NumberedHarmonicInterval.from_pitch_carriers()
     pitchtools.HarmonicCounterpointIntervalClass.from_pitch_carriers()
     pitchtools.HarmonicCounterpointInterval.from_pitch_carriers()
-    pitchtools.HarmonicDiatonicIntervalClass.from_pitch_carriers()
-    pitchtools.HarmonicDiatonicInterval.from_pitch_carriers()
+    pitchtools.NamedHarmonicIntervalClass.from_pitch_carriers()
+    pitchtools.NamedHarmonicInterval.from_pitch_carriers()
 
 - Renamed::
 

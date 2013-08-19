@@ -75,10 +75,10 @@ class NumberedMelodicIntervalSegment(IntervalSegment):
 
             >>> pitchtools.NumberedMelodicIntervalSegment(
             ...     [1, 2, -3, 1, -2, 1]).spread
-            HarmonicChromaticInterval(4)
+            NumberedHarmonicInterval(4)
             >>> pitchtools.NumberedMelodicIntervalSegment(
             ...     [1, 1, 1, 2, -3, -2]).spread
-            HarmonicChromaticInterval(5)
+            NumberedHarmonicInterval(5)
 
         Return harmonic chromatic interval.
         '''
@@ -90,4 +90,4 @@ class NumberedMelodicIntervalSegment(IntervalSegment):
                 maximum = current
             if current < minimum:
                 minimum = current
-        return pitchtools.HarmonicChromaticInterval(maximum - minimum)
+        return pitchtools.NumberedHarmonicInterval(maximum - minimum)

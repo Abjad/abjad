@@ -12,8 +12,8 @@ def test_NamedMelodicIntervalSet_harmonic_diatonic_interval_set_01():
     "NamedMelodicIntervalSet(-m2, -M2, +M2, +m2)"
 
     derived_hdiset = mdiset.harmonic_diatonic_interval_set
-    manual_hdiset = pitchtools.HarmonicDiatonicIntervalSet([
-        pitchtools.HarmonicDiatonicInterval('minor', 2),
-        pitchtools.HarmonicDiatonicInterval('major', 2)])
+    manual_hdiset = pitchtools.NamedHarmonicIntervalSet([
+        pitchtools.NamedHarmonicInterval('minor', 2),
+        pitchtools.NamedHarmonicInterval('major', 2)])
 
     assert derived_hdiset == manual_hdiset

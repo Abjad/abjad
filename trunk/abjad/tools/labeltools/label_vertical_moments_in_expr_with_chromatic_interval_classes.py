@@ -98,7 +98,7 @@ def label_vertical_moments_in_expr_with_chromatic_interval_classes(
         hcics = []
         for upper_note in upper_notes:
             hcic = \
-                pitchtools.HarmonicChromaticIntervalClass.from_pitch_carriers(
+                pitchtools.NumberedHarmonicIntervalClass.from_pitch_carriers(
                 bass_note, upper_note)
             hcics.append(hcic)
         hcics = ' '.join([str(hcic) for hcic in hcics])

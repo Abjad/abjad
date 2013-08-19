@@ -41,9 +41,9 @@ class NamedInterval(Interval):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        from abjad.tools.pitchtools.HarmonicDiatonicInterval \
-            import HarmonicDiatonicInterval
-        return HarmonicDiatonicInterval(self.quality_string, self.number)
+        from abjad.tools.pitchtools.NamedHarmonicInterval \
+            import NamedHarmonicInterval
+        return NamedHarmonicInterval(self.quality_string, self.number)
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):

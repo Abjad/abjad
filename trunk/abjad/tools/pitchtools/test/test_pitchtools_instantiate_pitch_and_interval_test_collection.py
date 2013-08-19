@@ -7,10 +7,10 @@ def test_pitchtools_instantiate_pitch_and_interval_test_collection_01():
     result = pitchtools.instantiate_pitch_and_interval_test_collection()
 
     assert result == [
-        pitchtools.HarmonicChromaticInterval(1),
-        pitchtools.HarmonicChromaticIntervalClass(1),
-        pitchtools.HarmonicDiatonicInterval('M2'),
-        pitchtools.HarmonicDiatonicIntervalClass('M2'),
+        pitchtools.NumberedHarmonicInterval(1),
+        pitchtools.NumberedHarmonicIntervalClass(1),
+        pitchtools.NamedHarmonicInterval('M2'),
+        pitchtools.NamedHarmonicIntervalClass('M2'),
         pitchtools.NumberedInversionEquivalentIntervalClass(1),
         pitchtools.NamedInversionEquivalentIntervalClass('M2'),
         pitchtools.NumberedMelodicInterval(+1),

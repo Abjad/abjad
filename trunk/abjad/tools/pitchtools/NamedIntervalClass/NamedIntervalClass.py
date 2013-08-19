@@ -20,9 +20,9 @@ class NamedIntervalClass(IntervalClass):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        from abjad.tools.pitchtools.HarmonicDiatonicIntervalClass \
-            import HarmonicDiatonicIntervalClass
-        return HarmonicDiatonicIntervalClass(str(self))
+        from abjad.tools.pitchtools.NamedHarmonicIntervalClass \
+            import NamedHarmonicIntervalClass
+        return NamedHarmonicIntervalClass(str(self))
 
     def __float__(self):
         return float(self._number)

@@ -50,7 +50,7 @@ class NamedMelodicInterval(NamedInterval, MelodicInterval):
 
     def __abs__(self):
         from abjad.tools import pitchtools
-        return pitchtools.HarmonicDiatonicInterval(
+        return pitchtools.NamedHarmonicInterval(
             self.quality_string, abs(self.number))
 
     def __add__(self, arg):
@@ -162,12 +162,12 @@ class NamedMelodicInterval(NamedInterval, MelodicInterval):
     @property
     def harmonic_chromatic_interval(self):
         from abjad.tools import pitchtools
-        return pitchtools.HarmonicChromaticInterval(self)
+        return pitchtools.NumberedHarmonicInterval(self)
 
     @property
     def harmonic_diatonic_interval(self):
         from abjad.tools import pitchtools
-        return pitchtools.HarmonicDiatonicInterval(self)
+        return pitchtools.NamedHarmonicInterval(self)
 
     @property
     def inversion_equivalent_chromatic_interval_class(self):

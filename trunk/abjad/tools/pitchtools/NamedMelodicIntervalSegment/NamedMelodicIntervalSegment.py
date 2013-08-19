@@ -46,7 +46,7 @@ class NamedMelodicIntervalSegment(IntervalSegment):
     @property
     def harmonic_diatonic_interval_segment(self):
         from abjad.tools import pitchtools
-        return pitchtools.HarmonicDiatonicIntervalSegment(self.intervals)
+        return pitchtools.NamedHarmonicIntervalSegment(self.intervals)
 
     @property
     def melodic_chromatic_interval_segment(self):

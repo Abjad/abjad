@@ -45,7 +45,7 @@ class NumberedMelodicIntervalSet(Set):
     @property
     def harmonic_chromatic_interval_set(self):
         from abjad.tools import pitchtools
-        return pitchtools.HarmonicChromaticIntervalSet(self)
+        return pitchtools.NumberedHarmonicIntervalSet(self)
 
     @property
     def melodic_chromatic_interval_numbers(self):

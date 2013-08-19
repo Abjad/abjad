@@ -151,13 +151,13 @@ class NumberedMelodicInterval(NumberedInterval, MelodicInterval):
         ::
 
             >>> mci.harmonic_chromatic_interval
-            HarmonicChromaticInterval(14)
+            NumberedHarmonicInterval(14)
 
         Return harmonic chromatic interval.
         '''
         from abjad.tools import pitchtools
         number = abs(self.number)
-        return pitchtools.HarmonicChromaticInterval(number)
+        return pitchtools.NumberedHarmonicInterval(number)
 
     @property
     def melodic_chromatic_interval_class(self):

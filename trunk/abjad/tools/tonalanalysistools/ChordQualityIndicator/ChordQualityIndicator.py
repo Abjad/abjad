@@ -2,11 +2,11 @@
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
-from abjad.tools.pitchtools import HarmonicDiatonicIntervalSegment
-from abjad.tools.pitchtools import HarmonicDiatonicInterval
+from abjad.tools.pitchtools import NamedHarmonicIntervalSegment
+from abjad.tools.pitchtools import NamedHarmonicInterval
 
 
-class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
+class ChordQualityIndicator(NamedHarmonicIntervalSegment):
     r'''Chord quality indicator:
 
     ::
@@ -124,109 +124,109 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
     def _init_augmented_sixth(quality_string):
         if quality_string == 'French':
             intervals = [
-                HarmonicDiatonicInterval('major', 3),
-                HarmonicDiatonicInterval('major', 2), 
-                HarmonicDiatonicInterval('major', 3), 
+                NamedHarmonicInterval('major', 3),
+                NamedHarmonicInterval('major', 2), 
+                NamedHarmonicInterval('major', 3), 
                 ]
         elif quality_string == 'German':
             intervals = [
-                HarmonicDiatonicInterval('major', 3), 
-                HarmonicDiatonicInterval('minor', 3), 
-                HarmonicDiatonicInterval('augmented', 2), 
+                NamedHarmonicInterval('major', 3), 
+                NamedHarmonicInterval('minor', 3), 
+                NamedHarmonicInterval('augmented', 2), 
                 ]
         elif quality_string == 'Italian':
             intervals = [
-                HarmonicDiatonicInterval('major', 3), 
-                HarmonicDiatonicInterval('perfect', 1), 
-                HarmonicDiatonicInterval('augmented', 4), 
+                NamedHarmonicInterval('major', 3), 
+                NamedHarmonicInterval('perfect', 1), 
+                NamedHarmonicInterval('augmented', 4), 
                 ]
         elif quality_string == 'Swiss':
             intervals = [
-                HarmonicDiatonicInterval('major', 3), 
-                HarmonicDiatonicInterval('augmented', 2), 
-                HarmonicDiatonicInterval('minor', 3), 
+                NamedHarmonicInterval('major', 3), 
+                NamedHarmonicInterval('augmented', 2), 
+                NamedHarmonicInterval('minor', 3), 
                 ]
         else:
            raise ValueError('unaccpetable quality string.')
-        intervals.insert(0, HarmonicDiatonicInterval('perfect', 1))
+        intervals.insert(0, NamedHarmonicInterval('perfect', 1))
         return intervals
         
     @staticmethod
     def _init_ninth(quality_string):
         if quality_string == 'dominant':
             intervals = [
-                HarmonicDiatonicInterval('major', 3),
-                HarmonicDiatonicInterval('perfect', 5),
-                HarmonicDiatonicInterval('minor', 7),
-                HarmonicDiatonicInterval('major', 9),
+                NamedHarmonicInterval('major', 3),
+                NamedHarmonicInterval('perfect', 5),
+                NamedHarmonicInterval('minor', 7),
+                NamedHarmonicInterval('major', 9),
                 ]
         else:
             raise ValueError('unacceptable quality string.')
-        intervals.insert(0, HarmonicDiatonicInterval('perfect', 1))
+        intervals.insert(0, NamedHarmonicInterval('perfect', 1))
         return intervals
 
     @staticmethod
     def _init_seventh(quality_string):
         if quality_string == 'dominant':
             intervals = [
-                HarmonicDiatonicInterval('major', 3),
-                HarmonicDiatonicInterval('perfect', 5),
-                HarmonicDiatonicInterval('minor', 7),
+                NamedHarmonicInterval('major', 3),
+                NamedHarmonicInterval('perfect', 5),
+                NamedHarmonicInterval('minor', 7),
                 ]
         elif quality_string == 'major':
             intervals = [
-                HarmonicDiatonicInterval('major', 3),
-                HarmonicDiatonicInterval('perfect', 5),
-                HarmonicDiatonicInterval('major', 7),
+                NamedHarmonicInterval('major', 3),
+                NamedHarmonicInterval('perfect', 5),
+                NamedHarmonicInterval('major', 7),
                 ]
         elif quality_string == 'minor':
             intervals = [
-                HarmonicDiatonicInterval('minor', 3),
-                HarmonicDiatonicInterval('perfect', 5),
-                HarmonicDiatonicInterval('minor', 7),
+                NamedHarmonicInterval('minor', 3),
+                NamedHarmonicInterval('perfect', 5),
+                NamedHarmonicInterval('minor', 7),
                 ]
         elif quality_string in ('diminished', 'fully diminished'):
             intervals = [
-                HarmonicDiatonicInterval('minor', 3),
-                HarmonicDiatonicInterval('diminished', 5),
-                HarmonicDiatonicInterval('diminished', 7),
+                NamedHarmonicInterval('minor', 3),
+                NamedHarmonicInterval('diminished', 5),
+                NamedHarmonicInterval('diminished', 7),
                 ]
         elif quality_string == 'half diminished':
             intervals = [
-                HarmonicDiatonicInterval('minor', 3),
-                HarmonicDiatonicInterval('perfect', 5),
-                HarmonicDiatonicInterval('diminished', 7),
+                NamedHarmonicInterval('minor', 3),
+                NamedHarmonicInterval('perfect', 5),
+                NamedHarmonicInterval('diminished', 7),
                 ]
         else:
            raise ValueError('unaccpetable quality string.')
-        intervals.insert(0, HarmonicDiatonicInterval('perfect', 1))
+        intervals.insert(0, NamedHarmonicInterval('perfect', 1))
         return intervals
 
     @staticmethod
     def _init_triad(quality_string):
         if quality_string == 'major':
             intervals = [
-                HarmonicDiatonicInterval('major', 3),
-                HarmonicDiatonicInterval('perfect', 5),
+                NamedHarmonicInterval('major', 3),
+                NamedHarmonicInterval('perfect', 5),
                 ]
         elif quality_string == 'minor':
             intervals = [
-                HarmonicDiatonicInterval('minor', 3),
-                HarmonicDiatonicInterval('perfect', 5),
+                NamedHarmonicInterval('minor', 3),
+                NamedHarmonicInterval('perfect', 5),
                 ]
         elif quality_string == 'diminished':
             intervals = [
-                HarmonicDiatonicInterval('minor', 3),
-                HarmonicDiatonicInterval('diminished', 5),
+                NamedHarmonicInterval('minor', 3),
+                NamedHarmonicInterval('diminished', 5),
                 ]
         elif quality_string == 'augmented':
             intervals = [
-                HarmonicDiatonicInterval('major', 3),
-                HarmonicDiatonicInterval('augmented', 5),
+                NamedHarmonicInterval('major', 3),
+                NamedHarmonicInterval('augmented', 5),
                 ]
         else:
             raise ValueError('unacceptable quality string.')
-        intervals.insert(0, HarmonicDiatonicInterval('perfect', 1))
+        intervals.insert(0, NamedHarmonicInterval('perfect', 1))
         return intervals
 
     @staticmethod

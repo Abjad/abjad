@@ -11,12 +11,12 @@ def list_harmonic_diatonic_intervals_in_expr(expr):
         >>> for interval in sorted(pitchtools.list_harmonic_diatonic_intervals_in_expr(staff)):
         ...     interval
         ...
-        HarmonicDiatonicInterval('m2')
-        HarmonicDiatonicInterval('M2')
-        HarmonicDiatonicInterval('M2')
-        HarmonicDiatonicInterval('m3')
-        HarmonicDiatonicInterval('M3')
-        HarmonicDiatonicInterval('P4')
+        NamedHarmonicInterval('m2')
+        NamedHarmonicInterval('M2')
+        NamedHarmonicInterval('M2')
+        NamedHarmonicInterval('m3')
+        NamedHarmonicInterval('M3')
+        NamedHarmonicInterval('P4')
 
     Return unordered set.
     '''

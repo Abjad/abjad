@@ -49,12 +49,12 @@ class NamedMelodicIntervalSet(Set):
     @property
     def harmonic_chromatic_interval_set(self):
         from abjad.tools import pitchtools
-        return pitchtools.HarmonicChromaticIntervalSet(self)
+        return pitchtools.NumberedHarmonicIntervalSet(self)
 
     @property
     def harmonic_diatonic_interval_set(self):
         from abjad.tools import pitchtools
-        return pitchtools.HarmonicDiatonicIntervalSet(self)
+        return pitchtools.NamedHarmonicIntervalSet(self)
 
     @property
     def melodic_chromatic_interval_set(self):
