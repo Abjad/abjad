@@ -99,7 +99,7 @@ class NamedPitchClass(PitchClass):
         pitch_2 = pitchtools.NamedPitch(arg, 4)
         mdi = pitchtools.NamedMelodicInterval.from_pitch_carriers(
             pitch_1, pitch_2)
-        dic = pitchtools.InversionEquivalentDiatonicIntervalClass(
+        dic = pitchtools.NamedInversionEquivalentIntervalClass(
             mdi.quality_string, mdi.number)
         return dic
 

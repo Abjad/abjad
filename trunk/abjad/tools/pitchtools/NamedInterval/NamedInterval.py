@@ -124,7 +124,7 @@ class NamedInterval(Interval):
     def diatonic_interval_class(self):
         from abjad.tools import pitchtools
         quality_string, number = self._quality_string, self.number
-        return pitchtools.InversionEquivalentDiatonicIntervalClass(
+        return pitchtools.NamedInversionEquivalentIntervalClass(
             quality_string, number)
 
     @property

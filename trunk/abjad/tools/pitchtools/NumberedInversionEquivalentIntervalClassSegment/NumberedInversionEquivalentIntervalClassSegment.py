@@ -2,14 +2,14 @@
 from abjad.tools.pitchtools.IntervalClassSegment import IntervalClassSegment
 
 
-class InversionEquivalentChromaticIntervalClassSegment(IntervalClassSegment):
+class NumberedInversionEquivalentIntervalClassSegment(IntervalClassSegment):
     '''Abjad model of inversion-equivalent chromatic interval-class segment:
 
     ::
 
-        >>> pitchtools.InversionEquivalentChromaticIntervalClassSegment(
+        >>> pitchtools.NumberedInversionEquivalentIntervalClassSegment(
         ...     [2, 1, 0, 5.5, 6])
-        InversionEquivalentChromaticIntervalClassSegment(2, 1, 0, 5.5, 6)
+        NumberedInversionEquivalentIntervalClassSegment(2, 1, 0, 5.5, 6)
 
     Inversion-equivalent chromatic interval-class segments are immutable.
     '''
@@ -17,7 +17,7 @@ class InversionEquivalentChromaticIntervalClassSegment(IntervalClassSegment):
     def __new__(self, interval_class_tokens):
         from abjad.tools import pitchtools
         interval_classes = [
-            pitchtools.InversionEquivalentChromaticIntervalClass(x) 
+            pitchtools.NumberedInversionEquivalentIntervalClass(x) 
             for x in interval_class_tokens]
         return tuple.__new__(self, interval_classes)
 

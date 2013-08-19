@@ -3,13 +3,13 @@ from abjad.tools.pitchtools.NamedIntervalClass import NamedIntervalClass
 import numbers
 
 
-class InversionEquivalentDiatonicIntervalClass(NamedIntervalClass):
+class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
     '''Abjad model of inversion-equivalent diatonic interval-class:
 
     ::
 
-        >>> pitchtools.InversionEquivalentDiatonicIntervalClass('-m14')
-        InversionEquivalentDiatonicIntervalClass('M2')
+        >>> pitchtools.NamedInversionEquivalentIntervalClass('-m14')
+        NamedInversionEquivalentIntervalClass('M2')
 
     Inversion-equivalent diatonic interval-classes are immutable.
     '''

@@ -1,17 +1,17 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass \
-	import InversionEquivalentDiatonicIntervalClass
+from abjad.tools.pitchtools.NamedInversionEquivalentIntervalClass \
+	import NamedInversionEquivalentIntervalClass
 from abjad.tools.pitchtools.IntervalSegment import IntervalSegment
 
 
-class InversionEquivalentDiatonicIntervalClassSegment(IntervalSegment):
+class NamedInversionEquivalentIntervalClassSegment(IntervalSegment):
     '''Abjad model of inversion-equivalent diatonic interval-class segment:
 
     ::
 
-        >>> pitchtools.InversionEquivalentDiatonicIntervalClassSegment(
+        >>> pitchtools.NamedInversionEquivalentIntervalClassSegment(
         ... [('major', 2), ('major', 9), ('minor', -2), ('minor', -9)])
-        InversionEquivalentDiatonicIntervalClassSegment(M2, M2, m2, m2)
+        NamedInversionEquivalentIntervalClassSegment(M2, M2, m2, m2)
 
     Inversion-equivalent diatonic interval-class segments are immutable.
     '''
@@ -21,7 +21,7 @@ class InversionEquivalentDiatonicIntervalClassSegment(IntervalSegment):
     def __new__(self, diatonic_interval_class_tokens):
         dics = []
         for token in diatonic_interval_class_tokens:
-            dic = InversionEquivalentDiatonicIntervalClass(token)
+            dic = NamedInversionEquivalentIntervalClass(token)
             dics.append(dic)
         return tuple.__new__(self, dics)
 
@@ -40,7 +40,7 @@ class InversionEquivalentDiatonicIntervalClassSegment(IntervalSegment):
         ::
 
             >>> dics = \
-            ...     pitchtools.InversionEquivalentDiatonicIntervalClassSegment(
+            ...     pitchtools.NamedInversionEquivalentIntervalClassSegment(
             ...     [('major', 3), ('minor', 6), ('major', 6)])
             >>> dics.is_tertian
             True

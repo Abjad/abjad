@@ -9,8 +9,8 @@ def test_pitchtools_list_inversion_equivalent_chromatic_interval_classes_pairwis
     iecics = pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise(
         staff, wrap = False)
 
-    assert iecics == [pitchtools.InversionEquivalentChromaticIntervalClass(2),
-        pitchtools.InversionEquivalentChromaticIntervalClass(2), pitchtools.InversionEquivalentChromaticIntervalClass(1),         pitchtools.InversionEquivalentChromaticIntervalClass(2), pitchtools.InversionEquivalentChromaticIntervalClass(2),         pitchtools.InversionEquivalentChromaticIntervalClass(2), pitchtools.InversionEquivalentChromaticIntervalClass(1)]
+    assert iecics == [pitchtools.NumberedInversionEquivalentIntervalClass(2),
+        pitchtools.NumberedInversionEquivalentIntervalClass(2), pitchtools.NumberedInversionEquivalentIntervalClass(1),         pitchtools.NumberedInversionEquivalentIntervalClass(2), pitchtools.NumberedInversionEquivalentIntervalClass(2),         pitchtools.NumberedInversionEquivalentIntervalClass(2), pitchtools.NumberedInversionEquivalentIntervalClass(1)]
 
 
 def test_pitchtools_list_inversion_equivalent_chromatic_interval_classes_pairwise_02():
@@ -20,5 +20,5 @@ def test_pitchtools_list_inversion_equivalent_chromatic_interval_classes_pairwis
     iecics = pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise(
         staff, wrap = True)
 
-    assert iecics == [pitchtools.InversionEquivalentChromaticIntervalClass(2),
-        pitchtools.InversionEquivalentChromaticIntervalClass(2), pitchtools.InversionEquivalentChromaticIntervalClass(1),         pitchtools.InversionEquivalentChromaticIntervalClass(2), pitchtools.InversionEquivalentChromaticIntervalClass(2),         pitchtools.InversionEquivalentChromaticIntervalClass(2), pitchtools.InversionEquivalentChromaticIntervalClass(1),         pitchtools.InversionEquivalentChromaticIntervalClass(0)]
+    assert iecics == [pitchtools.NumberedInversionEquivalentIntervalClass(2),
+        pitchtools.NumberedInversionEquivalentIntervalClass(2), pitchtools.NumberedInversionEquivalentIntervalClass(1),         pitchtools.NumberedInversionEquivalentIntervalClass(2), pitchtools.NumberedInversionEquivalentIntervalClass(2),         pitchtools.NumberedInversionEquivalentIntervalClass(2), pitchtools.NumberedInversionEquivalentIntervalClass(1),         pitchtools.NumberedInversionEquivalentIntervalClass(0)]

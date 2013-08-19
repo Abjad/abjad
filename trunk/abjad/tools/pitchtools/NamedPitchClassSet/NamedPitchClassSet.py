@@ -110,7 +110,7 @@ class NamedPitchClassSet(PitchClassSet):
     def inversion_equivalent_diatonic_interval_class_vector(self):
         from abjad.tools import pitchtools
         pitches = [pitchtools.NamedPitch(x, 4) for x in self]
-        return pitchtools.InversionEquivalentDiatonicIntervalClassVector(
+        return pitchtools.NamedInversionEquivalentIntervalClassVector(
             pitches)
 
     @property

@@ -87,10 +87,10 @@ class NumberedPitchClass(PitchClass):
             interval_class_number = abs(abs(self) - abs(arg))
             if 6 < interval_class_number:
                 interval_class_number = 12 - interval_class_number
-            return pitchtools.InversionEquivalentChromaticIntervalClass(
+            return pitchtools.NumberedInversionEquivalentIntervalClass(
                 interval_class_number)
         elif isinstance(arg, 
-            pitchtools.InversionEquivalentChromaticIntervalClass):
+            pitchtools.NumberedInversionEquivalentIntervalClass):
             return type(self)(abs(self) - arg.number % 12)
         else:
             raise TypeError('must be pitch-class or interval-class.')

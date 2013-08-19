@@ -92,7 +92,7 @@ class  NumberedPitchClassSet(PitchClassSet):
         ::
 
             >>> ncpcs.inversion_equivalent_chromatic_interval_class_set
-            InversionEquivalentChromaticIntervalClassSet(0.5, 1, 3, 3.5, 4, 4.5)
+            NumberedInversionEquivalentIntervalClassSet(0.5, 1, 3, 3.5, 4, 4.5)
 
         Return inversion-equivalent chromatic interval-class set.
         '''
@@ -103,7 +103,7 @@ class  NumberedPitchClassSet(PitchClassSet):
             interval_class = first_pc - second_pc
             interval_class_set.add(interval_class)
         interval_class_set = \
-            pitchtools.InversionEquivalentChromaticIntervalClassSet(
+            pitchtools.NumberedInversionEquivalentIntervalClassSet(
             interval_class_set)
         return interval_class_set
 
@@ -114,7 +114,7 @@ class  NumberedPitchClassSet(PitchClassSet):
         ::
 
             >>> ncpcs.inversion_equivalent_chromatic_interval_class_vector
-            InversionEquivalentChromaticIntervalClassVector(0 | 1 0 1 1 0 0 1 0 0 1 1 0)
+            NumberedInversionEquivalentIntervalClassVector(0 | 1 0 1 1 0 0 1 0 0 1 1 0)
 
         Return inversion-equivalent chromatic interval-class vector.
         '''
@@ -124,7 +124,7 @@ class  NumberedPitchClassSet(PitchClassSet):
             sequencetools.yield_all_unordered_pairs_of_sequence(self):
             interval_class = first_pc - second_pc
             interval_classes.append(interval_class)
-        return pitchtools.InversionEquivalentChromaticIntervalClassVector(
+        return pitchtools.NumberedInversionEquivalentIntervalClassVector(
             interval_classes)
 
     @property

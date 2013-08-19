@@ -85,7 +85,7 @@ class NamedPitchSegment(Segment):
         from abjad.tools import pitchtools
         pitch_classes = self.pitch_class_segment
         interval_classes = mathtools.difference_series(pitch_classes)
-        return pitchtools.InversionEquivalentChromaticIntervalClassSegment(
+        return pitchtools.NumberedInversionEquivalentIntervalClassSegment(
             interval_classes)
 
     @property
@@ -93,7 +93,7 @@ class NamedPitchSegment(Segment):
         from abjad.tools import pitchtools
         pitch_classes = self.pitch_class_segment
         interval_classes = mathtools.difference_series(pitch_classes)
-        return pitchtools.InversionEquivalentChromaticIntervalClassSet(
+        return pitchtools.NumberedInversionEquivalentIntervalClassSet(
             interval_classes)
 
     @property
@@ -101,7 +101,7 @@ class NamedPitchSegment(Segment):
         from abjad.tools import pitchtools
         pitch_classes = self.pitch_class_segment
         interval_classes = mathtools.difference_series(pitch_classes)
-        return pitchtools.InversionEquivalentChromaticIntervalClassVector(
+        return pitchtools.NumberedInversionEquivalentIntervalClassVector(
             interval_classes)
 
     @property

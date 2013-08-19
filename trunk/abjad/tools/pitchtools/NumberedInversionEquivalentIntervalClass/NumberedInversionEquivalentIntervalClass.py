@@ -3,13 +3,13 @@ from abjad.tools.pitchtools.IntervalClass import IntervalClass
 import numbers
 
 
-class InversionEquivalentChromaticIntervalClass(IntervalClass):
+class NumberedInversionEquivalentIntervalClass(IntervalClass):
     '''Abjad model of inversion-equivalent chromatic interval-class:
 
     ::
 
-        >>> pitchtools.InversionEquivalentChromaticIntervalClass(1)
-        InversionEquivalentChromaticIntervalClass(1)
+        >>> pitchtools.NumberedInversionEquivalentIntervalClass(1)
+        NumberedInversionEquivalentIntervalClass(1)
 
     Inversion-equivalent chromatic interval-classes are immutable.
     '''

@@ -6,14 +6,14 @@ from abjad.tools.pitchtools.list_harmonic_diatonic_intervals_in_expr \
     import list_harmonic_diatonic_intervals_in_expr
 
 
-class InversionEquivalentDiatonicIntervalClassVector(Vector):
+class NamedInversionEquivalentIntervalClassVector(Vector):
     '''Abjad model of inversion-equivalent diatonic interval-class vector:
 
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8 g'8")
         >>> vector = \
-        ...     pitchtools.InversionEquivalentDiatonicIntervalClassVector(
+        ...     pitchtools.NamedInversionEquivalentIntervalClassVector(
         ...     staff)
 
     ::

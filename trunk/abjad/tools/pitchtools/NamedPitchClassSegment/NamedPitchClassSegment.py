@@ -52,7 +52,7 @@ class NamedPitchClassSegment(PitchClassSegment):
         from abjad.tools import mathtools
         from abjad.tools import pitchtools
         dics = mathtools.difference_series(self)
-        return pitchtools.InversionEquivalentDiatonicIntervalClassSegment(dics)
+        return pitchtools.NamedInversionEquivalentIntervalClassSegment(dics)
 
     @property
     def named_chromatic_pitch_class_set(self):

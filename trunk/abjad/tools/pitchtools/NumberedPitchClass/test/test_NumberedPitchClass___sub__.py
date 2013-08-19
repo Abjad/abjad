@@ -10,8 +10,8 @@ def test_NumberedPitchClass___sub___01():
     pc1 = pitchtools.NumberedPitchClass(6)
     pc2 = pitchtools.NumberedPitchClass(7)
 
-    assert pc1 - pc2 == pitchtools.InversionEquivalentChromaticIntervalClass(1)
-    assert pc2 - pc1 == pitchtools.InversionEquivalentChromaticIntervalClass(1)
+    assert pc1 - pc2 == pitchtools.NumberedInversionEquivalentIntervalClass(1)
+    assert pc2 - pc1 == pitchtools.NumberedInversionEquivalentIntervalClass(1)
 
 
 def test_NumberedPitchClass___sub___02():
@@ -19,7 +19,7 @@ def test_NumberedPitchClass___sub___02():
     '''
 
     pc = pitchtools.NumberedPitchClass(0)
-    ic = pitchtools.InversionEquivalentChromaticIntervalClass(2)
+    ic = pitchtools.NumberedInversionEquivalentIntervalClass(2)
 
     assert pc - ic == pitchtools.NumberedPitchClass(10)
     assert py.test.raises(TypeError, 'ic - pc')

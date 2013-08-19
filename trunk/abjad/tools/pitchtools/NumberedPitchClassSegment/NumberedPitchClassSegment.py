@@ -60,14 +60,14 @@ class NumberedPitchClassSegment(PitchClassSegment):
         ::
 
             >>> segment.inversion_equivalent_chromatic_interval_class_segment
-            InversionEquivalentChromaticIntervalClassSegment(0.5, 4.5, 1, 3.5, 3.5)
+            NumberedInversionEquivalentIntervalClassSegment(0.5, 4.5, 1, 3.5, 3.5)
 
         Return inversion-equivalent chromatic interval-class segment.
         '''
         from abjad.tools import mathtools
         from abjad.tools import pitchtools
         interval_classes = list(mathtools.difference_series(self))
-        return pitchtools.InversionEquivalentChromaticIntervalClassSegment(
+        return pitchtools.NumberedInversionEquivalentIntervalClassSegment(
             interval_classes)
 
     @property

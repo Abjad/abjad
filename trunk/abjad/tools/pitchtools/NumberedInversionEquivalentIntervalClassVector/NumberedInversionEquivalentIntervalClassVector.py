@@ -2,22 +2,22 @@
 from abjad.tools.pitchtools.Vector import Vector
 
 
-class InversionEquivalentChromaticIntervalClassVector(Vector):
+class NumberedInversionEquivalentIntervalClassVector(Vector):
     '''Abjad model of inversion-equivalent chromatic interval-class vector:
 
     ::
 
-        >>> pitchtools.InversionEquivalentChromaticIntervalClassVector(
+        >>> pitchtools.NumberedInversionEquivalentIntervalClassVector(
         ...     [1, 1, 6, 2, 2, 2])
-        InversionEquivalentChromaticIntervalClassVector(0 | 2 3 0 0 0 1)
+        NumberedInversionEquivalentIntervalClassVector(0 | 2 3 0 0 0 1)
 
     Initialize by inversion-equivalent chromatic interval-class counts:
 
     ::
 
-        >>> pitchtools.InversionEquivalentChromaticIntervalClassVector(
+        >>> pitchtools.NumberedInversionEquivalentIntervalClassVector(
         ...     counts=[2, 3, 0, 0, 0, 1])
-        InversionEquivalentChromaticIntervalClassVector(0 | 2 3 0 0 0 1)
+        NumberedInversionEquivalentIntervalClassVector(0 | 2 3 0 0 0 1)
 
     Inversion-equivalent chromatic interval-class vectors are immutable.
     '''
@@ -34,7 +34,7 @@ class InversionEquivalentChromaticIntervalClassVector(Vector):
             interval_class_tokens = args[0]
             for token in interval_class_tokens:
                 interval_class_number = \
-                    pitchtools.InversionEquivalentChromaticIntervalClass(
+                    pitchtools.NumberedInversionEquivalentIntervalClass(
                         token).number
                 current_tally = self[interval_class_number]
                 dict.__setitem__(

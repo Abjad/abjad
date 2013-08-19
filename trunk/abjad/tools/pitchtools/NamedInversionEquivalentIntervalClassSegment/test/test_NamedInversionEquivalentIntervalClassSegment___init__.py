@@ -2,9 +2,9 @@
 from abjad import *
 
 
-def test_InversionEquivalentDiatonicIntervalClassSegment___init___01():
+def test_NamedInversionEquivalentIntervalClassSegment___init___01():
 
-    dicg = pitchtools.InversionEquivalentDiatonicIntervalClassSegment([
+    dicg = pitchtools.NamedInversionEquivalentIntervalClassSegment([
         ('major', 2), ('major', 2), ('minor', 2),
         ('major', 2), ('major', 2), ('major', 2), ('minor', 2)])
 

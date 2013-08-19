@@ -176,7 +176,7 @@ class NamedMelodicInterval(NamedInterval, MelodicInterval):
         n %= 12
         if 6 < n:
             n = 12 - n
-        return pitchtools.InversionEquivalentChromaticIntervalClass(n)
+        return pitchtools.NumberedInversionEquivalentIntervalClass(n)
 
     @property
     def melodic_chromatic_interval(self):

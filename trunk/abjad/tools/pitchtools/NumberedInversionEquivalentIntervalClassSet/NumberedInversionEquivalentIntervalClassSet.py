@@ -2,14 +2,14 @@
 from abjad.tools.pitchtools.IntervalClassSet import IntervalClassSet
 
 
-class InversionEquivalentChromaticIntervalClassSet(IntervalClassSet):
+class NumberedInversionEquivalentIntervalClassSet(IntervalClassSet):
     '''Abjad model of inversion-equivalent chromatic interval-class set:
 
     ::
 
-        >>> pitchtools.InversionEquivalentChromaticIntervalClassSet(
+        >>> pitchtools.NumberedInversionEquivalentIntervalClassSet(
         ...     [1, 1, 6, 2, 2])
-        InversionEquivalentChromaticIntervalClassSet(1, 2, 6)
+        NumberedInversionEquivalentIntervalClassSet(1, 2, 6)
 
     Inversion-equivalent chromatic interval-class sets are immutable.
     '''
@@ -20,7 +20,7 @@ class InversionEquivalentChromaticIntervalClassSet(IntervalClassSet):
         from abjad.tools import pitchtools
         iecics = []
         for token in interval_class_tokens:
-            iecic = pitchtools.InversionEquivalentChromaticIntervalClass(token)
+            iecic = pitchtools.NumberedInversionEquivalentIntervalClass(token)
             iecics.append(iecic)
         return frozenset.__new__(self, iecics)
 

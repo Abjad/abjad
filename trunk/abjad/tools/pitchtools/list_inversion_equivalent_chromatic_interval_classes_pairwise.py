@@ -32,13 +32,13 @@ def list_inversion_equivalent_chromatic_interval_classes_pairwise(pitch_carriers
 
         >>> for x in result: x
         ...
-        InversionEquivalentChromaticIntervalClass(2)
-        InversionEquivalentChromaticIntervalClass(2)
-        InversionEquivalentChromaticIntervalClass(1)
-        InversionEquivalentChromaticIntervalClass(2)
-        InversionEquivalentChromaticIntervalClass(2)
-        InversionEquivalentChromaticIntervalClass(2)
-        InversionEquivalentChromaticIntervalClass(1)
+        NumberedInversionEquivalentIntervalClass(2)
+        NumberedInversionEquivalentIntervalClass(2)
+        NumberedInversionEquivalentIntervalClass(1)
+        NumberedInversionEquivalentIntervalClass(2)
+        NumberedInversionEquivalentIntervalClass(2)
+        NumberedInversionEquivalentIntervalClass(2)
+        NumberedInversionEquivalentIntervalClass(1)
 
     ::
 
@@ -48,14 +48,14 @@ def list_inversion_equivalent_chromatic_interval_classes_pairwise(pitch_carriers
     ::
 
         >>> for x in result: x
-        InversionEquivalentChromaticIntervalClass(2)
-        InversionEquivalentChromaticIntervalClass(2)
-        InversionEquivalentChromaticIntervalClass(1)
-        InversionEquivalentChromaticIntervalClass(2)
-        InversionEquivalentChromaticIntervalClass(2)
-        InversionEquivalentChromaticIntervalClass(2)
-        InversionEquivalentChromaticIntervalClass(1)
-        InversionEquivalentChromaticIntervalClass(0)
+        NumberedInversionEquivalentIntervalClass(2)
+        NumberedInversionEquivalentIntervalClass(2)
+        NumberedInversionEquivalentIntervalClass(1)
+        NumberedInversionEquivalentIntervalClass(2)
+        NumberedInversionEquivalentIntervalClass(2)
+        NumberedInversionEquivalentIntervalClass(2)
+        NumberedInversionEquivalentIntervalClass(1)
+        NumberedInversionEquivalentIntervalClass(0)
 
     ::
 
@@ -71,13 +71,13 @@ def list_inversion_equivalent_chromatic_interval_classes_pairwise(pitch_carriers
 
         >>> for x in result: x
         ...
-        InversionEquivalentChromaticIntervalClass(1)
-        InversionEquivalentChromaticIntervalClass(2)
-        InversionEquivalentChromaticIntervalClass(2)
-        InversionEquivalentChromaticIntervalClass(2)
-        InversionEquivalentChromaticIntervalClass(1)
-        InversionEquivalentChromaticIntervalClass(2)
-        InversionEquivalentChromaticIntervalClass(2)
+        NumberedInversionEquivalentIntervalClass(1)
+        NumberedInversionEquivalentIntervalClass(2)
+        NumberedInversionEquivalentIntervalClass(2)
+        NumberedInversionEquivalentIntervalClass(2)
+        NumberedInversionEquivalentIntervalClass(1)
+        NumberedInversionEquivalentIntervalClass(2)
+        NumberedInversionEquivalentIntervalClass(2)
 
     ::
 
@@ -88,14 +88,14 @@ def list_inversion_equivalent_chromatic_interval_classes_pairwise(pitch_carriers
 
         >>> for x in result: x
         ...
-        InversionEquivalentChromaticIntervalClass(1)
-        InversionEquivalentChromaticIntervalClass(2)
-        InversionEquivalentChromaticIntervalClass(2)
-        InversionEquivalentChromaticIntervalClass(2)
-        InversionEquivalentChromaticIntervalClass(1)
-        InversionEquivalentChromaticIntervalClass(2)
-        InversionEquivalentChromaticIntervalClass(2)
-        InversionEquivalentChromaticIntervalClass(0)
+        NumberedInversionEquivalentIntervalClass(1)
+        NumberedInversionEquivalentIntervalClass(2)
+        NumberedInversionEquivalentIntervalClass(2)
+        NumberedInversionEquivalentIntervalClass(2)
+        NumberedInversionEquivalentIntervalClass(1)
+        NumberedInversionEquivalentIntervalClass(2)
+        NumberedInversionEquivalentIntervalClass(2)
+        NumberedInversionEquivalentIntervalClass(0)
 
     When ``wrap=False`` do not return ``pitch_carriers[-1] - pitch_carriers[0]`` as last in series.
 
