@@ -21,29 +21,13 @@ class NamedPitchClassSegment(PitchClassSegment):
 
     ### CONSTRUCTOR ###
 
-    def __new__(self, named_chromatic_pitch_class_tokens):
+    def __init__(self, tokens, **kwargs):
         from abjad.tools import pitchtools
-        npcs = [pitchtools.NamedPitchClass(x) 
-            for x in named_chromatic_pitch_class_tokens]
-        return tuple.__new__(self, npcs)
-
-    ### SPECIAL METHODS ###
-
-    def __repr__(self):
-        return '%s([%s])' % (self._class_name, self._repr_string)
-
-    def __str__(self):
-        return '<%s>' % self._format_string
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _format_string(self):
-        return ', '.join([str(x) for x in self])
-
-    @property
-    def _repr_string(self):
-        return ', '.join([repr(str(x)) for x in self])
+        PitchClassSegment.__init__(
+            self,
+            tokens=tokens,
+            item_class=pitchtools.NamedPitchClass,
+            )
 
     ### PUBLIC PROPERTIES ###
 

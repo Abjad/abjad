@@ -28,40 +28,32 @@ class TwelveToneRow(NumberedPitchClassSegment):
         [0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8],
         )
 
-    ### CONSTRUCTOR ###
+    ### INITIALIZER ###
 
-    def __new__(cls, pitch_classes):
+    def __init__(self, tokens=None, name=None):
         from abjad.tools import pitchtools
-        pitch_classes = [
-            pitchtools.NumberedPitchClass(pc) 
-            for pc in pitch_classes]
-        self = pitchtools.NumberedPitchClassSegment.__new__(
-            cls, pitch_classes)
-        self._validate_pitch_classes(pitch_classes)
-        return self
+        assert tokens is not None
+        NumberedPitchClassSegment.__init__(
+            self,
+            tokens=tokens,
+            name=name,
+            )
+        self._validate_pitch_classes(self)
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self):
-        return type(self)(self)
-
-    def __eq__(self, arg):
-        if isinstance(arg, type(self)):
-            return tuple(self) == tuple(arg)
-        return False
-
     def __getslice__(self, start, stop):
+        tokens = self._collection[start:stop]
         return NumberedPitchClassSegment(
-            tuple.__getslice__(self, start, stop))
+            tokens=tokens,
+            name=self.name,
+            )
 
-    def __mul__(self, n):
-        return NumberedPitchClassSegment(tuple.__mul__(self, n))
+    def __mul__(self, expr):
+        return NumberedPitchClassSegment(self) * expr
 
-    def __ne__(self, arg):
-        return not self == arg
-
-    def __rmul__(self, n):
-        return NumberedPitchClassSegment(tuple.__rmul__(self, n))
+    def __rmul__(self, expr):
+        return NumberedPitchClassSegment(self) * expr
 
     ### PRIVATE PROPERTIES ###
 

@@ -25,9 +25,13 @@ class Scale(NamedPitchClassSegment):
         repr('major',)
         )
 
+    __slots__ = (
+        '_key_signature',
+        )
+
     ### INITIALIZER ###
 
-    def __new__(cls, *args):
+    def __init__(self, *args):
         if len(args) == 1 and isinstance(
             args[0], contexttools.KeySignatureMark):
             key_signature = args[0]
@@ -41,9 +45,8 @@ class Scale(NamedPitchClassSegment):
         for mdi in key_signature.mode.melodic_diatonic_interval_segment[:-1]:
             named_chromatic_pitch_class = npcs[-1] + mdi
             npcs.append(named_chromatic_pitch_class)
-        new = tuple.__new__(cls, npcs)
-        tuple.__setattr__(new, '_key_signature', key_signature)
-        return new
+        NamedPitchClassSegment.__init__(self, tokens=npcs)
+        self._key_signature = key_signature
 
     ### SPECIAL METHODS ###
 

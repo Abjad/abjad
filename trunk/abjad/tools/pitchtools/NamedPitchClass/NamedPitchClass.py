@@ -40,7 +40,7 @@ class NamedPitchClass(PitchClass):
                     pitchtools.get_named_chromatic_pitch_from_pitch_carrier(
                         arg)
             except (ValueError, TypeError):
-                raise ValueError
+                raise ValueError, arg
             if hasattr(named_chromatic_pitch_carrier, '_chromatic_pitch_name'):
                 chromatic_pitch_name = \
                     named_chromatic_pitch_carrier._chromatic_pitch_name
