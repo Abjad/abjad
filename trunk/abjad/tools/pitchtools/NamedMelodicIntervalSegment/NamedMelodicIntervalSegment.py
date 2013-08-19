@@ -51,4 +51,4 @@ class NamedMelodicIntervalSegment(IntervalSegment):
     @property
     def melodic_chromatic_interval_segment(self):
         from abjad.tools import pitchtools
-        return pitchtools.MelodicChromaticIntervalSegment(self.intervals)
+        return pitchtools.NumberedMelodicIntervalSegment(self.intervals)

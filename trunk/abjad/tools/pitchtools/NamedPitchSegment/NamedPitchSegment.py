@@ -134,7 +134,7 @@ class NamedPitchSegment(Segment):
         from abjad.tools import pitchtools
         result = list(
             mathtools.difference_series(self.chromatic_pitch_numbers))
-        return pitchtools.MelodicChromaticIntervalSegment(result)
+        return pitchtools.NumberedMelodicIntervalSegment(result)
 
     @property
     def melodic_diatonic_interval_class_segment(self):

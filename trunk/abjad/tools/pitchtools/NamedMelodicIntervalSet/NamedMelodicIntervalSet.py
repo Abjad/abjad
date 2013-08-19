@@ -59,7 +59,7 @@ class NamedMelodicIntervalSet(Set):
     @property
     def melodic_chromatic_interval_set(self):
         from abjad.tools import pitchtools
-        return pitchtools.MelodicChromaticIntervalSet(self)
+        return pitchtools.NumberedMelodicIntervalSet(self)
 
     @property
     def melodic_diatonic_interval_numbers(self):

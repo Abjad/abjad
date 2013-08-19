@@ -181,7 +181,7 @@ class NamedMelodicInterval(NamedInterval, MelodicInterval):
     @property
     def melodic_chromatic_interval(self):
         from abjad.tools import pitchtools
-        return pitchtools.MelodicChromaticInterval(self)
+        return pitchtools.NumberedMelodicInterval(self)
 
     @property
     def melodic_diatonic_interval_class(self):

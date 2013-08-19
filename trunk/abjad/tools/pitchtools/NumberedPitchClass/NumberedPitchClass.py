@@ -53,7 +53,7 @@ class NumberedPitchClass(PitchClass):
         r'''Addition defined against melodic chromatic intervals only.
         '''
         from abjad.tools import pitchtools
-        if not isinstance(arg, pitchtools.MelodicChromaticInterval):
+        if not isinstance(arg, pitchtools.NumberedMelodicInterval):
             raise TypeError('must be melodic chromatic interval.')
         return type(self)(abs(self) + arg.number % 12)
 

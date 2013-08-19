@@ -120,7 +120,7 @@ class NamedPitchSet(Set):
         r'''Transpose all pcs in self by n.
         '''
         from abjad.tools import pitchtools
-        interval = pitchtools.MelodicChromaticInterval(n)
+        interval = pitchtools.NumberedMelodicInterval(n)
         return type(self)([
             pitchtools.transpose_pitch_carrier_by_melodic_interval(
             pitch, interval) for pitch in self])

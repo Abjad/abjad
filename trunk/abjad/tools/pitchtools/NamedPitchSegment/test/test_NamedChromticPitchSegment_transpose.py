@@ -7,7 +7,7 @@ def test_NamedChromticPitchSegment_transpose_01():
     '''
 
     pitch_segment = pitchtools.NamedPitchSegment([-2, -1, 6, 7, -1, 7])
-    mci = pitchtools.MelodicChromaticInterval(-15)
+    mci = pitchtools.NumberedMelodicInterval(-15)
     new_pitch_segment = pitch_segment.transpose(mci)
 
     "PitchSegment(g,, af,, ef, e, af,, e)"

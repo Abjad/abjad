@@ -8,8 +8,8 @@ def test_NamedChromticPitchSegment_melodic_chromatic_interval_class_segment_01()
     result = pitch_segment.melodic_chromatic_interval_class_segment
     #assert result == [0.5, 7.5, 1, -8.5, 8.5]
     assert result == [
-        pitchtools.MelodicChromaticIntervalClass(0.5),
-        pitchtools.MelodicChromaticIntervalClass(7.5),
-        pitchtools.MelodicChromaticIntervalClass(1),
-        pitchtools.MelodicChromaticIntervalClass(-8.5),
-        pitchtools.MelodicChromaticIntervalClass(8.5)]
+        pitchtools.NumberedMelodicIntervalClass(0.5),
+        pitchtools.NumberedMelodicIntervalClass(7.5),
+        pitchtools.NumberedMelodicIntervalClass(1),
+        pitchtools.NumberedMelodicIntervalClass(-8.5),
+        pitchtools.NumberedMelodicIntervalClass(8.5)]

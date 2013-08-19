@@ -12,6 +12,6 @@ def test_NamedMelodicIntervalSet_melodic_chromatic_interval_set_01():
     "NamedMelodicIntervalSet(-m2, -M2, +M2, +m2)"
 
     derived_mciset = mdiset.melodic_chromatic_interval_set
-    manual_mciset = pitchtools.MelodicChromaticIntervalSet([-2, -1, 1, 2])
+    manual_mciset = pitchtools.NumberedMelodicIntervalSet([-2, -1, 1, 2])
 
     assert derived_mciset == manual_mciset
