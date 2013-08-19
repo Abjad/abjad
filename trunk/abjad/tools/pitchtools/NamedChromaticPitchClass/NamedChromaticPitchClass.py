@@ -97,7 +97,7 @@ class NamedChromaticPitchClass(PitchClass):
         from abjad.tools import pitchtools
         pitch_1 = pitchtools.NamedChromaticPitch(self, 4)
         pitch_2 = pitchtools.NamedChromaticPitch(arg, 4)
-        mdi = pitchtools.calculate_melodic_diatonic_interval(
+        mdi = pitchtools.MelodicDiatonicInterval.from_pitch_carriers(
             pitch_1, pitch_2)
         dic = pitchtools.InversionEquivalentDiatonicIntervalClass(
             mdi.quality_string, mdi.number)

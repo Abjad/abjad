@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.IntervalClass import IntervalClass
 
 
 class NamedIntervalClass(IntervalClass):
-    '''Diatonic interval-class base class.
+    '''Named interval-class base class.
     '''
 
     ### CLASS VARIABLES ###

@@ -16,7 +16,7 @@ def calculate_melodic_counterpoint_interval(pitch_carrier_1, pitch_carrier_2):
     from abjad.tools import pitchtools
 
     # get melodic diatonic interval
-    mdi = pitchtools.calculate_melodic_diatonic_interval(pitch_carrier_1, pitch_carrier_2)
+    mdi = pitchtools.MelodicDiatonicInterval.from_pitch_carriers(pitch_carrier_1, pitch_carrier_2)
 
     # return melodic counterpoint interval
     return mdi.melodic_counterpoint_interval

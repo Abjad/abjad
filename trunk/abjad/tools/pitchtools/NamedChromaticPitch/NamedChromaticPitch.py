@@ -194,7 +194,7 @@ class NamedChromaticPitch(Pitch):
     def __sub__(self, arg):
         from abjad.tools import pitchtools
         if isinstance(arg, type(self)):
-            return pitchtools.calculate_melodic_diatonic_interval(
+            return pitchtools.MelodicDiatonicInterval.from_pitch_carriers(
                 self, arg)
         else:
             interval = arg
