@@ -656,8 +656,8 @@ Changes to the ``pitchtools`` package:
 
   ::
 
-    pitchtools.calculate_melodic_chromatic_interval_class()
-    pitchtools.calculate_melodic_chromatic_interval()
+    pitchtools.MelodicChromaticIntervalClass.from_pitch_carriers()
+    pitchtools.MelodicChromaticInterval.from_pitch_carriers()
     pitchtools.MelodicCounterpointIntervalClass.from_pitch_carriers()
     pitchtools.MelodicCounterpointInterval.from_pitch_carriers()
     pitchtools.MelodicDiatonicInterval.from_pitch_carriers_class()

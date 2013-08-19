@@ -67,3 +67,27 @@ class MelodicChromaticIntervalClass(
 
     def __int__(self):
         return self._number
+
+    ### PUBLIC METHODS ###
+
+    @classmethod
+    def from_pitch_carriers(cls, pitch_carrier_1, pitch_carrier_2):
+        '''Calculate melodic chromatic interval-class from `pitch_carrier_1` to
+        `pitch_carrier_2`:
+
+        ::
+
+            >>> pitchtools.MelodicChromaticIntervalClass.from_pitch_carriers(
+            ...     pitchtools.NamedChromaticPitch(-2), 
+            ...     pitchtools.NamedChromaticPitch(12),
+            ...     )
+            MelodicChromaticIntervalClass(+2)
+
+        Return melodic chromatic interval-class.
+        '''
+        from abjad.tools import pitchtools
+        # get melodic chromatic interval
+        mci = pitchtools.MelodicChromaticInterval.from_pitch_carriers(
+            pitch_carrier_1, pitch_carrier_2)
+        # return melodic chromatic interval-class
+        return mci.melodic_chromatic_interval_class
