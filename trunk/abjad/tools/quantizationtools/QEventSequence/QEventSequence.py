@@ -41,7 +41,7 @@ class QEventSequence(AbjadObject):
         ...     q_event
         quantizationtools.PitchedQEvent(
             durationtools.Offset(0, 1),
-            (NamedChromaticPitch("c'"),),
+            (NamedPitch("c'"),),
             attachments=()
             )
         quantizationtools.SilentQEvent(
@@ -50,7 +50,7 @@ class QEventSequence(AbjadObject):
             )
         quantizationtools.PitchedQEvent(
             durationtools.Offset(1500, 1),
-            (NamedChromaticPitch("c'"),),
+            (NamedPitch("c'"),),
             attachments=()
             )
         quantizationtools.SilentQEvent(
@@ -59,7 +59,7 @@ class QEventSequence(AbjadObject):
             )
         quantizationtools.PitchedQEvent(
             durationtools.Offset(3250, 1),
-            (NamedChromaticPitch("c'"),),
+            (NamedPitch("c'"),),
             attachments=()
             )
         quantizationtools.TerminalQEvent(
@@ -139,7 +139,7 @@ class QEventSequence(AbjadObject):
             ...
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(0, 1),
-                (NamedChromaticPitch("c'"),),
+                (NamedPitch("c'"),),
                 attachments=()
                 )
             quantizationtools.SilentQEvent(
@@ -148,7 +148,7 @@ class QEventSequence(AbjadObject):
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(1500, 1),
-                (NamedChromaticPitch("c'"),),
+                (NamedPitch("c'"),),
                 attachments=()
                 )
             quantizationtools.SilentQEvent(
@@ -157,7 +157,7 @@ class QEventSequence(AbjadObject):
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(3250, 1),
-                (NamedChromaticPitch("c'"),),
+                (NamedPitch("c'"),),
                 attachments=()
                 )
             quantizationtools.TerminalQEvent(
@@ -196,7 +196,7 @@ class QEventSequence(AbjadObject):
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(250, 1),
-                (NamedChromaticPitch("c'"),),
+                (NamedPitch("c'"),),
                 attachments=()
                 )
             quantizationtools.SilentQEvent(
@@ -205,7 +205,7 @@ class QEventSequence(AbjadObject):
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(1750, 1),
-                (NamedChromaticPitch("c'"),),
+                (NamedPitch("c'"),),
                 attachments=()
                 )
             quantizationtools.SilentQEvent(
@@ -260,27 +260,27 @@ class QEventSequence(AbjadObject):
             ...
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(0, 1),
-                (NamedChromaticPitch("c'"),),
+                (NamedPitch("c'"),),
                 attachments=()
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(250, 1),
-                (NamedChromaticPitch("c'"),),
+                (NamedPitch("c'"),),
                 attachments=()
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(750, 1),
-                (NamedChromaticPitch("c'"),),
+                (NamedPitch("c'"),),
                 attachments=()
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(1750, 1),
-                (NamedChromaticPitch("c'"),),
+                (NamedPitch("c'"),),
                 attachments=()
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(3000, 1),
-                (NamedChromaticPitch("c'"),),
+                (NamedPitch("c'"),),
                 attachments=()
                 )
             quantizationtools.TerminalQEvent(
@@ -319,7 +319,7 @@ class QEventSequence(AbjadObject):
             ...
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(0, 1),
-                (NamedChromaticPitch("c'"),),
+                (NamedPitch("c'"),),
                 attachments=()
                 )
             quantizationtools.SilentQEvent(
@@ -328,7 +328,7 @@ class QEventSequence(AbjadObject):
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(750, 1),
-                (NamedChromaticPitch("d'"), NamedChromaticPitch("ef'")),
+                (NamedPitch("d'"), NamedPitch("ef'")),
                 attachments=()
                 )
             quantizationtools.SilentQEvent(
@@ -337,7 +337,7 @@ class QEventSequence(AbjadObject):
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(3000, 1),
-                (NamedChromaticPitch("cs'"),),
+                (NamedPitch("cs'"),),
                 attachments=()
                 )
             quantizationtools.TerminalQEvent(
@@ -407,7 +407,7 @@ class QEventSequence(AbjadObject):
             ...
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(0, 1),
-                (NamedChromaticPitch("c'"),),
+                (NamedPitch("c'"),),
                 attachments=()
                 )
             quantizationtools.SilentQEvent(
@@ -416,7 +416,7 @@ class QEventSequence(AbjadObject):
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(17500, 29),
-                (NamedChromaticPitch("c'"),),
+                (NamedPitch("c'"),),
                 attachments=()
                 )
             quantizationtools.SilentQEvent(
@@ -475,12 +475,12 @@ class QEventSequence(AbjadObject):
             ...
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(0, 1),
-                (NamedChromaticPitch("c'"),),
+                (NamedPitch("c'"),),
                 attachments=()
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(2500, 3),
-                (NamedChromaticPitch("d'"), NamedChromaticPitch("fs'")),
+                (NamedPitch("d'"), NamedPitch("fs'")),
                 attachments=()
                 )
             quantizationtools.SilentQEvent(
@@ -489,7 +489,7 @@ class QEventSequence(AbjadObject):
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(5000, 3),
-                (NamedChromaticPitch("gqs'"),),
+                (NamedPitch("gqs'"),),
                 attachments=()
                 )
             quantizationtools.TerminalQEvent(

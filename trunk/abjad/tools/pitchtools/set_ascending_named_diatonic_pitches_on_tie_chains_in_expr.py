@@ -44,7 +44,7 @@ def set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(expr, key_signatu
     length = len(dicg)
 
     octave_number = 4
-    pitch = pitchtools.NamedChromaticPitch(scale[0], octave_number)
+    pitch = pitchtools.NamedPitch(scale[0], octave_number)
 
     for i, tie_chain in enumerate(iterationtools.iterate_tie_chains_in_expr(expr)):
         if isinstance(tie_chain[0], notetools.Note):

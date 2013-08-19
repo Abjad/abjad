@@ -13,8 +13,8 @@ def test_ArticulationHandlerCreationWziard_run_01():
         articulation_list=['^', '.'],
         minimum_duration=Duration(1, 64),
         maximum_duration=Duration(1, 4),
-        minimum_written_pitch=pitchtools.NamedChromaticPitch('c'),
-        maximum_written_pitch=pitchtools.NamedChromaticPitch("c''''"),
+        minimum_written_pitch=pitchtools.NamedPitch('c'),
+        maximum_written_pitch=pitchtools.NamedPitch("c''''"),
         )
 
     assert wizard.target == handler

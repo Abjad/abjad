@@ -49,7 +49,7 @@ def make_piano_score_from_leaves(leaves, lowest_treble_pitch=None):
     from abjad.tools import scoretools
 
     if lowest_treble_pitch is None:
-        lowest_treble_pitch = pitchtools.NamedChromaticPitch('b')
+        lowest_treble_pitch = pitchtools.NamedPitch('b')
 
     score, treble_staff, bass_staff = scoretools.make_empty_piano_score()
     for leaf in leaves:

@@ -17,8 +17,8 @@ def test_pitchtools_PitchRange___gt___02():
 
     pitch_range = pitchtools.PitchRange(-39, 48)
 
-    assert pitchtools.NamedChromaticPitch(-99) < pitch_range
-    assert not pitchtools.NamedChromaticPitch(-39) < pitch_range
-    assert not pitchtools.NamedChromaticPitch(0) < pitch_range
-    assert not pitchtools.NamedChromaticPitch(48) < pitch_range
-    assert not pitchtools.NamedChromaticPitch(99) < pitch_range
+    assert pitchtools.NamedPitch(-99) < pitch_range
+    assert not pitchtools.NamedPitch(-39) < pitch_range
+    assert not pitchtools.NamedPitch(0) < pitch_range
+    assert not pitchtools.NamedPitch(48) < pitch_range
+    assert not pitchtools.NamedPitch(99) < pitch_range

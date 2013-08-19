@@ -73,7 +73,7 @@ class TrillSpanner(Spanner):
 
                     >>> t = Staff("c'8 d'8 e'8 f'8")
                     >>> trill = spannertools.TrillSpanner(t[:2])
-                    >>> trill.pitch = pitchtools.NamedChromaticPitch('cs', 4)
+                    >>> trill.pitch = pitchtools.NamedPitch('cs', 4)
 
                 ..  doctest::
 
@@ -92,7 +92,7 @@ class TrillSpanner(Spanner):
             if expr is None:
                 self._pitch = expr
             else:
-                pitch = pitchtools.NamedChromaticPitch(expr)
+                pitch = pitchtools.NamedPitch(expr)
                 self._pitch = pitch
         return property(**locals())
 

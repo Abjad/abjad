@@ -31,12 +31,12 @@ class ArticulationHandler(Handler):
             self.minimum_written_pitch = minimum_written_pitch
         else:
             self.minimum_written_pitch = \
-                pitchtools.NamedChromaticPitch(minimum_written_pitch)
+                pitchtools.NamedPitch(minimum_written_pitch)
         if maximum_written_pitch is None:
             self.maximum_written_pitch = maximum_written_pitch
         else:
             self.maximum_written_pitch = \
-                pitchtools.NamedChromaticPitch(maximum_written_pitch)
+                pitchtools.NamedPitch(maximum_written_pitch)
 
     ### PRIVATE PROPERTIES ###
 

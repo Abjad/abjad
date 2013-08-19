@@ -562,7 +562,7 @@ class LilyPondParser(abctools.Parser):
             'list?':              lambda x: isinstance(x, (list, tuple)),
             'ly:duration?':       lambda x: isinstance(x, lilypondparsertools.LilyPondDuration),
             'ly:music?':          lambda x: isinstance(x, (componenttools.Component, marktools.Mark)),
-            'ly:pitch?':          lambda x: isinstance(x, pitchtools.NamedChromaticPitch),
+            'ly:pitch?':          lambda x: isinstance(x, pitchtools.NamedPitch),
             'markup?':            lambda x: isinstance(x, markuptools.MarkupCommand),
             'number-list?':       lambda x: isinstance(x, (list, tuple)) and \
                                             all(isinstance(y, (int, float)) for y in x),
@@ -717,14 +717,14 @@ class LilyPondParser(abctools.Parser):
 
         This function was reverse-engineered from LilyPond's source code.
 
-        Return NamedChromaticPitch.
+        Return NamedPitch.
         '''
-        if not isinstance(pitch_a, pitchtools.NamedChromaticPitch):
-            pitch_a = pitchtools.NamedChromaticPitch(pitch_a)
-        if not isinstance(pitch_b, pitchtools.NamedChromaticPitch):
-            pitch_b = pitchtools.NamedChromaticPitch(pitch_b)
-        if not isinstance(pitch_c, pitchtools.NamedChromaticPitch):
-            pitch_c = pitchtools.NamedChromaticPitch(pitch_c)
+        if not isinstance(pitch_a, pitchtools.NamedPitch):
+            pitch_a = pitchtools.NamedPitch(pitch_a)
+        if not isinstance(pitch_b, pitchtools.NamedPitch):
+            pitch_b = pitchtools.NamedPitch(pitch_b)
+        if not isinstance(pitch_c, pitchtools.NamedPitch):
+            pitch_c = pitchtools.NamedPitch(pitch_c)
         scale = [0., 2., 4., 5., 7., 9., 11.]
         def normalize_alteration(step, alteration):
             while 2. < alteration:
@@ -767,7 +767,7 @@ class LilyPondParser(abctools.Parser):
         #pitch_class_name = str(pitchtools.NamedDiatonicPitchClass(
         #    int(new_step)))
         accidental = str(pitchtools.Accidental(new_alt))
-        tmp_pitch = pitchtools.NamedChromaticPitch(
+        tmp_pitch = pitchtools.NamedPitch(
             pitch_class_name + accidental + octave_ticks)
         # print 'TMP(pitch): %r' % tmp_pitch
         new_alt += tmp_alt - float(tmp_pitch)
@@ -782,7 +782,7 @@ class LilyPondParser(abctools.Parser):
             pitchtools.diatonic_pitch_number_to_diatonic_pitch_class_name(
                 new_step)
         accidental = str(pitchtools.Accidental(new_alt))
-        return pitchtools.NamedChromaticPitch(
+        return pitchtools.NamedPitch(
             pitch_class_name + accidental + octave_ticks)
 
     ### PUBLIC METHODS ###

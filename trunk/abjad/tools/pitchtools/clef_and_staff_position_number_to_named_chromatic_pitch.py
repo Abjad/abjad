@@ -38,6 +38,6 @@ def clef_and_staff_position_number_to_named_chromatic_pitch(clef, staff_position
     octave = 4 + int(n / 7) + 1
     if pitch_name == 'b':
         octave -= 1
-    pitch = pitchtools.NamedChromaticPitch(pitch_name, octave)
+    pitch = pitchtools.NamedPitch(pitch_name, octave)
 
     return pitch

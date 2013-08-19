@@ -13,8 +13,8 @@ from abjad.tools.pitcharraytools.PitchArrayColumn.PitchArrayColumn \
 	import PitchArrayColumn
 from abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow \
 	import PitchArrayRow
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch \
-	import NamedChromaticPitch
+from abjad.tools.pitchtools.NamedPitch.NamedPitch \
+	import NamedPitch
 
 
 class PitchArray(AbjadObject):
@@ -53,7 +53,7 @@ class PitchArray(AbjadObject):
             return arg in self.columns
         elif isinstance(arg, PitchArrayCell):
             return arg in self.cells
-        elif isinstance(arg, NamedChromaticPitch):
+        elif isinstance(arg, NamedPitch):
             for pitch in self.pitches:
                 if arg == pitch:
                     return True

@@ -39,7 +39,7 @@ class SingleComponentMutationInterface(Selection):
 
             ::
 
-                >>> pitch = pitchtools.NamedChromaticPitch('Eb4')
+                >>> pitch = pitchtools.NamedPitch('Eb4')
                 >>> upper, lower = mutate(chord).divide(pitch=pitch)
                 >>> staff = Staff([upper, lower])
                 >>> show(staff) # doctest: +SKIP

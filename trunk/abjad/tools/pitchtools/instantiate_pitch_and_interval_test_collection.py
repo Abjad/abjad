@@ -18,8 +18,8 @@ def instantiate_pitch_and_interval_test_collection():
         MelodicChromaticIntervalClass(+1)
         MelodicDiatonicInterval('+M2')
         MelodicDiatonicIntervalClass('+M2')
-        NamedChromaticPitch('c')
-        NamedChromaticPitchClass('c')
+        NamedPitch('c')
+        NamedPitchClass('c')
         NumberedChromaticPitch(1)
         NumberedChromaticPitchClass(1)
 
@@ -40,8 +40,8 @@ def instantiate_pitch_and_interval_test_collection():
     result.append(pitchtools.MelodicChromaticIntervalClass(1))
     result.append(pitchtools.MelodicDiatonicInterval('M2'))
     result.append(pitchtools.MelodicDiatonicIntervalClass('M2'))
-    result.append(pitchtools.NamedChromaticPitch('c'))
-    result.append(pitchtools.NamedChromaticPitchClass('c'))
+    result.append(pitchtools.NamedPitch('c'))
+    result.append(pitchtools.NamedPitchClass('c'))
     result.append(pitchtools.NumberedChromaticPitch(1))
     result.append(pitchtools.NumberedChromaticPitchClass(1))
     return result

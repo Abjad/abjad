@@ -9,7 +9,7 @@ def test_NoteHead___init___01():
     '''
 
     notehead = notetools.NoteHead(6)
-    assert notehead.written_pitch == pitchtools.NamedChromaticPitch(6)
+    assert notehead.written_pitch == pitchtools.NamedPitch(6)
 
 
 def test_NoteHead___init___02():
@@ -17,7 +17,7 @@ def test_NoteHead___init___02():
     '''
 
     notehead = notetools.NoteHead('cs,,,')
-    assert notehead.written_pitch == pitchtools.NamedChromaticPitch('cs,,,')
+    assert notehead.written_pitch == pitchtools.NamedPitch('cs,,,')
 
 
 def test_NoteHead___init___03():
@@ -40,5 +40,5 @@ def test_NoteHead___init___04():
     tweak = LilyPondTweakReservoir()
     tweak.color = 'red'
 
-    assert note_head.written_pitch == pitchtools.NamedChromaticPitch("cs''")
+    assert note_head.written_pitch == pitchtools.NamedPitch("cs''")
     assert note_head.tweak == tweak

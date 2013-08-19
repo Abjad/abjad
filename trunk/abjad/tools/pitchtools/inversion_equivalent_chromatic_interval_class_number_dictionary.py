@@ -29,7 +29,7 @@ def inversion_equivalent_chromatic_interval_class_number_dictionary(pitches):
     numbers = []
 
     for pitch in pitches:
-        if not isinstance(pitch, pitchtools.NamedChromaticPitch):
+        if not isinstance(pitch, pitchtools.NamedPitch):
             raise ValueError
         numbers.append(pitch.numbered_chromatic_pitch._chromatic_pitch_number)
 

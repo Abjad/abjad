@@ -44,7 +44,7 @@ class BassClarinet(Clarinet):
         self._default_short_instrument_name = 'bass cl.'
         self._is_primary_instrument = False
         self.sounding_pitch_of_written_middle_c = \
-            pitchtools.NamedChromaticPitch('bf,')
+            pitchtools.NamedPitch('bf,')
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self.all_clefs = [
             contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]

@@ -57,7 +57,7 @@ class MelodicDiatonicInterval(NamedInterval, MelodicInterval):
         from abjad.tools import pitchtools
         if not isinstance(arg, type(self)):
             raise TypeError('%s must be melodic diatonic interval.' % arg)
-        dummy_pitch = pitchtools.NamedChromaticPitch(0)
+        dummy_pitch = pitchtools.NamedPitch(0)
         new_pitch = dummy_pitch + self + arg
         return pitchtools.MelodicDiatonicInterval.from_pitch_carriers(
             dummy_pitch, new_pitch)
@@ -71,11 +71,11 @@ class MelodicDiatonicInterval(NamedInterval, MelodicInterval):
         from abjad.tools import pitchtools
         if not isinstance(arg, (int, long)):
             raise TypeError('%s must be int.' % arg)
-        dummy_pitch = pitchtools.NamedChromaticPitch(0)
+        dummy_pitch = pitchtools.NamedPitch(0)
         for i in range(abs(arg)):
             dummy_pitch += self
         result = pitchtools.MelodicDiatonicInterval.from_pitch_carriers(
-            pitchtools.NamedChromaticPitch(0), dummy_pitch)
+            pitchtools.NamedPitch(0), dummy_pitch)
         if arg < 0:
             return -result
         return result
@@ -100,7 +100,7 @@ class MelodicDiatonicInterval(NamedInterval, MelodicInterval):
         from abjad.tools import pitchtools
         if not isinstance(arg, type(self)):
             raise TypeError('%s must be melodic diatonic interval.' % arg)
-        dummy_pitch = pitchtools.NamedChromaticPitch(0)
+        dummy_pitch = pitchtools.NamedPitch(0)
         new_pitch = dummy_pitch + self - arg
         return pitchtools.MelodicDiatonicInterval.from_pitch_carriers(
             dummy_pitch, new_pitch)
@@ -115,8 +115,8 @@ class MelodicDiatonicInterval(NamedInterval, MelodicInterval):
         ::
 
             >>> pitchtools.MelodicDiatonicInterval.from_pitch_carriers(
-            ...     pitchtools.NamedChromaticPitch(-2), 
-            ...     pitchtools.NamedChromaticPitch(12),
+            ...     pitchtools.NamedPitch(-2), 
+            ...     pitchtools.NamedPitch(12),
             ...     )
             MelodicDiatonicInterval('+M9')
 

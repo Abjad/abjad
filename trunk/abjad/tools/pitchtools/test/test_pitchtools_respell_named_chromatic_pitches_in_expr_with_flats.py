@@ -6,8 +6,8 @@ def test_pitchtools_respell_named_chromatic_pitches_in_expr_with_flats_01():
     r'''The pitchtools.respell_named_chromatic_pitches_in_expr_with_flats()
     helper renotates an individual pitch.'''
 
-    namedchromaticpitch = pitchtools.NamedChromaticPitch('cs', 4)
-    assert pitchtools.respell_named_chromatic_pitches_in_expr_with_flats(namedchromaticpitch) == pitchtools.NamedChromaticPitch(
+    namedchromaticpitch = pitchtools.NamedPitch('cs', 4)
+    assert pitchtools.respell_named_chromatic_pitches_in_expr_with_flats(namedchromaticpitch) == pitchtools.NamedPitch(
         'df', 4)
 
 
@@ -17,7 +17,7 @@ def test_pitchtools_respell_named_chromatic_pitches_in_expr_with_flats_02():
 
     note = Note(('cs', 4), 4)
     pitchtools.respell_named_chromatic_pitches_in_expr_with_flats(note)
-    assert note.written_pitch == pitchtools.NamedChromaticPitch('df', 4)
+    assert note.written_pitch == pitchtools.NamedPitch('df', 4)
 
 
 def test_pitchtools_respell_named_chromatic_pitches_in_expr_with_flats_03():
@@ -26,7 +26,7 @@ def test_pitchtools_respell_named_chromatic_pitches_in_expr_with_flats_03():
     chord = Chord([('cs', 4), ('f', 4), ('as', 4)], (1, 4))
 
     pitchtools.respell_named_chromatic_pitches_in_expr_with_flats(chord)
-    assert chord.written_pitches == (pitchtools.NamedChromaticPitch('df', 4), pitchtools.NamedChromaticPitch('f', 4), pitchtools.NamedChromaticPitch('bf', 4))
+    assert chord.written_pitches == (pitchtools.NamedPitch('df', 4), pitchtools.NamedPitch('f', 4), pitchtools.NamedPitch('bf', 4))
 
 
 def test_pitchtools_respell_named_chromatic_pitches_in_expr_with_flats_04():

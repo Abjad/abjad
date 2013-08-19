@@ -7,7 +7,7 @@ def test_KeySignatureMark_tonic_01():
     '''
 
     key_signature = contexttools.KeySignatureMark('e', 'major')
-    key_signature.tonic = pitchtools.NamedChromaticPitchClass('e')
+    key_signature.tonic = pitchtools.NamedPitchClass('e')
 
     key_signature.tonic = 'd'
-    key_signature.tonic = pitchtools.NamedChromaticPitchClass('d')
+    key_signature.tonic = pitchtools.NamedPitchClass('d')

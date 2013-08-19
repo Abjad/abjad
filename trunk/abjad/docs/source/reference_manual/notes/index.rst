@@ -45,7 +45,7 @@ You can get the written pitch of notes:
 ::
 
    >>> note.written_pitch
-   NamedChromaticPitch("c'")
+   NamedPitch("c'")
 
 
 Changing the written pitch of notes

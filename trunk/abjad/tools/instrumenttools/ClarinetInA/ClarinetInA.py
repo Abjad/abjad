@@ -44,7 +44,7 @@ class ClarinetInA(Clarinet):
         self._default_short_instrument_name = r'cl. A \natural'
         self._is_primary_instrument = False
         self.sounding_pitch_of_written_middle_c = \
-            pitchtools.NamedChromaticPitch('a')
+            pitchtools.NamedPitch('a')
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()
         self._traditional_pitch_range = pitchtools.PitchRange(-11, 33)

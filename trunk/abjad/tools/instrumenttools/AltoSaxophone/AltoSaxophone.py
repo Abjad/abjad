@@ -47,7 +47,7 @@ class AltoSaxophone(Saxophone):
         self._default_short_instrument_name = 'alto sax.'
         self._is_primary_instrument = True
         self.sounding_pitch_of_written_middle_c = \
-            pitchtools.NamedChromaticPitch('ef')
+            pitchtools.NamedPitch('ef')
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()
         self._traditional_pitch_range = pitchtools.PitchRange(-11, 21)

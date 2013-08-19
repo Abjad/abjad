@@ -206,7 +206,7 @@ class ReducedLyParser(abctools.Parser):
 
     def t_PITCHNAME(self, t):
         r'[a-g](ff|ss|f|s|tqf|tqs|qs|qf)?'
-        t.value = pitchtools.NamedChromaticPitchClass(t.value)
+        t.value = pitchtools.NamedPitchClass(t.value)
         return t
 
     def t_newline(self, t):
@@ -373,17 +373,17 @@ class ReducedLyParser(abctools.Parser):
     def p_pitch__PITCHNAME(self, p):
         r'''pitch : PITCHNAME
         '''
-        p[0] = pitchtools.NamedChromaticPitch(str(p[1]))
+        p[0] = pitchtools.NamedPitch(str(p[1]))
 
     def p_pitch__PITCHNAME__apostrophes(self, p):
         r'''pitch : PITCHNAME apostrophes
         '''
-        p[0] = pitchtools.NamedChromaticPitch(str(p[1]) + "'" * p[2])
+        p[0] = pitchtools.NamedPitch(str(p[1]) + "'" * p[2])
 
     def p_pitch__PITCHNAME__commas(self, p):
         r'''pitch : PITCHNAME commas
         '''
-        p[0] = pitchtools.NamedChromaticPitch(str(p[1]) + ',' * p[2])
+        p[0] = pitchtools.NamedPitch(str(p[1]) + ',' * p[2])
 
     def p_pitches__pitch(self, p):
         r'''pitches : pitch

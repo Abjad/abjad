@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.pitchtools import MelodicChromaticIntervalSegment
-from abjad.tools.pitchtools import NamedChromaticPitch
+from abjad.tools.pitchtools import NamedPitch
 from abjad.tools.pitchtools import NumberedChromaticPitch
 from abjad.tools.pitchtools \
 	import transpose_chromatic_pitch_by_melodic_chromatic_interval_segment

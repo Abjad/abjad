@@ -7,7 +7,7 @@ def all_are_chromatic_pitch_class_name_octave_number_pairs(expr):
     ::
 
         >>> pitchtools.all_are_chromatic_pitch_class_name_octave_number_pairs(
-        ... [('c', 4), ('d', 4), pitchtools.NamedChromaticPitch('e', 4)])
+        ... [('c', 4), ('d', 4), pitchtools.NamedPitch('e', 4)])
         True
 
     Return boolean.

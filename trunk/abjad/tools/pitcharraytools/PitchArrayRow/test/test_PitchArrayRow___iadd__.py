@@ -24,4 +24,4 @@ def test_PitchArrayRow___iadd___01():
 
     assert row.cell_widths == (1, 2, 1, 1, 2, 1)
     assert row.dimensions == (1, 8)
-    assert row.pitches == tuple([pitchtools.NamedChromaticPitch(x) for x in [0, 2, 0, 2]])
+    assert row.pitches == tuple([pitchtools.NamedPitch(x) for x in [0, 2, 0, 2]])

@@ -18,7 +18,7 @@ Creating pitches
 Use pitch tools to create named chromatic pitches:
 
 <abjad>
-named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
+named_chromatic_pitch = pitchtools.NamedPitch("cs''")
 </abjad>
 
 <abjad>
@@ -62,7 +62,7 @@ show(staff)
 </abjad>
 
 <abjad>
-note_2.written_pitch = pitchtools.NamedChromaticPitch(24, deviation = -31)
+note_2.written_pitch = pitchtools.NamedPitch(24, deviation = -31)
 </abjad>
 
 The pitch of the the first note is greater than the pitch of the second:
@@ -85,7 +85,7 @@ Named chromatic pitches sort by octave, diatonic pitch-class and accidental,
 in that order:
 
 <abjad>
-pitchtools.NamedChromaticPitch('es') < pitchtools.NamedChromaticPitch('ff')
+pitchtools.NamedPitch('es') < pitchtools.NamedPitch('ff')
 </abjad>
 
 
@@ -95,8 +95,8 @@ Comparing pitches
 Compare named chromatic pitches to each other:
 
 <abjad>
-named_chromatic_pitch_1 = pitchtools.NamedChromaticPitch("c''")
-named_chromatic_pitch_2 = pitchtools.NamedChromaticPitch("d''")
+named_chromatic_pitch_1 = pitchtools.NamedPitch("c''")
+named_chromatic_pitch_2 = pitchtools.NamedPitch("d''")
 </abjad>
 
 <abjad>

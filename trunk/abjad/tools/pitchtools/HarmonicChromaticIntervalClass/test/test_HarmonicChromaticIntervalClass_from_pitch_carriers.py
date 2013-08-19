@@ -7,15 +7,15 @@ def test_HarmonicChromaticIntervalClass_from_pitch_carriers_01():
     '''
 
     hcic = pitchtools.HarmonicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(-3), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(-3), pitchtools.NamedPitch(12))
     assert hcic == pitchtools.HarmonicChromaticIntervalClass(3)
 
     hcic = pitchtools.HarmonicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(-2), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(-2), pitchtools.NamedPitch(12))
     assert hcic == pitchtools.HarmonicChromaticIntervalClass(2)
 
     hcic = pitchtools.HarmonicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(-1), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(-1), pitchtools.NamedPitch(12))
     assert hcic == pitchtools.HarmonicChromaticIntervalClass(1)
 
 
@@ -24,7 +24,7 @@ def test_HarmonicChromaticIntervalClass_from_pitch_carriers_02():
     '''
 
     hcic = pitchtools.HarmonicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(0), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(0), pitchtools.NamedPitch(12))
     assert hcic == pitchtools.HarmonicChromaticIntervalClass(12)
 
 
@@ -33,15 +33,15 @@ def test_HarmonicChromaticIntervalClass_from_pitch_carriers_03():
     '''
 
     hcic = pitchtools.HarmonicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(9), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(9), pitchtools.NamedPitch(12))
     assert hcic == pitchtools.HarmonicChromaticIntervalClass(3)
 
     hcic = pitchtools.HarmonicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(10), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(10), pitchtools.NamedPitch(12))
     assert hcic == pitchtools.HarmonicChromaticIntervalClass(2)
 
     hcic = pitchtools.HarmonicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(11), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(11), pitchtools.NamedPitch(12))
     assert hcic == pitchtools.HarmonicChromaticIntervalClass(1)
 
 
@@ -50,7 +50,7 @@ def test_HarmonicChromaticIntervalClass_from_pitch_carriers_04():
     '''
 
     hcic = pitchtools.HarmonicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(12))
     assert hcic == pitchtools.HarmonicChromaticIntervalClass(0)
 
 
@@ -59,15 +59,15 @@ def test_HarmonicChromaticIntervalClass_from_pitch_carriers_05():
     '''
 
     hcic = pitchtools.HarmonicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-3))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(-3))
     assert hcic == pitchtools.HarmonicChromaticIntervalClass(3)
 
     hcic = pitchtools.HarmonicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-2))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(-2))
     assert hcic == pitchtools.HarmonicChromaticIntervalClass(2)
 
     hcic = pitchtools.HarmonicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-1))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(-1))
     assert hcic == pitchtools.HarmonicChromaticIntervalClass(1)
 
 
@@ -76,7 +76,7 @@ def test_HarmonicChromaticIntervalClass_from_pitch_carriers_06():
     '''
 
     hcic = pitchtools.HarmonicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(0))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(0))
     assert hcic == pitchtools.HarmonicChromaticIntervalClass(12)
 
 
@@ -85,15 +85,15 @@ def test_HarmonicChromaticIntervalClass_from_pitch_carriers_07():
     '''
 
     hcic = pitchtools.HarmonicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(9))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(9))
     assert hcic == pitchtools.HarmonicChromaticIntervalClass(3)
 
     hcic = pitchtools.HarmonicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(10))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(10))
     assert hcic == pitchtools.HarmonicChromaticIntervalClass(2)
 
     hcic = pitchtools.HarmonicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(11))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(11))
     assert hcic == pitchtools.HarmonicChromaticIntervalClass(1)
 
 
@@ -102,5 +102,5 @@ def test_HarmonicChromaticIntervalClass_from_pitch_carriers_08():
     '''
 
     hcic = pitchtools.HarmonicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-2.5))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(-2.5))
     assert hcic == pitchtools.HarmonicChromaticIntervalClass(2.5)

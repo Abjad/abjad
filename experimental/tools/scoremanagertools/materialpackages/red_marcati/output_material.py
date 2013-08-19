@@ -14,10 +14,10 @@ red_marcati = handlertools.ReiteratedArticulationHandler(
 		1,
 		4
 		),
-	minimum_written_pitch=pitchtools.NamedChromaticPitch(
+	minimum_written_pitch=pitchtools.NamedPitch(
 		'a,,,'
 		),
-	maximum_written_pitch=pitchtools.NamedChromaticPitch(
+	maximum_written_pitch=pitchtools.NamedPitch(
 		"c''''"
 		)
 	)

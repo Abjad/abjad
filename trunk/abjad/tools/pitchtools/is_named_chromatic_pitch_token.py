@@ -13,7 +13,7 @@ def is_named_chromatic_pitch_token(pitch_token):
     '''
     from abjad.tools import pitchtools
 
-    if isinstance(pitch_token, pitchtools.NamedChromaticPitch):
+    if isinstance(pitch_token, pitchtools.NamedPitch):
         return True
     elif pitchtools.is_chromatic_pitch_class_name_octave_number_pair(pitch_token):
         return True

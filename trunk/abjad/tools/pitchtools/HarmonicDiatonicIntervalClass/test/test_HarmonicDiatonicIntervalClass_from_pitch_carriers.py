@@ -7,15 +7,15 @@ def test_HarmonicDiatonicIntervalClass_from_pitch_carriers_01():
     '''
 
     hdic = pitchtools.HarmonicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(-3), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(-3), pitchtools.NamedPitch(12))
     assert hdic == pitchtools.HarmonicDiatonicIntervalClass('minor', 3)
 
     hdic = pitchtools.HarmonicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(-2), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(-2), pitchtools.NamedPitch(12))
     assert hdic == pitchtools.HarmonicDiatonicIntervalClass('major', 2)
 
     hdic = pitchtools.HarmonicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(-1), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(-1), pitchtools.NamedPitch(12))
     assert hdic == pitchtools.HarmonicDiatonicIntervalClass('minor', 2)
 
 
@@ -24,7 +24,7 @@ def test_HarmonicDiatonicIntervalClass_from_pitch_carriers_02():
     '''
 
     hdic = pitchtools.HarmonicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(0), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(0), pitchtools.NamedPitch(12))
     assert hdic == pitchtools.HarmonicDiatonicIntervalClass('perfect', 8)
 
 
@@ -33,15 +33,15 @@ def test_HarmonicDiatonicIntervalClass_from_pitch_carriers_03():
     '''
 
     hdic = pitchtools.HarmonicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(9), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(9), pitchtools.NamedPitch(12))
     assert hdic == pitchtools.HarmonicDiatonicIntervalClass('minor', 3)
 
     hdic = pitchtools.HarmonicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(10), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(10), pitchtools.NamedPitch(12))
     assert hdic == pitchtools.HarmonicDiatonicIntervalClass('major', 2)
 
     hdic = pitchtools.HarmonicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(11), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(11), pitchtools.NamedPitch(12))
     assert hdic == pitchtools.HarmonicDiatonicIntervalClass('minor', 2)
 
 
@@ -50,7 +50,7 @@ def test_HarmonicDiatonicIntervalClass_from_pitch_carriers_04():
     '''
 
     hdic = pitchtools.HarmonicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(12))
     assert hdic == pitchtools.HarmonicDiatonicIntervalClass('perfect', 1)
 
 
@@ -59,15 +59,15 @@ def test_HarmonicDiatonicIntervalClass_from_pitch_carriers_05():
     '''
 
     hdic = pitchtools.HarmonicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-3))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(-3))
     assert hdic == pitchtools.HarmonicDiatonicIntervalClass('minor', 3)
 
     hdic = pitchtools.HarmonicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-2))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(-2))
     assert hdic == pitchtools.HarmonicDiatonicIntervalClass('major', 2)
 
     hdic = pitchtools.HarmonicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-1))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(-1))
     assert hdic == pitchtools.HarmonicDiatonicIntervalClass('minor', 2)
 
 
@@ -76,7 +76,7 @@ def test_HarmonicDiatonicIntervalClass_from_pitch_carriers_06():
     '''
 
     hdic = pitchtools.HarmonicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(0))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(0))
     assert hdic == pitchtools.HarmonicDiatonicIntervalClass('perfect', 8)
 
 
@@ -85,13 +85,13 @@ def test_HarmonicDiatonicIntervalClass_from_pitch_carriers_07():
     '''
 
     hdic = pitchtools.HarmonicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(9))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(9))
     assert hdic == pitchtools.HarmonicDiatonicIntervalClass('minor', 3)
 
     hdic = pitchtools.HarmonicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(10))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(10))
     assert hdic == pitchtools.HarmonicDiatonicIntervalClass('major', 2)
 
     hdic = pitchtools.HarmonicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(11))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(11))
     assert hdic == pitchtools.HarmonicDiatonicIntervalClass('minor', 2)

@@ -5,10 +5,10 @@ import py.test
 
 def test_pitchtools_get_named_chromatic_pitch_from_pitch_carrier_01():
 
-    pitch = pitchtools.NamedChromaticPitch('df', 5)
+    pitch = pitchtools.NamedPitch('df', 5)
     namedchromaticpitch = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(pitch)
 
-    assert namedchromaticpitch == pitchtools.NamedChromaticPitch('df', 5)
+    assert namedchromaticpitch == pitchtools.NamedPitch('df', 5)
 
 
 def test_pitchtools_get_named_chromatic_pitch_from_pitch_carrier_02():
@@ -16,7 +16,7 @@ def test_pitchtools_get_named_chromatic_pitch_from_pitch_carrier_02():
     note = Note(('df', 5), (1, 4))
     namedchromaticpitch = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(note)
 
-    assert namedchromaticpitch == pitchtools.NamedChromaticPitch('df', 5)
+    assert namedchromaticpitch == pitchtools.NamedPitch('df', 5)
 
 
 def test_pitchtools_get_named_chromatic_pitch_from_pitch_carrier_03():
@@ -24,7 +24,7 @@ def test_pitchtools_get_named_chromatic_pitch_from_pitch_carrier_03():
     note = Note(('df', 5), (1, 4))
     namedchromaticpitch = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(note.note_head)
 
-    assert namedchromaticpitch == pitchtools.NamedChromaticPitch('df', 5)
+    assert namedchromaticpitch == pitchtools.NamedPitch('df', 5)
 
 
 def test_pitchtools_get_named_chromatic_pitch_from_pitch_carrier_04():
@@ -32,7 +32,7 @@ def test_pitchtools_get_named_chromatic_pitch_from_pitch_carrier_04():
     chord = Chord([('df', 5)], (1, 4))
     namedchromaticpitch = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(chord)
 
-    assert namedchromaticpitch == pitchtools.NamedChromaticPitch('df', 5)
+    assert namedchromaticpitch == pitchtools.NamedPitch('df', 5)
 
 
 def test_pitchtools_get_named_chromatic_pitch_from_pitch_carrier_05():
@@ -60,4 +60,4 @@ def test_pitchtools_get_named_chromatic_pitch_from_pitch_carrier_08():
 
     pitch = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(13)
 
-    assert pitch == pitchtools.NamedChromaticPitch(13)
+    assert pitch == pitchtools.NamedPitch(13)

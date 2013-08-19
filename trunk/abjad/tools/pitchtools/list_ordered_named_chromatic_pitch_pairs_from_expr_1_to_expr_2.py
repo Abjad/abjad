@@ -15,12 +15,12 @@ def list_ordered_named_chromatic_pitch_pairs_from_expr_1_to_expr_2(expr_1, expr_
         >>> for pair in pitchtools.list_ordered_named_chromatic_pitch_pairs_from_expr_1_to_expr_2(
         ...     chord_1, chord_2):
         ...     pair
-        (NamedChromaticPitch("c'"), NamedChromaticPitch("ef'"))
-        (NamedChromaticPitch("c'"), NamedChromaticPitch("e'"))
-        (NamedChromaticPitch("cs'"), NamedChromaticPitch("ef'"))
-        (NamedChromaticPitch("cs'"), NamedChromaticPitch("e'"))
-        (NamedChromaticPitch("d'"), NamedChromaticPitch("ef'"))
-        (NamedChromaticPitch("d'"), NamedChromaticPitch("e'"))
+        (NamedPitch("c'"), NamedPitch("ef'"))
+        (NamedPitch("c'"), NamedPitch("e'"))
+        (NamedPitch("cs'"), NamedPitch("ef'"))
+        (NamedPitch("cs'"), NamedPitch("e'"))
+        (NamedPitch("d'"), NamedPitch("ef'"))
+        (NamedPitch("d'"), NamedPitch("e'"))
 
     Return generator.
     '''

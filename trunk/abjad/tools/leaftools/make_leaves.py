@@ -406,7 +406,7 @@ def _make_leaf_on_pitch(
     from abjad.tools import leaftools
     from abjad.tools import notetools
     from abjad.tools import resttools
-    note_types = (numbers.Number, str, pitchtools.NamedChromaticPitch)
+    note_types = (numbers.Number, str, pitchtools.NamedPitch)
     chord_types = (tuple, list)
     rest_types = (type(None),)
     if isinstance(pitch, note_types):

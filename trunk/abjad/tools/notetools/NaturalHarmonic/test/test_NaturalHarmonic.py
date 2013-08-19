@@ -11,7 +11,7 @@ def test_NaturalHarmonic_01():
     bf'4
     '''
 
-    assert naturalharmonic.written_pitch == pitchtools.NamedChromaticPitch(10)
+    assert naturalharmonic.written_pitch == pitchtools.NamedPitch(10)
     assert testtools.compare(
         naturalharmonic,
         r'''

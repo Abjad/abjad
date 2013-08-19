@@ -110,21 +110,21 @@ class ToyLanguageParser(Parser):
 
     def p_pitch__PITCHNAME(self, p):
         '''pitch : PITCHNAME'''
-        p[0] = pitchtools.NamedChromaticPitch(p[1])
+        p[0] = pitchtools.NamedPitch(p[1])
 
     def p_pitch__PITCHNAME__apostrophes(self, p):
         '''pitch : PITCHNAME apostrophes'''
-        p[0] = pitchtools.NamedChromaticPitch(p[1] + "'" * p[2])
+        p[0] = pitchtools.NamedPitch(p[1] + "'" * p[2])
 
     def p_pitch__PITCHNAME__commas(self, p):
         '''pitch : PITCHNAME commas'''
-        p[0] = pitchtools.NamedChromaticPitch(p[1] + ',' * p[2])
+        p[0] = pitchtools.NamedPitch(p[1] + ',' * p[2])
 
     ### creating pitch cells ###
 
     def p_pitch_cell__PARENTHESIS_L__pitches__PARENTHESIS_R(self, p):
         '''pitch_cell : PARENTHESIS_L pitches PARENTHESIS_R'''
-        p[0] = pitchtools.NamedChromaticPitchSegment(p[2])
+        p[0] = pitchtools.NamedPitchSegment(p[2])
 
     def p_pitches__pitch(self, p):
         '''pitches : pitch'''

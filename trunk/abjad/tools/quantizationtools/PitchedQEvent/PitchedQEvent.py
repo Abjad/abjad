@@ -14,7 +14,7 @@ class PitchedQEvent(QEvent):
         >>> q_event
         quantizationtools.PitchedQEvent(
             durationtools.Offset(1000, 1),
-            (NamedChromaticPitch("c'"), NamedChromaticPitch("cs'"), NamedChromaticPitch("e'")),
+            (NamedPitch("c'"), NamedPitch("cs'"), NamedPitch("e'")),
             attachments=()
             )
 
@@ -33,7 +33,7 @@ class PitchedQEvent(QEvent):
 
     def __init__(self, offset, pitches, attachments=None, index=None):
         QEvent.__init__(self, offset, index=index)
-        pitches = tuple([pitchtools.NamedChromaticPitch(x) for x in pitches])
+        pitches = tuple([pitchtools.NamedPitch(x) for x in pitches])
         if attachments is None:
             attachments = ()
         else:

@@ -38,7 +38,7 @@ def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitch_carrier
     if all(isinstance(x, (int, long, float)) for x in pitch_carrier):
         return _pitch_number_list_octave_transpositions(pitch_carrier, pitch_range)
 
-    if not isinstance(pitch_carrier, (chordtools.Chord, pitchtools.NamedChromaticPitchSet)):
+    if not isinstance(pitch_carrier, (chordtools.Chord, pitchtools.NamedPitchSet)):
         raise TypeError('must be chord or named chromatic pitch set.')
 
     result = []

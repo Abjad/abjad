@@ -10,7 +10,7 @@ def test_pitchtools_list_named_chromatic_pitches_in_expr_01():
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     namedchromaticpitch = pitchtools.list_named_chromatic_pitches_in_expr(tuplet)
 
-    assert namedchromaticpitch == (pitchtools.NamedChromaticPitch('c', 4), pitchtools.NamedChromaticPitch('d', 4), pitchtools.NamedChromaticPitch('e', 4))
+    assert namedchromaticpitch == (pitchtools.NamedPitch('c', 4), pitchtools.NamedPitch('d', 4), pitchtools.NamedPitch('e', 4))
 
 
 def test_pitchtools_list_named_chromatic_pitches_in_expr_02():
@@ -21,17 +21,17 @@ def test_pitchtools_list_named_chromatic_pitches_in_expr_02():
     beam = spannertools.BeamSpanner(staff[:])
     namedchromaticpitch = pitchtools.list_named_chromatic_pitches_in_expr(beam)
 
-    assert namedchromaticpitch == (pitchtools.NamedChromaticPitch('c', 4), pitchtools.NamedChromaticPitch('d', 4), pitchtools.NamedChromaticPitch('e', 4), pitchtools.NamedChromaticPitch('f', 4))
+    assert namedchromaticpitch == (pitchtools.NamedPitch('c', 4), pitchtools.NamedPitch('d', 4), pitchtools.NamedPitch('e', 4), pitchtools.NamedPitch('f', 4))
 
 
 def test_pitchtools_list_named_chromatic_pitches_in_expr_03():
     r'''Works with pitch sets.
     '''
 
-    pitch_set = pitchtools.NamedChromaticPitchSet([0, 2, 4, 5])
+    pitch_set = pitchtools.NamedPitchSet([0, 2, 4, 5])
     namedchromaticpitch = pitchtools.list_named_chromatic_pitches_in_expr(pitch_set)
 
-    assert namedchromaticpitch == (pitchtools.NamedChromaticPitch('c', 4), pitchtools.NamedChromaticPitch('d', 4), pitchtools.NamedChromaticPitch('e', 4), pitchtools.NamedChromaticPitch('f', 4))
+    assert namedchromaticpitch == (pitchtools.NamedPitch('c', 4), pitchtools.NamedPitch('d', 4), pitchtools.NamedPitch('e', 4), pitchtools.NamedPitch('f', 4))
 
 
 def test_pitchtools_list_named_chromatic_pitches_in_expr_04():
@@ -49,12 +49,12 @@ def test_pitchtools_list_named_chromatic_pitches_in_expr_04():
     '''
 
     assert pitchtools.list_named_chromatic_pitches_in_expr(array) == (
-        pitchtools.NamedChromaticPitch('d', 4), pitchtools.NamedChromaticPitch('bqf', 3), pitchtools.NamedChromaticPitch('g', 4), pitchtools.NamedChromaticPitch('fs', 4))
+        pitchtools.NamedPitch('d', 4), pitchtools.NamedPitch('bqf', 3), pitchtools.NamedPitch('g', 4), pitchtools.NamedPitch('fs', 4))
 
 
 def test_pitchtools_list_named_chromatic_pitches_in_expr_05():
     r'''Works with list or tuple of pitches.
     '''
 
-    namedchromaticpitch = [pitchtools.NamedChromaticPitch(0), Note(2, (1, 4)), Chord([4, 6, 7], (1, 4))]
-    assert pitchtools.list_named_chromatic_pitches_in_expr(namedchromaticpitch) == (pitchtools.NamedChromaticPitch('c', 4), pitchtools.NamedChromaticPitch('d', 4), pitchtools.NamedChromaticPitch('e', 4), pitchtools.NamedChromaticPitch('fs', 4), pitchtools.NamedChromaticPitch('g', 4))
+    namedchromaticpitch = [pitchtools.NamedPitch(0), Note(2, (1, 4)), Chord([4, 6, 7], (1, 4))]
+    assert pitchtools.list_named_chromatic_pitches_in_expr(namedchromaticpitch) == (pitchtools.NamedPitch('c', 4), pitchtools.NamedPitch('d', 4), pitchtools.NamedPitch('e', 4), pitchtools.NamedPitch('fs', 4), pitchtools.NamedPitch('g', 4))

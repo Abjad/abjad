@@ -26,7 +26,7 @@ def permute_named_chromatic_pitch_carrier_list_by_twelve_tone_row(pitches, row):
     for pc in row:
         matching_pitches = []
         for pitch in pitches:
-            if isinstance(pitch, pitchtools.NamedChromaticPitch):
+            if isinstance(pitch, pitchtools.NamedPitch):
                 if pitch.numbered_chromatic_pitch_class == pc:
                     matching_pitches.append(pitch)
             elif isinstance(pitch, notetools.Note):

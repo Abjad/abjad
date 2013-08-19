@@ -31,6 +31,6 @@ def test_PitchArrayCell_previous_02():
 
 def test_PitchArrayCell_previous_03():
 
-    cell = PitchArrayCell([pitchtools.NamedChromaticPitch(1)])
+    cell = PitchArrayCell([pitchtools.NamedPitch(1)])
 
     assert py.test.raises(IndexError, 'cell.prev')

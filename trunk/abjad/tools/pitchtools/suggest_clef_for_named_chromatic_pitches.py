@@ -22,13 +22,13 @@ def suggest_clef_for_named_chromatic_pitches(pitches):
     max_diatonic_pitch_number = max(diatonic_pitch_numbers)
     min_diatonic_pitch_number = min(diatonic_pitch_numbers)
 
-    lowest_treble_line_pitch = pitchtools.NamedChromaticPitch('e', 4)
+    lowest_treble_line_pitch = pitchtools.NamedPitch('e', 4)
     lowest_treble_line_diatonic_pitch_number = \
         lowest_treble_line_pitch._diatonic_pitch_number
     candidate_steps_below_treble = \
         lowest_treble_line_diatonic_pitch_number - min_diatonic_pitch_number
 
-    highest_bass_line_pitch = pitchtools.NamedChromaticPitch('a', 3)
+    highest_bass_line_pitch = pitchtools.NamedPitch('a', 3)
     highest_bass_line_diatonic_pitch_number = \
         highest_bass_line_pitch._diatonic_pitch_number
     candidate_steps_above_bass = max_diatonic_pitch_number - highest_bass_line_diatonic_pitch_number

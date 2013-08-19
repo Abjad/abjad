@@ -103,8 +103,8 @@ class MelodicDiatonicIntervalClass(
         ::
 
             >>> pitchtools.MelodicDiatonicIntervalClass.from_pitch_carriers(
-            ...     pitchtools.NamedChromaticPitch(-2),
-            ...     pitchtools.NamedChromaticPitch(12),
+            ...     pitchtools.NamedPitch(-2),
+            ...     pitchtools.NamedPitch(12),
             ...     )
             MelodicDiatonicIntervalClass('+M2')
 

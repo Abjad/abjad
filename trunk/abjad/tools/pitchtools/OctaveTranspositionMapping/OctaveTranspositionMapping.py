@@ -55,7 +55,7 @@ class OctaveTranspositionMapping(TypedList):
 
     def _transpose_pitch(self, pitch):
         from abjad.tools import pitchtools
-        pitch = pitchtools.NamedChromaticPitch(pitch)
+        pitch = pitchtools.NamedPitch(pitch)
         target_pitch_class_number = pitch.chromatic_pitch_class_number
         for component in self:
             if pitch in component.source_pitch_range:

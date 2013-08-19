@@ -32,7 +32,7 @@ Use ``attach()`` to attach articulations to a leaf:
    >>> staff = Staff([])
    >>> key_signature = contexttools.KeySignatureMark('g', 'major')
    >>> key_signature.attach(staff)
-   KeySignatureMark(NamedChromaticPitchClass('g'), Mode('major'))(Staff{})
+   KeySignatureMark(NamedPitchClass('g'), Mode('major'))(Staff{})
    >>> time_signature = contexttools.TimeSignatureMark((2, 4), partial = Duration(1, 8))
    >>> time_signature.attach(staff)
    TimeSignatureMark((2, 4), partial=Duration(1, 8))(Staff{})

@@ -93,8 +93,8 @@ class MelodicChromaticInterval(NumberedInterval, MelodicInterval):
         ::
 
             >>> pitchtools.MelodicChromaticInterval.from_pitch_carriers(
-            ...     pitchtools.NamedChromaticPitch(-2), 
-            ...     pitchtools.NamedChromaticPitch(12),
+            ...     pitchtools.NamedPitch(-2), 
+            ...     pitchtools.NamedPitch(12),
             ...     )
             MelodicChromaticInterval(+14)
 

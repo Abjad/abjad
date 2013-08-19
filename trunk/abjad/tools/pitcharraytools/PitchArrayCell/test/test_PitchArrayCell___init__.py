@@ -27,8 +27,8 @@ def test_PitchArrayCell___init___03():
     r'''Init with pitch instance.
     '''
 
-    cell = PitchArrayCell(pitchtools.NamedChromaticPitch(0))
-    assert cell.pitches == [pitchtools.NamedChromaticPitch(0)]
+    cell = PitchArrayCell(pitchtools.NamedPitch(0))
+    assert cell.pitches == [pitchtools.NamedPitch(0)]
     assert cell.width == 1
 
 
@@ -37,7 +37,7 @@ def test_PitchArrayCell___init___04():
     '''
 
     cell = PitchArrayCell([0, 2, 4])
-    assert cell.pitches == [pitchtools.NamedChromaticPitch(0), pitchtools.NamedChromaticPitch(2), pitchtools.NamedChromaticPitch(4)]
+    assert cell.pitches == [pitchtools.NamedPitch(0), pitchtools.NamedPitch(2), pitchtools.NamedPitch(4)]
     assert cell.width == 1
 
 
@@ -45,8 +45,8 @@ def test_PitchArrayCell___init___05():
     r'''Init with list of pitch instances.
     '''
 
-    cell = PitchArrayCell([pitchtools.NamedChromaticPitch(0), pitchtools.NamedChromaticPitch(2), pitchtools.NamedChromaticPitch(4)])
-    assert cell.pitches == [pitchtools.NamedChromaticPitch(0), pitchtools.NamedChromaticPitch(2), pitchtools.NamedChromaticPitch(4)]
+    cell = PitchArrayCell([pitchtools.NamedPitch(0), pitchtools.NamedPitch(2), pitchtools.NamedPitch(4)])
+    assert cell.pitches == [pitchtools.NamedPitch(0), pitchtools.NamedPitch(2), pitchtools.NamedPitch(4)]
     assert cell.width == 1
 
 
@@ -55,7 +55,7 @@ def test_PitchArrayCell___init___06():
     '''
 
     cell = PitchArrayCell([('c', 4), ('d', 4), ('e', 4)])
-    assert cell.pitches == [pitchtools.NamedChromaticPitch(0), pitchtools.NamedChromaticPitch(2), pitchtools.NamedChromaticPitch(4)]
+    assert cell.pitches == [pitchtools.NamedPitch(0), pitchtools.NamedPitch(2), pitchtools.NamedPitch(4)]
     assert cell.width == 1
 
 
@@ -64,7 +64,7 @@ def test_PitchArrayCell___init___07():
     '''
 
     cell = PitchArrayCell((0, 2))
-    assert cell.pitches == [pitchtools.NamedChromaticPitch(0)]
+    assert cell.pitches == [pitchtools.NamedPitch(0)]
     assert cell.width == 2
 
 
@@ -72,8 +72,8 @@ def test_PitchArrayCell___init___08():
     r'''Init with pitch instance, width pair.
     '''
 
-    cell = PitchArrayCell((pitchtools.NamedChromaticPitch(0), 2))
-    assert cell.pitches == [pitchtools.NamedChromaticPitch(0)]
+    cell = PitchArrayCell((pitchtools.NamedPitch(0), 2))
+    assert cell.pitches == [pitchtools.NamedPitch(0)]
     assert cell.width == 2
 
 
@@ -82,7 +82,7 @@ def test_PitchArrayCell___init___09():
     '''
 
     cell = PitchArrayCell(([0, 2, 4], 2))
-    assert cell.pitches == [pitchtools.NamedChromaticPitch(0), pitchtools.NamedChromaticPitch(2), pitchtools.NamedChromaticPitch(4)]
+    assert cell.pitches == [pitchtools.NamedPitch(0), pitchtools.NamedPitch(2), pitchtools.NamedPitch(4)]
     assert cell.width == 2
 
 
@@ -90,6 +90,6 @@ def test_PitchArrayCell___init___10():
     r'''Init with pitch instance list, width pair.
     '''
 
-    cell = PitchArrayCell(([pitchtools.NamedChromaticPitch(0), pitchtools.NamedChromaticPitch(2), pitchtools.NamedChromaticPitch(4)], 2))
-    assert cell.pitches == [pitchtools.NamedChromaticPitch(0), pitchtools.NamedChromaticPitch(2), pitchtools.NamedChromaticPitch(4)]
+    cell = PitchArrayCell(([pitchtools.NamedPitch(0), pitchtools.NamedPitch(2), pitchtools.NamedPitch(4)], 2))
+    assert cell.pitches == [pitchtools.NamedPitch(0), pitchtools.NamedPitch(2), pitchtools.NamedPitch(4)]
     assert cell.width == 2

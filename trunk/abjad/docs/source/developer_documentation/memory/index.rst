@@ -18,8 +18,8 @@ You can examine memory consumption with tools included in the ``guppy`` module::
          1   1004   9   116464  20    240464  41 __builtin__.set
          2   2003  18    76300  13    316764  54 list
          3   1000   9    52000   9    368764  63
-                                                 abjad.tools.pitchtools.NamedChromaticPitch.NamedChromat
-                                                 icPitch.NamedChromaticPitch
+                                                 abjad.tools.pitchtools.NamedPitch.NamedChromat
+                                                 icPitch.NamedPitch
          4   1000   9    44000   8    412764  70
                                                  abjad.interfaces._OffsetInterface._OffsetInterface._Off
                                                  setInterface

@@ -307,7 +307,7 @@ class PromptMakerMixin(AbjadObject):
         setup_statements = []
         setup_statements.append('from abjad import *')
         setup_statements.append(
-            'evaluated_user_input = pitchtools.NamedChromaticPitch({})')
+            'evaluated_user_input = pitchtools.NamedPitch({})')
         self._make_prompt(
             spaced_attribute_name, 
             help_template=help_template, 

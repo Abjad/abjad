@@ -26,19 +26,19 @@ class TypedList(TypedCollection):
     ::
 
         >>> pitch_collection = datastructuretools.TypedList(
-        ...     item_class=pitchtools.NamedChromaticPitch)
+        ...     item_class=pitchtools.NamedPitch)
         >>> pitch_collection.append(0)
         >>> pitch_collection.append("d'")
         >>> pitch_collection.append(('e', 4))
-        >>> pitch_collection.append(pitchtools.NamedChromaticPitch("f'"))
+        >>> pitch_collection.append(pitchtools.NamedPitch("f'"))
         >>> z(pitch_collection)
         datastructuretools.TypedList([
-            pitchtools.NamedChromaticPitch("c'"),
-            pitchtools.NamedChromaticPitch("d'"),
-            pitchtools.NamedChromaticPitch("e'"),
-            pitchtools.NamedChromaticPitch("f'")
+            pitchtools.NamedPitch("c'"),
+            pitchtools.NamedPitch("d'"),
+            pitchtools.NamedPitch("e'"),
+            pitchtools.NamedPitch("f'")
             ],
-            item_class=pitchtools.NamedChromaticPitch
+            item_class=pitchtools.NamedPitch
             )
 
     Implements the list interface.
@@ -78,17 +78,17 @@ class TypedList(TypedCollection):
 
         ::
 
-            >>> pitchtools.NamedChromaticPitch("c'") in pitch_collection
+            >>> pitchtools.NamedPitch("c'") in pitch_collection
             True
 
         ::
 
-            >>> pitchtools.NamedChromaticPitch("d'") in pitch_collection
+            >>> pitchtools.NamedPitch("d'") in pitch_collection
             True
 
         ::
 
-            >>> pitchtools.NamedChromaticPitch("e'") in pitch_collection
+            >>> pitchtools.NamedPitch("e'") in pitch_collection
             True
 
         Return boolean.
@@ -185,12 +185,12 @@ class TypedList(TypedCollection):
             >>> pitch_collection[-1] = 'gqs,'
             >>> z(pitch_collection)
             datastructuretools.TypedList([
-                pitchtools.NamedChromaticPitch("c'"),
-                pitchtools.NamedChromaticPitch("d'"),
-                pitchtools.NamedChromaticPitch("e'"),
-                pitchtools.NamedChromaticPitch('gqs,')
+                pitchtools.NamedPitch("c'"),
+                pitchtools.NamedPitch("d'"),
+                pitchtools.NamedPitch("e'"),
+                pitchtools.NamedPitch('gqs,')
                 ],
-                item_class=pitchtools.NamedChromaticPitch
+                item_class=pitchtools.NamedPitch
                 )
 
         ::
@@ -198,16 +198,16 @@ class TypedList(TypedCollection):
             >>> pitch_collection[-1:] = ["f'", "g'", "a'", "b'", "c''"]
             >>> z(pitch_collection)
             datastructuretools.TypedList([
-                pitchtools.NamedChromaticPitch("c'"),
-                pitchtools.NamedChromaticPitch("d'"),
-                pitchtools.NamedChromaticPitch("e'"),
-                pitchtools.NamedChromaticPitch("f'"),
-                pitchtools.NamedChromaticPitch("g'"),
-                pitchtools.NamedChromaticPitch("a'"),
-                pitchtools.NamedChromaticPitch("b'"),
-                pitchtools.NamedChromaticPitch("c''")
+                pitchtools.NamedPitch("c'"),
+                pitchtools.NamedPitch("d'"),
+                pitchtools.NamedPitch("e'"),
+                pitchtools.NamedPitch("f'"),
+                pitchtools.NamedPitch("g'"),
+                pitchtools.NamedPitch("a'"),
+                pitchtools.NamedPitch("b'"),
+                pitchtools.NamedPitch("c''")
                 ],
-                item_class=pitchtools.NamedChromaticPitch
+                item_class=pitchtools.NamedPitch
                 )
 
         '''
@@ -350,7 +350,7 @@ class TypedList(TypedCollection):
 
             >>> pitch_collection = datastructuretools.TypedList(
             ...     tokens=('cqf', "as'", 'b,', 'dss'),
-            ...     item_class=pitchtools.NamedChromaticPitch)
+            ...     item_class=pitchtools.NamedPitch)
             >>> pitch_collection.index("as'")
             1
 

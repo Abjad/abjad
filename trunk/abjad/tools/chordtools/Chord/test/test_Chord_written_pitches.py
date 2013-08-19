@@ -46,8 +46,8 @@ def test_Chord_written_pitches_03():
         ''')
 
     assert staff[0].written_pitches == (
-        pitchtools.NamedChromaticPitch("c'"), 
-        pitchtools.NamedChromaticPitch("e'"),
+        pitchtools.NamedPitch("c'"), 
+        pitchtools.NamedPitch("e'"),
         )
 
 
@@ -69,9 +69,9 @@ def test_Chord_written_pitches_05():
 
     chord = Chord([], (1, 4))
     chord.written_pitches = [
-        pitchtools.NamedChromaticPitch(4), 
-        pitchtools.NamedChromaticPitch(3),
-        pitchtools.NamedChromaticPitch(2),
+        pitchtools.NamedPitch(4), 
+        pitchtools.NamedPitch(3),
+        pitchtools.NamedPitch(2),
         ]
 
     assert chord.lilypond_format == "<d' ef' e'>4"
@@ -84,8 +84,8 @@ def test_Chord_written_pitches_06():
     chord = Chord([], (1, 4))
     chord.written_pitches = [
         4, 
-        pitchtools.NamedChromaticPitch(3), 
-        pitchtools.NamedChromaticPitch(2),
+        pitchtools.NamedPitch(3), 
+        pitchtools.NamedPitch(2),
         ]
 
     assert chord.lilypond_format == "<d' ef' e'>4"

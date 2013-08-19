@@ -23,9 +23,9 @@ class Annotation(Mark):
 
     ::
 
-        >>> pitch = pitchtools.NamedChromaticPitch('ds')
+        >>> pitch = pitchtools.NamedPitch('ds')
         >>> marktools.Annotation('special pitch', pitch)(staff[0])
-        Annotation('special pitch', NamedChromaticPitch('ds'))(c'8)
+        Annotation('special pitch', NamedPitch('ds'))(c'8)
 
     ..  doctest::
 
@@ -96,7 +96,7 @@ class Annotation(Mark):
 
             ::
 
-                >>> pitch = pitchtools.NamedChromaticPitch('ds')
+                >>> pitch = pitchtools.NamedPitch('ds')
                 >>> annotation = marktools.Annotation('special_pitch', pitch)
                 >>> annotation.name
                 'special_pitch'
@@ -125,15 +125,15 @@ class Annotation(Mark):
             ::
 
                 >>> annotation.value
-                NamedChromaticPitch('ds')
+                NamedPitch('ds')
 
             Set value of annotation:
 
             ::
 
-                >>> annotation.value = pitchtools.NamedChromaticPitch('e')
+                >>> annotation.value = pitchtools.NamedPitch('e')
                 >>> annotation.value
-                NamedChromaticPitch('e')
+                NamedPitch('e')
 
             Set arbitrary object.
             '''

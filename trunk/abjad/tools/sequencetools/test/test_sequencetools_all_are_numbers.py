@@ -21,7 +21,7 @@ def test_sequencetools_all_are_numbers_03():
     r'''False otherwise.
     '''
 
-    assert not sequencetools.all_are_numbers([1, 2, pitchtools.NamedChromaticPitch(3)])
+    assert not sequencetools.all_are_numbers([1, 2, pitchtools.NamedPitch(3)])
 
 
 def test_sequencetools_all_are_numbers_04():

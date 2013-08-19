@@ -159,7 +159,7 @@ class GuileProxy(AbjadObject):
             key_signatures = music._get_marks(contexttools.KeySignatureMark)
             if key_signatures:
                 for x in key_signatures:
-                    tonic = pitchtools.NamedChromaticPitch(x.tonic, 4)
+                    tonic = pitchtools.NamedPitch(x.tonic, 4)
                     x.tonic = lilypondparsertools.LilyPondParser._transpose_enharmonically(
                         from_pitch, to_pitch, tonic).named_chromatic_pitch_class
             if isinstance(music, notetools.Note):
@@ -225,16 +225,16 @@ class GuileProxy(AbjadObject):
     def _to_relative_octave(self, pitch, reference):
         if pitch.chromatic_pitch_class_number > \
             reference.chromatic_pitch_class_number:
-            up_pitch = pitchtools.NamedChromaticPitch(
+            up_pitch = pitchtools.NamedPitch(
                 pitch.chromatic_pitch_class_name, reference.octave_number)
-            down_pitch = pitchtools.NamedChromaticPitch(
+            down_pitch = pitchtools.NamedPitch(
                 pitch.chromatic_pitch_class_name, reference.octave_number - 1)
             up_octave, down_octave = \
                 up_pitch.octave_number, down_pitch.octave_number
         else:
-            up_pitch = pitchtools.NamedChromaticPitch(
+            up_pitch = pitchtools.NamedPitch(
                 pitch.chromatic_pitch_class_name, reference.octave_number + 1)
-            down_pitch = pitchtools.NamedChromaticPitch(
+            down_pitch = pitchtools.NamedPitch(
                 pitch.chromatic_pitch_class_name, reference.octave_number)
             up_octave, down_octave = \
                 up_pitch.octave_number, down_pitch.octave_number
@@ -244,11 +244,11 @@ class GuileProxy(AbjadObject):
             abs(
                 float(down_pitch._diatonic_pitch_number) - 
                 float(reference._diatonic_pitch_number)):
-            pitch = pitchtools.NamedChromaticPitch(
+            pitch = pitchtools.NamedPitch(
                 up_pitch.named_chromatic_pitch_class, 
                 up_octave + pitch.octave_number - 3)
         else:
-            pitch = pitchtools.NamedChromaticPitch(
+            pitch = pitchtools.NamedPitch(
                 down_pitch.named_chromatic_pitch_class, 
                 down_octave + pitch.octave_number - 3)
         return pitch

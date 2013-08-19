@@ -73,26 +73,26 @@ class PitchRange(AbjadObject):
             if start is None:
                 start = start
             elif isinstance(start, (int, long, float, str)):
-                pitch = pitchtools.NamedChromaticPitch(start)
+                pitch = pitchtools.NamedPitch(start)
                 start = (pitch, 'inclusive')
             else:
                 assert len(start) == 2, repr(start)
                 pitch, containment = start
                 assert containment in ('inclusive', 'exclusive')
-                pitch = pitchtools.NamedChromaticPitch(pitch)
+                pitch = pitchtools.NamedPitch(pitch)
                 start = (pitch, containment)
             object.__setattr__(self, '_start', start)
             if stop is None:
                 stop = stop
             elif isinstance(stop, (int, long, float, str)):
-                pitch = pitchtools.NamedChromaticPitch(stop)
+                pitch = pitchtools.NamedPitch(stop)
                 stop = (pitch, 'inclusive')
             else:
                 assert len(stop) == 2, repr(stop)
                 pitch, containment = stop
                 assert containment in ('inclusive', 'exclusive'), \
                     repr(containment)
-                pitch = pitchtools.NamedChromaticPitch(pitch)
+                pitch = pitchtools.NamedPitch(pitch)
                 stop = (pitch, containment)
             object.__setattr__(self, '_stop', stop)
         pitch_range_name = kwargs.get('pitch_range_name')
@@ -114,9 +114,9 @@ class PitchRange(AbjadObject):
         if getattr(arg, 'written_pitch_indication_is_nonsemantic', False):
             return True
         elif isinstance(arg, (int, long, float)):
-            pitch = pitchtools.NamedChromaticPitch(arg)
+            pitch = pitchtools.NamedPitch(arg)
             return self._contains_pitch(pitch)
-        elif isinstance(arg, pitchtools.NamedChromaticPitch):
+        elif isinstance(arg, pitchtools.NamedPitch):
             return self._contains_pitch(arg)
         elif isinstance(arg, Note):
             return self._contains_pitch(arg.sounding_pitch)
@@ -147,7 +147,7 @@ class PitchRange(AbjadObject):
     def __ge__(self, arg):
         from abjad.tools import pitchtools
         try:
-            pitch = pitchtools.NamedChromaticPitch(arg)
+            pitch = pitchtools.NamedPitch(arg)
             if self.start_pitch is None:
                 return False
             return pitch <= self.start_pitch
@@ -157,7 +157,7 @@ class PitchRange(AbjadObject):
     def __gt__(self, arg):
         from abjad.tools import pitchtools
         try:
-            pitch = pitchtools.NamedChromaticPitch(arg)
+            pitch = pitchtools.NamedPitch(arg)
             if self.start_pitch is None:
                 return False
             return pitch < self.start_pitch
@@ -167,7 +167,7 @@ class PitchRange(AbjadObject):
     def __le__(self, arg):
         from abjad.tools import pitchtools
         try:
-            pitch = pitchtools.NamedChromaticPitch(arg)
+            pitch = pitchtools.NamedPitch(arg)
             if self.stop_pitch is None:
                 return False
             return self.stop_pitch <= pitch
@@ -177,7 +177,7 @@ class PitchRange(AbjadObject):
     def __lt__(self, arg):
         from abjad.tools import pitchtools
         try:
-            pitch = pitchtools.NamedChromaticPitch(arg)
+            pitch = pitchtools.NamedPitch(arg)
             if self.stop_pitch is None:
                 return False
             return self.stop_pitch < pitch
@@ -237,9 +237,9 @@ class PitchRange(AbjadObject):
     def _contains_pitch(self, pitch):
         from abjad.tools import pitchtools
         if isinstance(pitch, numbers.Number):
-            pitch = pitchtools.NamedChromaticPitch(pitch)
+            pitch = pitchtools.NamedPitch(pitch)
         elif isinstance(pitch, str):
-            pitch = pitchtools.NamedChromaticPitch(pitch)
+            pitch = pitchtools.NamedPitch(pitch)
         if self._start is None and self._stop is None:
             return True
         elif self._start is None:
@@ -370,7 +370,7 @@ class PitchRange(AbjadObject):
         ::
 
             >>> pitch_range.start_pitch
-            NamedChromaticPitch('c')
+            NamedPitch('c')
 
         Return pitch.
         '''
@@ -401,7 +401,7 @@ class PitchRange(AbjadObject):
         ::
 
             >>> pitch_range.stop_pitch
-            NamedChromaticPitch("c''''")
+            NamedPitch("c''''")
 
         Return pitch.
         """

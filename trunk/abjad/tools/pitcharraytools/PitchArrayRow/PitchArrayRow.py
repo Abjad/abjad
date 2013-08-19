@@ -41,7 +41,7 @@ class PitchArrayRow(AbjadObject):
     ::
 
         >>> array[0].pitches
-        (NamedChromaticPitch("c'"), NamedChromaticPitch("d'"))
+        (NamedPitch("c'"), NamedPitch("d'"))
 
     Return pitch array row.
     '''

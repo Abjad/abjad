@@ -12,7 +12,7 @@ class KeySignatureMark(ContextMark):
     ::
 
         >>> contexttools.KeySignatureMark('e', 'major')(staff)
-        KeySignatureMark(NamedChromaticPitchClass('e'), Mode('major'))(Staff{4})
+        KeySignatureMark(NamedPitchClass('e'), Mode('major'))(Staff{4})
 
     ..  doctest::
 
@@ -49,7 +49,7 @@ class KeySignatureMark(ContextMark):
         from abjad.tools import tonalanalysistools
         target_context = target_context or stafftools.Staff
         ContextMark.__init__(self, target_context=target_context)
-        tonic = pitchtools.NamedChromaticPitchClass(tonic)
+        tonic = pitchtools.NamedPitchClass(tonic)
         mode = tonalanalysistools.Mode(mode)
         self._tonic = tonic
         self._mode = mode
@@ -148,7 +148,7 @@ class KeySignatureMark(ContextMark):
 
                 >>> key_signature = contexttools.KeySignatureMark('e', 'major')
                 >>> key_signature.tonic
-                NamedChromaticPitchClass('e')
+                NamedPitchClass('e')
 
             Set tonic of key signature:
 
@@ -156,13 +156,13 @@ class KeySignatureMark(ContextMark):
 
                 >>> key_signature.tonic = 'd'
                 >>> key_signature.tonic
-                NamedChromaticPitchClass('d')
+                NamedPitchClass('d')
 
             Return named chromatic pitch.
             '''
             return self._tonic
         def fset(self, tonic):
             from abjad.tools import pitchtools
-            tonic = pitchtools.NamedChromaticPitchClass(tonic)
+            tonic = pitchtools.NamedPitchClass(tonic)
             self._tonic = tonic
         return property(**locals())

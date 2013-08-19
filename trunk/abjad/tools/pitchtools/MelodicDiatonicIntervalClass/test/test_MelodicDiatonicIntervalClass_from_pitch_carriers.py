@@ -7,15 +7,15 @@ def test_MelodicDiatonicIntervalClass_from_pitch_carriers_01():
     '''
 
     mcpi = pitchtools.MelodicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(-3), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(-3), pitchtools.NamedPitch(12))
     assert mcpi == pitchtools.MelodicDiatonicIntervalClass('minor', 3)
 
     mcpi = pitchtools.MelodicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(-2), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(-2), pitchtools.NamedPitch(12))
     assert mcpi == pitchtools.MelodicDiatonicIntervalClass('major', 2)
 
     mcpi = pitchtools.MelodicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(-1), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(-1), pitchtools.NamedPitch(12))
     assert mcpi == pitchtools.MelodicDiatonicIntervalClass('minor', 2)
 
 
@@ -24,7 +24,7 @@ def test_MelodicDiatonicIntervalClass_from_pitch_carriers_02():
     '''
 
     mcpi = pitchtools.MelodicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(0), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(0), pitchtools.NamedPitch(12))
     assert mcpi == pitchtools.MelodicDiatonicIntervalClass('perfect', 8)
 
 
@@ -33,15 +33,15 @@ def test_MelodicDiatonicIntervalClass_from_pitch_carriers_03():
     '''
 
     mcpi = pitchtools.MelodicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(9), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(9), pitchtools.NamedPitch(12))
     assert mcpi == pitchtools.MelodicDiatonicIntervalClass('minor', 3)
 
     mcpi = pitchtools.MelodicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(10), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(10), pitchtools.NamedPitch(12))
     assert mcpi == pitchtools.MelodicDiatonicIntervalClass('major', 2)
 
     mcpi = pitchtools.MelodicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(11), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(11), pitchtools.NamedPitch(12))
     assert mcpi == pitchtools.MelodicDiatonicIntervalClass('minor', 2)
 
 
@@ -50,7 +50,7 @@ def test_MelodicDiatonicIntervalClass_from_pitch_carriers_04():
     '''
 
     mcpi = pitchtools.MelodicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(12))
     assert mcpi == pitchtools.MelodicDiatonicIntervalClass('perfect', 1)
 
 
@@ -59,15 +59,15 @@ def test_MelodicDiatonicIntervalClass_from_pitch_carriers_05():
     '''
 
     mcpi = pitchtools.MelodicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-3))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(-3))
     assert mcpi == pitchtools.MelodicDiatonicIntervalClass('minor', -3)
 
     mcpi = pitchtools.MelodicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-2))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(-2))
     assert mcpi == pitchtools.MelodicDiatonicIntervalClass('major', -2)
 
     mcpi = pitchtools.MelodicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-1))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(-1))
     assert mcpi == pitchtools.MelodicDiatonicIntervalClass('minor', -2)
 
 
@@ -76,7 +76,7 @@ def test_MelodicDiatonicIntervalClass_from_pitch_carriers_06():
     '''
 
     mcpi = pitchtools.MelodicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(0))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(0))
     assert mcpi == pitchtools.MelodicDiatonicIntervalClass('perfect', -8)
 
 
@@ -85,13 +85,13 @@ def test_MelodicDiatonicIntervalClass_from_pitch_carriers_07():
     '''
 
     mcpi = pitchtools.MelodicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(9))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(9))
     assert mcpi == pitchtools.MelodicDiatonicIntervalClass('minor', -3)
 
     mcpi = pitchtools.MelodicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(10))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(10))
     assert mcpi == pitchtools.MelodicDiatonicIntervalClass('major', -2)
 
     mcpi = pitchtools.MelodicDiatonicIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(11))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(11))
     assert mcpi == pitchtools.MelodicDiatonicIntervalClass('minor', -2)

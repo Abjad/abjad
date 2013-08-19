@@ -20,7 +20,7 @@ class Instrument(contexttools.InstrumentMark):
         target_context=None,
         ):
         self.sounding_pitch_of_written_middle_c = \
-            pitchtools.NamedChromaticPitch("c'")
+            pitchtools.NamedPitch("c'")
         contexttools.InstrumentMark.__init__(
             self,
             instrument_name,
@@ -66,7 +66,7 @@ class Instrument(contexttools.InstrumentMark):
 
         Return melodic diatonic interval.
         '''
-        return pitchtools.NamedChromaticPitch("c'") - \
+        return pitchtools.NamedPitch("c'") - \
             self.sounding_pitch_of_written_middle_c
 
     @property
@@ -84,7 +84,7 @@ class Instrument(contexttools.InstrumentMark):
         Return boolean.
         '''
         return not self.sounding_pitch_of_written_middle_c == \
-            pitchtools.NamedChromaticPitch("c'")
+            pitchtools.NamedPitch("c'")
 
     @apply
     def pitch_range():
@@ -121,7 +121,7 @@ class Instrument(contexttools.InstrumentMark):
 
             Return named chromatic pitch.
             '''
-            pitch = pitchtools.NamedChromaticPitch(pitch)
+            pitch = pitchtools.NamedPitch(pitch)
             self._sounding_pitch_of_written_middle_c = pitch
         def fget(self):
             return self._sounding_pitch_of_written_middle_c

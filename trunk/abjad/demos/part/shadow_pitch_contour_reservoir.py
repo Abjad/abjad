@@ -5,13 +5,13 @@ from abjad.tools import pitchtools
 def shadow_pitch_contour_reservoir(pitch_contour_reservoir):
 
     shadow_pitch_lookup = {
-        pitchtools.NamedChromaticPitchClass('a'): -5, # add a P4 below
-        pitchtools.NamedChromaticPitchClass('g'): -3, # add a m3 below
-        pitchtools.NamedChromaticPitchClass('f'): -1, # add a m2 below
-        pitchtools.NamedChromaticPitchClass('e'): -4, # add a M3 below
-        pitchtools.NamedChromaticPitchClass('d'): -2, # add a M2 below
-        pitchtools.NamedChromaticPitchClass('c'): -3, # add a m3 below
-        pitchtools.NamedChromaticPitchClass('b'): -2, # add a M2 below
+        pitchtools.NamedPitchClass('a'): -5, # add a P4 below
+        pitchtools.NamedPitchClass('g'): -3, # add a m3 below
+        pitchtools.NamedPitchClass('f'): -1, # add a m2 below
+        pitchtools.NamedPitchClass('e'): -4, # add a M3 below
+        pitchtools.NamedPitchClass('d'): -2, # add a M2 below
+        pitchtools.NamedPitchClass('c'): -3, # add a m3 below
+        pitchtools.NamedPitchClass('b'): -2, # add a M2 below
     }
 
     shadowed_reservoir = {}

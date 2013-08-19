@@ -21,6 +21,6 @@ def test_Chord_sounding_pitches_01():
         )
 
     assert staff[0].sounding_pitches == (
-        pitchtools.NamedChromaticPitch("c'''"), 
-        pitchtools.NamedChromaticPitch("e'''"),
+        pitchtools.NamedPitch("c'''"), 
+        pitchtools.NamedPitch("e'''"),
         )

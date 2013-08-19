@@ -7,11 +7,11 @@ def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
 
     ::
 
-        >>> pitch = pitchtools.NamedChromaticPitch('df', 5)
+        >>> pitch = pitchtools.NamedPitch('df', 5)
         >>> pitch
-        NamedChromaticPitch("df''")
+        NamedPitch("df''")
         >>> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(pitch)
-        NamedChromaticPitch("df''")
+        NamedPitch("df''")
 
     ::
 
@@ -19,7 +19,7 @@ def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
         >>> note
         Note("df''4")
         >>> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(note)
-        NamedChromaticPitch("df''")
+        NamedPitch("df''")
 
     ::
 
@@ -27,7 +27,7 @@ def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
         >>> note.note_head
         NoteHead("df''")
         >>> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(note.note_head)
-        NamedChromaticPitch("df''")
+        NamedPitch("df''")
 
     ::
 
@@ -35,12 +35,12 @@ def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
         >>> chord
         Chord("<df''>4")
         >>> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(chord)
-        NamedChromaticPitch("df''")
+        NamedPitch("df''")
 
     ::
 
         >>> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(13)
-        NamedChromaticPitch("cs''")
+        NamedPitch("cs''")
 
     Raise missing pitch error when `pitch_carrier` carries no pitch.
 
@@ -52,10 +52,10 @@ def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
     from abjad.tools import notetools
     from abjad.tools import pitchtools
 
-    if isinstance(pitch_carrier, pitchtools.NamedChromaticPitch):
+    if isinstance(pitch_carrier, pitchtools.NamedPitch):
         return pitch_carrier
     elif isinstance(pitch_carrier, numbers.Number):
-        return pitchtools.NamedChromaticPitch(pitch_carrier)
+        return pitchtools.NamedPitch(pitch_carrier)
     elif isinstance(pitch_carrier, notetools.Note):
         pitch = pitch_carrier.written_pitch
         if pitch is not None:

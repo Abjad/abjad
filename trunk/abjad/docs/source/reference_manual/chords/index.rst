@@ -43,7 +43,7 @@ You can get all the written pitches of a chord at one time:
 ::
 
    >>> chord.written_pitches
-   (NamedChromaticPitch("c'"), NamedChromaticPitch("d'"), NamedChromaticPitch("bf'"))
+   (NamedPitch("c'"), NamedPitch("d'"), NamedPitch("bf'"))
 
 
 Abjad returns a read-only tuple of named chromatic pitches.
@@ -56,7 +56,7 @@ You can get the written pitches of a chord one at a time:
 ::
 
    >>> chord.written_pitches[0]
-   NamedChromaticPitch("c'")
+   NamedPitch("c'")
 
 
 Chords index the pitch they contain starting from ``0`` (just like tuples and lists).

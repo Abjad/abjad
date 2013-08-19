@@ -8,13 +8,13 @@ def transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell(
 
     ::
 
-        >>> pitch = pitchtools.NamedChromaticPitch(0)
+        >>> pitch = pitchtools.NamedPitch(0)
 
     ::
 
         >>> pitchtools.transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell(
         ...     pitch, 1, 0.5)
-        NamedChromaticPitch("dtqf'")
+        NamedPitch("dtqf'")
 
     Return new named chromatic pitch.
     '''
@@ -24,4 +24,4 @@ def transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell(
     diatonic_pitch_class_number = (pitch.diatonic_pitch_class_number + staff_spaces) % 7
     diatonic_pitch_class_name = pitchtools.diatonic_pitch_class_number_to_diatonic_pitch_class_name(
         diatonic_pitch_class_number)
-    return pitchtools.NamedChromaticPitch(chromatic_pitch_number, diatonic_pitch_class_name)
+    return pitchtools.NamedPitch(chromatic_pitch_number, diatonic_pitch_class_name)

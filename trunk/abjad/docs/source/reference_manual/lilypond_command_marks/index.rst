@@ -33,7 +33,7 @@ Use ``attach()`` to attach a LilyPond command mark to any Abjad component:
    >>> staff = Staff([])
    >>> key_signature = contexttools.KeySignatureMark('f', 'major')
    >>> key_signature.attach(staff)
-   KeySignatureMark(NamedChromaticPitchClass('f'), Mode('major'))(Staff{})
+   KeySignatureMark(NamedPitchClass('f'), Mode('major'))(Staff{})
    >>> staff.extend(p("{ d''16 ( c''16 fs''16 g''16 ) }"))
    >>> staff.extend(p("{ f''16 ( e''16 d''16 c''16 ) }"))
    >>> staff.extend(p("{ cs''16 ( d''16 f''16 d''16 ) }"))

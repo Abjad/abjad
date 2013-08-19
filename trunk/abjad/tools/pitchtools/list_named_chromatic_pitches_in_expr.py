@@ -14,10 +14,10 @@ def list_named_chromatic_pitches_in_expr(expr):
         >>> for x in pitchtools.list_named_chromatic_pitches_in_expr(beam_spanner):
         ...     x
         ...
-        NamedChromaticPitch("c'")
-        NamedChromaticPitch("d'")
-        NamedChromaticPitch("e'")
-        NamedChromaticPitch("f'")
+        NamedPitch("c'")
+        NamedPitch("d'")
+        NamedPitch("e'")
+        NamedPitch("f'")
 
     Return tuple.
     '''
@@ -44,7 +44,7 @@ def list_named_chromatic_pitches_in_expr(expr):
                     result.append(leaf.written_pitch)
                 elif hasattr(leaf, 'written_pitches'):
                     result.extend(leaf.written_pitches)
-        elif isinstance(expr, pitchtools.NamedChromaticPitchSet):
+        elif isinstance(expr, pitchtools.NamedPitchSet):
             pitches = list(expr)
             pitches.sort()
             pitches = tuple(pitches)

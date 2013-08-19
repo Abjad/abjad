@@ -177,7 +177,7 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
 
             >>> note_head = notetools.NoteHead("cs''")
             >>> note_head.named_chromatic_pitch
-            NamedChromaticPitch("cs''")
+            NamedPitch("cs''")
 
         Return named chromatic pitch.
         '''
@@ -208,7 +208,7 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
 
                 >>> note_head = notetools.NoteHead("cs''")
                 >>> note_head.written_pitch
-                NamedChromaticPitch("cs''")
+                NamedPitch("cs''")
 
             Set named pitch of note head:
 
@@ -217,13 +217,13 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
                 >>> note_head = notetools.NoteHead("cs''")
                 >>> note_head.written_pitch = "d''"
                 >>> note_head.written_pitch
-                NamedChromaticPitch("d''")
+                NamedPitch("d''")
 
             Set pitch token.
             '''
             return self._written_pitch
         def fset(self, arg):
             from abjad.tools import pitchtools
-            written_pitch = pitchtools.NamedChromaticPitch(arg)
+            written_pitch = pitchtools.NamedPitch(arg)
             self._written_pitch = written_pitch
         return property(**locals())

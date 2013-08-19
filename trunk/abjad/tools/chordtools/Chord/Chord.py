@@ -168,8 +168,8 @@ class Chord(Leaf):
         from abjad.tools import notetools
         from abjad.tools import pitchtools
         from abjad.tools import resttools
-        pitch = pitch or pitchtools.NamedChromaticPitch('b', 3)
-        pitch = pitchtools.NamedChromaticPitch(pitch)
+        pitch = pitch or pitchtools.NamedPitch('b', 3)
+        pitch = pitchtools.NamedPitch(pitch)
         treble = copy.copy(self)
         bass = copy.copy(self)
         treble.select().detach_marks(mark_classes=markuptools.Markup)
@@ -369,7 +369,7 @@ class Chord(Leaf):
             ::
 
                 >>> staff[0].written_pitches
-                (NamedChromaticPitch("c'"), NamedChromaticPitch("e'"))
+                (NamedPitch("c'"), NamedPitch("e'"))
 
         Returns tuple of pitches.
         """
@@ -487,7 +487,7 @@ class Chord(Leaf):
             ::
 
                 >>> staff[0].sounding_pitches
-                (NamedChromaticPitch("c'''"), NamedChromaticPitch("e'''"))
+                (NamedPitch("c'''"), NamedPitch("e'''"))
 
         Returns tuple.
         """
@@ -523,9 +523,9 @@ class Chord(Leaf):
 
                     >>> for written_pitch in chord.written_pitches:
                     ...     written_pitch
-                    NamedChromaticPitch("g'")
-                    NamedChromaticPitch("c''")
-                    NamedChromaticPitch("e''")
+                    NamedPitch("g'")
+                    NamedPitch("c''")
+                    NamedPitch("e''")
 
             ..  container:: example
 
@@ -707,7 +707,7 @@ class Chord(Leaf):
         '''
         from abjad.tools import pitchtools
         result = []
-        pitch = pitchtools.NamedChromaticPitch(pitch)
+        pitch = pitchtools.NamedPitch(pitch)
         for note_head in self.note_heads:
             if note_head.written_pitch == pitch:
                 result.append(note_head)

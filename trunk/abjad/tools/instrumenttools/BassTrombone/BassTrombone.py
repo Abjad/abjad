@@ -47,7 +47,7 @@ class BassTrombone(Trombone):
         self._default_short_instrument_name = 'bass trb.'
         self._is_primary_instrument = False
         self.sounding_pitch_of_written_middle_c = \
-            pitchtools.NamedChromaticPitch("c'")
+            pitchtools.NamedPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('bass')]
         self._copy_primary_clefs_to_all_clefs()
         self._traditional_pitch_range = pitchtools.PitchRange('[C2, F4]')

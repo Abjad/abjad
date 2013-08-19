@@ -220,10 +220,10 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
     stafftools.all_are_staves()
     tuplettools.all_are_tuplets()
 
-* Extended ``NamedChromaticPitch`` to allow initialization from pitch-class / octave number strings::
+* Extended ``NamedPitch`` to allow initialization from pitch-class / octave number strings::
 
-    >>> pitchtools.NamedChromaticPitch('C#2')
-    NamedChromaticPitch('cs,')
+    >>> pitchtools.NamedPitch('C#2')
+    NamedPitch('cs,')
 
 * Extended ``PitchRange`` to allow initialization from symbolic pitch range strings::
 

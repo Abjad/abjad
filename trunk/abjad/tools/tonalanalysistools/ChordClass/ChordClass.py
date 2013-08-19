@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.pitchtools import NamedChromaticPitchClassSet
+from abjad.tools.pitchtools import NamedPitchClassSet
 
 
-class ChordClass(NamedChromaticPitchClassSet):
+class ChordClass(NamedPitchClassSet):
     '''Abjad model of tonal chords like G 7, G 6/5, G half-diminished 6/5, etc.
 
     Note that notions like G 7 represent an entire *class of* chords because
@@ -47,7 +47,7 @@ class ChordClass(NamedChromaticPitchClassSet):
 
     def __new__(cls, root, *args):
         from abjad.tools import tonalanalysistools
-        root = pitchtools.NamedChromaticPitchClass(root)
+        root = pitchtools.NamedPitchClass(root)
         quality_indicator = tonalanalysistools.ChordQualityIndicator(*args)
         npcs = []
         for hdi in quality_indicator:
@@ -55,7 +55,7 @@ class ChordClass(NamedChromaticPitchClassSet):
             npc = root + mdi
             npcs.append(npc)
         bass = npcs[0]
-        self = pitchtools.NamedChromaticPitchClassSet.__new__(cls, npcs)
+        self = pitchtools.NamedPitchClassSet.__new__(cls, npcs)
         object.__setattr__(self, '_root', root)
         object.__setattr__(self, '_quality_indicator', quality_indicator)
         object.__setattr__(self, '_bass', bass)

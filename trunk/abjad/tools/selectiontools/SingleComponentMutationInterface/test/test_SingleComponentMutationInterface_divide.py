@@ -7,7 +7,7 @@ def test_SingleComponentMutationInterface_divide_01():
     '''
 
     staff = Staff("<d' ef' e'>4")
-    pitch = pitchtools.NamedChromaticPitch('D4')
+    pitch = pitchtools.NamedPitch('D4')
     treble, bass = mutate(staff[0]).divide(pitch)
     staff.extend([treble, bass])
 
@@ -30,7 +30,7 @@ def test_SingleComponentMutationInterface_divide_02():
     '''
 
     staff = Staff("<d' ef' e'>4")
-    pitch = pitchtools.NamedChromaticPitch('Eb4')
+    pitch = pitchtools.NamedPitch('Eb4')
     treble, bass = mutate(staff[0]).divide(pitch)
     staff.extend([treble, bass])
 
@@ -53,7 +53,7 @@ def test_SingleComponentMutationInterface_divide_03():
     '''
 
     staff = Staff("<d' ef' e'>4")
-    pitch = pitchtools.NamedChromaticPitch('E4')
+    pitch = pitchtools.NamedPitch('E4')
     treble, bass = mutate(staff[0]).divide(pitch)
     staff.extend([treble, bass])
 

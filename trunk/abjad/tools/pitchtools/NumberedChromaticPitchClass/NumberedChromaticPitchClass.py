@@ -33,9 +33,9 @@ class NumberedChromaticPitchClass(PitchClass):
             number = \
                 pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_number(
                     arg)
-        elif isinstance(arg, pitchtools.NamedChromaticPitch):
+        elif isinstance(arg, pitchtools.NamedPitch):
             number = abs(arg.numbered_chromatic_pitch) % 12
-        elif isinstance(arg, pitchtools.NamedChromaticPitchClass):
+        elif isinstance(arg, pitchtools.NamedPitchClass):
             number = abs(arg.numbered_chromatic_pitch_class)
         else:
             pitch = \

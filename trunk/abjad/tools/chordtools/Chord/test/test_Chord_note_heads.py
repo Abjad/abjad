@@ -42,9 +42,9 @@ def test_Chord_note_heads_04():
 
     chord = Chord('<>4')
     chord.note_heads = [
-        pitchtools.NamedChromaticPitch(4), 
-        pitchtools.NamedChromaticPitch(3), 
-        pitchtools.NamedChromaticPitch(2),
+        pitchtools.NamedPitch(4), 
+        pitchtools.NamedPitch(3), 
+        pitchtools.NamedPitch(2),
         ]
 
     assert chord.lilypond_format == "<d' ef' e'>4"
@@ -56,9 +56,9 @@ def test_Chord_note_heads_05():
 
     chord = Chord('<>4')
     chord.note_heads = [
-        pitchtools.NamedChromaticPitch(4), 
+        pitchtools.NamedPitch(4), 
         3, 
-        pitchtools.NamedChromaticPitch(2),
+        pitchtools.NamedPitch(2),
         ]
 
     assert chord.lilypond_format == "<d' ef' e'>4"

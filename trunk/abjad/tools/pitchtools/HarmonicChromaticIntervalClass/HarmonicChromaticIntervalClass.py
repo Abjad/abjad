@@ -57,7 +57,7 @@ class HarmonicChromaticIntervalClass(NumberedIntervalClass):
         ::
 
             >>> pitchtools.HarmonicChromaticIntervalClass.from_pitch_carriers(
-            ... pitchtools.NamedChromaticPitch(-2), pitchtools.NamedChromaticPitch(12))
+            ... pitchtools.NamedPitch(-2), pitchtools.NamedPitch(12))
             HarmonicChromaticIntervalClass(2)
 
         Return harmonic chromatic interval-class.

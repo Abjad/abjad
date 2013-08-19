@@ -53,7 +53,7 @@ def transpose_pitch_carrier_by_melodic_interval(
         diatonic_pitch_class_name = \
             pitchtools.diatonic_pitch_class_number_to_diatonic_pitch_class_name(
             diatonic_pitch_class_number)
-        named_chromatic_pitch = pitchtools.NamedChromaticPitch(
+        named_chromatic_pitch = pitchtools.NamedPitch(
             chromatic_pitch_number, diatonic_pitch_class_name)
         return type(pitch)(named_chromatic_pitch)
 
@@ -95,7 +95,7 @@ def transpose_pitch_carrier_by_melodic_interval(
             new_note = copy.copy(pitch_carrier)
             number = abs(pitch_carrier.written_pitch.numbered_chromatic_pitch)
             number += mci.number
-            new_pitch = pitchtools.NamedChromaticPitch(number)
+            new_pitch = pitchtools.NamedPitch(number)
             new_note.written_pitch = new_pitch
             return new_note
         elif isinstance(pitch_carrier, chordtools.Chord):
@@ -104,7 +104,7 @@ def transpose_pitch_carrier_by_melodic_interval(
                 zip(new_chord.note_heads, pitch_carrier.note_heads):
                 number = abs(old_nh.written_pitch.numbered_chromatic_pitch)
                 number += mci.number
-                new_pitch = pitchtools.NamedChromaticPitch(number)
+                new_pitch = pitchtools.NamedPitch(number)
                 new_nh.written_pitch = new_pitch
             return new_chord
         else:

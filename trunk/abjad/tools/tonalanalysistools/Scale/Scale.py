@@ -10,11 +10,11 @@ from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools import stafftools
-from abjad.tools.pitchtools.NamedChromaticPitchClassSegment \
-    import NamedChromaticPitchClassSegment
+from abjad.tools.pitchtools.NamedPitchClassSegment \
+    import NamedPitchClassSegment
 
 
-class Scale(NamedChromaticPitchClassSegment):
+class Scale(NamedPitchClassSegment):
     '''Abjad model of diatonic scale.
     '''
 
@@ -107,20 +107,20 @@ class Scale(NamedChromaticPitchClassSegment):
     def create_named_chromatic_pitch_set_in_pitch_range(self, pitch_range):
         if not isinstance(pitch_range, pitchtools.PitchRange):
             pitch_range = pitchtools.PitchRange(
-                float(pitchtools.NamedChromaticPitch(pitch_range[0])),
-                float(pitchtools.NamedChromaticPitch(pitch_range[1])))
+                float(pitchtools.NamedPitch(pitch_range[0])),
+                float(pitchtools.NamedPitch(pitch_range[1])))
         low = pitch_range.start_pitch.octave_number
         high = pitch_range.stop_pitch.octave_number
         pitches = []
         octave = low
         while octave <= high:
             for x in self:
-                pitch = pitchtools.NamedChromaticPitch(x, octave)
+                pitch = pitchtools.NamedPitch(x, octave)
                 if pitch_range.start_pitch <= pitch and \
                     pitch <= pitch_range.stop_pitch:
                     pitches.append(pitch)
             octave += 1
-        return pitchtools.NamedChromaticPitchSet(pitches)
+        return pitchtools.NamedPitchSet(pitches)
 
     def make_notes(self, n, written_duration=None):
         r'''Make first `n` notes in ascending diatonic scale.
@@ -241,7 +241,7 @@ class Scale(NamedChromaticPitchClassSegment):
 
     def named_chromatic_pitch_class_to_scale_degree(self, *args):
         from abjad.tools import tonalanalysistools
-        foreign_pitch_class = pitchtools.NamedChromaticPitchClass(*args)
+        foreign_pitch_class = pitchtools.NamedPitchClass(*args)
         letter = foreign_pitch_class._diatonic_pitch_class_name
         for i, pc in enumerate(self):
             if pc._diatonic_pitch_class_name == letter:
@@ -249,8 +249,8 @@ class Scale(NamedChromaticPitchClassSegment):
                 scale_degree_index = i
                 scale_degree_number = scale_degree_index + 1
                 break
-        native_pitch = pitchtools.NamedChromaticPitch(native_pitch_class, 4)
-        foreign_pitch = pitchtools.NamedChromaticPitch(foreign_pitch_class, 4)
+        native_pitch = pitchtools.NamedPitch(native_pitch_class, 4)
+        foreign_pitch = pitchtools.NamedPitch(foreign_pitch_class, 4)
         accidental = foreign_pitch._accidental - native_pitch._accidental
         return tonalanalysistools.ScaleDegree(accidental, scale_degree_number)
 

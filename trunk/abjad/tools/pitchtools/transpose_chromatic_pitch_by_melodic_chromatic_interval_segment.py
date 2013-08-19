@@ -21,7 +21,7 @@ def transpose_chromatic_pitch_by_melodic_chromatic_interval_segment(pitch, segme
     # check input
     if not isinstance(pitch, (
         pitchtools.NumberedChromaticPitch,
-        pitchtools.NamedChromaticPitch,
+        pitchtools.NamedPitch,
         )):
         raise TypeError
 

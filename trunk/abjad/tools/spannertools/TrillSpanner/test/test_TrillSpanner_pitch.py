@@ -8,7 +8,7 @@ def test_TrillSpanner_pitch_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     trill = spannertools.TrillSpanner(staff[:2])
-    trill.pitch = pitchtools.NamedChromaticPitch(1)
+    trill.pitch = pitchtools.NamedPitch(1)
 
     r'''
     \new Staff {
@@ -74,7 +74,7 @@ def test_TrillSpanner_pitch_03():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     trill = spannertools.TrillSpanner(staff[:2])
-    trill.pitch = pitchtools.NamedChromaticPitch(1)
+    trill.pitch = pitchtools.NamedPitch(1)
     trill.pitch = None
 
     r'''

@@ -14,10 +14,10 @@ def chromatic_pitch_names_string_to_named_chromatic_pitch_list(chromatic_pitch_n
         >>> for named_chromatic_pitch in result:
         ...     named_chromatic_pitch
         ...
-        NamedChromaticPitch('cs,')
-        NamedChromaticPitch('cs')
-        NamedChromaticPitch("cs'")
-        NamedChromaticPitch("cs''")
+        NamedPitch('cs,')
+        NamedPitch('cs')
+        NamedPitch("cs'")
+        NamedPitch("cs''")
 
     Return list of named chromatic pitches.
     '''
@@ -26,7 +26,7 @@ def chromatic_pitch_names_string_to_named_chromatic_pitch_list(chromatic_pitch_n
     pitches = []
     pitch_strings = chromatic_pitch_names_string.split()
     for pitch_string in pitch_strings:
-        pitch = pitchtools.NamedChromaticPitch(pitch_string)
+        pitch = pitchtools.NamedPitch(pitch_string)
         pitches.append(pitch)
 
     return pitches

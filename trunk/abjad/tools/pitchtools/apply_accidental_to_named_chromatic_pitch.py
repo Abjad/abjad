@@ -6,9 +6,9 @@ def apply_accidental_to_named_chromatic_pitch(named_chromatic_pitch, accidental=
 
     ::
 
-        >>> pitch = pitchtools.NamedChromaticPitch("cs''")
+        >>> pitch = pitchtools.NamedPitch("cs''")
         >>> pitchtools.apply_accidental_to_named_chromatic_pitch(pitch, 'f')
-        NamedChromaticPitch("c''")
+        NamedPitch("c''")
 
     Return new named pitch.
     '''

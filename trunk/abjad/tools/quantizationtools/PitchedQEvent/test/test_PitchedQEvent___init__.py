@@ -10,9 +10,9 @@ def test_PitchedQEvent___init___01():
 
     assert q_event.offset == durationtools.Offset(130)
     assert q_event.pitches == (
-        pitchtools.NamedChromaticPitch(0),
-        pitchtools.NamedChromaticPitch(1),
-        pitchtools.NamedChromaticPitch(4)
+        pitchtools.NamedPitch(0),
+        pitchtools.NamedPitch(1),
+        pitchtools.NamedPitch(4)
         )
     assert q_event.attachments == ()
 
@@ -21,10 +21,10 @@ def test_PitchedQEvent___init___02():
 
     q_event = quantizationtools.PitchedQEvent(
         durationtools.Offset(133, 5),
-        [pitchtools.NamedChromaticPitch('fss')],
+        [pitchtools.NamedPitch('fss')],
         attachments = ['foo', 'bar', 'baz']
         )
 
     assert q_event.offset == durationtools.Offset(133, 5)
-    assert q_event.pitches == (pitchtools.NamedChromaticPitch('fss'),)
+    assert q_event.pitches == (pitchtools.NamedPitch('fss'),)
     assert q_event.attachments == ('foo', 'bar', 'baz')

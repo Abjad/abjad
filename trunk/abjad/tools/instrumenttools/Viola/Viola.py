@@ -44,7 +44,7 @@ class Viola(StringInstrument):
         self._default_short_instrument_name = 'va.'
         self._is_primary_instrument = True
         self.sounding_pitch_of_written_middle_c = \
-            pitchtools.NamedChromaticPitch("c'")
+            pitchtools.NamedPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('alto')]
         self.all_clefs = [
             contexttools.ClefMark('alto'),

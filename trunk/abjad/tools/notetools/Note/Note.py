@@ -123,8 +123,8 @@ class Note(Leaf):
         from abjad.tools import markuptools
         from abjad.tools import pitchtools
         from abjad.tools import resttools
-        pitch = pitch or pitchtools.NamedChromaticPitch('b', 3)
-        pitch = pitchtools.NamedChromaticPitch(pitch)
+        pitch = pitch or pitchtools.NamedPitch('b', 3)
+        pitch = pitchtools.NamedPitch(pitch)
         treble = copy.copy(self)
         bass = copy.copy(self)
         treble.select().detach_marks(mark_classes=markuptools.Markup)
@@ -171,7 +171,7 @@ class Note(Leaf):
         ::
 
             >>> staff[0].written_pitch
-            NamedChromaticPitch("d'")
+            NamedPitch("d'")
 
         Return named chromatic pitch.
         '''
@@ -252,7 +252,7 @@ class Note(Leaf):
                     g'8
                 }
                 >>> staff[0].sounding_pitch
-                NamedChromaticPitch("d''")
+                NamedPitch("d''")
 
             Set sounding pitch of note:
 
@@ -289,7 +289,7 @@ class Note(Leaf):
         def fset(self, arg):
             from abjad.tools import contexttools
             from abjad.tools import pitchtools
-            pitch = pitchtools.NamedChromaticPitch(arg)
+            pitch = pitchtools.NamedPitch(arg)
             if self.written_pitch_indication_is_at_sounding_pitch:
                 self.written_pitch = pitch
             else:
@@ -314,7 +314,7 @@ class Note(Leaf):
 
                 >>> note = Note(13, (3, 16))
                 >>> note.written_pitch
-                NamedChromaticPitch("cs''")
+                NamedPitch("cs''")
 
             Set named pitch of note:
 
@@ -341,7 +341,7 @@ class Note(Leaf):
                 if self.note_head is None:
                     self.note_head = NoteHead(self, written_pitch=None)
                 else:
-                    pitch = pitchtools.NamedChromaticPitch(arg)
+                    pitch = pitchtools.NamedPitch(arg)
                     self.note_head.written_pitch = pitch
         return property(**locals())
 

@@ -9,19 +9,19 @@ def test_Scale_scale_degree_to_named_pitch_class_01():
     scale = tonalanalysistools.Scale('c', 'major')
 
     assert scale.scale_degree_to_named_chromatic_pitch_class(1) == \
-        pitchtools.NamedChromaticPitchClass('c')
+        pitchtools.NamedPitchClass('c')
     assert scale.scale_degree_to_named_chromatic_pitch_class(2) == \
-        pitchtools.NamedChromaticPitchClass('d')
+        pitchtools.NamedPitchClass('d')
     assert scale.scale_degree_to_named_chromatic_pitch_class(3) == \
-        pitchtools.NamedChromaticPitchClass('e')
+        pitchtools.NamedPitchClass('e')
     assert scale.scale_degree_to_named_chromatic_pitch_class(4) == \
-        pitchtools.NamedChromaticPitchClass('f')
+        pitchtools.NamedPitchClass('f')
     assert scale.scale_degree_to_named_chromatic_pitch_class(5) == \
-        pitchtools.NamedChromaticPitchClass('g')
+        pitchtools.NamedPitchClass('g')
     assert scale.scale_degree_to_named_chromatic_pitch_class(6) == \
-        pitchtools.NamedChromaticPitchClass('a')
+        pitchtools.NamedPitchClass('a')
     assert scale.scale_degree_to_named_chromatic_pitch_class(7) == \
-        pitchtools.NamedChromaticPitchClass('b')
+        pitchtools.NamedPitchClass('b')
 
 
 def test_Scale_scale_degree_to_named_pitch_class_02():
@@ -29,19 +29,19 @@ def test_Scale_scale_degree_to_named_pitch_class_02():
     scale = tonalanalysistools.Scale('c', 'major')
 
     assert scale.scale_degree_to_named_chromatic_pitch_class('flat', 1) == \
-        pitchtools.NamedChromaticPitchClass('cf')
+        pitchtools.NamedPitchClass('cf')
     assert scale.scale_degree_to_named_chromatic_pitch_class('flat', 2) == \
-        pitchtools.NamedChromaticPitchClass('df')
+        pitchtools.NamedPitchClass('df')
     assert scale.scale_degree_to_named_chromatic_pitch_class('flat', 3) == \
-        pitchtools.NamedChromaticPitchClass('ef')
+        pitchtools.NamedPitchClass('ef')
     assert scale.scale_degree_to_named_chromatic_pitch_class('flat', 4) == \
-        pitchtools.NamedChromaticPitchClass('ff')
+        pitchtools.NamedPitchClass('ff')
     assert scale.scale_degree_to_named_chromatic_pitch_class('flat', 5) == \
-        pitchtools.NamedChromaticPitchClass('gf')
+        pitchtools.NamedPitchClass('gf')
     assert scale.scale_degree_to_named_chromatic_pitch_class('flat', 6) == \
-        pitchtools.NamedChromaticPitchClass('af')
+        pitchtools.NamedPitchClass('af')
     assert scale.scale_degree_to_named_chromatic_pitch_class('flat', 7) == \
-        pitchtools.NamedChromaticPitchClass('bf')
+        pitchtools.NamedPitchClass('bf')
 
 
 def test_Scale_scale_degree_to_named_pitch_class_03():
@@ -49,19 +49,19 @@ def test_Scale_scale_degree_to_named_pitch_class_03():
     scale = tonalanalysistools.Scale('c', 'major')
 
     assert scale.scale_degree_to_named_chromatic_pitch_class('sharp', 1) == \
-        pitchtools.NamedChromaticPitchClass('cs')
+        pitchtools.NamedPitchClass('cs')
     assert scale.scale_degree_to_named_chromatic_pitch_class('sharp', 2) == \
-        pitchtools.NamedChromaticPitchClass('ds')
+        pitchtools.NamedPitchClass('ds')
     assert scale.scale_degree_to_named_chromatic_pitch_class('sharp', 3) == \
-        pitchtools.NamedChromaticPitchClass('es')
+        pitchtools.NamedPitchClass('es')
     assert scale.scale_degree_to_named_chromatic_pitch_class('sharp', 4) == \
-        pitchtools.NamedChromaticPitchClass('fs')
+        pitchtools.NamedPitchClass('fs')
     assert scale.scale_degree_to_named_chromatic_pitch_class('sharp', 5) == \
-        pitchtools.NamedChromaticPitchClass('gs')
+        pitchtools.NamedPitchClass('gs')
     assert scale.scale_degree_to_named_chromatic_pitch_class('sharp', 6) == \
-        pitchtools.NamedChromaticPitchClass('as')
+        pitchtools.NamedPitchClass('as')
     assert scale.scale_degree_to_named_chromatic_pitch_class('sharp', 7) == \
-        pitchtools.NamedChromaticPitchClass('bs')
+        pitchtools.NamedPitchClass('bs')
 
 
 def test_Scale_scale_degree_to_named_pitch_class_04():

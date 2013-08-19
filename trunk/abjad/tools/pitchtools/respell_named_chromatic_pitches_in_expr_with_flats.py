@@ -44,7 +44,7 @@ def respell_named_chromatic_pitches_in_expr_with_flats(expr):
     from abjad.tools import pitchtools
 
 
-    if isinstance(expr, pitchtools.NamedChromaticPitch):
+    if isinstance(expr, pitchtools.NamedPitch):
         return _new_pitch_with_flats(expr)
     else:
         for leaf in iterationtools.iterate_leaves_in_expr(expr):

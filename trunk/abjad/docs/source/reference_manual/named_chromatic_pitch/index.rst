@@ -11,7 +11,7 @@ Named chromatic pitches are the everyday pitches attached to notes and chords:
 ::
 
    >>> note.written_pitch
-   NamedChromaticPitch("cs''")
+   NamedPitch("cs''")
 
 
 
@@ -22,13 +22,13 @@ Use pitch tools to create named chromatic pitches:
 
 ::
 
-   >>> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
+   >>> named_chromatic_pitch = pitchtools.NamedPitch("cs''")
 
 
 ::
 
    >>> named_chromatic_pitch
-   NamedChromaticPitch("cs''")
+   NamedPitch("cs''")
 
 
 
@@ -77,7 +77,7 @@ Use deviation to model the fact that two pitches differ by a fraction of a semit
 
 ::
 
-   >>> note_2.written_pitch = pitchtools.NamedChromaticPitch(24, deviation = -31)
+   >>> note_2.written_pitch = pitchtools.NamedPitch(24, deviation = -31)
 
 
 The pitch of the the first note is greater than the pitch of the second:
@@ -105,7 +105,7 @@ in that order:
 
 ::
 
-   >>> pitchtools.NamedChromaticPitch('es') < pitchtools.NamedChromaticPitch('ff')
+   >>> pitchtools.NamedPitch('es') < pitchtools.NamedPitch('ff')
    True
 
 
@@ -117,8 +117,8 @@ Compare named chromatic pitches to each other:
 
 ::
 
-   >>> named_chromatic_pitch_1 = pitchtools.NamedChromaticPitch("c''")
-   >>> named_chromatic_pitch_2 = pitchtools.NamedChromaticPitch("d''")
+   >>> named_chromatic_pitch_1 = pitchtools.NamedPitch("c''")
+   >>> named_chromatic_pitch_2 = pitchtools.NamedPitch("d''")
 
 
 ::
@@ -194,7 +194,7 @@ Convert any named chromatic pitch to a named chromatic pitch-class:
 ::
 
    >>> named_chromatic_pitch.named_chromatic_pitch_class
-   NamedChromaticPitchClass('cs')
+   NamedPitchClass('cs')
 
 
 To a named diatonic pitch-class:
@@ -235,7 +235,7 @@ Use ``copy.copy()`` to copy named chromatic pitches:
 ::
 
    >>> copy.copy(named_chromatic_pitch)
-   NamedChromaticPitch("cs''")
+   NamedPitch("cs''")
 
 
 Or use ``copy.deepcopy()`` to do the same thing.

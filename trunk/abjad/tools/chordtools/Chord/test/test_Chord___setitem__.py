@@ -17,7 +17,7 @@ def test_Chord___setitem___02():
     '''
 
     chord = Chord("<c' d'>4")
-    chord[1] = pitchtools.NamedChromaticPitch("e'")
+    chord[1] = pitchtools.NamedPitch("e'")
 
     assert chord.lilypond_format == "<c' e'>4"
 

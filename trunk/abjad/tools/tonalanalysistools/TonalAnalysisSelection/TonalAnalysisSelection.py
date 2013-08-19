@@ -63,14 +63,14 @@ class TonalAnalysisSelection(Selection):
         from abjad.tools import tonalanalysistools
         from abjad.tools.tonalanalysistools import ChordQualityIndicator as CQI
         pitches = pitchtools.list_named_chromatic_pitches_in_expr(expr)
-        npcset = pitchtools.NamedChromaticPitchClassSet(pitches)
+        npcset = pitchtools.NamedPitchClassSet(pitches)
         ordered_npcs = []
         letters = ('c', 'e', 'g', 'b', 'd', 'f', 'a')
         for letter in letters:
             for npc in npcset:
                 if npc._diatonic_pitch_class_name == letter:
                     ordered_npcs.append(npc)
-        ordered_npcs = pitchtools.NamedChromaticPitchClassSegment(ordered_npcs)
+        ordered_npcs = pitchtools.NamedPitchClassSegment(ordered_npcs)
         for x in range(len(ordered_npcs)):
             ordered_npcs = ordered_npcs.rotate(1)
             segment = \
@@ -94,7 +94,7 @@ class TonalAnalysisSelection(Selection):
     def _analyze_incomplete_chord(expr):
         from abjad.tools import tonalanalysistools
         pitches = pitchtools.list_named_chromatic_pitches_in_expr(expr)
-        npcset = pitchtools.NamedChromaticPitchClassSet(pitches)
+        npcset = pitchtools.NamedPitchClassSet(pitches)
         dicv = npcset.inversion_equivalent_diatonic_interval_class_vector
         # TODO: eliminate code duplication #
         if dicv == TonalAnalysisSelection._make_dicv('c', 'ef'):
@@ -121,7 +121,7 @@ class TonalAnalysisSelection(Selection):
         bass = min(pitches).named_chromatic_pitch_class
         try:
             npcseg = npcset.order_by(
-                pitchtools.NamedChromaticPitchClassSegment(model_npcs))
+                pitchtools.NamedPitchClassSegment(model_npcs))
         except ValueError:
             message = 'can not identify incomplete tertian chord.'
             raise TonalHarmonyError(message)
@@ -227,7 +227,7 @@ class TonalAnalysisSelection(Selection):
 
     @staticmethod
     def _make_dicv(*named_chromatic_pitch_classes):
-        npcset = pitchtools.NamedChromaticPitchClassSet(
+        npcset = pitchtools.NamedPitchClassSet(
             named_chromatic_pitch_classes)
         return npcset.inversion_equivalent_diatonic_interval_class_vector
 

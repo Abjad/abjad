@@ -6,7 +6,7 @@ def all_are_named_chromatic_pitch_tokens(expr):
 
     ::
 
-        >>> named_chromatic_pitch_tokens = [('c', 4), pitchtools.NamedChromaticPitch("a'")]
+        >>> named_chromatic_pitch_tokens = [('c', 4), pitchtools.NamedPitch("a'")]
 
     ::
 

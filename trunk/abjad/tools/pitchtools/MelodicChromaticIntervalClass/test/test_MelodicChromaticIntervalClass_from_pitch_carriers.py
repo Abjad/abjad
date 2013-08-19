@@ -7,15 +7,15 @@ def test_MelodicChromaticIntervalClass_from_pitch_carriers_01():
     '''
 
     mcic = pitchtools.MelodicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(-3), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(-3), pitchtools.NamedPitch(12))
     assert mcic == pitchtools.MelodicChromaticIntervalClass(3)
 
     mcic = pitchtools.MelodicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(-2), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(-2), pitchtools.NamedPitch(12))
     assert mcic == pitchtools.MelodicChromaticIntervalClass(2)
 
     mcic = pitchtools.MelodicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(-1), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(-1), pitchtools.NamedPitch(12))
     assert mcic == pitchtools.MelodicChromaticIntervalClass(1)
 
 
@@ -24,7 +24,7 @@ def test_MelodicChromaticIntervalClass_from_pitch_carriers_02():
     '''
 
     mcic = pitchtools.MelodicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(0), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(0), pitchtools.NamedPitch(12))
     assert mcic == pitchtools.MelodicChromaticIntervalClass(12)
 
 
@@ -33,15 +33,15 @@ def test_MelodicChromaticIntervalClass_from_pitch_carriers_03():
     '''
 
     mcic = pitchtools.MelodicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(9), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(9), pitchtools.NamedPitch(12))
     assert mcic == pitchtools.MelodicChromaticIntervalClass(3)
 
     mcic = pitchtools.MelodicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(10), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(10), pitchtools.NamedPitch(12))
     assert mcic == pitchtools.MelodicChromaticIntervalClass(2)
 
     mcic = pitchtools.MelodicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(11), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(11), pitchtools.NamedPitch(12))
     assert mcic == pitchtools.MelodicChromaticIntervalClass(1)
 
 
@@ -50,7 +50,7 @@ def test_MelodicChromaticIntervalClass_from_pitch_carriers_04():
     '''
 
     mcic = pitchtools.MelodicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(12))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(12))
     assert mcic == pitchtools.MelodicChromaticIntervalClass(0)
 
 
@@ -59,15 +59,15 @@ def test_MelodicChromaticIntervalClass_from_pitch_carriers_05():
     '''
 
     mcic = pitchtools.MelodicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-3))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(-3))
     assert mcic == pitchtools.MelodicChromaticIntervalClass(-3)
 
     mcic = pitchtools.MelodicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-2))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(-2))
     assert mcic == pitchtools.MelodicChromaticIntervalClass(-2)
 
     mcic = pitchtools.MelodicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-1))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(-1))
     assert mcic == pitchtools.MelodicChromaticIntervalClass(-1)
 
 
@@ -76,7 +76,7 @@ def test_MelodicChromaticIntervalClass_from_pitch_carriers_06():
     '''
 
     mcic = pitchtools.MelodicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(0))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(0))
     assert mcic == pitchtools.MelodicChromaticIntervalClass(-12)
 
 
@@ -85,15 +85,15 @@ def test_MelodicChromaticIntervalClass_from_pitch_carriers_07():
     '''
 
     mcic = pitchtools.MelodicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(9))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(9))
     assert mcic == pitchtools.MelodicChromaticIntervalClass(-3)
 
     mcic = pitchtools.MelodicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(10))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(10))
     assert mcic == pitchtools.MelodicChromaticIntervalClass(-2)
 
     mcic = pitchtools.MelodicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(11))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(11))
     assert mcic == pitchtools.MelodicChromaticIntervalClass(-1)
 
 
@@ -102,9 +102,9 @@ def test_MelodicChromaticIntervalClass_from_pitch_carriers_08():
     '''
 
     mcic = pitchtools.MelodicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-2.5))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(-2.5))
     assert mcic == pitchtools.MelodicChromaticIntervalClass(-2.5)
 
     mcic = pitchtools.MelodicChromaticIntervalClass.from_pitch_carriers(
-        pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(9.5))
+        pitchtools.NamedPitch(12), pitchtools.NamedPitch(9.5))
     assert mcic == pitchtools.MelodicChromaticIntervalClass(-2.5)

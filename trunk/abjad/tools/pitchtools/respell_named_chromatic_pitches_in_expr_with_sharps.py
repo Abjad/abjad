@@ -43,7 +43,7 @@ def respell_named_chromatic_pitches_in_expr_with_sharps(expr):
     from abjad.tools import iterationtools
     from abjad.tools import pitchtools
 
-    if isinstance(expr, pitchtools.NamedChromaticPitch):
+    if isinstance(expr, pitchtools.NamedPitch):
         return _new_pitch_with_sharps(expr)
     else:
         for leaf in iterationtools.iterate_leaves_in_expr(expr):

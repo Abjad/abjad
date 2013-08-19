@@ -4,7 +4,7 @@ from abjad import *
 
 def test_pitchtools_is_pitch_carrier_01():
 
-    assert pitchtools.is_pitch_carrier(pitchtools.NamedChromaticPitch(0))
+    assert pitchtools.is_pitch_carrier(pitchtools.NamedPitch(0))
     assert pitchtools.is_pitch_carrier(Note("c'4"))
     assert pitchtools.is_pitch_carrier(notetools.NoteHead(client=None, written_pitch=0))
     assert pitchtools.is_pitch_carrier(Chord([0, 2, 11], (1, 4)))

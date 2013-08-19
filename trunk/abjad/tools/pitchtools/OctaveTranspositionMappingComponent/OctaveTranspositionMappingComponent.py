@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from abjad.tools.pitchtools.NamedChromaticPitch import NamedChromaticPitch
+from abjad.tools.pitchtools.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.NumberedChromaticPitch \
 	import NumberedChromaticPitch
 from abjad.tools.pitchtools.PitchRange import PitchRange
@@ -44,7 +44,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
             try:
                 target_octave_start_pitch = eval(target_octave_start_pitch)
             except NameError:
-                target_octave_start_pitch = NamedChromaticPitch(
+                target_octave_start_pitch = NamedPitch(
                     target_octave_start_pitch)
                 target_octave_start_pitch = \
                     target_octave_start_pitch.chromatic_pitch_number

@@ -12,7 +12,7 @@ Creating annotations
 Use mark tools to create annotations:
 
 <abjad>
-annotation = marktools.Annotation('special pitch', pitchtools.NamedChromaticPitch('bs'))
+annotation = marktools.Annotation('special pitch', pitchtools.NamedPitch('bs'))
 </abjad>
 
 <abjad>
@@ -35,7 +35,7 @@ annotation
 </abjad>
 
 <abjad>
-another_annotation = marktools.Annotation('special pitch', pitchtools.NamedChromaticPitch('bs'))
+another_annotation = marktools.Annotation('special pitch', pitchtools.NamedPitch('bs'))
 another_annotation.attach(note)
 </abjad>
 

@@ -41,15 +41,15 @@ def test_Chord_get_note_head_03():
 
     chord = Chord("<c' d' b'>4")
 
-    pitch = pitchtools.NamedChromaticPitch("c'")
+    pitch = pitchtools.NamedPitch("c'")
     note_head = chord.get_note_head(pitch)
     assert note_head.written_pitch == 0
 
-    pitch = pitchtools.NamedChromaticPitch("d'")
+    pitch = pitchtools.NamedPitch("d'")
     note_head = chord.get_note_head(pitch)
     assert note_head.written_pitch == 2
 
-    pitch = pitchtools.NamedChromaticPitch("b'")
+    pitch = pitchtools.NamedPitch("b'")
     note_head = chord.get_note_head(pitch)
     assert note_head.written_pitch == 11
 

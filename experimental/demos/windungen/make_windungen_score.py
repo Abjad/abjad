@@ -18,7 +18,7 @@ def make_windungen_score(
     compress_reflections = bool(compress_reflections)
     leaf_duration = durationtools.Duration(leaf_duration)
     length = int(length)
-    pitches = [pitchtools.NamedChromaticPitch(x) for x in pitches]
+    pitches = [pitchtools.NamedPitch(x) for x in pitches]
     staff_count = int(staff_count)
 
     assert 0 < bandwidth

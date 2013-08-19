@@ -31,8 +31,8 @@ def test_Chord___init___04():
     '''
 
     pitches = []
-    pitches.append(pitchtools.NamedChromaticPitch('ds', 4))
-    pitches.append(pitchtools.NamedChromaticPitch('ef', 4))
+    pitches.append(pitchtools.NamedPitch('ds', 4))
+    pitches.append(pitchtools.NamedPitch('ef', 4))
     chord = Chord(pitches, (1, 4))
     assert chord.lilypond_format == "<ds' ef'>4"
 
@@ -41,7 +41,7 @@ def test_Chord___init___05():
     r'''Initialize chord with pitches and pitch numbers together.
     '''
 
-    pitches = [2, ('ef', 4), pitchtools.NamedChromaticPitch(4)]
+    pitches = [2, ('ef', 4), pitchtools.NamedPitch(4)]
     chord = Chord(pitches, (1, 4))
     assert chord.lilypond_format == "<d' ef' e'>4"
 

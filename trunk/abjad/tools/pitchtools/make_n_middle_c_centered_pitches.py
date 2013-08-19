@@ -7,19 +7,19 @@ def make_n_middle_c_centered_pitches(n):
     ::
 
         >>> for p in pitchtools.make_n_middle_c_centered_pitches(5): p
-        NamedChromaticPitch('f')
-        NamedChromaticPitch('a')
-        NamedChromaticPitch("c'")
-        NamedChromaticPitch("e'")
-        NamedChromaticPitch("g'")
+        NamedPitch('f')
+        NamedPitch('a')
+        NamedPitch("c'")
+        NamedPitch("e'")
+        NamedPitch("g'")
 
     ::
 
         >>> for p in pitchtools.make_n_middle_c_centered_pitches(4): p
-        NamedChromaticPitch('g')
-        NamedChromaticPitch('b')
-        NamedChromaticPitch("d'")
-        NamedChromaticPitch("f'")
+        NamedPitch('g')
+        NamedPitch('b')
+        NamedPitch("d'")
+        NamedPitch("f'")
 
     Return list of zero or more named chromatic pitches.
     '''
@@ -35,4 +35,4 @@ def make_n_middle_c_centered_pitches(n):
     letters = ['c', 'd', 'e', 'f', 'g', 'a', 'b']
     tups = [divmod(x, 7) for x in centered]
     pitch_names = [letters[x[1]] + pitchtools.octave_number_to_octave_tick_string(x[0] + 4) for x in tups]
-    return [pitchtools.NamedChromaticPitch(x) for x in pitch_names]
+    return [pitchtools.NamedPitch(x) for x in pitch_names]

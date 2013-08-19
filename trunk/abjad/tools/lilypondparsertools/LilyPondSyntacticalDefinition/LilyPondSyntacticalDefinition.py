@@ -3240,17 +3240,17 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     def p_steno_pitch__NOTENAME_PITCH(self, p):
         'steno_pitch : NOTENAME_PITCH'
-        p[0] = pitchtools.NamedChromaticPitch(str(p[1]))
+        p[0] = pitchtools.NamedPitch(str(p[1]))
 
 
     def p_steno_pitch__NOTENAME_PITCH__sub_quotes(self, p):
         'steno_pitch : NOTENAME_PITCH sub_quotes'
-        p[0] = pitchtools.NamedChromaticPitch(str(p[1]) + ',' * p[2])
+        p[0] = pitchtools.NamedPitch(str(p[1]) + ',' * p[2])
 
 
     def p_steno_pitch__NOTENAME_PITCH__sup_quotes(self, p):
         'steno_pitch : NOTENAME_PITCH sup_quotes'
-        p[0] = pitchtools.NamedChromaticPitch(str(p[1]) + '\'' * p[2])
+        p[0] = pitchtools.NamedPitch(str(p[1]) + '\'' * p[2])
 
 
     ### steno_tonic_pitch ###

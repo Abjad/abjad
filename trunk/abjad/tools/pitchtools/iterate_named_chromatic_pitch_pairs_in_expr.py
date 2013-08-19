@@ -39,21 +39,21 @@ def iterate_named_chromatic_pitch_pairs_in_expr(expr):
         >>> for pair in pitchtools.iterate_named_chromatic_pitch_pairs_in_expr(score):
         ...     pair
         ...
-        (NamedChromaticPitch("c'"), NamedChromaticPitch('c'))
-        (NamedChromaticPitch("c'"), NamedChromaticPitch("d'"))
-        (NamedChromaticPitch('c'), NamedChromaticPitch("d'"))
-        (NamedChromaticPitch("d'"), NamedChromaticPitch("e'"))
-        (NamedChromaticPitch("d'"), NamedChromaticPitch('a,'))
-        (NamedChromaticPitch('c'), NamedChromaticPitch("e'"))
-        (NamedChromaticPitch('c'), NamedChromaticPitch('a,'))
-        (NamedChromaticPitch("e'"), NamedChromaticPitch('a,'))
-        (NamedChromaticPitch("e'"), NamedChromaticPitch("f'"))
-        (NamedChromaticPitch('a,'), NamedChromaticPitch("f'"))
-        (NamedChromaticPitch("f'"), NamedChromaticPitch("g'"))
-        (NamedChromaticPitch("f'"), NamedChromaticPitch('g,'))
-        (NamedChromaticPitch('a,'), NamedChromaticPitch("g'"))
-        (NamedChromaticPitch('a,'), NamedChromaticPitch('g,'))
-        (NamedChromaticPitch("g'"), NamedChromaticPitch('g,'))
+        (NamedPitch("c'"), NamedPitch('c'))
+        (NamedPitch("c'"), NamedPitch("d'"))
+        (NamedPitch('c'), NamedPitch("d'"))
+        (NamedPitch("d'"), NamedPitch("e'"))
+        (NamedPitch("d'"), NamedPitch('a,'))
+        (NamedPitch('c'), NamedPitch("e'"))
+        (NamedPitch('c'), NamedPitch('a,'))
+        (NamedPitch("e'"), NamedPitch('a,'))
+        (NamedPitch("e'"), NamedPitch("f'"))
+        (NamedPitch('a,'), NamedPitch("f'"))
+        (NamedPitch("f'"), NamedPitch("g'"))
+        (NamedPitch("f'"), NamedPitch('g,'))
+        (NamedPitch('a,'), NamedPitch("g'"))
+        (NamedPitch('a,'), NamedPitch('g,'))
+        (NamedPitch("g'"), NamedPitch('g,'))
 
     Chords are handled correctly. ::
 
@@ -73,16 +73,16 @@ def iterate_named_chromatic_pitch_pairs_in_expr(expr):
 
         >>> for pair in pitchtools.iterate_named_chromatic_pitch_pairs_in_expr(staff):
         ...   print pair
-        (NamedChromaticPitch("c'"), NamedChromaticPitch("d'"))
-        (NamedChromaticPitch("c'"), NamedChromaticPitch("e'"))
-        (NamedChromaticPitch("d'"), NamedChromaticPitch("e'"))
-        (NamedChromaticPitch("c'"), NamedChromaticPitch("f''"))
-        (NamedChromaticPitch("c'"), NamedChromaticPitch("g''"))
-        (NamedChromaticPitch("d'"), NamedChromaticPitch("f''"))
-        (NamedChromaticPitch("d'"), NamedChromaticPitch("g''"))
-        (NamedChromaticPitch("e'"), NamedChromaticPitch("f''"))
-        (NamedChromaticPitch("e'"), NamedChromaticPitch("g''"))
-        (NamedChromaticPitch("f''"), NamedChromaticPitch("g''"))
+        (NamedPitch("c'"), NamedPitch("d'"))
+        (NamedPitch("c'"), NamedPitch("e'"))
+        (NamedPitch("d'"), NamedPitch("e'"))
+        (NamedPitch("c'"), NamedPitch("f''"))
+        (NamedPitch("c'"), NamedPitch("g''"))
+        (NamedPitch("d'"), NamedPitch("f''"))
+        (NamedPitch("d'"), NamedPitch("g''"))
+        (NamedPitch("e'"), NamedPitch("f''"))
+        (NamedPitch("e'"), NamedPitch("g''"))
+        (NamedPitch("f''"), NamedPitch("g''"))
 
     Return generator.
     '''

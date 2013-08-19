@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch \
-	import NamedChromaticPitch
+from abjad.tools.pitchtools.NamedPitch.NamedPitch \
+	import NamedPitch
 
 
 class PitchArrayCell(AbjadObject):
@@ -173,7 +173,7 @@ class PitchArrayCell(AbjadObject):
                 pitches, width = [], cell_token
             else:
                 raise ValueError('integer width token must be positive.')
-        elif isinstance(cell_token, NamedChromaticPitch):
+        elif isinstance(cell_token, NamedPitch):
             pitches, width = [cell_token], 1
         elif isinstance(cell_token, list):
             pitch_token, width = cell_token, 1
@@ -196,14 +196,14 @@ class PitchArrayCell(AbjadObject):
 
     def _parse_pitch_token(self, pitch_token):
         pitches = []
-        if isinstance(pitch_token, (int, float, NamedChromaticPitch)):
-            pitch = NamedChromaticPitch(pitch_token)
+        if isinstance(pitch_token, (int, float, NamedPitch)):
+            pitch = NamedPitch(pitch_token)
             pitches.append(pitch)
         elif isinstance(pitch_token, tuple):
-            pitches.append(NamedChromaticPitch(*pitch_token))
+            pitches.append(NamedPitch(*pitch_token))
         elif isinstance(pitch_token, list):
             for element in pitch_token:
-                pitch = NamedChromaticPitch(element)
+                pitch = NamedPitch(element)
                 pitches.append(pitch)
         else:
             raise TypeError('pitch token must be number, pitch or list.')
@@ -282,8 +282,8 @@ class PitchArrayCell(AbjadObject):
     def pitches():
         def fget(self):
             for i, pitch in enumerate(self._pitches):
-                if not isinstance(pitch, NamedChromaticPitch):
-                    self._pitches[i] = NamedChromaticPitch(pitch)
+                if not isinstance(pitch, NamedPitch):
+                    self._pitches[i] = NamedPitch(pitch)
             return self._pitches
         def fset(self, arg):
             if not isinstance(arg, (list, tuple)):
