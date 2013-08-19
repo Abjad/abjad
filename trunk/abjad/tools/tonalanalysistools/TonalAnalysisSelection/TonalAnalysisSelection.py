@@ -505,7 +505,7 @@ class TonalAnalysisSelection(Selection):
             iterationtools.iterate_notes_in_expr(self)):
             try:
                 assert not (left.written_pitch == right.written_pitch)
-                hdi = pitchtools.calculate_harmonic_diatonic_interval(
+                hdi = pitchtools.HarmonicDiatonicInterval.from_pitch_carriers(
                     left, right)
                 assert hdi.number <= 2
             except AssertionError:

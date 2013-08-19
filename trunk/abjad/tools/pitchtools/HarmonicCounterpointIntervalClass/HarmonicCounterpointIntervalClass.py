@@ -43,3 +43,29 @@ class HarmonicCounterpointIntervalClass(CounterpointIntervalClass):
             if self.number == arg.number:
                 return True
         return False
+
+    ### PUBLIC METHODS ###
+
+    @classmethod
+    def from_pitch_carriers(cls, pitch_carrier_1, pitch_carrier_2):
+        '''Calculate harmonic counterpoint interval-class from `pitch_carrier_1` to
+        `pitch_carrier_2`:
+
+        ::
+
+            >>> pitchtools.HarmonicCounterpointIntervalClass.from_pitch_carriers(
+            ...     pitchtools.NamedChromaticPitch(-2), 
+            ...     pitchtools.NamedChromaticPitch(12),
+            ...     )
+            HarmonicCounterpointIntervalClass(2)
+
+        Return harmonic counterpoint interval-class.
+        '''
+        from abjad.tools import pitchtools
+
+        # get melodic diatonic interval
+        mdi = pitchtools.MelodicDiatonicInterval.from_pitch_carriers(
+            pitch_carrier_1, pitch_carrier_2)
+
+        # return harmonic counterpoint interval-class
+        return mdi.harmonic_counterpoint_interval.harmonic_counterpoint_interval_class

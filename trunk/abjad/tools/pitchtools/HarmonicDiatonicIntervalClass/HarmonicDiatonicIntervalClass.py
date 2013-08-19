@@ -80,6 +80,28 @@ class HarmonicDiatonicIntervalClass(NamedIntervalClass):
 
     ### PUBLIC METHODS ###
 
+    @classmethod
+    def from_pitch_carriers(cls, pitch_carrier_1, pitch_carrier_2):
+        '''Calculate harmonic diatonic interval-class from `pitch_carrier_1` to
+        `pitch_carrier_2`:
+
+        ::
+
+            >>> pitchtools.HarmonicDiatonicIntervalClass.from_pitch_carriers(
+            ...     pitchtools.NamedChromaticPitch(-2), 
+            ...     pitchtools.NamedChromaticPitch(12),
+            ...     )
+            HarmonicDiatonicIntervalClass('M2')
+
+        Return harmonic diatonic interval-class.
+        '''
+        from abjad.tools import pitchtools
+        # get melodic diatonic interval
+        mdi = pitchtools.MelodicDiatonicInterval.from_pitch_carriers(
+            pitch_carrier_1, pitch_carrier_2)
+        # return harmonic diatonic interval-class
+        return mdi.harmonic_diatonic_interval.harmonic_diatonic_interval_class
+
     def invert(self):
         r'''Inversion of harmonic diatonic interval-class:
 
@@ -98,6 +120,6 @@ class HarmonicDiatonicIntervalClass(NamedIntervalClass):
         middle = low + mdi
         octave = pitchtools.MelodicDiatonicInterval('perfect', 8)
         high = low + octave
-        hdi = pitchtools.calculate_harmonic_diatonic_interval_class(
+        hdi = pitchtools.HarmonicDiatonicIntervalClass.from_pitch_carriers(
             middle, high)
         return hdi

@@ -81,6 +81,30 @@ class HarmonicDiatonicInterval(NamedInterval):
     def __str__(self):
         return '%s%s' % (self._quality_abbreviation, self.number)
 
+    ### PUBLIC METHODS ###
+
+    @classmethod
+    def from_pitch_carriers(cls, pitch_carrier_1, pitch_carrier_2):
+        '''Calculate harmonic diatonic interval from `pitch_carrier_1` to
+        `pitch_carrier_2`:
+
+        ::
+
+            >>> pitchtools.HarmonicDiatonicInterval.from_pitch_carriers(
+            ...     pitchtools.NamedChromaticPitch(-2), 
+            ...     pitchtools.NamedChromaticPitch(12),
+            ...     )
+            HarmonicDiatonicInterval('M9')
+
+        Return harmonic diatonic interval.
+        '''
+        from abjad.tools import pitchtools
+        # get melodic diatonic interval
+        mdi = pitchtools.MelodicDiatonicInterval.from_pitch_carriers(
+            pitch_carrier_1, pitch_carrier_2)
+        # return harmonic diatonic interval
+        return mdi.harmonic_diatonic_interval
+
     ### PUBLIC PROPERTIES ###
 
     @property
