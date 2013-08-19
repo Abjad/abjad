@@ -6,17 +6,17 @@ def test_NamedPitchClass_transpose_01():
 
     npc = pitchtools.NamedPitchClass('c')
 
-    new = npc.transpose(pitchtools.MelodicDiatonicInterval('perfect', 1))
+    new = npc.transpose(pitchtools.NamedMelodicInterval('perfect', 1))
     new == pitchtools.NamedPitchClass('c')
 
-    new = npc.transpose(pitchtools.MelodicDiatonicInterval('minor', 2))
+    new = npc.transpose(pitchtools.NamedMelodicInterval('minor', 2))
     new == pitchtools.NamedPitchClass('df')
 
-    new = npc.transpose(pitchtools.MelodicDiatonicInterval('minor', -2))
+    new = npc.transpose(pitchtools.NamedMelodicInterval('minor', -2))
     new == pitchtools.NamedPitchClass('b')
 
-    new = npc.transpose(pitchtools.MelodicDiatonicInterval('major', 2))
+    new = npc.transpose(pitchtools.NamedMelodicInterval('major', 2))
     new == pitchtools.NamedPitchClass('d')
 
-    new = npc.transpose(pitchtools.MelodicDiatonicInterval('major', -2))
+    new = npc.transpose(pitchtools.NamedMelodicInterval('major', -2))
     new == pitchtools.NamedPitchClass('bf')

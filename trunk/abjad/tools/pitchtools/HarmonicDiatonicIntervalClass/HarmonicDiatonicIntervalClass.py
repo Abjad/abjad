@@ -97,7 +97,7 @@ class HarmonicDiatonicIntervalClass(NamedIntervalClass):
         '''
         from abjad.tools import pitchtools
         # get melodic diatonic interval
-        mdi = pitchtools.MelodicDiatonicInterval.from_pitch_carriers(
+        mdi = pitchtools.NamedMelodicInterval.from_pitch_carriers(
             pitch_carrier_1, pitch_carrier_2)
         # return harmonic diatonic interval-class
         return mdi.harmonic_diatonic_interval.harmonic_diatonic_interval_class
@@ -116,9 +116,9 @@ class HarmonicDiatonicIntervalClass(NamedIntervalClass):
         from abjad.tools import pitchtools
         low = pitchtools.NamedPitch('c', 4)
         quality_string, number = self._quality_string, self.number
-        mdi = pitchtools.MelodicDiatonicInterval(quality_string, number)
+        mdi = pitchtools.NamedMelodicInterval(quality_string, number)
         middle = low + mdi
-        octave = pitchtools.MelodicDiatonicInterval('perfect', 8)
+        octave = pitchtools.NamedMelodicInterval('perfect', 8)
         high = low + octave
         hdi = pitchtools.HarmonicDiatonicIntervalClass.from_pitch_carriers(
             middle, high)

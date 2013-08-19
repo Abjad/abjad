@@ -407,7 +407,7 @@ class TonalAnalysisSelection(Selection):
             iterationtools.iterate_notes_in_expr(self)):
             try:
                 assert not (left.written_pitch == right.written_pitch)
-                mdi = pitchtools.MelodicDiatonicInterval.from_pitch_carriers(
+                mdi = pitchtools.NamedMelodicInterval.from_pitch_carriers(
                     left, right)
                 assert mdi.number <= 2
                 if direction_string is None:
@@ -438,7 +438,7 @@ class TonalAnalysisSelection(Selection):
             iterationtools.iterate_notes_in_expr(self)):
             try:
                 assert not (left.written_pitch == right.written_pitch)
-                mdi = pitchtools.MelodicDiatonicInterval.from_pitch_carriers(
+                mdi = pitchtools.NamedMelodicInterval.from_pitch_carriers(
                     left, right)
                 assert mdi.number == 2
             except AssertionError:
@@ -476,7 +476,7 @@ class TonalAnalysisSelection(Selection):
             iterationtools.iterate_notes_in_expr(self)):
             try:
                 assert not (left.written_pitch == right.written_pitch)
-                mdi = pitchtools.MelodicDiatonicInterval.from_pitch_carriers(
+                mdi = pitchtools.NamedMelodicInterval.from_pitch_carriers(
                     left, right)
                 assert mdi.number == -2
             except AssertionError:

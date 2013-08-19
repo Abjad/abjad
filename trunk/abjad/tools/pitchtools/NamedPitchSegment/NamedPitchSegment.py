@@ -147,7 +147,7 @@ class NamedPitchSegment(Segment):
         result = list(
             mathtools.difference_series(self.named_chromatic_pitches))
         result = [-x for x in result]
-        return pitchtools.MelodicDiatonicIntervalSegment(result)
+        return pitchtools.NamedMelodicIntervalSegment(result)
 
     @property
     def named_chromatic_pitch_class_vector(self):

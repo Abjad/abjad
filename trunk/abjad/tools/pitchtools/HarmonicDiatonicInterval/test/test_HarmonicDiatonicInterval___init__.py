@@ -43,7 +43,7 @@ def test_HarmonicDiatonicInterval___init___04():
     r'''Can init from melodic diatonic interval.
     '''
 
-    mdi = pitchtools.MelodicDiatonicInterval('major', -3)
+    mdi = pitchtools.NamedMelodicInterval('major', -3)
     hdi = pitchtools.HarmonicDiatonicInterval(mdi)
 
     assert mdi.quality_string == 'major'

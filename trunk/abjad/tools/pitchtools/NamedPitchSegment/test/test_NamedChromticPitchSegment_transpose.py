@@ -20,7 +20,7 @@ def test_NamedChromticPitchSegment_transpose_02():
     '''
 
     pitch_segment = pitchtools.NamedPitchSegment([-2, -1, 6, 7, -1, 7])
-    mdi = pitchtools.MelodicDiatonicInterval('major', 2)
+    mdi = pitchtools.NamedMelodicInterval('major', 2)
     new_pitch_segment = pitch_segment.transpose(mdi)
 
     "PitchSegment(c', cs', gs', a', cs', a')"

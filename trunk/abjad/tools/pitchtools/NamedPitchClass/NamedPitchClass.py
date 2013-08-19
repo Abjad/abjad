@@ -97,7 +97,7 @@ class NamedPitchClass(PitchClass):
         from abjad.tools import pitchtools
         pitch_1 = pitchtools.NamedPitch(self, 4)
         pitch_2 = pitchtools.NamedPitch(arg, 4)
-        mdi = pitchtools.MelodicDiatonicInterval.from_pitch_carriers(
+        mdi = pitchtools.NamedMelodicInterval.from_pitch_carriers(
             pitch_1, pitch_2)
         dic = pitchtools.InversionEquivalentDiatonicIntervalClass(
             mdi.quality_string, mdi.number)
@@ -204,7 +204,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> ncpc.transpose(pitchtools.MelodicDiatonicInterval('major', 2))
+            >>> ncpc.transpose(pitchtools.NamedMelodicInterval('major', 2))
             NamedPitchClass('ds')
 
         Return named chromatic pitch-class.

@@ -100,7 +100,7 @@ class HarmonicDiatonicInterval(NamedInterval):
         '''
         from abjad.tools import pitchtools
         # get melodic diatonic interval
-        mdi = pitchtools.MelodicDiatonicInterval.from_pitch_carriers(
+        mdi = pitchtools.NamedMelodicInterval.from_pitch_carriers(
             pitch_carrier_1, pitch_carrier_2)
         # return harmonic diatonic interval
         return mdi.harmonic_diatonic_interval
@@ -114,9 +114,9 @@ class HarmonicDiatonicInterval(NamedInterval):
 
     @property
     def melodic_diatonic_interval_ascending(self):
-        from abjad.tools.pitchtools.MelodicDiatonicInterval \
-            import MelodicDiatonicInterval
-        return MelodicDiatonicInterval(self.quality_string, self.number)
+        from abjad.tools.pitchtools.NamedMelodicInterval \
+            import NamedMelodicInterval
+        return NamedMelodicInterval(self.quality_string, self.number)
 
     @property
     def melodic_diatonic_interval_descending(self):

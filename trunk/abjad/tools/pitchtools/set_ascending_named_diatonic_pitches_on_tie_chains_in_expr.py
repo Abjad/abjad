@@ -56,5 +56,5 @@ def set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(expr, key_signatu
         else:
             pass
         dic = dicg[i % length]
-        ascending_mdi = pitchtools.MelodicDiatonicInterval(dic.quality_string, dic.number)
+        ascending_mdi = pitchtools.NamedMelodicInterval(dic.quality_string, dic.number)
         pitch += ascending_mdi

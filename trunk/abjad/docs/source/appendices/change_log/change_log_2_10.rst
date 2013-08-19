@@ -651,8 +651,8 @@ Changes to the ``pitchtools`` package:
     pitchtools.calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier()
     pitchtools.calculate_melodic_counterpoint_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch()
     pitchtools.calculate_melodic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch()
-    pitchtools.MelodicDiatonicInterval.from_pitch_carriers_class_from_named_chromatic_pitch_to_named_chromatic_pitch()
-    pitchtools.MelodicDiatonicInterval.from_pitch_carriers_from_named_chromatic_pitch_to_named_chromatic_pitch()
+    pitchtools.NamedMelodicInterval.from_pitch_carriers_class_from_named_chromatic_pitch_to_named_chromatic_pitch()
+    pitchtools.NamedMelodicInterval.from_pitch_carriers_from_named_chromatic_pitch_to_named_chromatic_pitch()
 
   ::
 
@@ -660,8 +660,8 @@ Changes to the ``pitchtools`` package:
     pitchtools.MelodicChromaticInterval.from_pitch_carriers()
     pitchtools.MelodicCounterpointIntervalClass.from_pitch_carriers()
     pitchtools.MelodicCounterpointInterval.from_pitch_carriers()
-    pitchtools.MelodicDiatonicInterval.from_pitch_carriers_class()
-    pitchtools.MelodicDiatonicInterval.from_pitch_carriers()
+    pitchtools.NamedMelodicInterval.from_pitch_carriers_class()
+    pitchtools.NamedMelodicInterval.from_pitch_carriers()
 
 - Renamed::
 

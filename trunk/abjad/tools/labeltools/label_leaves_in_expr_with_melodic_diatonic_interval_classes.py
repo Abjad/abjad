@@ -45,7 +45,7 @@ def label_leaves_in_expr_with_melodic_diatonic_interval_classes(expr, markup_dir
             logical_voice_iterator.next()
             next_leaf = logical_voice_iterator.next()
             if isinstance(next_leaf, notetools.Note):
-                mdi = pitchtools.MelodicDiatonicInterval.from_pitch_carriers(
+                mdi = pitchtools.NamedMelodicInterval.from_pitch_carriers(
                     note, next_leaf)
                 mdic = mdi.melodic_diatonic_interval_class
                 markuptools.Markup(mdic, markup_direction)(note)

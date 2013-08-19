@@ -7,9 +7,9 @@ def test_NamedChromticPitchSegment_melodic_diatonic_interval_segment_01():
     pitch_segment = pitchtools.NamedPitchSegment([-2, -1, 6, 7, -1, 7])
 
     assert pitch_segment.melodic_diatonic_interval_segment == \
-        pitchtools.MelodicDiatonicIntervalSegment([
-        pitchtools.MelodicDiatonicInterval('augmented', 1),
-        pitchtools.MelodicDiatonicInterval('perfect', 5),
-        pitchtools.MelodicDiatonicInterval('minor', 2),
-        pitchtools.MelodicDiatonicInterval('minor', -6),
-        pitchtools.MelodicDiatonicInterval('minor', 6)])
+        pitchtools.NamedMelodicIntervalSegment([
+        pitchtools.NamedMelodicInterval('augmented', 1),
+        pitchtools.NamedMelodicInterval('perfect', 5),
+        pitchtools.NamedMelodicInterval('minor', 2),
+        pitchtools.NamedMelodicInterval('minor', -6),
+        pitchtools.NamedMelodicInterval('minor', 6)])
