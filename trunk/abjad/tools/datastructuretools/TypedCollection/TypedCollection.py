@@ -58,6 +58,18 @@ class TypedCollection(AbjadObject):
         result = tuple(result)
         return result
 
+    ### PUBLIC METHODS ###
+
+    def new(self, tokens=None, item_class=None, name=None):
+        tokens = tokens or self.tokens
+        item_class = item_class or self.item_class
+        name = name or self.name
+        return type(self)(
+            tokens=tokens,
+            item_class=item_class,
+            name=name,
+            )
+
     ### PUBLIC PROPERTIES ###
 
     @property
