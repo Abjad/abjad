@@ -13,7 +13,6 @@ def split(
     fracture_spanners=False, 
     cyclic=False, 
     tie_split_notes=True, 
-    tie_split_rests=False,
     ):
     r'''Split `components` by `durations`.
     
@@ -412,7 +411,6 @@ def split(
                     cyclic=False, 
                     fracture_spanners=fracture_spanners,
                     tie_split_notes=tie_split_notes,
-                    tie_split_rests=tie_split_rests,
                     )
                 shard.extend(leaf_shards)
                 result.append(shard)
@@ -425,7 +423,6 @@ def split(
                     local_split_duration, 
                     fracture_spanners=fracture_spanners,
                     tie_split_notes=tie_split_notes, 
-                    tie_split_rests=tie_split_rests,
                     )
                 shard.extend(left_list)
                 result.append(shard)

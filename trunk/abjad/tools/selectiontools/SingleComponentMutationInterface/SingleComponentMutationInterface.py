@@ -96,7 +96,6 @@ class SingleComponentMutationInterface(Selection):
         offset, 
         fracture_spanners=False,
         tie_split_notes=True, 
-        tie_split_rests=False,
         ):
         r'''Splits `leaf` at `offset`.
 
@@ -233,7 +232,6 @@ class SingleComponentMutationInterface(Selection):
             offset, 
             fracture_spanners=fracture_spanners,
             tie_split_notes=tie_split_notes, 
-            tie_split_rests=tie_split_rests,
             )
 
     def split_leaf_by_durations(
@@ -242,7 +240,6 @@ class SingleComponentMutationInterface(Selection):
         cyclic=False,
         fracture_spanners=False,
         tie_split_notes=True,
-        tie_split_rests=False,
         ):
         r'''Splits `leaf` at `offsets`.
 
@@ -447,5 +444,4 @@ class SingleComponentMutationInterface(Selection):
             cyclic=cyclic,
             fracture_spanners=fracture_spanners,
             tie_split_notes=tie_split_notes,
-            tie_split_rests=tie_split_rests,
             )

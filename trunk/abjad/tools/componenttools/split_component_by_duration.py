@@ -8,7 +8,6 @@ def split_component_by_duration(
     offset,
     fracture_spanners=False,
     tie_split_notes=True,
-    tie_split_rests=False,
     ):
     r'''Split `component` at `offset`.
 
@@ -162,7 +161,6 @@ def split_component_by_duration(
             offset,
             fracture_spanners=fracture_spanners,
             tie_split_notes=tie_split_notes,
-            tie_split_rests=tie_split_rests,
             )
 
     # get split point score offset
@@ -231,7 +229,6 @@ def split_component_by_duration(
             split_point_in_bottom,
             fracture_spanners=fracture_spanners,
             tie_split_notes=tie_split_notes,
-            tie_split_rests=tie_split_rests,
             )
         right = right_list[0]
         leaf_right_of_split = right
@@ -298,8 +295,7 @@ def split_component_by_duration(
 
     # reapply tie here if crawl above killed tie applied to leaves
     if did_split_leaf:
-        if  (tie_split_notes and isinstance(leaf_left_of_split, notetools.Note)) or \
-            (tie_split_rests and isinstance(leaf_left_of_split, resttools.Rest)):
+        if tie_split_notes and isinstance(leaf_left_of_split, notetools.Note):
             if leaf_left_of_split._select_parentage().root is \
                 leaf_right_of_split._select_parentage().root:
                 leaves_around_split = (leaf_left_of_split, leaf_right_of_split)

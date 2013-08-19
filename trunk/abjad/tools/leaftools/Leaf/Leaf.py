@@ -336,7 +336,6 @@ class Leaf(Component):
         offset, 
         fracture_spanners=False,
         tie_split_notes=True, 
-        tie_split_rests=False,
         ):
         from abjad.tools import contexttools
         from abjad.tools import leaftools
@@ -379,8 +378,7 @@ class Leaf(Component):
                 direction=Right,
                 )
         # tie split notes, rests and chords as specified
-        if  (pitchtools.is_pitch_carrier(self) and tie_split_notes) or \
-            (not pitchtools.is_pitch_carrier(self) and tie_split_rests):
+        if pitchtools.is_pitch_carrier(self) and tie_split_notes:
             selection = selectiontools.ContiguousLeafSelection(
                 leaves_around_split)
             selection._attach_tie_spanner_to_leaf_pair()
@@ -392,7 +390,6 @@ class Leaf(Component):
         #    cyclic=False,
         #    fracture_spanners=fracture_spanners, 
         #    tie_split_notes=tie_split_notes,
-        #    tie_split_rests=tie_split_rests,
         #    )
 
     def _split_by_durations(
@@ -401,7 +398,6 @@ class Leaf(Component):
         cyclic=False,
         fracture_spanners=False,
         tie_split_notes=True,
-        tie_split_rests=False,
         ):
         from abjad.tools import componenttools
         from abjad.tools import contexttools
@@ -467,8 +463,7 @@ class Leaf(Component):
         last_leaf.select().detach_marks()
         last_leaf.select().detach_marks(contexttools.ContextMark)
         # tie split notes, rests and chords as specified
-        if  (pitchtools.is_pitch_carrier(self) and tie_split_notes) or \
-            (not pitchtools.is_pitch_carrier(self) and tie_split_rests):
+        if pitchtools.is_pitch_carrier(self) and tie_split_notes:
             flattened_result_leaves = iterationtools.iterate_leaves_in_expr(
                 flattened_result)
             # TODO: implement SliceSelection._attach_tie_spanner_to_leaves()
