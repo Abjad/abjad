@@ -95,7 +95,7 @@ def label_vertical_moments_in_expr_with_counterpoint_intervals(
         upper_notes = notes[:-1]
         melodic_diatonic_intervals = []
         for upper_note in upper_notes:
-            diatonic_interval = pitchtools.calculate_melodic_diatonic_interval(
+            diatonic_interval = pitchtools.MelodicDiatonicInterval.from_pitch_carriers(
                 bass_note.written_pitch, upper_note.written_pitch)
             melodic_diatonic_intervals.append(diatonic_interval)
         intervals = melodic_diatonic_intervals
