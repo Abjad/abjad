@@ -36,7 +36,7 @@ def apply_octavation_spanner_to_pitched_components(expr,
 
     pitches = pitchtools.list_named_chromatic_pitches_in_expr(expr)
     max_pitch = max(pitches)
-    max_numbered_diatonic_pitch = max_pitch.numbered_diatonic_pitch
+    max_numbered_diatonic_pitch = max_pitch._diatonic_pitch_number
 
     if ottava_numbered_diatonic_pitch is not None:
         if ottava_numbered_diatonic_pitch <= max_numbered_diatonic_pitch:

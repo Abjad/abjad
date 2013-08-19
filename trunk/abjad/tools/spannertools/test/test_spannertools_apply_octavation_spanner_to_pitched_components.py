@@ -30,7 +30,7 @@ def test_spannertools_apply_octavation_spanner_to_pitched_components_01():
 def test_spannertools_apply_octavation_spanner_to_pitched_components_02():
 
     container = Container([Note(31, (1, 4))])
-    assert container[0].written_pitch.numbered_diatonic_pitch == 18
+    assert container[0].written_pitch.diatonic_pitch_number == 18
     spannertools.apply_octavation_spanner_to_pitched_components(
         container,
         ottava_numbered_diatonic_pitch = 15, 

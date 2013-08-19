@@ -761,8 +761,11 @@ class LilyPondParser(abctools.Parser):
         new_oct, new_step = normalize_octave(new_oct, new_step)
         # print 'NEW(norm):', new_oct, new_step, new_alt
         octave_ticks = pitchtools.octave_number_to_octave_tick_string(new_oct)
-        pitch_class_name = str(pitchtools.NamedDiatonicPitchClass(
-            int(new_step)))
+        pitch_class_name = \
+            pitchtools.diatonic_pitch_number_to_diatonic_pitch_class_name(
+                new_step)
+        #pitch_class_name = str(pitchtools.NamedDiatonicPitchClass(
+        #    int(new_step)))
         accidental = str(pitchtools.Accidental(new_alt))
         tmp_pitch = pitchtools.NamedChromaticPitch(
             pitch_class_name + accidental + octave_ticks)
@@ -773,8 +776,11 @@ class LilyPondParser(abctools.Parser):
         new_oct, new_step = normalize_octave(new_oct, new_step)
         # print 'NEW(norm):', new_oct, new_step, new_alt
         octave_ticks = pitchtools.octave_number_to_octave_tick_string(new_oct)
-        pitch_class_name = str(pitchtools.NamedDiatonicPitchClass(
-            int(new_step)))
+        #pitch_class_name = str(pitchtools.NamedDiatonicPitchClass(
+        #    int(new_step)))
+        pitch_class_name = \
+            pitchtools.diatonic_pitch_number_to_diatonic_pitch_class_name(
+                new_step)
         accidental = str(pitchtools.Accidental(new_alt))
         return pitchtools.NamedChromaticPitch(
             pitch_class_name + accidental + octave_ticks)
