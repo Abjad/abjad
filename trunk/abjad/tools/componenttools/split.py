@@ -4,49 +4,167 @@ from abjad.tools import sequencetools
 
 
 # TODO: fix bug that unintentionally fractures ties.
+# TODO: add tests of tupletted notes and rests.
+# TODO: add examples that show mark and context mark handling.
+# TODO: add example showing grace and after grace handling.
 def split(
     components, 
-    offsets,
+    durations,
     fracture_spanners=False, 
     cyclic=False, 
     tie_split_notes=True, 
     tie_split_rests=False,
     ):
-    r'''Split components at offsets.
+    r'''Split `components` by `durations`.
     
     ..  container:: example
 
-        **Example 1.** Split components cyclically and do not 
-        fracture crossing spanners:
+        **Example 1.** Split leaves:
 
         ::
 
-            >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-            >>> beam_1 = spannertools.BeamSpanner(staff[0])
-            >>> beam_2 = spannertools.BeamSpanner(staff[1])
-            >>> slur = spannertools.SlurSpanner(staff.select_leaves())
+            >>> staff = Staff("c'8 e' d' f' c' e' d' f'")
+            >>> leaves = staff.select_leaves()
+            >>> spanner = spannertools.HairpinSpanner(leaves, 'p < f')
+            >>> staff.override.dynamic_line_spanner.staff_padding = 3
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
             >>> f(staff)
-            \new Staff {
-                {
-                    \time 2/8
-                    c'8 [ (
-                    d'8 ]
-                }
-                {
-                    e'8 [
-                    f'8 ] )
-                }
+            \new Staff \with {
+                \override DynamicLineSpanner #'staff-padding = #3
+            } {
+                c'8 \< \p
+                e'8
+                d'8
+                f'8
+                c'8
+                e'8
+                d'8
+                f'8 \f
             }
 
         ::
 
+            >>> durations = [Duration(3, 16), Duration(7, 32)]
             >>> result = componenttools.split(
-            ...     staff.select_leaves(), 
-            ...     [Duration(3, 32)], 
+            ...     leaves,
+            ...     durations, 
+            ...     fracture_spanners=False, 
+            ...     tie_split_notes=False,
+            ...     )
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff \with {
+                \override DynamicLineSpanner #'staff-padding = #3
+            } {
+                c'8 \< \p
+                e'16 ~
+                e'16
+                d'8
+                f'32 ~
+                f'16.
+                c'8
+                e'8
+                d'8
+                f'8 \f
+            }
+
+    ..  container:: example
+
+        **Example 2.** Split leaves and fracture crossing spanners:
+
+        ::
+
+            >>> staff = Staff("c'8 e' d' f' c' e' d' f'")
+            >>> leaves = staff.select_leaves()
+            >>> spanner = spannertools.HairpinSpanner(leaves, 'p < f')
+            >>> staff.override.dynamic_line_spanner.staff_padding = 3
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff \with {
+                \override DynamicLineSpanner #'staff-padding = #3
+            } {
+                c'8 \< \p
+                e'8
+                d'8
+                f'8
+                c'8
+                e'8
+                d'8
+                f'8 \f
+            }
+
+        ::
+
+            >>> durations = [Duration(3, 16), Duration(7, 32)]
+            >>> result = componenttools.split(
+            ...     leaves,
+            ...     durations, 
+            ...     fracture_spanners=True, 
+            ...     tie_split_notes=False,
+            ...     )
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff \with {
+                \override DynamicLineSpanner #'staff-padding = #3
+            } {
+                c'8 \< \p
+                e'16 \f ~
+                e'16 \< \p
+                d'8
+                f'32 \f ~
+                f'16. \< \p
+                c'8
+                e'8
+                d'8
+                f'8 \f
+            }
+
+    ..  container:: example
+
+        **Example 3.** Split leaves cyclically:
+
+        ::
+
+            >>> staff = Staff("c'8 e' d' f' c' e' d' f'")
+            >>> leaves = staff.select_leaves()
+            >>> spanner = spannertools.HairpinSpanner(leaves, 'p < f')
+            >>> staff.override.dynamic_line_spanner.staff_padding = 3
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff \with {
+                \override DynamicLineSpanner #'staff-padding = #3
+            } {
+                c'8 \< \p
+                e'8
+                d'8
+                f'8
+                c'8
+                e'8
+                d'8
+                f'8 \f
+            }
+
+        ::
+
+            >>> durations = [Duration(3, 16), Duration(7, 32)]
+            >>> result = componenttools.split(
+            ...     leaves,
+            ...     durations,
             ...     cyclic=True,
             ...     )
             >>> show(staff) # doctest: +SKIP
@@ -54,350 +172,140 @@ def split(
         ..  doctest::
 
             >>> f(staff)
-            \new Staff {
-                {
-                    \time 2/8
-                    c'16. [ ( ~
-                    c'32
-                    d'16 ~
-                    d'16 ]
-                }
-                {
-                    e'32 [ ~
-                    e'16.
-                    f'16. ~
-                    f'32 ] )
-                }
+            \new Staff \with {
+                \override DynamicLineSpanner #'staff-padding = #3
+            } {
+                c'8 \< \p
+                e'16 ~
+                e'16
+                d'8
+                f'32 ~
+                f'16.
+                c'16. ~
+                c'32
+                e'8
+                d'16 ~
+                d'16
+                f'8 \f
             }
 
     ..  container:: example
 
-        **Example 2.** Split components cyclically and fracture spanners:
+        **Example 4.** Split leaves cyclically and fracture spanners:
 
         ::
 
-            >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-
-        ::
-
-            >>> spannertools.BeamSpanner(staff[0])
-            BeamSpanner(|2/8(2)|)
-
-        ::
-        
-            >>> spannertools.BeamSpanner(staff[1])
-            BeamSpanner(|2/8(2)|)
-
-        ::
-
-            >>> spannertools.SlurSpanner(staff.select_leaves())
-            SlurSpanner(c'8, d'8, e'8, f'8)
+            >>> staff = Staff("c'8 e' d' f' c' e' d' f'")
+            >>> leaves = staff.select_leaves()
+            >>> spanner = spannertools.HairpinSpanner(leaves, 'p < f')
+            >>> staff.override.dynamic_line_spanner.staff_padding = 3
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
             >>> f(staff)
-            \new Staff {
-                {
-                    \time 2/8
-                    c'8 [ (
-                    d'8 ]
-                }
-                {
-                    e'8 [
-                    f'8 ] )
-                }
+            \new Staff \with {
+                \override DynamicLineSpanner #'staff-padding = #3
+            } {
+                c'8 \< \p
+                e'8
+                d'8
+                f'8
+                c'8
+                e'8
+                d'8
+                f'8 \f
             }
 
         ::
 
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
+            >>> durations = [Duration(3, 16), Duration(7, 32)]
             >>> result = componenttools.split(
-            ...     staff.select_leaves(), 
-            ...     [Duration(3, 32)], 
+            ...     leaves,
+            ...     durations,
             ...     cyclic=True, 
             ...     fracture_spanners=True,
             ...     )
-
-        ::
-
-            >>> result
-            [[Note("c'16.")], 
-            [Note("c'32"), Note("d'16")], [Note("d'16"), Note("e'32")],
-            [Note("e'16.")], [Note("f'16.")], [Note("f'32")]]
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
             >>> f(staff)
-            \new Staff {
-                {
-                    \time 2/8
-                    c'16. [ ( ) ~
-                    c'32 (
-                    d'16 ) ~
-                    d'16 ] (
-                }
-                {
-                    e'32 [ ) ~
-                    e'16. (
-                    f'16. ) ~
-                    f'32 ] ( )
-                }
+            \new Staff \with {
+                \override DynamicLineSpanner #'staff-padding = #3
+            } {
+                c'8 \< \p
+                e'16 \f ~
+                e'16 \< \p
+                d'8
+                f'32 \f ~
+                f'16. \< \p
+                c'16. \f ~
+                c'32 \< \p
+                e'8
+                d'16 \f ~
+                d'16 \< \p
+                f'8 \f
             }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
 
     ..  container:: example
 
-        **Example 3.** Split components once and do not fracture 
-        crossing spanners:
+        **Example 5.** Split tupletted leaves and fracture crossing spanners:
 
         ::
 
-            >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-
-        ::
-
-            >>> spannertools.BeamSpanner(staff[0])
-            BeamSpanner(|2/8(2)|)
-
-        ::
-
-            >>> spannertools.BeamSpanner(staff[1])
-            BeamSpanner(|2/8(2)|)
-
-        ::
-
-            >>> spannertools.SlurSpanner(staff.select_leaves())
-            SlurSpanner(c'8, d'8, e'8, f'8)
-
-        ..  doctest::
-
-            >>> f(staff)
-            \new Staff {
-                {
-                    \time 2/8
-                    c'8 [ (
-                    d'8 ]
-                }
-                {
-                    e'8 [
-                    f'8 ] )
-                }
-            }
-
-        ::
-
+            >>> staff = Staff()
+            >>> staff.append(Tuplet((2, 3), "c'4 d' e'"))
+            >>> staff.append(Tuplet((2, 3), "c'4 d' e'"))
+            >>> leaves = staff.select_leaves()
+            >>> spanner = spannertools.SlurSpanner(leaves)
             >>> show(staff) # doctest: +SKIP
-
-        ::
-
-            >>> offsets = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
-
-        ::
-
-            >>> shards = componenttools.split(
-            ...    staff[:1], 
-            ...     offsets, 
-            ...     cyclic=False, 
-            ...     fracture_spanners=False, 
-            ...     tie_split_notes=False,
-            ...     )
-
-        ..  doctest::
-
-            >>> f(staff)
-            \new Staff {
-                {
-                    \time 1/32
-                    c'32 [ (
-                }
-                {
-                    \time 3/32
-                    c'16.
-                }
-                {
-                    \time 4/32
-                    d'8 ]
-                }
-                {
-                    \time 2/8
-                    e'8 [
-                    f'8 ] )
-                }
-            }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
-    ..  container:: example
-
-        **Example 4.** Split components once and fracture crossing spanners:
-
-        ::
-
-            >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-
-        ::
-
-            >>> spannertools.BeamSpanner(staff[0])
-            BeamSpanner(|2/8(2)|)
-
-        ::
-
-            >>> spannertools.BeamSpanner(staff[1])
-            BeamSpanner(|2/8(2)|)
-
-        ::
-
-            >>> spannertools.SlurSpanner(staff.select_leaves())
-            SlurSpanner(c'8, d'8, e'8, f'8)
-
-        ..  doctest::
-
-            >>> f(staff)
-            \new Staff {
-                {
-                    \time 2/8
-                    c'8 [ (
-                    d'8 ]
-                }
-                {
-                    e'8 [
-                    f'8 ] )
-                }
-            }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
-            >>> offsets = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
-            >>> shards = componenttools.split(
-            ...     staff[:1], 
-            ...     offsets, 
-            ...     cyclic=False, 
-            ...     fracture_spanners=True, 
-            ...     tie_split_notes=False,
-            ...     )
-
-        ..  doctest::
-
-            >>> f(staff)
-            \new Staff {
-                {
-                    \time 1/32
-                    c'32 [ ] ( )
-                }
-                {
-                    \time 3/32
-                    c'16. [ ] ( )
-                }
-                {
-                    \time 4/32
-                    d'8 [ ] (
-                }
-                {
-                    \time 2/8
-                    e'8 [
-                    f'8 ] )
-                }
-            }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
-    ..  container:: example
-
-        **Example 5.** Split tupletted components once and fracture 
-        crossing spanners:
-
-        ::
-
-            >>> staff = Staff(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 g'8 a'8 }")
-
-        ::
-
-            >>> spannertools.BeamSpanner(staff[0])
-            BeamSpanner({c'8, d'8, e'8})
-
-        ::
-
-            >>> spannertools.BeamSpanner(staff[1])
-            BeamSpanner({f'8, g'8, a'8})
-
-        ::
-
-            >>> spannertools.SlurSpanner(staff.select_leaves())
-            SlurSpanner(c'8, d'8, e'8, f'8, g'8, a'8)
 
         ..  doctest::
 
             >>> f(staff)
             \new Staff {
                 \times 2/3 {
-                    c'8 [ (
-                    d'8
-                    e'8 ]
+                    c'4 (
+                    d'4
+                    e'4
                 }
                 \times 2/3 {
-                    f'8 [
-                    g'8
-                    a'8 ] )
+                    c'4
+                    d'4
+                    e'4 )
                 }
             }
 
         ::
 
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
-            >>> offsets = [(1, 8)]
-            >>> shards = componenttools.split(
-            ...     staff.select_leaves(), 
-            ...     offsets, 
-            ...     cyclic=False, 
+            >>> durations = [Duration(1, 4)]
+            >>> result = componenttools.split(
+            ...     leaves,
+            ...     durations, 
             ...     fracture_spanners=True, 
             ...     tie_split_notes=True,
             ...     )
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
             >>> f(staff)
             \new Staff {
                 \times 2/3 {
-                    c'8 [ (
-                    d'16 ) ~
-                    d'16 (
-                    e'8 ]
+                    c'4 (
+                    d'8 ) ~
+                    d'8 (
+                    e'4
                 }
                 \times 2/3 {
-                    f'8 [
-                    g'8
-                    a'8 ] )
+                    c'4
+                    d'4
+                    e'4 )
                 }
             }
 
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
-    Return list of newly split shards.
-
-    .. note:: Add tests of tupletted notes and rests.
-
-    .. note:: Add examples that show mark and context mark handling.
-
-    .. note:: Add example showing grace and after grace handling.
+    Return list of lists.
     '''
     from abjad.tools import componenttools
     from abjad.tools import leaftools
@@ -407,35 +315,35 @@ def split(
     assert all(isinstance(x, componenttools.Component) for x in components)
     if not isinstance(components, selectiontools.SliceSelection):
         components = selectiontools.SliceSelection(components)
-    offsets = [durationtools.Offset(offset) for offset in offsets]
+    durations = [durationtools.Offset(offset) for offset in durations]
 
     # calculate total component duration
     total_component_duration = components.get_duration()
-    total_offset_duration = sum(offsets)
+    total_offset_duration = sum(durations)
 
-    # calculate offsets
+    # calculate durations
     if cyclic:
-        offsets = sequencetools.repeat_sequence_to_weight_exactly(
-            offsets, total_component_duration)
+        durations = sequencetools.repeat_sequence_to_weight_exactly(
+            durations, total_component_duration)
     elif total_offset_duration < total_component_duration:
-        final_offset = total_component_duration - sum(offsets)
-        offsets.append(final_offset)
+        final_offset = total_component_duration - sum(durations)
+        durations.append(final_offset)
     elif total_component_duration < total_offset_duration:
-        offsets = sequencetools.truncate_sequence_to_weight(
-            offsets, total_component_duration)
+        durations = sequencetools.truncate_sequence_to_weight(
+            durations, total_component_duration)
 
-    #print offsets, 'offsets'
+    #print durations, 'durations'
 
-    # keep copy of offsets to partition result components
-    offsets_copy = offsets[:]
+    # keep copy of durations to partition result components
+    durations_copy = durations[:]
 
     # calculate total offset duration
-    total_offset_duration = sum(offsets)
+    total_offset_duration = sum(durations)
     assert total_offset_duration == total_component_duration
 
     # initialize loop variables
     result, shard = [], []
-    offset_index, offset_count = 0, len(offsets)
+    offset_index, offset_count = 0, len(durations)
     current_shard_duration = durationtools.Duration(0)
     remaining_components = list(components[:])
     advance_to_next_offset = True
@@ -446,12 +354,12 @@ def split(
 
         # grab next split point
         if advance_to_next_offset:
-            if offsets:
-                #print offsets
-                next_split_point = offsets.pop(0)
+            if durations:
+                #print durations
+                next_split_point = durations.pop(0)
                 #print next_split_point
             else:
-                #print 'no more offsets'
+                #print 'no more durations'
                 break
 
         advance_to_next_offset = True
@@ -487,17 +395,17 @@ def split(
                 leaf_split_durations = [local_split_duration]
                 additional_required_duration = \
                     current_component._get_duration() - local_split_duration
-                #print 'offsets {}'.format(offsets)
-                split_offsets = sequencetools.split_sequence_by_weights(
-                    offsets, 
+                #print 'durations {}'.format(durations)
+                split_durations = sequencetools.split_sequence_by_weights(
+                    durations, 
                     [additional_required_duration], 
                     cyclic=False, 
                     overhang=True,
                     )
-                #print 'split_offsets {}\n'.format(split_offsets)
-                additional_offsets = split_offsets[0]
-                leaf_split_durations.extend(additional_offsets)
-                offsets = split_offsets[-1]
+                #print 'split_durations {}\n'.format(split_durations)
+                additional_durations = split_durations[0]
+                leaf_split_durations.extend(additional_durations)
+                durations = split_durations[-1]
                 leaf_shards = current_component._split_by_durations(
                     leaf_split_durations,
                     cyclic=False, 
@@ -506,7 +414,7 @@ def split(
                     )
                 shard.extend(leaf_shards)
                 result.append(shard)
-                offset_index += len(additional_offsets)
+                offset_index += len(additional_durations)
             else:
                 #print 'splitting container ...'
                 left_list, right_list = \
@@ -547,7 +455,7 @@ def split(
     # group split components according to input durations
     result = sequencetools.flatten_sequence(result)
     result = selectiontools.ContiguousSelection(result)
-    result = result.partition_by_durations_exactly(offsets_copy)
+    result = result.partition_by_durations_exactly(durations_copy)
 
     # return list of shards
     return result
