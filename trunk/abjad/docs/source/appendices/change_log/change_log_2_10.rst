@@ -638,7 +638,7 @@ Changes to the ``pitchtools`` package:
 
   ::
 
-    pitchtools.calculate_harmonic_chromatic_interval_class()
+    pitchtools.HarmonicChromaticIntervalClass.from_pitch_carriers()
     pitchtools.HarmonicChromaticInterval.from_pitch_carriers()
     pitchtools.calculate_harmonic_counterpoint_interval_class()
     pitchtools.calculate_harmonic_counterpoint_interval()

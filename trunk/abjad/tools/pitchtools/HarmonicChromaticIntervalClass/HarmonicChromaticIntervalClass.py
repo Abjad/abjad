@@ -46,3 +46,25 @@ class HarmonicChromaticIntervalClass(NumberedIntervalClass):
 
     def __int__(self):
         return self._number
+
+    ### PUBLIC METHODS ###
+
+    @classmethod
+    def from_pitch_carriers(cls, pitch_carrier_1, pitch_carrier_2):
+        '''Calculate harmonic chromatic interval-class from `pitch_carrier_1` to
+        `pitch_carrier_2`:
+
+        ::
+
+            >>> pitchtools.HarmonicChromaticIntervalClass.from_pitch_carriers(
+            ... pitchtools.NamedChromaticPitch(-2), pitchtools.NamedChromaticPitch(12))
+            HarmonicChromaticIntervalClass(2)
+
+        Return harmonic chromatic interval-class.
+        '''
+        from abjad.tools import pitchtools
+        # get melodic chromatic interval
+        mci = pitchtools.calculate_melodic_chromatic_interval(
+            pitch_carrier_1, pitch_carrier_2)
+        # return harmonic chromatic interval-class
+        return mci.harmonic_chromatic_interval.harmonic_chromatic_interval_class
