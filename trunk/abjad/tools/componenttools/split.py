@@ -51,7 +51,6 @@ def split(
             >>> result = componenttools.split(
             ...     leaves,
             ...     durations, 
-            ...     fracture_spanners=False, 
             ...     tie_split_notes=False,
             ...     )
             >>> show(staff) # doctest: +SKIP
@@ -63,10 +62,10 @@ def split(
                 \override DynamicLineSpanner #'staff-padding = #3
             } {
                 c'8 \< \p
-                e'16 ~
+                e'16 
                 e'16
                 d'8
-                f'32 ~
+                f'32 
                 f'16.
                 c'8
                 e'8
@@ -120,10 +119,10 @@ def split(
                 \override DynamicLineSpanner #'staff-padding = #3
             } {
                 c'8 \< \p
-                e'16 \f ~
+                e'16 \f 
                 e'16 \< \p
                 d'8
-                f'32 \f ~
+                f'32 \f 
                 f'16. \< \p
                 c'8
                 e'8
@@ -166,6 +165,7 @@ def split(
             ...     leaves,
             ...     durations,
             ...     cyclic=True,
+            ...     tie_split_notes=False,
             ...     )
             >>> show(staff) # doctest: +SKIP
 
@@ -176,15 +176,15 @@ def split(
                 \override DynamicLineSpanner #'staff-padding = #3
             } {
                 c'8 \< \p
-                e'16 ~
+                e'16 
                 e'16
                 d'8
-                f'32 ~
+                f'32 
                 f'16.
-                c'16. ~
+                c'16. 
                 c'32
                 e'8
-                d'16 ~
+                d'16 
                 d'16
                 f'8 \f
             }
@@ -225,6 +225,7 @@ def split(
             ...     durations,
             ...     cyclic=True, 
             ...     fracture_spanners=True,
+            ...     tie_split_notes=False,
             ...     )
             >>> show(staff) # doctest: +SKIP
 
@@ -235,15 +236,15 @@ def split(
                 \override DynamicLineSpanner #'staff-padding = #3
             } {
                 c'8 \< \p
-                e'16 \f ~
+                e'16 \f 
                 e'16 \< \p
                 d'8
-                f'32 \f ~
+                f'32 \f 
                 f'16. \< \p
-                c'16. \f ~
+                c'16. \f 
                 c'32 \< \p
                 e'8
-                d'16 \f ~
+                d'16 \f 
                 d'16 \< \p
                 f'8 \f
             }
@@ -284,7 +285,7 @@ def split(
             ...     leaves,
             ...     durations, 
             ...     fracture_spanners=True, 
-            ...     tie_split_notes=True,
+            ...     tie_split_notes=False,
             ...     )
             >>> show(staff) # doctest: +SKIP
 
@@ -294,7 +295,7 @@ def split(
             \new Staff {
                 \times 2/3 {
                     c'4 (
-                    d'8 ) ~
+                    d'8 ) 
                     d'8 (
                     e'4
                 }
@@ -315,20 +316,20 @@ def split(
     assert all(isinstance(x, componenttools.Component) for x in components)
     if not isinstance(components, selectiontools.SliceSelection):
         components = selectiontools.SliceSelection(components)
-    durations = [durationtools.Offset(offset) for offset in durations]
+    durations = [durationtools.Duration(x) for x in durations]
 
     # calculate total component duration
     total_component_duration = components.get_duration()
-    total_offset_duration = sum(durations)
+    total_split_duration = sum(durations)
 
     # calculate durations
     if cyclic:
         durations = sequencetools.repeat_sequence_to_weight_exactly(
             durations, total_component_duration)
-    elif total_offset_duration < total_component_duration:
+    elif total_split_duration < total_component_duration:
         final_offset = total_component_duration - sum(durations)
         durations.append(final_offset)
-    elif total_component_duration < total_offset_duration:
+    elif total_component_duration < total_split_duration:
         durations = sequencetools.truncate_sequence_to_weight(
             durations, total_component_duration)
 
@@ -338,8 +339,8 @@ def split(
     durations_copy = durations[:]
 
     # calculate total offset duration
-    total_offset_duration = sum(durations)
-    assert total_offset_duration == total_component_duration
+    total_split_duration = sum(durations)
+    assert total_split_duration == total_component_duration
 
     # initialize loop variables
     result, shard = [], []
@@ -410,6 +411,7 @@ def split(
                     leaf_split_durations,
                     cyclic=False, 
                     fracture_spanners=fracture_spanners,
+                    tie_split_notes=tie_split_notes,
                     tie_split_rests=tie_split_rests,
                     )
                 shard.extend(leaf_shards)

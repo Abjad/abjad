@@ -1449,9 +1449,9 @@ def test_componenttools_split_24():
         staff,
         r'''
         \new Staff {
-            c'32 ~
+            c'32
             c'8 ~
-            c'32 ~
+            c'32
             c'16
         }
         '''
@@ -1488,9 +1488,9 @@ def test_componenttools_split_25():
         staff,
         r'''
         \new Staff {
-            c'64 [ ] ~
+            c'64 [ ]
             c'16 [ ~
-            c'64 ] ~
+            c'64 ]
             c'32 [ ]
         }
         '''
