@@ -42,7 +42,6 @@ class NumberedPitchClass(PitchClass):
                 pitchtools.get_named_chromatic_pitch_from_pitch_carrier(arg)
             number = abs(pitch.numbered_chromatic_pitch) % 12
         object.__setattr__(self, '_chromatic_pitch_class_number', number)
-        object.__setattr__(self, '_comparison_attribute', number)
 
     ### SPECIAL METHODS ###
 
@@ -62,6 +61,12 @@ class NumberedPitchClass(PitchClass):
 
     # TODO: remove?
     __deepcopy__ = __copy__
+
+    def __eq__(self, expr):
+        if isinstance(expr, type(self)):
+            return self._chromatic_pitch_class_number == \
+                expr._chromatic_pitch_class_number
+        return self._chromatic_pitch_class_number == expr
 
     def __float__(self):
         return float(self._chromatic_pitch_class_number)

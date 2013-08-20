@@ -56,8 +56,6 @@ class NamedPitchClass(PitchClass):
         chromatic_pitch_class_name = chromatic_pitch_class_name.lower()
         object.__setattr__(
             self, '_chromatic_pitch_class_name', chromatic_pitch_class_name)
-        object.__setattr__(
-            self, '_comparison_attribute', chromatic_pitch_class_name)
 
     ### SPECIAL METHODS ###
 
@@ -78,6 +76,12 @@ class NamedPitchClass(PitchClass):
 
     # TODO: remove?
     __deepcopy__ = __copy__
+
+    def __eq__(self, expr):
+        if isinstance(expr, type(self)):
+            return self._chromatic_pitch_class_name == \
+                expr._chromatic_pitch_class_name
+        return self._chromatic_pitch_class_name == expr
 
     def __float__(self):
         return float(self.numbered_chromatic_pitch_class)

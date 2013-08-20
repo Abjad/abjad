@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 import abc
-from abjad.tools.abctools import AttributeEqualityAbjadObject
+from abjad.tools.abctools import AbjadObject
 
 
-class PitchClass(AttributeEqualityAbjadObject):
+class PitchClass(AbjadObject):
     '''Pitch-class base class.
     '''
 
