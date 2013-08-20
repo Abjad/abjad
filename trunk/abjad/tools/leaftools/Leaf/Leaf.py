@@ -328,7 +328,7 @@ class Leaf(Component):
 
     def _split(
         self,
-        offsets,
+        durations,
         cyclic=False,
         fracture_spanners=False,
         tie_split_notes=True,
@@ -341,11 +341,11 @@ class Leaf(Component):
         from abjad.tools import pitchtools
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
-        offsets = [durationtools.Offset(offset) for offset in offsets]
+        durations = [durationtools.Duration(x) for x in durations]
         if cyclic:
-            offsets = sequencetools.repeat_sequence_to_weight_exactly(
-                offsets, self._get_duration())
-        durations = [durationtools.Duration(offset) for offset in offsets]
+            durations = sequencetools.repeat_sequence_to_weight_exactly(
+                durations, self._get_duration())
+        durations = [durationtools.Duration(x) for x in durations]
         if sum(durations) < self._get_duration():
             last_duration = self._get_duration() - sum(durations)
             durations.append(last_duration)
@@ -413,7 +413,7 @@ class Leaf(Component):
     #       extended to handle graces.
     def _split_by_duration(
         self, 
-        offset, 
+        duration, 
         fracture_spanners=False,
         tie_split_notes=True, 
         ):
@@ -424,11 +424,11 @@ class Leaf(Component):
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
         # check input
-        offset = durationtools.Offset(offset)
+        duration = durationtools.Duration(duration)
         # calculate durations
         leaf_multiplied_duration = self._multiplied_duration
         prolation = self._select_parentage(include_self=False).prolation
-        preprolated_duration = offset / prolation
+        preprolated_duration = duration / prolation
         # handle boundary cases
         if preprolated_duration <= 0:
             return ([], [self])
@@ -466,7 +466,7 @@ class Leaf(Component):
         # TODO: make this substitution work
         #return self._split(
         #    leaf, 
-        #    [offset], 
+        #    [duration], 
         #    cyclic=False,
         #    fracture_spanners=fracture_spanners, 
         #    tie_split_notes=tie_split_notes,

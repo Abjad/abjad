@@ -2,7 +2,7 @@
 from abjad.tools import durationtools
 
 
-# TODO: reimplement as settable attribute of container duration interface.
+# TODO: reimplement as settable attribute of container
 def set_container_multiplier(container, multiplier):
     r'''Set `container` `multiplier`:
 
