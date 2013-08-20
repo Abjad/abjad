@@ -61,7 +61,9 @@ class TypedCollection(AbjadObject):
     ### PUBLIC METHODS ###
 
     def new(self, tokens=None, item_class=None, name=None):
-        tokens = tokens or self.tokens
+        # Allow for empty iterables:
+        if tokens is None:
+            tokens = self._collection
         item_class = item_class or self.item_class
         name = name or self.name
         return type(self)(
