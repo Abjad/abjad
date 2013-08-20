@@ -168,10 +168,10 @@ class PitchClassSegment(TypedTuple):
             >>> numbered_segment.rotate(1)
             PitchClassSegment([7, 10, 10.5, 6, 7, 10.5])
 
-        Return numbered chromatic pitch-class segment.
+        Return pitch-class segment.
         '''
         from abjad.tools import sequencetools
-        tokens = sequencetools.rotate_sequence(self[:], n)
+        tokens = sequencetools.rotate_sequence(self, n)
         return self.new(tokens=tokens)
 
     def transpose(self, n):
