@@ -1,12 +1,13 @@
 # -*- encoding: utf-8 -*-
 import copy
+import functools
 from abjad.tools import leaftools
-from abjad.tools.abctools.SortableAttributeEqualityAbjadObject \
-	import SortableAttributeEqualityAbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.lilypondproxytools import LilyPondTweakReservoir
 
 
-class NoteHead(SortableAttributeEqualityAbjadObject):
+@functools.total_ordering
+class NoteHead(AbjadObject):
     r'''Abjad model of a note head:
 
     ::
@@ -37,7 +38,7 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
         self.is_cautionary = is_cautionary
         self.is_forced = is_forced
         # must assign comparison attribute after written pitch initialization
-        self._comparison_attribute = self.written_pitch
+        #self._comparison_attribute = self.written_pitch
         for tweak_pair in tweak_pairs:
             key, value = tweak_pair
             setattr(self.tweak, key, copy.copy(value))
@@ -56,6 +57,20 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
             self.tweak._get_attribute_pairs(),
         )
         return args
+
+    def __eq__(self, expr):
+        if isinstance(expr, type(self)):
+            return self.written_pitch == expr.written_pitch
+        return self.written_pitch == expr
+
+    def __lt__(self, expr):
+        if isinstance(expr, type(self)):
+            return self.written_pitch < expr.written_pitch
+        try:
+            expr = type(self)(expr)
+        except (ValueError, TypeError):
+            return False
+        return self.written_pitch < expr.written_pitch
 
     def __repr__(self):
         args = [repr(self._format_string)]
