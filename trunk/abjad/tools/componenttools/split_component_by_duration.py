@@ -273,17 +273,16 @@ def split_component_by_duration(
                 break
 
     # crawl back up through duration-crossing containers and split each
-    prev = highest_level_component_right_of_split
+    previous = highest_level_component_right_of_split
     for duration_crossing_container in reversed(duration_crossing_containers):
         assert isinstance(
             duration_crossing_container, containertools.Container)
-        i = duration_crossing_container.index(prev)
-        left, right = containertools.split_container_at_index(
-            duration_crossing_container,
+        i = duration_crossing_container.index(previous)
+        left, right = duration_crossing_container._split_at_index(
             i,
             fracture_spanners=fracture_spanners,
             )
-        prev = right
+        previous = right
 
     # NOTE: If tie chain here is convenience, then fusing is good.
     #       If tie chain here is user-given, then fusing is less good.

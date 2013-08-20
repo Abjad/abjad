@@ -429,8 +429,6 @@ def split(
                     )
                 shard.extend(left_list)
                 result.append(shard)
-                # to avoid slice assignment pychecker errors
-                #remaining_components[0:0] = right_list
                 remaining_components.__setitem__(slice(0, 0), right_list)
 
             shard = []

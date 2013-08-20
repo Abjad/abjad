@@ -2,6 +2,7 @@
 import copy
 from abjad.tools import durationtools
 from abjad.tools import formattools
+from abjad.tools import mathtools
 from abjad.tools import selectiontools
 from abjad.tools.componenttools.Component import Component
 
@@ -530,6 +531,85 @@ class Container(Component):
         del(self[:len(components)])
         remaining_subtrahend_duration = duration - accumulated_duration
         self[0]._shorten(remaining_subtrahend_duration)
+
+    def _split_at_index(self, i, fracture_spanners=False):
+        r'''Splits container to the left of index `i`.
+
+        Preserves tuplet multiplier when container is a tuplet.
+
+        Preserves time signature denominator when container is a measure.
+
+        Resizes resizable containers.
+
+        Returns split parts.
+        '''
+        from abjad.tools import spannertools
+        from abjad.tools import containertools
+        from abjad.tools import contexttools
+        from abjad.tools import measuretools
+        from abjad.tools import tuplettools
+        # remember container multiplier, if any
+        container_multiplier = getattr(self, 'implied_prolation', None)
+        # partition music of input container
+        left_music = self[:i]
+        right_music = self[i:]
+        # instantiate new left and right containers
+        if isinstance(self, measuretools.Measure):
+            time_signature_denominator = \
+                self._get_effective_context_mark(
+                contexttools.TimeSignatureMark).denominator
+            left_duration = sum([x._get_duration() for x in left_music])
+            left_pair = mathtools.NonreducedFraction(left_duration)
+            left_pair = left_pair.with_multiple_of_denominator(
+                time_signature_denominator)
+            left_time_signature = contexttools.TimeSignatureMark(left_pair)
+            left = self.__class__(left_time_signature, left_music)
+            right_duration = sum([x._get_duration() for x in right_music])
+            right_pair = mathtools.NonreducedFraction(right_duration)
+            right_pair = right_pair.with_multiple_of_denominator(
+                time_signature_denominator)
+            right_time_signature = contexttools.TimeSignatureMark(right_pair)
+            right = self.__class__(right_time_signature, right_music)
+        elif isinstance(self, tuplettools.FixedDurationTuplet):
+            left = self.__class__(1, left_music)
+            right = self.__class__(1, right_music)
+            containertools.set_container_multiplier(
+                left, container_multiplier)
+            containertools.set_container_multiplier(
+                right, container_multiplier)
+        elif isinstance(self, tuplettools.Tuplet):
+            left = self.__class__(container_multiplier, left_music)
+            right = self.__class__(container_multiplier, right_music)
+        else:
+            left = self.__class__(left_music)
+            right = self.__class__(right_music)
+            containertools.set_container_multiplier(
+                left, container_multiplier)
+            containertools.set_container_multiplier(
+                right, container_multiplier)
+        # save left and right halves together for iteration
+        halves = [left, right]
+        nonempty_halves = [half for half in halves if len(half)]
+        # give attached spanners to children
+        spannertools.move_spanners_from_component_to_children_of_component(
+            self)
+        # incorporate left and right parents in score, if possible
+        selection = self.select(sequential=True)
+        parent, start, stop = selection._get_parent_and_start_stop_indices()
+        if parent is not None:
+            parent._music.__setitem__(slice(start, stop + 1), nonempty_halves)
+            for part in nonempty_halves:
+                part._set_parent(parent)
+        else:
+            left._set_parent(None)
+            right._set_parent(None)
+        # fracture spanners, if requested
+        if fracture_spanners:
+            if len(halves) == 2:
+                spannertools.fracture_spanners_attached_to_component(
+                    left, direction=Right)
+        # return new left and right halves
+        return left, right
 
     ### PUBLIC METHODS ###
 
