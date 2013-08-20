@@ -420,9 +420,7 @@ def split(
                 offset_index += len(additional_durations)
             else:
                 #print 'splitting container ...'
-                left_list, right_list = \
-                    componenttools.split_component_by_duration(
-                    current_component, 
+                left_list, right_list = current_component._split(
                     local_split_duration, 
                     fracture_spanners=fracture_spanners,
                     tie_split_notes=tie_split_notes, 
