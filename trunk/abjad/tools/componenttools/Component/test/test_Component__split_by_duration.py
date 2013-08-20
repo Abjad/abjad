@@ -28,7 +28,7 @@ def test_Component__split_01():
         '''
         )
 
-    halves = staff.select_leaves()[0]._split(
+    halves = staff.select_leaves()[0]._split_by_duration(
         Duration(1, 32), 
         fracture_spanners=False, 
         tie_split_notes=False,
@@ -81,7 +81,7 @@ def test_Component__split_02():
         '''
         )
 
-    halves = staff[0]._split(
+    halves = staff[0]._split_by_duration(
         Duration(1, 32), 
         fracture_spanners=False, 
         tie_split_notes=False,
@@ -140,7 +140,7 @@ def test_Component__split_03():
         '''
         )
 
-    halves = staff._split(
+    halves = staff._split_by_duration(
         Duration(1, 32), 
         fracture_spanners=False, 
         tie_split_notes=False,
@@ -209,7 +209,7 @@ def test_Component__split_04():
         '''
         )
 
-    halves = staff.select_leaves()[0]._split(
+    halves = staff.select_leaves()[0]._split_by_duration(
         Duration(1, 32), 
         fracture_spanners=False, 
         tie_split_notes=True,
@@ -265,7 +265,7 @@ def test_Component__split_05():
         '''
         )
 
-    halves = staff[0]._split(
+    halves = staff[0]._split_by_duration(
         Duration(1, 32), 
         fracture_spanners=False, 
         tie_split_notes=True,
@@ -326,7 +326,7 @@ def test_Component__split_06():
         '''
         )
 
-    halves = staff[0]._split(
+    halves = staff[0]._split_by_duration(
         Duration(1, 5), 
         fracture_spanners=False,
         )
@@ -394,7 +394,7 @@ def test_Component__split_07():
         '''
         )
 
-    halves = staff[0]._split(
+    halves = staff[0]._split_by_duration(
         Duration(1, 5), 
         fracture_spanners=False, 
         tie_split_notes=True,
@@ -458,7 +458,7 @@ def test_Component__split_08():
         '''
         )
 
-    halves = staff.select_leaves()[0]._split(
+    halves = staff.select_leaves()[0]._split_by_duration(
         Duration(1, 32), 
         fracture_spanners=True, 
         tie_split_notes=False,
@@ -513,7 +513,7 @@ def test_Component__split_09():
         '''
         )
 
-    halves = staff[0]._split(
+    halves = staff[0]._split_by_duration(
         Duration(1, 32), 
         fracture_spanners=True, 
         tie_split_notes=False,
@@ -572,7 +572,7 @@ def test_Component__split_10():
         '''
         )
 
-    halves = staff._split(
+    halves = staff._split_by_duration(
         Duration(1, 32), 
         fracture_spanners=True, 
         tie_split_notes=False,
@@ -639,7 +639,7 @@ def test_Component__split_11():
         '''
         )
 
-    halves = staff.select_leaves()[1]._split(
+    halves = staff.select_leaves()[1]._split_by_duration(
         Duration(1, 32), 
         fracture_spanners=True, 
         tie_split_notes=False,
@@ -696,7 +696,7 @@ def test_Component__split_12():
         '''
         )
 
-    halves = staff[0]._split(
+    halves = staff[0]._split_by_duration(
         Duration(7, 32), 
         fracture_spanners=True, 
         tie_split_notes=False,
@@ -755,7 +755,7 @@ def test_Component__split_13():
         '''
         )
 
-    halves = staff[0]._split(
+    halves = staff[0]._split_by_duration(
         Duration(1, 8), 
         fracture_spanners=True,
         )
@@ -792,7 +792,7 @@ def test_Component__split_14():
 
     assert note.lilypond_format == "c'8 [ ]"
 
-    halves = note._split(
+    halves = note._split_by_duration(
         Duration(1, 32), 
         fracture_spanners=True,
         )
@@ -833,7 +833,7 @@ def test_Component__split_15():
         '''
         )
 
-    halves = staff.select_leaves()[0]._split(
+    halves = staff.select_leaves()[0]._split_by_duration(
         Duration(1, 32), 
         fracture_spanners=True, 
         tie_split_notes=True,
@@ -889,7 +889,7 @@ def test_Component__split_16():
         '''
         )
 
-    halves = staff[0]._split(
+    halves = staff[0]._split_by_duration(
         Duration(1, 32), 
         fracture_spanners=True, 
         tie_split_notes=True,
@@ -950,7 +950,7 @@ def test_Component__split_17():
         '''
         )
 
-    halves = staff[0]._split(
+    halves = staff[0]._split_by_duration(
         Duration(1, 5), 
         fracture_spanners=True, 
         tie_split_notes=False,
@@ -1016,7 +1016,7 @@ def test_Component__split_18():
         '''
         )
 
-    halves = staff[0]._split(
+    halves = staff[0]._split_by_duration(
         Duration(1, 5), 
         fracture_spanners=True, 
         tie_split_notes=True,
@@ -1086,7 +1086,7 @@ def test_Component__split_19():
         '''
         )
 
-    halves = staff[0]._split(
+    halves = staff[0]._split_by_duration(
         Duration(7, 20), 
         fracture_spanners=True,
         )
@@ -1136,7 +1136,7 @@ def test_Component__split_20():
 
     assert note.lilypond_format == "c'8 * 1/2"
 
-    halves = note._split(
+    halves = note._split_by_duration(
         Duration(1, 32), 
         fracture_spanners=True, 
         tie_split_notes=False,
@@ -1161,7 +1161,7 @@ def test_Component__split_21():
 
     assert note.lilypond_format == "c'8 * 1/2"
 
-    halves = note._split(
+    halves = note._split_by_duration(
         Duration(1, 48), 
         fracture_spanners=True, 
         tie_split_notes=False,
@@ -1206,7 +1206,7 @@ def test_Component__split_22():
         '''
         )
 
-    halves = staff[0]._split(
+    halves = staff[0]._split_by_duration(
         Duration(1, 16), 
         fracture_spanners=True,
         )
@@ -1267,7 +1267,7 @@ def test_Component__split_23():
         '''
         )
 
-    halves = staff[0]._split(
+    halves = staff[0]._split_by_duration(
         Duration(3, 32), 
         fracture_spanners=True, 
         tie_split_notes=False,
@@ -1332,7 +1332,7 @@ def test_Component__split_24():
         '''
         )
 
-    halves = staff[0]._split(
+    halves = staff[0]._split_by_duration(
         Duration(2, 24), 
         fracture_spanners=True, 
         tie_split_notes=False,
@@ -1388,7 +1388,7 @@ def test_Component__split_25():
         '''
         )
 
-    halves = staff[0]._split(
+    halves = staff[0]._split_by_duration(
         Duration(16, 80), 
         fracture_spanners=True,
         )
@@ -1449,7 +1449,7 @@ def test_Component__split_26():
         '''
         )
 
-    halves = staff[0]._split(
+    halves = staff[0]._split_by_duration(
         Duration(14, 80), 
         fracture_spanners=True,
         )
@@ -1487,7 +1487,7 @@ def test_Component__split_27():
     r'''Make sure tie (re)application happens only where sensible.
     '''
 
-    halves = Container("c'4")._split(
+    halves = Container("c'4")._split_by_duration(
         Duration(3, 16), 
         fracture_spanners=True,
         )

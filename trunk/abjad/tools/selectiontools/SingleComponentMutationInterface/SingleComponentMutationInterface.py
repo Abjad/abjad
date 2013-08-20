@@ -439,7 +439,7 @@ class SingleComponentMutationInterface(Selection):
         '''
         from abjad.tools import leaftools
         assert isinstance(self[0], leaftools.Leaf)
-        return self[0]._split_by_durations(
+        return self[0]._split(
             offsets,
             cyclic=cyclic,
             fracture_spanners=fracture_spanners,

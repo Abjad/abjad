@@ -409,7 +409,7 @@ def split(
                 additional_durations = split_durations[0]
                 leaf_split_durations.extend(additional_durations)
                 durations = split_durations[-1]
-                leaf_shards = current_component._split_by_durations(
+                leaf_shards = current_component._split(
                     leaf_split_durations,
                     cyclic=False, 
                     fracture_spanners=fracture_spanners,
@@ -420,7 +420,7 @@ def split(
                 offset_index += len(additional_durations)
             else:
                 #print 'splitting container ...'
-                left_list, right_list = current_component._split(
+                left_list, right_list = current_component._split_by_duration(
                     local_split_duration, 
                     fracture_spanners=fracture_spanners,
                     tie_split_notes=tie_split_notes, 

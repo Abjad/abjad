@@ -625,7 +625,7 @@ class Component(AbjadObject):
                     parent.__setitem__(slice(start, start), components)
             return components + [self]
 
-    def _split(
+    def _split_by_duration(
         self,
         offset,
         fracture_spanners=False,

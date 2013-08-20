@@ -326,73 +326,7 @@ class Leaf(Component):
         preprolated_duration = duration / prolation
         leaftools.set_leaf_duration(self, preprolated_duration)
 
-    # TODO: This should be replaced in favor of self._split_by_durations().
-    #       The precondition is that self._split_by_durations() must be
-    #       extended to handle graces.
-    #       Also important to migrate over the (large-ish) set of tests for 
-    #       this method.
-    def _split_by_duration(
-        self, 
-        offset, 
-        fracture_spanners=False,
-        tie_split_notes=True, 
-        ):
-        from abjad.tools import contexttools
-        from abjad.tools import leaftools
-        from abjad.tools import marktools
-        from abjad.tools import pitchtools
-        from abjad.tools import selectiontools
-        from abjad.tools import spannertools
-        # check input
-        offset = durationtools.Offset(offset)
-        # calculate durations
-        leaf_multiplied_duration = self._multiplied_duration
-        prolation = self._select_parentage(include_self=False).prolation
-        preprolated_duration = offset / prolation
-        # handle boundary cases
-        if preprolated_duration <= 0:
-            return ([], [self])
-        if leaf_multiplied_duration <= preprolated_duration:
-            return ([self], [])
-        # create new leaf
-        new_leaf = copy.copy(self)
-        self._splice([new_leaf], grow_spanners=True)
-        # adjust leaf
-        self._detach_grace_containers(kind='after')
-        # adjust new leaf
-        new_leaf._detach_grace_containers(kind='grace')
-        new_leaf.select().detach_marks()
-        new_leaf.select().detach_marks(contexttools.ContextMark)
-        left_leaf_list = \
-            leaftools.set_leaf_duration(self, preprolated_duration)
-        right_preprolated_duration = \
-            leaf_multiplied_duration - preprolated_duration
-        right_leaf_list = leaftools.set_leaf_duration(
-            new_leaf, right_preprolated_duration)
-        leaf_left_of_split = left_leaf_list[-1]
-        leaf_right_of_split = right_leaf_list[0]
-        leaves_around_split = (leaf_left_of_split, leaf_right_of_split)
-        if fracture_spanners:
-            spannertools.fracture_spanners_attached_to_component(
-                leaf_left_of_split,
-                direction=Right,
-                )
-        # tie split notes, rests and chords as specified
-        if pitchtools.is_pitch_carrier(self) and tie_split_notes:
-            selection = selectiontools.ContiguousLeafSelection(
-                leaves_around_split)
-            selection._attach_tie_spanner_to_leaf_pair()
-        return left_leaf_list, right_leaf_list
-        # TODO: make this substitution work
-        #return self._split_leaf_by_durations(
-        #    leaf, 
-        #    [offset], 
-        #    cyclic=False,
-        #    fracture_spanners=fracture_spanners, 
-        #    tie_split_notes=tie_split_notes,
-        #    )
-
-    def _split_by_durations(
+    def _split(
         self,
         offsets,
         cyclic=False,
@@ -473,6 +407,70 @@ class Leaf(Component):
                 selection._attach_tie_spanner_to_leaf_pair()
         # return result
         return result
+
+    # TODO: This should be replaced in favor of self._split().
+    #       The precondition is that self._split() must be
+    #       extended to handle graces.
+    def _split_by_duration(
+        self, 
+        offset, 
+        fracture_spanners=False,
+        tie_split_notes=True, 
+        ):
+        from abjad.tools import contexttools
+        from abjad.tools import leaftools
+        from abjad.tools import marktools
+        from abjad.tools import pitchtools
+        from abjad.tools import selectiontools
+        from abjad.tools import spannertools
+        # check input
+        offset = durationtools.Offset(offset)
+        # calculate durations
+        leaf_multiplied_duration = self._multiplied_duration
+        prolation = self._select_parentage(include_self=False).prolation
+        preprolated_duration = offset / prolation
+        # handle boundary cases
+        if preprolated_duration <= 0:
+            return ([], [self])
+        if leaf_multiplied_duration <= preprolated_duration:
+            return ([self], [])
+        # create new leaf
+        new_leaf = copy.copy(self)
+        self._splice([new_leaf], grow_spanners=True)
+        # adjust leaf
+        self._detach_grace_containers(kind='after')
+        # adjust new leaf
+        new_leaf._detach_grace_containers(kind='grace')
+        new_leaf.select().detach_marks()
+        new_leaf.select().detach_marks(contexttools.ContextMark)
+        left_leaf_list = \
+            leaftools.set_leaf_duration(self, preprolated_duration)
+        right_preprolated_duration = \
+            leaf_multiplied_duration - preprolated_duration
+        right_leaf_list = leaftools.set_leaf_duration(
+            new_leaf, right_preprolated_duration)
+        leaf_left_of_split = left_leaf_list[-1]
+        leaf_right_of_split = right_leaf_list[0]
+        leaves_around_split = (leaf_left_of_split, leaf_right_of_split)
+        if fracture_spanners:
+            spannertools.fracture_spanners_attached_to_component(
+                leaf_left_of_split,
+                direction=Right,
+                )
+        # tie split notes, rests and chords as specified
+        if pitchtools.is_pitch_carrier(self) and tie_split_notes:
+            selection = selectiontools.ContiguousLeafSelection(
+                leaves_around_split)
+            selection._attach_tie_spanner_to_leaf_pair()
+        return left_leaf_list, right_leaf_list
+        # TODO: make this substitution work
+        #return self._split(
+        #    leaf, 
+        #    [offset], 
+        #    cyclic=False,
+        #    fracture_spanners=fracture_spanners, 
+        #    tie_split_notes=tie_split_notes,
+        #    )
 
     def _to_tuplet_with_ratio(self, proportions, is_diminution=True):
         from abjad.tools import componenttools
