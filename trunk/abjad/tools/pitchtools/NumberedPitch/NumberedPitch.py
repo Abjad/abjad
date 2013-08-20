@@ -1,7 +1,9 @@
 # -*- encoding: utf-8 -*-
+import functools
 from abjad.tools.pitchtools.Pitch import Pitch
 
 
+@functools.total_ordering
 class NumberedPitch(Pitch):
     '''Abjad model of a numbered chromatic pitch:
 
@@ -35,10 +37,7 @@ class NumberedPitch(Pitch):
             raise TypeError(
                 'can not initialize numbered chromatic pitch from "%s".' % 
                 arg)
-        object.__setattr__(
-            self, '_chromatic_pitch_number', chromatic_pitch_number)
-        object.__setattr__(
-            self, '_comparison_attribute', chromatic_pitch_number)
+        self._chromatic_pitch_number = chromatic_pitch_number
 
     ### SPECIAL METHODS ###
 
@@ -49,6 +48,11 @@ class NumberedPitch(Pitch):
         arg = type(self)(arg)
         semitones = abs(self) + abs(arg)
         return type(self)(semitones)
+
+    def __eq__(self, expr):
+        if isinstance(expr, type(self)):
+            return self._chromatic_pitch_number == expr._chromatic_pitch_number
+        return self._chromatic_pitch_number == expr
 
     def __float__(self):
         return float(self._chromatic_pitch_number)
@@ -61,6 +65,15 @@ class NumberedPitch(Pitch):
 
     def __int__(self):
         return self._chromatic_pitch_number
+
+    def __lt__(self, expr):
+        if isinstance(expr, type(self)):
+            return self._chromatic_pitch_number < expr._chromatic_pitch_number
+        try:
+            expr = type(self)(expr)
+        except (ValueError, TypeError):
+            return False
+        return self._chromatic_pitch_number < expr._chromatic_pitch_number
 
     def __neg__(self):
         return type(self)(-abs(self))

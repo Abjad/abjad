@@ -37,8 +37,6 @@ class NoteHead(AbjadObject):
         self.written_pitch = written_pitch
         self.is_cautionary = is_cautionary
         self.is_forced = is_forced
-        # must assign comparison attribute after written pitch initialization
-        #self._comparison_attribute = self.written_pitch
         for tweak_pair in tweak_pairs:
             key, value = tweak_pair
             setattr(self.tweak, key, copy.copy(value))

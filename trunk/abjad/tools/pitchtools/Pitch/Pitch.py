@@ -1,11 +1,9 @@
 # -*- encoding: utf-8 -*-
 import abc
-
-from abjad.tools.abctools.SortableAttributeEqualityAbjadObject \
-	import SortableAttributeEqualityAbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class Pitch(SortableAttributeEqualityAbjadObject):
+class Pitch(AbjadObject):
     '''Pitch base class.
     '''
 
