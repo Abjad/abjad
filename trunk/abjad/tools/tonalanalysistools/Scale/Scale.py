@@ -10,11 +10,11 @@ from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools import stafftools
-from abjad.tools.pitchtools.NamedPitchClassSegment \
-    import NamedPitchClassSegment
+from abjad.tools.pitchtools.PitchClassSegment \
+    import PitchClassSegment
 
 
-class Scale(NamedPitchClassSegment):
+class Scale(PitchClassSegment):
     '''Abjad model of diatonic scale.
     '''
 
@@ -45,7 +45,11 @@ class Scale(NamedPitchClassSegment):
         for mdi in key_signature.mode.melodic_diatonic_interval_segment[:-1]:
             named_chromatic_pitch_class = npcs[-1] + mdi
             npcs.append(named_chromatic_pitch_class)
-        NamedPitchClassSegment.__init__(self, tokens=npcs)
+        PitchClassSegment.__init__(
+            self, 
+            tokens=npcs,
+            item_class=pitchtools.NamedPitchClass,
+            )
         self._key_signature = key_signature
 
     ### SPECIAL METHODS ###
