@@ -56,9 +56,9 @@ class ChordClass(NamedPitchClassSet):
             npcs.append(npc)
         bass = npcs[0]
         self = pitchtools.NamedPitchClassSet.__new__(cls, npcs)
-        object.__setattr__(self, '_root', root)
-        object.__setattr__(self, '_quality_indicator', quality_indicator)
-        object.__setattr__(self, '_bass', bass)
+        self._root = root
+        self._quality_indicator = quality_indicator
+        self._bass = bass
         return self
 
     ### SPECIAL METHODS ###

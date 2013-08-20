@@ -30,11 +30,8 @@ class NamedInversionEquivalentIntervalClassVector(Vector):
     ### INITIALIZER ###
 
     def __init__(self, expr):
-        object.__setattr__(
-            self, 
-            'all_dics', 
-            inventory_inversion_equivalent_diatonic_interval_classes(),
-            )
+        self.all_dics = \
+            inventory_inversion_equivalent_diatonic_interval_classes()
         for dic in self.all_dics:
             dict.__setitem__(self, dic, 0)
         for hdi in list_harmonic_diatonic_intervals_in_expr(expr):

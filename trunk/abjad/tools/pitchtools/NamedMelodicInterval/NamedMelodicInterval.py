@@ -43,8 +43,8 @@ class NamedMelodicInterval(NamedInterval, MelodicInterval):
             number = int(direction_string + number_string)
         elif len(args) == 2:
             quality_string, number = args
-        object.__setattr__(self, '_quality_string', quality_string)
-        object.__setattr__(self, '_number', number)
+        self._quality_string = quality_string
+        self._number = number
 
     ### SPECIAL METHODS ###
 

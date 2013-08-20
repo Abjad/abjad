@@ -29,14 +29,14 @@ class NamedInterval(Interval):
         else:
             raise ValueError("quality string '%s' must be in %s." % (
                 quality_string, str(self._acceptable_quality_strings)))
-        object.__setattr__(self, '_quality_string', quality_string)
+        self._quality_string = quality_string
         if isinstance(number, int):
             if int == 0:
                 raise ValueError
             number = number
         else:
             raise ValueError('interval must be integer.')
-        object.__setattr__(self, '_number', number)
+        self._number = number
 
     ### SPECIAL METHODS ###
 

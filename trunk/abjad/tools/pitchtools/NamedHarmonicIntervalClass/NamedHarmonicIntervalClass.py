@@ -43,7 +43,7 @@ class NamedHarmonicIntervalClass(NamedIntervalClass):
         if quality_string not in \
             NamedIntervalClass._acceptable_quality_strings:
             raise ValueError('not acceptable quality string.')
-        object.__setattr__(self, '_quality_string', quality_string)
+        self._quality_string = quality_string
         if not isinstance(number, int):
             raise TypeError('must be integer.')
         if number == 0:
@@ -55,7 +55,7 @@ class NamedHarmonicIntervalClass(NamedIntervalClass):
             number = abs_number % 7
             if number == 0:
                 number = 7
-        object.__setattr__(self, '_number', number)
+        self._number = number
 
     ### SPECIAL METHODS ###
 

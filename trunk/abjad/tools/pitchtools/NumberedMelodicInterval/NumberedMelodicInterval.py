@@ -26,7 +26,7 @@ class NumberedMelodicInterval(NumberedInterval, MelodicInterval):
             number = arg.semitones
         else:
             raise TypeError('%s must be number or interval.' % arg)
-        object.__setattr__(self, '_number', number)
+        self._number = number
 
     ### SPECIAL METHODS ###
 

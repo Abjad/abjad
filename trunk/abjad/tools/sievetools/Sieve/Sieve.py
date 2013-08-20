@@ -24,12 +24,12 @@ class Sieve(BaseResidueClass):
     def __init__(self, rcs, logical_operator='or'):
         # init from other rc expression
         if isinstance(rcs, Sieve):
-            object.__setattr__(self, '_rcs', rcs.rcs[:])
-            object.__setattr__(self, '_logical_operator', rcs.logical_operator)
+            self._rcs = rcs.rcs[:]
+            self._logical_operator = rcs.logical_operator
         # init from rcs and logical operator
         else:
-            object.__setattr__(self, '_rcs', rcs[:])
-            object.__setattr__(self, '_logical_operator', logical_operator)
+            self._rcs = rcs[:]
+            self._logical_operator = logical_operator
         # sort rcs
         self._sort_rcs()
 

@@ -41,7 +41,7 @@ class NumberedPitchClass(PitchClass):
             pitch = \
                 pitchtools.get_named_chromatic_pitch_from_pitch_carrier(arg)
             number = abs(pitch.numbered_chromatic_pitch) % 12
-        object.__setattr__(self, '_chromatic_pitch_class_number', number)
+        self._chromatic_pitch_class_number = number
 
     ### SPECIAL METHODS ###
 

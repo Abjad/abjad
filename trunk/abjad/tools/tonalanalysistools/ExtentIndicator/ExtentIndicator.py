@@ -29,7 +29,7 @@ class ExtentIndicator(AbjadObject):
             number = arg
         elif isinstance(arg, type(self)):
             number = arg.number
-        object.__setattr__(self, '_number', number)
+        self._number = number
 
     ### SPECIAL METHODS ###
 

@@ -26,7 +26,7 @@ class NumberedInterval(Interval):
             _number = arg.semitones
         else:
             raise TypeError('%s must be number or interval.' % arg)
-        object.__setattr__(self, '_number', _number)
+        self._number = _number
 
     ### SPECIAL METHODS ###
 

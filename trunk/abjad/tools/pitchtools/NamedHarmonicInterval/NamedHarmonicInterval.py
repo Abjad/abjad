@@ -36,8 +36,8 @@ class NamedHarmonicInterval(NamedInterval):
         elif len(args) == 2:
             _quality_string = args[0]
             _number = abs(args[1])
-        object.__setattr__(self, '_quality_string', _quality_string)
-        object.__setattr__(self, '_number', _number)
+        self._quality_string = _quality_string
+        self._number = _number
 
     ### SPECIAL METHODS ###
 

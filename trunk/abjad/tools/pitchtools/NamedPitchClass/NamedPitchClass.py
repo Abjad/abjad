@@ -54,8 +54,7 @@ class NamedPitchClass(PitchClass):
                 pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_name(
                     chromatic_pitch_name)
         chromatic_pitch_class_name = chromatic_pitch_class_name.lower()
-        object.__setattr__(
-            self, '_chromatic_pitch_class_name', chromatic_pitch_class_name)
+        self._chromatic_pitch_class_name = chromatic_pitch_class_name
 
     ### SPECIAL METHODS ###
 
@@ -154,7 +153,7 @@ class NamedPitchClass(PitchClass):
     def _init_by_name(self, name):
         if not self._is_acceptable_name(name.lower()):
             raise ValueError("unknown pitch-class name '%s'." % name)
-        object.__setattr__(self, '_chromatic_pitch_class_name', name.lower())
+        self._chromatic_pitch_class_name = name.lower()
 
     def _is_acceptable_name(self, name):
         return name in (

@@ -38,11 +38,11 @@ class RomanNumeral(AbjadObject):
                 self._init_with_suspension(*args)
         else:
             raise ValueError('can not initialize tonal function.')
-        object.__setattr__(self, '_scale_degree', scale_degree)
-        object.__setattr__(self, '_quality', quality)
-        object.__setattr__(self, '_extent', extent)
-        object.__setattr__(self, '_inversion', inversion)
-        object.__setattr__(self, '_suspension', suspension)
+        self._scale_degree = scale_degree
+        self._quality = quality
+        self._extent = extent
+        self._inversion = inversion
+        self._suspension = suspension
 
     ### SPECIAL METHODS ###
 

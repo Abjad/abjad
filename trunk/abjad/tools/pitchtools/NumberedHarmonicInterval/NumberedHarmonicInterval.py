@@ -18,7 +18,7 @@ class NumberedHarmonicInterval(NumberedInterval):
 
     def __init__(self, arg):
         NumberedInterval.__init__(self, arg)
-        object.__setattr__(self, '_number', abs(self._number))
+        self._number = abs(self._number)
 
     ### SPECIAL METHODS ###
 

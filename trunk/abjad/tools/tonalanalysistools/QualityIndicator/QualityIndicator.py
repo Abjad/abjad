@@ -24,7 +24,7 @@ class QualityIndicator(AbjadObject):
     def __init__(self, quality_string):
         if quality_string not in self._acceptable_quality_strings:
             raise ValueError('can not initialize quality indicator.')
-        object.__setattr__(self, '_quality_string', quality_string)
+        self._quality_string = quality_string
 
     ### SPECIAL METHODS ###
 

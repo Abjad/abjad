@@ -32,9 +32,8 @@ class Mode(AbjadObject):
             raise TypeError('{} must be mode instance or mode name.'.format(
                 arg))
         mdi_segment = self._init_with_mode_name(mode_name)
-        object.__setattr__(
-            self, '_melodic_diatonic_interval_segment', mdi_segment)
-        object.__setattr__(self, '_mode_name', mode_name)
+        self._melodic_diatonic_interval_segment = mdi_segment
+        self._mode_name = mode_name
 
     ### SPECIAL METHODS ###
 

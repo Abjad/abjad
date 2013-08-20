@@ -76,9 +76,9 @@ class TimeIntervalTreeDictionary(dict, TimeIntervalAggregateMixin):
         if len(args) == 1 and isinstance(args[0], type(self)):
             result = args[0]
             dict.update(self, result)
-            object.__setattr__(self, '_composite_tree', result.composite_tree)
-            object.__setattr__(self, '_start', result.start_offset)
-            object.__setattr__(self, '_stop', result.stop_offset)
+            self._composite_tree = result.composite_tree
+            self._start = result.start_offset
+            self._stop = result.stop_offset
 
         # fuse dictionaries keywise
         elif 1 < len(args) and all(isinstance(x, type(self)) for x in args):
@@ -91,12 +91,10 @@ class TimeIntervalTreeDictionary(dict, TimeIntervalAggregateMixin):
                     else:
                         result[key] = tree
             dict.update(self, result)
-            object.__setattr__(
-                self, 
-                '_composite_tree',
-                timeintervaltools.TimeIntervalTree(self.values()))
-            object.__setattr__(self, '_start', self.composite_tree.start_offset)
-            object.__setattr__(self, '_stop', self.composite_tree.stop_offset)
+            self._composite_tree = \
+                timeintervaltools.TimeIntervalTree(self.values())
+            self._start = self.composite_tree.start_offset
+            self._stop = self.composite_tree.stop_offset
 
         # unpack a regular dict as pairs, or simply accept pairs
         else:
@@ -113,15 +111,13 @@ class TimeIntervalTreeDictionary(dict, TimeIntervalAggregateMixin):
                     dict.__setitem__(self, key, tree)
 
             else:
-                object.__setattr__(self, '_start', None)
-                object.__setattr__(self, '_stop', None)
+                self._start = None
+                self._stop = None
 
-            object.__setattr__(
-                self,
-                '_composite_tree',
-                timeintervaltools.TimeIntervalTree(self.values()))
-            object.__setattr__(self, '_start', self.composite_tree.start_offset)
-            object.__setattr__(self, '_stop', self.composite_tree.stop_offset)
+            self._composite_tree = \
+                timeintervaltools.TimeIntervalTree(self.values())
+            self._start = self.composite_tree.start_offset
+            self._stop = self.composite_tree.stop_offset
 
     ### SPECIAL METHODS ###
 

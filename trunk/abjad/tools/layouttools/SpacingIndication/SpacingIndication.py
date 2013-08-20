@@ -52,26 +52,15 @@ class SpacingIndication(AbjadObject):
     def __init__(self, *args):
         from abjad.tools import contexttools
         if len(args) == 1 and isinstance(args[0], type(self)):
-            object.__setattr__(
-                self, '_tempo_indication', args[0].tempo_indication)
-            object.__setattr__(
-                self, 
-                '_proportional_notation_duration', 
-                args[0].proportional_notation_duration,
-                )
+            self._tempo_indication = args[0].tempo_indication
+            self._proportional_notation_duration = \
+                args[0].proportional_notation_duration
         elif len(args) == 2:
             tempo_indication = contexttools.TempoMark(args[0])
             proportional_notation_duration = durationtools.Duration(args[1])
-            object.__setattr__(
-                self, 
-                '_tempo_indication', 
-                tempo_indication,
-                )
-            object.__setattr__(
-                self, 
-                '_proportional_notation_duration', 
-                proportional_notation_duration,
-                )
+            self._tempo_indication = tempo_indication
+            self._proportional_notation_duration = \
+                proportional_notation_duration
         else:
             message = 'can not initialize spacing indication from {!r}'
             raise ValueError(message.format(args))

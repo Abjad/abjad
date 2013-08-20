@@ -71,8 +71,8 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         else:
             quality_string = self._invert_quality_string(quality_string)
             number = 9 - number
-        object.__setattr__(self, '_quality_string', quality_string)
-        object.__setattr__(self, '_number', number)
+        self._quality_string = quality_string
+        self._number = number
 
     def _init_by_self_reference(self, reference):
         quality_string = reference.quality_string

@@ -31,7 +31,7 @@ class NumberedInversionEquivalentIntervalClass(IntervalClass):
             _number = interval_class_token
         else:
             raise TypeError('must be interval-class instance or number.')
-        object.__setattr__(self, '_number', _number)
+        self._number = _number
 
     ### SPECIAL METHODS ###
 

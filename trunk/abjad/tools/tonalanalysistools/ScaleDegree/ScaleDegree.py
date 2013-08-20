@@ -37,8 +37,8 @@ class ScaleDegree(AbjadObject):
             arg_string = ', '.join([str(x) for x in args])
             message = 'can not initialize scale degree: {}.'
             raise ValueError(message.format(arg_string))
-        object.__setattr__(self, '_accidental', accidental)
-        object.__setattr__(self, '_number', number)
+        self._accidental = accidental
+        self._number = number
 
     ### SPECIAL METHODS ###
 

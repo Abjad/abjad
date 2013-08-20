@@ -25,7 +25,7 @@ class InversionIndicator(AbjadObject):
             number = self._inversion_name_to_inversion_number[arg]
         else:
             raise ValueError('can not initialize inversion indicator.')
-        object.__setattr__(self, '_number', number)
+        self._number = number
 
     ### SPECIAL METHODS ###
 

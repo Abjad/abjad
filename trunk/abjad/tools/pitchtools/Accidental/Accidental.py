@@ -47,28 +47,21 @@ class Accidental(AbjadObject):
         else:
             message = 'can not initialize accidental from value: %s'
             raise ValueError(message % arg)
-        object.__setattr__(
-            self, 
-            '_alphabetic_accidental_abbreviation', 
-            _alphabetic_accidental_abbreviation,
-            )
+        self._alphabetic_accidental_abbreviation = \
+            _alphabetic_accidental_abbreviation
         # initialize derived attributes
         _semitones = self._alphabetic_accidental_abbreviation_to_semitones[
             self.alphabetic_accidental_abbreviation]
-        object.__setattr__(self, '_semitones', _semitones)
+        self._semitones = _semitones
         _name = self._alphabetic_accidental_abbreviation_to_name[
             self.alphabetic_accidental_abbreviation]
-        object.__setattr__(self, '_name', _name)
+        self._name = _name
         _is_adjusted = not self.semitones == 0
-        object.__setattr__(self, '_is_adjusted', _is_adjusted)
+        self._is_adjusted = _is_adjusted
         _symbolic_accidental_string = \
             pitchtools.alphabetic_accidental_abbreviation_to_symbolic_accidental_string(
             self.alphabetic_accidental_abbreviation)
-        object.__setattr__(
-            self, 
-            '_symbolic_accidental_string', 
-            _symbolic_accidental_string,
-            )
+        self._symbolic_accidental_string = _symbolic_accidental_string
 
     ### SPECIAL METHODS ###
 

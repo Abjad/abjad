@@ -34,9 +34,9 @@ class TimeInterval(TimeIntervalMixin, collections.MutableMapping):
             data = data._data
         assert isinstance(data, dict)
 
-        object.__setattr__(self, '_start', start_offset)
-        object.__setattr__(self, '_stop', stop_offset)
-        object.__setattr__(self, '_data', copy.copy(data))
+        self._start = start_offset
+        self._stop = stop_offset
+        self._data = copy.copy(data)
 
     ### SPECIAL METHODS ###
 

@@ -12,7 +12,10 @@ class SuspensionIndicator(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_start', '_stop')
+    __slots__ = (
+        '_start', 
+        '_stop',
+        )
 
     ### INITIALIZER ###
 
@@ -31,8 +34,8 @@ class SuspensionIndicator(AbjadObject):
             start, stop = self._init_by_start_and_stop(*args)
         else:
             raise ValueError('can not initialize suspension indicator.')
-        object.__setattr__(self, '_start', start)
-        object.__setattr__(self, '_stop', stop)
+        self._start = start
+        self._stop = stop
 
     ### SPECIAL METHODS ###
 

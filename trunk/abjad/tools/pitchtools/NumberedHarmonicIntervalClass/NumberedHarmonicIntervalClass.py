@@ -28,7 +28,7 @@ class NumberedHarmonicIntervalClass(NumberedIntervalClass):
             number = 12
         else:
             number = abs(number) % 12
-        object.__setattr__(self, '_number', number)
+        self._number = number
 
     ### SPECIAL METHODS ###
 

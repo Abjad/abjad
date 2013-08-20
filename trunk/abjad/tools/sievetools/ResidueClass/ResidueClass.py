@@ -114,14 +114,14 @@ class ResidueClass(BaseResidueClass):
             raise ValueError('modulo must be positive.')
         if not 0 <= residue < modulo:
             raise ValueError('abs(residue) must be < modulo')
-        object.__setattr__(self, '_modulo', modulo)
-        object.__setattr__(self, '_residue', residue)
+        self._modulo = modulo
+        self._residue = residue
 
     def _init_by_rc_instance(self, rc):
         if not isinstance(rc, ResidueClass):
             raise TypeError('must be rc instance.')
-        object.__setattr__(self, '_modulo', rc.modulo)
-        object.__setattr__(self, '_residue', rc.residue)
+        self._modulo = rc.modulo
+        self._residue = rc.residue
 
     ### PUBLIC PROPERTIES ###
 

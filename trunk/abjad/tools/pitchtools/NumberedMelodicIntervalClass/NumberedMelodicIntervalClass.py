@@ -49,7 +49,7 @@ class NumberedMelodicIntervalClass(
             number *= sign
         else:
             raise ValueError('must be number, interval or interval-class.')
-        object.__setattr__(self, '_number', number)
+        self._number = number
 
     ### SPECIAL METHODS ###
 

@@ -28,9 +28,9 @@ class NumberedPitchClassColorMap(AbjadObject):
 
     def __init__(self, pitch_iterables, colors):
         assert len(pitch_iterables) == len(colors)
-        object.__setattr__(self, '_pitch_iterables', pitch_iterables)
-        object.__setattr__(self, '_colors', colors)
-        object.__setattr__(self, '_color_dictionary', {})
+        self._pitch_iterables = pitch_iterables
+        self._colors = colors
+        self._color_dictionary = {}
         self._init_color_dictionary()
 
     ### SPECIAL METHODS ###

@@ -60,8 +60,8 @@ class NamedMelodicIntervalClass(
                 number = 7
         if not number == 1:
             number *= sign
-        object.__setattr__(self, '_number', number)
-        object.__setattr__(self, '_quality_string', quality_string)
+        self._number = number
+        self._quality_string = quality_string
 
     ### SPECIAL METHODS ###
 

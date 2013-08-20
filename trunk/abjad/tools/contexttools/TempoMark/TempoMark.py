@@ -97,9 +97,9 @@ class TempoMark(ContextMark):
                 isinstance(x, (int, long, float, durationtools.Duration)) 
                 for x in units_per_minute)
             units_per_minute = tuple(sorted(units_per_minute))
-        object.__setattr__(self, '_duration', duration)
-        object.__setattr__(self, '_textual_indication', textual_indication)
-        object.__setattr__(self, '_units_per_minute', units_per_minute)
+        self._duration = duration
+        self._textual_indication = textual_indication
+        self._units_per_minute = units_per_minute
 
     ### SPECIAL METHODS ###
 

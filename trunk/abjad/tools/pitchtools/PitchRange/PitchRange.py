@@ -53,14 +53,14 @@ class PitchRange(AbjadObject):
             else:
                 indicator = 'exclusive'
             start = (args[0].start_pitch, indicator)
-            object.__setattr__(self, '_start', start)
+            self._start = start
             assert isinstance(args[0], type(self)), repr(args[0])
             if args[0].stop_pitch_is_included_in_range:
                 indicator = 'inclusive'
             else:
                 indicator = 'exclusive'
             stop = (args[0].stop_pitch, indicator)
-            object.__setattr__(self, '_stop', stop)
+            self._stop = stop
         elif len(args) == 1 and isinstance(args[0], str):
             self._init_by_symbolic_pitch_range_string(*args)
         elif len(args) == 1 and isinstance(args[0], 
@@ -81,7 +81,7 @@ class PitchRange(AbjadObject):
                 assert containment in ('inclusive', 'exclusive')
                 pitch = pitchtools.NamedPitch(pitch)
                 start = (pitch, containment)
-            object.__setattr__(self, '_start', start)
+            self._start = start
             if stop is None:
                 stop = stop
             elif isinstance(stop, (int, long, float, str)):
@@ -94,13 +94,11 @@ class PitchRange(AbjadObject):
                     repr(containment)
                 pitch = pitchtools.NamedPitch(pitch)
                 stop = (pitch, containment)
-            object.__setattr__(self, '_stop', stop)
+            self._stop = stop
         pitch_range_name = kwargs.get('pitch_range_name')
-        object.__setattr__(
-            self, '_pitch_range_name', pitch_range_name)
+        self._pitch_range_name = pitch_range_name
         pitch_range_name_markup = kwargs.get('pitch_range_name_markup')
-        object.__setattr__(
-            self, '_pitch_range_name_markup', pitch_range_name_markup)
+        self._pitch_range_name_markup = pitch_range_name_markup
 
     ### SPECIAL METHODS ###
 
