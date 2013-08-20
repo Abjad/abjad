@@ -548,46 +548,46 @@ class Container(Component):
         from abjad.tools import contexttools
         from abjad.tools import measuretools
         from abjad.tools import tuplettools
-        # remember container multiplier, if any
-        container_multiplier = getattr(self, 'implied_prolation', None)
-        # partition music of input container
+        # partition my music
         left_music = self[:i]
         right_music = self[i:]
         # instantiate new left and right containers
         if isinstance(self, measuretools.Measure):
-            time_signature_denominator = \
-                self._get_effective_context_mark(
-                contexttools.TimeSignatureMark).denominator
+            time_signature = self._get_effective_context_mark(
+                contexttools.TimeSignatureMark)
+            denominator = time_signature.denominator
             left_duration = sum([x._get_duration() for x in left_music])
             left_pair = mathtools.NonreducedFraction(left_duration)
-            left_pair = left_pair.with_multiple_of_denominator(
-                time_signature_denominator)
+            left_pair = left_pair.with_multiple_of_denominator(denominator)
             left_time_signature = contexttools.TimeSignatureMark(left_pair)
             left = self.__class__(left_time_signature, left_music)
             right_duration = sum([x._get_duration() for x in right_music])
             right_pair = mathtools.NonreducedFraction(right_duration)
-            right_pair = right_pair.with_multiple_of_denominator(
-                time_signature_denominator)
+            right_pair = right_pair.with_multiple_of_denominator(denominator)
             right_time_signature = contexttools.TimeSignatureMark(right_pair)
             right = self.__class__(right_time_signature, right_music)
-        elif isinstance(self, tuplettools.Tuplet):
+        elif isinstance(self, tuplettools.FixedDurationTuplet):
+            multiplier = self.multiplier
             left = self.__class__(1, left_music)
             right = self.__class__(1, right_music)
-            containertools.set_container_multiplier(
-                left, container_multiplier)
-            containertools.set_container_multiplier(
-                right, container_multiplier)
+            target_duration = multiplier * left._contents_duration
+            left.target_duration = target_duration
+            target_duration = multiplier * right._contents_duration
+            right.target_duration = target_duration
+        elif isinstance(self, tuplettools.Tuplet):
+            multiplier = self.multiplier
+            left = self.__class__(multiplier, left_music)
+            right = self.__class__(multiplier, right_music)
         else:
-            assert container_multiplier is None
             left = self.__class__(left_music)
             right = self.__class__(right_music)
-        # save left and right halves together for iteration
+        # save left and right containers together for iteration
         halves = (left, right)
         nonempty_halves = [half for half in halves if len(half)]
-        # give attached spanners to children
+        # give my attached spanners to my children
         spannertools.move_spanners_from_component_to_children_of_component(
             self)
-        # incorporate left and right parents in score, if possible
+        # incorporate left and right parents in score if possible
         selection = self.select(sequential=True)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         if parent is not None:
@@ -597,13 +597,12 @@ class Container(Component):
         else:
             left._set_parent(None)
             right._set_parent(None)
-        # fracture spanners, if requested
+        # fracture spanners if requested
         if fracture_spanners:
-            if len(halves) == 2:
-                spannertools.fracture_spanners_attached_to_component(
-                    left, direction=Right)
-        # return new left and right halves
-        return left, right
+            spannertools.fracture_spanners_attached_to_component(
+                left, direction=Right)
+        # return new left and right containers
+        return halves
 
     def _split_by_duration(
         self,
