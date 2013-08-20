@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.pitchtools.NumberedPitchClassSegment \
-    import NumberedPitchClassSegment
+from abjad.tools.pitchtools.PitchClassSegment \
+    import PitchClassSegment
 
 
-class TwelveToneRow(NumberedPitchClassSegment):
+class TwelveToneRow(PitchClassSegment):
     '''Abjad model of twelve-tone row:
 
     ::
@@ -33,9 +33,10 @@ class TwelveToneRow(NumberedPitchClassSegment):
     def __init__(self, tokens=None, name=None):
         from abjad.tools import pitchtools
         assert tokens is not None
-        NumberedPitchClassSegment.__init__(
+        PitchClassSegment.__init__(
             self,
             tokens=tokens,
+            item_class=pitchtools.NumberedPitchClass,
             name=name,
             )
         self._validate_pitch_classes(self)
@@ -44,16 +45,16 @@ class TwelveToneRow(NumberedPitchClassSegment):
 
     def __getslice__(self, start, stop):
         tokens = self._collection[start:stop]
-        return NumberedPitchClassSegment(
+        return PitchClassSegment(
             tokens=tokens,
             name=self.name,
             )
 
     def __mul__(self, expr):
-        return NumberedPitchClassSegment(self) * expr
+        return PitchClassSegment(self) * expr
 
     def __rmul__(self, expr):
-        return NumberedPitchClassSegment(self) * expr
+        return PitchClassSegment(self) * expr
 
     ### PRIVATE PROPERTIES ###
 
@@ -69,3 +70,16 @@ class TwelveToneRow(NumberedPitchClassSegment):
         numbers.sort()
         if not numbers == range(12):
             raise ValueError('must contain all twelve pitch-classes.')
+
+    ### PUBLIC METHODS ###d
+
+    def new(self, tokens=None, name=None):
+        from abjad.tools import pitchtools
+        # Allow for empty iterables:
+        if tokens is None:
+            tokens = self._collection
+        name = name or self.name
+        return type(self)(
+            tokens=tokens,
+            name=name,
+            )
