@@ -25,7 +25,6 @@ class NamedPitchClass(PitchClass):
 
     ### INITIALIZER ###
 
-    # Why is this not __new__?
     def __init__(self, arg):
         from abjad.tools import pitchtools
         if hasattr(arg, '_chromatic_pitch_class_name'):
@@ -34,6 +33,13 @@ class NamedPitchClass(PitchClass):
             chromatic_pitch_class_name = \
                 pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_name(
                     arg)
+        elif isinstance(arg, pitchtools.NumberedPitchClass):
+            chromatic_pitch_number = \
+                pitchtools.chromatic_pitch_number_to_chromatic_pitch_class_number(
+                    float(arg))
+            chromatic_pitch_class_name = \
+                pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name(
+                    chromatic_pitch_number)
         else:
             try:
                 named_chromatic_pitch_carrier = \

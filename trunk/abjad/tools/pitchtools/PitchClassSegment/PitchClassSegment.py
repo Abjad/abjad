@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import abc
+from abjad.tools import durationtools
 from abjad.tools.datastructuretools.TypedTuple import TypedTuple
 
 
@@ -132,6 +133,73 @@ class PitchClassSegment(TypedTuple):
         new_npcs = [x + difference for x in self]
         new_npc_seg = self.new(tokens=new_npcs)
         return arg == new_npc_seg
+
+    def make_notes(self, n=None, written_duration=None):
+        r'''Make first `n` notes in pitch class segment.
+
+        Set `n` equal to `n` or length of segment.
+
+        Set `written_duration` equal to `written_duration` or ``1/8``:
+
+        ::
+
+            >>> pitch_class_segment = pitchtools.PitchClassSegment(
+            ...     [2, 4.5, 6, 11, 4.5, 10])
+            >>> notes = pitch_class_segment.make_notes()
+            >>> staff = Staff(notes)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                d'8
+                eqs'8
+                fs'8
+                b'8
+                eqs'8
+                bf'8
+            }
+
+        Allow nonassignable `written_duration`:
+
+        ::
+
+            >>> notes = pitch_class_segment.make_notes(4, Duration(5, 16))
+            >>> staff = Staff(notes)
+            >>> time_signature = contexttools.TimeSignatureMark((5, 4))(staff)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                \time 5/4
+                d'4 ~
+                d'16
+                eqs'4 ~
+                eqs'16
+                fs'4 ~
+                fs'16
+                b'4 ~
+                b'16
+            }
+
+        Return list of notes.
+        '''
+        from abjad.tools import iterationtools
+        from abjad.tools import notetools
+        from abjad.tools import pitchtools
+        n = n or len(self)
+        written_duration = written_duration or durationtools.Duration(1, 8)
+        result = notetools.make_notes([0] * n, [written_duration])
+        for i, tie_chain in enumerate(
+            iterationtools.iterate_tie_chains_in_expr(result)):
+            pitch_class = pitchtools.NamedPitchClass(self[i % len(self)])
+            pitch = pitchtools.NamedPitch(pitch_class, 4)
+            for note in tie_chain:
+                note.written_pitch = pitch
+        return result
 
     def multiply(self, n):
         r'''Multiply pitch-class segment by `n`:
