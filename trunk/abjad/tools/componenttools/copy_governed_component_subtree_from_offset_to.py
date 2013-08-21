@@ -163,6 +163,33 @@ def copy_governed_component_subtree_from_offset_to(
     from abjad.tools import componenttools
     from abjad.tools import containertools
     from abjad.tools import leaftools
+    from abjad.tools.selectiontools import mutate
+
+#    part_to_keep = mutate(component).copy()
+#
+#    if stop_offset:
+#        stop_offset = durationtools.Duration(stop_offset)
+#        assert 0 < stop_offset < part_to_keep._get_duration()
+#        left_half, right_half = componenttools.split(
+#            [part_to_keep],
+#            [stop_offset],
+#            fracture_spanners=True,
+#            tie_split_notes=False,
+#            )
+#        part_to_keep = left_half[0]
+#
+#    if start_offset:
+#        start_offset = durationtools.Duration(start_offset)
+#        assert 0 < start_offset < part_to_keep._get_duration()
+#        left_half, right_half = componenttools.split(
+#            [part_to_keep],
+#            [start_offset],
+#            fracture_spanners=True,
+#            tie_split_notes=False,
+#            )
+#        part_to_keep = right_half[0]
+#
+#    return part_to_keep
 
     # check input
     assert isinstance(component, componenttools.Component)
@@ -179,12 +206,9 @@ def copy_governed_component_subtree_from_offset_to(
     if isinstance(component, leaftools.Leaf):
         return _copy_leaf_from_start_offset_to_stop_offset(
             component, start_offset, stop_offset)
-    #elif isinstance(component, containertools.Container):
     else:
         return _copy_container_from_start_offset_to_stop_offset(
             component, start_offset, stop_offset)
-    #else:
-    #    raise ValueError('must be leaf or container: {!r}'.format(component))
 
 
 def _copy_leaf_from_start_offset_to_stop_offset(leaf, start, stop):
@@ -198,7 +222,10 @@ def _copy_leaf_from_start_offset_to_stop_offset(leaf, start, stop):
         return None
     new_leaf = mutate(leaf).copy()
     leaftools.set_leaf_duration(new_leaf, total)
-    return new_leaf
+    if new_leaf._parent is None:
+        return new_leaf
+    else:
+        return new_leaf._parent
 
 
 def _copy_container_from_start_offset_to_stop_offset(container, start, stop):

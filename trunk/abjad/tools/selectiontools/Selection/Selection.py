@@ -388,3 +388,15 @@ class Selection(object):
         else:
             for component in self:
                 yield component
+
+    ### PUBLIC METHODS ###
+
+    def get_duration(self, in_seconds=False):
+        r'''Gets duration of contiguous selection.
+
+        Returns duration.
+        '''
+        return sum(
+            component._get_duration(in_seconds=in_seconds) 
+            for component in self
+            )

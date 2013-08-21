@@ -244,16 +244,6 @@ class ContiguousSelection(Selection):
         # return new components
         return new_components
             
-    def get_duration(self, in_seconds=False):
-        r'''Gets duration of contiguous selection.
-
-        Returns duration.
-        '''
-        return sum(
-            component._get_duration(in_seconds=in_seconds) 
-            for component in self
-            )
-
     def get_timespan(self, in_seconds=False):
         r'''Gets timespan of contiguous selection.
 

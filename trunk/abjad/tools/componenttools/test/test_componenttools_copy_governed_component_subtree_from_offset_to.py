@@ -167,9 +167,8 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_09():
     '''
 
     note = Note("c'4")
-    new_note = componenttools.copy_governed_component_subtree_from_offset_to(
+    new_tuplet = componenttools.copy_governed_component_subtree_from_offset_to(
         note, Offset(0), Offset(1, 12))
-    new_tuplet = more(new_note).select_parentage().parent
 
     assert testtools.compare(
         new_tuplet,
@@ -188,9 +187,8 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_10():
     '''
 
     note = Note("c'4")
-    new_note = componenttools.copy_governed_component_subtree_from_offset_to(
+    new_tuplet = componenttools.copy_governed_component_subtree_from_offset_to(
         note, Offset(1, 12), Offset(2, 12))
-    new_tuplet = more(new_note).select_parentage().parent
 
     assert testtools.compare(
         new_tuplet,
@@ -209,9 +207,8 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_11():
     '''
 
     note = Note("c'4")
-    new_note = componenttools.copy_governed_component_subtree_from_offset_to(
+    new_tuplet = componenttools.copy_governed_component_subtree_from_offset_to(
         note, Offset(1, 6), Offset(1, 4))
-    new_tuplet = more(new_note).select_parentage().parent
 
     assert testtools.compare(
         new_tuplet,
@@ -254,9 +251,8 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_14():
     '''
 
     note = Note("c'4")
-    new_note = componenttools.copy_governed_component_subtree_from_offset_to(
+    new_tuplet = componenttools.copy_governed_component_subtree_from_offset_to(
         note, Offset(2, 12), Offset(1, 2))
-    new_tuplet = more(new_note).select_parentage().parent
 
     assert testtools.compare(
         new_tuplet,
@@ -287,9 +283,8 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_16():
     '''
 
     note = Note("c'4")
-    new_note = componenttools.copy_governed_component_subtree_from_offset_to(
+    new_tuplet = componenttools.copy_governed_component_subtree_from_offset_to(
         note, Offset(0), Offset(5, 24))
-    new_tuplet = more(new_note).select_parentage().parent
 
     assert testtools.compare(
         new_tuplet,
@@ -309,9 +304,8 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_17():
     '''
 
     note = Note("c'4")
-    new_note = componenttools.copy_governed_component_subtree_from_offset_to(
+    new_tuplet = componenttools.copy_governed_component_subtree_from_offset_to(
         note, Offset(0), Offset(1, 5))
-    new_tuplet = more(new_note).select_parentage().parent
 
     assert testtools.compare(
         new_tuplet,
