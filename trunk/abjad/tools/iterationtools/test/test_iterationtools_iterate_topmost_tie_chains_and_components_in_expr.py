@@ -32,8 +32,8 @@ def test_iterationtools_iterate_topmost_tie_chains_and_components_in_expr_01():
     chained_contents = list(
         iterationtools.iterate_topmost_tie_chains_and_components_in_expr(staff))
 
-    assert chained_contents[0] == inspect(staff[0]).select_tie_chain()
-    assert chained_contents[1] == inspect(staff[2]).select_tie_chain()
+    assert chained_contents[0] == inspect(staff[0]).get_tie_chain()
+    assert chained_contents[1] == inspect(staff[2]).get_tie_chain()
     assert chained_contents[2] is staff[4]
-    assert chained_contents[3] == inspect(staff[5]).select_tie_chain()
-    assert chained_contents[4] == inspect(staff[7]).select_tie_chain()
+    assert chained_contents[3] == inspect(staff[5]).get_tie_chain()
+    assert chained_contents[4] == inspect(staff[7]).get_tie_chain()

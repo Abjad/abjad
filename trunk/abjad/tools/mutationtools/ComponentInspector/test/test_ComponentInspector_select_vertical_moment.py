@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_ComponentInspector_select_vertical_moment_01():
+def test_ComponentInspector_get_vertical_moment_01():
 
     score = Score([])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
@@ -40,7 +40,7 @@ def test_ComponentInspector_select_vertical_moment_01():
     '''
 
     def piano_staff_moment(expr):
-        return inspect(expr).select_vertical_moment(governor=piano_staff)
+        return inspect(expr).get_vertical_moment(governor=piano_staff)
 
     vm = piano_staff_moment(piano_staff[1][0])
     assert vm.leaves == (piano_staff[0][0], piano_staff[1][0])
@@ -55,7 +55,7 @@ def test_ComponentInspector_select_vertical_moment_01():
     assert vm.leaves == (piano_staff[0][1], piano_staff[1][3])
 
 
-def test_ComponentInspector_select_vertical_moment_02():
+def test_ComponentInspector_get_vertical_moment_02():
 
     score = Score([])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
@@ -92,14 +92,14 @@ def test_ComponentInspector_select_vertical_moment_02():
     >>
     '''
 
-    vm = inspect(piano_staff[1][0]).select_vertical_moment()
+    vm = inspect(piano_staff[1][0]).get_vertical_moment()
     assert vm.leaves == (score[0][0][0], piano_staff[0][0], piano_staff[1][0])
 
-    vm = inspect(piano_staff[1][1]).select_vertical_moment()
+    vm = inspect(piano_staff[1][1]).get_vertical_moment()
     assert vm.leaves == (score[0][0][0], piano_staff[0][0], piano_staff[1][1])
 
-    vm = inspect(piano_staff[1][2]).select_vertical_moment()
+    vm = inspect(piano_staff[1][2]).get_vertical_moment()
     assert vm.leaves == (score[0][0][1], piano_staff[0][1], piano_staff[1][2])
 
-    vm = inspect(piano_staff[1][3]).select_vertical_moment()
+    vm = inspect(piano_staff[1][3]).get_vertical_moment()
     assert vm.leaves == (score[0][0][2], piano_staff[0][1], piano_staff[1][3])

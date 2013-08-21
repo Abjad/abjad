@@ -283,11 +283,11 @@ class Leaf(Component):
                     result += contribution
         return result
 
-    def _select_tie_chain(self):
+    def _get_tie_chain(self):
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
         spanner_classes = (spannertools.TieSpanner,)
-        for component in self._select_parentage():
+        for component in self._get_parentage():
             tie_spanners = component._get_spanners(spanner_classes)
             if len(tie_spanners) == 1:
                 tie_spanner = tie_spanners.pop()
@@ -321,7 +321,7 @@ class Leaf(Component):
     def _shorten(self, duration):
         from abjad.tools import leaftools
         duration = self._get_duration() - duration
-        prolation = self._select_parentage().prolation
+        prolation = self._get_parentage().prolation
         preprolated_duration = duration / prolation
         leaftools.set_leaf_duration(self, preprolated_duration)
 
@@ -351,14 +351,14 @@ class Leaf(Component):
         sequencetools.truncate_sequence_to_weight(
             durations, self._get_duration())
         result = []
-        leaf_prolation = self._select_parentage(include_self=False).prolation
+        leaf_prolation = self._get_parentage(include_self=False).prolation
         leaf_copy = copy.copy(self)
         for duration in durations:
             new_leaf = copy.copy(self)
             preprolated_duration = duration / leaf_prolation
             shard = leaftools.set_leaf_duration(
                 new_leaf, preprolated_duration)
-            shard = [x._select_parentage().root for x in shard]
+            shard = [x._get_parentage().root for x in shard]
             result.append(shard)
         flattened_result = sequencetools.flatten_sequence(result)
         flattened_result = selectiontools.SliceSelection(flattened_result)
@@ -426,7 +426,7 @@ class Leaf(Component):
         duration = durationtools.Duration(duration)
         # calculate durations
         leaf_multiplied_duration = self._multiplied_duration
-        prolation = self._select_parentage(include_self=False).prolation
+        prolation = self._get_parentage(include_self=False).prolation
         preprolated_duration = duration / prolation
         # handle boundary cases
         if preprolated_duration <= 0:

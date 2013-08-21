@@ -198,7 +198,7 @@ class Component(AbjadObject):
         if in_seconds:
             return self._duration_in_seconds
         else:
-            parentage = self._select_parentage(include_self=False)
+            parentage = self._get_parentage(include_self=False)
             return parentage.prolation * self._preprolated_duration
 
     def _get_effective_context_mark(self, context_mark_classes=None):
@@ -215,7 +215,7 @@ class Component(AbjadObject):
         # gathering candidate marks
         candidate_marks = datastructuretools.SortedCollection(
             key=lambda x: x.start_component._get_timespan().start_offset)
-        for parent in self._select_parentage(include_self=True):
+        for parent in self._get_parentage(include_self=True):
             parent_marks = parent._dependent_context_marks
             for mark in parent_marks:
                 if isinstance(mark, context_mark_classes):
@@ -241,7 +241,7 @@ class Component(AbjadObject):
         if staff_change_mark is not None:
             effective_staff = staff_change_mark.staff
         else:
-            parentage = self._select_parentage()
+            parentage = self._get_parentage()
             effective_staff = parentage.get_first(stafftools.Staff)
         return effective_staff
 
@@ -326,13 +326,13 @@ class Component(AbjadObject):
         assert mathtools.is_integer_equivalent_expr(n)
         def next(component):
             if component is not None:
-                for parent in component._select_parentage(include_self=True):
+                for parent in component._get_parentage(include_self=True):
                     next_sibling = parent._get_sibling(1)
                     if next_sibling is not None:
                         return next_sibling
         def previous(component):
             if component is not None:
-                for parent in component._select_parentage(include_self=True):
+                for parent in component._get_parentage(include_self=True):
                     next_sibling = parent._get_sibling(-1)
                     if next_sibling is not None:
                         return next_sibling
@@ -416,7 +416,7 @@ class Component(AbjadObject):
                 current = current._parent
             else:
                 temporal_successors = \
-                    next_sibling._select_descendants_starting_with()
+                    next_sibling._get_descendants_starting_with()
                 break
         return component in temporal_successors
 
@@ -435,7 +435,7 @@ class Component(AbjadObject):
     def _remove_named_children_from_parentage(self, name_dictionary):
         from abjad.tools import componenttools
         if self._parent is not None and name_dictionary:
-            for parent in self._select_parentage(include_self=False):
+            for parent in self._get_parentage(include_self=False):
                 named_children = parent._named_children
                 for name in name_dictionary:
                     for component in name_dictionary[name]:
@@ -446,7 +446,7 @@ class Component(AbjadObject):
     def _restore_named_children_to_parentage(self, name_dictionary):
         from abjad.tools import componenttools
         if self._parent is not None and name_dictionary:
-            for parent in self._select_parentage(include_self=False):
+            for parent in self._get_parentage(include_self=False):
                 named_children = parent._named_children
                 for name in name_dictionary:
                     if name in named_children:
@@ -454,7 +454,7 @@ class Component(AbjadObject):
                     else:
                         named_children[name] = copy.copy(name_dictionary[name])
 
-    def _select_components(self, component_classes=None, include_self=True):
+    def _get_components(self, component_classes=None, include_self=True):
         from abjad.tools import iterationtools
         expr = self
         if include_self:
@@ -463,7 +463,7 @@ class Component(AbjadObject):
             expr, component_class=component_classes)
         return selectiontools.FreeComponentSelection(components)
 
-    def _select_contents(self, include_self=True):
+    def _get_contents(self, include_self=True):
         result = []
         if include_self:
             result.append(self)
@@ -471,7 +471,7 @@ class Component(AbjadObject):
         result = selectiontools.SliceSelection(result)
         return result
 
-    def _select_descendants(
+    def _get_descendants(
         self,
         include_self=True,
         ):
@@ -480,43 +480,43 @@ class Component(AbjadObject):
             include_self=include_self,
             )
 
-    def _select_descendants_starting_with(self):
+    def _get_descendants_starting_with(self):
         from abjad.tools import containertools
         result = []
         result.append(self)
         if isinstance(self, containertools.Container):
             if self.is_simultaneous:
                 for x in self:
-                    result.extend(x._select_descendants_starting_with())
+                    result.extend(x._get_descendants_starting_with())
             elif self:
-                result.extend(self[0]._select_descendants_starting_with())
+                result.extend(self[0]._get_descendants_starting_with())
         return result
 
-    def _select_descendants_stopping_with(self):
+    def _get_descendants_stopping_with(self):
         from abjad.tools import containertools
         result = []
         result.append(self)
         if isinstance(self, containertools.Container):
             if self.is_simultaneous:
                 for x in self:
-                    result.extend(x._select_descendants_stopping_with())
+                    result.extend(x._get_descendants_stopping_with())
             elif self:
-                result.extend(self[-1]._select_descendants_stopping_with())
+                result.extend(self[-1]._get_descendants_stopping_with())
         return result
 
-    def _select_lineage(self):
+    def _get_lineage(self):
         return selectiontools.Lineage(self)
 
-    def _select_parentage(self, include_self=True):
+    def _get_parentage(self, include_self=True):
         return selectiontools.Parentage(self, include_self=include_self)
 
-    def _select_vertical_moment(self, governor=None):
+    def _get_vertical_moment(self, governor=None):
         offset = self._get_timespan().start_offset
         if governor is None:
-            governor = self._select_parentage().root
+            governor = self._get_parentage().root
         return selectiontools.VerticalMoment(governor, offset)
 
-    def _select_vertical_moment_at(self, offset):
+    def _get_vertical_moment_at(self, offset):
         return selectiontools.VerticalMoment(self, offset)
 
     def _set_keyword_value(self, key, value):
@@ -627,7 +627,7 @@ class Component(AbjadObject):
 
     def _update_later(self, offsets=False, offsets_in_seconds=False):
         assert offsets or offsets_in_seconds
-        for component in self._select_parentage(include_self=True):
+        for component in self._get_parentage(include_self=True):
             if offsets:
                 component._offsets_are_current = False
             elif offsets_in_seconds:

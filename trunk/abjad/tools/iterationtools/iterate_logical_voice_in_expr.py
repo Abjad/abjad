@@ -49,7 +49,7 @@ def iterate_logical_voice_in_expr(
     ::
 
         >>> leaf = staff.select_leaves(allow_discontiguous_leaves=True)[0]
-        >>> signature = inspect(leaf).select_parentage().logical_voice_indicator
+        >>> signature = inspect(leaf).get_parentage().logical_voice_indicator
         >>> for x in iterationtools.iterate_logical_voice_in_expr(
         ...     staff, Note, signature):
         ...     x
@@ -64,7 +64,7 @@ def iterate_logical_voice_in_expr(
     from abjad.tools import iterationtools
 
     if isinstance(expr, component_class) and \
-        expr._select_parentage().logical_voice_indicator == logical_voice_indicator:
+        expr._get_parentage().logical_voice_indicator == logical_voice_indicator:
         yield expr
 
     if not reverse:

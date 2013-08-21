@@ -10,7 +10,7 @@ class SimultaneousSelection(Selection):
 
     ### PUBLIC METHODS ###
 
-    def select_vertical_moment_at(self, offset):
+    def get_vertical_moment_at(self, offset):
         r'''Select vertical moment at `offset`.
         '''
         from abjad.tools import selectiontools

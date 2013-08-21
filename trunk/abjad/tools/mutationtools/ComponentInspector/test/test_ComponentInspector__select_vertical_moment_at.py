@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_ComponentInspector__select_vertical_moment_at_01():
+def test_ComponentInspector__get_vertical_moment_at_01():
 
     score = Score([])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
@@ -40,7 +40,7 @@ def test_ComponentInspector__select_vertical_moment_at_01():
     '''
 
     def piano_staff_moment(offset):
-        return inspect(piano_staff).select_vertical_moment_at(offset)
+        return inspect(piano_staff).get_vertical_moment_at(offset)
 
     vm = piano_staff_moment(Offset(0, 8))
     assert vm.leaves == (piano_staff[0][0], piano_staff[1][0])
@@ -58,7 +58,7 @@ def test_ComponentInspector__select_vertical_moment_at_01():
     assert vm.leaves == ()
 
 
-def test_ComponentInspector__select_vertical_moment_at_02():
+def test_ComponentInspector__get_vertical_moment_at_02():
 
     score = Score([])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
@@ -96,7 +96,7 @@ def test_ComponentInspector__select_vertical_moment_at_02():
     '''
 
     def scorewide_vertical_moment(offset):
-        return inspect(score).select_vertical_moment_at(offset)
+        return inspect(score).get_vertical_moment_at(offset)
 
     vm = scorewide_vertical_moment(Offset(0, 8))
     assert vm.leaves == (score[0][0][0], piano_staff[0][0], piano_staff[1][0])

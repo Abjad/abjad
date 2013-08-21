@@ -74,12 +74,12 @@ class ContextMark(Mark):
             return None
         elif isinstance(target_context, type):
             target_context_type = target_context
-            for component in self.start_component._select_parentage():
+            for component in self.start_component._get_parentage():
                 if isinstance(component, target_context_type):
                     return component
         elif isinstance(target_context, str):
             target_context_name = target_context
-            for component in self.start_component._select_parentage():
+            for component in self.start_component._get_parentage():
                 if component.name == target_context_name:
                     return component
         else:

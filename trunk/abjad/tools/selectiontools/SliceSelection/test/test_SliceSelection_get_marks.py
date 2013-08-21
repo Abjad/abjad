@@ -8,7 +8,7 @@ def test_SliceSelection_get_marks_01():
     clef = contexttools.ClefMark('treble')(staff)
     dynamic = contexttools.DynamicMark('f')(staff[0])
 
-    parentage = inspect(staff[0]).select_parentage(include_self=True)
+    parentage = inspect(staff[0]).get_parentage(include_self=True)
     context_marks = parentage._get_marks(
         mark_classes=contexttools.ContextMark,
         recurse=False,

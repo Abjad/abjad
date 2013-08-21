@@ -308,7 +308,7 @@ class Context(Container):
         def fset(self, arg):
             assert isinstance(arg, (str, type(None)))
             old_name = self._name
-            for parent in self._select_parentage(include_self=False):
+            for parent in self._get_parentage(include_self=False):
                 named_children = parent._named_children
                 if old_name is not None:
                     named_children[old_name].remove(self)

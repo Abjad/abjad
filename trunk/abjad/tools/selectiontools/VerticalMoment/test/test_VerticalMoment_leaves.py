@@ -40,7 +40,7 @@ def test_VerticalMoment_leaves_01():
     >>
     '''
 
-    vertical_moment = inspect(score).select_vertical_moment_at(Offset(1, 8))
+    vertical_moment = inspect(score).get_vertical_moment_at(Offset(1, 8))
 
     "(Note(d'', 8), Note(a', 4), Note(e', 8))"
 

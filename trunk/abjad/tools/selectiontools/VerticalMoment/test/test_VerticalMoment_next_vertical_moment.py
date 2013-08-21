@@ -40,7 +40,7 @@ def test_VerticalMoment_next_vertical_moment_01():
     >>
     '''
 
-    vertical_moment = inspect(score).select_vertical_moment_at(Offset(0))
+    vertical_moment = inspect(score).get_vertical_moment_at(Offset(0))
     assert vertical_moment.offset == Offset(0)
 
     vertical_moment = vertical_moment.next_vertical_moment

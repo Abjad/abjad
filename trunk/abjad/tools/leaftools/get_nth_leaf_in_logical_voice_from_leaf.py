@@ -57,7 +57,7 @@ def get_nth_leaf_in_logical_voice_from_leaf(leaf, n=0):
         new_component = component._get_nth_component_in_time_order_from(1)
         if new_component is None:
             return
-        candidates = new_component._select_descendants_starting_with()
+        candidates = new_component._get_descendants_starting_with()
         candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
         for candidate in candidates:
             if Selection._all_are_components_in_same_logical_voice(
@@ -68,7 +68,7 @@ def get_nth_leaf_in_logical_voice_from_leaf(leaf, n=0):
         new_component = component._get_nth_component_in_time_order_from(-1)
         if new_component is None:
             return
-        candidates = new_component._select_descendants_stopping_with()
+        candidates = new_component._get_descendants_stopping_with()
         candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
         for candidate in candidates:
             if Selection._all_are_components_in_same_logical_voice(

@@ -259,76 +259,76 @@ class ComponentInspector(AbjadObject):
             return True
         return False
 
-    def select_components(self, component_classes=None, include_self=True):
-        r'''Selects all components of `component_classes`
+    def get_components(self, component_classes=None, include_self=True):
+        r'''Gets all components of `component_classes`
         in the descendants of component.
 
         Returns component selection.
         '''
-        return self._component._select_components(
+        return self._component._get_components(
             component_classes=component_classes,
             include_self=include_self,
             )
 
-    def select_contents(self, include_self=True):
-        r'''Selects contents of component.
+    def get_contents(self, include_self=True):
+        r'''Gets contents of component.
 
         Returns sequential selection.
         '''
-        return self._component._select_contents(
+        return self._component._get_contents(
             include_self=include_self,
             )
 
-    def select_descendants(
+    def get_descendants(
         self,
         include_self=True,
         ):
-        r'''Selects descendants of component.
+        r'''Gets descendants of component.
 
         Returns descendants.
         '''
-        return self._component._select_descendants(
+        return self._component._get_descendants(
             include_self=include_self,
             )
 
-    def select_lineage(self):
-        r'''Selects lineage of component.
+    def get_lineage(self):
+        r'''Gets lineage of component.
         
         Returns lineage.
         '''
-        return self._component._select_lineage()
+        return self._component._get_lineage()
 
-    def select_parentage(self, include_self=True):
-        r'''Selects parentage of component.
+    def get_parentage(self, include_self=True):
+        r'''Gets parentage of component.
 
         Returns parentage.
         '''
-        return self._component._select_parentage(
+        return self._component._get_parentage(
             include_self=include_self,
             )
 
-    def select_tie_chain(self):
-        r'''Selects tie chain that governs leaf.
+    def get_tie_chain(self):
+        r'''Gets tie chain that governs leaf.
 
         Returns tie chain.
         '''
-        return self._component._select_tie_chain()
+        return self._component._get_tie_chain()
 
-    def select_vertical_moment(self, governor=None):
-        r'''Selects vertical moment starting with component.
+    def get_vertical_moment(self, governor=None):
+        r'''Gets vertical moment starting with component.
 
         Returns vertical moment.
         '''
-        return self._component._select_vertical_moment(
+        return self._component._get_vertical_moment(
             governor=governor,
             )
 
-    def select_vertical_moment_at(self, offset):
-        r'''Selects vertical moment at `offset`.
+    def get_vertical_moment_at(self, offset):
+        r'''Gets vertical moment at `offset`.
 
         Returns vertical moment.
         '''
-        return self._component._select_vertical_moment_at(
+        return self._component._get_vertical_moment_at(
             offset,
             )
 

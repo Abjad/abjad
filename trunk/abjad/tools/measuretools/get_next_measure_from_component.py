@@ -52,7 +52,7 @@ def get_next_measure_from_component(component):
     from abjad.tools import measuretools
 
     if isinstance(component, leaftools.Leaf):
-        for parent in component._select_parentage(include_self=False):
+        for parent in component._get_parentage(include_self=False):
             if isinstance(parent, measuretools.Measure):
                 return parent
         raise MissingMeasureError

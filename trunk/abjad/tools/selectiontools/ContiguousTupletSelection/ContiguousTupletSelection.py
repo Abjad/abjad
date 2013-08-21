@@ -108,8 +108,8 @@ class ContiguousTupletSelection(ContiguousSelection):
         else:
             raise TypeError('unknown tuplet type.')
         wrapped = False
-        if self[0]._select_parentage().root is not \
-            self[-1]._select_parentage().root:
+        if self[0]._get_parentage().root is not \
+            self[-1]._get_parentage().root:
             dummy_container = containertools.Container(self)
             wrapped = True
         containertools.move_parentage_children_and_spanners_from_components_to_empty_container(

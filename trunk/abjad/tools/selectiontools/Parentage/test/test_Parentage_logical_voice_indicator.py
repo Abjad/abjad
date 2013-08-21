@@ -10,9 +10,9 @@ def test_Parentage_logical_voice_indicator_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
 
-    containment = inspect(staff).select_parentage().logical_voice_indicator
+    containment = inspect(staff).get_parentage().logical_voice_indicator
     for component in iterationtools.iterate_components_in_expr(staff):
-        assert inspect(component).select_parentage().logical_voice_indicator == containment
+        assert inspect(component).get_parentage().logical_voice_indicator == containment
 
 
 def test_Parentage_logical_voice_indicator_02():
@@ -23,9 +23,9 @@ def test_Parentage_logical_voice_indicator_02():
     staff = Staff("c'8 d'8 e'8 f'8")
     staff.name = 'foo'
 
-    containment = inspect(staff).select_parentage().logical_voice_indicator
+    containment = inspect(staff).get_parentage().logical_voice_indicator
     for component in iterationtools.iterate_components_in_expr(staff):
-        assert inspect(component).select_parentage().logical_voice_indicator == containment
+        assert inspect(component).get_parentage().logical_voice_indicator == containment
 
 def test_Parentage_logical_voice_indicator_03():
     r'''Leaves inside equally named sequential voices inside a staff
@@ -36,9 +36,9 @@ def test_Parentage_logical_voice_indicator_03():
     staff[0].name = 'foo'
     staff[1].name = 'foo'
 
-    containment = inspect(staff[0][0]).select_parentage().logical_voice_indicator
+    containment = inspect(staff[0][0]).get_parentage().logical_voice_indicator
     for leaf in staff.select_leaves():
-        assert inspect(leaf).select_parentage().logical_voice_indicator == containment
+        assert inspect(leaf).get_parentage().logical_voice_indicator == containment
 
 
 def test_Parentage_logical_voice_indicator_04():
@@ -77,7 +77,7 @@ def test_Parentage_logical_voice_indicator_04():
         '''
         )
 
-    signatures = [inspect(leaf).select_parentage().logical_voice_indicator 
+    signatures = [inspect(leaf).get_parentage().logical_voice_indicator 
         for leaf in voice.select_leaves(allow_discontiguous_leaves=True)]
 
     assert signatures[0] == signatures[1]
@@ -127,7 +127,7 @@ def test_Parentage_logical_voice_indicator_05():
         '''
         )
 
-    signatures = [inspect(leaf).select_parentage().logical_voice_indicator 
+    signatures = [inspect(leaf).get_parentage().logical_voice_indicator 
         for leaf in voice.select_leaves(allow_discontiguous_leaves=True)]
 
     signatures[0] == signatures[1]
@@ -184,7 +184,7 @@ def test_Parentage_logical_voice_indicator_06():
         '''
         )
 
-    signatures = [inspect(leaf).select_parentage().logical_voice_indicator 
+    signatures = [inspect(leaf).get_parentage().logical_voice_indicator 
         for leaf in leaves]
 
     signatures[0] == signatures[1]
@@ -242,7 +242,7 @@ def test_Parentage_logical_voice_indicator_07():
         '''
         )
 
-    signatures = [inspect(leaf).select_parentage().logical_voice_indicator 
+    signatures = [inspect(leaf).get_parentage().logical_voice_indicator 
         for leaf in container.select_leaves(allow_discontiguous_leaves=True)]
 
     signatures[0] != signatures[1]
@@ -271,8 +271,8 @@ def test_Parentage_logical_voice_indicator_08():
     note_1 = Note(0, (1, 8))
     note_2 = Note(0, (1, 8))
 
-    signature_1 = inspect(note_1).select_parentage().logical_voice_indicator
-    signature_2 = inspect(note_2).select_parentage().logical_voice_indicator
+    signature_1 = inspect(note_1).get_parentage().logical_voice_indicator
+    signature_2 = inspect(note_2).get_parentage().logical_voice_indicator
     assert signature_1 == signature_2
 
 
@@ -288,8 +288,8 @@ def test_Parentage_logical_voice_indicator_09():
     t2.name = 'staff'
     t2[0].name = 'voice'
 
-    t1_leaf_signature = inspect(t1.select_leaves()[0]).select_parentage().logical_voice_indicator
-    t2_leaf_signature = inspect(t2.select_leaves()[0]).select_parentage().logical_voice_indicator
+    t1_leaf_signature = inspect(t1.select_leaves()[0]).get_parentage().logical_voice_indicator
+    t2_leaf_signature = inspect(t2.select_leaves()[0]).get_parentage().logical_voice_indicator
     assert t1_leaf_signature == t2_leaf_signature
 
 
@@ -317,12 +317,12 @@ def test_Parentage_logical_voice_indicator_10():
         '''
         )
 
-    assert inspect(staff[0]).select_parentage().logical_voice_indicator == \
-        inspect(staff[-1]).select_parentage().logical_voice_indicator
-    assert inspect(staff[0]).select_parentage().logical_voice_indicator == \
-        inspect(staff[0][0]).select_parentage().logical_voice_indicator
-    assert inspect(staff[0][0]).select_parentage().logical_voice_indicator == \
-        inspect(staff[-1]).select_parentage().logical_voice_indicator
+    assert inspect(staff[0]).get_parentage().logical_voice_indicator == \
+        inspect(staff[-1]).get_parentage().logical_voice_indicator
+    assert inspect(staff[0]).get_parentage().logical_voice_indicator == \
+        inspect(staff[0][0]).get_parentage().logical_voice_indicator
+    assert inspect(staff[0][0]).get_parentage().logical_voice_indicator == \
+        inspect(staff[-1]).get_parentage().logical_voice_indicator
 
 
 def test_Parentage_logical_voice_indicator_11():
@@ -350,11 +350,11 @@ def test_Parentage_logical_voice_indicator_11():
         )
 
     leaves = container.select_leaves(allow_discontiguous_leaves=True)
-    assert inspect(leaves[0]).select_parentage().logical_voice_indicator == \
-        inspect(leaves[1]).select_parentage().logical_voice_indicator
-    assert inspect(leaves[0]).select_parentage().logical_voice_indicator != \
-        inspect(leaves[2]).select_parentage().logical_voice_indicator
-    assert inspect(leaves[2]).select_parentage().logical_voice_indicator == \
-        inspect(leaves[3]).select_parentage().logical_voice_indicator
-    assert inspect(leaves[2]).select_parentage().logical_voice_indicator != \
-        inspect(leaves[0]).select_parentage().logical_voice_indicator
+    assert inspect(leaves[0]).get_parentage().logical_voice_indicator == \
+        inspect(leaves[1]).get_parentage().logical_voice_indicator
+    assert inspect(leaves[0]).get_parentage().logical_voice_indicator != \
+        inspect(leaves[2]).get_parentage().logical_voice_indicator
+    assert inspect(leaves[2]).get_parentage().logical_voice_indicator == \
+        inspect(leaves[3]).get_parentage().logical_voice_indicator
+    assert inspect(leaves[2]).get_parentage().logical_voice_indicator != \
+        inspect(leaves[0]).get_parentage().logical_voice_indicator

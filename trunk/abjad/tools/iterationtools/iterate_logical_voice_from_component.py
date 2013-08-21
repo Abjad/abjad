@@ -126,18 +126,18 @@ def iterate_logical_voice_from_component(
         component_class = componenttools.Component
 
     # save logical voice signature of input component
-    signature = component._select_parentage().logical_voice_indicator
+    signature = component._get_parentage().logical_voice_indicator
 
     # iterate component depth-first allowing to crawl UP into score
     if not reverse:
         for x in iterationtools.iterate_components_depth_first(
             component, capped=False):
             if isinstance(x, component_class):
-                if x._select_parentage().logical_voice_indicator == signature:
+                if x._get_parentage().logical_voice_indicator == signature:
                     yield x
     else:
         for x in iterationtools.iterate_components_depth_first(
             component, capped=False, direction=Right):
             if isinstance(x, component_class):
-                if x._select_parentage().logical_voice_indicator == signature:
+                if x._get_parentage().logical_voice_indicator == signature:
                     yield x

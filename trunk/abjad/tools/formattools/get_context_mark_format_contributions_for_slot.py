@@ -16,7 +16,7 @@ def get_context_mark_format_contributions_for_slot(component, slot):
 
     result = []
     marks = set([])
-    parentage = component._select_parentage(include_self=True)
+    parentage = component._get_parentage(include_self=True)
     candidates = parentage._get_marks(
         mark_classes=contexttools.ContextMark,
         recurse=False,

@@ -37,7 +37,7 @@ class Specification(AbjadObject):
 
     def _context_name_to_improper_parentage_names(self, context_name):
         context = self.score_model[context_name]
-        parentage = context._select_parentage(include_self=True)
+        parentage = context._get_parentage(include_self=True)
         parentage_names = [parent.name for parent in parentage]
         return parentage_names
 
@@ -244,7 +244,7 @@ class Specification(AbjadObject):
             return 0
         else:
             context = self.score_model[context_name]
-            return context._select_parentage().depth
+            return context._get_parentage().depth
 
     def get_single_context_set_expressions_rooted_to_specification_that_govern_context_name(
         self, attribute, context_name):

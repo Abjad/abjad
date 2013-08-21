@@ -457,7 +457,7 @@ class Container(Component):
         for component in expr:
             if not isinstance(component, componenttools.Component):
                 return False
-            if not component._select_parentage().is_orphan:
+            if not component._get_parentage().is_orphan:
                 return False
         return True
 
@@ -494,10 +494,10 @@ class Container(Component):
             raise TypeError(message)
 
     def _is_one_of_my_first_leaves(self, leaf):
-        return leaf in self._select_descendants_starting_with()
+        return leaf in self._get_descendants_starting_with()
 
     def _is_one_of_my_last_leaves(self, leaf):
-        return leaf in self._select_descendants_stopping_with()
+        return leaf in self._get_descendants_stopping_with()
 
     def _parse_string(self, string):
         from abjad.tools import lilypondparsertools
@@ -630,7 +630,7 @@ class Container(Component):
         # get any duration-crossing descendents
         cross_offset = self._get_timespan().start_offset + duration
         duration_crossing_descendants = []
-        for descendant in self._select_descendants():
+        for descendant in self._get_descendants():
             start_offset = descendant._get_timespan().start_offset
             stop_offset = descendant._get_timespan().stop_offset
             if start_offset < cross_offset < stop_offset:
@@ -666,7 +666,7 @@ class Container(Component):
                 # rederive duration crosses with possibly new measure contents
                 cross_offset = self._get_timespan().start_offset + duration
                 duration_crossing_descendants = []
-                for descendant in self._select_descendants():
+                for descendant in self._get_descendants():
                     start_offset = descendant._get_timespan().start_offset
                     stop_offset = descendant._get_timespan().stop_offset
                     if start_offset < cross_offset < stop_offset:
@@ -711,7 +711,7 @@ class Container(Component):
         # find component to right of split that is also immediate child of 
         # last duration-crossing container
         for component in \
-            leaf_right_of_split._select_parentage(include_self=True):
+            leaf_right_of_split._get_parentage(include_self=True):
             if component._parent is duration_crossing_containers[-1]:
                 highest_level_component_right_of_split = component
                 break
@@ -721,7 +721,7 @@ class Container(Component):
         # fracture spanners if requested
         if fracture_spanners:
             start_offset = leaf_right_of_split._get_timespan().start_offset
-            for parent in leaf_right_of_split._select_parentage():
+            for parent in leaf_right_of_split._get_parentage():
                 if parent._get_timespan().start_offset == start_offset:
                     spannertools.fracture_spanners_attached_to_component(
                         parent, direction=Left)
@@ -742,16 +742,16 @@ class Container(Component):
         # NOTE: If tie chain here is convenience, then fusing is good.
         #       If tie chain here is user-given, then fusing is less good.
         #       Maybe later model difference between user tie chains and not.
-        left_tie_chain = leaf_left_of_split._select_tie_chain()
-        right_tie_chain = leaf_right_of_split._select_tie_chain()
+        left_tie_chain = leaf_left_of_split._get_tie_chain()
+        right_tie_chain = leaf_right_of_split._get_tie_chain()
         leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(left_tie_chain)
         leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(right_tie_chain)
         # reapply tie here if crawl above killed tie applied to leaves
         if did_split_leaf:
             if tie_split_notes and \
                 isinstance(leaf_left_of_split, notetools.Note):
-                if leaf_left_of_split._select_parentage().root is \
-                    leaf_right_of_split._select_parentage().root:
+                if leaf_left_of_split._get_parentage().root is \
+                    leaf_right_of_split._get_parentage().root:
                     leaves_around_split = \
                         (leaf_left_of_split, leaf_right_of_split)
                     selection = selectiontools.ContiguousLeafSelection(

@@ -70,7 +70,7 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
         illustration = lilypondfiletools.make_basic_lilypond_file(score)
         illustration.file_initial_system_comments = []
         illustration.file_initial_system_includes = []
-        measures = score._select_components(measuretools.Measure)
+        measures = score._get_components(measuretools.Measure)
         measures.attach_spanners(spannertools.BeamSpanner)
         score.add_double_bar()
         return illustration

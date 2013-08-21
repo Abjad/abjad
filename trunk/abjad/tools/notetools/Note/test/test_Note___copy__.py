@@ -137,12 +137,12 @@ def test_Note___copy___06():
     new_note = copy.deepcopy(note)
 
     assert new_note is not note
-    assert inspect(note).select_parentage().parent is staff
-    assert inspect(new_note).select_parentage().parent is not staff
-    assert isinstance(inspect(new_note).select_parentage().parent, Staff)
+    assert inspect(note).get_parentage().parent is staff
+    assert inspect(new_note).get_parentage().parent is not staff
+    assert isinstance(inspect(new_note).get_parentage().parent, Staff)
     assert new_note.lilypond_format == note.lilypond_format
-    assert inspect(note).select_parentage().parent.lilypond_format == \
-        inspect(new_note).select_parentage().parent.lilypond_format
+    assert inspect(note).get_parentage().parent.lilypond_format == \
+        inspect(new_note).get_parentage().parent.lilypond_format
 
 
 def test_Note___copy___07():

@@ -498,7 +498,7 @@ The edits
        voice = score['Cello Voice']
        descents = durated_reservoir['Cello']
    
-       tie_chain = tietools.select_tie_chain(voice[-1])
+       tie_chain = tietools.get_tie_chain(voice[-1])
        for leaf in tie_chain.leaves:
            parent = leaf.parent
            index = parent.index(leaf)

@@ -163,7 +163,7 @@ class Parentage(SimultaneousSelection):
         ::
 
             >>> leaf = score.select_leaves()[0]
-            >>> parentage = inspect(leaf).select_parentage()
+            >>> parentage = inspect(leaf).get_parentage()
             >>> indicator = parentage.logical_voice_indicator
             >>> for key, value in indicator.iteritems():
             ...     print '%12s: %s' % (key, value)
@@ -280,7 +280,7 @@ class Parentage(SimultaneousSelection):
 
             >>> for leaf in score.select_leaves(
             ...     allow_discontiguous_leaves=True):
-            ...     leaf, inspect(leaf).select_parentage().score_index
+            ...     leaf, inspect(leaf).get_parentage().score_index
             ...
             (Note("c'8"), (0, 0, 0))
             (Note("d'8"), (0, 0, 1))
@@ -316,17 +316,17 @@ class Parentage(SimultaneousSelection):
 
         ::
 
-            >>> inspect(note).select_parentage().tuplet_depth
+            >>> inspect(note).get_parentage().tuplet_depth
             1
 
         ::
 
-            >>> inspect(tuplet).select_parentage().tuplet_depth
+            >>> inspect(tuplet).get_parentage().tuplet_depth
             0
 
         ::
 
-            >>> inspect(staff).select_parentage().tuplet_depth
+            >>> inspect(staff).get_parentage().tuplet_depth
             0
 
         Return nonnegative integer.

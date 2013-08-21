@@ -38,9 +38,9 @@ def is_formattable_context_mark_for_component(mark, component):
 
     else:
         if mark.effective_context in \
-            component._select_parentage(include_self=True):
+            component._get_parentage(include_self=True):
             if mark.effective_context not in \
-                component._select_parentage(include_self=False):
+                component._get_parentage(include_self=False):
                 if mark.start_component.start == component.start:
                     return True
 

@@ -13,7 +13,7 @@ class UpdateManager(AbjadObject):
         offsets_are_current = True
         marks_are_current = True
         offsets_in_seconds_are_current = True
-        parentage = component._select_parentage()
+        parentage = component._get_parentage()
         for component in parentage:
             if offsets_are_current:
                 if not component._offsets_are_current:
@@ -33,7 +33,7 @@ class UpdateManager(AbjadObject):
     @staticmethod
     def _iterate_entire_score(component):
         from abjad.tools import iterationtools
-        parentage = component._select_parentage(include_self=True)
+        parentage = component._get_parentage(include_self=True)
         components = iterationtools.iterate_components_depth_first(
             parentage.root, 
             capped=True, 
@@ -73,7 +73,7 @@ class UpdateManager(AbjadObject):
         '''
         from abjad.tools import contexttools
         from abjad.tools import iterationtools
-        parentage = component._select_parentage()
+        parentage = component._get_parentage()
         score_root = parentage.root
         if isinstance(score_root, contexttools.Context):
             contexts = iterationtools.iterate_contexts_in_expr(score_root)

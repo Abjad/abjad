@@ -133,7 +133,7 @@ class Selection(object):
                 if not isinstance(component, component_classes):
                     all_are_orphans_of_correct_type = False
                     break
-                if not component._select_parentage().is_orphan:
+                if not component._get_parentage().is_orphan:
                     all_are_orphans_of_correct_type = False
                     break
             if all_are_orphans_of_correct_type:
@@ -142,12 +142,12 @@ class Selection(object):
         if not isinstance(first, component_classes):
             return False
         orphan_components = True
-        if not first._select_parentage().is_orphan:
+        if not first._get_parentage().is_orphan:
             orphan_components = False
         same_logical_voice = True
-        first_signature = first._select_parentage().logical_voice_indicator
+        first_signature = first._get_parentage().logical_voice_indicator
         for component in expr[1:]:
-            parentage = component._select_parentage()
+            parentage = component._get_parentage()
             if not parentage.is_orphan:
                 orphan_components = False
             if not allow_orphans and orphan_components:
@@ -192,23 +192,23 @@ class Selection(object):
                 if not isinstance(component, component_classes):
                     all_are_orphans_of_correct_type = False
                     break
-                if not component._select_parentage().is_orphan:
+                if not component._get_parentage().is_orphan:
                     all_are_orphans_of_correct_type = False
                     break
             if all_are_orphans_of_correct_type:
                 return True
         if not allow_orphans:
-            if any(x._select_parentage().is_orphan for x in expr):
+            if any(x._get_parentage().is_orphan for x in expr):
                 return False
         first = expr[0]
         if not isinstance(first, component_classes):
             return False
-        first_parentage = first._select_parentage()
+        first_parentage = first._get_parentage()
         first_logical_voice_indicator = first_parentage.logical_voice_indicator
         first_root = first_parentage.root
         previous = first
         for current in expr[1:]:
-            current_parentage = current._select_parentage()
+            current_parentage = current._get_parentage()
             current_logical_voice_indicator = \
                 current_parentage.logical_voice_indicator
             # false if wrong type of component found
@@ -249,7 +249,7 @@ class Selection(object):
                 if not isinstance(component, component_classes):
                     all_are_orphans_of_correct_type = False
                     break
-                if not component._select_parentage().is_orphan:
+                if not component._get_parentage().is_orphan:
                     all_are_orphans_of_correct_type = False
                     break
             if all_are_orphans_of_correct_type:
@@ -269,7 +269,7 @@ class Selection(object):
         for current in expr[1:]:
             if not isinstance(current, component_classes):
                 return False
-            if not current._select_parentage().is_orphan:
+            if not current._get_parentage().is_orphan:
                 orphan_components = False
             if not current._parent is first_parent:
                 same_parent = False

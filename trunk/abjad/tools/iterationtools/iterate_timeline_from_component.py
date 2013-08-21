@@ -70,7 +70,7 @@ def iterate_timeline_from_component(expr, component_class=None, reverse=False):
         component_class = leaftools.Leaf
 
     component_generator = iterationtools.iterate_timeline_in_expr(
-        expr._select_parentage().root, 
+        expr._get_parentage().root, 
         component_class=component_class,
         reverse=reverse,
         )

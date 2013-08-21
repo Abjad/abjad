@@ -50,8 +50,8 @@ class ContiguousLeafSelection(ContiguousSelection):
         left_leaf, right_leaf = self
         assert isinstance(left_leaf, leaftools.Leaf)
         assert isinstance(right_leaf, leaftools.Leaf)
-        left_tie_chain = left_leaf._select_tie_chain()
-        right_tie_chain = right_leaf._select_tie_chain()
+        left_tie_chain = left_leaf._get_tie_chain()
+        right_tie_chain = right_leaf._get_tie_chain()
         spanner_classes = (spannertools.TieSpanner,)
         if left_tie_chain == right_tie_chain:
             return
@@ -80,7 +80,7 @@ class ContiguousLeafSelection(ContiguousSelection):
         from abjad.tools import leaftools
         from abjad.tools.selectiontools import mutate
         # get governor
-        parentage = self[0]._select_parentage(include_self=True)
+        parentage = self[0]._get_parentage(include_self=True)
         governor = parentage._get_governor()
         # find start and stop indices in governor
         governor_leaves = list(governor.select_leaves())
