@@ -28,30 +28,31 @@ del AbjadConfiguration
 # import all tools packages
 from abjad.tools import *
 
-# import some classes and functions for direct user access
+# import some frequently used classes for direct user access
 from abjad.tools.chordtools import Chord
 from abjad.tools.containertools import Container
 from abjad.tools.durationtools import Duration
 from abjad.tools.durationtools import Multiplier
 from abjad.tools.durationtools import Offset
+from abjad.tools.measuretools import Measure
+from abjad.tools.notetools import Note
+from abjad.tools.resttools import Rest
+from abjad.tools.scoretools import Score
+from abjad.tools.stafftools import Staff
+from abjad.tools.tuplettools import Tuplet
+from abjad.tools.voicetools import Voice
+from fractions import Fraction
+
+# import some frequently used functions for direct user access
 from abjad.tools.iotools import f
 from abjad.tools.iotools import p
 from abjad.tools.iotools import play
 from abjad.tools.iotools import show
 from abjad.tools.iotools import z
-from abjad.tools.measuretools import Measure
-from abjad.tools.notetools import Note
-from abjad.tools.resttools import Rest
-from abjad.tools.scoretools import Score
 from abjad.tools.selectiontools import more
 from abjad.tools.selectiontools import mutate
 from abjad.tools.selectiontools import select
 from abjad.tools.selectiontools.Inspector import inspect
-from abjad.tools.stafftools import Staff
-from abjad.tools.tuplettools import Tuplet
-from abjad.tools.voicetools import Voice
-from fractions import Fraction
-del tools
 
 # import custom exceptions into the builtins module
 import os
@@ -62,6 +63,7 @@ ImportManager.import_public_names_from_filesystem_path_into_namespace(
     )
 del ImportManager
 del os
+del tools
 
 # import version information
 from abjad._version import __version_info__, __version__
