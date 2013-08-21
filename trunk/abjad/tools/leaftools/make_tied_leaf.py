@@ -188,5 +188,5 @@ def make_tied_leaf(
         spannertools.TieSpanner(result)
 
     # return result
-    result = selectiontools.UnincorporatedCounttimeComponentSelection(result)
+    result = selectiontools.Selection(result)
     return result

@@ -391,7 +391,7 @@ def make_leaves(
             tuplet = tuplettools.Tuplet(multiplier, tuplet_leaves)
             result.append(tuplet)
 
-    result = selectiontools.UnincorporatedCounttimeComponentSelection(result)
+    result = selectiontools.Selection(result)
     return result
 
 

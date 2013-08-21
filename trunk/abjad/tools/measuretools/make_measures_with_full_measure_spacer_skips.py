@@ -47,6 +47,5 @@ def make_measures_with_full_measure_spacer_skips(time_signatures):
     measuretools.fill_measures_in_expr_with_full_measure_spacer_skips(measures)
 
     # return measures
-    measures = selectiontools.UnincorporatedCounttimeComponentSelection(
-        measures)
+    measures = selectiontools.Selection(measures)
     return measures

@@ -6,7 +6,7 @@ Selection = selectiontools.Selection
 
 
 def test_Selection__all_are_components_in_same_logical_voice_01():
-    r'''Unincorporated leaves do not logical voice.
+    r'''Unincorporated leaves do not share a logical voice.
     Unicorporated leaves do not share a root component.
     False if not allow orphans; True if allow orphans.
     '''
