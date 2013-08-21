@@ -4,7 +4,6 @@ from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import formattools
 from abjad.tools import mathtools
-from abjad.tools.selectiontools import more
 from abjad.tools.containertools.FixedDurationContainer \
     import FixedDurationContainer
 

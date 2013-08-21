@@ -5,7 +5,6 @@ from abjad.tools import durationtools
 from abjad.tools import formattools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
-from abjad.tools.selectiontools import more
 from abjad.tools.componenttools.Component import Component
 
 

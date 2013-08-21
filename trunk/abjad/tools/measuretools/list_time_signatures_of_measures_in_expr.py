@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.selectiontools import more
 
 
 def list_time_signatures_of_measures_in_expr(components):

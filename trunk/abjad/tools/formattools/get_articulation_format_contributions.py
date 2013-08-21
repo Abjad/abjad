@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.selectiontools import more
 
 
 def get_articulation_format_contributions(component):

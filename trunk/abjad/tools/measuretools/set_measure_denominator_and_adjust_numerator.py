@@ -2,7 +2,6 @@
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools.selectiontools import more
 
 
 # TODO: implement measuretools.set_measure_denominator_and_adjust_contents().

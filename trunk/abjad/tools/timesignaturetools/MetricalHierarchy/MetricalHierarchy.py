@@ -6,7 +6,6 @@ from abjad.tools import measuretools
 from abjad.tools import rhythmtreetools
 from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.selectiontools import more
 
 
 class MetricalHierarchy(AbjadObject):

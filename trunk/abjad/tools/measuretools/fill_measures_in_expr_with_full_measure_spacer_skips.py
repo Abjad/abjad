@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import skiptools
-from abjad.tools.selectiontools import more
 
 
 def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl=None):

@@ -3,7 +3,6 @@ from abjad.tools import contexttools
 from abjad.tools import iterationtools
 from abjad.tools import pitchtools
 from abjad.tools import voicetools
-from abjad.tools.selectiontools import more
 
 
 def notes_and_chords_in_expr_are_within_traditional_instrument_ranges(expr):

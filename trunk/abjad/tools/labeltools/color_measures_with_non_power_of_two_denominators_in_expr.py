@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import contexttools
 from abjad.tools import iterationtools
-from abjad.tools.selectiontools import more
 
 
 def color_measures_with_non_power_of_two_denominators_in_expr(expr, color='red'):

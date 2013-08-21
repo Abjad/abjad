@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import notetools
-from abjad.tools.selectiontools import more
 
 
 def fill_measures_in_expr_with_repeated_notes(expr, written_duration, iterctrl=None):

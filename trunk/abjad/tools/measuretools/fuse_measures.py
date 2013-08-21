@@ -2,7 +2,6 @@
 from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import durationtools
-from abjad.tools.selectiontools import more
 
 
 def fuse_measures(measures):

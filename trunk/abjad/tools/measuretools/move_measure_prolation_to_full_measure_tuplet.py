@@ -2,7 +2,6 @@
 from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools.selectiontools import more
 
 
 def move_measure_prolation_to_full_measure_tuplet(expr):

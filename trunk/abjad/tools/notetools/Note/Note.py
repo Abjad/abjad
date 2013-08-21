@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 import copy
 import re
-from abjad.tools.selectiontools import more
 from abjad.tools.leaftools.Leaf import Leaf
 
 

@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.selectiontools import more
 from abjad.tools.marktools.Mark import Mark
 
 

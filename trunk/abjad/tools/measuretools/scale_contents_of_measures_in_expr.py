@@ -2,7 +2,6 @@
 from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools.selectiontools import more
 
 
 def scale_contents_of_measures_in_expr(expr, multiplier=1):

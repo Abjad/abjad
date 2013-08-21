@@ -11,7 +11,6 @@ from abjad.tools import resttools
 from abjad.tools import sequencetools
 from abjad.tools import skiptools
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.selectiontools import more
 
 
 class QEventSequence(AbjadObject):

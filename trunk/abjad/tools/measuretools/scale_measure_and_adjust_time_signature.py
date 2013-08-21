@@ -3,7 +3,6 @@ from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools.selectiontools import more
 
 
 def scale_measure_and_adjust_time_signature(measure, multiplier=1):

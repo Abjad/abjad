@@ -2,7 +2,6 @@
 from abjad.tools import contexttools
 from abjad.tools import pitchtools
 from abjad.tools import voicetools
-from abjad.tools.selectiontools import more
 
 
 def iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges(expr):

@@ -4,7 +4,6 @@ from abjad.tools import contexttools
 from abjad.tools import iterationtools
 from abjad.tools import notetools
 from abjad.tools import pitchtools
-from abjad.tools.selectiontools import more
 
 
 def transpose_from_written_pitch_to_sounding_pitch(expr):

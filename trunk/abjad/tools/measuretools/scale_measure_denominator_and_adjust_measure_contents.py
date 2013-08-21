@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import contexttools
 from abjad.tools import durationtools
-from abjad.tools.selectiontools import more
 
 
 def scale_measure_denominator_and_adjust_measure_contents(measure, factor):

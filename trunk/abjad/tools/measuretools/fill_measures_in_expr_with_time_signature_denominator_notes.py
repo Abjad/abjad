@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import mathtools
 from abjad.tools import notetools
-from abjad.tools.selectiontools import more
 
 
 def fill_measures_in_expr_with_time_signature_denominator_notes(expr, iterctrl=None):

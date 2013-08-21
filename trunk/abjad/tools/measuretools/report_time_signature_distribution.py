@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import itertools
-from abjad.tools.selectiontools import more
 
 
 def report_time_signature_distribution(expr):

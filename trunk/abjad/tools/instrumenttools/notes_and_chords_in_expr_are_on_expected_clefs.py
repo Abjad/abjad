@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import contexttools
 from abjad.tools import iterationtools
-from abjad.tools.selectiontools import more
 
 
 def notes_and_chords_in_expr_are_on_expected_clefs(expr, percussion_clef_is_allowed=True):

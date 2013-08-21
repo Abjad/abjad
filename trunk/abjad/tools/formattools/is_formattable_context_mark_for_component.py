@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.selectiontools import more
 
 
 def is_formattable_context_mark_for_component(mark, component):

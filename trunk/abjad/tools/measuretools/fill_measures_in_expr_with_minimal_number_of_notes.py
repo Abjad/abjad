@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import notetools
-from abjad.tools.selectiontools import more
 
 
 def fill_measures_in_expr_with_minimal_number_of_notes(expr, decrease_durations_monotonically=True, iterctrl=None):

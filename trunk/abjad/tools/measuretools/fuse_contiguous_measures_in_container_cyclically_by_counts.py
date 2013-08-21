@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import containertools
-from abjad.tools.selectiontools import more
 
 
 def fuse_contiguous_measures_in_container_cyclically_by_counts(

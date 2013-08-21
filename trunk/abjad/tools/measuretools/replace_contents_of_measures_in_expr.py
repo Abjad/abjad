@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.selectiontools import more
 
 
 # TODO: fix bug in function that causes tied notes to become untied
