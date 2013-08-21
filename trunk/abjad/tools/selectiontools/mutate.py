@@ -7,6 +7,6 @@ def mutate(expr):
     Returns mutation interface.
     '''
     from abjad.tools import componenttools
-    from abjad.tools import selectiontools
+    from abjad.tools import mutationtools
     assert isinstance(expr, componenttools.Component)
-    return selectiontools.SingleComponentMutationInterface(expr)
+    return mutationtools.Mutator(expr)

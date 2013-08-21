@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_SingleComponentMutationInterface_splice_01():
+def test_Mutator_splice_01():
 
     voice = Voice("c'8 d'8 e'8")
     spannertools.BeamSpanner(voice[:])
@@ -29,7 +29,7 @@ def test_SingleComponentMutationInterface_splice_01():
         )
 
 
-def test_SingleComponentMutationInterface_splice_02():
+def test_Mutator_splice_02():
     r'''Splice leaf after interior leaf.
     '''
 
@@ -55,7 +55,7 @@ def test_SingleComponentMutationInterface_splice_02():
     assert result == voice[1:3]
 
 
-def test_SingleComponentMutationInterface_splice_03():
+def test_Mutator_splice_03():
     r'''Splice tuplet after tuplet.
     '''
 
@@ -87,7 +87,7 @@ def test_SingleComponentMutationInterface_splice_03():
         )
 
 
-def test_SingleComponentMutationInterface_splice_04():
+def test_Mutator_splice_04():
     r'''Splice after container with underspanners.
     '''
 
@@ -119,7 +119,7 @@ def test_SingleComponentMutationInterface_splice_04():
     assert result == voice[0:2]
 
 
-def test_SingleComponentMutationInterface_splice_05():
+def test_Mutator_splice_05():
     r'''Extend leaves rightwards after leaf.
     '''
 
@@ -149,7 +149,7 @@ def test_SingleComponentMutationInterface_splice_05():
     assert result == voice[-4:]
 
 
-def test_SingleComponentMutationInterface_splice_06():
+def test_Mutator_splice_06():
     r'''Extend leaf rightwards after interior leaf.
     '''
 
@@ -177,7 +177,7 @@ def test_SingleComponentMutationInterface_splice_06():
     assert select(voice).is_well_formed()
 
 
-def test_SingleComponentMutationInterface_splice_07():
+def test_Mutator_splice_07():
     r'''Splice leaves left of leaf.
     '''
 
@@ -208,7 +208,7 @@ def test_SingleComponentMutationInterface_splice_07():
     assert result == voice[:4]
 
 
-def test_SingleComponentMutationInterface_splice_08():
+def test_Mutator_splice_08():
     r'''Splice leaf left of interior leaf.
     '''
 
@@ -236,7 +236,7 @@ def test_SingleComponentMutationInterface_splice_08():
     assert result == voice[1:3]
 
 
-def test_SingleComponentMutationInterface_splice_09():
+def test_Mutator_splice_09():
     r'''Splice tuplet left of tuplet.
     '''
 
@@ -270,7 +270,7 @@ def test_SingleComponentMutationInterface_splice_09():
     assert result == voice[:]
 
 
-def test_SingleComponentMutationInterface_splice_10():
+def test_Mutator_splice_10():
     r'''Splice left of container with underspanners.
     '''
 
@@ -304,7 +304,7 @@ def test_SingleComponentMutationInterface_splice_10():
     assert select(voice).is_well_formed()
 
 
-def test_SingleComponentMutationInterface_splice_11():
+def test_Mutator_splice_11():
     r'''Extend leaves leftwards of leaf. Do not extend edge spanners.
     '''
 
@@ -335,7 +335,7 @@ def test_SingleComponentMutationInterface_splice_11():
     assert result == voice[:4]
 
 
-def test_SingleComponentMutationInterface_splice_12():
+def test_Mutator_splice_12():
     r'''Extend leaf leftwards of interior leaf. Do extend interior spanners.
     '''
 
