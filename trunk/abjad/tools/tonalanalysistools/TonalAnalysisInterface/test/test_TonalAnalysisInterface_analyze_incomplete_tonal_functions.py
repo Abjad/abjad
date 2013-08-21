@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_TonalAnalysisSelection_analyze_incomplete_tonal_functions_01():
+def test_TonalAnalysisInterface_analyze_incomplete_tonal_functions_01():
 
     chord = Chord("<g' b'>4")
     key_signature = contexttools.KeySignatureMark('c', 'major')
@@ -18,7 +18,7 @@ def test_TonalAnalysisSelection_analyze_incomplete_tonal_functions_01():
     assert result == [tonal_function]
 
 
-def test_TonalAnalysisSelection_analyze_incomplete_tonal_functions_02():
+def test_TonalAnalysisInterface_analyze_incomplete_tonal_functions_02():
 
     key_signature = contexttools.KeySignatureMark('c', 'major')
     chord = Chord("<f g b>4")

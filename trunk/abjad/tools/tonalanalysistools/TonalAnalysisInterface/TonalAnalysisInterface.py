@@ -5,53 +5,50 @@ from abjad.tools import pitchtools
 from abjad.tools import sequencetools
 
 
-class TonalAnalysisSelection(object):
-    r'''Tonal analysis selection.
-
-    ::
-
-        >>> staff = Staff("c'4 d' e' f'")
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            c'4
-            d'4
-            e'4
-            f'4
-        }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
+class TonalAnalysisInterface(object):
+    r'''Tonal analysis interface.
 
     ..  container:: example
 
-        **Example 1.** Conjunt selection:
+        **Example 1.** Interface to conjunct selection:
+
+            >>> staff = Staff("c'4 d' e' f'")
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'4
+                d'4
+                e'4
+                f'4
+            }
 
         ::
 
             >>> selection_1 = tonalanalysistools.select(staff[:])
 
-        ::
-
-            >>> selection_1
-            TonalAnalysisSelection(Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4"))
-
     ..  container:: example
 
-        **Example 2.** Disjunct selection:
+        **Example 2.** Interface to disjunct selection:
+
+            >>> staff = Staff("c'4 d' e' f'")
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'4
+                d'4
+                e'4
+                f'4
+            }
 
         ::
 
-            >>> notes = (staff[0], staff[3])
-            >>> selection_2 = tonalanalysistools.select(notes)
-
-        ::
-
-            >>> selection_2
-            TonalAnalysisSelection(Note("c'4"), Note("f'4"))
+            >>> selection_2 = tonalanalysistools.select(staff[:1] + staff[-1:])
 
     '''
 
@@ -68,7 +65,14 @@ class TonalAnalysisSelection(object):
     def __repr__(self):
         r'''Interpreter representation of tonal analysis interface.
 
-        Return string.
+        ..  container:: example::
+
+            ::
+
+                >>> selection_2
+                TonalAnalysisInterface(Note("c'4"), Note("f'4"))
+
+        Returns string.
         '''
         return '{}{!r}'.format(self.__class__.__name__, self._selection._music)
 
@@ -113,22 +117,22 @@ class TonalAnalysisSelection(object):
         npcset = pitchtools.NamedPitchClassSet(pitches)
         dicv = npcset.inversion_equivalent_diatonic_interval_class_vector
         # TODO: eliminate code duplication #
-        if dicv == TonalAnalysisSelection._make_dicv('c', 'ef'):
+        if dicv == TonalAnalysisInterface._make_dicv('c', 'ef'):
             model_npcs = ['c', 'ef']
             quality, extent = 'minor', 'triad'
-        elif dicv == TonalAnalysisSelection._make_dicv('c', 'e'):
+        elif dicv == TonalAnalysisInterface._make_dicv('c', 'e'):
             model_npcs = ['c', 'e']
             quality, extent = 'major', 'triad'
-        elif dicv == TonalAnalysisSelection._make_dicv('c', 'ef', 'bff'):
+        elif dicv == TonalAnalysisInterface._make_dicv('c', 'ef', 'bff'):
             model_npcs = ['c', 'ef', 'bff']
             quality, extent = 'diminished', 'seventh'
-        elif dicv == TonalAnalysisSelection._make_dicv('c', 'ef', 'bf'):
+        elif dicv == TonalAnalysisInterface._make_dicv('c', 'ef', 'bf'):
             model_npcs = ['c', 'ef', 'bf']
             quality, extent = 'minor', 'seventh'
-        elif dicv == TonalAnalysisSelection._make_dicv('c', 'e', 'bf'):
+        elif dicv == TonalAnalysisInterface._make_dicv('c', 'e', 'bf'):
             model_npcs = ['c', 'e', 'bf']
             quality, extent = 'dominant', 'seventh'
-        elif dicv == TonalAnalysisSelection._make_dicv('c', 'e', 'b'):
+        elif dicv == TonalAnalysisInterface._make_dicv('c', 'e', 'b'):
             model_npcs = ['c', 'e', 'b']
             quality, extent = 'major', 'seventh'
         else:
@@ -250,27 +254,19 @@ class TonalAnalysisSelection(object):
     ### PUBLIC METHODS ###
 
     def analyze_chords(self):
-        r'''Analyze chords in selection:
+        r'''Analyzes chords in selection.
 
-        ::
+        ..  container:: example
 
-            >>> chord = Chord([7, 10, 12, 16], (1, 4))
-            >>> selection = tonalanalysistools.select(chord)
-            >>> selection.analyze_chords()
-            [CDominantSeventhInSecondInversion]
+            ::
 
-        Return none when no tonal chord is understood:
+                >>> chord = Chord([7, 10, 12, 16], (1, 4))
+                >>> tonalanalysistools.select(chord).analyze_chords()
+                [CDominantSeventhInSecondInversion]
 
-        ::
+        Returns none when no tonal chord is understood.
 
-            >>> chord = Chord(['c', 'cs', 'd'], (1, 4))
-            >>> selection = tonalanalysistools.select(chord)
-            >>> selection.analyze_chords()
-            [None]
-
-        Raise tonal harmony error when chord in selection can not analyze.
-
-        Return list with elements each equal to chord class or none.
+        Returns list with elements each equal to chord class or none.
         '''
         result = []
         for component in self._selection:
@@ -279,25 +275,27 @@ class TonalAnalysisSelection(object):
         return result
 
     def analyze_incomplete_chords(self):
-        r'''Analyze incomplete chords in selection:
+        r'''Analyzes incomplete chords in selection.
 
-        ::
+        ..  container:: example
 
-            >>> chord = Chord("<g' b'>4")
-            >>> selection = tonalanalysistools.select(chord)
-            >>> selection.analyze_incomplete_chords()
-            [GMajorTriadInRootPosition]
+            ::
 
-        ::
+                >>> chord = Chord("<g' b'>4")
+                >>> tonalanalysistools.select(chord).analyze_incomplete_chords()
+                [GMajorTriadInRootPosition]
 
-            >>> chord = Chord("<fs g b>4")
-            >>> selection = tonalanalysistools.select(chord)
-            >>> selection.analyze_incomplete_chords()
-            [GMajorSeventhInSecondInversion]
+        ..  container:: example
 
-        Raise tonal harmony error when chord in selection can not analyze.
+            ::
 
-        Return list with elements each equal to chord class or none.
+                >>> chord = Chord("<fs g b>4")
+                >>> tonalanalysistools.select(chord).analyze_incomplete_chords()
+                [GMajorSeventhInSecondInversion]
+
+        Raises tonal harmony error when chord in selection can not analyze.
+
+        Returns list with elements each equal to chord class or none.
         '''
         result = []
         for component in self._selection:
@@ -306,20 +304,22 @@ class TonalAnalysisSelection(object):
         return result
 
     def analyze_incomplete_tonal_functions(self, key_signature):
-        r'''Analyze incomplete tonal function of chords in selection
-        according to `key_signature`:
+        r'''Analyzes incomplete tonal functions of chords in selection
+        according to `key_signature`.
 
-        ::
+        ..  container:: example
 
-            >>> chord = Chord("<c' e'>4")
-            >>> key_signature = contexttools.KeySignatureMark('g', 'major')
-            >>> selection = tonalanalysistools.select(chord)
-            >>> selection.analyze_incomplete_tonal_functions(key_signature)
-            [IVMajorTriadInRootPosition]
+            ::
 
-        Raise tonal harmony error when chord in selection can not analyze.
+                >>> chord = Chord("<c' e'>4")
+                >>> key_signature = contexttools.KeySignatureMark('g', 'major')
+                >>> selection = tonalanalysistools.select(chord)
+                >>> selection.analyze_incomplete_tonal_functions(key_signature)
+                [IVMajorTriadInRootPosition]
 
-        Return list with elements each equal to tonal function or none.
+        Raises tonal harmony error when chord in selection can not analyze.
+
+        Returns list with elements each equal to tonal function or none.
         '''
         result = []
         for component in self._selection:
@@ -329,18 +329,20 @@ class TonalAnalysisSelection(object):
         return result
 
     def analyze_neighbor_notes(self):
-        r'''True when `note` is preceeded by a stepwise interval 
+        r'''True when `note` in selection is preceeded by a stepwise interval 
         in one direction and followed by a stepwise interval in 
-        the other direction. Otherwise false:
+        the other direction. Otherwise false.
 
-        ::
+        ..  container:: example
 
-            >>> t = Staff("c'8 d'8 e'8 f'8")
-            >>> selection = tonalanalysistools.select(t[:])
-            >>> selection.analyze_neighbor_notes()
-            [False, False, False, False]
+            ::
 
-        Return list of boolean values.
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> selection = tonalanalysistools.select(staff[:])
+                >>> selection.analyze_neighbor_notes()
+                [False, False, False, False]
+
+        Returns list of boolean values.
         '''
         result = []
         for component in self._selection:
@@ -349,17 +351,19 @@ class TonalAnalysisSelection(object):
         return result
 
     def analyze_passing_tones(self):
-        r'''True when `note` is both preceeded and followed by scalewise
-        sibling notes. Otherwise false:
+        r'''True when note in selection is both preceeded and followed 
+        by scalewise notes. Otherwise false.
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> selection = tonalanalysistools.select(staff[:])
-            >>> selection.analyze_passing_tones()
-            [False, True, True, False]
+            ::
 
-        Return list of boolean values.
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> selection = tonalanalysistools.select(staff[:])
+                >>> selection.analyze_passing_tones()
+                [False, True, True, False]
+
+        Returns list of boolean values.
         '''
         result = []
         for component in self._selection:
@@ -368,30 +372,20 @@ class TonalAnalysisSelection(object):
         return result
 
     def analyze_tonal_functions(self, key_signature):
-        r'''Analyze tonal function of chords in selection 
-        according to `key_signature`:
+        r'''Analyzes tonal function of chords in selection 
+        according to `key_signature`.
 
-        ::
+        ..  container:: example
 
-            >>> chord = Chord('<ef g bf>4')
-            >>> key_signature = contexttools.KeySignatureMark('c', 'major')
-            >>> selection = tonalanalysistools.select(chord)
-            >>> selection.analyze_tonal_functions(key_signature)
-            [FlatIIIMajorTriadInRootPosition]
+                >>> chord = Chord('<ef g bf>4')
+                >>> key_signature = contexttools.KeySignatureMark('c', 'major')
+                >>> selection = tonalanalysistools.select(chord)
+                >>> selection.analyze_tonal_functions(key_signature)
+                [FlatIIIMajorTriadInRootPosition]
 
-        Return none when no tonal function is understood:
+        Returns none when no tonal function is understood.
 
-        ::
-
-            >>> chord = Chord('<c cs d>4')
-            >>> key_signature = contexttools.KeySignatureMark('c', 'major')
-            >>> selection = tonalanalysistools.select(chord)
-            >>> selection.analyze_tonal_functions(key_signature)
-            [None]
-
-        Raise tonal harmony error when chord in selection can not analyze.
-
-        Return list with elements each equal to tonal function or none.
+        Returns list with elements each equal to tonal function or none.
         '''
         result = []
         for component in self._selection:
@@ -401,7 +395,7 @@ class TonalAnalysisSelection(object):
         return result
 
     def are_scalar_notes(self):
-        r'''True when notes in selection are scalar:
+        r'''True when notes in selection are scalar.
 
         ::
 
@@ -416,7 +410,7 @@ class TonalAnalysisSelection(object):
             >>> selection_2.are_scalar_notes()
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         direction_string = None
         for left, right in sequencetools.iterate_sequence_pairwise_strict(
@@ -434,7 +428,7 @@ class TonalAnalysisSelection(object):
         return True
 
     def are_stepwise_ascending_notes(self):
-        r'''True when notes in `expr` are stepwise ascending:
+        r'''True when notes in selection are stepwise ascending.
 
         ::
 
@@ -448,7 +442,7 @@ class TonalAnalysisSelection(object):
             >>> selection_2.are_stepwise_ascending_notes()
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         for left, right in sequencetools.iterate_sequence_pairwise_strict(
             iterationtools.iterate_notes_in_expr(self._selection)):
@@ -462,7 +456,7 @@ class TonalAnalysisSelection(object):
         return True
 
     def are_stepwise_descending_notes(self):
-        r'''True when notes in `expr` are stepwise descending.
+        r'''True when notes in selection are stepwise descending.
 
         ::
 
@@ -485,7 +479,7 @@ class TonalAnalysisSelection(object):
             >>> selection_2.are_stepwise_descending_notes()
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         for left, right in sequencetools.iterate_sequence_pairwise_strict(
             iterationtools.iterate_notes_in_expr(self._selection)):
@@ -499,7 +493,7 @@ class TonalAnalysisSelection(object):
         return True
 
     def are_stepwise_notes(self):
-        r'''True when notes in selection are stepwise:
+        r'''True when notes in selection are stepwise.
 
         ::
 
@@ -514,7 +508,7 @@ class TonalAnalysisSelection(object):
             >>> selection_2.are_stepwise_notes()
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         for left, right in sequencetools.iterate_sequence_pairwise_strict(
             iterationtools.iterate_notes_in_expr(self._selection)):

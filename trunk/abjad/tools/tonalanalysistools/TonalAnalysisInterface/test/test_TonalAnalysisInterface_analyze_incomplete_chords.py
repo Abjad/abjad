@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_TonalAnalysisSelection_analyze_incomplete_chords_01():
+def test_TonalAnalysisInterface_analyze_incomplete_chords_01():
 
     chord = Chord('<g b>4')
     chord_class = tonalanalysistools.ChordClass('g', 'major', 'triad', 'root')
@@ -15,7 +15,7 @@ def test_TonalAnalysisSelection_analyze_incomplete_chords_01():
     assert selection.analyze_incomplete_chords() == [chord_class]
 
 
-def test_TonalAnalysisSelection_analyze_incomplete_chords_02():
+def test_TonalAnalysisInterface_analyze_incomplete_chords_02():
 
     chord = Chord('<f g b>4')
     chord_class = tonalanalysistools.ChordClass('g', 'dominant', 'seventh', 2)

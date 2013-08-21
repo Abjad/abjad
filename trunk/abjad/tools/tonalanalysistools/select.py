@@ -9,9 +9,9 @@ def select(expr):
     from abjad.tools import componenttools
     from abjad.tools import tonalanalysistools
     if isinstance(expr, componenttools.Component):
-        return tonalanalysistools.TonalAnalysisSelection(expr)
+        return tonalanalysistools.TonalAnalysisInterface(expr)
     elif hasattr(expr, '_music'):
         music = expr._music
-        return tonalanalysistools.TonalAnalysisSelection(music)
+        return tonalanalysistools.TonalAnalysisInterface(music)
     else:
-        return tonalanalysistools.TonalAnalysisSelection(expr)
+        return tonalanalysistools.TonalAnalysisInterface(expr)

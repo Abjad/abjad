@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_TonalAnalysisSelection_analyze_tonal_functions_01():
+def test_TonalAnalysisInterface_analyze_tonal_functions_01():
 
     key_signature = contexttools.KeySignatureMark('c', 'major')
     chord = Chord('<c e g>4')
@@ -24,7 +24,7 @@ def test_TonalAnalysisSelection_analyze_tonal_functions_01():
     assert result == [tonal_function]
 
 
-def test_TonalAnalysisSelection_analyze_tonal_functions_02():
+def test_TonalAnalysisInterface_analyze_tonal_functions_02():
 
     key_signature = contexttools.KeySignatureMark('c', 'major')
     chord = Chord(['c', 'ef', 'g'], (1, 4))
@@ -46,7 +46,7 @@ def test_TonalAnalysisSelection_analyze_tonal_functions_02():
     assert result == [tonal_function]
 
 
-def test_TonalAnalysisSelection_analyze_tonal_functions_03():
+def test_TonalAnalysisInterface_analyze_tonal_functions_03():
 
     key_signature = contexttools.KeySignatureMark('c', 'major')
     chord = Chord(['c', 'e', 'g', 'bf'], (1, 4))
@@ -74,7 +74,7 @@ def test_TonalAnalysisSelection_analyze_tonal_functions_03():
     assert result == [tonal_function]
 
 
-def test_TonalAnalysisSelection_analyze_tonal_functions_04():
+def test_TonalAnalysisInterface_analyze_tonal_functions_04():
 
     key_signature = contexttools.KeySignatureMark('c', 'major')
     chord = Chord(['c', 'cs', 'd'], (1, 4))
