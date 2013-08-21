@@ -324,3 +324,11 @@ class Inspector(Selection):
         return self[0]._select_vertical_moment_at(
             offset,
             )
+
+
+def inspect(component):
+    r'''Inspect `component`.
+
+    Returns inspector.
+    '''
+    return Inspector(component)

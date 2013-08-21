@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 
-# Warn on an outdated Python installation:
+# warn on an outdated Python installation
 import platform
 if not platform.python_version() in (('2.7.3', '2.7.4', '2.7.5')):
     print 'WARNING: Abjad no longer supports' + \
@@ -9,7 +9,7 @@ if not platform.python_version() in (('2.7.3', '2.7.4', '2.7.5')):
         ' version of Python to 2.7.3, 2.7.4 or 2.7.5!'
 del platform
 
-# Setup tab completion:
+# set up tab completion
 import readline
 import rlcompleter
 if readline.__doc__ is not None and 'libedit' in readline.__doc__:
@@ -19,14 +19,16 @@ else:
 del readline
 del rlcompleter
 
-# Ensure that the ~/.abjad directory and friends are setup,
-# and instantiate Abjad's configuration singleton:
+# ensure that the ~/.abjad directory and friends are setup,
+# and instantiate Abjad's configuration singleton
 from abjad.tools.configurationtools import AbjadConfiguration
 abjad_configuration = AbjadConfiguration()
 del AbjadConfiguration
 
-# Import all Abjad tools packages:
+# import all tools packages
 from abjad.tools import *
+
+# import some classes and functions for direct user access
 from abjad.tools.chordtools import Chord
 from abjad.tools.containertools import Container
 from abjad.tools.durationtools import Duration
@@ -44,20 +46,14 @@ from abjad.tools.scoretools import Score
 from abjad.tools.selectiontools import more
 from abjad.tools.selectiontools import mutate
 from abjad.tools.selectiontools import select
+from abjad.tools.selectiontools.Inspector import inspect
 from abjad.tools.stafftools import Staff
 from abjad.tools.tuplettools import Tuplet
 from abjad.tools.voicetools import Voice
 from fractions import Fraction
 del tools
 
-#from abjad.tools.importtools.import_public_names_from_filesystem_path_into_namespace \
-#    import import_public_names_from_filesystem_path_into_namespace
-#_exceptions_path = os.path.join(__path__[0], 'tools', 'exceptiontools')
-#import_public_names_from_filesystem_path_into_namespace(
-#    _exceptions_path, __builtins__)
-#del import_public_names_from_filesystem_path_into_namespace
-
-# Import custom exceptions into the builtins module:
+# import custom exceptions into the builtins module
 import os
 from abjad.tools.importtools.ImportManager import ImportManager
 ImportManager.import_public_names_from_filesystem_path_into_namespace(
@@ -67,6 +63,6 @@ ImportManager.import_public_names_from_filesystem_path_into_namespace(
 del ImportManager
 del os
 
-# Import version information:
+# import version information
 from abjad._version import __version_info__, __version__
 del _version
