@@ -1177,6 +1177,8 @@ class Container(Component):
 
     def select_leaves(
         self,
+        start=0,
+        stop=None,
         leaf_classes=None,
         recurse=True,
         allow_discontiguous_leaves=False,
@@ -1201,6 +1203,8 @@ class Container(Component):
         from abjad.tools import selectiontools
         return selectiontools.select_leaves(
             expr=self,
+            start=start,
+            stop=stop,
             leaf_classes=leaf_classes,
             recurse=recurse,
             allow_discontiguous_leaves=allow_discontiguous_leaves,

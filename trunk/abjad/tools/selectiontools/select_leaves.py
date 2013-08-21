@@ -3,6 +3,8 @@
 
 def select_leaves(
     expr=None,
+    start=0,
+    stop=None,
     leaf_classes=None,
     recurse=True,
     allow_discontiguous_leaves=False,
@@ -78,6 +80,7 @@ def select_leaves(
             component for component in expr
             if isinstance(component, leaf_classes)
             ]
+    music = music[start:stop]
     if allow_discontiguous_leaves:
         selection = selectiontools.FreeLeafSelection(music=music)
     else:
