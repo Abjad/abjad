@@ -3,9 +3,16 @@ from abjad.tools import durationtools
 from abjad.tools.selectiontools.Selection import Selection
 
 
-class Inspector(Selection):
-    r'''Access to extended component methods.
+class ComponentInspector(Selection):
+    r'''Inspect one component.
     '''
+
+    ### INITIALIZER ###
+
+    def __init__(self, music=None):
+        music = self._coerce_music(music)
+        assert len(music) == 1
+        Selection.__init__(self, music=music)
 
     ### PUBLIC METHODS ###
 
@@ -331,4 +338,4 @@ def inspect(component):
 
     Returns inspector.
     '''
-    return Inspector(component)
+    return ComponentInspector(component)

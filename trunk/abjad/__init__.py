@@ -52,7 +52,7 @@ from abjad.tools.iotools import z
 from abjad.tools.selectiontools import more
 from abjad.tools.selectiontools import mutate
 from abjad.tools.selectiontools import select
-from abjad.tools.selectiontools.Inspector import inspect
+from abjad.tools.selectiontools.ComponentInspector import inspect
 
 # import custom exceptions into the builtins module
 import os

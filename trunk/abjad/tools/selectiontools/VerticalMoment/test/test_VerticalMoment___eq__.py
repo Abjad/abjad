@@ -63,35 +63,41 @@ def test_VerticalMoment___eq___02():
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
         list(reversed(score.select_leaves(allow_discontiguous_leaves=True))))
 
-    r'''
-    \new Score <<
-        \new Staff {
-            \times 4/3 {
-                d''8
-                c''8
-                b'8
-            }
-        }
-        \new PianoStaff <<
+    assert testtools.compare(
+        score,
+        r'''
+        \new Score <<
             \new Staff {
-                a'4
-                g'4
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 4/3 {
+                    d''8
+                    c''8
+                    b'8
+                }
             }
-            \new Staff {
-                \clef "bass"
-                f'8
-                e'8
-                d'8
-                c'8
-            }
+            \new PianoStaff <<
+                \new Staff {
+                    a'4
+                    g'4
+                }
+                \new Staff {
+                    \clef "bass"
+                    f'8
+                    e'8
+                    d'8
+                    c'8
+                }
+            >>
         >>
-    >>
-    '''
+        '''
+        )
 
-    vertical_moment_1 = inspect(piano_staff).select_vertical_moment_at(Offset(1, 8))
+    vertical_moment_1 = inspect(
+        piano_staff).select_vertical_moment_at(Offset(1, 8))
     "VerticalMoment(PianoStaff<<2>>, Staff{2}, a'4, Staff{4}, e'8)"
 
-    vertical_moment_2 = inspect(piano_staff[:2]).select_vertical_moment_at(Offset(1, 8))
+    vertical_moment_2 = inspect(
+        piano_staff[:1]).select_vertical_moment_at(Offset(1, 8))
     "VerticalMoment(Staff{2}, a'4, Staff{4}, e'8)"
 
     assert not vertical_moment_1 == vertical_moment_2

@@ -54,8 +54,6 @@ class Selection(object):
         '''
         if isinstance(expr, type(self)):
             return self._music == expr._music
-        # eventually remove this permissive branch
-        # and force the use of selections only
         elif isinstance(expr, (list, tuple)):
             return self._music == tuple(expr)
 
