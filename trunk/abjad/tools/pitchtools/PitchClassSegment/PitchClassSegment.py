@@ -9,20 +9,20 @@ class PitchClassSegment(TypedTuple):
 
     ::
 
-        >>> numbered_segment = pitchtools.PitchClassSegment(
+        >>> numbered_pitch_class_segment = pitchtools.PitchClassSegment(
         ...     tokens=[-2, -1.5, 6, 7, -1.5, 7],
         ...     item_class=pitchtools.NumberedPitchClass,
         ...     )
-        >>> numbered_segment
+        >>> numbered_pitch_class_segment
         PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
 
     ::
 
-        >>> named_segment = pitchtools.PitchClassSegment(
+        >>> named_pitch_class_segment = pitchtools.PitchClassSegment(
         ...     tokens=['c', 'ef', 'bqs,', 'd'],
         ...     item_class=pitchtools.NamedPitchClass,
         ...     )
-        >>> named_segment
+        >>> named_pitch_class_segment
         PitchClassSegment(['c', 'ef', 'bqs', 'd'])
 
     Return pitch-class segment.
@@ -56,10 +56,10 @@ class PitchClassSegment(TypedTuple):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '%s([%s])' % (self._class_name, self._repr_string)
+        return '{}([{}])'.format(self._class_name, self._repr_string)
 
     def __str__(self):
-        return '<%s>' % self._format_string
+        return '<{}>'.format(self._format_string)
 
     ### PRIVATE PROPERTIES ###
 
@@ -84,10 +84,10 @@ class PitchClassSegment(TypedTuple):
 
         ::
 
-            >>> numbered_segment.alpha()
+            >>> numbered_pitch_class_segment.alpha()
             PitchClassSegment([11, 11.5, 7, 6, 11.5, 6])
 
-        Return pitch-class segment.
+        Emit new pitch-class segment.
         '''
         from abjad.tools import mathtools
         numbers = []
@@ -114,25 +114,29 @@ class PitchClassSegment(TypedTuple):
 
         ::
 
-            >>> numbered_segment.invert()
+            >>> numbered_pitch_class_segment.invert()
             PitchClassSegment([2, 1.5, 6, 5, 1.5, 5])
 
-        Return pitch-class segment.
+        Emit new pitch-class segment.
         '''
         tokens = (pc.invert() for pc in self)
         return self.new(tokens=tokens)
 
     def is_equivalent_under_transposition(self, expr):
+        r'''True if equivalent under transposition to `expr`, otherwise False.
+        
+        Return boolean.
+        '''
         from abjad.tools import pitchtools
         if not isinstance(expr, type(self)):
             return False
         if not len(self) == len(expr):
             return False
         difference = -(pitchtools.NamedPitch(expr[0], 4) -
-            pitchtools.namedpitch(self[0], 4))
-        new_npcs = [x + difference for x in self]
-        new_npc_seg = self.new(tokens=new_npcs)
-        return arg == new_npc_seg
+            pitchtools.NamedPitch(self[0], 4))
+        new_pitch_classes = (x + difference for x in self)
+        new_pitch_classes = self.new(tokens=new_pitch_classes)
+        return arg == new_pitch_classes
 
     def make_notes(self, n=None, written_duration=None):
         r'''Make first `n` notes in pitch class segment.
@@ -145,6 +149,9 @@ class PitchClassSegment(TypedTuple):
 
             >>> pitch_class_segment = pitchtools.PitchClassSegment(
             ...     [2, 4.5, 6, 11, 4.5, 10])
+
+        ::
+
             >>> notes = pitch_class_segment.make_notes()
             >>> staff = Staff(notes)
             >>> show(staff) # doctest: +SKIP
@@ -206,10 +213,10 @@ class PitchClassSegment(TypedTuple):
 
         ::
 
-            >>> numbered_segment.multiply(5)
+            >>> numbered_pitch_class_segment.multiply(5)
             PitchClassSegment([2, 4.5, 6, 11, 4.5, 11])
 
-        Return pitch-class segment.
+        Emit new pitch-class segment.
         '''
         from abjad.tools import pitchtools
         tokens = (pitchtools.NumberedPitchClass(pc).multiply(n)
@@ -221,10 +228,10 @@ class PitchClassSegment(TypedTuple):
 
         ::
 
-            >>> numbered_segment.retrograde()
+            >>> numbered_pitch_class_segment.retrograde()
             PitchClassSegment([7, 10.5, 7, 6, 10.5, 10])
 
-        Return pitch-class segment.
+        Emit new pitch-class segment.
         '''
         return self.new(tokens=reversed(self))
 
@@ -233,25 +240,30 @@ class PitchClassSegment(TypedTuple):
 
         ::
 
-            >>> numbered_segment.rotate(1)
+            >>> numbered_pitch_class_segment.rotate(1)
             PitchClassSegment([7, 10, 10.5, 6, 7, 10.5])
 
-        Return pitch-class segment.
+        ::
+
+            >>> named_pitch_class_segment.rotate(-2)
+            PitchClassSegment(['bqs', 'd', 'c', 'ef'])
+
+        Emit new pitch-class segment.
         '''
         from abjad.tools import sequencetools
-        tokens = sequencetools.rotate_sequence(self, n)
+        tokens = sequencetools.rotate_sequence(self._collection, n)
         return self.new(tokens=tokens)
 
-    def transpose(self, n):
+    def transpose(self, expr):
         r'''Transpose pitch-class segment:
 
         ::
 
-            >>> numbered_segment.transpose(10)
+            >>> numbered_pitch_class_segment.transpose(10)
             PitchClassSegment([8, 8.5, 4, 5, 8.5, 5])
 
-        Return pitch-class segment.
+        Emit new pitch-class segment.
         '''
-        tokens = (pc.transpose(n) for pc in self)
+        tokens = (pitch_class.transpose(expr) for pitch_class in self)
         return self.new(tokens=tokens)
 
