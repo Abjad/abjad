@@ -3,8 +3,6 @@ from abjad.tools import durationtools
 from abjad.tools.selectiontools import mutate
 
 
-# TODO: trigger this subroutine from a keyword implemented on
-#       select(expr).copy(climb_parentage=True)
 def copy_governed_component_subtree_from_offset_to(
     component, start_offset=0, stop_offset=None):
     r'''Copies governed `component` subtree from `start_offset`
@@ -271,7 +269,6 @@ def _get_lcopy(container, start, stop):
             #print 'breaking after stop'
             break
     #print start_leaf, stop_leaf
-    untrimmed_copy = \
-        componenttools.copy_governed_component_subtree_by_leaf_range(
-        container, start_leaf, stop_leaf)
+    leaves = container.select_leaves(start_leaf, stop_leaf)
+    untrimmed_copy = leaves.copy_up_to()
     return untrimmed_copy, first_dif, second_dif

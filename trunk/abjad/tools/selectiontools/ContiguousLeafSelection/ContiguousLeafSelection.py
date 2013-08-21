@@ -74,6 +74,110 @@ class ContiguousLeafSelection(ContiguousSelection):
 
     ### PUBLIC METHODS ###
 
+    def copy_up_to(self):
+        r'''Copies leaves in selection up to outermost sequential container.
+
+        ..  container:: example
+
+            ::
+
+                >>> voice = Voice(r"\times 2/3 { c'4 d'4 e'4 }")
+                >>> voice.append(r"\times 2/3 { f'4 e'4 d'4 }")
+                >>> staff = Staff([voice])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \new Voice {
+                        \times 2/3 {
+                            c'4
+                            d'4
+                            e'4
+                        }
+                        \times 2/3 {
+                            f'4
+                            e'4
+                            d'4
+                        }
+                    }
+                }
+
+            ::
+
+                >>> leaves = staff.select_leaves(1, 5)
+                >>> new_staff = leaves.copy_up_to()
+                >>> show(new_staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(new_staff)
+                \new Staff {
+                    \new Voice {
+                        \times 2/3 {
+                            d'4
+                            e'4
+                        }
+                        \times 2/3 {
+                            f'4
+                            e'4
+                        }
+                    }
+                }
+
+        Copies all sequential containers in leaves' parentage up to
+        the first simultaneous container in leaves' parentage.
+
+        Trims and shrinks copied containers as necessary.
+
+        Returns new container.
+        '''
+        from abjad.tools import componenttools
+        from abjad.tools import iterationtools
+        from abjad.tools import leaftools
+        from abjad.tools.selectiontools import mutate
+        # new: find start and stop leaves in component
+        start_leaf_in_component = self[0]
+        stop_leaf_in_component = self[-1]
+        # get governor
+        parentage = self[0]._select_parentage(include_self=True)
+        governor = parentage._get_governor()
+        # find start and stop leaves in governor
+        governor_leaves = list(governor.select_leaves())
+        for i, x in enumerate(governor_leaves):
+            if x is start_leaf_in_component:
+                start_index_in_governor = i
+        for i, x in enumerate(governor_leaves):
+            if x is stop_leaf_in_component:
+                stop_index_in_governor = i
+        # copy governor
+        governor_copy = mutate(governor).copy()
+        copy_leaves = governor_copy.select_leaves()
+        # find start and stop leaves in copy of governor
+        start_leaf = copy_leaves[start_index_in_governor]
+        stop_leaf = copy_leaves[stop_index_in_governor]
+        # trim governor copy forwards from first leaf
+        found_start_leaf = False
+        while not found_start_leaf:
+            leaf = iterationtools.iterate_leaves_in_expr(governor_copy).next()
+            if leaf is start_leaf:
+                found_start_leaf = True
+            else:
+                leaftools.remove_leaf_and_shrink_durated_parent_containers(leaf)
+        # trim governor copy backwards from last leaf
+        found_stop_leaf = False
+        while not found_stop_leaf:
+            reverse_iterator = iterationtools.iterate_leaves_in_expr(
+                governor_copy, reverse=True)
+            leaf = reverse_iterator.next()
+            if leaf is stop_leaf:
+                found_stop_leaf = True
+            else:
+                leaftools.remove_leaf_and_shrink_durated_parent_containers(leaf)
+        # return trimmed governor copy
+        return governor_copy
+
     def detach_grace_containers(self, kind=None):
         r'''Detach grace containers attached to leaves in selection:
 

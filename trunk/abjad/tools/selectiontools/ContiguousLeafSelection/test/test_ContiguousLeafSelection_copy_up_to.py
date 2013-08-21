@@ -3,7 +3,7 @@ import py.test
 from abjad import *
 
 
-def test_componenttools_copy_governed_component_subtree_by_leaf_range_01():
+def test_ContiguousLeafSelection_copy_up_to_01():
     r'''Copy consecutive notes across tuplet boundary in staff.
     '''
 
@@ -27,8 +27,8 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_01():
         '''
         )
 
-    new_staff = componenttools.copy_governed_component_subtree_by_leaf_range(
-        staff, 1, 5)
+    leaves = staff.select_leaves(1, 5)
+    new_staff = leaves.copy_up_to()
 
     assert testtools.compare(
         new_staff,
@@ -50,7 +50,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_01():
     assert select(new_staff).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_by_leaf_range_02():
+def test_ContiguousLeafSelection_copy_up_to_02():
     r'''Copy consecutive notes across tuplet boundary in voice and staff.
     '''
 
@@ -77,8 +77,8 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_02():
         '''
         )
 
-    new_staff = componenttools.copy_governed_component_subtree_by_leaf_range(
-        staff, 1, 5)
+    leaves = staff.select_leaves(1, 5)
+    new_staff = leaves.copy_up_to()
 
     assert testtools.compare(
         new_staff,
@@ -102,19 +102,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_02():
     assert select(new_staff).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_by_leaf_range_03():
-    r'''Can not copy from simultaneous container.
-    '''
-
-    staff = Staff([Voice("c'8 d'8 e'8 f'8")])
-    staff.is_simultaneous = True
-
-    statement = 'componenttools.copy_governed_component_subtree_'
-    statement += 'by_leaf_range(staff, 1, 5)'
-    assert py.test.raises(Exception, statement)
-
-
-def test_componenttools_copy_governed_component_subtree_by_leaf_range_04():
+def test_ContiguousLeafSelection_copy_up_to_03():
     r'''Works fine on voices nested inside simultaneous context.
     '''
 
@@ -143,8 +131,8 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_04():
         '''
         )
 
-    new_voice = componenttools.copy_governed_component_subtree_by_leaf_range(
-        staff[0], 1, 3)
+    leaves = voice_1.select_leaves(1, 3)
+    new_voice = leaves.copy_up_to()
 
     assert testtools.compare(
         new_voice,
@@ -160,13 +148,13 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_04():
     assert select(new_voice).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_by_leaf_range_05():
+def test_ContiguousLeafSelection_copy_up_to_04():
     r'''Copy consecutive notes in measure with power-of-two denominator.
     '''
 
     measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
-    new_measure = componenttools.copy_governed_component_subtree_by_leaf_range(
-        measure, 1, 3)
+    leaves = measure.select_leaves(1, 3)
+    new_measure = leaves.copy_up_to()
 
     assert testtools.compare(
         new_measure,
@@ -182,14 +170,14 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_05():
     assert select(new_measure).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_by_leaf_range_06():
+def test_ContiguousLeafSelection_copy_up_to_05():
     r'''Copy consecutive notes in staff and score.
     '''
 
     score = Score([Staff("c'8 d'8 e'8 f'8")])
     staff = score[0]
-    new_staff = componenttools.copy_governed_component_subtree_by_leaf_range(
-        staff, 1, 3)
+    leaves = staff.select_leaves(1, 3)
+    new_staff = leaves.copy_up_to()
 
     assert testtools.compare(
         new_staff,
@@ -205,7 +193,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_06():
     assert select(new_staff).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_by_leaf_range_07():
+def test_ContiguousLeafSelection_copy_up_to_06():
     r'''Copy consecutive leaves from tuplet in measure with power-of-two 
     denominator. Measure without power-of-two denominator results.
     '''
@@ -230,8 +218,8 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_07():
         '''
         )
 
-    new_measure = componenttools.copy_governed_component_subtree_by_leaf_range(
-        measure, 1, 4)
+    leaves = measure.select_leaves(1, 4)
+    new_measure = leaves.copy_up_to()
 
     assert testtools.compare(
         new_measure,
@@ -253,7 +241,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_07():
     assert select(new_measure).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_by_leaf_range_08():
+def test_ContiguousLeafSelection_copy_up_to_07():
     r'''Copy consecutive leaves from tuplet in measure and voice.
     Measure without power-of-two time signature denominator results.
     '''
@@ -280,8 +268,8 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_08():
         '''
         )
 
-    new_voice = componenttools.copy_governed_component_subtree_by_leaf_range(
-        voice, 1, 4)
+    leaves = voice.select_leaves(1, 4)
+    new_voice = leaves.copy_up_to()
 
     assert testtools.compare(
         new_voice,
@@ -305,7 +293,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_08():
     assert select(new_voice).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_by_leaf_range_09():
+def test_ContiguousLeafSelection_copy_up_to_08():
     r'''Measures shrink when copying a partial tuplet.
 
     Note that test only works with fixed-duration tuplets.
@@ -334,8 +322,8 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_09():
         '''
         )
 
-    new_measure = componenttools.copy_governed_component_subtree_by_leaf_range(
-        measure, 1)
+    leaves = measure.select_leaves(1, None)
+    new_measure = leaves.copy_up_to()
 
     assert testtools.compare(
         new_measure,
@@ -361,7 +349,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_09():
     assert select(new_measure).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_by_leaf_range_10():
+def test_ContiguousLeafSelection_copy_up_to_09():
     r'''Copy consecutive leaves across measure boundary.
     '''
 
@@ -388,8 +376,8 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_10():
         '''
         )
 
-    new_staff = componenttools.copy_governed_component_subtree_by_leaf_range(
-        staff, 2, 4)
+    leaves = staff.select_leaves(2, 4)
+    new_staff = leaves.copy_up_to()
 
     assert testtools.compare(
         new_staff,
@@ -410,7 +398,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_10():
     assert select(new_staff).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_by_leaf_range_11():
+def test_ContiguousLeafSelection_copy_up_to_10():
     r'''Copy consecutive leaves from tuplet in staff;
     pass start and stop indices local to tuplet.
     '''
@@ -437,8 +425,8 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_11():
         '''
         )
 
-    new_staff = componenttools.copy_governed_component_subtree_by_leaf_range(
-        staff[1], 1, 3)
+    leaves = tuplet_2.select_leaves(1, 3)
+    new_staff = leaves.copy_up_to()
 
     assert testtools.compare(
         new_staff,
@@ -456,7 +444,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_11():
     assert select(new_staff).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_by_leaf_range_12():
+def test_ContiguousLeafSelection_copy_up_to_11():
     r'''Copy consecutive leaves from measure in staff;
     pass start and stop indices local to measure.
     '''
@@ -484,8 +472,8 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_12():
         '''
         )
 
-    new_staff = componenttools.copy_governed_component_subtree_by_leaf_range(
-        staff[1], 1, 3)
+    leaves = measure_2.select_leaves(1, 3)
+    new_staff = leaves.copy_up_to()
 
     assert testtools.compare(
         new_staff,
@@ -504,7 +492,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_12():
     assert select(new_staff).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_by_leaf_range_13():
+def test_ContiguousLeafSelection_copy_up_to_12():
     r'''Copy consecutive leaves from in-staff measure without 
     power-of-two denominator. Pass start and stop indices local to measure.
     '''
@@ -536,8 +524,8 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_13():
         '''
         )
 
-    new_staff = componenttools.copy_governed_component_subtree_by_leaf_range(
-        staff[1], 1, 3)
+    leaves = measure_2.select_leaves(1, 3)
+    new_staff = leaves.copy_up_to()
 
     assert testtools.compare(
         new_staff,
