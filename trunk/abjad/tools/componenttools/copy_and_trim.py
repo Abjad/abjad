@@ -3,13 +3,10 @@ from abjad.tools import durationtools
 from abjad.tools.selectiontools import mutate
 
 
-def copy_governed_component_subtree_from_offset_to(
+def copy_and_trim(
     component, start_offset=0, stop_offset=None):
-    r'''Copies governed `component` subtree from `start_offset`
-    to `stop_offset`.
-
-    Governed subtree refers to `component` together with the
-    children of `component`.
+    r'''Copies `component` and trims from `start_offset`
+    to `stop_offset` (both relative to the start of `component`).
 
     ..  container:: example
 
@@ -36,7 +33,7 @@ def copy_governed_component_subtree_from_offset_to(
         ::
 
             >>> new_voice = \
-            ...     componenttools.copy_governed_component_subtree_from_offset_to(
+            ...     componenttools.copy_and_trim(
             ...     voice, Offset(0, 8), Offset(3, 8))
             >>> show(new_voice) # doctest: +SKIP
 
@@ -71,7 +68,7 @@ def copy_governed_component_subtree_from_offset_to(
         ::
 
             >>> new_voice = \
-            ...     componenttools.copy_governed_component_subtree_from_offset_to(
+            ...     componenttools.copy_and_trim(
             ...     voice, Offset(0), Offset(1, 12))
             >>> show(new_voice) # doctest: +SKIP
 
@@ -107,7 +104,7 @@ def copy_governed_component_subtree_from_offset_to(
         ::
 
             >>> new_voice = \
-            ...     componenttools.copy_governed_component_subtree_from_offset_to(
+            ...     componenttools.copy_and_trim(
             ...     voice[0], Offset(0), Offset(1, 8))
             >>> show(new_voice) # doctest: +SKIP
 
@@ -144,7 +141,7 @@ def copy_governed_component_subtree_from_offset_to(
         ::
 
             >>> new_leaf = \
-            ... componenttools.copy_governed_component_subtree_from_offset_to(
+            ... componenttools.copy_and_trim(
             ...     voice[0][0], Offset(0), Offset(1, 8))
             >>> new_leaf
             Note("c'8")
@@ -155,10 +152,7 @@ def copy_governed_component_subtree_from_offset_to(
             >>> f(new_leaf)
             c'8 ( )
 
-    Raises contiguity error when attempting to copy leaves from 
-    simultaneous container.
-
-    Returns ``(untrimmed_copy, first_dif, second_dif)`` tuple.
+    Returns new component.
     '''
     from abjad.tools import componenttools
     from abjad.tools import containertools

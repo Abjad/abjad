@@ -2,12 +2,12 @@
 from abjad import *
 
 
-def test_componenttools_copy_governed_component_subtree_from_offset_to_01():
+def test_componenttools_copy_and_trim_01():
     r'''Container.
     '''
 
     container = Container("c'8 d'8 e'8")
-    new_container = componenttools.copy_governed_component_subtree_from_offset_to(
+    new_container = componenttools.copy_and_trim(
         container, Offset(0), Offset(3, 16))
 
     assert testtools.compare(
@@ -23,12 +23,12 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_01():
     assert select(new_container).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_from_offset_to_02():
+def test_componenttools_copy_and_trim_02():
     r'''Container with rest.
     '''
 
     container = Container("c'8 r8 e'8")
-    new_container = componenttools.copy_governed_component_subtree_from_offset_to(
+    new_container = componenttools.copy_and_trim(
         container, Offset(0), Offset(3, 16))
 
     assert testtools.compare(
@@ -44,12 +44,12 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_02():
     assert select(new_container).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_from_offset_to_03():
+def test_componenttools_copy_and_trim_03():
     r'''Copy measure.
     '''
 
     measure = Measure((3, 8), "c'8 d'8 e'8")
-    new_measure = componenttools.copy_governed_component_subtree_from_offset_to(
+    new_measure = componenttools.copy_and_trim(
         measure, Offset(0), Offset(3, 16))
 
     assert testtools.compare(
@@ -66,12 +66,12 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_03():
     assert select(new_measure).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_from_offset_to_04():
+def test_componenttools_copy_and_trim_04():
     r'''Fixed-duration tuplet.
     '''
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(1, 4), "c'8 d'8 e'8")
-    new_tuplet = componenttools.copy_governed_component_subtree_from_offset_to(
+    new_tuplet = componenttools.copy_and_trim(
         tuplet, Offset(0), Offset(1, 8))
 
     assert testtools.compare(
@@ -87,12 +87,12 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_04():
     assert select(new_tuplet).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_from_offset_to_05():
+def test_componenttools_copy_and_trim_05():
     r'''Tuplet.
     '''
 
     tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-    new_tuplet = componenttools.copy_governed_component_subtree_from_offset_to(
+    new_tuplet = componenttools.copy_and_trim(
         tuplet, Offset(0), Offset(1, 8))
 
     assert testtools.compare(
@@ -108,12 +108,12 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_05():
     assert select(new_tuplet).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_from_offset_to_06():
+def test_componenttools_copy_and_trim_06():
     r'''Voice.
     '''
 
     voice = Voice("c'8 d'8 e'8")
-    new_voice = componenttools.copy_governed_component_subtree_from_offset_to(
+    new_voice = componenttools.copy_and_trim(
         voice, Offset(0), Offset(3, 16))
 
     assert testtools.compare(
@@ -129,12 +129,12 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_06():
     assert select(new_voice).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_from_offset_to_07():
+def test_componenttools_copy_and_trim_07():
     r'''Staff.
     '''
 
     staff = Staff("c'8 d'8 e'8")
-    new_staff = componenttools.copy_governed_component_subtree_from_offset_to(
+    new_staff = componenttools.copy_and_trim(
         staff, Offset(0), Offset(3, 16))
 
     assert testtools.compare(
@@ -150,24 +150,24 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_07():
     assert select(new_staff).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_from_offset_to_08():
+def test_componenttools_copy_and_trim_08():
     r'''Start-to-mid clean cut.
     '''
 
     note = Note("c'4")
-    new_note = componenttools.copy_governed_component_subtree_from_offset_to(
+    new_note = componenttools.copy_and_trim(
         note, 0, (1, 8))
 
     assert new_note.lilypond_format == "c'8"
     assert select(new_note).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_from_offset_to_09():
+def test_componenttools_copy_and_trim_09():
     r'''Start-to-mid jagged cut.
     '''
 
     note = Note("c'4")
-    new_tuplet = componenttools.copy_governed_component_subtree_from_offset_to(
+    new_tuplet = componenttools.copy_and_trim(
         note, Offset(0), Offset(1, 12))
 
     assert testtools.compare(
@@ -182,12 +182,12 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_09():
     assert select(new_tuplet).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_from_offset_to_10():
+def test_componenttools_copy_and_trim_10():
     r'''Mid-mid jagged cut.
     '''
 
     note = Note("c'4")
-    new_tuplet = componenttools.copy_governed_component_subtree_from_offset_to(
+    new_tuplet = componenttools.copy_and_trim(
         note, Offset(1, 12), Offset(2, 12))
 
     assert testtools.compare(
@@ -202,12 +202,12 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_10():
     assert select(new_tuplet).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_from_offset_to_11():
+def test_componenttools_copy_and_trim_11():
     r'''Mid-to-stop jagged cut.
     '''
 
     note = Note("c'4")
-    new_tuplet = componenttools.copy_governed_component_subtree_from_offset_to(
+    new_tuplet = componenttools.copy_and_trim(
         note, Offset(1, 6), Offset(1, 4))
 
     assert testtools.compare(
@@ -222,36 +222,36 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_11():
     assert select(new_tuplet).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_from_offset_to_12():
+def test_componenttools_copy_and_trim_12():
     r'''Start-to-after clean cut.
     '''
 
     note = Note("c'4")
-    new_note = componenttools.copy_governed_component_subtree_from_offset_to(
+    new_note = componenttools.copy_and_trim(
         note, Offset(0), Offset(1, 2))
 
     assert new_note.lilypond_format == "c'4"
     assert select(new_note).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_from_offset_to_13():
+def test_componenttools_copy_and_trim_13():
     r'''Mid-to-after clean cut.
     '''
 
     note = Note("c'4")
-    new_note = componenttools.copy_governed_component_subtree_from_offset_to(
+    new_note = componenttools.copy_and_trim(
         note, Offset(1, 8), Offset(1, 2))
 
     assert new_note.lilypond_format == "c'8"
     assert select(new_note).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_from_offset_to_14():
+def test_componenttools_copy_and_trim_14():
     r'''Mid-to-after jagged cut.
     '''
 
     note = Note("c'4")
-    new_tuplet = componenttools.copy_governed_component_subtree_from_offset_to(
+    new_tuplet = componenttools.copy_and_trim(
         note, Offset(2, 12), Offset(1, 2))
 
     assert testtools.compare(
@@ -266,24 +266,24 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_14():
     assert select(new_tuplet).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_from_offset_to_15():
+def test_componenttools_copy_and_trim_15():
     r'''Before-to-after.
     '''
 
     note = Note("c'4")
-    new_note = componenttools.copy_governed_component_subtree_from_offset_to(
+    new_note = componenttools.copy_and_trim(
         note, Offset(-1, 4), Offset(1, 2))
 
     assert new_note.lilypond_format == "c'4"
     assert select(new_note).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_from_offset_to_16():
+def test_componenttools_copy_and_trim_16():
     r'''Start-to-mid jagged.
     '''
 
     note = Note("c'4")
-    new_tuplet = componenttools.copy_governed_component_subtree_from_offset_to(
+    new_tuplet = componenttools.copy_and_trim(
         note, Offset(0), Offset(5, 24))
 
     assert testtools.compare(
@@ -299,12 +299,12 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_16():
     assert select(new_tuplet).is_well_formed()
 
 
-def test_componenttools_copy_governed_component_subtree_from_offset_to_17():
+def test_componenttools_copy_and_trim_17():
     r'''Start-to-mid jagged.
     '''
 
     note = Note("c'4")
-    new_tuplet = componenttools.copy_governed_component_subtree_from_offset_to(
+    new_tuplet = componenttools.copy_and_trim(
         note, Offset(0), Offset(1, 5))
 
     assert testtools.compare(

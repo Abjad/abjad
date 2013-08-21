@@ -307,7 +307,7 @@ Renamed all functions that contained ``prolated_offset`` to simply ``offset``::
 
 ::
 
-    componenttools.copy_governed_component_subtree_from_offset_to()
+    componenttools.copy_and_trim()
     componenttools.get_improper_descendants_of_component_that_cross_offset()
     containertools.delete_contents_of_container_starting_at_or_after_offset()
     containertools.delete_contents_of_container_starting_before_or_at_offset()
