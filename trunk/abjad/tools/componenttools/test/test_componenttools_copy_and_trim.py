@@ -278,27 +278,6 @@ def test_componenttools_copy_and_trim_15():
     assert select(new_note).is_well_formed()
 
 
-def test_componenttools_copy_and_trim_16():
-    r'''Start-to-mid jagged.
-    '''
-
-    note = Note("c'4")
-    new_tuplet = componenttools.copy_and_trim(
-        note, Offset(0), Offset(5, 24))
-
-    assert testtools.compare(
-        new_tuplet,
-        r'''
-        \times 2/3 {
-            c'4 ~
-            c'16
-        }
-        '''
-        )
-
-    assert select(new_tuplet).is_well_formed()
-
-
 def test_componenttools_copy_and_trim_17():
     r'''Start-to-mid jagged.
     '''

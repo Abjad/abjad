@@ -310,11 +310,10 @@ def split(
     from abjad.tools import componenttools
     from abjad.tools import leaftools
     from abjad.tools import selectiontools
-
+    
     # check input
     assert all(isinstance(x, componenttools.Component) for x in components)
     if not isinstance(components, selectiontools.SliceSelection):
-        #components = selectiontools.SliceSelection(components)
         components = selectiontools.FreeComponentSelection(components)
     durations = [durationtools.Duration(x) for x in durations]
 

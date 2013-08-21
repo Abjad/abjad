@@ -111,10 +111,8 @@ def copy_and_trim(
         ..  doctest::
 
             >>> f(new_voice)
-            \new Voice {
-                \times 2/3 {
-                    c'8. ( )
-                }
+            \times 2/3 {
+                c'8. ( )
             }
 
     ..  container:: example
@@ -155,141 +153,28 @@ def copy_and_trim(
     Returns new component.
     '''
     from abjad.tools import componenttools
-    from abjad.tools import containertools
-    from abjad.tools import leaftools
     from abjad.tools.selectiontools import mutate
 
-#    part_to_keep = mutate(component).copy()
-#
-#    if stop_offset:
-#        stop_offset = durationtools.Duration(stop_offset)
-#        assert 0 < stop_offset < part_to_keep._get_duration()
-#        left_half, right_half = componenttools.split(
-#            [part_to_keep],
-#            [stop_offset],
-#            fracture_spanners=True,
-#            tie_split_notes=False,
-#            )
-#        part_to_keep = left_half[0]
-#
-#    if start_offset:
-#        start_offset = durationtools.Duration(start_offset)
-#        assert 0 < start_offset < part_to_keep._get_duration()
-#        left_half, right_half = componenttools.split(
-#            [part_to_keep],
-#            [start_offset],
-#            fracture_spanners=True,
-#            tie_split_notes=False,
-#            )
-#        part_to_keep = right_half[0]
-#
-#    return part_to_keep
-
-    # check input
-    assert isinstance(component, componenttools.Component)
+    part_to_keep = mutate(component).copy()
     start_offset = durationtools.Duration(start_offset)
-    if start_offset < 0:
-        start_offset = durationtools.Duration(0)
-    if stop_offset is None:
-        stop_offset = component._get_duration()
-    else:
-        stop_offset = durationtools.Duration(stop_offset)
-    assert start_offset <= stop_offset
+    stop_offset = durationtools.Duration(stop_offset)
 
-    # copy component from start offset to stop offset and return
-    if isinstance(component, leaftools.Leaf):
-        return _copy_leaf_from_start_offset_to_stop_offset(
-            component, start_offset, stop_offset)
-    else:
-        return _copy_container_from_start_offset_to_stop_offset(
-            component, start_offset, stop_offset)
+    if stop_offset and 0 < stop_offset < part_to_keep._get_duration():
+        left_half, right_half = componenttools.split(
+            [part_to_keep],
+            [stop_offset],
+            fracture_spanners=True,
+            tie_split_notes=False,
+            )
+        part_to_keep = left_half[0]
 
+    if start_offset and 0 < start_offset < part_to_keep._get_duration():
+        left_half, right_half = componenttools.split(
+            [part_to_keep],
+            [start_offset],
+            fracture_spanners=True,
+            tie_split_notes=False,
+            )
+        part_to_keep = right_half[0]
 
-def _copy_leaf_from_start_offset_to_stop_offset(leaf, start, stop):
-    from abjad.tools import leaftools
-    if leaf._get_duration() <= start:
-        return None
-    if leaf._get_duration() < stop:
-        stop = leaf._get_duration()
-    total = stop - start
-    if total == 0:
-        return None
-    new_leaf = mutate(leaf).copy()
-    leaftools.set_leaf_duration(new_leaf, total)
-    if new_leaf._parent is None:
-        return new_leaf
-    else:
-        return new_leaf._parent
-
-
-def _copy_container_from_start_offset_to_stop_offset(container, start, stop):
-    from abjad.tools import componenttools
-    from abjad.tools import leaftools
-    # copy container
-    container, first_dif, second_dif = _get_lcopy(container, start, stop)
-    # get container start and stop leaves
-    leaf_start = container.select_leaves()[0]
-    leaf_end = container.select_leaves()[-1]
-    # split first leaf
-    if first_dif == durationtools.Duration(0):
-        first_dif = []
-    else:
-        first_dif = [first_dif]
-    leaf_start_splitted = componenttools.split(
-        [leaf_start], 
-        first_dif, 
-        fracture_spanners=False,
-        )
-    assert len(leaf_start_splitted) == 2
-    if not leaf_start_splitted[0] == []:
-        leaftools.remove_leaf_and_shrink_durated_parent_containers(
-            leaf_start_splitted[0][0])
-    # split second leaf
-    if second_dif == durationtools.Duration(0):
-        second_dif = []
-    else:
-        second_dif = [second_dif]
-    leaf_end_splitted = componenttools.split(
-        [leaf_end], 
-        second_dif, 
-        fracture_spanners=False,
-        )
-    assert len(leaf_end_splitted) == 2
-    if not leaf_end_splitted[0] == []:
-        leaftools.remove_leaf_and_shrink_durated_parent_containers(
-            leaf_end_splitted[1][0])
-    # return adjusted container
-    return container
-
-
-# TODO: rename explicitly
-def _get_lcopy(container, start, stop):
-    from abjad.tools import componenttools
-    from abjad.tools import iterationtools
-    # initialize loop variables
-    total_dur = durationtools.Duration(0)
-    start_leaf, stop_leaf = None, None
-    first_dif = second_dif = 0
-    for i, leaf in enumerate(
-        iterationtools.iterate_leaves_in_expr(container)):
-        total_dur += leaf._get_duration()
-        if total_dur == start and start_leaf is None:
-            start_leaf = i
-            first_dif = 0
-        elif start < total_dur and start_leaf is None:
-            start_leaf = i
-            first_dif = leaf._get_duration() - (total_dur - start)
-            #print first_dif
-        if stop <= total_dur and stop_leaf is None:
-            stop_leaf = i + 1
-            #second_dif = leaf._get_duration() - (total_dur - stop)
-            remaining_duration = total_dur - stop
-            if remaining_duration != 0:
-                second_dif = leaf._get_duration() - remaining_duration
-            #print second_dif
-            #print 'breaking after stop'
-            break
-    #print start_leaf, stop_leaf
-    leaves = container.select_leaves(start_leaf, stop_leaf)
-    untrimmed_copy = leaves.copy_up_to()
-    return untrimmed_copy, first_dif, second_dif
+    return part_to_keep

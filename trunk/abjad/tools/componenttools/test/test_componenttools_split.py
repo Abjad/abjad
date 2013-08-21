@@ -2936,3 +2936,22 @@ def test_componenttools_split_48():
 
     assert select(staff).is_well_formed()
     assert len(halves) == 2
+
+
+def test_componenttools_split_49():
+    r'''Split leaf at relative offset that is both non-assignable
+    and non-power-of-two.
+    '''
+    py.test.skip('TODO: make this work. Has never worked before.')
+
+    staff = Staff("c'4")
+    halves = componenttools.split(staff[:1], [Duration(5, 24)])
+
+    assert testtools.compare(
+        staff,
+        r'''
+
+        '''
+        )
+
+    assert select(staff).is_well_formed()
