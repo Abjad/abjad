@@ -4,7 +4,7 @@ from abjad.tools import componenttools
 from abjad.tools import durationtools
 
 
-def set_leaf_duration(leaf, new_preprolated_duration):
+def set_leaf_duration(leaf, new_duration):
     r'''Set `leaf` duration.
 
     ..  container:: example
@@ -64,7 +64,7 @@ def set_leaf_duration(leaf, new_preprolated_duration):
             >>> spannertools.BeamSpanner(staff.select_leaves())
             BeamSpanner(c'8, d'8, e'8, f'8)
             >>> leaftools.set_leaf_duration(staff[1], Duration(1, 12))
-            [Note("d'8")]
+            [Tuplet(2/3, [c'8])]
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -89,7 +89,7 @@ def set_leaf_duration(leaf, new_preprolated_duration):
             >>> spannertools.BeamSpanner(staff.select_leaves())
             BeamSpanner(c'8, d'8, e'8, f'8)
             >>> leaftools.set_leaf_duration(staff[1], Duration(5, 48))
-            [Note("d'8"), Note("d'32")]
+            [Tuplet(2/3, [c'8, c'32])]
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -130,44 +130,49 @@ def set_leaf_duration(leaf, new_preprolated_duration):
     from abjad.tools import tuplettools
 
     assert isinstance(leaf, leaftools.Leaf)
-    new_preprolated_duration = durationtools.Duration(new_preprolated_duration)
+    new_duration = durationtools.Duration(new_duration)
 
-    # if leaf carries LilyPond multiplier, change only LilyPond multiplier
+    # change LilyPond multiplier if leaf already has LilyPond multiplier
     if leaf.lilypond_duration_multiplier is not None:
-        leaf.lilypond_duration_multiplier = new_preprolated_duration / leaf.written_duration
+        leaf.lilypond_duration_multiplier = \
+            new_duration / leaf.written_duration
         return [leaf]
 
-    # if leaf does not carry LilyPond multiplier, change other values
+    # change written duration if new duration is assignable
     try:
-        leaf.written_duration = new_preprolated_duration
-        all_leaves = [leaf]
+        leaf.written_duration = new_duration
+        return [leaf]
     except AssignabilityError:
-        components = notetools.make_notes(0, new_preprolated_duration)
-        if isinstance(components[0], leaftools.Leaf):
-            num_tied_leaves = len(components) - 1
-            tied_leaves = num_tied_leaves * leaf
-            all_leaves = [leaf] + tied_leaves
-            for x, component in zip(all_leaves, components):
-                x.written_duration = component.written_duration
-            leaf._splice(tied_leaves, grow_spanners=True)
-            if not spannertools.get_spanners_attached_to_any_improper_parent_of_component(
-                leaf, spanner_classes=(spannertools.TieSpanner,)):
-                spannertools.TieSpanner(all_leaves)
-        elif isinstance(components[0], tuplettools.Tuplet):
-            fmtuplet = components[0]
-            components = fmtuplet[:]
-            num_tied_leaves = len(components) - 1
-            tied_leaves = num_tied_leaves * leaf
-            all_leaves = [leaf] + tied_leaves
-            for x, component in zip(all_leaves, components):
-                x.written_duration = component.written_duration
-            leaf._splice(tied_leaves, grow_spanners=True)
-            if not spannertools.is_component_with_spanner_attached(
-                leaf, spannertools.TieSpanner):
-                spannertools.TieSpanner(all_leaves)
-            tuplet_multiplier = fmtuplet.multiplier
-            tuplettools.Tuplet(tuplet_multiplier, all_leaves)
-        else:
-            raise ValueError('unexpected output from notetools.make_notes.')
+        pass
 
-    return all_leaves
+    # make new notes or tuplets if new duration is nonassignable
+    components = notetools.make_notes(0, new_duration)
+    if isinstance(components[0], leaftools.Leaf):
+        tied_leaf_count = len(components) - 1
+        tied_leaves = tied_leaf_count * leaf
+        all_leaves = [leaf] + tied_leaves
+        for x, component in zip(all_leaves, components):
+            x.written_duration = component.written_duration
+        leaf._splice(tied_leaves, grow_spanners=True)
+        if not spannertools.get_spanners_attached_to_any_improper_parent_of_component(
+            leaf, spanner_classes=(spannertools.TieSpanner,)):
+            spannertools.TieSpanner(all_leaves)
+        return all_leaves
+    else:
+        assert isinstance(components[0], tuplettools.Tuplet)
+        tuplet = components[0]
+        components = tuplet[:]
+        tied_leaf_count = len(components) - 1
+        tied_leaves = tied_leaf_count * leaf
+        all_leaves = [leaf] + tied_leaves
+        for x, component in zip(all_leaves, components):
+            x.written_duration = component.written_duration
+        leaf._splice(tied_leaves, grow_spanners=True)
+        if not spannertools.is_component_with_spanner_attached(
+            leaf, spannertools.TieSpanner):
+            spannertools.TieSpanner(all_leaves)
+        tuplet_multiplier = tuplet.multiplier
+        tuplettools.Tuplet(tuplet_multiplier, all_leaves)
+        return [tuplet]
+
+    #return all_leaves
