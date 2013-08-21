@@ -110,7 +110,7 @@ class ContiguousSelection(Selection):
 
     ### PUBLIC METHODS ###
 
-    def copy(self, n=1):
+    def copy(self, n=1, include_enclosing_containers=False):
         r'''Copies components in selection and fractures crossing spanners.
 
         Components in selection must be logical-voice-contiguous.
@@ -199,6 +199,55 @@ class ContiguousSelection(Selection):
                     f'8 )
                 }
 
+        ..  container:: example
+
+            **Example 3.** Copy leaves and include enclosing conatiners:
+
+                >>> voice = Voice(r"\times 2/3 { c'4 d'4 e'4 }")
+                >>> voice.append(r"\times 2/3 { f'4 e'4 d'4 }")
+                >>> staff = Staff([voice])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \new Voice {
+                        \times 2/3 {
+                            c'4
+                            d'4
+                            e'4
+                        }
+                        \times 2/3 {
+                            f'4
+                            e'4
+                            d'4
+                        }
+                    }
+                }
+
+            ::
+
+                >>> leaves = staff.select_leaves(1, 5)
+                >>> new_staff = leaves.copy(include_enclosing_containers=True)
+                >>> show(new_staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(new_staff)
+                \new Staff {
+                    \new Voice {
+                        \times 2/3 {
+                            d'4
+                            e'4
+                        }
+                        \times 2/3 {
+                            f'4
+                            e'4
+                        }
+                    }
+                }
+
         Returns contiguous selection.
         '''
         from abjad.tools import spannertools
@@ -213,6 +262,8 @@ class ContiguousSelection(Selection):
             component._copy_with_children_and_marks_but_without_spanners() 
             for component in self
             ]
+        if include_enclosing_containers:
+            return self._copy_and_include_enclosing_containers()
         new_components = type(self)(new_components)
         # make schema of spanners contained by components
         schema = spannertools.make_spanner_schema(self)

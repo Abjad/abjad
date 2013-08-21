@@ -2879,7 +2879,7 @@ def test_componenttools_split_47():
     assert len(result) == 2
 
 
-def test_componenttools_split_49():
+def test_componenttools_split_48():
     r'''Split leaf at relative offset that is both non-assignable
     and non-power-of-two.
     '''
@@ -2908,7 +2908,7 @@ def test_componenttools_split_49():
 # container._split_at_index() works here;
 # componenttools.split() doesn't work here.
 # eventually make componenttools.split() work here.
-def test_componenttools_split_48():
+def test_componenttools_split_49():
     r'''Split in-score measure without power-of-two time signature denominator.
     Fractured spanners but do not tie over split locus.
     Measure contents necessitate denominator change.
