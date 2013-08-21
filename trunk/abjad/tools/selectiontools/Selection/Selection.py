@@ -5,7 +5,6 @@ import types
 
 class Selection(object):
     r'''A selection of components.
-
     '''
 
     ### CLASS VARIABLES ###
@@ -100,7 +99,7 @@ class Selection(object):
         return Selection(music)
 
     def __repr__(self):
-        r'''Selection interpreter representation.
+        r'''Interpreter representation of selection.
 
         Return string.
         '''

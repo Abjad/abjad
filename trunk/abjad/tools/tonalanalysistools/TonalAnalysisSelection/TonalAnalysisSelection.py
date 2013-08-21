@@ -3,10 +3,9 @@ from abjad.tools import iterationtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
-from abjad.tools.selectiontools.Selection import Selection
 
 
-class TonalAnalysisSelection(Selection):
+class TonalAnalysisSelection(object):
     r'''Tonal analysis selection.
 
     ::
@@ -55,6 +54,23 @@ class TonalAnalysisSelection(Selection):
             TonalAnalysisSelection(Note("c'4"), Note("f'4"))
 
     '''
+
+    ### INITIALIZER ###
+
+    def __init__(self, selection=None):
+        from abjad.tools import selectiontools
+        if not isinstance(selection, selectiontools.Selection):
+            selection = selectiontools.Selection(selection)
+        self._selection = selection
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self):
+        r'''Interpreter representation of tonal analysis interface.
+
+        Return string.
+        '''
+        return '{}{!r}'.format(self.__class__.__name__, self._selection._music)
 
     ### PRIVATE METHODS ###
 
@@ -257,7 +273,7 @@ class TonalAnalysisSelection(Selection):
         Return list with elements each equal to chord class or none.
         '''
         result = []
-        for component in self:
+        for component in self._selection:
             chord_class = self._analyze_chord(component)
             result.append(chord_class)
         return result
@@ -284,7 +300,7 @@ class TonalAnalysisSelection(Selection):
         Return list with elements each equal to chord class or none.
         '''
         result = []
-        for component in self:
+        for component in self._selection:
             chord_class = self._analyze_incomplete_chord(component)
             result.append(chord_class)
         return result
@@ -306,7 +322,7 @@ class TonalAnalysisSelection(Selection):
         Return list with elements each equal to tonal function or none.
         '''
         result = []
-        for component in self:
+        for component in self._selection:
             tonal_function = self._analyze_incomplete_tonal_function(
                 component, key_signature)
             result.append(tonal_function)
@@ -327,7 +343,7 @@ class TonalAnalysisSelection(Selection):
         Return list of boolean values.
         '''
         result = []
-        for component in self:
+        for component in self._selection:
             tonal_function = self._is_neighbor_note(component)
             result.append(tonal_function)
         return result
@@ -346,7 +362,7 @@ class TonalAnalysisSelection(Selection):
         Return list of boolean values.
         '''
         result = []
-        for component in self:
+        for component in self._selection:
             tonal_function = self._is_passing_tone(component)
             result.append(tonal_function)
         return result
@@ -378,7 +394,7 @@ class TonalAnalysisSelection(Selection):
         Return list with elements each equal to tonal function or none.
         '''
         result = []
-        for component in self:
+        for component in self._selection:
             tonal_function = self._analyze_tonal_function(
                 component, key_signature)
             result.append(tonal_function)
@@ -404,7 +420,7 @@ class TonalAnalysisSelection(Selection):
         '''
         direction_string = None
         for left, right in sequencetools.iterate_sequence_pairwise_strict(
-            iterationtools.iterate_notes_in_expr(self)):
+            iterationtools.iterate_notes_in_expr(self._selection)):
             try:
                 assert not (left.written_pitch == right.written_pitch)
                 mdi = pitchtools.NamedMelodicInterval.from_pitch_carriers(
@@ -435,7 +451,7 @@ class TonalAnalysisSelection(Selection):
         Return boolean.
         '''
         for left, right in sequencetools.iterate_sequence_pairwise_strict(
-            iterationtools.iterate_notes_in_expr(self)):
+            iterationtools.iterate_notes_in_expr(self._selection)):
             try:
                 assert not (left.written_pitch == right.written_pitch)
                 mdi = pitchtools.NamedMelodicInterval.from_pitch_carriers(
@@ -450,8 +466,7 @@ class TonalAnalysisSelection(Selection):
 
         ::
 
-            >>> selection_3 = tonalanalysistools.select(
-            ...     reversed(selection_1))
+            >>> selection_3 = tonalanalysistools.select(reversed(staff[:]))
 
         ::
 
@@ -473,7 +488,7 @@ class TonalAnalysisSelection(Selection):
         Return boolean.
         '''
         for left, right in sequencetools.iterate_sequence_pairwise_strict(
-            iterationtools.iterate_notes_in_expr(self)):
+            iterationtools.iterate_notes_in_expr(self._selection)):
             try:
                 assert not (left.written_pitch == right.written_pitch)
                 mdi = pitchtools.NamedMelodicInterval.from_pitch_carriers(
@@ -502,7 +517,7 @@ class TonalAnalysisSelection(Selection):
         Return boolean.
         '''
         for left, right in sequencetools.iterate_sequence_pairwise_strict(
-            iterationtools.iterate_notes_in_expr(self)):
+            iterationtools.iterate_notes_in_expr(self._selection)):
             try:
                 assert not (left.written_pitch == right.written_pitch)
                 hdi = pitchtools.NamedHarmonicInterval.from_pitch_carriers(
