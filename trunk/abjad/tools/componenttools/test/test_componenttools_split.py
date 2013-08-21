@@ -2879,6 +2879,32 @@ def test_componenttools_split_47():
     assert len(result) == 2
 
 
+def test_componenttools_split_49():
+    r'''Split leaf at relative offset that is both non-assignable
+    and non-power-of-two.
+    '''
+
+    staff = Staff("c'4")
+    halves = componenttools.split(staff[:1], [Duration(5, 24)])
+
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            \times 2/3 {
+                c'4 ~
+                c'16 ~
+            }
+            \times 2/3 {
+                c'16
+            }
+        }
+        '''
+        )
+
+    assert select(staff).is_well_formed()
+
+
 # container._split_at_index() works here;
 # componenttools.split() doesn't work here.
 # eventually make componenttools.split() work here.
@@ -2936,22 +2962,3 @@ def test_componenttools_split_48():
 
     assert select(staff).is_well_formed()
     assert len(halves) == 2
-
-
-def test_componenttools_split_49():
-    r'''Split leaf at relative offset that is both non-assignable
-    and non-power-of-two.
-    '''
-    py.test.skip('TODO: make this work. Has never worked before.')
-
-    staff = Staff("c'4")
-    halves = componenttools.split(staff[:1], [Duration(5, 24)])
-
-    assert testtools.compare(
-        staff,
-        r'''
-
-        '''
-        )
-
-    assert select(staff).is_well_formed()
