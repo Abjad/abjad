@@ -49,7 +49,7 @@ def iterate_logical_voice_in_expr(
     ::
 
         >>> leaf = staff.select_leaves(allow_discontiguous_leaves=True)[0]
-        >>> signature = more(leaf).select_parentage().logical_voice_indicator
+        >>> signature = inspect(leaf).select_parentage().logical_voice_indicator
         >>> for x in iterationtools.iterate_logical_voice_in_expr(
         ...     staff, Note, signature):
         ...     x

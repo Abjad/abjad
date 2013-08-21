@@ -29,8 +29,8 @@ def timespan_2_starts_during_timespan_1(
 
         ::
 
-            >>> start_offsets = [more(note).get_timespan().start_offset for note in staff_1]
-            >>> stop_offsets = [more(note).get_timespan().stop_offset for note in staff_1]
+            >>> start_offsets = [inspect(note).get_timespan().start_offset for note in staff_1]
+            >>> stop_offsets = [inspect(note).get_timespan().stop_offset for note in staff_1]
 
         ::
 

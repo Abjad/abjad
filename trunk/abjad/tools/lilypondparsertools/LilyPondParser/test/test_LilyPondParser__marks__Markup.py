@@ -18,7 +18,7 @@ def test_LilyPondParser__marks__Markup_01():
     parser = LilyPondParser()
     result = parser(input)
     assert target.lilypond_format == result.lilypond_format and target is not result
-    assert 1 == len(more(result[0]).get_markup())
+    assert 1 == len(inspect(result[0]).get_markup())
 
 
 def test_LilyPondParser__marks__Markup_02():
@@ -43,7 +43,7 @@ def test_LilyPondParser__marks__Markup_02():
     parser = LilyPondParser()
     result = parser(input)
     assert target.lilypond_format == result.lilypond_format and target is not result
-    assert 1 == len(more(result[0]).get_markup())
+    assert 1 == len(inspect(result[0]).get_markup())
 
 
 def test_LilyPondParser__marks__Markup_03():
@@ -67,7 +67,7 @@ def test_LilyPondParser__marks__Markup_03():
     parser = LilyPondParser()
     result = parser(input)
     assert target.lilypond_format == result.lilypond_format and target is not result
-    assert 1 == len(more(result[0]).get_markup())
+    assert 1 == len(inspect(result[0]).get_markup())
 
 
 def test_LilyPondParser__marks__Markup_04():

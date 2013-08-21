@@ -34,14 +34,14 @@ def test_Inspector_get_effective_staff_01():
         )
 
     assert select(piano).is_well_formed()
-    assert more(piano[0][0]).get_effective_staff() is piano[1]
-    assert more(piano[0][1]).get_effective_staff() is piano[1]
-    assert more(piano[0][2]).get_effective_staff() is piano[1]
-    assert more(piano[0][3]).get_effective_staff() is piano[1]
-    assert more(piano[1][0]).get_effective_staff() is piano[1]
-    assert more(piano[1][1]).get_effective_staff() is piano[1]
-    assert more(piano[1][2]).get_effective_staff() is piano[1]
-    assert more(piano[1][3]).get_effective_staff() is piano[1]
+    assert inspect(piano[0][0]).get_effective_staff() is piano[1]
+    assert inspect(piano[0][1]).get_effective_staff() is piano[1]
+    assert inspect(piano[0][2]).get_effective_staff() is piano[1]
+    assert inspect(piano[0][3]).get_effective_staff() is piano[1]
+    assert inspect(piano[1][0]).get_effective_staff() is piano[1]
+    assert inspect(piano[1][1]).get_effective_staff() is piano[1]
+    assert inspect(piano[1][2]).get_effective_staff() is piano[1]
+    assert inspect(piano[1][3]).get_effective_staff() is piano[1]
 
 
 def test_Inspector_get_effective_staff_02():
@@ -78,14 +78,14 @@ def test_Inspector_get_effective_staff_02():
         )
 
     assert select(piano).is_well_formed()
-    assert more(piano[0][0]).get_effective_staff() is piano[1]
-    assert more(piano[0][1]).get_effective_staff() is piano[1]
-    assert more(piano[0][2]).get_effective_staff() is piano[0]
-    assert more(piano[0][3]).get_effective_staff() is piano[0]
-    assert more(piano[1][0]).get_effective_staff() is piano[1]
-    assert more(piano[1][1]).get_effective_staff() is piano[1]
-    assert more(piano[1][2]).get_effective_staff() is piano[1]
-    assert more(piano[1][3]).get_effective_staff() is piano[1]
+    assert inspect(piano[0][0]).get_effective_staff() is piano[1]
+    assert inspect(piano[0][1]).get_effective_staff() is piano[1]
+    assert inspect(piano[0][2]).get_effective_staff() is piano[0]
+    assert inspect(piano[0][3]).get_effective_staff() is piano[0]
+    assert inspect(piano[1][0]).get_effective_staff() is piano[1]
+    assert inspect(piano[1][1]).get_effective_staff() is piano[1]
+    assert inspect(piano[1][2]).get_effective_staff() is piano[1]
+    assert inspect(piano[1][3]).get_effective_staff() is piano[1]
 
 
 def test_Inspector_get_effective_staff_03():
@@ -155,11 +155,11 @@ def test_Inspector_get_effective_staff_04():
         )
 
     assert select(piano).is_well_formed()
-    assert more(piano[0][0]).get_effective_staff() is piano[1]
-    assert more(piano[0][1]).get_effective_staff() is piano[1]
-    assert more(piano[0][2]).get_effective_staff() is piano[1]
-    assert more(piano[0][3]).get_effective_staff() is piano[1]
-    assert more(piano[1][0]).get_effective_staff() is piano[1]
-    assert more(piano[1][1]).get_effective_staff() is piano[1]
-    assert more(piano[1][2]).get_effective_staff() is piano[1]
-    assert more(piano[1][3]).get_effective_staff() is piano[1]
+    assert inspect(piano[0][0]).get_effective_staff() is piano[1]
+    assert inspect(piano[0][1]).get_effective_staff() is piano[1]
+    assert inspect(piano[0][2]).get_effective_staff() is piano[1]
+    assert inspect(piano[0][3]).get_effective_staff() is piano[1]
+    assert inspect(piano[1][0]).get_effective_staff() is piano[1]
+    assert inspect(piano[1][1]).get_effective_staff() is piano[1]
+    assert inspect(piano[1][2]).get_effective_staff() is piano[1]
+    assert inspect(piano[1][3]).get_effective_staff() is piano[1]

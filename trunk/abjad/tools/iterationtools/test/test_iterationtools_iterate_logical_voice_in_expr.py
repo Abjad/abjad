@@ -7,7 +7,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_01():
     '''
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    signature = more(staff[-1]).select_parentage().logical_voice_indicator
+    signature = inspect(staff[-1]).select_parentage().logical_voice_indicator
     iter = iterationtools.iterate_logical_voice_in_expr(staff, Rest, signature, reverse=True)
     assert len(list(iter)) == 0
 
@@ -17,7 +17,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_02():
     '''
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    signature = more(staff[-1]).select_parentage().logical_voice_indicator
+    signature = inspect(staff[-1]).select_parentage().logical_voice_indicator
     iter = iterationtools.iterate_logical_voice_in_expr(staff, Tuplet, signature, reverse=True)
     assert len(list(iter)) == 3
 
@@ -27,7 +27,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_03():
     '''
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    signature = more(staff[-1]).select_parentage().logical_voice_indicator
+    signature = inspect(staff[-1]).select_parentage().logical_voice_indicator
     iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature, reverse=True)
     assert len(list(iter)) == 9
 
@@ -38,7 +38,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_04():
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     from abjad.tools.leaftools.Leaf import Leaf
-    signature = more(staff[-1][-1]).select_parentage().logical_voice_indicator
+    signature = inspect(staff[-1][-1]).select_parentage().logical_voice_indicator
     iter = iterationtools.iterate_logical_voice_in_expr(staff, Leaf, signature, reverse=True)
     assert len(list(iter)) == 9
 
@@ -51,7 +51,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_05():
     v2 = Voice(Note(2, (1, 4)) * 2)
     v1.name = v2.name = 'piccolo'
     staff = Staff([v1, v2])
-    signature = more(staff[-1]).select_parentage().logical_voice_indicator
+    signature = inspect(staff[-1]).select_parentage().logical_voice_indicator
     iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature, reverse=True)
     iter = list(iter)
 
@@ -67,7 +67,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_06():
     v1 = Voice(Note("c'4") * 2)
     v2 = Voice(Note(2, (1, 4)) * 2)
     staff = Staff([v1, v2])
-    signature = more(staff[-1]).select_parentage().logical_voice_indicator
+    signature = inspect(staff[-1]).select_parentage().logical_voice_indicator
     iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature, reverse=True)
     iter = list(iter)
 
@@ -86,7 +86,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_07():
     v1.name = 'flute'
     v2.name = 'piccolo'
     staff = Staff([v1, v2])
-    signature = more(staff[-1]).select_parentage().logical_voice_indicator
+    signature = inspect(staff[-1]).select_parentage().logical_voice_indicator
     iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature, reverse=True)
     iter = list(iter)
 
@@ -101,7 +101,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_08():
     '''
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    signature = more(staff[0]).select_parentage().logical_voice_indicator
+    signature = inspect(staff[0]).select_parentage().logical_voice_indicator
     iter = iterationtools.iterate_logical_voice_in_expr(staff, Rest, signature)
     assert len(list(iter)) == 0
 
@@ -111,7 +111,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_09():
     '''
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    signature = more(staff[0]).select_parentage().logical_voice_indicator
+    signature = inspect(staff[0]).select_parentage().logical_voice_indicator
     iter = iterationtools.iterate_logical_voice_in_expr(staff, Tuplet, signature)
     assert len(list(iter)) == 3
 
@@ -121,7 +121,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_10():
     '''
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    signature = more(staff[0]).select_parentage().logical_voice_indicator
+    signature = inspect(staff[0]).select_parentage().logical_voice_indicator
     iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature)
     assert len(list(iter)) == 9
 
@@ -132,7 +132,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_11():
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     from abjad.tools.leaftools.Leaf import Leaf
-    signature = more(staff[0][0]).select_parentage().logical_voice_indicator
+    signature = inspect(staff[0][0]).select_parentage().logical_voice_indicator
     iter = iterationtools.iterate_logical_voice_in_expr(staff, Leaf, signature)
     assert len(list(iter)) == 9
 
@@ -145,7 +145,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_12():
     v2 = Voice(Note(2, (1, 4)) * 2)
     v1.name = v2.name = 'piccolo'
     staff = Staff([v1, v2])
-    signature = more(staff[0]).select_parentage().logical_voice_indicator
+    signature = inspect(staff[0]).select_parentage().logical_voice_indicator
     iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature)
     iter = list(iter)
 
@@ -161,7 +161,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_13():
     v1 = Voice(Note("c'4") * 2)
     v2 = Voice(Note(2, (1, 4)) * 2)
     staff = Staff([v1, v2])
-    signature = more(staff[0]).select_parentage().logical_voice_indicator
+    signature = inspect(staff[0]).select_parentage().logical_voice_indicator
     iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature)
     iter = list(iter)
 
@@ -180,7 +180,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_14():
     v1.name = 'flute'
     v2.name = 'piccolo'
     staff = Staff([v1, v2])
-    signature = more(staff[0]).select_parentage().logical_voice_indicator
+    signature = inspect(staff[0]).select_parentage().logical_voice_indicator
     iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature)
     iter = list(iter)
 

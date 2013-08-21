@@ -113,11 +113,11 @@ def test_FreeComponentSelection_detach_marks_04():
     slur = spannertools.SlurSpanner(staff.select_leaves())
     marktools.Annotation('comment 1')(staff[0])
     marktools.Annotation('comment 2')(staff[0])
-    annotations = more(staff[0]).get_marks(marktools.Annotation)
+    annotations = inspect(staff[0]).get_marks(marktools.Annotation)
     assert len(annotations) == 2
 
     select(staff[0]).detach_marks(marktools.Annotation)
-    annotations = more(staff[0]).get_marks(marktools.Annotation)
+    annotations = inspect(staff[0]).get_marks(marktools.Annotation)
     assert len(annotations) == 0
 
 
@@ -128,11 +128,11 @@ def test_FreeComponentSelection_detach_marks_05():
     marktools.Articulation('^')(staff[0])
     marktools.Articulation('.')(staff[0])
 
-    articulations = more(staff[0]).get_marks(marktools.Articulation)
+    articulations = inspect(staff[0]).get_marks(marktools.Articulation)
     assert len(articulations) == 2
 
     select(staff[0]).detach_marks(marktools.Articulation)
-    articulations = more(staff[0]).get_marks(marktools.Articulation)
+    articulations = inspect(staff[0]).get_marks(marktools.Articulation)
     assert len(articulations) == 0
 
 
@@ -229,11 +229,11 @@ def test_FreeComponentSelection_detach_marks_08():
     marktools.Articulation('^')(staff[0])
     marktools.LilyPondComment('comment 1')(staff[0])
     marktools.LilyPondCommandMark('slurUp')(staff[0])
-    marks = more(staff[0]).get_marks()
+    marks = inspect(staff[0]).get_marks()
     assert len(marks) == 3
 
     select(staff[0]).detach_marks()
-    marks = more(staff[0]).get_marks()
+    marks = inspect(staff[0]).get_marks()
     assert len(marks) == 0
 
 
@@ -249,7 +249,7 @@ def test_FreeComponentSelection_detach_marks_09():
         marktools.Articulation('staccato'),
         marktools.Articulation('marcato'))
 
-    assert not len(more(staff).get_marks())
+    assert not len(inspect(staff).get_marks())
 
 
 def test_FreeComponentSelection_detach_marks_10():
@@ -257,7 +257,7 @@ def test_FreeComponentSelection_detach_marks_10():
     note = Note("c'4")
     stem_tremolo = marktools.StemTremolo(16)(note)
 
-    attached_stem_tremolo = more(note).get_mark(marktools.StemTremolo)
+    attached_stem_tremolo = inspect(note).get_mark(marktools.StemTremolo)
     assert attached_stem_tremolo is stem_tremolo
 
     stem_tremolos = select(note).detach_marks(marktools.StemTremolo)

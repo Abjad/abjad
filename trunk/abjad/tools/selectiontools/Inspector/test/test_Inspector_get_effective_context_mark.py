@@ -9,7 +9,7 @@ def test_Inspector_get_effective_context_mark_01():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     for note in staff:
-        assert more(note).get_effective_context_mark(contexttools.ClefMark) is None
+        assert inspect(note).get_effective_context_mark(contexttools.ClefMark) is None
 
 
 def test_Inspector_get_effective_context_mark_02():
@@ -19,7 +19,7 @@ def test_Inspector_get_effective_context_mark_02():
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     contexttools.ClefMark('treble')(staff)
     for note in staff:
-        assert more(note).get_effective_context_mark(contexttools.ClefMark) == \
+        assert inspect(note).get_effective_context_mark(contexttools.ClefMark) == \
             contexttools.ClefMark('treble')
 
 
@@ -32,9 +32,9 @@ def test_Inspector_get_effective_context_mark_03():
     contexttools.ClefMark('bass')(staff[4])
     for i, note in enumerate(staff):
         if i in (0, 1, 2, 3):
-            assert more(note).get_effective_context_mark(contexttools.ClefMark) is None
+            assert inspect(note).get_effective_context_mark(contexttools.ClefMark) is None
         else:
-            assert more(note).get_effective_context_mark(contexttools.ClefMark) == \
+            assert inspect(note).get_effective_context_mark(contexttools.ClefMark) == \
                 contexttools.ClefMark('bass')
 
 
@@ -45,7 +45,7 @@ def test_Inspector_get_effective_context_mark_04():
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     contexttools.ClefMark('treble')(staff[0])
     contexttools.ClefMark('bass')(staff[4])
-    assert [more(note).get_effective_context_mark(contexttools.ClefMark)
+    assert [inspect(note).get_effective_context_mark(contexttools.ClefMark)
         for note in staff] == \
         [contexttools.ClefMark(name) for name in ['treble', 'treble', 'treble', 'treble',
         'bass', 'bass', 'bass', 'bass']]
@@ -58,10 +58,10 @@ def test_Inspector_get_effective_context_mark_05():
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     contexttools.ClefMark('treble')(staff[0])
     contexttools.ClefMark('bass')(staff[4])
-    clef = more(staff[4]).get_effective_context_mark(contexttools.ClefMark)
+    clef = inspect(staff[4]).get_effective_context_mark(contexttools.ClefMark)
     clef.detach()
     for note in staff:
-        assert more(note).get_effective_context_mark(contexttools.ClefMark) == \
+        assert inspect(note).get_effective_context_mark(contexttools.ClefMark) == \
             contexttools.ClefMark('treble')
 
 
@@ -159,11 +159,11 @@ def test_Inspector_get_effective_context_mark_08():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     contexttools.ClefMark('alto')(staff[0])
-    clef = more(staff[0]).get_effective_context_mark(contexttools.ClefMark)
+    clef = inspect(staff[0]).get_effective_context_mark(contexttools.ClefMark)
     clef.detach()
 
     for leaf in staff:
-        assert more(leaf).get_effective_context_mark(contexttools.ClefMark) is None
+        assert inspect(leaf).get_effective_context_mark(contexttools.ClefMark) is None
 
 
 def test_Inspector_get_effective_context_mark_09():
@@ -180,11 +180,11 @@ def test_Inspector_get_effective_context_mark_09():
     }
     '''
 
-    assert more(staff).get_effective_context_mark(contexttools.DynamicMark) is None
-    assert more(staff[0]).get_effective_context_mark(contexttools.DynamicMark) is None
-    assert more(staff[1]).get_effective_context_mark(contexttools.DynamicMark) is None
-    assert more(staff[2]).get_effective_context_mark(contexttools.DynamicMark) == contexttools.DynamicMark('f')
-    assert more(staff[3]).get_effective_context_mark(contexttools.DynamicMark) == contexttools.DynamicMark('f')
+    assert inspect(staff).get_effective_context_mark(contexttools.DynamicMark) is None
+    assert inspect(staff[0]).get_effective_context_mark(contexttools.DynamicMark) is None
+    assert inspect(staff[1]).get_effective_context_mark(contexttools.DynamicMark) is None
+    assert inspect(staff[2]).get_effective_context_mark(contexttools.DynamicMark) == contexttools.DynamicMark('f')
+    assert inspect(staff[3]).get_effective_context_mark(contexttools.DynamicMark) == contexttools.DynamicMark('f')
 
 
 def test_Inspector_get_effective_context_mark_10():
@@ -204,11 +204,11 @@ def test_Inspector_get_effective_context_mark_10():
     '''
 
     flute = contexttools.InstrumentMark('Flute', 'Fl.')
-    assert more(staff).get_effective_context_mark(contexttools.InstrumentMark) == flute
-    assert more(staff[0]).get_effective_context_mark(contexttools.InstrumentMark) == flute
-    assert more(staff[1]).get_effective_context_mark(contexttools.InstrumentMark) == flute
-    assert more(staff[2]).get_effective_context_mark(contexttools.InstrumentMark) == flute
-    assert more(staff[3]).get_effective_context_mark(contexttools.InstrumentMark) == flute
+    assert inspect(staff).get_effective_context_mark(contexttools.InstrumentMark) == flute
+    assert inspect(staff[0]).get_effective_context_mark(contexttools.InstrumentMark) == flute
+    assert inspect(staff[1]).get_effective_context_mark(contexttools.InstrumentMark) == flute
+    assert inspect(staff[2]).get_effective_context_mark(contexttools.InstrumentMark) == flute
+    assert inspect(staff[3]).get_effective_context_mark(contexttools.InstrumentMark) == flute
 
 
 def test_Inspector_get_effective_context_mark_11():
@@ -228,7 +228,7 @@ def test_Inspector_get_effective_context_mark_11():
     }
     '''
 
-    assert more(staff).get_effective_context_mark(contexttools.KeySignatureMark) == contexttools.KeySignatureMark('c', 'major')
+    assert inspect(staff).get_effective_context_mark(contexttools.KeySignatureMark) == contexttools.KeySignatureMark('c', 'major')
     assert select(staff).is_well_formed()
     assert testtools.compare(
         staff,
@@ -249,7 +249,7 @@ def test_Inspector_get_effective_context_mark_12():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    assert more(staff).get_effective_context_mark(contexttools.KeySignatureMark) is None
+    assert inspect(staff).get_effective_context_mark(contexttools.KeySignatureMark) is None
 
 
 def test_Inspector_get_effective_context_mark_13():
@@ -272,10 +272,10 @@ def test_Inspector_get_effective_context_mark_13():
     '''
 
     assert select(staff).is_well_formed()
-    assert more(staff[0]).get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 38)
-    assert more(staff[1]).get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 38)
-    assert more(staff[2]).get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 42)
-    assert more(staff[3]).get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 42)
+    assert inspect(staff[0]).get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 38)
+    assert inspect(staff[1]).get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 38)
+    assert inspect(staff[2]).get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 42)
+    assert inspect(staff[3]).get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 42)
     assert testtools.compare(
         staff,
         r'''
@@ -383,7 +383,7 @@ def test_Inspector_get_effective_context_mark_17():
     '''
 
     for leaf in staff:
-        assert more(leaf).get_effective_context_mark(
+        assert inspect(leaf).get_effective_context_mark(
             contexttools.TimeSignatureMark) is None
 
 
@@ -405,7 +405,7 @@ def test_Inspector_get_effective_context_mark_18():
     '''
 
     for leaf in staff:
-        assert more(leaf).get_effective_context_mark(
+        assert inspect(leaf).get_effective_context_mark(
             contexttools.TimeSignatureMark) == contexttools.TimeSignatureMark(
                 (2, 8))
 
@@ -428,5 +428,5 @@ def test_Inspector_get_effective_context_mark_19():
     '''
 
     for leaf in staff:
-        assert more(leaf).get_effective_context_mark(
+        assert inspect(leaf).get_effective_context_mark(
             contexttools.TimeSignatureMark) is None

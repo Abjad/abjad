@@ -114,7 +114,7 @@ class Inspector(Selection):
 
             ::
 
-                >>> more(staff[1]).get_grace_containers()
+                >>> inspect(staff[1]).get_grace_containers()
                 (GraceContainer(cs'16), GraceContainer(ds'16))
 
         ..  container:: example
@@ -123,7 +123,7 @@ class Inspector(Selection):
 
             ::
 
-                >>> more(staff[1]).get_grace_containers(kind='grace')
+                >>> inspect(staff[1]).get_grace_containers(kind='grace')
                 (GraceContainer(cs'16),)
 
         ..  container:: example
@@ -132,7 +132,7 @@ class Inspector(Selection):
 
             ::
 
-                >>> more(staff[1]).get_grace_containers(kind='after')
+                >>> inspect(staff[1]).get_grace_containers(kind='after')
                 (GraceContainer(ds'16),)
 
         Set `kind` to ``'grace'``, ``'after'`` or none.
@@ -227,7 +227,7 @@ class Inspector(Selection):
             ::
 
                 >>> for note in staff:
-                ...     result = more(note).is_bar_line_crossing()
+                ...     result = inspect(note).is_bar_line_crossing()
                 ...     print '{}\t{}'.format(note, result)
                 c'4 False
                 d'4 True

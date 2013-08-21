@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 import copy
 import re
-from abjad.tools.selectiontools import more
 from abjad.tools.leaftools.Leaf import Leaf
 
 
@@ -198,9 +197,9 @@ class Chord(Leaf):
             raise TypeError
         treble = self._cast_defective_chord(treble)
         bass = self._cast_defective_chord(bass)
-        up_markup = more(self).get_markup(direction=Up)
+        up_markup = self._get_markup(direction=Up)
         up_markup = [copy.copy(markup) for markup in up_markup]
-        down_markup = more(self).get_markup(direction=Down)
+        down_markup = self._get_markup(direction=Down)
         down_markup = [copy.copy(markup) for markup in down_markup]
         for markup in up_markup:
             markup(treble)

@@ -15,7 +15,7 @@ class TieChain(ContiguousLeafSelection):
 
     ::
 
-        >>> more(staff[2]).select_tie_chain()
+        >>> inspect(staff[2]).select_tie_chain()
         TieChain(Note("e'4"), Note("e'4"))
 
     Tie chains are immutable score selections.
@@ -208,7 +208,7 @@ class TieChain(ContiguousLeafSelection):
 
             ::
 
-                >>> tie_chain = more(staff[0]).select_tie_chain()
+                >>> tie_chain = inspect(staff[0]).select_tie_chain()
                 >>> tie_chain.to_tuplet([2, 1, 1, 1], is_diminution=True)
                 FixedDurationTuplet(3/16, [c'8, c'16, c'16, c'16])
 
@@ -264,7 +264,7 @@ class TieChain(ContiguousLeafSelection):
 
             ::
 
-                >>> tie_chain = more(staff[0]).select_tie_chain()
+                >>> tie_chain = inspect(staff[0]).select_tie_chain()
                 >>> tie_chain.to_tuplet([2, 1, 1, 1], is_diminution=False)
                 FixedDurationTuplet(3/16, [c'16, c'32, c'32, c'32])
 

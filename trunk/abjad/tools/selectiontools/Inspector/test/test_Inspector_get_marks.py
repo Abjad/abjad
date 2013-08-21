@@ -25,7 +25,7 @@ def test_Inspector_get_marks_01():
         '''
         )
 
-    marks = more(staff[0]).get_marks(marktools.LilyPondCommandMark)
+    marks = inspect(staff[0]).get_marks(marktools.LilyPondCommandMark)
     assert lilypond_command_mark_1 in marks
     assert lilypond_command_mark_2 in marks
     assert len(marks) == 2
@@ -54,7 +54,7 @@ def test_Inspector_get_marks_02():
         '''
         )
 
-    marks = more(staff[0]).get_marks()
+    marks = inspect(staff[0]).get_marks()
     assert comment_mark in marks
     assert lilypond_command_mark in marks
     assert len(marks) == 2
@@ -79,7 +79,7 @@ def test_Inspector_get_marks_03():
         '''
         )
 
-    context_marks = more(staff[0]).get_marks(contexttools.ContextMark)
+    context_marks = inspect(staff[0]).get_marks(contexttools.ContextMark)
     assert dynamic_mark in context_marks
     assert len(context_marks) == 1
 
@@ -103,7 +103,7 @@ def test_Inspector_get_marks_04():
         '''
         )
 
-    dynamic_marks = more(staff[0]).get_marks(contexttools.DynamicMark)
+    dynamic_marks = inspect(staff[0]).get_marks(contexttools.DynamicMark)
     assert dynamic_mark in dynamic_marks
     assert len(dynamic_marks) == 1
 
@@ -126,7 +126,7 @@ def test_Inspector_get_marks_05():
         '''
         )
 
-    annotations = more(staff[0]).get_marks(marktools.Annotation)
+    annotations = inspect(staff[0]).get_marks(marktools.Annotation)
     assert annotations == (annotation_1, annotation_2)
 
 
@@ -150,7 +150,7 @@ def test_Inspector_get_marks_06():
         '''
         )
 
-    marks = more(staff[0]).get_marks(marktools.LilyPondComment)
+    marks = inspect(staff[0]).get_marks(marktools.LilyPondComment)
     assert comment_mark_1 in marks
     assert comment_mark_2 in marks
     assert len(marks) == 2
@@ -160,6 +160,6 @@ def test_Inspector_get_marks_07():
 
     note = Note("c'4")
     stem_tremolo = marktools.StemTremolo(16)(note)
-    stem_tremolos = more(note).get_marks(marktools.StemTremolo)
+    stem_tremolos = inspect(note).get_marks(marktools.StemTremolo)
 
     assert stem_tremolos[0] is stem_tremolo

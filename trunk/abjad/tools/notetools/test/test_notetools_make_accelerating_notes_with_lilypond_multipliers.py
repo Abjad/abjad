@@ -61,4 +61,4 @@ def test_notetools_make_accelerating_notes_with_lilypond_multipliers_06():
     '''
     t_line = notetools.make_accelerating_notes_with_lilypond_multipliers([1, 2], Duration(2), Duration(1, 32), Duration(1, 8), 1)
     t_exp = notetools.make_accelerating_notes_with_lilypond_multipliers([1, 2], Duration(2), Duration(1, 32), Duration(1, 8), 2)
-    assert more(t_exp[4]).get_duration() < more(t_line[4]).get_duration()
+    assert inspect(t_exp[4]).get_duration() < inspect(t_line[4]).get_duration()

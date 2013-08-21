@@ -7,4 +7,4 @@ def test_Inspector_get_annotation_value_01():
     annotation = marktools.Annotation('special dictionary', {})
     annotation.attach(staff[0])
 
-    assert more(staff[0]).get_annotation_value('special dictionary') == {}
+    assert inspect(staff[0]).get_annotation_value('special dictionary') == {}

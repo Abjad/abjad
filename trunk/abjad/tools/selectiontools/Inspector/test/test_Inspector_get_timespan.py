@@ -6,34 +6,34 @@ import py
 def test_Inspector_get_timespan_01():
     voice = Voice(notetools.make_repeated_notes(16))
     for i, x in enumerate(voice):
-        assert more(x).get_timespan().start_offset == i * Duration(1, 8)
+        assert inspect(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
 def test_Inspector_get_timespan_02():
     staff = Staff(notetools.make_repeated_notes(16))
     for i, x in enumerate(staff):
-        assert more(x).get_timespan().start_offset == i * Duration(1, 8)
+        assert inspect(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
 def test_Inspector_get_timespan_03():
     staff = Staff(notetools.make_repeated_notes(16))
     staff[10] = Rest((1, 8))
     for i, x in enumerate(staff):
-        assert more(x).get_timespan().start_offset == i * Duration(1, 8)
+        assert inspect(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
 def test_Inspector_get_timespan_04():
     staff = Staff(notetools.make_repeated_notes(16))
     staff[10:10] = [Rest((1, 8))]
     for i, x in enumerate(staff):
-        assert more(x).get_timespan().start_offset == i * Duration(1, 8)
+        assert inspect(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
 def test_Inspector_get_timespan_05():
     staff = Staff(notetools.make_repeated_notes(16))
     staff[10:12] = [Rest((1, 8))]
     for i, x in enumerate(staff):
-        assert more(x).get_timespan().start_offset == i * Duration(1, 8)
+        assert inspect(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
 def test_Inspector_get_timespan_06():
@@ -45,13 +45,13 @@ def test_Inspector_get_timespan_06():
     v1.name = v2.name = 'voice'
     container = Container([v1, v2])
     for i, x in enumerate(container.select_leaves()):
-        assert more(x).get_timespan().start_offset == i * Duration(1, 8)
+        assert inspect(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
 def test_Inspector_get_timespan_07():
     tuplet = tuplettools.FixedDurationTuplet(Duration(1,4), notetools.make_repeated_notes(3))
     for i, x in enumerate(tuplet):
-        assert more(x).get_timespan().start_offset == i * Duration(1, 12)
+        assert inspect(x).get_timespan().start_offset == i * Duration(1, 12)
 
 
 def test_Inspector_get_timespan_08():
@@ -59,7 +59,7 @@ def test_Inspector_get_timespan_08():
     voice = Voice([Note(0, (1, 8)), tp, Note(0, (1, 8))])
     offset = 0
     for x, d in zip(voice.select_leaves(), [(1, 8), (1, 12), (1, 12), (1, 12), (1, 8)]):
-        assert more(x).get_timespan().start_offset == offset
+        assert inspect(x).get_timespan().start_offset == offset
         offset += Duration(*d)
 
 
@@ -71,7 +71,7 @@ def test_Inspector_get_timespan_09():
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), tp, Note("c'4")])
     offset = 0
     for x, d in zip(tuplet.select_leaves(), [(1, 6), (1, 18), (1, 18), (1, 18), (1, 6)]):
-        assert more(x).get_timespan().start_offset == offset
+        assert inspect(x).get_timespan().start_offset == offset
         offset += Duration(*d)
 
 
@@ -84,9 +84,9 @@ def test_Inspector_get_timespan_10():
     staff = Staff([v1, v2])
     staff.is_simultaneous = True
     for i, x in enumerate(v1):
-        assert more(x).get_timespan().start_offset == i * Duration(1, 8)
+        assert inspect(x).get_timespan().start_offset == i * Duration(1, 8)
     for i, x in enumerate(v2):
-        assert more(x).get_timespan().start_offset == i * Duration(1, 8)
+        assert inspect(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
 def test_Inspector_get_timespan_11():
@@ -96,9 +96,9 @@ def test_Inspector_get_timespan_11():
     voice = Voice(notetools.make_repeated_notes(4))
     staff = Staff([Note(0, (1, 8)), voice, Note(0, (1, 8))])
     for i, x in enumerate(staff.select_leaves(allow_discontiguous_leaves=True)):
-        assert more(x).get_timespan().start_offset == i * Duration(1, 8)
+        assert inspect(x).get_timespan().start_offset == i * Duration(1, 8)
     for i, x in enumerate(voice.select_leaves()):
-        assert more(x).get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 8)
+        assert inspect(x).get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 8)
 
 
 def test_Inspector_get_timespan_12():
@@ -109,9 +109,9 @@ def test_Inspector_get_timespan_12():
     v2 = Voice(notetools.make_repeated_notes(4))
     staff = Staff([v1, v2])
     for i, x in enumerate(v1.select_leaves()):
-        assert more(x).get_timespan().start_offset == i * Duration(1, 8)
+        assert inspect(x).get_timespan().start_offset == i * Duration(1, 8)
     for i, x in enumerate(v2.select_leaves()):
-        assert more(x).get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 2)
+        assert inspect(x).get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 2)
 
 
 def test_Inspector_get_timespan_13():
@@ -123,9 +123,9 @@ def test_Inspector_get_timespan_13():
     staff = Staff([v1, v2])
     staff.is_simultaneous = True
     for i, x in enumerate(v1.select_leaves()):
-        assert more(x).get_timespan().start_offset == i * Duration(1, 8)
+        assert inspect(x).get_timespan().start_offset == i * Duration(1, 8)
     for i, x in enumerate(v2.select_leaves()):
-        assert more(x).get_timespan().start_offset == i * Duration(1, 8)
+        assert inspect(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
 def test_Inspector_get_timespan_14():
@@ -138,7 +138,7 @@ def test_Inspector_get_timespan_14():
     staff = Staff([Container([v1, v2]), v3])
     staff[0].is_simultaneous = True
     for i, x in enumerate(v3.select_leaves()):
-        assert more(x).get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 2)
+        assert inspect(x).get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 2)
 
 
 def test_Inspector_get_timespan_15():
@@ -151,9 +151,9 @@ def test_Inspector_get_timespan_15():
     staff = Staff([v3, Container([v1, v2])])
     staff[1].is_simultaneous = True
     for i, x in enumerate(v1.select_leaves()):
-        assert more(x).get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 2)
+        assert inspect(x).get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 2)
     for i, x in enumerate(v2.select_leaves()):
-        assert more(x).get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 2)
+        assert inspect(x).get_timespan().start_offset == i * Duration(1, 8) + Duration(1, 2)
 
 
 def test_Inspector_get_timespan_16():
@@ -163,7 +163,7 @@ def test_Inspector_get_timespan_16():
     staff = Staff([Voice(notetools.make_repeated_notes(4)), Voice(notetools.make_repeated_notes(4))])
     staff[0].name = staff[1].name = 'voice'
     for i, x in enumerate(staff):
-        assert more(x).get_timespan().start_offset == i * Duration(4, 8)
+        assert inspect(x).get_timespan().start_offset == i * Duration(4, 8)
 
 
 def test_Inspector_get_timespan_17():
@@ -172,8 +172,8 @@ def test_Inspector_get_timespan_17():
 
     container = Container([Staff(notetools.make_repeated_notes(4)), Staff(notetools.make_repeated_notes(4))])
     container[0].name = container[1].name = 'staff'
-    assert more(container[0]).get_timespan().start_offset == Duration(0)
-    assert more(container[1]).get_timespan().start_offset == Duration(1, 2)
+    assert inspect(container[0]).get_timespan().start_offset == Duration(0)
+    assert inspect(container[1]).get_timespan().start_offset == Duration(1, 2)
 
 
 def test_Inspector_get_timespan_18():
@@ -182,7 +182,7 @@ def test_Inspector_get_timespan_18():
 
     staff = Staff([Voice(notetools.make_repeated_notes(4)), Voice(notetools.make_repeated_notes(4))])
     for i, x in enumerate(staff):
-        assert more(x).get_timespan().start_offset == i * Duration(4, 8)
+        assert inspect(x).get_timespan().start_offset == i * Duration(4, 8)
 
 
 def test_Inspector_get_timespan_19():
@@ -190,9 +190,9 @@ def test_Inspector_get_timespan_19():
     '''
 
     voice = Voice(tuplettools.FixedDurationTuplet(Duration(1, 4), notetools.make_repeated_notes(3)) * 3)
-    assert more(voice[0]).get_timespan().start_offset == 0 * Duration(1, 4)
-    assert more(voice[1]).get_timespan().start_offset == 1 * Duration(1, 4)
-    assert more(voice[2]).get_timespan().start_offset == 2 * Duration(1, 4)
+    assert inspect(voice[0]).get_timespan().start_offset == 0 * Duration(1, 4)
+    assert inspect(voice[1]).get_timespan().start_offset == 1 * Duration(1, 4)
+    assert inspect(voice[2]).get_timespan().start_offset == 2 * Duration(1, 4)
 
 
 def test_Inspector_get_timespan_20():
@@ -201,9 +201,9 @@ def test_Inspector_get_timespan_20():
 
     tp = tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
     voice = Voice([Note(0, (1, 8)), tp, Note(0, (1, 8))])
-    assert more(voice[0]).get_timespan().start_offset == 0 * Duration(1, 8)
-    assert more(voice[1]).get_timespan().start_offset == 1 * Duration(1, 8)
-    assert more(voice[2]).get_timespan().start_offset == 3 * Duration(1, 8)
+    assert inspect(voice[0]).get_timespan().start_offset == 0 * Duration(1, 8)
+    assert inspect(voice[1]).get_timespan().start_offset == 1 * Duration(1, 8)
+    assert inspect(voice[2]).get_timespan().start_offset == 3 * Duration(1, 8)
 
 
 def test_Inspector_get_timespan_21():
@@ -212,9 +212,9 @@ def test_Inspector_get_timespan_21():
 
     tp = tuplettools.FixedDurationTuplet(Duration(1, 4), notetools.make_repeated_notes(3))
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), tp, Note("c'4")])
-    assert more(tuplet[0]).get_timespan().start_offset == 0 * Duration(1, 6)
-    assert more(tuplet[1]).get_timespan().start_offset == 1 * Duration(1, 6)
-    assert more(tuplet[2]).get_timespan().start_offset == 2 * Duration(1, 6)
+    assert inspect(tuplet[0]).get_timespan().start_offset == 0 * Duration(1, 6)
+    assert inspect(tuplet[1]).get_timespan().start_offset == 1 * Duration(1, 6)
+    assert inspect(tuplet[2]).get_timespan().start_offset == 2 * Duration(1, 6)
 
 
 def test_Inspector_get_timespan_22():
@@ -225,8 +225,8 @@ def test_Inspector_get_timespan_22():
     vout = Voice([Note(0, (1, 8)), vin])
     vin.name = vout.name = 'voice'
     staff = Staff([Note(1, (1, 8)), vout])
-    assert more(vin).get_timespan().start_offset == Duration(2, 8)
-    assert more(vout).get_timespan().start_offset == Duration(1, 8)
+    assert inspect(vin).get_timespan().start_offset == Duration(2, 8)
+    assert inspect(vout).get_timespan().start_offset == Duration(1, 8)
 
 
 def test_Inspector_get_timespan_23():
@@ -237,8 +237,8 @@ def test_Inspector_get_timespan_23():
     v2 = Voice(notetools.make_repeated_notes(4))
     staff = Staff([v1, v2])
     staff.is_simultaneous = True
-    assert more(staff[0]).get_timespan().start_offset == 0
-    assert more(staff[1]).get_timespan().start_offset == 0
+    assert inspect(staff[0]).get_timespan().start_offset == 0
+    assert inspect(staff[1]).get_timespan().start_offset == 0
 
 
 def test_Inspector_get_timespan_24():
@@ -253,10 +253,10 @@ def test_Inspector_get_timespan_24():
     s1 = Staff([v1, v1b])
     s2 = Staff([v2, v2b])
     gs = scoretools.GrandStaff([s1, s2])
-    assert more(v1).get_timespan().start_offset == 0
-    assert more(v2).get_timespan().start_offset == 0
-    assert more(v1b).get_timespan().start_offset == Duration(4, 8)
-    assert more(v2b).get_timespan().start_offset == Duration(4, 8)
+    assert inspect(v1).get_timespan().start_offset == 0
+    assert inspect(v2).get_timespan().start_offset == 0
+    assert inspect(v1b).get_timespan().start_offset == Duration(4, 8)
+    assert inspect(v2b).get_timespan().start_offset == Duration(4, 8)
 
 
 def test_Inspector_get_timespan_25():
@@ -274,7 +274,7 @@ def test_Inspector_get_timespan_25():
     }
     '''
 
-    statement = 'more(staff[0]).get_timespan(in_seconds=True).start_offset'
+    statement = 'inspect(staff[0]).get_timespan(in_seconds=True).start_offset'
     assert py.test.raises(MissingTempoError, statement)
 
 
@@ -295,5 +295,5 @@ def test_Inspector_get_timespan_26():
     }
     '''
 
-    assert more(staff[0]).get_timespan(in_seconds=True).start_offset == Duration(0)
-    assert more(staff[1]).get_timespan(in_seconds=True).start_offset == Duration(5, 4)
+    assert inspect(staff[0]).get_timespan(in_seconds=True).start_offset == Duration(0)
+    assert inspect(staff[1]).get_timespan(in_seconds=True).start_offset == Duration(5, 4)

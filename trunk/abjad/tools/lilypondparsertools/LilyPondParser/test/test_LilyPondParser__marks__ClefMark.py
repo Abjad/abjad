@@ -17,5 +17,5 @@ def test_LilyPondParser__marks__ClefMark_01():
     parser = LilyPondParser()
     result = parser(target.lilypond_format)
     assert target.lilypond_format == result.lilypond_format and target is not result
-    clef_marks = more(result[0]).get_marks(contexttools.ClefMark)
+    clef_marks = inspect(result[0]).get_marks(contexttools.ClefMark)
     assert len(clef_marks) == 1

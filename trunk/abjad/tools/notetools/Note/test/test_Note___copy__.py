@@ -63,7 +63,7 @@ def test_Note___copy___04():
     '''
 
     note_2 = copy.copy(note_1)
-    grace_container_2 = more(note_2).get_grace_containers()[0]
+    grace_container_2 = inspect(note_2).get_grace_containers()[0]
 
     r'''
     \afterGrace
@@ -137,12 +137,12 @@ def test_Note___copy___06():
     new_note = copy.deepcopy(note)
 
     assert new_note is not note
-    assert more(note).select_parentage().parent is staff
-    assert more(new_note).select_parentage().parent is not staff
-    assert isinstance(more(new_note).select_parentage().parent, Staff)
+    assert inspect(note).select_parentage().parent is staff
+    assert inspect(new_note).select_parentage().parent is not staff
+    assert isinstance(inspect(new_note).select_parentage().parent, Staff)
     assert new_note.lilypond_format == note.lilypond_format
-    assert more(note).select_parentage().parent.lilypond_format == \
-        more(new_note).select_parentage().parent.lilypond_format
+    assert inspect(note).select_parentage().parent.lilypond_format == \
+        inspect(new_note).select_parentage().parent.lilypond_format
 
 
 def test_Note___copy___07():

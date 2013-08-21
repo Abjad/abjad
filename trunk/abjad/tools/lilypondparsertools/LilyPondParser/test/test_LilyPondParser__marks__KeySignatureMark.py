@@ -17,5 +17,5 @@ def test_LilyPondParser__marks__KeySignatureMark_01():
     parser = LilyPondParser()
     result = parser(target.lilypond_format)
     assert target.lilypond_format == result.lilypond_format and target is not result
-    key_signature_marks = more(result[0]).get_marks(contexttools.KeySignatureMark)
+    key_signature_marks = inspect(result[0]).get_marks(contexttools.KeySignatureMark)
     assert len(key_signature_marks) == 1

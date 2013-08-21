@@ -9,8 +9,8 @@ def get_spanners_covered_by_components(components):
     within the time bounds of logical-voice-contiguous components.
 
     A spanner `p` is covered by timespan `t` when and only when
-    ``t.start_ofset <= more(p).get_timespan().start_offset and 
-    more(p).get_timespan().stop_offset <= t.stop_offset``.
+    ``t.start_ofset <= inspect(p).get_timespan().start_offset and 
+    inspect(p).get_timespan().stop_offset <= t.stop_offset``.
     '''
     from abjad.tools import selectiontools
     from abjad.tools import spannertools

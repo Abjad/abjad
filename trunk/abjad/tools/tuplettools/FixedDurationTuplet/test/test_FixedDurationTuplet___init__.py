@@ -23,7 +23,7 @@ def test_FixedDurationTuplet___init___01():
     assert len(tuplet) == 3
     assert tuplet.target_duration == Fraction(1, 4)
     assert tuplet.multiplier == Fraction(2, 3)
-    assert more(tuplet).get_duration() == Fraction(1, 4)
+    assert inspect(tuplet).get_duration() == Fraction(1, 4)
 
 
 def test_FixedDurationTuplet___init___02():
@@ -37,4 +37,4 @@ def test_FixedDurationTuplet___init___02():
     assert len(tuplet) == 0
     assert tuplet.target_duration == Fraction(1, 4)
     assert tuplet.multiplier == None
-    assert more(tuplet).get_duration() == Fraction(1, 4)
+    assert inspect(tuplet).get_duration() == Fraction(1, 4)

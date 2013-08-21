@@ -196,7 +196,7 @@ def test_Measure___delitem___07():
 
     assert not select(measure).is_well_formed()
     assert len(measure) == 3
-    assert more(measure).get_mark(contexttools.TimeSignatureMark) == (4, 8)
+    assert inspect(measure).get_mark(contexttools.TimeSignatureMark) == (4, 8)
 
 
 def test_Measure___delitem___08():
@@ -210,4 +210,4 @@ def test_Measure___delitem___08():
 
     assert not select(measure).is_well_formed()
     assert len(measure) == 3
-    assert more(measure).get_mark(contexttools.TimeSignatureMark) == (4, 9)
+    assert inspect(measure).get_mark(contexttools.TimeSignatureMark) == (4, 9)

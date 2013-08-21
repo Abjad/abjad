@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import inspect
-from abjad.tools.selectiontools import more
 
 
 def get_all_mark_format_contributions(component):
@@ -29,7 +28,7 @@ def get_all_mark_format_contributions(component):
 
     contributions = {}
 
-    marks = more(component).get_marks()
+    marks = component._get_marks()
 
     up_markup, down_markup, neutral_markup = [], [], []
 
@@ -53,7 +52,8 @@ def get_all_mark_format_contributions(component):
         ### context marks to be dealt with later ###
 
         elif isinstance(mark, contexttools.ContextMark):
-            if formattools.is_formattable_context_mark_for_component(mark, component):
+            if formattools.is_formattable_context_mark_for_component(
+                mark, component):
                 context_marks.append(mark)
                 continue
 

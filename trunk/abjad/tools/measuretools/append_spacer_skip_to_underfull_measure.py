@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import skiptools
-from abjad.tools.selectiontools import more
 
 
 def append_spacer_skip_to_underfull_measure(measure):
@@ -46,7 +45,7 @@ def append_spacer_skip_to_underfull_measure(measure):
 
     if measure.is_underfull:
         target_duration = measure.time_signature.duration
-        duration = more(measure).get_duration()
+        duration = measure._get_duration()
         skip = skiptools.Skip((1, 1))
         time_signature_multiplier = \
             measure.time_signature.implied_prolation

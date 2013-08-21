@@ -28,7 +28,7 @@ def test_Inspector_get_markup_01():
         '''
         )
 
-    markup = more(staff[0]).get_markup()
+    markup = inspect(staff[0]).get_markup()
     assert len(markup) == 2
     assert markup_1 in markup
     assert markup_2 in markup
@@ -39,7 +39,7 @@ def test_Inspector_get_markup_02():
     chord = Chord([-11, 2, 5], (1, 4))
     up_markup = markuptools.Markup('UP', Up)(chord)
     down_markup = markuptools.Markup('DOWN', Down)(chord)
-    found_markup = more(chord).get_markup(direction=Down)
+    found_markup = inspect(chord).get_markup(direction=Down)
     assert found_markup == (down_markup,) 
 
 
@@ -48,5 +48,5 @@ def test_Inspector_get_markup_03():
     chord = Chord([-11, 2, 5], (1, 4))
     up_markup = markuptools.Markup('UP', Up)(chord)
     down_markup = markuptools.Markup('DOWN', Down)(chord)
-    found_markup = more(chord).get_markup(direction=Up)
+    found_markup = inspect(chord).get_markup(direction=Up)
     assert found_markup == (up_markup,)

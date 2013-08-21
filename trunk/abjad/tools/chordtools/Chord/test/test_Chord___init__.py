@@ -85,7 +85,7 @@ def test_Chord___init___09():
     chord = Chord(tuplet[0])
 
     assert chord.lilypond_format == '<>8'
-    assert more(chord).select_parentage().parent is None
+    assert inspect(chord).select_parentage().parent is None
     assert select(chord).is_well_formed()
 
 
@@ -97,7 +97,7 @@ def test_Chord___init___10():
     chord = Chord(tuplet[0])
 
     assert chord.lilypond_format == '<>8'
-    assert more(chord).select_parentage().parent is None
+    assert inspect(chord).select_parentage().parent is None
     assert select(chord).is_well_formed()
 
 
@@ -110,7 +110,7 @@ def test_Chord___init___11():
     chord = Chord(staff[1])
 
     assert chord.lilypond_format == '<>8'
-    assert more(chord).select_parentage().parent is None
+    assert inspect(chord).select_parentage().parent is None
     assert select(chord).is_well_formed()
 
 
@@ -136,7 +136,7 @@ def test_Chord___init___13():
 
     assert chord.lilypond_format == '<>8'
     assert select(chord).is_well_formed()
-    assert more(chord).select_parentage().parent is None
+    assert inspect(chord).select_parentage().parent is None
 
 
 def test_Chord___init___14():
@@ -161,7 +161,7 @@ def test_Chord___init___15():
 
     assert chord.lilypond_format == "<c'>8"
     assert select(chord).is_well_formed()
-    assert more(chord).select_parentage().parent is None
+    assert inspect(chord).select_parentage().parent is None
 
 
 def test_Chord___init___16():
@@ -173,7 +173,7 @@ def test_Chord___init___16():
 
     assert chord.lilypond_format == "<d'>8"
     assert select(chord).is_well_formed()
-    assert more(chord).select_parentage().parent is None
+    assert inspect(chord).select_parentage().parent is None
 
 
 def test_Chord___init___17():

@@ -21,7 +21,7 @@ def test_SlurSpanner_01():
         '''
         )
 
-    assert more(container).get_spanners() == set([slur])
+    assert inspect(container).get_spanners() == set([slur])
 
 
 def test_SlurSpanner_02():
@@ -43,6 +43,6 @@ def test_SlurSpanner_02():
         '''
         )
 
-    assert len(more(container).get_spanners()) == 0
+    assert len(inspect(container).get_spanners()) == 0
     for leaf in container.select_leaves():
-        assert more(leaf).get_spanners() == set([slur])
+        assert inspect(leaf).get_spanners() == set([slur])

@@ -40,7 +40,7 @@ def test_Inspector_select_vertical_moment_01():
     '''
 
     def piano_staff_moment(expr):
-        return more(expr).select_vertical_moment(governor=piano_staff)
+        return inspect(expr).select_vertical_moment(governor=piano_staff)
 
     vm = piano_staff_moment(piano_staff[1][0])
     assert vm.leaves == (piano_staff[0][0], piano_staff[1][0])
@@ -92,14 +92,14 @@ def test_Inspector_select_vertical_moment_02():
     >>
     '''
 
-    vm = more(piano_staff[1][0]).select_vertical_moment()
+    vm = inspect(piano_staff[1][0]).select_vertical_moment()
     assert vm.leaves == (score[0][0][0], piano_staff[0][0], piano_staff[1][0])
 
-    vm = more(piano_staff[1][1]).select_vertical_moment()
+    vm = inspect(piano_staff[1][1]).select_vertical_moment()
     assert vm.leaves == (score[0][0][0], piano_staff[0][0], piano_staff[1][1])
 
-    vm = more(piano_staff[1][2]).select_vertical_moment()
+    vm = inspect(piano_staff[1][2]).select_vertical_moment()
     assert vm.leaves == (score[0][0][1], piano_staff[0][1], piano_staff[1][2])
 
-    vm = more(piano_staff[1][3]).select_vertical_moment()
+    vm = inspect(piano_staff[1][3]).select_vertical_moment()
     assert vm.leaves == (score[0][0][2], piano_staff[0][1], piano_staff[1][3])

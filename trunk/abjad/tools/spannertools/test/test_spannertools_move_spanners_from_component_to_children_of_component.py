@@ -25,5 +25,5 @@ def test_spannertools_move_spanners_from_component_to_children_of_component_01()
 
     spannertools.move_spanners_from_component_to_children_of_component(voice[0])
 
-    assert more(voice[0]).get_spanners() == set([])
-    assert more(voice[0][0]).get_spanners() == set([beam])
+    assert inspect(voice[0]).get_spanners() == set([])
+    assert inspect(voice[0][0]).get_spanners() == set([beam])

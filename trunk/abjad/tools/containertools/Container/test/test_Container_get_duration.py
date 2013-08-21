@@ -26,7 +26,7 @@ def test_Container_get_duration_01():
     >>
     '''
 
-    assert more(score).get_duration(in_seconds=True) == Duration(400, 133)
+    assert inspect(score).get_duration(in_seconds=True) == Duration(400, 133)
 
 
 def test_Container_get_duration_02():
@@ -36,4 +36,4 @@ def test_Container_get_duration_02():
 
     container = Container("c'8 d'8 e'8 f'8")
     assert py.test.raises(MissingTempoError, 
-        'more(container).get_duration(in_seconds=True)')
+        'inspect(container).get_duration(in_seconds=True)')

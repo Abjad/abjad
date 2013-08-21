@@ -50,7 +50,7 @@ def test_FreeComponentSelection_attach_marks_02():
     '''
 
     for leaf in staff.select_notes_and_chords():
-        new_stem_tremolo = more(leaf).get_mark(marktools.StemTremolo)
+        new_stem_tremolo = inspect(leaf).get_mark(marktools.StemTremolo)
         assert new_stem_tremolo == stem_tremolo
         assert new_stem_tremolo is not stem_tremolo
 
