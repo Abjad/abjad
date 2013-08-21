@@ -49,10 +49,10 @@ from abjad.tools.iotools import p
 from abjad.tools.iotools import play
 from abjad.tools.iotools import show
 from abjad.tools.iotools import z
-from abjad.tools.selectiontools import more
-from abjad.tools.selectiontools import mutate
-from abjad.tools.selectiontools import select
+from abjad.tools.mutationtools import mutate
 from abjad.tools.mutationtools.ComponentInspector import inspect
+from abjad.tools.selectiontools import more
+from abjad.tools.selectiontools import select
 
 # import custom exceptions into the builtins module
 import os

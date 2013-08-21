@@ -2,9 +2,9 @@
 
 
 def mutate(expr):
-    r'''Wraps `expr` in the Abjad mutation interface.
+    r'''Mutate `expr`.
 
-    Returns mutation interface.
+    Returns mutator.
     '''
     from abjad.tools import componenttools
     from abjad.tools import mutationtools

@@ -9,7 +9,6 @@ from abjad.tools import mathtools
 from abjad.tools import selectiontools
 from abjad.tools import timespantools
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.selectiontools import mutate
 
 
 class Component(AbjadObject):
@@ -83,6 +82,7 @@ class Component(AbjadObject):
 
         Returns list of new components.
         '''
+        from abjad.tools.mutationtools import mutate
         from abjad.tools import spannertools
         result = mutate(self).copy(n=n)
         spannertools.detach_spanners_attached_to_components_in_expr(result)

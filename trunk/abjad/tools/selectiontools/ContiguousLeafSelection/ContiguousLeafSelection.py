@@ -78,7 +78,7 @@ class ContiguousLeafSelection(ContiguousSelection):
         from abjad.tools import componenttools
         from abjad.tools import iterationtools
         from abjad.tools import leaftools
-        from abjad.tools.selectiontools import mutate
+        from abjad.tools.mutationtools import mutate
         # get governor
         parentage = self[0]._get_parentage(include_self=True)
         governor = parentage._get_governor()
