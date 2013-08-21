@@ -1,17 +1,15 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.selectiontools.Selection import Selection
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class SingleComponentMutationInterface(Selection):
+class SingleComponentMutationInterface(AbjadObject):
     r'''The Abjad mutators defined against a single component.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, music=None):
-        from abjad.tools import componenttools
-        assert isinstance(music, componenttools.Component), expr(music)
-        Selection.__init__(self, music=music)
+    def __init__(self, client):
+        self._client = client
 
     ### PUBLIC METHODS ###
 
@@ -21,7 +19,7 @@ class SingleComponentMutationInterface(Selection):
         Returns new component.
         '''
         from abjad.tools import selectiontools
-        selection = selectiontools.ContiguousSelection(self)
+        selection = selectiontools.ContiguousSelection(self._client)
         result = selection.copy(n=n)
         if len(result) == 1:
             result = result[0]
@@ -60,7 +58,7 @@ class SingleComponentMutationInterface(Selection):
 
         Returns pair of newly created leaves.
         '''
-        return self[0]._divide(
+        return self._client._divide(
             pitch=pitch,
             )
 
@@ -69,7 +67,7 @@ class SingleComponentMutationInterface(Selection):
 
         Returns none.
         '''
-        return self[0]._shorten(duration)
+        return self._client._shorten(duration)
 
     def splice(
         self,
@@ -81,11 +79,7 @@ class SingleComponentMutationInterface(Selection):
 
         Returns list of components.
         '''
-        if direction == Right:
-            reference_component = self[-1]
-        else:
-            reference_component = self[0]
-        return reference_component._splice(
+        return self._client._splice(
             components,
             direction=direction, 
             grow_spanners=grow_spanners,

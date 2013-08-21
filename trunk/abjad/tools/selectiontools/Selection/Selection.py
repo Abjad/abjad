@@ -5,7 +5,6 @@ import types
 
 class Selection(object):
     r'''A selection of components.
-
     '''
 
     ### CLASS VARIABLES ###
