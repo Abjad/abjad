@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_ComponentInspector_get_effective_context_mark_01():
+def test_InspectionInterface_get_effective_context_mark_01():
     r'''Clef defaults to none.
     '''
 
@@ -12,7 +12,7 @@ def test_ComponentInspector_get_effective_context_mark_01():
         assert inspect(note).get_effective_context_mark(contexttools.ClefMark) is None
 
 
-def test_ComponentInspector_get_effective_context_mark_02():
+def test_InspectionInterface_get_effective_context_mark_02():
     r'''Clefs carry over to notes following.
     '''
 
@@ -23,7 +23,7 @@ def test_ComponentInspector_get_effective_context_mark_02():
             contexttools.ClefMark('treble')
 
 
-def test_ComponentInspector_get_effective_context_mark_03():
+def test_InspectionInterface_get_effective_context_mark_03():
     r'''Clef defaults to none.
     Clefs carry over to notes following.
     '''
@@ -38,7 +38,7 @@ def test_ComponentInspector_get_effective_context_mark_03():
                 contexttools.ClefMark('bass')
 
 
-def test_ComponentInspector_get_effective_context_mark_04():
+def test_InspectionInterface_get_effective_context_mark_04():
     r'''Clefs carry over to notes following.
     '''
 
@@ -51,7 +51,7 @@ def test_ComponentInspector_get_effective_context_mark_04():
         'bass', 'bass', 'bass', 'bass']]
 
 
-def test_ComponentInspector_get_effective_context_mark_05():
+def test_InspectionInterface_get_effective_context_mark_05():
     r'''None cancels an explicit clef.
     '''
 
@@ -65,7 +65,7 @@ def test_ComponentInspector_get_effective_context_mark_05():
             contexttools.ClefMark('treble')
 
 
-def test_ComponentInspector_get_effective_context_mark_06():
+def test_InspectionInterface_get_effective_context_mark_06():
     r'''Redudant clefs are allowed.
     '''
 
@@ -109,7 +109,7 @@ def test_ComponentInspector_get_effective_context_mark_06():
         )
 
 
-def test_ComponentInspector_get_effective_context_mark_07():
+def test_InspectionInterface_get_effective_context_mark_07():
     r'''Clefs with transposition are allowed and work as expected.
     '''
 
@@ -153,7 +153,7 @@ def test_ComponentInspector_get_effective_context_mark_07():
         )
 
 
-def test_ComponentInspector_get_effective_context_mark_08():
+def test_InspectionInterface_get_effective_context_mark_08():
     r'''InputSetExpression and then clearing works as expected.
     '''
 
@@ -166,7 +166,7 @@ def test_ComponentInspector_get_effective_context_mark_08():
         assert inspect(leaf).get_effective_context_mark(contexttools.ClefMark) is None
 
 
-def test_ComponentInspector_get_effective_context_mark_09():
+def test_InspectionInterface_get_effective_context_mark_09():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     contexttools.DynamicMark('f')(staff[2])
@@ -187,7 +187,7 @@ def test_ComponentInspector_get_effective_context_mark_09():
     assert inspect(staff[3]).get_effective_context_mark(contexttools.DynamicMark) == contexttools.DynamicMark('f')
 
 
-def test_ComponentInspector_get_effective_context_mark_10():
+def test_InspectionInterface_get_effective_context_mark_10():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     contexttools.InstrumentMark('Flute', 'Fl.')(staff)
@@ -211,7 +211,7 @@ def test_ComponentInspector_get_effective_context_mark_10():
     assert inspect(staff[3]).get_effective_context_mark(contexttools.InstrumentMark) == flute
 
 
-def test_ComponentInspector_get_effective_context_mark_11():
+def test_InspectionInterface_get_effective_context_mark_11():
     r'''Apply key signature mark.
     '''
 
@@ -244,7 +244,7 @@ def test_ComponentInspector_get_effective_context_mark_11():
         )
 
 
-def test_ComponentInspector_get_effective_context_mark_12():
+def test_InspectionInterface_get_effective_context_mark_12():
     r'''There is no default key signature.
     '''
 
@@ -252,7 +252,7 @@ def test_ComponentInspector_get_effective_context_mark_12():
     assert inspect(staff).get_effective_context_mark(contexttools.KeySignatureMark) is None
 
 
-def test_ComponentInspector_get_effective_context_mark_13():
+def test_InspectionInterface_get_effective_context_mark_13():
     r'''Tempo interface works on staves.
     '''
 
@@ -292,7 +292,7 @@ def test_ComponentInspector_get_effective_context_mark_13():
 
 
 
-def test_ComponentInspector_get_effective_context_mark_14():
+def test_InspectionInterface_get_effective_context_mark_14():
     r'''Tempo interface works on chords.
     '''
 
@@ -317,7 +317,7 @@ def test_ComponentInspector_get_effective_context_mark_14():
         )
 
 
-def test_ComponentInspector_get_effective_context_mark_15():
+def test_InspectionInterface_get_effective_context_mark_15():
     r'''Tempo interface accepts durations.
     '''
 
@@ -342,7 +342,7 @@ def test_ComponentInspector_get_effective_context_mark_15():
         )
 
 
-def test_ComponentInspector_get_effective_context_mark_16():
+def test_InspectionInterface_get_effective_context_mark_16():
     r'''Detach tempo mark.
     '''
 
@@ -367,7 +367,7 @@ def test_ComponentInspector_get_effective_context_mark_16():
         )
 
 
-def test_ComponentInspector_get_effective_context_mark_17():
+def test_InspectionInterface_get_effective_context_mark_17():
     r'''The default effective time signature is none.
     '''
 
@@ -387,7 +387,7 @@ def test_ComponentInspector_get_effective_context_mark_17():
             contexttools.TimeSignatureMark) is None
 
 
-def test_ComponentInspector_get_effective_context_mark_18():
+def test_InspectionInterface_get_effective_context_mark_18():
     r'''Forced time signature settings propagate to later leaves.
     '''
 
@@ -410,7 +410,7 @@ def test_ComponentInspector_get_effective_context_mark_18():
                 (2, 8))
 
 
-def test_ComponentInspector_get_effective_context_mark_19():
+def test_InspectionInterface_get_effective_context_mark_19():
     r'''InputSetExpression and then clearing works as expected.
     '''
 

@@ -2,7 +2,7 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class Mutator(AbjadObject):
+class MutationInterface(AbjadObject):
     r'''The Abjad mutators defined against a single component.
     '''
 

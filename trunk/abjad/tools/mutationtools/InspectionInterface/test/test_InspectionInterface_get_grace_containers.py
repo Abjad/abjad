@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_ComponentInspector_get_grace_containers_01():
+def test_InspectionInterface_get_grace_containers_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
 

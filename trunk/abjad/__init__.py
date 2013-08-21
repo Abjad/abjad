@@ -50,7 +50,7 @@ from abjad.tools.iotools import play
 from abjad.tools.iotools import show
 from abjad.tools.iotools import z
 from abjad.tools.mutationtools import mutate
-from abjad.tools.mutationtools.ComponentInspector import inspect
+from abjad.tools.mutationtools.InspectionInterface import inspect
 from abjad.tools.selectiontools import more
 from abjad.tools.selectiontools import select
 

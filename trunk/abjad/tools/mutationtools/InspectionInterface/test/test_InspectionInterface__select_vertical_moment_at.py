@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_ComponentInspector__get_vertical_moment_at_01():
+def test_InspectionInterface__get_vertical_moment_at_01():
 
     score = Score([])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
@@ -58,7 +58,7 @@ def test_ComponentInspector__get_vertical_moment_at_01():
     assert vm.leaves == ()
 
 
-def test_ComponentInspector__get_vertical_moment_at_02():
+def test_InspectionInterface__get_vertical_moment_at_02():
 
     score = Score([])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
