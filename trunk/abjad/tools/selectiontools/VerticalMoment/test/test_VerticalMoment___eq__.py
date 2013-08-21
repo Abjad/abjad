@@ -97,7 +97,7 @@ def test_VerticalMoment___eq___02():
     "VerticalMoment(PianoStaff<<2>>, Staff{2}, a'4, Staff{4}, e'8)"
 
     vertical_moment_2 = inspect(
-        piano_staff[:1]).select_vertical_moment_at(Offset(1, 8))
+        piano_staff[0]).select_vertical_moment_at(Offset(1, 8))
     "VerticalMoment(Staff{2}, a'4, Staff{4}, e'8)"
 
     assert not vertical_moment_1 == vertical_moment_2

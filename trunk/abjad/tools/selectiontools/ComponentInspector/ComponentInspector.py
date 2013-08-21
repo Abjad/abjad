@@ -1,18 +1,18 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
-from abjad.tools.selectiontools.Selection import Selection
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class ComponentInspector(Selection):
+class ComponentInspector(AbjadObject):
     r'''Inspect one component.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, music=None):
-        music = self._coerce_music(music)
-        assert len(music) == 1
-        Selection.__init__(self, music=music)
+    def __init__(self, component):
+        from abjad.tools import componenttools
+        assert isinstance(component, componenttools.Component)
+        self._component = component
 
     ### PUBLIC METHODS ###
 
@@ -21,7 +21,7 @@ class ComponentInspector(Selection):
 
         Returns tuple.
         '''
-        return self[0]._detach_grace_containers(
+        return self._component._detach_grace_containers(
             kind=kind,
             )
 
@@ -54,7 +54,7 @@ class ComponentInspector(Selection):
 
         Returns duration.
         '''
-        return self[0]._get_duration(
+        return self._component._get_duration(
             in_seconds=in_seconds,
             )
 
@@ -67,7 +67,7 @@ class ComponentInspector(Selection):
 
         Returns context mark or none.
         '''
-        return self[0]._get_effective_context_mark(
+        return self._component._get_effective_context_mark(
             context_mark_classes=context_mark_classes,
             )
 
@@ -76,7 +76,7 @@ class ComponentInspector(Selection):
 
         Returns staff or none.
         '''
-        return self[0]._get_effective_staff()
+        return self._component._get_effective_staff()
 
     def get_grace_containers(self, kind=None):
         r'''Gets grace containers attached to leaf.
@@ -146,7 +146,7 @@ class ComponentInspector(Selection):
 
         Returns tuple.
         '''
-        return self[0]._get_grace_containers(
+        return self._component._get_grace_containers(
             kind=kind,
             )
 
@@ -161,7 +161,7 @@ class ComponentInspector(Selection):
 
         Returns mark.
         '''
-        return self[0]._get_mark(
+        return self._component._get_mark(
             mark_classes=mark_classes,
             )
 
@@ -173,7 +173,7 @@ class ComponentInspector(Selection):
 
         Return tuple.
         '''
-        return self[0]._get_marks(
+        return self._component._get_marks(
             mark_classes=mark_classes,
             )
 
@@ -185,7 +185,7 @@ class ComponentInspector(Selection):
 
         Returns tuple.
         '''
-        return self[0]._get_markup(
+        return self._component._get_markup(
             direction=direction,
             )
 
@@ -194,7 +194,7 @@ class ComponentInspector(Selection):
 
         Returns timespan.
         '''
-        return self[0]._get_timespan(
+        return self._component._get_timespan(
             in_seconds=in_seconds,
             )
 
@@ -203,7 +203,7 @@ class ComponentInspector(Selection):
 
         Returns set.
         '''
-        return self[0]._get_spanners()
+        return self._component._get_spanners()
 
     def is_bar_line_crossing(self):
         r'''True when component crosses bar line.
@@ -243,7 +243,7 @@ class ComponentInspector(Selection):
         Returns boolean.
         '''
         from abjad.tools import contexttools
-        time_signature = self[0]._get_effective_context_mark(
+        time_signature = self._component._get_effective_context_mark(
             contexttools.TimeSignatureMark)
         if time_signature is None:
             time_signature_duration = durationtools.Duration(4, 4)
@@ -251,10 +251,10 @@ class ComponentInspector(Selection):
             time_signature_duration = time_signature.duration
         partial = getattr(time_signature, 'partial', 0)
         partial = partial or 0
-        start_offset = self[0]._get_timespan().start_offset
+        start_offset = self._component._get_timespan().start_offset
         shifted_start = start_offset - partial
         shifted_start %= time_signature_duration
-        stop_offset = self[0]._get_duration() + shifted_start
+        stop_offset = self._component._get_duration() + shifted_start
         if time_signature_duration < stop_offset:
             return True
         return False
@@ -265,7 +265,7 @@ class ComponentInspector(Selection):
 
         Returns component selection.
         '''
-        return self[0]._select_components(
+        return self._component._select_components(
             component_classes=component_classes,
             include_self=include_self,
             )
@@ -275,7 +275,7 @@ class ComponentInspector(Selection):
 
         Returns sequential selection.
         '''
-        return self[0]._select_contents(
+        return self._component._select_contents(
             include_self=include_self,
             )
 
@@ -287,7 +287,7 @@ class ComponentInspector(Selection):
 
         Returns descendants.
         '''
-        return self[0]._select_descendants(
+        return self._component._select_descendants(
             include_self=include_self,
             )
 
@@ -296,14 +296,14 @@ class ComponentInspector(Selection):
         
         Returns lineage.
         '''
-        return self[0]._select_lineage()
+        return self._component._select_lineage()
 
     def select_parentage(self, include_self=True):
         r'''Selects parentage of component.
 
         Returns parentage.
         '''
-        return self[0]._select_parentage(
+        return self._component._select_parentage(
             include_self=include_self,
             )
 
@@ -312,14 +312,14 @@ class ComponentInspector(Selection):
 
         Returns tie chain.
         '''
-        return self[0]._select_tie_chain()
+        return self._component._select_tie_chain()
 
     def select_vertical_moment(self, governor=None):
         r'''Selects vertical moment starting with component.
 
         Returns vertical moment.
         '''
-        return self[0]._select_vertical_moment(
+        return self._component._select_vertical_moment(
             governor=governor,
             )
 
@@ -328,7 +328,7 @@ class ComponentInspector(Selection):
 
         Returns vertical moment.
         '''
-        return self[0]._select_vertical_moment_at(
+        return self._component._select_vertical_moment_at(
             offset,
             )
 
