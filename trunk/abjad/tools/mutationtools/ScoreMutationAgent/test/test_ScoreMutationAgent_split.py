@@ -3,7 +3,7 @@ import py
 from abjad import *
 
 
-def test_componenttools_split_01():
+def test_ScoreMutationAgent_split_01():
     r'''Cyclically split note in score. Don't fracture spanners.
     '''
 
@@ -63,7 +63,7 @@ def test_componenttools_split_01():
     assert len(result) == 3
 
 
-def test_componenttools_split_02():
+def test_ScoreMutationAgent_split_02():
     r'''Cyclically split consecutive notes in score. Don't fracture spanners.
     '''
 
@@ -123,7 +123,7 @@ def test_componenttools_split_02():
     assert len(result) == 6
 
 
-def test_componenttools_split_03():
+def test_ScoreMutationAgent_split_03():
     r'''Cyclically split measure in score. Don't fracture spanners.
     '''
 
@@ -151,8 +151,8 @@ def test_componenttools_split_03():
         '''
         )
 
-    result = componenttools.split(
-        staff[:1], 
+    measures = staff[:1]
+    result = mutate(measures).split(
         [Duration(3, 32)],
         cyclic=True, 
         fracture_spanners=False, 
@@ -188,7 +188,7 @@ def test_componenttools_split_03():
     assert len(result) == 3
 
 
-def test_componenttools_split_04():
+def test_ScoreMutationAgent_split_04():
     r'''Cyclically split consecutive measures in score. 
     Don't fracture spanners.
     '''
@@ -217,8 +217,8 @@ def test_componenttools_split_04():
         '''
         )
 
-    result = componenttools.split(
-        staff[:], 
+    measures = staff[:]
+    result = mutate(measures).split(
         [Duration(3, 32)],
         cyclic=True, 
         fracture_spanners=False, 
@@ -264,7 +264,7 @@ def test_componenttools_split_04():
     assert len(result) == 6
 
 
-def test_componenttools_split_05():
+def test_ScoreMutationAgent_split_05():
     r'''Cyclically split orphan measures. Don't fracture spanners.
     '''
 
@@ -274,8 +274,7 @@ def test_componenttools_split_05():
     beam_1.attach([measures[0]])
     beam_2.attach([measures[1]])
 
-    result = componenttools.split(
-        measures, 
+    result = mutate(measures).split(
         [Duration(3, 32)],
         cyclic=True, 
         fracture_spanners=False, 
@@ -324,7 +323,7 @@ def test_componenttools_split_05():
     assert len(result) == 6
 
 
-def test_componenttools_split_06():
+def test_ScoreMutationAgent_split_06():
     r'''Cyclically split note in score. Don't fracture spanners.
     '''
 
@@ -352,8 +351,8 @@ def test_componenttools_split_06():
         '''
         )
 
-    result = componenttools.split(
-        staff[0][1:], 
+    notes = staff[0][1:]
+    result = mutate(notes).split(
         [Duration(1, 32)],
         cyclic=True, 
         fracture_spanners=False, 
@@ -384,7 +383,7 @@ def test_componenttools_split_06():
     assert len(result) == 4
 
 
-def test_componenttools_split_07():
+def test_ScoreMutationAgent_split_07():
     r'''Cyclically split consecutive notes in score. Don't fracture spanners.
     '''
 
@@ -412,8 +411,8 @@ def test_componenttools_split_07():
         '''
         )
 
-    result = componenttools.split(
-        staff.select_leaves(), 
+    leaves = staff.select_leaves()
+    result = mutate(leaves).split(
         [Duration(1, 16)],
         cyclic=True, 
         fracture_spanners=False, 
@@ -445,7 +444,7 @@ def test_componenttools_split_07():
     assert len(result) == 8
 
 
-def test_componenttools_split_08():
+def test_ScoreMutationAgent_split_08():
     r'''Cyclically split measure in score. Don't fracture spanners.
     '''
 
@@ -473,8 +472,8 @@ def test_componenttools_split_08():
         '''
         )
 
-    result = componenttools.split(
-        staff[:1], 
+    measures = staff[:1]
+    result = mutate(measures).split(
         [Duration(1, 16)],
         cyclic=True, 
         fracture_spanners=False, 
@@ -511,7 +510,7 @@ def test_componenttools_split_08():
     assert len(result) == 4
 
 
-def test_componenttools_split_09():
+def test_ScoreMutationAgent_split_09():
     r'''Cyclically split consecutive measures in score. 
     Don't fracture spanners.
     '''
@@ -540,8 +539,8 @@ def test_componenttools_split_09():
         '''
         )
 
-    result = componenttools.split(
-        staff[:], 
+    measures = staff[:]
+    result = mutate(measures).split(
         [Duration(3, 32)],
         cyclic=True, 
         fracture_spanners=False, 
@@ -587,7 +586,7 @@ def test_componenttools_split_09():
     assert len(result) == 6
 
 
-def test_componenttools_split_10():
+def test_ScoreMutationAgent_split_10():
     r'''Cyclically split note in score. Fracture spanners.
     '''
 
@@ -615,8 +614,8 @@ def test_componenttools_split_10():
         '''
         )
 
-    result = componenttools.split(
-        staff[0][1:2], 
+    notes = staff[0][1:2]
+    result = mutate(notes).split(
         [Duration(3, 64)], 
         cyclic=True,
         fracture_spanners=True,
@@ -645,7 +644,7 @@ def test_componenttools_split_10():
     assert len(result) == 3
 
 
-def test_componenttools_split_11():
+def test_ScoreMutationAgent_split_11():
     r'''Cyclically split consecutive notes in score. Fracture spanners.
     '''
 
@@ -673,8 +672,8 @@ def test_componenttools_split_11():
         '''
         )
 
-    result = componenttools.split(
-        staff.select_leaves(), 
+    leaves = staff.select_leaves()
+    result = mutate(leaves).split(
         [Duration(3, 32)], 
         cyclic=True, 
         fracture_spanners=True,
@@ -705,7 +704,7 @@ def test_componenttools_split_11():
     assert len(result) == 6
 
 
-def test_componenttools_split_12():
+def test_ScoreMutationAgent_split_12():
     r'''Cyclically split measure in score. Fracture spanners.
     '''
 
@@ -733,8 +732,8 @@ def test_componenttools_split_12():
         '''
         )
 
-    result = componenttools.split(
-        staff[:1], 
+    measures = staff[:1]
+    result = mutate(measures).split(
         [Duration(3, 32)],
         cyclic=True, 
         fracture_spanners=True, 
@@ -770,7 +769,7 @@ def test_componenttools_split_12():
     assert len(result) == 3
 
 
-def test_componenttools_split_13():
+def test_ScoreMutationAgent_split_13():
     r'''Cyclically split consecutive measures in score. Fracture spanners.
     '''
 
@@ -798,8 +797,8 @@ def test_componenttools_split_13():
         '''
         )
 
-    result = componenttools.split(
-        staff[:], 
+    measures = staff[:]
+    result = mutate(measures).split(
         [Duration(3, 32)],
         cyclic=True, 
         fracture_spanners=True, 
@@ -845,14 +844,13 @@ def test_componenttools_split_13():
     assert len(result) == 6
 
 
-def test_componenttools_split_14():
+def test_ScoreMutationAgent_split_14():
     r'''Cyclically split orphan notes.
     '''
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
 
-    result = componenttools.split(
-        notes, 
+    result = mutate(notes).split(
         [Duration(3, 32)], 
         cyclic=True, 
         fracture_spanners=True,
@@ -881,7 +879,7 @@ def test_componenttools_split_14():
     assert len(result) == 6
 
 
-def test_componenttools_split_15():
+def test_ScoreMutationAgent_split_15():
     r'''Cyclically split orphan measures. Fracture spanners.
     '''
 
@@ -891,8 +889,7 @@ def test_componenttools_split_15():
     beam_1.attach([measures[0]])
     beam_2.attach([measures[1]])
 
-    result = componenttools.split(
-        measures, 
+    result = mutate(measures).split(
         [Duration(3, 32)],
         cyclic=True, 
         fracture_spanners=True, 
@@ -941,7 +938,7 @@ def test_componenttools_split_15():
     assert len(result) == 6
 
 
-def test_componenttools_split_16():
+def test_ScoreMutationAgent_split_16():
     r'''Cyclically split note in score. Fracture spanners.
     '''
 
@@ -969,8 +966,8 @@ def test_componenttools_split_16():
         '''
         )
 
-    result = componenttools.split(
-        staff[0][1:], 
+    notes = staff[0][1:]
+    result = mutate(notes).split(
         [Duration(1, 32)],
         cyclic=True, 
         fracture_spanners=True, 
@@ -1001,7 +998,7 @@ def test_componenttools_split_16():
     assert len(result) == 4
 
 
-def test_componenttools_split_17():
+def test_ScoreMutationAgent_split_17():
     r'''Cyclically split consecutive notes in score. Fracture spanners.
     '''
 
@@ -1029,8 +1026,8 @@ def test_componenttools_split_17():
         '''
         )
 
-    result = componenttools.split(
-        staff.select_leaves(), 
+    leaves = staff.select_leaves()
+    result = mutate(leaves).split(
         [Duration(1, 16)],
         cyclic=True, 
         fracture_spanners=True, 
@@ -1062,7 +1059,7 @@ def test_componenttools_split_17():
     assert len(result) == 8
 
 
-def test_componenttools_split_18():
+def test_ScoreMutationAgent_split_18():
     r'''Cyclically split measure in score. Fracture spanners.
     '''
 
@@ -1090,8 +1087,8 @@ def test_componenttools_split_18():
         '''
         )
 
-    result = componenttools.split(
-        staff[:1], 
+    measures = staff[:1]
+    result = mutate(measures).split(
         [Duration(1, 16)],
         cyclic=True, 
         fracture_spanners=True, 
@@ -1128,7 +1125,7 @@ def test_componenttools_split_18():
     assert len(result) == 4
 
 
-def test_componenttools_split_19():
+def test_ScoreMutationAgent_split_19():
     r'''Cyclically split consecutive measures in score. Fracture spanners.
     '''
 
@@ -1156,8 +1153,8 @@ def test_componenttools_split_19():
         '''
         )
 
-    result = componenttools.split(
-        staff[:], 
+    measures = staff[:]
+    result = mutate(measures).split(
         [Duration(3, 32)],
         cyclic=True, 
         fracture_spanners=True, 
@@ -1203,7 +1200,7 @@ def test_componenttools_split_19():
     assert len(result) == 6
 
 
-def test_componenttools_split_20():
+def test_ScoreMutationAgent_split_20():
     r'''Force split measure in score. Do not fracture spanners.
     '''
 
@@ -1231,8 +1228,8 @@ def test_componenttools_split_20():
         '''
         )
 
-    result = componenttools.split(
-        staff[:1], 
+    measures = staff[:1]
+    result = mutate(measures).split(
         [Duration(1, 32), Duration(3, 32), Duration(5, 32)],
         cyclic=False, 
         fracture_spanners=False, 
@@ -1268,7 +1265,7 @@ def test_componenttools_split_20():
     assert len(result) == 3
 
 
-def test_componenttools_split_21():
+def test_ScoreMutationAgent_split_21():
     r'''Force split consecutive measures in score. Do not fracture spanners.
     '''
 
@@ -1296,8 +1293,8 @@ def test_componenttools_split_21():
         '''
         )
 
-    result = componenttools.split(
-        staff[:], 
+    measures = staff[:]
+    result = mutate(measures).split(
         [Duration(1, 32), Duration(3, 32), Duration(5, 32)],
         cyclic=False, 
         fracture_spanners=False, 
@@ -1337,7 +1334,7 @@ def test_componenttools_split_21():
     assert len(result) == 4
 
 
-def test_componenttools_split_22():
+def test_ScoreMutationAgent_split_22():
     r'''Force split measure in score. Fracture spanners.
     '''
 
@@ -1365,8 +1362,8 @@ def test_componenttools_split_22():
         '''
         )
 
-    result = componenttools.split(
-        staff[:1], 
+    measures = staff[:1]
+    result = mutate(measures).split(
         [Duration(1, 32), Duration(3, 32), Duration(5, 32)],
         cyclic=False, 
         fracture_spanners=True, 
@@ -1402,7 +1399,7 @@ def test_componenttools_split_22():
     assert len(result) == 3
 
 
-def test_componenttools_split_23():
+def test_ScoreMutationAgent_split_23():
     r'''Force split consecutive measures in score. Fracture spanners.
     '''
 
@@ -1430,8 +1427,8 @@ def test_componenttools_split_23():
         '''
         )
 
-    result = componenttools.split(
-        staff[:], 
+    measures = staff[:]
+    result = mutate(measures).split(
         [Duration(1, 32), Duration(3, 32), Duration(5, 32)],
         cyclic=False, 
         fracture_spanners=True, 
@@ -1469,14 +1466,14 @@ def test_componenttools_split_23():
         )
 
 
-def test_componenttools_split_24():
+def test_ScoreMutationAgent_split_24():
     r'''Force split orphan note. Offsets sum to less than note duration.
     '''
 
     note = Note("c'4")
+    note = select(note)
 
-    result = componenttools.split(
-        [note], 
+    result = mutate(note).split(
         [(1, 32), (5, 32)],
         cyclic=False, 
         fracture_spanners=True, 
@@ -1502,7 +1499,7 @@ def test_componenttools_split_24():
     assert len(result) == 3
 
 
-def test_componenttools_split_25():
+def test_ScoreMutationAgent_split_25():
     r'''Force split note in score. Fracture spanners.
     '''
 
@@ -1517,8 +1514,8 @@ def test_componenttools_split_25():
         '''
         )
 
-    result = componenttools.split(
-        staff[:], 
+    notes = staff[:]
+    result = mutate(notes).split(
         [Duration(1, 64), Duration(5, 64)],
         cyclic=False, 
         fracture_spanners=True, 
@@ -1540,7 +1537,7 @@ def test_componenttools_split_25():
     assert inspect(staff).is_well_formed()
 
 
-def test_componenttools_split_26():
+def test_ScoreMutationAgent_split_26():
     r'''Split tuplet in score and do not fracture spanners.
     '''
 
@@ -1549,8 +1546,8 @@ def test_componenttools_split_26():
     voice.append(Tuplet((2, 3), "f'8 g'8 a'8"))
     beam = spannertools.BeamSpanner(voice[:])
 
-    componenttools.split(
-        voice[1:2],
+    tuplets = voice[1:2]
+    result = mutate(tuplets).split(
         [Duration(1, 12)],
         fracture_spanners=False,
         )
@@ -1578,7 +1575,7 @@ def test_componenttools_split_26():
     assert inspect(voice).is_well_formed()
 
 
-def test_componenttools_split_27():
+def test_ScoreMutationAgent_split_27():
     r'''Split in-score measure with power-of-two denominator and 
     do not fracture spanners.
     '''
@@ -1588,8 +1585,8 @@ def test_componenttools_split_27():
     voice.append(Measure((3, 8), "f'8 g'8 a'8"))
     beam = spannertools.BeamSpanner(voice[:])
 
-    componenttools.split(
-        voice[1:2], 
+    measures = voice[1:2]
+    result = mutate(measures).split(
         [Duration(1, 8)], 
         fracture_spanners=False,
         )
@@ -1620,7 +1617,7 @@ def test_componenttools_split_27():
     assert inspect(voice).is_well_formed()
 
 
-def test_componenttools_split_28():
+def test_ScoreMutationAgent_split_28():
     r'''Split in-score measure without power-of-two denominator 
     and do not frature spanners.
     '''
@@ -1630,8 +1627,8 @@ def test_componenttools_split_28():
     voice.append(Measure((3, 9), "f'8 g'8 a'8"))
     beam = spannertools.BeamSpanner(voice[:])
 
-    componenttools.split(
-        voice[1:2], 
+    measures = voice[1:2]
+    result = mutate(measures).split(
         [Duration(1, 9)], 
         fracture_spanners=False,
         )
@@ -1668,14 +1665,13 @@ def test_componenttools_split_28():
     assert inspect(voice).is_well_formed()
 
 
-def test_componenttools_split_29():
+def test_ScoreMutationAgent_split_29():
     r'''A single container can be split in the middle.
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
 
-    result = componenttools.split(
-        [voice], 
+    result = mutate([voice]).split(
         [Duration(1, 4)], 
         fracture_spanners=False,
         )
@@ -1710,16 +1706,14 @@ def test_componenttools_split_29():
     assert inspect(voice_2).is_well_formed()
 
 
-def test_componenttools_split_30():
+def test_ScoreMutationAgent_split_30():
     r'''Split voice at negative index.
     '''
 
     staff = Staff([Voice("c'8 d'8 e'8 f'8")])
     voice = staff[0]
 
-    result = componenttools.split(
-        [voice], 
-        #-2, 
+    result = mutate([voice]).split(
         [Duration(1, 4)],
         fracture_spanners=False,
         )
@@ -1774,7 +1768,7 @@ def test_componenttools_split_30():
     assert inspect(staff).is_well_formed()
 
 
-def test_componenttools_split_31():
+def test_ScoreMutationAgent_split_31():
     r'''Slpit container in score and do not fracture spanners.
     '''
 
@@ -1782,9 +1776,7 @@ def test_componenttools_split_31():
     voice = staff[0]
     spannertools.BeamSpanner(voice)
 
-    result = componenttools.split(
-        [voice], 
-        #2, 
+    result = mutate([voice]).split(
         [Duration(1, 4)],
         fracture_spanners=False,
         )
@@ -1855,7 +1847,7 @@ def test_componenttools_split_31():
     assert inspect(staff).is_well_formed()
 
 
-def test_componenttools_split_32():
+def test_ScoreMutationAgent_split_32():
     r'''Split tuplet in score and do not fracture spanners.
     '''
 
@@ -1864,9 +1856,7 @@ def test_componenttools_split_32():
     staff = Staff([voice])
     spannertools.BeamSpanner(tuplet)
 
-    result = componenttools.split(
-        [tuplet], 
-        #2, 
+    result = mutate([tuplet]).split(
         [Duration(1, 5)],
         fracture_spanners=False,
         )
@@ -1961,7 +1951,7 @@ def test_componenttools_split_32():
     assert inspect(staff).is_well_formed()
 
 
-def test_componenttools_split_33():
+def test_ScoreMutationAgent_split_33():
     r'''Split triplet, and fracture spanners.
     '''
 
@@ -1989,9 +1979,7 @@ def test_componenttools_split_33():
         '''
         )
 
-    result = componenttools.split(
-        [tuplet], 
-        #1, 
+    result = mutate([tuplet]).split(
         [Duration(1, 12)],
         fracture_spanners=True,
         )
@@ -2043,7 +2031,7 @@ def test_componenttools_split_33():
     assert inspect(voice).is_well_formed()
 
 
-def test_componenttools_split_34():
+def test_ScoreMutationAgent_split_34():
     r'''Split measure with power-of-two time signature denominator.
     Fracture spanners.
     '''
@@ -2073,9 +2061,7 @@ def test_componenttools_split_34():
         '''
         )
 
-    result = componenttools.split(
-        [measure], 
-        #1, 
+    result = mutate([measure]).split(
         [Duration(1, 8)],
         fracture_spanners=True,
         )
@@ -2132,7 +2118,7 @@ def test_componenttools_split_34():
     assert inspect(voice).is_well_formed()
 
 
-def test_componenttools_split_35():
+def test_ScoreMutationAgent_split_35():
     r'''Split measure without power-of-two time signature denominator.
     Fracture spanners.
     '''
@@ -2166,9 +2152,7 @@ def test_componenttools_split_35():
         '''
         )
 
-    result = componenttools.split(
-        [measure], 
-        #1, 
+    result = mutate([measure]).split(
         [Duration(1, 9)],
         fracture_spanners=True,
         )
@@ -2235,7 +2219,7 @@ def test_componenttools_split_35():
     assert inspect(voice).is_well_formed()
 
 
-def test_componenttools_split_36():
+def test_ScoreMutationAgent_split_36():
     r'''Split voice outside of score.
     Fracture spanners.
     '''
@@ -2255,9 +2239,7 @@ def test_componenttools_split_36():
         '''
         )
 
-    result = componenttools.split(
-        [voice], 
-        #2, 
+    result = mutate([voice]).split(
         [Duration(1, 4)],
         fracture_spanners=True,
         )
@@ -2294,7 +2276,7 @@ def test_componenttools_split_36():
         )
 
 
-def test_componenttools_split_37():
+def test_ScoreMutationAgent_split_37():
     r'''Split measure in score and fracture spanners.
     '''
 
@@ -2322,9 +2304,8 @@ def test_componenttools_split_37():
         '''
         )
 
-    result = componenttools.split(
-        staff[:1], 
-        #1, 
+    measures = staff[:1]
+    result = mutate(measures).split(
         [Duration(1, 8)],
         fracture_spanners=True,
         )
@@ -2355,10 +2336,7 @@ def test_componenttools_split_37():
     assert inspect(staff).is_well_formed()
 
 
-
-
-
-def test_componenttools_split_38():
+def test_ScoreMutationAgent_split_38():
     r'''Split in-score measure with power-of-two time signature denominator.
     Fractured spanners but do not tie over split locus.
     Measure contents necessitate denominator change.
@@ -2381,9 +2359,8 @@ def test_componenttools_split_38():
         '''
         )
 
-    halves = componenttools.split(
-        staff[:1], 
-        #1, 
+    measures = staff[:1]
+    result = mutate(measures).split(
         [Duration(3, 16)],
         fracture_spanners=True,
         )
@@ -2404,10 +2381,10 @@ def test_componenttools_split_38():
         )
 
     assert inspect(staff).is_well_formed()
-    assert len(halves) == 2
+    assert len(result) == 2
 
 
-def test_componenttools_split_39():
+def test_ScoreMutationAgent_split_39():
     r'''Split cyclic.
     Leave spanner attaching to container contents untouched.
     '''
@@ -2434,9 +2411,8 @@ def test_componenttools_split_39():
         '''
         )
 
-    componenttools.split(
-        voice[0], 
-        #[1, 3], 
+    note = voice[0]
+    result = mutate(note).split(
         [Duration(1, 8), Duration(3, 8)],
         cyclic=True, 
         fracture_spanners=False,
@@ -2469,7 +2445,7 @@ def test_componenttools_split_39():
     assert inspect(voice).is_well_formed()
 
 
-def test_componenttools_split_40():
+def test_ScoreMutationAgent_split_40():
     r'''Cyclic 1 splits all elements in container.
     '''
 
@@ -2491,9 +2467,8 @@ def test_componenttools_split_40():
         '''
         )
 
-    componenttools.split(
-        voice[0], 
-        #[1], 
+    container = voice[0]
+    result = mutate(container).split(
         [Duration(1, 8)],
         cyclic=True, 
         fracture_spanners=False,
@@ -2522,7 +2497,7 @@ def test_componenttools_split_40():
     assert inspect(voice).is_well_formed()
 
 
-def test_componenttools_split_41():
+def test_ScoreMutationAgent_split_41():
     r'''Split cyclic.
     Fracture spanners attaching directly to container.
     Leave spanner attaching to container contents untouched.
@@ -2550,9 +2525,8 @@ def test_componenttools_split_41():
         '''
         )
 
-    result = componenttools.split(
-        voice[0], 
-        #[1, 3], 
+    container = voice[0]
+    result = mutate(container).split(
         [Duration(1, 8), Duration(3, 8)],
         cyclic=True, 
         fracture_spanners=True,
@@ -2586,7 +2560,7 @@ def test_componenttools_split_41():
     assert len(result) == 4
 
 
-def test_componenttools_split_42():
+def test_ScoreMutationAgent_split_42():
     r'''Cyclic by 1 splits all elements in container.
     '''
 
@@ -2608,9 +2582,8 @@ def test_componenttools_split_42():
         '''
         )
 
-    result = componenttools.split(
-        voice[0], 
-        #[1], 
+    container = voice[0]
+    result = mutate(container).split(
         [Duration(1, 8)],
         cyclic=True, 
         fracture_spanners=True,
@@ -2640,7 +2613,7 @@ def test_componenttools_split_42():
     assert len(result) == 4
 
 
-def test_componenttools_split_43():
+def test_ScoreMutationAgent_split_43():
     r'''Extra durations are ignored.
     Result contains no empty shards.
     '''
@@ -2663,8 +2636,8 @@ def test_componenttools_split_43():
         '''
         )
 
-    result = componenttools.split(
-        voice[0], 
+    container = voice[0]
+    result = mutate(container).split(
         5 * [Duration(2, 8)],
         cyclic=True, 
         fracture_spanners=True,
@@ -2690,7 +2663,7 @@ def test_componenttools_split_43():
     assert len(result) == 2
 
 
-def test_componenttools_split_44():
+def test_ScoreMutationAgent_split_44():
     r'''Empty durations list.
     Expression remains unaltered.
     '''
@@ -2713,8 +2686,8 @@ def test_componenttools_split_44():
         '''
         )
 
-    result = componenttools.split(
-        voice[0], 
+    container = voice[0]
+    result = mutate(container).split(
         [], 
         cyclic=True, 
         fracture_spanners=True,
@@ -2738,7 +2711,7 @@ def test_componenttools_split_44():
     assert len(result) == 1
 
 
-def test_componenttools_split_45():
+def test_ScoreMutationAgent_split_45():
     r'''Split one time.
     Fracture spanners attaching directly to container.
     Leave spanner attaching to container contents untouched.
@@ -2766,9 +2739,8 @@ def test_componenttools_split_45():
         '''
         )
 
-    result = componenttools.split(
-        voice[0], 
-        #[1, 3], 
+    container = voice[0]
+    result = mutate(container).split(
         [Duration(1, 8), Duration(3, 8)],
         cyclic=False, 
         fracture_spanners=False,
@@ -2800,7 +2772,7 @@ def test_componenttools_split_45():
     assert len(result) == 3
 
 
-def test_componenttools_split_46():
+def test_ScoreMutationAgent_split_46():
     r'''Split one time.
     Fracture spanners attaching directly to container.
     Leave spanner attaching to container contents untouched.
@@ -2828,9 +2800,8 @@ def test_componenttools_split_46():
         '''
         )
 
-    result = componenttools.split(
-        voice[0], 
-        #[1, 3], 
+    container = voice[0]
+    result = mutate(container).split(
         [Duration(1, 8), Duration(3, 8)],
         cyclic=False, 
         fracture_spanners=True,
@@ -2862,7 +2833,7 @@ def test_componenttools_split_46():
     assert len(result) == 3
 
 
-def test_componenttools_split_47():
+def test_ScoreMutationAgent_split_47():
     r'''Extra durations are ignored.
     Result contains no empty shards.
     '''
@@ -2885,8 +2856,8 @@ def test_componenttools_split_47():
         '''
         )
 
-    result = componenttools.split(
-        voice[0], 
+    container = voice[0]
+    result = mutate(container).split(
         5 * [Duration(2, 8)],
         cyclic=False, 
         fracture_spanners=True,
@@ -2912,13 +2883,17 @@ def test_componenttools_split_47():
     assert len(result) == 2
 
 
-def test_componenttools_split_48():
+def test_ScoreMutationAgent_split_48():
     r'''Split leaf at relative offset that is both non-assignable
     and non-power-of-two.
     '''
 
     staff = Staff("c'4")
-    halves = componenttools.split(staff[:1], [Duration(5, 24)])
+
+    notes = staff[:1]
+    result = mutate(notes).split(
+        [Duration(5, 24)],
+        )
 
     assert testtools.compare(
         staff,
@@ -2941,7 +2916,7 @@ def test_componenttools_split_48():
 # container._split_at_index() works here;
 # componenttools.split() doesn't work here.
 # eventually make componenttools.split() work here.
-def test_componenttools_split_49():
+def test_ScoreMutationAgent_split_49():
     r'''Split in-score measure without power-of-two time 
     signature denominator. Fractured spanners but do not tie 
     over split locus. Measure contents necessitate denominator change.
@@ -2967,9 +2942,8 @@ def test_componenttools_split_49():
         '''
         )
 
-    halves = componenttools.split(
-        staff[:1], 
-        #1, 
+    measures = staff[:1]
+    result = mutate(measures).split(
         [Duration(3, 24)],
         fracture_spanners=True,
         )
@@ -2994,4 +2968,4 @@ def test_componenttools_split_49():
         )
 
     assert inspect(staff).is_well_formed()
-    assert len(halves) == 2
+    assert len(result) == 2
