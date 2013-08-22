@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import copy
 from abjad.tools import iterationtools
 from abjad.tools import marktools
 from abjad.tools import notetools
@@ -65,7 +66,9 @@ class ReiteratedArticulationHandler(ArticulationHandler):
                 marktools.Articulation(x)
                 for x in self.articulation_list
                 ]
-            select(note_or_chord).attach_marks(articulation_list)
+            for articulation in articulation_list:
+                new_articulation = copy.copy(articulation)
+                new_articulation.attach(note_or_chord)
         return expr
 
     ### PUBLIC PROPERTIES ###

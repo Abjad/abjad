@@ -163,12 +163,6 @@ class Selection(object):
     @staticmethod
     def _all_are_contiguous_components_in_same_logical_voice(
         expr, component_classes=None, allow_orphans=True):
-#        from abjad.tools import componenttools
-#        return componenttools.all_are_contiguous_components_in_same_logical_voice(
-#            expr,
-#            component_classes=component_classes,
-#            allow_orphans=allow_orphans,
-#            )
         from abjad.tools import componenttools
         from abjad.tools import selectiontools
         allowable_types = (
@@ -281,38 +275,6 @@ class Selection(object):
             previous = current
         return True
 
-    def _attach_marks(self, marks, recurse=False):
-        from abjad.tools import marktools
-        if not isinstance(marks, (list, tuple)):
-            marks = (marks,)
-        instantiated_marks = []
-        for mark in marks:
-            if not isinstance(mark, marktools.Mark):
-                if issubclass(mark, marktools.Mark):
-                    mark = mark()
-            assert isinstance(mark, marktools.Mark)
-            instantiated_marks.append(mark)
-        marks = instantiated_marks
-        result = []
-        for component in self._iterate_components(recurse=recurse):
-            for mark in marks:
-                copied_mark = copy.copy(mark)
-                copied_mark.attach(component)
-                result.append(copied_mark)
-        return tuple(result)
-
-    def _attach_spanners(self, spanner, recurse=False):
-        from abjad.tools import spannertools
-        if issubclass(spanner, spannertools.Spanner):
-            spanner = spanner()
-        assert isinstance(spanner, spannertools.Spanner)
-        spanners = []
-        for component in self._iterate_components(recurse=recurse):
-            copied_spanner = copy.copy(spanner)
-            copied_spanner.attach([component])
-            spanners.append(copied_spanner)
-        return tuple(spanners)
-
     @staticmethod
     def _coerce_music(music):
         if music is None:
@@ -326,19 +288,6 @@ class Selection(object):
         else:
             music = (music, )
         return music
-
-    def _detach_marks(self, mark_classes=None, recurse=True):
-        marks = []
-        for component in self._iterate_components(recurse=recurse):
-            marks.extend(component._detach_marks(mark_classes=mark_classes))
-        return tuple(marks)
-
-    def _detach_spanners(self, spanner_classes=None, recurse=True):
-        spanners = []
-        for component in self._iterate_components(recurse=recurse):
-            spanners.extend(
-                component._detach_spanners(spanner_classes=spanner_classes))
-        return tuple(spanners)
 
     def _get_component(self, component_classes=None, n=0, recurse=True):
         from abjad.tools import componenttools

@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import copy
 from abjad.tools import marktools
 from abjad.tools.selectiontools import select
 from experimental.tools.musicexpressiontools.LeafSetExpression \
@@ -20,4 +21,7 @@ class ArticulationSetExpression(LeafSetExpression):
             marktools.Articulation(x)
             for x in articulation_list
             ]
-        select(leaves).attach_marks(articulation_list)
+        for leaf in leaves:
+            for articulation in articulation_list:
+                new_articulation = copy.copy(articulation)
+                new_articulation.attach(leaf)
