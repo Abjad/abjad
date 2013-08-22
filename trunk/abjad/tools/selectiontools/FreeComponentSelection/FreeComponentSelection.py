@@ -44,21 +44,6 @@ class FreeComponentSelection(Selection):
             badly_formed_components.extend(checker.violators(self))
         return badly_formed_components
 
-    def get_component(self, component_classes=None, n=0, recurse=True):
-        r'''Get component `n` of `component_classes` in selection.
-
-        Iterate only top level when `recurse` is false.
-
-        Iterate depth-first when `recurse` is true.
-
-        Return component or none.
-        '''
-        return self._get_component(
-            component_classes=component_classes,
-            n=n,
-            recurse=recurse,
-            )
-
     def report_modifications(self):
         r'''Report modifications of components in selection.
 

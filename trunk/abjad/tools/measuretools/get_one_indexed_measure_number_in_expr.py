@@ -44,4 +44,4 @@ def get_one_indexed_measure_number_in_expr(expr, measure_number):
 
     # return measure
     selection = selectiontools.select(expr)
-    return selection.get_component(measuretools.Measure, measure_index)
+    return selection._get_component(measuretools.Measure, measure_index)

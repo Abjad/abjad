@@ -94,7 +94,7 @@ class Score(Context):
         from abjad.tools import marktools
         from abjad.tools import selectiontools
         selection = selectiontools.select(self)
-        last_leaf = selection.get_component(leaftools.Leaf, -1)
+        last_leaf = selection._get_component(leaftools.Leaf, -1)
         double_bar = marktools.BarLine('|.')(last_leaf)
         return double_bar
 
@@ -157,7 +157,7 @@ class Score(Context):
         from abjad.tools import leaftools
         from abjad.tools import selectiontools
         selection = selectiontools.select(self)
-        last_leaf = selection.get_component(leaftools.Leaf, -1)
+        last_leaf = selection._get_component(leaftools.Leaf, -1)
         # TODO: copy markup direction from markup input
         markup = markuptools.Markup(markup, Down)(last_leaf)
         if extra_offset is not None:

@@ -41,4 +41,4 @@ def get_leaf_at_index_in_measure_number_in_expr(
     measure = measuretools.get_one_indexed_measure_number_in_expr(
         expr, measure_number)
     selection = selectiontools.select(measure)
-    return selection.get_component(leaftools.Leaf, leaf_index)
+    return selection._get_component(leaftools.Leaf, leaf_index)
