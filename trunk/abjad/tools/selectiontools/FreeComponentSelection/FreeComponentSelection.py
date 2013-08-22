@@ -59,13 +59,6 @@ class FreeComponentSelection(Selection):
             recurse=recurse,
             )
 
-    def get_marks(self, mark_classes=None, recurse=True):
-        r'''Get `mark_classes` attached to components in selection.
-
-        Return tuple.
-        '''
-        return self._get_marks(mark_classes=mark_classes, recurse=recurse)
-
     def report_modifications(self):
         r'''Report modifications of components in selection.
 

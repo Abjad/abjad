@@ -314,13 +314,6 @@ class Selection(object):
                 if i == abs(n) - 1:
                     return x
 
-    def _get_marks(self, mark_classes=None, recurse=True):
-        result = []
-        for component in self._iterate_components(recurse=recurse):
-            marks = component._get_marks(mark_classes=mark_classes)
-            result.extend(marks)
-        return tuple(result)
-
     def _iterate_components(self, recurse=True, reverse=False):
         from abjad.tools import iterationtools
         if recurse:
