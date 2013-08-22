@@ -3,6 +3,7 @@ from abjad.tools import componenttools
 from abjad.tools import iterationtools
 from abjad.tools import leaftools
 from abjad.tools import measuretools
+from abjad.tools import mutationtools
 from abjad.tools import notetools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
@@ -444,8 +445,7 @@ class PitchArray(AbjadObject):
             durations = []
             for leaf in iterationtools.iterate_leaves_in_expr(leaf_iterable):
                 durations.append(leaf._get_duration())
-            parts = componenttools.split(
-                tokens,
+            parts = mutationtools.mutate(tokens).split(
                 durations,
                 cyclic=False,
                 fracture_spanners=False,

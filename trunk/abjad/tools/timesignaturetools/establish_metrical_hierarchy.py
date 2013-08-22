@@ -2,6 +2,7 @@
 from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import leaftools
+from abjad.tools import mutationtools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 Selection = selectiontools.Selection
@@ -869,9 +870,10 @@ def establish_metrical_hierarchy(
                 split_offset -= tie_chain_start_offset
                 #print '\tREL:', split_offset
                 #print ''
-                tie_chains = [selectiontools.TieChain(shard) for shard in
-                    componenttools.split(
-                        tie_chain[:], [split_offset])]
+                shards = \
+                    mutationtools.mutate(tie_chain[:]).split([split_offset])
+                tie_chains = \
+                    [selectiontools.TieChain(shard) for shard in shards]
                 for tie_chain in tie_chains:
                     recurse(tie_chain, depth=depth)
             else:
@@ -896,9 +898,10 @@ def establish_metrical_hierarchy(
             split_offset -= tie_chain_start_offset
             #print '\tREL:', split_offset
             #print ''
-            tie_chains = [selectiontools.TieChain(shard) for shard in
-                componenttools.split(
-                    tie_chain[:], [split_offset])]
+            shards = \
+                mutationtools.mutate(tie_chain[:]).split([split_offset])
+            tie_chains = \
+                [selectiontools.TieChain(shard) for shard in shards]
             for tie_chain in tie_chains:
                 recurse(tie_chain, depth=depth)
 

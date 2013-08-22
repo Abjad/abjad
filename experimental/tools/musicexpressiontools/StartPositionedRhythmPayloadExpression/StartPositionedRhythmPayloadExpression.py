@@ -6,6 +6,7 @@ from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import iterationtools
 from abjad.tools import mathtools
+from abjad.tools import mutationtools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
@@ -373,8 +374,11 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         assert isinstance(self.payload, containertools.Container)
         music = self.payload
         self._payload = containertools.Container()
-        shards = componenttools.split(
-            [music], offsets, cyclic=False, fracture_spanners=True)
+        shards = mutationtools.mutate([music]).split(
+            offsets, 
+            cyclic=False, 
+            fracture_spanners=True,
+            )
         shards = [shard[0] for shard in shards]
         for shard in shards:
             if not inspect(shard).is_well_formed():
@@ -889,8 +893,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         if split_offset == payload_duration:
             return self
         if fracture_spanners:
-            result = componenttools.split(
-                [self.payload],
+            result = mutationtools.mutate([self.payload]).split(
                 [split_offset],
                 cyclic=False,
                 fracture_spanners=True,
@@ -903,8 +906,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             assert inspect(payload).is_well_formed()
             self._payload = payload
         else:
-            result = componenttools.split(
-                self.payload[:],
+            result = mutationtools.mutate(self.payload[:]).split(
                 [split_offset],
                 cyclic=False,
                 fracture_spanners=False,
@@ -919,7 +921,8 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                     leaf_right_of_split = right_half[0]
                     split_offset_in_beam = spanner._duration_offset_in_me(
                         leaf_right_of_split)
-                    left_durations, right_durations = sequencetools.split_sequence_by_weights(
+                    left_durations, right_durations = \
+                        sequencetools.split_sequence_by_weights(
                         spanner.durations,
                         [split_offset_in_beam],
                         cyclic=False,

@@ -1,10 +1,11 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import componenttools
 from abjad.tools import durationtools
+from abjad.tools import mutationtools
 
 
 def rest_leaf_at_offset(leaf, offset):
-    r'''Split `leaf` at `offset` and rest right half:
+    r'''Splits `leaf` at `offset` and rests right half.
 
     ::
 
@@ -42,8 +43,7 @@ def rest_leaf_at_offset(leaf, offset):
 
     offset = durationtools.Offset(offset)
 
-    left, right = componenttools.split(
-        [leaf], 
+    left, right = mutationtools.mutate([leaf]).split(
         [offset], 
         fracture_spanners=False, 
         tie_split_notes=False,

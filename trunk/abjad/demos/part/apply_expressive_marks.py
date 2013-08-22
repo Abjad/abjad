@@ -5,7 +5,8 @@ from abjad import *
 def apply_expressive_marks(score):
 
     voice = score['First Violin Voice']
-    markuptools.Markup(r'\left-column { div. \line { con sord. } }', Up)(voice[6][1])
+    markuptools.Markup(r'\left-column { div. \line { con sord. } }', Up)(
+        voice[6][1])
     markuptools.Markup('sim.', Up)(voice[8][0])
     markuptools.Markup('uniti', Up)(voice[58][3])
     markuptools.Markup('div.', Up)(voice[59][0])
@@ -30,9 +31,10 @@ def apply_expressive_marks(score):
     voice = score['Bass Voice']
     markuptools.Markup('div.', Up)(voice[14][0])
     markuptools.Markup(r'\italic { espr. }', Down)(voice[86][0])
-    componenttools.split(voice[88][:], [Duration(1, 1), Duration(1, 2)])
+    mutate(voice[88][:]).split([Duration(1, 1), Duration(1, 2)])
     markuptools.Markup(r'\italic { molto espr. }', Down)(voice[88][1])
     markuptools.Markup('uniti', Up)(voice[99][1])
 
-    for voice in iterationtools.iterate_voices_in_expr(score['Strings Staff Group']):
+    strings_staff_group = score['Strings Staff Group']
+    for voice in iterationtools.iterate_voices_in_expr(strings_staff_group):
         markuptools.Markup(r'\italic { (non dim.) }', Down)(voice[102][0])

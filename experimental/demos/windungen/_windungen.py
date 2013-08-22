@@ -128,9 +128,9 @@ def apply_beam_spanner_to_non_rest_beats(beats):
 
 def beam_and_fuse_beats_in_score_by_durations(score, durations, cyclic=False):
     for staff in score:
-        beats = componenttools.split(staff.leaves, durations, cyclic=cyclic)
+        beats = mutate(staff.leaves).split(durations, cyclic=cyclic)
         fuse_rests_in_staff_by_beats(beats)
-        beats = componenttools.split(staff.leaves, durations, cyclic=cyclic)
+        beats = mutate(staff.leaves).split(durations, cyclic=cyclic)
         apply_beam_spanner_to_non_rest_beats(beats)
 
 
@@ -152,13 +152,13 @@ def fuse_large_rests_of_duration_in_bar_by_duration_threshold(
 def fuse_large_rests_of_duration_in_bars_by_duration_threshold(
     bars, duration, durationThreshold):
     for bar in bars:
-        fuse_large_rests_of_duration_in_bar_by_duration_threshold(bar, duration, durationThreshold )
+        fuse_large_rests_of_duration_in_bar_by_duration_threshold(bar, duration, durationThreshold)
 
 
 def fuse_large_rests_of_duration_in_score_by_duration_threshold(
     score, duration, durationThreshold):
     for staff in score:
-        bars = componenttools.split(staff.leaves, [Duration(4,4)], cyclic=True, tie_split_notes=False)
+        bars = mutate(staff.leaves).split([Duration(4,4)], cyclic=True, tie_split_notes=False)
         fuse_large_rests_of_duration_in_bars_by_duration_threshold(bars, duration, durationThreshold)
 
 
@@ -177,12 +177,12 @@ def clean_up_rests_in_score(score):
 
 
 def rotate_expression_through_adjacent_staffs_at_bandwidth_by_durations(
-    expression, staffIndexBoundsTuple, rotationBandwidth, durations, compressedReflections=True, cyclic=False, phaseOffset= 0):
+    expression, staffIndexBoundsTuple, rotationBandwidth, durations, compressedReflections=True, cyclic=False, phaseOffset=0):
     matrix = make_cyclic_matrix_for_rotation_by_bandwidth( staffIndexBoundsTuple, rotationBandwidth, compressedReflections=compressedReflections )
-    splits = componenttools.split(expression.leaves, durations, cyclic=cyclic, tie_split_notes=False)
+    splits = mutate(expression.leaves).split(durations, cyclic=cyclic, tie_split_notes=False)
     splitTuplePairs = pair_pitches_with_splits(matrix, splits, phaseOffset)
     add_splits_to_score_by_tuples(score, splitTuplePairs)
-    beam_and_fuse_beats_in_score_by_durations(score, [Duration(1,4)],cyclic=True)
+    beam_and_fuse_beats_in_score_by_durations(score, [Duration(1,4)], cyclic=True)
     clean_up_rests_in_score(score)
 
 
