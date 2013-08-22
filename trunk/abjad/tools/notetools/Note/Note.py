@@ -126,8 +126,10 @@ class Note(Leaf):
         pitch = pitchtools.NamedPitch(pitch)
         treble = copy.copy(self)
         bass = copy.copy(self)
-        treble.select().detach_marks(mark_classes=markuptools.Markup)
-        bass.select().detach_marks(mark_classes=markuptools.Markup)
+        for mark in treble._get_marks(mark_classes=markuptools.Markup):
+            mark.detach()
+        for mark in bass._get_marks(mark_classes=markuptools.Markup):
+            mark.detach()
         if treble.written_pitch < pitch:
             treble = resttools.Rest(treble)
         if pitch <= bass.written_pitch:

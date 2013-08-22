@@ -19,7 +19,7 @@ def test_Measure_time_signature_assignment_01():
     '''
 
     measure.pop()
-    measure.select().detach_marks(contexttools.TimeSignatureMark)
+    inspect(measure).get_mark(contexttools.TimeSignatureMark).detach()
     contexttools.TimeSignatureMark((3, 8))(measure)
 
     r'''

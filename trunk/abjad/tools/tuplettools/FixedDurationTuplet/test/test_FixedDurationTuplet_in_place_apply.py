@@ -52,7 +52,7 @@ def test_FixedDurationTuplet_in_place_apply_04():
     measure = Measure((8, 8), [Note(n, (1, 8)) for n in range(8)])
     leaves_before = measure.select_leaves()
     tuplettools.FixedDurationTuplet(Duration(2, 8), measure[0:3])
-    measure.select().detach_marks(contexttools.TimeSignatureMark)
+    inspect(measure).get_mark(contexttools.TimeSignatureMark).detach()
     contexttools.TimeSignatureMark((7, 8))(measure)
     leaves_after = measure.select_leaves()
     assert leaves_before == leaves_after

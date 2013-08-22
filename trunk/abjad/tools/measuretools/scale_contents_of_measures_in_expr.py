@@ -37,7 +37,8 @@ def scale_contents_of_measures_in_expr(expr, multiplier=1):
             new_duration = multiplier * old_duration
             new_time_signature = timesignaturetools.duration_and_possible_denominators_to_time_signature(
                 new_duration, [old_denominator], multiplier.denominator)
-        measure.select().detach_marks(contexttools.TimeSignatureMark)
+        for mark in measure._get_marks(contexttools.TimeSignatureMark):
+            mark.detach()
         new_time_signature.attach(measure)
 
         contents_multiplier_denominator = \

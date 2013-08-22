@@ -46,7 +46,8 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
                 numerator = time_signature_rational.numerator * reduced_denominator
                 denominator = time_signature_rational.denominator * reduced_denominator
                 time_signature = contexttools.TimeSignatureMark((numerator, denominator))
-                measure.select().detach_marks(contexttools.TimeSignatureMark)
+                for mark in measure._get_marks(contexttools.TimeSignatureMark):
+                    mark.detach()
                 time_signature.attach(measure)
                 time_signature_multiplier = \
                     measure.time_signature.implied_prolation

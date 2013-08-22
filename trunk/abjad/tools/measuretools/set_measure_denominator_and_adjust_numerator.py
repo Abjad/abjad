@@ -52,7 +52,8 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
         new_time_signature = mathtools.NonreducedFraction(old_time_signature_pair)
         new_time_signature = new_time_signature.with_denominator(denominator)
         new_time_signature = contexttools.TimeSignatureMark(new_time_signature)
-        measure.select().detach_marks(contexttools.TimeSignatureMark)
+        for mark in measure._get_marks(contexttools.TimeSignatureMark):
+            mark.detach()
         new_time_signature.attach(measure)
 
     return measure

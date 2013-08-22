@@ -9,7 +9,7 @@ def test_StemTremolo_format_01():
     note = Note("cs'4")
     marktools.StemTremolo(8)(note)
     assert note.lilypond_format == "cs'4 :8"
-    note.select().detach_marks()
+    inspect(note).get_mark().detach()
     assert note.lilypond_format == "cs'4"
 
 
@@ -20,7 +20,7 @@ def test_StemTremolo_format_02():
     chord = Chord([1, 2, 3], (1, 4))
     marktools.StemTremolo(8)(chord)
     assert chord.lilypond_format == "<cs' d' ef'>4 :8"
-    chord.select().detach_marks()
+    inspect(chord).get_mark().detach()
     assert chord.lilypond_format == "<cs' d' ef'>4"
 
 
@@ -31,5 +31,5 @@ def test_StemTremolo_format_03():
     rest = Rest((1, 4))
     marktools.StemTremolo(8)(rest)
     assert rest.lilypond_format == "r4 :8"
-    rest.select().detach_marks()
+    inspect(rest).get_mark().detach()
     assert rest.lilypond_format == "r4"

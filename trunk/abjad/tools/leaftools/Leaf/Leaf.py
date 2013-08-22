@@ -366,7 +366,10 @@ class Leaf(Component):
         if spannertools.get_spanners_attached_to_any_improper_parent_of_component(
             self, spanner_classes=spanner_classes):
             selection = selectiontools.select(flattened_result)
-            selection.detach_spanners(spanner_classes=spanner_classes)
+            for component in selection:
+                for mark in component._get_spanners(
+                    spanner_classes=spanner_classes):
+                    mark.detach()
         componenttools.move_parentage_and_spanners_from_components_to_components(
             [self], flattened_result)
         if fracture_spanners:
@@ -388,13 +391,13 @@ class Leaf(Component):
         for middle_leaf in flattened_result[1:-1]:
             middle_leaf._detach_grace_containers(kind='grace')
             self._detach_grace_containers(kind='after')
-            middle_leaf.select().detach_marks()
-            middle_leaf.select().detach_marks(contexttools.ContextMark)
+            for mark in middle_leaf._get_marks():
+                mark.detach()
         # adjust last leaf
         last_leaf = flattened_result[-1]
         last_leaf._detach_grace_containers(kind='grace')
-        last_leaf.select().detach_marks()
-        last_leaf.select().detach_marks(contexttools.ContextMark)
+        for mark in last_leaf._get_marks():
+            mark.detach()
         # tie split notes, rests and chords as specified
         if pitchtools.is_pitch_carrier(self) and tie_split_notes:
             flattened_result_leaves = iterationtools.iterate_leaves_in_expr(
@@ -440,8 +443,8 @@ class Leaf(Component):
         self._detach_grace_containers(kind='after')
         # adjust new leaf
         new_leaf._detach_grace_containers(kind='grace')
-        new_leaf.select().detach_marks()
-        new_leaf.select().detach_marks(contexttools.ContextMark)
+        for mark in new_leaf._get_marks():
+            mark.detach()
         left_leaf_list = \
             leaftools.set_leaf_duration(self, preprolated_duration)
         right_preprolated_duration = \

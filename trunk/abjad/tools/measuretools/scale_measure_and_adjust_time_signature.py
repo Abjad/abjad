@@ -49,7 +49,8 @@ def scale_measure_and_adjust_time_signature(measure, multiplier=1):
         new_pair = mathtools.NonreducedFraction(old_pair)
         new_pair = new_pair.multiply_with_numerator_preservation(multiplier)
         new_time_signature = contexttools.TimeSignatureMark(new_pair)
-        measure.select().detach_marks(contexttools.TimeSignatureMark)
+        for mark in measure._get_marks(contexttools.TimeSignatureMark):
+            mark.detach()
         new_time_signature.attach(measure)
         remaining_multiplier = durationtools.Duration(reduced_pair)
         if remaining_multiplier != durationtools.Duration(1):
@@ -70,13 +71,15 @@ def scale_measure_and_adjust_time_signature(measure, multiplier=1):
         elif multiplier == durationtools.Duration(0):
             raise ZeroDivisionError
         new_time_signature = contexttools.TimeSignatureMark(new_pair)
-        measure.select().detach_marks(contexttools.TimeSignatureMark)
+        for mark in measure._get_marks(contexttools.TimeSignatureMark):
+            mark.detach()
         new_time_signature.attach(measure)
     else:
         new_pair = mathtools.NonreducedFraction(old_pair)
         new_pair = new_pair.multiply_with_numerator_preservation(multiplier)
         new_time_signature = contexttools.TimeSignatureMark(new_pair)
-        measure.select().detach_marks(contexttools.TimeSignatureMark)
+        for mark in measure._get_marks(contexttools.TimeSignatureMark):
+            mark.detach()
         new_time_signature.attach(measure)
         remaining_multiplier = multiplier / new_time_signature.implied_prolation
         if remaining_multiplier != durationtools.Duration(1):

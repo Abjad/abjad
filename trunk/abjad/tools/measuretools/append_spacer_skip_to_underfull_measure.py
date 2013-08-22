@@ -8,9 +8,12 @@ def append_spacer_skip_to_underfull_measure(measure):
     ::
 
         >>> measure = Measure((4, 12), "c'8 d'8 e'8 f'8")
-        >>> measure.select().detach_marks(contexttools.TimeSignatureMark)
-        (TimeSignatureMark((4, 12)),)
-        >>> contexttools.TimeSignatureMark((5, 12))(measure)
+        >>> time_signature = inspect(measure).get_mark(
+        ...     contexttools.TimeSignatureMark)
+        >>> time_signature.detach()
+        TimeSignatureMark((4, 12))
+        >>> new_time_signature = contexttools.TimeSignatureMark((5, 12))
+        >>> new_time_signature.attach(measure)
         TimeSignatureMark((5, 12))(|5/12 c'8 d'8 e'8 f'8|)
         >>> measure.is_underfull
         True

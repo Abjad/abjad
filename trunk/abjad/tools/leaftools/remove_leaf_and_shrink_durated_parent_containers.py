@@ -81,7 +81,8 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
             better_time_signature = mathtools.NonreducedFraction(naive_time_signature)
             better_time_signature = better_time_signature.with_denominator(parent_time_signature.denominator)
             better_time_signature = contexttools.TimeSignatureMark(better_time_signature)
-            parent.select().detach_marks(contexttools.TimeSignatureMark)
+            for mark in parent._get_marks(contexttools.TimeSignatureMark):
+                mark.detach()
             better_time_signature.attach(parent)
             parent_time_signature = parent._get_mark(
                 contexttools.TimeSignatureMark)

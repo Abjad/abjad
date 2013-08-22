@@ -71,7 +71,8 @@ def pad_measures_in_expr(expr, front, back, pad_class, splice=False):
                 old_time_signature.denominator)
             new_time_signature = contexttools.TimeSignatureMark(
                 new_time_signature)
-            measure.select().detach_marks(contexttools.TimeSignatureMark)
+            for mark in measure._get_marks(contexttools.TimeSignatureMark):
+                mark.detach()
             new_time_signature.attach(measure)
 
     # allow updates after all calls to spanner-growing functions are done

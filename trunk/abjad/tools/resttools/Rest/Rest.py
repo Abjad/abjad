@@ -93,8 +93,10 @@ class Rest(Leaf):
         from abjad.tools import pitchtools
         treble = copy.copy(self)
         bass = copy.copy(self)
-        treble.select().detach_marks(mark_classes=markuptools.Markup)
-        bass.select().detach_marks(mark_classes=markuptools.Markup)
+        for mark in treble._get_marks(mark_classes=markuptools.Markup):
+            mark.detach()
+        for mark in bass._get_marks(mark_classes=markuptools.Markup):
+            mark.detach()
         up_markup = self._get_markup(direction=Up)
         up_markup = [copy.copy(markup) for markup in up_markup]
         down_markup = self._get_markup(direction=Down)

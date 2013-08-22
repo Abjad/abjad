@@ -119,7 +119,7 @@ def test_LilyPondCommandMark_format_06():
 
     note = Note("c'4")
     marktools.LilyPondCommandMark('flageolet', 'right')(note)
-    note.select().detach_marks()
+    inspect(note).get_mark().detach()
     assert note.lilypond_format == "c'4"
 
 
@@ -210,7 +210,7 @@ def test_LilyPondCommandMark_format_10():
         '''
         )
 
-    select(voice[0]).detach_marks()
+    inspect(voice[0]).get_mark().detach()
     marktools.LilyPondCommandMark('voiceTwo')(voice[0])
     assert testtools.compare(
         voice,
@@ -225,7 +225,7 @@ def test_LilyPondCommandMark_format_10():
         '''
         )
 
-    select(voice[0]).detach_marks()
+    inspect(voice[0]).get_mark().detach()
     marktools.LilyPondCommandMark('voiceThree')(voice[0])
     assert testtools.compare(
         voice,
@@ -240,7 +240,7 @@ def test_LilyPondCommandMark_format_10():
         '''
         )
 
-    select(voice[0]).detach_marks()
+    inspect(voice[0]).get_mark().detach()
     marktools.LilyPondCommandMark('voiceFour')(voice[0])
     assert testtools.compare(
         voice,
@@ -255,7 +255,7 @@ def test_LilyPondCommandMark_format_10():
         '''
         )
 
-    select(voice[0]).detach_marks()
+    inspect(voice[0]).get_mark().detach()
     assert testtools.compare(
         voice,
         r'''
