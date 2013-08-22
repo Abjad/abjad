@@ -9,4 +9,4 @@ def mutate(expr):
     from abjad.tools import componenttools
     from abjad.tools import mutationtools
     assert isinstance(expr, componenttools.Component)
-    return mutationtools.MutationInterface(expr)
+    return mutationtools.ScoreMutationAgent(expr)

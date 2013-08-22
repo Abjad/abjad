@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_InspectionInterface_report_modifications_01():
+def test_AttributeInspectionAgent_report_modifications_01():
 
     t = Voice("c'8 d'8 e'8 f'8")
     marktools.LilyPondComment('Example voice', 'before')(t)
@@ -46,7 +46,7 @@ def test_InspectionInterface_report_modifications_01():
         )
 
 
-def test_InspectionInterface_report_modifications_02():
+def test_AttributeInspectionAgent_report_modifications_02():
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     marktools.LilyPondComment('Example tuplet', 'before')(t)

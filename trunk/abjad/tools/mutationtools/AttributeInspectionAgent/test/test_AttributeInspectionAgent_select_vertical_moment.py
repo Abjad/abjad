@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_InspectionInterface__select_vertical_moment_at_01():
+def test_AttributeInspectionAgent_select_vertical_moment_01():
 
     score = Score([])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
@@ -39,26 +39,23 @@ def test_InspectionInterface__select_vertical_moment_at_01():
     >>
     '''
 
-    def piano_staff_moment(offset):
-        return inspect(piano_staff).get_vertical_moment_at(offset)
+    def piano_staff_moment(expr):
+        return inspect(expr).get_vertical_moment(governor=piano_staff)
 
-    vm = piano_staff_moment(Offset(0, 8))
+    vm = piano_staff_moment(piano_staff[1][0])
     assert vm.leaves == (piano_staff[0][0], piano_staff[1][0])
 
-    vm = piano_staff_moment(Offset(1, 8))
+    vm = piano_staff_moment(piano_staff[1][1])
     assert vm.leaves == (piano_staff[0][0], piano_staff[1][1])
 
-    vm = piano_staff_moment(Offset(2, 8))
+    vm = piano_staff_moment(piano_staff[1][2])
     assert vm.leaves == (piano_staff[0][1], piano_staff[1][2])
 
-    vm = piano_staff_moment(Offset(3, 8))
+    vm = piano_staff_moment(piano_staff[1][3])
     assert vm.leaves == (piano_staff[0][1], piano_staff[1][3])
 
-    vm = piano_staff_moment(Offset(99, 8))
-    assert vm.leaves == ()
 
-
-def test_InspectionInterface__select_vertical_moment_at_02():
+def test_AttributeInspectionAgent_select_vertical_moment_02():
 
     score = Score([])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
@@ -95,20 +92,14 @@ def test_InspectionInterface__select_vertical_moment_at_02():
     >>
     '''
 
-    def scorewide_vertical_moment(offset):
-        return inspect(score).get_vertical_moment_at(offset)
-
-    vm = scorewide_vertical_moment(Offset(0, 8))
+    vm = inspect(piano_staff[1][0]).get_vertical_moment()
     assert vm.leaves == (score[0][0][0], piano_staff[0][0], piano_staff[1][0])
 
-    vm = scorewide_vertical_moment(Offset(1, 8))
+    vm = inspect(piano_staff[1][1]).get_vertical_moment()
     assert vm.leaves == (score[0][0][0], piano_staff[0][0], piano_staff[1][1])
 
-    vm = scorewide_vertical_moment(Offset(2, 8))
+    vm = inspect(piano_staff[1][2]).get_vertical_moment()
     assert vm.leaves == (score[0][0][1], piano_staff[0][1], piano_staff[1][2])
 
-    vm = scorewide_vertical_moment(Offset(3, 8))
+    vm = inspect(piano_staff[1][3]).get_vertical_moment()
     assert vm.leaves == (score[0][0][2], piano_staff[0][1], piano_staff[1][3])
-
-    vm = scorewide_vertical_moment(Offset(99, 8))
-    assert vm.leaves == ()

@@ -2,7 +2,7 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class MutationInterface(AbjadObject):
+class ScoreMutationAgent(AbjadObject):
     r'''The Abjad mutators defined against a single component.
     '''
 

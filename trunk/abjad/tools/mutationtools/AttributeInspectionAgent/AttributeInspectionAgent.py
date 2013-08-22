@@ -3,7 +3,7 @@ from abjad.tools import durationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class InspectionInterface(AbjadObject):
+class AttributeInspectionAgent(AbjadObject):
     r'''Inspect one component.
     '''
 
@@ -508,4 +508,4 @@ def inspect(component):
 
     Returns inspector.
     '''
-    return InspectionInterface(component)
+    return AttributeInspectionAgent(component)
