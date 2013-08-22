@@ -5,7 +5,7 @@ from abjad.tools import pitchtools
 from abjad.tools import sequencetools
 
 
-class TonalAnalysisInterface(object):
+class TonalAnalysisAgent(object):
     r'''Tonal analysis interface.
 
     ..  container:: example
@@ -70,7 +70,7 @@ class TonalAnalysisInterface(object):
             ::
 
                 >>> selection_2
-                TonalAnalysisInterface(Note("c'4"), Note("f'4"))
+                TonalAnalysisAgent(Note("c'4"), Note("f'4"))
 
         Returns string.
         '''
@@ -117,22 +117,22 @@ class TonalAnalysisInterface(object):
         npcset = pitchtools.NamedPitchClassSet(pitches)
         dicv = npcset.inversion_equivalent_diatonic_interval_class_vector
         # TODO: eliminate code duplication #
-        if dicv == TonalAnalysisInterface._make_dicv('c', 'ef'):
+        if dicv == TonalAnalysisAgent._make_dicv('c', 'ef'):
             model_npcs = ['c', 'ef']
             quality, extent = 'minor', 'triad'
-        elif dicv == TonalAnalysisInterface._make_dicv('c', 'e'):
+        elif dicv == TonalAnalysisAgent._make_dicv('c', 'e'):
             model_npcs = ['c', 'e']
             quality, extent = 'major', 'triad'
-        elif dicv == TonalAnalysisInterface._make_dicv('c', 'ef', 'bff'):
+        elif dicv == TonalAnalysisAgent._make_dicv('c', 'ef', 'bff'):
             model_npcs = ['c', 'ef', 'bff']
             quality, extent = 'diminished', 'seventh'
-        elif dicv == TonalAnalysisInterface._make_dicv('c', 'ef', 'bf'):
+        elif dicv == TonalAnalysisAgent._make_dicv('c', 'ef', 'bf'):
             model_npcs = ['c', 'ef', 'bf']
             quality, extent = 'minor', 'seventh'
-        elif dicv == TonalAnalysisInterface._make_dicv('c', 'e', 'bf'):
+        elif dicv == TonalAnalysisAgent._make_dicv('c', 'e', 'bf'):
             model_npcs = ['c', 'e', 'bf']
             quality, extent = 'dominant', 'seventh'
-        elif dicv == TonalAnalysisInterface._make_dicv('c', 'e', 'b'):
+        elif dicv == TonalAnalysisAgent._make_dicv('c', 'e', 'b'):
             model_npcs = ['c', 'e', 'b']
             quality, extent = 'major', 'seventh'
         else:

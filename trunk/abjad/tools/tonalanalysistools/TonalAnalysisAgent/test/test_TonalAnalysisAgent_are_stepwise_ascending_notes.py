@@ -2,16 +2,16 @@
 from abjad import *
 
 
-def test_TonalAnalysisInterface_are_stepwise_descending_notes_01():
+def test_TonalAnalysisAgent_are_stepwise_ascending_notes_01():
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
     selection = tonalanalysistools.select(notes)
-    assert not selection.are_stepwise_descending_notes()
+    assert selection.are_stepwise_ascending_notes()
 
 
-def test_TonalAnalysisInterface_are_stepwise_descending_notes_02():
+def test_TonalAnalysisAgent_are_stepwise_ascending_notes_02():
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
     notes.reverse()
     selection = tonalanalysistools.select(notes)
-    assert selection.are_stepwise_descending_notes()
+    assert not selection.are_stepwise_ascending_notes()

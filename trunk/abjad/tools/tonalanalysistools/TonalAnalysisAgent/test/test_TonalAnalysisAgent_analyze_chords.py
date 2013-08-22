@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_TonalAnalysisInterface_analyze_chords_01():
+def test_TonalAnalysisAgent_analyze_chords_01():
     r'''The three inversions of a C major triad.
     '''
 
@@ -22,7 +22,7 @@ def test_TonalAnalysisInterface_analyze_chords_01():
     assert selection.analyze_chords() == [chord_class]
 
 
-def test_TonalAnalysisInterface_analyze_chords_02():
+def test_TonalAnalysisAgent_analyze_chords_02():
     r'''The three inversions of an a minor triad.
     '''
 
@@ -42,7 +42,7 @@ def test_TonalAnalysisInterface_analyze_chords_02():
     assert selection.analyze_chords() == [chord_class]
 
 
-def test_TonalAnalysisInterface_analyze_chords_03():
+def test_TonalAnalysisAgent_analyze_chords_03():
     r'''The four inversions of a C dominant seventh chord.
     '''
 
@@ -67,7 +67,7 @@ def test_TonalAnalysisInterface_analyze_chords_03():
     assert selection.analyze_chords() == [chord_class]
 
 
-def test_TonalAnalysisInterface_analyze_chords_04():
+def test_TonalAnalysisAgent_analyze_chords_04():
     r'''The five inversions of a C dominant ninth chord.
     '''
 
@@ -97,7 +97,7 @@ def test_TonalAnalysisInterface_analyze_chords_04():
     assert selection.analyze_chords() == [chord_class]
 
 
-def test_TonalAnalysisInterface_analyze_chords_05():
+def test_TonalAnalysisAgent_analyze_chords_05():
     r'''Return none when chord does not analyze.
     '''
 
