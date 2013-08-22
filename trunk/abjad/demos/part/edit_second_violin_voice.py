@@ -1,10 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import componenttools
-from abjad.tools import durationtools
-from abjad.tools import marktools
-from abjad.tools import notetools
-from abjad.tools import selectiontools
-from abjad.tools import spannertools
+from abjad import *
 
 
 def edit_second_violin_voice(score, durated_reservoir):
@@ -13,7 +8,7 @@ def edit_second_violin_voice(score, durated_reservoir):
     descents = durated_reservoir['Second Violin']
 
     last_descent = selectiontools.select(descents[-1], contiguous=True)
-    copied_descent = last_descent.copy()
+    copied_descent = mutate(last_descent).copy()
     copied_descent = list(copied_descent)
     copied_descent[-1].written_duration = durationtools.Duration(1, 1)
     copied_descent.append(notetools.Note('a2'))

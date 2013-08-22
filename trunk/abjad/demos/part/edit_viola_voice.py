@@ -1,9 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import durationtools
-from abjad.tools import marktools
-from abjad.tools import notetools
-from abjad.tools import selectiontools
-from abjad.tools import spannertools
+from abjad import *
 
 
 def edit_viola_voice(score, durated_reservoir):
@@ -15,7 +11,7 @@ def edit_viola_voice(score, durated_reservoir):
         marktools.Articulation('accent')(leaf)
         marktools.Articulation('tenuto')(leaf)
     last_descent = selectiontools.select(descents[-1], contiguous=True)
-    copied_descent = last_descent.copy()
+    copied_descent = mutate(last_descent).copy()
     for leaf in copied_descent:
         if leaf.written_duration == durationtools.Duration(4, 4):
             leaf.written_duration = durationtools.Duration(8, 4)

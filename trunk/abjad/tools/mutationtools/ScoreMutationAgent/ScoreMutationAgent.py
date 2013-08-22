@@ -5,7 +5,21 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class ScoreMutationAgent(AbjadObject):
-    r'''The Abjad mutators defined against a single component.
+    r'''A wrapper around the Abjad score mutators.
+
+    ..  container:: example
+
+        ::
+
+            >>> staff = Staff("c'4 e'4 d'4 f'4")
+            >>> leaves = staff[-2:]
+            >>> show(staff) # doctest: +SKIP
+
+        ::
+
+            >>> mutate(leaves)
+            ScoreMutationAgent(SliceSelection(Note("d'4"), Note("f'4")))
+
     '''
 
     ### INITIALIZER ###
@@ -16,21 +30,33 @@ class ScoreMutationAgent(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
+        '''Interpreter representation of score mutation agent.
+
+        Returns string.
+        '''
         return '{}({})'.format(
             self.__class__.__name__, self._client)
 
     ### PUBLIC METHODS ###
 
-    def copy(self, n=1):
+    def copy(self, n=1, include_enclosing_containers=False):
         r'''Copies component and fractures crossing spanners.
 
         Returns new component.
         '''
+        from abjad.tools import componenttools
         from abjad.tools import selectiontools
-        selection = selectiontools.ContiguousSelection(self._client)
-        result = selection.copy(n=n)
-        if len(result) == 1:
-            result = result[0]
+        if isinstance(self._client, componenttools.Component):
+            selection = selectiontools.ContiguousSelection(self._client)
+        else:
+            selection = self._client
+        result = selection._copy(
+            n=n,
+            include_enclosing_containers=include_enclosing_containers,
+            )
+        if isinstance(self._client, componenttools.Component):
+            if len(result) == 1:
+                result = result[0]
         return result
 
     def divide(self, pitch=None):
@@ -104,7 +130,7 @@ class ScoreMutationAgent(AbjadObject):
         cyclic=False, 
         tie_split_notes=True, 
         ):
-        r'''Split component or selection by `durations`.
+        r'''Splits component or selection by `durations`.
         
         ..  container:: example
 
@@ -391,7 +417,7 @@ class ScoreMutationAgent(AbjadObject):
                     }
                 }
 
-        Return list of selections.
+        Returns list of selections.
         '''
         from abjad.tools import componenttools
         from abjad.tools import leaftools

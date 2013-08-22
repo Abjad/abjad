@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import copy
 import itertools
+from abjad.tools import mutationtools
 from abjad.tools import selectiontools
 
 
@@ -128,10 +129,10 @@ def replace_leaves_in_expr_with_simultaneous_voices(expr):
 
         container = containertools.Container()
         container.is_simultaneous = True
-        new_leaves = grouped_leaves.copy()
+        new_leaves = mutationtools.mutate(grouped_leaves).copy()
         spannertools.detach_spanners_attached_to_components_in_expr(new_leaves)
         upper_voice = voicetools.Voice(new_leaves)
-        new_leaves = grouped_leaves.copy()
+        new_leaves = mutationtools.mutate(grouped_leaves).copy()
         spannertools.detach_spanners_attached_to_components_in_expr(new_leaves)
         lower_voice = voicetools.Voice(new_leaves)
 

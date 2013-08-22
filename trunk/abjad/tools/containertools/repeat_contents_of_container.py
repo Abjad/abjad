@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import mutationtools
 
 
 def repeat_contents_of_container(container, total=2):
@@ -61,6 +62,6 @@ def repeat_contents_of_container(container, total=2):
 
     # reproduce container contents when total is greater than zero
     n = len(container)
-    new = container[-n:].copy(n=total-1)
+    new = mutationtools.mutate(container[-n:]).copy(n=total-1)
     container.extend(new)
     return container

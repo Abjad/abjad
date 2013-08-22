@@ -104,7 +104,7 @@ class ContiguousSelection(Selection):
 
     ### PUBLIC METHODS ###
 
-    def copy(self, n=1, include_enclosing_containers=False):
+    def _copy(self, n=1, include_enclosing_containers=False):
         r'''Copies components in selection and fractures crossing spanners.
 
         Components in selection must be logical-voice-contiguous.
@@ -149,7 +149,7 @@ class ContiguousSelection(Selection):
             ::
 
                 >>> selection = staff.select_leaves()[2:4]
-                >>> result = selection.copy()
+                >>> result = selection._copy()
                 >>> new_staff = Staff(result)
                 >>> show(new_staff) # doctest: +SKIP
 
@@ -175,7 +175,7 @@ class ContiguousSelection(Selection):
             ::
 
                 >>> selection = staff.select_leaves()[2:4]
-                >>> result = selection.copy(n=4)
+                >>> result = selection._copy(n=4)
                 >>> new_staff = Staff(result)
                 >>> show(new_staff) # doctest: +SKIP
 
@@ -223,7 +223,7 @@ class ContiguousSelection(Selection):
             ::
 
                 >>> leaves = staff.select_leaves(1, 5)
-                >>> new_staff = leaves.copy(include_enclosing_containers=True)
+                >>> new_staff = leaves._copy(include_enclosing_containers=True)
                 >>> show(new_staff) # doctest: +SKIP
 
             ..  doctest::
@@ -285,7 +285,7 @@ class ContiguousSelection(Selection):
                 pass
         # repeat as specified by input
         for i in range(n - 1):
-            new_components += self.copy()
+            new_components += self._copy()
         # return new components
         return new_components
             
