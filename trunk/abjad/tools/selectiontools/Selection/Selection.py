@@ -27,9 +27,9 @@ class Selection(object):
     ### SPECIAL METHODS ###
 
     def __add__(self, expr):
-        r'''Cocatenate `expr` to selection.
+        r'''Cocatenates `expr` to selection.
 
-        Return new selection.
+        Returns new selection.
         '''
         assert isinstance(expr, (Selection, list, tuple))
         if isinstance(expr, Selection):
@@ -42,7 +42,7 @@ class Selection(object):
     def __contains__(self, expr):
         r'''True when `expr` is in selection. Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         return expr in self._music
 
@@ -51,7 +51,7 @@ class Selection(object):
         and when music of selection equals music of `expr`.
         Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         if isinstance(expr, type(self)):
             return self._music == expr._music
@@ -59,9 +59,9 @@ class Selection(object):
             return self._music == tuple(expr)
 
     def __getitem__(self, expr):
-        r'''Get item `expr` from selection.
+        r'''Gets item `expr` from selection.
 
-        Return component from selection.
+        Returns component from selection.
         '''
         result = self._music.__getitem__(expr)
         if isinstance(result, tuple):
@@ -73,21 +73,21 @@ class Selection(object):
     def __len__(self):
         r'''Number of components in selection.
 
-        Return nonnegative integer.
+        Returns nonnegative integer.
         '''
         return len(self._music)
 
     def __ne__(self, expr):
         r'''True when selection does not equal `expr`. Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         return not self == expr
 
     def __radd__(self, expr):
-        r'''Concatenate selection to `expr`.
+        r'''Concatenates selection to `expr`.
 
-        Return newly created selection.
+        Returns newly created selection.
         '''
         assert isinstance(expr, (type(self), list, tuple))
         if isinstance(expr, type(self)):
@@ -102,7 +102,7 @@ class Selection(object):
     def __repr__(self):
         r'''Interpreter representation of selection.
 
-        Return string.
+        Returns string.
         '''
         return '{}{!r}'.format(self.__class__.__name__, self._music)
 

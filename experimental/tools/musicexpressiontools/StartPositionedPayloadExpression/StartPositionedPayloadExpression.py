@@ -5,6 +5,7 @@ from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
+from abjad.tools import mutationtools
 from abjad.tools import sequencetools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
@@ -127,9 +128,9 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         assert self._can_fuse(expr)
         if isinstance(self.payload, containertools.Container):
             selection = select(self.payload[0], contiguous=True)
-            left = selection.copy()[0]
+            left = mutationtools.mutate(selection).copy()[0]
             selection = select(expr.payload[0], contiguous=True)
-            right = selection.copy()[0]
+            right = mutationtools.mutate(selection).copy()[0]
             payload = containertools.Container([left, right])
             componenttools.replace_components_with_children_of_components(
                 payload[:])

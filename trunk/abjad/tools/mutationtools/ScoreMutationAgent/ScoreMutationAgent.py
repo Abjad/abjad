@@ -1,10 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
-from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class ScoreMutationAgent(AbjadObject):
+class ScoreMutationAgent(object):
     r'''A wrapper around the Abjad score mutators.
 
     ..  container:: example

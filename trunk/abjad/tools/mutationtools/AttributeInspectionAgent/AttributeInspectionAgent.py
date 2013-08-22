@@ -1,9 +1,8 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class AttributeInspectionAgent(AbjadObject):
+class AttributeInspectionAgent(object):
     r'''Inspect one component.
     '''
 
@@ -13,6 +12,16 @@ class AttributeInspectionAgent(AbjadObject):
         from abjad.tools import componenttools
         assert isinstance(component, componenttools.Component)
         self._component = component
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self):
+        '''Interpreter representation of attribute inspection agent.
+
+        Returns string.
+        '''
+        return '{}({})'.format(
+            self.__class__.__name__, self._client)
 
     ### PUBLIC METHODS ###
 
