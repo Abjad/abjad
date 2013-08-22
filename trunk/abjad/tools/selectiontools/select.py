@@ -13,11 +13,11 @@ def select(expr=None, contiguous=False):
             assert componenttools.all_are_contiguous_components_in_same_logical_voice(expr)
         return selectiontools.ContiguousSelection(expr)
     elif isinstance(expr, componenttools.Component):
-        return selectiontools.FreeComponentSelection(expr)
+        return selectiontools.Selection(expr)
     elif hasattr(expr, '_music'):
         music = expr._music
-        return selectiontools.FreeComponentSelection(music)
+        return selectiontools.Selection(music)
     elif expr is None:
-        return selectiontools.FreeComponentSelection()
+        return selectiontools.Selection()
     else:
-        return selectiontools.FreeComponentSelection(expr)
+        return selectiontools.Selection(expr)

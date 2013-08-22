@@ -34,7 +34,7 @@ class ContiguousSelection(Selection):
         if self._all_are_contiguous_components_in_same_logical_voice(music):
             return type(self)(music)
         else:
-            return selectiontools.FreeComponentSelection(music) 
+            return selectiontools.Selection(music) 
 
     def __radd__(self, expr):
         '''Add slice selection to `expr`.
