@@ -33,8 +33,8 @@ def test_componenttools_split_01():
         '''
         )
 
-    parts = componenttools.split(
-        staff[0][1:2], 
+    notes = staff[0][1:2]
+    result = mutate(notes).split(
         [Duration(3, 64)],
         cyclic=True,
         fracture_spanners=False,
@@ -60,7 +60,7 @@ def test_componenttools_split_01():
         )
 
     assert inspect(staff).is_well_formed()
-    assert len(parts) == 3
+    assert len(result) == 3
 
 
 def test_componenttools_split_02():
@@ -91,8 +91,8 @@ def test_componenttools_split_02():
         '''
         )
 
-    parts = componenttools.split(
-        staff.select_leaves(), 
+    leaves = staff.select_leaves()
+    result = mutate(leaves).split(
         [Duration(3, 32)], 
         cyclic=True,
         fracture_spanners=False,
@@ -120,7 +120,7 @@ def test_componenttools_split_02():
         )
 
     assert inspect(staff).is_well_formed()
-    assert len(parts) == 6
+    assert len(result) == 6
 
 
 def test_componenttools_split_03():
@@ -151,7 +151,7 @@ def test_componenttools_split_03():
         '''
         )
 
-    parts = componenttools.split(
+    result = componenttools.split(
         staff[:1], 
         [Duration(3, 32)],
         cyclic=True, 
@@ -185,7 +185,7 @@ def test_componenttools_split_03():
         )
 
     assert inspect(staff).is_well_formed()
-    assert len(parts) == 3
+    assert len(result) == 3
 
 
 def test_componenttools_split_04():
@@ -217,7 +217,7 @@ def test_componenttools_split_04():
         '''
         )
 
-    parts = componenttools.split(
+    result = componenttools.split(
         staff[:], 
         [Duration(3, 32)],
         cyclic=True, 
@@ -261,7 +261,7 @@ def test_componenttools_split_04():
         )
 
     assert inspect(staff).is_well_formed()
-    assert len(parts) == 6
+    assert len(result) == 6
 
 
 def test_componenttools_split_05():
@@ -274,7 +274,7 @@ def test_componenttools_split_05():
     beam_1.attach([measures[0]])
     beam_2.attach([measures[1]])
 
-    parts = componenttools.split(
+    result = componenttools.split(
         measures, 
         [Duration(3, 32)],
         cyclic=True, 
@@ -282,7 +282,7 @@ def test_componenttools_split_05():
         tie_split_notes=False,
         )
 
-    music = sequencetools.flatten_sequence(parts)
+    music = sequencetools.flatten_sequence(result)
     staff = Staff(music)
 
     assert testtools.compare(
@@ -321,7 +321,7 @@ def test_componenttools_split_05():
         )
 
     assert inspect(staff).is_well_formed()
-    assert len(parts) == 6
+    assert len(result) == 6
 
 
 def test_componenttools_split_06():
@@ -352,7 +352,7 @@ def test_componenttools_split_06():
         '''
         )
 
-    parts = componenttools.split(
+    result = componenttools.split(
         staff[0][1:], 
         [Duration(1, 32)],
         cyclic=True, 
@@ -381,7 +381,7 @@ def test_componenttools_split_06():
         )
 
     assert inspect(staff).is_well_formed()
-    assert len(parts) == 4
+    assert len(result) == 4
 
 
 def test_componenttools_split_07():
@@ -412,7 +412,7 @@ def test_componenttools_split_07():
         '''
         )
 
-    parts = componenttools.split(
+    result = componenttools.split(
         staff.select_leaves(), 
         [Duration(1, 16)],
         cyclic=True, 
@@ -442,7 +442,7 @@ def test_componenttools_split_07():
         )
 
     assert inspect(staff).is_well_formed()
-    assert len(parts) == 8
+    assert len(result) == 8
 
 
 def test_componenttools_split_08():
@@ -473,7 +473,7 @@ def test_componenttools_split_08():
         '''
         )
 
-    parts = componenttools.split(
+    result = componenttools.split(
         staff[:1], 
         [Duration(1, 16)],
         cyclic=True, 
@@ -508,7 +508,7 @@ def test_componenttools_split_08():
         )
 
     assert inspect(staff).is_well_formed()
-    assert len(parts) == 4
+    assert len(result) == 4
 
 
 def test_componenttools_split_09():
@@ -540,7 +540,7 @@ def test_componenttools_split_09():
         '''
         )
 
-    parts = componenttools.split(
+    result = componenttools.split(
         staff[:], 
         [Duration(3, 32)],
         cyclic=True, 
@@ -584,7 +584,7 @@ def test_componenttools_split_09():
         )
 
     assert inspect(staff).is_well_formed()
-    assert len(parts) == 6
+    assert len(result) == 6
 
 
 def test_componenttools_split_10():
@@ -615,7 +615,7 @@ def test_componenttools_split_10():
         '''
         )
 
-    parts = componenttools.split(
+    result = componenttools.split(
         staff[0][1:2], 
         [Duration(3, 64)], 
         cyclic=True,
@@ -642,7 +642,7 @@ def test_componenttools_split_10():
         )
 
     assert inspect(staff).is_well_formed()
-    assert len(parts) == 3
+    assert len(result) == 3
 
 
 def test_componenttools_split_11():
@@ -673,7 +673,7 @@ def test_componenttools_split_11():
         '''
         )
 
-    parts = componenttools.split(
+    result = componenttools.split(
         staff.select_leaves(), 
         [Duration(3, 32)], 
         cyclic=True, 
@@ -702,7 +702,7 @@ def test_componenttools_split_11():
         )
 
     assert inspect(staff).is_well_formed()
-    assert len(parts) == 6
+    assert len(result) == 6
 
 
 def test_componenttools_split_12():
@@ -733,7 +733,7 @@ def test_componenttools_split_12():
         '''
         )
 
-    parts = componenttools.split(
+    result = componenttools.split(
         staff[:1], 
         [Duration(3, 32)],
         cyclic=True, 
@@ -767,7 +767,7 @@ def test_componenttools_split_12():
         )
 
     assert inspect(staff).is_well_formed()
-    assert len(parts) == 3
+    assert len(result) == 3
 
 
 def test_componenttools_split_13():
@@ -798,7 +798,7 @@ def test_componenttools_split_13():
         '''
         )
 
-    parts = componenttools.split(
+    result = componenttools.split(
         staff[:], 
         [Duration(3, 32)],
         cyclic=True, 
@@ -842,7 +842,7 @@ def test_componenttools_split_13():
         )
 
     assert inspect(staff).is_well_formed()
-    assert len(parts) == 6
+    assert len(result) == 6
 
 
 def test_componenttools_split_14():
@@ -851,14 +851,14 @@ def test_componenttools_split_14():
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
 
-    parts = componenttools.split(
+    result = componenttools.split(
         notes, 
         [Duration(3, 32)], 
         cyclic=True, 
         fracture_spanners=True,
         )
 
-    music = sequencetools.flatten_sequence(parts)
+    music = sequencetools.flatten_sequence(result)
     staff = Staff(music)
 
     assert testtools.compare(
@@ -878,7 +878,7 @@ def test_componenttools_split_14():
         )
 
     assert inspect(staff).is_well_formed()
-    assert len(parts) == 6
+    assert len(result) == 6
 
 
 def test_componenttools_split_15():
@@ -891,7 +891,7 @@ def test_componenttools_split_15():
     beam_1.attach([measures[0]])
     beam_2.attach([measures[1]])
 
-    parts = componenttools.split(
+    result = componenttools.split(
         measures, 
         [Duration(3, 32)],
         cyclic=True, 
@@ -899,7 +899,7 @@ def test_componenttools_split_15():
         tie_split_notes=False,
         )
 
-    music = sequencetools.flatten_sequence(parts)
+    music = sequencetools.flatten_sequence(result)
     staff = Staff(music)
 
     assert testtools.compare(
@@ -938,7 +938,7 @@ def test_componenttools_split_15():
         )
 
     assert inspect(staff).is_well_formed()
-    assert len(parts) == 6
+    assert len(result) == 6
 
 
 def test_componenttools_split_16():
@@ -969,7 +969,7 @@ def test_componenttools_split_16():
         '''
         )
 
-    parts = componenttools.split(
+    result = componenttools.split(
         staff[0][1:], 
         [Duration(1, 32)],
         cyclic=True, 
@@ -998,7 +998,7 @@ def test_componenttools_split_16():
         )
 
     assert inspect(staff).is_well_formed()
-    assert len(parts) == 4
+    assert len(result) == 4
 
 
 def test_componenttools_split_17():
@@ -1029,7 +1029,7 @@ def test_componenttools_split_17():
         '''
         )
 
-    parts = componenttools.split(
+    result = componenttools.split(
         staff.select_leaves(), 
         [Duration(1, 16)],
         cyclic=True, 
@@ -1059,7 +1059,7 @@ def test_componenttools_split_17():
         )
 
     assert inspect(staff).is_well_formed()
-    assert len(parts) == 8
+    assert len(result) == 8
 
 
 def test_componenttools_split_18():
@@ -1090,7 +1090,7 @@ def test_componenttools_split_18():
         '''
         )
 
-    parts = componenttools.split(
+    result = componenttools.split(
         staff[:1], 
         [Duration(1, 16)],
         cyclic=True, 
@@ -1125,7 +1125,7 @@ def test_componenttools_split_18():
         )
 
     assert inspect(staff).is_well_formed()
-    assert len(parts) == 4
+    assert len(result) == 4
 
 
 def test_componenttools_split_19():
@@ -1156,7 +1156,7 @@ def test_componenttools_split_19():
         '''
         )
 
-    parts = componenttools.split(
+    result = componenttools.split(
         staff[:], 
         [Duration(3, 32)],
         cyclic=True, 
@@ -1200,7 +1200,7 @@ def test_componenttools_split_19():
         )
 
     assert inspect(staff).is_well_formed()
-    assert len(parts) == 6
+    assert len(result) == 6
 
 
 def test_componenttools_split_20():
@@ -1231,7 +1231,7 @@ def test_componenttools_split_20():
         '''
         )
 
-    parts = componenttools.split(
+    result = componenttools.split(
         staff[:1], 
         [Duration(1, 32), Duration(3, 32), Duration(5, 32)],
         cyclic=False, 
@@ -1265,7 +1265,7 @@ def test_componenttools_split_20():
         )
 
     assert inspect(staff).is_well_formed()
-    assert len(parts) == 3
+    assert len(result) == 3
 
 
 def test_componenttools_split_21():
@@ -1296,7 +1296,7 @@ def test_componenttools_split_21():
         '''
         )
 
-    parts = componenttools.split(
+    result = componenttools.split(
         staff[:], 
         [Duration(1, 32), Duration(3, 32), Duration(5, 32)],
         cyclic=False, 
@@ -1334,7 +1334,7 @@ def test_componenttools_split_21():
         )
 
     assert inspect(staff).is_well_formed()
-    assert len(parts) == 4
+    assert len(result) == 4
 
 
 def test_componenttools_split_22():
@@ -1365,7 +1365,7 @@ def test_componenttools_split_22():
         '''
         )
 
-    parts = componenttools.split(
+    result = componenttools.split(
         staff[:1], 
         [Duration(1, 32), Duration(3, 32), Duration(5, 32)],
         cyclic=False, 
@@ -1399,7 +1399,7 @@ def test_componenttools_split_22():
         )
 
     assert inspect(staff).is_well_formed()
-    assert len(parts) == 3
+    assert len(result) == 3
 
 
 def test_componenttools_split_23():
@@ -1430,41 +1430,15 @@ def test_componenttools_split_23():
         '''
         )
 
-    parts = componenttools.split(
+    result = componenttools.split(
         staff[:], 
         [Duration(1, 32), Duration(3, 32), Duration(5, 32)],
         cyclic=False, 
         fracture_spanners=True, 
         tie_split_notes=False)
 
-    r'''
-    \new Staff {
-        {
-            \time 1/32
-            c'32 [ ] ( )
-        }
-        {
-            \time 3/32
-            c'16. [ ] ( )
-        }
-        {
-            \time 4/32
-            d'8 [ ] (
-        }
-        {
-            \time 1/32
-            e'32 [ ] )
-        }
-        {
-            \time 7/32
-            e'16. [ (
-            f'8 ] )
-        }
-    }
-    '''
-
     assert inspect(staff).is_well_formed()
-    assert len(parts) == 4
+    assert len(result) == 4
     assert testtools.compare(
         staff,
         r'''
@@ -1501,7 +1475,7 @@ def test_componenttools_split_24():
 
     note = Note("c'4")
 
-    parts = componenttools.split(
+    result = componenttools.split(
         [note], 
         [(1, 32), (5, 32)],
         cyclic=False, 
@@ -1509,7 +1483,7 @@ def test_componenttools_split_24():
         tie_split_notes=False,
         )
 
-    notes = sequencetools.flatten_sequence(parts)
+    notes = sequencetools.flatten_sequence(result)
     staff = Staff(notes)
 
     assert testtools.compare(
@@ -1525,7 +1499,7 @@ def test_componenttools_split_24():
         )
 
     assert inspect(staff).is_well_formed()
-    assert len(parts) == 3
+    assert len(result) == 3
 
 
 def test_componenttools_split_25():
@@ -1543,7 +1517,7 @@ def test_componenttools_split_25():
         '''
         )
 
-    parts = componenttools.split(
+    result = componenttools.split(
         staff[:], 
         [Duration(1, 64), Duration(5, 64)],
         cyclic=False, 
@@ -1695,7 +1669,7 @@ def test_componenttools_split_28():
 
 
 def test_componenttools_split_29():
-    r'''A single container can be index split in two by the middle; no parent.
+    r'''A single container can be split in the middle.
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
@@ -2434,9 +2408,7 @@ def test_componenttools_split_38():
 
 
 def test_componenttools_split_39():
-    r'''Partition container into parts of lengths equal to counts.
-    Read list of counts cyclically.
-    Fracture spanners attaching directly to container.
+    r'''Split cyclic.
     Leave spanner attaching to container contents untouched.
     '''
 
@@ -2551,8 +2523,7 @@ def test_componenttools_split_40():
 
 
 def test_componenttools_split_41():
-    r'''Partition container into parts of lengths equal to counts.
-    Read list of counts cyclically.
+    r'''Split cyclic.
     Fracture spanners attaching directly to container.
     Leave spanner attaching to container contents untouched.
     '''
@@ -2670,9 +2641,8 @@ def test_componenttools_split_42():
 
 
 def test_componenttools_split_43():
-    r'''Partition by large number of part counts.
-    First part counts apply and extra part counts do not apply.
-    Result contains no empty parts.
+    r'''Extra durations are ignored.
+    Result contains no empty shards.
     '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8")])
@@ -2721,7 +2691,7 @@ def test_componenttools_split_43():
 
 
 def test_componenttools_split_44():
-    r'''Partition by large empty part counts list.
+    r'''Empty durations list.
     Expression remains unaltered.
     '''
 
@@ -2765,12 +2735,11 @@ def test_componenttools_split_44():
         )
 
     assert inspect(voice).is_well_formed()
-    assert len(result) == 2
+    assert len(result) == 1
 
 
 def test_componenttools_split_45():
-    r'''Partition container into parts of lengths equal to counts.
-    Read list of counts only once; do not cycle.
+    r'''Split one time.
     Fracture spanners attaching directly to container.
     Leave spanner attaching to container contents untouched.
     '''
@@ -2832,8 +2801,7 @@ def test_componenttools_split_45():
 
 
 def test_componenttools_split_46():
-    r'''Partition container into parts of lengths equal to counts.
-    Read list of counts only once; do not cycle.
+    r'''Split one time.
     Fracture spanners attaching directly to container.
     Leave spanner attaching to container contents untouched.
     '''
@@ -2895,9 +2863,8 @@ def test_componenttools_split_46():
 
 
 def test_componenttools_split_47():
-    r'''Partition by large number of part counts.
-    First part counts apply and extra part counts do not apply.
-    Result contains no empty parts.
+    r'''Extra durations are ignored.
+    Result contains no empty shards.
     '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8")])
@@ -2975,9 +2942,9 @@ def test_componenttools_split_48():
 # componenttools.split() doesn't work here.
 # eventually make componenttools.split() work here.
 def test_componenttools_split_49():
-    r'''Split in-score measure without power-of-two time signature denominator.
-    Fractured spanners but do not tie over split locus.
-    Measure contents necessitate denominator change.
+    r'''Split in-score measure without power-of-two time 
+    signature denominator. Fractured spanners but do not tie 
+    over split locus. Measure contents necessitate denominator change.
     '''
     py.test.skip('TODO: make this work.')
 

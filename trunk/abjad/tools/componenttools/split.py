@@ -305,20 +305,27 @@ def split(
                 }
             }
 
-    Return list of lists.
+    Return list of selections.
     '''
     from abjad.tools import componenttools
     from abjad.tools import leaftools
     from abjad.tools import selectiontools
     
     # check input
+    single_component_input = False
+    if isinstance(components, componenttools.Component):
+        single_component_input = True
+        components = selectiontools.Selection(components)
     assert all(isinstance(x, componenttools.Component) for x in components)
-    if not isinstance(components, selectiontools.SliceSelection):
+    if not isinstance(components, selectiontools.Selection):
         components = selectiontools.Selection(components)
     durations = [durationtools.Duration(x) for x in durations]
 
     if not durations:
-        return [], components
+        if single_component_input:
+            return components
+        else:
+            return [], components
 
     # calculate total component duration
     total_component_duration = components.get_duration()
@@ -456,4 +463,6 @@ def split(
     result = result.partition_by_durations_exactly(durations_copy)
 
     # return list of shards
+    assert all(isinstance(x, list) for x in result)
+    result = [selectiontools.Selection(x) for x in result]
     return result

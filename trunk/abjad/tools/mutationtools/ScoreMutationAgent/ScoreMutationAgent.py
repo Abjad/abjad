@@ -11,6 +11,12 @@ class ScoreMutationAgent(AbjadObject):
     def __init__(self, client):
         self._client = client
 
+    ### SPECIAL METHODS ###
+
+    def __repr__(self):
+        return '{}({})'.format(
+            self.__class__.__name__, self._client)
+
     ### PUBLIC METHODS ###
 
     def copy(self, n=1):
@@ -83,4 +89,25 @@ class ScoreMutationAgent(AbjadObject):
             components,
             direction=direction, 
             grow_spanners=grow_spanners,
+            )
+
+    def split(
+        self,
+        durations,
+        fracture_spanners=False,
+        cyclic=False,
+        tie_split_notes=True
+        ):
+        r'''
+        Splits components by `durations`.
+
+        Returns list of selections.
+        '''
+        from abjad.tools import componenttools
+        return componenttools.split(
+            self._client,
+            durations,
+            fracture_spanners=fracture_spanners,
+            cyclic=cyclic,
+            tie_split_notes=tie_split_notes,
             )

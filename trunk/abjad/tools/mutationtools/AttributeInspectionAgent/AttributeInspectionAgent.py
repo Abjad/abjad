@@ -208,7 +208,7 @@ class AttributeInspectionAgent(AbjadObject):
         ):
         r'''Get all marks of `mark_classes` attached to component.
 
-        Return tuple.
+        Returns tuple.
         '''
         return self._component._get_marks(
             mark_classes=mark_classes,
@@ -370,6 +370,11 @@ class AttributeInspectionAgent(AbjadObject):
             )
 
     def is_well_formed(self, allow_empty_containers=True):
+        r'''True when component is well-formed.
+        Otherwise false.
+
+        Returns false.
+        '''
         from abjad.tools import wellformednesstools
         results = []
         for checker in wellformednesstools.Check.list_checks():
@@ -380,7 +385,7 @@ class AttributeInspectionAgent(AbjadObject):
         return all(results)
 
     def report_modifications(self):
-        r'''Report modifications of component.
+        r'''Reports modifications of component.
 
         ..  container:: example
 

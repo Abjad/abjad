@@ -3,7 +3,6 @@ from abjad.tools import componenttools
 from abjad.tools import durationtools
 
 
-# TODO: implement corresponding function to rest left half
 def rest_leaf_at_offset(leaf, offset):
     r'''Split `leaf` at `offset` and rest right half:
 
@@ -24,7 +23,7 @@ def rest_leaf_at_offset(leaf, offset):
     ::
 
         >>> leaftools.rest_leaf_at_offset(staff.select_leaves()[1], (1, 32))
-        ([Note("d'32")], [Note("d'16.")])
+        (Selection(Note("d'32"),), Selection(Note("d'16."),))
 
     ..  doctest::
 
@@ -37,8 +36,7 @@ def rest_leaf_at_offset(leaf, offset):
             f'8 )
         }
 
-    Return list of leaves to left of `offset`
-    together with list of leaves to right of `offset`.
+    Returns pair of selections.
     '''
     from abjad.tools import resttools
 
@@ -53,6 +51,7 @@ def rest_leaf_at_offset(leaf, offset):
 
     for leaf in right:
         rest = resttools.Rest(leaf)
-        componenttools.move_parentage_and_spanners_from_components_to_components([leaf], [rest])
+        componenttools.move_parentage_and_spanners_from_components_to_components(
+            [leaf], [rest])
 
     return left, right
