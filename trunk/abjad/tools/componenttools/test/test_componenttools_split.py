@@ -59,7 +59,7 @@ def test_componenttools_split_01():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(parts) == 3
 
 
@@ -119,7 +119,7 @@ def test_componenttools_split_02():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(parts) == 6
 
 
@@ -184,7 +184,7 @@ def test_componenttools_split_03():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(parts) == 3
 
 
@@ -260,7 +260,7 @@ def test_componenttools_split_04():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(parts) == 6
 
 
@@ -320,7 +320,7 @@ def test_componenttools_split_05():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(parts) == 6
 
 
@@ -380,7 +380,7 @@ def test_componenttools_split_06():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(parts) == 4
 
 
@@ -441,7 +441,7 @@ def test_componenttools_split_07():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(parts) == 8
 
 
@@ -507,7 +507,7 @@ def test_componenttools_split_08():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(parts) == 4
 
 
@@ -583,7 +583,7 @@ def test_componenttools_split_09():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(parts) == 6
 
 
@@ -641,7 +641,7 @@ def test_componenttools_split_10():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(parts) == 3
 
 
@@ -701,7 +701,7 @@ def test_componenttools_split_11():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(parts) == 6
 
 
@@ -766,7 +766,7 @@ def test_componenttools_split_12():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(parts) == 3
 
 
@@ -841,7 +841,7 @@ def test_componenttools_split_13():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(parts) == 6
 
 
@@ -877,7 +877,7 @@ def test_componenttools_split_14():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(parts) == 6
 
 
@@ -937,7 +937,7 @@ def test_componenttools_split_15():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(parts) == 6
 
 
@@ -997,7 +997,7 @@ def test_componenttools_split_16():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(parts) == 4
 
 
@@ -1058,7 +1058,7 @@ def test_componenttools_split_17():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(parts) == 8
 
 
@@ -1124,7 +1124,7 @@ def test_componenttools_split_18():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(parts) == 4
 
 
@@ -1199,7 +1199,7 @@ def test_componenttools_split_19():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(parts) == 6
 
 
@@ -1264,7 +1264,7 @@ def test_componenttools_split_20():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(parts) == 3
 
 
@@ -1333,7 +1333,7 @@ def test_componenttools_split_21():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(parts) == 4
 
 
@@ -1398,7 +1398,7 @@ def test_componenttools_split_22():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(parts) == 3
 
 
@@ -1463,7 +1463,7 @@ def test_componenttools_split_23():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(parts) == 4
     assert testtools.compare(
         staff,
@@ -1524,7 +1524,7 @@ def test_componenttools_split_24():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(parts) == 3
 
 
@@ -1563,7 +1563,7 @@ def test_componenttools_split_25():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_componenttools_split_26():
@@ -1601,7 +1601,7 @@ def test_componenttools_split_26():
         '''
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_componenttools_split_27():
@@ -1643,7 +1643,7 @@ def test_componenttools_split_27():
         '''
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_componenttools_split_28():
@@ -1691,7 +1691,7 @@ def test_componenttools_split_28():
         '''
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_componenttools_split_29():
@@ -1706,7 +1706,7 @@ def test_componenttools_split_29():
         fracture_spanners=False,
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
     voice_1 = result[0][0]
     voice_2 = result[1][0]
@@ -1721,7 +1721,7 @@ def test_componenttools_split_29():
         '''
         )
 
-    assert select(voice_1).is_well_formed()
+    assert inspect(voice_1).is_well_formed()
 
     assert testtools.compare(
         voice_2,
@@ -1733,7 +1733,7 @@ def test_componenttools_split_29():
         '''
         )
 
-    assert select(voice_2).is_well_formed()
+    assert inspect(voice_2).is_well_formed()
 
 
 def test_componenttools_split_30():
@@ -1797,7 +1797,7 @@ def test_componenttools_split_30():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_componenttools_split_31():
@@ -1878,7 +1878,7 @@ def test_componenttools_split_31():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_componenttools_split_32():
@@ -1984,7 +1984,7 @@ def test_componenttools_split_32():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_componenttools_split_33():
@@ -2066,7 +2066,7 @@ def test_componenttools_split_33():
         '''
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_componenttools_split_34():
@@ -2155,7 +2155,7 @@ def test_componenttools_split_34():
         '''
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_componenttools_split_35():
@@ -2258,7 +2258,7 @@ def test_componenttools_split_35():
         '''
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_componenttools_split_36():
@@ -2378,7 +2378,7 @@ def test_componenttools_split_37():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 
@@ -2429,7 +2429,7 @@ def test_componenttools_split_38():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(halves) == 2
 
 
@@ -2494,7 +2494,7 @@ def test_componenttools_split_39():
         '''
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_componenttools_split_40():
@@ -2547,7 +2547,7 @@ def test_componenttools_split_40():
         '''
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_componenttools_split_41():
@@ -2611,7 +2611,7 @@ def test_componenttools_split_41():
         '''
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert len(result) == 4
 
 
@@ -2665,7 +2665,7 @@ def test_componenttools_split_42():
         '''
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert len(result) == 4
 
 
@@ -2716,7 +2716,7 @@ def test_componenttools_split_43():
         '''
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert len(result) == 2
 
 
@@ -2764,7 +2764,7 @@ def test_componenttools_split_44():
         '''
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert len(result) == 2
 
 
@@ -2827,7 +2827,7 @@ def test_componenttools_split_45():
         '''
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert len(result) == 3
 
 
@@ -2890,7 +2890,7 @@ def test_componenttools_split_46():
         '''
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert len(result) == 3
 
 
@@ -2941,7 +2941,7 @@ def test_componenttools_split_47():
         '''
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert len(result) == 2
 
 
@@ -2968,7 +2968,7 @@ def test_componenttools_split_48():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 # container._split_at_index() works here;
@@ -3026,5 +3026,5 @@ def test_componenttools_split_49():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(halves) == 2

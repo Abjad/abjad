@@ -22,7 +22,7 @@ def test_HairpinSpanner_include_rests_01():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -61,7 +61,7 @@ def test_HairpinSpanner_include_rests_02():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''

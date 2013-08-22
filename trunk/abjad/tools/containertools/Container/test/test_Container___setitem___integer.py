@@ -31,7 +31,7 @@ def test_Container___setitem___integer_01():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -77,7 +77,7 @@ def test_Container___setitem___integer_02():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -129,7 +129,7 @@ def test_Container___setitem___integer_03():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -178,7 +178,7 @@ def test_Container___setitem___integer_04():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -231,7 +231,7 @@ def test_Container___setitem___integer_05():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -284,7 +284,7 @@ def test_Container___setitem___integer_06():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -337,7 +337,7 @@ def test_Container___setitem___integer_07():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -395,7 +395,7 @@ def test_Container___setitem___integer_08():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -416,7 +416,7 @@ def test_Container___setitem___integer_08():
     }
     '''
 
-    assert select(u).is_well_formed()
+    assert inspect(u).is_well_formed()
     assert testtools.compare(
         u,
         r'''
@@ -477,7 +477,7 @@ def test_Container___setitem___integer_09():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -501,7 +501,7 @@ def test_Container___setitem___integer_09():
     }
     '''
 
-    assert select(u).is_well_formed()
+    assert inspect(u).is_well_formed()
     assert testtools.compare(
         u,
         r'''

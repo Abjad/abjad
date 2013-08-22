@@ -12,7 +12,7 @@ def test_labeltools_color_note_head_by_numbered_chromatic_pitch_class_color_map_
     c''4
     '''
 
-    assert select(note).is_well_formed()
+    assert inspect(note).is_well_formed()
     assert testtools.compare(
         note,
         r'''

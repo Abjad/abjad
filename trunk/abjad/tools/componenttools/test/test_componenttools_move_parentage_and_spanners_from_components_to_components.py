@@ -30,7 +30,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
 
     "Equivalent to staff[1:3] = new_notes"
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -74,7 +74,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
 
     "Equivalent to staff[:1] = new_notes."
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -119,7 +119,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
 
     "Equivalent to staff[:2] = new_notes."
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -163,7 +163,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
 
     "Equivalent to staff[:3] = new_notes."
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -219,7 +219,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_componenttools_move_parentage_and_spanners_from_components_to_components_06():
@@ -263,5 +263,5 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(voice) == 0

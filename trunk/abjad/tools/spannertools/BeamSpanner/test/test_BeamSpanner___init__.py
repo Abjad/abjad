@@ -29,7 +29,7 @@ def test_BeamSpanner___init___02():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_BeamSpanner___init___03():

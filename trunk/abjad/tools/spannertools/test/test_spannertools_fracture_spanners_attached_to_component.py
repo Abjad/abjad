@@ -36,7 +36,7 @@ def test_spannertools_fracture_spanners_attached_to_component_01():
         '''
         )
 
-    assert select(container).is_well_formed()
+    assert inspect(container).is_well_formed()
 
 
 def test_spannertools_fracture_spanners_attached_to_component_02():
@@ -76,4 +76,4 @@ def test_spannertools_fracture_spanners_attached_to_component_02():
         '''
         )
 
-    assert select(container).is_well_formed()
+    assert inspect(container).is_well_formed()

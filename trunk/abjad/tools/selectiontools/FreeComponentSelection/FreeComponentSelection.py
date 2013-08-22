@@ -66,17 +66,6 @@ class FreeComponentSelection(Selection):
         '''
         return self._get_marks(mark_classes=mark_classes, recurse=recurse)
 
-    def is_well_formed(self, allow_empty_containers=True):
-        from abjad.tools import wellformednesstools
-        results = []
-        for component in self:
-            for checker in wellformednesstools.Check.list_checks():
-                if allow_empty_containers:
-                    if getattr(checker, 'runtime', False) == 'composition':
-                        continue
-                results.append(checker.check(component))
-        return all(results)
-
     def report_modifications(self):
         r'''Report modifications of components in selection.
 

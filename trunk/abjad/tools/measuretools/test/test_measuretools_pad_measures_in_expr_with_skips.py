@@ -41,7 +41,7 @@ def test_measuretools_pad_measures_in_expr_with_skips_01():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -138,7 +138,7 @@ def test_measuretools_pad_measures_in_expr_with_skips_02():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -197,7 +197,7 @@ def test_measuretools_pad_measures_in_expr_with_skips_03():
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''

@@ -28,7 +28,7 @@ def test_Container_extend_01():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -69,7 +69,7 @@ def test_Container_extend_02():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -98,7 +98,7 @@ def test_Container_extend_03():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -125,7 +125,7 @@ def test_Container_extend_04():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -198,7 +198,7 @@ def test_Container_extend_07():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -220,7 +220,7 @@ def test_Container_extend_07():
     }
     '''
 
-    assert select(u).is_well_formed()
+    assert inspect(u).is_well_formed()
     assert testtools.compare(
         u,
         r'''
@@ -273,7 +273,7 @@ def test_Container_extend_08():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -295,7 +295,7 @@ def test_Container_extend_08():
     }
     '''
 
-    assert select(u).is_well_formed()
+    assert inspect(u).is_well_formed()
     assert testtools.compare(
         u,
         r'''
@@ -323,7 +323,7 @@ def test_Container_extend_09():
     }
     '''
 
-    assert select(container).is_well_formed()
+    assert inspect(container).is_well_formed()
     assert testtools.compare(
         container,
         r'''

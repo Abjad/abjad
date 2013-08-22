@@ -26,7 +26,7 @@ def test_Container_insert_01():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -59,7 +59,7 @@ def test_Container_insert_02():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -93,7 +93,7 @@ def test_Container_insert_03():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -126,7 +126,7 @@ def test_Container_insert_04():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -159,7 +159,7 @@ def test_Container_insert_05():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -192,7 +192,7 @@ def test_Container_insert_06():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -217,8 +217,8 @@ def test_Container_insert_07():
     note = voice[0]
     staff.insert(1, voice[0])
 
-    assert select(voice).is_well_formed()
-    assert select(staff).is_well_formed()
+    assert inspect(voice).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert not note in voice
     assert note._parent is staff
 
@@ -239,7 +239,7 @@ def test_Container_insert_08():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -277,7 +277,7 @@ def test_Container_insert_09():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -310,7 +310,7 @@ def test_Container_insert_10():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -343,7 +343,7 @@ def test_Container_insert_11():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -376,7 +376,7 @@ def test_Container_insert_12():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -409,7 +409,7 @@ def test_Container_insert_13():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -442,7 +442,7 @@ def test_Container_insert_14():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -467,7 +467,7 @@ def test_Container_insert_15():
     note = voice[0]
     staff.insert(1, voice[0], fracture_spanners=True)
 
-    assert select(voice).is_well_formed()
-    assert select(staff).is_well_formed()
+    assert inspect(voice).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert not note in voice
     assert note._parent is staff

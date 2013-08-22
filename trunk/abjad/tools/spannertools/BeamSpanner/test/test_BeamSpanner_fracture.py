@@ -119,7 +119,7 @@ def test_BeamSpanner_fracture_05():
     assert staff[2]._get_spanner(spannertools.BeamSpanner) != \
         staff[3]._get_spanner(spannertools.BeamSpanner)
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -171,7 +171,7 @@ def test_BeamSpanner_fracture_06():
     assert staff[0]._get_spanner(spannertools.BeamSpanner) != \
         staff[1]._get_spanner(spannertools.BeamSpanner)
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -222,7 +222,7 @@ def test_BeamSpanner_fracture_07():
     assert staff[0]._get_spanner(spannertools.BeamSpanner) != \
         staff[4]._get_spanner(spannertools.BeamSpanner)
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -273,7 +273,7 @@ def test_BeamSpanner_fracture_08():
     assert staff[0]._get_spanner(spannertools.BeamSpanner) != \
         staff[4]._get_spanner(spannertools.BeamSpanner)
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''

@@ -27,7 +27,7 @@ def test_labeltools_remove_markup_from_leaves_in_expr_01():
     }
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''

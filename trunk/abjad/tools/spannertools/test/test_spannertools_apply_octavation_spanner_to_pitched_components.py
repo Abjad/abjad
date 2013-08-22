@@ -24,7 +24,7 @@ def test_spannertools_apply_octavation_spanner_to_pitched_components_01():
         """
         )
 
-    assert select(container).is_well_formed()
+    assert inspect(container).is_well_formed()
 
 
 def test_spannertools_apply_octavation_spanner_to_pitched_components_02():
@@ -48,4 +48,4 @@ def test_spannertools_apply_octavation_spanner_to_pitched_components_02():
         """
         )
 
-    assert select(container).is_well_formed()
+    assert inspect(container).is_well_formed()

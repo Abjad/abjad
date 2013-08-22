@@ -61,7 +61,7 @@ def test_Measure_number_03():
     assert staff[1].measure_number == 2
     assert staff[2].measure_number == 3
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''

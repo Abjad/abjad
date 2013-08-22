@@ -31,4 +31,4 @@ def test_DuratedComplexBeamSpanner_direction_01():
         '''
         )
 
-    assert select(container).is_well_formed()
+    assert inspect(container).is_well_formed()

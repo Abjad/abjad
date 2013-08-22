@@ -34,7 +34,7 @@ def test_ClefMark___copy___01():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert inspect(staff[0]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
     assert inspect(staff[1]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
     assert inspect(staff[2]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
@@ -58,7 +58,7 @@ def test_ClefMark___copy___02():
     copied_notes = staff[2:4].copy()
     staff.extend(copied_notes)
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert inspect(staff[0]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
     assert inspect(staff[1]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')
     assert inspect(staff[2]).get_effective_context_mark(contexttools.ClefMark) == contexttools.ClefMark('treble')

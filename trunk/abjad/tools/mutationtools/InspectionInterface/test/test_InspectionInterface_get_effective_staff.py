@@ -33,7 +33,7 @@ def test_InspectionInterface_get_effective_staff_01():
         '''
         )
 
-    assert select(piano).is_well_formed()
+    assert inspect(piano).is_well_formed()
     assert inspect(piano[0][0]).get_effective_staff() is piano[1]
     assert inspect(piano[0][1]).get_effective_staff() is piano[1]
     assert inspect(piano[0][2]).get_effective_staff() is piano[1]
@@ -77,7 +77,7 @@ def test_InspectionInterface_get_effective_staff_02():
         '''
         )
 
-    assert select(piano).is_well_formed()
+    assert inspect(piano).is_well_formed()
     assert inspect(piano[0][0]).get_effective_staff() is piano[1]
     assert inspect(piano[0][1]).get_effective_staff() is piano[1]
     assert inspect(piano[0][2]).get_effective_staff() is piano[0]
@@ -98,7 +98,7 @@ def test_InspectionInterface_get_effective_staff_03():
     piano[1].name = 'LH'
     contexttools.StaffChangeMark(piano[1])(piano[0][-1])
 
-    assert select(piano).is_well_formed()
+    assert inspect(piano).is_well_formed()
     assert testtools.compare(
         piano,
         r'''
@@ -154,7 +154,7 @@ def test_InspectionInterface_get_effective_staff_04():
         '''
         )
 
-    assert select(piano).is_well_formed()
+    assert inspect(piano).is_well_formed()
     assert inspect(piano[0][0]).get_effective_staff() is piano[1]
     assert inspect(piano[0][1]).get_effective_staff() is piano[1]
     assert inspect(piano[0][2]).get_effective_staff() is piano[1]

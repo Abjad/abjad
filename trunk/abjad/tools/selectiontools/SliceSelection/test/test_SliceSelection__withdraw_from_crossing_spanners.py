@@ -140,4 +140,4 @@ def test_SliceSelection__withdraw_from_crossing_spanners_03():
     "Operation leaves score tree in weird state."
     "Both slur and trill are now discontiguous."
 
-    assert not select(voice).is_well_formed()
+    assert not inspect(voice).is_well_formed()

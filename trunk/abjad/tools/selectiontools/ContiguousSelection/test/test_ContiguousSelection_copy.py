@@ -48,8 +48,8 @@ def test_ContiguousSelection_copy_01():
         }
         '''
         )
-    assert select(voice).is_well_formed()
-    assert select(new).is_well_formed()
+    assert inspect(voice).is_well_formed()
+    assert inspect(new).is_well_formed()
 
 
 def test_ContiguousSelection_copy_02():
@@ -98,8 +98,8 @@ def test_ContiguousSelection_copy_02():
         }
         '''
         )
-    assert select(voice).is_well_formed()
-    assert select(new).is_well_formed()
+    assert inspect(voice).is_well_formed()
+    assert inspect(new).is_well_formed()
 
 
 def test_ContiguousSelection_copy_03():
@@ -147,8 +147,8 @@ def test_ContiguousSelection_copy_03():
         }
         '''
         )
-    assert select(voice).is_well_formed()
-    assert select(new).is_well_formed()
+    assert inspect(voice).is_well_formed()
+    assert inspect(new).is_well_formed()
 
 
 def test_ContiguousSelection_copy_04():
@@ -211,7 +211,7 @@ def test_ContiguousSelection_copy_04():
         }
         '''
         )
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_ContiguousSelection_copy_05():
@@ -283,7 +283,7 @@ def test_ContiguousSelection_copy_05():
         }
         '''
         )
-    assert select(new_voice).is_well_formed()
+    assert inspect(new_voice).is_well_formed()
 
 
 def test_ContiguousSelection_copy_06():
@@ -349,8 +349,8 @@ def test_ContiguousSelection_copy_06():
         }
         '''
         )
-    assert select(voice).is_well_formed()
-    assert select(new_voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
+    assert inspect(new_voice).is_well_formed()
 
 
 def test_ContiguousSelection_copy_07():
@@ -407,8 +407,8 @@ def test_ContiguousSelection_copy_07():
         }
         '''
         )
-    assert select(voice).is_well_formed()
-    assert select(new_voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
+    assert inspect(new_voice).is_well_formed()
 
 
 def test_ContiguousSelection_copy_08():
@@ -470,8 +470,8 @@ def test_ContiguousSelection_copy_08():
         '''
         )
 
-    assert select(voice).is_well_formed()
-    assert select(new_voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
+    assert inspect(new_voice).is_well_formed()
 
 
 def test_ContiguousSelection_copy_09():
@@ -552,7 +552,7 @@ def test_ContiguousSelection_copy_09():
         }
         '''
         )
-    assert select(new_voice).is_well_formed()
+    assert inspect(new_voice).is_well_formed()
 
 
 def test_ContiguousSelection_copy_10():
@@ -600,7 +600,7 @@ def test_ContiguousSelection_copy_10():
         }
         '''
         )
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_ContiguousSelection_copy_11():
@@ -647,8 +647,8 @@ def test_ContiguousSelection_copy_11():
         '''
         )
 
-    assert select(staff).is_well_formed()
-    assert select(new_staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
+    assert inspect(new_staff).is_well_formed()
 
 
 def test_ContiguousSelection_copy_12():
@@ -700,8 +700,8 @@ def test_ContiguousSelection_copy_12():
         '''
         )
 
-    assert select(staff).is_well_formed()
-    assert select(new_staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
+    assert inspect(new_staff).is_well_formed()
 
 
 def test_ContiguousSelection_copy_13():
@@ -747,8 +747,8 @@ def test_ContiguousSelection_copy_13():
         '''
         )
 
-    assert select(staff).is_well_formed()
-    assert select(new_voice).is_well_formed()
+    assert inspect(staff).is_well_formed()
+    assert inspect(new_voice).is_well_formed()
 
 
 def test_ContiguousSelection_copy_14():
@@ -771,7 +771,7 @@ def test_ContiguousSelection_copy_14():
         '''
         )
 
-    assert select(new_measure).is_well_formed()
+    assert inspect(new_measure).is_well_formed()
 
 
 def test_ContiguousSelection_copy_15():
@@ -794,8 +794,8 @@ def test_ContiguousSelection_copy_15():
         '''
         )
 
-    assert select(staff).is_well_formed()
-    assert select(new_staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
+    assert inspect(new_staff).is_well_formed()
 
 
 def test_ContiguousSelection_copy_16():
@@ -843,8 +843,8 @@ def test_ContiguousSelection_copy_16():
         '''
         )
 
-    assert select(measure).is_well_formed()
-    assert select(new_measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
+    assert inspect(new_measure).is_well_formed()
 
 
 def test_ContiguousSelection_copy_17():
@@ -896,8 +896,8 @@ def test_ContiguousSelection_copy_17():
         '''
         )
 
-    assert select(voice).is_well_formed()
-    assert select(new_voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
+    assert inspect(new_voice).is_well_formed()
 
 
 def test_ContiguousSelection_copy_18():
@@ -953,8 +953,8 @@ def test_ContiguousSelection_copy_18():
         '''
         )
 
-    assert select(measure).is_well_formed()
-    assert select(new_measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
+    assert inspect(new_measure).is_well_formed()
 
 
 def test_ContiguousSelection_copy_19():
@@ -1003,8 +1003,8 @@ def test_ContiguousSelection_copy_19():
         '''
         )
 
-    assert select(staff).is_well_formed()
-    assert select(new_staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
+    assert inspect(new_staff).is_well_formed()
 
 
 def test_ContiguousSelection_copy_20():
@@ -1050,8 +1050,8 @@ def test_ContiguousSelection_copy_20():
         '''
         )
 
-    assert select(staff).is_well_formed()
-    assert select(new_staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
+    assert inspect(new_staff).is_well_formed()
 
 
 def test_ContiguousSelection_copy_21():
@@ -1099,8 +1099,8 @@ def test_ContiguousSelection_copy_21():
         '''
         )
 
-    assert select(staff).is_well_formed()
-    assert select(new_staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
+    assert inspect(new_staff).is_well_formed()
 
 
 def test_ContiguousSelection_copy_22():
@@ -1154,5 +1154,5 @@ def test_ContiguousSelection_copy_22():
         '''
         )
 
-    assert select(staff).is_well_formed()
-    assert select(new_staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
+    assert inspect(new_staff).is_well_formed()

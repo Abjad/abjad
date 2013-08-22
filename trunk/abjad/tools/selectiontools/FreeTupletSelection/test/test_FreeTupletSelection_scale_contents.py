@@ -18,7 +18,7 @@ def test_FreeTupletSelection_scale_contents_01():
     }
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''
@@ -47,7 +47,7 @@ def test_FreeTupletSelection_scale_contents_02():
     }
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''
@@ -76,7 +76,7 @@ def test_FreeTupletSelection_scale_contents_03():
     }
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''
@@ -105,7 +105,7 @@ def test_FreeTupletSelection_scale_contents_04():
     }
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''
@@ -134,7 +134,7 @@ def test_FreeTupletSelection_scale_contents_05():
     }
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''
@@ -163,7 +163,7 @@ def test_FreeTupletSelection_scale_contents_06():
     }
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''
@@ -192,7 +192,7 @@ def test_FreeTupletSelection_scale_contents_07():
     }
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''
@@ -221,7 +221,7 @@ def test_FreeTupletSelection_scale_contents_08():
     }
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''
@@ -258,7 +258,7 @@ def test_FreeTupletSelection_scale_contents_09():
     }
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''
@@ -293,7 +293,7 @@ def test_FreeTupletSelection_scale_contents_10():
     }
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''

@@ -27,7 +27,7 @@ def test_labeltools_label_leaves_in_expr_with_leaf_duration_01():
     }
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''

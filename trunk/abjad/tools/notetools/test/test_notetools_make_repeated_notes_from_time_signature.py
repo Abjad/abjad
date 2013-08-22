@@ -9,7 +9,7 @@ def test_notetools_make_repeated_notes_from_time_signature_01():
     notes = notetools.make_repeated_notes_from_time_signature((5, 32), pitch="d''")
     staff = Staff(notes)
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -32,7 +32,7 @@ def test_notetools_make_repeated_notes_from_time_signature_02():
     notes = notetools.make_repeated_notes_from_time_signature(time_signature, pitch="d''")
     staff = Staff(notes)
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''

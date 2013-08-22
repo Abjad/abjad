@@ -29,7 +29,7 @@ def test_labeltools_label_tie_chains_in_expr_with_written_tie_chain_duration_01(
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''

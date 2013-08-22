@@ -79,7 +79,7 @@ def test_Note_add_artificial_harmonic_03():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''

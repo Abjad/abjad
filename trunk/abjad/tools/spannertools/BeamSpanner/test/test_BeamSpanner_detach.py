@@ -37,7 +37,7 @@ def test_BeamSpanner_detach_01():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -77,7 +77,7 @@ def test_BeamSpanner_detach_02():
 
     beam_spanner.detach()
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''

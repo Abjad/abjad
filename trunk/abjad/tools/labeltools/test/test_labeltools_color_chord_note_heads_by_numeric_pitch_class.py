@@ -28,7 +28,7 @@ def test_labeltools_color_chord_note_heads_by_numeric_pitch_class_01():
     >4
     '''
 
-    assert select(chord).is_well_formed()
+    assert inspect(chord).is_well_formed()
     assert testtools.compare(
         chord,
         r'''
@@ -64,7 +64,7 @@ def test_labeltools_color_chord_note_heads_by_numeric_pitch_class_02():
     c'4
     '''
 
-    assert select(note).is_well_formed()
+    assert inspect(note).is_well_formed()
     assert testtools.compare(
         note,
         r'''

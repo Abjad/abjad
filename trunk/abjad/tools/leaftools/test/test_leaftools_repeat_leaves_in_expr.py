@@ -21,7 +21,7 @@ def test_leaftools_repeat_leaves_in_expr_01():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -59,7 +59,7 @@ def test_leaftools_repeat_leaves_in_expr_02():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''

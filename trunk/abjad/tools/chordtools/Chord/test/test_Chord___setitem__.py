@@ -43,4 +43,4 @@ def test_Chord___setitem___03():
         '''
         )
 
-    assert select(chord).is_well_formed()
+    assert inspect(chord).is_well_formed()

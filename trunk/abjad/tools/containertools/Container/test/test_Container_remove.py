@@ -36,7 +36,7 @@ def test_Container_remove_01():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -50,8 +50,8 @@ def test_Container_remove_01():
 
     "Note is now d'8 [ ]"
 
-    #assert select(result).is_well_formed()
-    assert select(note).is_well_formed()
+    #assert inspect(result).is_well_formed()
+    assert inspect(note).is_well_formed()
     #assert result.lilypond_format == "d'8 [ ]"
     assert note.lilypond_format == "d'8 [ ]"
 
@@ -93,7 +93,7 @@ def test_Container_remove_02():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -113,7 +113,7 @@ def test_Container_remove_02():
     }
     '''
 
-    assert select(sequential).is_well_formed()
+    assert inspect(sequential).is_well_formed()
     assert testtools.compare(
         sequential,
         r'''

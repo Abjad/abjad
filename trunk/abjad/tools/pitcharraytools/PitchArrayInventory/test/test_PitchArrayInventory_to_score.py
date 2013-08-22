@@ -52,7 +52,7 @@ def test_PitchArrayInventory_to_score_01():
     >>
     '''
 
-    assert select(score).is_well_formed()
+    assert inspect(score).is_well_formed()
     assert testtools.compare(
         score,
         r'''

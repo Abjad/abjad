@@ -37,7 +37,7 @@ def test_componenttools_replace_components_with_children_of_components_01():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(sequential) == 0
     assert testtools.compare(
         staff,
@@ -73,7 +73,7 @@ def test_componenttools_replace_components_with_children_of_components_02():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -112,7 +112,7 @@ def test_componenttools_replace_components_with_children_of_components_03():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -165,7 +165,7 @@ def test_componenttools_replace_components_with_children_of_components_04():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''

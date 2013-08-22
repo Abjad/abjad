@@ -89,7 +89,7 @@ def test_InspectionInterface_get_effective_context_mark_06():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -133,7 +133,7 @@ def test_InspectionInterface_get_effective_context_mark_07():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -229,7 +229,7 @@ def test_InspectionInterface_get_effective_context_mark_11():
     '''
 
     assert inspect(staff).get_effective_context_mark(contexttools.KeySignatureMark) == contexttools.KeySignatureMark('c', 'major')
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -271,7 +271,7 @@ def test_InspectionInterface_get_effective_context_mark_13():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert inspect(staff[0]).get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 38)
     assert inspect(staff[1]).get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 38)
     assert inspect(staff[2]).get_effective_context_mark(contexttools.TempoMark) == contexttools.TempoMark(Duration(1, 8), 42)

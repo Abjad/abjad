@@ -8,7 +8,7 @@ def test_MutationInterface_shorten_01():
     spannertools.BeamSpanner(voice[:])
     mutate(voice).shorten(Duration(1, 8) + Duration(1, 20))
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -29,7 +29,7 @@ def test_MutationInterface_shorten_02():
     spannertools.BeamSpanner(voice[:])
     mutate(voice).shorten(Duration(3, 16))
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''

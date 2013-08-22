@@ -30,7 +30,7 @@ def test_labeltools_color_chord_note_heads_in_expr_by_pitch_class_color_map_01()
     >4
     '''
 
-    assert select(chord).is_well_formed()
+    assert inspect(chord).is_well_formed()
     assert testtools.compare(
         chord,
         r'''

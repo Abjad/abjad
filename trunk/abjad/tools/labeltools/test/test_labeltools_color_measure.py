@@ -35,7 +35,7 @@ def test_labeltools_color_measure_01():
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''

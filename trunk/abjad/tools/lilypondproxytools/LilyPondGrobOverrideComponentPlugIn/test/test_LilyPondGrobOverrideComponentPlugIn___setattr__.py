@@ -91,7 +91,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___03():
     >>
     '''
 
-    assert select(score).is_well_formed()
+    assert inspect(score).is_well_formed()
     assert testtools.compare(
         score,
         r'''
@@ -132,7 +132,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___04():
     >>
     '''
 
-    assert select(score).is_well_formed()
+    assert inspect(score).is_well_formed()
     assert testtools.compare(
         score,
         r'''
@@ -408,7 +408,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___12():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -586,7 +586,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___17():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -626,7 +626,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___18():
     >>
     '''
 
-    assert select(score).is_well_formed()
+    assert inspect(score).is_well_formed()
     assert testtools.compare(
         score,
         r'''
@@ -694,7 +694,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___20():
     >>
     '''
 
-    assert select(score).is_well_formed()
+    assert inspect(score).is_well_formed()
     assert testtools.compare(
         score,
         r'''
@@ -725,7 +725,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___21():
     c'4
     '''
 
-    assert select(note).is_well_formed()
+    assert inspect(note).is_well_formed()
     assert testtools.compare(
         note,
         r'''
@@ -753,7 +753,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___22():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -916,7 +916,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___29():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -1122,7 +1122,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___35():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -1178,7 +1178,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___36():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -1222,7 +1222,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___37():
     >>
     '''
 
-    assert select(score).is_well_formed()
+    assert inspect(score).is_well_formed()
     assert testtools.compare(
         score,
         r'''
@@ -1270,7 +1270,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___38():
     >>
     '''
 
-    assert select(score).is_well_formed()
+    assert inspect(score).is_well_formed()
     assert testtools.compare(
         score,
         r'''
@@ -1512,7 +1512,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___45():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -1547,7 +1547,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___46():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -1770,7 +1770,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___53():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -1804,7 +1804,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___54():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -1836,7 +1836,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___55():
     \revert TupletNumber #'fraction
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''
@@ -1870,7 +1870,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___56():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -1904,7 +1904,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___57():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -1938,7 +1938,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___58():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''

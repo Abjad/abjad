@@ -44,7 +44,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_01():
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -116,7 +116,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_02():
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -205,7 +205,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_03():
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -313,7 +313,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_04():
     note = measure[1][0]
     assert note.written_duration == Duration(1, 8)
     assert inspect(note).get_duration() == Duration(1, 21)
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_05():
@@ -391,7 +391,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_05():
     note = measure[1][0]
     assert note.written_duration == Duration(1, 4)
     assert inspect(note).get_duration() == Duration(1, 6)
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_06():
@@ -455,7 +455,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_06():
     note = measure[1]
     assert note.written_duration == Duration(1, 4)
     assert inspect(note).get_duration() == Duration(1, 6)
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_07():
@@ -534,7 +534,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_08():
     assert isinstance(container[0], Note)
     assert container[0].written_duration == Duration(1, 4)
     assert inspect(container[0]).get_duration() == Duration(1, 4)
-    assert select(container).is_well_formed()
+    assert inspect(container).is_well_formed()
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_09():
@@ -550,7 +550,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_09():
     assert isinstance(container[0], Note)
     assert container[0].written_duration == Duration(1, 4)
     assert inspect(container[0]).get_duration() == Duration(1, 4)
-    assert select(container).is_well_formed()
+    assert inspect(container).is_well_formed()
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_10():
@@ -566,7 +566,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_10():
     assert isinstance(voice[0], Note)
     assert voice[0].written_duration == Duration(1, 4)
     assert inspect(voice[0]).get_duration() == Duration(1, 4)
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_11():
@@ -582,7 +582,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_11():
     assert isinstance(staff[0], Note)
     assert staff[0].written_duration == Duration(1, 4)
     assert inspect(staff[0]).get_duration() == Duration(1, 4)
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_12():
@@ -601,7 +601,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_12():
     assert isinstance(container[0][0], Note)
     assert container[0][0].written_duration == Duration(1, 4)
     assert inspect(container[0][0]).get_duration() == Duration(1, 6)
-    assert select(container).is_well_formed()
+    assert inspect(container).is_well_formed()
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_13():
@@ -620,7 +620,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_13():
     assert isinstance(container[0][0], Note)
     assert container[0][0].written_duration == Duration(1, 4)
     assert inspect(container[0][0]).get_duration() == Duration(1, 6)
-    assert select(container).is_well_formed()
+    assert inspect(container).is_well_formed()
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_14():
@@ -639,7 +639,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_14():
     assert isinstance(voice[0][0], Note)
     assert voice[0][0].written_duration == Duration(1, 4)
     assert inspect(voice[0][0]).get_duration() == Duration(1, 6)
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_15():
@@ -658,7 +658,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_15():
     assert isinstance(staff[0][0], Note)
     assert staff[0][0].written_duration == Duration(1, 4)
     assert inspect(staff[0][0]).get_duration() == Duration(1, 6)
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_16():
@@ -677,7 +677,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_16():
     assert isinstance(staff[0][0], Note)
     assert staff[0][0].written_duration == Duration(1, 4)
     assert inspect(staff[0][0]).get_duration() == Duration(1, 6)
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_17():
@@ -696,7 +696,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_17():
     assert isinstance(container[0][0], Note)
     assert container[0][0].written_duration == Duration(1, 4)
     assert inspect(container[0][0]).get_duration() == Duration(1, 6)
-    assert select(container).is_well_formed()
+    assert inspect(container).is_well_formed()
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_18():
@@ -715,7 +715,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_18():
     assert isinstance(voice[0][0], Note)
     assert voice[0][0].written_duration == Duration(1, 4)
     assert inspect(voice[0][0]).get_duration() == Duration(1, 6)
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_19():
@@ -734,7 +734,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_19():
     assert isinstance(staff[0][0], Note)
     assert staff[0][0].written_duration == Duration(1, 4)
     assert inspect(staff[0][0]).get_duration() == Duration(1, 6)
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_20():
@@ -789,7 +789,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_21():
     }
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''
@@ -840,7 +840,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_22():
     }
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''
@@ -884,7 +884,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_23():
     }
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''
@@ -926,7 +926,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_24():
     }
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''
@@ -972,7 +972,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_25():
     }
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''
@@ -1022,7 +1022,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_26():
     }
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''

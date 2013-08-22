@@ -47,7 +47,7 @@ def test_measuretools_extend_measures_in_expr_and_apply_full_measure_tuplets_01(
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''

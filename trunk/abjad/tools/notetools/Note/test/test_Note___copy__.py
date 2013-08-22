@@ -187,4 +187,4 @@ def test_Note___copy___07():
         }
         '''
         )
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()

@@ -18,7 +18,7 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_01():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -48,7 +48,7 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_02():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -75,7 +75,7 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_03():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -106,7 +106,7 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_04():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -145,7 +145,7 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_05():
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''

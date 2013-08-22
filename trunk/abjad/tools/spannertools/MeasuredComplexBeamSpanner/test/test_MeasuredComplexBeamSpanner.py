@@ -62,7 +62,7 @@ def test_MeasuredComplexBeamSpanner_01():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''

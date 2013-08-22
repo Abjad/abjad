@@ -25,7 +25,7 @@ def test_LilyPondComment_right_01():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -55,7 +55,7 @@ def test_LilyPondComment_right_02():
     c'8 % Leaf comments right here. % More comments right.
     '''
 
-    assert select(note).is_well_formed()
+    assert inspect(note).is_well_formed()
     assert testtools.compare(
         note,
         r'''

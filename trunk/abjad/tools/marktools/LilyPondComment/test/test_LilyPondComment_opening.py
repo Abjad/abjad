@@ -22,7 +22,7 @@ def test_LilyPondComment_opening_01():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -54,7 +54,7 @@ def test_LilyPondComment_opening_02():
     c'8
     '''
 
-    assert select(note).is_well_formed()
+    assert inspect(note).is_well_formed()
     assert testtools.compare(
         note,
         r'''

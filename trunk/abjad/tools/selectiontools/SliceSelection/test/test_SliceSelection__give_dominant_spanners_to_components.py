@@ -50,7 +50,7 @@ def test_SliceSelection__give_dominant_spanners_to_components_01():
 
     "Both crescendo and beam are now discontiguous."
 
-    assert not select(voice).is_well_formed()
+    assert not inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -75,7 +75,7 @@ def test_SliceSelection__give_dominant_spanners_to_components_01():
 
     "Slur is contiguous but recipient participates in discont. cresc."
 
-    assert not select(recipient).is_well_formed()
+    assert not inspect(recipient).is_well_formed()
     assert testtools.compare(
         recipient,
         r'''
@@ -169,5 +169,5 @@ def test_SliceSelection__give_dominant_spanners_to_components_02():
 
     "Both container voice and recipient container carry discontiguous spanners."
 
-    assert not select(voice).is_well_formed()
-    assert not select(recipient).is_well_formed()
+    assert not inspect(voice).is_well_formed()
+    assert not inspect(recipient).is_well_formed()

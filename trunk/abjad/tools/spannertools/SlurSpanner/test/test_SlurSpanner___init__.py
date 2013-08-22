@@ -63,7 +63,7 @@ def test_SlurSpanner___init___02():
         '''
         )
 
-    assert select(container).is_well_formed()
+    assert inspect(container).is_well_formed()
 
 
 def test_SlurSpanner___init___03():
@@ -104,6 +104,6 @@ def test_SlurSpanner___init___03():
         '''
         )
 
-    assert select(container).is_well_formed()
+    assert inspect(container).is_well_formed()
 
 

@@ -12,7 +12,7 @@ def test_MutationInterface_splice_01():
         grow_spanners=True,
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert result == voice[-4:]
     assert testtools.compare(
         voice,
@@ -40,7 +40,7 @@ def test_MutationInterface_splice_02():
         grow_spanners=True,
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -66,7 +66,7 @@ def test_MutationInterface_splice_03():
         grow_spanners=True,
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert result == voice[:]
     assert testtools.compare(
         voice,
@@ -98,7 +98,7 @@ def test_MutationInterface_splice_04():
         grow_spanners=True,
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -145,7 +145,7 @@ def test_MutationInterface_splice_05():
         '''
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert result == voice[-4:]
 
 
@@ -174,7 +174,7 @@ def test_MutationInterface_splice_06():
         )
 
     assert result == voice[1:3]
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_MutationInterface_splice_07():
@@ -204,7 +204,7 @@ def test_MutationInterface_splice_07():
         '''
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert result == voice[:4]
 
 
@@ -232,7 +232,7 @@ def test_MutationInterface_splice_08():
         '''
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert result == voice[1:3]
 
 
@@ -266,7 +266,7 @@ def test_MutationInterface_splice_09():
         '''
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert result == voice[:]
 
 
@@ -301,7 +301,7 @@ def test_MutationInterface_splice_10():
         )
 
     assert result == voice[1:]
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_MutationInterface_splice_11():
@@ -331,7 +331,7 @@ def test_MutationInterface_splice_11():
         '''
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert result == voice[:4]
 
 
@@ -360,4 +360,4 @@ def test_MutationInterface_splice_12():
         )
 
     assert result == voice[1:3]
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()

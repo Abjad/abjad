@@ -19,7 +19,7 @@ def test_ContiguousLeafSelection_replace_with_01():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -50,7 +50,7 @@ def test_ContiguousLeafSelection_replace_with_02():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''

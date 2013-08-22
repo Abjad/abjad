@@ -62,7 +62,7 @@ def test_HiddenStaffSpanner___init___02():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -102,7 +102,7 @@ def test_HiddenStaffSpanner___init___03():
     \startStaff
     '''
 
-    assert select(note).is_well_formed()
+    assert inspect(note).is_well_formed()
     assert testtools.compare(
         note,
         r'''

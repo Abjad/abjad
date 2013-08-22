@@ -48,7 +48,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -117,7 +117,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -207,7 +207,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
         '''
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_04():

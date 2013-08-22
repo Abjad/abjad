@@ -20,7 +20,7 @@ def test_DuratedComplexBeamSpanner_lone_01():
         '''
         )
 
-    assert select(container).is_well_formed()
+    assert inspect(container).is_well_formed()
 
 
 def test_DuratedComplexBeamSpanner_lone_02():
@@ -39,7 +39,7 @@ def test_DuratedComplexBeamSpanner_lone_02():
         '''
         )
 
-    assert select(container).is_well_formed()
+    assert inspect(container).is_well_formed()
 
 
 def test_DuratedComplexBeamSpanner_lone_03():
@@ -63,4 +63,4 @@ def test_DuratedComplexBeamSpanner_lone_03():
         '''
         )
 
-    assert select(container).is_well_formed()
+    assert inspect(container).is_well_formed()

@@ -28,7 +28,7 @@ def test_measuretools_multiply_and_scale_contents_of_measures_in_expr_01():
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -80,7 +80,7 @@ def test_measuretools_multiply_and_scale_contents_of_measures_in_expr_02():
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -132,7 +132,7 @@ def test_measuretools_multiply_and_scale_contents_of_measures_in_expr_03():
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -176,7 +176,7 @@ def test_measuretools_multiply_and_scale_contents_of_measures_in_expr_04():
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''

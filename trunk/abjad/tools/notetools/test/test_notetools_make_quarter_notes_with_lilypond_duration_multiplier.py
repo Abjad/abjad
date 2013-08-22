@@ -17,7 +17,7 @@ def test_notetools_make_quarter_notes_with_lilypond_duration_multiplier_01():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''

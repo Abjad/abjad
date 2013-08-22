@@ -42,7 +42,7 @@ def test_ContiguousTupletSelection_fuse_01():
     }
     '''
 
-    assert select(new).is_well_formed()
+    assert inspect(new).is_well_formed()
     assert len(t1) == 0
     assert len(t2) == 0
     assert new is not t1 and new is not t2
@@ -104,7 +104,7 @@ def test_ContiguousTupletSelection_fuse_02():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -167,7 +167,7 @@ def test_ContiguousTupletSelection_fuse_03():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -244,7 +244,7 @@ def test_ContiguousTupletSelection_fuse_06():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''

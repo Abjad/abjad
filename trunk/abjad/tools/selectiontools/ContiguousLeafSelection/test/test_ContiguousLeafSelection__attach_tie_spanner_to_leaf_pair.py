@@ -29,7 +29,7 @@ def test_ContiguousLeafSelection__attach_tie_spanner_to_leaf_pair_01():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -71,7 +71,7 @@ def test_ContiguousLeafSelection__attach_tie_spanner_to_leaf_pair_02():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -111,7 +111,7 @@ def test_ContiguousLeafSelection__attach_tie_spanner_to_leaf_pair_03():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''

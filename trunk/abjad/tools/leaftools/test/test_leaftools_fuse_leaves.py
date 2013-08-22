@@ -71,6 +71,6 @@ def test_leaftools_fuse_leaves_05():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 1
     assert inspect(staff).get_duration() == Duration(3, 8)

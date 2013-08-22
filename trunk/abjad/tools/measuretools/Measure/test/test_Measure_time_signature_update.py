@@ -24,4 +24,4 @@ def test_Measure_time_signature_update_01():
         '''
         )
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()

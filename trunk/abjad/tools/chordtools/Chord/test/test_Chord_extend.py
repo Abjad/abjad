@@ -29,4 +29,4 @@ def test_Chord_extend_01():
         '''
         )
 
-    assert select(chord).is_well_formed()
+    assert inspect(chord).is_well_formed()

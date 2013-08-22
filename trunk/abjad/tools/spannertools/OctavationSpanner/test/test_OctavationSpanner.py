@@ -57,7 +57,7 @@ def test_OctavationSpanner_02():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -97,7 +97,7 @@ def test_OctavationSpanner_03():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -125,7 +125,7 @@ def test_OctavationSpanner_04():
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     spannertools.OctavationSpanner(staff[0], 1)
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -169,7 +169,7 @@ def test_OctavationSpanner_05():
     spannertools.OctavationSpanner(staff[0], 1)
     spannertools.OctavationSpanner(staff[1], 2)
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''

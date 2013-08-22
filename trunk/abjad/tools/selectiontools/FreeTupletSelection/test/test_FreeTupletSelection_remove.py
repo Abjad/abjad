@@ -33,7 +33,7 @@ def test_FreeTupletSelection_remove_01():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(staff) == 4
     assert testtools.compare(
         staff,

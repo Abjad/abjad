@@ -18,7 +18,7 @@ def test_FixedDurationTuplet_preferred_duration_01():
     }
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''

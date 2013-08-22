@@ -28,7 +28,7 @@ def test_FreeTupletSelection_fix_01():
     }
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert tuplet.multiplier.is_proper_tuplet_multiplier
     assert testtools.compare(
         tuplet,
@@ -69,7 +69,7 @@ def test_FreeTupletSelection_fix_02():
     }
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert tuplet.multiplier.is_proper_tuplet_multiplier
     assert testtools.compare(
         tuplet,
@@ -112,7 +112,7 @@ def test_FreeTupletSelection_fix_03():
     }
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert tuplet.multiplier.is_proper_tuplet_multiplier
     assert testtools.compare(
         tuplet,

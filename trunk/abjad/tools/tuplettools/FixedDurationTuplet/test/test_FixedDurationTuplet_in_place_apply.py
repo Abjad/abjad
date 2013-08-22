@@ -14,7 +14,7 @@ def test_FixedDurationTuplet_in_place_apply_01():
             assert isinstance(x, tuplettools.FixedDurationTuplet)
         else:
             assert isinstance(x, Note)
-    assert select(container).is_well_formed()
+    assert inspect(container).is_well_formed()
 
 
 def test_FixedDurationTuplet_in_place_apply_02():
@@ -29,7 +29,7 @@ def test_FixedDurationTuplet_in_place_apply_02():
             assert isinstance(x, tuplettools.FixedDurationTuplet)
         else:
             assert isinstance(x, Note)
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_FixedDurationTuplet_in_place_apply_03():
@@ -45,7 +45,7 @@ def test_FixedDurationTuplet_in_place_apply_03():
             assert isinstance(x, tuplettools.FixedDurationTuplet)
         else:
             assert isinstance(x, Note)
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_FixedDurationTuplet_in_place_apply_04():
@@ -62,7 +62,7 @@ def test_FixedDurationTuplet_in_place_apply_04():
             assert isinstance(x, tuplettools.FixedDurationTuplet)
         else:
             assert isinstance(x, Note)
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
 
 
 def test_FixedDurationTuplet_in_place_apply_05():
@@ -77,7 +77,7 @@ def test_FixedDurationTuplet_in_place_apply_05():
             assert isinstance(x, tuplettools.FixedDurationTuplet)
         else:
             assert isinstance(x, Note)
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_FixedDurationTuplet_in_place_apply_06():
@@ -92,4 +92,4 @@ def test_FixedDurationTuplet_in_place_apply_06():
             assert isinstance(x, tuplettools.FixedDurationTuplet)
         else:
             assert isinstance(x, Note)
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()

@@ -34,7 +34,7 @@ def test_labeltools_label_leaves_in_expr_with_leaf_indices_01():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''

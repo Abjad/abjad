@@ -46,7 +46,7 @@ def test_measuretools_fuse_measures_01():
     assert new is not t1 and new is not t2
     assert len(t1) == 0
     assert len(t2) == 0
-    assert select(new).is_well_formed()
+    assert inspect(new).is_well_formed()
     assert testtools.compare(
         new,
         r'''
@@ -101,7 +101,7 @@ def test_measuretools_fuse_measures_02():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -158,7 +158,7 @@ def test_measuretools_fuse_measures_03():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -217,7 +217,7 @@ def test_measuretools_fuse_measures_04():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -299,7 +299,7 @@ def test_measuretools_fuse_measures_07():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -415,7 +415,7 @@ def test_measuretools_fuse_measures_09():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''

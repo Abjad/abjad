@@ -22,7 +22,7 @@ def test_MutationInterface_divide_01():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_MutationInterface_divide_02():
@@ -45,7 +45,7 @@ def test_MutationInterface_divide_02():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_MutationInterface_divide_03():
@@ -68,4 +68,4 @@ def test_MutationInterface_divide_03():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()

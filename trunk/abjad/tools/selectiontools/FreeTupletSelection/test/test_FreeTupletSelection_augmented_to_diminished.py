@@ -25,7 +25,7 @@ def test_FreeTupletSelection_augmented_to_diminished_01():
     }
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''

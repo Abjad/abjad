@@ -23,7 +23,7 @@ def test_measuretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -62,7 +62,7 @@ def test_measuretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''

@@ -12,7 +12,7 @@ def test_Measure___delitem___01():
     measure.automatically_adjust_time_signature = True
     del(measure[:1])
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -36,7 +36,7 @@ def test_Measure___delitem___02():
     measure.automatically_adjust_time_signature = True
     del(measure[-1:])
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -60,7 +60,7 @@ def test_Measure___delitem___03():
     measure.automatically_adjust_time_signature = True
     del(measure[:2])
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -83,7 +83,7 @@ def test_Measure___delitem___04():
     measure.automatically_adjust_time_signature = True
     del(measure[:1])
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -119,7 +119,7 @@ def test_Measure___delitem___05():
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -169,7 +169,7 @@ def test_Measure___delitem___06():
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -194,7 +194,7 @@ def test_Measure___delitem___07():
     measure = Measure((4, 8), "c'8 c' c' c'")
     del(measure[:1])
 
-    assert not select(measure).is_well_formed()
+    assert not inspect(measure).is_well_formed()
     assert len(measure) == 3
     assert inspect(measure).get_mark(contexttools.TimeSignatureMark) == (4, 8)
 
@@ -208,6 +208,6 @@ def test_Measure___delitem___08():
     measure = Measure((4, 9), "c'8 d' e' f'")
     del(measure[:1])
 
-    assert not select(measure).is_well_formed()
+    assert not inspect(measure).is_well_formed()
     assert len(measure) == 3
     assert inspect(measure).get_mark(contexttools.TimeSignatureMark) == (4, 9)

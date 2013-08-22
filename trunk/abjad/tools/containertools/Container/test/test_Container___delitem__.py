@@ -43,7 +43,7 @@ def test_Container___delitem___01():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -65,7 +65,7 @@ def test_Container___delitem___01():
     }
     '''
 
-    assert select(old).is_well_formed()
+    assert inspect(old).is_well_formed()
     assert testtools.compare(
         old,
         r'''
@@ -94,7 +94,7 @@ def test_Container___delitem___02():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -123,7 +123,7 @@ def test_Container___delitem___03():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -151,7 +151,7 @@ def test_Container___delitem___04():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -179,7 +179,7 @@ def test_Container___delitem___05():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -205,7 +205,7 @@ def test_Container___delitem___06():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -231,7 +231,7 @@ def test_Container___delitem___07():
     }
     '''
 
-    assert select(tuplet).is_well_formed()
+    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''

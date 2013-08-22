@@ -20,7 +20,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___01():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -53,7 +53,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___02():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -84,7 +84,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___03():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -124,7 +124,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___04():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -162,7 +162,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___05():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -196,7 +196,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___06():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -230,7 +230,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___07():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -266,7 +266,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___08():
     >>
     '''
 
-    assert select(score).is_well_formed()
+    assert inspect(score).is_well_formed()
     assert testtools.compare(
         score,
         r'''
@@ -302,7 +302,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___09():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -336,7 +336,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___10():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -370,7 +370,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___11():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -403,7 +403,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___12():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -433,7 +433,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___13():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -454,7 +454,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___13():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -473,7 +473,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___13():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''

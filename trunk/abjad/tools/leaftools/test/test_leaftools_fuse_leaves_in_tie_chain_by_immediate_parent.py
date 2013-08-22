@@ -41,7 +41,7 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_01():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 2
     assert testtools.compare(
         staff,
@@ -79,7 +79,7 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_02():
     result = leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(
         inspect(staff.select_leaves()[1]).get_tie_chain())
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert len(result) == 1
     assert testtools.compare(
         staff,
@@ -99,4 +99,4 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_03():
     result = leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(
         inspect(note).get_tie_chain())
     assert len(result) == 1
-    assert select(note).is_well_formed()
+    assert inspect(note).is_well_formed()

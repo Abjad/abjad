@@ -17,7 +17,7 @@ def test_LilyPondCommandMark_format_slot_01():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''

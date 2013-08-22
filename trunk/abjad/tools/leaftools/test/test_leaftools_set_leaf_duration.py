@@ -30,7 +30,7 @@ def test_leaftools_set_leaf_duration_01():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -75,7 +75,7 @@ def test_leaftools_set_leaf_duration_02():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert "\\new Voice {\n\tc'8 [ ~\n\tc'8 ~\n\tc'32 ]\n\tc'8\n\tc'8\n}"
 
 
@@ -107,7 +107,7 @@ def test_leaftools_set_leaf_duration_03():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -152,7 +152,7 @@ def test_leaftools_set_leaf_duration_04():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -199,7 +199,7 @@ def test_leaftools_set_leaf_duration_05():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -227,7 +227,7 @@ def test_leaftools_set_leaf_duration_06():
 
     leaftools.set_leaf_duration(note, Duration(1, 32))
 
-    assert select(note).is_well_formed()
+    assert inspect(note).is_well_formed()
     assert note.lilypond_format == "c'8 * 1/4"
 
 
@@ -243,7 +243,7 @@ def test_leaftools_set_leaf_duration_07():
 
     leaftools.set_leaf_duration(note, Duration(3, 32))
 
-    assert select(note).is_well_formed()
+    assert inspect(note).is_well_formed()
     assert note.lilypond_format == "c'8 * 3/4"
 
 
@@ -259,7 +259,7 @@ def test_leaftools_set_leaf_duration_08():
 
     leaftools.set_leaf_duration(note, Duration(5, 32))
 
-    assert select(note).is_well_formed()
+    assert inspect(note).is_well_formed()
     assert note.lilypond_format == "c'8 * 5/4"
 
 
@@ -275,7 +275,7 @@ def test_leaftools_set_leaf_duration_09():
 
     leaftools.set_leaf_duration(note, Duration(1, 24))
 
-    assert select(note).is_well_formed()
+    assert inspect(note).is_well_formed()
     assert note.lilypond_format == "c'8 * 1/3"
 
 
@@ -292,5 +292,5 @@ def test_leaftools_set_leaf_duration_10():
 
     leaftools.set_leaf_duration(note, Duration(5, 24))
 
-    assert select(note).is_well_formed()
+    assert inspect(note).is_well_formed()
     assert note.lilypond_format == "c'8 * 5/3"

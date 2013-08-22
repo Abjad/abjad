@@ -66,7 +66,7 @@ def test_measuretools_fuse_contiguous_measures_in_container_cyclically_by_counts
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -157,7 +157,7 @@ def test_measuretools_fuse_contiguous_measures_in_container_cyclically_by_counts
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''

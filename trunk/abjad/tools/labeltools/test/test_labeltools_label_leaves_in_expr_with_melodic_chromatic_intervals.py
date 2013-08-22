@@ -20,7 +20,7 @@ def test_labeltools_label_leaves_in_expr_with_melodic_chromatic_intervals_01():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -43,7 +43,7 @@ def test_labeltools_label_leaves_in_expr_with_melodic_chromatic_intervals_02():
     staff = Staff(notetools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Duration(1, 8)]))
     labeltools.label_leaves_in_expr_with_melodic_chromatic_intervals(staff)
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r"""
@@ -70,7 +70,7 @@ def test_labeltools_label_leaves_in_expr_with_melodic_chromatic_intervals_03():
     staff = Staff(notetools.make_notes([0, 25.5, 11.5, -4, -14, -13, 9, 10, 6.5, 5.5], [Duration(1, 8)]))
     labeltools.label_leaves_in_expr_with_melodic_chromatic_intervals(staff)
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r"""

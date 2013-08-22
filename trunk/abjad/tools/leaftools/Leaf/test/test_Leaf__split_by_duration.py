@@ -27,7 +27,7 @@ def test_Leaf__split_by_duration_01():
         tie_split_notes=False,
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -77,7 +77,7 @@ def test_Leaf__split_by_duration_02():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_Leaf__split_by_duration_03():
@@ -116,7 +116,7 @@ def test_Leaf__split_by_duration_03():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_Leaf__split_by_duration_04():
@@ -132,7 +132,7 @@ def test_Leaf__split_by_duration_04():
         tie_split_notes=True,
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -158,7 +158,7 @@ def test_Leaf__split_by_duration_05():
         tie_split_notes=False,
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -175,7 +175,7 @@ def test_Leaf__split_by_duration_05():
         '''
         )
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_Leaf__split_by_duration_06():
@@ -225,7 +225,7 @@ def test_Leaf__split_by_duration_06():
         '''
         )
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
 
 
 def test_Leaf__split_by_duration_07():
@@ -342,7 +342,7 @@ def test_Leaf__split_by_duration_12():
         assert inspect(leaf).get_spanners() == set([tie])
         assert spannertools.get_the_only_spanner_attached_to_component(
             leaf, spannertools.TieSpanner) is tie
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_Leaf__split_by_duration_13():
@@ -361,7 +361,7 @@ def test_Leaf__split_by_duration_13():
     for l in staff.select_leaves():
         assert inspect(l).get_spanners() == set([b])
         assert l._get_spanner(spannertools.BeamSpanner) is b
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_Leaf__split_by_duration_14():
@@ -380,7 +380,7 @@ def test_Leaf__split_by_duration_14():
         assert inspect(l).get_spanners() == set([tie])
         assert spannertools.get_the_only_spanner_attached_to_component(
             l, spannertools.TieSpanner) is tie
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_Leaf__split_by_duration_15():
@@ -397,7 +397,7 @@ def test_Leaf__split_by_duration_15():
     assert tie.components == (container, )
     for l in container.select_leaves():
         assert not inspect(l).get_spanners()
-    assert select(container).is_well_formed()
+    assert inspect(container).is_well_formed()
 
 
 def test_Leaf__split_by_duration_16():
@@ -415,7 +415,7 @@ def test_Leaf__split_by_duration_16():
         for l in v.select_leaves():
             assert not inspect(l).get_spanners()
             assert l._parent is v
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_Leaf__split_by_duration_17():

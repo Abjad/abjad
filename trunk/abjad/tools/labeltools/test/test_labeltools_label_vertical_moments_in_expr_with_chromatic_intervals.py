@@ -65,7 +65,7 @@ def test_labeltools_label_vertical_moments_in_expr_with_chromatic_intervals_01()
     >>
     '''
 
-    assert select(score).is_well_formed()
+    assert inspect(score).is_well_formed()
     assert testtools.compare(
         score,
         r'''

@@ -18,7 +18,7 @@ def test_pitchtools_set_ascending_named_diatonic_pitches_on_tie_chains_in_expr_0
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -52,7 +52,7 @@ def test_pitchtools_set_ascending_named_diatonic_pitches_on_tie_chains_in_expr_0
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -90,7 +90,7 @@ def test_pitchtools_set_ascending_named_diatonic_pitches_on_tie_chains_in_expr_0
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''

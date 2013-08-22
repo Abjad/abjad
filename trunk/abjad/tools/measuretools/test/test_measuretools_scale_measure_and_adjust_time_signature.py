@@ -22,7 +22,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_01():
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -56,7 +56,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_02():
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -87,7 +87,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_03():
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -118,7 +118,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_04():
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -157,7 +157,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_05():
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -196,7 +196,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_06():
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -231,7 +231,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_07():
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -269,7 +269,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_08():
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -307,7 +307,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_09():
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -345,7 +345,7 @@ def test_measuretools_scale_measure_and_adjust_time_signature_10():
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''

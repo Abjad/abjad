@@ -24,7 +24,7 @@ def test_measuretools_multiply_contents_of_measures_in_expr_01():
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -100,7 +100,7 @@ def test_measuretools_multiply_contents_of_measures_in_expr_02():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''

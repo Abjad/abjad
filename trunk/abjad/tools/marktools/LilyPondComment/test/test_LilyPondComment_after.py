@@ -24,7 +24,7 @@ def test_LilyPondComment_after_01():
     % Voice after comments here.
     % More voice after comments.'''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -57,7 +57,7 @@ def test_LilyPondComment_after_02():
     % Leaf comments after here.
     % More comments after.'''
 
-    assert select(note).is_well_formed()
+    assert inspect(note).is_well_formed()
     assert testtools.compare(
         note,
         r'''

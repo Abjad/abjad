@@ -155,7 +155,7 @@ def test_Measure_in_place_apply_04():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''

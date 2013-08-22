@@ -12,7 +12,7 @@ def test_Container_reverse_01():
     staff.reverse()
 
     assert list(leaves_rev) == list(staff.select_leaves())
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_Container_reverse_02():
@@ -27,7 +27,7 @@ def test_Container_reverse_02():
 
     assert list(leaves_rev) == list(container.select_leaves())
     assert beam.components == (container, )
-    assert select(container).is_well_formed()
+    assert inspect(container).is_well_formed()
 
 
 def test_Container_reverse_03():
@@ -42,7 +42,7 @@ def test_Container_reverse_03():
 
     assert list(leaves_rev) == list(staff.select_leaves())
     assert beam.components == tuple(staff.select_leaves())
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_Container_reverse_04():
@@ -56,7 +56,7 @@ def test_Container_reverse_04():
     staff[0].reverse()
     assert list(leaves_rev) == list(staff[0].select_leaves())
     assert beam.components == (staff[0], )
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_Container_reverse_05():
@@ -71,7 +71,7 @@ def test_Container_reverse_05():
     staff[0].reverse()
     assert list(leaves_rev) == list(staff[0].select_leaves())
     assert beam.components == tuple(staff[0].select_leaves())
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 def test_Container_reverse_06():
@@ -87,7 +87,7 @@ def test_Container_reverse_06():
     container[0].reverse()
     assert list(leaves_rev) == list(container[0].select_leaves())
     assert beam.components == tuple([container])
-    assert select(container).is_well_formed()
+    assert inspect(container).is_well_formed()
 
 
 def test_Container_reverse_07():
@@ -103,7 +103,7 @@ def test_Container_reverse_07():
     staff[0].reverse()
     assert list(leaves_rev) == list(staff[0].select_leaves())
     assert beam.components == tuple([measure] + notes)
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
 
 
 # TODO: Add well-formedness check for measure contiguity
@@ -205,4 +205,4 @@ def test_Container_reverse_09():
     assert beam1.components == (m1, )
     assert beam2.components == (m2, )
     assert gliss.components == tuple(container.select_leaves())
-    assert select(container).is_well_formed()
+    assert inspect(container).is_well_formed()

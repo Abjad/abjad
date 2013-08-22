@@ -65,7 +65,7 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01():
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -153,7 +153,7 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02():
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''

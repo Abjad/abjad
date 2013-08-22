@@ -40,7 +40,7 @@ def test_FreeTupletSelection_move_prolation_to_contents_and_remove_01():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -102,7 +102,7 @@ def test_FreeTupletSelection_move_prolation_to_contents_and_remove_02():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''

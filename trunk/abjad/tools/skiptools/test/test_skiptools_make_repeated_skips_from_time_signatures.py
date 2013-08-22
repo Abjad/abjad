@@ -35,4 +35,4 @@ def test_skiptools_make_repeated_skips_from_time_signatures_01():
         }
         '''
         )
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()

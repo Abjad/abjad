@@ -20,7 +20,7 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -57,7 +57,7 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -98,7 +98,7 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -146,7 +146,7 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -214,7 +214,7 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''
@@ -269,7 +269,7 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
     }
     '''
 
-    assert select(measure).is_well_formed()
+    assert inspect(measure).is_well_formed()
     assert testtools.compare(
         measure,
         r'''

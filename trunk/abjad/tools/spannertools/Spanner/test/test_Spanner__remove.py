@@ -37,7 +37,7 @@ def test_Spanner__remove_01():
     }
     '''
 
-    assert not select(voice).is_well_formed()
+    assert not inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -100,7 +100,7 @@ def test_Spanner__remove_02():
     }
     '''
 
-    assert select(voice).is_well_formed()
+    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''

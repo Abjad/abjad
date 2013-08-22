@@ -24,7 +24,7 @@ def test_spannertools_fracture_spanners_that_cross_components_01():
         '''
         )
 
-    assert select(container).is_well_formed()
+    assert inspect(container).is_well_formed()
 
 
 def test_spannertools_fracture_spanners_that_cross_components_02():
@@ -48,7 +48,7 @@ def test_spannertools_fracture_spanners_that_cross_components_02():
         '''
         )
 
-    assert select(container).is_well_formed()
+    assert inspect(container).is_well_formed()
 
 
 def test_spannertools_fracture_spanners_that_cross_components_03():
@@ -111,7 +111,7 @@ def test_spannertools_fracture_spanners_that_cross_components_04():
         '''
         )
 
-    assert select(container).is_well_formed()
+    assert inspect(container).is_well_formed()
 
 
 def test_spannertools_fracture_spanners_that_cross_components_05():
@@ -167,4 +167,4 @@ def test_spannertools_fracture_spanners_that_cross_components_05():
         '''
         )
 
-    assert select(container).is_well_formed()
+    assert inspect(container).is_well_formed()

@@ -37,7 +37,7 @@ def test_measuretools_comment_measures_in_container_with_measure_numbers_01():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -99,7 +99,7 @@ def test_measuretools_comment_measures_in_container_with_measure_numbers_02():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''

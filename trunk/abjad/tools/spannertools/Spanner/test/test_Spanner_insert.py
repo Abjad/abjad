@@ -25,7 +25,7 @@ def test_Spanner_insert_01():
 
     "Interior insert leaves discontiguous spanner: spannertools.BeamSpanner(c'8, f'8, d'8)."
 
-    assert not select(voice).is_well_formed()
+    assert not inspect(voice).is_well_formed()
 
 
 def test_Spanner_insert_02():

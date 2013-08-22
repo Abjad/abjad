@@ -33,8 +33,8 @@ def test_componenttools_remove_component_subtree_from_score_and_spanners_01():
     }
     '''
 
-    assert select(voice).is_well_formed()
-    assert select(sequential).is_well_formed()
+    assert inspect(voice).is_well_formed()
+    assert inspect(sequential).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -80,8 +80,8 @@ def test_componenttools_remove_component_subtree_from_score_and_spanners_02():
     }
     '''
 
-    assert select(voice).is_well_formed()
-    assert select(leaf).is_well_formed()
+    assert inspect(voice).is_well_formed()
+    assert inspect(leaf).is_well_formed()
     assert testtools.compare(
         voice,
         r'''

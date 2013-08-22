@@ -42,7 +42,7 @@ def test_Measure___add___01():
     assert new is not t1 and new is not t2
     assert len(t1) == 0
     assert len(t2) == 0
-    assert select(new).is_well_formed()
+    assert inspect(new).is_well_formed()
     assert testtools.compare(
         new,
         r'''
@@ -97,7 +97,7 @@ def test_Measure___add___02():
     assert new is not t1 and new is not t2
     assert len(t1) == 0
     assert len(t2) == 0
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''

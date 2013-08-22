@@ -41,7 +41,7 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_01():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -117,7 +117,7 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_02():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''

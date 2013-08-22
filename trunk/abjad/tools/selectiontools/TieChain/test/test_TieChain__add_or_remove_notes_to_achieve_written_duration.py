@@ -17,7 +17,7 @@ def test_TieChain__add_or_remove_notes_to_achieve_written_duration_01():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -43,7 +43,7 @@ def test_TieChain__add_or_remove_notes_to_achieve_written_duration_02():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''

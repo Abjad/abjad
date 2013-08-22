@@ -20,7 +20,7 @@ def test_Staff_engraver_consists_01():
     }
     '''
 
-    assert select(staff).is_well_formed()
+    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''

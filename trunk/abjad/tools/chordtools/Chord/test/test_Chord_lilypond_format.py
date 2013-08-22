@@ -44,4 +44,4 @@ def test_Chord_lilypond_format_03():
         '''
         )
 
-    assert select(chord).is_well_formed()
+    assert inspect(chord).is_well_formed()
