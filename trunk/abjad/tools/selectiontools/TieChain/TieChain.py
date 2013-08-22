@@ -2,23 +2,25 @@
 import itertools
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
-from abjad.tools.selectiontools.ContiguousLeafSelection \
-    import ContiguousLeafSelection
+from abjad.tools.selectiontools.ContiguousSelection \
+    import ContiguousSelection
 
 
-class TieChain(ContiguousLeafSelection):
-    r'''All the notes in a tie chain:
+class TieChain(ContiguousSelection):
+    r'''All the notes in a tie chain.
 
-    ::
+    ..  container:: example
 
-        >>> staff = Staff("c' d' e' ~ e'")
+        ::
 
-    ::
+            >>> staff = Staff("c' d' e' ~ e'")
+            >>> show(staff) # doctest: +SKIP
 
-        >>> inspect(staff[2]).get_tie_chain()
-        TieChain(Note("e'4"), Note("e'4"))
+        ::
 
-    Tie chains are immutable score selections.
+            >>> inspect(staff[2]).get_tie_chain()
+            TieChain(Note("e'4"), Note("e'4"))
+
     '''
 
     ### PRIVATE METHODS ###

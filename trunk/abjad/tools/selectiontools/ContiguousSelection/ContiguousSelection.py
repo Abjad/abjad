@@ -51,12 +51,6 @@ class ContiguousSelection(Selection):
             music = tuple(expr) + self._music
         return ContiguousSelection(music)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _preprolated_duration(self):
-        return sum(component._preprolated_duration for component in self)
-
     ### PRIVATE METHODS ###
 
     def _get_offset_lists(self):

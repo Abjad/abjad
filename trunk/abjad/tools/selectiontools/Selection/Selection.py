@@ -106,6 +106,12 @@ class Selection(object):
         '''
         return '{}{!r}'.format(self.__class__.__name__, self._music)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _preprolated_duration(self):
+        return sum(component._preprolated_duration for component in self)
+
     ### PRIVATE METHODS ###
 
     @staticmethod
