@@ -32,16 +32,6 @@ class IntervalSegment(Segment):
     def _format_string(self):
         return ', '.join([str(x) for x in self])
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def interval_classes(self):
-        return tuple([interval.interval_class for interval in self])
-
-    @property
-    def intervals(self):
-        return self[:]
-
     ### PUBLIC METHODS ###
 
     def rotate(self, n):
