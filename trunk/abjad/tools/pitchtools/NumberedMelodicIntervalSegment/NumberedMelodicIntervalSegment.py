@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import durationtools
 from abjad.tools.pitchtools.IntervalSegment import IntervalSegment
-import fractions
 
 
 class NumberedMelodicIntervalSegment(IntervalSegment):
@@ -33,25 +33,6 @@ class NumberedMelodicIntervalSegment(IntervalSegment):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def harmonic_chromatic_interval_segment(self):
-        from abjad.tools import pitchtools
-        return pitchtools.HarmonicChromaticIntervalSegment(self)
-
-    @property
-    def melodic_chromatic_interval_class_segment(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NumberedMelodicIntervalClassSegment(self)
-
-    @property
-    def melodic_chromatic_interval_class_vector(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NumberedMelodicIntervalClassVector(self)
-
-    @property
-    def melodic_chromatic_interval_numbers(self):
-        return tuple([mci.number for mci in self])
-
-    @property
     def slope(self):
         r'''The slope of a melodic interval segment is the sum of its 
         intervals divided by its length:
@@ -59,11 +40,11 @@ class NumberedMelodicIntervalSegment(IntervalSegment):
         ::
 
             >>> pitchtools.NumberedMelodicIntervalSegment([1, 2]).slope
-            Fraction(3, 2)
+            Multiplier(3, 2)
 
-        Return fraction.
+        Return multiplier.
         '''
-        return fractions.Fraction.from_float(
+        return durationtools.Multiplier.from_float(
             sum([x.number for x in self])) / len(self)
 
     @property
@@ -75,17 +56,17 @@ class NumberedMelodicIntervalSegment(IntervalSegment):
 
             >>> pitchtools.NumberedMelodicIntervalSegment(
             ...     [1, 2, -3, 1, -2, 1]).spread
-            NumberedHarmonicInterval(4)
+            NumberedHarmonicInterval(4.0)
             >>> pitchtools.NumberedMelodicIntervalSegment(
             ...     [1, 1, 1, 2, -3, -2]).spread
-            NumberedHarmonicInterval(5)
+            NumberedHarmonicInterval(5.0)
 
         Return harmonic chromatic interval.
         '''
         from abjad.tools import pitchtools
         current = maximum = minimum = 0
-        for x in self.melodic_chromatic_interval_numbers:
-            current += x
+        for x in self:
+            current += float(x)
             if maximum < current:
                 maximum = current
             if current < minimum:
