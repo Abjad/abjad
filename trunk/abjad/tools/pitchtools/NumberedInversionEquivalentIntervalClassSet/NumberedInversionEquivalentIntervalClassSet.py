@@ -36,17 +36,5 @@ class NumberedInversionEquivalentIntervalClassSet(IntervalClassSet):
 
     @property
     def _format_string(self):
-        return ', '.join([str(x) for x in sorted(
-            self.inversion_equivalent_chromatic_interval_class_numbers)])
+        return ', '.join(str(x) for x in sorted(self, key=lambda x: x.number))
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def inversion_equivalent_chromatic_interval_class_numbers(self):
-        return set([interval_class.number for interval_class in self])
-
-    @property
-    def inversion_equivalent_chromatic_interval_classes(self):
-        interval_classes = list(self)
-        interval_classes.sort(key=lambda x: x.number)
-        return interval_classes

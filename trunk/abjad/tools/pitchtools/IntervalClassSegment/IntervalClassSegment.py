@@ -28,12 +28,3 @@ class IntervalClassSegment(Segment):
     def _format_string(self):
         return ', '.join([str(x) for x in self])
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def interval_class_numbers(self):
-        return tuple([interval_class.number for interval_class in self])
-
-    @property
-    def interval_classes(self):
-        return tuple(self[:])
