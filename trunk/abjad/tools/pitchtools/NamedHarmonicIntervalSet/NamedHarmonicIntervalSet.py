@@ -41,19 +41,5 @@ class NamedHarmonicIntervalSet(Set):
     @property
     def _format_string(self):
         return ' '.join([str(x) for x in 
-            sorted(self.harmonic_diatonic_intervals)])
+            sorted(self)])
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def harmonic_chromatic_interval_set(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NumberedHarmonicIntervalSet(self)
-
-    @property
-    def harmonic_diatonic_interval_numbers(self):
-        return set([interval.number for interval in self])
-
-    @property
-    def harmonic_diatonic_intervals(self):
-        return set(self)
