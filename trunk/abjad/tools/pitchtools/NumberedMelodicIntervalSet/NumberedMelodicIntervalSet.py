@@ -36,21 +36,5 @@ class NumberedMelodicIntervalSet(Set):
 
     @property
     def _format_string(self):
-        intervals = list(self.melodic_chromatic_intervals)
-        intervals.sort(key=lambda x: x.number)
-        return ', '.join([str(x) for x in intervals])
+        return ', '.join(str(x) for x in sorted(self, key=lambda x: x.number))
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def harmonic_chromatic_interval_set(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NumberedHarmonicIntervalSet(self)
-
-    @property
-    def melodic_chromatic_interval_numbers(self):
-        return set([interval.number for interval in self])
-
-    @property
-    def melodic_chromatic_intervals(self):
-        return set(self)
