@@ -2,7 +2,7 @@
 from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
 
-class TypedSet(TypedCollection):
+class TypedFrozenset(TypedCollection):
 
     ### CLASS VARIABLES ### 
 
