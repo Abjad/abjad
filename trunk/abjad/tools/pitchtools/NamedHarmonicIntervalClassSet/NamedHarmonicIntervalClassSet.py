@@ -43,8 +43,3 @@ class NamedHarmonicIntervalClassSet(IntervalClassSet):
         return ' '.join([str(x) for x in 
             sorted(self.harmonic_diatonic_interval_classes)])
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def harmonic_diatonic_interval_classes(self):
-        return set(self)
