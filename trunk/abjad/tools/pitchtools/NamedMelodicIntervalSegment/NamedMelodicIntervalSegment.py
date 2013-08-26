@@ -36,19 +36,3 @@ class NamedMelodicIntervalSegment(IntervalSegment):
         return "%s('%s')" % (
             self._class_name, ' '.join([str(x) for x in self]))
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def harmonic_chromatic_interval_segment(self):
-        from abjad.tools import pitchtools
-        return pitchtools.HarmonicChromaticIntervalSegment(self.intervals)
-
-    @property
-    def harmonic_diatonic_interval_segment(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NamedHarmonicIntervalSegment(self.intervals)
-
-    @property
-    def melodic_chromatic_interval_segment(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NumberedMelodicIntervalSegment(self.intervals)
