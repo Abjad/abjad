@@ -73,59 +73,10 @@ class TypedList(TypedCollection):
 
     ### SPECIAL METHODS ###
 
-    def __contains__(self, token):
-        '''Change `token` to item and return true if item exists in collection:
-
-        ::
-
-            >>> pitchtools.NamedPitch("c'") in pitch_collection
-            True
-
-        ::
-
-            >>> pitchtools.NamedPitch("d'") in pitch_collection
-            True
-
-        ::
-
-            >>> pitchtools.NamedPitch("e'") in pitch_collection
-            True
-
-        Return boolean.
-        '''
-        try:
-            item = self._item_callable(token)
-        except ValueError:
-            return False
-        return self._collection.__contains__(item)
-
     def __delitem__(self, i):
         '''Aliases list.__delitem__().
         '''
         del(self._collection[i])
-
-    def __eq__(self, expr):
-        '''Compares equally with other object inventories, or lists with
-        identical contents:
-
-        ::
-        
-            >>> object_collection == object_collection
-            True
-
-        ::
-
-            >>> object_collection == [23, 'foo', False, (1, 2, 3), 3.14159]
-            True
-
-        ::
-
-            >>> object_collection == pitch_collection
-            False
-
-        Return boolean.
-        '''
-        return TypedCollection.__eq__(self, expr)
 
     def __getitem__(self, i):
         '''Aliases list.__getitem__().

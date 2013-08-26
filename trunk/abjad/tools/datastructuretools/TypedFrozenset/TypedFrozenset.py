@@ -22,22 +22,45 @@ class TypedFrozenset(TypedCollection):
 
     ### SPECIAL METHODS ###
 
-    '''
-    __and__
-    __contains__
-    __ge__
-    __gt__
-    __iand__
-    __ior__
-    __isub__
-    __ixor__
-    __le__
-    __lt__
-    __ne__
-    __or__
-    __sub__
-    __xor__
-    '''
+    def __and__(self, expr):
+        expr = self.new(expr)
+        result = self._collection.__and__(expr._collection)
+        return self.new(result)
+
+    def __ge__(self, expr):
+        expr = self.new(expr)
+        return self._collection.__ge__(expr._collection)
+
+    def __gt__(self, expr):
+        expr = self.new(expr)
+        return self._collection.__gt__(expr._collection)
+
+    def __le__(self, expr):
+        expr = self.new(expr)
+        return self._collection.__le__(expr._collection)
+
+    def __lt__(self, expr):
+        expr = self.new(expr)
+        return self._collection.__lt__(expr._collection)
+
+    def __ne__(self, expr):
+        expr = self.new(expr)
+        return self._collection.__ne__(expr._collection)
+
+    def __or__(self, expr):
+        expr = self.new(expr)
+        result = self._collection.__or__(expr._collection)
+        return self.new(result)
+
+    def __sub__(self, expr):
+        expr = self.new(expr)
+        result = self._collection.__sub__(expr._collection)
+        return self.new(result)
+
+    def __xor__(self, expr):
+        expr = self.new(expr)
+        result = self._collection.__xor__(expr._collection)
+        return self.new(result)
 
     ### PUBLIC METHODS ###
 

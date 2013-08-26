@@ -25,6 +25,13 @@ class TypedCollection(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __contains__(self, token):
+        try:
+            item = self._item_callable(token)
+        except ValueError:
+            return False
+        return self._collection.__contains__(item)
+
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
             return self._collection == expr._collection
