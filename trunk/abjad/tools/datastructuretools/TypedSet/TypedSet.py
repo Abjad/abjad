@@ -17,7 +17,7 @@ class TypedSet(TypedCollection):
             tokens=tokens,
             )
         tokens = tokens or []
-        self._collection = set(self._item_callable(token) 
+        self._collection = frozenset(self._item_callable(token) 
             for token in tokens)
 
     ### SPECIAL METHODS ###
@@ -41,22 +41,38 @@ class TypedSet(TypedCollection):
 
     ### PUBLIC METHODS ###
 
-    '''
-    add
-    clear
-    copy
-    difference
-    difference_update
-    discard
-    intersection
-    intersection_update
-    isdisjoint
-    issubset
-    issuperset
-    pop
-    remove
-    symmetric_difference
-    symmetric_difference_update
-    union
-    update
-    '''
+    def copy(self):
+        return self.new(self._collection.copy())
+
+    def difference(self, expr):
+        expr = self.new(expr)
+        result = self._collection.difference(expr._collection)
+        return self.new(result)
+
+    def intersection(self, expr):
+        expr = self.new(expr)
+        result = self._collection.intersection(expr._collection)
+        return self.new(result)
+
+    def isdisjoint(self, expr):
+        expr = self.new(expr)
+        return self._collection.isdisjoint(expr._collection)
+
+    def issubset(self, expr):
+        expr = self.new(expr)
+        return self._collection.issubset(expr._collection)
+
+    def issuperset(self, expr):
+        expr = self.new(expr)
+        return self._collection.issuperset(expr._collection)
+
+    def symmetric_difference(self, expr):
+        expr = self.new(expr)
+        result = self._collection.symmetric_difference(expr._collection)
+        return self.new(result)
+
+    def union(self, expr):
+        expr = self.new(expr)
+        result = self._collection.union(expr._collection)
+        return self.new(result)
+
