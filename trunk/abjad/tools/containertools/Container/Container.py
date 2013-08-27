@@ -1239,11 +1239,11 @@ class Container(Component):
             ::
 
                 >>> container.select_notes_and_chords()
-                FreeLeafSelection(Note("c'8"), Note("d'8"), Note("e'8"))
+                Selection(Note("c'8"), Note("d'8"), Note("e'8"))
 
         Returns leaf selection.
         '''
         from abjad.tools import iterationtools
         from abjad.tools import selectiontools
         generator = iterationtools.iterate_notes_and_chords_in_expr(self)
-        return selectiontools.FreeLeafSelection(generator)
+        return selectiontools.Selection(generator)

@@ -82,7 +82,7 @@ def select_leaves(
             ]
     music = music[start:stop]
     if allow_discontiguous_leaves:
-        selection = selectiontools.FreeLeafSelection(music=music)
+        selection = selectiontools.Selection(music=music)
     else:
         assert Selection._all_are_contiguous_components_in_same_logical_voice(
             music)
