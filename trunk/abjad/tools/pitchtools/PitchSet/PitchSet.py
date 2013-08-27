@@ -1,5 +1,5 @@
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.datastructuretools import TypedFrozenset
 
 
-class PitchSet(AbjadObject):
+class PitchSet(TypedFrozenset):
     pass

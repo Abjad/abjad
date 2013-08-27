@@ -1,5 +1,5 @@
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.datastructuretools import TypedCounter
 
 
-class IntervalVector(AbjadObject):
+class IntervalVector(TypedCounter):
     pass

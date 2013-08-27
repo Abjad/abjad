@@ -1,5 +1,5 @@
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.datastructuretools import TypedCounter
 
 
-class PitchClassVector(AbjadObject):
+class PitchClassVector(TypedCounter):
     pass
