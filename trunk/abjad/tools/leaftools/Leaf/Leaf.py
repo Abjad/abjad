@@ -405,7 +405,7 @@ class Leaf(Component):
             # TODO: implement SliceSelection._attach_tie_spanner_to_leaves()
             for leaf_pair in sequencetools.iterate_sequence_pairwise_strict(
                 flattened_result_leaves):
-                selection = selectiontools.ContiguousLeafSelection(leaf_pair)
+                selection = selectiontools.ContiguousSelection(leaf_pair)
                 selection._attach_tie_spanner_to_leaf_pair()
         # return result
         return result
@@ -461,8 +461,7 @@ class Leaf(Component):
                 )
         # tie split notes, rests and chords as specified
         if pitchtools.is_pitch_carrier(self) and tie_split_notes:
-            selection = selectiontools.ContiguousLeafSelection(
-                leaves_around_split)
+            selection = selectiontools.ContiguousSelection(leaves_around_split)
             selection._attach_tie_spanner_to_leaf_pair()
         return left_leaf_list, right_leaf_list
         # TODO: make this substitution work

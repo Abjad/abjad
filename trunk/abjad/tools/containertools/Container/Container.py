@@ -788,7 +788,7 @@ class Container(Component):
                     leaf_right_of_split._get_parentage().root:
                     leaves_around_split = \
                         (leaf_left_of_split, leaf_right_of_split)
-                    selection = selectiontools.ContiguousLeafSelection(
+                    selection = selectiontools.ContiguousSelection(
                         leaves_around_split)
                     selection._attach_tie_spanner_to_leaf_pair()
         # return pair of left and right list-wrapped halves of container
@@ -1218,7 +1218,7 @@ class Container(Component):
             ::
 
                 >>> container.select_leaves()
-                ContiguousLeafSelection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"))
+                ContiguousSelection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"))
 
         Returns contiguous leaf selection or free leaf selection.
         '''
@@ -1241,7 +1241,7 @@ class Container(Component):
         else:
             assert Selection._all_are_contiguous_components_in_same_logical_voice(
                 music)
-            selection = selectiontools.ContiguousLeafSelection(music=music)
+            selection = selectiontools.ContiguousSelection(music=music)
         return selection
 
     def select_notes_and_chords(self):
