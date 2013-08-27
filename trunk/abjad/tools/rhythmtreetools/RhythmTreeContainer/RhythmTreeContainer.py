@@ -225,7 +225,8 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
             include_diminished_tuplets=False,
             include_trivial_tuplets=True,
             )
-        tuplets.remove()
+        for tuplet in tuplets:
+            tuplet.extract()
         return result
 
     def __eq__(self, expr):
