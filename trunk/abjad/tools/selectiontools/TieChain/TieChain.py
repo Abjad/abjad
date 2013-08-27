@@ -35,8 +35,10 @@ class TieChain(ContiguousSelection):
         if new_written_duration.is_assignable:
             self[0].written_duration = new_written_duration
             for leaf in self[1:]:
-                componenttools.remove_component_subtree_from_score_and_spanners(
-                    [leaf])
+                parent = leaf._parent
+                if parent:
+                    index = parent.index(leaf)
+                    del(parent[index])
             first = self[0]
             spannertools.detach_spanners_attached_to_component(
                 first, spannertools.TieSpanner)
@@ -48,8 +50,10 @@ class TieChain(ContiguousSelection):
                 pass
             elif len(durations) < len(self):
                 for leaf in self[len(durations):]:
-                    componenttools.remove_component_subtree_from_score_and_spanners(
-                        [leaf])
+                    parent = leaf._parent
+                    if parent:
+                        index = parent.index(leaf)
+                        del(parent[index])
             elif len(self) < len(durations):
                 spannertools.detach_spanners_attached_to_component(
                     self[0], spannertools.TieSpanner)

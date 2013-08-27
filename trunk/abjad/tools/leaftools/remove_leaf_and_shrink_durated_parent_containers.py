@@ -99,9 +99,12 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
         parent = parent._parent
         i += 1
     parentage = leaf._get_parentage(include_self=False)
-    componenttools.remove_component_subtree_from_score_and_spanners([leaf])
+    parent = leaf._parent
+    if parent:
+        index = parent.index(leaf)
+        del(parent[index])
     for x in parentage:
         if not len(x):
-            componenttools.remove_component_subtree_from_score_and_spanners([x])
+            x.extract()
         else:
             break

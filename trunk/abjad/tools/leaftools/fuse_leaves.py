@@ -39,5 +39,10 @@ def fuse_leaves(leaves):
         return leaves
 
     total_preprolated = leaves._preprolated_duration
-    componenttools.remove_component_subtree_from_score_and_spanners(leaves[1:])
+    for leaf in leaves[1:]:
+        parent = leaf._parent
+        if parent:
+            index = parent.index(leaf)
+            del(parent[index])
+            
     return leaftools.set_leaf_duration(leaves[0], total_preprolated)

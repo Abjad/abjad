@@ -16,34 +16,27 @@ def test_Container___delitem___01():
     spannertools.SlurSpanner(voice[0][:])
     spannertools.SlurSpanner(voice[1][:])
 
-    r'''
-    \new Voice {
-        {
-            c'8 [ (
-            d'8 )
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ (
+                d'8 )
+            }
+            {
+                e'8 (
+                f'8 ] )
+            }
         }
-        {
-            e'8 (
-            f'8 ] )
-        }
-    }
-    '''
+        '''
+        )
 
     old = voice[0]
     del(voice[0])
 
     "Container voice is now ..."
 
-    r'''
-    \new Voice {
-        {
-            e'8 [ (
-            f'8 ] )
-        }
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -56,16 +49,10 @@ def test_Container___delitem___01():
         '''
         )
 
+    assert inspect(voice).is_well_formed()
+
     "Deleted component is now ..."
 
-    r'''
-    {
-        c'8 (
-        d'8 )
-    }
-    '''
-
-    assert inspect(old).is_well_formed()
     assert testtools.compare(
         old,
         r'''
@@ -76,25 +63,19 @@ def test_Container___delitem___01():
         '''
         )
 
+    assert inspect(old).is_well_formed()
+
 
 def test_Container___delitem___02():
     r'''Delete 1 leaf in container.
-    Spanner structure is preserved.'''
+    Spanner structure is preserved.
+    '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
     spannertools.BeamSpanner(voice[:])
 
     del(voice[1])
 
-    r'''
-    \new Voice {
-        c'8 [
-        e'8
-        f'8 ]
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -106,6 +87,8 @@ def test_Container___delitem___02():
         '''
         )
 
+    assert inspect(voice).is_well_formed()
+
 
 def test_Container___delitem___03():
     r'''Delete slice in middle of container.
@@ -116,14 +99,6 @@ def test_Container___delitem___03():
 
     del(voice[1:3])
 
-    r'''
-    \new Voice {
-        c'8 [
-        f'8 ]
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -133,6 +108,8 @@ def test_Container___delitem___03():
         }
         '''
         )
+
+    assert inspect(voice).is_well_formed()
 
 
 def test_Container___delitem___04():
@@ -144,14 +121,6 @@ def test_Container___delitem___04():
 
     del(voice[:2])
 
-    r'''
-    \new Voice {
-        e'8 [
-        f'8 ]
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -161,6 +130,8 @@ def test_Container___delitem___04():
         }
         '''
         )
+
+    assert inspect(voice).is_well_formed()
 
 
 def test_Container___delitem___05():
@@ -172,14 +143,6 @@ def test_Container___delitem___05():
 
     del(voice[2:])
 
-    r'''
-    \new Voice {
-        c'8 [
-        d'8 ]
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -189,6 +152,8 @@ def test_Container___delitem___05():
         }
         '''
         )
+
+    assert inspect(voice).is_well_formed()
 
 
 def test_Container___delitem___06():
@@ -200,12 +165,6 @@ def test_Container___delitem___06():
 
     del(voice[:])
 
-    r'''
-    \new Voice {
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -214,9 +173,11 @@ def test_Container___delitem___06():
         '''
         )
 
+    assert inspect(voice).is_well_formed()
+
 
 def test_Container___delitem___07():
-    r'''Detach leaf from tuplet and spanner.
+    r'''Delete leaf from tuplet.
     '''
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -224,14 +185,6 @@ def test_Container___delitem___07():
 
     del(tuplet[1])
 
-    r'''
-    {
-        c'8 [
-        e'8 ]
-    }
-    '''
-
-    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''
@@ -241,3 +194,49 @@ def test_Container___delitem___07():
         }
         '''
         )
+
+    assert inspect(tuplet).is_well_formed()
+
+
+def test_Container___delitem___08():
+    r'''Delete leaf from nested container.
+    '''
+
+    voice = Voice(notetools.make_repeated_notes(2))
+    voice.insert(1, Container(notetools.make_repeated_notes(2)))
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.BeamSpanner(voice.select_leaves())
+    spannertools.GlissandoSpanner(voice.select_leaves())
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            c'8 [ \glissando
+            {
+                d'8 \glissando
+                e'8 \glissando
+            }
+            f'8 ]
+        }
+        '''
+        )
+
+    leaf = voice.select_leaves()[1]
+    del(voice[1][0])
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            c'8 [ \glissando
+            {
+                e'8 \glissando
+            }
+            f'8 ]
+        }
+        '''
+        )
+
+    assert inspect(voice).is_well_formed()
+    assert inspect(leaf).is_well_formed()
