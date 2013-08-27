@@ -63,7 +63,7 @@ class PitchSegment(TypedTuple):
         return '{}([{}])'.format(self._class_name, self._repr_string)
 
     def __str__(self):
-        return '<{}>' % self._format_string
+        return '<{}>'.format(self._format_string)
         
     ### PRIVATE PROPERTIES ###
 

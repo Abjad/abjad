@@ -124,7 +124,10 @@ class ToyLanguageParser(Parser):
 
     def p_pitch_cell__PARENTHESIS_L__pitches__PARENTHESIS_R(self, p):
         '''pitch_cell : PARENTHESIS_L pitches PARENTHESIS_R'''
-        p[0] = pitchtools.NamedPitchSegment(p[2])
+        p[0] = pitchtools.PitchSegment(
+            tokens=p[2],
+            item_class=pitchtools.NamedPitch,
+            )
 
     def p_pitches__pitch(self, p):
         '''pitches : pitch'''

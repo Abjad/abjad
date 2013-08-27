@@ -394,7 +394,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         ::
 
             >>> expression.elements
-            ContiguousLeafSelection(Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"))
+            ContiguousSelection(Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"))
 
         Return leaf selection.
         '''
