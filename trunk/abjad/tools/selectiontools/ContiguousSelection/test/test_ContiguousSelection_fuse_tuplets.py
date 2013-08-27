@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_ContiguousTupletSelection_fuse_01():
+def test_ContiguousSelection_fuse_tuplets_01():
     r'''Fuse two unincorporated fixed-duration tuplets with same multiplier.
     '''
 
@@ -12,40 +12,30 @@ def test_ContiguousTupletSelection_fuse_01():
     t2 = tuplettools.FixedDurationTuplet(Duration(2, 16), "c'16 d'16 e'16")
     spannertools.SlurSpanner(t2[:])
 
-    r'''
-    \times 2/3 {
-        c'8 [
-        d'8
-        e'8 ]
-    }
-    '''
+    assert testtools.compare(
+        t1,
+        r'''
+        \times 2/3 {
+            c'8 [
+            d'8
+            e'8 ]
+        }
+        '''
+        )
 
-    r'''
-    \times 2/3 {
-        c'16 (
-        d'16
-        e'16 )
-    }
-    '''
+    assert testtools.compare(
+        t2,
+        r'''
+        \times 2/3 {
+            c'16 (
+            d'16
+            e'16 )
+        }
+        '''
+        )
 
-    tuplets = selectiontools.select_tuplets([t1, t2], recurse=False)
-    new = tuplets.fuse()
-
-    r'''
-    \times 2/3 {
-        c'8 [
-        d'8
-        e'8 ]
-        c'16 (
-        d'16
-        e'16 )
-    }
-    '''
-
-    assert inspect(new).is_well_formed()
-    assert len(t1) == 0
-    assert len(t2) == 0
-    assert new is not t1 and new is not t2
+    tuplets = select([t1, t2], contiguous=True)
+    new = tuplets.fuse_tuplets()
 
     assert testtools.compare(
         new,
@@ -61,9 +51,13 @@ def test_ContiguousTupletSelection_fuse_01():
         '''
         )
 
+    assert len(t1) == 0
+    assert len(t2) == 0
+    assert new is not t1 and new is not t2
+    assert inspect(new).is_well_formed()
 
 
-def test_ContiguousTupletSelection_fuse_02():
+def test_ContiguousSelection_fuse_tuplets_02():
     r'''Fuse fixed-duration tuplets with same multiplier in score.
     '''
 
@@ -73,38 +67,27 @@ def test_ContiguousTupletSelection_fuse_02():
     spannertools.SlurSpanner(t2[:])
     voice = Voice([t1, t2])
 
-    r'''
-    \new Voice {
-        \times 2/3 {
-            c'8 [
-            d'8
-            e'8 ]
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            \times 2/3 {
+                c'8 [
+                d'8
+                e'8 ]
+            }
+            \times 2/3 {
+                c'16 (
+                d'16
+                e'16 )
+            }
         }
-        \times 2/3 {
-            c'16 (
-            d'16
-            e'16 )
-        }
-    }
-    '''
+        '''
+        )
 
-    tuplets = selectiontools.select_tuplets(voice, recurse=False)
-    tuplets.fuse()
+    tuplets = voice[:]
+    tuplets.fuse_tuplets()
 
-    r'''
-    \new Voice {
-        \times 2/3 {
-            c'8 [
-            d'8
-            e'8 ]
-            c'16 (
-            d'16
-            e'16 )
-        }
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -121,8 +104,10 @@ def test_ContiguousTupletSelection_fuse_02():
         '''
         )
 
+    assert inspect(voice).is_well_formed()
 
-def test_ContiguousTupletSelection_fuse_03():
+
+def test_ContiguousSelection_fuse_tuplets_03():
     r'''Fuse fixed-multiplier tuplets with same multiplier in score.
     '''
 
@@ -132,42 +117,29 @@ def test_ContiguousTupletSelection_fuse_03():
     spannertools.SlurSpanner(t2[:])
     voice = Voice([t1, t2])
 
-    r'''
-    \new Voice {
-        \times 2/3 {
-            c'8 [
-            d'8
-            e'8 ]
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            \times 2/3 {
+                c'8 [
+                d'8
+                e'8 ]
+            }
+            \times 2/3 {
+                c'8 (
+                d'8
+                e'8
+                f'8
+                g'8 )
+            }
         }
-        \times 2/3 {
-            c'8 (
-            d'8
-            e'8
-            f'8
-            g'8 )
-        }
-    }
-    '''
+        '''
+        )
 
-    tuplets = selectiontools.select_tuplets(voice, recurse=False)
-    tuplets.fuse()
+    tuplets = voice[:]
+    tuplets.fuse_tuplets()
 
-    r'''
-    \new Voice {
-        \times 2/3 {
-            c'8 [
-            d'8
-            e'8 ]
-            c'8 (
-            d'8
-            e'8
-            f'8
-            g'8 )
-        }
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -186,30 +158,32 @@ def test_ContiguousTupletSelection_fuse_03():
         '''
         )
 
+    assert inspect(voice).is_well_formed()
 
-def test_ContiguousTupletSelection_fuse_04():
+
+def test_ContiguousSelection_fuse_tuplets_04():
     r'''Tuplets must carry same multiplier.
     '''
 
     t1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     t2 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8 f'8 g'8")
-    tuplets = selectiontools.select_tuplets([t1, t2], recurse=False)
+    tuplets = select([t1, t2], contiguous=True)
 
-    assert py.test.raises(Exception, 'tuplets.fuse()')
+    assert py.test.raises(Exception, 'tuplets.fuse_tuplets()')
 
 
-def test_ContiguousTupletSelection_fuse_05():
+def test_ContiguousSelection_fuse_tuplets_05():
     r'''Tuplets must be same type.
     '''
 
     t1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     t2 = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
-    tuplets = selectiontools.select_tuplets([t1, t2], recurse=False)
+    tuplets = select([t1, t2], contiguous=True)
 
-    assert py.test.raises(Exception, 'tuplets.fuse()')
+    assert py.test.raises(Exception, 'tuplets.fuse_tuplets()')
 
 
-def test_ContiguousTupletSelection_fuse_06():
+def test_ContiguousSelection_fuse_tuplets_06():
     r'''Dominant spanners on contents are preserved.
     '''
 
@@ -219,32 +193,24 @@ def test_ContiguousTupletSelection_fuse_06():
         Note("c'4")])
     spannertools.SlurSpanner(voice.select_leaves())
 
-    r'''
-    \new Voice {
-        \times 2/3 {
-            c'8 (
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            \times 2/3 {
+                c'8 (
+            }
+            \times 2/3 {
+                c'4
+            }
+            c'4 )
         }
-        \times 2/3 {
-            c'4
-        }
-        c'4 )
-    }
-    '''
+        '''
+        )
 
-    tuplets = selectiontools.select_tuplets(voice[:2], recurse=False)
-    tuplets.fuse()
+    tuplets = voice[:2]
+    tuplets.fuse_tuplets()
 
-    r'''
-    \new Voice {
-        \times 2/3 {
-            c'8 (
-            c'4
-        }
-        c'4 )
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -257,3 +223,5 @@ def test_ContiguousTupletSelection_fuse_06():
         }
         '''
         )
+
+    assert inspect(voice).is_well_formed()

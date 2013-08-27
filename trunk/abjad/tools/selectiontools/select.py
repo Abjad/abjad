@@ -8,9 +8,10 @@ def select(expr=None, contiguous=False):
     '''
     from abjad.tools import componenttools
     from abjad.tools import selectiontools
+    Selection = selectiontools.Selection
     if contiguous:
         if isinstance(expr, list):
-            assert componenttools.all_are_contiguous_components_in_same_logical_voice(expr)
+            assert Selection._all_are_contiguous_components_in_same_logical_voice(expr)
         return selectiontools.ContiguousSelection(expr)
     elif isinstance(expr, componenttools.Component):
         return selectiontools.Selection(expr)
