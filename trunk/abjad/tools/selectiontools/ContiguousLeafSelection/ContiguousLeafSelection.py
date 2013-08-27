@@ -41,7 +41,7 @@ class ContiguousLeafSelection(ContiguousSelection):
         assert all(isinstance(x, leaftools.Leaf) for x in self)
         assert self._all_are_contiguous_components_in_same_logical_voice(self)
 
-    ### PUBLIC METHODS ###
+    ### PRIVATE METHODS ###
 
     def _attach_tie_spanner_to_leaf_pair(self):
         from abjad.tools import leaftools
@@ -71,8 +71,6 @@ class ContiguousLeafSelection(ContiguousSelection):
             right_tie_spanner.append_left(left_leaf)
         elif left_tie_spanner is None and right_tie_spanner is None:
             spannertools.TieSpanner([left_leaf, right_leaf])
-
-    ### PUBLIC METHODS ###
 
     def _copy_and_include_enclosing_containers(self):
         from abjad.tools import componenttools
@@ -118,67 +116,3 @@ class ContiguousLeafSelection(ContiguousSelection):
                     leaf)
         # return trimmed governor copy
         return governor_copy
-
-    def replace_with(self, leaf_class):
-        r'''Replace leaves in selection with `leaf_class` instances.
-
-        ::
-
-            >>> staff = Staff(2 * Measure((2, 8), "c'8 d'8"))
-
-        .. doctest::
-
-            >>> f(staff)
-            \new Staff {
-                {
-                    \time 2/8
-                    c'8
-                    d'8
-                }
-                {
-                    c'8
-                    d'8
-                }
-            }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
-        ..  container:: example
-
-            **Example.** Replace leaves with rests:
-
-            ::
-
-                >>> selection = staff[0].select_leaves()
-                >>> selection.replace_with(Rest)
-
-            .. doctest::
-
-                >>> f(staff)
-                \new Staff {
-                    {
-                        \time 2/8
-                        r8
-                        r8
-                    }
-                    {
-                        c'8
-                        d'8
-                    }
-                }
-
-            ::
-
-                >>> show(staff) # doctest: +SKIP
-
-        Return none.
-        '''
-        from abjad.tools import componenttools
-        from abjad.tools import leaftools
-        from abjad.tools import mutationtools
-        assert issubclass(leaf_class, leaftools.Leaf)
-        for leaf in self:
-            new_leaf = leaf_class(leaf)
-            mutationtools.mutate(leaf).replace(new_leaf)
