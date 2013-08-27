@@ -1492,6 +1492,62 @@ class Tuplet(Container):
                 leaftools.set_leaf_duration(component, new_duration)
         self._fix()
 
+    def set_minimum_denominator(self, denominator):
+        r'''Sets preferred denominator of tuplet to at least `denominator`.
+
+        ..  container:: example
+
+            **Example.** Set preferred denominator of tuplet to at least ``8``:
+
+            ::
+
+                >>> tuplet = Tuplet((3, 5), "c'4 d'8 e'8 f'4 g'2")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 3/5 {
+                    c'4
+                    d'8
+                    e'8
+                    f'4
+                    g'2
+                }
+
+            ::
+
+                >>> tuplet.set_minimum_denominator(8)
+                >>> show(tuplet) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 6/10 {
+                    c'4
+                    d'8
+                    e'8
+                    f'4
+                    g'2
+                }
+
+        Returns none.
+        '''
+        from abjad.tools import tuplettools
+        assert mathtools.is_nonnegative_integer_power_of_two(denominator)
+        Duration = durationtools.Duration
+        self.force_fraction = True
+        durations = [
+            self._contents_duration, 
+            self._preprolated_duration, 
+            Duration(1, denominator),
+            ]
+        duration_pairs = Duration.durations_to_nonreduced_fractions_with_common_denominator(
+            durations)
+        self.preferred_denominator = duration_pairs[1].numerator
+
     def to_fixed_duration_tuplet(self):
         r'''Change tuplet to fixed-duration tuplet.
 
