@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_componenttools_replace_01():
+def test_ScoreMutationAgent_replace_01():
     r'''Move parentage and spanners from two old notes to five new notes.
     '''
 
@@ -24,9 +24,8 @@ def test_componenttools_replace_01():
         )
 
     old_notes = staff[1:3]
-    new_notes = Note(12, (1, 16)) * 5
-    componenttools.replace(
-        old_notes, new_notes)
+    new_notes = 5 * Note(12, (1, 16))
+    mutate(old_notes).replace(new_notes)
 
     "Equivalent to staff[1:3] = new_notes"
 
@@ -47,7 +46,7 @@ def test_componenttools_replace_01():
         )
 
 
-def test_componenttools_replace_02():
+def test_ScoreMutationAgent_replace_02():
     r'''Move parentage and spanners from one old note to five new notes.
     '''
 
@@ -68,8 +67,8 @@ def test_componenttools_replace_02():
         '''
         )
 
-    new_notes = Note(12, (1, 16)) * 5
-    componenttools.replace(staff[:1], new_notes)
+    new_notes = 5 * Note(12, (1, 16))
+    mutate(staff[:1]).replace(new_notes)
     #staff[:1] = new_notes
 
     "Equivalent to staff[:1] = new_notes."
@@ -92,7 +91,7 @@ def test_componenttools_replace_02():
         )
 
 
-def test_componenttools_replace_03():
+def test_ScoreMutationAgent_replace_03():
     r'''Move parentage and spanners from two old notes to five new notes.
     '''
 
@@ -113,8 +112,8 @@ def test_componenttools_replace_03():
         '''
         )
 
-    new_notes = Note(12, (1, 16)) * 5
-    componenttools.replace(staff[:2], new_notes)
+    new_notes = 5 * Note(12, (1, 16))
+    mutate(staff[:2]).replace(new_notes)
     #staff[:2] = new_notes
 
     "Equivalent to staff[:2] = new_notes."
@@ -136,7 +135,7 @@ def test_componenttools_replace_03():
         )
 
 
-def test_componenttools_replace_04():
+def test_ScoreMutationAgent_replace_04():
     r'''Move parentage and spanners from three old notes to five new notes.
     '''
 
@@ -157,8 +156,8 @@ def test_componenttools_replace_04():
         '''
         )
 
-    new_notes = Note(12, (1, 16)) * 5
-    componenttools.replace(staff[:3], new_notes)
+    new_notes = 5 * Note(12, (1, 16))
+    mutate(staff[:3]).replace(new_notes)
     #staff[:3] = new_notes
 
     "Equivalent to staff[:3] = new_notes."
@@ -179,7 +178,7 @@ def test_componenttools_replace_04():
         )
 
 
-def test_componenttools_replace_05():
+def test_ScoreMutationAgent_replace_05():
     r'''Move parentage and spanners from four old notes to five new notes.
     '''
 
@@ -200,8 +199,8 @@ def test_componenttools_replace_05():
         '''
         )
 
-    new_notes = Note(12, (1, 16)) * 5
-    componenttools.replace(staff[:], new_notes)
+    new_notes = 5 * Note(12, (1, 16))
+    mutate(staff[:]).replace(new_notes)
     #staff[:] = new_notes
 
     "Equivalent to staff[:] = new_notes."
@@ -222,7 +221,7 @@ def test_componenttools_replace_05():
     assert inspect(staff).is_well_formed()
 
 
-def test_componenttools_replace_06():
+def test_ScoreMutationAgent_replace_06():
     r'''Move parentage and spanners from container to children of container.
     '''
 
@@ -245,9 +244,7 @@ def test_componenttools_replace_06():
 
     voice_selection = staff[:1]
     voice = voice_selection[0]
-    old_components = \
-        componenttools.replace(
-        voice_selection, staff[0][:])
+    old_components = mutate(voice_selection).replace(staff[0][:])
 
     "Equivalent to staff[:1] = staff[0][:]."
 

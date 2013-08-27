@@ -8,17 +8,7 @@ def test_NaturalHarmonic___init___01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     natural_harmonic = notetools.NaturalHarmonic(staff[1])
-    componenttools.replace(staff[1:2], [natural_harmonic])
-
-    r'''
-    \new Staff {
-        c'8
-        \once \override NoteHead #'style = #'harmonic
-        d'8
-        e'8
-        f'8
-    }
-    '''
+    staff[1:2] = [natural_harmonic]
 
     assert testtools.compare(
         staff,

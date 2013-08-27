@@ -166,16 +166,7 @@ def test_Rest___init___13():
     voice = Voice("c'8 d'8 e'8 f'8")
     spannertools.BeamSpanner(voice[:])
     rest = Rest(voice[-1])
-    componenttools.replace(voice[-1:], [rest])
-
-    r'''
-    \new Voice {
-        c'8 [
-        d'8
-        e'8
-        r8 ]
-    }
-    '''
+    voice[-1:] = [rest]
 
     assert testtools.compare(
         voice,
@@ -198,16 +189,7 @@ def test_Rest___init___14():
     spannertools.BeamSpanner(voice[:])
     for note in voice:
         rest = Rest(note)
-        componenttools.replace([note], [rest])
-
-    r'''
-    \new Voice {
-        r8 [
-        r8
-        r8
-        r8 ]
-    }
-    '''
+        mutate(note).replace(rest)
 
     assert testtools.compare(
         voice,

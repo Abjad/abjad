@@ -295,6 +295,7 @@ class TieChain(ContiguousSelection):
         '''
         from abjad.tools import componenttools
         from abjad.tools import mathtools
+        from abjad.tools import mutationtools
         from abjad.tools import notetools
         from abjad.tools import spannertools
         from abjad.tools import tuplettools
@@ -340,8 +341,7 @@ class TieChain(ContiguousSelection):
         tuplet = tuplettools.FixedDurationTuplet(target_duration, notes)
 
         # replace tie chain with tuplet
-        componenttools.replace(
-            list(self), [tuplet])
+        mutationtools.mutate(self).replace(tuplet)
 
         # untie tuplet
         spannertools.detach_spanners_attached_to_component(

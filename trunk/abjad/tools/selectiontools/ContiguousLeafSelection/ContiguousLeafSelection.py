@@ -235,8 +235,8 @@ class ContiguousLeafSelection(ContiguousSelection):
         '''
         from abjad.tools import componenttools
         from abjad.tools import leaftools
+        from abjad.tools import mutationtools
         assert issubclass(leaf_class, leaftools.Leaf)
         for leaf in self:
             new_leaf = leaf_class(leaf)
-            componenttools.replace(
-                [leaf], [new_leaf])
+            mutationtools.mutate(leaf).replace(new_leaf)

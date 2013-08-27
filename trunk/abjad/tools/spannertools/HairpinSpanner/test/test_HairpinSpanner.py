@@ -12,19 +12,6 @@ def test_HairpinSpanner_01():
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     spannertools.CrescendoSpanner(staff[:4])
 
-    r'''
-    \new Staff {
-        c'8 \<
-        cs'8
-        d'8
-        ef'8 \!
-        e'8
-        f'8
-        fs'8
-        g'8
-    }
-    '''
-
     assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
@@ -50,19 +37,6 @@ def test_HairpinSpanner_02():
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     spannertools.CrescendoSpanner(staff[0:1])
     checker = ShortHairpinCheck()
-
-    r'''
-    \new Staff {
-        c'8 \< \!
-        cs'8
-        d'8
-        ef'8
-        e'8
-        f'8
-        fs'8
-        g'8
-    }
-    '''
 
     assert not checker.check(staff)
     assert testtools.compare(
@@ -90,19 +64,6 @@ def test_HairpinSpanner_03():
     spannertools.CrescendoSpanner(staff[:4])
     contexttools.DynamicMark('p')(staff[0])
     contexttools.DynamicMark('f')(staff[3])
-
-    r'''
-    \new Staff {
-        c'8 \p \<
-        cs'8
-        d'8
-        ef'8 \f
-        e'8
-        f'8
-        fs'8
-        g'8
-    }
-    '''
 
     assert inspect(staff).is_well_formed()
     assert testtools.compare(
@@ -144,19 +105,6 @@ def test_HairpinSpanner_05():
     spannertools.CrescendoSpanner(staff[4:7])
     contexttools.DynamicMark('f')(staff[6])
 
-    r'''
-    \new Staff {
-        c'8 \p \<
-        cs'8
-        d'8 \f \>
-        ef'8
-        e'8 \p \<
-        f'8
-        fs'8 \f
-        g'8
-    }
-    '''
-
     assert testtools.compare(
         staff,
         r'''
@@ -182,20 +130,6 @@ def test_HairpinSpanner_06():
     staff = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
     spannertools.CrescendoSpanner(staff[:])
 
-
-    r'''
-    \new Staff {
-        r8 \<
-        r8
-        r8
-        r8
-        e'8
-        f'8
-        fs'8
-        g'8 \!
-    }
-    '''
-
     assert testtools.compare(
         staff,
         r'''
@@ -220,10 +154,11 @@ def test_HairpinSpanner_07():
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     rest = Rest(staff[0])
-    componenttools.replace(staff[0:1], [rest])
+    staff[0] = rest
     rest = Rest(staff[-1])
-    componenttools.replace(staff[-1:], [rest])
-    spannertools.HairpinSpanner(staff.select_leaves(), 'p < f', include_rests = False)
+    staff[-1] = rest
+    spannertools.HairpinSpanner(
+        staff.select_leaves(), 'p < f', include_rests=False)
 
     spanner_classes = (spannertools.HairpinSpanner, )
     spanner = spannertools.get_the_only_spanner_attached_to_component(
@@ -246,16 +181,3 @@ def test_HairpinSpanner_07():
         )
     checker = IntermarkedHairpinCheck()
     assert checker.check(staff)
-
-    r'''
-    \new Staff {
-        r8
-        cs'8 \< \p
-        d'8
-        ef'8
-        e'8
-        f'8
-        fs'8 \f
-        r8
-    }
-    '''

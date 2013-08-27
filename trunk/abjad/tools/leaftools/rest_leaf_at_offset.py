@@ -51,7 +51,6 @@ def rest_leaf_at_offset(leaf, offset):
 
     for leaf in right:
         rest = resttools.Rest(leaf)
-        componenttools.replace(
-            [leaf], [rest])
+        mutationtools.mutate(leaf).replace(rest)
 
     return left, right

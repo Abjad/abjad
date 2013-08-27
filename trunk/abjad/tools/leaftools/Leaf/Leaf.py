@@ -337,6 +337,7 @@ class Leaf(Component):
         from abjad.tools import iterationtools
         from abjad.tools import leaftools
         from abjad.tools import marktools
+        from abjad.tools import mutationtools
         from abjad.tools import pitchtools
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
@@ -370,8 +371,7 @@ class Leaf(Component):
                 for mark in component._get_spanners(
                     spanner_classes=spanner_classes):
                     mark.detach()
-        componenttools.replace(
-            [self], flattened_result)
+        mutationtools.mutate(self).replace(flattened_result)
         if fracture_spanners:
             first_shard = result[0]
             spannertools.fracture_spanners_attached_to_component(
@@ -477,6 +477,7 @@ class Leaf(Component):
     def _to_tuplet_with_ratio(self, proportions, is_diminution=True):
         from abjad.tools import componenttools
         from abjad.tools import leaftools
+        from abjad.tools import mutationtools
         from abjad.tools import notetools
         from abjad.tools import selectiontools
         from abjad.tools import tuplettools
@@ -512,8 +513,7 @@ class Leaf(Component):
                 if tuplet.is_diminution:
                     tuplet.toggle_prolation()
         # give leaf position in score structure to tuplet
-        componenttools.replace(
-            [self], [tuplet])
+        mutationtools.mutate(self).replace(tuplet)
         # return tuplet
         return tuplet
 

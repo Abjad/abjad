@@ -2,6 +2,7 @@
 from abjad.tools import chordtools
 from abjad.tools import componenttools
 from abjad.tools import iterationtools
+from abjad.tools import mutationtools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
 from experimental.tools.handlertools.PitchHandler import PitchHandler
@@ -60,6 +61,4 @@ class DiatonicClusterHandler(PitchHandler):
             chord = chordtools.Chord(note)
             chord[:] = []
             chord.extend(chord_pitches)
-            componenttools.replace(
-                [note], [chord])
-
+            mutationtools.mutate(note).replace(chord)

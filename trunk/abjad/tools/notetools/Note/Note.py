@@ -404,6 +404,7 @@ class Note(Leaf):
         '''
         from abjad.tools import chordtools
         from abjad.tools import componenttools
+        from abjad.tools import mutationtools
         from abjad.tools import pitchtools
         if melodic_diatonic_interval is None:
             melodic_diatonic_interval = \
@@ -415,6 +416,5 @@ class Note(Leaf):
             pitchtools.transpose_pitch_carrier_by_melodic_interval(
             chord[1].written_pitch, melodic_diatonic_interval)
         chord[1].tweak.style = 'harmonic'
-        componenttools.replace(
-            [self], [chord])
+        mutationtools.mutate(self).replace(chord)
         return chord

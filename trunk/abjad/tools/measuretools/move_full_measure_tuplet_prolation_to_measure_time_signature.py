@@ -2,6 +2,7 @@
 from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
+from abjad.tools import mutationtools
 
 
 def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
@@ -52,6 +53,5 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
                 time_signature_multiplier = \
                     measure.time_signature.implied_prolation
                 written_adjustment = tuplet_multiplier / time_signature_multiplier
-                componenttools.replace(
-                    [tuplet], tuplet[:])
+                tuplet.extract()
                 containertools.scale_contents_of_container(measure, written_adjustment)
