@@ -690,6 +690,20 @@ class Component(AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    def extract(self):
+        '''Extracts component from score.
+
+        Leaves children of component in score.
+
+        Returns component.
+        '''
+        from abjad.tools import selectiontools
+        selection = selectiontools.SliceSelection([self])
+        parent, start, stop = selection._get_parent_and_start_stop_indices()
+        music_list = list(getattr(self, '_music', ()))
+        parent.__setitem__(slice(start, stop + 1), music_list)
+        return self
+
     def select(self, sequential=False):
         r'''Selects component.
 
