@@ -25,15 +25,6 @@ class AttributeInspectionAgent(object):
 
     ### PUBLIC METHODS ###
 
-    def detach_grace_containers(self, kind=None):
-        r'''Detaches grace containers attached to component.
-
-        Returns tuple.
-        '''
-        return self._component._detach_grace_containers(
-            kind=kind,
-            )
-
     def get_annotation_value(self, name, default=None):
         r'''Gets value of annotation with `name` attached to component.
 

@@ -119,64 +119,6 @@ class ContiguousLeafSelection(ContiguousSelection):
         # return trimmed governor copy
         return governor_copy
 
-    def detach_grace_containers(self, kind=None):
-        r'''Detach grace containers attached to leaves in selection:
-
-        ::
-
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> grace_container = leaftools.GraceContainer(
-            ...     [Note("cs'16")], 
-            ...     kind='grace',
-            ...     )
-            >>> grace_container(staff[1])
-            Note("d'8")
-
-        .. doctest::
-
-            >>> f(staff)
-            \new Staff {
-                c'8
-                \grace {
-                    cs'16
-                }
-                d'8
-                e'8
-                f'8
-            }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
-            >>> leaves = staff.select_leaves()
-            >>> leaves.detach_grace_containers()
-            (GraceContainer(),)
-
-        .. doctest::
-
-            >>> f(staff)
-            \new Staff {
-                c'8
-                d'8
-                e'8
-                f'8
-            }
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
-        Return tuple of zero or more grace containers.
-        '''
-        result = []
-        for leaf in self:
-            grace_containers = leaf._detach_grace_containers(kind=kind)
-            result.extend(grace_containers)
-        return tuple(result)
-
     def replace_with(self, leaf_class):
         r'''Replace leaves in selection with `leaf_class` instances.
 
