@@ -1,8 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 
-def replace(
-    donors, recipients):
+def replace(donors, recipients):
     '''Move parentage and spanners from `donors` to `recipients`.
 
     Give everything from donors to recipients.
@@ -18,6 +17,9 @@ def replace(
     from abjad.tools import componenttools
     from abjad.tools import selectiontools
     Selection = selectiontools.Selection
+
+    #assert isinstance(donors, Selection)
+    #assert isinstance(recipients, Selection)
 
     # check input
     assert Selection._all_are_contiguous_components_in_same_parent(

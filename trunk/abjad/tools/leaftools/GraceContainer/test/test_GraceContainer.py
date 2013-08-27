@@ -171,4 +171,4 @@ def test_GraceContainer_08():
     ns = Note(1, (1, 4)) * 2
     gracecontainer.extend(ns)
     assert len(gracecontainer) == 4
-    assert gracecontainer[-2:] == ns
+    assert tuple(gracecontainer[-2:]) == tuple(ns)

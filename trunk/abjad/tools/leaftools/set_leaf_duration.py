@@ -40,7 +40,7 @@ def set_leaf_duration(leaf, new_duration):
             >>> spannertools.BeamSpanner(staff.select_leaves())
             BeamSpanner(c'8, d'8, e'8, f'8)
             >>> leaftools.set_leaf_duration(staff[1], Duration(5, 32))
-            [Note("d'8"), Note("d'32")]
+            Selection(Note("d'8"), Note("d'32"))
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::

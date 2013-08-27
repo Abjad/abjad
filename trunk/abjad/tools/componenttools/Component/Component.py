@@ -83,6 +83,7 @@ class Component(AbjadObject):
         Returns list of new components.
         '''
         from abjad.tools.mutationtools import mutate
+        from abjad.tools import selectiontools
         from abjad.tools import spannertools
         result = mutate(self).copy(n=n)
         spannertools.detach_spanners_attached_to_components_in_expr(result)
@@ -90,6 +91,7 @@ class Component(AbjadObject):
             result = [result]
         else:
             result = list(result)
+        result = selectiontools.Selection(result)
         return result
 
     def __rmul__(self, n):

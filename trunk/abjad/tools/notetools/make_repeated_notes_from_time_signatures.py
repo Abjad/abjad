@@ -7,14 +7,14 @@ def make_repeated_notes_from_time_signatures(time_signatures, pitch="c'"):
     ::
 
         notetools.make_repeated_notes_from_time_signatures([(2, 8), (3, 32)])
-        [[Note("c'8"), Note("c'8")], [Note("c'32"), Note("c'32"), Note("c'32")]]
+        [Selection(Note("c'8"), Note("c'8")), Selection(Note("c'32"), Note("c'32"), Note("c'32"))]
 
     Make repeated notes with `pitch` from `time_signatures`:
 
     ::
 
         >>> notetools.make_repeated_notes_from_time_signatures([(2, 8), (3, 32)], pitch="d''")
-        [[Note("d''8"), Note("d''8")], [Note("d''32"), Note("d''32"), Note("d''32")]]
+        [Selection(Note("d''8"), Note("d''8")), Selection(Note("d''32"), Note("d''32"), Note("d''32"))]
 
     Return two-dimensional list of note lists.
 
