@@ -4,47 +4,38 @@ from abjad.tools.tuplettools.Tuplet.Tuplet import Tuplet
 
 
 class FixedDurationTuplet(Tuplet):
-    r'''Abjad tuplet of fixed duration and variable multiplier:
+    r'''A tuplet with fixed duration and variable multiplier.
 
-    ::
+    ..  container:: example
 
-        >>> tuplet = tuplettools.FixedDurationTuplet(
-        ...     Fraction(2, 8), "c'8 d'8 e'8")
+            >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), [])
+            >>> tuplet.extend("c'8 d'8 e'8")
+            >>> show(tuplet) # doctest: +SKIP
 
-    ::
+        ..  doctest::
 
-        >>> tuplet
-        FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+            >>> f(tuplet)
+            \times 2/3 {
+                c'8
+                d'8
+                e'8
+            }
 
-    ..  doctest::
+        ::
 
-        >>> f(tuplet)
-        \times 2/3 {
-            c'8
-            d'8
-            e'8
-        }
+            >>> tuplet.append("fs'4")
+            >>> show(tuplet) # doctest: +SKIP
 
-    ::
+        ..  doctest::
 
-        >>> show(tuplet) # doctest: +SKIP
+            >>> f(tuplet)
+            \times 2/5 {
+                c'8
+                d'8
+                e'8
+                fs'4
+            }
 
-    ::
-
-        >>> tuplet.append("fs'4")
-        >>> f(tuplet)
-        \times 2/5 {
-            c'8
-            d'8
-            e'8
-            fs'4
-        }
-
-    ::
-
-        >>> show(tuplet) # doctest: +SKIP
-
-    Return fixed-duration tuplet.
     '''
 
     ### CLASS VARIABLES ###
@@ -70,13 +61,25 @@ class FixedDurationTuplet(Tuplet):
     ### SPECIAL METHODS ###
 
     def __getnewargs__(self):
+        '''Gets new arguments.
+
+        Returns tuple.
+        '''
         return (self.target_duration, )
 
     def __repr__(self):
+        '''Interpreter representation of fixd-duration tuplet.
+
+        Returns string.
+        '''
         return '%s(%s, [%s])' % (
             self._class_name, self.target_duration, self._summary)
 
     def __str__(self):
+        '''String representation of fixed-duration tuplet.
+
+        Returns string.
+        '''
         if 0 < len(self):
             return '{%s %s %s %s}' % (
                 self._signifier,
@@ -172,6 +175,43 @@ class FixedDurationTuplet(Tuplet):
         return property(**locals())
 
     ### PUBLIC METHODS ###
+
+    def to_fixed_multiplier(self):
+        r'''Change fixed-duration tuplet to (unqualified) tuplet.
+
+        ..  container:: example
+
+            **Example:**
+
+            ::
+
+                >>> tuplet = tuplettools.FixedDurationTuplet((2, 8), [])
+                >>> tuplet.extend("c'8 d'8 e'8")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ::
+
+                >>> tuplet
+                FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+
+            ::
+
+                >>> new_tuplet = tuplet.to_fixed_multiplier()
+                >>> show(new_tuplet) # doctest: +SKIP
+
+            ::
+
+                >>> new_tuplet
+                Tuplet(2/3, [c'8, d'8, e'8])
+
+        Return new tuplet.
+        '''
+        from abjad.tools import containertools
+        from abjad.tools import tuplettools
+        new_tuplet = tuplettools.Tuplet(self.multiplier, [])
+        containertools.move_parentage_children_and_spanners_from_components_to_empty_container(
+            [self], new_tuplet)
+        return new_tuplet
 
     def toggle_prolation(self):
         if self.is_diminution:

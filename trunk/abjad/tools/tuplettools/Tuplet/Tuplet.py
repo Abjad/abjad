@@ -1322,6 +1322,43 @@ class Tuplet(Container):
                     music.append(rests)
             return tuplettools.FixedDurationTuplet(duration, music)
 
+    def to_fixed_duration_tuplet(self):
+        r'''Change tuplet to fixed-duration tuplet.
+
+        ..  container:: example
+        
+            **Example:**
+
+            ::
+
+                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ::
+
+                >>> tuplet
+                Tuplet(2/3, [c'8, d'8, e'8])
+
+            ::
+
+                >>> new_tuplet = tuplet.to_fixed_duration_tuplet()
+                >>> show(new_tuplet) # doctest: +SKIP
+
+            ::
+                
+                >>> new_tuplet
+                FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+
+        Returns new tuplet.
+        '''
+        from abjad.tools import containertools
+        from abjad.tools import tuplettools
+        target_duration = self._preprolated_duration
+        new_tuplet = tuplettools.FixedDurationTuplet(target_duration, [])
+        containertools.move_parentage_children_and_spanners_from_components_to_empty_container(
+            [self], new_tuplet)
+        return new_tuplet
+
     def toggle_prolation(self):
         '''Changes augmented tuplets to diminished;
         changes diminished tuplets to augmented.

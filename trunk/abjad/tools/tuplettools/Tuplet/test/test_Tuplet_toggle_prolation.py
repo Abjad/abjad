@@ -35,7 +35,7 @@ def test_Tuplet_toggle_prolation_01():
     assert inspect(tuplet).is_well_formed()
 
 
-def test_FreeTupletSelection_diminished_to_augmented_01():
+def test_Tuplet_toggle_prolation_02():
     '''Change diminution to augmentation.
     '''
 
