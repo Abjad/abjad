@@ -382,16 +382,17 @@ class Container(Component):
     @apply
     def is_simultaneous():
         def fget(self):
-            r'''Set to true to interpret container contents in simultaneous.
-            Set to false to interpret container contents sequentially.
-
-            **Example 1.** Sequential container:
+            r'''Simultaneity status of container.
 
             ..  container:: example
 
+                **Example 1.** Get simultaneity status of container:
+
                 ::
 
-                    >>> container = Container([Voice("c'8 d'8 e'8"), Voice('g4.')])
+                    >>> container = Container()
+                    >>> container.append(Voice("c'8 d'8 e'8"))
+                    >>> container.append(Voice('g4.'))
                     >>> show(container) # doctest: +SKIP
 
                 ..  doctest::
@@ -413,9 +414,30 @@ class Container(Component):
                     >>> container.is_simultaneous
                     False
 
-            **Example 2.** simultaneous container:
-
             ..  container:: example
+
+                **Example 2.** Set simultaneity status of container:
+
+                ::
+
+                    >>> container = Container()
+                    >>> container.append(Voice("c'8 d'8 e'8"))
+                    >>> container.append(Voice('g4.'))
+                    >>> show(container) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(container)
+                    {
+                        \new Voice {
+                            c'8
+                            d'8
+                            e'8
+                        }
+                        \new Voice {
+                            g4.
+                        }
+                    }
 
                 ::
 
@@ -436,7 +458,7 @@ class Container(Component):
                         }
                     >>
 
-            Return boolean.
+            Returns boolean.
             '''
             return self._simultaneous
         def fset(self, expr):
@@ -469,7 +491,8 @@ class Container(Component):
         if self._all_are_orphan_components(music):
             self._music = list(music)
             self[:]._set_parents(self)
-        elif Selection._all_are_contiguous_components_in_same_logical_voice(music):
+        elif Selection._all_are_contiguous_components_in_same_logical_voice(
+            music):
             music = selectiontools.SliceSelection(music)
             parent, start, stop = music._get_parent_and_start_stop_indices()
             self._music = list(music)
@@ -763,9 +786,7 @@ class Container(Component):
     ### PUBLIC METHODS ###
 
     def append(self, component):
-        r'''Append `component` to container.
-
-        **Example**:
+        r'''Appends `component` to container.
 
         ..  container:: example
 
@@ -798,14 +819,12 @@ class Container(Component):
                     e'4
                 }
 
-        Return none.
+        Returns none.
         '''
         self.__setitem__(slice(len(self), len(self)), [component])
 
     def extend(self, expr):
-        r'''Extend container with `expr`.
-
-        **Example**:
+        r'''Extends container with `expr`.
 
         ..  container:: example
 
@@ -841,7 +860,7 @@ class Container(Component):
                     e'16
                 }
 
-        Return none.
+        Returns none.
         '''
         self.__setitem__(
             slice(len(self), len(self)), 
@@ -849,9 +868,7 @@ class Container(Component):
             )
 
     def index(self, component):
-        r'''Return index of `component` in container.
-
-        **Example**:
+        r'''Returns index of `component` in container.
 
         ..  container:: example
 
@@ -881,7 +898,7 @@ class Container(Component):
                 >>> container.index(note)
                 3
 
-        Return nonnegative integer.
+        Returns nonnegative integer.
         '''
         for i, element in enumerate(self._music):
             if element is component:
@@ -892,11 +909,11 @@ class Container(Component):
             raise ValueError(message)
 
     def insert(self, i, component, fracture_spanners=False):
-        r'''Insert `component` at index `i` in container.
-
-        **Example 1.** Insert note. Do not fracture spanners:
+        r'''Inserts `component` at index `i` in container.
 
         ..  container:: example
+
+            **Example 1.** Insert note. Do not fracture spanners:
 
             ::
 
@@ -950,9 +967,9 @@ class Container(Component):
                     fs16 )
                 }
 
-        **Example 2.** Insert note. Fracture spanners:
-
         ..  container:: example
+
+            **Example 2.** Insert note. Fracture spanners:
 
             ::
 
@@ -1006,7 +1023,7 @@ class Container(Component):
                     fs16 )
                 }
 
-        Return none.
+        Returns none.
         '''
         from abjad.tools import componenttools
         from abjad.tools import containertools
@@ -1033,9 +1050,7 @@ class Container(Component):
                     next_leaf, direction=Left))
 
     def pop(self, i=-1):
-        r'''Pop component from container at index `i`.
-
-        **Example**:
+        r'''Pops component from container at index `i`.
 
         ..  container:: example
 
@@ -1069,16 +1084,14 @@ class Container(Component):
                     f'4 )
                 }
 
-        Return component.
+        Returns component.
         '''
         component = self[i]
         del(self[i])
         return component
 
     def remove(self, component):
-        r'''Remove `component` from container.
-
-        **Example**:
+        r'''Removes `component` from container.
 
         ..  container:: example
 
@@ -1117,47 +1130,47 @@ class Container(Component):
                     e'4
                 }
 
-        Return none.
+        Returns none.
         '''
         i = self.index(component)
         del(self[i])
 
     def reverse(self):
-        r'''Reverse contents of container.
+        r'''Reverses contents of container.
 
-        **Example**:
+        ..  container:: example
+        
+            ::
 
-        ::
+                >>> staff = Staff("c'8 [ d'8 ] e'8 ( f'8 )")
+                >>> show(staff) # doctest: +SKIP
 
-            >>> staff = Staff("c'8 [ d'8 ] e'8 ( f'8 )")
-            >>> show(staff) # doctest: +SKIP
+            ..  doctest::
 
-        ..  doctest::
+                >>> f(staff)
+                \new Staff {
+                    c'8 [
+                    d'8 ]
+                    e'8 (
+                    f'8 )
+                }
 
-            >>> f(staff)
-            \new Staff {
-                c'8 [
-                d'8 ]
-                e'8 (
-                f'8 )
-            }
+            ::
 
-        ::
+                >>> staff.reverse()
+                >>> show(staff) # doctest: +SKIP
 
-            >>> staff.reverse()
-            >>> show(staff) # doctest: +SKIP
+            ..  doctest::
 
-        ..  doctest::
+                >>> f(staff) # doctest: +SKIP
+                \new Staff {
+                    f'8 (
+                    e'8 )
+                    d'8 [
+                    c'8 ]
+                }
 
-            >>> f(staff) # doctest: +SKIP
-            \new Staff {
-                f'8 (
-                e'8 )
-                d'8 [
-                c'8 ]
-            }
-
-        Return none.
+        Returns none.
         '''
         from abjad.tools import containertools
         from abjad.tools import spannertools
@@ -1183,11 +1196,9 @@ class Container(Component):
         recurse=True,
         allow_discontiguous_leaves=False,
         ):
-        r'''Select leaves in container.
+        r'''Selects leaves in container.
 
         ..  container:: example
-
-            **Example**:
 
             ::
 
@@ -1198,7 +1209,7 @@ class Container(Component):
                 >>> container.select_leaves()
                 ContiguousLeafSelection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"))
 
-        Return contiguous leaf selection or free leaf selection.
+        Returns contiguous leaf selection or free leaf selection.
         '''
         from abjad.tools import selectiontools
         return selectiontools.select_leaves(
@@ -1211,9 +1222,7 @@ class Container(Component):
             )
 
     def select_notes_and_chords(self):
-        r'''Select notes and chords in container.
-
-        **Example**:
+        r'''Selects notes and chords in container.
 
         ..  container:: example
 
@@ -1222,7 +1231,7 @@ class Container(Component):
                 >>> container.select_notes_and_chords()
                 FreeLeafSelection(Note("c'8"), Note("d'8"), Note("e'8"))
 
-        Return leaf selection.
+        Returns leaf selection.
         '''
         from abjad.tools import iterationtools
         from abjad.tools import selectiontools

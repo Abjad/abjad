@@ -173,6 +173,16 @@ class FixedDurationTuplet(Tuplet):
 
     ### PUBLIC METHODS ###
 
+    def toggle_prolation(self):
+        if self.is_diminution:
+            while self.is_diminution:
+                for leaf in self.select_leaves():
+                    leaf.written_duration /= 2
+        elif not self.is_diminution:
+            while not self.is_diminution:
+                for leaf in self.select_leaves():
+                    leaf.written_duration *= 2
+
     def trim(self, start, stop='unused'):
         r'''Trim fixed-duration tuplet elements from `start` to `stop`:
 

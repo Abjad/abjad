@@ -507,10 +507,10 @@ class Leaf(Component):
         if not tuplet.multiplier == 1:
             if is_diminution:
                 if not tuplet.is_diminution:
-                    tuplet._diminished_to_augmented()
+                    tuplet.toggle_prolation()
             else:
                 if tuplet.is_diminution:
-                    tuplet._diminished_to_augmented()
+                    tuplet.toggle_prolation()
         # give leaf position in score structure to tuplet
         componenttools.move_parentage_and_spanners_from_components_to_components(
             [self], [tuplet])

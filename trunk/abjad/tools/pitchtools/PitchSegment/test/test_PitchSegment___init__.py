@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_PitchSegment___init___02():
+def test_PitchSegment___init___01():
     r'''Init named chromatic pitch segment from named chromatic pitches.
     '''
 

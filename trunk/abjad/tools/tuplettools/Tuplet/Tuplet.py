@@ -9,84 +9,74 @@ from abjad.tools.containertools.Container import Container
 
 
 class Tuplet(Container):
-    r'''Abjad model of a tuplet:
+    r'''A tuplet.
 
-    ::
+    ..  container:: example
 
-        >>> tuplet = Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
+        ::
 
-    ::
+            >>> tuplet = Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
+            >>> show(tuplet) # doctest: +SKIP
 
-        >>> tuplet
-        Tuplet(2/3, [c'8, d'8, e'8])
+        ..  doctest::
 
-    ..  doctest::
-
-        >>> f(tuplet)
-        \times 2/3 {
-            c'8
-            d'8
-            e'8
-        }
-
-    ::
-
-        >>> show(tuplet) # doctest: +SKIP
-
-    Tuplets, like any counttime container, may nest arbitrarily:
-
-    ::
-
-        >>> second_tuplet = Tuplet((4, 7), "g'4. ( a'16 )")
-        >>> tuplet.insert(1, second_tuplet)
-
-    ..  doctest::
-
-        >>> f(tuplet)
-        \times 2/3 {
-            c'8
-            \times 4/7 {
-                g'4. (
-                a'16 )
+            >>> f(tuplet)
+            \times 2/3 {
+                c'8
+                d'8
+                e'8
             }
-            d'8
-            e'8
-        }
 
+    ..  container:: example
 
-    ::
+        ::
 
-        >>> show(tuplet) # doctest: +SKIP
+            >>> second_tuplet = Tuplet((4, 7), "g'4. ( a'16 )")
+            >>> tuplet.insert(1, second_tuplet)
+            >>> show(tuplet) # doctest: +SKIP
 
-    ::
+        ..  doctest::
 
-        >>> third_tuplet = Tuplet(
-        ...     (4, 5), "e''32 [ ef''32 d''32 cs''32 cqs''32 ]")
-        >>> second_tuplet.insert(1, third_tuplet)
-
-    ..  doctest::
-
-        >>> f(tuplet)
-        \times 2/3 {
-            c'8
-            \times 4/7 {
-                g'4. (
-                \times 4/5 {
-                    e''32 [
-                    ef''32
-                    d''32
-                    cs''32
-                    cqs''32 ]
+            >>> f(tuplet)
+            \times 2/3 {
+                c'8
+                \times 4/7 {
+                    g'4. (
+                    a'16 )
                 }
-                a'16 )
+                d'8
+                e'8
             }
-            d'8
-            e'8
-        }
 
-    ::
 
-        >>> show(tuplet) # doctest: +SKIP
+    ..  container:: example
+
+        ::
+
+            >>> third_tuplet = Tuplet((4, 5), [])
+            >>> third_tuplet.extend("e''32 [ ef''32 d''32 cs''32 cqs''32 ]")
+            >>> second_tuplet.insert(1, third_tuplet)
+            >>> show(tuplet) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(tuplet)
+            \times 2/3 {
+                c'8
+                \times 4/7 {
+                    g'4. (
+                    \times 4/5 {
+                        e''32 [
+                        ef''32
+                        d''32
+                        cs''32
+                        cqs''32 ]
+                    }
+                    a'16 )
+                }
+                d'8
+                e'8
+            }
 
     '''
 
@@ -116,12 +106,16 @@ class Tuplet(Container):
     ### SPECIAL METHODS ###
 
     def __getnewargs__(self):
+        '''Gets new arguments.
+
+        Returns tuple.
+        '''
         return (self.multiplier, )
 
     def __repr__(self):
         '''Interpreter representation of tuplet.
 
-        Return string.
+        Returns string.
         '''
         return '%s(%s, [%s])' % (
             self._class_name,
@@ -132,7 +126,7 @@ class Tuplet(Container):
     def __str__(self):
         '''String representation of tuplet.
 
-        Return string.
+        Returns string.
         '''
         if 0 < len(self):
             return '{%s %s %s %s}' % (
@@ -196,16 +190,6 @@ class Tuplet(Container):
 
     ### PRIVATE METHODS ###
 
-    def _augmented_to_diminished(self):
-        while not self.is_diminution:
-            for leaf in self.select_leaves():
-                leaf.written_duration *= 2
-
-    def _diminished_to_augmented(self):
-        while self.is_diminution:
-            for leaf in self.select_leaves():
-                leaf.written_duration /= 2
-    
     def _fix(self):
         from abjad.tools import leaftools
         from abjad.tools import tuplettools
@@ -302,9 +286,6 @@ class Tuplet(Container):
         return tuple(result)
 
     def _format_opening_slot(self, format_contributions):
-        r'''Tuple of format contributions to appear 
-        immediately after self opening.
-        '''
         result = []
         result.append(('comments', 
             format_contributions.get('opening', {}).get('comments', [])))
@@ -318,43 +299,52 @@ class Tuplet(Container):
     @apply
     def force_fraction():
         def fget(self):
-            r'''Read / write boolean to force ``n:m`` fraction in 
-            LilyPond format:
+            r'''Forced fraction formatting of tuplet.
 
-            ::
+            ..  container:: example
 
-                >>> tuplet = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
+                **Example 1.** Get forced fraction formatting of tuplet:
 
-            ::
+                ::
 
-                >>> tuplet.force_fraction is None
-                True
+                    >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                    >>> show(tuplet) # doctest: +SKIP
 
-            ..  doctest::
+                ..  doctest::
 
-                >>> f(tuplet)
-                \times 2/3 {
-                    c'8
-                    d'8
-                    e'8
-                }
+                    >>> f(tuplet)
+                    \times 2/3 {
+                        c'8
+                        d'8
+                        e'8
+                    }
 
 
-            ::
+                ::
+                    
+                    >>> tuplet.force_fraction is None
+                    True
 
-                >>> tuplet.force_fraction = True
+            ..  container:: example
 
-            ..  doctest::
+                **Example 2.** Set forced fraction formatting of tuplet:
 
-                >>> f(tuplet)
-                \tweak #'text #tuplet-number::calc-fraction-text
-                \times 2/3 {
-                    c'8
-                    d'8
-                    e'8
-                }
+                ::
 
-            Return boolean or none.
+                    >>> tuplet.force_fraction = True
+                    >>> show(tuplet) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(tuplet)
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 2/3 {
+                        c'8
+                        d'8
+                        e'8
+                    }
+
+            Returns boolean or none.
             '''
             return self._force_fraction
         def fset(self, arg):
@@ -367,27 +357,74 @@ class Tuplet(Container):
 
     @property
     def implied_prolation(self):
-        r'''Tuplet implied prolation.
+        r'''Implied prolation of tuplet.
+
+        ..  container:: example
+
+            ::
+
+                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ::
+
+                >>> tuplet.implied_prolation
+                Multiplier(2, 3)
 
         Defined equal to tuplet multiplier.
 
-        Return multiplier.
+        Returns multiplier.
         '''
         return self.multiplier
 
     @property
     def is_augmentation(self):
         r'''True when tuplet multiplier is greater than ``1``.
-        Otherwise false:
+        Otherwise false.
 
-        ::
+        ..  container:: example
 
-            >>> t = tuplettools.FixedDurationTuplet(
-            ...     Duration(2, 8), "c'8 d'8 e'8")
-            >>> t.is_augmentation
-            False
+            **Example 1.** Augmented tuplet:
 
-        Return boolean.
+            ::
+
+                >>> tuplet = Tuplet((4, 3), "c'8 d'8 e'8")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ::
+
+                >>> tuplet.is_augmentation
+                True
+
+        ..  container:: example
+
+            **Example 2.** Diminished tuplet:
+
+            ::
+
+                >>> tuplet = Tuplet((2, 3), "c'4 d'4 e'4")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ::
+
+                >>> tuplet.is_augmentation
+                False
+
+        ..  container:: example
+
+            **Example 3.** Trivial tuplet:
+
+            ::
+
+                >>> tuplet = Tuplet((1, 1), "c'8. d'8. e'8.")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ::
+
+                >>> tuplet.is_augmentation
+                False
+
+        Returns boolean.
         '''
         if self.multiplier:
             return 1 < self.multiplier
@@ -397,16 +434,51 @@ class Tuplet(Container):
     @property
     def is_diminution(self):
         r'''True when tuplet multiplier is less than ``1``.
-        Otherwise false:
+        Otherwise false.
 
-        ::
+        ..  container:: example
 
-            >>> t = tuplettools.FixedDurationTuplet(
-            ...     Duration(2, 8), "c'8 d'8 e'8")
-            >>> t.is_diminution
-            True
+            **Example 1.** Augmented tuplet:
 
-        Return boolean.
+            ::
+
+                >>> tuplet = Tuplet((4, 3), "c'8 d'8 e'8")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ::
+
+                >>> tuplet.is_diminution
+                False
+
+        ..  container:: example
+
+            **Example 2.** Diminished tuplet:
+
+            ::
+
+                >>> tuplet = Tuplet((2, 3), "c'4 d'4 e'4")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ::
+
+                >>> tuplet.is_diminution
+                True
+
+        ..  container:: example
+
+            **Example 3.** Trivial tuplet:
+
+            ::
+
+                >>> tuplet = Tuplet((1, 1), "c'8. d'8. e'8.")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ::
+
+                >>> tuplet.is_diminution
+                False
+
+        Returns boolean.
         '''
         if self.multiplier:
             return self.multiplier < 1
@@ -416,15 +488,16 @@ class Tuplet(Container):
     @apply
     def is_invisible():
         def fget(self):
-            r'''Set to true to hide tuplet bracket and tuplet number.
+            r'''Invisibility status of tuplet.
 
             ..  container:: example
 
-                **Example:**
+                **Example.** Get tuplet invisibility status:
 
                 ::
 
                     >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                    >>> show(tuplet) # doctest: +SKIP
 
                 ..  doctest::
 
@@ -437,30 +510,62 @@ class Tuplet(Container):
 
                 ::
 
-                    >>> show(tuplet) # doctest: +SKIP
+                    >>> tuplet.is_invisible is None
+                    True
+
+            ..  container:: example
+
+                **Example 2.** Set tuplet invisibility status:
 
                 ::
 
-                    >>> tuplet.is_invisible = True
+                    >>> tuplet_1 = Tuplet((2, 3), "c'4 d'4 e'4")
+                    >>> tuplet_2 = Tuplet((2, 3), "d'4 e'4 f'4")
+                    >>> staff = Staff([tuplet_1, tuplet_2])
+                    >>> show(staff) # doctest: +SKIP
 
                 ..  doctest::
 
-                    >>> f(tuplet)
-                    \scaleDurations #'(2 . 3) {
-                        c'8
-                        d'8
-                        e'8
+                    >>> f(staff)
+                    \new Staff {
+                        \times 2/3 {
+                            c'4
+                            d'4
+                            e'4
+                        }
+                        \times 2/3 {
+                            d'4
+                            e'4
+                            f'4
+                        }
                     }
-
+    
                 ::
 
-                    >>> show(tuplet) # doctest: +SKIP
+                    >>> staff[0].is_invisible = True
+                    >>> show(staff) # doctest: +SKIP
 
-            This has the effect of rendering no
-            no tuplet bracket and no tuplet number while preserving the 
-            rhythmic value of the tuplet and the contents of the tuplet.
+                ..  doctest::
 
-            Return boolean or none.
+                    >>> f(staff)
+                    \new Staff {
+                        \scaleDurations #'(2 . 3) {
+                            c'4
+                            d'4
+                            e'4
+                        }
+                        \times 2/3 {
+                            d'4
+                            e'4
+                            f'4
+                        }
+                    }
+
+            Hides tuplet bracket and tuplet number when true.
+
+            Preserves tuplet duration when true.
+
+            Returns boolean or none.
             '''
             return self._is_invisible
         def fset(self, arg):
@@ -485,16 +590,32 @@ class Tuplet(Container):
 
     @property
     def lilypond_format(self):
-        '''LilyPond format.
+        '''LilyPond format of tuplet.
 
-        Return string.
+        ..  container:: example
+
+            ::
+
+                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ::
+
+                >>> print tuplet.lilypond_format
+                \times 2/3 {
+                    c'8
+                    d'8
+                    e'8
+                }
+
+        Returns string.
         '''
         self._update_now(marks=True)
         return self._format_component()
 
     @property
     def multiplied_duration(self):
-        r'''Multiplied duration of tuplet:
+        r'''Multiplied duration of tuplet.
 
         ::
 
@@ -502,22 +623,45 @@ class Tuplet(Container):
             >>> tuplet.multiplied_duration
             Duration(1, 4)
 
-        Return duration.
+        Returns duration.
         '''
         return self.multiplier * self._contents_duration
 
     @apply
     def multiplier():
         def fget(self):
-            r'''Read / write tuplet multiplier:
+            r'''Tuplet multiplier.
 
-            ::
+            ..  container:: example
 
-                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-                >>> tuplet.multiplier
-                Multiplier(2, 3)
+                **Example 1.** Get tuplet multiplier:
 
-            Return multiplier.
+                    >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                    >>> show(tuplet) # doctest: +SKIP
+
+                ::
+
+                    >>> tuplet.multiplier
+                    Multiplier(2, 3)
+
+            ..  container:: example
+
+                **Example 2.** Set tuplet multiplier:
+
+                    >>> tuplet.multiplier = Multiplier(4, 3)
+                    >>> show(tuplet) # doctest: +SKIP
+
+                ..  doctest::
+                
+                    >>> f(tuplet)
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 4/3 {
+                        c'8
+                        d'8
+                        e'8
+                    }
+
+            Returns multiplier.
             '''
             return self._multiplier
         def fset(self, expr):
@@ -542,12 +686,47 @@ class Tuplet(Container):
 
             ..  container:: example
 
-                **Example:**
+                **Example 1.** Get preferred denominator of tuplet:
 
                 ::
 
                     >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                    >>> show(tuplet) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(tuplet)
+                    \times 2/3 {
+                        c'8
+                        d'8
+                        e'8
+                    }
+
+                ::
+
+                    >>> tuplet.preferred_denominator is None
+                    True
+
+            ..  container:: example
+
+                **Example 2.** Set preferred denominator of tuplet:
+
+                ::
+
+                    >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                    >>> show(tuplet) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(tuplet)
+                    \times 2/3 {
+                        c'8
+                        d'8
+                        e'8
+                    }
+
                     >>> tuplet.preferred_denominator = 4
+                    >>> show(tuplet) # doctest: +SKIP
 
                 ..  doctest::
 
@@ -558,11 +737,7 @@ class Tuplet(Container):
                         e'8
                     }
 
-                ::
-
-                    >>> show(tuplet) # doctest: +SKIP
-
-            Return positive integer or none.
+            Returns positive integer or none.
             '''
             return self._preferred_denominator
         def fset(self, arg):
@@ -584,102 +759,252 @@ class Tuplet(Container):
         decrease_durations_monotonically=True,
         is_diminution=True,
         ):
-        r'''Make tuplet from `duration` and `proportions`.
+        r'''Makes tuplet from `duration` and `proportions`.
 
         ..  container:: example
 
             **Example 1.** Make augmented tuplet from `duration` and 
             `proportions` and avoid dots.
 
-            Return tupletted leaves strictly without dots when all `proportions` 
-            equal ``1``:
+            Make tupletted leaves strictly without dots when all 
+            `proportions` equal ``1``:
 
             ::
 
-                >>> print Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16), [1, 1, 1, -1, -1], avoid_dots=True,
-                ...     is_diminution=False)
-                {@ 5:6 c'32, c'32, c'32, r32, r32 @}
+                >>> tuplet = Tuplet.from_duration_and_ratio(
+                ...     Duration(3, 16), 
+                ...     [1, 1, 1, -1, -1], 
+                ...     avoid_dots=True,
+                ...     is_diminution=False,
+                ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+               
+                >>> f(measure)
+                {
+                    \time 3/16
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 6/5 {
+                        c'32
+                        c'32
+                        c'32
+                        r32
+                        r32
+                    }
+                }
 
             Allow tupletted leaves to return with dots when some `proportions` 
             do not equal ``1``:
 
             ::
 
-                >>> print Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16), [1, -2, -2, 3, 3], avoid_dots=True,
-                ...     is_diminution=False)
-                {@ 11:12 c'64, r32, r32, c'32., c'32. @}
+                >>> tuplet = Tuplet.from_duration_and_ratio(
+                ...     Duration(3, 16), 
+                ...     [1, -2, -2, 3, 3], 
+                ...     avoid_dots=True,
+                ...     is_diminution=False,
+                ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(measure) # doctest: +SKIP
+
+            ::
+
+                >>> f(measure)
+                {
+                    \time 3/16
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 12/11 {
+                        c'64
+                        r32
+                        r32
+                        c'32.
+                        c'32.
+                    }
+                }
 
             Interpret nonassignable `proportions` according to
             `decrease_durations_monotonically`:
 
             ::
 
-                >>> print Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16), [5, -1, 5], avoid_dots=True,
+                >>> tuplet = Tuplet.from_duration_and_ratio(
+                ...     Duration(3, 16), 
+                ...     [5, -1, 5], 
+                ...     avoid_dots=True,
                 ...     decrease_durations_monotonically=False,
-                ...     is_diminution=False)
-                {@ 11:12 c'64, c'16, r64, c'64, c'16 @}
+                ...     is_diminution=False,
+                ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(measure)
+                {
+                    \time 3/16
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 12/11 {
+                        c'64 ~
+                        c'16
+                        r64
+                        c'64 ~
+                        c'16
+                    }
+                }
 
         ..  container:: example
 
-            **Example 2.** Make augmented tuplet from `duration` and `proportions` 
-            and encourage dots:
+            **Example 2.** Make augmented tuplet from `duration` and 
+            `proportions` and encourage dots:
 
             ::
 
-                >>> Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16), [1, 1, 1, -1, -1], avoid_dots=False,
-                ...     is_diminution=False)
-                FixedDurationTuplet(3/16, [c'64., c'64., c'64., r64., r64.])
+                >>> tuplet = Tuplet.from_duration_and_ratio(
+                ...     Duration(3, 16), 
+                ...     [1, 1, 1, -1, -1], 
+                ...     avoid_dots=False,
+                ...     is_diminution=False,
+                ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(measure)
+                {
+                    \time 3/16
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 8/5 {
+                        c'64.
+                        c'64.
+                        c'64.
+                        r64.
+                        r64.
+                    }
+                }
 
             Interpret nonassignable `proportions` according to
             `decrease_durations_monotonically`:
 
             ::
 
-                >>> Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16), [5, -1, 5], avoid_dots=False,
+                >>> tuplet = Tuplet.from_duration_and_ratio(
+                ...     Duration(3, 16), 
+                ...     [5, -1, 5], 
+                ...     avoid_dots=False,
                 ...     decrease_durations_monotonically=False,
-                ...     is_diminution=False)
-                FixedDurationTuplet(3/16, [c'32..., r128., c'32...])
+                ...     is_diminution=False,
+                ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(measure)
+                {
+                    \time 3/16
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 16/11 {
+                        c'32...
+                        r128.
+                        c'32...
+                    }
+                }
 
         ..  container:: example
 
             **Example 3.** Make diminished tuplet from `duration` and nonzero 
             integer `proportions`.
 
-            Return tupletted leaves strictly without dots when all `proportions` 
-            equal ``1``:
+            Make tupletted leaves strictly without dots when all 
+            `proportions` equal ``1``:
 
             ::
 
-                >>> print Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16), [1, 1, 1, -1, -1], avoid_dots=True,
-                ...     is_diminution=True)
-                {@ 5:3 c'16, c'16, c'16, r16, r16 @}
+                >>> tuplet = Tuplet.from_duration_and_ratio(
+                ...     Duration(3, 16), 
+                ...     [1, 1, 1, -1, -1], 
+                ...     avoid_dots=True,
+                ...     is_diminution=True,
+                ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(measure)
+                {
+                    \time 3/16
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 3/5 {
+                        c'16
+                        c'16
+                        c'16
+                        r16
+                        r16
+                    }
+                }
 
             Allow tupletted leaves to return with dots when some `proportions` 
             do not equal ``1``:
 
             ::
 
-                >>> print Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16), [1, -2, -2, 3, 3], avoid_dots=True,
-                ...     is_diminution=True)
-                {@ 11:6 c'32, r16, r16, c'16., c'16. @}
+                >>> tuplet = Tuplet.from_duration_and_ratio(
+                ...     Duration(3, 16), 
+                ...     [1, -2, -2, 3, 3], 
+                ...     avoid_dots=True,
+                ...     is_diminution=True,
+                ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(measure)
+                {
+                    \time 3/16
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 6/11 {
+                        c'32
+                        r16
+                        r16
+                        c'16.
+                        c'16.
+                    }
+                }
 
             Interpret nonassignable `proportions` according to
             `decrease_durations_monotonically`:
 
             ::
 
-                >>> print Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16), [5, -1, 5], avoid_dots=True,
+                >>> tuplet = Tuplet.from_duration_and_ratio(
+                ...     Duration(3, 16), 
+                ...     [5, -1, 5], 
+                ...     avoid_dots=True,
                 ...     decrease_durations_monotonically=False,
-                ...     is_diminution=True)
-                {@ 11:6 c'32, c'8, r32, c'32, c'8 @}
+                ...     is_diminution=True,
+                ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(measure)
+                {
+                    \time 3/16
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 6/11 {
+                        c'32 ~
+                        c'8
+                        r32
+                        c'32 ~
+                        c'8
+                    }
+                }
 
         ..  container:: example
         
@@ -688,26 +1013,60 @@ class Tuplet(Container):
 
             ::
 
-                >>> Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16), [1, 1, 1, -1, -1], avoid_dots=False,
-                ...     is_diminution=True)
-                FixedDurationTuplet(3/16, [c'32., c'32., c'32., r32., r32.])
+                >>> tuplet = Tuplet.from_duration_and_ratio(
+                ...     Duration(3, 16), 
+                ...     [1, 1, 1, -1, -1], 
+                ...     avoid_dots=False,
+                ...     is_diminution=True,
+                ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(measure)
+                {
+                    \time 3/16
+                    \times 4/5 {
+                        c'32.
+                        c'32.
+                        c'32.
+                        r32.
+                        r32.
+                    }
+                }
 
             Interpret nonassignable `proportions` according to `direction`:
 
             ::
 
-                >>> Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16), [5, -1, 5], avoid_dots=False,
+                >>> tuplet = Tuplet.from_duration_and_ratio(
+                ...     Duration(3, 16), 
+                ...     [5, -1, 5], 
+                ...     avoid_dots=False,
                 ...     decrease_durations_monotonically=False,
-                ...     is_diminution=True)
-                FixedDurationTuplet(3/16, [c'16..., r64., c'16...])
+                ...     is_diminution=True,
+                ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(measure) # doctest: +SKIP
 
-        Reduce `proportions` relative to each other.
+            ..  doctest::
 
-        Interpret negative `proportions` as rests.
+                >>> f(measure)
+                {
+                    \time 3/16
+                    \times 8/11 {
+                        c'16...
+                        r64.
+                        c'16...
+                    }
+                }
 
-        Return fixed-duration tuplet.
+        Reduces `proportions` relative to each other.
+
+        Interprets negative `proportions` as rests.
+
+        Returns fixed-duration tuplet.
         '''
         from abjad.tools import leaftools
         from abjad.tools import notetools
@@ -734,8 +1093,10 @@ class Tuplet(Container):
         written_durations = [x * basic_written_duration for x in proportions]
         # make tuplet leaves
         try:
-            notes = [notetools.Note(0, x) 
-                if 0 < x else resttools.Rest(abs(x)) for x in written_durations]
+            notes = [
+                notetools.Note(0, x) if 0 < x else resttools.Rest(abs(x)) 
+                for x in written_durations
+                ]
         except AssignabilityError:
             denominator = duration._denominator
             note_durations = [durationtools.Duration(x, denominator) 
@@ -757,17 +1118,16 @@ class Tuplet(Container):
         if not tuplet.multiplier == 1:
             if is_diminution:
                 if not tuplet.is_diminution:
-                    tuplet._augmented_to_diminshed()
+                    tuplet.toggle_prolation()
             else:
                 if tuplet.is_diminution:
-                    tuplet._diminished_to_augmented()
+                    tuplet.toggle_prolation()
         # return tuplet
         return tuplet
 
-
     @staticmethod
     def from_ratio_and_nonreduced_fraction(proportions, (n, d)):
-        r'''Divide nonreduced fraction `(n, d)` according to `proportions`.
+        r'''Makes tuplet from `proportions` and nonreduced fraction `(n, d)`.
 
         ..  container:: example
 
@@ -776,46 +1136,148 @@ class Tuplet(Container):
             ::
 
                 >>> ratio = [1]
-                >>> Tuplet.from_ratio_and_nonreduced_fraction(ratio, (7, 16))
-                {c'4..}
+                >>> tuplet = Tuplet.from_ratio_and_nonreduced_fraction(
+                ...     [1],
+                ...     (7, 16),
+                ...     )
+                >>> measure = Measure((7, 16), [tuplet])
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(measure)
+                {
+                    \time 7/16
+                    {
+                        c'4..
+                    }
+                }
 
         ..  container:: example
 
-            **Example 2.** Make fixed-duration tuplet when prolation is necessary:
+            **Example 2.** Make fixed-duration tuplet when 
+            prolation is necessary:
 
             ::
 
-                >>> ratio = [1, 2]
-                >>> Tuplet.from_ratio_and_nonreduced_fraction(ratio, (7, 16))
-                FixedDurationTuplet(7/16, [c'8, c'4])
+                >>> tuplet = Tuplet.from_ratio_and_nonreduced_fraction(
+                ...     [1, 2],
+                ...     (7, 16),
+                ...     )
+                >>> measure = Measure((7, 16), [tuplet])
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(measure)
+                {
+                    \time 7/16
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 7/6 {
+                        c'8
+                        c'4
+                    }
+                }
 
             ::
 
                 >>> ratio = [1, 2, 4]
-                >>> Tuplet.from_ratio_and_nonreduced_fraction(ratio, (7, 16))
-                FixedDurationTuplet(7/16, [c'16, c'8, c'4])
+                >>> tuplet = Tuplet.from_ratio_and_nonreduced_fraction(
+                ...     [1, 2, 4],
+                ...     (7, 16),
+                ...     )
+                >>> measure = Measure((7, 16), [tuplet])
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(measure)
+                {
+                    \time 7/16
+                    {
+                        c'16
+                        c'8
+                        c'4
+                    }
+                }
 
             ::
 
                 >>> ratio = [1, 2, 4, 1]
-                >>> Tuplet.from_ratio_and_nonreduced_fraction(ratio, (7, 16))
-                FixedDurationTuplet(7/16, [c'16, c'8, c'4, c'16])
+                >>> tuplet = Tuplet.from_ratio_and_nonreduced_fraction(
+                ...     [1, 2, 4, 1],
+                ...     (7, 16),
+                ...     )
+                >>> measure = Measure((7, 16), [tuplet])
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(measure)
+                {
+                    \time 7/16
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 7/8 {
+                        c'16
+                        c'8
+                        c'4
+                        c'16
+                    }
+                }
 
             ::
 
                 >>> ratio = [1, 2, 4, 1, 2]
-                >>> Tuplet.from_ratio_and_nonreduced_fraction(ratio, (7, 16))
-                FixedDurationTuplet(7/16, [c'16, c'8, c'4, c'16, c'8])
+                >>> tuplet = Tuplet.from_ratio_and_nonreduced_fraction(
+                ...     [1, 2, 4, 1, 2],
+                ...     (7, 16),
+                ...     )
+                >>> measure = Measure((7, 16), [tuplet])
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(measure)
+                {
+                    \time 7/16
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 7/10 {
+                        c'16
+                        c'8
+                        c'4
+                        c'16
+                        c'8
+                    }
+                }
 
             ::
 
                 >>> ratio = [1, 2, 4, 1, 2, 4]
-                >>> Tuplet.from_ratio_and_nonreduced_fraction(ratio, (7, 16))
-                FixedDurationTuplet(7/16, [c'16, c'8, c'4, c'16, c'8, c'4])
+                >>> tuplet = Tuplet.from_ratio_and_nonreduced_fraction(
+                ...     [1, 2, 4, 1, 2, 4],
+                ...     (7, 16),
+                ...     )
+                >>> measure = Measure((7, 16), [tuplet])
+                >>> show(measure) # doctest: +SKIP
 
-        Note that method interprets `d` as tuplet denominator.
+            ..  doctest::
 
-        Return tuplet or container.
+                >>> f(measure)
+                {
+                    \time 7/16
+                    \times 1/2 {
+                        c'16
+                        c'8
+                        c'4
+                        c'16
+                        c'8
+                        c'4
+                    }
+                }
+
+        Interprets `d` as tuplet denominator.
+
+        Returns tuplet or container.
         '''
         from abjad.tools import containertools
         from abjad.tools import notetools
@@ -859,3 +1321,94 @@ class Tuplet(Container):
                     rests = resttools.Rest((-x, denominator))
                     music.append(rests)
             return tuplettools.FixedDurationTuplet(duration, music)
+
+    def toggle_prolation(self):
+        '''Changes augmented tuplets to diminished;
+        changes diminished tuplets to augmented.
+
+        ..  container:: example
+        
+            **Example 1.** Change augmented tuplet to diminished:
+
+            ::
+
+                >>> tuplet = Tuplet((4, 3), "c'8 d'8 e'8")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 4/3 {
+                    c'8
+                    d'8
+                    e'8
+                }
+
+            ::
+
+                >>> tuplet.toggle_prolation()
+                >>> show(tuplet) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                \times 2/3 {
+                    c'4
+                    d'4
+                    e'4
+                }
+
+            Multiplies the written duration of the leaves in tuplet
+            by the least power of ``2`` necessary to diminshed tuplet.
+
+        ..  container:: example
+
+            **Example 2.** Change diminished tuplet to augmented:
+
+            ::
+
+                >>> tuplet = Tuplet((2, 3), "c'4 d'4 e'4")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                \times 2/3 {
+                    c'4
+                    d'4
+                    e'4
+                }
+
+            ::
+
+                >>> tuplet.toggle_prolation()
+                >>> show(tuplet) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 4/3 {
+                    c'8
+                    d'8
+                    e'8
+                }
+
+            Divides the written duration of the leaves in tuplet
+            by the least power of ``2`` necessary to diminshed tuplet.
+
+        Does not yet work with nested tuplets.
+
+        Returns none.
+        '''
+        if self.is_diminution:
+            while self.is_diminution:
+                self.multiplier *= 2
+                for leaf in self.select_leaves():
+                    leaf.written_duration /= 2
+        elif not self.is_diminution:
+            while not self.is_diminution:
+                self.multiplier /= 2
+                for leaf in self.select_leaves():
+                    leaf.written_duration *= 2
