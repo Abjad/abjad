@@ -861,6 +861,347 @@ class Tuplet(Container):
         return super(Tuplet, self).extract()
 
     @staticmethod
+    def from_leaf_and_ratio(leaf, proportions, is_diminution=True):
+        r'''Change `leaf` to tuplet with `proportions`.
+
+        ::
+
+            >>> note = Note("c'8.")
+            >>> selection = selectiontools.FreeLeafSelection(music=note)
+
+        ..  container:: example
+
+            **Example 1a.** Change leaf to augmented tuplets 
+            with `proportions`:
+
+            ::
+
+                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                ...     note,
+                ...     [1], 
+                ...     is_diminution=False,
+                ...     )
+
+            ..  doctest::
+
+                >>> f(tuplet) 
+                {
+                    c'8.
+                }
+
+            ::
+
+                >>> show(stafftools.RhythmicStaff([tuplet])) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 1b.** Change leaf to augmented tuplets 
+            with `proportions`:
+
+            ::
+
+                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                ...     note,
+                ...     [1, 2], 
+                ...     is_diminution=False,
+                ...     )
+
+            ..  doctest::
+
+                >>> f(tuplet) 
+                {
+                    c'16
+                    c'8
+                }
+
+            ::
+
+                >>> show(stafftools.RhythmicStaff([tuplet])) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 1c.** Change leaf to augmented tuplets 
+            with `proportions`:
+
+            ::
+
+                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                ...     note,
+                ...     [1, 2, 2], 
+                ...     is_diminution=False,
+                ...     )
+
+            ..  doctest::
+
+                >>> f(tuplet) 
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 8/5 {
+                    c'64.
+                    c'32.
+                    c'32.
+                }
+
+            ::
+
+                >>> show(stafftools.RhythmicStaff([tuplet])) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 1d.** Change leaf to augmented tuplets 
+            with `proportions`:
+
+            ::
+
+                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                ...     note,
+                ...     [1, 2, 2, 3], 
+                ...     is_diminution=False,
+                ...     )
+
+            ..  doctest::
+
+                >>> f(tuplet) 
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 3/2 {
+                    c'64
+                    c'32
+                    c'32
+                    c'32.
+                }
+
+            ::
+
+                >>> show(stafftools.RhythmicStaff([tuplet])) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 1e.** Change leaf to augmented tuplets 
+            with `proportions`:
+
+            ::
+
+                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                ...     note,
+                ...     [1, 2, 2, 3, 3], 
+                ...     is_diminution=False,
+                ...     )
+
+            ..  doctest::
+
+                >>> f(tuplet) 
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 12/11 {
+                    c'64
+                    c'32
+                    c'32
+                    c'32.
+                    c'32.
+                }
+
+            ::
+
+                >>> show(stafftools.RhythmicStaff([tuplet])) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 1f.** Change leaf to augmented tuplets 
+            with `proportions`:
+
+            ::
+
+                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                ...     note,
+                ...     [1, 2, 2, 3, 3, 4], 
+                ...     is_diminution=False,
+                ...     )
+
+            ..  doctest::
+
+                >>> f(tuplet) 
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 8/5 {
+                    c'128
+                    c'64
+                    c'64
+                    c'64.
+                    c'64.
+                    c'32
+                }
+
+            ::
+
+                >>> show(stafftools.RhythmicStaff([tuplet])) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 2a.** Change leaf to diminished tuplets 
+            with `proportions`:
+
+            ::
+
+                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                ...     note,
+                ...     [1], 
+                ...     is_diminution=True,
+                ...     )
+
+            ..  doctest::
+
+                >>> f(tuplet) 
+                {
+                    c'8.
+                }
+
+            ::
+
+                >>> show(stafftools.RhythmicStaff([tuplet])) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 2b.** Change leaf to diminished tuplets 
+            with `proportions`:
+
+            ::
+
+                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                ...     note,
+                ...     [1, 2], 
+                ...     is_diminution=True,
+                ...     )
+
+            ..  doctest::
+
+                >>> f(tuplet) 
+                {
+                    c'16
+                    c'8
+                }
+
+            ::
+
+                >>> show(stafftools.RhythmicStaff([tuplet])) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 2c.** Change leaf to diminished tuplets 
+            with `proportions`:
+
+            ::
+
+                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                ...     note,
+                ...     [1, 2, 2], 
+                ...     is_diminution=True,
+                ...     )
+
+            ..  doctest::
+
+                >>> f(tuplet) 
+                \times 4/5 {
+                    c'32.
+                    c'16.
+                    c'16.
+                }
+                
+            ::
+
+                >>> show(stafftools.RhythmicStaff([tuplet])) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 2d.** Change leaf to diminished tuplets 
+            with `proportions`:
+
+            ::
+
+                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                ...     note,
+                ...     [1, 2, 2, 3], 
+                ...     is_diminution=True,
+                ...     )
+
+            ..  doctest::
+
+                >>> f(tuplet) 
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 3/4 {
+                    c'32
+                    c'16
+                    c'16
+                    c'16.
+                }
+
+            ::
+
+                >>> show(stafftools.RhythmicStaff([tuplet])) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 2e.** Change leaf to diminished tuplets 
+            with `proportions`:
+
+            ::
+
+                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                ...     note,
+                ...     [1, 2, 2, 3, 3], 
+                ...     is_diminution=True,
+                ...     )
+
+            ..  doctest::
+
+                >>> f(tuplet) 
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 6/11 {
+                    c'32
+                    c'16
+                    c'16
+                    c'16.
+                    c'16.
+                }
+
+            ::
+
+                >>> show(stafftools.RhythmicStaff([tuplet])) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 2f.** Change leaf to diminished tuplets 
+            with `proportions`:
+
+            ::
+
+                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                ...     note,
+                ...     [1, 2, 2, 3, 3, 4], 
+                ...     is_diminution=True,
+                ...     )
+
+            ..  doctest::
+
+                >>> f(tuplet) 
+                \times 4/5 {
+                    c'64
+                    c'32
+                    c'32
+                    c'32.
+                    c'32.
+                    c'16
+                }
+
+            ::
+
+                >>> show(stafftools.RhythmicStaff([tuplet])) # doctest: +SKIP
+
+        Returns tuplet.
+        '''
+        tuplet = leaf._to_tuplet_with_ratio(
+            proportions, 
+            is_diminution=is_diminution,
+            )
+        return tuplet
+
+    @staticmethod
     def from_duration_and_ratio(
         duration,
         proportions,
