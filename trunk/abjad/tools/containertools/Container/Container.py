@@ -81,9 +81,11 @@ class Container(Component):
         Return none.
         '''
         components = self[i]
-        if not isinstance(components, selectiontools.SliceSelection):
+        #if not isinstance(components, selectiontools.SliceSelection):
+        if not isinstance(components, selectiontools.Selection):
             components = selectiontools.SliceSelection([components])
-        components._withdraw_from_crossing_spanners()
+        if not self.is_simultaneous:
+            components._withdraw_from_crossing_spanners()
         components._set_parents(None)
 
     def __getitem__(self, i):
@@ -325,15 +327,19 @@ class Container(Component):
             old = self[i]
             spanners_receipt = \
                 spannertools.get_spanners_that_dominate_components([old])
-            # must withdraw from spanners before parentage!
+            for child in iterationtools.iterate_components_in_expr([old]):
+                for spanner in child._get_spanners():
+                    spanner._remove(child)
+            if i < 0:
+                i = len(self) + i
+            del(self[i])
+            # must withdraw from spanners before withdrawing from parentage!
             # otherwise begin / end assessments don't work!
             if withdraw_components_in_expr_from_crossing_spanners:
                 selection = selectiontools.SliceSelection([expr])
                 selection._withdraw_from_crossing_spanners()
             expr._set_parent(self)
             self._music.insert(i, expr)
-            componenttools.remove_component_subtree_from_score_and_spanners(
-                [old])
             for spanner, index in spanners_receipt:
                 spanner._insert(index, expr)
                 expr._spanners.add(spanner)
@@ -358,8 +364,12 @@ class Container(Component):
             spanners_receipt = \
                 spannertools.get_spanners_that_dominate_container_components_from_to(
                 self, start, stop)
-            componenttools.remove_component_subtree_from_score_and_spanners(
-                old)
+            for component in old:
+                for child in iterationtools.iterate_components_in_expr(
+                    [component]):
+                    for spanner in child._get_spanners():
+                        spanner._remove(child)
+            del(self[start:stop])
             # must withdraw before setting in self!
             # otherwise circular withdraw ensues!
             if withdraw_components_in_expr_from_crossing_spanners:

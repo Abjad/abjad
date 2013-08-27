@@ -162,6 +162,7 @@ def remove_component_subtree_from_score_and_spanners(components):
     '''
     from abjad.tools import componenttools
     from abjad.tools import iterationtools
+    from abjad.tools import selectiontools
 
     # check input
     assert all(isinstance(x, componenttools.Component) for x in components)

@@ -522,8 +522,8 @@ def test_Container___setitem___slice_12():
 
 
 def test_Container___setitem___slice_13():
-    r'''You can use the slice for of setitem to empty the contents
-    of a container. When you do this, emptied components withdraw
+    r'''You can use setitem to empty the contents of a container.
+    When you do this, emptied components withdraw
     from absolutely all spanners.
 
     On the other hand, if you want to empty a container and
@@ -536,30 +536,24 @@ def test_Container___setitem___slice_13():
     outer = Container([inner])
     beam = spannertools.BeamSpanner(inner[:])
 
-    r'''
-    \new Staff {
-        c'8
-        {
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            c'8
             {
-                d'8 [
-                e'8 ]
+                {
+                    d'8 [
+                    e'8 ]
+                }
             }
+            f'8
         }
-        f'8
-    }
-    '''
+        '''
+        )
 
-    # set outer container contents to empty
+    # empty outer container
     outer[:] = []
-
-    r'''
-    \new Staff {
-        c'8
-        {
-        }
-        f'8
-    }
-    '''
 
     assert testtools.compare(
         staff,
@@ -572,13 +566,6 @@ def test_Container___setitem___slice_13():
         }
         '''
         )
-
-    r'''
-    {
-        d'8
-        e'8
-    }
-    '''
 
     # inner container leaves DO withdraw from all spanners
     assert testtools.compare(

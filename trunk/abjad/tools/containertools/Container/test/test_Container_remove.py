@@ -15,28 +15,21 @@ def test_Container_remove_01():
     spannertools.SlurSpanner(voice[:])
     spannertools.BeamSpanner(voice[1])
 
-    r'''
-    \new Voice {
-        c'8 (
-        d'8 [ ]
-        e'8
-        f'8 )
-    }
-    '''
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            c'8 (
+            d'8 [ ]
+            e'8
+            f'8 )
+        }
+        '''
+        )
 
-    #result = voice.remove(voice[1])
     note = voice[1]
     voice.remove(note)
 
-    r'''
-    \new Voice {
-        c'8 (
-        e'8
-        f'8 )
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -50,10 +43,10 @@ def test_Container_remove_01():
 
     "Note is now d'8 [ ]"
 
-    #assert inspect(result).is_well_formed()
-    assert inspect(note).is_well_formed()
-    #assert result.lilypond_format == "d'8 [ ]"
     assert note.lilypond_format == "d'8 [ ]"
+
+    assert inspect(voice).is_well_formed()
+    assert inspect(note).is_well_formed()
 
 
 def test_Container_remove_02():

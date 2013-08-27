@@ -340,6 +340,12 @@ class Selection(object):
             for component in self:
                 yield component
 
+    def _set_parents(self, new_parent):
+        r'''Not composer-safe.
+        '''
+        for component in self._music:
+            component._set_parent(new_parent)
+
     ### PUBLIC METHODS ###
 
     def get_duration(self, in_seconds=False):
