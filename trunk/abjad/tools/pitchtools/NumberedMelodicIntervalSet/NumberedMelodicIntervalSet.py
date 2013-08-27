@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.pitchtools.Set import Set
+from abjad.tools.pitchtools.IntervalSet import IntervalSet
 
 
-class NumberedMelodicIntervalSet(Set):
+class NumberedMelodicIntervalSet(IntervalSet):
     '''Abjad model of melodic chromatic interval set:
 
     ::
@@ -13,13 +13,16 @@ class NumberedMelodicIntervalSet(Set):
     Melodic chromatic interval sets are immutable.
     '''
 
-    ### CONSTRUCTOR ###
+    ### INITIALIZER ###
 
-    def __new__(self, interval_tokens):
-        from abjad.tools import pitchtools
-        mcis = [pitchtools.NumberedMelodicInterval(x) 
-            for x in interval_tokens]
-        return frozenset.__new__(self, mcis)
+    def __init__(self, tokens=None, item_class=None, name=None):
+        from abjad.tools import pitchtools 
+        IntervalSet.__init__(
+            self,
+            tokens=tokens,
+            item_class=pitchtools.NumberedMelodicInterval,
+            name=name,
+            )
 
     ### SPECIAL METHODS ###
 

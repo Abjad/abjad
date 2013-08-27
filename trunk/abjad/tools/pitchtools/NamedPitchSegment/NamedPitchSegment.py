@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import mathtools
-from abjad.tools.pitchtools.Segment import Segment
+from abjad.tools.pitchtools.PitchSegment import PitchSegment
 
 
-class NamedPitchSegment(Segment):
-    '''Abjad model of a named chromatic pitch segment:
+class NamedPitchSegment(PitchSegment):
+    '''Abjad model of a named pitch segment:
 
     ::
 
@@ -12,7 +12,7 @@ class NamedPitchSegment(Segment):
         ...     ['bf', 'bqf', "fs'", "g'", 'bqf', "g'"])
         NamedPitchSegment("bf bqf fs' g' bqf g'")
 
-    Named chromtic pitch segments are immutable.
+    Return named pitch segment.
     '''
 
     ### CLASS VARIABLES ###
@@ -21,14 +21,14 @@ class NamedPitchSegment(Segment):
 
     ### CONSTRUCTOR ###
 
-    def __new__(self, *args):
+    def __init__(self, tokens=None, item_class=None, name=None):
         from abjad.tools import pitchtools
-        if len(args) == 1 and isinstance(args[0], str):
-                pitches = [pitchtools.NamedPitch(x) 
-                    for x in args[0].split()]
-        else:
-            pitches = [pitchtools.NamedPitch(x) for x in args[0]]
-        return tuple.__new__(self, pitches)
+        PitchSegment.__init__(
+            self,
+            tokens=tokens,
+            item_class=pitchtools.NamedPitch,
+            name=name,
+            )
 
     ### SPECIAL METHODS ###
 

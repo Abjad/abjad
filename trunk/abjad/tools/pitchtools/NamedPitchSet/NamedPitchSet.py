@@ -1,15 +1,15 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.pitchtools.Set import Set
+from abjad.tools.pitchtools.PitchSet import PitchSet
 
 
-class NamedPitchSet(Set):
+class NamedPitchSet(PitchSet):
     '''Abjad model of a named chromatic pitch set:
 
     ::
 
         >>> pitchtools.NamedPitchSet(
         ...     ['bf', 'bqf', "fs'", "g'", 'bqf', "g'"])
-        NamedPitchSet(['bf', 'bqf', "fs'", "g'"])
+        NamedPitchSet(['bf', "fs'", 'bqf', "g'"])
 
     Named chromatic pitch sets are immutable.
     '''
@@ -18,34 +18,18 @@ class NamedPitchSet(Set):
 
     __slots__ = ()
 
-    ### CONSTRUCTOR ###
+    ### INITIALIZER ###
 
-    def __new__(cls, pitchs):
-        from abjad.tools import notetools
-        from abjad.tools import pitchtools
-        pitches = []
-        for pitch in pitchs:
-            if isinstance(pitch, notetools.NoteHead):
-                pitch = pitchtools.NamedPitch(pitch.written_pitch)
-                pitches.append(pitch)
-            else:
-                pitch = pitchtools.NamedPitch(pitch)
-                pitches.append(pitch)
-        return frozenset.__new__(cls, pitches)
+    def __init__(self, tokens=None, item_class=None, name=None):
+        from abjad.tools import pitchtools 
+        PitchSet.__init__(
+            self,
+            tokens=tokens,
+            item_class=pitchtools.NamedPitch,
+            name=name,
+            )
 
     ### SPECIAL METHODS ###
-
-    def __eq__(self, arg):
-        if isinstance(arg, type(self)):
-            for element in arg:
-                if element not in self:
-                    return False
-            else:
-                return True
-        return False
-
-    def __ne__(self, arg):
-        return not self == arg
 
     def __repr__(self):
         return '%s([%s])' % (self._class_name, self._repr_string)
@@ -58,12 +42,11 @@ class NamedPitchSet(Set):
 
     @property
     def _format_string(self):
-        return ', '.join([str(pitch) for pitch in self.pitches])
+        return ', '.join(str(pitch) for pitch in self.pitches)
 
     @property
     def _repr_string(self):
-        return ', '.join([repr(str(pitch)) 
-            for pitch in self.named_chromatic_pitches])
+        return ', '.join(repr(str(pitch)) for pitch in self)
 
     ### PUBLIC PROPERTIES ###
 

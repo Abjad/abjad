@@ -1,18 +1,34 @@
 # -*- encoding: utf-8 -*-
-import abc
-from abjad.tools.pitchtools.Set import Set
+from abjad.tools.datastructuretools import TypedFrozenset
 
 
-class IntervalClassSet(Set):
-    '''Interval-class set base class.
+class IntervalClassSet(TypedFrozenset):
+    r'''Abjad model of an interval-class set.
     '''
 
     ### CLASS VARIABLES ###
 
-    __metaclass__ = abc.ABCMeta
+    __slots__ = ()
 
     ### INITIALIZER ###
 
-    @abc.abstractmethod
-    def __new__(self):
-        pass
+    def __init__(self, tokens=None, item_class=None, name=None):
+        from abjad.tools import pitchtools 
+        if isinstance(tokens, str):
+            tokens = tokens.split()
+        if item_class is None and tokens is not None:
+            if isinstance(tokens, type(self)):
+                item_class = tokens.item_class
+            elif len(tokens):
+                if isinstance(tokens[0], str):
+                    item_class = pitchtools.NamedIntervalClass 
+                elif isinstance(tokens[0], (int, float)):
+                    item_class = pitchtools.NumberedIntervalClass
+        elif item_class is None:
+            item_class = pitchtools.NamedIntervalClass
+        assert issubclass(item_class, pitchtools.IntervalClass)
+        TypedFrozenset.__init__(
+            self,
+            tokens=tokens,
+            item_class=item_class,
+            )

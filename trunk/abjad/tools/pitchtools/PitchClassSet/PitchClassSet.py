@@ -33,20 +33,26 @@ class PitchClassSet(TypedFrozenset):
     ### INITIALIZER ###
 
     def __init__(self, tokens=None, item_class=None, name=None):
-        from abjad.tools import pitchtools
-        assert item_class in (
-            None,
-            pitchtools.NamedPitchClass,
-            pitchtools.NumberedPitchClass,
-            )
-        if item_class is None:
-            item_class = pitchtools.NumberedPitchClass
+        from abjad.tools import pitchtools 
+        if isinstance(tokens, str):
+            tokens = tokens.split()
+        if item_class is None and tokens is not None:
+            if isinstance(tokens, type(self)):
+                item_class = tokens.item_class
+            elif len(tokens):
+                if isinstance(tokens[0], str):
+                    item_class = pitchtools.NamedPitchClass 
+                elif isinstance(tokens[0], (int, float)):
+                    item_class = pitchtools.NumberedPitchClass
+        elif item_class is None:
+            item_class = pitchtools.NamedPitchClass
+        assert issubclass(item_class, pitchtools.PitchClass)
         TypedFrozenset.__init__(
             self,
             tokens=tokens,
             item_class=item_class,
             )
-
+        
     ### SPECIAL METHODS ###
 
     def __repr__(self):

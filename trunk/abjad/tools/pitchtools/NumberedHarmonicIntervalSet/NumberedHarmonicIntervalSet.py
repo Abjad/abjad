@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.pitchtools.Set import Set
+from abjad.tools.pitchtools.IntervalSet import IntervalSet
 
 
-class NumberedHarmonicIntervalSet(Set):
+class NumberedHarmonicIntervalSet(IntervalSet):
     '''Abjad model of harmonic chromatic interval set:
 
     ::
@@ -13,15 +13,16 @@ class NumberedHarmonicIntervalSet(Set):
     Harmonic chromatic interval sets are immutable.
     '''
 
-    ### CONSTRUCTOR ###
+    ### INITIALIZER ###
 
-    def __new__(self, interval_tokens):
-        from abjad.tools import pitchtools
-        hcis = []
-        for token in interval_tokens:
-            hci = pitchtools.NumberedHarmonicInterval(token)
-            hcis.append(hci)
-        return frozenset.__new__(self, hcis)
+    def __init__(self, tokens=None, item_class=None, name=None):
+        from abjad.tools import pitchtools 
+        IntervalSet.__init__(
+            self,
+            tokens=tokens,
+            item_class=pitchtools.NumberedHarmonicInterval,
+            name=name,
+            )
 
     ### SPECIAL METHODS ###
 

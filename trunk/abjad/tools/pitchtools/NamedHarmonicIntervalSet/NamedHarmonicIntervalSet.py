@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.pitchtools.Set import Set
+from abjad.tools.pitchtools.IntervalSet import IntervalSet
 
 
-class NamedHarmonicIntervalSet(Set):
+class NamedHarmonicIntervalSet(IntervalSet):
     '''Abjad model of harmonic diatonic interval set:
 
     ::
@@ -13,17 +13,16 @@ class NamedHarmonicIntervalSet(Set):
     Harmonic diatonic interval sets are immutable.
     '''
 
-    ### CONSTRUCTOR ###
+    ### INITIALIZER ###
 
-    def __new__(self, arg):
-        from abjad.tools import pitchtools
-        if isinstance(arg, str):
-            interval_tokens = arg.split()
-        else:
-            interval_tokens = arg
-        hdis = [pitchtools.NamedHarmonicInterval(x) 
-            for x in interval_tokens]
-        return frozenset.__new__(self, hdis)
+    def __init__(self, tokens=None, item_class=None, name=None):
+        from abjad.tools import pitchtools 
+        IntervalSet.__init__(
+            self,
+            tokens=tokens,
+            item_class=pitchtools.NamedHarmonicInterval,
+            name=name,
+            )
 
     ### SPECIAL METHODS ###
 

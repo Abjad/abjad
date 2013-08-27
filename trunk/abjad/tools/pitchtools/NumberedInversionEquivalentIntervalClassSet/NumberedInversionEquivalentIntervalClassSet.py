@@ -14,15 +14,16 @@ class NumberedInversionEquivalentIntervalClassSet(IntervalClassSet):
     Inversion-equivalent chromatic interval-class sets are immutable.
     '''
 
-    ### CONSTRUCTOR ###
+    ### INITIALIZER ###
 
-    def __new__(self, interval_class_tokens):
-        from abjad.tools import pitchtools
-        iecics = []
-        for token in interval_class_tokens:
-            iecic = pitchtools.NumberedInversionEquivalentIntervalClass(token)
-            iecics.append(iecic)
-        return frozenset.__new__(self, iecics)
+    def __init__(self, tokens=None, item_class=None, name=None):
+        from abjad.tools import pitchtools 
+        IntervalClassSet.__init__(
+            self,
+            tokens=tokens,
+            item_class=pitchtools.NumberedInversionEquivalentIntervalClass,
+            name=name,
+            )
 
     ### SPECIAL METHODS ###
 
