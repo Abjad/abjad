@@ -861,7 +861,8 @@ class MaterialPackageProxy(PackageProxy):
     def write_output_material_to_disk(self, 
         output_material_module_import_statements=None,
         output_material_module_body_lines=None, 
-        prompt=True):
+        prompt=True,
+        ):
         #self.remove_material_from_materials_initializer()
         self.overwrite_output_material_module()
         output_material_module_proxy = self.output_material_module_proxy

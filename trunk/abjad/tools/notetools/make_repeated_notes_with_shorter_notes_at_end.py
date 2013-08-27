@@ -1,9 +1,11 @@
 # -*- encoding: utf-8 -*-
 import fractions
 from abjad.tools import durationtools
+from abjad.tools import selectiontools
 
 
-def make_repeated_notes_with_shorter_notes_at_end(pitch, written_duration, total_duration, prolation=1):
+def make_repeated_notes_with_shorter_notes_at_end(
+    pitch, written_duration, total_duration, prolation=1):
     r'''Make repeated notes with `pitch` and `written_duration` summing to
     `total_duration` under `prolation`:
 
@@ -86,4 +88,6 @@ def make_repeated_notes_with_shorter_notes_at_end(pitch, written_duration, total
     if durationtools.Duration(0) < remainder_duration:
         multiplied_remainder = remainder_duration / prolation
         result.extend(notetools.make_notes(pitch, [multiplied_remainder]))
+
+    result = selectiontools.Selection(result)
     return result

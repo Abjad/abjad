@@ -17,7 +17,7 @@ def test_QGrid___call___01():
     q_grid.fit_q_events([a, b, c, d, e, f, g])
     result = q_grid((1, 4))
 
-    assert isinstance(result, list) and len(result) == 1
+    assert len(result) == 1
     assert result[0].lilypond_format == "c'4"
 
     annotation = inspect(result[0]).get_mark(marktools.Annotation)

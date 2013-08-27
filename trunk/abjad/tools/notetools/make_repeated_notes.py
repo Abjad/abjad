@@ -8,7 +8,7 @@ def make_repeated_notes(count, duration=durationtools.Duration(1, 8)):
     ::
 
         >>> notetools.make_repeated_notes(4)
-        [Note("c'8"), Note("c'8"), Note("c'8"), Note("c'8")]
+        Selection(Note("c'8"), Note("c'8"), Note("c'8"), Note("c'8"))
 
     Make `count` repeated tie chains with tied `duration`:
 
@@ -32,7 +32,7 @@ def make_repeated_notes(count, duration=durationtools.Duration(1, 8)):
     ::
 
         >>> notetools.make_repeated_notes(3, (1, 12))
-        [Tuplet(2/3, [c'8, c'8, c'8])]
+        Selection(Tuplet(2/3, [c'8, c'8, c'8]),)
 
     Set pitch of all notes created to middle C.
 

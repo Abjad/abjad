@@ -436,4 +436,5 @@ def _make_leaf_on_pitch(
             )
     else:
         raise ValueError('unknown pitch {!r}.'.format(pitch))
+
     return leaves

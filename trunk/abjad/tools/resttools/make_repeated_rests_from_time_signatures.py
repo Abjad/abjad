@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import selectiontools
 
 
 def make_repeated_rests_from_time_signatures(time_signatures):
@@ -42,4 +43,7 @@ def _make_repeated_rests_from_time_signature(time_signature):
 
     # make and return repeated rests
     rest = resttools.Rest((1, time_signature.denominator))
-    return time_signature.numerator * rest
+    result = time_signature.numerator * rest
+
+    result = selectiontools.Selection(result)
+    return result

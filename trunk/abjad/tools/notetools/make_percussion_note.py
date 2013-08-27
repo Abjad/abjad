@@ -78,6 +78,7 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
     '''
     from abjad.tools import notetools
     from abjad.tools import resttools
+    from abjad.tools import selectiontools
 
     # check input
     total_duration = durationtools.Duration(total_duration)
@@ -113,4 +114,6 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
         rests = []
 
     # return list of percussion note followed by rest
-    return notes + rests
+    result = notes + rests
+    result = selectiontools.Selection(result)
+    return result

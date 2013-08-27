@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import selectiontools
 
 
 def make_repeated_notes_from_time_signature(time_signature, pitch="c'"):
@@ -30,4 +31,9 @@ def make_repeated_notes_from_time_signature(time_signature, pitch="c'"):
             'TODO: extend this function for time signatures with a non-power-of-two denominators.')
 
     # make and return repeated notes
-    return time_signature.numerator * notetools.Note(pitch, (1, time_signature.denominator))
+    duration = (1, time_signature.denominator)
+    result = time_signature.numerator * notetools.Note(pitch, duration)
+
+    # return result
+    result = selectiontools.Selection(result)
+    return result

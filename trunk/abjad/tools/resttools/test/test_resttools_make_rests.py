@@ -7,7 +7,7 @@ def test_resttools_make_rests_01():
     '''
 
     rest = resttools.make_rests((1, 4))
-    assert isinstance(rest, list)
+    assert isinstance(rest, selectiontools.Selection)
     assert len(rest) == 1
     assert isinstance(rest[0], Rest)
     assert rest[0].written_duration == Duration(1, 4)

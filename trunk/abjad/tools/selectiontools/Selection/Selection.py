@@ -5,7 +5,6 @@ import types
 
 class Selection(object):
     r'''A selection of components.
-
     '''
 
     ### CLASS VARIABLES ###
@@ -111,6 +110,11 @@ class Selection(object):
     @property
     def _preprolated_duration(self):
         return sum(component._preprolated_duration for component in self)
+
+    @property
+    def _tools_package_qualified_repr(self):
+        return 'selectiontools.{}({!r})'.format(
+            self.__class__.__name__, list(self))
 
     ### PRIVATE METHODS ###
 

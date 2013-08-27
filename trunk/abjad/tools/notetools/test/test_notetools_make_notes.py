@@ -7,7 +7,7 @@ def test_notetools_make_notes_01():
     '''
 
     note = notetools.make_notes(1, (1,4))
-    assert isinstance(note, list)
+    assert isinstance(note, selectiontools.Selection)
     assert len(note) == 1
     assert isinstance(note[0], Note)
     assert note[0].written_duration == Duration(1, 4)

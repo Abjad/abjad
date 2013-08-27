@@ -236,7 +236,9 @@ class Scale(PitchClassSegment):
         '''
         ascending_notes = self.make_notes(8, durationtools.Duration(1, 8))
         descending_notes = copy.deepcopy(ascending_notes[:-1])
+        descending_notes = list(descending_notes)
         descending_notes.reverse()
+        descending_notes = selectiontools.Selection(descending_notes)
         notes = ascending_notes + descending_notes
         notes[-1].written_duration = durationtools.Duration(1, 4)
         staff = stafftools.Staff(notes)

@@ -4,7 +4,8 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 
 
-def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, stop, exp='cosine', written=None):
+def make_accelerating_notes_with_lilypond_multipliers(
+    pitches, total, start, stop, exp='cosine', written=None):
     r'''Make accelerating notes with LilyPond multipliers:
 
     ::
@@ -56,6 +57,7 @@ def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, sto
     Return list of notes.
     '''
     from abjad.tools import notetools
+    from abjad.tools import selectiontools
 
     # initialize input arguments as durations
     total = durationtools.Duration(total)
@@ -85,4 +87,5 @@ def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, sto
         result.append(note)
 
     # return result
+    result = selectiontools.Selection(result)
     return result
