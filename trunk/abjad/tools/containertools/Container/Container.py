@@ -155,12 +155,13 @@ class Container(Component):
 
     @property
     def _duration_in_seconds(self):
+        from abjad.tools import iterationtools
         if self.is_simultaneous:
             return max([durationtools.Duration(0)] + 
                 [x._get_duration(in_seconds=True) for x in self])
         else:
             duration = durationtools.Duration(0)
-            for leaf in self.select_leaves(allow_discontiguous_leaves=True):
+            for leaf in iterationtools.iterate_leaves_in_expr(self):
                 duration += leaf._get_duration(in_seconds=True)
             return duration
 
@@ -1221,15 +1222,27 @@ class Container(Component):
 
         Returns contiguous leaf selection or free leaf selection.
         '''
+        from abjad.tools import componenttools
+        from abjad.tools import iterationtools
+        from abjad.tools import leaftools
         from abjad.tools import selectiontools
-        return selectiontools.select_leaves(
-            expr=self,
-            start=start,
-            stop=stop,
-            leaf_classes=leaf_classes,
-            recurse=recurse,
-            allow_discontiguous_leaves=allow_discontiguous_leaves,
-            )
+        Selection = selectiontools.Selection
+        leaf_classes = leaf_classes or (leaftools.Leaf,)
+        expr = self
+        if recurse:
+            expr = iterationtools.iterate_leaves_in_expr(expr)
+        music = [
+                component for component in expr
+                if isinstance(component, leaf_classes)
+                ]
+        music = music[start:stop]
+        if allow_discontiguous_leaves:
+            selection = selectiontools.Selection(music=music)
+        else:
+            assert Selection._all_are_contiguous_components_in_same_logical_voice(
+                music)
+            selection = selectiontools.ContiguousLeafSelection(music=music)
+        return selection
 
     def select_notes_and_chords(self):
         r'''Selects notes and chords in container.
