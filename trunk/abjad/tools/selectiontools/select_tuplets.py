@@ -38,12 +38,12 @@ def select_tuplets(
 
     ::
 
-        >>> selection = selectiontools.select_tuplets(staff)
+        >>> selection = selectiontools.select_tuplets(staff, recurse=False)
 
     ::
 
         >>> selection
-        FreeTupletSelection(...)
+        ContiguousTupletSelection(...)
 
     ::
 
@@ -71,8 +71,6 @@ def select_tuplets(
             continue
         else:
             tuplets.append(tuplet)
-    if recurse:
-        selection = selectiontools.FreeTupletSelection(music=tuplets)
-    else:
-        selection = selectiontools.ContiguousTupletSelection(music=tuplets)
+    assert not recurse
+    selection = selectiontools.ContiguousTupletSelection(music=tuplets)
     return selection

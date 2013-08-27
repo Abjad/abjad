@@ -219,14 +219,10 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
                 return tuplet[:]
             return [tuplet]
         result = recurse(self, pulse_duration * self.preprolated_duration)
-        tuplets = selectiontools.select_tuplets(
-            result,
-            include_augmented_tuplets=False,
-            include_diminished_tuplets=False,
-            include_trivial_tuplets=True,
-            )
-        for tuplet in tuplets:
-            tuplet.extract()
+        for component in result[:]:
+            if isinstance(component, tuplettools.Tuplet):
+                if component.is_trivial:
+                    component.extract()
         return result
 
     def __eq__(self, expr):

@@ -335,4 +335,4 @@ class FreeLeafSelection(Selection):
                 is_diminution=is_diminution,
                 )
             result.append(tuplet)
-        return selectiontools.FreeTupletSelection(result)
+        return selectiontools.Selection(result)
