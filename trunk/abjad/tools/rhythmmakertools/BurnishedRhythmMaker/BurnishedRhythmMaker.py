@@ -7,6 +7,7 @@ from abjad.tools import iterationtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
+from abjad.tools import selectiontools
 from abjad.tools import spannertools
 from abjad.tools import tuplettools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
@@ -172,7 +173,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         if self.tie_split_notes:
             self._add_ties(result)
         assert isinstance(result, list), repr(result)
-        assert all(isinstance(x, list) for x in result) or \
+        assert all(isinstance(x, selectiontools.Selection) for x in result) or \
             all(isinstance(x, tuplettools.Tuplet) for x in result)
         return result
 

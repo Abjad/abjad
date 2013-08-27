@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import selectiontools
 
 
 def make_repeated_skips_from_time_signatures(time_signatures):
@@ -7,7 +8,7 @@ def make_repeated_skips_from_time_signatures(time_signatures):
     ::
 
         skiptools.make_repeated_skips_from_time_signatures([(2, 8), (3, 32)])
-        [[Skip('s8'), Skip('s8')], [Skip('s32'), Skip('s32'), Skip('s32')]]
+        [Selection(Skip('s8'), Skip('s8')), Selection(Skip('s32'), Skip('s32'), Skip('s32'))]
 
     Return two-dimensional list of newly constructed skip lists.
     '''
@@ -39,4 +40,5 @@ def _make_repeated_skips_from_time_signature(time_signature):
 
     # make and return repeated skips
     skip = skiptools.Skip((1, time_signature.denominator))
-    return time_signature.numerator * skip
+    skips = time_signature.numerator * skip
+    result = selectiontools.Selection(skips)

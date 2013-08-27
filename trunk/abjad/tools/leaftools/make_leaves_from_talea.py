@@ -118,5 +118,5 @@ def make_leaves_from_talea(
             )
         result.extend(leaves)
 
-    #result = selectiontools.Selection(result)
+    result = selectiontools.Selection(result)
     return result
