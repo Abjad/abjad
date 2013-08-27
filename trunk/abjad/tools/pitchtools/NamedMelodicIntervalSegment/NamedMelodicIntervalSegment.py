@@ -13,19 +13,16 @@ class NamedMelodicIntervalSegment(IntervalSegment):
     Melodic diatonic interval segments are immutable.
     '''
 
-    ### CONSTRUCTOR ###
+    ### INITIALIZER ###
 
-    def __new__(self, arg):
+    def __init__(self, tokens=None, item_class=None, name=None):
         from abjad.tools import pitchtools
-        if isinstance(arg, str):
-            melodic_diatonic_interval_tokens = arg.split()
-        else:
-            melodic_diatonic_interval_tokens = arg
-        mdis = []
-        for token in melodic_diatonic_interval_tokens:
-            mdi = pitchtools.NamedMelodicInterval(token)
-            mdis.append(mdi)
-        return tuple.__new__(self, mdis)
+        IntervalSegment.__init__(
+            self,
+            tokens=tokens,
+            item_class=pitchtools.NamedMelodicInterval,
+            name=None,
+            )
 
     ### SPECIAL METHODS ###
 

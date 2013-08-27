@@ -44,9 +44,11 @@ class TwelveToneRow(PitchClassSegment):
     ### SPECIAL METHODS ###
 
     def __getslice__(self, start, stop):
+        from abjad.tools import pitchtools
         tokens = self._collection[start:stop]
         return PitchClassSegment(
             tokens=tokens,
+            item_class=pitchtools.NumberedPitchClass,
             name=self.name,
             )
 

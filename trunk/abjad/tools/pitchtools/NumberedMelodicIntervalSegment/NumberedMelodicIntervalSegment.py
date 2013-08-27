@@ -15,15 +15,16 @@ class NumberedMelodicIntervalSegment(IntervalSegment):
     Melodic chromatic interval segments are immutable.
     '''
 
-    ### CONSTRUCTOR ###
+    ### INITIALIZER ###
 
-    def __new__(cls, mci_tokens):
+    def __init__(self, tokens=None, item_class=None, name=None):
         from abjad.tools import pitchtools
-        mcis = []
-        for token in mci_tokens:
-            mci = pitchtools.NumberedMelodicInterval(token)
-            mcis.append(mci)
-        return tuple.__new__(cls, mcis)
+        IntervalSegment.__init__(
+            self,
+            tokens=tokens,
+            item_class=pitchtools.NumberedMelodicInterval,
+            name=None,
+            )
 
     ### SPECIAL METHODS ###
 

@@ -29,45 +29,21 @@ class  NumberedPitchClassSet(PitchClassSet):
     __slots__ = (
         )
 
-    ### CONSTRUCTOR ###
+    ### INITIALIZER ###
 
-    def __new__(cls, expr):
+    def __init__(self, tokens=None, item_class=None, name=None):
         from abjad.tools import pitchtools
-        pcs = []
-        # assume expr is iterable
-        try:
-            for x in expr:
-                try:
-                    pcs.append(pitchtools.NumberedPitchClass(x))
-                except TypeError:
-                    pcs.extend(pitchtools.get_numbered_chromatic_pitch_classes_from_pitch_carrier(x))
-        # if expr is not iterable
-        except TypeError:
-            # assume expr can be turned into a single pc
-            try:
-                pc = pitchtools.NumberedPitchClass(expr)
-                pcs.append(pc)
-            # expr is a Rest or non-PC type
-            except TypeError:
-                pcs = []
-        return frozenset.__new__(cls, pcs)
+        PitchClassSet.__init__(
+            self,
+            tokens=tokens,
+            item_class=pitchtools.NumberedPitchClass,
+            name=name,
+            )
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, arg):
-        if isinstance(arg, type(self)):
-            for element in arg:
-                if element not in self:
-                    return False
-            else:
-                return True
-        return False
-
     def __hash__(self):
         return hash(repr(self))
-
-    def __ne__(self, arg):
-        return not self == arg
 
     def __repr__(self):
         return '%s([%s])' % (self._class_name, self._format_string)

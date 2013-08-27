@@ -13,19 +13,16 @@ class NamedHarmonicIntervalSegment(IntervalSegment):
     Harmonic diatonic interval segments are immutable.
     '''
 
-    ### CONSTRUCTOR ###
+    ### INITIALIZER ###
 
-    def __new__(self, arg):
+    def __init__(self, tokens=None, item_class=None, name=None):
         from abjad.tools import pitchtools
-        if isinstance(arg, str):
-            harmonic_diatonic_interval_tokens = arg.split()
-        else:
-            harmonic_diatonic_interval_tokens = arg
-        hdis = []
-        for token in harmonic_diatonic_interval_tokens:
-            hdi = pitchtools.NamedHarmonicInterval(token)
-            hdis.append(hdi)
-        return tuple.__new__(self, hdis)
+        IntervalSegment.__init__(
+            self,
+            tokens=tokens,
+            item_class=pitchtools.NamedHarmonicInterval,
+            name=None,
+            )
 
     ### SPECIAL METHODS ###
 

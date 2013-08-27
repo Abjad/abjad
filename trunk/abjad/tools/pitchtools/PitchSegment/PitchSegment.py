@@ -38,13 +38,19 @@ class PitchSegment(TypedTuple):
 
     def __init__(self, tokens=None, item_class=None, name=None):
         from abjad.tools import pitchtools 
-        assert item_class in (
-            None,
-            pitchtools.NamedPitch,
-            pitchtools.NumberedPitch,
-            )
-        if item_class is None:
-            item_class = pitchtools.NumberedPitch
+        if isinstance(tokens, str):
+            tokens = tokens.split()
+        if item_class is None and tokens is not None:
+            if isinstance(tokens, type(self)):
+                item_class = tokens.item_class
+            elif len(tokens):
+                if isinstance(tokens[0], str):
+                    item_class = pitchtools.NamedPitch 
+                elif isinstance(tokens[0], (int, float)):
+                    item_class = pitchtools.NumberedPitch
+        elif item_class is None:
+            item_class = pitchtools.NamedPitch
+        assert issubclass(item_class, pitchtools.Pitch)
         TypedTuple.__init__(
             self,
             tokens=tokens,

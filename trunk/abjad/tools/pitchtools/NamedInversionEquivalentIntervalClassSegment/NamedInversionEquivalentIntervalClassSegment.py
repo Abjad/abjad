@@ -1,10 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.pitchtools.NamedInversionEquivalentIntervalClass \
-	import NamedInversionEquivalentIntervalClass
-from abjad.tools.pitchtools.IntervalSegment import IntervalSegment
+from abjad.tools.pitchtools.IntervalClassSegment import IntervalClassSegment
 
 
-class NamedInversionEquivalentIntervalClassSegment(IntervalSegment):
+class NamedInversionEquivalentIntervalClassSegment(IntervalClassSegment):
     '''Abjad model of inversion-equivalent diatonic interval-class segment:
 
     ::
@@ -18,12 +16,14 @@ class NamedInversionEquivalentIntervalClassSegment(IntervalSegment):
 
     ### CONSTRUCTOR ###
 
-    def __new__(self, diatonic_interval_class_tokens):
-        dics = []
-        for token in diatonic_interval_class_tokens:
-            dic = NamedInversionEquivalentIntervalClass(token)
-            dics.append(dic)
-        return tuple.__new__(self, dics)
+    def __init__(self, tokens=None, item_class=None, name=None):
+        from abjad.tools import pitchtools
+        IntervalClassSegment.__init__(
+            self,
+            tokens=tokens,
+            item_class=pitchtools.NamedInversionEquivalentIntervalClass,
+            name=None,
+            )
 
     ### SPECIAL METHODS ###
 
@@ -51,3 +51,4 @@ class NamedInversionEquivalentIntervalClassSegment(IntervalSegment):
             if not dic.number == 3:
                 return False
         return True
+

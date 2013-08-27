@@ -43,9 +43,14 @@ class ChordQualityIndicator(NamedHarmonicIntervalSegment):
         '<M3, m3, m3, M3>': ('dominant', 9),
         }
 
+    __slots__ = (
+        'quality_string',
+        '_rotation',
+        )
+
     ### INITIALIZER ###
 
-    def __new__(self, quality_string, extent='triad', inversion='root'):
+    def __init__(self, quality_string, extent='triad', inversion='root'):
         if extent in ('triad', 5):
             intervals = self._init_triad(quality_string)
         elif extent in ('seventh', 7):
@@ -58,10 +63,12 @@ class ChordQualityIndicator(NamedHarmonicIntervalSegment):
             raise ValueError('unknown chord quality indicator arguments.')
         intervals, rotation = self._invert_quality_indicator(
             intervals, inversion)
-        new = tuple.__new__(self, intervals)
-        tuple.__setattr__(new, '_rotation', rotation)
-        tuple.__setattr__(new, '_quality_string', quality_string)
-        return new
+        NamedHarmonicIntervalSegment.__init__(
+            self,
+            tokens=intervals,
+            )
+        self._quality_string = quality_string
+        self._rotation = rotation
 
     ### SPECIAL METHODS ###
 

@@ -17,22 +17,14 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
     ### INITIALIZER ###
 
     def __init__(self, *args):
-        from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation \
-            import melodic_diatonic_interval_abbreviation_regex
+        from abjad.tools import pitchtools
         if len(args) == 1 and isinstance(args[0], type(self)):
             self._init_by_self_reference(args[0])
         elif len(args) == 1 and isinstance(args[0], str):
-            match = melodic_diatonic_interval_abbreviation_regex.match(args[0])
-            if match is None:
-                raise ValueError(
-                    '"%s" does not have the form of a hdi abbreviation.' % 
-                    args[0])
-            direction_string, quality_abbreviation, number_string = \
-                match.groups()
-            quality_string = self._quality_abbreviation_to_quality_string[
-                quality_abbreviation]
-            number = int(number_string)
-            self._init_by_quality_string_and_number(quality_string, number)
+            self._init_by_string(args[0])
+        elif len(args) == 1 and isinstance(args[0],
+            pitchtools.NamedMelodicIntervalClass): 
+            self._init_by_string(str(args[0]))
         elif len(args) == 1 and isinstance(args[0], tuple):
             self._init_by_quality_string_and_number(*args[0])
         elif len(args) == 2:
@@ -77,6 +69,21 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
     def _init_by_self_reference(self, reference):
         quality_string = reference.quality_string
         number = reference.number
+        self._init_by_quality_string_and_number(quality_string, number)
+
+    def _init_by_string(self, string):
+        from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation \
+            import melodic_diatonic_interval_abbreviation_regex
+        match = melodic_diatonic_interval_abbreviation_regex.match(string)
+        if match is None:
+            raise ValueError(
+                '"%s" does not have the form of a hdi abbreviation.' % 
+                string)
+        direction_string, quality_abbreviation, number_string = \
+            match.groups()
+        quality_string = self._quality_abbreviation_to_quality_string[
+            quality_abbreviation]
+        number = int(number_string)
         self._init_by_quality_string_and_number(quality_string, number)
 
     def _invert_quality_string(self, quality_string):

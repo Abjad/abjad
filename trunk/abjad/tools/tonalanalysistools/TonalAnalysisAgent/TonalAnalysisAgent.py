@@ -83,18 +83,24 @@ class TonalAnalysisAgent(object):
         from abjad.tools import tonalanalysistools
         from abjad.tools.tonalanalysistools import ChordQualityIndicator as CQI
         pitches = pitchtools.list_named_chromatic_pitches_in_expr(expr)
-        npcset = pitchtools.NamedPitchClassSet(pitches)
+        npcset = pitchtools.PitchClassSet(
+            pitches, item_class=pitchtools.NamedPitchClass)
         ordered_npcs = []
         letters = ('c', 'e', 'g', 'b', 'd', 'f', 'a')
         for letter in letters:
             for npc in npcset:
                 if npc._diatonic_pitch_class_name == letter:
                     ordered_npcs.append(npc)
-        ordered_npcs = pitchtools.NamedPitchClassSegment(ordered_npcs)
+        ordered_npcs = pitchtools.PitchClassSegment(
+            ordered_npcs, item_class=pitchtools.NamedPitchClass)
         for x in range(len(ordered_npcs)):
             ordered_npcs = ordered_npcs.rotate(1)
             segment = \
-                ordered_npcs.inversion_equivalent_diatonic_interval_class_segment
+                pitchtools.IntervalClassSegment(
+                    tokens=ordered_npcs,
+                    item_class=pitchtools.NamedInversionEquivalentIntervalClass,
+                    )
+                #ordered_npcs.inversion_equivalent_diatonic_interval_class_segment
             if segment.is_tertian:
                 break
         else:

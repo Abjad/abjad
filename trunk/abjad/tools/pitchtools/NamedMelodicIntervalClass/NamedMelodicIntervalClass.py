@@ -20,29 +20,32 @@ class NamedMelodicIntervalClass(
 
     def __init__(self, *args):
         from abjad.tools import pitchtools
+        from abjad.tools import sequencetools
         from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation \
             import melodic_diatonic_interval_abbreviation_regex
-        if len(args) == 1:
-            if isinstance(args[0], pitchtools.NamedMelodicInterval):
-                quality_string = args[0]._quality_string
-                number = args[0].number
-            elif isinstance(args[0], str):
-                match = melodic_diatonic_interval_abbreviation_regex.match(
+        if len(args) == 1 and\
+            isinstance(args[0], pitchtools.NamedMelodicInterval):
+            quality_string = args[0]._quality_string
+            number = args[0].number
+        elif len(args) == 1 and isinstance(args[0], str):
+            match = melodic_diatonic_interval_abbreviation_regex.match(
+                args[0])
+            if match is None:
+                raise ValueError(
+                    '"%s" does not have the form of an abbreviation.' % 
                     args[0])
-                if match is None:
-                    raise ValueError(
-                        '"%s" does not have the form of an abbreviation.' % 
-                        args[0])
-                direction_string, quality_abbreviation, number_string = \
-                    match.groups()
-                quality_string = \
-                    NamedIntervalClass._quality_abbreviation_to_quality_string[
-                        quality_abbreviation]
-                number = int(direction_string + number_string)
-            else:
-                raise TypeError('what type of instance is this?')
-        else:
+            direction_string, quality_abbreviation, number_string = \
+                match.groups()
+            quality_string = \
+                NamedIntervalClass._quality_abbreviation_to_quality_string[
+                    quality_abbreviation]
+            number = int(direction_string + number_string)
+        elif len(args) == 1 and sequencetools.is_pair(args[0]):
+            quality_string, number = args[0]
+        elif len(args) == 2:
             quality_string, number = args
+        else:
+            raise TypeError('what type of instance is this?')
         if quality_string not in \
             NamedIntervalClass._acceptable_quality_strings:
             raise ValueError('not acceptable quality string.')

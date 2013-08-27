@@ -28,47 +28,21 @@ class NamedPitchClassSet(PitchClassSet):
 
     __slots__ = ()
 
+    ### INITIALIZER ###
 
-    ### CONSTRUCTOR ###
-
-    def __new__(self, expr):
+    def __init__(self, tokens=None, item_class=None, name=None):
         from abjad.tools import pitchtools
-        npcs = []
-        # assume expr is iterable
-        try:
-            for x in expr:
-                try:
-                    npcs.append(pitchtools.NamedPitchClass(x))
-                except TypeError:
-                    # TODO: probably fix next line #
-                    npcs.extend(get_pitch_classes(x))
-        # if expr is not iterable
-        except TypeError:
-            # assume expr can be turned into a single pc
-            try:
-                npc = pitchtools.NamedPitchClass(expr)
-                npcs.append(npc)
-            # expr is a Rest or non-PC type
-            except TypeError:
-                npcs = []
-        return frozenset.__new__(self, npcs)
+        PitchClassSet.__init__(
+            self,
+            tokens=tokens,
+            item_class=pitchtools.NamedPitchClass,
+            name=name,
+            )
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, arg):
-        if isinstance(arg, type(self)):
-            for element in arg:
-                if element not in self:
-                    return False
-            else:
-                return True
-        return False
-
     def __hash__(self):
         return hash(repr(self))
-
-    def __ne__(self, arg):
-        return not self == arg
 
     def __repr__(self):
         return '%s([%s])' % (self._class_name, self._repr_string)

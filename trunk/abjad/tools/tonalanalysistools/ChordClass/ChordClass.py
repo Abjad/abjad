@@ -45,7 +45,7 @@ class ChordClass(NamedPitchClassSet):
 
     ### CONSTRUCTOR ###
 
-    def __new__(cls, root, *args):
+    def __init__(self, root, *args):
         from abjad.tools import tonalanalysistools
         root = pitchtools.NamedPitchClass(root)
         quality_indicator = tonalanalysistools.ChordQualityIndicator(*args)
@@ -55,11 +55,13 @@ class ChordClass(NamedPitchClassSet):
             npc = root + mdi
             npcs.append(npc)
         bass = npcs[0]
-        self = pitchtools.NamedPitchClassSet.__new__(cls, npcs)
+        NamedPitchClassSet.__init__(
+            self,
+            tokens=npcs,
+            )
         self._root = root
         self._quality_indicator = quality_indicator
         self._bass = bass
-        return self
 
     ### SPECIAL METHODS ###
 

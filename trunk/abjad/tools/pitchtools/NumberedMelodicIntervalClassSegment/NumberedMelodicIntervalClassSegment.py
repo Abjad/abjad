@@ -16,10 +16,11 @@ class NumberedMelodicIntervalClassSegment(IntervalClassSegment):
 
     ### CONSTRUCTOR ###
 
-    def __new__(self, mcic_tokens):
+    def __init__(self, tokens=None, item_class=None, name=None):
         from abjad.tools import pitchtools
-        mcics = []
-        for mcic_token in mcic_tokens:
-            mcic = pitchtools.NumberedMelodicIntervalClass(mcic_token)
-            mcics.append(mcic)
-        return tuple.__new__(self, mcics)
+        IntervalClassSegment.__init__(
+            self,
+            tokens=tokens,
+            item_class=pitchtools.NumberedMelodicIntervalClass,
+            name=None,
+            )

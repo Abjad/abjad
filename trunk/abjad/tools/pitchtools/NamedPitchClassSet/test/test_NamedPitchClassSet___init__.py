@@ -34,7 +34,7 @@ def test_NamedPitchClassSet___init___03():
     '''
 
     note = Note(13, (1, 4))
-    npc_set_1 = pitchtools.NamedPitchClassSet(note)
+    npc_set_1 = pitchtools.NamedPitchClassSet([note])
 
     npc_set_2 = pitchtools.NamedPitchClassSet([
         pitchtools.NamedPitchClass('cs')])

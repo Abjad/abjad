@@ -13,9 +13,14 @@ def expr_has_duplicate_numbered_chromatic_pitch_class(expr):
 
     Return boolean.
     '''
+    from abjad.tools import notetools
     from abjad.tools import pitchtools
 
     pitch_classes = pitchtools.list_numbered_chromatic_pitch_classes_in_expr(expr)
+    if not pitchtools.is_pitch_carrier(expr):
+        expr = []
+    elif isinstance(expr, notetools.Note):
+        expr = [expr]
     pitch_class_set = pitchtools.NumberedPitchClassSet(expr)
 
     return not len(pitch_classes) == len(pitch_class_set)

@@ -31,5 +31,5 @@ def test_NumberedPitchClassSet___init___04():
     '''
 
     note = Note(13, (1, 4))
-    pitch_class_set = pitchtools.NumberedPitchClassSet(note)
+    pitch_class_set = pitchtools.NumberedPitchClassSet([note])
     assert len(pitch_class_set) == 1

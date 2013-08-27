@@ -14,12 +14,16 @@ class NumberedInversionEquivalentIntervalClassSegment(IntervalClassSegment):
     Inversion-equivalent chromatic interval-class segments are immutable.
     '''
 
-    def __new__(self, interval_class_tokens):
+    ### INITIALIZER ###
+
+    def __init__(self, tokens=None, item_class=None, name=None):
         from abjad.tools import pitchtools
-        interval_classes = [
-            pitchtools.NumberedInversionEquivalentIntervalClass(x) 
-            for x in interval_class_tokens]
-        return tuple.__new__(self, interval_classes)
+        IntervalClassSegment.__init__(
+            self,
+            tokens=tokens,
+            item_class=pitchtools.NumberedInversionEquivalentIntervalClass,
+            name=None,
+            )
 
     ### SPECIAL METHODS ###
 
