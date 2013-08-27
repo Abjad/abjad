@@ -36,22 +36,6 @@ def select_tuplets(
             }
         }
 
-    ::
-
-        >>> selection = selectiontools.select_tuplets(staff, recurse=False)
-
-    ::
-
-        >>> selection
-        ContiguousTupletSelection(...)
-
-    ::
-
-        >>> for tuplet in selection:
-        ...     tuplet
-        Tuplet(2/3, [e'8, g'8, f'8])
-        Tuplet(2/3, [e'8, c'8, d'8])
-
     Return tuplet selection.
     '''
     from abjad.tools import componenttools
