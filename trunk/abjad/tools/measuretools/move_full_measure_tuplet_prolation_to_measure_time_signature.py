@@ -52,6 +52,6 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
                 time_signature_multiplier = \
                     measure.time_signature.implied_prolation
                 written_adjustment = tuplet_multiplier / time_signature_multiplier
-                componenttools.move_parentage_and_spanners_from_components_to_components(
+                componenttools.replace(
                     [tuplet], tuplet[:])
                 containertools.scale_contents_of_container(measure, written_adjustment)

@@ -415,6 +415,6 @@ class Note(Leaf):
             pitchtools.transpose_pitch_carrier_by_melodic_interval(
             chord[1].written_pitch, melodic_diatonic_interval)
         chord[1].tweak.style = 'harmonic'
-        componenttools.move_parentage_and_spanners_from_components_to_components(
+        componenttools.replace(
             [self], [chord])
         return chord

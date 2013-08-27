@@ -76,7 +76,7 @@ class FreeTupletSelection(Selection):
         for tuplet in self:
             containertools.scale_contents_of_container(
                 tuplet, tuplet.multiplier)
-            componenttools.move_parentage_and_spanners_from_components_to_components(
+            componenttools.replace(
                 [tuplet], tuplet[:])
         
     def remove(self):
@@ -150,7 +150,7 @@ class FreeTupletSelection(Selection):
         '''
         from abjad.tools import componenttools
         for tuplet in self:
-            componenttools.move_parentage_and_spanners_from_components_to_components(
+            componenttools.replace(
                 [tuplet], tuplet[:])
 
     def scale_contents(self, multiplier):

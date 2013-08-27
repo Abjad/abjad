@@ -238,5 +238,5 @@ class ContiguousLeafSelection(ContiguousSelection):
         assert issubclass(leaf_class, leaftools.Leaf)
         for leaf in self:
             new_leaf = leaf_class(leaf)
-            componenttools.move_parentage_and_spanners_from_components_to_components(
+            componenttools.replace(
                 [leaf], [new_leaf])

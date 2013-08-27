@@ -370,7 +370,7 @@ class Leaf(Component):
                 for mark in component._get_spanners(
                     spanner_classes=spanner_classes):
                     mark.detach()
-        componenttools.move_parentage_and_spanners_from_components_to_components(
+        componenttools.replace(
             [self], flattened_result)
         if fracture_spanners:
             first_shard = result[0]
@@ -512,7 +512,7 @@ class Leaf(Component):
                 if tuplet.is_diminution:
                     tuplet.toggle_prolation()
         # give leaf position in score structure to tuplet
-        componenttools.move_parentage_and_spanners_from_components_to_components(
+        componenttools.replace(
             [self], [tuplet])
         # return tuplet
         return tuplet

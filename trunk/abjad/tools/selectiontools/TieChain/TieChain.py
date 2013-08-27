@@ -340,7 +340,7 @@ class TieChain(ContiguousSelection):
         tuplet = tuplettools.FixedDurationTuplet(target_duration, notes)
 
         # replace tie chain with tuplet
-        componenttools.move_parentage_and_spanners_from_components_to_components(
+        componenttools.replace(
             list(self), [tuplet])
 
         # untie tuplet

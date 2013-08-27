@@ -220,9 +220,9 @@ def test_HairpinSpanner_07():
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     rest = Rest(staff[0])
-    componenttools.move_parentage_and_spanners_from_components_to_components(staff[0:1], [rest])
+    componenttools.replace(staff[0:1], [rest])
     rest = Rest(staff[-1])
-    componenttools.move_parentage_and_spanners_from_components_to_components(staff[-1:], [rest])
+    componenttools.replace(staff[-1:], [rest])
     spannertools.HairpinSpanner(staff.select_leaves(), 'p < f', include_rests = False)
 
     spanner_classes = (spannertools.HairpinSpanner, )

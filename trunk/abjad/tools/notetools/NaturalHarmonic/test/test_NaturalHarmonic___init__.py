@@ -8,7 +8,7 @@ def test_NaturalHarmonic___init___01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     natural_harmonic = notetools.NaturalHarmonic(staff[1])
-    componenttools.move_parentage_and_spanners_from_components_to_components(staff[1:2], [natural_harmonic])
+    componenttools.replace(staff[1:2], [natural_harmonic])
 
     r'''
     \new Staff {

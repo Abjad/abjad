@@ -60,6 +60,6 @@ class DiatonicClusterHandler(PitchHandler):
             chord = chordtools.Chord(note)
             chord[:] = []
             chord.extend(chord_pitches)
-            componenttools.move_parentage_and_spanners_from_components_to_components(
+            componenttools.replace(
                 [note], [chord])
 

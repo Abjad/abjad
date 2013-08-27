@@ -51,7 +51,7 @@ def rest_leaf_at_offset(leaf, offset):
 
     for leaf in right:
         rest = resttools.Rest(leaf)
-        componenttools.move_parentage_and_spanners_from_components_to_components(
+        componenttools.replace(
             [leaf], [rest])
 
     return left, right

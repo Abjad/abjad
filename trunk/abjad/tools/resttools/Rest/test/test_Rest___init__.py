@@ -166,7 +166,7 @@ def test_Rest___init___13():
     voice = Voice("c'8 d'8 e'8 f'8")
     spannertools.BeamSpanner(voice[:])
     rest = Rest(voice[-1])
-    componenttools.move_parentage_and_spanners_from_components_to_components(voice[-1:], [rest])
+    componenttools.replace(voice[-1:], [rest])
 
     r'''
     \new Voice {
@@ -198,7 +198,7 @@ def test_Rest___init___14():
     spannertools.BeamSpanner(voice[:])
     for note in voice:
         rest = Rest(note)
-        componenttools.move_parentage_and_spanners_from_components_to_components([note], [rest])
+        componenttools.replace([note], [rest])
 
     r'''
     \new Voice {
