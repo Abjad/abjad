@@ -751,6 +751,115 @@ class Tuplet(Container):
 
     ### PUBLIC METHODS ###
 
+    def extract(self, scale_contents=False):
+        r'''Extracts tuplet from score.
+
+        ..  container:: example
+
+            **Example 1.** Extract tuplet:
+
+            ::
+
+                >>> staff = Staff()
+                >>> time_signature = contexttools.TimeSignatureMark((3, 4))
+                >>> time_signature = time_signature.attach(staff)
+                >>> staff.append(Tuplet((3, 2), "c'4 e'4"))
+                >>> staff.append(Tuplet((3, 2), "d'4 f'4"))
+                >>> hairpin = spannertools.HairpinSpanner([], 'p < f')
+                >>> hairpin.attach(staff.select_leaves())
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \time 3/4
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 3/2 {
+                        c'4 \< \p
+                        e'4
+                    }
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 3/2 {
+                        d'4
+                        f'4 \f
+                    }
+                }
+
+            ::
+
+                >>> empty_tuplet = staff[-1].extract()
+                >>> empty_tuplet = staff[0].extract()
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \time 3/4
+                    c'4 \< \p
+                    e'4
+                    d'4
+                    f'4 \f
+                }
+
+        ..  container:: example
+
+            **Example 2.** Scale tuplet contents and then extract tuplet:
+
+            ::
+
+                >>> staff = Staff()
+                >>> time_signature = contexttools.TimeSignatureMark((3, 4))
+                >>> time_signature = time_signature.attach(staff)
+                >>> staff.append(Tuplet((3, 2), "c'4 e'4"))
+                >>> staff.append(Tuplet((3, 2), "d'4 f'4"))
+                >>> hairpin = spannertools.HairpinSpanner([], 'p < f')
+                >>> hairpin.attach(staff.select_leaves())
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \time 3/4
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 3/2 {
+                        c'4 \< \p
+                        e'4
+                    }
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 3/2 {
+                        d'4
+                        f'4 \f
+                    }
+                }
+
+            ::
+
+                >>> empty_tuplet = staff[-1].extract(scale_contents=True)
+                >>> empty_tuplet = staff[0].extract(scale_contents=True)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \time 3/4
+                    c'4. \< \p
+                    e'4.
+                    d'4.
+                    f'4. \f
+                }
+
+        Returns empty tuplet.
+        '''
+        from abjad.tools import containertools
+        if scale_contents:
+            containertools.scale_contents_of_container(
+                self, self.multiplier)
+        return super(Tuplet, self).extract()
+
     @staticmethod
     def from_duration_and_ratio(
         duration,
