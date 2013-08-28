@@ -73,9 +73,14 @@ class ChordQualityIndicator(NamedHarmonicIntervalSegment):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
+        parts = []
+        if self.item_class.__name__.startswith('Named'):
+            parts = [repr(str(x)) for x in self]
+        else:
+            parts = [str(x) for x in self]
         return '{}({})'.format(
             self._title_case_name,
-            self._format_string,
+            ', '.join(parts),
             )
 
     ### PRIVATE PROPERTIES ###

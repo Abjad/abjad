@@ -50,16 +50,6 @@ class Segment(TypedTuple):
         
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _format_string(self):
-        from abjad.tools import pitchtools
-        parts = []
-        if self.item_class.__name__.startswith('Named'):
-            parts = [repr(str(x)) for x in self]
-        else:
-            parts = [str(x) for x in self]
-        return ', '.join(parts)
-
     @abc.abstractproperty
     def _named_item_class(self):
         raise NotImplementedError
