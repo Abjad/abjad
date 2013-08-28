@@ -9,7 +9,7 @@ class NumberedMelodicIntervalClassSegment(IntervalClassSegment):
 
         >>> pitchtools.NumberedMelodicIntervalClassSegment(
         ...     [-2, -14, 3, 5.5, 6.5])
-        NumberedMelodicIntervalClassSegment(-2, -2, +3, +5.5, +6.5)
+        NumberedMelodicIntervalClassSegment([-2, -2, +3, +5.5, +6.5])
 
     Melodic chromatic interval-class segments are immutable.
     '''

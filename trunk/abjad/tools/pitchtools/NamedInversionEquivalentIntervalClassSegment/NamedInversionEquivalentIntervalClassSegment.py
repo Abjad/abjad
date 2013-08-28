@@ -9,7 +9,7 @@ class NamedInversionEquivalentIntervalClassSegment(IntervalClassSegment):
 
         >>> pitchtools.NamedInversionEquivalentIntervalClassSegment(
         ... [('major', 2), ('major', 9), ('minor', -2), ('minor', -9)])
-        NamedInversionEquivalentIntervalClassSegment(M2, M2, m2, m2)
+        NamedInversionEquivalentIntervalClassSegment(['M2', 'M2', 'm2', 'm2'])
 
     Inversion-equivalent diatonic interval-class segments are immutable.
     '''

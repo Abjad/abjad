@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.datastructuretools.TypedTuple import TypedTuple
+from abjad.tools.pitchtools.Segment import Segment
 
 
-class PitchSegment(TypedTuple):
+class PitchSegment(Segment):
     r'''Abjad model of a pitch segment:
 
     ::
@@ -34,52 +34,22 @@ class PitchSegment(TypedTuple):
 
     __slots__ = ()
     
-    ### INITIALIZER ###
-
-    def __init__(self, tokens=None, item_class=None, name=None):
-        from abjad.tools import pitchtools 
-        if isinstance(tokens, str):
-            tokens = tokens.split()
-        if item_class is None and tokens is not None:
-            if isinstance(tokens, type(self)):
-                item_class = tokens.item_class
-            elif len(tokens):
-                if isinstance(tokens[0], str):
-                    item_class = pitchtools.NamedPitch 
-                elif isinstance(tokens[0], (int, float)):
-                    item_class = pitchtools.NumberedPitch
-        elif item_class is None:
-            item_class = pitchtools.NamedPitch
-        assert issubclass(item_class, pitchtools.Pitch)
-        TypedTuple.__init__(
-            self,
-            tokens=tokens,
-            item_class=item_class,
-            )
-
-    ### SPECIAL METHODS ###
-
-    def __repr__(self):
-        return '{}([{}])'.format(self._class_name, self._repr_string)
-
-    def __str__(self):
-        return '<{}>'.format(self._format_string)
-        
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _format_string(self):
+    def _named_item_class(self):
         from abjad.tools import pitchtools
-        parts = []
-        if self.item_class is pitchtools.NamedPitch:
-            parts = [repr(str(x)) for x in self]
-        else:
-            parts = [str(x) for x in self]
-        return ', '.join(parts)
+        return pitchtools.NamedPitch
+    
+    @property
+    def _numbered_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NumberedPitch
 
     @property
-    def _repr_string(self):
-        return self._format_string
+    def _parent_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.Pitch
 
     ### PUBLIC PROPERTIES ###
 

@@ -1,9 +1,10 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools.datastructuretools import TypedTuple
+from abjad.tools.pitchtools.Segment import Segment
 
 
-class IntervalSegment(TypedTuple):
+class IntervalSegment(Segment):
     r'''Abjad model of an interval segment.
     '''
 
@@ -11,47 +12,68 @@ class IntervalSegment(TypedTuple):
 
     __slots__ = ()
 
-    ### INITIALIZER ###
-
-    def __init__(self, tokens=None, item_class=None, name=None):
-        from abjad.tools import pitchtools 
-        if isinstance(tokens, str):
-            tokens = tokens.split()
-        elif all(isinstance(x, (pitchtools.Pitch, pitchtools.PitchClass))
-            for x in tokens):
-            tokens = mathtools.difference_series(tokens)
-        if item_class is None and tokens is not None:
-            if isinstance(tokens, type(self)):
-                item_class = tokens.item_class
-            elif len(tokens):
-                if isinstance(tokens[0], str):
-                    item_class = pitchtools.NamedMelodicInterval
-                elif isinstance(tokens[0], (int, float)):
-                    item_class = pitchtools.NumberedMelodicInterval
-        elif item_class is None:
-            item_class = pitchtools.NamedMelodicInterval
-        assert issubclass(item_class, pitchtools.Interval)
-        TypedTuple.__init__(
-            self,
-            tokens=tokens,
-            item_class=item_class,
-            )
-
-    ### SPECIAL METHODS ###
-
-    def __repr__(self):
-        return '%s(%s)' % (self._class_name, self._format_string)
-
-    def __str__(self):
-        return '<%s>' % self._format_string
-
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _format_string(self):
-        return ', '.join([str(x) for x in self])
+    def _named_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NamedMelodicInterval
+    
+    @property
+    def _numbered_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NumberedMelodicInterval
+
+    @property
+    def _parent_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.Interval
 
     ### PUBLIC METHODS ###
 
     def rotate(self, n):
         return self.new(self[-n:] + self[:-n])
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def slope(self):
+        r'''The slope of a melodic interval segment is the sum of its 
+        intervals divided by its length:
+
+        ::
+
+            >>> pitchtools.IntervalSegment([1, 2]).slope
+            Multiplier(3, 2)
+
+        Return multiplier.
+        '''
+        return durationtools.Multiplier.from_float(
+            sum([x.number for x in self])) / len(self)
+
+    @property
+    def spread(self):
+        r'''The maximum harmonic interval spanned by any combination of 
+        the intervals within a harmonic chromatic interval segment:
+
+        ::
+
+            >>> pitchtools.IntervalSegment([1, 2, -3, 1, -2, 1]).spread
+            NumberedHarmonicInterval(4.0)
+
+        ::
+
+            >>> pitchtools.IntervalSegment([1, 1, 1, 2, -3, -2]).spread
+            NumberedHarmonicInterval(5.0)
+
+        Return harmonic chromatic interval.
+        '''
+        from abjad.tools import pitchtools
+        current = maximum = minimum = 0
+        for x in self:
+            current += float(x)
+            if maximum < current:
+                maximum = current
+            if current < minimum:
+                minimum = current
+        return pitchtools.NumberedHarmonicInterval(maximum - minimum)
