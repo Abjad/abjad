@@ -97,7 +97,7 @@ class TonalAnalysisAgent(object):
             ordered_npcs = ordered_npcs.rotate(1)
             segment = \
                 pitchtools.IntervalClassSegment(
-                    tokens=ordered_npcs,
+                    tokens=mathtools.difference_series(ordered_npcs),
                     item_class=pitchtools.NamedInversionEquivalentIntervalClass,
                     )
                 #ordered_npcs.inversion_equivalent_diatonic_interval_class_segment

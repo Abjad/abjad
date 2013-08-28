@@ -15,7 +15,7 @@ class ChordQualityIndicator(NamedHarmonicIntervalSegment):
         ...     'German',
         ...     'augmented sixth',
         ...     )
-        GermanAugmentedSixthInRootPosition(P1, M3, m3, aug2)
+        GermanAugmentedSixthInRootPosition('P1', 'M3', 'm3', 'aug2')
 
     Return chord quality indicator.
     '''
