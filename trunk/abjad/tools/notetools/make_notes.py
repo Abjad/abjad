@@ -68,6 +68,9 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
     from abjad.tools import selectiontools
     from abjad.tools import tuplettools
 
+    if isinstance(pitches, str):
+        pitches = pitches.split()
+
     if not isinstance(pitches, list):
         pitches = [pitches]
 
