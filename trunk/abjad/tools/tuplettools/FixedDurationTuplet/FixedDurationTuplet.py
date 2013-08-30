@@ -276,11 +276,8 @@ class FixedDurationTuplet(Tuplet):
 
         Return new tuplet.
         '''
-        from abjad.tools import containertools
         from abjad.tools import tuplettools
         new_tuplet = tuplettools.Tuplet(self.multiplier, [])
-        #containertools.move_parentage_children_and_spanners_from_components_to_empty_container(
-        #    [self], new_tuplet)
         mutationtools.mutate(self).swap(new_tuplet)
         return new_tuplet
 

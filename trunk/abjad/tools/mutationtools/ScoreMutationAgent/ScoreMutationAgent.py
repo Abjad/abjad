@@ -633,7 +633,61 @@ class ScoreMutationAgent(object):
         return result
 
     def swap(self, container):
-        '''Swaps mutation client for empty `container`.
+        r'''Swaps mutation client for empty `container`.
+
+        ..  container:: example
+
+            **Example 1.** Swap measures for tuplet:
+
+                >>> staff = Staff()
+                >>> staff.append(Measure((3, 4), "c'4 d'4 e'4"))
+                >>> staff.append(Measure((3, 4), "d'4 e'4 f'4"))
+                >>> leaves = staff.select_leaves()
+                >>> hairpin = spannertools.HairpinSpanner([], 'p < f')
+                >>> hairpin.attach(leaves)
+                >>> measures = staff[:]
+                >>> slur = spannertools.SlurSpanner()
+                >>> slur.attach(measures)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 3/4
+                        c'4 \< \p (
+                        d'4
+                        e'4
+                    }
+                    {
+                        d'4
+                        e'4
+                        f'4 \f )
+                    }
+                }
+
+            ::
+
+                >>> measures = staff[:]
+                >>> tuplet = Tuplet(Multiplier(2, 3), [])
+                >>> tuplet.preferred_denominator = 4
+                >>> mutate(measures).swap(tuplet)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \times 4/6 {
+                        c'4 \< \p (
+                        d'4
+                        e'4
+                        d'4
+                        e'4
+                        f'4 \f )
+                    }
+                }
 
         Returns none.
         '''

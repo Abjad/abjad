@@ -461,8 +461,6 @@ class ContiguousSelection(Selection):
             self[-1]._get_parentage().root:
             dummy_container = containertools.Container(self)
             wrapped = True
-        #containertools.move_parentage_children_and_spanners_from_components_to_empty_container(
-        #    self, new_tuplet)
         mutationtools.mutate(self).swap(new_tuplet)
         if wrapped:
             del(dummy_container[:])

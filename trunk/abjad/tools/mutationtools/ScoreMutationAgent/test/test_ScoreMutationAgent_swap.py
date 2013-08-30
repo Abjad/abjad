@@ -3,7 +3,7 @@ import py.test
 from abjad import *
 
 
-def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_01():
+def test_ScoreMutationAgent_swap_01():
     r'''Move parentage, children and spanners from multiple containers 
     to empty tuplet.
     '''
@@ -57,7 +57,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     assert inspect(voice).is_well_formed()
 
 
-def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_02():
+def test_ScoreMutationAgent_swap_02():
     r'''Move parentage, children and spanners from container to empty voice.
     '''
 
@@ -114,7 +114,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     assert inspect(voice).is_well_formed()
 
 
-def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_03():
+def test_ScoreMutationAgent_swap_03():
     r'''Move parentage, children and spanners from container to empty tuplet.
     '''
 
@@ -171,7 +171,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     assert inspect(voice).is_well_formed()
 
 
-def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_04():
+def test_ScoreMutationAgent_swap_04():
     r'''Trying to move parentage, children and spanners to noncontainer 
     raises exception.
     '''
@@ -187,7 +187,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
         )
 
 
-def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_05():
+def test_ScoreMutationAgent_swap_05():
     r'''Trying to move parentage, children and spanners from nonempty container
     to nonempty container raises exception.
     '''
@@ -203,7 +203,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
         )
 
 
-def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_06():
+def test_ScoreMutationAgent_swap_06():
     r'''Trying to move parentage, children and spanners from components 
     that are not parent-contiguous raises exception.
     '''
@@ -239,7 +239,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
         )
 
 
-def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_07():
+def test_ScoreMutationAgent_swap_07():
     r'''Move parentage, children and spanners from one measure to another.
     '''
 

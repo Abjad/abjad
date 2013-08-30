@@ -1918,12 +1918,9 @@ class Tuplet(Container):
 
         Returns new tuplet.
         '''
-        from abjad.tools import containertools
         from abjad.tools import tuplettools
         target_duration = self._preprolated_duration
         new_tuplet = tuplettools.FixedDurationTuplet(target_duration, [])
-        #containertools.move_parentage_children_and_spanners_from_components_to_empty_container(
-        #    [self], new_tuplet)
         mutationtools.mutate(self).swap(new_tuplet)
         return new_tuplet
 
