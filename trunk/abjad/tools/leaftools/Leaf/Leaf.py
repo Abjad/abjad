@@ -371,7 +371,15 @@ class Leaf(Component):
                 for mark in component._get_spanners(
                     spanner_classes=spanner_classes):
                     mark.detach()
-        mutationtools.mutate(self).replace(flattened_result)
+        # replace leaf with flattened result
+        selection = selectiontools.SliceSelection(self)
+        parent, start, stop = selection._get_parent_and_start_stop_indices()
+        if parent:
+            parent.__setitem__(slice(start, stop+1), flattened_result)
+        else:
+            selection._give_dominant_spanners_to_components(flattened_result)
+            selection._withdraw_from_crossing_spanners()
+        # fracture spanners
         if fracture_spanners:
             first_shard = result[0]
             spannertools.fracture_spanners_attached_to_component(
@@ -511,8 +519,14 @@ class Leaf(Component):
             else:
                 if tuplet.is_diminution:
                     tuplet.toggle_prolation()
-        # give leaf position in score structure to tuplet
-        mutationtools.mutate(self).replace(tuplet)
+        # replace leaf with tuplet
+        selection = selectiontools.SliceSelection(self)
+        parent, start, stop = selection._get_parent_and_start_stop_indices()
+        if parent:
+            parent.__setitem__(slice(start, stop+1), flattened_result)
+        else:
+            selection._give_dominant_spanners_to_components([tuplet])
+            selection._withdraw_from_crossing_spanners()
         # return tuplet
         return tuplet
 

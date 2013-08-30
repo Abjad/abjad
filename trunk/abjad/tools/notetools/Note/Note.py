@@ -416,5 +416,8 @@ class Note(Leaf):
             pitchtools.transpose_pitch_carrier_by_melodic_interval(
             chord[1].written_pitch, melodic_diatonic_interval)
         chord[1].tweak.style = 'harmonic'
-        mutationtools.mutate(self).replace(chord)
+        parent = self._parent
+        if self._parent:
+            index = parent.index(self)
+            parent[index] = chord
         return chord

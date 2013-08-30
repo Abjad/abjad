@@ -102,7 +102,7 @@ class ScoreMutationAgent(object):
         ..  container:: example
 
             **Example 1.** Replace in-score tuplet (and children of tuplet) 
-            with notes: 
+            with notes. Functions exactly the same as container setitem:
 
                 >>> tuplet_1 = Tuplet((2, 3), "c'4 d'4 e'4")
                 >>> tuplet_2 = Tuplet((2, 3), "d'4 e'4 f'4")
@@ -159,92 +159,23 @@ class ScoreMutationAgent(object):
 
             Preserves both hairpin and slur.
 
-            Functions exactly the same as container setitem logic.
-
-        ..  container:: example
-
-            **Example 2.** Replace out-of-score tuplet 
-            (and children of tuplet) with notes.
-            
-                >>> tuplet_1 = Tuplet((2, 3), "c'4 d'4 e'4")
-                >>> tuplet_2 = Tuplet((2, 3), "d'4 e'4 f'4")
-                >>> tuplets = [tuplet_1, tuplet_2]
-                >>> hairpin = spannertools.HairpinSpanner([], 'p < f')
-                >>> hairpin.attach(tuplets)
-                >>> notes = list(iterationtools.iterate_notes_in_expr(tuplets))
-                >>> # slur = spannertools.SlurSpanner()
-                >>> # slur.attach(notes)
-                >>> show(tuplet_1) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(tuplet_1)
-                \times 2/3 {
-                    c'4 \< \p
-                    d'4
-                    e'4
-                }
-
-            ::
-
-                >>> notes = notetools.make_notes(
-                ...     "c' d' e' f' c' d' e' f'",
-                ...     Duration(1, 16),
-                ...     )
-                >>> mutate([tuplet_1]).replace(notes)
-                >>> staff = Staff(notes + [tuplet_2])
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff {
-                    c'16 \< \p
-                    d'16
-                    e'16
-                    f'16
-                    c'16
-                    d'16
-                    e'16
-                    f'16
-                    \times 2/3 {
-                        d'4
-                        e'4
-                        f'4 \f
-                    }
-                }
-
-            The functionality exhibited here exceeds the ability
-            of container setitem logic; container setitem logic is not
-            available when working with out-of-score components.
-
         Returns none.
         '''
-        from abjad.tools import componenttools
         from abjad.tools import selectiontools
         Selection = selectiontools.Selection
-        # coerce input
         if isinstance(self._client, selectiontools.SliceSelection):
             donors = self._client
         else:
             donors = selectiontools.SliceSelection(self._client)
         if not isinstance(recipients, selectiontools.Selection):
             recipients = selectiontools.SliceSelection(recipients)
-        # check input
-        assert Selection._all_are_contiguous_components_in_same_parent(
-            donors)
-        assert Selection._all_are_contiguous_components_in_same_parent(
+        assert donors._all_are_contiguous_components_in_same_parent(donors)
+        assert recipients._all_are_contiguous_components_in_same_parent(
             recipients)
-        # return none when donors are empty
-        if len(donors) == 0:
-            return
-        # give parentage and spanners to recipients
-        parent, start, stop = donors._get_parent_and_start_stop_indices()
-        if parent:
+        if donors:
+            parent, start, stop = donors._get_parent_and_start_stop_indices()
+            assert parent is not None
             parent.__setitem__(slice(start, stop + 1), recipients)
-        else:
-            donors._give_dominant_spanners_to_components(recipients)
-            donors._withdraw_from_crossing_spanners()
 
     def shorten(self, duration):
         r'''Shortens component by `duration`.
