@@ -3,6 +3,7 @@ import copy
 import itertools
 import types
 from abjad.tools import durationtools
+from abjad.tools import mutationtools
 from abjad.tools import sequencetools
 from abjad.tools.selectiontools.Selection import Selection
 
@@ -460,8 +461,9 @@ class ContiguousSelection(Selection):
             self[-1]._get_parentage().root:
             dummy_container = containertools.Container(self)
             wrapped = True
-        containertools.move_parentage_children_and_spanners_from_components_to_empty_container(
-            self, new_tuplet)
+        #containertools.move_parentage_children_and_spanners_from_components_to_empty_container(
+        #    self, new_tuplet)
+        mutationtools.mutate(self).swap(new_tuplet)
         if wrapped:
             del(dummy_container[:])
         return new_tuplet

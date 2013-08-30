@@ -4,6 +4,7 @@ import math
 from abjad.tools import durationtools
 from abjad.tools import formattools
 from abjad.tools import mathtools
+from abjad.tools import mutationtools
 from abjad.tools import sequencetools
 from abjad.tools.containertools.Container import Container
 
@@ -1921,8 +1922,9 @@ class Tuplet(Container):
         from abjad.tools import tuplettools
         target_duration = self._preprolated_duration
         new_tuplet = tuplettools.FixedDurationTuplet(target_duration, [])
-        containertools.move_parentage_children_and_spanners_from_components_to_empty_container(
-            [self], new_tuplet)
+        #containertools.move_parentage_children_and_spanners_from_components_to_empty_container(
+        #    [self], new_tuplet)
+        mutationtools.mutate(self).swap(new_tuplet)
         return new_tuplet
 
     def toggle_prolation(self):

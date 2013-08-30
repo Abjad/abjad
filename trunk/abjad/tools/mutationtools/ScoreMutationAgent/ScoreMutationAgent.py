@@ -96,7 +96,7 @@ class ScoreMutationAgent(object):
             )
 
     def replace(self, recipients):
-        r'''Replaces mutation client (and all children of mutation client)
+        r'''Replaces mutation client (and contents of mutation client)
         with `recipients`.
 
         ..  container:: example
@@ -161,19 +161,21 @@ class ScoreMutationAgent(object):
 
         Returns none.
         '''
+        from abjad.tools import containertools
         from abjad.tools import selectiontools
         Selection = selectiontools.Selection
         if isinstance(self._client, selectiontools.SliceSelection):
             donors = self._client
         else:
             donors = selectiontools.SliceSelection(self._client)
+        assert donors._all_are_contiguous_components_in_same_parent(donors)
         if not isinstance(recipients, selectiontools.Selection):
             recipients = selectiontools.SliceSelection(recipients)
-        assert donors._all_are_contiguous_components_in_same_parent(donors)
         assert recipients._all_are_contiguous_components_in_same_parent(
             recipients)
         if donors:
-            parent, start, stop = donors._get_parent_and_start_stop_indices()
+            parent, start, stop = \
+                donors._get_parent_and_start_stop_indices()
             assert parent is not None
             parent.__setitem__(slice(start, stop + 1), recipients)
 
@@ -629,3 +631,22 @@ class ScoreMutationAgent(object):
         # return list of shards
         result = [selectiontools.Selection(x) for x in result]
         return result
+
+    def swap(self, container):
+        '''Swaps mutation client for empty `container`.
+
+        Returns none.
+        '''
+        from abjad.tools import containertools
+        from abjad.tools import selectiontools
+        Selection = selectiontools.Selection
+        if isinstance(self._client, selectiontools.SliceSelection):
+            donors = self._client
+        else:
+            donors = selectiontools.SliceSelection(self._client)
+        assert donors._all_are_contiguous_components_in_same_parent(donors)
+        assert isinstance(container, containertools.Container)
+        assert not container, repr(container)
+        donors._give_music_to_empty_container(container)
+        donors._give_dominant_spanners_to_components([container])
+        donors._give_position_in_parent_to_container(container)

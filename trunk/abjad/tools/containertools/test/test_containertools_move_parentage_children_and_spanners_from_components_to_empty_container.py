@@ -33,7 +33,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
         )
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(3, 8), [])
-    containertools.move_parentage_children_and_spanners_from_components_to_empty_container(voice[:2], tuplet)
+    mutate(voice[:2]).swap(tuplet)
 
     assert testtools.compare(
         voice,
@@ -87,9 +87,9 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
         '''
         )
 
-    new = Voice()
-    new.name = 'foo'
-    containertools.move_parentage_children_and_spanners_from_components_to_empty_container(voice[1:2], new)
+    new_voice = Voice()
+    new_voice.name = 'foo'
+    mutate(voice[1:2]).swap(new_voice)
 
     assert testtools.compare(
         voice,
@@ -143,8 +143,9 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
         '''
         )
 
-    containertools.move_parentage_children_and_spanners_from_components_to_empty_container(
-        voice[1:2], tuplettools.FixedDurationTuplet(Duration(3, 16), []))
+    tuplet = tuplettools.FixedDurationTuplet(Duration(3, 16), [])
+    mutate(voice[1:2]).swap(tuplet)
+
 
     assert testtools.compare(
         voice,
@@ -179,9 +180,11 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     spannertools.BeamSpanner(voice[:])
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
 
+    note = Note("c'4")
     assert py.test.raises(
-        Exception,
-        'containertools.move_parentage_children_and_spanners_from_components_to_empty_container(voice[1:2], Note(4, (1, 4)))')
+        Exception, 
+        'mutate(voice[1:2]).swap(note)',
+        )
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_05():
@@ -195,8 +198,9 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     assert py.test.raises(
-        Exception,
-        'containertools.move_parentage_children_and_spanners_from_components_to_empty_container(voice[1:2], tuplet)')
+        Exception, 
+        'mutate(voice[1:2]).swap(tuplet)',
+        )
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_06():
@@ -230,8 +234,9 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(3, 8), [])
     assert py.test.raises(
-        Exception,
-        'containertools.move_parentage_children_and_spanners_from_components_to_empty_container([voice[0], voice[2]], tuplet)')
+        Exception, 
+        'mutate([voice[0], voice[2]]).swap(tuplet)',
+        )
 
 
 def test_containertools_move_parentage_children_and_spanners_from_components_to_empty_container_07():
@@ -254,8 +259,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
         )
 
     new_measure = Measure((4, 8), [])
-    containertools.move_parentage_children_and_spanners_from_components_to_empty_container(
-        [measure], new_measure)
+    mutate(measure).swap(new_measure)
 
     assert testtools.compare(
         new_measure,

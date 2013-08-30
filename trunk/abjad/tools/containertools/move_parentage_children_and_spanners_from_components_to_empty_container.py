@@ -32,8 +32,7 @@ def move_parentage_children_and_spanners_from_components_to_empty_container(
     ::
 
         >>> tuplet = Tuplet(Fraction(3, 4), [])
-        >>> containertools.move_parentage_children_and_spanners_from_components_to_empty_container(
-        ... voice[:2], tuplet)
+        >>> mutate(voice[:2]).swap(tuplet)
 
     ..  doctest::
 
