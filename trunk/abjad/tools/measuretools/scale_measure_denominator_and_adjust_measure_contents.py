@@ -4,50 +4,57 @@ from abjad.tools import durationtools
 
 
 def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
-    r'''Change power-of-two `measure` to non-power-of-two measure with new denominator `factor`:
+    r'''Scales power-of-two `measure` to non-power-of-two measure 
+    with new denominator `factor`:
 
-    ::
+    ..  container:: example
 
-        >>> measure = Measure((2, 8), "c'8 d'8")
-        >>> spannertools.BeamSpanner(measure.select_leaves())
-        BeamSpanner(c'8, d'8)
+        **Example.**
 
-    ..  doctest::
+        ::
 
-        >>> f(measure)
-        {
-            \time 2/8
-            c'8 [
-            d'8 ]
-        }
+            >>> measure = Measure((2, 8), "c'8 d'8")
+            >>> beam = spannertools.BeamSpanner()
+            >>> beam.attach(measure.select_leaves())
+            >>> show(measure) # doctest: +SKIP
 
-    ::
+        ..  doctest::
 
-        >>> measuretools.scale_measure_denominator_and_adjust_measure_contents(measure, 3)
-        Measure(3/12, [c'8., d'8.])
-
-    ..  doctest::
-
-        >>> f(measure)
-        {
-            \time 3/12
-            \scaleDurations #'(2 . 3) {
-                c'8. [
-                d'8. ]
+            >>> f(measure)
+            {
+                \time 2/8
+                c'8 [
+                d'8 ]
             }
-        }
 
+        ::
 
-    Treat new denominator `factor` like clever form of ``1``:
+            >>> measuretools.scale_measure_denominator_and_adjust_measure_contents(
+            ...     measure, 3)
+            Measure(3/12, [c'8., d'8.])
+            >>> show(measure) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(measure)
+            {
+                \time 3/12
+                \scaleDurations #'(2 . 3) {
+                    c'8. [
+                    d'8. ]
+                }
+            }
+
+    Treats new denominator `factor` like clever form of ``1``:
     ``3/3`` or ``5/5`` or ``7/7``, etc.
 
-    Preserve `measure` prolated duration.
+    Preserves `measure` prolated duration.
 
-    Derive new `measure` multiplier.
+    Derives new `measure` multiplier.
 
-    Scale `measure` contents.
+    Scales `measure` contents.
 
-    Pick best new time signature.
+    Picks best new time signature.
     '''
     from abjad.tools import measuretools
     from abjad.tools import timesignaturetools
@@ -56,11 +63,13 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
     old_time_signature_duration = measure.time_signature.duration
 
     # find new time signature
-    new_time_signature = timesignaturetools.duration_and_possible_denominators_to_time_signature(
+    new_time_signature = \
+        timesignaturetools.duration_and_possible_denominators_to_time_signature(
         old_time_signature_duration, factor=factor)
 
     # scale contents of measures in expr
-    measuretools.scale_contents_of_measures_in_expr(measure, new_time_signature.implied_prolation.reciprocal)
+    multiplier = new_time_signature.implied_prolation.reciprocal
+    measure.scale(multiplier)
 
     # assign new time signature
     for mark in measure._get_marks(contexttools.TimeSignatureMark):

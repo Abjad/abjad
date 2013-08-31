@@ -111,10 +111,8 @@ def scale_contents_of_container(container, multiplier):
             new_written_duration = multiplier * expr.written_duration
             expr._add_or_remove_notes_to_achieve_written_duration(
                 new_written_duration)
-        elif isinstance(expr, tuplettools.Tuplet):
+        elif isinstance(expr, (tuplettools.Tuplet, measuretools.Measure)):
             expr.scale(multiplier)
-        elif isinstance(expr, measuretools.Measure):
-            measuretools.scale_contents_of_measures_in_expr(expr, multiplier)
         else:
             raise NotImplementedError(expr)
 
