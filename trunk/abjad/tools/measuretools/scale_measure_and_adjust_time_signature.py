@@ -6,82 +6,48 @@ from abjad.tools import mathtools
 
 
 def scale_measure_and_adjust_time_signature(measure, multiplier=1):
-    r'''Scale `measure` by `multiplier` and adjust time signature:
+    r'''Scales `measure` by `multiplier` and adjusts time signature:
 
-    ::
+    ..  container:: example
 
-        >>> t = Measure((3, 8), "c'8 d'8 e'8")
-        >>> measuretools.scale_measure_and_adjust_time_signature(t, Duration(2, 3))
-        Measure(3/12, [c'8, d'8, e'8])
+        **Example 1.** Scale measure by non-power-of-two multiplier:
 
-    ..  doctest::
+        ::
 
-        >>> f(t)
-        {
-        \time 3/12
-        \scaleDurations #'(2 . 3) {
-            c'8
-            d'8
-            e'8
-        }
-        }
+            >>> measure = Measure((3, 8), "c'8 d'8 e'8")
+            >>> show(measure) # doctest: +SKIP
 
-    Return `measure`.
+        ..  doctest::
+
+            >>> f(measure)
+            {
+                \time 3/8
+                c'8
+                d'8
+                e'8
+            }
+
+        ::
+
+            >>> measuretools.scale_measure_and_adjust_time_signature(
+            ...     measure, Multiplier(2, 3))
+            Measure(3/12, [c'8, d'8, e'8])
+            >>> show(measure) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(measure)
+            {
+                \time 3/12
+                \scaleDurations #'(2 . 3) {
+                    c'8
+                    d'8
+                    e'8
+                }
+            }
+
+    Returns `measure`.
     '''
-    from abjad.tools import contexttools
 
-    if multiplier == 0:
-        raise ZeroDivisionError
-
-    old_time_signature = measure.time_signature
-    old_pair = (old_time_signature.numerator, old_time_signature.denominator)
-    old_multiplier = old_time_signature.implied_prolation
-    old_multiplier_pair = (old_multiplier.numerator, old_multiplier.denominator)
-
-    multiplied_pair = mathtools.NonreducedFraction(old_multiplier_pair)
-    multiplied_pair = multiplied_pair.multiply_without_reducing(multiplier)
-    multiplied_pair = multiplied_pair.pair
-    reduced_pair = mathtools.NonreducedFraction(old_multiplier_pair)
-    reduced_pair = reduced_pair.multiply_with_cross_cancelation(multiplier)
-    reduced_pair = reduced_pair.pair
-
-    if reduced_pair != multiplied_pair:
-        new_pair = mathtools.NonreducedFraction(old_pair)
-        new_pair = new_pair.multiply_with_numerator_preservation(multiplier)
-        new_time_signature = contexttools.TimeSignatureMark(new_pair)
-        for mark in measure._get_marks(contexttools.TimeSignatureMark):
-            mark.detach()
-        new_time_signature.attach(measure)
-        remaining_multiplier = durationtools.Duration(reduced_pair)
-        if remaining_multiplier != durationtools.Duration(1):
-            containertools.scale_contents_of_container(measure, remaining_multiplier)
-    elif measure._all_contents_are_scalable_by_multiplier(multiplier):
-        containertools.scale_contents_of_container(measure, multiplier)
-        if old_time_signature.has_non_power_of_two_denominator or not mathtools.is_nonnegative_integer_power_of_two(multiplier):
-            new_pair = mathtools.NonreducedFraction(old_pair)
-            new_pair = new_pair.multiply_with_cross_cancelation(multiplier)
-            new_pair = new_pair.pair
-        # multiplier is a negative power of two, like 1/2, 1/4, etc.
-        elif multiplier < durationtools.Duration(0):
-            new_pair = durationtools.multiply_duration_pair(old_pair, multiplier)
-        # multiplier is a nonnegative power of two, like 0, 1, 2, 4, etc.
-        elif durationtools.Duration(0) < multiplier:
-            new_pair = mathtools.NonreducedFraction(old_pair)
-            new_pair = new_pair.multiply_with_numerator_preservation(multiplier)
-        elif multiplier == durationtools.Duration(0):
-            raise ZeroDivisionError
-        new_time_signature = contexttools.TimeSignatureMark(new_pair)
-        for mark in measure._get_marks(contexttools.TimeSignatureMark):
-            mark.detach()
-        new_time_signature.attach(measure)
-    else:
-        new_pair = mathtools.NonreducedFraction(old_pair)
-        new_pair = new_pair.multiply_with_numerator_preservation(multiplier)
-        new_time_signature = contexttools.TimeSignatureMark(new_pair)
-        for mark in measure._get_marks(contexttools.TimeSignatureMark):
-            mark.detach()
-        new_time_signature.attach(measure)
-        remaining_multiplier = multiplier / new_time_signature.implied_prolation
-        if remaining_multiplier != durationtools.Duration(1):
-            containertools.scale_contents_of_container(measure, remaining_multiplier)
+    measure.scale_and_adjust_time_signature(multiplier)
     return measure
