@@ -555,7 +555,43 @@ class Measure(FixedDurationContainer):
         containertools.scale_contents_of_container(self, contents_multiplier)
 
     def scale_and_adjust_time_signature(self, multiplier=None):
-        '''Scales measure by `multiplier` and adjusts time signature.
+        r'''Scales `measure` by `multiplier` and adjusts time signature:
+
+        ..  container:: example
+
+            **Example 1.** Scale measure by non-power-of-two multiplier:
+
+            ::
+
+                >>> measure = Measure((3, 8), "c'8 d'8 e'8")
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(measure)
+                {
+                    \time 3/8
+                    c'8
+                    d'8
+                    e'8
+                }
+
+            ::
+
+                >>> measure.scale_and_adjust_time_signature(Multiplier(2, 3))
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(measure)
+                {
+                    \time 3/12
+                    \scaleDurations #'(2 . 3) {
+                        c'8
+                        d'8
+                        e'8
+                    }
+                }
 
         Returns none.
         '''
