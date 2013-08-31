@@ -4,29 +4,31 @@ from abjad.tools.leaftools.Leaf import Leaf
 
 
 class Rest(Leaf):
-    r'''Abjad model of a rest:
+    r'''A rest.
 
-    ::
+    ..  container:: example
 
-        >>> rest = Rest((3, 16))
+        **Example.**
 
-    ::
+        ::
 
-        >>> rest
-        Rest('r8.')
+            >>> rest = Rest('r8.')
+            >>> measure = Measure((3, 16), [rest])
+            >>> show(measure) # doctest: +SKIP
 
-    ::
+        ..  doctest::
 
-        >>> show(rest) # doctest: +SKIP
+            >>> f(measure)
+            {
+                \time 3/16
+                r8.
+            }
 
-    Return Rest instance.
     '''
 
     ### CLASS VARIABLES ###
 
-    # TODO: add vertical positioning pitch only as needed #
     __slots__ = (
-        '_vertical_positioning_pitch',
         )
 
     _default_positional_input_arguments = (
@@ -35,18 +37,13 @@ class Rest(Leaf):
 
     ### INITIALIZER ###
 
-    # TODO: use LilyPond parser for initialization
     def __init__(self, *args, **kwargs):
         from abjad.tools import lilypondparsertools
-
         if len(args) == 1 and isinstance(args[0], str):
-            input = '{{ {} }}'.format(args[0])
-            parsed = lilypondparsertools.LilyPondParser()(input)
+            string = '{{ {} }}'.format(args[0])
+            parsed = lilypondparsertools.LilyPondParser()(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             args = [parsed[0]]
-            #written_duration = args[0].strip('r')
-            #lilypond_multiplier = None
-
         if len(args) == 1 and isinstance(args[0], Leaf):
             leaf = args[0]
             written_duration = leaf.written_duration
@@ -58,9 +55,8 @@ class Rest(Leaf):
         elif len(args) == 2:
             written_duration, lilypond_multiplier = args
         else:
-            raise ValueError(
-                'can not initialize rest from "%s".' % str(args))
-
+            message = 'can not initialize rest from {!r}.'
+            raise ValueError(message.format(args))
         Leaf.__init__(self, written_duration, lilypond_multiplier)
         self._initialize_keyword_values(**kwargs)
 
@@ -68,23 +64,11 @@ class Rest(Leaf):
 
     @property
     def _body(self):
-        r'''Body of rest.
-        '''
-        result = ''
-        vertical_positioning_pitch = getattr(
-            self, '_vertical_positioning_pitch', None)
-        if vertical_positioning_pitch:
-            result += str(vertical_positioning_pitch)
-        else:
-            result += 'r'
-        result += str(self._formatted_duration)
-        if vertical_positioning_pitch:
-            result += r' \rest'
-        return [result]
+        return [self._compact_representation]
 
     @property
     def _compact_representation(self):
-        return 'r%s' % self._formatted_duration
+        return 'r{}'.format(self._formatted_duration)
 
     ### PRIVATE METHODS ###
 

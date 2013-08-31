@@ -3077,7 +3077,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             leaf.note_head.is_cautionary = bool(p[3])
         else:
             leaf = resttools.Rest(p[5].duration)
-            resttools.set_vertical_positioning_pitch_on_rest(leaf, p[1])
         if p[5].multiplier is not None:
             leaf.lilypond_duration_multiplier = p[5].multiplier
         # TODO: handle exclamations, questions, octave_check

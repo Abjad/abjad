@@ -14,12 +14,16 @@ class Note(Leaf):
         ::
 
             >>> note = Note("cs''8.")
-            >>> show(note) # doctest: +SKIP
+            >>> measure = Measure((3, 16), [note])
+            >>> show(measure) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> f(note)
-            cs''8.
+            >>> f(measure)
+            {
+                \time 3/16
+                cs''8.
+            }
 
     '''
 
@@ -70,7 +74,8 @@ class Note(Leaf):
         elif len(args) == 3:
             pitch, written_duration, lilypond_multiplier = args
         else:
-            raise ValueError('can not initialize note from "%s".' % str(args))
+            message = 'can not initialize note from {!r}.'
+            raise ValueError(message.format(args))
         Leaf.__init__(self, written_duration, lilypond_multiplier)
         if pitch is not None:
             self.note_head = notetools.NoteHead(
@@ -148,7 +153,7 @@ class Note(Leaf):
 
     @property
     def written_pitch(self):
-        r'''Fingered pitch of note:
+        r'''Written pitch of note:
 
         ::
 
@@ -348,6 +353,8 @@ class Note(Leaf):
 
     ### PUBLIC METHODS ###
 
+    # TODO: create ArtificialHarmonic class;
+    #       replace this with ArtificialHarmonic(note, named_interval=None)
     def add_artificial_harmonic(self, melodic_diatonic_interval=None):
         r'''Adds artifical harmonic to note at `melodic_diatonic_interval`.
 
