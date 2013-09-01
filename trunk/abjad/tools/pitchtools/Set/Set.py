@@ -17,16 +17,19 @@ class Set(TypedFrozenset):
         from abjad.tools import pitchtools 
         if isinstance(tokens, str):
             tokens = tokens.split()
-        if item_class is None and tokens is not None:
-            if isinstance(tokens, type(self)):
-                item_class = tokens.item_class
-            elif len(tokens):
-                if isinstance(tokens[0], str):
-                    item_class = self._named_item_class
-                elif isinstance(tokens[0], (int, float)):
-                    item_class = self._numbered_item_class
-        elif item_class is None:
-            item_class = self._named_item_class
+        if item_class is None:
+            if tokens is not None:
+                if isinstance(tokens, type(self)):
+                    item_class = tokens.item_class
+                elif len(tokens):
+                    if isinstance(tokens[0], str):
+                        item_class = self._named_item_class
+                    elif isinstance(tokens[0], (int, float)):
+                        item_class = self._numbered_item_class
+                    elif isinstance(tokens[0], self._parent_item_class):
+                        item_class = type(tokens[0])
+            else:        
+                item_class = self._named_item_class
         assert issubclass(item_class, self._parent_item_class)
         TypedFrozenset.__init__(
             self,
