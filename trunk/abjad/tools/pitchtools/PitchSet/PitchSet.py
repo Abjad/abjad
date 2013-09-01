@@ -117,7 +117,7 @@ class PitchSet(Set):
         pitch_classes = []
         duplicate_pitch_classes = []
         for pitch in self:
-            pitch_class = pitch.numbered_chromatic_pitch_class
+            pitch_class = pitchtools.NumberedPitchClass(pitch)
             if pitch_class in pitch_classes:
                 duplicate_pitch_classes.append(pitch_class)
             pitch_classes.append(pitch_class)

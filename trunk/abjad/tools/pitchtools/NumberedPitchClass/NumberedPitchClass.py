@@ -37,6 +37,8 @@ class NumberedPitchClass(PitchClass):
             number = abs(expr.numbered_chromatic_pitch) % 12
         elif isinstance(expr, pitchtools.NamedPitchClass):
             number = abs(expr.numbered_chromatic_pitch_class)
+        elif isinstance(expr, pitchtools.NumberedPitch):
+            number = expr.chromatic_pitch_number % 12
         else:
             pitch = \
                 pitchtools.get_named_chromatic_pitch_from_pitch_carrier(expr)

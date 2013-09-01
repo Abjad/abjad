@@ -26,8 +26,8 @@ class NumberedPitch(Pitch):
 
     def __init__(self, arg):
         from abjad.tools import pitchtools
-        if hasattr(arg, '_chromatic_pitch_number'):
-            chromatic_pitch_number = arg._chromatic_pitch_number
+        if hasattr(arg, 'chromatic_pitch_number'):
+            chromatic_pitch_number = arg.chromatic_pitch_number
         elif pitchtools.is_chromatic_pitch_number(arg):
             chromatic_pitch_number = arg
         elif pitchtools.is_chromatic_pitch_name(arg):
