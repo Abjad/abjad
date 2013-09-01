@@ -7,7 +7,7 @@ def test_measuretools_get_likely_multiplier_of_components_01():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    staff.scale(Multiplier(5, 4))
+    mutate(staff).scale(Multiplier(5, 4))
     assert measuretools.get_likely_multiplier_of_components(staff[:]) == \
         Multiplier(5, 4)
 
@@ -17,7 +17,7 @@ def test_measuretools_get_likely_multiplier_of_components_02():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    staff.scale(Multiplier(3, 2))
+    mutate(staff).scale(Multiplier(3, 2))
     assert measuretools.get_likely_multiplier_of_components(staff[:]) == \
         Multiplier(3, 2)
 
@@ -27,7 +27,7 @@ def test_measuretools_get_likely_multiplier_of_components_03():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    staff.scale(Multiplier(7, 4))
+    mutate(staff).scale(Multiplier(7, 4))
     assert measuretools.get_likely_multiplier_of_components(staff[:]) == \
         Multiplier(7, 4)
 
@@ -37,7 +37,7 @@ def test_measuretools_get_likely_multiplier_of_components_04():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    staff.scale(Multiplier(2))
+    mutate(staff).scale(Multiplier(2))
     assert measuretools.get_likely_multiplier_of_components(staff[:]) == \
         Multiplier(1)
 
@@ -47,7 +47,7 @@ def test_measuretools_get_likely_multiplier_of_components_05():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    staff.scale(Multiplier(1, 2))
+    mutate(staff).scale(Multiplier(1, 2))
     assert measuretools.get_likely_multiplier_of_components(staff[:]) == \
         Multiplier(1)
 
@@ -57,7 +57,7 @@ def test_measuretools_get_likely_multiplier_of_components_06():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    staff.scale(Multiplier(10, 4))
+    mutate(staff).scale(Multiplier(10, 4))
     assert not measuretools.get_likely_multiplier_of_components(staff[:]) == \
         Multiplier(10, 4)
     assert measuretools.get_likely_multiplier_of_components(staff[:]) == \

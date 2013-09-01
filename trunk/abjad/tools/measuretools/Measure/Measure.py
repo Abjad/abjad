@@ -231,6 +231,40 @@ class Measure(FixedDurationContainer):
             format_contributions.get('opening', {}).get('context marks', [])))
         return self._format_slot_contributions_with_indent(result)
 
+    # TODO: see if self._scale can be combined with
+    #       with self.scale_and_adjust_time_signature()
+    def _scale(self, multiplier=None):
+        from abjad.tools import containertools
+        from abjad.tools import contexttools
+        from abjad.tools import iterationtools
+        from abjad.tools import timesignaturetools
+        if multiplier is None:
+            return
+        multiplier = durationtools.Multiplier(multiplier)
+        old_time_signature = self.time_signature
+        if mathtools.is_nonnegative_integer_power_of_two(multiplier) and \
+            1 <= multiplier:
+            old_numerator = old_time_signature.numerator
+            old_denominator = old_time_signature.denominator
+            new_denominator = old_denominator / multiplier.numerator
+            pair = (old_numerator, new_denominator)
+            new_time_signature = contexttools.TimeSignatureMark(pair)
+        else:
+            old_denominator = old_time_signature.denominator
+            old_duration = old_time_signature.duration
+            new_duration = multiplier * old_duration
+            new_time_signature = \
+                timesignaturetools.duration_and_possible_denominators_to_time_signature(
+                new_duration, [old_denominator], multiplier.denominator)
+        for mark in self._get_marks(contexttools.TimeSignatureMark):
+            mark.detach()
+        new_time_signature.attach(self)
+        contents_multiplier_denominator = \
+            mathtools.greatest_power_of_two_less_equal(multiplier.denominator)
+        pair = (multiplier.numerator, contents_multiplier_denominator)
+        contents_multiplier = durationtools.Multiplier(*pair)
+        self._scale_contents(contents_multiplier)
+
     ### PUBLIC PROPERTIES ###
 
     @apply
@@ -514,46 +548,8 @@ class Measure(FixedDurationContainer):
 
     ### PUBLIC METHODS ###
 
-    def scale(self, multiplier=None):
-        '''Scales contents of measure by `multiplier`.
-
-        Multiplies time signature by `multiplier`.
-
-        Then scales measure contents to fit new time signature.
-
-        Returns none.
-        '''
-        from abjad.tools import containertools
-        from abjad.tools import contexttools
-        from abjad.tools import iterationtools
-        from abjad.tools import timesignaturetools
-        if multiplier is None:
-            return
-        multiplier = durationtools.Multiplier(multiplier)
-        old_time_signature = self.time_signature
-        if mathtools.is_nonnegative_integer_power_of_two(multiplier) and \
-            1 <= multiplier:
-            old_numerator = old_time_signature.numerator
-            old_denominator = old_time_signature.denominator
-            new_denominator = old_denominator / multiplier.numerator
-            pair = (old_numerator, new_denominator)
-            new_time_signature = contexttools.TimeSignatureMark(pair)
-        else:
-            old_denominator = old_time_signature.denominator
-            old_duration = old_time_signature.duration
-            new_duration = multiplier * old_duration
-            new_time_signature = \
-                timesignaturetools.duration_and_possible_denominators_to_time_signature(
-                new_duration, [old_denominator], multiplier.denominator)
-        for mark in self._get_marks(contexttools.TimeSignatureMark):
-            mark.detach()
-        new_time_signature.attach(self)
-        contents_multiplier_denominator = \
-            mathtools.greatest_power_of_two_less_equal(multiplier.denominator)
-        pair = (multiplier.numerator, contents_multiplier_denominator)
-        contents_multiplier = durationtools.Multiplier(*pair)
-        self._scale_contents(contents_multiplier)
-
+    # TODO: see if self._scale can be combined with
+    #       with self.scale_and_adjust_time_signature()
     def scale_and_adjust_time_signature(self, multiplier=None):
         r'''Scales `measure` by `multiplier` and adjusts time signature:
 

@@ -179,6 +179,334 @@ class ScoreMutationAgent(object):
             assert parent is not None
             parent.__setitem__(slice(start, stop + 1), recipients)
 
+    def scale(self, multiplier):
+        r'''Scales mutation client by `multiplier`.
+
+        ..  container:: example
+
+            **Example 1.** Scale container by dot-generating multiplier:
+
+            ::
+
+                >>> container = Container(r"c'8 ( d'8 e'8 f'8 )")
+                >>> show(container) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(container)
+                {
+                    c'8 (
+                    d'8
+                    e'8
+                    f'8 )
+                }
+
+            ::
+
+                >>> mutate(container).scale(Multiplier(3, 2))
+                >>> show(container) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(container)
+                {
+                    c'8. (
+                    d'8.
+                    e'8.
+                    f'8. )
+                }
+
+        ..  container:: example
+
+            **Example 2.** Scale container by tie-generating multiplier:
+
+            ::
+
+                >>> container = Container(r"c'8 ( d'8 e'8 f'8 )")
+                >>> show(container) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(container)
+                {
+                    c'8 (
+                    d'8
+                    e'8
+                    f'8 )
+                }
+
+            ::
+
+                >>> mutate(container).scale(Multiplier(5, 4))
+                >>> show(container) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(container)
+                {
+                    c'8 ( ~
+                    c'32
+                    d'8 ~
+                    d'32
+                    e'8 ~
+                    e'32
+                    f'8 ~
+                    f'32 )
+                }
+
+        ..  container:: example
+
+            **Example 3.** Scale container by tuplet-generating multiplier:
+
+            ::
+
+                >>> container = Container(r"c'8 ( d'8 e'8 f'8 )")
+                >>> show(container) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(container)
+                {
+                    c'8 (
+                    d'8
+                    e'8
+                    f'8 )
+                }
+
+            ::
+
+                >>> mutate(container).scale(Multiplier(4, 3))
+                >>> show(container) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(container)
+                {
+                    \times 2/3 {
+                        c'4 (
+                    }
+                    \times 2/3 {
+                        d'4
+                    }
+                    \times 2/3 {
+                        e'4
+                    }
+                    \times 2/3 {
+                        f'4 )
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 4.** Double duration of tuplet:
+
+            ::
+
+                >>> staff = Staff()
+                >>> time_signature = contexttools.TimeSignatureMark((4, 8))
+                >>> time_signature = time_signature.attach(staff)
+                >>> tuplet = tuplettools.Tuplet((4, 5), [])
+                >>> tuplet.extend("c'8 d'8 e'8 f'8 g'8")
+                >>> staff.append(tuplet)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \time 4/8
+                    \times 4/5 {
+                        c'8
+                        d'8
+                        e'8
+                        f'8
+                        g'8
+                    }
+                }
+
+            ::
+
+                >>> mutate(tuplet).scale(Multiplier(2))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \time 4/8
+                    \times 4/5 {
+                        c'4
+                        d'4
+                        e'4
+                        f'4
+                        g'4
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 5.** Double duration of fixed-duration tuplet:
+
+            ::
+
+                >>> staff = Staff()
+                >>> time_signature = contexttools.TimeSignatureMark((4, 8))
+                >>> time_signature = time_signature.attach(staff)
+                >>> tuplet = tuplettools.FixedDurationTuplet((4, 8), [])
+                >>> tuplet.extend("c'8 d'8 e'8 f'8 g'8")
+                >>> staff.append(tuplet)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \time 4/8
+                    \times 4/5 {
+                        c'8
+                        d'8
+                        e'8
+                        f'8
+                        g'8
+                    }
+                }
+
+            ::
+
+                >>> mutate(tuplet).scale(Multiplier(2))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \time 4/8
+                    \times 4/5 {
+                        c'4
+                        d'4
+                        e'4
+                        f'4
+                        g'4
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 6.** Scale nontrivial tie chain 
+            by dot-generating `multiplier`:
+
+            ::
+
+                >>> staff = Staff(r"c'8 \accent ~ c'8 d'8")
+                >>> time_signature = contexttools.TimeSignatureMark((3, 8))
+                >>> time_signature = time_signature.attach(staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \time 3/8
+                    c'8 -\accent ~
+                    c'8
+                    d'8
+                }
+
+            ::
+
+                >>> tie_chain = inspect(staff[0]).get_tie_chain()
+                >>> tie_chain = mutate(tie_chain).scale(Multiplier(3, 2))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \time 3/8
+                    c'4. -\accent
+                    d'8
+                }
+
+        ..  container:: example
+
+            **Example 7.** Scale nontrivial tie chain 
+            by tie-generating `multiplier`:
+
+            ::
+
+                >>> staff = Staff(r"c'8 \accent ~ c'8 d'16")
+                >>> time_signature = contexttools.TimeSignatureMark((5, 16))
+                >>> time_signature = time_signature.attach(staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \time 5/16
+                    c'8 -\accent ~
+                    c'8
+                    d'16
+                }
+
+            ::
+
+                >>> tie_chain = inspect(staff[0]).get_tie_chain()
+                >>> tie_chain = mutate(tie_chain).scale(Multiplier(5, 4))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \time 5/16
+                    c'4 -\accent ~
+                    c'16
+                    d'16
+                }
+
+        ..  container:: example
+
+            **Example 8.** Scale trivial tie chain 
+            by multiplier with non-power-of-two denominator:
+
+            ::
+
+                >>> staff = Staff(r"c'8 \accent")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8 -\accent
+                }
+
+            ::
+
+                >>> tie_chain = inspect(staff[0]).get_tie_chain()
+                >>> tie_chain = mutate(tie_chain).scale(Multiplier(4, 3))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \times 2/3 {
+                        c'4 -\accent
+                    }
+                }
+
+        Returns none.
+        '''
+        from abjad.tools import componenttools
+        if hasattr(self._client, '_scale'):
+            self._client._scale(multiplier)
+        else:
+            assert isinstance(self._client, selectiontools.Selection)
+            for component in self._client:
+                component._scale()
+
     def shorten(self, duration):
         r'''Shortens component by `duration`.
 

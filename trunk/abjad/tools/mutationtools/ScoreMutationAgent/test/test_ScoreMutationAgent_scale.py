@@ -2,12 +2,12 @@
 from abjad import *
 
 
-def test_Container_scale_01():
+def test_ScoreMutationAgent_scale_01():
     r'''Scale leaves by dot-generating multiplier.
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    voice.scale(Multiplier(3, 2))
+    mutate(voice).scale(Multiplier(3, 2))
 
     assert testtools.compare(
         voice,
@@ -24,12 +24,12 @@ def test_Container_scale_01():
     assert inspect(voice).is_well_formed()
 
 
-def test_Container_scale_02():
+def test_ScoreMutationAgent_scale_02():
     r'''Scale leaves by tie-generating multiplier.
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    voice.scale(Multiplier(5, 4))
+    mutate(voice).scale(Multiplier(5, 4))
 
     assert testtools.compare(
         voice,
@@ -50,12 +50,12 @@ def test_Container_scale_02():
     assert inspect(voice).is_well_formed()
 
 
-def test_Container_scale_03():
+def test_ScoreMutationAgent_scale_03():
     r'''Scale leaves by tuplet-generating multiplier.
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    voice.scale(Multiplier(4, 3))
+    mutate(voice).scale(Multiplier(4, 3))
 
     assert testtools.compare(
         voice,
@@ -80,12 +80,12 @@ def test_Container_scale_03():
     assert inspect(voice).is_well_formed()
 
 
-def test_Container_scale_04():
+def test_ScoreMutationAgent_scale_04():
     r'''Scale leaves by tie- and tuplet-generating multiplier.
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    voice.scale(Multiplier(5, 6))
+    mutate(voice).scale(Multiplier(5, 6))
 
     assert testtools.compare(
         voice,
@@ -114,7 +114,7 @@ def test_Container_scale_04():
     assert inspect(voice).is_well_formed()
 
 
-def test_Container_scale_05():
+def test_ScoreMutationAgent_scale_05():
     r'''Scale mixed notes and tuplets.
     '''
 
@@ -138,7 +138,7 @@ def test_Container_scale_05():
         '''
         )
 
-    voice.scale(Multiplier(2, 3))
+    mutate(voice).scale(Multiplier(2, 3))
 
     assert testtools.compare(
         voice,
@@ -158,12 +158,12 @@ def test_Container_scale_05():
     assert inspect(voice).is_well_formed()
 
 
-def test_Container_scale_06():
+def test_ScoreMutationAgent_scale_06():
     r'''Undo scale of 5/4 with scale of 4/5.
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    voice.scale(Multiplier(5, 4))
+    mutate(voice).scale(Multiplier(5, 4))
 
     assert testtools.compare(
         voice,
@@ -181,7 +181,7 @@ def test_Container_scale_06():
         '''
         )
 
-    voice.scale(Multiplier(4, 5))
+    mutate(voice).scale(Multiplier(4, 5))
 
     assert testtools.compare(
         voice,
@@ -198,7 +198,7 @@ def test_Container_scale_06():
     assert inspect(voice).is_well_formed()
 
 
-def test_Container_scale_07():
+def test_ScoreMutationAgent_scale_07():
     r'''Double measures.
     '''
 
@@ -223,7 +223,7 @@ def test_Container_scale_07():
         '''
         )
 
-    voice.scale(Multiplier(2))
+    mutate(voice).scale(Multiplier(2))
 
     assert testtools.compare(
         voice,
@@ -245,7 +245,7 @@ def test_Container_scale_07():
     assert inspect(voice).is_well_formed()
 
 
-def test_Container_scale_08():
+def test_ScoreMutationAgent_scale_08():
     r'''Scale measures by 5/4.
     '''
 
@@ -270,7 +270,7 @@ def test_Container_scale_08():
         '''
         )
 
-    voice.scale(Multiplier(5, 4))
+    mutate(voice).scale(Multiplier(5, 4))
 
     assert testtools.compare(
         voice,

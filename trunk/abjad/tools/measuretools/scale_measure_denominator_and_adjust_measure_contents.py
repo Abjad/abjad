@@ -69,7 +69,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
 
     # scale contents of measures in expr
     multiplier = new_time_signature.implied_prolation.reciprocal
-    measure.scale(multiplier)
+    measure._scale(multiplier)
 
     # assign new time signature
     for mark in measure._get_marks(contexttools.TimeSignatureMark):

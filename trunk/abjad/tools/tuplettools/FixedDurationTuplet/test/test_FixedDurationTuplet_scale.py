@@ -7,7 +7,7 @@ def test_FixedDurationTuplet_scale_01():
     '''
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    tuplet.scale(Multiplier(2))
+    mutate(tuplet).scale(Multiplier(2))
 
     assert testtools.compare(
         tuplet,
@@ -28,7 +28,7 @@ def test_FixedDurationTuplet_scale_02():
     '''
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    tuplet.scale(Multiplier(1, 2))
+    mutate(tuplet).scale(Multiplier(1, 2))
 
     assert testtools.compare(
         tuplet,
@@ -49,7 +49,7 @@ def test_FixedDurationTuplet_scale_03():
     '''
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    tuplet.scale(Multiplier(4))
+    mutate(tuplet).scale(Multiplier(4))
 
     assert testtools.compare(
         tuplet,
@@ -70,7 +70,7 @@ def test_FixedDurationTuplet_scale_04():
     '''
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    tuplet.scale(Multiplier(1, 4))
+    mutate(tuplet).scale(Multiplier(1, 4))
 
     assert testtools.compare(
         tuplet,
@@ -91,7 +91,7 @@ def test_FixedDurationTuplet_scale_05():
     '''
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    tuplet.scale(Multiplier(3, 2))
+    mutate(tuplet).scale(Multiplier(3, 2))
 
     assert testtools.compare(
         tuplet,
@@ -112,7 +112,7 @@ def test_FixedDurationTuplet_scale_06():
     '''
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    tuplet.scale(Multiplier(2, 3))
+    mutate(tuplet).scale(Multiplier(2, 3))
 
     assert testtools.compare(
         tuplet,
@@ -133,7 +133,7 @@ def test_FixedDurationTuplet_scale_07():
     '''
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    tuplet.scale(Multiplier(3, 5))
+    mutate(tuplet).scale(Multiplier(3, 5))
 
     assert testtools.compare(
         tuplet,
@@ -154,7 +154,7 @@ def test_FixedDurationTuplet_scale_08():
     '''
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(3, 8), "c'8 d'8 e'8")
-    tuplet.scale(Multiplier(3, 2))
+    mutate(tuplet).scale(Multiplier(3, 2))
 
     assert testtools.compare(
         tuplet,
@@ -177,7 +177,7 @@ def test_FixedDurationTuplet_scale_09():
     tuplet = tuplettools.FixedDurationTuplet(
         Duration(3, 8), [Note(0, (2, 8)), Note(0, (3, 8))])
 
-    tuplet.scale(Multiplier(2, 3))
+    mutate(tuplet).scale(Multiplier(2, 3))
 
     assert testtools.compare(
         tuplet,
@@ -209,7 +209,7 @@ def test_FixedDurationTuplet_scale_10():
         '''
         )
 
-    tuplet.scale(Multiplier(2, 3))
+    mutate(tuplet).scale(Multiplier(2, 3))
 
     assert testtools.compare(
         tuplet,

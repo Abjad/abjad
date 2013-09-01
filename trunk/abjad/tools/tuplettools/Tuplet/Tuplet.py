@@ -295,6 +295,15 @@ class Tuplet(Container):
                 'opening', {}).get('lilypond command marks', [])))
         return self._format_slot_contributions_with_indent(result)
 
+    def _scale(self, multiplier):
+        from abjad.tools import leaftools
+        multiplier = durationtools.Multiplier(multiplier)
+        for component in self[:]:
+            if isinstance(component, leaftools.Leaf):
+                new_duration = multiplier * component.written_duration
+                leaftools.set_leaf_duration(component, new_duration)
+        self._fix()
+
     ### PUBLIC PROPERTIES ###
 
     @apply
@@ -1769,67 +1778,6 @@ class Tuplet(Container):
                     rests = resttools.Rest((-x, denominator))
                     music.append(rests)
             return tuplettools.FixedDurationTuplet(duration, music)
-
-    def scale(self, multiplier):
-        r'''Scales tuplet by `multiplier`.
-        Preserves tuplet multiplier.
-
-        ..  container:: example
-
-            **Example.** Double duration of tuplet:
-
-            ::
-
-                >>> staff = Staff()
-                >>> time_signature = contexttools.TimeSignatureMark((4, 8))
-                >>> time_signature = time_signature.attach(staff)
-                >>> tuplet = tuplettools.Tuplet((4, 5), [])
-                >>> tuplet.extend("c'8 d'8 e'8 f'8 g'8")
-                >>> staff.append(tuplet)
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff {
-                    \time 4/8
-                    \times 4/5 {
-                        c'8
-                        d'8
-                        e'8
-                        f'8
-                        g'8
-                    }
-                }
-
-            ::
-
-                >>> tuplet.scale(Multiplier(2))
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff {
-                    \time 4/8
-                    \times 4/5 {
-                        c'4
-                        d'4
-                        e'4
-                        f'4
-                        g'4
-                    }
-                }
-
-        Returns none.
-        '''
-        from abjad.tools import leaftools
-        multiplier = durationtools.Multiplier(multiplier)
-        for component in self[:]:
-            if isinstance(component, leaftools.Leaf):
-                new_duration = multiplier * component.written_duration
-                leaftools.set_leaf_duration(component, new_duration)
-        self._fix()
 
     def set_minimum_denominator(self, denominator):
         r'''Sets preferred denominator of tuplet to at least `denominator`.

@@ -95,6 +95,25 @@ class FixedDurationTuplet(Tuplet):
                 self._signifier,
                 )
 
+    ### PRIVATE METHODS ###
+
+    def _scale(self, multiplier):
+        from abjad.tools import leaftools
+        multiplier = durationtools.Multiplier(multiplier)
+        # find new target duration
+        old_target_duration = self.target_duration
+        new_target_duration = multiplier * old_target_duration
+        # change tuplet target duration
+        self.target_duration = new_target_duration
+        # if multiplier is note head assignable, 
+        # scale contents graphically
+        if multiplier.is_assignable:
+            for component in self[:]:
+                if isinstance(component, leaftools.Leaf):
+                    new_duration = multiplier * component.written_duration
+                    leaftools.set_leaf_duration(component, new_duration)
+        self._fix()
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -176,75 +195,6 @@ class FixedDurationTuplet(Tuplet):
         return property(**locals())
 
     ### PUBLIC METHODS ###
-
-    def scale(self, multiplier):
-        r'''Scales fixed-duration tuplet by `multiplier`.
-        Preserves fixed-duration tuplet multiplier.
-
-        ..  container:: example
-
-            **Example.** Double duration of fixed-duration tuplet:
-
-            ::
-
-                >>> staff = Staff()
-                >>> time_signature = contexttools.TimeSignatureMark((4, 8))
-                >>> time_signature = time_signature.attach(staff)
-                >>> tuplet = tuplettools.FixedDurationTuplet((4, 8), [])
-                >>> tuplet.extend("c'8 d'8 e'8 f'8 g'8")
-                >>> staff.append(tuplet)
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff {
-                    \time 4/8
-                    \times 4/5 {
-                        c'8
-                        d'8
-                        e'8
-                        f'8
-                        g'8
-                    }
-                }
-
-            ::
-
-                >>> tuplet.scale(Multiplier(2))
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff {
-                    \time 4/8
-                    \times 4/5 {
-                        c'4
-                        d'4
-                        e'4
-                        f'4
-                        g'4
-                    }
-                }
-
-        Returns none.
-        '''
-        from abjad.tools import leaftools
-        multiplier = durationtools.Multiplier(multiplier)
-        # find new target duration
-        old_target_duration = self.target_duration
-        new_target_duration = multiplier * old_target_duration
-        # change tuplet target duration
-        self.target_duration = new_target_duration
-        # if multiplier is note head assignable, 
-        # scale contents graphically
-        if multiplier.is_assignable:
-            for component in self[:]:
-                if isinstance(component, leaftools.Leaf):
-                    new_duration = multiplier * component.written_duration
-                    leaftools.set_leaf_duration(component, new_duration)
-        self._fix()
 
     def to_fixed_multiplier(self):
         r'''Change fixed-duration tuplet to (unqualified) tuplet.
