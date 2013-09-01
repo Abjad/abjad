@@ -32,6 +32,7 @@ class Set(TypedFrozenset):
             self,
             tokens=tokens,
             item_class=item_class,
+            name=name,
             )
         
     ### SPECIAL METHODS ###

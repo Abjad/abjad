@@ -32,6 +32,7 @@ class Segment(TypedTuple):
             self,
             tokens=tokens,
             item_class=item_class,
+            name=name,
             )
 
     ### SPECIAL METHODS ###
