@@ -21,25 +21,25 @@ class NumberedPitchClass(PitchClass):
 
     ### INITIALIZER ###
 
-    def __init__(self, arg):
+    def __init__(self, expr):
         from abjad.tools import pitchtools
-        if pitchtools.is_chromatic_pitch_number(arg):
+        if pitchtools.is_chromatic_pitch_number(expr):
             number = \
                 pitchtools.chromatic_pitch_number_to_chromatic_pitch_class_number(
-                    arg)
-        elif isinstance(arg, type(self)):
-            number = abs(arg)
-        elif pitchtools.is_chromatic_pitch_name(arg):
+                    expr)
+        elif isinstance(expr, type(self)):
+            number = abs(expr)
+        elif pitchtools.is_chromatic_pitch_name(expr):
             number = \
                 pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_number(
-                    arg)
-        elif isinstance(arg, pitchtools.NamedPitch):
-            number = abs(arg.numbered_chromatic_pitch) % 12
-        elif isinstance(arg, pitchtools.NamedPitchClass):
-            number = abs(arg.numbered_chromatic_pitch_class)
+                    expr)
+        elif isinstance(expr, pitchtools.NamedPitch):
+            number = abs(expr.numbered_chromatic_pitch) % 12
+        elif isinstance(expr, pitchtools.NamedPitchClass):
+            number = abs(expr.numbered_chromatic_pitch_class)
         else:
             pitch = \
-                pitchtools.get_named_chromatic_pitch_from_pitch_carrier(arg)
+                pitchtools.get_named_chromatic_pitch_from_pitch_carrier(expr)
             number = abs(pitch.numbered_chromatic_pitch) % 12
         self._chromatic_pitch_class_number = number
 
@@ -48,13 +48,12 @@ class NumberedPitchClass(PitchClass):
     def __abs__(self):
         return self._chromatic_pitch_class_number
 
-    def __add__(self, arg):
+    def __add__(self, expr):
         r'''Addition defined against melodic chromatic intervals only.
         '''
         from abjad.tools import pitchtools
-        if not isinstance(arg, pitchtools.NumberedMelodicInterval):
-            raise TypeError('must be melodic chromatic interval.')
-        return type(self)(abs(self) + arg.number % 12)
+        interval = pitchtools.NumberedMelodicInterval(expr)
+        return type(self)(abs(self) + interval.number % 12)
 
     def __copy__(self, *args):
         return type(self)(self)
@@ -83,22 +82,20 @@ class NumberedPitchClass(PitchClass):
     def __str__(self):
         return str(abs(self))
 
-    def __sub__(self, arg):
+    def __sub__(self, expr):
         r'''Subtraction defined against both melodic chromatic intervals
         and against other pitch-classes.
         '''
         from abjad.tools import pitchtools
-        if isinstance(arg, type(self)):
-            interval_class_number = abs(abs(self) - abs(arg))
+        if isinstance(expr, type(self)):
+            interval_class_number = abs(abs(self) - abs(expr))
             if 6 < interval_class_number:
                 interval_class_number = 12 - interval_class_number
             return pitchtools.NumberedInversionEquivalentIntervalClass(
                 interval_class_number)
-        elif isinstance(arg, 
-            pitchtools.NumberedInversionEquivalentIntervalClass):
-            return type(self)(abs(self) - arg.number % 12)
-        else:
-            raise TypeError('must be pitch-class or interval-class.')
+        interval_class = pitchtools.NumberedInversionEquivalentIntervalClass(
+            expr)
+        return type(self)(abs(self) - interval_class.number % 12)
 
     ### PUBLIC METHODS ###
 
