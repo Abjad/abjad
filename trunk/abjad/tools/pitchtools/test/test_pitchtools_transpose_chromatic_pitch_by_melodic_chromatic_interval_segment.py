@@ -1,19 +1,18 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.pitchtools import NumberedMelodicIntervalSegment
-from abjad.tools.pitchtools import NamedPitch
-from abjad.tools.pitchtools import NumberedPitch
-from abjad.tools.pitchtools \
-	import transpose_chromatic_pitch_by_melodic_chromatic_interval_segment
+from abjad import *
 
 
 def test_pitchtools_transpose_chromatic_pitch_by_melodic_chromatic_interval_segment_01():
-    mcis = NumberedMelodicIntervalSegment([-2, 1, 1, -3, 0])
-    nucp = NumberedPitch(0)
-    result = transpose_chromatic_pitch_by_melodic_chromatic_interval_segment(nucp, mcis)
+    mcis = pitchtools.IntervalSegment(
+        tokens=[-2, 1, 1, -3, 0],
+        item_class=pitchtools.NumberedMelodicInterval,
+        )
+    nucp = pitchtools.NumberedPitch(0)
+    result = pitchtools.transpose_chromatic_pitch_by_melodic_chromatic_interval_segment(nucp, mcis)
     assert result == [
-        NumberedPitch(-2),
-        NumberedPitch(-1),
-        NumberedPitch(0),
-        NumberedPitch(-3),
-        NumberedPitch(-3)
+        pitchtools.NumberedPitch(-2),
+        pitchtools.NumberedPitch(-1),
+        pitchtools.NumberedPitch(0),
+        pitchtools.NumberedPitch(-3),
+        pitchtools.NumberedPitch(-3)
     ]
