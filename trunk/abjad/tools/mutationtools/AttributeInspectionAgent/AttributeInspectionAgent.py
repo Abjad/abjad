@@ -25,7 +25,11 @@ class AttributeInspectionAgent(object):
 
     ### PUBLIC METHODS ###
 
-    def get_annotation_value(self, name, default=None):
+    def get_annotation_value(
+        self, 
+        name, 
+        default=None,
+        ):
         r'''Gets value of annotation with `name` attached to component.
 
         Returns `default` when no annotation with `name` is attached
@@ -86,7 +90,10 @@ class AttributeInspectionAgent(object):
             badly_formed_components.extend(checker.violators(self._component))
         return badly_formed_components
 
-    def get_duration(self, in_seconds=False):
+    def get_duration(
+        self, 
+        in_seconds=False,
+        ):
         r'''Gets duration of component.
 
         Returns duration.
@@ -115,7 +122,10 @@ class AttributeInspectionAgent(object):
         '''
         return self._component._get_effective_staff()
 
-    def get_grace_containers(self, kind=None):
+    def get_grace_containers(
+        self, 
+        kind=None,
+        ):
         r'''Gets grace containers attached to leaf.
 
         ..  container:: example
@@ -226,7 +236,37 @@ class AttributeInspectionAgent(object):
             direction=direction,
             )
 
-    def get_timespan(self, in_seconds=False):
+    def get_spanner(
+        self, 
+        spanner_classes=None,
+        ):
+        r'''Gets exactly one spanner of `spanner_classes` attached to 
+        component.
+
+        Raises exception when no spanner of `spanner_classes` is attached
+        to component.
+
+        Returns spanner.
+        '''
+        return self._component._get_spanner(
+            spanner_classes=spanner_classes,
+            )
+
+    def get_spanners(
+        self, 
+        spanner_classes=None,
+        ):
+        r'''Gets spanners attached to component.
+
+        Returns set.
+        '''
+        return self._component._get_spanners(
+            spanner_classes=spanner_classes,
+            )
+
+    def get_timespan(self, 
+        in_seconds=False,
+        ):
         r'''Gets timespan of component.
 
         Returns timespan.
@@ -234,13 +274,6 @@ class AttributeInspectionAgent(object):
         return self._component._get_timespan(
             in_seconds=in_seconds,
             )
-
-    def get_spanners(self):
-        r'''Gets spanners attached to component.
-
-        Returns set.
-        '''
-        return self._component._get_spanners()
 
     def is_bar_line_crossing(self):
         r'''True when component crosses bar line.
@@ -296,7 +329,11 @@ class AttributeInspectionAgent(object):
             return True
         return False
 
-    def get_components(self, component_classes=None, include_self=True):
+    def get_components(
+        self, 
+        component_classes=None, 
+        include_self=True,
+        ):
         r'''Gets all components of `component_classes`
         in the descendants of component.
 
@@ -307,7 +344,10 @@ class AttributeInspectionAgent(object):
             include_self=include_self,
             )
 
-    def get_contents(self, include_self=True):
+    def get_contents(
+        self, 
+        include_self=True,
+        ):
         r'''Gets contents of component.
 
         Returns sequential selection.
@@ -335,7 +375,10 @@ class AttributeInspectionAgent(object):
         '''
         return self._component._get_lineage()
 
-    def get_parentage(self, include_self=True):
+    def get_parentage(
+        self, 
+        include_self=True,
+        ):
         r'''Gets parentage of component.
 
         Returns parentage.
@@ -351,7 +394,10 @@ class AttributeInspectionAgent(object):
         '''
         return self._component._get_tie_chain()
 
-    def get_vertical_moment(self, governor=None):
+    def get_vertical_moment(
+        self, 
+        governor=None,
+        ):
         r'''Gets vertical moment starting with component.
 
         Returns vertical moment.
@@ -360,7 +406,10 @@ class AttributeInspectionAgent(object):
             governor=governor,
             )
 
-    def get_vertical_moment_at(self, offset):
+    def get_vertical_moment_at(
+        self, 
+        offset,
+        ):
         r'''Gets vertical moment at `offset`.
 
         Returns vertical moment.
@@ -369,7 +418,10 @@ class AttributeInspectionAgent(object):
             offset,
             )
 
-    def is_well_formed(self, allow_empty_containers=True):
+    def is_well_formed(
+        self, 
+        allow_empty_containers=True,
+        ):
         r'''True when component is well-formed.
         Otherwise false.
 
