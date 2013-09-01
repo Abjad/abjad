@@ -1199,6 +1199,128 @@ class Container(Component):
         for s in spanners:
             s._components.sort(_offset)
 
+    def scale(self, multiplier):
+        '''Scales container (and contents of container) by `multiplier`.
+
+        ..  container:: example
+
+            **Example 1.** Scale container by dot-generating multiplier:
+
+            ::
+
+                >>> container = Container(r"c'8 ( d'8 e'8 f'8 )")
+                >>> show(container) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(container)
+                {
+                    c'8 (
+                    d'8
+                    e'8
+                    f'8 )
+                }
+
+            ::
+
+                >>> container.scale(Multiplier(3, 2))
+                >>> show(container) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(container)
+                {
+                    c'8. (
+                    d'8.
+                    e'8.
+                    f'8. )
+                }
+
+        ..  container:: example
+
+            **Example 2.** Scale container by tie-generating multiplier:
+
+            ::
+
+                >>> container = Container(r"c'8 ( d'8 e'8 f'8 )")
+                >>> show(container) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(container)
+                {
+                    c'8 (
+                    d'8
+                    e'8
+                    f'8 )
+                }
+
+            ::
+
+                >>> container.scale(Multiplier(5, 4))
+                >>> show(container) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(container)
+                {
+                    c'8 ( ~
+                    c'32
+                    d'8 ~
+                    d'32
+                    e'8 ~
+                    e'32
+                    f'8 ~
+                    f'32 )
+                }
+
+        ..  container:: example
+
+            **Example 3.** Scale container by tuplet-generating multiplier:
+
+            ::
+
+                >>> container = Container(r"c'8 ( d'8 e'8 f'8 )")
+                >>> show(container) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(container)
+                {
+                    c'8 (
+                    d'8
+                    e'8
+                    f'8 )
+                }
+
+            ::
+
+                >>> container.scale(Multiplier(4, 3))
+                >>> show(container) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(container)
+                {
+                    \times 2/3 {
+                        c'4 (
+                    }
+                    \times 2/3 {
+                        d'4
+                    }
+                    \times 2/3 {
+                        e'4
+                    }
+                    \times 2/3 {
+                        f'4 )
+                    }
+                }
+
+        Returns none.
+        '''
+        from abjad.tools import containertools
+        containertools.scale_contents_of_container(self, multiplier)
+
     def select_leaves(
         self,
         start=0,
