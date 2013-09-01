@@ -49,13 +49,13 @@ def test_PitchClassSegment_rotate_03():
 
 def test_PitchClassSegment_rotate_04():
 
-    pitch_class_segment_1 = pitchtools.NamedPitchClassSegment([
+    pitch_class_segment_1 = pitchtools.PitchClassSegment([
         pitchtools.NamedPitchClass('c'),
         pitchtools.NamedPitchClass('d'),
         pitchtools.NamedPitchClass('e'),
         pitchtools.NamedPitchClass('f'),
         pitchtools.NamedPitchClass('g'),])
-    pitch_class_segment_2 = pitchtools.NamedPitchClassSegment([
+    pitch_class_segment_2 = pitchtools.PitchClassSegment([
         pitchtools.NamedPitchClass('g'),
         pitchtools.NamedPitchClass('c'),
         pitchtools.NamedPitchClass('d'),

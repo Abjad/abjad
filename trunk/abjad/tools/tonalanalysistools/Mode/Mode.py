@@ -82,7 +82,10 @@ class Mode(AbjadObject):
             mdi_segment.extend([M2, m2, M2, M2, m2, A2, m2])
         else:
             raise ValueError('unknown mode name {!r}.'.format(mode_name))
-        return pitchtools.NamedMelodicIntervalSegment(mdi_segment)
+        return pitchtools.IntervalSegment(
+            tokens=mdi_segment,
+            item_class=pitchtools.NamedMelodicInterval,
+            )
 
     ### PUBLIC PROPERTIES ###
 

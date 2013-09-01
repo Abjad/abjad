@@ -4,14 +4,14 @@ from abjad import *
 
 def test_PitchClassSegment_transpose_01():
 
-    pitch_class_segment_1 = pitchtools.NamedPitchClassSegment([
+    pitch_class_segment_1 = pitchtools.PitchClassSegment([
         pitchtools.NamedPitchClass('c'),
         pitchtools.NamedPitchClass('d'),
         pitchtools.NamedPitchClass('e'),
         pitchtools.NamedPitchClass('f'),
         pitchtools.NamedPitchClass('g'),])
 
-    pitch_class_segment_2 = pitchtools.NamedPitchClassSegment([
+    pitch_class_segment_2 = pitchtools.PitchClassSegment([
         pitchtools.NamedPitchClass('df'),
         pitchtools.NamedPitchClass('ef'),
         pitchtools.NamedPitchClass('f'),

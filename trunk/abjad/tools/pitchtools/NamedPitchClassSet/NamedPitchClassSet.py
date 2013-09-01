@@ -114,7 +114,7 @@ class NamedPitchClassSet(PitchClassSet):
     @property
     def numbered_chromatic_pitch_class_set(self):
         from abjad.tools import pitchtools
-        return pitchtools.NumberedPitchClassSet(self)
+        return self.new(item_class=pitchtools.NumberedPitchClass)
 
     ### PUBLIC METHODS ###
 
@@ -126,7 +126,7 @@ class NamedPitchClassSet(PitchClassSet):
         for npcs in sequencetools.yield_all_permutations_of_sequence(
             self.named_chromatic_pitch_classes):
             candidate_npc_seg = \
-                pitchtools.NamedPitchClassSegment(npcs)
+                pitchtools.PitchClassSegment(npcs)
             if candidate_npc_seg.is_equivalent_under_transposition(npc_seg):
                 return candidate_npc_seg
         message = 'named pitch-class set %s can not order by '

@@ -147,7 +147,10 @@ class TonalAnalysisAgent(object):
         bass = min(pitches).named_chromatic_pitch_class
         try:
             npcseg = npcset.order_by(
-                pitchtools.NamedPitchClassSegment(model_npcs))
+                pitchtools.PitchClassSegment(
+                    model_npcs,
+                    item_class=pitchtools.NamedPitchClass,
+                    ))
         except ValueError:
             message = 'can not identify incomplete tertian chord.'
             raise TonalHarmonyError(message)
