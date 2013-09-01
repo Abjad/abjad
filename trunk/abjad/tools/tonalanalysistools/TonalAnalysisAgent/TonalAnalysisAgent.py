@@ -120,7 +120,8 @@ class TonalAnalysisAgent(object):
     def _analyze_incomplete_chord(expr):
         from abjad.tools import tonalanalysistools
         pitches = pitchtools.list_named_chromatic_pitches_in_expr(expr)
-        npcset = pitchtools.NamedPitchClassSet(pitches)
+        npcset = pitchtools.PitchClassSet(
+            pitches, item_class=pitchtools.NamedPitchClass)
         dicv = npcset.inversion_equivalent_diatonic_interval_class_vector
         # TODO: eliminate code duplication #
         if dicv == TonalAnalysisAgent._make_dicv('c', 'ef'):
@@ -256,8 +257,10 @@ class TonalAnalysisAgent(object):
 
     @staticmethod
     def _make_dicv(*named_chromatic_pitch_classes):
-        npcset = pitchtools.NamedPitchClassSet(
-            named_chromatic_pitch_classes)
+        npcset = pitchtools.PitchClassSet(
+            named_chromatic_pitch_classes,
+            item_class=pitchtools.NamedPitchClass,
+            )
         return npcset.inversion_equivalent_diatonic_interval_class_vector
 
     ### PUBLIC METHODS ###

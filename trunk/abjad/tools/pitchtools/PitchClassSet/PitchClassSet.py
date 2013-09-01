@@ -189,3 +189,12 @@ class PitchClassSet(Set):
         '''
         tokens = (pitch_class + expr for pitch_class in self)
         return self.new(tokens=tokens)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def inversion_equivalent_diatonic_interval_class_vector(self):
+        from abjad.tools import pitchtools
+        pitches = [pitchtools.NamedPitch(x, 4) for x in self]
+        return pitchtools.NamedInversionEquivalentIntervalClassVector(
+            pitches)
