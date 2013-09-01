@@ -79,6 +79,37 @@ class PitchSegment(Segment):
 
     ### PUBLIC METHODS ###
 
+    @classmethod
+    def from_selection(cls, selection):
+        r'''Initialize pitch segment from component selection:
+
+        ::
+
+            >>> staff_1 = Staff("c'4 <d' fs' a'>4 b2")
+            >>> staff_2 = Staff("c4. r8 g2")
+            >>> selection = select((staff_1, staff_2))
+            >>> pitchtools.PitchSegment.from_selection(selection)
+            PitchSegment(["c'", "d'", "fs'", "a'", 'b', 'c', 'g'])
+        
+        Return pitch segment.
+        '''
+        from abjad.tools import iterationtools
+        from abjad.tools import pitchtools
+        from abjad.tools import selectiontools
+        if not isinstance(selection, selectiontools.Selection):
+            selection = selectiontools.select(selection) 
+        named_pitches = []
+        for component in iterationtools.iterate_notes_and_chords_in_expr(
+            selection):
+            if hasattr(component, 'written_pitches'):
+                named_pitches.extend(component.written_pitches)
+            elif hasattr(component, 'written_pitch'):
+                named_pitches.append(component.written_pitch)
+        return cls(
+            tokens=named_pitches,
+            item_class=pitchtools.NamedPitch,
+            )
+
     def invert(self, axis):
         r'''Invert pitch segment around `axis`.
 

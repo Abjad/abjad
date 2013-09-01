@@ -2,11 +2,11 @@
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
-from abjad.tools.pitchtools import NamedHarmonicIntervalSegment
+from abjad.tools.pitchtools import IntervalSegment
 from abjad.tools.pitchtools import NamedHarmonicInterval
 
 
-class ChordQualityIndicator(NamedHarmonicIntervalSegment):
+class ChordQualityIndicator(IntervalSegment):
     r'''Chord quality indicator:
 
     ::
@@ -44,7 +44,7 @@ class ChordQualityIndicator(NamedHarmonicIntervalSegment):
         }
 
     __slots__ = (
-        'quality_string',
+        '_quality_string',
         '_rotation',
         )
 
@@ -63,9 +63,10 @@ class ChordQualityIndicator(NamedHarmonicIntervalSegment):
             raise ValueError('unknown chord quality indicator arguments.')
         intervals, rotation = self._invert_quality_indicator(
             intervals, inversion)
-        NamedHarmonicIntervalSegment.__init__(
+        IntervalSegment.__init__(
             self,
             tokens=intervals,
+            item_class=NamedHarmonicInterval,
             )
         self._quality_string = quality_string
         self._rotation = rotation
