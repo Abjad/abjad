@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
 import abc
+import collections
+import types
 from abjad.tools.datastructuretools import TypedTuple
 
 
@@ -17,6 +19,11 @@ class Segment(TypedTuple):
         from abjad.tools import pitchtools 
         if isinstance(tokens, str):
             tokens = tokens.split()
+        elif isinstance(tokens, (
+            collections.Iterator,
+            types.GeneratorType,
+            )):
+            tokens = [token for token in tokens]
         if item_class is None:
             if tokens is not None:
                 if isinstance(tokens, type(self)):
