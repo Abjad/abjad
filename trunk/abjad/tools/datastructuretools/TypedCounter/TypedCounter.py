@@ -18,7 +18,7 @@ class TypedCounter(TypedCollection):
             tokens=tokens,
             )
         self._collection = collections.Counter()
-        self.update(iterable, **kwargs)
+        self.update(tokens, **kwargs)
     
     ### SPECIAL METHODS ###
 
