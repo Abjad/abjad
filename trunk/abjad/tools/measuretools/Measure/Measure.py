@@ -552,7 +552,7 @@ class Measure(FixedDurationContainer):
             mathtools.greatest_power_of_two_less_equal(multiplier.denominator)
         pair = (multiplier.numerator, contents_multiplier_denominator)
         contents_multiplier = durationtools.Multiplier(*pair)
-        containertools.scale_contents_of_container(self, contents_multiplier)
+        self._scale_contents(contents_multiplier)
 
     def scale_and_adjust_time_signature(self, multiplier=None):
         r'''Scales `measure` by `multiplier` and adjusts time signature:
@@ -621,10 +621,9 @@ class Measure(FixedDurationContainer):
             new_time_signature.attach(self)
             remaining_multiplier = durationtools.Multiplier(reduced_pair)
             if remaining_multiplier != durationtools.Multiplier(1):
-                containertools.scale_contents_of_container(
-                    self, remaining_multiplier)
+                self._scale_contents(remaining_multiplier)
         elif self._all_contents_are_scalable_by_multiplier(multiplier):
-            containertools.scale_contents_of_container(self, multiplier)
+            self._scale_contents(multiplier)
             if old_time_signature.has_non_power_of_two_denominator or \
                 not mathtools.is_nonnegative_integer_power_of_two(multiplier):
                 new_pair = mathtools.NonreducedFraction(old_pair)
@@ -656,5 +655,4 @@ class Measure(FixedDurationContainer):
             remaining_multiplier = \
                 multiplier / new_time_signature.implied_prolation
             if remaining_multiplier != durationtools.Multiplier(1):
-                containertools.scale_contents_of_container(
-                    self, remaining_multiplier)
+                self._scale_contents(remaining_multiplier)

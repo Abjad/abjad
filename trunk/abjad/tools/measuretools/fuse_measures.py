@@ -110,7 +110,7 @@ def fuse_measures(measures):
         signature = measure.time_signature
         prolation = signature.implied_prolation
         multiplier = prolation / new_time_signature.implied_prolation
-        containertools.scale_contents_of_container(measure, multiplier)
+        measure._scale_contents(multiplier)
         measure_music = measure[:]
         measure_music._set_parents(None)
         music += measure_music

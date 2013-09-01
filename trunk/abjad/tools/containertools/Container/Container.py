@@ -292,6 +292,13 @@ class Container(Component):
                 (contributor, tuple(['\t' + x for x in contributions])))
         return tuple(result)
 
+    def _scale_contents(self, multiplier):
+        from abjad.tools import iterationtools
+        for expr in \
+            iterationtools.iterate_topmost_tie_chains_and_components_in_expr(
+            self[:]):
+            expr.scale(multiplier)
+
     def _set_item(
         self, 
         i, 
@@ -1318,8 +1325,7 @@ class Container(Component):
 
         Returns none.
         '''
-        from abjad.tools import containertools
-        containertools.scale_contents_of_container(self, multiplier)
+        self._scale_contents(multiplier)
 
     def select_leaves(
         self,

@@ -41,7 +41,8 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
 
             # scale tuplet contents, if helpful
             if contents_multiplier is not None:
-                #containertools.scale_contents_of_container(tuplet, ~contents_multiplier)
-                inverse_multiplier = durationtools.Duration(
-                    contents_multiplier.denominator, contents_multiplier.numerator)
-                containertools.scale_contents_of_container(tuplet, inverse_multiplier)
+                numerator = contents_multiplier.numerator
+                denominator = contents_multiplier.denominator
+                pair = (denominator, numerator)
+                inverse_multiplier = durationtools.Multiplier(*pair)
+                tuplet._scale_contents(inverse_multiplier)

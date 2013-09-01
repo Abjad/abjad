@@ -855,10 +855,8 @@ class Tuplet(Container):
 
         Returns empty tuplet.
         '''
-        from abjad.tools import containertools
         if scale_contents:
-            containertools.scale_contents_of_container(
-                self, self.multiplier)
+            self._scale_contents(self.multiplier)
         return super(Tuplet, self).extract()
 
     @staticmethod
