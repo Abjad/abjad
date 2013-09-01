@@ -25,6 +25,7 @@ class Segment(TypedTuple):
             )):
             tokens = [token for token in tokens]
         if item_class is None:
+            item_class = self._named_item_class
             if tokens is not None:
                 if isinstance(tokens, type(self)):
                     item_class = tokens.item_class
@@ -35,8 +36,6 @@ class Segment(TypedTuple):
                         item_class = self._numbered_item_class
                     elif isinstance(tokens[0], self._parent_item_class):
                         item_class = type(tokens[0])
-            else:        
-                item_class = self._named_item_class
         assert issubclass(item_class, self._parent_item_class)
         TypedTuple.__init__(
             self,

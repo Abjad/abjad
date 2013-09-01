@@ -25,6 +25,7 @@ class Set(TypedFrozenset):
             )):
             tokens = [token for token in tokens]
         if item_class is None:
+            item_class = self._named_item_class
             if tokens is not None:
                 if isinstance(tokens, type(self)):
                     item_class = tokens.item_class
@@ -35,8 +36,6 @@ class Set(TypedFrozenset):
                         item_class = self._numbered_item_class
                     elif isinstance(tokens[0], self._parent_item_class):
                         item_class = type(tokens[0])
-            else:        
-                item_class = self._named_item_class
         assert issubclass(item_class, self._parent_item_class)
         TypedFrozenset.__init__(
             self,
@@ -49,15 +48,21 @@ class Set(TypedFrozenset):
 
     def __repr__(self):
         parts = []
+        items = self._sort_self()
         if self.item_class.__name__.startswith('Named'):
-            parts = [repr(str(x)) for x in self]
+            parts = [repr(str(x)) for x in items]
         else:
-            parts = [str(x) for x in self]
+            parts = [str(x) for x in items]
         return '{}([{}])'.format(self._class_name, ', '.join(parts))
 
     def __str__(self):
         parts = [str(x) for x in self]
         return '<{}>'.format(', '.join(parts))
+
+    ### PRIVATE METHODS ###
+
+    def _sort_self(self):
+        return tuple(self)
 
     ### PRIVATE PROPERTIES ###
 
