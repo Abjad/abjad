@@ -15,7 +15,8 @@ def chromatic_pitch_number_to_chromatic_pitch_name(
     from abjad.tools import pitchtools
 
     if not pitchtools.is_chromatic_pitch_number(chromatic_pitch_number):
-        raise ValueError('\n\tNot chromatic pitch number: "%s".' % chromatic_pitch_number)
+        raise ValueError('\n\tNot chromatic pitch number: '
+            '{!r}'.format(chromatic_pitch_number))
 
     if not isinstance(accidental_spelling, str):
         raise TypeError
@@ -37,7 +38,8 @@ def chromatic_pitch_number_to_chromatic_pitch_name(
             pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats(
             chromatic_pitch_class_number)
     else:
-        raise ValueError('unknown accidental spelling: "%s".' % accidental_spelling)
+        raise ValueError('unknown accidental spelling: '
+            '{!r}'.format(accidental_spelling))
 
     octave_number = chromatic_pitch_number // 12 + 4
     octave_tick_string = pitchtools.octave_number_to_octave_tick_string(octave_number)

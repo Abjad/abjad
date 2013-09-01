@@ -11,7 +11,8 @@ def list_named_chromatic_pitches_in_expr(expr):
 
     ::
 
-        >>> for x in pitchtools.list_named_chromatic_pitches_in_expr(beam_spanner):
+        >>> for x in pitchtools.list_named_chromatic_pitches_in_expr(
+        ...     beam_spanner):
         ...     x
         ...
         NamedPitch("c'")
@@ -30,7 +31,10 @@ def list_named_chromatic_pitches_in_expr(expr):
     # TODO: remove try-except
     try:
         result = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(expr)
-        return (result, )
+        return pitchtools.PitchSegment(
+            tokens=(result,),
+            item_class=pitchtools.NamedPitch,
+            )
     except (TypeError, MissingPitchError, ExtraPitchError):
         result = []
         if hasattr(expr, 'written_pitches'):
@@ -44,11 +48,8 @@ def list_named_chromatic_pitches_in_expr(expr):
                     result.append(leaf.written_pitch)
                 elif hasattr(leaf, 'written_pitches'):
                     result.extend(leaf.written_pitches)
-        elif isinstance(expr, pitchtools.NamedPitchSet):
-            pitches = list(expr)
-            pitches.sort()
-            pitches = tuple(pitches)
-            return pitches
+        elif isinstance(expr, pitchtools.PitchSet):
+            result.extend(sorted(list(expr)))
         elif isinstance(expr, (list, tuple, set)):
             for x in expr:
                 result.extend(list_named_chromatic_pitches_in_expr(x))
@@ -58,4 +59,7 @@ def list_named_chromatic_pitches_in_expr(expr):
                     result.append(leaf.written_pitch)
                 elif hasattr(leaf, 'written_pitches'):
                     result.extend(leaf.written_pitches)
-        return tuple(result)
+        return pitchtools.PitchSegment(
+            tokens=result,
+            item_class=pitchtools.NamedPitch,
+            )

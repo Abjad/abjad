@@ -39,6 +39,9 @@ class NamedPitch(Pitch):
             self._init_by_chromatic_pitch_number(*args)
         elif len(args) == 1 and isinstance(args[0], type(self)):
             self._init_by_named_chromatic_pitch(*args)
+        elif len(args) == 1 and isinstance(args[0], pitchtools.NumberedPitch):
+            self._init_by_chromatic_pitch_number(
+                args[0].chromatic_pitch_number)
         elif len(args) == 1 and hasattr(args[0], 'named_chromatic_pitch'):
             self._init_by_named_chromatic_pitch(args[0].named_chromatic_pitch)
         elif len(args) == 1 and \

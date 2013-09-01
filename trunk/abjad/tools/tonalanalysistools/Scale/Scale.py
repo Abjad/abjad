@@ -127,7 +127,10 @@ class Scale(PitchClassSegment):
                     pitch <= pitch_range.stop_pitch:
                     pitches.append(pitch)
             octave += 1
-        return pitchtools.NamedPitchSet(pitches)
+        return pitchtools.PitchSet(
+            tokens=pitches,
+            item_class=pitchtools.NamedPitch,
+            )
 
     def make_notes(self, n, written_duration=None):
         r'''Make first `n` notes in ascending diatonic scale.
