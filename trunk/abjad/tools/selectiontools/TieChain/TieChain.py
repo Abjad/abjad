@@ -469,7 +469,6 @@ class TieChain(ContiguousSelection):
 
         Returns new tie chain.
         '''
-        duration = self.get_duration()
-        new_duration = multiplier * duration
+        new_duration = multiplier * self.written_duration
         return self._add_or_remove_notes_to_achieve_written_duration(
             new_duration)
