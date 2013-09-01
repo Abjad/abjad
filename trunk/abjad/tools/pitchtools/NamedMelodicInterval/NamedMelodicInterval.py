@@ -67,6 +67,34 @@ class NamedMelodicInterval(NamedInterval, MelodicInterval):
 
     __deepcopy__ = __copy__
 
+    def __ge__(self, arg):
+        if not isinstance(arg, type(self)):
+            raise TypeError
+        if self.number == arg.number:
+            return self.semitones >= arg.semitones
+        return self.number >= arg.number
+
+    def __gt__(self, arg):
+        if not isinstance(arg, type(self)):
+            raise TypeError
+        if self.number == arg.number:
+            return self.semitones > arg.semitones
+        return self.number > arg.number
+
+    def __le__(self, arg):
+        if not isinstance(arg, type(self)):
+            raise TypeError
+        if self.number == arg.number:
+            return self.semitones <= arg.semitones
+        return self.number <= arg.number
+
+    def __lt__(self, arg):
+        if not isinstance(arg, type(self)):
+            raise TypeError
+        if self.number == arg.number:
+            return self.semitones < arg.semitones
+        return self.number < arg.number
+
     def __mul__(self, arg):
         from abjad.tools import pitchtools
         if not isinstance(arg, (int, long)):
@@ -160,36 +188,13 @@ class NamedMelodicInterval(NamedInterval, MelodicInterval):
             return 'ascending'
 
     @property
-    def harmonic_chromatic_interval(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NumberedHarmonicInterval(self)
-
-    @property
-    def harmonic_diatonic_interval(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NamedHarmonicInterval(self)
-
-    @property
     def inversion_equivalent_chromatic_interval_class(self):
         from abjad.tools import pitchtools
-        n = self.semitones
-        n %= 12
-        if 6 < n:
-            n = 12 - n
-        return pitchtools.NumberedInversionEquivalentIntervalClass(n)
-
-    @property
-    def melodic_chromatic_interval(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NumberedMelodicInterval(self)
-
-    @property
-    def melodic_diatonic_interval_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NamedMelodicIntervalClass(self)
+        return pitchtools.NumberedInversionEquivalentIntervalClass(self)
 
     @property
     def semitones(self):
+        from abjad.tools import pitchtools
         result = 0
         interval_class_number_to_semitones = {
             1: 0,  
@@ -202,7 +207,7 @@ class NamedMelodicInterval(NamedInterval, MelodicInterval):
             8: 0,
             }
         interval_class_number = abs(
-            self.melodic_diatonic_interval_class.number)
+            pitchtools.NamedMelodicIntervalClass(self).number)
         result += interval_class_number_to_semitones[interval_class_number]
         result += (abs(self.number) - 1) / 7 * 12
         quality_string_to_semitones = {

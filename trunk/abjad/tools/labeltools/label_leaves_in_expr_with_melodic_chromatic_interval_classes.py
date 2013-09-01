@@ -4,6 +4,7 @@ from abjad.tools import iterationtools
 from abjad.tools import leaftools
 from abjad.tools import markuptools
 from abjad.tools import notetools
+from abjad.tools import pitchtools
 
 
 def label_leaves_in_expr_with_melodic_chromatic_interval_classes(expr, markup_direction=Up):
@@ -45,8 +46,8 @@ def label_leaves_in_expr_with_melodic_chromatic_interval_classes(expr, markup_di
             next_leaf = logical_voice_iterator.next()
             if isinstance(next_leaf, notetools.Note):
                 mdi = note.written_pitch - next_leaf.written_pitch
-                mci = mdi.melodic_chromatic_interval
-                mcic = mci.melodic_chromatic_interval_class
+                mci = pitchtools.NumberedMelodicInterval(mdi)
+                mcic = pitchtools.NumberedMelodicIntervalClass(mci)
                 markuptools.Markup(mcic, markup_direction)(note)
         except StopIteration:
             pass

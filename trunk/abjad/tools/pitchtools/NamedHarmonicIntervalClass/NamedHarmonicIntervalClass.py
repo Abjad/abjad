@@ -100,7 +100,9 @@ class NamedHarmonicIntervalClass(NamedIntervalClass):
         mdi = pitchtools.NamedMelodicInterval.from_pitch_carriers(
             pitch_carrier_1, pitch_carrier_2)
         # return harmonic diatonic interval-class
-        return mdi.harmonic_diatonic_interval.harmonic_diatonic_interval_class
+        return pitchtools.NamedHarmonicIntervalClass(
+            pitchtools.NamedHarmonicInterval(mdi))
+        #return mdi.harmonic_diatonic_interval.harmonic_diatonic_interval_class
 
     def invert(self):
         r'''Inversion of harmonic diatonic interval-class:

@@ -23,12 +23,18 @@ class NumberedInversionEquivalentIntervalClass(IntervalClass):
     ### INITIALIZER ###
 
     def __init__(self, interval_class_token):
+        from abjad.tools import pitchtools
         if isinstance(interval_class_token, type(self)):
             _number = interval_class_token.number
         elif isinstance(interval_class_token, numbers.Number):
             if not 0 <= interval_class_token <= 6:
                 raise ValueError('must be between 0 and 6, inclusive.')
             _number = interval_class_token
+        elif hasattr(interval_class_token, 'semitones'):
+            _number = interval_class_token.semitones
+            _number %= 12
+            if 6 < _number:
+                _number = 12 - _number
         else:
             raise TypeError('must be interval-class instance or number.')
         self._number = _number

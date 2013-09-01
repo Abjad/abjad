@@ -118,7 +118,8 @@ class NamedMelodicIntervalClass(
         mdi = pitchtools.NamedMelodicInterval.from_pitch_carriers(
             pitch_carrier_1, pitch_carrier_2)
         # return melodic diatonic interval-class
-        return mdi.melodic_diatonic_interval_class
+        return pitchtools.NamedMelodicIntervalClass(mdi)
+        #return mdi.melodic_diatonic_interval_class
 
     ### PUBLIC PROPERTIES ###
 

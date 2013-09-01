@@ -103,7 +103,7 @@ class NamedHarmonicInterval(NamedInterval):
         mdi = pitchtools.NamedMelodicInterval.from_pitch_carriers(
             pitch_carrier_1, pitch_carrier_2)
         # return harmonic diatonic interval
-        return mdi.harmonic_diatonic_interval
+        return pitchtools.NamedHarmonicInterval(mdi)
 
     ### PUBLIC PROPERTIES ###
 
@@ -125,12 +125,13 @@ class NamedHarmonicInterval(NamedInterval):
     # TODO: this can be abstracted higher up the inheritence hierarchy
     @property
     def semitones(self):
+        from abjad.tools import pitchtools
         result = 0
         interval_class_number_to_semitones = {
             1: 0,  2: 1,  3: 3, 4: 5, 5: 7, 6: 8, 7: 10, 8:0}
         try:
             interval_class_number = abs(
-                self.harmonic_diatonic_interval_class.number)
+                pitchtools.NamedHarmonicIntervalClass(self).number)
         except AttributeError:
             interval_class_number = self.number
         result += interval_class_number_to_semitones[interval_class_number]
