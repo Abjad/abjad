@@ -133,7 +133,7 @@ class PitchSegment(Segment):
             pitchtools.NamedPitch(self[0], 4))
         new_pitches = (x + difference for x in self)
         new_pitches = self.new(tokens=new_pitch)
-        return arg == new_pitches
+        return expr == new_pitches
 
     def make_notes(self, n=None, written_duration=None):
         r'''Make first `n` notes in pitch class segment.

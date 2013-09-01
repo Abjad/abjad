@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_PitchClassSet___init___02():
+def test_PitchClassSet_from_selection_01():
     r'''Works with chords.
     '''
 
@@ -17,7 +17,7 @@ def test_PitchClassSet___init___02():
     assert named_pitch_class_set_1 == named_pitch_class_set_2
 
 
-def test_PitchClassSet___init___03():
+def test_PitchClassSet_from_selection_02():
     r'''Works with notes.
     '''
 
@@ -30,7 +30,7 @@ def test_PitchClassSet___init___03():
     assert named_pitch_class_set_1 == named_pitch_class_set_2
 
 
-def test_PitchClassSet___init___06():
+def test_PitchClassSet_from_selection_03():
     r'''Works with chords.
     '''
 
@@ -39,7 +39,7 @@ def test_PitchClassSet___init___06():
     assert len(pitch_class_set) == 3
 
 
-def test_PitchClassSet___init___07():
+def test_PitchClassSet_from_selection_04():
     r'''Works with notes.
     '''
 

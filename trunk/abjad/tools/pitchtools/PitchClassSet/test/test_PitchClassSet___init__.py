@@ -14,14 +14,14 @@ def test_PitchClassSet___init___01():
     assert len(named_pitch_class_set) == 3
 
 
-def test_PitchClassSet___init___04():
+def test_PitchClassSet___init___02():
     r'''Works with numbers.
     '''
 
     assert len(pitchtools.PitchClassSet([0, 2, 6, 7])) == 4
 
 
-def test_PitchClassSet___init___05():
+def test_PitchClassSet___init___03():
     r'''Works with pitch-classes.
     '''
 
