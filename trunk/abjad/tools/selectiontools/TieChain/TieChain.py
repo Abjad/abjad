@@ -353,3 +353,123 @@ class TieChain(ContiguousSelection):
 
         # return tuplet
         return tuplet
+
+    def scale(self, multiplier):
+        r'''Scales leaves in tie chain by `multiplier`.
+
+        Adds or removes leaves as necessary.
+
+        ..  container:: example
+
+            **Example 1.** Scale nontrivial tie chain 
+            by dot-generating `multiplier`:
+
+            ::
+
+                >>> staff = Staff(r"c'8 \accent ~ c'8 d'8")
+                >>> time_signature = contexttools.TimeSignatureMark((3, 8))
+                >>> time_signature = time_signature.attach(staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \time 3/8
+                    c'8 -\accent ~
+                    c'8
+                    d'8
+                }
+
+            ::
+
+                >>> tie_chain = inspect(staff[0]).get_tie_chain()
+                >>> tie_chain = tie_chain.scale(Multiplier(3, 2))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \time 3/8
+                    c'4. -\accent
+                    d'8
+                }
+
+        ..  container:: example
+
+            **Example 2.** Scale nontrivial tie chain 
+            by tie-generating `multiplier`:
+
+            ::
+
+                >>> staff = Staff(r"c'8 \accent ~ c'8 d'16")
+                >>> time_signature = contexttools.TimeSignatureMark((5, 16))
+                >>> time_signature = time_signature.attach(staff)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \time 5/16
+                    c'8 -\accent ~
+                    c'8
+                    d'16
+                }
+
+            ::
+
+                >>> tie_chain = inspect(staff[0]).get_tie_chain()
+                >>> tie_chain = tie_chain.scale(Multiplier(5, 4))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \time 5/16
+                    c'4 -\accent ~
+                    c'16
+                    d'16
+                }
+
+        ..  container:: example
+
+            **Example 3.** Scale trivial tie chain 
+            by multiplier with non-power-of-two denominator:
+
+            ::
+
+                >>> staff = Staff(r"c'8 \accent")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8 -\accent
+                }
+
+            ::
+
+                >>> tie_chain = inspect(staff[0]).get_tie_chain()
+                >>> tie_chain.scale(Multiplier(4, 3))
+                TieChain(Note("c'4"),)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \times 2/3 {
+                        c'4 -\accent
+                    }
+                }
+
+        Returns new tie chain.
+        '''
+        duration = self.get_duration()
+        new_duration = multiplier * duration
+        return self._add_or_remove_notes_to_achieve_written_duration(
+            new_duration)
