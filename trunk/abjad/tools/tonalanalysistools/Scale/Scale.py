@@ -74,7 +74,10 @@ class Scale(PitchClassSegment):
             sequencetools.iterate_sequence_pairwise_wrapped(self):
             dic = left - right
             dics.append(dic)
-        dicg = pitchtools.NamedInversionEquivalentIntervalClassSegment(dics)
+        dicg = pitchtools.IntervalClassSegment(
+            tokens=dics,
+            item_class=pitchtools.NamedInversionEquivalentIntervalClass,
+            )
         return dicg
 
     @property

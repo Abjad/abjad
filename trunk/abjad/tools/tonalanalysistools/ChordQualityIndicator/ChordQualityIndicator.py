@@ -315,7 +315,7 @@ class ChordQualityIndicator(IntervalSegment):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def from_diatonic_interval_class_segment(segment):
+    def from_interval_class_segment(segment):
         quality, extent = \
             ChordQualityIndicator._segment_to_quality_and_extent[str(segment)]
         return ChordQualityIndicator(quality, extent=extent)

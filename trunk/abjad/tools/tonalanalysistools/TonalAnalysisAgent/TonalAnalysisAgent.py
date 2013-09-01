@@ -106,7 +106,7 @@ class TonalAnalysisAgent(object):
         else:
             return None
         root = ordered_npcs[0]
-        indicator = CQI.from_diatonic_interval_class_segment(segment)
+        indicator = CQI.from_interval_class_segment(segment)
         bass = min(pitches).named_chromatic_pitch_class
         inversion = ordered_npcs.index(bass)
         return tonalanalysistools.ChordClass(
