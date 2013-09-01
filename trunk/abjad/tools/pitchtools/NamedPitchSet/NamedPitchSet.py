@@ -67,8 +67,10 @@ class NamedPitchSet(PitchSet):
             if pitch_class in pitch_classes:
                 duplicate_pitch_classes.append(pitch_class)
             pitch_classes.append(pitch_class)
-        return pitchtools.NumberedPitchClassSet(
-            duplicate_pitch_classes)
+        return pitchtools.PitchClassSet(
+            duplicate_pitch_classes,
+            item_class=pitchtools.NumberedPitchClass,
+            )
 
     @property
     def is_pitch_class_unique(self):
@@ -83,7 +85,10 @@ class NamedPitchSet(PitchSet):
     #def pitch_class_set(self):
     def numbered_chromatic_pitch_class_set(self):
         from abjad.tools import pitchtools
-        return pitchtools.NumberedPitchClassSet(self)
+        return pitchtools.PitchClassSet(
+            self, 
+            item_class=pitchtools.NumberedPitchClass,
+            )
 
     @property
     #def pitch_classes(self):

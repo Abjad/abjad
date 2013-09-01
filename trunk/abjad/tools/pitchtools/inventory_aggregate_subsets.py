@@ -12,26 +12,26 @@ def inventory_aggregate_subsets():
         4096
         >>> for pcset in U_star[:20]:
         ...   pcset
-        NumberedPitchClassSet([])
-        NumberedPitchClassSet([0])
-        NumberedPitchClassSet([1])
-        NumberedPitchClassSet([0, 1])
-        NumberedPitchClassSet([2])
-        NumberedPitchClassSet([0, 2])
-        NumberedPitchClassSet([1, 2])
-        NumberedPitchClassSet([0, 1, 2])
-        NumberedPitchClassSet([3])
-        NumberedPitchClassSet([0, 3])
-        NumberedPitchClassSet([1, 3])
-        NumberedPitchClassSet([0, 1, 3])
-        NumberedPitchClassSet([2, 3])
-        NumberedPitchClassSet([0, 2, 3])
-        NumberedPitchClassSet([1, 2, 3])
-        NumberedPitchClassSet([0, 1, 2, 3])
-        NumberedPitchClassSet([4])
-        NumberedPitchClassSet([0, 4])
-        NumberedPitchClassSet([1, 4])
-        NumberedPitchClassSet([0, 1, 4])
+        PitchClassSet([])
+        PitchClassSet([0])
+        PitchClassSet([1])
+        PitchClassSet([0, 1])
+        PitchClassSet([2])
+        PitchClassSet([0, 2])
+        PitchClassSet([1, 2])
+        PitchClassSet([0, 1, 2])
+        PitchClassSet([3])
+        PitchClassSet([0, 3])
+        PitchClassSet([1, 3])
+        PitchClassSet([0, 1, 3])
+        PitchClassSet([2, 3])
+        PitchClassSet([0, 2, 3])
+        PitchClassSet([1, 2, 3])
+        PitchClassSet([0, 1, 2, 3])
+        PitchClassSet([4])
+        PitchClassSet([0, 4])
+        PitchClassSet([1, 4])
+        PitchClassSet([0, 1, 4])
 
     There are 4096 subsets of the aggregate.
 
@@ -51,7 +51,10 @@ def inventory_aggregate_subsets():
     for x in range(4096):
         subset = ''.join(list(reversed(mathtools.integer_to_binary_string(x).zfill(12))))
         subset = _helper(subset)
-        subset = pitchtools.NumberedPitchClassSet(subset)
+        subset = pitchtools.PitchClassSet(
+            subset,
+            item_class=pitchtools.NumberedPitchClass,
+            )
         result.append(subset)
 
     return result

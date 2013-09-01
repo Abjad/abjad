@@ -21,6 +21,9 @@ def expr_has_duplicate_numbered_chromatic_pitch_class(expr):
         expr = []
     elif isinstance(expr, notetools.Note):
         expr = [expr]
-    pitch_class_set = pitchtools.NumberedPitchClassSet(expr)
+    pitch_class_set = pitchtools.PitchClassSet(
+        expr,
+        item_class=pitchtools.NumberedPitchClass,
+        )
 
     return not len(pitch_classes) == len(pitch_class_set)
