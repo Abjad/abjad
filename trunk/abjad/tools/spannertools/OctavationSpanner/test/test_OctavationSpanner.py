@@ -4,29 +4,20 @@ from abjad.tools.wellformednesstools import OverlappingOctavationCheck
 
 
 def test_OctavationSpanner_01():
-    r'''Octavation has default start and stop arguments set to 0.
+    r'''Octavation has default start set to 1 and stop set to 0.
     '''
 
     staff = Staff(notetools.make_repeated_notes(4))
     o = spannertools.OctavationSpanner(staff[:])
 
-    r'''
-    \new Staff {
-        \ottava #0
-        c'8
-        c'8
-        c'8
-        c'8
-        \ottava #0
-    }
-    '''
+    assert o.start == 1
+    assert o.stop == 0
 
-    assert o.start == o.stop == 0
     assert testtools.compare(
         staff,
         r'''
         \new Staff {
-            \ottava #0
+            \ottava #1
             c'8
             c'8
             c'8
@@ -36,28 +27,14 @@ def test_OctavationSpanner_01():
         '''
         )
 
+    assert inspect(staff).is_well_formed()
+
 
 def test_OctavationSpanner_02():
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     spannertools.OctavationSpanner(staff[:4], 1)
 
-    r'''
-    \new Staff {
-        \ottava #1
-        c'8
-        cs'8
-        d'8
-        ef'8
-        \ottava #0
-        e'8
-        f'8
-        fs'8
-        g'8
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -76,28 +53,14 @@ def test_OctavationSpanner_02():
         '''
         )
 
+    assert inspect(staff).is_well_formed()
+
 
 def test_OctavationSpanner_03():
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     spannertools.OctavationSpanner(staff[:4], 1, 2)
 
-    r'''
-    \new Staff {
-        \ottava #1
-        c'8
-        cs'8
-        d'8
-        ef'8
-        \ottava #2
-        e'8
-        f'8
-        fs'8
-        g'8
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -116,6 +79,7 @@ def test_OctavationSpanner_03():
         '''
         )
 
+    assert inspect(staff).is_well_formed()
 
 
 def test_OctavationSpanner_04():
@@ -125,7 +89,6 @@ def test_OctavationSpanner_04():
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     spannertools.OctavationSpanner(staff[0], 1)
 
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -144,32 +107,19 @@ def test_OctavationSpanner_04():
         '''
         )
 
-    r'''
-    \new Staff {
-        \ottava #1
-        c'8
-        \ottava #0
-        cs'8
-        d'8
-        ef'8
-        e'8
-        f'8
-        fs'8
-        g'8
-    }
-    '''
+    assert inspect(staff).is_well_formed()
 
 
 def test_OctavationSpanner_05():
     r'''Adjacent one-note octavation changes are allowed;
-        TODO - check for back-to-back set-octavation at format-
-            time and compress to a single set-octavation.'''
+    TODO: check for back-to-back set-octavation at format-
+    time and compress to a single set-octavation.
+    '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     spannertools.OctavationSpanner(staff[0], 1)
     spannertools.OctavationSpanner(staff[1], 2)
 
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -190,22 +140,7 @@ def test_OctavationSpanner_05():
         '''
         )
 
-    r'''
-    \new Staff {
-        \ottava #1
-        c'8
-        \ottava #0
-        \ottava #2
-        cs'8
-        \ottava #0
-        d'8
-        ef'8
-        e'8
-        f'8
-        fs'8
-        g'8
-    }
-    '''
+    assert inspect(staff).is_well_formed()
 
 
 def test_OctavationSpanner_06():
@@ -217,7 +152,6 @@ def test_OctavationSpanner_06():
     spannertools.OctavationSpanner(staff[2:6], 2)
     checker = OverlappingOctavationCheck()
 
-    assert not checker.check(staff)
     assert testtools.compare(
         staff,
         r'''
@@ -238,19 +172,4 @@ def test_OctavationSpanner_06():
         '''
         )
 
-    r'''
-    \new Staff {
-        \ottava #1
-        c'8
-        cs'8
-        \ottava #2
-        d'8
-        ef'8
-        \ottava #0
-        e'8
-        f'8
-        \ottava #0
-        fs'8
-        g'8
-    }
-    '''
+    assert not checker.check(staff)

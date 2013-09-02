@@ -1,41 +1,41 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import pitchtools
 from abjad.tools.spannertools.Spanner import Spanner
 
 
 class OctavationSpanner(Spanner):
-    r'''Abjad octavation spanner:
+    r'''A octavation spanner.
 
-    ::
+    ..  container:: example
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        ::
 
-    ::
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> show(staff) # doctest: +SKIP
 
-        >>> spanner = spannertools.OctavationSpanner(staff[:], start=1)
 
-    ..  doctest::
+        ::
 
-        >>> f(staff)
-        \new Staff {
-            \ottava #1
-            c'8
-            d'8
-            e'8
-            f'8
-            \ottava #0
-        }
+            >>> spanner = spannertools.OctavationSpanner(staff[:], start=1)
+            >>> show(staff) # doctest: +SKIP
 
-    ::
+        ..  doctest::
 
-        >>> show(staff) # doctest: +SKIP
+            >>> f(staff)
+            \new Staff {
+                \ottava #1
+                c'8
+                d'8
+                e'8
+                f'8
+                \ottava #0
+            }
 
-    Return octavation spanner.
     '''
 
     ### INITIALIZER ###
 
-    # TODO: Set start to 1 (and stop to 0) by default.
-    def __init__(self, components=None, start=0, stop=0):
+    def __init__(self, components=None, start=1, stop=0):
         Spanner.__init__(self, components)
         self.start = start
         self.stop = stop
@@ -124,3 +124,57 @@ class OctavationSpanner(Spanner):
             assert isinstance(arg, (int, type(None)))
             self._stop = arg
         return property(**locals())
+
+    ### PUBLIC METHODS ###
+
+    def adjust_start_and_stop(
+        self,
+        ottava_numbered_diatonic_pitch=None,
+        quindecisima_numbered_diatonic_pitch=None,
+        ):
+        r"""Adjusts octavation spanner start and stop
+        according to `ottava_numbered_diatonic_pitch`
+        and `quindecisima_numbered_diatonic_pitch`.
+
+        ..  container:: example
+
+            ::
+
+                >>> measure = Measure((4, 8), "c'''8 d'''8 ef'''8 f'''8")
+                >>> octavation = spannertools.OctavationSpanner(measure[:])
+                >>> show(measure) # doctest: +SKIP
+
+            ::
+
+                >>> octavation.adjust_start_and_stop(
+                ...     ottava_numbered_diatonic_pitch=14)
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(measure)
+                    {
+                        \time 4/8
+                        \ottava #1
+                        c'''8
+                        d'''8
+                        ef'''8
+                        f'''8
+                        \ottava #0
+                    }
+
+        Adjusts start and stop according to the diatonic pitch number of
+        the maximum pitch in spanner.
+
+        Returns none.
+        """
+        pitches = pitchtools.list_named_chromatic_pitches_in_expr(self)
+        max_pitch = max(pitches)
+        max_numbered_diatonic_pitch = max_pitch._diatonic_pitch_number
+        if ottava_numbered_diatonic_pitch is not None:
+            if ottava_numbered_diatonic_pitch <= max_numbered_diatonic_pitch:
+                self.start = 1
+                if quindecisima_numbered_diatonic_pitch is not None:
+                    if quindecisima_numbered_diatonic_pitch <= \
+                        max_numbered_diatonic_pitch:
+                        self.start = 2
