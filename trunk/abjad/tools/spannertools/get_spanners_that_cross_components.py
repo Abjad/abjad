@@ -21,15 +21,15 @@ def get_spanners_that_cross_components(components):
     '''
     from abjad.tools import iterationtools
     from abjad.tools import selectiontools
-    from abjad.tools import spannertools
     Selection = selectiontools.Selection
 
     assert Selection._all_are_contiguous_components_in_same_logical_voice(
         components)
 
     all_components = set(iterationtools.iterate_components_in_expr(components))
-    contained_spanners = \
-        spannertools.get_spanners_contained_by_components(components)
+    contained_spanners = set()
+    for component in iterationtools.iterate_components_in_expr(components):
+        contained_spanners.update(component._get_spanners())
     crossing_spanners = set([])
     for spanner in contained_spanners:
         spanner_components = set(spanner[:])

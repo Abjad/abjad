@@ -155,11 +155,11 @@ class ContiguousSelection(Selection):
 
     def _make_spanner_schema(self):
         from abjad.tools import iterationtools
-        from abjad.tools import spannertools
         schema = {}
-        spanners_contained_by_components = \
-            spannertools.get_spanners_contained_by_components(self)
-        for spanner in spanners_contained_by_components:
+        spanners = set()
+        for component in iterationtools.iterate_components_in_expr(self):
+            spanners.update(component._get_spanners())
+        for spanner in spanners:
             schema[spanner] = []
         for i, component in \
             enumerate(iterationtools.iterate_components_in_expr(self)):
