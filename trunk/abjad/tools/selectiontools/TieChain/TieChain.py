@@ -65,8 +65,8 @@ class TieChain(ContiguousSelection):
                 extra_tokens = durations[len(self):]
                 for leaf, token in zip(extra_leaves, extra_tokens):
                     leaf.written_duration = token.written_duration
-                if not spannertools.is_component_with_spanner_attached(
-                    self[-1], spannertools.TieSpanner):
+                ties = self[-1]._get_spanners(spannertools.TieSpanner)
+                if not ties:
                     spannertools.TieSpanner(list(self))
                 self[-1]._splice(extra_leaves, grow_spanners=True)
         else:

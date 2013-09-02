@@ -168,8 +168,7 @@ def set_leaf_duration(leaf, new_duration):
         for x, component in zip(all_leaves, components):
             x.written_duration = component.written_duration
         leaf._splice(tied_leaves, grow_spanners=True)
-        if not spannertools.is_component_with_spanner_attached(
-            leaf, spannertools.TieSpanner):
+        if not leaf._get_spanners(spannertools.TieSpanner):
             spannertools.TieSpanner(all_leaves)
         tuplet_multiplier = tuplet.multiplier
         tuplettools.Tuplet(tuplet_multiplier, all_leaves)
