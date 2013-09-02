@@ -27,12 +27,8 @@ def get_spanners_that_dominate_component_pair(left, right):
     assert Selection._all_are_contiguous_components_in_same_logical_voice(
         [left, right])
 
-    left_contained = \
-        spannertools.get_spanners_attached_to_any_improper_child_of_component(
-            left)
-    right_contained = \
-        spannertools.get_spanners_attached_to_any_improper_child_of_component(
-            right)
+    left_contained = left._get_descendants()._get_spanners()
+    right_contained = right._get_descendants()._get_spanners()
     dominant_spanners = left_contained & right_contained
 
     right_start_offset = right._get_timespan().start_offset

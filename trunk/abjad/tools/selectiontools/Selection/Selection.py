@@ -325,6 +325,27 @@ class Selection(object):
                 if i == abs(n) - 1:
                     return x
 
+    def _get_spanner(self, spanner_classes=None):
+        spanners = self._get_spanners(spanner_classes=spanner_classes)
+        if not spanners:
+            raise MissingSpannerError
+        elif len(spanners) == 1:
+            return spanners.pop()
+        else:
+            raise ExtraSpannerError
+
+    def _get_spanners(self, spanner_classes=None):
+        from abjad.tools import spannertools
+        spanner_classes = spanner_classes or (spannertools.Spanner,)
+        if not isinstance(spanner_classes, tuple):
+            spanner_classes = (spanner_classes, )
+        assert isinstance(spanner_classes, tuple)
+        result = set()
+        for component in self:
+            spanners = component._get_spanners(spanner_classes)
+            result.update(spanners)
+        return result
+
     def _iterate_components(self, recurse=True, reverse=False):
         from abjad.tools import iterationtools
         if recurse:
@@ -357,3 +378,14 @@ class Selection(object):
             component._get_duration(in_seconds=in_seconds) 
             for component in self
             )
+
+    def get_spanners(self, spanner_classes=None):
+        r'''Gets spanners attached to any component in selection.
+
+        Returns set.
+        '''
+        result = set()
+        for component in self:
+            spanners = component._get_spanners(spanner_classes=spanner_classes)
+            result.update(spanners)
+        return result

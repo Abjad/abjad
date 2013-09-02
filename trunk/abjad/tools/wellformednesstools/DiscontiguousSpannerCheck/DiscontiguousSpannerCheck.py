@@ -16,9 +16,7 @@ class DiscontiguousSpannerCheck(Check):
     def _run(self, expr):
         violators = []
         total, bad = 0, 0
-        for spanner in \
-            spannertools.get_spanners_attached_to_any_improper_child_of_component(
-            expr):
+        for spanner in expr._get_descendants()._get_spanners():
             if spanner._contiguity_constraint == 'logical voice':
                 if not Selection._all_are_contiguous_components_in_same_logical_voice(
                     spanner[:]):

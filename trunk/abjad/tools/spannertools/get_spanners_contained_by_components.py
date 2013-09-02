@@ -16,7 +16,6 @@ def get_spanners_contained_by_components(components):
 
     result = set([])
     for component in components:
-        result.update(
-            spannertools.get_spanners_attached_to_any_improper_child_of_component(
-                component))
+        spanners = component._get_descendants()._get_spanners()
+        result.update(spanners)
     return result

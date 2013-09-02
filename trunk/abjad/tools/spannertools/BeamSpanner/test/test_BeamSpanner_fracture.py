@@ -8,40 +8,52 @@ def test_BeamSpanner_fracture_01():
     spanner with an identical new spanner.
     '''
 
-    staff = Staff("c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8")
-    spannertools.BeamSpanner(staff[:4])
-    assert len(
-        spannertools.get_spanners_attached_to_any_improper_child_of_component(
-        staff)) == 1
+    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    beam = spannertools.BeamSpanner(staff[:4])
+    beam.fracture(0, direction=Left)
 
-    old = list(
-        spannertools.get_spanners_attached_to_any_improper_child_of_component(
-        staff))[0]
-    assert old.components == tuple(staff[:4])
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            c'8 [
+            d'8
+            e'8
+            f'8 ]
+            g'8
+            a'8
+            b'8
+            c''8
+        }
+        '''
+        )
 
-    old.fracture(0, direction=Left)
-    assert len(
-        spannertools.get_spanners_attached_to_any_improper_child_of_component(
-        staff)) == 1
+    assert inspect(staff).is_well_formed()
 
 
 def test_BeamSpanner_fracture_02():
 
-    staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    spannertools.BeamSpanner(staff[:4])
-    assert len(
-        spannertools.get_spanners_attached_to_any_improper_child_of_component(
-        staff)) == 1
+    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    beam = spannertools.BeamSpanner(staff[:4])
+    beam.fracture(1, direction=Left)
 
-    old = list(
-        spannertools.get_spanners_attached_to_any_improper_child_of_component(
-        staff))[0]
-    assert old.components == tuple(staff[:4])
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            c'8 [ ]
+            d'8 [
+            e'8
+            f'8 ]
+            g'8
+            a'8
+            b'8
+            c''8
+        }
+        '''
+        )
 
-    old.fracture(1, direction=Left)
-    assert len(
-        spannertools.get_spanners_attached_to_any_improper_child_of_component(
-        staff)) == 2
+    assert inspect(staff).is_well_formed()
 
 
 def test_BeamSpanner_fracture_03():
@@ -50,40 +62,52 @@ def test_BeamSpanner_fracture_03():
     spanner with an identical new spanner.
     '''
 
-    staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    spannertools.BeamSpanner(staff[:4])
-    assert len(
-        spannertools.get_spanners_attached_to_any_improper_child_of_component(
-        staff)) == 1
+    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    beam = spannertools.BeamSpanner(staff[:4])
+    beam.fracture(-1, direction=Right)
 
-    old = list(
-        spannertools.get_spanners_attached_to_any_improper_child_of_component(
-        staff))[0]
-    assert old.components == tuple(staff[:4])
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            c'8 [
+            d'8
+            e'8
+            f'8 ]
+            g'8
+            a'8
+            b'8
+            c''8
+        }
+        '''
+        )
 
-    old.fracture(-1, direction=Right)
-    assert len(
-        spannertools.get_spanners_attached_to_any_improper_child_of_component(
-        staff)) == 1
+    assert inspect(staff).is_well_formed()
 
 
 def test_BeamSpanner_fracture_04():
 
-    staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    spannertools.BeamSpanner(staff[:4])
-    assert len(
-        spannertools.get_spanners_attached_to_any_improper_child_of_component(
-        staff)) == 1
+    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    beam = spannertools.BeamSpanner(staff[:4])
+    beam.fracture(1, direction=Right)
 
-    old = list(
-        spannertools.get_spanners_attached_to_any_improper_child_of_component(
-        staff))[0]
-    assert old.components == tuple(staff[:4])
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            c'8 [
+            d'8 ]
+            e'8 [
+            f'8 ]
+            g'8
+            a'8
+            b'8
+            c''8
+        }
+        '''
+        )
 
-    old.fracture(1, direction=Right)
-    assert len(
-        spannertools.get_spanners_attached_to_any_improper_child_of_component(
-        staff)) == 2
+    assert inspect(staff).is_well_formed()
 
 
 def test_BeamSpanner_fracture_05():
@@ -91,35 +115,9 @@ def test_BeamSpanner_fracture_05():
     '''
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    spannertools.BeamSpanner(staff[:5])
-    old = list(
-        spannertools.get_spanners_attached_to_any_improper_child_of_component(
-        staff))[0]
-    old.fracture(2, direction=None)
+    beam = spannertools.BeamSpanner(staff[:5])
+    beam.fracture(2, direction=None)
 
-    r'''
-    \new Staff {
-        c'8 [
-        cs'8 ]
-        d'8 [ ]
-        ef'8 [
-        e'8 ]
-        f'8
-        fs'8
-        g'8
-    }
-    '''
-
-    assert len(staff[0]._get_spanner(spannertools.BeamSpanner)) == 2
-    assert len(staff[2]._get_spanner(spannertools.BeamSpanner)) == 1
-    assert len(staff[3]._get_spanner(spannertools.BeamSpanner)) == 2
-
-    assert staff[0]._get_spanner(spannertools.BeamSpanner) != \
-        staff[2]._get_spanner(spannertools.BeamSpanner)
-    assert staff[2]._get_spanner(spannertools.BeamSpanner) != \
-        staff[3]._get_spanner(spannertools.BeamSpanner)
-
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -136,6 +134,7 @@ def test_BeamSpanner_fracture_05():
         '''
         )
 
+    assert inspect(staff).is_well_formed()
 
 
 def test_BeamSpanner_fracture_06():
@@ -143,35 +142,9 @@ def test_BeamSpanner_fracture_06():
     '''
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    spannertools.BeamSpanner(staff[:5])
-    old = list(
-        spannertools.get_spanners_attached_to_any_improper_child_of_component(
-        staff))[0]
-    old.fracture(0, direction=None)
+    beam = spannertools.BeamSpanner(staff[:5])
+    beam.fracture(0, direction=None)
 
-    r'''
-    \new Staff {
-        c'8 [ ]
-        cs'8 [
-        d'8
-        ef'8
-        e'8 ]
-        f'8
-        fs'8
-        g'8
-    }
-    '''
-
-    assert len(
-        spannertools.get_spanners_attached_to_any_improper_child_of_component(
-        staff)) == 2
-
-    assert len(staff[0]._get_spanner(spannertools.BeamSpanner)) == 1
-    assert len(staff[1]._get_spanner(spannertools.BeamSpanner)) == 4
-    assert staff[0]._get_spanner(spannertools.BeamSpanner) != \
-        staff[1]._get_spanner(spannertools.BeamSpanner)
-
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -188,6 +161,7 @@ def test_BeamSpanner_fracture_06():
         '''
         )
 
+    assert inspect(staff).is_well_formed()
 
 
 def test_BeamSpanner_fracture_07():
@@ -195,34 +169,9 @@ def test_BeamSpanner_fracture_07():
     '''
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    spannertools.BeamSpanner(staff[:5])
-    old = list(
-        spannertools.get_spanners_attached_to_any_improper_child_of_component(
-        staff))[0]
-    old.fracture(4, direction=None)
+    beam = spannertools.BeamSpanner(staff[:5])
+    beam.fracture(4, direction=None)
 
-    r'''
-    \new Staff {
-        c'8 [
-        cs'8
-        d'8
-        ef'8 ]
-        e'8 [ ]
-        f'8
-        fs'8
-        g'8
-    }
-    '''
-
-    assert len(
-        spannertools.get_spanners_attached_to_any_improper_child_of_component(
-        staff)) == 2
-    assert len(staff[0]._get_spanner(spannertools.BeamSpanner)) == 4
-    assert len(staff[4]._get_spanner(spannertools.BeamSpanner)) == 1
-    assert staff[0]._get_spanner(spannertools.BeamSpanner) != \
-        staff[4]._get_spanner(spannertools.BeamSpanner)
-
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -239,6 +188,7 @@ def test_BeamSpanner_fracture_07():
         '''
         )
 
+    assert inspect(staff).is_well_formed()
 
 
 def test_BeamSpanner_fracture_08():
@@ -246,34 +196,9 @@ def test_BeamSpanner_fracture_08():
     '''
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    spannertools.BeamSpanner(staff[:5])
-    old = list(
-        spannertools.get_spanners_attached_to_any_improper_child_of_component(
-        staff))[0]
-    old.fracture(-1, direction=None)
+    beam = spannertools.BeamSpanner(staff[:5])
+    beam.fracture(-1, direction=None)
 
-    r'''
-    \new Staff {
-        c'8 [
-        cs'8
-        d'8
-        ef'8 ]
-        e'8 [ ]
-        f'8
-        fs'8
-        g'8
-    }
-    '''
-
-    assert len(
-        spannertools.get_spanners_attached_to_any_improper_child_of_component(
-        staff)) == 2
-    assert len(staff[0]._get_spanner(spannertools.BeamSpanner)) == 4
-    assert len(staff[4]._get_spanner(spannertools.BeamSpanner)) == 1
-    assert staff[0]._get_spanner(spannertools.BeamSpanner) != \
-        staff[4]._get_spanner(spannertools.BeamSpanner)
-
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -289,3 +214,5 @@ def test_BeamSpanner_fracture_08():
         }
         '''
         )
+
+    assert inspect(staff).is_well_formed()

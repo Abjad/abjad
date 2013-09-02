@@ -1204,8 +1204,7 @@ class Container(Component):
                 return 0
         self._music.reverse()
         self._update_later(offsets=True)
-        spanners = spannertools.get_spanners_attached_to_any_improper_child_of_component(
-            self)
+        spanners = self._get_descendants()._get_spanners()
         for s in spanners:
             s._components.sort(_offset)
 

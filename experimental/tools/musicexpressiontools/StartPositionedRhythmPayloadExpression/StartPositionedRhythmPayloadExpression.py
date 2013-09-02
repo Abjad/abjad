@@ -609,9 +609,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         '''
         for container in iterationtools.iterate_containers_in_expr(self.payload):
             container._music.reverse()
-        for spanner in \
-            spannertools.get_spanners_attached_to_any_improper_child_of_component(
-            self.payload):
+        for spanner in self.payload._get_descendants().get_spanners():
             spanner._reverse_components()
         return self
 
@@ -914,9 +912,8 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 )
             left_half, right_half = result[0], result[-1]
             spanner_classes = (spannertools.DuratedComplexBeamSpanner, )
-            for spanner in \
-                spannertools.get_spanners_attached_to_any_improper_child_of_component(
-                self.payload, spanner_classes=spanner_classes):
+            descendants = self.payload._get_descendants()
+            for spanner in descendants.get_spanners(spanner_classes):
                 if left_half[-1] in spanner and right_half[0] in spanner:
                     leaf_right_of_split = right_half[0]
                     split_offset_in_beam = spanner._duration_offset_in_me(
@@ -934,9 +931,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             self.payload._music = new_payload
             for component in new_payload:
                 component._update_later(offsets=True)
-            for spanner in \
-                spannertools.get_spanners_attached_to_any_improper_child_of_component(
-                    self.payload):
+            for spanner in self.payload._get_descendants().get_spanners():
                 spanner._components.sort(
                     lambda x, y: cmp(x._get_parentage().score_index, y._get_parentage().score_index))
             assert inspect(self.payload).is_well_formed()

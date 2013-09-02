@@ -3,24 +3,28 @@ from abjad import *
 
 
 def test_BeamSpanner_fuse_01():
-    r'''Fuse by reference to the right.
+    r'''Fuse beams.
     '''
 
-    staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    left = spannertools.BeamSpanner(staff[:2])
-    right = spannertools.BeamSpanner(staff[2:4])
+    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+    left_beam = spannertools.BeamSpanner(staff[:2])
+    right_beam = spannertools.BeamSpanner(staff[2:4])
+    left_beam.fuse(right_beam)
 
-    assert len(
-        spannertools.get_spanners_attached_to_any_improper_child_of_component(
-        staff))
-    assert left[:] == staff[:2]
-    assert left.components == tuple(staff[:2])
-    assert right[:] == staff[2:4]
-    assert right.components == tuple(staff[2:4])
+    assert testtools.compare(
+        staff,
+        r'''    
+        \new Staff {
+            c'8 [
+            d'8
+            e'8
+            f'8 ]
+            g'8
+            a'8
+            b'8
+            c''8
+        }
+        '''
+        )
 
-    left.fuse(right)
-    spanners = \
-        spannertools.get_spanners_attached_to_any_improper_child_of_component(
-        staff)
-
-    assert len(spanners) == 1
+    assert inspect(staff).is_well_formed()

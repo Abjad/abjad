@@ -12,14 +12,10 @@ class OverlappingOctavationCheck(Check):
         violators = []
         spanner_classes = (spannertools.OctavationSpanner, )
         for leaf in iterationtools.iterate_leaves_in_expr(expr):
-            octavations = \
-                spannertools.get_spanners_attached_to_any_improper_child_of_component(
-                leaf, spanner_classes=spanner_classes)
-            if 1 < len(octavations):
-                for octavation in octavations:
-                    if octavation not in violators:
-                        violators.append(octavation)
-        total = \
-            spannertools.get_spanners_attached_to_any_improper_child_of_component(
-            expr, spanner_classes=spanner_classes)
+            spanners = leaf._get_descendants()._get_spanners(spanner_classes)
+            if 1 < len(spanners):
+                for spanner in spanners:
+                    if spanner not in violators:
+                        violators.append(spanner)
+        total = expr._get_descendants()._get_spanners(spanner_classes)
         return violators, len(total)

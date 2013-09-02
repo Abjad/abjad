@@ -114,27 +114,6 @@ class Parentage(SimultaneousSelection):
                     component._parent.is_simultaneous:
                     return component
 
-    def _get_spanner(self, spanner_classes=None):
-        spanners = self._get_spanners(spanner_classes=spanner_classes)
-        if not spanners:
-            raise MissingSpannerError
-        elif len(spanners) == 1:
-            return spanners.pop()
-        else:
-            raise ExtraSpannerError
-
-    def _get_spanners(self, spanner_classes=None):
-        from abjad.tools import spannertools
-        spanner_classes = spanner_classes or (spannertools.Spanner,)
-        if not isinstance(spanner_classes, tuple):
-            spanner_classes = (spanner_classes, )
-        assert isinstance(spanner_classes, tuple)
-        result = set()
-        for component in self:
-            spanners = component._get_spanners(spanner_classes)
-            result.update(spanners)
-        return result
-
     ### PUBLIC PROPERTIES ###
 
     @property
