@@ -127,14 +127,15 @@ class OctavationSpanner(Spanner):
 
     ### PUBLIC METHODS ###
 
-    def adjust_start_and_stop(
+    # TODO: add two or three more examples to better show what's going on
+    def adjust_automatically(
         self,
-        ottava_numbered_diatonic_pitch=None,
-        quindecisima_numbered_diatonic_pitch=None,
+        ottava_breakpoint=None,
+        quindecisima_breakpoint=None,
         ):
         r"""Adjusts octavation spanner start and stop
-        according to `ottava_numbered_diatonic_pitch`
-        and `quindecisima_numbered_diatonic_pitch`.
+        automatically according to `ottava_breakpoint`
+        and `quindecisima_breakpoint`.
 
         ..  container:: example
 
@@ -146,8 +147,7 @@ class OctavationSpanner(Spanner):
 
             ::
 
-                >>> octavation.adjust_start_and_stop(
-                ...     ottava_numbered_diatonic_pitch=14)
+                >>> octavation.adjust_automatically(ottava_breakpoint=14)
                 >>> show(measure) # doctest: +SKIP
 
             ..  doctest::
@@ -171,10 +171,10 @@ class OctavationSpanner(Spanner):
         pitches = pitchtools.list_named_chromatic_pitches_in_expr(self)
         max_pitch = max(pitches)
         max_numbered_diatonic_pitch = max_pitch._diatonic_pitch_number
-        if ottava_numbered_diatonic_pitch is not None:
-            if ottava_numbered_diatonic_pitch <= max_numbered_diatonic_pitch:
+        if ottava_breakpoint is not None:
+            if ottava_breakpoint <= max_numbered_diatonic_pitch:
                 self.start = 1
-                if quindecisima_numbered_diatonic_pitch is not None:
-                    if quindecisima_numbered_diatonic_pitch <= \
+                if quindecisima_breakpoint is not None:
+                    if quindecisima_breakpoint <= \
                         max_numbered_diatonic_pitch:
                         self.start = 2

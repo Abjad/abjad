@@ -2,13 +2,13 @@
 from abjad import *
 
 
-def test_spannertools_apply_octavation_spanner_to_pitched_components_01():
+def test_OctavationSpanner_adjust_automatically_01():
 
     container = Container(notetools.make_notes([24, 26, 27, 29], [(1, 8)]))
-    spannertools.apply_octavation_spanner_to_pitched_components(
-        container, 
-        ottava_numbered_diatonic_pitch=14,
-        )
+
+    octavation_spanner = spannertools.OctavationSpanner()
+    octavation_spanner.attach(container[:])
+    octavation_spanner.adjust_automatically(ottava_breakpoint=14)
 
     assert testtools.compare(
         container,
@@ -27,14 +27,16 @@ def test_spannertools_apply_octavation_spanner_to_pitched_components_01():
     assert inspect(container).is_well_formed()
 
 
-def test_spannertools_apply_octavation_spanner_to_pitched_components_02():
+def test_OctavationSpanner_adjust_automatically_02():
 
     container = Container([Note(31, (1, 4))])
     assert container[0].written_pitch.diatonic_pitch_number == 18
-    spannertools.apply_octavation_spanner_to_pitched_components(
-        container,
-        ottava_numbered_diatonic_pitch = 15, 
-        quindecisima_numbered_diatonic_pitch=19,
+
+    octavation_spanner = spannertools.OctavationSpanner()
+    octavation_spanner.attach(container[:])
+    octavation_spanner.adjust_automatically(
+        ottava_breakpoint=15,
+        quindecisima_breakpoint=19,
         )
 
     assert testtools.compare(
