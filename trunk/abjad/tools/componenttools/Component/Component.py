@@ -83,10 +83,13 @@ class Component(AbjadObject):
         Returns list of new components.
         '''
         from abjad.tools.mutationtools import mutate
+        from abjad.tools import iterationtools
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
         result = mutate(self).copy(n=n)
-        spannertools.detach_spanners_attached_to_components_in_expr(result)
+        for component in iterationtools.iterate_components_in_expr(result):
+            for spanner in component._get_spanners():
+                spanner.detach()
         if isinstance(result, type(self)):
             result = [result]
         else:

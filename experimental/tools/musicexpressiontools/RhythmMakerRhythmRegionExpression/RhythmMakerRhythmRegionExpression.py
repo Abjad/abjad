@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import containertools
 from abjad.tools import durationtools
+from abjad.tools import iterationtools
 from abjad.tools import rhythmmakertools
 from abjad.tools import spannertools
 from abjad.tools import timespantools
@@ -41,14 +42,20 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
         beam_each_cell = getattr(
             self.source_expression, 'beam_each_cell', False)
         if beam_cells_together:
-            spannertools.detach_spanners_attached_to_components_in_expr(
-                rhythm_containers)
+            for container in iterationtools.iterate_components_in_expr(
+                rhythm_containers):
+                spanners = container._get_spanners()
+                for spanner in spanners:
+                    spanner.detach()
             durations = [x._get_duration() for x in rhythm_containers]
             spannertools.DuratedComplexBeamSpanner(
                 rhythm_containers, durations=durations, span=1)
         elif beam_each_cell:
-            spannertools.detach_spanners_attached_to_components_in_expr(
-                rhythm_containers)
+            for container in iterationtools.iterate_components_in_expr(
+                rhythm_containers):
+                spanners = container._get_spanners()
+                for spanner in spanners:
+                    spanner.detach()
             for rhythm_container in rhythm_containers:
                 spannertools.DuratedComplexBeamSpanner(
                     [rhythm_container], 

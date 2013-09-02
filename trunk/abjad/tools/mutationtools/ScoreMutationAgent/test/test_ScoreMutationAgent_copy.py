@@ -254,7 +254,10 @@ def test_ScoreMutationAgent_copy_05():
     selection = selectiontools.ContiguousSelection(music=voice)
     new_selection = mutate(selection).copy()
     new_voice = new_selection[0]
-    spannertools.detach_spanners_attached_to_components_in_expr(new_voice)
+    for component in iterationtools.iterate_components_in_expr(new_voice):
+        spanners = inspect(component).get_spanners()
+        for spanner in spanners:
+            spanner.detach()
     measuretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
 
     assert testtools.compare(
@@ -325,7 +328,10 @@ def test_ScoreMutationAgent_copy_06():
 
     result = mutate(voice[1:]).copy()
     new_voice = Voice(result)
-    spannertools.detach_spanners_attached_to_components_in_expr(new_voice)
+    for component in iterationtools.iterate_components_in_expr(new_voice):
+        spanners = inspect(component).get_spanners()
+        for spanner in spanners:
+            spanner.detach()
     measuretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
 
     assert testtools.compare(
@@ -392,7 +398,10 @@ def test_ScoreMutationAgent_copy_07():
 
     result = mutate(voice.select_leaves()[:6]).copy()
     new_voice = Voice(result)
-    spannertools.detach_spanners_attached_to_components_in_expr(new_voice)
+    for component in iterationtools.iterate_components_in_expr(new_voice):
+        spanners = inspect(component).get_spanners()
+        for spanner in spanners:
+            spanner.detach()
     measuretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
 
     assert testtools.compare(
@@ -450,7 +459,10 @@ def test_ScoreMutationAgent_copy_08():
 
     result = mutate(voice[-2:]).copy()
     new_voice = Voice(result)
-    spannertools.detach_spanners_attached_to_components_in_expr(new_voice)
+    for component in iterationtools.iterate_components_in_expr(new_voice):
+        spanners = inspect(component).get_spanners()
+        for spanner in spanners:
+            spanner.detach()
     measuretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
 
     assert testtools.compare(
@@ -513,7 +525,10 @@ def test_ScoreMutationAgent_copy_09():
 
     result = mutate(voice[-2:]).copy(n=3)
     new_voice = Voice(result)
-    spannertools.detach_spanners_attached_to_components_in_expr(new_voice)
+    for component in iterationtools.iterate_components_in_expr(new_voice):
+        spanners = inspect(component).get_spanners()
+        for spanner in spanners:
+            spanner.detach()
     measuretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
 
     assert testtools.compare(
