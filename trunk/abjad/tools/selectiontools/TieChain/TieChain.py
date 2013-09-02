@@ -131,11 +131,9 @@ class TieChain(ContiguousSelection):
         Return tuple.
         '''
         from abjad.tools import spannertools
-        spanner_classes = (spannertools.TieSpanner, )
+        spanner_classes = (spannertools.TieSpanner,)
         try:
-            tie_spanner = \
-                spannertools.get_the_only_spanner_attached_to_component(
-                    self[0], spanner_classes=spanner_classes)
+            tie_spanner = self[0]._get_spanner(spanner_classes=spanner_classes)
             return tie_spanner.leaves
         except MissingSpannerError:
             assert self.is_trivial

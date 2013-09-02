@@ -149,7 +149,7 @@ def test_HairpinSpanner_06():
 
 
 def test_HairpinSpanner_07():
-    r'''Trim hairpins with dynamic marks behave as expected.
+    r'''Trimmed hairpins with dynamic marks behave as expected.
     '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
@@ -157,13 +157,13 @@ def test_HairpinSpanner_07():
     staff[0] = rest
     rest = Rest(staff[-1])
     staff[-1] = rest
-    spannertools.HairpinSpanner(
-        staff.select_leaves(), 'p < f', include_rests=False)
+    hairpin = spannertools.HairpinSpanner([], 'p < f', include_rests=False)
+    hairpin.attach(staff.select_leaves())
 
-    spanner_classes = (spannertools.HairpinSpanner, )
-    spanner = spannertools.get_the_only_spanner_attached_to_component(
-        staff[0], spanner_classes=spanner_classes)
+    spanner_classes = (spannertools.HairpinSpanner,)
+    spanner = inspect(staff[0]).get_spanner(spanner_classes=spanner_classes)
     assert len(spanner.components) == len(staff)
+
     assert testtools.compare(
         staff,
         r'''
@@ -179,5 +179,6 @@ def test_HairpinSpanner_07():
         }
         '''
         )
+
     checker = IntermarkedHairpinCheck()
     assert checker.check(staff)

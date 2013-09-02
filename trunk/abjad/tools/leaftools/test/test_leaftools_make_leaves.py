@@ -65,14 +65,12 @@ def test_leaftools_make_leaves_04():
     assert len(leaves) == 4
     for l in leaves:
       assert isinstance(l, Rest)
-    assert spannertools.get_the_only_spanner_attached_to_component(
-      leaves[0], spannertools.TieSpanner) is \
-      spannertools.get_the_only_spanner_attached_to_component(
-      leaves[1], spannertools.TieSpanner)
-    assert spannertools.get_the_only_spanner_attached_to_component(
-      leaves[2], spannertools.TieSpanner) is \
-      spannertools.get_the_only_spanner_attached_to_component(
-      leaves[3], spannertools.TieSpanner)
+    tie_1 = inspect(leaves[0]).get_spanner(spannertools.TieSpanner)
+    tie_2 = inspect(leaves[1]).get_spanner(spannertools.TieSpanner)
+    assert tie_1 is tie_2
+    tie_3 = inspect(leaves[2]).get_spanner(spannertools.TieSpanner)
+    tie_4 = inspect(leaves[3]).get_spanner(spannertools.TieSpanner)
+    assert tie_3 is tie_4
 
 
 def test_leaftools_make_leaves_05():

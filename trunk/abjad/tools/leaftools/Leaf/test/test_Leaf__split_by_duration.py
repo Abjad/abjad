@@ -340,8 +340,8 @@ def test_Leaf__split_by_duration_12():
     assert len(staff) == 2
     for leaf in staff.select_leaves():
         assert inspect(leaf).get_spanners() == set([tie])
-        assert spannertools.get_the_only_spanner_attached_to_component(
-            leaf, spannertools.TieSpanner) is tie
+        spanner_classes = (spannertools.TieSpanner,)
+        assert inspect(leaf).get_spanner(spanner_classes) is tie
     assert inspect(staff).is_well_formed()
 
 
@@ -378,8 +378,7 @@ def test_Leaf__split_by_duration_14():
     assert len(halves[1]) == 1
     for l in staff.select_leaves():
         assert inspect(l).get_spanners() == set([tie])
-        assert spannertools.get_the_only_spanner_attached_to_component(
-            l, spannertools.TieSpanner) is tie
+        assert inspect(l).get_spanner(spannertools.TieSpanner) is tie
     assert inspect(staff).is_well_formed()
 
 
@@ -392,8 +391,7 @@ def test_Leaf__split_by_duration_15():
     tie = spannertools.TieSpanner(container)
     halves = container[0]._split_by_duration(Duration(5, 64))
 
-    assert spannertools.get_the_only_spanner_attached_to_component(container,
-    spannertools.TieSpanner) is tie
+    assert inspect(container).get_spanner(spannertools.TieSpanner) is tie
     assert tie.components == (container, )
     for l in container.select_leaves():
         assert not inspect(l).get_spanners()

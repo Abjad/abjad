@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_spannertools_get_the_only_spanner_attached_to_component_01():
+def test_AttributeInspectionAgent_get_spanner_01():
 
     container = Container("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner(container.select_leaves()[:-1])
@@ -22,10 +22,10 @@ def test_spannertools_get_the_only_spanner_attached_to_component_01():
         '''
         )
 
-    assert spannertools.get_the_only_spanner_attached_to_component(container) == trill
+    assert inspect(container).get_spanner() == trill
 
-    assert py.test.raises(ExtraSpannerError,
-        'spannertools.get_the_only_spanner_attached_to_component(container[0])')
+    string = 'inspect(container[0]).get_spanner()'
+    assert py.test.raises(ExtraSpannerError, string)
 
-    assert py.test.raises(MissingSpannerError,
-        'spannertools.get_the_only_spanner_attached_to_component(container[-1])')
+    string = 'inspect(container[-1]).get_spanner()'
+    assert py.test.raises(MissingSpannerError, string)
