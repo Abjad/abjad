@@ -154,8 +154,8 @@ def set_leaf_duration(leaf, new_duration):
         for x, component in zip(all_leaves, components):
             x.written_duration = component.written_duration
         leaf._splice(tied_leaves, grow_spanners=True)
-        if not spannertools.get_spanners_attached_to_any_improper_parent_of_component(
-            leaf, spanner_classes=(spannertools.TieSpanner,)):
+        parentage = leaf._get_parentage()
+        if not parentage._get_spanners(spannertools.TieSpanner):
             spannertools.TieSpanner(all_leaves)
         return all_leaves
     else:

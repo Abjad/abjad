@@ -41,9 +41,8 @@ def get_the_only_spanner_attached_to_any_improper_parent_of_component(
     from abjad.tools import spannertools
 
     # get spanners and count spanners
-    spanners = \
-        spannertools.get_spanners_attached_to_any_improper_parent_of_component(
-            component, spanner_classes=spanner_classes)
+    parent = component._get_parentage()
+    spanners = parent._get_spanners(spanner_classes=spanner_classes)
     count = len(spanners)
 
     # raise or return

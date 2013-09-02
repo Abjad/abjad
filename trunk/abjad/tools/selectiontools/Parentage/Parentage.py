@@ -7,50 +7,53 @@ from abjad.tools.selectiontools.SimultaneousSelection \
 
 
 class Parentage(SimultaneousSelection):
-    r'''Abjad model of component parentage:
+    r'''A component's parent components.
 
-    ::
+    ..  container:: example
 
-        >>> score = Score()
-        >>> score.append(Staff(r"""\new Voice = "Treble Voice" { c'4 }""",
-        ...     name='Treble Staff'))
-        >>> score.append(Staff(r"""\new Voice = "Bass Voice" { b,4 }""",
-        ...     name='Bass Staff'))
+        ::
 
-    ..  doctest::
+            >>> score = Score()
+            >>> score.append(Staff(r"""\new Voice = "Treble Voice" { c'4 }""",
+            ...     name='Treble Staff'))
+            >>> score.append(Staff(r"""\new Voice = "Bass Voice" { b,4 }""",
+            ...     name='Bass Staff'))
 
-        >>> f(score)
-        \new Score <<
-            \context Staff = "Treble Staff" {
-                \context Voice = "Treble Voice" {
-                    c'4
+        ..  doctest::
+
+            >>> f(score)
+            \new Score <<
+                \context Staff = "Treble Staff" {
+                    \context Voice = "Treble Voice" {
+                        c'4
+                    }
                 }
-            }
-            \context Staff = "Bass Staff" {
-                \context Voice = "Bass Voice" {
-                    b,4
+                \context Staff = "Bass Staff" {
+                    \context Voice = "Bass Voice" {
+                        b,4
+                    }
                 }
-            }
-        >>
+            >>
 
-    ::
+        ::
 
-        >>> for x in selectiontools.Parentage(score): x
-        ...
-        Score<<2>>
+            >>> parentage = inspect(score).get_parentage()
+            >>> for x in parentage: x
+            ...
+            Score<<2>>
 
-    ::
+        ::
 
-        >>> for x in selectiontools.Parentage(score['Bass Voice'][0]): x
-        ...
-        Note('b,4')
-        Voice-"Bass Voice"{1}
-        Staff-"Bass Staff"{1}
-        Score<<2>>
+            >>> bass_voice = score['Bass Voice']
+            >>> note = bass_voice[0]
+            >>> parentage = inspect(note).get_parentage()
+            >>> for x in parentage: x
+            ...
+            Note('b,4')
+            Voice-"Bass Voice"{1}
+            Staff-"Bass Staff"{1}
+            Score<<2>>
 
-    Parentage is treated as a selection of the component's improper parentage.
-
-    Return parentage instance.
     '''
 
     ### CLASS VARIABLES ###
@@ -121,10 +124,16 @@ class Parentage(SimultaneousSelection):
             raise ExtraSpannerError
 
     def _get_spanners(self, spanner_classes=None):
-        spanners = set()
+        from abjad.tools import spannertools
+        spanner_classes = spanner_classes or (spannertools.Spanner,)
+        if not isinstance(spanner_classes, tuple):
+            spanner_classes = (spanner_classes, )
+        assert isinstance(spanner_classes, tuple)
+        result = set()
         for component in self:
-            spanners.update(component._get_spanners(spanner_classes))
-        return spanners
+            spanners = component._get_spanners(spanner_classes)
+            result.update(spanners)
+        return result
 
     ### PUBLIC PROPERTIES ###
 

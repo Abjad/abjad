@@ -364,8 +364,8 @@ class Leaf(Component):
         flattened_result = sequencetools.flatten_sequence(result)
         flattened_result = selectiontools.SliceSelection(flattened_result)
         spanner_classes = (spannertools.TieSpanner,)
-        if spannertools.get_spanners_attached_to_any_improper_parent_of_component(
-            self, spanner_classes=spanner_classes):
+        parentage = self._get_parentage()
+        if parentage._get_spanners(spanner_classes=spanner_classes):
             selection = selectiontools.select(flattened_result)
             for component in selection:
                 for mark in component._get_spanners(

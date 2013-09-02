@@ -26,11 +26,12 @@ def get_spanner_format_contributions(component):
     stop_contributions = []
     other_contributions = []
 
-    for spanner in spannertools.get_spanners_attached_to_any_improper_parent_of_component(component):
+    for spanner in component._get_parentage()._get_spanners():
 
         # override contributions (in before slot)
         if spanner._is_my_first_leaf(component):
-            for contribution in spanner.override._list_format_contributions('override', is_once=False):
+            for contribution in spanner.override._list_format_contributions(
+                'override', is_once=False):
                 before_contributions.append((spanner, contribution, None))
 
         # contributions for before slot
@@ -44,7 +45,8 @@ def get_spanner_format_contributions(component):
 
         # revert contributions (in after slot)
         if spanner._is_my_last_leaf(component):
-            for contribution in spanner.override._list_format_contributions('revert'):
+            for contribution in spanner.override._list_format_contributions(
+                'revert'):
                 after_contributions.append((spanner, contribution, None))
 
         # contributions for right slot

@@ -500,6 +500,7 @@ class ScoreMutationAgent(object):
         Returns none.
         '''
         from abjad.tools import componenttools
+        from abjad.tools import selectiontools
         if hasattr(self._client, '_scale'):
             self._client._scale(multiplier)
         else:

@@ -77,11 +77,12 @@ class DynamicMark(ContextMark):
     def __call__(self, *args):
         from abjad.tools import spannertools
         if len(args) == 1:
-            dynamic_spanners = \
-                spannertools.get_spanners_attached_to_any_improper_parent_of_component(
-                args[0], spanner_classes=(
-                    spannertools.DynamicTextSpanner, 
-                    spannertools.HairpinSpanner))
+            spanner_classes = (
+                spannertools.DynamicTextSpanner, 
+                spannertools.HairpinSpanner,
+                )
+            parentage = args[0]._get_parentage()
+            dynamic_spanners = parentage._get_spanners(spanner_classes)
             for dynamic_spanner in dynamic_spanners:
                 if not dynamic_spanner._is_exterior_leaf(args[0]):
                     message = 'can not attach dynamic mark'
