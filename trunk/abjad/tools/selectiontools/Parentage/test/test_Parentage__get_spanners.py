@@ -29,7 +29,7 @@ def test_Parentage__get_spanners_01():
     spanners == set([trill])
 
 
-def test_spannertools_get_spanners_attached_to_any_proper_parent_of_component_01():
+def test_Parentage__get_spanners_02():
     '''Get spanners in improper parentage.
     '''
 

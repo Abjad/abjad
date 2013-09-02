@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_spannertools_get_the_only_spanner_attached_to_any_improper_parent_of_component_01():
+def test_Parentage__get_spanner_01():
     r'''Without spanner classes filter.
     '''
 
@@ -24,11 +24,9 @@ def test_spannertools_get_the_only_spanner_attached_to_any_improper_parent_of_co
         '''
         )
 
-    assert spannertools.get_the_only_spanner_attached_to_any_improper_parent_of_component(
-        container) == trill
+    assert container._get_parentage()._get_spanner() == trill
 
-    assert py.test.raises(ExtraSpannerError,
-        'spannertools.get_the_only_spanner_attached_to_component(container[0])')
+    string = 'container[0]._get_parentage()._get_spanner()'
+    assert py.test.raises(ExtraSpannerError, string)
 
-    assert spannertools.get_the_only_spanner_attached_to_any_improper_parent_of_component(
-        container[-1]) == trill
+    assert container[-1]._get_parentage()._get_spanner() == trill
