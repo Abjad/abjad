@@ -37,10 +37,7 @@ class SliceSelection(ContiguousSelection):
 
     # TODO: assert all are contiguous components in same parent
     def __init__(self, music=None):
-        #from abjad.tools import componenttools
         music = self._coerce_music(music)
-        #assert componenttools.all_are_contiguous_components_in_same_parent(
-        #    music), repr(music)
         ContiguousSelection.__init__(self, music=music)
 
     ### PRIVATE METHODS ###

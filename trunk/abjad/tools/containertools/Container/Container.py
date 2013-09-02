@@ -292,6 +292,26 @@ class Container(Component):
                 (contributor, tuple(['\t' + x for x in contributions])))
         return tuple(result)
 
+    def _get_spanners_that_dominate_slice(self, start, stop):
+        from abjad.tools import spannertools
+        if start == stop:
+            if start == 0:
+                left = None
+            else:
+                left = self[start - 1]
+            if len(self) <= stop:
+                right = None
+            else:
+                right = self[stop]
+            spanners_receipt = \
+                spannertools.get_spanners_that_dominate_component_pair(
+                left, right)
+        else:
+            spanners_receipt = \
+                spannertools.get_spanners_that_dominate_components(
+                self[start:stop])
+        return spanners_receipt
+
     def _scale_contents(self, multiplier):
         from abjad.tools import iterationtools
         for expr in \
@@ -369,9 +389,8 @@ class Container(Component):
             else:
                 start, stop, stride = i.indices(len(self))
             old = self[start:stop]
-            spanners_receipt = \
-                spannertools.get_spanners_that_dominate_container_components_from_to(
-                self, start, stop)
+            spanners_receipt = self._get_spanners_that_dominate_slice(
+                start, stop)
             for component in old:
                 for child in iterationtools.iterate_components_in_expr(
                     [component]):
