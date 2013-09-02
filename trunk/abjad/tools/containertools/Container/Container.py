@@ -540,6 +540,15 @@ class Container(Component):
     def _is_one_of_my_last_leaves(self, leaf):
         return leaf in self._get_descendants_stopping_with()
 
+    def _move_spanners_to_children(self):
+        for spanner in self._get_spanners():
+            i = spanner.index(self)
+            spanner._components.__setitem__(slice(i, i + 1), self[:])
+            for component in self:
+                component._spanners.add(spanner)
+            self._spanners.discard(spanner)
+        return self
+
     def _parse_string(self, string):
         from abjad.tools import lilypondparsertools
         from abjad.tools import rhythmtreetools
@@ -629,8 +638,7 @@ class Container(Component):
         halves = (left, right)
         nonempty_halves = [half for half in halves if len(half)]
         # give my attached spanners to my children
-        spannertools.move_spanners_from_component_to_children_of_component(
-            self)
+        self._move_spanners_to_children()
         # incorporate left and right parents in score if possible
         selection = self.select(sequential=True)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
