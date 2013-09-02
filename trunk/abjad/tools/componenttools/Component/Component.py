@@ -585,9 +585,12 @@ class Component(AbjadObject):
                 receipt = spannertools.get_spanners_that_dominate_components(
                     [self])
                 for spanner, index in receipt:
-                    insert_component = \
-                        spannertools.find_spanner_component_starting_at_exactly_score_offset(
-                        spanner, insert_offset)
+                    insert_component = None
+                    for component in spanner:
+                        start_offset = component._get_timespan().start_offset
+                        if start_offset == insert_offset:
+                            insert_component = component
+                            break
                     if insert_component is not None:
                         insert_index = spanner.index(insert_component)
                     else:
