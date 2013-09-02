@@ -382,16 +382,20 @@ class Leaf(Component):
         # fracture spanners
         if fracture_spanners:
             first_shard = result[0]
-            spannertools.fracture_spanners_attached_to_component(
-                first_shard[-1], direction=Right)
+            for spanner in first_shard[-1]._get_spanners():
+                index = spanner.index(first_shard[-1])
+                spanner.fracture(index, direction=Right)
             last_shard = result[-1]
-            spannertools.fracture_spanners_attached_to_component(
-                last_shard[0], direction=Left)
+            for spanner in last_shard[0]._get_spanners():
+                index = spanner.index(last_shard[0])
+                spanner.fracture(index, direction=Left)
             for middle_shard in result[1:-1]:
-                spannertools.fracture_spanners_attached_to_component(
-                    middle_shard[0], direction=Left)
-                spannertools.fracture_spanners_attached_to_component(
-                    middle_shard[-1], direction=Right)
+                for spanner in middle_shard[0]._get_spanners():
+                    index = spanner.index(middle_shard[0])
+                    spanner.fracture(index, direction=Left)
+                for spanner in middle_shard[-1]._get_spanners():
+                    index = spanner.index(middle_shard[-1])
+                    spanner.fracture(index, direction=Right)
         # adjust first leaf
         first_leaf = flattened_result[0]
         self._detach_grace_containers(kind='after')
@@ -463,10 +467,9 @@ class Leaf(Component):
         leaf_right_of_split = right_leaf_list[0]
         leaves_around_split = (leaf_left_of_split, leaf_right_of_split)
         if fracture_spanners:
-            spannertools.fracture_spanners_attached_to_component(
-                leaf_left_of_split,
-                direction=Right,
-                )
+            for spanner in leaf_left_of_split._get_spanners():
+                index = spanner.index(leaf_left_of_split)
+                spanner.fracture(index, direction=Right)
         # tie split notes, rests and chords as specified
         if pitchtools.is_pitch_carrier(self) and tie_split_notes:
             selection = selectiontools.ContiguousSelection(leaves_around_split)

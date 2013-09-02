@@ -643,8 +643,9 @@ class Container(Component):
             right._set_parent(None)
         # fracture spanners if requested
         if fracture_spanners:
-            spannertools.fracture_spanners_attached_to_component(
-                left, direction=Right)
+            for spanner in left._get_spanners():
+                index = spanner.index(left)
+                spanner.fracture(index, direction=Right)
         # return new left and right containers
         return halves
 
@@ -767,8 +768,9 @@ class Container(Component):
             start_offset = leaf_right_of_split._get_timespan().start_offset
             for parent in leaf_right_of_split._get_parentage():
                 if parent._get_timespan().start_offset == start_offset:
-                    spannertools.fracture_spanners_attached_to_component(
-                        parent, direction=Left)
+                    for spanner in parent._get_spanners():
+                        index = spanner.index(parent)
+                        spanner.fracture(index, direction=Left)
                 if parent is component:
                     break
         # crawl back up through duration-crossing containers and split each
@@ -1055,20 +1057,19 @@ class Container(Component):
         if not fracture_spanners:
             self.__setitem__(slice(i, i), [component])
             return
-        result = []
         component._set_parent(self)
         self._music.insert(i, component)
         previous_leaf = leaftools.get_nth_leaf_in_logical_voice_from_leaf(
             component, -1)
         if previous_leaf:
-            result.extend(
-                spannertools.fracture_spanners_attached_to_component(
-                    previous_leaf, direction=Right))
+            for spanner in previous_leaf._get_spanners():
+                index = spanner.index(previous_leaf)
+                spanner.fracture(index, direction=Right)
         next_leaf = leaftools.get_nth_leaf_in_logical_voice_from_leaf(component, 1)
         if next_leaf:
-            result.extend(
-                spannertools.fracture_spanners_attached_to_component(
-                    next_leaf, direction=Left))
+            for spanner in next_leaf._get_spanners():
+                index = spanner.index(next_leaf)
+                spanner.fracture(index, direction=Left)
 
     def pop(self, i=-1):
         r'''Pops component from container at index `i`.

@@ -84,9 +84,13 @@ def fracture_spanners_that_cross_components(components):
     if 0 < len(components):
 
         leftmost_component = components[0]
-        spannertools.fracture_spanners_attached_to_component(leftmost_component, direction=Left)
+        for spanner in leftmost_component._get_spanners():
+            index = spanner.index(leftmost_component)
+            spanner.fracture(index, direction=Left)
 
         rightmost_component = components[-1]
-        spannertools.fracture_spanners_attached_to_component(rightmost_component, direction=Right)
+        for spanner in rightmost_component._get_spanners():
+            index = spanner.index(rightmost_component)
+            spanner.fracture(index, direction=Right)
 
     return components
