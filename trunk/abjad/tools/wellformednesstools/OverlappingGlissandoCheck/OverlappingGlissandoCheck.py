@@ -11,10 +11,9 @@ class OverlappingGlissandoCheck(Check):
 
     def _run(self, expr):
         violators = []
-        spanner_classes = (spannertools.GlissandoSpanner, )
+        spanner_classes = (spannertools.GlissandoSpanner,)
         for leaf in iterationtools.iterate_leaves_in_expr(expr):
-            glissandi = spannertools.get_spanners_attached_to_component(
-                leaf, spanner_classes=spanner_classes)
+            glissandi = leaf._get_spanners(spanner_classes)
             if 1 < len(glissandi):
                 if len(glissandi) == 2:
                     common_leaves = set(glissandi[0].leaves) & \

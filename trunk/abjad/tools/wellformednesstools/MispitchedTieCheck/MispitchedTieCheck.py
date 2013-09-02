@@ -15,12 +15,11 @@ class MispitchedTieCheck(Check):
         '''
         violators = []
         total = 0
-        spanner_classes = (spannertools.TieSpanner, )
+        spanner_classes = (spannertools.TieSpanner,)
         for leaf in iterationtools.iterate_components_in_expr(
             expr, notetools.Note):
             total += 1
-            spanners = spannertools.get_spanners_attached_to_component(
-                leaf, spanner_classes=spanner_classes)
+            spanners = leaf._get_spanners(spanner_classes)
             if spanners:
                 spanner = spanners.pop()
                 if not spanner._is_my_last_leaf(leaf):

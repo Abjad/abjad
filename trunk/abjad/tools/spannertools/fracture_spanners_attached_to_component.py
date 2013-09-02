@@ -50,8 +50,7 @@ def fracture_spanners_attached_to_component(
     result = []
 
     # iterate spanners
-    for spanner in spannertools.get_spanners_attached_to_component(
-        component, spanner_classes=spanner_classes):
+    for spanner in component._get_spanners(spanner_classes):
         result.append(spanner.fracture(spanner.index(component), direction))
 
     # return result

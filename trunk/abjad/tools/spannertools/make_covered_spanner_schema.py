@@ -45,12 +45,14 @@ def make_covered_spanner_schema(components):
     from abjad.tools import spannertools
 
     schema = {}
-    spanners_covered_by_components = spannertools.get_spanners_covered_by_components(components)
+    spanners_covered_by_components = \
+        spannertools.get_spanners_covered_by_components(components)
     for spanner in spanners_covered_by_components:
         schema[spanner] = []
 
-    for i, component in enumerate(iterationtools.iterate_components_in_expr(components)):
-        attached_spanners = spannertools.get_spanners_attached_to_component(component)
+    for i, component in \
+        enumerate(iterationtools.iterate_components_in_expr(components)):
+        attached_spanners = component._get_spanners()
         for attached_spanner in attached_spanners:
             try:
                 schema[attached_spanner].append(i)

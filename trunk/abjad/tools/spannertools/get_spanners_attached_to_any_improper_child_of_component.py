@@ -81,8 +81,8 @@ def get_spanners_attached_to_any_improper_child_of_component(
 
     # iterate children
     for child in iterationtools.iterate_components_in_expr([component]):
-        result.update(spannertools.get_spanners_attached_to_component(
-            child, spanner_classes=spanner_classes))
+        spanners = child._get_spanners(spanner_classes)
+        result.update(spanners)
 
     # return result
     return result

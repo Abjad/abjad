@@ -53,10 +53,9 @@ def detach_spanners_attached_to_component(component, spanner_classes=None):
     result = set()
 
     # iterate spanners
-    for spanner in spannertools.get_spanners_attached_to_component(
-        component, spanner_classes=spanner_classes):
-            spanner.detach()
-            result.add(spanner)
+    for spanner in component._get_spanners(spanner_classes):
+        spanner.detach()
+        result.add(spanner)
 
     # return result
     return result

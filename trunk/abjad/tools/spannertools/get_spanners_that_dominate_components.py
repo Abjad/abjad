@@ -33,8 +33,7 @@ def get_spanners_that_dominate_components(components):
     stop_components = last._get_descendants_stopping_with()
     stop_components = set(stop_components)
     for component in start_components:
-        for spanner in \
-            spannertools.get_spanners_attached_to_component(component):
+        for spanner in component._get_spanners():
             if set(spanner[:]) & stop_components != set([]):
                 index = spanner.index(component)
                 receipt.add((spanner, index))

@@ -83,9 +83,8 @@ def get_spanners_attached_to_any_proper_child_of_component(
 
     # iterate children
     for component in components:
-        result.update(
-            spannertools.get_spanners_attached_to_component(
-                component, spanner_classes=spanner_classes))
+        spanners = component._get_spanners(spanner_classes)
+        result.update(spanners)
 
     # return result
     return result

@@ -115,10 +115,9 @@ def label_leaves_in_expr_with_leaf_durations(
     Return none.
     '''
 
-    spanner_classes = (spannertools.TieSpanner, )
+    spanner_classes = (spannertools.TieSpanner,)
     for leaf in iterationtools.iterate_leaves_in_expr(expr):
-        tie_spanners = spannertools.get_spanners_attached_to_component(
-            leaf, spanner_classes=spanner_classes)
+        tie_spanners = leaf._get_spanners(spanner_classes)
         if not tie_spanners:
             if leaf.lilypond_duration_multiplier is not None:
                 multiplier = '* %s' % str(leaf.lilypond_duration_multiplier)
