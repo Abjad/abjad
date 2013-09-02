@@ -153,6 +153,24 @@ class ContiguousSelection(Selection):
             for component in self:
                 spanner._remove(component)
 
+    def _make_spanner_schema(self):
+        from abjad.tools import iterationtools
+        from abjad.tools import spannertools
+        schema = {}
+        spanners_contained_by_components = \
+            spannertools.get_spanners_contained_by_components(self)
+        for spanner in spanners_contained_by_components:
+            schema[spanner] = []
+        for i, component in \
+            enumerate(iterationtools.iterate_components_in_expr(self)):
+            attached_spanners = component._get_spanners()
+            for attached_spanner in attached_spanners:
+                try:
+                    schema[attached_spanner].append(i)
+                except KeyError:
+                    pass
+        return schema
+
     def _withdraw_from_crossing_spanners(self):
         r'''Not composer-safe.
         '''
@@ -329,7 +347,7 @@ class ContiguousSelection(Selection):
             return self._copy_and_include_enclosing_containers()
         new_components = type(self)(new_components)
         # make schema of spanners contained by components
-        schema = spannertools.make_spanner_schema(self)
+        schema = self._make_spanner_schema()
         # copy spanners covered by components
         for covered_spanner, component_indices in schema.items():
             new_covered_spanner = copy.copy(covered_spanner)
@@ -340,7 +358,8 @@ class ContiguousSelection(Selection):
         for new_covered_spanner, component_indices in schema.items():
             for component_index in component_indices:
                 try:
-                    reversed_schema[component_index].append(new_covered_spanner)
+                    reversed_schema[component_index].append(
+                        new_covered_spanner)
                 except KeyError:
                     reversed_schema[component_index] = [new_covered_spanner]
         # iterate components and add new components to new spanners
