@@ -236,6 +236,28 @@ class Spanner(AbjadObject):
             self, component_class=component_classes, reverse=True):
             return leaf
 
+    def _get_my_nth_leaf(self, n):
+        from abjad.tools import iterationtools
+        from abjad.tools import leaftools
+        from abjad.tools import spannertools
+        if not isinstance(n, (int, long)):
+            raise TypeError
+        component_classes = (leaftools.Leaf,)
+        if 0 <= n:
+            leaves = iterationtools.iterate_components_in_expr(
+                self, component_class=component_classes)
+            for leaf_index, leaf in enumerate(leaves):
+                if leaf_index == n:
+                    return leaf
+        else:
+            leaves = iterationtools.iterate_components_in_expr(
+                self, component_class=component_classes, reverse=True)
+            for leaf_index, leaf in enumerate(leaves):
+                leaf_number = -leaf_index - 1
+                if leaf_number == n:
+                    return leaf
+        raise IndexError
+
     def _initialize_components(self, components):
         from abjad.tools import contexttools
         from abjad.tools import iterationtools
@@ -285,7 +307,7 @@ class Spanner(AbjadObject):
     def _is_my_first_leaf(self, leaf):
         from abjad.tools import spannertools
         try:
-            first_leaf = spannertools.get_nth_leaf_in_spanner(self, 0)
+            first_leaf = self._get_my_nth_leaf(0)
             return leaf is first_leaf
         except IndexError:
             return False
@@ -302,7 +324,7 @@ class Spanner(AbjadObject):
     def _is_my_last_leaf(self, leaf):
         from abjad.tools import spannertools
         try:
-            last_leaf = spannertools.get_nth_leaf_in_spanner(self, -1)
+            last_leaf = self._get_my_nth_leaf(-1)
             return leaf is last_leaf
         except IndexError:
             return False
