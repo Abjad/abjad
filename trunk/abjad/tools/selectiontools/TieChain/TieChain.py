@@ -40,8 +40,8 @@ class TieChain(ContiguousSelection):
                     index = parent.index(leaf)
                     del(parent[index])
             first = self[0]
-            spannertools.detach_spanners_attached_to_component(
-                first, spannertools.TieSpanner)
+            for spanner in first._get_spanners(spannertools.TieSpanner):
+                spanner.detach()
         elif new_written_duration.has_power_of_two_denominator:
             durations = notetools.make_notes(0, [new_written_duration])
             for leaf, token in zip(self, durations):
@@ -55,8 +55,8 @@ class TieChain(ContiguousSelection):
                         index = parent.index(leaf)
                         del(parent[index])
             elif len(self) < len(durations):
-                spannertools.detach_spanners_attached_to_component(
-                    self[0], spannertools.TieSpanner)
+                for spanner in self[0]._get_spanners(spannertools.TieSpanner):
+                    spanner.detach()
                 difference = len(durations) - len(self)
                 extra_leaves = self[0] * difference
                 for extra_leaf in extra_leaves:
@@ -351,8 +351,8 @@ class TieChain(ContiguousSelection):
         mutationtools.mutate(self).replace(tuplet)
 
         # untie tuplet
-        spannertools.detach_spanners_attached_to_component(
-            tuplet, spannertools.TieSpanner)
+        for spanner in tuplet._get_spanners(spannertools.TieSpanner):
+            spanner.detach()
 
         # return tuplet
         return tuplet
