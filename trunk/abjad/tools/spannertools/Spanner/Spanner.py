@@ -221,17 +221,19 @@ class Spanner(AbjadObject):
         return [(self, spanner, result)]
 
     def _get_my_first_leaf(self):
+        from abjad.tools import iterationtools
         from abjad.tools import leaftools
-        from abjad.tools import spannertools
-        for leaf in spannertools.iterate_components_in_spanner(
-            self, component_classes=(leaftools.Leaf,)):
+        component_classes=(leaftools.Leaf,)
+        for leaf in iterationtools.iterate_components_in_expr(
+            self, component_class=component_classes):
             return leaf
 
     def _get_my_last_leaf(self):
+        from abjad.tools import iterationtools
         from abjad.tools import leaftools
-        from abjad.tools import spannertools
-        for leaf in spannertools.iterate_components_in_spanner(
-            self, component_classes=(leaftools.Leaf,), reverse=True):
+        component_classes=(leaftools.Leaf,)
+        for leaf in iterationtools.iterate_components_in_expr(
+            self, component_class=component_classes, reverse=True):
             return leaf
 
     def _initialize_components(self, components):
@@ -272,9 +274,9 @@ class Spanner(AbjadObject):
             return False
 
     def _is_my_first(self, leaf, component_classes):
-        from abjad.tools import spannertools
-        for component in spannertools.iterate_components_in_spanner(
-            self, component_classes=component_classes):
+        from abjad.tools import iterationtools
+        for component in iterationtools.iterate_components_in_expr(
+            self, component_class=component_classes):
             if component is leaf:
                 return True
             else:
@@ -289,10 +291,9 @@ class Spanner(AbjadObject):
             return False
 
     def _is_my_last(self, leaf, component_classes):
-        from abjad.tools import spannertools
-        components = spannertools.iterate_components_in_spanner(
-            self, component_classes=component_classes, reverse=True)
-        for component in components:
+        from abjad.tools import iterationtools
+        for component in iterationtools.iterate_components_in_expr(
+            self, component_class=component_classes, reverse=True):
             if component is leaf:
                 return True
             else:
@@ -307,9 +308,9 @@ class Spanner(AbjadObject):
             return False
 
     def _is_my_only(self, leaf, component_classes):
-        from abjad.tools import spannertools
-        i, components = None, spannertools.iterate_components_in_spanner(
-            self, component_classes=component_class)
+        from abjad.tools import iterationtools
+        i, components = None, iterationtools.iterate_components_in_expr(
+            self, component_class=component_class)
         for i, component in enumerate(components):
             if 0 < i:
                 return False

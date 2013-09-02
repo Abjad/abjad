@@ -11,13 +11,15 @@ def iterate_components_in_expr(
     ):
     r'''Iterate components forward in `expr`.
     '''
+    from abjad.tools import spannertools
 
     component_class = component_class or componenttools.Component
 
     def component_iterator(expr, component_class, reverse=False):
         if isinstance(expr, component_class):
             yield expr
-        if isinstance(expr, (list, tuple)) or hasattr(expr, '_music'):
+        if isinstance(expr, (list, tuple, spannertools.Spanner)) or \
+            hasattr(expr, '_music'):
             if hasattr(expr, '_music'):
                 expr = expr._music
             if reverse:
