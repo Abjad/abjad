@@ -612,9 +612,13 @@ class Component(AbjadObject):
                 receipt = spannertools.get_spanners_that_dominate_components(
                     [self])
                 for spanner, x in receipt:
-                    index = \
-                        spannertools.find_index_of_spanner_component_at_score_offset(
-                        spanner, offset)
+                    for component in spanner:
+                        if component._get_timespan().start_offset == offset:
+                            index = spanner.index(component)
+                            break
+                    else:
+                        message = 'no component in spanner at offset'
+                        raise SpannerPopulationError(message)
                     for component in reversed(components):
                         spanner._insert(index, component)
                         component._spanners.add(spanner)
