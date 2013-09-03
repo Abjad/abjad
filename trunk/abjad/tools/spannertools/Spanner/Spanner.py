@@ -289,8 +289,7 @@ class Spanner(AbjadObject):
             return True
         elif self._is_my_last_leaf(leaf):
             return True
-        elif not leaftools.get_nth_leaf_in_logical_voice_from_leaf(leaf, -1) and \
-            not leaftools.get_nth_leaf_in_logical_voice_from_leaf(leaf, 1):
+        elif not leaf._get_leaf(-1) and not leaf._get_leaf(1):
             return True
         else:
             return False

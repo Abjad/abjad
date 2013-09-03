@@ -368,6 +368,57 @@ class AttributeInspectionAgent(object):
             include_self=include_self,
             )
 
+    def get_leaf(self, n=0):
+        r'''Gets leaf `n` **in logical voice**.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff()
+                >>> staff.append(Voice("c'8 d'8 e'8 f'8"))
+                >>> staff.append(Voice("g'8 a'8 b'8 c''8"))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \new Voice {
+                        c'8
+                        d'8
+                        e'8
+                        f'8
+                    }
+                    \new Voice {
+                        g'8
+                        a'8
+                        b'8
+                        c''8
+                    }
+                }
+
+            ::
+
+                >>> for n in range(8):
+                ...     print n, inspect(staff[0]).get_leaf(n)
+                ...
+                0 c'8
+                1 d'8
+                2 e'8
+                3 f'8
+                4 None
+                5 None
+                6 None
+                7 None
+
+        Returns leaf or none.
+        '''
+        from abjad.tools import leaftools
+        if not isinstance(self._component, leaftools.Leaf):
+            return None
+        return self._component._get_leaf(n=n)
+
     def get_lineage(self):
         r'''Gets lineage of component.
         

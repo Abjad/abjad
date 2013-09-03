@@ -283,6 +283,47 @@ class Leaf(Component):
                     result += contribution
         return result
 
+    def _get_leaf(self, n=0):
+        from abjad.tools import leaftools
+        from abjad.tools import selectiontools
+        Selection = selectiontools.Selection
+        def next(component):
+            new_component = component._get_nth_component_in_time_order_from(1)
+            if new_component is None:
+                return
+            candidates = new_component._get_descendants_starting_with()
+            candidates = \
+                [x for x in candidates if isinstance(x, leaftools.Leaf)]
+            for candidate in candidates:
+                if Selection._all_are_components_in_same_logical_voice(
+                    [component, candidate]):
+                    return candidate
+        def previous(component):
+            new_component = component._get_nth_component_in_time_order_from(-1)
+            if new_component is None:
+                return
+            candidates = new_component._get_descendants_stopping_with()
+            candidates = \
+                [x for x in candidates if isinstance(x, leaftools.Leaf)]
+            for candidate in candidates:
+                if Selection._all_are_components_in_same_logical_voice(
+                    [component, candidate]):
+                    return candidate
+        current_leaf = self
+        if n < 0:
+            for i in range(abs(n)):
+                current_leaf = previous(current_leaf)
+                if current_leaf is None:
+                    break
+        elif n == 0:
+            pass
+        else:
+            for i in range(n):
+                current_leaf = next(current_leaf)
+                if current_leaf is None:
+                    break
+        return current_leaf
+
     def _get_tie_chain(self):
         from abjad.tools import selectiontools
         from abjad.tools import spannertools

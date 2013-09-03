@@ -807,9 +807,7 @@ class Container(Component):
             for leaf in iterationtools.iterate_leaves_in_expr(bottom):
                 if leaf._get_timespan().start_offset == global_split_point:
                     leaf_right_of_split = leaf
-                    leaf_left_of_split = \
-                        leaftools.get_nth_leaf_in_logical_voice_from_leaf(
-                        leaf_right_of_split, -1)
+                    leaf_left_of_split = leaf_right_of_split._get_leaf(-1)
                     break
             else:
                 message = 'can not split empty container {!r}.'
@@ -1120,13 +1118,12 @@ class Container(Component):
             return
         component._set_parent(self)
         self._music.insert(i, component)
-        previous_leaf = leaftools.get_nth_leaf_in_logical_voice_from_leaf(
-            component, -1)
+        previous_leaf = component._get_leaf(-1)
         if previous_leaf:
             for spanner in previous_leaf._get_spanners():
                 index = spanner.index(previous_leaf)
                 spanner.fracture(index, direction=Right)
-        next_leaf = leaftools.get_nth_leaf_in_logical_voice_from_leaf(component, 1)
+        next_leaf = component._get_leaf(1)
         if next_leaf:
             for spanner in next_leaf._get_spanners():
                 index = spanner.index(next_leaf)
