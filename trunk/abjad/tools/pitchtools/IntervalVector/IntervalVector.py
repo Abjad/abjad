@@ -1,8 +1,47 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import sequencetools
 from abjad.tools.pitchtools.Vector import Vector
 
 
 class IntervalVector(Vector):
+    r'''Abjad model of an interval vector:
+
+    ::
+
+        >>> pitch_segment = pitchtools.PitchSegment(
+        ...     tokens=[0, 11, 7, 4, 2, 9, 3, 8, 10, 1, 5, 6],
+        ...     )
+        >>> numbered_interval_vector = pitchtools.IntervalVector(
+        ...     tokens=pitch_segment,
+        ...     item_class=pitchtools.NumberedMelodicInterval,
+        ...     )
+        >>> for interval, count in numbered_interval_vector.iteritems():
+        ...     print interval, count
+        ...
+        +8 2
+        +9 2
+        -4 4
+        -2 5
+        -3 4
+        -1 6
+        +3 5
+        -10 1
+        +5 3
+        +10 1
+        -9 1
+        +7 2
+        +2 5
+        -11 1
+        -8 2
+        -6 3
+        -7 3
+        +6 3
+        -5 4
+        +1 5
+        +4 4
+
+    Return pitch segment.
+    '''
 
     ### INITIALIZER ###
 

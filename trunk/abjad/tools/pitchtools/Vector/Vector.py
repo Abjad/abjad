@@ -59,13 +59,16 @@ class Vector(TypedCounter):
     def __repr__(self):
         parts = []
         if self.item_class.__name__.startswith('Named'):
-            parts = ['{!r}: {}'.format(str(key), value) for key, value in self]
+            parts = ['{!r}: {}'.format(str(key), value) 
+                for key, value in self.iteritems()]
         else:
-            parts = ['{}: {}'.format(key, value) for key, value in self]
+            parts = ['{}: {}'.format(key, value) 
+                for key, value in self.iteritems()]
         return '{}({{{}}})'.format(self._class_name, ', '.join(parts))
 
     def __str__(self):
-        parts = ['{}: {}'.format(key, value) for key, value in self]
+        parts = ['{}: {}'.format(key, value) 
+            for key, value in self.iteritems()]
         return '<{}>'.format(', '.join(parts))
 
     ### PRIVATE PROPERTIES ###

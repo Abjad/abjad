@@ -85,9 +85,14 @@ class NumberedPitch(Pitch):
         return '%s' % abs(self)
 
     def __sub__(self, arg):
-        arg = type(self)(arg)
-        semitones = abs(self) - abs(arg)
-        return type(self)(semitones)
+        from abjad.tools import pitchtools
+        if isinstance(arg, type(self)):
+            return pitchtools.NumberedMelodicInterval.from_pitch_carriers(
+                self, arg)
+        else:
+            interval = arg
+            return pitchtools.transpose_pitch_carrier_by_melodic_interval(
+                self, -interval)
 
     ### PRIVATE PROPERTIES ###
 

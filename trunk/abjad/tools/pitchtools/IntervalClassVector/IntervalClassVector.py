@@ -1,8 +1,32 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools import sequencetools
 from abjad.tools.pitchtools.Vector import Vector
 
 
 class IntervalClassVector(Vector):
+    r'''Abjad model of an interval-class vector:
+
+    ::
+
+        >>> pitch_segment = pitchtools.PitchSegment(
+        ...     tokens=[0, 11, 7, 4, 2, 9, 3, 8, 10, 1, 5, 6],
+        ...     )
+        >>> numbered_interval_class_vector = pitchtools.IntervalClassVector(
+        ...     tokens=pitch_segment,
+        ...     item_class=pitchtools.NumberedInversionEquivalentIntervalClass,
+        ...     )
+        >>> for interval, count in numbered_interval_class_vector.iteritems():
+        ...     print interval, count
+        ...
+        2 12
+        3 12
+        5 12
+        4 12
+        6 6
+        1 12
+
+    Return interval-class vector.
+    '''
 
     ### INITIALIZER ###
 

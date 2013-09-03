@@ -54,6 +54,8 @@ def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
 
     if isinstance(pitch_carrier, pitchtools.NamedPitch):
         return pitch_carrier
+    elif isinstance(pitch_carrier, pitchtools.NumberedPitch):
+        return pitchtools.NamedPitch(pitch_carrier)
     elif isinstance(pitch_carrier, numbers.Number):
         return pitchtools.NamedPitch(pitch_carrier)
     elif isinstance(pitch_carrier, notetools.Note):
