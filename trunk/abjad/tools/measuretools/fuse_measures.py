@@ -118,7 +118,7 @@ def fuse_measures(measures):
     new_measure = measuretools.Measure(new_time_signature, music)
 
     if parent is not None:
-        measures._give_dominant_spanners_to_components([new_measure])
+        measures._give_dominant_spanners([new_measure])
 
     measures._set_parents(None)
     if parent is not None:

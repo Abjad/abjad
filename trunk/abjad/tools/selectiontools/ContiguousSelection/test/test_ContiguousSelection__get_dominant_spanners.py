@@ -3,12 +3,14 @@ from abjad import *
 import py.test
 
 
-def test_spannertools_get_spanners_that_dominate_components_01():
+def test_ContiguousSelection__get_dominant_spanners_01():
     r'''Return Python list of (spanner, index) pairs.
-        Each (spanner, index) pair gives a spanner which dominates
-        all components in list, together with the start-index
-        at which spanner attaches to subelement of first
-        component in list.'''
+    Each (spanner, index) pair gives a spanner which dominates
+    all components in list, together with the start-index
+    at which spanner attaches to subelement of first
+    component in list.
+    Beam and trill dominate first container.
+    '''
 
     voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
@@ -16,33 +18,34 @@ def test_spannertools_get_spanners_that_dominate_components_01():
     glissando = spannertools.GlissandoSpanner(voice[1:])
     trill = spannertools.TrillSpanner(voice.select_leaves())
 
-    r'''
-    \new Voice {
-        {
-            c'8 [ \startTrillSpan
-            d'8
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ \startTrillSpan
+                d'8
+            }
+            {
+                e'8 \glissando
+                f'8 ] \glissando
+            }
+            {
+                g'8 \glissando
+                a'8 \stopTrillSpan
+            }
         }
-        {
-            e'8 \glissando
-            f'8 ] \glissando
-        }
-        {
-            g'8 \glissando
-            a'8 \stopTrillSpan
-        }
-    }
-    '''
+        '''
+        )
 
-    receipt = spannertools.get_spanners_that_dominate_components(voice[:1])
-
-    "Beam and trill dominate first container."
+    receipt = voice[:1]._get_dominant_spanners()
 
     assert len(receipt) == 2
     assert (beam, 0) in receipt
     assert (trill, 0) in receipt
 
 
-def test_spannertools_get_spanners_that_dominate_components_02():
+def test_ContiguousSelection__get_dominant_spanners_02():
     r'''Beam, glissando and trill all dominante second container.
     '''
 
@@ -52,7 +55,7 @@ def test_spannertools_get_spanners_that_dominate_components_02():
     glissando = spannertools.GlissandoSpanner(voice[1:])
     trill = spannertools.TrillSpanner(voice.select_leaves())
 
-    receipt = spannertools.get_spanners_that_dominate_components(voice[1:2])
+    receipt = voice[1:2]._get_dominant_spanners()
 
     assert len(receipt) == 3
     assert (beam, 1) in receipt
@@ -60,7 +63,7 @@ def test_spannertools_get_spanners_that_dominate_components_02():
     assert (trill, 2) in receipt
 
 
-def test_spannertools_get_spanners_that_dominate_components_03():
+def test_ContiguousSelection__get_dominant_spanners_03():
     r'''Glissando and trill dominate last container.
     '''
 
@@ -70,14 +73,14 @@ def test_spannertools_get_spanners_that_dominate_components_03():
     glissando = spannertools.GlissandoSpanner(voice[1:])
     trill = spannertools.TrillSpanner(voice.select_leaves())
 
-    receipt = spannertools.get_spanners_that_dominate_components(voice[-1:])
+    receipt = voice[-1:]._get_dominant_spanners()
 
     assert len(receipt) == 2
     assert (glissando, 1) in receipt
     assert (trill, 4) in receipt
 
 
-def test_spannertools_get_spanners_that_dominate_components_04():
+def test_ContiguousSelection__get_dominant_spanners_04():
     r'''Beam and trill dominate first two containers.
     '''
 
@@ -87,14 +90,14 @@ def test_spannertools_get_spanners_that_dominate_components_04():
     glissando = spannertools.GlissandoSpanner(voice[1:])
     trill = spannertools.TrillSpanner(voice.select_leaves())
 
-    receipt = spannertools.get_spanners_that_dominate_components(voice[:2])
+    receipt= voice[:2]._get_dominant_spanners()
 
     assert len(receipt) == 2
     assert (beam, 0) in receipt
     assert (trill, 0) in receipt
 
 
-def test_spannertools_get_spanners_that_dominate_components_05():
+def test_ContiguousSelection__get_dominant_spanners_05():
     r'''Glissando and trill dominate last two containers.
     '''
 
@@ -104,14 +107,14 @@ def test_spannertools_get_spanners_that_dominate_components_05():
     glissando = spannertools.GlissandoSpanner(voice[1:])
     trill = spannertools.TrillSpanner(voice.select_leaves())
 
-    receipt = spannertools.get_spanners_that_dominate_components(voice[-2:])
+    receipt = voice[-2:]._get_dominant_spanners()
 
     assert len(receipt) == 2
     assert (glissando, 0) in receipt
     assert (trill, 2) in receipt
 
 
-def test_spannertools_get_spanners_that_dominate_components_06():
+def test_ContiguousSelection__get_dominant_spanners_06():
     r'''Only trill dominates all three containers.
     '''
 
@@ -121,13 +124,13 @@ def test_spannertools_get_spanners_that_dominate_components_06():
     glissando = spannertools.GlissandoSpanner(voice[1:])
     trill = spannertools.TrillSpanner(voice.select_leaves())
 
-    receipt = spannertools.get_spanners_that_dominate_components(voice[:])
+    receipt = voice[:]._get_dominant_spanners()
 
     assert len(receipt) == 1
     assert (trill, 0) in receipt
 
 
-def test_spannertools_get_spanners_that_dominate_components_07():
+def test_ContiguousSelection__get_dominant_spanners_07():
     r'''Only trill dominates voice.
     '''
 
@@ -137,16 +140,17 @@ def test_spannertools_get_spanners_that_dominate_components_07():
     glissando = spannertools.GlissandoSpanner(voice[1:])
     trill = spannertools.TrillSpanner(voice.select_leaves())
 
-    receipt = spannertools.get_spanners_that_dominate_components([voice])
+    receipt = select(voice, contiguous=True)._get_dominant_spanners()
 
     assert len(receipt) == 1
     assert (trill, 0) in receipt
 
 
-def test_spannertools_get_spanners_that_dominate_components_08():
+def test_ContiguousSelection__get_dominant_spanners_08():
     r'''Only trill dominates first two notes.
-        Note that trill attaches to notes.
-        Note that beam and glissando attach to containers.'''
+    Note that trill attaches to notes.
+    Note that beam and glissando attach to containers.
+    '''
 
     voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
@@ -154,35 +158,38 @@ def test_spannertools_get_spanners_that_dominate_components_08():
     glissando = spannertools.GlissandoSpanner(voice[1:])
     trill = spannertools.TrillSpanner(voice.select_leaves())
 
-    receipt = spannertools.get_spanners_that_dominate_components(voice.select_leaves()[:2])
+    receipt = voice.select_leaves()[:2]._get_dominant_spanners()
 
     assert len(receipt) == 1
     assert (trill, 0) in receipt
 
 
-def test_spannertools_get_spanners_that_dominate_components_09():
+def test_ContiguousSelection__get_dominant_spanners_09():
     r'''Works on empty containers.
-        Implementation does not depend on component duration.'''
+    Implementation does not depend on component duration.
+    Only beam dominates first container.
+    '''
 
     voice = Voice(Container([]) * 3)
     beam = spannertools.BeamSpanner(voice[:2])
     glissando = spannertools.GlissandoSpanner(voice[1:])
     trill = spannertools.TrillSpanner(voice.select_leaves())
 
-    r'''
-    \new Voice {
-        {
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+            }
+            {
+            }
+            {
+            }
         }
-        {
-        }
-        {
-        }
-    }
-    '''
+        '''
+        )
 
-    receipt = spannertools.get_spanners_that_dominate_components(voice[:1])
-
-    "Only beam dominates first container."
+    receipt = voice[:1]._get_dominant_spanners()
 
     assert len(receipt) == 1
     assert (beam, 0) in receipt

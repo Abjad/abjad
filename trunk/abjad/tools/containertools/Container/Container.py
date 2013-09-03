@@ -293,19 +293,17 @@ class Container(Component):
         return tuple(result)
 
     def _get_spanners_that_dominate_component_pair(self, left, right):
-        r'''Return Python list of (spanner, index) pairs.
-        'left' must be either an Abjad component or None.
-        'right' must be either an Abjad component or None.
+        r'''Returns spanners that dominant component pair.
+        Returns set (spanner, index) pairs.
+        `left` must be an Abjad component or None.
+        `right` must be an Abjad component or None.
 
-        If both 'left' and 'right' are components,
-        then 'left' and 'right' must be logical-voice-contiguous.
+        If both `left` and `right` are components,
+        then `left` and `right` must be logical-voice-contiguous.
 
-        This is a special version of 
-        spannertools.get_spanners_that_dominate_components().
+        This is a version of ContiguousSelection._get_dominant_spanners().
         This version is useful for finding spanners that dominant
-        a zero-length 'crack' between components, as in t[2:2].
-
-        Return spanners.
+        a zero-length slice between components, as in staff[2:2].
         '''
         from abjad.tools import spannertools
         Selection = selectiontools.Selection
@@ -344,9 +342,8 @@ class Container(Component):
             spanners_receipt = \
                 self._get_spanners_that_dominate_component_pair(left, right)
         else:
-            spanners_receipt = \
-                spannertools.get_spanners_that_dominate_components(
-                self[start:stop])
+            selection = self[start:stop]
+            spanners_receipt = selection._get_dominant_spanners()
         return spanners_receipt
 
     def _scale_contents(self, multiplier):
@@ -390,8 +387,8 @@ class Container(Component):
                 message = 'must attach grace container to note or chord.'
                 raise GraceContainerError(message)
             old = self[i]
-            spanners_receipt = \
-                spannertools.get_spanners_that_dominate_components([old])
+            selection = selectiontools.ContiguousSelection(old)
+            spanners_receipt = selection._get_dominant_spanners()
             for child in iterationtools.iterate_components_in_expr([old]):
                 for spanner in child._get_spanners():
                     spanner._remove(child)

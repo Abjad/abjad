@@ -577,13 +577,14 @@ class Component(AbjadObject):
         grow_spanners=True,
         ):
         from abjad.tools import componenttools
+        from abjad.tools import selectiontools
         from abjad.tools import spannertools
         assert all(isinstance(x, componenttools.Component) for x in components)
+        selection = selectiontools.ContiguousSelection(self)
         if direction == Right:
             if grow_spanners:
                 insert_offset = self._get_timespan().stop_offset
-                receipt = spannertools.get_spanners_that_dominate_components(
-                    [self])
+                receipt = selection._get_dominant_spanners()
                 for spanner, index in receipt:
                     insert_component = None
                     for component in spanner:
@@ -612,8 +613,7 @@ class Component(AbjadObject):
         else:
             if grow_spanners:
                 offset= self._get_timespan().start_offset
-                receipt = spannertools.get_spanners_that_dominate_components(
-                    [self])
+                receipt = selection._get_dominant_spanners()
                 for spanner, x in receipt:
                     for component in spanner:
                         if component._get_timespan().start_offset == offset:

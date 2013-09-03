@@ -1031,5 +1031,5 @@ class ScoreMutationAgent(object):
         assert isinstance(container, containertools.Container)
         assert not container, repr(container)
         donors._give_music_to_empty_container(container)
-        donors._give_dominant_spanners_to_components([container])
+        donors._give_dominant_spanners([container])
         donors._give_position_in_parent_to_container(container)

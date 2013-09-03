@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_SliceSelection__give_dominant_spanners_to_components_01():
+def test_SliceSelection__give_dominant_spanners_01():
     r'''Find spanners that dominate donor_components.
     Apply dominant spanners to recipient_components.
     Withdraw donor_components from spanners.
@@ -35,7 +35,7 @@ def test_SliceSelection__give_dominant_spanners_to_components_01():
     }
     '''
 
-    voice[1:3]._give_dominant_spanners_to_components(recipient[:])
+    voice[1:3]._give_dominant_spanners(recipient[:])
 
     "Voice voice is now ..."
 
@@ -88,7 +88,7 @@ def test_SliceSelection__give_dominant_spanners_to_components_01():
         )
 
 
-def test_SliceSelection__give_dominant_spanners_to_components_02():
+def test_SliceSelection__give_dominant_spanners_02():
     r'''Not composer-safe.
     '''
 
@@ -111,7 +111,7 @@ def test_SliceSelection__give_dominant_spanners_to_components_02():
 
     donor = voice[0]
     recipient = Voice("c'8 d'8 e'8 f'8")
-    voice[:1]._give_dominant_spanners_to_components([recipient])
+    voice[:1]._give_dominant_spanners([recipient])
 
     "Container voice is now ..."
 

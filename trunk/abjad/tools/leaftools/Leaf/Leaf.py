@@ -377,7 +377,7 @@ class Leaf(Component):
         if parent:
             parent.__setitem__(slice(start, stop+1), flattened_result)
         else:
-            selection._give_dominant_spanners_to_components(flattened_result)
+            selection._give_dominant_spanners(flattened_result)
             selection._withdraw_from_crossing_spanners()
         # fracture spanners
         if fracture_spanners:
@@ -528,7 +528,7 @@ class Leaf(Component):
         if parent:
             parent.__setitem__(slice(start, stop+1), flattened_result)
         else:
-            selection._give_dominant_spanners_to_components([tuplet])
+            selection._give_dominant_spanners([tuplet])
             selection._withdraw_from_crossing_spanners()
         # return tuplet
         return tuplet

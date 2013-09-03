@@ -135,7 +135,36 @@ class ContiguousSelection(Selection):
             stop_offsets.append(component._get_timespan().stop_offset)
         return start_offsets, stop_offsets
 
-    def _give_dominant_spanners_to_components(self, recipients):
+    def _get_dominant_spanners(self):
+        r'''Returns spanners that dominate components in selection.
+        Returns set of (spanner, index) pairs.
+        Each (spanner, index) pair gives a spanner which dominates
+        all components in selection together with the start index
+        at which spanner first encounters selection.
+        Use this helper to lift spanners temporarily from components
+        in selection and perform some action to the underlying
+        score tree before reattaching spanners.
+        score components.
+        '''
+        from abjad.tools import selectiontools
+        from abjad.tools import spannertools
+        Selection = selectiontools.Selection
+        assert self._all_are_contiguous_components_in_same_logical_voice(self)
+        receipt = set([])
+        if len(self) == 0:
+            return receipt
+        first, last = self[0], self[-1]
+        start_components = first._get_descendants_starting_with()
+        stop_components = last._get_descendants_stopping_with()
+        stop_components = set(stop_components)
+        for component in start_components:
+            for spanner in component._get_spanners():
+                if set(spanner[:]) & stop_components != set([]):
+                    index = spanner.index(component)
+                    receipt.add((spanner, index))
+        return receipt
+            
+    def _give_dominant_spanners(self, recipients):
         r'''Find all spanners dominating music.
         Insert each component in recipients into each dominant spanner.
         Remove music from each dominating spanner.
@@ -145,8 +174,9 @@ class ContiguousSelection(Selection):
         from abjad.tools import componenttools
         from abjad.tools import spannertools
         assert self._all_are_contiguous_components_in_same_logical_voice(self)
-        assert self._all_are_contiguous_components_in_same_logical_voice(recipients)
-        receipt = spannertools.get_spanners_that_dominate_components(self)
+        assert self._all_are_contiguous_components_in_same_logical_voice(
+            recipients)
+        receipt = self._get_dominant_spanners()
         for spanner, index in receipt:
             for recipient in reversed(recipients):
                 spanner._insert(index, recipient)
