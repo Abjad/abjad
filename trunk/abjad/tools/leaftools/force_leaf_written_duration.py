@@ -2,38 +2,59 @@
 from abjad.tools import durationtools
 
 
-def force_leaf_written_duration(
-    leaf, written_duration):
-    '''Change `leaf` written duration to `written_duration`
-    and preserve preprolated `leaf` duration:
+def force_leaf_written_duration(leaf, written_duration):
+    r'''Forces `leaf` written duration to `written_duration`
+    while preserving `leaf` duration.
 
-    ::
+    ..  container:: example
 
-        >>> note = Note("c'4")
+        **Example.** Renotate quarter note as dotted sixteenth note:
 
-    ::
+            >>> note = Note("c'4")
+            >>> measure = Measure((1, 4), [note])
+            >>> measure.append(note)
+            >>> show(measure) # doctest: +SKIP
 
-        >>> note.written_duration
-        Duration(1, 4)
-        >>> note._preprolated_duration
-        Duration(1, 4)
+        ..  doctest::
 
-    ::
+            >>> f(measure)
+            {
+                \time 1/4
+                c'4
+            }
 
-        >>> leaftools.force_leaf_written_duration(
-        ...     note, Duration(3, 16))
-        Note("c'8. * 4/3")
+        ::
 
-    ::
+            >>> inspect(note).get_duration()
+            Duration(1, 4)
 
-        >>> note.written_duration
-        Duration(3, 16)
-        >>> note._preprolated_duration
-        Duration(1, 4)
+        ::
 
-    Add LilyPond multiplier where necessary.
+        
+            >>> leaftools.force_leaf_written_duration(note, Duration(3, 16))
+            Note("c'8. * 4/3")
+            >>> show(measure) # doctest: +SKIP
 
-    Return `leaf`.
+        ..  doctest::
+
+            >>> f(measure)
+            {
+                \time 1/4
+                c'8. * 4/3
+            }
+
+        ::
+
+            >>> inspect(note).get_duration()
+            Duration(1, 4)
+
+        Note is now written as a dotted sixteenth (with an invisible
+        LilyPond multiplier) even though note continues to
+        have the duration of a quarter note.
+
+    Adds LilyPond multiplier where necessary.
+
+    Returns `leaf`.
     '''
     from abjad.tools import leaftools
 
