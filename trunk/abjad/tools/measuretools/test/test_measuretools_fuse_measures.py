@@ -3,6 +3,7 @@ from abjad import *
 import py.test
 
 
+@py.test.skip()
 def test_measuretools_fuse_measures_01():
     r'''Fuse unicorporated measures carrying
     time signatures with power-of-two denominators.
