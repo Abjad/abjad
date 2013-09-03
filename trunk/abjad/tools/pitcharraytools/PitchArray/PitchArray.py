@@ -2,6 +2,7 @@
 from abjad.tools import componenttools
 from abjad.tools import iterationtools
 from abjad.tools import leaftools
+from abjad.tools import mathtools
 from abjad.tools import measuretools
 from abjad.tools import mutationtools
 from abjad.tools import notetools
@@ -160,6 +161,20 @@ class PitchArray(AbjadObject):
         result = [str(cell) for cell in cells]
         result = ' '.join(result)
         return result
+
+    @staticmethod
+    def _get_composite_offset_difference_series_from_leaves_in_expr(expr):
+        from abjad.tools import iterationtools
+        offsets = []
+        for leaf in iterationtools.iterate_leaves_in_expr(expr):
+            start_offset = leaf._get_timespan().start_offset
+            if start_offset not in offsets:
+                offsets.append(start_offset)
+            stop_offset = leaf._get_timespan().stop_offset
+            if stop_offset not in offsets:
+                offsets.append(stop_offset)
+        offsets.sort()
+        return list(mathtools.difference_series(offsets))
 
     def _init_by_cell_token_lists(self, cell_token_lists):
         for cell_token_list in cell_token_lists:
@@ -433,7 +448,7 @@ class PitchArray(AbjadObject):
         Return pitch array.
         '''
         time_intervals = \
-            leaftools.get_composite_offset_difference_series_from_leaves_in_expr(
+            PitchArray._get_composite_offset_difference_series_from_leaves_in_expr(
             score)
         array_width = len(time_intervals)
         array_depth = len(score)
