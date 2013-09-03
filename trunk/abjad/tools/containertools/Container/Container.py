@@ -851,8 +851,8 @@ class Container(Component):
         #       Maybe later model difference between user tie chains and not.
         left_tie_chain = leaf_left_of_split._get_tie_chain()
         right_tie_chain = leaf_right_of_split._get_tie_chain()
-        leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(left_tie_chain)
-        leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(right_tie_chain)
+        left_tie_chain._fuse_leaves_by_immediate_parent()
+        right_tie_chain._fuse_leaves_by_immediate_parent()
         # reapply tie here if crawl above killed tie applied to leaves
         if did_split_leaf:
             if tie_split_notes and \

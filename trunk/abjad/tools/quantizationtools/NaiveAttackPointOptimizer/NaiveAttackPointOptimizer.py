@@ -38,5 +38,4 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
                 current_sub_chain = selectiontools.TieChain(current_sub_chain)
                 sub_chains.append(current_sub_chain)
             for sub_chain in sub_chains:
-                leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(
-                    sub_chain)
+                sub_chain._fuse_leaves_by_immediate_parent()

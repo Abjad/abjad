@@ -81,6 +81,14 @@ class TieChain(ContiguousSelection):
             tuplettools.Tuplet(multiplier, self.leaves)
         return self[0]._get_tie_chain()
 
+    def _fuse_leaves_by_immediate_parent(self):
+        from abjad.tools import leaftools
+        result = []
+        parts = self.leaves_grouped_by_immediate_parents
+        for part in parts:
+            result.append(leaftools.fuse_leaves(part))
+        return result
+
     def _scale(self, multiplier):
         new_duration = multiplier * self.written_duration
         return self._add_or_remove_notes_to_achieve_written_duration(

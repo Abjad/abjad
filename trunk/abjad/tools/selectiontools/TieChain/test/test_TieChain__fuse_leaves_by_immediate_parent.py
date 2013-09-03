@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_01():
+def test_TieChain__fuse_leaves_by_immediate_parent_01():
     r'''Fuse leaves in tie chain with same immediate parent.
     '''
 
@@ -10,39 +10,25 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_01():
     spannertools.TieSpanner(staff.select_leaves())
     measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
+    # comparison function breaks here for unknown reason
     r'''
     \new Staff {
-      {
+    {
             \time 2/8
             c'8 ~
             c'8 ~
-      }
-      {
+    }
+    {
             \time 2/8
             c'8 ~
             c'8
-      }
+    }
     }
     '''
 
-    result = leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(
-        inspect(staff.select_leaves()[1]).get_tie_chain())
+    tie_chain = inspect(staff.select_leaves()[1]).get_tie_chain()
+    result = tie_chain._fuse_leaves_by_immediate_parent()
 
-    r'''
-    \new Staff {
-      {
-            \time 2/8
-            c'4 ~
-      }
-      {
-            \time 2/8
-            c'4
-      }
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
-    assert len(result) == 2
     assert testtools.compare(
         staff,
         r'''
@@ -59,14 +45,18 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_01():
         '''
         )
 
+    assert len(result) == 2
+    assert inspect(staff).is_well_formed()
 
-def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_02():
+
+def test_TieChain__fuse_leaves_by_immediate_parent_02():
     r'''Fuse leaves in tie chain with same immediate parent.
     '''
 
     staff = Staff(notetools.make_repeated_notes(4))
     spannertools.TieSpanner(staff.select_leaves())
 
+    # comparison function breaks here for unknown reason
     r'''
     \new Staff {
             c'8 ~
@@ -76,11 +66,9 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_02():
     }
     '''
 
-    result = leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(
-        inspect(staff.select_leaves()[1]).get_tie_chain())
+    tie_chain = inspect(staff.select_leaves()[1]).get_tie_chain()
+    result = tie_chain._fuse_leaves_by_immediate_parent()
 
-    assert inspect(staff).is_well_formed()
-    assert len(result) == 1
     assert testtools.compare(
         staff,
         r'''
@@ -90,13 +78,16 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_02():
         '''
         )
 
+    assert inspect(staff).is_well_formed()
+    assert len(result) == 1
 
-def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_03():
+
+def test_TieChain__fuse_leaves_by_immediate_parent_03():
     r'''Fuse leaves in tie chain with same immediate parent.
     '''
 
     note = Note("c'4")
-    result = leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(
-        inspect(note).get_tie_chain())
+    tie_chain = inspect(note).get_tie_chain()
+    result = tie_chain._fuse_leaves_by_immediate_parent()
     assert len(result) == 1
     assert inspect(note).is_well_formed()
