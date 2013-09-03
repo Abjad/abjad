@@ -112,8 +112,7 @@ class ContiguousSelection(Selection):
             if leaf is start_leaf:
                 found_start_leaf = True
             else:
-                leaftools.remove_leaf_and_shrink_durated_parent_containers(
-                    leaf)
+                leaf._remove_and_shrink_durated_parent_containers()
         # trim governor copy backwards from last leaf
         found_stop_leaf = False
         while not found_stop_leaf:
@@ -123,8 +122,7 @@ class ContiguousSelection(Selection):
             if leaf is stop_leaf:
                 found_stop_leaf = True
             else:
-                leaftools.remove_leaf_and_shrink_durated_parent_containers(
-                    leaf)
+                leaf._remove_and_shrink_durated_parent_containers()
         # return trimmed governor copy
         return governor_copy
 

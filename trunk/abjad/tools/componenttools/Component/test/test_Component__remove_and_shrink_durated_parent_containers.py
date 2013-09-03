@@ -2,49 +2,34 @@
 from abjad import *
 
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_01():
+def test_Component__remove_and_shrink_durated_parent_containers_01():
     r'''Excise leaf from tuplet and measure.
     '''
 
     measure = Measure((4, 4), tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(measure)
 
-    r'''
-    {
-        \time 4/4
-        \times 2/3 {
-            c'4
-            d'4
-            e'4
-        }
-        \times 2/3 {
-            f'4
-            g'4
-            a'4
-        }
-    }
-    '''
-
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(measure.select_leaves()[0])
-
-    r'''
-    {
-        \time 5/6
-        \scaleDurations #'(2 . 3) {
-            {
+    assert testtools.compare(
+        measure,
+        r'''
+        {
+            \time 4/4
+            \times 2/3 {
+                c'4
                 d'4
                 e'4
             }
-            {
+            \times 2/3 {
                 f'4
                 g'4
                 a'4
             }
         }
-    }
-    '''
+        '''
+        )
 
-    assert inspect(measure).is_well_formed()
+    measure.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
+
     assert testtools.compare(
         measure,
         r'''
@@ -65,47 +50,29 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_01():
         '''
         )
 
+    assert inspect(measure).is_well_formed()
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_02():
+
+def test_Component__remove_and_shrink_durated_parent_containers_02():
     r'''Excise leaf from tuplet and measure.
     '''
 
     measure = Measure((4, 4), tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 8)) * 5) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(measure)
 
-    r'''
-    {
-        \time 4/4
-        \times 4/5 {
-            c'8
-            d'8
-            e'8
-            f'8
-            g'8
-        }
-        \times 4/5 {
-            a'8
-            b'8
-            c''8
-            d''8
-            e''8
-        }
-    }
-    '''
-
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(measure.select_leaves()[0])
-
-    r'''
-    {
-        \time 9/10
-        \scaleDurations #'(4 . 5) {
-            {
+    assert testtools.compare(
+        measure,
+        r'''
+        {
+            \time 4/4
+            \times 4/5 {
+                c'8
                 d'8
                 e'8
                 f'8
                 g'8
             }
-            {
+            \times 4/5 {
                 a'8
                 b'8
                 c''8
@@ -113,10 +80,11 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_02():
                 e''8
             }
         }
-    }
-    '''
+        '''
+        )
 
-    assert inspect(measure).is_well_formed()
+    measure.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
+
     assert testtools.compare(
         measure,
         r'''
@@ -141,8 +109,10 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_02():
         '''
         )
 
+    assert inspect(measure).is_well_formed()
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_03():
+
+def test_Component__remove_and_shrink_durated_parent_containers_03():
     r'''Excise leaf from tuplet and measure.
     '''
 
@@ -153,59 +123,36 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_03():
 
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(measure)
 
-    r'''
-    {
-        \time 5/6
-        \scaleDurations #'(2 . 3) {
-            \tweak #'text #tuplet-number::calc-fraction-text
-            \times 3/5 {
-                c'4
-                d'4
-                e'4
-                f'4
-                g'4
-            }
-            \times 4/7 {
-                a'8
-                b'8
-                c''8
-                d''8
-                e''8
-                f''8
-                g''8
-            }
-        }
-    }
-    '''
-
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(measure.select_leaves()[0])
-
-    r'''
-    {
-        \time 11/15
-        \scaleDurations #'(8 . 15) {
-            \tweak #'text #tuplet-number::calc-fraction-text
-            \times 3/4 {
-                d'4
-                e'4
-                f'4
-                g'4
-            }
-            \tweak #'text #tuplet-number::calc-fraction-text
-            \times 5/7 {
-                a'8
-                b'8
-                c''8
-                d''8
-                e''8
-                f''8
-                g''8
+    assert testtools.compare(
+        measure,
+        r'''
+        {
+            \time 5/6
+            \scaleDurations #'(2 . 3) {
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 3/5 {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                    g'4
+                }
+                \times 4/7 {
+                    a'8
+                    b'8
+                    c''8
+                    d''8
+                    e''8
+                    f''8
+                    g''8
+                }
             }
         }
-    }
-    '''
+        '''
+        )
 
-    assert inspect(measure).is_well_formed()
+    measure.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
+
     assert testtools.compare(
         measure,
         r'''
@@ -234,8 +181,10 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_03():
         '''
         )
 
+    assert inspect(measure).is_well_formed()
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_04():
+
+def test_Component__remove_and_shrink_durated_parent_containers_04():
     r'''Excise leaf that conflicts with time signature duration;
     change time signature denominator and reset tuplet target durations.
     '''
@@ -247,52 +196,62 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_04():
 
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(measure)
 
-    r'''
-    \time 5/6
-        \compressMusic #'(2 . 3) {
-            \tweak #'text #tuplet-number::calc-fraction-text
-            \times 3/5 {
-                c'4
-                cs'4
-                d'4
-                ef'4
-                e'4
-            }
-            \times 4/7 {
-                f'8
-                fs'8
-                g'8
-                af'8
-                a'8
-                bf'8
-                b'8
-            }
-        }
-        '''
-
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(measure.select_leaves()[-1])
-
-    r'''
-    \time 11/14
-        \compressMusic #'(4 . 7) {
-            \tweak #'text #tuplet-number::calc-fraction-text
-            \times 7/10 {
-                c'4
-                cs'4
-                d'4
-                ef'4
-                e'4
-            }
-            \times 2/3 {
-                f'8
-                fs'8
-                g'8
-                af'8
-                a'8
-                bf'8
+    assert testtools.compare(
+        measure,
+        r'''
+        {
+            \time 5/6
+            \scaleDurations #'(2 . 3) {
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 3/5 {
+                    c'4
+                    cs'4
+                    d'4
+                    ef'4
+                    e'4
+                }
+                \times 4/7 {
+                    f'8
+                    fs'8
+                    g'8
+                    af'8
+                    a'8
+                    bf'8
+                    b'8
+                }
             }
         }
         '''
+        )
+
+    measure.select_leaves()[-1]._remove_and_shrink_durated_parent_containers()
+
+    assert testtools.compare(
+        measure,
+        r'''
+        {
+            \time 11/14
+            \scaleDurations #'(4 . 7) {
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 7/10 {
+                    c'4
+                    cs'4
+                    d'4
+                    ef'4
+                    e'4
+                }
+                \times 2/3 {
+                    f'8
+                    fs'8
+                    g'8
+                    af'8
+                    a'8
+                    bf'8
+                }
+            }
+        }
+        '''
+        )
 
     assert isinstance(measure, Measure)
     assert measure.time_signature == contexttools.TimeSignatureMark((11, 14))
@@ -316,7 +275,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_04():
     assert inspect(measure).is_well_formed()
 
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_05():
+def test_Component__remove_and_shrink_durated_parent_containers_05():
     r'''Excise leaf that conflicts with time signature duration;
     trigger tuplet insertion.
     '''
@@ -326,51 +285,61 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_05():
             notetools.make_repeated_notes(3, (1, 4)))
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(measure)
 
-    r'''
-    \time 5/6
-        \compressMusic #'(2 . 3) {
-            \times 4/7 {
-                c'8
-                cs'8
-                d'8
-                ef'8
-                e'8
-                f'8
-                fs'8
-            }
-            g'4
-            af'4
-            a'4
-        }
-        '''
-
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(measure.select_leaves()[0])
-
-    r'''
-    \time 11/14
-        \compressMusic #'(4 . 7) {
-            \times 2/3 {
-                cs'8
-                d'8
-                ef'8
-                e'8
-                f'8
-                fs'8
-            }
-            \tweak #'text #tuplet-number::calc-fraction-text
-            \times 7/6 {
+    assert testtools.compare(
+        measure,
+        r'''
+        {
+            \time 5/6
+            \scaleDurations #'(2 . 3) {
+                \times 4/7 {
+                    c'8
+                    cs'8
+                    d'8
+                    ef'8
+                    e'8
+                    f'8
+                    fs'8
+                }
                 g'4
-            }
-            \tweak #'text #tuplet-number::calc-fraction-text
-            \times 7/6 {
                 af'4
-            }
-            \tweak #'text #tuplet-number::calc-fraction-text
-            \times 7/6 {
                 a'4
             }
         }
         '''
+        )
+
+    measure.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
+
+    assert testtools.compare(
+        measure,
+        r'''
+        {
+            \time 11/14
+            \scaleDurations #'(4 . 7) {
+                \times 2/3 {
+                    cs'8
+                    d'8
+                    ef'8
+                    e'8
+                    f'8
+                    fs'8
+                }
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 7/6 {
+                    g'4
+                }
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 7/6 {
+                    af'4
+                }
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 7/6 {
+                    a'4
+                }
+            }
+        }
+        '''
+        )
 
     assert isinstance(measure, Measure)
     assert measure.time_signature == contexttools.TimeSignatureMark((11, 14))
@@ -394,7 +363,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_05():
     assert inspect(measure).is_well_formed()
 
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_06():
+def test_Component__remove_and_shrink_durated_parent_containers_06():
     r'''Excise leaf that matches time signature duration;
     does not trigger trivial 1:1 tuplet insertion.
     '''
@@ -404,42 +373,52 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_06():
             notetools.make_repeated_notes(3, (1, 4)))
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(measure)
 
-    r'''
-    \time 5/6
-        \compressMusic #'(2 . 3) {
-            \times 4/7 {
-                c'8
-                cs'8
-                d'8
-                ef'8
-                e'8
-                f'8
-                fs'8
+    assert testtools.compare(
+        measure,
+        r'''
+        {
+            \time 5/6
+            \scaleDurations #'(2 . 3) {
+                \times 4/7 {
+                    c'8
+                    cs'8
+                    d'8
+                    ef'8
+                    e'8
+                    f'8
+                    fs'8
+                }
+                g'4
+                af'4
+                a'4
             }
-            g'4
-            af'4
-            a'4
         }
         '''
+        )
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(measure.select_leaves()[-1])
+    measure.select_leaves()[-1]._remove_and_shrink_durated_parent_containers()
 
-    r'''
-    \time 4/6
-        \scaleDurations #'(2 . 3) {
-            \times 4/7 {
-                c'8
-                cs'8
-                d'8
-                ef'8
-                e'8
-                f'8
-                fs'8
+    assert testtools.compare(
+        measure,
+        r'''
+        {
+            \time 4/6
+            \scaleDurations #'(2 . 3) {
+                \times 4/7 {
+                    c'8
+                    cs'8
+                    d'8
+                    ef'8
+                    e'8
+                    f'8
+                    fs'8
+                }
+                g'4
+                af'4
             }
-            g'4
-            af'4
         }
         '''
+        )
 
     assert isinstance(measure, Measure)
     assert measure.time_signature == contexttools.TimeSignatureMark((4, 6))
@@ -458,7 +437,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_06():
     assert inspect(measure).is_well_formed()
 
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_07():
+def test_Component__remove_and_shrink_durated_parent_containers_07():
     r'''Nested fixed-duration tuplet.
     '''
 
@@ -466,20 +445,25 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_07():
         tuplettools.FixedDurationTuplet(Duration(2, 2), [Note(0, (1, 2)), Note(1, (1, 2)),
         tuplettools.FixedDurationTuplet(Duration(2, 4), [Note(i, (1, 4)) for i in range(2, 5)])])])
 
-    r'''
-    \time 4/4
-        \times 2/3 {
-            c'2
-            cs'2
+    assert testtools.compare(
+        measure,
+        r'''
+        {
+            \time 4/4
             \times 2/3 {
-                            d'4
-                            ef'4
-                            e'4
+                c'2
+                cs'2
+                \times 2/3 {
+                    d'4
+                    ef'4
+                    e'4
+                }
             }
         }
         '''
+        )
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(measure.select_leaves()[-1])
+    measure.select_leaves()[-1]._remove_and_shrink_durated_parent_containers()
     measure = measure
     assert isinstance(measure, Measure)
     assert measure.time_signature == contexttools.TimeSignatureMark((8, 9))
@@ -505,28 +489,33 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_07():
     assert note.written_duration == Duration(1, 4)
     assert inspect(note).get_duration() == Duration(1, 9)
 
-    r'''
-    \time 8/9
-        \compressMusic #'(8 . 9) {
-            \tweak #'text #tuplet-number::calc-fraction-text
-            \times 3/4 {
-                c'2
-                cs'2
-                \times 2/3 {
-                    d'4
-                    ef'4
+    assert testtools.compare(
+        measure,
+        r'''
+        {
+            \time 8/9
+            \scaleDurations #'(8 . 9) {
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 3/4 {
+                    c'2
+                    cs'2
+                    \times 2/3 {
+                        d'4
+                        ef'4
+                    }
                 }
             }
         }
-    '''
+        '''
+        )
 
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_08():
+def test_Component__remove_and_shrink_durated_parent_containers_08():
     r'''Exicse plain vanilla container.
     '''
 
     container = Container(Note("c'4") * 6)
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(container.select_leaves()[0])
+    container.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
     assert isinstance(container, Container)
     assert len(container) == 5
     assert container._preprolated_duration == Duration(5, 4)
@@ -537,12 +526,12 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_08():
     assert inspect(container).is_well_formed()
 
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_09():
+def test_Component__remove_and_shrink_durated_parent_containers_09():
     r'''Container container.
     '''
 
     container = Container(Note("c'4") * 6)
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(container.select_leaves()[0])
+    container.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
     assert isinstance(container, Container)
     assert len(container) == 5
     assert container._preprolated_duration == Duration(5, 4)
@@ -553,12 +542,12 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_09():
     assert inspect(container).is_well_formed()
 
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_10():
+def test_Component__remove_and_shrink_durated_parent_containers_10():
     r'''Excise voice.
     '''
 
     voice = Voice(Note("c'4") * 6)
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(voice.select_leaves()[0])
+    voice.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
     assert isinstance(voice, Voice)
     assert len(voice) == 5
     assert voice._preprolated_duration == Duration(5, 4)
@@ -569,12 +558,12 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_10():
     assert inspect(voice).is_well_formed()
 
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_11():
+def test_Component__remove_and_shrink_durated_parent_containers_11():
     r'''Staff.
     '''
 
     staff = Staff(Note("c'4") * 6)
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(staff.select_leaves()[0])
+    staff.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
     assert isinstance(staff, Staff)
     assert len(staff) == 5
     assert staff._preprolated_duration == Duration(5, 4)
@@ -585,12 +574,12 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_11():
     assert inspect(staff).is_well_formed()
 
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_12():
+def test_Component__remove_and_shrink_durated_parent_containers_12():
     r'''Container.
     '''
 
     container = Container(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(container[0])
+    container[0]._remove_and_shrink_durated_parent_containers()
     assert isinstance(container, Container)
     assert len(container) == 1
     assert container._preprolated_duration == Duration(2, 4)
@@ -604,12 +593,12 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_12():
     assert inspect(container).is_well_formed()
 
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_13():
+def test_Component__remove_and_shrink_durated_parent_containers_13():
     r'''Container.
     '''
 
     container = Container(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(container[0])
+    container[0]._remove_and_shrink_durated_parent_containers()
     assert isinstance(container, Container)
     assert len(container) == 1
     assert container._preprolated_duration == Duration(2, 4)
@@ -623,12 +612,12 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_13():
     assert inspect(container).is_well_formed()
 
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_14():
+def test_Component__remove_and_shrink_durated_parent_containers_14():
     r'''Excise voice.
     '''
 
     voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(voice[0])
+    voice[0]._remove_and_shrink_durated_parent_containers()
     assert isinstance(voice, Voice)
     assert len(voice) == 1
     assert voice._preprolated_duration == Duration(2, 4)
@@ -642,12 +631,12 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_14():
     assert inspect(voice).is_well_formed()
 
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_15():
+def test_Component__remove_and_shrink_durated_parent_containers_15():
     r'''Excise staff.
     '''
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(staff[0])
+    staff[0]._remove_and_shrink_durated_parent_containers()
     assert isinstance(staff, Staff)
     assert len(staff) == 1
     assert staff._preprolated_duration == Duration(2, 4)
@@ -661,12 +650,12 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_15():
     assert inspect(staff).is_well_formed()
 
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_16():
+def test_Component__remove_and_shrink_durated_parent_containers_16():
     r'''Excise container.
     '''
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(staff.select_leaves()[0])
+    staff.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
     assert isinstance(staff, Staff)
     assert len(staff) == 2
     assert staff._preprolated_duration == Duration(5, 6)
@@ -680,12 +669,12 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_16():
     assert inspect(staff).is_well_formed()
 
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_17():
+def test_Component__remove_and_shrink_durated_parent_containers_17():
     r'''Excise container.
     '''
 
     container = Container(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(container.select_leaves()[0])
+    container.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
     assert isinstance(container, Container)
     assert len(container) == 2
     assert container._preprolated_duration == Duration(5, 6)
@@ -699,12 +688,12 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_17():
     assert inspect(container).is_well_formed()
 
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_18():
+def test_Component__remove_and_shrink_durated_parent_containers_18():
     r'''Excise voice.
     '''
 
     voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(voice.select_leaves()[0])
+    voice.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
     assert isinstance(voice, Voice)
     assert len(voice) == 2
     assert voice._preprolated_duration == Duration(5, 6)
@@ -718,12 +707,12 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_18():
     assert inspect(voice).is_well_formed()
 
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_19():
+def test_Component__remove_and_shrink_durated_parent_containers_19():
     r'''Excise staff.
     '''
 
     staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(staff.select_leaves()[0])
+    staff.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
     assert isinstance(staff, Staff)
     assert len(staff) == 2
     assert staff._preprolated_duration == Duration(5, 6)
@@ -737,7 +726,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_19():
     assert inspect(staff).is_well_formed()
 
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_20():
+def test_Component__remove_and_shrink_durated_parent_containers_20():
     r'''Excise singly-nested singleton.
     '''
 
@@ -745,7 +734,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_20():
         Note("c'4"),
         Note("c'4"),
         tuplettools.FixedDurationTuplet(Duration(1, 4), [Note("c'4")])])
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(tuplet.select_leaves()[-1])
+    tuplet.select_leaves()[-1]._remove_and_shrink_durated_parent_containers()
     assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
     assert len(tuplet) == 2
     assert tuplet.target_duration == Duration(2, 6)
@@ -756,7 +745,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_20():
     assert inspect(tuplet[0]).get_duration() == Duration(1, 6)
 
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_21():
+def test_Component__remove_and_shrink_durated_parent_containers_21():
     r'''Excise doubly-nested singleton.
     '''
 
@@ -768,26 +757,22 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_21():
 
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(tuplet)
 
-    r'''
-    \times 2/3 {
-        c'4
-        d'4
-        {
+    assert testtools.compare(
+        tuplet,
+        r'''
+        \times 2/3 {
+            c'4
+            d'4
             {
-                e'4
+                {
+                    e'4
+                }
             }
         }
-    }
-    '''
+        '''
+        )
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(tuplet.select_leaves()[-1])
-
-    r'''
-    \times 2/3 {
-        c'4
-        d'4
-    }
-    '''
+    tuplet.select_leaves()[-1]._remove_and_shrink_durated_parent_containers()
 
     assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
@@ -801,7 +786,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_21():
         )
 
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_22():
+def test_Component__remove_and_shrink_durated_parent_containers_22():
     r'''Excise doubly-nested singleton leaf.
     '''
 
@@ -813,32 +798,23 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_22():
 
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(tuplet)
 
-    r'''
-    \times 2/3 {
-        c'4
-        d'4
-        {
+    assert testtools.compare(
+        tuplet,
+        r'''
+        \times 2/3 {
+            c'4
+            d'4
             {
-                e'8
-                f'8
+                {
+                    e'8
+                    f'8
+                }
             }
         }
-    }
-    '''
+        '''
+        )
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(tuplet.select_leaves()[-1])
-
-    r'''
-    \times 2/3 {
-        c'4
-        d'4
-        {
-            {
-                e'8
-            }
-        }
-    }
-    '''
+    tuplet.select_leaves()[-1]._remove_and_shrink_durated_parent_containers()
 
     assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
@@ -857,34 +833,27 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_22():
         )
 
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_23():
+def test_Component__remove_and_shrink_durated_parent_containers_23():
     r'''Excise leaf from fixed-duration tuplet.
     '''
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), "c'8 d'8 e'8 f'8 g'8")
 
-    r'''
-    \times 4/5 {
-        c'8
-        d'8
-        e'8
-        f'8
-        g'8
-    }
-    '''
+    assert testtools.compare(
+        tuplet,
+        r'''
+        \times 4/5 {
+            c'8
+            d'8
+            e'8
+            f'8
+            g'8
+        }
+        '''
+        )
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(tuplet.select_leaves()[0])
+    tuplet.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
 
-    r'''
-    \times 4/5 {
-        d'8
-        e'8
-        f'8
-        g'8
-    }
-    '''
-
-    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''
@@ -897,36 +866,30 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_23():
         '''
         )
 
+    assert inspect(tuplet).is_well_formed()
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_24():
+
+def test_Component__remove_and_shrink_durated_parent_containers_24():
     r'''Excise leaf from fixed-multiplier tuplet.
     '''
 
-    #tuplet = Tuplet(Fraction(4, 5), "c'8 d'8 e'8 f'8 g'8")
     tuplet = Tuplet(Fraction(4, 5), "c'8 d'8 e'8 f'8 g'8")
 
-    r'''
-    \times 4/5 {
-        c'8
-        d'8
-        e'8
-        f'8
-        g'8
-    }
-    '''
+    assert testtools.compare(
+        tuplet,
+        r'''
+        \times 4/5 {
+            c'8
+            d'8
+            e'8
+            f'8
+            g'8
+        }
+        '''
+        )
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(tuplet.select_leaves()[0])
+    tuplet.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
 
-    r'''
-    \times 4/5 {
-        d'8
-        e'8
-        f'8
-        g'8
-    }
-    '''
-
-    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''
@@ -939,40 +902,33 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_24():
         '''
         )
 
+    assert inspect(tuplet).is_well_formed()
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_25():
+
+def test_Component__remove_and_shrink_durated_parent_containers_25():
     r'''Excise nested fixed-duration tuplet.
     '''
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(2,2), [Note(0, (1,2)), Note(1, (1,2)),
         tuplettools.FixedDurationTuplet(Duration(2,4), [Note(i, (1,4)) for i in range(2, 5)])])
 
-    r'''
-    \times 2/3 {
-        c'2
-        cs'2
+    assert testtools.compare(
+        tuplet,
+        r'''
         \times 2/3 {
-            d'4
-            ef'4
-            e'4
+            c'2
+            cs'2
+            \times 2/3 {
+                d'4
+                ef'4
+                e'4
+            }
         }
-    }
-    '''
+        '''
+        )
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(tuplet.select_leaves()[-1])
+    tuplet.select_leaves()[-1]._remove_and_shrink_durated_parent_containers()
 
-    r'''
-    \times 2/3 {
-        c'2
-        cs'2
-        \times 2/3 {
-            d'4
-            ef'4
-        }
-    }
-    '''
-
-    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''
@@ -987,42 +943,33 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_25():
         '''
         )
 
+    assert inspect(tuplet).is_well_formed()
 
-def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_26():
+
+def test_Component__remove_and_shrink_durated_parent_containers_26():
     r'''Excise nested fixed-multiplier tuplet.
     '''
 
-    #tuplet = Tuplet(Fraction(2,3), [Note(0, (1,2)), Note(1, (1,2)),
-    #    Tuplet(Fraction(2,3), [Note(i, (1,4)) for i in range(2, 5)])])
     tuplet = Tuplet(Fraction(2,3), [Note(0, (1,2)), Note(1, (1,2)),
         Tuplet(Fraction(2,3), [Note(i, (1,4)) for i in range(2, 5)])])
 
-    r'''
-    \times 2/3 {
-        c'2
-        cs'2
+    assert testtools.compare(
+        tuplet,
+        r'''
         \times 2/3 {
-            d'4
-            ef'4
-            e'4
+            c'2
+            cs'2
+            \times 2/3 {
+                d'4
+                ef'4
+                e'4
+            }
         }
-    }
-    '''
+        '''
+        )
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(tuplet.select_leaves()[-1])
+    tuplet.select_leaves()[-1]._remove_and_shrink_durated_parent_containers()
 
-    r'''
-    \times 2/3 {
-        c'2
-        cs'2
-        \times 2/3 {
-            d'4
-            ef'4
-        }
-    }
-    '''
-
-    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''
@@ -1036,3 +983,5 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_26():
         }
         '''
         )
+
+    assert inspect(tuplet).is_well_formed()
