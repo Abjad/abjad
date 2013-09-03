@@ -89,6 +89,10 @@ class NamedMelodicIntervalClass(
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _format_string(self):
+        return '%s%s' % (self.direction_symbol, abs(self.number))
+
+    @property
     def _full_name(self):
         strings = []
         if self.direction_word:

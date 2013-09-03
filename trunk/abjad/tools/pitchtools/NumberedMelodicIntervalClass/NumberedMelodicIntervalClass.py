@@ -68,6 +68,12 @@ class NumberedMelodicIntervalClass(
     def __int__(self):
         return self._number
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _format_string(self):
+        return '%s%s' % (self.direction_symbol, abs(self.number))
+
     ### PUBLIC METHODS ###
 
     @classmethod
@@ -91,3 +97,30 @@ class NumberedMelodicIntervalClass(
             pitch_carrier_1, pitch_carrier_2)
         # return melodic chromatic interval-class
         return cls(interval)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def direction_number(self):
+        if self.number < 1:
+            return -1
+        elif self.number == 1:
+            return 0
+        else:
+            return 1
+
+    @property
+    def direction_symbol(self):
+        if self.number < 1:
+            return '-'
+        else:
+            return '+'
+
+    @property
+    def direction_word(self):
+        if self.number < 1:
+            return 'descending'
+        elif self.number == 1:
+            return ''
+        else:
+            return 'ascending'
