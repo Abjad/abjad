@@ -30,6 +30,8 @@ class Set(TypedFrozenset):
                 if isinstance(tokens, type(self)):
                     item_class = tokens.item_class
                 elif len(tokens):
+                    if isinstance(tokens, (set, frozenset, TypedFrozenset)):
+                        tokens = tuple(tokens)
                     if isinstance(tokens[0], str):
                         item_class = self._named_item_class
                     elif isinstance(tokens[0], (int, float)):
@@ -78,3 +80,8 @@ class Set(TypedFrozenset):
     def _parent_item_class(self):
         raise NotImplementedError
 
+    ### PUBLIC METHODS ###
+
+    @abc.abstractmethod
+    def from_selection(cls, selection, item_class=None, name=None):
+        raise NotImplementedError

@@ -16,6 +16,7 @@ class Segment(TypedTuple):
     ### INITIALIZER ###
 
     def __init__(self, tokens=None, item_class=None, name=None):
+        from abjad.tools import datastructuretools
         from abjad.tools import pitchtools 
         if isinstance(tokens, str):
             tokens = tokens.split()
@@ -30,6 +31,9 @@ class Segment(TypedTuple):
                 if isinstance(tokens, type(self)):
                     item_class = tokens.item_class
                 elif len(tokens):
+                    if isinstance(tokens, (set, frozenset, 
+                        datastructuretools.TypedFrozenset)):
+                        tokens = tuple(tokens)
                     if isinstance(tokens[0], str):
                         item_class = self._named_item_class
                     elif isinstance(tokens[0], (int, float)):

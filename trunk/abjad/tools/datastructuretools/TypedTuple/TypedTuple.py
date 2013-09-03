@@ -49,6 +49,14 @@ class TypedTuple(TypedCollection):
     def __getslice__(self, start, stop):
         return self.new(tokens=self._collection[start:stop])
 
+    def __hash__(self):
+        return hash((
+            self.__class__, 
+            self._collection,
+            self.item_class,
+            self.name,
+            ))
+
     def __mul__(self, expr):
         tokens = self._collection * expr
         return self.new(tokens=tokens)

@@ -35,6 +35,14 @@ class TypedFrozenset(TypedCollection):
         expr = self.new(expr)
         return self._collection.__gt__(expr._collection)
 
+    def __hash__(self):
+        return hash((
+            self.__class__, 
+            self._collection,
+            self.item_class,
+            self.name,
+            ))
+
     def __le__(self, expr):
         expr = self.new(expr)
         return self._collection.__le__(expr._collection)
