@@ -5,7 +5,14 @@ from abjad.tools.pitchtools.Interval import Interval
 
 
 class NamedInterval(Interval):
-    '''Named interval base class.
+    '''Abjad model of a named interval:
+
+    ::
+
+        >>> pitchtools.NamedInterval('+M9')
+        NamedInterval('+M9')
+
+    Return named interval
     '''
 
     ### CLASS VARIABLES ##
@@ -17,29 +24,46 @@ class NamedInterval(Interval):
 
     ### INITIALIZER ###
 
-    @abc.abstractmethod
-    def __init__(self, quality_string, number):
-        if quality_string == 'diminished':
-            if abs(number) == 1:
-                raise IntervalError('diminished unison makes no sense.')
-        if quality_string in self._acceptable_quality_strings:
-            quality_string = quality_string
-        else:
-            raise ValueError("quality string '%s' must be in %s." % (
-                quality_string, str(self._acceptable_quality_strings)))
+    def __init__(self, *args):
+        from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation \
+            import melodic_diatonic_interval_abbreviation_regex
+        if len(args) == 1 and isinstance(args[0], type(self)):
+            quality_string = args[0].quality_string
+            number = args[0].number
+        elif len(args) == 1 and isinstance(args[0], str):
+            match = melodic_diatonic_interval_abbreviation_regex.match(args[0])
+            if match is None:
+                raise ValueError(
+                    '"%s" does not have the form of a mdi abbreviation.' % 
+                    args[0])
+            direction_string, quality_abbreviation, number_string = \
+                match.groups()
+            quality_string = self._quality_abbreviation_to_quality_string[
+                quality_abbreviation]
+            number = int(direction_string + number_string)
+        elif len(args) == 2:
+            quality_string, number = args
         self._quality_string = quality_string
-        if isinstance(number, int):
-            if int == 0:
-                raise ValueError
-            number = number
-        else:
-            raise ValueError('interval must be integer.')
         self._number = number
 
     ### SPECIAL METHODS ###
 
     def __abs__(self):
+        return type(self)(self.quality_string, abs(self.number))
+
+    def __add__(self, arg):
+        from abjad.tools import pitchtools
+        if not isinstance(arg, type(self)):
+            raise TypeError('%s must be melodic diatonic interval.' % arg)
+        dummy_pitch = pitchtools.NamedPitch(0)
+        new_pitch = dummy_pitch + self + arg
+        return pitchtools.NamedMelodicInterval.from_pitch_carriers(
+            dummy_pitch, new_pitch)
+
+    def __copy__(self, *args):
         return type(self)(self.quality_string, self.number)
+
+    __deepcopy__ = __copy__
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -51,17 +75,77 @@ class NamedInterval(Interval):
     def __float__(self):
         return float(self._number)
 
+    def __ge__(self, arg):
+        if not isinstance(arg, type(self)):
+            raise TypeError
+        if self.number == arg.number:
+            return self.semitones >= arg.semitones
+        return self.number >= arg.number
+
+    def __gt__(self, arg):
+        if not isinstance(arg, type(self)):
+            raise TypeError
+        if self.number == arg.number:
+            return self.semitones > arg.semitones
+        return self.number > arg.number
+
     def __int__(self):
         return self._number
+
+    def __le__(self, arg):
+        if not isinstance(arg, type(self)):
+            raise TypeError
+        if self.number == arg.number:
+            return self.semitones <= arg.semitones
+        return self.number <= arg.number
+
+    def __lt__(self, arg):
+        if not isinstance(arg, type(self)):
+            raise TypeError
+        if self.number == arg.number:
+            return self.semitones < arg.semitones
+        return self.number < arg.number
+
+    def __mul__(self, arg):
+        from abjad.tools import pitchtools
+        if not isinstance(arg, (int, long)):
+            raise TypeError('%s must be int.' % arg)
+        dummy_pitch = pitchtools.NamedPitch(0)
+        for i in range(abs(arg)):
+            dummy_pitch += self
+        result = pitchtools.NamedMelodicInterval.from_pitch_carriers(
+            pitchtools.NamedPitch(0), dummy_pitch)
+        if arg < 0:
+            return -result
+        return result
 
     def __ne__(self, arg):
         return not self == arg
 
+    def __neg__(self):
+        return type(self)(self.quality_string, -self.number)
+
     def __repr__(self):
-        return "%s('%s')" % (self._class_name, self._format_string)
+        return "%s('%s')" % (self._class_name, str(self))
+
+    def __rmul__(self, arg):
+        return self * arg
 
     def __str__(self):
-        return self._format_string
+        return '%s%s%s' % (
+            self._direction_symbol, 
+            self._quality_abbreviation, 
+            abs(self.number),
+            )
+
+    def __sub__(self, arg):
+        from abjad.tools import pitchtools
+        if not isinstance(arg, type(self)):
+            raise TypeError('%s must be melodic diatonic interval.' % arg)
+        dummy_pitch = pitchtools.NamedPitch(0)
+        new_pitch = dummy_pitch + self - arg
+        return pitchtools.NamedMelodicInterval.from_pitch_carriers(
+            dummy_pitch, new_pitch)
 
     ### PRIVATE PROPERTIES ###
 
@@ -127,6 +211,42 @@ class NamedInterval(Interval):
             'augmented': 'aug', 'diminished': 'dim'}
         return _quality_string_to_quality_abbreviation[self.quality_string]
 
+    ### PUBLIC METHODS ###
+
+    @classmethod
+    def from_pitch_carriers(cls, pitch_carrier_1, pitch_carrier_2):
+        '''Calculate melodic diatonic interval from `pitch_carrier_1` to
+        `pitch_carrier_2`:
+
+        ::
+
+            >>> pitchtools.NamedInterval.from_pitch_carriers(
+            ...     pitchtools.NamedPitch(-2), 
+            ...     pitchtools.NamedPitch(12),
+            ...     )
+            NamedInterval('+M9')
+
+        Return melodic diatonic interval.
+        '''
+        from abjad.tools import pitchtools
+        pitch_1 = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier_1)
+        pitch_2 = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier_2)
+        degree_1 = pitch_1._diatonic_pitch_number
+        degree_2 = pitch_2._diatonic_pitch_number
+        #degree_1 = abs(pitch_1.numbered_diatonic_pitch)
+        #degree_2 = abs(pitch_2.numbered_diatonic_pitch)
+        diatonic_interval_number = abs(degree_1 - degree_2) + 1
+        chromatic_interval_number = abs(abs(pitch_1.numbered_chromatic_pitch) -
+            abs(pitch_2.numbered_chromatic_pitch))
+        absolute_diatonic_interval = \
+            pitchtools.spell_chromatic_interval_number(
+            diatonic_interval_number, chromatic_interval_number)
+        if pitch_2 < pitch_1:
+            diatonic_interval = -absolute_diatonic_interval
+        else:
+            diatonic_interval = absolute_diatonic_interval
+        return cls(diatonic_interval)
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -135,6 +255,22 @@ class NamedInterval(Interval):
         quality_string, number = self._quality_string, self.number
         return pitchtools.NamedInversionEquivalentIntervalClass(
             quality_string, number)
+
+    @property
+    def direction_number(self):
+        if self.quality_string == 'perfect' and abs(self.number) == 1:
+            return 0
+        else:
+            return mathtools.sign(self.number)
+
+    @property
+    def direction_string(self):
+        if self.direction_number == -1:
+            return 'descending'
+        elif self.direction_number == 0:
+            return None
+        elif self.direction_number == 1:
+            return 'ascending'
 
     @property
     def interval_class(self):
@@ -154,13 +290,20 @@ class NamedInterval(Interval):
 
     @property
     def semitones(self):
+        from abjad.tools import pitchtools
         result = 0
         interval_class_number_to_semitones = {
-            1: 0,  2: 1,  3: 3, 4: 5, 5: 7, 6: 8, 7: 10, 8:0}
-        try:
-            interval_class_number = abs(self.interval_class.number)
-        except AttributeError:
-            interval_class_number = self.number
+            1: 0,  
+            2: 1,  
+            3: 3, 
+            4: 5, 
+            5: 7, 
+            6: 8, 
+            7: 10, 
+            8: 0,
+            }
+        interval_class_number = abs(
+            pitchtools.NamedMelodicIntervalClass(self).number)
         result += interval_class_number_to_semitones[interval_class_number]
         result += (abs(self.number) - 1) / 7 * 12
         quality_string_to_semitones = {
@@ -177,4 +320,9 @@ class NamedInterval(Interval):
 
     @property
     def staff_spaces(self):
-        return self.number - 1
+        if self.direction_string == 'descending':
+            return self.number + 1
+        elif self.direction_string is None:
+            return 0
+        elif self.direction_string == 'ascending':
+            return self.number - 1
