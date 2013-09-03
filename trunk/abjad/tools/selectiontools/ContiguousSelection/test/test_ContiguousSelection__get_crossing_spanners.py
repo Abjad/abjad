@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_spannertools_get_spanners_that_cross_components_01():
+def test_ContiguousSelection__get_crossing_spanners_01():
     r'''Return unordered set of spanners crossing
     over the begin- or end-bounds of logical-voice-contiguous 
     components.
@@ -15,36 +15,39 @@ def test_spannertools_get_spanners_that_cross_components_01():
     slur = spannertools.SlurSpanner(voice[1][:])
     trill = spannertools.TrillSpanner(voice.select_leaves())
 
-    r'''
-    \new Voice {
-        {
-            c'8 [ \startTrillSpan
-            d'8 ]
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [ \startTrillSpan
+                d'8 ]
+            }
+            {
+                e'8 (
+                f'8 ) \stopTrillSpan
+            }
         }
-        {
-            e'8 (
-            f'8 ) \stopTrillSpan
-        }
-    }
-    '''
+        '''
+        )
 
-    spanners = spannertools.get_spanners_that_cross_components([voice])
+    spanners = select(voice)._get_crossing_spanners()
     assert spanners == set([])
 
-    spanners = spannertools.get_spanners_that_cross_components(voice.select_leaves())
+    spanners = voice.select_leaves()._get_crossing_spanners()
     assert spanners == set([])
 
-    spanners = spannertools.get_spanners_that_cross_components(voice[0:1])
+    spanners = voice[:1]._get_crossing_spanners()
     assert len(spanners) == 1
     assert trill in spanners
 
-    spanners = spannertools.get_spanners_that_cross_components(voice.select_leaves()[0:1])
+    spanners = voice.select_leaves()[:1]._get_crossing_spanners()
     assert len(spanners) == 2
     assert beam in spanners
     assert trill in spanners
 
 
-def test_spannertools_get_spanners_that_cross_components_02():
+def test_ContiguousSelection__get_crossing_spanners_02():
     r'''Helper gets spanners that cross in from above.
     '''
 
@@ -52,21 +55,28 @@ def test_spannertools_get_spanners_that_cross_components_02():
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
     beam = spannertools.BeamSpanner(voice[1:2] + voice[2][0:1])
 
-    r'''
-    \new Voice {
-            \time 2/8
-            c'8
-            d'8
-            \time 2/8
-            e'8 [
-            f'8
-            \time 2/8
-            g'8 ]
-            a'8
-    }
-    '''
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                \time 2/8
+                c'8
+                d'8
+            }
+            {
+                e'8 [
+                f'8
+            }
+            {
+                g'8 ]
+                a'8
+            }
+        }
+        '''
+        )
 
-    spanners = spannertools.get_spanners_that_cross_components(voice.select_leaves())
+    spanners = voice.select_leaves()._get_crossing_spanners()
 
     assert len(spanners) == 1
     assert beam in spanners
