@@ -45,4 +45,4 @@ def fuse_leaves(leaves):
             index = parent.index(leaf)
             del(parent[index])
             
-    return leaftools.set_leaf_duration(leaves[0], total_preprolated)
+    return leaves[0]._set_duration(total_preprolated)

@@ -111,7 +111,7 @@ class FixedDurationTuplet(Tuplet):
             for component in self[:]:
                 if isinstance(component, leaftools.Leaf):
                     new_duration = multiplier * component.written_duration
-                    leaftools.set_leaf_duration(component, new_duration)
+                    component._set_duration(new_duration)
         self._fix()
 
     ### PUBLIC PROPERTIES ###

@@ -204,8 +204,7 @@ class Tuplet(Container):
             if isinstance(component, leaftools.Leaf):
                 old_written_duration = component.written_duration
                 new_written_duration = leaf_multiplier * old_written_duration
-                leaftools.set_leaf_duration(
-                    component, new_written_duration)
+                component._set_duration(new_written_duration)
 
     def _format_after_slot(self, format_contributions):
         r'''Tuple of format contributions to appear 
@@ -301,7 +300,7 @@ class Tuplet(Container):
         for component in self[:]:
             if isinstance(component, leaftools.Leaf):
                 new_duration = multiplier * component.written_duration
-                leaftools.set_leaf_duration(component, new_duration)
+                component._set_duration(new_duration)
         self._fix()
 
     ### PUBLIC PROPERTIES ###

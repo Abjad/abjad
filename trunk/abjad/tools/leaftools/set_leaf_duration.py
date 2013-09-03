@@ -124,54 +124,5 @@ def set_leaf_duration(leaf, new_duration):
 
     Return list of `leaf` and leaves newly tied to `leaf`.
     '''
-    from abjad.tools import leaftools
-    from abjad.tools import notetools
-    from abjad.tools import spannertools
-    from abjad.tools import tuplettools
 
-    assert isinstance(leaf, leaftools.Leaf)
-    new_duration = durationtools.Duration(new_duration)
-
-    # change LilyPond multiplier if leaf already has LilyPond multiplier
-    if leaf.lilypond_duration_multiplier is not None:
-        leaf.lilypond_duration_multiplier = \
-            new_duration / leaf.written_duration
-        return [leaf]
-
-    # change written duration if new duration is assignable
-    try:
-        leaf.written_duration = new_duration
-        return [leaf]
-    except AssignabilityError:
-        pass
-
-    # make new notes or tuplets if new duration is nonassignable
-    components = notetools.make_notes(0, new_duration)
-    if isinstance(components[0], leaftools.Leaf):
-        tied_leaf_count = len(components) - 1
-        tied_leaves = tied_leaf_count * leaf
-        all_leaves = [leaf] + tied_leaves
-        for x, component in zip(all_leaves, components):
-            x.written_duration = component.written_duration
-        leaf._splice(tied_leaves, grow_spanners=True)
-        parentage = leaf._get_parentage()
-        if not parentage._get_spanners(spannertools.TieSpanner):
-            spannertools.TieSpanner(all_leaves)
-        return all_leaves
-    else:
-        assert isinstance(components[0], tuplettools.Tuplet)
-        tuplet = components[0]
-        components = tuplet[:]
-        tied_leaf_count = len(components) - 1
-        tied_leaves = tied_leaf_count * leaf
-        all_leaves = [leaf] + tied_leaves
-        for x, component in zip(all_leaves, components):
-            x.written_duration = component.written_duration
-        leaf._splice(tied_leaves, grow_spanners=True)
-        if not leaf._get_spanners(spannertools.TieSpanner):
-            spannertools.TieSpanner(all_leaves)
-        tuplet_multiplier = tuplet.multiplier
-        tuplettools.Tuplet(tuplet_multiplier, all_leaves)
-        return [tuplet]
-
-    #return all_leaves
+    return leaf._set_duration(new_duration)

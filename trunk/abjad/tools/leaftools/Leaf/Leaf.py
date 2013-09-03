@@ -359,6 +359,52 @@ class Leaf(Component):
             self._format_after_slot(format_contributions))
         return report
 
+    def _set_duration(self, new_duration):
+        from abjad.tools import leaftools
+        from abjad.tools import notetools
+        from abjad.tools import spannertools
+        from abjad.tools import tuplettools
+        new_duration = durationtools.Duration(new_duration)
+        # change LilyPond multiplier if leaf already has LilyPond multiplier
+        if self.lilypond_duration_multiplier is not None:
+            multiplier = new_duration / self.written_duration
+            self.lilypond_duration_multiplier = multiplier
+            return [self]
+        # change written duration if new duration is assignable
+        try:
+            self.written_duration = new_duration
+            return [self]
+        except AssignabilityError:
+            pass
+        # make new notes or tuplets if new duration is nonassignable
+        components = notetools.make_notes(0, new_duration)
+        if isinstance(components[0], leaftools.Leaf):
+            tied_leaf_count = len(components) - 1
+            tied_leaves = tied_leaf_count * self
+            all_leaves = [self] + tied_leaves
+            for x, component in zip(all_leaves, components):
+                x.written_duration = component.written_duration
+            self._splice(tied_leaves, grow_spanners=True)
+            parentage = self._get_parentage()
+            if not parentage._get_spanners(spannertools.TieSpanner):
+                spannertools.TieSpanner(all_leaves)
+            return all_leaves
+        else:
+            assert isinstance(components[0], tuplettools.Tuplet)
+            tuplet = components[0]
+            components = tuplet[:]
+            tied_leaf_count = len(components) - 1
+            tied_leaves = tied_leaf_count * self
+            all_leaves = [self] + tied_leaves
+            for x, component in zip(all_leaves, components):
+                x.written_duration = component.written_duration
+            self._splice(tied_leaves, grow_spanners=True)
+            if not self._get_spanners(spannertools.TieSpanner):
+                spannertools.TieSpanner(all_leaves)
+            tuplet_multiplier = tuplet.multiplier
+            tuplettools.Tuplet(tuplet_multiplier, all_leaves)
+            return [tuplet]
+
     def _split(
         self,
         durations,
@@ -391,8 +437,7 @@ class Leaf(Component):
         for duration in durations:
             new_leaf = copy.copy(self)
             preprolated_duration = duration / leaf_prolation
-            shard = leaftools.set_leaf_duration(
-                new_leaf, preprolated_duration)
+            shard = new_leaf._set_duration(preprolated_duration)
             shard = [x._get_parentage().root for x in shard]
             result.append(shard)
         flattened_result = sequencetools.flatten_sequence(result)
@@ -491,12 +536,10 @@ class Leaf(Component):
         new_leaf._detach_grace_containers(kind='grace')
         for mark in new_leaf._get_marks():
             mark.detach()
-        left_leaf_list = \
-            leaftools.set_leaf_duration(self, preprolated_duration)
+        left_leaf_list = self._set_duration(preprolated_duration)
         right_preprolated_duration = \
             leaf_multiplied_duration - preprolated_duration
-        right_leaf_list = leaftools.set_leaf_duration(
-            new_leaf, right_preprolated_duration)
+        right_leaf_list = new_leaf._set_duration(right_preprolated_duration)
         leaf_left_of_split = left_leaf_list[-1]
         leaf_right_of_split = right_leaf_list[0]
         leaves_around_split = (leaf_left_of_split, leaf_right_of_split)
