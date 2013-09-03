@@ -24,7 +24,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
 
     def __call__(self, expr, offset=0):
         leaves = list(iterationtools.iterate_leaves_in_expr(expr))
-        leaves = leaftools.remove_outer_rests_from_sequence(leaves)
+        leaves = self._remove_outer_rests_from_sequence(leaves)
         #group = leaves
         group = selectiontools.SliceSelection(leaves)
         is_short_group = False

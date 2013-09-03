@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import abc
 from abjad.tools import abctools
+from abjad.tools import resttools
 
 
 class Handler(abctools.AbjadObject):
@@ -31,6 +32,22 @@ class Handler(abctools.AbjadObject):
     @abc.abstractproperty
     def _tools_package_name(self):
         pass
+
+    ### PRIVATE METHODS ###
+
+    @staticmethod
+    def _remove_outer_rests_from_sequence(sequence):
+        first_keep_index = None
+        for i, element in enumerate(sequence):
+            if not isinstance(element, resttools.Rest):
+                first_keep_index = i
+                break
+        last_keep_index = None
+        for i, element in enumerate(reversed(sequence)):
+            if not isinstance(element, resttools.Rest):
+                last_keep_index = len(sequence) - i
+                break
+        return sequence[first_keep_index:last_keep_index]
 
     ### PUBLIC PROPERTIES ###
 
