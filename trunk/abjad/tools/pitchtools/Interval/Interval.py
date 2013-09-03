@@ -20,8 +20,14 @@ class Interval(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        raise NotImplementedError(
-            'abs needs to be implemented on %s.' % type(self))
+        return type(self)(abs(self.number))
+
+    def __eq__(self, arg):
+        if isinstance(arg, type(self)):
+            if arg.number == self.number:
+                if arg.direction_number == self.direction_number:
+                    return True
+        return False
 
     def __float__(self):
         raise NotImplementedError(
@@ -34,11 +40,17 @@ class Interval(AbjadObject):
         raise NotImplementedError(
             'int needs to be implemented on %s.' % type(self))
 
+    def __ne__(self, arg):
+        return not self == arg
+
     def __repr__(self):
         return '%s(%s)' % (self._class_name, self._format_string)
 
     def __str__(self):
         return str(self.number)
+
+    def __neg__(self):
+        pass
 
     ### PRIVATE METHODS ###
 
@@ -52,6 +64,17 @@ class Interval(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _direction_symbol(self):
+        if self.direction_number == -1:
+            return '-'
+        elif self.direction_number == 0:
+            return ''
+        elif self.direction_number == 1:
+            return '+'
+        else:
+            raise ValueError
+
+    @property
     def _format_string(self):
         return str(self.number)
 
@@ -60,6 +83,14 @@ class Interval(AbjadObject):
     @property
     def cents(self):
         return 100 * self.semitones
+
+    @property
+    def direction_number(self):
+        return self._direction_number
+
+    @property
+    def direction_string(self):
+        return self._direction_string
 
     # TODO: remove
     @property
