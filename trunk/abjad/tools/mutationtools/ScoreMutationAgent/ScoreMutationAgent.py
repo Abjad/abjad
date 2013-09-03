@@ -11,12 +11,11 @@ class ScoreMutationAgent(object):
         ::
 
             >>> staff = Staff("c'4 e'4 d'4 f'4")
-            >>> leaves = staff[-2:]
             >>> show(staff) # doctest: +SKIP
 
         ::
 
-            >>> mutate(leaves)
+            >>> mutate(staff[2:])
             ScoreMutationAgent(SliceSelection(Note("d'4"), Note("f'4")))
 
     '''
@@ -30,6 +29,18 @@ class ScoreMutationAgent(object):
 
     def __repr__(self):
         '''Interpreter representation of score mutation agent.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'4 e'4 d'4 f'4")
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> mutate(staff[2:])
+                ScoreMutationAgent(SliceSelection(Note("d'4"), Note("f'4")))
 
         Returns string.
         '''
@@ -57,43 +68,6 @@ class ScoreMutationAgent(object):
             if len(result) == 1:
                 result = result[0]
         return result
-
-    def divide(self, pitch=None):
-        r'''Divides leaf at `pitch`.
-
-        ..  container:: example
-
-            **Example.** Divide chord at ``Eb4``:
-
-                >>> chord = Chord("<d' ef' e'>4")
-                >>> show(chord) # doctest: +SKIP
-
-            ::
-
-                >>> pitch = pitchtools.NamedPitch('Eb4')
-                >>> upper, lower = mutate(chord).divide(pitch=pitch)
-                >>> staff = Staff([upper, lower])
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff {
-                    <ef' e'>4
-                    d'4
-                }
-
-        Set `pitch` to pitch, pitch name, pitch number or none.
-
-        Sets `pitch` equal to ``B3`` when `pitch` is none.
-
-        Defined against leaves only; not defined against containers.
-
-        Returns pair of newly created leaves.
-        '''
-        return self._client._divide(
-            pitch=pitch,
-            )
 
     def extract(self, scale_contents=False):
         r'''Extracts mutation client from score.
