@@ -43,23 +43,23 @@ class IntervalClassSet(Set):
             >>> for interval_class in interval_classes:
             ...     interval_class
             ...
-            NamedMelodicIntervalClass('-m3')
-            NamedMelodicIntervalClass('+m7')
             NamedMelodicIntervalClass('-M3')
+            NamedMelodicIntervalClass('+m7')
+            NamedMelodicIntervalClass('+P5')
+            NamedMelodicIntervalClass('+P4')
             NamedMelodicIntervalClass('+m3')
             NamedMelodicIntervalClass('+M7')
             NamedMelodicIntervalClass('-M6')
             NamedMelodicIntervalClass('-aug4')
-            NamedMelodicIntervalClass('+m2')
             NamedMelodicIntervalClass('+M6')
-            NamedMelodicIntervalClass('+P4')
+            NamedMelodicIntervalClass('+P8')
             NamedMelodicIntervalClass('-P5')
-            NamedMelodicIntervalClass('+P5')
+            NamedMelodicIntervalClass('+M2')
             NamedMelodicIntervalClass('+M3')
             NamedMelodicIntervalClass('-M2')
             NamedMelodicIntervalClass('+aug4')
-            NamedMelodicIntervalClass('+M2')
-            NamedMelodicIntervalClass('+P8')
+            NamedMelodicIntervalClass('+m2')
+            NamedMelodicIntervalClass('-m3')
         
         Return interval set.
         '''

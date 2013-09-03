@@ -8,7 +8,7 @@ def spell_chromatic_interval_number(diatonic_interval_number, chromatic_interval
     ::
 
         >>> pitchtools.spell_chromatic_interval_number(2, 1)
-        NamedMelodicInterval('+m2')
+        NamedInterval('+m2')
 
     Return melodic diatonic interval.
     '''
@@ -28,7 +28,7 @@ def spell_chromatic_interval_number(diatonic_interval_number, chromatic_interval
             quality_string = 'augmented'
         if not direction_number == 0:
             diatonic_interval_number *= direction_number
-        diatonic_interval = pitchtools.NamedMelodicInterval(quality_string, diatonic_interval_number)
+        diatonic_interval = pitchtools.NamedInterval(quality_string, diatonic_interval_number)
         return diatonic_interval
 
     diatonic_interval_class_number = diatonic_interval_number % 7
@@ -111,6 +111,6 @@ def spell_chromatic_interval_number(diatonic_interval_number, chromatic_interval
     if not direction_number == 0:
         diatonic_interval_number *= direction_number
 
-    diatonic_interval = pitchtools.NamedMelodicInterval(quality_string, diatonic_interval_number)
+    diatonic_interval = pitchtools.NamedInterval(quality_string, diatonic_interval_number)
 
     return diatonic_interval

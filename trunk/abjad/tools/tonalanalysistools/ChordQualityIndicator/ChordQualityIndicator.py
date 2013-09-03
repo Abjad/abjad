@@ -3,7 +3,6 @@ from abjad.tools import pitchtools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from abjad.tools.pitchtools import IntervalSegment
-from abjad.tools.pitchtools import NamedMelodicInterval
 
 
 class ChordQualityIndicator(IntervalSegment):
@@ -66,7 +65,7 @@ class ChordQualityIndicator(IntervalSegment):
         IntervalSegment.__init__(
             self,
             tokens=intervals,
-            item_class=NamedMelodicInterval,
+            item_class=pitchtools.NamedInterval,
             )
         self._quality_string = quality_string
         self._rotation = rotation
@@ -137,109 +136,109 @@ class ChordQualityIndicator(IntervalSegment):
     def _init_augmented_sixth(quality_string):
         if quality_string == 'French':
             intervals = [
-                NamedMelodicInterval('major', 3),
-                NamedMelodicInterval('major', 2), 
-                NamedMelodicInterval('major', 3), 
+                pitchtools.NamedInterval('major', 3),
+                pitchtools.NamedInterval('major', 2), 
+                pitchtools.NamedInterval('major', 3), 
                 ]
         elif quality_string == 'German':
             intervals = [
-                NamedMelodicInterval('major', 3), 
-                NamedMelodicInterval('minor', 3), 
-                NamedMelodicInterval('augmented', 2), 
+                pitchtools.NamedInterval('major', 3), 
+                pitchtools.NamedInterval('minor', 3), 
+                pitchtools.NamedInterval('augmented', 2), 
                 ]
         elif quality_string == 'Italian':
             intervals = [
-                NamedMelodicInterval('major', 3), 
-                NamedMelodicInterval('perfect', 1), 
-                NamedMelodicInterval('augmented', 4), 
+                pitchtools.NamedInterval('major', 3), 
+                pitchtools.NamedInterval('perfect', 1), 
+                pitchtools.NamedInterval('augmented', 4), 
                 ]
         elif quality_string == 'Swiss':
             intervals = [
-                NamedMelodicInterval('major', 3), 
-                NamedMelodicInterval('augmented', 2), 
-                NamedMelodicInterval('minor', 3), 
+                pitchtools.NamedInterval('major', 3), 
+                pitchtools.NamedInterval('augmented', 2), 
+                pitchtools.NamedInterval('minor', 3), 
                 ]
         else:
            raise ValueError('unaccpetable quality string.')
-        intervals.insert(0, NamedMelodicInterval('perfect', 1))
+        intervals.insert(0, pitchtools.NamedInterval('perfect', 1))
         return intervals
         
     @staticmethod
     def _init_ninth(quality_string):
         if quality_string == 'dominant':
             intervals = [
-                NamedMelodicInterval('major', 3),
-                NamedMelodicInterval('perfect', 5),
-                NamedMelodicInterval('minor', 7),
-                NamedMelodicInterval('major', 9),
+                pitchtools.NamedInterval('major', 3),
+                pitchtools.NamedInterval('perfect', 5),
+                pitchtools.NamedInterval('minor', 7),
+                pitchtools.NamedInterval('major', 9),
                 ]
         else:
             raise ValueError('unacceptable quality string.')
-        intervals.insert(0, NamedMelodicInterval('perfect', 1))
+        intervals.insert(0, pitchtools.NamedInterval('perfect', 1))
         return intervals
 
     @staticmethod
     def _init_seventh(quality_string):
         if quality_string == 'dominant':
             intervals = [
-                NamedMelodicInterval('major', 3),
-                NamedMelodicInterval('perfect', 5),
-                NamedMelodicInterval('minor', 7),
+                pitchtools.NamedInterval('major', 3),
+                pitchtools.NamedInterval('perfect', 5),
+                pitchtools.NamedInterval('minor', 7),
                 ]
         elif quality_string == 'major':
             intervals = [
-                NamedMelodicInterval('major', 3),
-                NamedMelodicInterval('perfect', 5),
-                NamedMelodicInterval('major', 7),
+                pitchtools.NamedInterval('major', 3),
+                pitchtools.NamedInterval('perfect', 5),
+                pitchtools.NamedInterval('major', 7),
                 ]
         elif quality_string == 'minor':
             intervals = [
-                NamedMelodicInterval('minor', 3),
-                NamedMelodicInterval('perfect', 5),
-                NamedMelodicInterval('minor', 7),
+                pitchtools.NamedInterval('minor', 3),
+                pitchtools.NamedInterval('perfect', 5),
+                pitchtools.NamedInterval('minor', 7),
                 ]
         elif quality_string in ('diminished', 'fully diminished'):
             intervals = [
-                NamedMelodicInterval('minor', 3),
-                NamedMelodicInterval('diminished', 5),
-                NamedMelodicInterval('diminished', 7),
+                pitchtools.NamedInterval('minor', 3),
+                pitchtools.NamedInterval('diminished', 5),
+                pitchtools.NamedInterval('diminished', 7),
                 ]
         elif quality_string == 'half diminished':
             intervals = [
-                NamedMelodicInterval('minor', 3),
-                NamedMelodicInterval('perfect', 5),
-                NamedMelodicInterval('diminished', 7),
+                pitchtools.NamedInterval('minor', 3),
+                pitchtools.NamedInterval('perfect', 5),
+                pitchtools.NamedInterval('diminished', 7),
                 ]
         else:
            raise ValueError('unaccpetable quality string.')
-        intervals.insert(0, NamedMelodicInterval('perfect', 1))
+        intervals.insert(0, pitchtools.NamedInterval('perfect', 1))
         return intervals
 
     @staticmethod
     def _init_triad(quality_string):
         if quality_string == 'major':
             intervals = [
-                NamedMelodicInterval('major', 3),
-                NamedMelodicInterval('perfect', 5),
+                pitchtools.NamedInterval('major', 3),
+                pitchtools.NamedInterval('perfect', 5),
                 ]
         elif quality_string == 'minor':
             intervals = [
-                NamedMelodicInterval('minor', 3),
-                NamedMelodicInterval('perfect', 5),
+                pitchtools.NamedInterval('minor', 3),
+                pitchtools.NamedInterval('perfect', 5),
                 ]
         elif quality_string == 'diminished':
             intervals = [
-                NamedMelodicInterval('minor', 3),
-                NamedMelodicInterval('diminished', 5),
+                pitchtools.NamedInterval('minor', 3),
+                pitchtools.NamedInterval('diminished', 5),
                 ]
         elif quality_string == 'augmented':
             intervals = [
-                NamedMelodicInterval('major', 3),
-                NamedMelodicInterval('augmented', 5),
+                pitchtools.NamedInterval('major', 3),
+                pitchtools.NamedInterval('augmented', 5),
                 ]
         else:
             raise ValueError('unacceptable quality string.')
-        intervals.insert(0, NamedMelodicInterval('perfect', 1))
+        intervals.insert(0, pitchtools.NamedInterval('perfect', 1))
         return intervals
 
     @staticmethod

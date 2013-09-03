@@ -18,19 +18,19 @@ def test_PitchClassSegment_transpose_01():
         pitchtools.NamedPitchClass('gf'),
         pitchtools.NamedPitchClass('af'),])
 
-    minor_second_ascending = pitchtools.NamedMelodicInterval('minor', 2)
+    minor_second_ascending = pitchtools.NamedInterval('minor', 2)
     assert pitch_class_segment_1.transpose(minor_second_ascending) == \
         pitch_class_segment_2
 
-    major_seventh_descending = pitchtools.NamedMelodicInterval('major', -7)
+    major_seventh_descending = pitchtools.NamedInterval('major', -7)
     assert pitch_class_segment_1.transpose(major_seventh_descending) == \
         pitch_class_segment_2
 
-    minor_second_descending = pitchtools.NamedMelodicInterval('minor', -2)
+    minor_second_descending = pitchtools.NamedInterval('minor', -2)
     assert pitch_class_segment_2.transpose(minor_second_descending) == \
         pitch_class_segment_1
 
-    major_seventh_ascending = pitchtools.NamedMelodicInterval('major', 7)
+    major_seventh_ascending = pitchtools.NamedInterval('major', 7)
     assert pitch_class_segment_2.transpose(major_seventh_ascending) == \
         pitch_class_segment_1
 

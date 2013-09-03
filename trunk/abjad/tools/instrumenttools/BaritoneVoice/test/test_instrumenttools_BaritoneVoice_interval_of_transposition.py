@@ -6,4 +6,4 @@ def test_instrumenttools_BaritoneVoice_interval_of_transposition_01():
 
     voice = instrumenttools.BaritoneVoice()
 
-    assert voice.interval_of_transposition == pitchtools.NamedMelodicInterval('P1')
+    assert voice.interval_of_transposition == pitchtools.NamedInterval('P1')

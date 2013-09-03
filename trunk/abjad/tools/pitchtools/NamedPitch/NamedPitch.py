@@ -197,7 +197,7 @@ class NamedPitch(Pitch):
     def __sub__(self, arg):
         from abjad.tools import pitchtools
         if isinstance(arg, type(self)):
-            return pitchtools.NamedMelodicInterval.from_pitch_carriers(
+            return pitchtools.NamedInterval.from_pitch_carriers(
                 self, arg)
         else:
             interval = arg

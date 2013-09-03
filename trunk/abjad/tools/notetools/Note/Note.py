@@ -415,7 +415,7 @@ class Note(Leaf):
         from abjad.tools import pitchtools
         if melodic_diatonic_interval is None:
             melodic_diatonic_interval = \
-                pitchtools.NamedMelodicInterval('perfect', 4)
+                pitchtools.NamedInterval('perfect', 4)
         chord = chordtools.Chord(self)
         chord.append(
             chord[0].written_pitch.numbered_chromatic_pitch._chromatic_pitch_number)

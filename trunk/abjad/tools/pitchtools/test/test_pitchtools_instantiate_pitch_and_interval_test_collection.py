@@ -11,7 +11,7 @@ def test_pitchtools_instantiate_pitch_and_interval_test_collection_01():
         pitchtools.NamedInversionEquivalentIntervalClass('M2'),
         pitchtools.NumberedMelodicInterval(+1),
         pitchtools.NumberedMelodicIntervalClass(+1),
-        pitchtools.NamedMelodicInterval('+M2'),
+        pitchtools.NamedInterval('+M2'),
         pitchtools.NamedMelodicIntervalClass('+M2'),
         pitchtools.NamedPitch('c'),
         pitchtools.NamedPitchClass('c'),

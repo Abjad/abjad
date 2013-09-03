@@ -2,30 +2,30 @@
 from abjad import *
 
 
-def test_NamedMelodicInterval___init___01():
+def test_NamedInterval___init___01():
     r'''Init melodic diatonic interval from abbreviation.
     '''
 
-    mdi = pitchtools.NamedMelodicInterval('+M3')
+    mdi = pitchtools.NamedInterval('+M3')
     assert mdi.quality_string == 'major'
     assert mdi.number == 3
 
 
-def test_NamedMelodicInterval___init___02():
+def test_NamedInterval___init___02():
     r'''Can init from quality string and interval number.
     '''
 
-    mdi = pitchtools.NamedMelodicInterval('major', 3)
+    mdi = pitchtools.NamedInterval('major', 3)
     assert mdi.quality_string == 'major'
     assert mdi.number == 3
 
 
-def test_NamedMelodicInterval___init___03():
+def test_NamedInterval___init___03():
     r'''Can init from other melodic diatonic interval instance.
     '''
 
-    mdi = pitchtools.NamedMelodicInterval('major', 3)
-    new = pitchtools.NamedMelodicInterval(mdi)
+    mdi = pitchtools.NamedInterval('major', 3)
+    new = pitchtools.NamedInterval(mdi)
 
     assert mdi.quality_string == 'major'
     assert mdi.number == 3

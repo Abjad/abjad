@@ -57,7 +57,7 @@ class NamedInterval(Interval):
             raise TypeError('%s must be melodic diatonic interval.' % arg)
         dummy_pitch = pitchtools.NamedPitch(0)
         new_pitch = dummy_pitch + self + arg
-        return pitchtools.NamedMelodicInterval.from_pitch_carriers(
+        return pitchtools.NamedInterval.from_pitch_carriers(
             dummy_pitch, new_pitch)
 
     def __copy__(self, *args):
@@ -113,7 +113,7 @@ class NamedInterval(Interval):
         dummy_pitch = pitchtools.NamedPitch(0)
         for i in range(abs(arg)):
             dummy_pitch += self
-        result = pitchtools.NamedMelodicInterval.from_pitch_carriers(
+        result = pitchtools.NamedInterval.from_pitch_carriers(
             pitchtools.NamedPitch(0), dummy_pitch)
         if arg < 0:
             return -result
@@ -144,7 +144,7 @@ class NamedInterval(Interval):
             raise TypeError('%s must be melodic diatonic interval.' % arg)
         dummy_pitch = pitchtools.NamedPitch(0)
         new_pitch = dummy_pitch + self - arg
-        return pitchtools.NamedMelodicInterval.from_pitch_carriers(
+        return pitchtools.NamedInterval.from_pitch_carriers(
             dummy_pitch, new_pitch)
 
     ### PRIVATE PROPERTIES ###

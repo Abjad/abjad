@@ -6,7 +6,7 @@ def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_01():
 
     pitch = pitchtools.NamedPitch(12)
 
-    diatonic_interval = pitchtools.NamedMelodicInterval('minor', 2)
+    diatonic_interval = pitchtools.NamedInterval('minor', 2)
     transposed = pitchtools.transpose_pitch_carrier_by_melodic_interval(pitch, diatonic_interval)
 
     assert transposed == pitchtools.NamedPitch('df', 5)
@@ -58,7 +58,7 @@ def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_05():
 def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_06():
 
     pitch = pitchtools.NamedPitch(12)
-    mdi = pitchtools.NamedMelodicInterval('minor', -3)
+    mdi = pitchtools.NamedInterval('minor', -3)
 
     transposed_pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(pitch, mdi)
     assert transposed_pitch == pitchtools.NamedPitch('a', 4)

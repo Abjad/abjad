@@ -32,6 +32,6 @@ def test_NumberedMelodicInterval___init___04():
     r'''Init from melodic diatonic interval.
     '''
 
-    diatonic_interval = pitchtools.NamedMelodicInterval('perfect', 4)
+    diatonic_interval = pitchtools.NamedInterval('perfect', 4)
     i = pitchtools.NumberedMelodicInterval(diatonic_interval)
     assert i.number == 5

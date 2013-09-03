@@ -59,7 +59,7 @@ def transpose_pitch_carrier_by_melodic_interval(
 
     def _transpose_pitch_carrier_by_melodic_diatonic_interval(
         pitch_carrier, melodic_diatonic_interval):
-        mdi = pitchtools.NamedMelodicInterval(melodic_diatonic_interval)
+        mdi = pitchtools.NamedInterval(melodic_diatonic_interval)
         if isinstance(pitch_carrier, pitchtools.Pitch):
             return _transpose_pitch_by_melodic_diatonic_interval(
                 pitch_carrier, mdi)
@@ -110,10 +110,10 @@ def transpose_pitch_carrier_by_melodic_interval(
         else:
             return pitch_carrier
 
-    diatonic_types = (pitchtools.NamedMelodicInterval, str)
+    diatonic_types = (pitchtools.NamedInterval, str)
     if isinstance(melodic_interval, diatonic_types):
         melodic_interval = \
-            pitchtools.NamedMelodicInterval(melodic_interval)
+            pitchtools.NamedInterval(melodic_interval)
         return _transpose_pitch_carrier_by_melodic_diatonic_interval(
             pitch_carrier, melodic_interval)
     else:

@@ -24,7 +24,7 @@ class NamedMelodicIntervalClass(
         from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation \
             import melodic_diatonic_interval_abbreviation_regex
         if len(args) == 1 and\
-            isinstance(args[0], pitchtools.NamedMelodicInterval):
+            isinstance(args[0], pitchtools.NamedInterval):
             quality_string = args[0]._quality_string
             number = args[0].number
         elif len(args) == 1 and isinstance(args[0], str):
@@ -115,7 +115,7 @@ class NamedMelodicIntervalClass(
         '''
         from abjad.tools import pitchtools
         # get melodic diatonic interval
-        mdi = pitchtools.NamedMelodicInterval.from_pitch_carriers(
+        mdi = pitchtools.NamedInterval.from_pitch_carriers(
             pitch_carrier_1, pitch_carrier_2)
         # return melodic diatonic interval-class
         return pitchtools.NamedMelodicIntervalClass(mdi)

@@ -16,7 +16,7 @@ class IntervalSet(Set):
     @property
     def _named_item_class(self):
         from abjad.tools import pitchtools
-        return pitchtools.NamedMelodicInterval
+        return pitchtools.NamedInterval
     
     @property
     def _numbered_item_class(self):
@@ -44,23 +44,23 @@ class IntervalSet(Set):
             >>> for interval in intervals:
             ...     interval
             ...
-            NamedMelodicInterval('-aug4')
-            NamedMelodicInterval('-m3')
-            NamedMelodicInterval('+M7')
-            NamedMelodicInterval('-M6')
-            NamedMelodicInterval('+M9')
-            NamedMelodicInterval('-M2')
-            NamedMelodicInterval('+M13')
-            NamedMelodicInterval('+aug11')
-            NamedMelodicInterval('+m7')
-            NamedMelodicInterval('-M3')
-            NamedMelodicInterval('+P4')
-            NamedMelodicInterval('+m3')
-            NamedMelodicInterval('-P5')
-            NamedMelodicInterval('+M3')
-            NamedMelodicInterval('+P5')
-            NamedMelodicInterval('+P8')
-            NamedMelodicInterval('+m2')
+            NamedInterval('+m3')
+            NamedInterval('+M3')
+            NamedInterval('+P4')
+            NamedInterval('+M7')
+            NamedInterval('-M6')
+            NamedInterval('+m2')
+            NamedInterval('+aug11')
+            NamedInterval('-P5')
+            NamedInterval('+M13')
+            NamedInterval('+P8')
+            NamedInterval('-M3')
+            NamedInterval('-aug4')
+            NamedInterval('+M9')
+            NamedInterval('+m7')
+            NamedInterval('-M2')
+            NamedInterval('-m3')
+            NamedInterval('+P5')
         
         Return interval set.
         '''

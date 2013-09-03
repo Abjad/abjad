@@ -6,4 +6,4 @@ def test_instrumenttools_Flute_interval_of_transposition_01():
 
     flute = instrumenttools.Flute()
 
-    assert flute.interval_of_transposition == pitchtools.NamedMelodicInterval('P1')
+    assert flute.interval_of_transposition == pitchtools.NamedInterval('P1')

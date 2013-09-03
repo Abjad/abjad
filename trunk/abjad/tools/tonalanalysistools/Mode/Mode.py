@@ -58,9 +58,9 @@ class Mode(AbjadObject):
 
     def _init_with_mode_name(self, mode_name):
         mdi_segment = []
-        m2 = pitchtools.NamedMelodicInterval('minor', 2)
-        M2 = pitchtools.NamedMelodicInterval('major', 2)
-        A2 = pitchtools.NamedMelodicInterval('augmented', 2)
+        m2 = pitchtools.NamedInterval('minor', 2)
+        M2 = pitchtools.NamedInterval('major', 2)
+        A2 = pitchtools.NamedInterval('augmented', 2)
         dorian = [M2, m2, M2, M2, M2, m2, M2]
         if mode_name == 'dorian':
             mdi_segment.extend(sequencetools.rotate_sequence(dorian, 0))
@@ -84,7 +84,7 @@ class Mode(AbjadObject):
             raise ValueError('unknown mode name {!r}.'.format(mode_name))
         return pitchtools.IntervalSegment(
             tokens=mdi_segment,
-            item_class=pitchtools.NamedMelodicInterval,
+            item_class=pitchtools.NamedInterval,
             )
 
     ### PUBLIC PROPERTIES ###

@@ -71,7 +71,7 @@ class IntervalVector(Vector):
     @property
     def _named_item_class(self):
         from abjad.tools import pitchtools
-        return pitchtools.NamedMelodicInterval
+        return pitchtools.NamedInterval
     
     @property
     def _numbered_item_class(self):

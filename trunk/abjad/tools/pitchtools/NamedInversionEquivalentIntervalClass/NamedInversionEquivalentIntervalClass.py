@@ -26,7 +26,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
             pitchtools.NamedMelodicIntervalClass): 
             self._init_by_string(str(args[0]))
         elif len(args) == 1 and isinstance(args[0],
-            pitchtools.NamedMelodicInterval):
+            pitchtools.NamedInterval):
             interval_class = pitchtools.NamedMelodicIntervalClass(args[0])
             self._init_by_string(str(interval_class))
         elif len(args) == 1 and isinstance(args[0], tuple):
