@@ -359,6 +359,10 @@ class Leaf(Component):
             self._format_after_slot(format_contributions))
         return report
 
+    def _scale(self, multiplier):
+        new_duration = multiplier * self._get_duration()
+        self._set_duration(new_duration)
+
     def _set_duration(self, new_duration):
         from abjad.tools import leaftools
         from abjad.tools import notetools
