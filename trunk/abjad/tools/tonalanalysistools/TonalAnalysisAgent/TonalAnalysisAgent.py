@@ -122,7 +122,10 @@ class TonalAnalysisAgent(object):
         pitches = pitchtools.list_named_chromatic_pitches_in_expr(expr)
         npcset = pitchtools.PitchClassSet(
             pitches, item_class=pitchtools.NamedPitchClass)
-        dicv = npcset.inversion_equivalent_diatonic_interval_class_vector
+        dicv = pitchtools.IntervalClassVector(
+            tokens=npcset,
+            item_class=pitchtools.NamedInversionEquivalentIntervalClass,
+            )
         # TODO: eliminate code duplication #
         if dicv == TonalAnalysisAgent._make_dicv('c', 'ef'):
             model_npcs = ['c', 'ef']
@@ -257,11 +260,11 @@ class TonalAnalysisAgent(object):
 
     @staticmethod
     def _make_dicv(*named_chromatic_pitch_classes):
-        npcset = pitchtools.PitchClassSet(
-            named_chromatic_pitch_classes,
-            item_class=pitchtools.NamedPitchClass,
+        pitch_set = pitchtools.PitchSet(named_chromatic_pitch_classes)
+        return pitchtools.IntervalClassVector(
+            tokens=pitch_set,
+            item_class=pitchtools.NamedInversionEquivalentIntervalClass,
             )
-        return npcset.inversion_equivalent_diatonic_interval_class_vector
 
     ### PUBLIC METHODS ###
 

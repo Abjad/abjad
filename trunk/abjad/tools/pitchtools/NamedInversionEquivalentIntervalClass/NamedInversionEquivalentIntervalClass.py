@@ -25,12 +25,17 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         elif len(args) == 1 and isinstance(args[0],
             pitchtools.NamedMelodicIntervalClass): 
             self._init_by_string(str(args[0]))
+        elif len(args) == 1 and isinstance(args[0],
+            pitchtools.NamedMelodicInterval):
+            interval_class = pitchtools.NamedMelodicIntervalClass(args[0])
+            self._init_by_string(str(interval_class))
         elif len(args) == 1 and isinstance(args[0], tuple):
             self._init_by_quality_string_and_number(*args[0])
         elif len(args) == 2:
             self._init_by_quality_string_and_number(*args)
         else:
-            raise ValueError('can not initialize diatonic interval-class.')
+            raise ValueError('can not initialize diatonic interval-class: '
+                '{!r}'.format(args))
 
     ### SPECIAL METHODS ###
 
