@@ -188,12 +188,15 @@ class ContiguousSelection(Selection):
             
     def _fuse(self):
         from abjad.tools import leaftools
+        from abjad.tools import measuretools
         from abjad.tools import tuplettools
         assert self._all_are_contiguous_components_in_same_logical_voice(self)
         if all(isinstance(x, leaftools.Leaf) for x in self):
             return self._fuse_leaves()
         elif all(isinstance(x, tuplettools.Tuplet) for x in self):
             return self._fuse_tuplets()
+        elif all(isinstance(x, measuretools.Measure) for x in self):
+            return self._fuse_measures()
         else:
             raise Exception('can not fuse.')
 
@@ -212,6 +215,50 @@ class ContiguousSelection(Selection):
                 index = parent.index(leaf)
                 del(parent[index])
         return leaves[0]._set_duration(total_preprolated)
+
+    def _fuse_measures(self):
+        from abjad.tools import contexttools
+        from abjad.tools import measuretools
+        from abjad.tools import selectiontools
+        from abjad.tools import timesignaturetools
+        # check input
+        assert self._all_are_contiguous_components_in_same_parent(
+            self, component_classes=(measuretools.Measure, ))
+        # return none on empty measures
+        if len(self) == 0:
+            return None
+        # TODO: instantiate a new measure
+        #       instead of returning a reference to existing measure
+        if len(self) == 1:
+            return self[0]
+        selection = selectiontools.SliceSelection(self)
+        parent, start, stop = selection._get_parent_and_start_stop_indices()
+        old_denominators = []
+        new_duration = durationtools.Duration(0)
+        for measure in self:
+            effective_time_signature = measure.time_signature
+            old_denominators.append(effective_time_signature.denominator)
+            new_duration += effective_time_signature.duration
+        new_time_signature = \
+            timesignaturetools.duration_and_possible_denominators_to_time_signature(
+            new_duration, old_denominators)
+        music = []
+        for measure in self:
+            # scale before reassignment to prevent tie chain scale drama
+            signature = measure.time_signature
+            prolation = signature.implied_prolation
+            multiplier = prolation / new_time_signature.implied_prolation
+            measure._scale_contents(multiplier)
+            measure_music = measure[:]
+            measure_music._set_parents(None)
+            music += measure_music
+        new_measure = measuretools.Measure(new_time_signature, music)
+        if parent is not None:
+            self._give_dominant_spanners([new_measure])
+        self._set_parents(None)
+        if parent is not None:
+            parent.insert(start, new_measure)
+        return new_measure
 
     def _fuse_tuplets(self):
         from abjad.tools import containertools

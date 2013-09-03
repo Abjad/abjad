@@ -309,3 +309,337 @@ def test_ScoreMutationAgent_fuse_11():
         )
 
     assert inspect(voice).is_well_formed()
+
+
+def test_ScoreMutationAgent_fuse_12():
+    r'''Fuse unicorporated measures carrying
+    time signatures with power-of-two denominators.
+    '''
+    
+    measure_1 = Measure((1, 8), "c'16 d'16")
+    spannertools.BeamSpanner(measure_1[:])
+    measure_2 = Measure((2, 16), "c'16 d'16")
+    spannertools.SlurSpanner(measure_2[:])
+    staff = Staff([measure_1, measure_2])
+
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 1/8
+                c'16 [
+                d'16 ]
+            }
+            {
+                \time 2/16
+                c'16 (
+                d'16 )
+            }
+        }
+        '''
+        )
+
+    new = mutate(staff[:]).fuse()
+
+    assert new is not measure_1 and new is not measure_2
+    assert len(measure_1) == 0
+    assert len(measure_2) == 0
+    assert inspect(new).is_well_formed()
+    assert testtools.compare(
+        new,
+        r'''
+        {
+            \time 2/8
+            c'16 [
+            d'16 ]
+            c'16 (
+            d'16 )
+        }
+        '''
+        )
+
+
+def test_ScoreMutationAgent_fuse_13():
+    r'''Fuse measures carrying time signatures with differing power-of-two denominators.
+    Helpers selects minimum of two denominators.
+    Beams are OK because they attach to leaves rather than containers.
+    '''
+
+    voice = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
+    measuretools.fill_measures_in_expr_with_repeated_notes(voice, Duration(1, 16))
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.BeamSpanner(voice.select_leaves())
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                \time 1/8
+                c'16 [
+                d'16
+            }
+            {
+                \time 2/16
+                e'16
+                f'16 ]
+            }
+        }
+        '''
+        )
+
+    mutate(voice[:]).fuse()
+
+    assert inspect(voice).is_well_formed()
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                \time 2/8
+                c'16 [
+                d'16
+                e'16
+                f'16 ]
+            }
+        }
+        '''
+        )
+
+
+def test_ScoreMutationAgent_fuse_14():
+    r'''Fuse measures with differing power-of-two denominators.
+    Helpers selects minimum of two denominators.
+    Beam attaches to container rather than leaves.
+    '''
+
+    voice = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
+    measuretools.fill_measures_in_expr_with_repeated_notes(voice, Duration(1, 16))
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.BeamSpanner(voice[0])
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                \time 1/8
+                c'16 [
+                d'16 ]
+            }
+            {
+                \time 2/16
+                e'16
+                f'16
+            }
+        }
+        '''
+        )
+
+    mutate(voice[:]).fuse()
+
+    assert inspect(voice).is_well_formed()
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                \time 2/8
+                c'16
+                d'16
+                e'16
+                f'16
+            }
+        }
+        '''
+        )
+
+
+def test_ScoreMutationAgent_fuse_15():
+    r'''Fuse measures with power-of-two-denominators together with measures
+    without power-of-two denominators.
+    Helpers selects least common multiple of denominators.
+    Beams are OK because they attach to leaves rather than containers.
+    '''
+
+    measure_1 = Measure((1, 8), notetools.make_repeated_notes(1))
+    measure_2 = Measure((1, 12), notetools.make_repeated_notes(1))
+    voice = Voice([measure_1, measure_2])
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.BeamSpanner(voice.select_leaves())
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                \time 1/8
+                c'8 [
+            }
+            {
+                \time 1/12
+                \scaleDurations #'(2 . 3) {
+                    d'8 ]
+                }
+            }
+        }
+        '''
+        )
+
+    mutate(voice[:]).fuse()
+
+    assert inspect(voice).is_well_formed()
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                \time 5/24
+                \scaleDurations #'(2 . 3) {
+                    c'8. [
+                    d'8 ]
+                }
+            }
+        }
+        '''
+        )
+
+
+def test_ScoreMutationAgent_fuse_16():
+    r'''Fusing empty selection returns none.
+    '''
+
+    staff = Staff()
+    result = mutate(staff[:]).fuse()
+    assert result == selectiontools.ContiguousSelection()
+
+
+def test_ScoreMutationAgent_fuse_17():
+    r'''Fusing selection of only one measure returns measure unaltered.
+    '''
+
+    measure = Measure((3, 8), "c'8 d'8 e'8")
+    staff = Staff([measure])
+    new = mutate(staff[:]).fuse()
+
+    assert new is measure
+
+
+def test_ScoreMutationAgent_fuse_18():
+    r'''Fuse three measures.
+    '''
+
+    voice = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (1, 8), (1, 8)]))
+    measuretools.fill_measures_in_expr_with_repeated_notes(voice, Duration(1, 16))
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    spannertools.BeamSpanner(voice.select_leaves())
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                \time 1/8
+                c'16 [
+                d'16
+            }
+            {
+                e'16
+                f'16
+            }
+            {
+                g'16
+                a'16 ]
+            }
+        }
+        '''
+        )
+
+    mutate(voice[:]).fuse()
+
+    assert inspect(voice).is_well_formed()
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                \time 3/8
+                c'16 [
+                d'16
+                e'16
+                f'16
+                g'16
+                a'16 ]
+            }
+        }
+        '''
+        )
+
+
+def test_ScoreMutationAgent_fuse_19():
+    r'''Fusing measures with power-of-two denominators
+    to measures without power-of-two denominators.
+    With change in number of note heads because of non-power-of-two multiplier.
+    '''
+
+    staff = Staff([
+        Measure((9, 80), []),
+        Measure((2, 16), [])])
+    measuretools.fill_measures_in_expr_with_time_signature_denominator_notes(staff)
+
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 9/80
+                \scaleDurations #'(4 . 5) {
+                    c'64
+                    c'64
+                    c'64
+                    c'64
+                    c'64
+                    c'64
+                    c'64
+                    c'64
+                    c'64
+                }
+            }
+            {
+                \time 2/16
+                c'16
+                c'16
+            }
+        }
+        '''
+        )
+
+    new = mutate(staff[:]).fuse()
+
+    assert inspect(staff).is_well_formed()
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 19/80
+                \scaleDurations #'(4 . 5) {
+                    c'64
+                    c'64
+                    c'64
+                    c'64
+                    c'64
+                    c'64
+                    c'64
+                    c'64
+                    c'64
+                    c'16 ~
+                    c'64
+                    c'16 ~
+                    c'64
+                }
+            }
+        }
+        '''
+        )

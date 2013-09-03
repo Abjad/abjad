@@ -271,6 +271,55 @@ class ScoreMutationAgent(object):
 
             All `tuplets` must be of the same type.
 
+        ..  container:: example
+
+            **Example 3.** Fuse in-score measures:
+
+            ::
+
+                >>> staff = Staff()
+                >>> staff.append(Measure((1, 4), "c'8 d'8"))
+                >>> staff.append(Measure((2, 8), "e'8 f'8"))
+                >>> slur = spannertools.SlurSpanner()
+                >>> slur = slur.attach(staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 1/4
+                        c'8 (
+                        d'8
+                    }
+                    {
+                        \time 2/8
+                        e'8
+                        f'8 )
+                    }
+                }
+
+            ::
+
+                >>> measures = staff[:]
+                >>> mutate(measures).fuse()
+                Measure(2/4, [c'8, d'8, e'8, f'8])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/4
+                        c'8 (
+                        d'8
+                        e'8
+                        f'8 )
+                    }
+                }
+
         Returns fused mutation client.
         '''
         from abjad.tools import componenttools
