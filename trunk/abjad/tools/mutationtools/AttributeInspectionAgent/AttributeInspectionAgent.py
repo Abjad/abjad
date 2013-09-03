@@ -401,7 +401,7 @@ class AttributeInspectionAgent(object):
             ::
 
                 >>> for n in range(8):
-                ...     print n, inspect(staff[0]).get_leaf(n)
+                ...     print n, inspect(staff[0][0]).get_leaf(n)
                 ...
                 0 c'8
                 1 d'8
