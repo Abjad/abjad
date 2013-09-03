@@ -36,8 +36,8 @@ def label_vertical_moments_in_expr_with_chromatic_interval_classes(
                         \small
                             \column
                                 {
-                                    2
-                                    7
+                                    +2
+                                    +7
                                 }
                         }
                 e'8
@@ -46,8 +46,8 @@ def label_vertical_moments_in_expr_with_chromatic_interval_classes(
                         \small
                             \column
                                 {
-                                    5
-                                    5
+                                    +5
+                                    +5
                                 }
                         }
             }
@@ -59,8 +59,8 @@ def label_vertical_moments_in_expr_with_chromatic_interval_classes(
                         \small
                             \column
                                 {
-                                    4
-                                    5
+                                    +4
+                                    +5
                                 }
                         }
             }
@@ -71,8 +71,8 @@ def label_vertical_moments_in_expr_with_chromatic_interval_classes(
                         \small
                             \column
                                 {
-                                    12
-                                    7
+                                    +12
+                                    +7
                                 }
                         }
             }
@@ -95,13 +95,16 @@ def label_vertical_moments_in_expr_with_chromatic_interval_classes(
         notes.reverse()
         bass_note = notes[-1]
         upper_notes = notes[:-1]
-        hcics = []
+        interval_classes = []
         for upper_note in upper_notes:
-            hcic = \
-                pitchtools.NumberedHarmonicIntervalClass.from_pitch_carriers(
+            interval_class = \
+                pitchtools.NumberedMelodicIntervalClass.from_pitch_carriers(
                 bass_note, upper_note)
-            hcics.append(hcic)
-        hcics = ' '.join([str(hcic) for hcic in hcics])
-        hcics = r'\small \column { %s }' % hcics
-        markup = markuptools.Markup(hcics, markup_direction)
+            interval_classes.append(interval_class)
+        markup = markuptools.Markup(
+            r'\small \column {{ {} }}'.format(
+                ' '.join(str(interval_class) 
+                    for interval_class in interval_classes)),
+            markup_direction,
+            )
         markup.attach(vertical_moment.start_leaves[-1])

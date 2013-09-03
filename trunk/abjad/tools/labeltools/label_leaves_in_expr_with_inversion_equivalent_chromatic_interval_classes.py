@@ -47,7 +47,8 @@ def label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes(ex
             next_leaf = logical_voice_iterator.next()
             if isinstance(next_leaf, notetools.Note):
                 mdi = note.written_pitch - next_leaf.written_pitch
-                iecic = mdi.inversion_equivalent_chromatic_interval_class
+                iecic = \
+                    pitchtools.NumberedInversionEquivalentIntervalClass(mdi)
                 markuptools.Markup(iecic, markup_direction)(note)
         except StopIteration:
             pass

@@ -22,8 +22,8 @@ def test_labeltools_label_vertical_moments_in_expr_with_chromatic_interval_class
                     \small
                         \column
                             {
-                                2
-                                7
+                                +2
+                                +7
                             }
                     }
             e'8
@@ -32,8 +32,8 @@ def test_labeltools_label_vertical_moments_in_expr_with_chromatic_interval_class
                     \small
                         \column
                             {
-                                5
-                                5
+                                +5
+                                +5
                             }
                     }
         }
@@ -45,8 +45,8 @@ def test_labeltools_label_vertical_moments_in_expr_with_chromatic_interval_class
                     \small
                         \column
                             {
-                                4
-                                5
+                                +4
+                                +5
                             }
                     }
         }
@@ -57,8 +57,8 @@ def test_labeltools_label_vertical_moments_in_expr_with_chromatic_interval_class
                     \small
                         \column
                             {
-                                12
-                                7
+                                +12
+                                +7
                             }
                     }
         }
@@ -77,8 +77,8 @@ def test_labeltools_label_vertical_moments_in_expr_with_chromatic_interval_class
                         \small
                             \column
                                 {
-                                    2
-                                    7
+                                    +2
+                                    +7
                                 }
                         }
                 e'8
@@ -87,8 +87,8 @@ def test_labeltools_label_vertical_moments_in_expr_with_chromatic_interval_class
                         \small
                             \column
                                 {
-                                    5
-                                    5
+                                    +5
+                                    +5
                                 }
                         }
             }
@@ -100,8 +100,8 @@ def test_labeltools_label_vertical_moments_in_expr_with_chromatic_interval_class
                         \small
                             \column
                                 {
-                                    4
-                                    5
+                                    +4
+                                    +5
                                 }
                         }
             }
@@ -112,8 +112,8 @@ def test_labeltools_label_vertical_moments_in_expr_with_chromatic_interval_class
                         \small
                             \column
                                 {
-                                    12
-                                    7
+                                    +12
+                                    +7
                                 }
                         }
             }
