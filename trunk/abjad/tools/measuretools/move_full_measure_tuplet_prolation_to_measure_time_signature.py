@@ -53,6 +53,6 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
                 time_signature_multiplier = \
                     measure.time_signature.implied_prolation
                 written_adjustment = tuplet_multiplier / time_signature_multiplier
-                tuplet.extract()
+                tuplet._extract()
                 measure._scale_contents(written_adjustment)
 

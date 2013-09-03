@@ -160,6 +160,15 @@ class Component(AbjadObject):
             spanner.detach()
         return spanners
 
+    # TODO: remove scale_contents keyword
+    def _extract(self, scale_contents=None):
+        from abjad.tools import selectiontools
+        selection = selectiontools.SliceSelection([self])
+        parent, start, stop = selection._get_parent_and_start_stop_indices()
+        music_list = list(getattr(self, '_music', ()))
+        parent.__setitem__(slice(start, stop + 1), music_list)
+        return self
+
     def _format_after_slot(self, format_contributions):
         pass
 
@@ -198,6 +207,56 @@ class Component(AbjadObject):
 
     def _format_opening_slot(self, format_contributions):
         pass
+
+    def _get_components(self, component_classes=None, include_self=True):
+        from abjad.tools import iterationtools
+        expr = self
+        if include_self:
+            expr = [self]
+        components = iterationtools.iterate_components_in_expr(
+            expr, component_class=component_classes)
+        return selectiontools.Selection(components)
+
+    def _get_contents(self, include_self=True):
+        result = []
+        if include_self:
+            result.append(self)
+        result.extend(getattr(self, '_music', []))
+        result = selectiontools.SliceSelection(result)
+        return result
+
+    def _get_descendants(
+        self,
+        include_self=True,
+        ):
+        return selectiontools.Descendants(
+            self,
+            include_self=include_self,
+            )
+
+    def _get_descendants_starting_with(self):
+        from abjad.tools import containertools
+        result = []
+        result.append(self)
+        if isinstance(self, containertools.Container):
+            if self.is_simultaneous:
+                for x in self:
+                    result.extend(x._get_descendants_starting_with())
+            elif self:
+                result.extend(self[0]._get_descendants_starting_with())
+        return result
+
+    def _get_descendants_stopping_with(self):
+        from abjad.tools import containertools
+        result = []
+        result.append(self)
+        if isinstance(self, containertools.Container):
+            if self.is_simultaneous:
+                for x in self:
+                    result.extend(x._get_descendants_stopping_with())
+            elif self:
+                result.extend(self[-1]._get_descendants_stopping_with())
+        return result
 
     def _get_duration(self, in_seconds=False):
         if in_seconds:
@@ -297,6 +356,9 @@ class Component(AbjadObject):
                 if i == n:
                     return component
 
+    def _get_lineage(self):
+        return selectiontools.Lineage(self)
+
     def _get_mark(self, mark_classes=None):
         marks = self._get_marks(mark_classes=mark_classes)
         if not marks:
@@ -350,6 +412,9 @@ class Component(AbjadObject):
                 result = previous(result)
         return result
 
+    def _get_parentage(self, include_self=True):
+        return selectiontools.Parentage(self, include_self=include_self)
+
     def _get_sibling(self, n):
         if n == 0:
             return self
@@ -399,6 +464,15 @@ class Component(AbjadObject):
             self._update_now(offsets=True)
             return self._timespan
 
+    def _get_vertical_moment(self, governor=None):
+        offset = self._get_timespan().start_offset
+        if governor is None:
+            governor = self._get_parentage().root
+        return selectiontools.VerticalMoment(governor, offset)
+
+    def _get_vertical_moment_at(self, offset):
+        return selectiontools.VerticalMoment(self, offset)
+
     def _has_mark(self, mark_classes=None):
         marks = self._get_marks(mark_classes=mark_classes)
         return bool(marks)
@@ -430,99 +504,6 @@ class Component(AbjadObject):
         for mark in self._get_marks():
             result.append(mark.attach(recipient_component))
         return tuple(result)
-
-    def _remove_from_parent(self):
-        self._update_later(offsets=True)
-        if self._parent is not None:
-            self._parent._music.remove(self)
-        self._parent = None
-
-    def _remove_named_children_from_parentage(self, name_dictionary):
-        from abjad.tools import componenttools
-        if self._parent is not None and name_dictionary:
-            for parent in self._get_parentage(include_self=False):
-                named_children = parent._named_children
-                for name in name_dictionary:
-                    for component in name_dictionary[name]:
-                        named_children[name].remove(component)
-                    if not named_children[name]:
-                        del named_children[name]
-
-    def _restore_named_children_to_parentage(self, name_dictionary):
-        from abjad.tools import componenttools
-        if self._parent is not None and name_dictionary:
-            for parent in self._get_parentage(include_self=False):
-                named_children = parent._named_children
-                for name in name_dictionary:
-                    if name in named_children:
-                        named_children[name].extend(name_dictionary[name])
-                    else:
-                        named_children[name] = copy.copy(name_dictionary[name])
-
-    def _get_components(self, component_classes=None, include_self=True):
-        from abjad.tools import iterationtools
-        expr = self
-        if include_self:
-            expr = [self]
-        components = iterationtools.iterate_components_in_expr(
-            expr, component_class=component_classes)
-        return selectiontools.Selection(components)
-
-    def _get_contents(self, include_self=True):
-        result = []
-        if include_self:
-            result.append(self)
-        result.extend(getattr(self, '_music', []))
-        result = selectiontools.SliceSelection(result)
-        return result
-
-    def _get_descendants(
-        self,
-        include_self=True,
-        ):
-        return selectiontools.Descendants(
-            self,
-            include_self=include_self,
-            )
-
-    def _get_descendants_starting_with(self):
-        from abjad.tools import containertools
-        result = []
-        result.append(self)
-        if isinstance(self, containertools.Container):
-            if self.is_simultaneous:
-                for x in self:
-                    result.extend(x._get_descendants_starting_with())
-            elif self:
-                result.extend(self[0]._get_descendants_starting_with())
-        return result
-
-    def _get_descendants_stopping_with(self):
-        from abjad.tools import containertools
-        result = []
-        result.append(self)
-        if isinstance(self, containertools.Container):
-            if self.is_simultaneous:
-                for x in self:
-                    result.extend(x._get_descendants_stopping_with())
-            elif self:
-                result.extend(self[-1]._get_descendants_stopping_with())
-        return result
-
-    def _get_lineage(self):
-        return selectiontools.Lineage(self)
-
-    def _get_parentage(self, include_self=True):
-        return selectiontools.Parentage(self, include_self=include_self)
-
-    def _get_vertical_moment(self, governor=None):
-        offset = self._get_timespan().start_offset
-        if governor is None:
-            governor = self._get_parentage().root
-        return selectiontools.VerticalMoment(governor, offset)
-
-    def _get_vertical_moment_at(self, offset):
-        return selectiontools.VerticalMoment(self, offset)
 
     # TODO: eventually reimplement as a keyword option to remove()
     def _remove_and_shrink_durated_parent_containers(self):
@@ -572,9 +553,37 @@ class Component(AbjadObject):
             del(parent[index])
         for x in parentage:
             if not len(x):
-                x.extract()
+                x._extract()
             else:
                 break
+
+    def _remove_from_parent(self):
+        self._update_later(offsets=True)
+        if self._parent is not None:
+            self._parent._music.remove(self)
+        self._parent = None
+
+    def _remove_named_children_from_parentage(self, name_dictionary):
+        from abjad.tools import componenttools
+        if self._parent is not None and name_dictionary:
+            for parent in self._get_parentage(include_self=False):
+                named_children = parent._named_children
+                for name in name_dictionary:
+                    for component in name_dictionary[name]:
+                        named_children[name].remove(component)
+                    if not named_children[name]:
+                        del named_children[name]
+
+    def _restore_named_children_to_parentage(self, name_dictionary):
+        from abjad.tools import componenttools
+        if self._parent is not None and name_dictionary:
+            for parent in self._get_parentage(include_self=False):
+                named_children = parent._named_children
+                for name in name_dictionary:
+                    if name in named_children:
+                        named_children[name].extend(name_dictionary[name])
+                    else:
+                        named_children[name] = copy.copy(name_dictionary[name])
 
     def _set_keyword_value(self, key, value):
         attribute_chain = key.split('__')
@@ -753,20 +762,6 @@ class Component(AbjadObject):
         return self._tools_package_qualified_indented_repr
 
     ### PUBLIC METHODS ###
-
-    def extract(self):
-        '''Extracts component from score.
-
-        Leaves children of component in score.
-
-        Returns component.
-        '''
-        from abjad.tools import selectiontools
-        selection = selectiontools.SliceSelection([self])
-        parent, start, stop = selection._get_parent_and_start_stop_indices()
-        music_list = list(getattr(self, '_music', ()))
-        parent.__setitem__(slice(start, stop + 1), music_list)
-        return self
 
     def select(self, sequential=False):
         r'''Selects component.

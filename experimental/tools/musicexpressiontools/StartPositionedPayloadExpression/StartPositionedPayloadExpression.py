@@ -133,7 +133,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             right = mutationtools.mutate(selection).copy()[0]
             payload = containertools.Container([left, right])
             for component in payload[:]:
-                component.extract()
+                component._extract()
             payload = containertools.Container([payload])
         else:
             payload = self.payload + expr.payload

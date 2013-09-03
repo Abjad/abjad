@@ -1,7 +1,86 @@
 from abjad import *
 
 
-def test_Container_extract_01():
+
+def test_ScoreMutationAgent_extract_01():
+    r'''Extract note.
+    '''
+
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:])
+    spannertools.GlissandoSpanner(voice[:])
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            c'8 [ \glissando
+            d'8 \glissando
+            e'8 \glissando
+            f'8 ]
+        }
+        '''
+        )
+
+    note = voice[1]
+    mutate(note).extract()
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            c'8 [ \glissando
+            e'8 \glissando
+            f'8 ]
+        }
+        '''
+        )
+
+    assert inspect(note).is_well_formed()
+    assert inspect(voice).is_well_formed()
+
+
+def test_ScoreMutationAgent_extract_02():
+    r'''Extract multiple notes.
+    '''
+
+    voice = Voice("c'8 d'8 e'8 f'8")
+    spannertools.BeamSpanner(voice[:])
+    spannertools.GlissandoSpanner(voice[:])
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            c'8 [ \glissando
+            d'8 \glissando
+            e'8 \glissando
+            f'8 ]
+        }
+        '''
+        )
+
+    notes = voice[:2]
+    for note in notes:
+        mutate(note).extract()
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            e'8 [ \glissando
+            f'8 ]
+        }
+        '''
+        )
+
+    for note in notes:
+        assert inspect(note).is_well_formed()
+
+    assert inspect(voice).is_well_formed()
+
+
+def test_ScoreMutationAgent_extract_03():
     r'''Extract container.
     '''
 
@@ -28,7 +107,7 @@ def test_Container_extract_01():
         )
 
     container = staff[0]
-    container.extract()
+    mutate(container).extract()
 
     assert testtools.compare(
         staff,
@@ -48,7 +127,7 @@ def test_Container_extract_01():
     assert inspect(staff).is_well_formed()
 
 
-def test_Container_extract_02():
+def test_ScoreMutationAgent_extract_04():
     r'''Extract multiple containers.
     '''
 
@@ -82,7 +161,7 @@ def test_Container_extract_02():
 
     containers = voice[:2]
     for container in containers:
-        container.extract()
+        mutate(container).extract()
 
     assert testtools.compare(
         voice,

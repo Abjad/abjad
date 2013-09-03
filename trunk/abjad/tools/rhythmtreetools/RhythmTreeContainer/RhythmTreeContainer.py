@@ -222,7 +222,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         for component in result[:]:
             if isinstance(component, tuplettools.Tuplet):
                 if component.is_trivial:
-                    component.extract()
+                    component._extract()
         return result
 
     def __eq__(self, expr):
