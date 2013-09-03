@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import chordtools
+from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import notetools
@@ -46,7 +47,7 @@ class ConcatenatingGraceHandler(GraceHandler):
             pitches = ()
 
         if grace_events:
-            grace_container = leaftools.GraceContainer()
+            grace_container = containertools.GraceContainer()
             for q_event in grace_events:
                 if isinstance(q_event, quantizationtools.PitchedQEvent):
                     if len(q_event.pitches) == 1:

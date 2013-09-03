@@ -50,7 +50,7 @@ def test_Note___copy___04():
     '''
 
     note_1 = Note("c'4")
-    grace_container_1 = leaftools.GraceContainer(
+    grace_container_1 = containertools.GraceContainer(
         [Note("d'32")], kind='after')
     grace_container_1(note_1)
 
@@ -94,7 +94,7 @@ def test_Note___copy___05():
 
     note = Note("c'4")
     marktools.Articulation('staccato')(note)
-    leaftools.GraceContainer("d'16")
+    containertools.GraceContainer("d'16")
     note.override.note_head.color = 'red'
 
     r'''
@@ -118,7 +118,7 @@ def test_Note___copy___06():
     staff = Staff("c'8 [ c'8 e'8 f'8 ]")
     note = staff[0]
     marktools.Articulation('staccato')(note)
-    leaftools.GraceContainer("d'16")
+    containertools.GraceContainer("d'16")
     note.override.note_head.color = 'red'
 
     r'''

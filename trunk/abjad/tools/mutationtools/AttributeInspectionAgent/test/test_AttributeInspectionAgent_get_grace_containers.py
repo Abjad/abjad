@@ -6,11 +6,11 @@ def test_AttributeInspectionAgent_get_grace_containers_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
 
-    grace_container = leaftools.GraceContainer(
+    grace_container = containertools.GraceContainer(
         [Note("cs'16")], kind='grace')
     grace_container(staff[1])
 
-    after_grace_container = leaftools.GraceContainer(
+    after_grace_container = containertools.GraceContainer(
         [Note("ds'16")], kind='after')
     after_grace_container(staff[1])
 

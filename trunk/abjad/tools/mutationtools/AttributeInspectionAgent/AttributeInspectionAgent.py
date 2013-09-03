@@ -135,13 +135,13 @@ class AttributeInspectionAgent(object):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> grace_container = leaftools.GraceContainer(
+                >>> grace_container = containertools.GraceContainer(
                 ...     [Note("cs'16")], 
                 ...     kind='grace',
                 ...     )
                 >>> grace_container.attach(staff[1])
                 Note("d'8")
-                >>> after_grace = leaftools.GraceContainer(
+                >>> after_grace = containertools.GraceContainer(
                 ...     [Note("ds'16")], 
                 ...     kind='after'
                 ...     )

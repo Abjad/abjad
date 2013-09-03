@@ -17,36 +17,6 @@ def test_Quantizer___call___01():
 
     score = Score([Staff([result])])
 
-    r'''
-    \new Score <<
-        \new Staff {
-            \new Voice {
-                {
-                    \time 4/4
-                    \tempo 4=60
-                    c'4 ~
-                    c'8
-                    r8 ~
-                    r8
-                    c'8 ~
-                    c'8
-                    c'8 ~
-                }
-                {
-                    c'8
-                    r8 ~
-                    r8
-                    c'8 ~
-                    c'8
-                    r8 ~
-                    r8
-                    c'8
-                }
-            }
-        }
-    >>
-    '''
-
     assert testtools.compare(
         score,
         r'''
@@ -90,27 +60,6 @@ def test_Quantizer___call___02():
 
     result = quantizer(sequence, attack_point_optimizer=attack_point_optimizer)
 
-    r'''
-    \new Voice {
-        {
-            \time 4/4
-            %%% \tempo 4=60 %%%
-            c'16
-            c'16 ~
-            c'8 ~
-            c'16
-            c'16 ~
-            c'8 ~
-            c'16
-            c'16 ~
-            c'8 ~
-            c'16
-            c'16 ~
-            c'8
-        }
-    }
-    '''
-
     assert testtools.compare(
         result,
         r'''
@@ -150,44 +99,6 @@ def test_Quantizer___call___03():
     quantizer = quantizationtools.Quantizer()
 
     result = quantizer(sequence, q_schema=q_schema, attack_point_optimizer=attack_point_optimizer)
-
-    r'''
-    \new Voice {
-        \grace {
-            c'16
-        }
-        %%% \tempo 4=60 %%%
-        c'8
-        \grace {
-            c'16
-        }
-        c'8
-        \times 2/3 {
-            c'8
-            \grace {
-                c'16
-            }
-            c'8
-            c'8
-        }
-        \times 4/5 {
-            c'16
-            c'16
-            c'16 ~
-            c'16
-            c'16
-        }
-        \times 4/7 {
-            c'16 ~
-            c'16
-            c'16
-            c'16 ~
-            c'16
-            c'16 ~
-            c'16
-        }
-    }
-    '''
 
     assert testtools.compare(
         result,

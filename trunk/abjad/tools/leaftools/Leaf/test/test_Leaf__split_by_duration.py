@@ -421,7 +421,7 @@ def test_Leaf__split_by_duration_17():
     '''
 
     note = Note("c'4")
-    leaftools.GraceContainer([Note(0, (1, 32))], kind = 'after')(note)
+    containertools.GraceContainer([Note(0, (1, 32))], kind = 'after')(note)
     halves = note._split_by_duration(Duration(1, 8))
 
     assert not hasattr(halves[0][0], 'after_grace')
@@ -433,7 +433,7 @@ def test_Leaf__split_by_duration_18():
     '''
 
     note = Note("c'4")
-    leaftools.GraceContainer([Note(0, (1, 32))], kind = 'after')(note)
+    containertools.GraceContainer([Note(0, (1, 32))], kind = 'after')(note)
     halves = note._split_by_duration(Duration(5, 32))
 
     assert len(halves) == 2
@@ -448,7 +448,7 @@ def test_Leaf__split_by_duration_19():
     '''
 
     note = Note("c'4")
-    leaftools.GraceContainer([Note(0, (1, 32))])(note)
+    containertools.GraceContainer([Note(0, (1, 32))])(note)
     halves = note._split_by_duration(Duration(1, 16))
 
     assert len(halves[0]) == 1

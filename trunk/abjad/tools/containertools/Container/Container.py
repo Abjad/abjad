@@ -366,8 +366,8 @@ class Container(Component):
         Only private methods should set this keyword.
         '''
         from abjad.tools import componenttools
+        from abjad.tools import containertools
         from abjad.tools import contexttools
-        from abjad.tools import leaftools
         from abjad.tools import iterationtools
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
@@ -383,7 +383,7 @@ class Container(Component):
                 assert len(expr) == 1, repr(expr)
                 expr = expr[0]
             assert all(isinstance(x, componenttools.Component) for x in [expr])
-            if any(isinstance(x, leaftools.GraceContainer) for x in [expr]):
+            if any(isinstance(x, containertools.GraceContainer) for x in [expr]):
                 message = 'must attach grace container to note or chord.'
                 raise GraceContainerError(message)
             old = self[i]
@@ -414,7 +414,7 @@ class Container(Component):
                 isinstance(expr[0], str):
                 expr = self._parse_string(expr[0])[:]
             assert all(isinstance(x, componenttools.Component) for x in expr)
-            if any(isinstance(x, leaftools.GraceContainer) for x in expr):
+            if any(isinstance(x, containertools.GraceContainer) for x in expr):
                 message = 'must attach grace container to note or chord.'
                 raise GraceContainerError(message)
             if i.start == i.stop and i.start is not None \

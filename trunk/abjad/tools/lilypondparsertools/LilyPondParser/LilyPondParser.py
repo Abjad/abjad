@@ -475,7 +475,7 @@ class LilyPondParser(abctools.Parser):
         # the proper leaf
         for x in music:
             if isinstance(x, componenttools.Component) \
-                and not isinstance(x, leaftools.GraceContainer):
+                and not isinstance(x, containertools.GraceContainer):
                 for mark in apply_forward:
                     if hasattr(mark, 'attach'):
                         mark(x)

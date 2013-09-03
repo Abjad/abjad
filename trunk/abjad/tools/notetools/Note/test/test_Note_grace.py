@@ -7,7 +7,7 @@ def test_Note_grace_01():
     '''
 
     note = Note("c'4")
-    leaftools.GraceContainer([Note(2, (1, 16))])(note)
+    containertools.GraceContainer([Note(2, (1, 16))])(note)
 
     '''
     \grace {
@@ -32,7 +32,7 @@ def test_Note_grace_02():
     '''
 
     note = Note("c'4")
-    leaftools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])(note)
+    containertools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])(note)
 
     '''
     \grace {
@@ -61,7 +61,7 @@ def test_Note_grace_03():
     '''
 
     note = Note("c'4")
-    leaftools.GraceContainer([Note(2, (1, 16))], kind = 'appoggiatura')(note)
+    containertools.GraceContainer([Note(2, (1, 16))], kind = 'appoggiatura')(note)
 
     r'''
     \appoggiatura {
@@ -86,7 +86,7 @@ def test_Note_grace_04():
     '''
 
     note = Note("c'4")
-    leaftools.GraceContainer([Note(2, (1, 16))], kind = 'acciaccatura')(note)
+    containertools.GraceContainer([Note(2, (1, 16))], kind = 'acciaccatura')(note)
 
     r'''
     \acciaccatura {
@@ -111,7 +111,7 @@ def test_Note_grace_05():
     '''
 
     note = Note("c'4")
-    leaftools.GraceContainer([Note(2, (1, 16))], kind = 'after')(note)
+    containertools.GraceContainer([Note(2, (1, 16))], kind = 'after')(note)
 
     r'''
     \afterGrace
@@ -138,7 +138,7 @@ def test_Note_grace_06():
     '''
 
     note = Note("c'4")
-    leaftools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))], kind = 'after')(note)
+    containertools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))], kind = 'after')(note)
 
     r'''
     \afterGrace

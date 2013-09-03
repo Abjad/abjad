@@ -6,7 +6,7 @@ def test_GraceContainer_parentage_01():
     r'''Lone grace container carrier is none.
     '''
 
-    gracecontainer = leaftools.GraceContainer(notetools.make_repeated_notes(4))
+    gracecontainer = containertools.GraceContainer(notetools.make_repeated_notes(4))
     assert gracecontainer._carrier is None
 
 
@@ -15,8 +15,8 @@ def test_GraceContainer_parentage_02():
     '''
 
     note = Note(1, (1, 4))
-    leaftools.GraceContainer()(note)
-    assert isinstance(note.grace, leaftools.GraceContainer)
+    containertools.GraceContainer()(note)
+    assert isinstance(note.grace, containertools.GraceContainer)
     assert note.grace._carrier is note
     assert note.grace._carrier is note
 
@@ -26,8 +26,8 @@ def test_GraceContainer_parentage_03():
     '''
 
     note = Note(1, (1, 4))
-    leaftools.GraceContainer([Note(4, (1, 16))], kind = 'after')(note)
-    leaftools.GraceContainer([Note(4, (1, 16))], kind = 'grace')(note)
+    containertools.GraceContainer([Note(4, (1, 16))], kind = 'after')(note)
+    containertools.GraceContainer([Note(4, (1, 16))], kind = 'grace')(note)
     assert note.after_grace._carrier is note
     assert note.grace._carrier is note
     note.after_grace[:] = []

@@ -28,7 +28,7 @@ class GraceContainer(Container):
     ::
 
         >>> grace_notes = [Note("c'16"), Note("d'16")]
-        >>> leaftools.GraceContainer(grace_notes, kind='grace')(voice[1])
+        >>> containertools.GraceContainer(grace_notes, kind='grace')(voice[1])
         Note("d'8")
 
     ..  doctest::
@@ -52,7 +52,7 @@ class GraceContainer(Container):
     ::
 
         >>> after_grace_notes = [Note("e'16"), Note("f'16")]
-        >>> leaftools.GraceContainer(
+        >>> containertools.GraceContainer(
         ...     after_grace_notes, kind='after')(voice[1])
         Note("d'8")
 
@@ -150,7 +150,7 @@ class GraceContainer(Container):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> leaftools.GraceContainer(
+                >>> containertools.GraceContainer(
                 ...     [Note("cs'16")], kind = 'grace')(staff[1])
                 Note("d'8")
                 >>> grace_container = staff[1].grace
@@ -164,7 +164,7 @@ class GraceContainer(Container):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> leaftools.GraceContainer(
+                >>> containertools.GraceContainer(
                 ...     [Note("cs'16")], kind = 'grace')(staff[1])
                 Note("d'8")
                 >>> grace_container = staff[1].grace
@@ -208,7 +208,7 @@ class GraceContainer(Container):
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> grace_container = leaftools.GraceContainer(
+            >>> grace_container = containertools.GraceContainer(
             ...     [Note("cs'16")], kind = 'grace')
             >>> grace_container(staff[1])
             Note("d'8")
