@@ -49,9 +49,7 @@ class NamedMelodicInterval(NamedInterval, MelodicInterval):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NamedHarmonicInterval(
-            self.quality_string, abs(self.number))
+        return type(self)(self.quality_string, abs(self.number))
 
     def __add__(self, arg):
         from abjad.tools import pitchtools

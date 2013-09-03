@@ -16,9 +16,7 @@ class NamedIntervalClass(IntervalClass):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        from abjad.tools.pitchtools.NamedHarmonicIntervalClass \
-            import NamedHarmonicIntervalClass
-        return NamedHarmonicIntervalClass(str(self))
+        return type(self)(abs(self._number))
 
     def __float__(self):
         return float(self._number)
