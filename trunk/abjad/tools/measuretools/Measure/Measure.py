@@ -239,6 +239,29 @@ class Measure(FixedDurationContainer):
             format_contributions.get('opening', {}).get('context marks', [])))
         return self._format_slot_contributions_with_indent(result)
 
+    @staticmethod
+    def _get_likely_multiplier_of_components(components):
+        pass
+        from abjad.tools import componenttools
+        from abjad.tools import iterationtools
+        from abjad.tools import leaftools
+        from abjad.tools import selectiontools
+        from abjad.tools import sequencetools
+        assert all(isinstance(x, componenttools.Component) for x in components)
+        chain_duration_numerators = []
+        for expr in \
+            iterationtools.iterate_topmost_tie_chains_and_components_in_expr(
+            components):
+            if isinstance(expr, selectiontools.TieChain):
+                chain_duration = expr._preprolated_duration
+                chain_duration_numerators.append(chain_duration.numerator)
+        if len(sequencetools.truncate_runs_in_sequence(
+            chain_duration_numerators)) == 1:
+            numerator = chain_duration_numerators[0]
+            denominator = mathtools.greatest_power_of_two_less_equal(numerator)
+            likely_multiplier = durationtools.Multiplier(numerator, denominator)
+            return likely_multiplier
+
     # TODO: see if self._scale can be combined with
     #       with self.scale_and_adjust_time_signature()
     def _scale(self, multiplier=None):

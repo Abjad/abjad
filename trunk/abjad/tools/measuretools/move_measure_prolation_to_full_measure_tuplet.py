@@ -26,7 +26,8 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
 
             # find time signature and contents multipliers
             time_signature_multiplier = effective_time_signature.implied_prolation
-            contents_multiplier = measuretools.get_likely_multiplier_of_components(measure[:])
+            contents_multiplier = \
+                measure._get_likely_multiplier_of_components(measure[:])
 
             # update non-power-of-two time signature to power-of-two
             power_of_two_time_signature = effective_time_signature.with_power_of_two_denominator(
