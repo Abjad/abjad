@@ -3,7 +3,7 @@ from abjad.tools import pitchtools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from abjad.tools.pitchtools import IntervalSegment
-from abjad.tools.pitchtools import NamedHarmonicInterval
+from abjad.tools.pitchtools import NamedMelodicInterval
 
 
 class ChordQualityIndicator(IntervalSegment):
@@ -15,7 +15,7 @@ class ChordQualityIndicator(IntervalSegment):
         ...     'German',
         ...     'augmented sixth',
         ...     )
-        GermanAugmentedSixthInRootPosition('P1', 'M3', 'm3', 'aug2')
+        GermanAugmentedSixthInRootPosition('P1', '+M3', '+m3', '+aug2')
 
     Return chord quality indicator.
     '''
@@ -66,7 +66,7 @@ class ChordQualityIndicator(IntervalSegment):
         IntervalSegment.__init__(
             self,
             tokens=intervals,
-            item_class=NamedHarmonicInterval,
+            item_class=NamedMelodicInterval,
             )
         self._quality_string = quality_string
         self._rotation = rotation
@@ -137,109 +137,109 @@ class ChordQualityIndicator(IntervalSegment):
     def _init_augmented_sixth(quality_string):
         if quality_string == 'French':
             intervals = [
-                NamedHarmonicInterval('major', 3),
-                NamedHarmonicInterval('major', 2), 
-                NamedHarmonicInterval('major', 3), 
+                NamedMelodicInterval('major', 3),
+                NamedMelodicInterval('major', 2), 
+                NamedMelodicInterval('major', 3), 
                 ]
         elif quality_string == 'German':
             intervals = [
-                NamedHarmonicInterval('major', 3), 
-                NamedHarmonicInterval('minor', 3), 
-                NamedHarmonicInterval('augmented', 2), 
+                NamedMelodicInterval('major', 3), 
+                NamedMelodicInterval('minor', 3), 
+                NamedMelodicInterval('augmented', 2), 
                 ]
         elif quality_string == 'Italian':
             intervals = [
-                NamedHarmonicInterval('major', 3), 
-                NamedHarmonicInterval('perfect', 1), 
-                NamedHarmonicInterval('augmented', 4), 
+                NamedMelodicInterval('major', 3), 
+                NamedMelodicInterval('perfect', 1), 
+                NamedMelodicInterval('augmented', 4), 
                 ]
         elif quality_string == 'Swiss':
             intervals = [
-                NamedHarmonicInterval('major', 3), 
-                NamedHarmonicInterval('augmented', 2), 
-                NamedHarmonicInterval('minor', 3), 
+                NamedMelodicInterval('major', 3), 
+                NamedMelodicInterval('augmented', 2), 
+                NamedMelodicInterval('minor', 3), 
                 ]
         else:
            raise ValueError('unaccpetable quality string.')
-        intervals.insert(0, NamedHarmonicInterval('perfect', 1))
+        intervals.insert(0, NamedMelodicInterval('perfect', 1))
         return intervals
         
     @staticmethod
     def _init_ninth(quality_string):
         if quality_string == 'dominant':
             intervals = [
-                NamedHarmonicInterval('major', 3),
-                NamedHarmonicInterval('perfect', 5),
-                NamedHarmonicInterval('minor', 7),
-                NamedHarmonicInterval('major', 9),
+                NamedMelodicInterval('major', 3),
+                NamedMelodicInterval('perfect', 5),
+                NamedMelodicInterval('minor', 7),
+                NamedMelodicInterval('major', 9),
                 ]
         else:
             raise ValueError('unacceptable quality string.')
-        intervals.insert(0, NamedHarmonicInterval('perfect', 1))
+        intervals.insert(0, NamedMelodicInterval('perfect', 1))
         return intervals
 
     @staticmethod
     def _init_seventh(quality_string):
         if quality_string == 'dominant':
             intervals = [
-                NamedHarmonicInterval('major', 3),
-                NamedHarmonicInterval('perfect', 5),
-                NamedHarmonicInterval('minor', 7),
+                NamedMelodicInterval('major', 3),
+                NamedMelodicInterval('perfect', 5),
+                NamedMelodicInterval('minor', 7),
                 ]
         elif quality_string == 'major':
             intervals = [
-                NamedHarmonicInterval('major', 3),
-                NamedHarmonicInterval('perfect', 5),
-                NamedHarmonicInterval('major', 7),
+                NamedMelodicInterval('major', 3),
+                NamedMelodicInterval('perfect', 5),
+                NamedMelodicInterval('major', 7),
                 ]
         elif quality_string == 'minor':
             intervals = [
-                NamedHarmonicInterval('minor', 3),
-                NamedHarmonicInterval('perfect', 5),
-                NamedHarmonicInterval('minor', 7),
+                NamedMelodicInterval('minor', 3),
+                NamedMelodicInterval('perfect', 5),
+                NamedMelodicInterval('minor', 7),
                 ]
         elif quality_string in ('diminished', 'fully diminished'):
             intervals = [
-                NamedHarmonicInterval('minor', 3),
-                NamedHarmonicInterval('diminished', 5),
-                NamedHarmonicInterval('diminished', 7),
+                NamedMelodicInterval('minor', 3),
+                NamedMelodicInterval('diminished', 5),
+                NamedMelodicInterval('diminished', 7),
                 ]
         elif quality_string == 'half diminished':
             intervals = [
-                NamedHarmonicInterval('minor', 3),
-                NamedHarmonicInterval('perfect', 5),
-                NamedHarmonicInterval('diminished', 7),
+                NamedMelodicInterval('minor', 3),
+                NamedMelodicInterval('perfect', 5),
+                NamedMelodicInterval('diminished', 7),
                 ]
         else:
            raise ValueError('unaccpetable quality string.')
-        intervals.insert(0, NamedHarmonicInterval('perfect', 1))
+        intervals.insert(0, NamedMelodicInterval('perfect', 1))
         return intervals
 
     @staticmethod
     def _init_triad(quality_string):
         if quality_string == 'major':
             intervals = [
-                NamedHarmonicInterval('major', 3),
-                NamedHarmonicInterval('perfect', 5),
+                NamedMelodicInterval('major', 3),
+                NamedMelodicInterval('perfect', 5),
                 ]
         elif quality_string == 'minor':
             intervals = [
-                NamedHarmonicInterval('minor', 3),
-                NamedHarmonicInterval('perfect', 5),
+                NamedMelodicInterval('minor', 3),
+                NamedMelodicInterval('perfect', 5),
                 ]
         elif quality_string == 'diminished':
             intervals = [
-                NamedHarmonicInterval('minor', 3),
-                NamedHarmonicInterval('diminished', 5),
+                NamedMelodicInterval('minor', 3),
+                NamedMelodicInterval('diminished', 5),
                 ]
         elif quality_string == 'augmented':
             intervals = [
-                NamedHarmonicInterval('major', 3),
-                NamedHarmonicInterval('augmented', 5),
+                NamedMelodicInterval('major', 3),
+                NamedMelodicInterval('augmented', 5),
                 ]
         else:
             raise ValueError('unacceptable quality string.')
-        intervals.insert(0, NamedHarmonicInterval('perfect', 1))
+        intervals.insert(0, NamedMelodicInterval('perfect', 1))
         return intervals
 
     @staticmethod

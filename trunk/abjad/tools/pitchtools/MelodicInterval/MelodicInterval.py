@@ -23,8 +23,7 @@ class MelodicInterval(Interval):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        from abjad.tools import pitchtools
-        return pitchtools.HarmonicInterval.HarmonicInterval(self)
+        return type(self)(abs(self.number))
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):

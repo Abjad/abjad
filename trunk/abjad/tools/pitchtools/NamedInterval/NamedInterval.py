@@ -8,9 +8,7 @@ class NamedInterval(Interval):
     '''Named interval base class.
     '''
 
-    ### INITIALIZER ##
-
-    __metaclass__ = abc.ABCMeta
+    ### CLASS VARIABLES ##
 
     __slots__ = (
         '_number', 
@@ -41,9 +39,7 @@ class NamedInterval(Interval):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        from abjad.tools.pitchtools.NamedHarmonicInterval \
-            import NamedHarmonicInterval
-        return NamedHarmonicInterval(self.quality_string, self.number)
+        return type(self)(self.quality_string, self.number)
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -91,10 +87,23 @@ class NamedInterval(Interval):
 
     @property
     def _interval_string(self):
-        interval_to_string = {1: 'unison', 2: 'second', 3: 'third',
-            4: 'fourth', 5: 'fifth', 6: 'sixth', 7: 'seventh', 8: 'octave',
-            9: 'ninth', 10: 'tenth', 11: 'eleventh', 12: 'twelth',
-            13: 'thirteenth', 14: 'fourteenth', 15: 'fifteenth'}
+        interval_to_string = {
+            1: 'unison', 
+            2: 'second', 
+            3: 'third',
+            4: 'fourth', 
+            5: 'fifth', 
+            6: 'sixth', 
+            7: 'seventh', 
+            8: 'octave',
+            9: 'ninth', 
+            10: 'tenth', 
+            11: 'eleventh', 
+            12: 'twelth',
+            13: 'thirteenth', 
+            14: 'fourteenth', 
+            15: 'fifteenth',
+            }
         try:
             interval_string = interval_to_string[abs(self.number)]
         except KeyError:

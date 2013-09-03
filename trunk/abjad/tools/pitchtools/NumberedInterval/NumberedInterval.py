@@ -31,9 +31,7 @@ class NumberedInterval(Interval):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        from abjad.tools.pitchtools.NumberedHarmonicInterval \
-            import NumberedHarmonicInterval
-        return NumberedHarmonicInterval(abs(self._number))
+        return type(self)(abs(self._number))
 
     def __add__(self, arg):
         if isinstance(arg, type(self)):

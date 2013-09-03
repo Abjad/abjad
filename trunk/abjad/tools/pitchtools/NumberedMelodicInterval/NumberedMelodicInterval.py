@@ -31,7 +31,7 @@ class NumberedMelodicInterval(NumberedInterval, MelodicInterval):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        return self.harmonic_chromatic_interval
+        return type(self)(abs(self._number))
 
     def __ge__(self, arg):
         if not isinstance(arg, type(self)):
@@ -144,31 +144,3 @@ class NumberedMelodicInterval(NumberedInterval, MelodicInterval):
         '''
         return mathtools.sign(self.number)
 
-    @property
-    def harmonic_chromatic_interval(self):
-        r'''Harmonic chromatic interval:
-
-        ::
-
-            >>> mci.harmonic_chromatic_interval
-            NumberedHarmonicInterval(14)
-
-        Return harmonic chromatic interval.
-        '''
-        from abjad.tools import pitchtools
-        number = abs(self.number)
-        return pitchtools.NumberedHarmonicInterval(number)
-
-    @property
-    def melodic_chromatic_interval_class(self):
-        r'''Melodic chromatic interval-class:
-
-        ::
-
-            >>> mci.melodic_chromatic_interval_class
-            NumberedMelodicIntervalClass(-2)
-
-        Return melodic chromatic interval-class.
-        '''
-        from abjad.tools import pitchtools
-        return pitchtools.NumberedMelodicIntervalClass(self)

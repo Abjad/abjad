@@ -526,7 +526,7 @@ class TonalAnalysisAgent(object):
             iterationtools.iterate_notes_in_expr(self._selection)):
             try:
                 assert not (left.written_pitch == right.written_pitch)
-                hdi = pitchtools.NamedHarmonicInterval.from_pitch_carriers(
+                hdi = pitchtools.NamedMelodicInterval.from_pitch_carriers(
                     left, right)
                 assert hdi.number <= 2
             except AssertionError:

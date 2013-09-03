@@ -188,11 +188,6 @@ class NamedMelodicInterval(NamedInterval, MelodicInterval):
             return 'ascending'
 
     @property
-    def inversion_equivalent_chromatic_interval_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NumberedInversionEquivalentIntervalClass(self)
-
-    @property
     def semitones(self):
         from abjad.tools import pitchtools
         result = 0

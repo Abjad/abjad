@@ -51,7 +51,7 @@ class ChordClass(PitchClassSet):
         quality_indicator = tonalanalysistools.ChordQualityIndicator(*args)
         npcs = []
         for hdi in quality_indicator:
-            mdi = hdi.melodic_diatonic_interval_ascending
+            mdi = pitchtools.NamedMelodicInterval(hdi)
             npc = root + mdi
             npcs.append(npc)
         bass = npcs[0]

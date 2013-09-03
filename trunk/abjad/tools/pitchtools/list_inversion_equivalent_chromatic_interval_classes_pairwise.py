@@ -124,7 +124,7 @@ def list_inversion_equivalent_chromatic_interval_classes_pairwise(pitch_carriers
         first_pitch = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(first_carrier)
         second_pitch = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(second_carrier)
         mdi = second_pitch - first_pitch
-        iecic = mdi.inversion_equivalent_chromatic_interval_class
+        iecic = pitchtools.NumberedInversionEquivalentIntervalClass(mdi)
         result.append(iecic)
 
     return result

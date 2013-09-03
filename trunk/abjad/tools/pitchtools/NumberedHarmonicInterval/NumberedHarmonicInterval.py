@@ -60,11 +60,9 @@ class NumberedHarmonicInterval(NumberedInterval):
         Return harmonic chromatic interval.
         '''
         from abjad.tools import pitchtools
-        # get melodic chromatic interval
-        mci = pitchtools.NumberedMelodicInterval.from_pitch_carriers(
+        interval = pitchtools.NumberedMelodicInterval.from_pitch_carriers(
             pitch_carrier_1, pitch_carrier_2)
-        # return harmonic chromatic interval
-        return mci.harmonic_chromatic_interval
+        return cls(interval)
 
     ### PUBLIC PROPERTIES ###
 
