@@ -164,3 +164,6 @@ class TypedCounter(TypedCollection):
 
     def viewvalues(self):
         return self._collection.viewvalues()
+
+
+collections.MutableMapping.register(TypedCounter)

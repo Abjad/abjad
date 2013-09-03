@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import collections
 from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
 
@@ -78,3 +79,5 @@ class TypedTuple(TypedCollection):
         item = self._item_callable(token)
         return self._collection.index(item)
 
+
+collections.Sequence.register(TypedTuple)

@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import collections
 from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
 
@@ -107,3 +108,5 @@ class TypedFrozenset(TypedCollection):
         result = self._collection.union(expr._collection)
         return self.new(result)
 
+
+collections.Set.register(TypedFrozenset)

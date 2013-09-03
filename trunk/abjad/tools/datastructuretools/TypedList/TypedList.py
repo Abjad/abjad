@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import collections
 from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
 
@@ -374,3 +375,6 @@ class TypedList(TypedCollection):
         r'''Aliases list.sort().
         '''
         self._collection.sort(cmp=cmp, key=key, reverse=reverse)
+
+
+collections.MutableSequence.register(TypedList)
