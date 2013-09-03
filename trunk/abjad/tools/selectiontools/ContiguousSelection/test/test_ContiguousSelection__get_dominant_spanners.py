@@ -140,7 +140,7 @@ def test_ContiguousSelection__get_dominant_spanners_07():
     glissando = spannertools.GlissandoSpanner(voice[1:])
     trill = spannertools.TrillSpanner(voice.select_leaves())
 
-    receipt = select(voice, contiguous=True)._get_dominant_spanners()
+    receipt = select(voice)._get_dominant_spanners()
 
     assert len(receipt) == 1
     assert (trill, 0) in receipt

@@ -15,7 +15,7 @@ def select(expr=None, contiguous=False):
             assert Selection._all_are_contiguous_components_in_same_logical_voice(expr)
         return selectiontools.ContiguousSelection(expr)
     elif isinstance(expr, componenttools.Component):
-        return selectiontools.Selection(expr)
+        return selectiontools.ContiguousSelection(expr)
     elif hasattr(expr, '_music'):
         music = expr._music
         return selectiontools.Selection(music)
