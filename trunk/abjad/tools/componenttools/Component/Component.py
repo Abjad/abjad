@@ -524,6 +524,58 @@ class Component(AbjadObject):
     def _get_vertical_moment_at(self, offset):
         return selectiontools.VerticalMoment(self, offset)
 
+    # TODO: eventually reimplement as a keyword option to remove()
+    def _remove_and_shrink_durated_parent_containers(self):
+        from abjad.tools import contexttools
+        from abjad.tools import measuretools
+        from abjad.tools import tuplettools
+        prolated_leaf_duration = self._get_duration()
+        parentage = self._get_parentage(include_self=False)
+        prolations = parentage._prolations
+        current_prolation, i = durationtools.Duration(1), 0
+        parent = self._parent
+        while parent is not None and not parent.is_simultaneous:
+            current_prolation *= prolations[i]
+            if isinstance(parent, tuplettools.FixedDurationTuplet):
+                candidate_new_parent_dur = parent.target_duration - current_prolation * self.written_duration
+                if durationtools.Duration(0) < candidate_new_parent_dur:
+                    parent.target_duration = candidate_new_parent_dur
+            elif isinstance(parent, measuretools.Measure):
+                parent_time_signature = parent._get_mark(
+                    contexttools.TimeSignatureMark)
+                old_prolation = parent_time_signature.implied_prolation
+                naive_time_signature = parent_time_signature.duration - prolated_leaf_duration
+                better_time_signature = mathtools.NonreducedFraction(naive_time_signature)
+                better_time_signature = better_time_signature.with_denominator(parent_time_signature.denominator)
+                better_time_signature = contexttools.TimeSignatureMark(better_time_signature)
+                for mark in parent._get_marks(contexttools.TimeSignatureMark):
+                    mark.detach()
+                better_time_signature.attach(parent)
+                parent_time_signature = parent._get_mark(
+                    contexttools.TimeSignatureMark)
+                new_denominator = parent_time_signature.denominator
+                new_prolation = parent_time_signature.implied_prolation
+                adjusted_prolation = old_prolation / new_prolation
+                for x in parent:
+                    if isinstance(x, tuplettools.FixedDurationTuplet):
+                        x.target_duration *= adjusted_prolation
+                    else:
+                        if adjusted_prolation != 1:
+                            new_target = x._preprolated_duration * adjusted_prolation
+                            tuplettools.FixedDurationTuplet(new_target, [x])
+            parent = parent._parent
+            i += 1
+        parentage = self._get_parentage(include_self=False)
+        parent = self._parent
+        if parent:
+            index = parent.index(self)
+            del(parent[index])
+        for x in parentage:
+            if not len(x):
+                x.extract()
+            else:
+                break
+
     def _set_keyword_value(self, key, value):
         attribute_chain = key.split('__')
         plug_in_name = attribute_chain[0]
