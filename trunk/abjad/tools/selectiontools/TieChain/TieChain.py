@@ -86,7 +86,7 @@ class TieChain(ContiguousSelection):
         result = []
         parts = self.leaves_grouped_by_immediate_parents
         for part in parts:
-            result.append(leaftools.fuse_leaves(part))
+            result.append(part._fuse())
         return result
 
     def _scale(self, multiplier):
@@ -153,10 +153,12 @@ class TieChain(ContiguousSelection):
 
         Return list of lists.
         '''
+        from abjad.tools import selectiontools
         result = []
         pairs_generator = itertools.groupby(self, lambda x: id(x._parent))
         for key, values_generator in pairs_generator:
-            result.append(list(values_generator))
+            group = selectiontools.ContiguousSelection(list(values_generator))
+            result.append(group)
         return result
 
     @property

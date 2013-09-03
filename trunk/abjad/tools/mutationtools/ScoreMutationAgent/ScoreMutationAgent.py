@@ -178,6 +178,112 @@ class ScoreMutationAgent(object):
         '''
         return self._client._extract(scale_contents=scale_contents)
 
+    def fuse(self):
+        r'''Fuses mutation client.
+
+        ..  container:: example
+
+            **Example 1.** Fuse in-score leaves:
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> mutate(staff[1:]).fuse()
+                [Note("d'4.")]
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    d'4.
+                }
+
+        ..  container:: example
+        
+            **Example 2.** Fuse parent-contiguous fixed-duration tuplets
+            in selection:
+
+            ::
+
+                >>> tuplet_1 = tuplettools.FixedDurationTuplet(
+                ...     Duration(2, 8), [])
+                >>> tuplet_1.extend("c'8 d'8 e'8")
+                >>> beam = spannertools.BeamSpanner(tuplet_1[:])
+                >>> tuplet_2 = tuplettools.FixedDurationTuplet(
+                ...     Duration(2, 16), [])
+                >>> tuplet_2.extend("c'16 d'16 e'16")
+                >>> slur = spannertools.SlurSpanner(tuplet_2[:])
+                >>> staff = Staff([tuplet_1, tuplet_2])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \times 2/3 {
+                        c'8 [
+                        d'8
+                        e'8 ]
+                    }
+                    \times 2/3 {
+                        c'16 (
+                        d'16
+                        e'16 )
+                    }
+                }
+
+            ::
+
+                >>> tuplets = staff[:]
+                >>> mutate(tuplets).fuse()
+                FixedDurationTuplet(3/8, [c'8, d'8, e'8, c'16, d'16, e'16])
+                >>> show(staff) #doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \times 2/3 {
+                        c'8 [
+                        d'8
+                        e'8 ]
+                        c'16 (
+                        d'16
+                        e'16 )
+                    }
+                }
+
+            Returns new tuplet.
+
+            Fuses zero or more parent-contiguous `tuplets`.
+
+            Allows in-score `tuplets`.
+
+            Allows outside-of-score `tuplets`.
+
+            All `tuplets` must carry the same multiplier.
+
+            All `tuplets` must be of the same type.
+
+        Returns fused mutation client.
+        '''
+        from abjad.tools import componenttools
+        from abjad.tools import selectiontools
+        if isinstance(self._client, componenttools.Component):
+            selection = selectiontools.ContiguousSelection(self._client)
+            return selection._fuse()
+        elif isinstance(self._client, selectiontools.Selection) and \
+            self._client._all_are_contiguous_components_in_same_logical_voice(
+            self._client):
+            selection = selectiontools.ContiguousSelection(self._client)
+            return selection._fuse()
+
     def replace(self, recipients):
         r'''Replaces mutation client (and contents of mutation client)
         with `recipients`.

@@ -186,6 +186,68 @@ class ContiguousSelection(Selection):
                     receipt.add((spanner, index))
         return receipt
             
+    def _fuse(self):
+        from abjad.tools import leaftools
+        from abjad.tools import tuplettools
+        assert self._all_are_contiguous_components_in_same_logical_voice(self)
+        if all(isinstance(x, leaftools.Leaf) for x in self):
+            return self._fuse_leaves()
+        elif all(isinstance(x, tuplettools.Tuplet) for x in self):
+            return self._fuse_tuplets()
+        else:
+            raise Exception('can not fuse.')
+
+    def _fuse_leaves(self):
+        from abjad.tools import leaftools
+        from abjad.tools import selectiontools
+        assert self._all_are_contiguous_components_in_same_logical_voice(self)
+        assert all(isinstance(x, leaftools.Leaf) for x in self)
+        leaves = self
+        if len(leaves) <= 1:
+            return leaves
+        total_preprolated = leaves._preprolated_duration
+        for leaf in leaves[1:]:
+            parent = leaf._parent
+            if parent:
+                index = parent.index(leaf)
+                del(parent[index])
+        return leaves[0]._set_duration(total_preprolated)
+
+    def _fuse_tuplets(self):
+        from abjad.tools import containertools
+        from abjad.tools import tuplettools
+        assert self._all_are_contiguous_components_in_same_parent(
+            self, component_classes=(tuplettools.Tuplet,))
+        if len(self) == 0:
+            return None
+        first = self[0]
+        first_multiplier = first.multiplier
+        first_type = type(first)
+        for tuplet in self[1:]:
+            if tuplet.multiplier != first_multiplier:
+                raise TupletFuseError('tuplets must carry same multiplier.')
+            if type(tuplet) != first_type:
+                raise TupletFuseError('tuplets must be same type.')
+        if isinstance(first, tuplettools.FixedDurationTuplet):
+            total_contents_duration = sum(
+                [x._contents_duration for x in self])
+            new_target_duration = first_multiplier * total_contents_duration
+            new_tuplet = tuplettools.FixedDurationTuplet(
+                new_target_duration, [])
+        elif isinstance(first, tuplettools.Tuplet):
+            new_tuplet = tuplettools.Tuplet(first_multiplier, [])
+        else:
+            raise TypeError('unknown tuplet type.')
+        wrapped = False
+        if self[0]._get_parentage().root is not \
+            self[-1]._get_parentage().root:
+            dummy_container = containertools.Container(self)
+            wrapped = True
+        mutationtools.mutate(self).swap(new_tuplet)
+        if wrapped:
+            del(dummy_container[:])
+        return new_tuplet
+
     def _give_dominant_spanners(self, recipients):
         r'''Find all spanners dominating music.
         Insert each component in recipients into each dominant spanner.
@@ -428,114 +490,6 @@ class ContiguousSelection(Selection):
         # return new components
         return new_components
 
-    def fuse_tuplets(self):
-        r'''Fuse parent-contiguous tuplets in selection.
-
-        ..  container:: example
-        
-            **Example.** Fuse parent-contiguous fxed-duration tuplets
-            in selection:
-
-            ::
-
-                >>> t1 = tuplettools.FixedDurationTuplet(Duration(2, 8), [])
-                >>> t1.extend("c'8 d'8 e'8")
-                >>> beam = spannertools.BeamSpanner(t1[:])
-                >>> t2 = tuplettools.FixedDurationTuplet(Duration(2, 16), [])
-                >>> t2.extend("c'16 d'16 e'16")
-                >>> slur = spannertools.SlurSpanner(t2[:])
-                >>> staff = Staff([t1, t2])
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff {
-                    \times 2/3 {
-                        c'8 [
-                        d'8
-                        e'8 ]
-                    }
-                    \times 2/3 {
-                        c'16 (
-                        d'16
-                        e'16 )
-                    }
-                }
-
-            ::
-
-                >>> show(staff) # doctest: +SKIP
-
-            ::
-
-                >>> tuplets = staff[:]
-                >>> tuplets.fuse_tuplets()
-                FixedDurationTuplet(3/8, [c'8, d'8, e'8, c'16, d'16, e'16])
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff {
-                    \times 2/3 {
-                        c'8 [
-                        d'8
-                        e'8 ]
-                        c'16 (
-                        d'16
-                        e'16 )
-                    }
-                }
-
-            ::
-
-                >>> show(staff) # doctest: +SKIP
-
-        Return new tuplet.
-
-        Fuse zero or more parent-contiguous `tuplets`.
-
-        Allow in-score `tuplets`.
-
-        Allow outside-of-score `tuplets`.
-
-        All `tuplets` must carry the same multiplier.
-
-        All `tuplets` must be of the same type.
-        '''
-        from abjad.tools import containertools
-        from abjad.tools import tuplettools
-        assert self._all_are_contiguous_components_in_same_parent(
-            self, component_classes=(tuplettools.Tuplet,))
-        if len(self) == 0:
-            return None
-        first = self[0]
-        first_multiplier = first.multiplier
-        first_type = type(first)
-        for tuplet in self[1:]:
-            if tuplet.multiplier != first_multiplier:
-                raise TupletFuseError('tuplets must carry same multiplier.')
-            if type(tuplet) != first_type:
-                raise TupletFuseError('tuplets must be same type.')
-        if isinstance(first, tuplettools.FixedDurationTuplet):
-            total_contents_duration = sum(
-                [x._contents_duration for x in self])
-            new_target_duration = first_multiplier * total_contents_duration
-            new_tuplet = tuplettools.FixedDurationTuplet(
-                new_target_duration, [])
-        elif isinstance(first, tuplettools.Tuplet):
-            new_tuplet = tuplettools.Tuplet(first_multiplier, [])
-        else:
-            raise TypeError('unknown tuplet type.')
-        wrapped = False
-        if self[0]._get_parentage().root is not \
-            self[-1]._get_parentage().root:
-            dummy_container = containertools.Container(self)
-            wrapped = True
-        mutationtools.mutate(self).swap(new_tuplet)
-        if wrapped:
-            del(dummy_container[:])
-        return new_tuplet
-            
     def get_timespan(self, in_seconds=False):
         r'''Gets timespan of contiguous selection.
 

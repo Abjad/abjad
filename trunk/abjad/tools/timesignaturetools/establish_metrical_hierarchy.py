@@ -909,7 +909,7 @@ def establish_metrical_hierarchy(
             #print 'ACCEPTABLE:', tie_chain, tie_chain_start_offset, tie_chain_stop_offset
             #print '\t', ' '.join([str(x) for x in offsets])
             #print ''
-            leaftools.fuse_leaves(tie_chain[:])
+            tie_chain[:]._fuse()
 
     # Validate arguments.
     assert Selection._all_are_contiguous_components_in_same_logical_voice(
