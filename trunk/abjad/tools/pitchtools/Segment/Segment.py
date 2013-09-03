@@ -28,11 +28,11 @@ class Segment(TypedTuple):
         if item_class is None:
             item_class = self._named_item_class
             if tokens is not None:
-                if isinstance(tokens, type(self)):
+                if isinstance(tokens, datastructuretools.TypedCollection) and \
+                    issubclass(tokens.item_class, self._parent_item_class):
                     item_class = tokens.item_class
                 elif len(tokens):
-                    if isinstance(tokens, (set, frozenset, 
-                        datastructuretools.TypedFrozenset)):
+                    if isinstance(tokens, collections.Set):
                         tokens = tuple(tokens)
                     if isinstance(tokens[0], str):
                         item_class = self._named_item_class
