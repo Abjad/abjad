@@ -508,13 +508,6 @@ class ScoreMutationAgent(object):
             for component in self._client:
                 component._scale()
 
-    def shorten(self, duration):
-        r'''Shortens component by `duration`.
-
-        Returns none.
-        '''
-        return self._client._shorten(duration)
-
     def splice(
         self,
         components,

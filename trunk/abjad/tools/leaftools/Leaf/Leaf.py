@@ -359,13 +359,6 @@ class Leaf(Component):
             self._format_after_slot(format_contributions))
         return report
 
-    def _shorten(self, duration):
-        from abjad.tools import leaftools
-        duration = self._get_duration() - duration
-        prolation = self._get_parentage().prolation
-        preprolated_duration = duration / prolation
-        leaftools.set_leaf_duration(self, preprolated_duration)
-
     def _split(
         self,
         durations,

@@ -624,20 +624,6 @@ class Container(Component):
     def _scale(self, multiplier):
         self._scale_contents(multiplier)
 
-    def _shorten(self, duration):
-        accumulated_duration = durationtools.Duration(0)
-        components = []
-        for component in self:
-            current_duration = component._get_duration()
-            if accumulated_duration + current_duration <= duration:
-                components.append(component)
-                accumulated_duration += current_duration
-            else:
-                break
-        del(self[:len(components)])
-        remaining_subtrahend_duration = duration - accumulated_duration
-        self[0]._shorten(remaining_subtrahend_duration)
-
     def _split_at_index(self, i, fracture_spanners=False):
         r'''Splits container to the left of index `i`.
 
