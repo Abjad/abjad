@@ -9,8 +9,6 @@ class PitchClass(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __metaclass__ = abc.ABCMeta
-
     __slots__ = ('_format_string', )
 
     ### INNITIALIZER ###

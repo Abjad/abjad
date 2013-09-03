@@ -10,8 +10,6 @@ class MelodicInterval(Interval):
 
     ### CLASS VARIABLES ###
 
-    __metaclass__ = abc.ABCMeta
-
     __slots__ = ()
 
     ## INITIALIZER ###

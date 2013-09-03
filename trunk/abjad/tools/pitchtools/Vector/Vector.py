@@ -7,10 +7,6 @@ class Vector(dict, AbjadObject):
     '''Music theoretic vector base class.
     '''
 
-    ### CLASS VARIABLES ###
-
-    __metaclass__ = abc.ABCMeta
-
     ### INITIALIZER ###
 
     @abc.abstractmethod
