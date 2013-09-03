@@ -75,6 +75,10 @@ class TwelveToneRow(PitchClassSegment):
 
     ### PUBLIC METHODS ###d
 
+    @classmethod
+    def from_selection(cls, selection, item_class=None, name=None):
+        raise NotImplementedError
+
     def new(self, tokens=None, name=None):
         from abjad.tools import pitchtools
         # Allow for empty iterables:

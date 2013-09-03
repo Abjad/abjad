@@ -74,8 +74,3 @@ class NumberedInversionEquivalentIntervalClass(IntervalClass):
     def _format_string(self):
         return self.number
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def inversion_equivalent_chromatic_interval_number(self):
-        return self._number

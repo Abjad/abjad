@@ -135,6 +135,10 @@ class Scale(PitchClassSegment):
             item_class=pitchtools.NamedPitch,
             )
 
+    @classmethod
+    def from_selection(cls, selection, item_class=None, name=None):
+        raise NotImplementedError
+
     def make_notes(self, n, written_duration=None):
         r'''Make first `n` notes in ascending diatonic scale.
         according to `key_signature`.

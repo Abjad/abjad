@@ -87,6 +87,28 @@ class PitchClassSegment(Segment):
             numbers.append(number)
         return self.new(tokens=numbers)
 
+    @classmethod
+    def from_selection(cls, selection, item_class=None, name=None):
+        r'''Initialize pitch-class segment from component selection:
+
+        ::
+
+            >>> staff_1 = Staff("c'4 <d' fs' a'>4 b2")
+            >>> staff_2 = Staff("c4. r8 g2")
+            >>> selection = select((staff_1, staff_2))
+            >>> pitchtools.PitchClassSegment.from_selection(selection)
+            PitchClassSegment(['c', 'd', 'fs', 'a', 'b', 'c', 'g'])
+        
+        Return pitch-class segment.
+        '''
+        from abjad.tools import pitchtools
+        pitch_segment = pitchtools.PitchSegment.from_selection(selection)
+        return cls(
+            tokens=pitch_segment,
+            item_class=item_class,
+            name=name,
+            )
+
     def invert(self):
         r'''Invert pitch-class segment:
 

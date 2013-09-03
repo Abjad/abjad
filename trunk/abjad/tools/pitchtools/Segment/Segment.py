@@ -72,3 +72,8 @@ class Segment(TypedTuple):
     def _parent_item_class(self):
         raise NotImplementedError
 
+    ### PUBLIC METHODS ###
+
+    @abc.abstractmethod
+    def from_selection(cls, selection, item_class=None, name=None):
+        raise NotImplementedError

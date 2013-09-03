@@ -31,6 +31,29 @@ class IntervalSegment(Segment):
 
     ### PUBLIC METHODS ###
 
+    @classmethod
+    def from_selection(cls, selection, item_class=None, name=None):
+        r'''Initialize interval segment from component selection:
+
+        ::
+
+            >>> staff_1 = Staff("c'4 <d' fs' a'>4 b2")
+            >>> staff_2 = Staff("c4. r8 g2")
+            >>> selection = select((staff_1, staff_2))
+            >>> pitchtools.IntervalSegment.from_selection(selection)
+            IntervalSegment(['-M2', '-M3', '-m3', '+m7', '+M7', '-P5'])
+        
+        Return interval segment.
+        '''
+        from abjad.tools import pitchtools
+        pitch_segment = pitchtools.PitchSegment.from_selection(selection)
+        intervals = mathtools.difference_series(pitch_segment)
+        return cls(
+            tokens=intervals,
+            item_class=item_class,
+            name=name,
+            )
+
     def rotate(self, n):
         return self.new(self[-n:] + self[:-n])
 
