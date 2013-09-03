@@ -10,7 +10,7 @@ def instantiate_pitch_and_interval_test_collection():
         ...
         NumberedInversionEquivalentIntervalClass(1)
         NamedInversionEquivalentIntervalClass('M2')
-        NumberedMelodicInterval(+1)
+        NumberedInterval(+1)
         NumberedMelodicIntervalClass(+1)
         NamedInterval('+M2')
         NamedMelodicIntervalClass('+M2')
@@ -28,7 +28,7 @@ def instantiate_pitch_and_interval_test_collection():
     result = []
     result.append(pitchtools.NumberedInversionEquivalentIntervalClass(1))
     result.append(pitchtools.NamedInversionEquivalentIntervalClass('M2'))
-    result.append(pitchtools.NumberedMelodicInterval(1))
+    result.append(pitchtools.NumberedInterval(1))
     result.append(pitchtools.NumberedMelodicIntervalClass(1))
     result.append(pitchtools.NamedInterval('M2'))
     result.append(pitchtools.NamedMelodicIntervalClass('M2'))

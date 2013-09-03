@@ -87,7 +87,7 @@ class NumberedPitch(Pitch):
     def __sub__(self, arg):
         from abjad.tools import pitchtools
         if isinstance(arg, type(self)):
-            return pitchtools.NumberedMelodicInterval.from_pitch_carriers(
+            return pitchtools.NumberedInterval.from_pitch_carriers(
                 self, arg)
         else:
             interval = arg

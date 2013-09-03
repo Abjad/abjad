@@ -54,7 +54,7 @@ class NumberedPitchClass(PitchClass):
         r'''Addition defined against melodic chromatic intervals only.
         '''
         from abjad.tools import pitchtools
-        interval = pitchtools.NumberedMelodicInterval(expr)
+        interval = pitchtools.NumberedInterval(expr)
         return type(self)(abs(self) + interval.number % 12)
 
     def __copy__(self, *args):

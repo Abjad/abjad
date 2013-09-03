@@ -96,7 +96,7 @@ def label_vertical_moments_in_expr_with_chromatic_intervals(
         upper_notes = notes[:-1]
         intervals = []
         for upper_note in upper_notes:
-            interval = pitchtools.NumberedMelodicInterval.from_pitch_carriers(
+            interval = pitchtools.NumberedInterval.from_pitch_carriers(
                 bass_note, upper_note)
             intervals.append(interval)
         markup = markuptools.Markup(

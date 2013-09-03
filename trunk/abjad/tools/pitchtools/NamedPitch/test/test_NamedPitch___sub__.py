@@ -13,7 +13,7 @@ def test_NamedPitch___sub___01():
 def test_NamedPitch___sub___02():
 
     pitch = pitchtools.NamedPitch(12)
-    chromatic_interval = pitchtools.NumberedMelodicInterval(2)
+    chromatic_interval = pitchtools.NumberedInterval(2)
 
     assert pitch - chromatic_interval == pitchtools.NamedPitch('bf', 4)
 

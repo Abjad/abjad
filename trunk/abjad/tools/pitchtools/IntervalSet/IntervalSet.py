@@ -21,7 +21,7 @@ class IntervalSet(Set):
     @property
     def _numbered_item_class(self):
         from abjad.tools import pitchtools
-        return pitchtools.NumberedMelodicInterval
+        return pitchtools.NumberedInterval
 
     @property
     def _parent_item_class(self):

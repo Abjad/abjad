@@ -5,7 +5,7 @@ from abjad import *
 def test_pitchtools_transpose_chromatic_pitch_by_melodic_chromatic_interval_segment_01():
     mcis = pitchtools.IntervalSegment(
         tokens=[-2, 1, 1, -3, 0],
-        item_class=pitchtools.NumberedMelodicInterval,
+        item_class=pitchtools.NumberedInterval,
         )
     nucp = pitchtools.NumberedPitch(0)
     result = pitchtools.transpose_chromatic_pitch_by_melodic_chromatic_interval_segment(nucp, mcis)

@@ -105,7 +105,7 @@ class PitchSet(Set):
         r'''Transpose all pitches in self by `expr`.
         '''
         from abjad.tools import pitchtools
-        #interval = pitchtools.NumberedMelodicInterval(n)
+        #interval = pitchtools.NumberedInterval(n)
         tokens = (pitch.transpose(expr) for pitch in self)
         return self.new(tokens=tokens)
 

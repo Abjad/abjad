@@ -22,7 +22,7 @@ class IntervalSegment(Segment):
     @property
     def _numbered_item_class(self):
         from abjad.tools import pitchtools
-        return pitchtools.NumberedMelodicInterval
+        return pitchtools.NumberedInterval
 
     @property
     def _parent_item_class(self):
@@ -82,12 +82,12 @@ class IntervalSegment(Segment):
         ::
 
             >>> pitchtools.IntervalSegment([1, 2, -3, 1, -2, 1]).spread
-            NumberedMelodicInterval(+4.0)
+            NumberedInterval(+4.0)
 
         ::
 
             >>> pitchtools.IntervalSegment([1, 1, 1, 2, -3, -2]).spread
-            NumberedMelodicInterval(+5.0)
+            NumberedInterval(+5.0)
 
         Return harmonic chromatic interval.
         '''
@@ -99,4 +99,4 @@ class IntervalSegment(Segment):
                 maximum = current
             if current < minimum:
                 minimum = current
-        return pitchtools.NumberedMelodicInterval(maximum - minimum)
+        return pitchtools.NumberedInterval(maximum - minimum)

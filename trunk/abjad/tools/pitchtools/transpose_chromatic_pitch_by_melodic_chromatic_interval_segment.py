@@ -29,7 +29,7 @@ def transpose_chromatic_pitch_by_melodic_chromatic_interval_segment(pitch, segme
     if not isinstance(segment, pitchtools.IntervalSegment):
         segment = pitchtools.IntervalSegment(
             segment,
-            item_class=pitchtools.NumberedMelodicInterval,
+            item_class=pitchtools.NumberedInterval,
             )
 
     if not hasattr(pitch, 'transpose'):

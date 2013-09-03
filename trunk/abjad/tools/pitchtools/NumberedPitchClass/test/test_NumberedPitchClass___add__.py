@@ -7,7 +7,7 @@ def test_NumberedPitchClass___add___01():
     '''
 
     pc = pitchtools.NumberedPitchClass(0)
-    MCI = pitchtools.NumberedMelodicInterval
+    MCI = pitchtools.NumberedInterval
 
     assert pc + MCI(1) == pitchtools.NumberedPitchClass(1)
     assert pc + MCI(2) == pitchtools.NumberedPitchClass(2)
@@ -27,7 +27,7 @@ def test_NumberedPitchClass___add___02():
     '''
 
     pc = pitchtools.NumberedPitchClass(0)
-    MCI = pitchtools.NumberedMelodicInterval
+    MCI = pitchtools.NumberedInterval
 
     assert pc + MCI(12) == pitchtools.NumberedPitchClass(0)
     assert pc + MCI(13) == pitchtools.NumberedPitchClass(1)
@@ -48,7 +48,7 @@ def test_NumberedPitchClass___add___03():
     '''
 
     pc = pitchtools.NumberedPitchClass(0)
-    MCI = pitchtools.NumberedMelodicInterval
+    MCI = pitchtools.NumberedInterval
 
     assert pc + MCI(-1) == pitchtools.NumberedPitchClass(11)
     assert pc + MCI(-2) == pitchtools.NumberedPitchClass(10)
@@ -68,7 +68,7 @@ def test_NumberedPitchClass___add___04():
     '''
 
     pc = pitchtools.NumberedPitchClass(0)
-    MCI = pitchtools.NumberedMelodicInterval
+    MCI = pitchtools.NumberedInterval
 
     assert pc + MCI(-12) == pitchtools.NumberedPitchClass(0)
     assert pc + MCI(-13) == pitchtools.NumberedPitchClass(11)
@@ -89,6 +89,6 @@ def test_NumberedPitchClass___add___05():
     '''
 
     pc = pitchtools.NumberedPitchClass(0)
-    MCI = pitchtools.NumberedMelodicInterval
+    MCI = pitchtools.NumberedInterval
 
     assert pc + MCI(0) == pitchtools.NumberedPitchClass(0)

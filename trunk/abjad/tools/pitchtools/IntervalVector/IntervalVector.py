@@ -13,32 +13,32 @@ class IntervalVector(Vector):
         ...     )
         >>> numbered_interval_vector = pitchtools.IntervalVector(
         ...     tokens=pitch_segment,
-        ...     item_class=pitchtools.NumberedMelodicInterval,
+        ...     item_class=pitchtools.NumberedInterval,
         ...     )
         >>> for interval, count in numbered_interval_vector.iteritems():
         ...     print interval, count
         ...
-        +8 2
-        +9 2
-        -4 4
-        -2 5
-        -3 4
-        -1 6
-        +3 5
-        -10 1
+        +4 4
         +5 3
-        +10 1
-        -9 1
-        +7 2
-        +2 5
-        -11 1
         -8 2
+        +3 5
+        -5 4
+        +2 5
+        +1 5
+        -4 4
         -6 3
         -7 3
+        -11 1
+        +8 2
+        +9 2
+        -10 1
+        +7 2
+        -1 6
         +6 3
-        -5 4
-        +1 5
-        +4 4
+        -9 1
+        -2 5
+        -3 4
+        +10 1
 
     Return pitch segment.
     '''
@@ -76,7 +76,7 @@ class IntervalVector(Vector):
     @property
     def _numbered_item_class(self):
         from abjad.tools import pitchtools
-        return pitchtools.NumberedMelodicInterval
+        return pitchtools.NumberedInterval
 
     @property
     def _parent_item_class(self):

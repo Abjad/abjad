@@ -87,7 +87,7 @@ class NumberedMelodicIntervalClass(
         '''
         from abjad.tools import pitchtools
         # get melodic chromatic interval
-        interval = pitchtools.NumberedMelodicInterval.from_pitch_carriers(
+        interval = pitchtools.NumberedInterval.from_pitch_carriers(
             pitch_carrier_1, pitch_carrier_2)
         # return melodic chromatic interval-class
         return cls(interval)
