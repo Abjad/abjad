@@ -157,6 +157,14 @@ class Measure(FixedDurationContainer):
         return new
 
     @property
+    def _one_line_input_string(self):
+        time_signature = self.time_signature
+        pair = (time_signature.numerator, time_signature.denominator)
+        contents_string = ' '.join([str(x) for x in self])
+        result = '%s(%s, %r)' % (type(self).__name__, pair, contents_string)
+        return result
+
+    @property
     def _preprolated_duration(self):
         from abjad.tools import contexttools
         time_signature = self.time_signature

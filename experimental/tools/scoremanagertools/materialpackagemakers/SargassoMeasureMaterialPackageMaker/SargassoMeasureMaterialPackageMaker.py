@@ -81,11 +81,10 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
         lines = []
         lines.append('{} = ['.format(self.material_package_name))
         for measure in output_material[:-1]:
-            line = measuretools.measure_to_one_line_input_string(measure)
+            line = measure._one_line_input_string
             line = 'measuretools.' + line
             lines.append('\t{},'.format(line))
-        line = measuretools.measure_to_one_line_input_string(
-            output_material[-1])
+        line = output_material[-1]._one_line_input_string
         lines.append('\tmeasuretools.{}]'.format(line))
         lines = [line + '\n' for line in lines]
         return lines
