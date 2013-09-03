@@ -8,10 +8,6 @@ def instantiate_pitch_and_interval_test_collection():
 
         >>> for x in pitchtools.instantiate_pitch_and_interval_test_collection(): x
         ...
-        NumberedHarmonicInterval(1)
-        NumberedHarmonicIntervalClass(1)
-        NamedHarmonicInterval('M2')
-        NamedHarmonicIntervalClass('M2')
         NumberedInversionEquivalentIntervalClass(1)
         NamedInversionEquivalentIntervalClass('M2')
         NumberedMelodicInterval(+1)
@@ -30,10 +26,6 @@ def instantiate_pitch_and_interval_test_collection():
     from abjad.tools import pitchtools
 
     result = []
-    result.append(pitchtools.NumberedHarmonicInterval(1))
-    result.append(pitchtools.NumberedHarmonicIntervalClass(1))
-    result.append(pitchtools.NamedHarmonicInterval('M2'))
-    result.append(pitchtools.NamedHarmonicIntervalClass('M2'))
     result.append(pitchtools.NumberedInversionEquivalentIntervalClass(1))
     result.append(pitchtools.NamedInversionEquivalentIntervalClass('M2'))
     result.append(pitchtools.NumberedMelodicInterval(1))
