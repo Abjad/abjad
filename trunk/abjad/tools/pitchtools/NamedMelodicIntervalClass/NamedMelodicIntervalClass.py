@@ -30,8 +30,8 @@ class NamedMelodicIntervalClass(NamedIntervalClass):
                 args[0])
             if match is None:
                 raise ValueError(
-                    '"%s" does not have the form of an abbreviation.' % 
-                    args[0])
+                    '{!r} does not have the form of an abbreviation.'.format(
+                    args[0]))
             direction_string, quality_abbreviation, number_string = \
                 match.groups()
             quality_string = \
@@ -81,14 +81,20 @@ class NamedMelodicIntervalClass(NamedIntervalClass):
         return not self == arg
 
     def __str__(self):
-        return '%s%s%s' % (self.direction_symbol,
-            self._quality_abbreviation, abs(self.number))
+        return '{}{}{}'.format(
+            self.direction_symbol,
+            self._quality_abbreviation, 
+            abs(self.number),
+            )
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _format_string(self):
-        return '%s%s' % (self.direction_symbol, abs(self.number))
+        return '{}{}'.format(
+            self.direction_symbol, 
+            abs(self.number),
+            )
 
     @property
     def _full_name(self):
@@ -102,7 +108,7 @@ class NamedMelodicIntervalClass(NamedIntervalClass):
 
     @classmethod
     def from_pitch_carriers(cls, pitch_carrier_1, pitch_carrier_2):
-        '''Calculate melodic diatonic interval-class from `pitch_carrier_1` to
+        '''Calculate named interval-class from `pitch_carrier_1` to
         `pitch_carrier_2`:
 
         ::
@@ -113,15 +119,12 @@ class NamedMelodicIntervalClass(NamedIntervalClass):
             ...     )
             NamedMelodicIntervalClass('+M2')
 
-        Return melodic diatonic interval-class.
+        Return named interval-class.
         '''
         from abjad.tools import pitchtools
-        # get melodic diatonic interval
-        mdi = pitchtools.NamedInterval.from_pitch_carriers(
+        named_interval = pitchtools.NamedInterval.from_pitch_carriers(
             pitch_carrier_1, pitch_carrier_2)
-        # return melodic diatonic interval-class
-        return pitchtools.NamedMelodicIntervalClass(mdi)
-        #return mdi.melodic_diatonic_interval_class
+        return cls(named_interval)
 
     ### PUBLIC PROPERTIES ###
 

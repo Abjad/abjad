@@ -1,9 +1,10 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.pitchtools.IntervalClass import IntervalClass
 import numbers
+from abjad.tools.pitchtools.NumberedMelodicIntervalClass \
+    import NumberedMelodicIntervalClass
 
 
-class NumberedInversionEquivalentIntervalClass(IntervalClass):
+class NumberedInversionEquivalentIntervalClass(NumberedMelodicIntervalClass):
     '''Abjad model of inversion-equivalent chromatic interval-class:
 
     ::

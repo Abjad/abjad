@@ -11,15 +11,15 @@ def inventory_inversion_equivalent_diatonic_interval_classes():
         ...
         NamedInversionEquivalentIntervalClass('P1')
         NamedInversionEquivalentIntervalClass('aug1')
-        NamedInversionEquivalentIntervalClass('m2')
-        NamedInversionEquivalentIntervalClass('M2')
-        NamedInversionEquivalentIntervalClass('aug2')
-        NamedInversionEquivalentIntervalClass('dim3')
-        NamedInversionEquivalentIntervalClass('m3')
-        NamedInversionEquivalentIntervalClass('M3')
-        NamedInversionEquivalentIntervalClass('dim4')
-        NamedInversionEquivalentIntervalClass('P4')
-        NamedInversionEquivalentIntervalClass('aug4')
+        NamedInversionEquivalentIntervalClass('+m2')
+        NamedInversionEquivalentIntervalClass('+M2')
+        NamedInversionEquivalentIntervalClass('+aug2')
+        NamedInversionEquivalentIntervalClass('+dim3')
+        NamedInversionEquivalentIntervalClass('+m3')
+        NamedInversionEquivalentIntervalClass('+M3')
+        NamedInversionEquivalentIntervalClass('+dim4')
+        NamedInversionEquivalentIntervalClass('+P4')
+        NamedInversionEquivalentIntervalClass('+aug4')
 
     There are 11 inversion-equivalent diatonic interval-classes.
 

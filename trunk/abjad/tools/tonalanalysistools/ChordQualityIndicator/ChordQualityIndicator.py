@@ -26,20 +26,20 @@ class ChordQualityIndicator(IntervalSegment):
         )
 
     _segment_to_quality_and_extent = {
-        '<m3, m3>': ('diminished', 5),
-        '<m3, M3>': ('minor', 5),
-        '<M3, m3>': ('major', 5),
-        '<M3, M3>': ('augmented', 5),
-        '<M3, M2, M3>': ('augmented French', 6),
-        '<M3, m3, +2>': ('augmented German', 6),
-        '<M3, P1, +4>': ('augmented Italian', 6),
-        '<M3, +2, m3>': ('augmented Swiss', 6),
-        '<m3, m3, m3>': ('diminished', 7),
-        '<m3, m3, M3>': ('half diminished', 7),
-        '<m3, M3, m3>': ('minor', 7),
-        '<M3, m3, m3>': ('dominant', 7),
-        '<M3, m3, M3>': ('major', 7),
-        '<M3, m3, m3, M3>': ('dominant', 9),
+        '<+m3, +m3>': ('diminished', 5),
+        '<+m3, +M3>': ('minor', 5),
+        '<+M3, +m3>': ('major', 5),
+        '<+M3, +M3>': ('augmented', 5),
+        '<+M3, M2, +M3>': ('augmented French', 6),
+        '<+M3, +m3, +2>': ('augmented German', 6),
+        '<+M3, P1, +4>': ('augmented Italian', 6),
+        '<+M3, +2, +m3>': ('augmented Swiss', 6),
+        '<+m3, +m3, +m3>': ('diminished', 7),
+        '<+m3, +m3, +M3>': ('half diminished', 7),
+        '<+m3, +M3, +m3>': ('minor', 7),
+        '<+M3, +m3, +m3>': ('dominant', 7),
+        '<+M3, +m3, +M3>': ('major', 7),
+        '<+M3, +m3, +m3, +M3>': ('dominant', 9),
         }
 
     __slots__ = (

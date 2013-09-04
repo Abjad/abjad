@@ -1,15 +1,16 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.pitchtools.NamedIntervalClass import NamedIntervalClass
+from abjad.tools.pitchtools.NamedMelodicIntervalClass \
+    import NamedMelodicIntervalClass
 import numbers
 
 
-class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
+class NamedInversionEquivalentIntervalClass(NamedMelodicIntervalClass):
     '''Abjad model of inversion-equivalent diatonic interval-class:
 
     ::
 
         >>> pitchtools.NamedInversionEquivalentIntervalClass('-m14')
-        NamedInversionEquivalentIntervalClass('M2')
+        NamedInversionEquivalentIntervalClass('+M2')
 
     Inversion-equivalent diatonic interval-classes are immutable.
     '''
@@ -82,8 +83,8 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         match = melodic_diatonic_interval_abbreviation_regex.match(string)
         if match is None:
             raise ValueError(
-                '"%s" does not have the form of a hdi abbreviation.' % 
-                string)
+                '{!r} does not have the form of a hdi abbreviation.'.format(
+                string))
         direction_string, quality_abbreviation, number_string = \
             match.groups()
         quality_string = self._quality_abbreviation_to_quality_string[
@@ -106,3 +107,25 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
             if 1 <= arg <= 4 or arg == 8:
                 return True
         return False
+
+    ### PUBLIC METHODS ###
+
+    @classmethod
+    def from_pitch_carriers(cls, pitch_carrier_1, pitch_carrier_2):
+        '''Calculate named inversion-equivalent interval-class from 
+        `pitch_carrier_1` to `pitch_carrier_2`:
+
+        ::
+
+            >>> pitchtools.NamedInversionEquivalentIntervalClass.from_pitch_carriers(
+            ...     pitchtools.NamedPitch(-2),
+            ...     pitchtools.NamedPitch(12),
+            ...     )
+            NamedInversionEquivalentIntervalClass('+M2')
+
+        Return named inversion-equivalent interval-class.
+        '''
+        from abjad.tools import pitchtools
+        named_interval = pitchtools.NamedInterval.from_pitch_carriers(
+            pitch_carrier_1, pitch_carrier_2)
+        return cls(named_interval)
