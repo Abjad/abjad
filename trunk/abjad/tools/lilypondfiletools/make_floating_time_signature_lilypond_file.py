@@ -14,7 +14,6 @@ def make_floating_time_signature_lilypond_file(music=None):
 
     Returns LilyPond file object.
     '''
-    # TODO: lilypondfiletools should depend on layouttools and NOT the other way around
     from abjad.tools import layouttools
     from abjad.tools import lilypondfiletools
 
@@ -24,14 +23,19 @@ def make_floating_time_signature_lilypond_file(music=None):
     lilypond_file.global_staff_size = 12
 
     lilypond_file.paper_block.left_margin = 20
-    lilypond_file.paper_block.system_system_spacing = layouttools.make_spacing_vector(0, 0, 12, 0)
+    lilypond_file.paper_block.system_system_spacing = \
+        layouttools.make_spacing_vector(0, 0, 12, 0)
 
     lilypond_file.layout_block.indent = 0
     lilypond_file.layout_block.ragged_right = True
-    lilypond_file.layout_block.append(marktools.LilyPondCommandMark('accidentalStyle forget'))
+    lilypond_file.layout_block.append(
+        marktools.LilyPondCommandMark('accidentalStyle forget'))
 
-    time_signature_context_block = lilypondfiletools.make_time_signature_context_block(font_size=1, padding=6)
-    lilypond_file.layout_block.context_blocks.append(time_signature_context_block)
+    time_signature_context_block = \
+        lilypondfiletools.make_time_signature_context_block(
+        font_size=1, padding=6)
+    lilypond_file.layout_block.context_blocks.append(
+        time_signature_context_block)
 
     context_block = lilypondfiletools.ContextBlock()
     lilypond_file.layout_block.context_blocks.append(context_block)
@@ -45,12 +49,15 @@ def make_floating_time_signature_lilypond_file(music=None):
     context_block.override.spacing_spanner.uniform_stretching = True
     context_block.override.tuplet_bracket.bracket_visibility = True
     context_block.override.tuplet_bracket.padding = 2
-    context_block.override.tuplet_bracket.springs_and_rods = schemetools.Scheme(
+    context_block.override.tuplet_bracket.springs_and_rods = \
+        schemetools.Scheme(
         'ly:spanner::set-spacing-rods')
     context_block.override.tuplet_bracket.minimum_length = 3
-    context_block.override.tuplet_number.text = schemetools.Scheme('tuplet-number::calc-fraction-text')
+    context_block.override.tuplet_number.text = \
+        schemetools.Scheme('tuplet-number::calc-fraction-text')
     context_block.set.autoBeaming = False
-    context_block.set.proportionalNotationDuration = schemetools.SchemeMoment((1, 32))
+    context_block.set.proportionalNotationDuration = \
+        schemetools.SchemeMoment((1, 32))
     context_block.set.tupletFullLength = True
 
     # provided as a stub position for user customization

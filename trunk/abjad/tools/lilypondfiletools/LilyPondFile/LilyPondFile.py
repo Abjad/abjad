@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
+from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.lilypondfiletools.AbjadRevisionToken \
 	import AbjadRevisionToken
 from abjad.tools.lilypondfiletools.DateTimeToken import DateTimeToken
@@ -9,7 +10,8 @@ from abjad.tools.lilypondfiletools.LilyPondVersionToken \
 	import LilyPondVersionToken
 
 
-class LilyPondFile(list):
+#class LilyPondFile(list):
+class LilyPondFile(AbjadObject, list):
     r'''Abjad model of LilyPond input file:
 
     ::
