@@ -414,7 +414,7 @@ class ScoreMutationAgent(object):
         if donors:
             parent, start, stop = \
                 donors._get_parent_and_start_stop_indices()
-            assert parent is not None
+            assert parent is not None, repr(donors)
             parent.__setitem__(slice(start, stop + 1), recipients)
 
     def scale(self, multiplier):

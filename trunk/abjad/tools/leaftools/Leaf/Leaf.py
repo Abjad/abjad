@@ -607,7 +607,8 @@ class Leaf(Component):
         selection = selectiontools.SliceSelection(self)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         if parent:
-            parent.__setitem__(slice(start, stop+1), flattened_result)
+            #parent.__setitem__(slice(start, stop+1), flattened_result)
+            parent.__setitem__(slice(start, stop+1), [tuplet])
         else:
             selection._give_dominant_spanners([tuplet])
             selection._withdraw_from_crossing_spanners()
