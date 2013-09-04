@@ -202,7 +202,7 @@ class OctaveIndication(AbjadObject):
 
         ::
 
-            >>> pitchtools.is_octave_tick_string(',,,')
+            >>> pitchtools.OctaveIndication.is_octave_tick_string(',,,')
             True
 
         The regex ``^,+|'+|$`` underlies this predicate.
