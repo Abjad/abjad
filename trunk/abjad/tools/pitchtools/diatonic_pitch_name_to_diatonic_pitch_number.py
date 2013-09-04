@@ -21,7 +21,8 @@ def diatonic_pitch_name_to_diatonic_pitch_number(diatonic_pitch_name):
     diatonic_pitch_class_name, octave_tick_string = match.groups()
     tmp = pitchtools.diatonic_pitch_class_name_to_diatonic_pitch_class_number
     diatonic_pitch_class_number = tmp(diatonic_pitch_class_name)
-    octave_number = pitchtools.octave_tick_string_to_octave_number(octave_tick_string)
+    octave_number = \
+        pitchtools.OctaveIndication(octave_tick_string).octave_number
     diatonic_pitch_number = 7 * (octave_number - 4) + diatonic_pitch_class_number
 
     return diatonic_pitch_number

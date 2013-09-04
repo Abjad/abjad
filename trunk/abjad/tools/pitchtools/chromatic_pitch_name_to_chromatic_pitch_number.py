@@ -25,7 +25,8 @@ def chromatic_pitch_name_to_chromatic_pitch_number(chromatic_pitch_name):
     chromatic_pitch_class_number = pitchtools.diatonic_pitch_class_number_to_chromatic_pitch_class_number(
         diatonic_pitch_class_number)
     accidental = pitchtools.Accidental(alphabetic_accidental_abbreviation)
-    octave_number = pitchtools.octave_tick_string_to_octave_number(octave_tick_string)
+    octave_number = \
+        pitchtools.OctaveIndication(octave_tick_string).octave_number
     chromatic_pitch_number = 12 * (octave_number - 4)
     chromatic_pitch_number += chromatic_pitch_class_number + accidental.semitones
 

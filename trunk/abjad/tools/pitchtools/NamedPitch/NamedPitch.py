@@ -532,8 +532,7 @@ class NamedPitch(Pitch):
             chromatic_pitch_name_regex.match(
                 self._chromatic_pitch_name).groups()
         octave_tick_string = groups[-1]
-        return pitchtools.octave_tick_string_to_octave_number(
-            octave_tick_string)
+        return pitchtools.OctaveIndication(octave_tick_string).octave_number
 
     @property
     def pitch_class_octave_label(self):
