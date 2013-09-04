@@ -1,16 +1,15 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.pitchtools.NamedMelodicIntervalClass \
-    import NamedMelodicIntervalClass
 import numbers
+from abjad.tools.pitchtools.NamedIntervalClass import NamedIntervalClass
 
 
-class NamedInversionEquivalentIntervalClass(NamedMelodicIntervalClass):
+class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
     '''Abjad model of inversion-equivalent diatonic interval-class:
 
     ::
 
         >>> pitchtools.NamedInversionEquivalentIntervalClass('-m14')
-        NamedInversionEquivalentIntervalClass('+M2')
+        NamedInversionEquivalentIntervalClass('M2')
 
     Inversion-equivalent diatonic interval-classes are immutable.
     '''

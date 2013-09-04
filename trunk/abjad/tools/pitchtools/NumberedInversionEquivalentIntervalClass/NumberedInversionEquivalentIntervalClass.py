@@ -1,18 +1,17 @@
 # -*- encoding: utf-8 -*-
 import numbers
-from abjad.tools.pitchtools.NumberedMelodicIntervalClass \
-    import NumberedMelodicIntervalClass
+from abjad.tools.pitchtools.NumberedIntervalClass import NumberedIntervalClass
 
 
-class NumberedInversionEquivalentIntervalClass(NumberedMelodicIntervalClass):
-    '''Abjad model of inversion-equivalent chromatic interval-class:
+class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
+    '''Abjad model of a numbered inversion-equivalent interval-class:
 
     ::
 
         >>> pitchtools.NumberedInversionEquivalentIntervalClass(1)
         NumberedInversionEquivalentIntervalClass(1)
 
-    Inversion-equivalent chromatic interval-classes are immutable.
+    Return numbered inversion-equivalent interval-class.
     '''
 
     ### CLASS VARIABLES ###
