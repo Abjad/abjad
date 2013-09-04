@@ -566,11 +566,7 @@ class Leaf(Component):
         #    )
 
     def _to_tuplet_with_ratio(self, proportions, is_diminution=True):
-        from abjad.tools import componenttools
-        from abjad.tools import leaftools
-        from abjad.tools import mutationtools
         from abjad.tools import notetools
-        from abjad.tools import selectiontools
         from abjad.tools import tuplettools
         # check input
         proportions = mathtools.Ratio(proportions)
@@ -603,15 +599,6 @@ class Leaf(Component):
             else:
                 if tuplet.is_diminution:
                     tuplet.toggle_prolation()
-        # replace leaf with tuplet
-        selection = selectiontools.SliceSelection(self)
-        parent, start, stop = selection._get_parent_and_start_stop_indices()
-        if parent:
-            #parent.__setitem__(slice(start, stop+1), flattened_result)
-            parent.__setitem__(slice(start, stop+1), [tuplet])
-        else:
-            selection._give_dominant_spanners([tuplet])
-            selection._withdraw_from_crossing_spanners()
         # return tuplet
         return tuplet
 
