@@ -4,19 +4,24 @@ from abjad.tools.pitchtools.is_alphabetic_accidental_abbreviation \
 	import alphabetic_accidental_regex_body
 from abjad.tools.pitchtools.is_diatonic_pitch_class_name \
 	import diatonic_pitch_class_name_regex_body
-from abjad.tools.pitchtools.is_octave_tick_string \
-	import octave_tick_regex_body
+from abjad.tools.pitchtools.OctaveIndication \
+	import OctaveIndication
 
 
 chromatic_pitch_name_regex_body = '''
-    %s                 # exactly one diatonic pitch-class name
-    %s                 # followed by exactly one alphabetic accidental name
-    %s                 # followed by exactly one octave tick string
-    ''' % (diatonic_pitch_class_name_regex_body,
+    {}  # exactly one diatonic pitch-class name
+    {}  # followed by exactly one alphabetic accidental name
+    {}  # followed by exactly one octave tick string
+    '''.format(
+        diatonic_pitch_class_name_regex_body,
         alphabetic_accidental_regex_body,
-        octave_tick_regex_body)
+        OctaveIndication._octave_tick_regex_body,
+        )
 
-chromatic_pitch_name_regex = re.compile('^%s$' % chromatic_pitch_name_regex_body, re.VERBOSE)
+chromatic_pitch_name_regex = re.compile(
+    '^{}$'.format(chromatic_pitch_name_regex_body),
+    re.VERBOSE,
+    )
 
 def is_chromatic_pitch_name(expr):
     '''True `expr` is a chromatic pitch name. Otherwise false:
