@@ -471,7 +471,8 @@ class PromptMakerMixin(AbjadObject):
         help_template += ' Ex: [A0, C8].'
         self._make_prompt(
             spaced_attribute_name, 
-            validation_function=pitchtools.is_symbolic_pitch_range_string,
+            validation_function=\
+                pitchtools.PitchRange.is_symbolic_pitch_range_string,
             help_template=help_template, 
             default_value=default_value,
             )

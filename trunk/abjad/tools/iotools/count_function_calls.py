@@ -16,7 +16,7 @@ def count_function_calls(
         ::
 
             >>> iotools.count_function_calls("Note('c4')", globals())
-            10482
+            10506
 
     ..  container:: example
 
@@ -25,7 +25,7 @@ def count_function_calls(
         ::
 
             >>> iotools.count_function_calls("Note(-12, (1, 4))", globals())
-            136
+            144
 
     Return integer.
     '''

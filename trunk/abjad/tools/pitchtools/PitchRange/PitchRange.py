@@ -1,7 +1,13 @@
 # -*- encoding: utf-8 -*-
+import collections
 import numbers
+import re
 from abjad.tools import datastructuretools
 from abjad.tools.abctools import AbjadObject
+from abjad.tools.pitchtools.is_chromatic_pitch_name \
+	import chromatic_pitch_name_regex_body
+from abjad.tools.pitchtools.is_pitch_class_octave_number_string \
+	import pitch_class_octave_number_regex_body
 
 
 # TODO: make iterable so that for x in PitchRange works
@@ -36,6 +42,25 @@ class PitchRange(AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    _symbolic_pitch_range_string_regex_body = """
+        ([\[(])         # open bracket or open parenthesis
+        ({}|{}|-?\d+)   # pitch indicator
+        ,               # comma
+        [ ]*            # any amount of whitespace
+        ({}|{}|-?\d+)   # pitch indicator
+        ([\])])         # close bracket or close parenthesis
+        """.format(
+            pitch_class_octave_number_regex_body,
+            chromatic_pitch_name_regex_body,
+            pitch_class_octave_number_regex_body,
+            chromatic_pitch_name_regex_body,
+            )
+
+    _symbolic_pitch_range_string_regex = re.compile(
+        '^{}$'.format(_symbolic_pitch_range_string_regex_body),
+        re.VERBOSE,
+        )
+
     __slots__ = (
         '_start', 
         '_stop', 
@@ -63,8 +88,7 @@ class PitchRange(AbjadObject):
             self._stop = stop
         elif len(args) == 1 and isinstance(args[0], str):
             self._init_by_symbolic_pitch_range_string(*args)
-        elif len(args) == 1 and isinstance(args[0], 
-            (tuple, list, datastructuretools.TypedList)):
+        elif len(args) == 1 and isinstance(args[0], collections.Sequence):
             start, stop = args[0]
             type(self).__init__(self, start, stop)
         else:
@@ -264,12 +288,12 @@ class PitchRange(AbjadObject):
 
     def _init_by_symbolic_pitch_range_string(self, symbolic_pitch_range_string):
         from abjad.tools import pitchtools
-        from abjad.tools.pitchtools.is_symbolic_pitch_range_string \
-            import symbolic_pitch_range_string_regex
-        assert pitchtools.is_symbolic_pitch_range_string(
+        match = self._symbolic_pitch_range_string_regex.match(
             symbolic_pitch_range_string)
-        groups = symbolic_pitch_range_string_regex.match(
-            symbolic_pitch_range_string).groups()
+        if match is None:
+            raise ValueError('Cannot instantiate pitch range from {!r}'.format(
+                symbolic_pitch_range_string))
+        groups = match.groups()
         start_punctuation = groups[0]
         start_pitch_string = groups[1]
         stop_pitch_string = groups[8]
@@ -282,6 +306,27 @@ class PitchRange(AbjadObject):
         stop_pair = (stop_pitch_string, stop_inclusivity_string)
         type(self).__init__(self, start_pair, stop_pair)
 
+    ### PUBLIC METHODS ###
+
+    @classmethod
+    def is_symbolic_pitch_range_string(cls, expr):
+        '''True when `expr` is a symbolic pitch range string. Otherwise false:
+
+        ::
+
+            >>> pitchtools.PitchRange.is_symbolic_pitch_range_string(
+            ...     '[A0, C8]')
+            True
+
+        The regex that underlies this predicate matches against two 
+        comma-separated pitch indicators enclosed in some combination of square 
+        brackets and round parentheses.
+
+        Return boolean.
+        '''
+        if not isinstance(expr, str):
+            return False
+        return bool(cls._symbolic_pitch_range_string_regex.match(expr))
 
     ### PUBLIC PROPERTIES ###
 

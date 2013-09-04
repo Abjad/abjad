@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_pitchtools_octave_tick_string_to_octave_number_01():
+def test_OctaveIndication___int___01():
 
     assert int(pitchtools.OctaveIndication('')) == 3
     assert int(pitchtools.OctaveIndication(',')) == 2
