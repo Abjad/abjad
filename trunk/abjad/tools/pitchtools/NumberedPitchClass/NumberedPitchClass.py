@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+import numbers
+from abjad.tools import mathtools
 from abjad.tools.pitchtools.PitchClass import PitchClass
 
 
@@ -23,27 +25,34 @@ class NumberedPitchClass(PitchClass):
 
     def __init__(self, expr):
         from abjad.tools import pitchtools
-        if pitchtools.is_chromatic_pitch_number(expr):
-            number = \
-                pitchtools.chromatic_pitch_number_to_chromatic_pitch_class_number(
-                    expr)
-        elif isinstance(expr, type(self)):
-            number = abs(expr)
-        elif pitchtools.is_chromatic_pitch_name(expr):
-            number = \
-                pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_number(
-                    expr)
-        elif isinstance(expr, pitchtools.NamedPitch):
-            number = abs(expr.numbered_chromatic_pitch) % 12
-        elif isinstance(expr, pitchtools.NamedPitchClass):
-            number = abs(expr.numbered_chromatic_pitch_class)
-        elif isinstance(expr, pitchtools.NumberedPitch):
-            number = expr.chromatic_pitch_number % 12
+        # from numbered objects
+        if isinstance(expr, (
+            numbers.Number,
+            pitchtools.NumberedPitch,
+            type(self),
+            )):
+            pitch_class_number = \
+                mathtools.integer_equivalent_number_to_integer(
+                    round((float(expr) % 12) * 2) / 2)
+        # from named objects
+        elif isinstance(expr, (
+            pitchtools.NamedPitch,
+            pitchtools.NamedPitchClass,
+            )) or pitchtools.is_chromatic_pitch_name(expr):
+            pitch_class_number = \
+                pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_number( 
+                    str(expr))
+        # pitch carriers
+        elif pitchtools.is_pitch_carrier(expr):
+            named_pitch = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(
+                expr)
+            pitch_class_number = \
+                pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_number( 
+                    str(named_pitch))
         else:
-            pitch = \
-                pitchtools.get_named_chromatic_pitch_from_pitch_carrier(expr)
-            number = abs(pitch.numbered_chromatic_pitch) % 12
-        self._chromatic_pitch_class_number = number
+            raise TypeError('Cannot instantiate {} from '
+                '{!r}.'.format(self._class_name, expr))
+        self._chromatic_pitch_class_number = pitch_class_number
 
     ### SPECIAL METHODS ###
 

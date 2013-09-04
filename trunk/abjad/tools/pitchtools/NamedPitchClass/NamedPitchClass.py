@@ -26,69 +26,37 @@ class NamedPitchClass(PitchClass):
 
     ### INITIALIZER ###
 
-    def __init__(self, arg):
+    def __init__(self, expr):
         from abjad.tools import pitchtools
-        if isinstance(arg, str):
+        # from named objects
+        if isinstance(expr, (
+            pitchtools.NamedPitch,
+            pitchtools.NamedPitchClass,
+            )) or pitchtools.is_chromatic_pitch_name(expr):
             pitch_class_name = \
                 pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_name(
-                    arg)
-        elif isinstance(arg, pitchtools.NamedPitch):
-            pitch_class_name = arg.chromatic_pitch_class_name
-        elif isinstance(arg, (
+                    str(expr))
+        # from numbered objects
+        elif isinstance(expr, (
             numbers.Number,
             pitchtools.NumberedPitch,
             pitchtools.NumberedPitchClass,
             )):
             pitch_number = \
                 pitchtools.chromatic_pitch_number_to_chromatic_pitch_class_number(
-                    float(arg))
+                    float(expr))
             pitch_class_name = \
                 pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name(
                     pitch_number)
-        elif pitchtools.is_pitch_carrier(arg):
+        # from pitch carriers
+        elif pitchtools.is_pitch_carrier(expr):
             named_pitch = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(
-                arg)
+                expr)
             pitch_class_name = named_pitch.chromatic_pitch_class_name
-        elif isinstance(arg, type(self)):
-            pitch_class_name = arg._chromatic_pitch_class_name
         else:
-            raise TypeError('Cannot instantiate named pitch-class from '
-                '{!r}.'.format(arg))
+            raise TypeError('Cannot instantiate {} from '
+                '{!r}.'.format(self._class_name, expr))
         self._chromatic_pitch_class_name = pitch_class_name.lower()
-#        if hasattr(arg, '_chromatic_pitch_class_name'):
-#            chromatic_pitch_class_name = arg._chromatic_pitch_class_name
-#        elif pitchtools.is_chromatic_pitch_name(arg):
-#            chromatic_pitch_class_name = \
-#                pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_name(
-#                    arg)
-#        elif isinstance(arg, pitchtools.NumberedPitchClass):
-#            chromatic_pitch_number = \
-#                pitchtools.chromatic_pitch_number_to_chromatic_pitch_class_number(
-#                    float(arg))
-#            chromatic_pitch_class_name = \
-#                pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name(
-#                    chromatic_pitch_number)
-#        else:
-#            try:
-#                named_chromatic_pitch_carrier = \
-#                    pitchtools.get_named_chromatic_pitch_from_pitch_carrier(
-#                        arg)
-#            except (ValueError, TypeError):
-#                raise ValueError, arg
-#            if hasattr(named_chromatic_pitch_carrier, '_chromatic_pitch_name'):
-#                chromatic_pitch_name = \
-#                    named_chromatic_pitch_carrier._chromatic_pitch_name
-#            elif hasattr(named_chromatic_pitch_carrier, 'pitch'):
-#                named_chromatic_pitch = named_chromatic_pitch_carrier.pitch
-#                chromatic_pitch_name = \
-#                    named_chromatic_pitch._chromatic_pitch_name
-#            else:
-#                raise TypeError
-#            chromatic_pitch_class_name = \
-#                pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_name(
-#                    chromatic_pitch_name)
-#        chromatic_pitch_class_name = chromatic_pitch_class_name.lower()
-#        self._chromatic_pitch_class_name = chromatic_pitch_class_name
 
     ### SPECIAL METHODS ###
 
