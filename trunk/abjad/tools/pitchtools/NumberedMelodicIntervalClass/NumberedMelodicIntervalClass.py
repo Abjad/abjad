@@ -1,12 +1,10 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import mathtools
-from abjad.tools.pitchtools.MelodicIntervalClass import MelodicIntervalClass
-from abjad.tools.pitchtools.NumberedIntervalClass import NumberedIntervalClass
 import numbers
+from abjad.tools import mathtools
+from abjad.tools.pitchtools.NumberedIntervalClass import NumberedIntervalClass
 
 
-class NumberedMelodicIntervalClass(
-    NumberedIntervalClass, MelodicIntervalClass):
+class NumberedMelodicIntervalClass(NumberedIntervalClass):
     '''Abjad model of melodic chromatic interval-class:
 
     ::

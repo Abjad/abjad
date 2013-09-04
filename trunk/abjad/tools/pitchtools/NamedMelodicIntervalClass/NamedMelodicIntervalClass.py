@@ -1,11 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.NamedIntervalClass import NamedIntervalClass
-from abjad.tools.pitchtools.MelodicIntervalClass import MelodicIntervalClass
 
 
-class NamedMelodicIntervalClass(
-    NamedIntervalClass, MelodicIntervalClass):
+class NamedMelodicIntervalClass(NamedIntervalClass):
     '''Abjad model of melodic diatonic interval-class:
 
     ::
