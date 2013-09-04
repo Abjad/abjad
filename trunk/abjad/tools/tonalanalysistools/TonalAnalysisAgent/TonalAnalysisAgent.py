@@ -82,7 +82,7 @@ class TonalAnalysisAgent(object):
     def _analyze_chord(expr):
         from abjad.tools import tonalanalysistools
         from abjad.tools.tonalanalysistools import ChordQualityIndicator as CQI
-        pitches = pitchtools.list_named_chromatic_pitches_in_expr(expr)
+        pitches = pitchtools.PitchSegment.from_selection(expr)
         npcset = pitchtools.PitchClassSet(
             pitches, item_class=pitchtools.NamedPitchClass)
         ordered_npcs = []
@@ -119,7 +119,7 @@ class TonalAnalysisAgent(object):
     @staticmethod
     def _analyze_incomplete_chord(expr):
         from abjad.tools import tonalanalysistools
-        pitches = pitchtools.list_named_chromatic_pitches_in_expr(expr)
+        pitches = pitchtools.PitchSegment.from_selection(expr)
         npcset = pitchtools.PitchClassSet(
             pitches, item_class=pitchtools.NamedPitchClass)
         dicv = pitchtools.IntervalClassVector(

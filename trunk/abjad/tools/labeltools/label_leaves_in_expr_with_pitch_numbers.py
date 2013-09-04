@@ -27,7 +27,7 @@ def label_leaves_in_expr_with_pitch_numbers(expr, markup_direction=Down):
     '''
 
     for leaf in iterationtools.iterate_leaves_in_expr(expr):
-        for pitch in reversed(pitchtools.list_named_chromatic_pitches_in_expr(leaf)):
+        for pitch in reversed(pitchtools.PitchSegment.from_selection(leaf)):
             if pitch is not None:
                 label = markuptools.MarkupCommand('small', str(pitch.chromatic_pitch_number))
                 markuptools.Markup(label, markup_direction)(leaf)

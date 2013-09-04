@@ -247,7 +247,7 @@ class TypedList(TypedCollection):
 
         ::
 
-            >>> integer_collection.append(True)
+            >>> integer_collection.append('1')
             >>> integer_collection.append(2)
             >>> integer_collection.append(3.4)
             >>> integer_collection[:]
@@ -264,7 +264,7 @@ class TypedList(TypedCollection):
         ::
 
             >>> integer_collection = datastructuretools.TypedList(
-            ...     tokens=[0, False, '0', 99],
+            ...     tokens=[0, 0., '0', 99],
             ...     item_class=int)
             >>> integer_collection[:]
             [0, 0, 0, 99]
@@ -286,7 +286,7 @@ class TypedList(TypedCollection):
 
             >>> integer_collection = datastructuretools.TypedList(
             ...     item_class=int)
-            >>> integer_collection.extend((False, True, 2, 3.14159))
+            >>> integer_collection.extend(('0', 1.0, 2, 3.14159))
             >>> integer_collection[:]
             [0, 1, 2, 3]
 
@@ -318,13 +318,13 @@ class TypedList(TypedCollection):
 
             >>> integer_collection = datastructuretools.TypedList(
             ...     item_class=int)
-            >>> integer_collection.extend((True, 2, 4.3))
+            >>> integer_collection.extend(('1', 2, 4.3))
             >>> integer_collection[:]
             [1, 2, 4]
 
         ::
 
-            >>> integer_collection.insert(0, False)
+            >>> integer_collection.insert(0, '0')
             >>> integer_collection[:]
             [0, 1, 2, 4]
 
@@ -351,7 +351,7 @@ class TypedList(TypedCollection):
 
             >>> integer_collection = datastructuretools.TypedList(
             ...     item_class=int)
-            >>> integer_collection.extend((False, True, 2, 3.14159))
+            >>> integer_collection.extend(('0', 1.0, 2, 3.14159))
             >>> integer_collection[:]
             [0, 1, 2, 3]
 

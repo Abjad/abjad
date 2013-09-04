@@ -52,9 +52,13 @@ class TypedCollection(AbjadObject):
 
     @property
     def _item_callable(self):
+        def coerce(x):
+            if isinstance(x, self._item_class):
+                return x
+            return self._item_class(x)
         if self._item_class is None:
             return lambda x: x
-        return self._item_class
+        return coerce
 
     @property
     def _keyword_argument_names(self):
