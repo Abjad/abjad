@@ -766,8 +766,8 @@ class Tuplet(Container):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def from_leaf_and_ratio(leaf, proportions, is_diminution=True):
-        r'''Change `leaf` to tuplet with `proportions`.
+    def from_leaf_and_ratio(leaf, ratio, is_diminution=True):
+        r'''Makes tuplet from `leaf` and `ratio`.
 
         ::
 
@@ -776,15 +776,17 @@ class Tuplet(Container):
         ..  container:: example
 
             **Example 1a.** Change leaf to augmented tuplets 
-            with `proportions`:
+            with `ratio`:
 
             ::
 
                 >>> tuplet = Tuplet.from_leaf_and_ratio(
                 ...     note,
-                ...     [1], 
+                ...     mathtools.Ratio(1), 
                 ...     is_diminution=False,
                 ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
 
             ..  doctest::
 
@@ -793,14 +795,10 @@ class Tuplet(Container):
                     c'8.
                 }
 
-            ::
-
-                >>> show(stafftools.RhythmicStaff([tuplet])) # doctest: +SKIP
-
         ..  container:: example
 
             **Example 1b.** Change leaf to augmented tuplets 
-            with `proportions`:
+            with `ratio`:
 
             ::
 
@@ -809,6 +807,8 @@ class Tuplet(Container):
                 ...     [1, 2], 
                 ...     is_diminution=False,
                 ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
 
             ..  doctest::
 
@@ -818,22 +818,20 @@ class Tuplet(Container):
                     c'8
                 }
 
-            ::
-
-                >>> show(stafftools.RhythmicStaff([tuplet])) # doctest: +SKIP
-
         ..  container:: example
 
             **Example 1c.** Change leaf to augmented tuplets 
-            with `proportions`:
+            with `ratio`:
 
             ::
 
                 >>> tuplet = Tuplet.from_leaf_and_ratio(
                 ...     note,
-                ...     [1, 2, 2], 
+                ...     mathtools.Ratio(1, 2, 2), 
                 ...     is_diminution=False,
                 ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
 
             ..  doctest::
 
@@ -845,14 +843,10 @@ class Tuplet(Container):
                     c'32.
                 }
 
-            ::
-
-                >>> show(stafftools.RhythmicStaff([tuplet])) # doctest: +SKIP
-
         ..  container:: example
 
             **Example 1d.** Change leaf to augmented tuplets 
-            with `proportions`:
+            with `ratio`:
 
             ::
 
@@ -861,6 +855,8 @@ class Tuplet(Container):
                 ...     [1, 2, 2, 3], 
                 ...     is_diminution=False,
                 ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
 
             ..  doctest::
 
@@ -873,14 +869,10 @@ class Tuplet(Container):
                     c'32.
                 }
 
-            ::
-
-                >>> show(stafftools.RhythmicStaff([tuplet])) # doctest: +SKIP
-
         ..  container:: example
 
             **Example 1e.** Change leaf to augmented tuplets 
-            with `proportions`:
+            with `ratio`:
 
             ::
 
@@ -889,6 +881,8 @@ class Tuplet(Container):
                 ...     [1, 2, 2, 3, 3], 
                 ...     is_diminution=False,
                 ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
 
             ..  doctest::
 
@@ -902,22 +896,20 @@ class Tuplet(Container):
                     c'32.
                 }
 
-            ::
-
-                >>> show(stafftools.RhythmicStaff([tuplet])) # doctest: +SKIP
-
         ..  container:: example
 
             **Example 1f.** Change leaf to augmented tuplets 
-            with `proportions`:
+            with `ratio`:
 
             ::
 
                 >>> tuplet = Tuplet.from_leaf_and_ratio(
                 ...     note,
-                ...     [1, 2, 2, 3, 3, 4], 
+                ...     mathtools.Ratio(1, 2, 2, 3, 3, 4), 
                 ...     is_diminution=False,
                 ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
 
             ..  doctest::
 
@@ -932,14 +924,10 @@ class Tuplet(Container):
                     c'32
                 }
 
-            ::
-
-                >>> show(stafftools.RhythmicStaff([tuplet])) # doctest: +SKIP
-
         ..  container:: example
 
             **Example 2a.** Change leaf to diminished tuplets 
-            with `proportions`:
+            with `ratio`:
 
             ::
 
@@ -948,6 +936,8 @@ class Tuplet(Container):
                 ...     [1], 
                 ...     is_diminution=True,
                 ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
 
             ..  doctest::
 
@@ -956,14 +946,10 @@ class Tuplet(Container):
                     c'8.
                 }
 
-            ::
-
-                >>> show(stafftools.RhythmicStaff([tuplet])) # doctest: +SKIP
-
         ..  container:: example
 
             **Example 2b.** Change leaf to diminished tuplets 
-            with `proportions`:
+            with `ratio`:
 
             ::
 
@@ -972,6 +958,8 @@ class Tuplet(Container):
                 ...     [1, 2], 
                 ...     is_diminution=True,
                 ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
 
             ..  doctest::
 
@@ -981,14 +969,10 @@ class Tuplet(Container):
                     c'8
                 }
 
-            ::
-
-                >>> show(stafftools.RhythmicStaff([tuplet])) # doctest: +SKIP
-
         ..  container:: example
 
             **Example 2c.** Change leaf to diminished tuplets 
-            with `proportions`:
+            with `ratio`:
 
             ::
 
@@ -997,6 +981,8 @@ class Tuplet(Container):
                 ...     [1, 2, 2], 
                 ...     is_diminution=True,
                 ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1007,14 +993,10 @@ class Tuplet(Container):
                     c'16.
                 }
                 
-            ::
-
-                >>> show(stafftools.RhythmicStaff([tuplet])) # doctest: +SKIP
-
         ..  container:: example
 
             **Example 2d.** Change leaf to diminished tuplets 
-            with `proportions`:
+            with `ratio`:
 
             ::
 
@@ -1023,6 +1005,8 @@ class Tuplet(Container):
                 ...     [1, 2, 2, 3], 
                 ...     is_diminution=True,
                 ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1035,14 +1019,10 @@ class Tuplet(Container):
                     c'16.
                 }
 
-            ::
-
-                >>> show(stafftools.RhythmicStaff([tuplet])) # doctest: +SKIP
-
         ..  container:: example
 
             **Example 2e.** Change leaf to diminished tuplets 
-            with `proportions`:
+            with `ratio`:
 
             ::
 
@@ -1051,6 +1031,8 @@ class Tuplet(Container):
                 ...     [1, 2, 2, 3, 3], 
                 ...     is_diminution=True,
                 ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1064,14 +1046,10 @@ class Tuplet(Container):
                     c'16.
                 }
 
-            ::
-
-                >>> show(stafftools.RhythmicStaff([tuplet])) # doctest: +SKIP
-
         ..  container:: example
 
             **Example 2f.** Change leaf to diminished tuplets 
-            with `proportions`:
+            with `ratio`:
 
             ::
 
@@ -1080,6 +1058,8 @@ class Tuplet(Container):
                 ...     [1, 2, 2, 3, 3, 4], 
                 ...     is_diminution=True,
                 ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1093,14 +1073,10 @@ class Tuplet(Container):
                     c'16
                 }
 
-            ::
-
-                >>> show(stafftools.RhythmicStaff([tuplet])) # doctest: +SKIP
-
         Returns tuplet.
         '''
         tuplet = leaf._to_tuplet_with_ratio(
-            proportions, 
+            ratio, 
             is_diminution=is_diminution,
             )
         return tuplet
@@ -1108,31 +1084,32 @@ class Tuplet(Container):
     @staticmethod
     def from_duration_and_ratio(
         duration,
-        proportions,
+        ratio,
         avoid_dots=True,
         decrease_durations_monotonically=True,
         is_diminution=True,
         ):
-        r'''Makes tuplet from `duration` and `proportions`.
+        r'''Makes tuplet from `duration` and `ratio`.
 
         ..  container:: example
 
             **Example 1.** Make augmented tuplet from `duration` and 
-            `proportions` and avoid dots.
+            `ratio` and avoid dots.
 
             Make tupletted leaves strictly without dots when all 
-            `proportions` equal ``1``:
+            `ratio` equal ``1``:
 
             ::
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
                 ...     Duration(3, 16), 
-                ...     [1, 1, 1, -1, -1], 
+                ...     mathtools.Ratio(1, 1, 1, -1, -1), 
                 ...     avoid_dots=True,
                 ...     is_diminution=False,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> show(measure) # doctest: +SKIP
+                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
                
@@ -1149,21 +1126,22 @@ class Tuplet(Container):
                     }
                 }
 
-            Allow tupletted leaves to return with dots when some `proportions` 
+            Allow tupletted leaves to return with dots when some `ratio` 
             do not equal ``1``:
 
             ::
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
                 ...     Duration(3, 16), 
-                ...     [1, -2, -2, 3, 3], 
+                ...     mathtools.Ratio(1, -2, -2, 3, 3), 
                 ...     avoid_dots=True,
                 ...     is_diminution=False,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> show(measure) # doctest: +SKIP
+                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> show(staff) # doctest: +SKIP
 
-            ::
+            ..  doctest::
 
                 >>> f(measure)
                 {
@@ -1178,20 +1156,21 @@ class Tuplet(Container):
                     }
                 }
 
-            Interpret nonassignable `proportions` according to
+            Interpret nonassignable `ratio` according to
             `decrease_durations_monotonically`:
 
             ::
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
                 ...     Duration(3, 16), 
-                ...     [5, -1, 5], 
+                ...     mathtools.Ratio(5, -1, 5), 
                 ...     avoid_dots=True,
                 ...     decrease_durations_monotonically=False,
                 ...     is_diminution=False,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> show(measure) # doctest: +SKIP
+                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1211,18 +1190,19 @@ class Tuplet(Container):
         ..  container:: example
 
             **Example 2.** Make augmented tuplet from `duration` and 
-            `proportions` and encourage dots:
+            `ratio` and encourage dots:
 
             ::
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
                 ...     Duration(3, 16), 
-                ...     [1, 1, 1, -1, -1], 
+                ...     mathtools.Ratio(1, 1, 1, -1, -1), 
                 ...     avoid_dots=False,
                 ...     is_diminution=False,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> show(measure) # doctest: +SKIP
+                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1239,20 +1219,21 @@ class Tuplet(Container):
                     }
                 }
 
-            Interpret nonassignable `proportions` according to
+            Interpret nonassignable `ratio` according to
             `decrease_durations_monotonically`:
 
             ::
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
                 ...     Duration(3, 16), 
-                ...     [5, -1, 5], 
+                ...     mathtools.Ratio(5, -1, 5), 
                 ...     avoid_dots=False,
                 ...     decrease_durations_monotonically=False,
                 ...     is_diminution=False,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> show(measure) # doctest: +SKIP
+                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1270,21 +1251,22 @@ class Tuplet(Container):
         ..  container:: example
 
             **Example 3.** Make diminished tuplet from `duration` and nonzero 
-            integer `proportions`.
+            integer `ratio`.
 
             Make tupletted leaves strictly without dots when all 
-            `proportions` equal ``1``:
+            `ratio` equal ``1``:
 
             ::
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
                 ...     Duration(3, 16), 
-                ...     [1, 1, 1, -1, -1], 
+                ...     mathtools.Ratio(1, 1, 1, -1, -1), 
                 ...     avoid_dots=True,
                 ...     is_diminution=True,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> show(measure) # doctest: +SKIP
+                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1301,19 +1283,20 @@ class Tuplet(Container):
                     }
                 }
 
-            Allow tupletted leaves to return with dots when some `proportions` 
+            Allow tupletted leaves to return with dots when some `ratio` 
             do not equal ``1``:
 
             ::
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
                 ...     Duration(3, 16), 
-                ...     [1, -2, -2, 3, 3], 
+                ...     mathtools.Ratio(1, -2, -2, 3, 3), 
                 ...     avoid_dots=True,
                 ...     is_diminution=True,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> show(measure) # doctest: +SKIP
+                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1330,20 +1313,21 @@ class Tuplet(Container):
                     }
                 }
 
-            Interpret nonassignable `proportions` according to
+            Interpret nonassignable `ratio` according to
             `decrease_durations_monotonically`:
 
             ::
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
                 ...     Duration(3, 16), 
-                ...     [5, -1, 5], 
+                ...     mathtools.Ratio(5, -1, 5), 
                 ...     avoid_dots=True,
                 ...     decrease_durations_monotonically=False,
                 ...     is_diminution=True,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> show(measure) # doctest: +SKIP
+                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1363,18 +1347,19 @@ class Tuplet(Container):
         ..  container:: example
         
             **Example 4.** Make diminished tuplet from `duration` and 
-            `proportions` and encourage dots:
+            `ratio` and encourage dots:
 
             ::
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
                 ...     Duration(3, 16), 
-                ...     [1, 1, 1, -1, -1], 
+                ...     mathtools.Ratio(1, 1, 1, -1, -1), 
                 ...     avoid_dots=False,
                 ...     is_diminution=True,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> show(measure) # doctest: +SKIP
+                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1390,18 +1375,19 @@ class Tuplet(Container):
                     }
                 }
 
-            Interpret nonassignable `proportions` according to `direction`:
+            Interpret nonassignable `ratio` according to `direction`:
 
             ::
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
                 ...     Duration(3, 16), 
-                ...     [5, -1, 5], 
+                ...     mathtools.Ratio(5, -1, 5), 
                 ...     avoid_dots=False,
                 ...     decrease_durations_monotonically=False,
                 ...     is_diminution=True,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
+                >>> staff = stafftools.RhythmicStaff([measure])
                 >>> show(measure) # doctest: +SKIP
 
             ..  doctest::
@@ -1416,9 +1402,9 @@ class Tuplet(Container):
                     }
                 }
 
-        Reduces `proportions` relative to each other.
+        Reduces `ratio` relative to each other.
 
-        Interprets negative `proportions` as rests.
+        Interprets negative `ratio` as rests.
 
         Returns fixed-duration tuplet.
         '''
@@ -1427,15 +1413,15 @@ class Tuplet(Container):
         from abjad.tools import resttools
         from abjad.tools import selectiontools
         from abjad.tools import tuplettools
-        # coerce duration and proportions
+        # coerce duration and ratio
         duration = durationtools.Duration(duration)
-        proportions = mathtools.Ratio(proportions)
-        # reduce proportions relative to each other
-        proportions = \
+        ratio = mathtools.Ratio(ratio)
+        # reduce ratio relative to each other
+        ratio = \
             sequencetools.divide_sequence_elements_by_greatest_common_divisor(
-                proportions)
+                ratio)
         # find basic prolated duration of note in tuplet
-        basic_prolated_duration = duration / mathtools.weight(proportions)
+        basic_prolated_duration = duration / mathtools.weight(ratio)
         # find basic written duration of note in tuplet
         if avoid_dots:
             basic_written_duration = \
@@ -1444,7 +1430,7 @@ class Tuplet(Container):
             basic_written_duration = \
                 basic_prolated_duration.equal_or_greater_assignable
         # find written duration of each note in tuplet
-        written_durations = [x * basic_written_duration for x in proportions]
+        written_durations = [x * basic_written_duration for x in ratio]
         # make tuplet leaves
         try:
             notes = [
@@ -1454,7 +1440,7 @@ class Tuplet(Container):
         except AssignabilityError:
             denominator = duration._denominator
             note_durations = [durationtools.Duration(x, denominator) 
-                for x in proportions]
+                for x in ratio]
             pitches = [None if note_duration < 0 else 0 
                 for note_duration in note_durations]
             leaf_durations = [abs(note_duration) 
@@ -1480,8 +1466,9 @@ class Tuplet(Container):
         return tuplet
 
     @staticmethod
-    def from_ratio_and_nonreduced_fraction(proportions, (n, d)):
-        r'''Makes tuplet from `proportions` and nonreduced fraction `(n, d)`.
+    def from_nonreduced_ratio_and_nonreduced_fraction(ratio, fraction):
+        r'''Makes tuplet from nonreduced `ratio` and 
+        nonreduced `fraction`.
 
         ..  container:: example
 
@@ -1489,13 +1476,13 @@ class Tuplet(Container):
 
             ::
 
-                >>> ratio = [1]
-                >>> tuplet = Tuplet.from_ratio_and_nonreduced_fraction(
-                ...     [1],
-                ...     (7, 16),
+                >>> tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+                ...     mathtools.NonreducedRatio(1),
+                ...     mathtools.NonreducedFraction(7, 16),
                 ...     )
                 >>> measure = Measure((7, 16), [tuplet])
-                >>> show(measure) # doctest: +SKIP
+                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1514,12 +1501,13 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet = Tuplet.from_ratio_and_nonreduced_fraction(
-                ...     [1, 2],
-                ...     (7, 16),
+                >>> tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+                ...     mathtools.NonreducedRatio(1, 2),
+                ...     mathtools.NonreducedFraction(7, 16),
                 ...     )
                 >>> measure = Measure((7, 16), [tuplet])
-                >>> show(measure) # doctest: +SKIP
+                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1535,13 +1523,13 @@ class Tuplet(Container):
 
             ::
 
-                >>> ratio = [1, 2, 4]
-                >>> tuplet = Tuplet.from_ratio_and_nonreduced_fraction(
-                ...     [1, 2, 4],
-                ...     (7, 16),
+                >>> tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+                ...     mathtools.NonreducedRatio(1, 2, 4),
+                ...     mathtools.NonreducedFraction(7, 16),
                 ...     )
                 >>> measure = Measure((7, 16), [tuplet])
-                >>> show(measure) # doctest: +SKIP
+                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1557,13 +1545,13 @@ class Tuplet(Container):
 
             ::
 
-                >>> ratio = [1, 2, 4, 1]
-                >>> tuplet = Tuplet.from_ratio_and_nonreduced_fraction(
-                ...     [1, 2, 4, 1],
-                ...     (7, 16),
+                >>> tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+                ...     mathtools.NonreducedRatio(1, 2, 4, 1),
+                ...     mathtools.NonreducedFraction(7, 16),
                 ...     )
                 >>> measure = Measure((7, 16), [tuplet])
-                >>> show(measure) # doctest: +SKIP
+                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1581,13 +1569,13 @@ class Tuplet(Container):
 
             ::
 
-                >>> ratio = [1, 2, 4, 1, 2]
-                >>> tuplet = Tuplet.from_ratio_and_nonreduced_fraction(
-                ...     [1, 2, 4, 1, 2],
-                ...     (7, 16),
+                >>> tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+                ...     mathtools.NonreducedRatio(1, 2, 4, 1, 2),
+                ...     mathtools.NonreducedFraction(7, 16),
                 ...     )
                 >>> measure = Measure((7, 16), [tuplet])
-                >>> show(measure) # doctest: +SKIP
+                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1606,13 +1594,13 @@ class Tuplet(Container):
 
             ::
 
-                >>> ratio = [1, 2, 4, 1, 2, 4]
-                >>> tuplet = Tuplet.from_ratio_and_nonreduced_fraction(
-                ...     [1, 2, 4, 1, 2, 4],
-                ...     (7, 16),
+                >>> tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
+                ...     mathtools.NonreducedRatio(1, 2, 4, 1, 2, 4),
+                ...     mathtools.NonreducedFraction(7, 16),
                 ...     )
                 >>> measure = Measure((7, 16), [tuplet])
-                >>> show(measure) # doctest: +SKIP
+                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1637,17 +1625,21 @@ class Tuplet(Container):
         from abjad.tools import notetools
         from abjad.tools import resttools
         from abjad.tools import tuplettools
-        proportions = mathtools.NonreducedRatio(proportions)
-        duration = durationtools.Duration(n, d)
-        if len(proportions) == 1:
-            if 0 < proportions[0]:
+        ratio = mathtools.NonreducedRatio(ratio)
+        if isinstance(fraction, tuple):
+            fraction = mathtools.NonreducedFraction(*fraction)
+        n = fraction.numerator
+        d = fraction.denominator
+        duration = durationtools.Duration(fraction)
+        if len(ratio) == 1:
+            if 0 < ratio[0]:
                 try:
                     note = notetools.Note(0, duration)
                     return containertools.Container([note])
                 except AssignabilityError:
                     notes = notetools.make_notes(0, duration)
                     return containertools.Container(notes)
-            elif proportions[0] < 0:
+            elif ratio[0] < 0:
                 try:
                     rest = resttools.Rest(duration)
                     return containertools.Container([rest])
@@ -1656,12 +1648,12 @@ class Tuplet(Container):
                     return containertools.Container(rests)
             else:
                 raise ValueError('no divide zero values.')
-        if 1 < len(proportions):
+        if 1 < len(ratio):
             exponent = int(
-                math.log(mathtools.weight(proportions), 2) - math.log(n, 2))
+                math.log(mathtools.weight(ratio), 2) - math.log(n, 2))
             denominator = int(d * 2 ** exponent)
             music = []
-            for x in proportions:
+            for x in ratio:
                 if not x:
                     raise ValueError('no divide zero values.')
                 if 0 < x:
