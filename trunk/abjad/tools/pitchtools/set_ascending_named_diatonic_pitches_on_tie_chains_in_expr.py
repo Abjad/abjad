@@ -36,7 +36,7 @@ def set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(expr, key_signatu
     from abjad.tools import tonalanalysistools
 
     if key_signature is None:
-        scale = tonalanalysistools.Scale('C', 'major')
+        scale = tonalanalysistools.Scale('c', 'major')
     else:
         scale = tonalanalysistools.Scale(key_signature)
 

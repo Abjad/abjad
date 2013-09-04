@@ -1,20 +1,21 @@
 # -*- encoding: utf-8 -*-
+import numbers
 from abjad.tools.pitchtools.PitchClass import PitchClass
 
 
 class NamedPitchClass(PitchClass):
-    '''Abjad model of named chromatic pitch-class:
+    '''Abjad model of named pitch-class:
 
     ::
 
-        >>> ncpc = pitchtools.NamedPitchClass('cs')
+        >>> named_pitch_class = pitchtools.NamedPitchClass('cs')
 
     ::
 
-        >>> ncpc
+        >>> named_pitch_class
         NamedPitchClass('cs')
 
-    Named chromatic pitch-classes are immutable.
+    Return named pitch-class.
     '''
 
     ### CLASS VARIABLES ###
@@ -27,40 +28,67 @@ class NamedPitchClass(PitchClass):
 
     def __init__(self, arg):
         from abjad.tools import pitchtools
-        if hasattr(arg, '_chromatic_pitch_class_name'):
-            chromatic_pitch_class_name = arg._chromatic_pitch_class_name
-        elif pitchtools.is_chromatic_pitch_name(arg):
-            chromatic_pitch_class_name = \
+        if isinstance(arg, str):
+            pitch_class_name = \
                 pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_name(
                     arg)
-        elif isinstance(arg, pitchtools.NumberedPitchClass):
-            chromatic_pitch_number = \
+        elif isinstance(arg, pitchtools.NamedPitch):
+            pitch_class_name = arg.chromatic_pitch_class_name
+        elif isinstance(arg, (
+            numbers.Number,
+            pitchtools.NumberedPitch,
+            pitchtools.NumberedPitchClass,
+            )):
+            pitch_number = \
                 pitchtools.chromatic_pitch_number_to_chromatic_pitch_class_number(
                     float(arg))
-            chromatic_pitch_class_name = \
+            pitch_class_name = \
                 pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name(
-                    chromatic_pitch_number)
+                    pitch_number)
+        elif pitchtools.is_pitch_carrier(arg):
+            named_pitch = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(
+                arg)
+            pitch_class_name = named_pitch.chromatic_pitch_class_name
+        elif isinstance(arg, type(self)):
+            pitch_class_name = arg._chromatic_pitch_class_name
         else:
-            try:
-                named_chromatic_pitch_carrier = \
-                    pitchtools.get_named_chromatic_pitch_from_pitch_carrier(
-                        arg)
-            except (ValueError, TypeError):
-                raise ValueError, arg
-            if hasattr(named_chromatic_pitch_carrier, '_chromatic_pitch_name'):
-                chromatic_pitch_name = \
-                    named_chromatic_pitch_carrier._chromatic_pitch_name
-            elif hasattr(named_chromatic_pitch_carrier, 'pitch'):
-                named_chromatic_pitch = named_chromatic_pitch_carrier.pitch
-                chromatic_pitch_name = \
-                    named_chromatic_pitch._chromatic_pitch_name
-            else:
-                raise TypeError
-            chromatic_pitch_class_name = \
-                pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_name(
-                    chromatic_pitch_name)
-        chromatic_pitch_class_name = chromatic_pitch_class_name.lower()
-        self._chromatic_pitch_class_name = chromatic_pitch_class_name
+            raise TypeError('Cannot instantiate named pitch-class from '
+                '{!r}.'.format(arg))
+        self._chromatic_pitch_class_name = pitch_class_name.lower()
+#        if hasattr(arg, '_chromatic_pitch_class_name'):
+#            chromatic_pitch_class_name = arg._chromatic_pitch_class_name
+#        elif pitchtools.is_chromatic_pitch_name(arg):
+#            chromatic_pitch_class_name = \
+#                pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_name(
+#                    arg)
+#        elif isinstance(arg, pitchtools.NumberedPitchClass):
+#            chromatic_pitch_number = \
+#                pitchtools.chromatic_pitch_number_to_chromatic_pitch_class_number(
+#                    float(arg))
+#            chromatic_pitch_class_name = \
+#                pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name(
+#                    chromatic_pitch_number)
+#        else:
+#            try:
+#                named_chromatic_pitch_carrier = \
+#                    pitchtools.get_named_chromatic_pitch_from_pitch_carrier(
+#                        arg)
+#            except (ValueError, TypeError):
+#                raise ValueError, arg
+#            if hasattr(named_chromatic_pitch_carrier, '_chromatic_pitch_name'):
+#                chromatic_pitch_name = \
+#                    named_chromatic_pitch_carrier._chromatic_pitch_name
+#            elif hasattr(named_chromatic_pitch_carrier, 'pitch'):
+#                named_chromatic_pitch = named_chromatic_pitch_carrier.pitch
+#                chromatic_pitch_name = \
+#                    named_chromatic_pitch._chromatic_pitch_name
+#            else:
+#                raise TypeError
+#            chromatic_pitch_class_name = \
+#                pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_name(
+#                    chromatic_pitch_name)
+#        chromatic_pitch_class_name = chromatic_pitch_class_name.lower()
+#        self._chromatic_pitch_class_name = chromatic_pitch_class_name
 
     ### SPECIAL METHODS ###
 
@@ -179,7 +207,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> ncpc.numbered_chromatic_pitch_class
+            >>> named_pitch_class.numbered_chromatic_pitch_class
             NumberedPitchClass(1)
 
         Return numbered chromatic pitch-class.
@@ -195,7 +223,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> ncpc.apply_accidental('qs')
+            >>> named_pitch_class.apply_accidental('qs')
             NamedPitchClass('ctqs')
 
         Return named chromatic pitch-class.
@@ -213,7 +241,8 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> ncpc.transpose(pitchtools.NamedInterval('major', 2))
+            >>> named_pitch_class.transpose(
+            ...     pitchtools.NamedInterval('major', 2))
             NamedPitchClass('ds')
 
         Return named chromatic pitch-class.
@@ -223,6 +252,6 @@ class NamedPitchClass(PitchClass):
         transposed_pitch = \
             pitchtools.transpose_pitch_carrier_by_melodic_interval(
             pitch, melodic_diatonic_interval)
-        transposed_named_chromatic_pitch_class = \
+        transposed_named_pitch_class = \
             transposed_pitch.named_chromatic_pitch_class
-        return transposed_named_chromatic_pitch_class
+        return transposed_named_pitch_class
