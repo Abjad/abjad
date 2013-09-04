@@ -3,7 +3,7 @@ from abjad import *
 from abjad.tools import sequencetools
 
 
-def test_seqtools_Matrix___init___01():
+def test_datastructuretools_Matrix___init___01():
     r'''Init from rows.
     '''
 
@@ -13,7 +13,7 @@ def test_seqtools_Matrix___init___01():
     assert matrix.columns == ((0, 10, 20), (1, 11, 21), (2, 12, 22), (3, 13, 23))
 
 
-def test_seqtools_Matrix___init___02():
+def test_datastructuretools_Matrix___init___02():
     r'''Init from columns.
     '''
 

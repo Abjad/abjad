@@ -3,7 +3,7 @@ from abjad import *
 from abjad.tools import sequencetools
 
 
-def test_seqtools_Matrix_columns_01():
+def test_datastructuretools_Matrix_columns_01():
 
     matrix = datastructuretools.Matrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 

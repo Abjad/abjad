@@ -4,7 +4,7 @@ from abjad.tools import sequencetools
 import py.test
 
 
-def test_seqtools_CyclicList___getslice___01():
+def test_datastructuretools_CyclicList___getslice___01():
 
     cyclic_list = datastructuretools.CyclicList(range(3))
 

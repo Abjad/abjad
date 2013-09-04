@@ -3,7 +3,7 @@ from abjad import *
 from abjad.tools import sequencetools
 
 
-def test_seqtools_CyclicMatrix___getitem___01():
+def test_datastructuretools_CyclicMatrix___getitem___01():
 
     matrix = datastructuretools.CyclicMatrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
@@ -11,7 +11,7 @@ def test_seqtools_CyclicMatrix___getitem___01():
     assert matrix[2][0] == 20
 
 
-def test_seqtools_CyclicMatrix___getitem___02():
+def test_datastructuretools_CyclicMatrix___getitem___02():
 
     matrix = datastructuretools.CyclicMatrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
