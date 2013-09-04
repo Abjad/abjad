@@ -281,3 +281,30 @@ class PitchClassSegment(Segment):
         tokens = (pitch_class.transpose(expr) for pitch_class in self)
         return self.new(tokens=tokens)
 
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def has_duplicates(self):
+        r'''True if segment contains duplicate items:
+
+        ::
+
+            >>> pitch_class_segment = pitchtools.PitchClassSegment(
+            ...     tokens=[-2, -1.5, 6, 7, -1.5, 7],
+            ...     )
+            >>> pitch_class_segment.has_duplicates
+            True
+
+        ::
+
+            >>> pitch_class_segment = pitchtools.PitchClassSegment(
+            ...     tokens="c d e f g a b",
+            ...     )
+            >>> pitch_class_segment.has_duplicates
+            False
+
+        Return boolean.
+        '''
+        from abjad.tools import pitchtools
+        return len(pitchtools.PitchClassSet(self)) < len(self)
+

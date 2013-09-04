@@ -22,7 +22,8 @@ class NamedIntervalClass(IntervalClass):
         from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation \
             import melodic_diatonic_interval_abbreviation_regex
         if len(args) == 1 and\
-            isinstance(args[0], pitchtools.NamedInterval):
+            isinstance(args[0], (pitchtools.NamedInterval,
+                pitchtools.NamedIntervalClass)):
             quality_string = args[0]._quality_string
             number = args[0].number
         elif len(args) == 1 and isinstance(args[0], str):
@@ -43,7 +44,8 @@ class NamedIntervalClass(IntervalClass):
         elif len(args) == 2:
             quality_string, number = args
         else:
-            raise TypeError('what type of instance is this?')
+            raise TypeError('what type of instance is this?, {!r}'.format(
+                args))
         if quality_string not in \
             NamedIntervalClass._acceptable_quality_strings:
             raise ValueError('not acceptable quality string.')

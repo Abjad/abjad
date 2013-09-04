@@ -51,32 +51,6 @@ class PitchSegment(Segment):
         from abjad.tools import pitchtools
         return pitchtools.Pitch
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def inflection_point_count(self):
-        return len(self.local_minima) + len(self.local_maxima)
-
-    @property
-    def local_maxima(self):
-        result = []
-        if 3 <= len(self):
-            for i in range(1, len(self) - 1):
-                left, middle, right = self[i-1], self[i], self[i+1]
-                if left < middle and right < middle:
-                    result.append(middle)
-        return tuple(result)
-
-    @property
-    def local_minima(self):
-        result = []
-        if 3 <= len(self):
-            for i in range(1, len(self) - 1):
-                left, middle, right = self[i-1], self[i], self[i+1]
-                if middle < left and middle < right:
-                    result.append(middle)
-        return tuple(result)
-
     ### PUBLIC METHODS ###
 
     @classmethod
@@ -238,3 +212,55 @@ class PitchSegment(Segment):
         '''
         tokens = (pitch.transpose(expr) for pitch in self)
         return self.new(tokens=tokens) 
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def has_duplicates(self):
+        r'''True if segment contains duplicate items:
+
+        ::
+
+            >>> pitch_class_segment = pitchtools.PitchSegment(
+            ...     tokens=[-2, -1.5, 6, 7, -1.5, 7],
+            ...     )
+            >>> pitch_class_segment.has_duplicates
+            True
+
+        ::
+
+            >>> pitch_class_segment = pitchtools.PitchSegment(
+            ...     tokens="c d e f g a b",
+            ...     )
+            >>> pitch_class_segment.has_duplicates
+            False
+
+        Return boolean.
+        '''
+        from abjad.tools import pitchtools
+        return len(pitchtools.PitchSet(self)) < len(self)
+
+    @property
+    def inflection_point_count(self):
+        return len(self.local_minima) + len(self.local_maxima)
+
+    @property
+    def local_maxima(self):
+        result = []
+        if 3 <= len(self):
+            for i in range(1, len(self) - 1):
+                left, middle, right = self[i-1], self[i], self[i+1]
+                if left < middle and right < middle:
+                    result.append(middle)
+        return tuple(result)
+
+    @property
+    def local_minima(self):
+        result = []
+        if 3 <= len(self):
+            for i in range(1, len(self) - 1):
+                left, middle, right = self[i-1], self[i], self[i+1]
+                if middle < left and middle < right:
+                    result.append(middle)
+        return tuple(result)
+

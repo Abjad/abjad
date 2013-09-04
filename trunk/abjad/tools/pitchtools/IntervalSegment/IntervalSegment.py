@@ -5,7 +5,15 @@ from abjad.tools.pitchtools.Segment import Segment
 
 
 class IntervalSegment(Segment):
-    r'''Abjad model of an interval segment.
+    r'''Abjad model of an interval segment:
+
+    ::
+
+        >>> intervals = 'm2 M10 -aug4 P5'
+        >>> pitchtools.IntervalSegment(intervals)
+        IntervalSegment(['+m2', '+M10', '-aug4', '+P5'])
+
+    Return interval segment.
     '''
 
     ### CLASS VARIABLES ###
@@ -58,6 +66,29 @@ class IntervalSegment(Segment):
         return self.new(self[-n:] + self[:-n])
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def has_duplicates(self):
+        r'''True if segment contains duplicate items:
+
+        ::
+
+            >>> intervals = 'm2 M3 -aug4 m2 P5'
+            >>> segment = pitchtools.IntervalSegment(intervals)
+            >>> segment.has_duplicates
+            True
+
+        ::
+
+            >>> intervals = 'M3 -aug4 m2 P5'
+            >>> segment = pitchtools.IntervalSegment(intervals)
+            >>> segment.has_duplicates
+            False
+
+        Return boolean.
+        '''
+        from abjad.tools import pitchtools
+        return len(pitchtools.IntervalSet(self)) < len(self)
 
     @property
     def slope(self):

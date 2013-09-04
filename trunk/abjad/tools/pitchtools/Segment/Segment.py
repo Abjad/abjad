@@ -81,3 +81,9 @@ class Segment(TypedTuple):
     @abc.abstractmethod
     def from_selection(cls, selection, item_class=None, name=None):
         raise NotImplementedError
+
+    ### PUBLIC PROPERTIES ###
+
+    @abc.abstractproperty
+    def has_duplicates(self):
+        raise NotImplementedError 

@@ -4,7 +4,15 @@ from abjad.tools.pitchtools.Segment import Segment
 
 
 class IntervalClassSegment(Segment):
-    r'''Abjad model of an interval-class segment.
+    r'''Abjad model of an interval-class segment:
+
+    ::
+
+        >>> intervals = 'm2 M10 -aug4 P5'
+        >>> pitchtools.IntervalClassSegment(intervals)
+        IntervalClassSegment(['+m2', '+M3', '-aug4', '+P5'])
+
+    Return interval-class segment.
     '''
 
     ### CLASS VARIABLES ###
@@ -54,6 +62,30 @@ class IntervalClassSegment(Segment):
             )
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def has_duplicates(self):
+        r'''True if segment contains duplicate items:
+
+        ::
+
+            >>> intervals = 'm2 M3 -aug4 m2 P5'
+            >>> segment = pitchtools.IntervalClassSegment(intervals)
+            >>> segment.has_duplicates
+            True
+
+        ::
+
+            >>> intervals = 'M3 -aug4 m2 P5'
+            >>> segment = pitchtools.IntervalClassSegment(intervals)
+            >>> segment.has_duplicates
+            False
+
+        Return boolean.
+        '''
+        from abjad.tools import pitchtools
+        return len(pitchtools.IntervalClassSet(
+            self, item_class=self.item_class)) < len(self)
 
     @property
     def is_tertian(self):
