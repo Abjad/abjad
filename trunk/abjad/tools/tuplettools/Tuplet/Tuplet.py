@@ -14,7 +14,7 @@ class Tuplet(Container):
 
     ..  container:: example
 
-        ::
+        **Example 1.** A tuplet:
 
             >>> tuplet = Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
             >>> show(tuplet) # doctest: +SKIP
@@ -30,7 +30,7 @@ class Tuplet(Container):
 
     ..  container:: example
 
-        ::
+        **Example 2.** A nested tuplet:
 
             >>> second_tuplet = Tuplet((4, 7), "g'4. ( a'16 )")
             >>> tuplet.insert(1, second_tuplet)
@@ -52,7 +52,7 @@ class Tuplet(Container):
 
     ..  container:: example
 
-        ::
+        **Example 3.** A doubly nested tuplet:
 
             >>> third_tuplet = Tuplet((4, 5), [])
             >>> third_tuplet.extend("e''32 [ ef''32 d''32 cs''32 cqs''32 ]")
@@ -705,6 +705,8 @@ class Tuplet(Container):
                 ::
 
                     >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                    >>> tuplet.preferred_denominator is None
+                    True
                     >>> show(tuplet) # doctest: +SKIP
 
                 ..  doctest::
@@ -715,11 +717,6 @@ class Tuplet(Container):
                         d'8
                         e'8
                     }
-
-                ::
-
-                    >>> tuplet.preferred_denominator is None
-                    True
 
             ..  container:: example
 
@@ -738,6 +735,8 @@ class Tuplet(Container):
                         d'8
                         e'8
                     }
+
+                ::
 
                     >>> tuplet.preferred_denominator = 4
                     >>> show(tuplet) # doctest: +SKIP
