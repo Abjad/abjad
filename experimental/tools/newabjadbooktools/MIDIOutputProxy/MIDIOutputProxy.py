@@ -66,7 +66,7 @@ class MIDIOutputProxy(AssetOutputProxy):
             ...
             '<audio controls="controls">'
             '\tYour browser does not support the <code>audio</code> element.'
-            '\t<source src="assets/midi-841714d6c9f05853df8b09fdff45f27c.mid">'
+            '\t<source src="assets/midi-....mid">'
             '</audio>'
 
         Return list.
@@ -103,7 +103,7 @@ class MIDIOutputProxy(AssetOutputProxy):
 
             >>> document_handler = newabjadbooktools.ReSTDocumentHandler([])
             >>> output_proxy.handle_rest_document_environment(document_handler)
-            [':download:`MIDI <assets/midi-841714d6c9f05853df8b09fdff45f27c.mid>`']
+            [':download:`MIDI <assets/midi-....mid>`']
 
         Return list.
         '''

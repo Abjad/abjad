@@ -46,7 +46,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
 
             >>> document_handler = newabjadbooktools.HTMLDocumentHandler([])
             >>> output_proxy.handle_html_document_environment(document_handler)
-            ['<img alt="" src="assets/lilypond-b2476962e00078743b1ed8c6d7bce3b9.png"/>']
+            ['<img alt="" src="assets/lilypond-....png"/>']
 
         Return list.
         '''
@@ -62,7 +62,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
 
             >>> document_handler = newabjadbooktools.LaTeXDocumentHandler([])
             >>> output_proxy.handle_latex_document_environment(document_handler)
-            ['\\includegraphics{assets/lilypond-b2476962e00078743b1ed8c6d7bce3b9.pdf}']
+            ['\\includegraphics{assets/lilypond-....pdf}']
 
         Return list.
         '''
@@ -78,7 +78,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
 
             >>> document_handler = newabjadbooktools.ReSTDocumentHandler([])
             >>> output_proxy.handle_rest_document_environment(document_handler)
-            ['.. image:: assets/lilypond-b2476962e00078743b1ed8c6d7bce3b9.png']
+            ['.. image:: assets/lilypond-....png']
 
         Return list.
         '''

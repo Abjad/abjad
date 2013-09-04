@@ -21,19 +21,19 @@ class OutputProxy(AbjadObject):
 
         >>> html_handler = newabjadbooktools.HTMLDocumentHandler([])
         >>> output_proxy.generate_document_representation(html_handler)
-        ['<img alt="" src="assets/lilypond-ec7dff190fe7b4e72b53063e3914670c.png"/>']
+        ['<img alt="" src="assets/lilypond-....png"/>']
 
     ::
 
         >>> latex_handler = newabjadbooktools.LaTeXDocumentHandler([])
         >>> output_proxy.generate_document_representation(latex_handler)
-        ['\\includegraphics{assets/lilypond-ec7dff190fe7b4e72b53063e3914670c.pdf}']
+        ['\\includegraphics{assets/lilypond-....pdf}']
 
     ::
 
         >>> rest_handler = newabjadbooktools.ReSTDocumentHandler([])
         >>> output_proxy.generate_document_representation(rest_handler)
-        ['.. image:: assets/lilypond-ec7dff190fe7b4e72b53063e3914670c.png']
+        ['.. image:: assets/lilypond-....png']
 
     Return output proxy.
     '''
