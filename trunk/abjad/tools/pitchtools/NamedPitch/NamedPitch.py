@@ -267,8 +267,8 @@ class NamedPitch(Pitch):
         from abjad.tools import pitchtools
         name = pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_name(
             pitch_string)
-        octave_number = pitchtools.chromatic_pitch_name_to_octave_number(
-            pitch_string)
+        octave_number = pitchtools.OctaveIndication.from_pitch_name(
+            pitch_string).octave_number
         self._init_by_chromatic_pitch_class_name_and_octave_number(
             name, octave_number)
 
