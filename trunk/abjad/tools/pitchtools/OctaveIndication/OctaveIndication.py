@@ -98,10 +98,11 @@ class OctaveIndication(AbjadObject):
 
         Return boolean.
         '''
-        if type(self) == type(other):
-            if self.octave_number == other.octave_number:
-                return True
-        return False
+        try:
+            other = type(self)(other)
+            return self.octave_number == other.octave_number
+        except: 
+            return False
 
     def __float__(self):
         r'''Case octave indication as floating-point number:
