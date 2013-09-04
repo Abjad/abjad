@@ -9,7 +9,7 @@ class Pitch(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_format_string', )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
