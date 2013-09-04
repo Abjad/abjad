@@ -12,7 +12,7 @@ class PayloadTree(AbjadObject):
     ::
 
         >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-        >>> tree = sequencetools.PayloadTree(sequence)
+        >>> tree = datastructuretools.PayloadTree(sequence)
 
     ::
 
@@ -130,7 +130,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         ::
 
@@ -153,11 +153,11 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence_1 = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree_1 = sequencetools.PayloadTree(sequence_1)
+            >>> tree_1 = datastructuretools.PayloadTree(sequence_1)
             >>> sequence_2 = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree_2 = sequencetools.PayloadTree(sequence_2)
+            >>> tree_2 = datastructuretools.PayloadTree(sequence_2)
             >>> sequence_3 = [[0, 1], [2, 3], [4, 5]]
-            >>> tree_3 = sequencetools.PayloadTree(sequence_3)
+            >>> tree_3 = datastructuretools.PayloadTree(sequence_3)
 
         ::
 
@@ -200,7 +200,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         ::
 
@@ -224,7 +224,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         ::
 
@@ -241,7 +241,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         ::
 
@@ -258,7 +258,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         ::
 
@@ -318,7 +318,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         ::
 
@@ -336,7 +336,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         ::
 
@@ -361,7 +361,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         ::
 
@@ -397,7 +397,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         ::
 
@@ -420,7 +420,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         ::
 
@@ -442,7 +442,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         ::
 
@@ -460,7 +460,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         ::
 
@@ -491,7 +491,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         ::
 
@@ -509,7 +509,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         Return none for interior node:
 
@@ -539,7 +539,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         ::
 
@@ -562,7 +562,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         ::
 
@@ -581,7 +581,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         ::
 
@@ -599,12 +599,12 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         ::
 
             >>> z(tree)
-            sequencetools.PayloadTree(
+            datastructuretools.PayloadTree(
                 [[0, 1], [2, 3], [4, 5], [6, 7]]
                 )
 
@@ -619,7 +619,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         ::
 
@@ -696,7 +696,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         Get manifest paylaod of next 4 nodes at level 2:
 
@@ -787,7 +787,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         Get next 4 nodes at level 2:
 
@@ -859,7 +859,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         Get next 4 nodes at level 2:
 
@@ -944,7 +944,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         ::
 
@@ -965,7 +965,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         ::
 
@@ -985,7 +985,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [0, 1, 2, 2, 3, 4]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         ::
 
@@ -1011,7 +1011,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         ::
 
@@ -1041,7 +1041,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         Left-to-right examples:
 
@@ -1179,7 +1179,7 @@ class PayloadTree(AbjadObject):
             ::
 
                 >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-                >>> tree = sequencetools.PayloadTree(sequence)
+                >>> tree = datastructuretools.PayloadTree(sequence)
 
             ::
 
@@ -1241,7 +1241,7 @@ class PayloadTree(AbjadObject):
             ::
 
                 >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-                >>> tree = sequencetools.PayloadTree(sequence)
+                >>> tree = datastructuretools.PayloadTree(sequence)
 
             ::
 
@@ -1264,7 +1264,7 @@ class PayloadTree(AbjadObject):
             ::
 
                 >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-                >>> tree = sequencetools.PayloadTree(sequence)
+                >>> tree = datastructuretools.PayloadTree(sequence)
 
             ::
 
@@ -1291,7 +1291,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         ::
 
@@ -1316,21 +1316,21 @@ class PayloadTree(AbjadObject):
 
         ::
 
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
             >>> tree[0][0].remove_to_root()
             >>> tree
             PayloadTree([[1], [2, 3], [4, 5], [6, 7]])
 
         ::
 
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
             >>> tree[0][1].remove_to_root()
             >>> tree
             PayloadTree([[2, 3], [4, 5], [6, 7]])
 
         ::
 
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
             >>> tree[1].remove_to_root()
             >>> tree
             PayloadTree([[4, 5], [6, 7]])
@@ -1373,7 +1373,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.PayloadTree(sequence)
+            >>> tree = datastructuretools.PayloadTree(sequence)
 
         ::
 
