@@ -224,7 +224,7 @@ class OctaveIndication(AbjadObject):
             >>> pitchtools.OctaveIndication(5).octave_number
             5
 
-        Return int.
+        Return integer.
         '''
         return self._octave_number
 
@@ -250,6 +250,29 @@ class OctaveIndication(AbjadObject):
         Return string.
         """
         return str(self)
+
+    @property
+    def pitch_number(self):
+        r'''Pitch number of first note in octave:
+
+        ::
+
+            >>> pitchtools.OctaveIndication(4).pitch_number
+            0
+
+        ::
+
+            >>> pitchtools.OctaveIndication(5).pitch_number
+            12
+
+        ::
+
+            >>> pitchtools.OctaveIndication(3).pitch_number
+            -12
+
+        Return integer.
+        '''
+        return (self.octave_number - 4) * 12
 
     @property
     def pitch_range(self):
