@@ -42,7 +42,7 @@ def chromatic_pitch_number_to_chromatic_pitch_name(
             '{!r}'.format(accidental_spelling))
 
     octave_number = chromatic_pitch_number // 12 + 4
-    octave_tick_string = pitchtools.octave_number_to_octave_tick_string(octave_number)
+    octave_tick_string = str(pitchtools.OctaveIndication(octave_number))
 
     chromatic_pitch_name = chromatic_pitch_class_name + octave_tick_string
 

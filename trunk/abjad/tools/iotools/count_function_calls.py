@@ -16,8 +16,8 @@ def count_function_calls(
         ::
 
             >>> iotools.count_function_calls("Note('c4')", globals())
-            10469
-        
+            10482
+
     ..  container:: example
 
         **Example 2.** Function calls required to initialize note from integers:
@@ -25,7 +25,7 @@ def count_function_calls(
         ::
 
             >>> iotools.count_function_calls("Note(-12, (1, 4))", globals())
-            131
+            136
 
     Return integer.
     '''

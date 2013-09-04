@@ -24,7 +24,7 @@ def pitch_class_octave_number_string_to_chromatic_pitch_name(pitch_class_octave_
     alphabetic_accidental_abbreviation = \
         pitchtools.symbolic_accidental_string_to_alphabetic_accidental_abbreviation(
         symbolic_accidental_string)
-    octave_tick_string = pitchtools.octave_number_to_octave_tick_string(octave_number)
+    octave_tick_string = str(pitchtools.OctaveIndication(octave_number))
     chromatic_pitch_class_name = diatonic_pitch_class_name + alphabetic_accidental_abbreviation
     chromatic_pitch_name = chromatic_pitch_class_name + octave_tick_string
 

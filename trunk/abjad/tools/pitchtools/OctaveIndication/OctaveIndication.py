@@ -135,7 +135,7 @@ class OctaveIndication(AbjadObject):
         return '{}({})'.format(self._class_name, self.octave_number)
 
     def __str__(self):
-        r'''LilyPond octave tick representation of octave number:
+        r'''LilyPond octave tick representation of octave indication:
 
         ::
 
@@ -227,6 +227,29 @@ class OctaveIndication(AbjadObject):
         Return int.
         '''
         return self._octave_number
+
+    @property
+    def octave_tick_string(self):
+        r"""LilyPond octave tick representation of octave indication:
+
+        ::
+
+            >>> for i in range(-1, 9):
+            ...     print i, pitchtools.OctaveIndication(i).octave_tick_string
+            -1 ,,,,
+            0  ,,,
+            1  ,,
+            2  ,
+            3
+            4  '
+            5  ''
+            6  '''
+            7  ''''
+            8  '''''
+
+        Return string.
+        """
+        return str(self)
 
     @property
     def pitch_range(self):
