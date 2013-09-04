@@ -247,6 +247,6 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
     @staticmethod
     def select_meter_multiplier(possible_meter_multipliers, measure_index):
         possible_meter_multipliers = \
-            sequencetools.CyclicTuple(possible_meter_multipliers)
+            datastructuretools.CyclicTuple(possible_meter_multipliers)
         meter_multiplier = possible_meter_multipliers[5 * measure_index]
         return meter_multiplier

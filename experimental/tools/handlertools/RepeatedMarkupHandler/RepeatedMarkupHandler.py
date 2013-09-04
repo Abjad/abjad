@@ -18,7 +18,7 @@ class RepeatedMarkupHandler(ArticulationHandler):
 
     def __call__(self, expr):
         classes = (notetools.Note, chordtools.Chord)
-        markups = sequencetools.CyclicTuple(self.markups)
+        markups = datastructuretools.CyclicTuple(self.markups)
         for i, leaf in  enumerate(
             componenttools.iterate_components_forward_in_expr(expr, classes)):
             markup = markup[i]

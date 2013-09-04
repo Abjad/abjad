@@ -2,6 +2,7 @@
 import abc
 import copy
 import types
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
@@ -231,15 +232,15 @@ class IncisedRhythmMaker(RhythmMaker):
             self.prolation_addenda_helper(self.prolation_addenda, seeds)
         secondary_divisions = \
             self.secondary_divisions_helper(self.secondary_divisions, seeds)
-        prefix_talea = sequencetools.CyclicTuple(prefix_talea)
-        suffix_talea = sequencetools.CyclicTuple(suffix_talea)
-        prefix_lengths = sequencetools.CyclicTuple(prefix_lengths)
-        suffix_lengths = sequencetools.CyclicTuple(suffix_lengths)
+        prefix_talea = datastructuretools.CyclicTuple(prefix_talea)
+        suffix_talea = datastructuretools.CyclicTuple(suffix_talea)
+        prefix_lengths = datastructuretools.CyclicTuple(prefix_lengths)
+        suffix_lengths = datastructuretools.CyclicTuple(suffix_lengths)
         if prolation_addenda:
-            prolation_addenda = sequencetools.CyclicTuple(prolation_addenda)
+            prolation_addenda = datastructuretools.CyclicTuple(prolation_addenda)
         else:
-            prolation_addenda = sequencetools.CyclicTuple([0])
-        secondary_divisions = sequencetools.CyclicTuple(secondary_divisions)
+            prolation_addenda = datastructuretools.CyclicTuple([0])
+        secondary_divisions = datastructuretools.CyclicTuple(secondary_divisions)
         return (
             prefix_talea,
             prefix_lengths,

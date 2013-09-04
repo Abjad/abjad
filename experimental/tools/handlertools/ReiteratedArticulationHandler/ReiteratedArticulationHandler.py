@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 import copy
+from abjad.tools import datastructuretools
 from abjad.tools import iterationtools
 from abjad.tools import marktools
 from abjad.tools import notetools
-from abjad.tools import sequencetools
 from abjad.tools.selectiontools import select
 from experimental.tools.handlertools.ArticulationHandler \
     import ArticulationHandler
@@ -35,7 +35,7 @@ class ReiteratedArticulationHandler(ArticulationHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr, offset=0, skip_first=0, skip_last=0):
-        articulation_list = sequencetools.CyclicList(self.articulation_list)
+        articulation_list = datastructuretools.CyclicList(self.articulation_list)
         notes_and_chords = \
             list(iterationtools.iterate_notes_and_chords_in_expr(expr))
         notes_and_chords = notes_and_chords[skip_first:]

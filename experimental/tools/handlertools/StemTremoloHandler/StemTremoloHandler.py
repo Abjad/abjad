@@ -19,7 +19,7 @@ class StemTremoloHandler(ArticulationHandler):
 
     def __call__(self, expr):
         classes = (notetools.Note, chordtools.Chord)
-        hash_mark_counts = sequencetools.CyclicTuple(self.hash_mark_counts)
+        hash_mark_counts = datastructuretools.CyclicTuple(self.hash_mark_counts)
         for i, leaf in enumerate(
             componenttools.iterate_components_forward_in_expr(expr, classes)):
             marktools.StemTremolo(hash_mark_counts[i])(leaf)

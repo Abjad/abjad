@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.sequencetools.CyclicList import CyclicList
+from abjad.tools.datastructuretools.CyclicList import CyclicList
 from abjad.tools.datastructuretools.PayloadTree import PayloadTree
 
 
-class CyclicTree(PayloadTree):
+class CyclicPayloadTree(PayloadTree):
     r'''Abjad data structure to work with a sequence whose elements have been
     grouped into arbitrarily many levels of cyclic containment.
 
@@ -17,54 +17,54 @@ class CyclicTree(PayloadTree):
     ::
 
         >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-        >>> cyclic_tree = sequencetools.CyclicTree(sequence)
+        >>> cyclic_tree = datastructuretools.CyclicPayloadTree(sequence)
 
     ::
 
         >>> cyclic_tree
-        CyclicTree([[0, 1], [2, 3], [4, 5], [6, 7]])
+        CyclicPayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]])
 
     Here's an internal node:
 
     ::
 
         >>> cyclic_tree[2]
-        CyclicTree([4, 5])
+        CyclicPayloadTree([4, 5])
 
     Here's the same node indexed with a different way:
 
     ::
 
         >>> cyclic_tree[2]
-        CyclicTree([4, 5])
+        CyclicPayloadTree([4, 5])
 
     With a negative index:
 
     ::
 
         >>> cyclic_tree[-2]
-        CyclicTree([4, 5])
+        CyclicPayloadTree([4, 5])
 
     And another negative index:
 
     ::
 
         >>> cyclic_tree[-6]
-        CyclicTree([4, 5])
+        CyclicPayloadTree([4, 5])
 
     Here's a leaf node:
 
     ::
 
         >>> cyclic_tree[2][0]
-        CyclicTree(4)
+        CyclicPayloadTree(4)
 
     And here's the same node indexed a different way:
 
     ::
 
         >>> cyclic_tree[2][20]
-        CyclicTree(4)
+        CyclicPayloadTree(4)
 
     All other interface attributes function as in ``PayloadTree``.
     '''
@@ -97,14 +97,14 @@ class CyclicTree(PayloadTree):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.CyclicTree(sequence)
+            >>> tree = datastructuretools.CyclicPayloadTree(sequence)
 
         Get next 4 nodes at level 2:
 
         ::
 
             >>> tree[0][0].get_next_n_nodes_at_level(4, 2)
-            [CyclicTree(1), CyclicTree(2), CyclicTree(3), CyclicTree(4)]
+            [CyclicPayloadTree(1), CyclicPayloadTree(2), CyclicPayloadTree(3), CyclicPayloadTree(4)]
 
         Get next 10 nodes at level 2:
 
@@ -112,16 +112,16 @@ class CyclicTree(PayloadTree):
 
             >>> for node in tree[0][0].get_next_n_nodes_at_level(10, 2):
             ...     node
-            CyclicTree(1)
-            CyclicTree(2)
-            CyclicTree(3)
-            CyclicTree(4)
-            CyclicTree(5)
-            CyclicTree(6)
-            CyclicTree(7)
-            CyclicTree(1)
-            CyclicTree(2)
-            CyclicTree(3)
+            CyclicPayloadTree(1)
+            CyclicPayloadTree(2)
+            CyclicPayloadTree(3)
+            CyclicPayloadTree(4)
+            CyclicPayloadTree(5)
+            CyclicPayloadTree(6)
+            CyclicPayloadTree(7)
+            CyclicPayloadTree(1)
+            CyclicPayloadTree(2)
+            CyclicPayloadTree(3)
 
         ### PREVIOUS MNODES ###
 
@@ -130,7 +130,7 @@ class CyclicTree(PayloadTree):
         ::
 
             >>> tree[0][0].get_next_n_nodes_at_level(-4, 2)
-            [CyclicTree(7), CyclicTree(6), CyclicTree(5), CyclicTree(4)]
+            [CyclicPayloadTree(7), CyclicPayloadTree(6), CyclicPayloadTree(5), CyclicPayloadTree(4)]
 
         Get previous 10 nodes at level 2:
 
@@ -138,16 +138,16 @@ class CyclicTree(PayloadTree):
 
             >>> for node in tree[0][0].get_next_n_nodes_at_level(-10, 2):
             ...     node
-            CyclicTree(7)
-            CyclicTree(6)
-            CyclicTree(5)
-            CyclicTree(4)
-            CyclicTree(3)
-            CyclicTree(2)
-            CyclicTree(1)
-            CyclicTree(7)
-            CyclicTree(6)
-            CyclicTree(5)
+            CyclicPayloadTree(7)
+            CyclicPayloadTree(6)
+            CyclicPayloadTree(5)
+            CyclicPayloadTree(4)
+            CyclicPayloadTree(3)
+            CyclicPayloadTree(2)
+            CyclicPayloadTree(1)
+            CyclicPayloadTree(7)
+            CyclicPayloadTree(6)
+            CyclicPayloadTree(5)
 
         Return list of nodes.
         '''
@@ -159,27 +159,27 @@ class CyclicTree(PayloadTree):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> cyclic_tree = sequencetools.CyclicTree(sequence)
+            >>> cyclic_tree = datastructuretools.CyclicPayloadTree(sequence)
 
         ::
 
             >>> cyclic_tree.get_node_at_position((2, 1))
-            CyclicTree(5)
+            CyclicPayloadTree(5)
 
         ::
 
             >>> cyclic_tree.get_node_at_position((2, 99))
-            CyclicTree(5)
+            CyclicPayloadTree(5)
 
         ::
 
             >>> cyclic_tree.get_node_at_position((82, 1))
-            CyclicTree(5)
+            CyclicPayloadTree(5)
 
         ::
 
             >>> cyclic_tree.get_node_at_position((82, 99))
-            CyclicTree(5)
+            CyclicPayloadTree(5)
 
         Return node.
         '''
@@ -189,7 +189,7 @@ class CyclicTree(PayloadTree):
         r'''Iterate tree depth first.
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> cyclic_tree = sequencetools.CyclicTree(sequence)
+            >>> cyclic_tree = datastructuretools.CyclicPayloadTree(sequence)
 
         ..  container:: example
         
@@ -200,26 +200,26 @@ class CyclicTree(PayloadTree):
                 >>> generator = cyclic_tree.iterate_forever_depth_first()
                 >>> for i in range(20):
                 ...     generator.next()
-                CyclicTree([[0, 1], [2, 3], [4, 5], [6, 7]])
-                CyclicTree([0, 1])
-                CyclicTree(0)
-                CyclicTree(1)
-                CyclicTree([2, 3])
-                CyclicTree(2)
-                CyclicTree(3)
-                CyclicTree([4, 5])
-                CyclicTree(4)
-                CyclicTree(5)
-                CyclicTree([6, 7])
-                CyclicTree(6)
-                CyclicTree(7)
-                CyclicTree([[0, 1], [2, 3], [4, 5], [6, 7]])
-                CyclicTree([0, 1])
-                CyclicTree(0)
-                CyclicTree(1)
-                CyclicTree([2, 3])
-                CyclicTree(2)
-                CyclicTree(3)
+                CyclicPayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]])
+                CyclicPayloadTree([0, 1])
+                CyclicPayloadTree(0)
+                CyclicPayloadTree(1)
+                CyclicPayloadTree([2, 3])
+                CyclicPayloadTree(2)
+                CyclicPayloadTree(3)
+                CyclicPayloadTree([4, 5])
+                CyclicPayloadTree(4)
+                CyclicPayloadTree(5)
+                CyclicPayloadTree([6, 7])
+                CyclicPayloadTree(6)
+                CyclicPayloadTree(7)
+                CyclicPayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]])
+                CyclicPayloadTree([0, 1])
+                CyclicPayloadTree(0)
+                CyclicPayloadTree(1)
+                CyclicPayloadTree([2, 3])
+                CyclicPayloadTree(2)
+                CyclicPayloadTree(3)
 
         ..  container:: example
 
@@ -231,26 +231,26 @@ class CyclicTree(PayloadTree):
                 ...     reverse=True)
                 >>> for i in range(20):
                 ...     generator.next()
-                CyclicTree([[0, 1], [2, 3], [4, 5], [6, 7]])
-                CyclicTree([6, 7])
-                CyclicTree(7)
-                CyclicTree(6)
-                CyclicTree([4, 5])
-                CyclicTree(5)
-                CyclicTree(4)
-                CyclicTree([2, 3])
-                CyclicTree(3)
-                CyclicTree(2)
-                CyclicTree([0, 1])
-                CyclicTree(1)
-                CyclicTree(0)
-                CyclicTree([[0, 1], [2, 3], [4, 5], [6, 7]])
-                CyclicTree([6, 7])
-                CyclicTree(7)
-                CyclicTree(6)
-                CyclicTree([4, 5])
-                CyclicTree(5)
-                CyclicTree(4)
+                CyclicPayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]])
+                CyclicPayloadTree([6, 7])
+                CyclicPayloadTree(7)
+                CyclicPayloadTree(6)
+                CyclicPayloadTree([4, 5])
+                CyclicPayloadTree(5)
+                CyclicPayloadTree(4)
+                CyclicPayloadTree([2, 3])
+                CyclicPayloadTree(3)
+                CyclicPayloadTree(2)
+                CyclicPayloadTree([0, 1])
+                CyclicPayloadTree(1)
+                CyclicPayloadTree(0)
+                CyclicPayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]])
+                CyclicPayloadTree([6, 7])
+                CyclicPayloadTree(7)
+                CyclicPayloadTree(6)
+                CyclicPayloadTree([4, 5])
+                CyclicPayloadTree(5)
+                CyclicPayloadTree(4)
 
         Return node generator.
         '''

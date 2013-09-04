@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import chordtools
 from abjad.tools import componenttools
+from abjad.tools import datastructuretools
 from abjad.tools import iterationtools
 from abjad.tools import mutationtools
 from abjad.tools import pitchtools
-from abjad.tools import sequencetools
 from experimental.tools.handlertools.PitchHandler import PitchHandler
 
 
@@ -43,7 +43,7 @@ class DiatonicClusterHandler(PitchHandler):
     ### INITIALIZER ###
 
     def __init__(self, cluster_widths):
-        self.cluster_widths = sequencetools.CyclicTuple(cluster_widths)
+        self.cluster_widths = datastructuretools.CyclicTuple(cluster_widths)
 
     ### SPECIAL METHODS ###
 

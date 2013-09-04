@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.sequencetools.CyclicTuple import CyclicTuple
+from abjad.tools.datastructuretools.CyclicTuple import CyclicTuple
 from abjad.tools.datastructuretools.Matrix import Matrix
 
 
@@ -10,7 +10,7 @@ class CyclicMatrix(Matrix):
 
     ::
 
-        >>> cyclic_matrix = sequencetools.CyclicMatrix(
+        >>> cyclic_matrix = datastructuretools.CyclicMatrix(
         ...     [[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
     ::
@@ -42,7 +42,7 @@ class CyclicMatrix(Matrix):
 
     ::
 
-        >>> cyclic_matrix = sequencetools.CyclicMatrix(
+        >>> cyclic_matrix = datastructuretools.CyclicMatrix(
         ...     columns=[[0, 10, 20], [1, 11, 21], [2, 12, 22], [3, 13, 23]])
 
     ::
@@ -129,7 +129,7 @@ class CyclicMatrix(Matrix):
 
         ::
 
-            >>> cyclic_matrix = sequencetools.CyclicMatrix(
+            >>> cyclic_matrix = datastructuretools.CyclicMatrix(
             ...     [[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
         ::
@@ -147,7 +147,7 @@ class CyclicMatrix(Matrix):
 
         ::
 
-            >>> cyclic_matrix = sequencetools.CyclicMatrix(
+            >>> cyclic_matrix = datastructuretools.CyclicMatrix(
             ...     [[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
         ::

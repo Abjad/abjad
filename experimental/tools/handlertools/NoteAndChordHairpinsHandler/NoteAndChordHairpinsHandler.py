@@ -2,11 +2,11 @@
 from abjad.tools import chordtools
 from abjad.tools import contexttools
 from abjad.tools import componenttools
+from abjad.tools import datastructuretools
 from abjad.tools import iterationtools
 from abjad.tools import marktools
 from abjad.tools import notetools
 from abjad.tools import selectiontools
-from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from experimental.tools.handlertools.DynamicHandler import DynamicHandler
 
@@ -28,7 +28,7 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
         leaves = list(iterationtools.iterate_leaves_in_expr(expr))
         groups = list(iterationtools.iterate_runs_in_expr(
             leaves, (notetools.Note, chordtools.Chord)))
-        hairpin_tokens = sequencetools.CyclicList(self.hairpin_tokens)
+        hairpin_tokens = datastructuretools.CyclicList(self.hairpin_tokens)
         for i, group in enumerate(groups):
             if not isinstance(group, selectiontools.SliceSelection):
                 group = selectiontools.SliceSelection(group)

@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import chordtools
+from abjad.tools import datastructuretools
 from abjad.tools import notetools
 from abjad.tools import notetools
-from abjad.tools import sequencetools
 from experimental.tools.musicexpressiontools.LeafSetExpression \
     import LeafSetExpression
 
@@ -76,6 +76,6 @@ class PitchSetExpression(LeafSetExpression):
         chromatic_pitch_numbers = \
             statal_server_cursor(n=node_count, level=level)
         chromatic_pitch_numbers = \
-            sequencetools.CyclicTuple(chromatic_pitch_numbers)
+            datastructuretools.CyclicTuple(chromatic_pitch_numbers)
         for i, leaf in enumerate(leaves):
             leaf.sounding_pitch = chromatic_pitch_numbers[i]

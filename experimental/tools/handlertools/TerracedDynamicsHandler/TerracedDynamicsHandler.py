@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import contexttools
+from abjad.tools import datastructuretools
 from abjad.tools import iterationtools
 from abjad.tools import marktools
-from abjad.tools import sequencetools
 from experimental.tools.handlertools.DynamicHandler import DynamicHandler
 
 
@@ -19,7 +19,7 @@ class TerracedDynamicsHandler(DynamicHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr, offset=0):
-        dynamics = sequencetools.CyclicList(self.dynamics)
+        dynamics = datastructuretools.CyclicList(self.dynamics)
         for i, note_or_chord in enumerate(
             iterationtools.iterate_notes_and_chords_in_expr(expr)):
             dynamic_name = dynamics[offset+i]

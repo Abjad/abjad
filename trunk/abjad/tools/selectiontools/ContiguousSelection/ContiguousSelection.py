@@ -2,6 +2,7 @@
 import copy
 import itertools
 import types
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mutationtools
 from abjad.tools import sequencetools
@@ -590,7 +591,7 @@ class ContiguousSelection(Selection):
         #assert self._all_are_contiguous_components_in_same_logical_voice(self)
         durations = [durationtools.Duration(x) for x in durations]
         if cyclic:
-            durations = sequencetools.CyclicTuple(durations)
+            durations = datastructuretools.CyclicTuple(durations)
         result = []
         part = []
         current_duration_index = 0

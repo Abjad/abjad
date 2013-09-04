@@ -4,7 +4,7 @@ class CyclicTuple(tuple):
 
     ::
 
-        >>> cyclic_tuple = sequencetools.CyclicTuple('abcd')
+        >>> cyclic_tuple = datastructuretools.CyclicTuple('abcd')
 
     ::
 

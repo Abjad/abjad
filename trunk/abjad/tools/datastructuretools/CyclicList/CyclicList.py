@@ -4,7 +4,7 @@ class CyclicList(list):
 
     ::
 
-        >>> cyclic_list = sequencetools.CyclicList('abcd')
+        >>> cyclic_list = datastructuretools.CyclicList('abcd')
 
     ::
 

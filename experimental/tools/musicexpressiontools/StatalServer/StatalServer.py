@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import sequencetools
+from abjad.tools import datastructuretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -11,7 +11,7 @@ class StatalServer(AbjadObject):
 
     def __init__(self, cyclic_tree=None):
         assert cyclic_tree is not None, repr(cyclic_tree)
-        self._cyclic_tree = sequencetools.CyclicTree(cyclic_tree)
+        self._cyclic_tree = datastructuretools.CyclicPayloadTree(cyclic_tree)
 
     ### SPECIAL METHODS ###
 

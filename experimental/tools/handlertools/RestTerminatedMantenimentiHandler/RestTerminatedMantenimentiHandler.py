@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import chordtools
 from abjad.tools import componenttools
+from abjad.tools import datastructuretools
 from abjad.tools import leaftools
 from abjad.tools import marktools
 from abjad.tools import markuptools
 from abjad.tools import schemetools
-from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from experimental.tools.handlertools.DynamicHandler import DynamicHandler
 
@@ -57,5 +57,5 @@ class RestTerminatedMantenimentiHandler(DynamicHandler):
         def fset(self, dynamics_talea):
             assert isinstance(dynamics_talea, (list, tuple)), repr(
                 dynamics_talea)
-            self._dynamics_talea = sequencetools.CyclicTuple(dynamics_talea)
+            self._dynamics_talea = datastructuretools.CyclicTuple(dynamics_talea)
         return property(**locals())

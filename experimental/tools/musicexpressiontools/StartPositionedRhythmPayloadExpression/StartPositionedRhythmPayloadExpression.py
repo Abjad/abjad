@@ -3,6 +3,7 @@ import copy
 import math
 from abjad.tools import componenttools
 from abjad.tools import containertools
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import iterationtools
 from abjad.tools import mathtools
@@ -734,7 +735,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         Operate in place and return start-positioned rhythm 
         payload expression.
         '''
-        leaves = sequencetools.CyclicTuple(self.payload.select_leaves())
+        leaves = datastructuretools.CyclicTuple(self.payload.select_leaves())
         leaves = leaves[:length]
         duration = sum([leaf._get_duration() for leaf in leaves])
         return self.repeat_to_duration(duration)
@@ -841,7 +842,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         '''
         from experimental.tools import musicexpressiontools
         if isinstance(n, int):
-            leaves = sequencetools.CyclicTuple(self.payload.select_leaves())
+            leaves = datastructuretools.CyclicTuple(self.payload.select_leaves())
             if 0 < n:
                 split_offset = leaves[-n]._get_timespan().start_offset
             elif n == 0:
@@ -859,7 +860,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                     score_index = component._get_parentage().score_index
                     if len(score_index) == rotation_indicator.level:
                         components_at_level.append(component)
-            components_at_level = sequencetools.CyclicTuple(components_at_level)
+            components_at_level = datastructuretools.CyclicTuple(components_at_level)
             if isinstance(rotation_indicator.index, int):
                 if 0 < rotation_indicator.index:
                     split_offset = components_at_level[

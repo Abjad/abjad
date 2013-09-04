@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import abc
 import copy
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import sequencetools
@@ -129,7 +130,7 @@ class RhythmMaker(Maker):
         multiplier = lcd / talea_denominator
         scaled_talee = []
         for talea in talee:
-            talea = sequencetools.CyclicTuple([multiplier * x for x in talea])
+            talea = datastructuretools.CyclicTuple([multiplier * x for x in talea])
             scaled_talee.append(talea)
         result = [duration_pairs, lcd]
         result.extend(scaled_talee)

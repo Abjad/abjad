@@ -2,6 +2,7 @@
 import abc
 import copy
 import types
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import iterationtools
 from abjad.tools import leaftools
@@ -269,22 +270,22 @@ class BurnishedRhythmMaker(RhythmMaker):
         return prolated_duration_pairs
 
     def _prepare_input(self, seeds):
-        talea = sequencetools.CyclicTuple(self.talea_helper(self.talea, seeds))
+        talea = datastructuretools.CyclicTuple(self.talea_helper(self.talea, seeds))
         prolation_addenda = \
             self.prolation_addenda_helper(self.prolation_addenda, seeds)
-        prolation_addenda = sequencetools.CyclicTuple(prolation_addenda)
-        lefts = sequencetools.CyclicTuple(self.lefts_helper(self.lefts, seeds))
-        middles = sequencetools.CyclicTuple(
+        prolation_addenda = datastructuretools.CyclicTuple(prolation_addenda)
+        lefts = datastructuretools.CyclicTuple(self.lefts_helper(self.lefts, seeds))
+        middles = datastructuretools.CyclicTuple(
             self.middles_helper(self.middles, seeds))
-        rights = sequencetools.CyclicTuple(
+        rights = datastructuretools.CyclicTuple(
             self.rights_helper(self.rights, seeds))
-        left_lengths = sequencetools.CyclicTuple(
+        left_lengths = datastructuretools.CyclicTuple(
             self.left_lengths_helper(self.left_lengths, seeds))
-        right_lengths = sequencetools.CyclicTuple(
+        right_lengths = datastructuretools.CyclicTuple(
             self.right_lengths_helper(self.right_lengths, seeds))
         secondary_divisions = self.secondary_divisions_helper(
             self.secondary_divisions, seeds)
-        secondary_divisions = sequencetools.CyclicTuple(
+        secondary_divisions = datastructuretools.CyclicTuple(
             secondary_divisions)
         return (
             talea,

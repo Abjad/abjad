@@ -51,7 +51,7 @@ def make_cyclic_matrix_for_rotation_by_bandwidth(
     #generalized to any number of staffs and any bandwidth of rotation.
     #if compression is true, range is 0 to 7; then pop off first and last.
     rotations = make_mirrored_base_list_of_rotation_tuples(staffIndexBoundsTuple, rotationBandwidth, compressedReflections)
-    matrix = sequencetools.CyclicMatrix(rotations)
+    matrix = datastructuretools.CyclicMatrix(rotations)
     return matrix
     #Each cyclic tuple in the matrix indicates which staffs to place music on.
 
