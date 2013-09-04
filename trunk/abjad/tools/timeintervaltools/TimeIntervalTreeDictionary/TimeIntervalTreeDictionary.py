@@ -1616,7 +1616,7 @@ class TimeIntervalTreeDictionary(dict, TimeIntervalAggregateMixin):
                 elif rational <= splits[0].start_offset:
                     pass
                 else:
-                    raise Exception('Tree failed to split.')
+                    raise Exception('PayloadTree failed to split.')
             if result:
                 dicts.append(type(self)(result))
         for key in to_remove:

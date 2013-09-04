@@ -76,7 +76,7 @@ This allows for the definition of new context in reference to existing contexts:
         \override StaffSymbol #'color = #red
     }
 
-The ``sequencetools.Tree`` class now implements ``graphviz_format`` and ``graphviz_graph`` properties.
+The ``sequencetools.PayloadTree`` class now implements ``graphviz_format`` and ``graphviz_graph`` properties.
 You can use these to visualized any tree object you create.
 
 The ``Note.sounding_pitch`` property is now read / write.

@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.sequencetools.CyclicList import CyclicList
-from abjad.tools.sequencetools.Tree import Tree
+from abjad.tools.sequencetools.PayloadTree import PayloadTree
 
 
-class CyclicTree(Tree):
+class CyclicTree(PayloadTree):
     r'''Abjad data structure to work with a sequence whose elements have been
     grouped into arbitrarily many levels of cyclic containment.
 
-    Exactly like the ``Tree`` class but with the additional affordance
+    Exactly like the ``PayloadTree`` class but with the additional affordance
     that all integer indices of any size work at every level of structure.
 
     Cyclic trees raise no index errors.
@@ -66,7 +66,7 @@ class CyclicTree(Tree):
         >>> cyclic_tree[2][20]
         CyclicTree(4)
 
-    All other interface attributes function as in ``Tree``.
+    All other interface attributes function as in ``PayloadTree``.
     '''
 
     ### SPECIAL METHODS ###
@@ -151,7 +151,7 @@ class CyclicTree(Tree):
 
         Return list of nodes.
         '''
-        return Tree.get_next_n_nodes_at_level(self, n, level)
+        return PayloadTree.get_next_n_nodes_at_level(self, n, level)
 
     def get_node_at_position(self, position):
         r'''Get node at `position`:
@@ -183,7 +183,7 @@ class CyclicTree(Tree):
 
         Return node.
         '''
-        return Tree.get_node_at_position(self, position)
+        return PayloadTree.get_node_at_position(self, position)
 
     def iterate_forever_depth_first(self, reverse=False):
         r'''Iterate tree depth first.
@@ -255,5 +255,5 @@ class CyclicTree(Tree):
         Return node generator.
         '''
         while True:
-            for node in Tree.iterate_depth_first(self, reverse=reverse):
+            for node in PayloadTree.iterate_depth_first(self, reverse=reverse):
                 yield node

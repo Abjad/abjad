@@ -3,7 +3,7 @@ import copy
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class Tree(AbjadObject):
+class PayloadTree(AbjadObject):
     r'''Abjad data structure to work with a sequence whose elements have been
     grouped into arbitrarily many levels of containment.
 
@@ -12,12 +12,12 @@ class Tree(AbjadObject):
     ::
 
         >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-        >>> tree = sequencetools.Tree(sequence)
+        >>> tree = sequencetools.PayloadTree(sequence)
 
     ::
 
         >>> tree
-        Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
+        PayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]])
 
     ::
 
@@ -27,7 +27,7 @@ class Tree(AbjadObject):
     ::
 
         >>> tree.children
-        (Tree([0, 1]), Tree([2, 3]), Tree([4, 5]), Tree([6, 7]))
+        (PayloadTree([0, 1]), PayloadTree([2, 3]), PayloadTree([4, 5]), PayloadTree([6, 7]))
 
     ::
 
@@ -39,17 +39,17 @@ class Tree(AbjadObject):
     ::
 
         >>> tree[2]
-        Tree([4, 5])
+        PayloadTree([4, 5])
 
     ::
 
         >>> tree[2].parent
-        Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
+        PayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]])
 
     ::
 
         >>> tree[2].children
-        (Tree(4), Tree(5))
+        (PayloadTree(4), PayloadTree(5))
 
     ::
 
@@ -66,12 +66,12 @@ class Tree(AbjadObject):
     ::
 
         >>> tree[2][0]
-        Tree(4)
+        PayloadTree(4)
 
     ::
 
         >>> tree[2][0].parent
-        Tree([4, 5])
+        PayloadTree([4, 5])
 
     ::
 
@@ -130,7 +130,7 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         ::
 
@@ -153,11 +153,11 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence_1 = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree_1 = sequencetools.Tree(sequence_1)
+            >>> tree_1 = sequencetools.PayloadTree(sequence_1)
             >>> sequence_2 = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree_2 = sequencetools.Tree(sequence_2)
+            >>> tree_2 = sequencetools.PayloadTree(sequence_2)
             >>> sequence_3 = [[0, 1], [2, 3], [4, 5]]
-            >>> tree_3 = sequencetools.Tree(sequence_3)
+            >>> tree_3 = sequencetools.PayloadTree(sequence_3)
 
         ::
 
@@ -200,19 +200,19 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         ::
 
             >>> tree[-1]
-            Tree([6, 7])
+            PayloadTree([6, 7])
 
         Get slice from tree:
 
         ::
 
             >>> tree[-2:]
-            [Tree([4, 5]), Tree([6, 7])]
+            [PayloadTree([4, 5]), PayloadTree([6, 7])]
 
         Return node.
         '''
@@ -224,7 +224,7 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         ::
 
@@ -241,12 +241,12 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         ::
 
             >>> tree
-            Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
+            PayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]])
 
         Return string.
         '''
@@ -258,7 +258,7 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         ::
 
@@ -318,12 +318,12 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         ::
 
             >>> tree[1].children
-            (Tree(2), Tree(3))
+            (PayloadTree(2), PayloadTree(3))
 
         Return tuple of zero or more nodes.
         '''
@@ -336,7 +336,7 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         ::
 
@@ -356,12 +356,12 @@ class Tree(AbjadObject):
 
     @property
     def graphviz_graph(self):
-        r'''The GraphvizGraph representation of the Tree:
+        r'''The GraphvizGraph representation of the PayloadTree:
 
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         ::
 
@@ -397,12 +397,12 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         ::
 
             >>> tree[1].improper_parentage
-            (Tree([2, 3]), Tree([[0, 1], [2, 3], [4, 5], [6, 7]]))
+            (PayloadTree([2, 3]), PayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]]))
 
         Return tuple of one or more nodes.
         '''
@@ -420,7 +420,7 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         ::
 
@@ -442,7 +442,7 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         ::
 
@@ -460,7 +460,7 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         ::
 
@@ -491,7 +491,7 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         ::
 
@@ -509,7 +509,7 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         Return none for interior node:
 
@@ -539,7 +539,7 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         ::
 
@@ -562,12 +562,12 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         ::
 
             >>> tree[1].proper_parentage
-            (Tree([[0, 1], [2, 3], [4, 5], [6, 7]]),)
+            (PayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]]),)
 
 
         Return tuple of zero or more nodes.
@@ -581,12 +581,12 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         ::
 
             >>> tree[1].proper_parentage
-            (Tree([[0, 1], [2, 3], [4, 5], [6, 7]]),)
+            (PayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]]),)
 
         Return node.
         '''
@@ -594,17 +594,17 @@ class Tree(AbjadObject):
 
     @property
     def storage_format(self):
-        r'''Tree storage format:
+        r'''PayloadTree storage format:
 
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         ::
 
             >>> z(tree)
-            sequencetools.Tree(
+            sequencetools.PayloadTree(
                 [[0, 1], [2, 3], [4, 5], [6, 7]]
                 )
 
@@ -619,7 +619,7 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         ::
 
@@ -696,7 +696,7 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         Get manifest paylaod of next 4 nodes at level 2:
 
@@ -787,49 +787,49 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         Get next 4 nodes at level 2:
 
         ::
 
             >>> tree[0][0].get_next_n_complete_nodes_at_level(4, 2)
-            [Tree(1), Tree(2), Tree(3), Tree(4)]
+            [PayloadTree(1), PayloadTree(2), PayloadTree(3), PayloadTree(4)]
 
         Get next 3 nodes at level 1:
 
         ::
 
             >>> tree[0][0].get_next_n_complete_nodes_at_level(3, 1)
-            [Tree([1]), Tree([2, 3]), Tree([4, 5]), Tree([6, 7])]
+            [PayloadTree([1]), PayloadTree([2, 3]), PayloadTree([4, 5]), PayloadTree([6, 7])]
 
         Get next 4 nodes at level -1:
 
         ::
 
             >>> tree[0][0].get_next_n_complete_nodes_at_level(4, -1)
-            [Tree(1), Tree(2), Tree(3), Tree(4)]
+            [PayloadTree(1), PayloadTree(2), PayloadTree(3), PayloadTree(4)]
 
         Get next 3 nodes at level -2:
 
         ::
 
             >>> tree[0][0].get_next_n_complete_nodes_at_level(3, -2)
-            [Tree([1]), Tree([2, 3]), Tree([4, 5]), Tree([6, 7])]
+            [PayloadTree([1]), PayloadTree([2, 3]), PayloadTree([4, 5]), PayloadTree([6, 7])]
 
         Get previous 4 nodes at level 2:
 
         ::
 
             >>> tree[-1][-1].get_next_n_complete_nodes_at_level(-4, 2)
-            [Tree(6), Tree(5), Tree(4), Tree(3)]
+            [PayloadTree(6), PayloadTree(5), PayloadTree(4), PayloadTree(3)]
 
         Get previous 3 nodes at level 1:
 
         ::
 
             >>> tree[-1][-1].get_next_n_complete_nodes_at_level(-3, 1)
-            [Tree([6]), Tree([4, 5]), Tree([2, 3]), Tree([0, 1])]
+            [PayloadTree([6]), PayloadTree([4, 5]), PayloadTree([2, 3]), PayloadTree([0, 1])]
 
 
         Get previous 4 nodes at level -1:
@@ -837,14 +837,14 @@ class Tree(AbjadObject):
         ::
 
             >>> tree[-1][-1].get_next_n_complete_nodes_at_level(-4, -1)
-            [Tree(6), Tree(5), Tree(4), Tree(3)]
+            [PayloadTree(6), PayloadTree(5), PayloadTree(4), PayloadTree(3)]
 
         Get previous 3 nodes at level -2:
 
         ::
 
             >>> tree[-1][-1].get_next_n_complete_nodes_at_level(-3, -2)
-            [Tree([6]), Tree([4, 5]), Tree([2, 3]), Tree([0, 1])]
+            [PayloadTree([6]), PayloadTree([4, 5]), PayloadTree([2, 3]), PayloadTree([0, 1])]
 
         Trim first node if necessary.
 
@@ -859,77 +859,77 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         Get next 4 nodes at level 2:
 
         ::
 
             >>> tree[0][0].get_next_n_nodes_at_level(4, 2)
-            [Tree(1), Tree(2), Tree(3), Tree(4)]
+            [PayloadTree(1), PayloadTree(2), PayloadTree(3), PayloadTree(4)]
 
         Get next 3 nodes at level 1:
 
         ::
 
             >>> tree[0][0].get_next_n_nodes_at_level(3, 1)
-            [Tree([1]), Tree([2, 3]), Tree([4, 5])]
+            [PayloadTree([1]), PayloadTree([2, 3]), PayloadTree([4, 5])]
 
         Get next node at level 0:
 
         ::
 
             >>> tree[0][0].get_next_n_nodes_at_level(1, 0)
-            [Tree([[1], [2, 3], [4, 5], [6, 7]])]
+            [PayloadTree([[1], [2, 3], [4, 5], [6, 7]])]
 
         Get next 4 nodes at level -1:
 
         ::
 
             >>> tree[0][0].get_next_n_nodes_at_level(4, -1)
-            [Tree(1), Tree(2), Tree(3), Tree(4)]
+            [PayloadTree(1), PayloadTree(2), PayloadTree(3), PayloadTree(4)]
 
         Get next 3 nodes at level -2:
 
         ::
 
             >>> tree[0][0].get_next_n_nodes_at_level(3, -2)
-            [Tree([1]), Tree([2, 3]), Tree([4, 5])]
+            [PayloadTree([1]), PayloadTree([2, 3]), PayloadTree([4, 5])]
 
         Get previous 4 nodes at level 2:
 
         ::
 
             >>> tree[-1][-1].get_next_n_nodes_at_level(-4, 2)
-            [Tree(6), Tree(5), Tree(4), Tree(3)]
+            [PayloadTree(6), PayloadTree(5), PayloadTree(4), PayloadTree(3)]
 
         Get previous 3 nodes at level 1:
 
         ::
 
             >>> tree[-1][-1].get_next_n_nodes_at_level(-3, 1)
-            [Tree([6]), Tree([4, 5]), Tree([2, 3])]
+            [PayloadTree([6]), PayloadTree([4, 5]), PayloadTree([2, 3])]
 
         Get previous node at level 0:
 
         ::
 
             >>> tree[-1][-1].get_next_n_nodes_at_level(-1, 0)
-            [Tree([[0, 1], [2, 3], [4, 5], [6]])]
+            [PayloadTree([[0, 1], [2, 3], [4, 5], [6]])]
 
         Get previous 4 nodes at level -1:
 
         ::
 
             >>> tree[-1][-1].get_next_n_nodes_at_level(-4, -1)
-            [Tree(6), Tree(5), Tree(4), Tree(3)]
+            [PayloadTree(6), PayloadTree(5), PayloadTree(4), PayloadTree(3)]
 
         Get previous 3 nodes at level -2:
 
         ::
 
             >>> tree[-1][-1].get_next_n_nodes_at_level(-3, -2)
-            [Tree([6]), Tree([4, 5]), Tree([2, 3])]
+            [PayloadTree([6]), PayloadTree([4, 5]), PayloadTree([2, 3])]
 
         Trim first node if necessary.
 
@@ -944,12 +944,12 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         ::
 
             >>> tree.get_node_at_position((2, 1))
-            Tree(5)
+            PayloadTree(5)
 
         Return node.
         '''
@@ -965,7 +965,7 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         ::
 
@@ -985,18 +985,18 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [0, 1, 2, 2, 3, 4]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         ::
 
             >>> for node in tree:
             ...     node, tree.index(node)
-            (Tree(0), 0)
-            (Tree(1), 1)
-            (Tree(2), 2)
-            (Tree(2), 3)
-            (Tree(3), 4)
-            (Tree(4), 5)
+            (PayloadTree(0), 0)
+            (PayloadTree(1), 1)
+            (PayloadTree(2), 2)
+            (PayloadTree(2), 3)
+            (PayloadTree(3), 4)
+            (PayloadTree(4), 5)
 
         Return nonnegative integer.
         '''
@@ -1011,7 +1011,7 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         ::
 
@@ -1041,7 +1041,7 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         Left-to-right examples:
 
@@ -1049,57 +1049,57 @@ class Tree(AbjadObject):
 
             >>> for x in tree.iterate_at_level(0): x
             ...
-            Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
+            PayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]])
 
         ::
 
             >>> for x in tree.iterate_at_level(1): x
             ...
-            Tree([0, 1])
-            Tree([2, 3])
-            Tree([4, 5])
-            Tree([6, 7])
+            PayloadTree([0, 1])
+            PayloadTree([2, 3])
+            PayloadTree([4, 5])
+            PayloadTree([6, 7])
 
         ::
 
             >>> for x in tree.iterate_at_level(2): x
             ...
-            Tree(0)
-            Tree(1)
-            Tree(2)
-            Tree(3)
-            Tree(4)
-            Tree(5)
-            Tree(6)
-            Tree(7)
+            PayloadTree(0)
+            PayloadTree(1)
+            PayloadTree(2)
+            PayloadTree(3)
+            PayloadTree(4)
+            PayloadTree(5)
+            PayloadTree(6)
+            PayloadTree(7)
 
         ::
 
             >>> for x in tree.iterate_at_level(-1): x
             ...
-            Tree(0)
-            Tree(1)
-            Tree(2)
-            Tree(3)
-            Tree(4)
-            Tree(5)
-            Tree(6)
-            Tree(7)
+            PayloadTree(0)
+            PayloadTree(1)
+            PayloadTree(2)
+            PayloadTree(3)
+            PayloadTree(4)
+            PayloadTree(5)
+            PayloadTree(6)
+            PayloadTree(7)
 
         ::
 
             >>> for x in tree.iterate_at_level(-2): x
             ...
-            Tree([0, 1])
-            Tree([2, 3])
-            Tree([4, 5])
-            Tree([6, 7])
+            PayloadTree([0, 1])
+            PayloadTree([2, 3])
+            PayloadTree([4, 5])
+            PayloadTree([6, 7])
 
         ::
 
             >>> for x in tree.iterate_at_level(-3): x
             ...
-            Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
+            PayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]])
 
         Right-to-left examples:
 
@@ -1107,57 +1107,57 @@ class Tree(AbjadObject):
 
             >>> for x in tree.iterate_at_level(0, reverse=True): x
             ...
-            Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
+            PayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]])
 
         ::
 
             >>> for x in tree.iterate_at_level(1, reverse=True): x
             ...
-            Tree([6, 7])
-            Tree([4, 5])
-            Tree([2, 3])
-            Tree([0, 1])
+            PayloadTree([6, 7])
+            PayloadTree([4, 5])
+            PayloadTree([2, 3])
+            PayloadTree([0, 1])
 
         ::
 
             >>> for x in tree.iterate_at_level(2, reverse=True): x
             ...
-            Tree(7)
-            Tree(6)
-            Tree(5)
-            Tree(4)
-            Tree(3)
-            Tree(2)
-            Tree(1)
-            Tree(0)
+            PayloadTree(7)
+            PayloadTree(6)
+            PayloadTree(5)
+            PayloadTree(4)
+            PayloadTree(3)
+            PayloadTree(2)
+            PayloadTree(1)
+            PayloadTree(0)
 
         ::
 
             >>> for x in tree.iterate_at_level(-1, reverse=True): x
             ...
-            Tree(7)
-            Tree(6)
-            Tree(5)
-            Tree(4)
-            Tree(3)
-            Tree(2)
-            Tree(1)
-            Tree(0)
+            PayloadTree(7)
+            PayloadTree(6)
+            PayloadTree(5)
+            PayloadTree(4)
+            PayloadTree(3)
+            PayloadTree(2)
+            PayloadTree(1)
+            PayloadTree(0)
 
         ::
 
             >>> for x in tree.iterate_at_level(-2, reverse=True): x
             ...
-            Tree([6, 7])
-            Tree([4, 5])
-            Tree([2, 3])
-            Tree([0, 1])
+            PayloadTree([6, 7])
+            PayloadTree([4, 5])
+            PayloadTree([2, 3])
+            PayloadTree([0, 1])
 
         ::
 
             >>> for x in tree.iterate_at_level(-3, reverse=True): x
             ...
-            Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
+            PayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]])
 
         Return node generator.
         '''
@@ -1179,25 +1179,25 @@ class Tree(AbjadObject):
             ::
 
                 >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-                >>> tree = sequencetools.Tree(sequence)
+                >>> tree = sequencetools.PayloadTree(sequence)
 
             ::
 
                 >>> for node in tree.iterate_depth_first(): node
                 ...
-                Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
-                Tree([0, 1])
-                Tree(0)
-                Tree(1)
-                Tree([2, 3])
-                Tree(2)
-                Tree(3)
-                Tree([4, 5])
-                Tree(4)
-                Tree(5)
-                Tree([6, 7])
-                Tree(6)
-                Tree(7)
+                PayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]])
+                PayloadTree([0, 1])
+                PayloadTree(0)
+                PayloadTree(1)
+                PayloadTree([2, 3])
+                PayloadTree(2)
+                PayloadTree(3)
+                PayloadTree([4, 5])
+                PayloadTree(4)
+                PayloadTree(5)
+                PayloadTree([6, 7])
+                PayloadTree(6)
+                PayloadTree(7)
 
         ..  container::
 
@@ -1207,19 +1207,19 @@ class Tree(AbjadObject):
 
                 >>> for node in tree.iterate_depth_first(reverse=True): node
                 ...
-                Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
-                Tree([6, 7])
-                Tree(7)
-                Tree(6)
-                Tree([4, 5])
-                Tree(5)
-                Tree(4)
-                Tree([2, 3])
-                Tree(3)
-                Tree(2)
-                Tree([0, 1])
-                Tree(1)
-                Tree(0)
+                PayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]])
+                PayloadTree([6, 7])
+                PayloadTree(7)
+                PayloadTree(6)
+                PayloadTree([4, 5])
+                PayloadTree(5)
+                PayloadTree(4)
+                PayloadTree([2, 3])
+                PayloadTree(3)
+                PayloadTree(2)
+                PayloadTree([0, 1])
+                PayloadTree(1)
+                PayloadTree(0)
 
         Return node generator.
         '''
@@ -1241,7 +1241,7 @@ class Tree(AbjadObject):
             ::
 
                 >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-                >>> tree = sequencetools.Tree(sequence)
+                >>> tree = sequencetools.PayloadTree(sequence)
 
             ::
 
@@ -1264,7 +1264,7 @@ class Tree(AbjadObject):
             ::
 
                 >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-                >>> tree = sequencetools.Tree(sequence)
+                >>> tree = sequencetools.PayloadTree(sequence)
 
             ::
 
@@ -1291,7 +1291,7 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         ::
 
@@ -1300,7 +1300,7 @@ class Tree(AbjadObject):
         ::
 
             >>> tree
-            Tree([[0, 1], [4, 5], [6, 7]])
+            PayloadTree([[0, 1], [4, 5], [6, 7]])
 
         Return none.
         '''
@@ -1316,24 +1316,24 @@ class Tree(AbjadObject):
 
         ::
 
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
             >>> tree[0][0].remove_to_root()
             >>> tree
-            Tree([[1], [2, 3], [4, 5], [6, 7]])
+            PayloadTree([[1], [2, 3], [4, 5], [6, 7]])
 
         ::
 
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
             >>> tree[0][1].remove_to_root()
             >>> tree
-            Tree([[2, 3], [4, 5], [6, 7]])
+            PayloadTree([[2, 3], [4, 5], [6, 7]])
 
         ::
 
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
             >>> tree[1].remove_to_root()
             >>> tree
-            Tree([[4, 5], [6, 7]])
+            PayloadTree([[4, 5], [6, 7]])
 
         Modify in-place to root.
 
@@ -1373,12 +1373,12 @@ class Tree(AbjadObject):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = sequencetools.Tree(sequence)
+            >>> tree = sequencetools.PayloadTree(sequence)
 
         ::
 
             >>> tree
-            Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
+            PayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]])
 
         ::
 
