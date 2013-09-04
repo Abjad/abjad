@@ -656,7 +656,7 @@ Changes to the ``pitchtools`` package:
 
   ::
 
-    pitchtools.NumberedMelodicIntervalClass.from_pitch_carriers()
+    pitchtools.NumberedIntervalClass.from_pitch_carriers()
     pitchtools.NumberedInterval.from_pitch_carriers()
     pitchtools.MelodicCounterpointIntervalClass.from_pitch_carriers()
     pitchtools.MelodicCounterpointInterval.from_pitch_carriers()

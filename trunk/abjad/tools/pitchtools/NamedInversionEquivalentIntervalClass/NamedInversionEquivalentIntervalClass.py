@@ -9,7 +9,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
     ::
 
         >>> pitchtools.NamedInversionEquivalentIntervalClass('-m14')
-        NamedInversionEquivalentIntervalClass('M2')
+        NamedInversionEquivalentIntervalClass('+M2')
 
     Inversion-equivalent diatonic interval-classes are immutable.
     '''
@@ -23,11 +23,11 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         elif len(args) == 1 and isinstance(args[0], str):
             self._init_by_string(args[0])
         elif len(args) == 1 and isinstance(args[0],
-            pitchtools.NamedMelodicIntervalClass): 
+            pitchtools.NamedIntervalClass): 
             self._init_by_string(str(args[0]))
         elif len(args) == 1 and isinstance(args[0],
             pitchtools.NamedInterval):
-            interval_class = pitchtools.NamedMelodicIntervalClass(args[0])
+            interval_class = pitchtools.NamedIntervalClass(args[0])
             self._init_by_string(str(interval_class))
         elif len(args) == 1 and isinstance(args[0], tuple):
             self._init_by_quality_string_and_number(*args[0])

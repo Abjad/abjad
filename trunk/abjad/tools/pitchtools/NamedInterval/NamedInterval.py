@@ -303,7 +303,7 @@ class NamedInterval(Interval):
             8: 0,
             }
         interval_class_number = abs(
-            pitchtools.NamedMelodicIntervalClass(self).number)
+            pitchtools.NamedIntervalClass(self).number)
         result += interval_class_number_to_semitones[interval_class_number]
         result += (abs(self.number) - 1) / 7 * 12
         quality_string_to_semitones = {

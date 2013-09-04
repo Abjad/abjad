@@ -16,12 +16,12 @@ class IntervalClassSegment(Segment):
     @property
     def _named_item_class(self):
         from abjad.tools import pitchtools
-        return pitchtools.NamedMelodicIntervalClass
+        return pitchtools.NamedIntervalClass
     
     @property
     def _numbered_item_class(self):
         from abjad.tools import pitchtools
-        return pitchtools.NumberedMelodicIntervalClass
+        return pitchtools.NumberedIntervalClass
 
     @property
     def _parent_item_class(self):
@@ -64,7 +64,7 @@ class IntervalClassSegment(Segment):
 
             >>> interval_class_segment = pitchtools.IntervalClassSegment(
             ...     tokens=[('major', 3), ('minor', 6), ('major', 6)],
-            ...     item_class=pitchtools.NamedMelodicIntervalClass,
+            ...     item_class=pitchtools.NamedIntervalClass,
             ...     )
             >>> interval_class_segment.is_tertian
             True

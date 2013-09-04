@@ -9,9 +9,9 @@ class PitchClass(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_format_string', )
+    __slots__ = ()
 
-    ### INNITIALIZER ###
+    ### INITIALIZER ###
 
     @abc.abstractmethod
     def __init__(self):

@@ -15,12 +15,12 @@ class IntervalClassSet(Set):
     @property
     def _named_item_class(self):
         from abjad.tools import pitchtools
-        return pitchtools.NamedMelodicIntervalClass
+        return pitchtools.NamedIntervalClass
     
     @property
     def _numbered_item_class(self):
         from abjad.tools import pitchtools
-        return pitchtools.NumberedMelodicIntervalClass
+        return pitchtools.NumberedIntervalClass
 
     @property
     def _parent_item_class(self):
@@ -43,23 +43,23 @@ class IntervalClassSet(Set):
             >>> for interval_class in interval_classes:
             ...     interval_class
             ...
-            NamedMelodicIntervalClass('-M3')
-            NamedMelodicIntervalClass('+m7')
-            NamedMelodicIntervalClass('+P5')
-            NamedMelodicIntervalClass('+P4')
-            NamedMelodicIntervalClass('+m3')
-            NamedMelodicIntervalClass('+M7')
-            NamedMelodicIntervalClass('-M6')
-            NamedMelodicIntervalClass('-aug4')
-            NamedMelodicIntervalClass('+M6')
-            NamedMelodicIntervalClass('+P8')
-            NamedMelodicIntervalClass('-P5')
-            NamedMelodicIntervalClass('+M2')
-            NamedMelodicIntervalClass('+M3')
-            NamedMelodicIntervalClass('-M2')
-            NamedMelodicIntervalClass('+aug4')
-            NamedMelodicIntervalClass('+m2')
-            NamedMelodicIntervalClass('-m3')
+            NamedIntervalClass('-aug4')
+            NamedIntervalClass('+m7')
+            NamedIntervalClass('+M3')
+            NamedIntervalClass('-M2')
+            NamedIntervalClass('+m3')
+            NamedIntervalClass('+M7')
+            NamedIntervalClass('+M6')
+            NamedIntervalClass('-m3')
+            NamedIntervalClass('-M3')
+            NamedIntervalClass('+aug4')
+            NamedIntervalClass('+P4')
+            NamedIntervalClass('+M2')
+            NamedIntervalClass('+P8')
+            NamedIntervalClass('-P5')
+            NamedIntervalClass('+P5')
+            NamedIntervalClass('-M6')
+            NamedIntervalClass('+m2')
         
         Return interval set.
         '''
