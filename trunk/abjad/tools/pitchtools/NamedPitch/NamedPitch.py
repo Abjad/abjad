@@ -25,7 +25,6 @@ class NamedPitch(Pitch):
     __slots__ = (
         '_accidental_semitones',
         '_chromatic_pitch_name',
-        '_deviation_in_cents',
         '_diatonic_pitch_number',
         )
 
@@ -33,8 +32,6 @@ class NamedPitch(Pitch):
 
     def __init__(self, *args, **kwargs):
         from abjad.tools import pitchtools
-        _deviation_in_cents = kwargs.get('deviation_in_cents', None)
-        self._deviation_in_cents = _deviation_in_cents
         if len(args) == 1 and isinstance(args[0], (int, long, float)):
             self._init_by_chromatic_pitch_number(*args)
         elif len(args) == 1 and isinstance(args[0], type(self)):
@@ -65,11 +62,8 @@ class NamedPitch(Pitch):
                 self._init_by_chromatic_pitch_number_and_named_chromatic_pitch_class(*args)
             else:
                 raise TypeError
-        elif len(args) == 3:
-            self._init_by_chromatic_pitch_class_name_octave_number_and_deviation(*args)
         else:
             raise ValueError('\n\tNot a valid pitch token: "%s".' % str(args))
-        assert hasattr(self, '_deviation_in_cents')
         assert hasattr(self, '_chromatic_pitch_name')
         diatonic_pitch_number = \
             pitchtools.chromatic_pitch_name_to_diatonic_pitch_number(
@@ -103,8 +97,7 @@ class NamedPitch(Pitch):
         try:
             arg = type(self)(arg)
             if self._chromatic_pitch_name == arg._chromatic_pitch_name:
-                if self.deviation_in_cents == arg.deviation_in_cents:
-                    return True
+                return True
             return False
         except (TypeError, ValueError):
             return False
@@ -118,27 +111,21 @@ class NamedPitch(Pitch):
             arg = type(self)(arg)
             return self._diatonic_pitch_number > arg._diatonic_pitch_number or \
                 (self._diatonic_pitch_number == arg._diatonic_pitch_number and
-                self._accidental_semitones >= arg._accidental_semitones) or \
-                (self._diatonic_pitch_number == arg._diatonic_pitch_number and
-                self._accidental_semitones == arg._accidental_semitones and
-                self._deviation_in_cents >= arg._deviation_in_cents)
+                self._accidental_semitones >= arg._accidental_semitones)
         except (TypeError, ValueError):
             if isinstance(arg, pitchtools.PitchRange):
                 return self >= arg.stop_pitch
         return False
 
     def __getnewargs__(self):
-        return (self._chromatic_pitch_name, self._deviation_in_cents)
+        return (self._chromatic_pitch_name,)
 
     def __gt__(self, arg):
         from abjad.tools import pitchtools
         if isinstance(arg, type(self)):
             return self._diatonic_pitch_number > arg._diatonic_pitch_number or \
                 (self._diatonic_pitch_number == arg._diatonic_pitch_number and \
-                self._accidental_semitones > arg._accidental_semitones) or \
-                (self._diatonic_pitch_number == arg._diatonic_pitch_number and \
-                self._accidental_semitones == arg._accidental_semitones and \
-                self._deviation_in_cents > arg._deviation_in_cents)
+                self._accidental_semitones > arg._accidental_semitones)
         elif isinstance(arg, pitchtools.PitchRange):
             return self > arg.stop_pitch
         return False
@@ -156,7 +143,7 @@ class NamedPitch(Pitch):
                 return self._diatonic_pitch_number <= arg._diatonic_pitch_number
             if not self._accidental_semitones == arg._accidental_semitones:
                 return self._accidental_semitones <= arg._accidental_semitones
-            return self._deviation_in_cents <= arg._deviation_in_cents
+            return True
         elif isinstance(arg, pitchtools.PitchRange):
             return self <= arg.start_pitch
         return False
@@ -166,10 +153,7 @@ class NamedPitch(Pitch):
         if isinstance(arg, type(self)):
             return self._diatonic_pitch_number < arg._diatonic_pitch_number or \
                 (self._diatonic_pitch_number == arg._diatonic_pitch_number and \
-                self._accidental_semitones < arg._accidental_semitones) or \
-                (self._diatonic_pitch_number == arg._diatonic_pitch_number and \
-                self._accidental_semitones == arg._accidental_semitones and \
-                self._deviation_in_cents < arg._deviation_in_cents)
+                self._accidental_semitones < arg._accidental_semitones)
         elif isinstance(arg, pitchtools.PitchRange):
             return self < arg.start_pitch
         return False
@@ -179,11 +163,7 @@ class NamedPitch(Pitch):
 
     def __repr__(self):
         if self.chromatic_pitch_class_name and not self.octave_number is None:
-            if self.deviation_in_cents is None:
-                return '%s(%r)' % (self._class_name, str(self))
-            else:
-                return '%s(%r, deviation=%s)' % (self._class_name,
-                    str(self), self.deviation_in_cents)
+            return '%s(%r)' % (self._class_name, str(self))
         else:
             return '%s()' % self._class_name
 
@@ -217,12 +197,6 @@ class NamedPitch(Pitch):
         return Accidental(alphabetic_accidental_abbreviation)
 
     @property
-    def _keyword_argument_names(self):
-        return (
-            'deviation_in_cents',
-            )
-
-    @property
     def _octave_tick_string(self):
         if self.octave_number is not None:
             if self.octave_number <= 2:
@@ -248,11 +222,6 @@ class NamedPitch(Pitch):
         octave_tick_string = str(pitchtools.OctaveIndication(octave_number))
         chromatic_pitch_name = chromatic_pitch_class_name + octave_tick_string
         self._chromatic_pitch_name = chromatic_pitch_name
-
-    def _init_by_chromatic_pitch_class_name_octave_number_and_deviation(
-        self, name, octave, deviation):
-        self._init_by_chromatic_pitch_class_name_and_octave_number(name, octave)
-        self._deviation_in_cents = deviation
 
     def _init_by_chromatic_pitch_class_name_octave_number_pair(self, pair):
         from abjad.tools import pitchtools
@@ -299,8 +268,6 @@ class NamedPitch(Pitch):
     def _init_by_named_chromatic_pitch(self, named_chromatic_pitch):
         self._chromatic_pitch_name = \
             named_chromatic_pitch._chromatic_pitch_name
-        self._deviation_in_cents = \
-            named_chromatic_pitch.deviation_in_cents
 
     def _init_by_named_chromatic_pitch_class_and_octave_number(
         self, npc, octave_number):
@@ -382,19 +349,6 @@ class NamedPitch(Pitch):
         Return integer or float.
         '''
         return self.numbered_chromatic_pitch._chromatic_pitch_number
-
-    @property
-    def deviation_in_cents(self):
-        r'''Deviation of named chromatic pitch in cents:
-
-        ::
-
-            >>> pitch.deviation_in_cents is None
-            True
-
-        Return integer or none.
-        '''
-        return self._deviation_in_cents
 
     @property
     def diatonic_pitch_class_name(self):
