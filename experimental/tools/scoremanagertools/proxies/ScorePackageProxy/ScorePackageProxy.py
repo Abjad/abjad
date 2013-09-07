@@ -41,7 +41,7 @@ class ScorePackageProxy(PackageProxy):
     def _make_main_menu(self):
         main_menu = self.session.io_manager.make_menu(where=self._where)
         command_section = main_menu.make_command_section()
-        command_section.append(('segments', 'h'))
+        command_section.append(('segments', 'g'))
         command_section.append(('materials', 'm'))
         command_section.append(('specifiers', 'f'))
         command_section.append(('setup', 's'))
@@ -520,7 +520,7 @@ class ScorePackageProxy(PackageProxy):
 
     user_input_to_action = PackageProxy.user_input_to_action.copy()
     user_input_to_action.update({
-        'h': manage_segments,
+        'g': manage_segments,
         'm': manage_materials,
         'f': manage_specifiers,
         's': manage_setup,

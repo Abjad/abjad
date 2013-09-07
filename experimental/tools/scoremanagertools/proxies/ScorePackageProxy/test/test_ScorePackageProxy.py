@@ -13,7 +13,7 @@ def test_ScorePackageProxy_01():
     assert red_example_score.session.io_transcript[-2][1] == \
     ['Red Example Score (2013)',
       '',
-      '     segments (h)',
+      '     segments (g)',
       '     materials (m)',
       '     specifiers (f)',
       '     setup (s)',
