@@ -41,9 +41,9 @@ class ScorePackageProxy(PackageProxy):
     def _make_main_menu(self):
         main_menu = self.session.io_manager.make_menu(where=self._where)
         command_section = main_menu.make_command_section()
-        command_section.append(('segments', 'g'))
         command_section.append(('materials', 'm'))
         command_section.append(('specifiers', 'f'))
+        command_section.append(('segments', 'g'))
         command_section.append(('setup', 's'))
         hidden_section = main_menu.make_command_section(is_hidden=True)
         hidden_section.append(('fix package structure', 'fix'))
