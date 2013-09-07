@@ -17,7 +17,6 @@ def test_scoretools_make_piano_sketch_staff_from_leaves_01():
         \new PianoStaff <<
             \context Staff = "treble" {
                 \clef "treble"
-                #(set-accidental-style 'forget)
                 r4
                 r4
                 r4
@@ -31,7 +30,6 @@ def test_scoretools_make_piano_sketch_staff_from_leaves_01():
             }
             \context Staff = "bass" {
                 \clef "bass"
-                #(set-accidental-style 'forget)
                 c4
                 d4
                 e4
@@ -59,7 +57,6 @@ def test_scoretools_make_piano_sketch_staff_from_leaves_01():
             \new PianoStaff <<
                 \context Staff = "treble" {
                     \clef "treble"
-                    #(set-accidental-style 'forget)
                     r4
                     r4
                     r4
@@ -73,7 +70,6 @@ def test_scoretools_make_piano_sketch_staff_from_leaves_01():
                 }
                 \context Staff = "bass" {
                     \clef "bass"
-                    #(set-accidental-style 'forget)
                     c4
                     d4
                     e4

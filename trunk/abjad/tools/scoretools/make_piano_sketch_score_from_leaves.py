@@ -21,7 +21,6 @@ def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch=None):
             \new PianoStaff <<
                 \context Staff = "treble" {
                     \clef "treble"
-                    #(set-accidental-style 'forget)
                     r4
                     r4
                     r4
@@ -35,7 +34,6 @@ def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch=None):
                 }
                 \context Staff = "bass" {
                     \clef "bass"
-                    #(set-accidental-style 'forget)
                     c4
                     d4
                     e4
@@ -60,8 +58,6 @@ def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch=None):
 
     Do not print bar lines or span bars.
 
-    Set all staff accidental styles to forget.
-
     Return score, treble staff, bass staff.
     '''
     from abjad.tools import contexttools
@@ -81,8 +77,6 @@ def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch=None):
     score.override.bar_number.transparent = True
     score.override.bar_line.stencil = False
     score.override.span_bar.stencil = False
-    layouttools.set_accidental_style_on_sequential_contexts_in_expr(
-        score, 'forget')
 
     # make and configure lily file
     lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
