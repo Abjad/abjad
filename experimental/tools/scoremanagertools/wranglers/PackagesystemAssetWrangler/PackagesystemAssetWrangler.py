@@ -63,8 +63,9 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         prepopulated_return_values = len(names) * [None]
         paths = self.list_visible_asset_packagesystem_paths(head=head)
         assert len(names) == len(keys) == len(paths)
-        return sequencetools.zip_sequences_cyclically(
-            names, [None], [None], paths)
+        if names:
+            return sequencetools.zip_sequences_cyclically(
+                names, [None], [None], paths)
 
     ### PUBLIC METHODS ###
 
