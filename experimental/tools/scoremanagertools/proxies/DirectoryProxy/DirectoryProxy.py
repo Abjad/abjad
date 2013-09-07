@@ -11,7 +11,7 @@ class DirectoryProxy(FilesystemAssetProxy):
 
     @property
     def _svn_add_command(self):
-        return 'cd {} && svn-add-all'.format(self.filesystem_path)
+        return 'cd {} && add'.format(self.filesystem_path)
 
     ### PUBLIC METHODS ###
 
