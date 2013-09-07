@@ -16,6 +16,7 @@ def test_ScorePackageProxy_01():
       '     materials (m)',
       '     specifiers (f)',
       '     segments (g)',
+      '     stylesheets (y)',
       '     setup (s)',
       '']
 

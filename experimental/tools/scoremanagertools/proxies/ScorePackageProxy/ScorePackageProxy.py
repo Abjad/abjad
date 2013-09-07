@@ -19,14 +19,17 @@ class ScorePackageProxy(PackageProxy):
             score_package_path=packagesystem_path, session=self.session)
         self._music_proxy = scoremanagertools.proxies.MusicPackageProxy(
             score_package_path=packagesystem_path, session=self.session)
-        self._segment_wrangler = \
-            scoremanagertools.wranglers.SegmentPackageWrangler(
-            session=self.session)
         self._material_package_wrangler = \
             scoremanagertools.wranglers.MaterialPackageWrangler(
             session=self.session)
         self._material_package_maker_wrangler = \
             scoremanagertools.wranglers.MaterialPackageMakerWrangler(
+            session=self.session)
+        self._segment_wrangler = \
+            scoremanagertools.wranglers.SegmentPackageWrangler(
+            session=self.session)
+        self._stylesheet_wrangler = \
+            scoremanagertools.wranglers.StylesheetFileWrangler(
             session=self.session)
 
     ### PRIVATE METHODS ###
@@ -44,6 +47,7 @@ class ScorePackageProxy(PackageProxy):
         command_section.append(('materials', 'm'))
         command_section.append(('specifiers', 'f'))
         command_section.append(('segments', 'g'))
+        command_section.append(('stylesheets', 'y'))
         command_section.append(('setup', 's'))
         hidden_section = main_menu.make_command_section(is_hidden=True)
         hidden_section.append(('fix package structure', 'fix'))
@@ -204,6 +208,10 @@ class ScorePackageProxy(PackageProxy):
     @property
     def segments_package_path(self):
         return '.'.join([self.package_path, 'music', 'segments'])
+
+    @property
+    def stylesheet_wrangler(self):
+        return self._stylesheet_wrangler
 
     @property
     def stylesheets_directory_path(self):
@@ -451,6 +459,9 @@ class ScorePackageProxy(PackageProxy):
     def manage_specifiers(self):
         self.music_speicifer_module_wrangler._run()
 
+    def manage_stylesheets(self):
+        self.stylesheet_wrangler._run(head=self.package_path)
+
     def manage_svn(self, clear=True, cache=False):
         self.session.cache_breadcrumbs(cache=cache)
         while True:
@@ -520,10 +531,11 @@ class ScorePackageProxy(PackageProxy):
 
     user_input_to_action = PackageProxy.user_input_to_action.copy()
     user_input_to_action.update({
+        'f': manage_specifiers,
         'g': manage_segments,
         'm': manage_materials,
-        'f': manage_specifiers,
         's': manage_setup,
+        'y': manage_stylesheets,
         'fix': fix,
         'profile': profile,
         'removescore': interactively_remove,
