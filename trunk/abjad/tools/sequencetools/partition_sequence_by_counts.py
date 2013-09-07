@@ -3,7 +3,13 @@ import copy
 from abjad.tools import mathtools
 
 
-def partition_sequence_by_counts(sequence, counts, cyclic=False, overhang=False, copy_elements=False):
+def partition_sequence_by_counts(
+    sequence, 
+    counts, 
+    cyclic=False, 
+    overhang=False, 
+    copy_elements=False,
+    ):
     r'''Partition sequence by counts.
     
     ..  container:: example
@@ -36,7 +42,8 @@ def partition_sequence_by_counts(sequence, counts, cyclic=False, overhang=False,
 
     ..  container:: example
 
-        **Example 2a.** Partition sequence cyclically by counts without overhang:
+        **Example 2a.** Partition sequence cyclically by counts without 
+        overhang:
 
         ::
 
@@ -50,7 +57,8 @@ def partition_sequence_by_counts(sequence, counts, cyclic=False, overhang=False,
 
     ..  container:: example
 
-        **Example 2b.** Partition sequence cyclically by counts without overhang:
+        **Example 2b.** Partition sequence cyclically by counts without 
+        overhang:
 
         ::
 
@@ -126,9 +134,11 @@ def partition_sequence_by_counts(sequence, counts, cyclic=False, overhang=False,
 
     if cyclic:
         if overhang:
-            counts = sequencetools.repeat_sequence_to_weight_exactly(counts, len(sequence))
+            counts = sequencetools.repeat_sequence_to_weight_exactly(
+                counts, len(sequence))
         else:
-            counts = sequencetools.repeat_sequence_to_weight_at_most(counts, len(sequence))
+            counts = sequencetools.repeat_sequence_to_weight_at_most(
+                counts, len(sequence))
     elif overhang:
         weight_counts = mathtools.weight(counts)
         len_sequence = len(sequence)

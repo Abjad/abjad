@@ -39,4 +39,9 @@ def partition_sequence_extended_to_counts(sequence, counts, overhang=True):
 
     sequence = sequencetools.repeat_sequence_n_times(sequence, n)
 
-    return sequencetools.partition_sequence_by_counts(sequence, counts, cyclic=False, overhang=overhang)
+    return sequencetools.partition_sequence_by_counts(
+        sequence, 
+        counts, 
+        cyclic=False, 
+        overhang=overhang,
+        )

@@ -1,7 +1,10 @@
 # -*- encoding: utf-8 -*-
 
 
-def partition_sequence_by_restricted_growth_function(sequence, restricted_growth_function):
+def partition_sequence_by_restricted_growth_function(
+    sequence, 
+    restricted_growth_function,
+    ):
     '''Partition `sequence` by `restricted_growth_function`:
 
     ::
@@ -11,7 +14,8 @@ def partition_sequence_by_restricted_growth_function(sequence, restricted_growth
 
     ::
 
-        >>> sequencetools.partition_sequence_by_restricted_growth_function(l, rgf)
+        >>> sequencetools.partition_sequence_by_restricted_growth_function(
+        ...     l, rgf)
         [[0, 1, 4], [2, 3, 5, 8], [6, 7], [9]]
 
     Raise value error when `sequence` length does not equal
@@ -21,7 +25,8 @@ def partition_sequence_by_restricted_growth_function(sequence, restricted_growth
     '''
     from abjad.tools import sequencetools
 
-    if not sequencetools.is_restricted_growth_function(restricted_growth_function):
+    if not sequencetools.is_restricted_growth_function(
+        restricted_growth_function):
         raise ValueError('must be restricted growth function.')
 
     if not len(sequence) == len(restricted_growth_function):

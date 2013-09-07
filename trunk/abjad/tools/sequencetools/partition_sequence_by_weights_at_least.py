@@ -2,9 +2,15 @@
 from abjad.tools import mathtools
 
 
-def partition_sequence_by_weights_at_least(sequence, weights, 
-    cyclic=False, overhang=False):
-    r'''Partition `sequence` by `weights` at least. ::
+def partition_sequence_by_weights_at_least(
+    sequence, 
+    weights, 
+    cyclic=False, 
+    overhang=False,
+    ):
+    r'''Partition `sequence` by `weights` at least.
+
+    ::
 
         >>> sequence = [3, 3, 3, 3, 4, 4, 4, 4, 5, 5]
     
@@ -56,12 +62,18 @@ def partition_sequence_by_weights_at_least(sequence, weights,
     '''
 
     if not cyclic:
-        return _partition_sequence_once_by_weights_at_least(sequence, weights, overhang=overhang)
+        return _partition_sequence_once_by_weights_at_least(
+            sequence, weights, overhang=overhang)
     else:
-        return _partition_sequence_cyclically_by_weights_at_least(sequence, weights, overhang=overhang)
+        return _partition_sequence_cyclically_by_weights_at_least(
+            sequence, weights, overhang=overhang)
 
 
-def _partition_sequence_once_by_weights_at_least(sequence, weights, overhang=False):
+def _partition_sequence_once_by_weights_at_least(
+    sequence, 
+    weights, 
+    overhang=False,
+    ):
 
     result = []
     current_part = []
@@ -88,7 +100,11 @@ def _partition_sequence_once_by_weights_at_least(sequence, weights, overhang=Fal
     return result
 
 
-def _partition_sequence_cyclically_by_weights_at_least(sequence, weights, overhang=False):
+def _partition_sequence_cyclically_by_weights_at_least(
+    sequence, 
+    weights, 
+    overhang=False,
+    ):
 
     l_copy = sequence[:]
     result = []

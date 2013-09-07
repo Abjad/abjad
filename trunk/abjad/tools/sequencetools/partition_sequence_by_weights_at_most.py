@@ -2,60 +2,99 @@
 from abjad.tools import mathtools
 
 
-def partition_sequence_by_weights_at_most(sequence, weights, cyclic=False, overhang=False):
+def partition_sequence_by_weights_at_most(
+    sequence, 
+    weights, 
+    cyclic=False, 
+    overhang=False,
+    ):
     r'''Partition `sequence` by `weights` at most.
+
+    ::
 
         >>> sequence = [3, 3, 3, 3, 4, 4, 4, 4, 5, 5]
 
     ..  container:: example
     
-        **Example 1.** Partition sequence once by weights at most without overhang:
+        **Example 1.** Partition sequence once by weights at most without 
+        overhang:
 
         ::
 
             >>> sequencetools.partition_sequence_by_weights_at_most(
-            ...     sequence, [10, 4], cyclic=False, overhang=False)
+            ...     sequence, 
+            ...     [10, 4], 
+            ...     cyclic=False, 
+            ...     overhang=False,
+            ...     )
             [[3, 3, 3], [3]]
 
     ..  container:: example
     
-        **Example 2.** Partition sequence once by weights at most with overhang:
+        **Example 2.** Partition sequence once by weights at most with 
+        overhang:
 
         ::
 
             >>> sequencetools.partition_sequence_by_weights_at_most(
-            ...     sequence, [10, 4], cyclic=False, overhang=True)
+            ...     sequence, 
+            ...     [10, 4], 
+            ...     cyclic=False, 
+            ...     overhang=True,
+            ...     )
             [[3, 3, 3], [3], [4, 4, 4, 4, 5, 5]]
 
     ..  container:: example
     
-        **Example 3.** Partition sequence cyclically by weights at most without overhang:
+        **Example 3.** Partition sequence cyclically by weights at most 
+        without overhang:
 
         ::
 
             >>> sequencetools.partition_sequence_by_weights_at_most(
-            ...     sequence, [10, 5], cyclic=True, overhang=False)
+            ...     sequence, 
+            ...     [10, 5], 
+            ...     cyclic=True, 
+            ...     overhang=False,
+            ...     )
             [[3, 3, 3], [3], [4, 4], [4], [4, 5], [5]]
 
     ..  container:: example
     
-        **Example 4.** Partition sequence cyclically by weights at most with overhang:
+        **Example 4.** Partition sequence cyclically by weights at most 
+        with overhang:
 
         ::
 
             >>> sequencetools.partition_sequence_by_weights_at_most(
-            ...     sequence, [10, 5], cyclic=True, overhang=True)
+            ...     sequence, 
+            ...     [10, 5], 
+            ...     cyclic=True, 
+            ...     overhang=True,
+            ...     )
             [[3, 3, 3], [3], [4, 4], [4], [4, 5], [5]]
 
     Return list of sequence objects.
     '''
     if not cyclic:
-        return _partition_sequence_once_by_weights_at_most(sequence, weights, overhang=overhang)
+        return _partition_sequence_once_by_weights_at_most(
+            sequence, 
+            weights, 
+            overhang=overhang,
+            )
     else:
-        return _partition_sequence_cyclically_by_weights_at_most(sequence, weights, overhang=overhang)
+        return _partition_sequence_cyclically_by_weights_at_most(
+            sequence, 
+            weights, 
+            overhang=overhang,
+            )
 
 
-def _partition_sequence_once_by_weights_at_most(sequence, weights, overhang=False):
+def _partition_sequence_once_by_weights_at_most(
+    sequence, 
+    weights, 
+    overhang=False,
+    ):
 
     l_copy = sequence[:]
     result = []
@@ -95,7 +134,11 @@ def _partition_sequence_once_by_weights_at_most(sequence, weights, overhang=Fals
     return result
 
 
-def _partition_sequence_cyclically_by_weights_at_most(sequence, weights, overhang=False):
+def _partition_sequence_cyclically_by_weights_at_most(
+    sequence, 
+    weights, 
+    overhang=False,
+    ):
 
     result = []
     current_part = []
@@ -122,7 +165,7 @@ def _partition_sequence_cyclically_by_weights_at_most(sequence, weights, overhan
                 current_part = []
                 current_target_weight_index += 1
             else:
-                raise PartitionError('Elements in sequence too big.')
+                raise PartitionError('elements in sequence too big.')
         else:
             raise ValueError('candidate and target rates must compare.')
 

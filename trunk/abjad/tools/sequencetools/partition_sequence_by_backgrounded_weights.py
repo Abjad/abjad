@@ -75,11 +75,13 @@ def partition_sequence_by_backgrounded_weights(sequence, weights):
     assert all(0 < x for x in weights)
     assert mathtools.weight(sequence) == mathtools.weight(weights)
 
-    start_offsets = mathtools.cumulative_sums_zero([abs(x) for x in sequence])[:-1]
+    start_offsets = \
+        mathtools.cumulative_sums_zero([abs(x) for x in sequence])[:-1]
     indicator = zip(start_offsets, sequence)
 
     result = []
-    for interval_start, interval_stop in mathtools.cumulative_sums_zero_pairwise(weights):
+    for interval_start, interval_stop in \
+        mathtools.cumulative_sums_zero_pairwise(weights):
         part = []
         for pair in indicator[:]:
             if interval_start <= pair[0] < interval_stop:

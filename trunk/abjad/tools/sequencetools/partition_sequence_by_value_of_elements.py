@@ -16,7 +16,6 @@ def partition_sequence_by_value_of_elements(sequence):
 
     Return list of tuples of `sequence` element references.
     '''
-
     result = []
     g = itertools.groupby(sequence, lambda x: x)
     for n, group in g:

@@ -1,8 +1,15 @@
 # -*- encoding: utf-8 -*-
 
 
-def partition_sequence_by_weights_exactly(sequence, weights, cyclic=False, overhang=False):
+def partition_sequence_by_weights_exactly(
+    sequence, 
+    weights, 
+    cyclic=False, 
+    overhang=False,
+    ):
     r'''Partition `sequence` by `weights` exactly.
+
+    ::
 
         >>> sequence = [3, 3, 3, 3, 4, 4, 4, 4, 5]
 
@@ -14,7 +21,11 @@ def partition_sequence_by_weights_exactly(sequence, weights, cyclic=False, overh
         ::
 
             >>> sequencetools.partition_sequence_by_weights_exactly(
-            ...     sequence, [3, 9], cyclic=False, overhang=False)
+            ...     sequence, 
+            ...     [3, 9], 
+            ...     cyclic=False, 
+            ...     overhang=False,
+            ...     )
             [[3], [3, 3, 3]]
 
     ..  container:: example
@@ -25,18 +36,26 @@ def partition_sequence_by_weights_exactly(sequence, weights, cyclic=False, overh
         ::
 
             >>> sequencetools.partition_sequence_by_weights_exactly(
-            ...     sequence, [3, 9], cyclic=False, overhang=True)
+            ...     sequence, 
+            ...     [3, 9], 
+            ...     cyclic=False, 
+            ...     overhang=True,
+            ...     )
             [[3], [3, 3, 3], [4, 4, 4, 4, 5]]
 
     ..  container:: example
 
-        **Example 3.** Partition sequence cyclically by weights exactly without 
-        overhang:
+        **Example 3.** Partition sequence cyclically by weights exactly 
+        without overhang:
 
         ::
 
             >>> sequencetools.partition_sequence_by_weights_exactly(
-            ...     sequence, [12], cyclic=True, overhang=False)
+            ...     sequence, 
+            ...     [12], 
+            ...     cyclic=True, 
+            ...     overhang=False,
+            ...     )
             [[3, 3, 3, 3], [4, 4, 4]]
 
     ..  container:: example
@@ -47,14 +66,23 @@ def partition_sequence_by_weights_exactly(sequence, weights, cyclic=False, overh
         ::
 
             >>> sequencetools.partition_sequence_by_weights_exactly(
-            ...     sequence, [12], cyclic=True, overhang=True)
+            ...     sequence, 
+            ...     [12], 
+            ...     cyclic=True, 
+            ...     overhang=True,
+            ...     )
             [[3, 3, 3, 3], [4, 4, 4], [4, 5]]
 
     Return list sequence objects.
     '''
     from abjad.tools import sequencetools
 
-    candidate = sequencetools.split_sequence_by_weights(sequence, weights, cyclic=cyclic, overhang=overhang)
+    candidate = sequencetools.split_sequence_by_weights(
+        sequence, 
+        weights, 
+        cyclic=cyclic, 
+        overhang=overhang,
+        )
     flattened_candidate = sequencetools.flatten_sequence(candidate)
     if flattened_candidate == sequence[:len(flattened_candidate)]:
         return candidate
