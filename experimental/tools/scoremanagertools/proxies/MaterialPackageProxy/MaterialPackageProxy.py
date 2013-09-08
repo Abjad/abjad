@@ -8,17 +8,16 @@ from experimental.tools.scoremanagertools.proxies.PackageProxy \
 
 
 class MaterialPackageProxy(PackageProxy):
-    r'''Material package proxy:
+    r'''Material package proxy.
 
     ::
 
-        >>> package_path = \
-        ...     'experimental.tools.scoremanagertools.materialpackages.red_numbers'
+        >>> package_path = 'experimental.tools.scoremanagertools'
+        >>> package_path += '.materialpackages.red_numbers'
         >>> mpp = scoremanagertools.proxies.MaterialPackageProxy(package_path)
         >>> mpp
-        MaterialPackageProxy('.../scoremanagertools/materialpackages/red_numbers')
+        MaterialPackageProxy('.../materialpackages/red_numbers')
 
-    Return material package proxy.
     '''
 
     ### CLASS VARIABLES ###
@@ -28,8 +27,11 @@ class MaterialPackageProxy(PackageProxy):
     ### INTIALIZER ###
 
     def __init__(self, packagesystem_path=None, session=None):
-        PackageProxy.__init__(self, 
-            packagesystem_path=packagesystem_path, session=session)
+        PackageProxy.__init__(
+            self, 
+            packagesystem_path=packagesystem_path, 
+            session=session,
+            )
         self._generic_output_name = None
         self.stylesheet_file_name_in_memory = None
 
@@ -680,25 +682,31 @@ class MaterialPackageProxy(PackageProxy):
                 parent_directory_filesystem_path, 
                 new_material_package_name)
             new_initializer = os.path.join(
-                new_package_directory, '__init__.py')
+                new_package_directory, 
+                '__init__.py',
+                )
             self.replace_in_file(
                 new_initializer, 
                 self.material_package_name, 
-                new_material_package_name)
+                new_material_package_name,
+                )
             # rename output material
             new_output_material = os.path.join(
                 new_package_directory, 
-                'output_material.py')
+                'output_material.py',
+                )
             self.replace_in_file(
                 new_output_material, 
                 self.material_package_name, 
-                new_material_package_name)
+                new_material_package_name,
+                )
             # commit
             commit_message = 'renamed {} to {}.'.format(
                 self.material_package_name, 
                 new_material_package_name)
             commit_message = commit_message.replace('_', ' ')
-            command = 'svn commit -m "{}" {}'.format(
+            command = 'svn commit -m "{}" {}'
+            command = command.format(
                 commit_message, 
                 self.parent_directory_filesystem_path)
             os.system(command)

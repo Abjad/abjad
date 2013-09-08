@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import os
 from abjad.tools import iotools
 from experimental.tools.scoremanagertools.proxies.PackageProxy \
     import PackageProxy
@@ -56,20 +57,67 @@ class SegmentPackageProxy(PackageProxy):
             self._score_template = score_template
         return property(**locals())
 
+    @property
+    def segment_definition_module_file_name(self):
+        return os.path.join(self.filesystem_path, 'segment_definition.py')
+
     ### PUBLIC METHODS ###
 
     def interactively_make_asset(self, prompt=True):
+        r'''Interactively makes asset.
+
+        Returns none.
+        '''
         self.session.io_manager.print_not_yet_implemented()
 
     def interactively_set_score_template(self):
+        r'''Interactively sets score template.
+
+        Returns none.
+        '''
         self.session.io_manager.print_not_yet_implemented()
 
     def make_asset(self):
+        r'''Makes asset.
+
+        Returns none.
+        '''
         self.session.io_manager.print_not_yet_implemented()
 
+    def make_history_directory(self):
+        history_directory = os.path.join(self.filesystem_path, 'history')
+        if not os.path.exists(history_directory):
+            os.mkdir(history_directory)
+
     def remove_segment_package(self):
+        r'''Removes segment package.
+
+        Returns false.
+        '''
         self.remove()
         return False
+
+    def write_initializer_to_disk(self):
+        r'''Writes initializer to disk.
+
+        Returns none.
+        '''
+        if not os.path.exists(self.initializer_file_name):
+            file_pointer = file(self.initializer_file_name, 'w')
+            file_pointer.write('')
+            file_pointer.close()
+
+    def write_segment_definition_module_to_disk(self):
+        r'''Write segment definition module to disk.
+
+        Returns none.
+        '''
+        if not os.path.exists(self.segment_definition_module_file_name):
+            file_pointer = file(self.segment_definition_module_file_name, 'w')
+            file_pointer.write('# -*- encoding: utf-8 -*-\n')
+            file_pointer.write('from abjad import *\n')
+            file_pointer.write('\n\n')
+            file_pointer.close()
 
     ### UI MANIFEST ###
 
