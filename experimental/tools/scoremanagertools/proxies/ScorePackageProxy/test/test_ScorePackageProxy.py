@@ -14,7 +14,6 @@ def test_ScorePackageProxy_01():
     ['Red Example Score (2013)',
       '',
       '     materials (m)',
-      '     specifiers (f)',
       '     segments (g)',
       '     stylesheets (y)',
       '     setup (s)',

@@ -45,7 +45,6 @@ class ScorePackageProxy(PackageProxy):
         main_menu = self.session.io_manager.make_menu(where=self._where)
         command_section = main_menu.make_command_section()
         command_section.append(('materials', 'm'))
-        command_section.append(('specifiers', 'f'))
         command_section.append(('segments', 'g'))
         command_section.append(('stylesheets', 'y'))
         command_section.append(('setup', 's'))
@@ -174,10 +173,6 @@ class ScorePackageProxy(PackageProxy):
     @property
     def music_proxy(self):
         return self._music_proxy
-
-    @property
-    def music_specifier_module_wrangler(self):
-        return self._music_specifier_module_wrangler
 
     @property
     def score_initializer_file_names(self):
@@ -456,9 +451,6 @@ class ScorePackageProxy(PackageProxy):
         self.session.pop_breadcrumb()
         self.session.restore_breadcrumbs(cache=cache)
 
-    def manage_specifiers(self):
-        self.music_speicifer_module_wrangler._run()
-
     def manage_stylesheets(self):
         self.stylesheet_wrangler._run(head=self.package_path)
 
@@ -531,7 +523,6 @@ class ScorePackageProxy(PackageProxy):
 
     user_input_to_action = PackageProxy.user_input_to_action.copy()
     user_input_to_action.update({
-        'f': manage_specifiers,
         'g': manage_segments,
         'm': manage_materials,
         's': manage_setup,
