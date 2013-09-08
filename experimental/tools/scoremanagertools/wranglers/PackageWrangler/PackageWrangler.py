@@ -44,6 +44,35 @@ class PackageWrangler(PackagesystemAssetWrangler):
 
     ### PUBLIC METHODS ###
 
+    def interactively_get_available_packagesystem_path(
+        self, 
+        pending_user_input=None,
+        ):
+        r'''Interactively gets available packagesystem path.
+
+        Return string.
+        '''
+        self.session.io_manager.assign_user_input(pending_user_input)
+        while True:
+            getter = self.session.io_manager.make_getter(where=self._where)
+            getter.append_space_delimited_lowercase_string('name')
+            with self.backtracking:
+                package_name = getter._run()
+            if self.session.backtrack():
+                return
+            package_name = \
+                stringtools.string_to_accent_free_snake_case(package_name)
+            package_path = '.'.join([
+                self._current_storehouse_packagesystem_path, 
+                package_name,
+                ])
+            if self.configuration.packagesystem_path_exists(package_path):
+                line = 'Package {!r} already exists.'
+                line = line.format(package_path)
+                self.session.io_manager.display([line, ''])
+            else:
+                return package_path
+
     def interactively_make_asset(self):
         r'''Interactively makes asset.
 

@@ -57,8 +57,11 @@ class MaterialPackageWrangler(PackageWrangler):
 
     ### PRIVATE METHODS ###
 
-    def _get_appropriate_material_package_proxy(self,
-        material_package_maker_class_name, material_package_path):
+    def _get_appropriate_material_package_proxy(
+        self,
+        material_package_maker_class_name, 
+        material_package_path,
+        ):
         from experimental.tools import scoremanagertools
         if material_package_maker_class_name is None:
             material_package_proxy = \
@@ -138,37 +141,6 @@ class MaterialPackageWrangler(PackageWrangler):
 
     ### PUBLIC METHODS ###
 
-    def interactively_get_available_material_packagesystem_path(
-        self, 
-        pending_user_input=None,
-        ):
-        r'''Interactively gets available material packagesystem path.
-
-        Return string.
-        '''
-        self.session.io_manager.assign_user_input(
-            pending_user_input=pending_user_input)
-        while True:
-            getter = self.session.io_manager.make_getter(where=self._where)
-            getter.append_space_delimited_lowercase_string('material name')
-            with self.backtracking:
-                package_name = getter._run()
-            if self.session.backtrack():
-                return
-            material_package_name = \
-                stringtools.string_to_accent_free_snake_case(
-                package_name)
-            material_package_path = '.'.join([
-                self._current_storehouse_packagesystem_path, 
-                material_package_name])
-            if self.configuration.packagesystem_path_exists(
-                material_package_path):
-                line = 'Material package {!r} already exists.'.format(
-                    material_package_path)
-                self.session.io_manager.display([line, ''])
-            else:
-                return material_package_path
-
     def interactively_make_data_package(
         self, 
         tags=None, 
@@ -182,7 +154,7 @@ class MaterialPackageWrangler(PackageWrangler):
             pending_user_input=pending_user_input)
         with self.backtracking:
             material_package_path = \
-                self.interactively_get_available_material_packagesystem_path()
+                self.interactively_get_available_packagesystem_path()
         if self.session.backtrack():
             return
         self.make_data_package(material_package_path, tags=tags)
@@ -198,11 +170,11 @@ class MaterialPackageWrangler(PackageWrangler):
         self.session.io_manager.assign_user_input(
             pending_user_input=pending_user_input)
         with self.backtracking:
-            material_package_path = \
-                self.interactively_get_available_material_packagesystem_path()
+            package_path = \
+                self.interactively_get_available_packagesystem_path()
         if self.session.backtrack():
             return
-        self.make_handmade_material_package(material_package_path)
+        self.make_handmade_material_package(package_path)
 
     def interactively_make_makermade_material_package(
         self, 
@@ -225,7 +197,7 @@ class MaterialPackageWrangler(PackageWrangler):
             material_package_maker_package_path.split('.')[-1]
         with self.backtracking:
             material_package_path = \
-                self.interactively_get_available_material_packagesystem_path()
+                self.interactively_get_available_packagesystem_path()
         if self.session.backtrack():
             return
         self.make_makermade_material_package(
@@ -490,7 +462,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
     def make_material_package(
         self, 
-        material_package_path, 
+        package_path, 
         is_interactive=False, 
         tags=None,
         ):
@@ -502,12 +474,12 @@ class MaterialPackageWrangler(PackageWrangler):
         tags['is_material_package'] = True
         directory_path = \
             self.configuration.packagesystem_path_to_filesystem_path(
-            material_package_path)
+            package_path)
         assert not os.path.exists(directory_path)
         os.mkdir(directory_path)
         material_package_maker_class_name = tags.get(
             'material_package_maker_class_name')
-        pair = (material_package_maker_class_name, material_package_path)
+        pair = (material_package_maker_class_name, package_path)
         material_package_proxy = self._get_appropriate_material_package_proxy(
             *pair)
         material_package_proxy.initializer_file_proxy.write_stub_to_disk()
@@ -515,7 +487,7 @@ class MaterialPackageWrangler(PackageWrangler):
         material_package_proxy.tags_file_proxy.write_tags_to_disk(tags)
         material_package_proxy.conditionally_write_stub_material_definition_module_to_disk()
         material_package_proxy.conditionally_write_stub_user_input_module_to_disk()
-        line = 'material package {!r} created.'.format(material_package_path)
+        line = 'material package {!r} created.'.format(package_path)
         self.session.io_manager.proceed(line, is_interactive=is_interactive)
 
     def make_numeric_sequence_package(self, package_path):

@@ -8,11 +8,17 @@ class SegmentPackageProxy(PackageProxy):
 
     ### INITIALIZER ###
 
-    def __init__(self, 
-        packagesystem_path=None, score_template=None, session=None):
-        PackageProxy.__init__(self, 
+    def __init__(
+        self, 
+        packagesystem_path=None, 
+        score_template=None, 
+        session=None,
+        ):
+        PackageProxy.__init__(
+            self, 
             packagesystem_path=packagesystem_path, 
-            session=session)
+            session=session,
+            )
         self.score_template = score_template
 
     ### PRIVATE PROPERTIES ###

@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import collections
 import os
 from experimental.tools.scoremanagertools.wranglers.PackageWrangler import \
     PackageWrangler
@@ -79,13 +80,22 @@ class SegmentPackageWrangler(PackageWrangler):
 
     ### PUBLIC METHODS ###
 
-    def interactively_make_asset(self):
+    def interactively_make_asset(
+        self,
+        pending_user_input=None,
+        ):
         r'''Interactively makes segment package.
 
         Returns none.
         '''
-        segment_package_proxy = self.asset_proxy_class(session=self.session)
-        segment_package_proxy.interactively_make_asset()
+        self.session.io_manager.assign_user_input(
+            pending_user_input=pending_user_input)
+        with self.backtracking:
+            package_path = \
+                self.interactively_get_available_packagesystem_path()
+        if self.session.backtrack():
+            return
+        self.make_segment_package(package_path)
 
     def list_asset_filesystem_paths(
         self,
@@ -264,11 +274,12 @@ class SegmentPackageWrangler(PackageWrangler):
 
             >>> for x in wrangler.list_asset_storehouse_filesystem_paths(
             ...     in_user_asset_library=False, 
-            ...     in_user_score_packages=False):
+            ...     in_user_score_packages=False,
+            ...     ):
             ...     x
-            '.../tools/scoremanagertools/scorepackages/blue_example_score/music/segments'
-            '.../tools/scoremanagertools/scorepackages/green_example_score/music/segments'
-            '.../tools/scoremanagertools/scorepackages/red_example_score/music/segments'
+            '.../blue_example_score/music/segments'
+            '.../green_example_score/music/segments'
+            '.../red_example_score/music/segments'
 
         Returns list.
         '''
@@ -279,6 +290,32 @@ class SegmentPackageWrangler(PackageWrangler):
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             )
+
+    def make_segment_package(
+        self, 
+        package_path, 
+        is_interactive=False, 
+        tags=None,
+        ):
+        r'''Makes segment package.
+
+        Returns none.
+        '''
+        tags = collections.OrderedDict(tags or {})
+        directory_path = \
+            self.configuration.packagesystem_path_to_filesystem_path(
+            package_path)
+        assert not os.path.exists(directory_path)
+        os.mkdir(directory_path)
+        segment_package_proxy = self.asset_proxy_class(
+            packagesystem_path=package_path,
+            session=self.session,
+            )
+        segment_package_proxy.write_initializer_to_disk()
+        segment_package_proxy.write_segment_definition_module_to_disk()
+        segment_package_proxy.make_history_directory()
+        line = 'segment package {!r} created.'.format(package_path)
+        self.session.io_manager.proceed(line, is_interactive=is_interactive)
 
     ### UI MANIFEST ###
 
