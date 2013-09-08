@@ -103,13 +103,14 @@ class SegmentPackageWrangler(PackageWrangler):
 
             >>> for x in wrangler.list_asset_filesystem_paths(
             ...     in_user_asset_library=False, 
-            ...     in_user_score_packages=False):
+            ...     in_user_score_packages=False,
+            ...     ):
             ...     x
-            '.../tools/scoremanagertools/scorepackages/blue_example_score/music/segments/segment_01.py'
-            '.../tools/scoremanagertools/scorepackages/blue_example_score/music/segments/segment_02.py'
-            '.../tools/scoremanagertools/scorepackages/red_example_score/music/segments/segment_01.py'
-            '.../tools/scoremanagertools/scorepackages/red_example_score/music/segments/segment_02.py'
-            '.../tools/scoremanagertools/scorepackages/red_example_score/music/segments/segment_03.py'
+            '.../blue_example_score/music/segments/segment_01'
+            '.../blue_example_score/music/segments/segment_02'
+            '.../red_example_score/music/segments/segment_01'
+            '.../red_example_score/music/segments/segment_02'
+            '.../red_example_score/music/segments/segment_03'
 
         Returns list.
         '''

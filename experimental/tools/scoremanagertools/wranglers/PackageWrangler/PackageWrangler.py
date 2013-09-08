@@ -25,12 +25,12 @@ class PackageWrangler(PackagesystemAssetWrangler):
     def _handle_main_menu_result(self, result):
         self.session.io_manager.print_not_yet_implemented()
 
-#    def _is_valid_directory_entry(self, expr):
-#        superclass = super(PackageWrangler, self)
-#        if superclass._is_valid_directory_entry(expr):
-#            if '.' not in expr:
-#                return True
-#        return False
+    def _is_valid_directory_entry(self, expr):
+        superclass = super(PackageWrangler, self)
+        if superclass._is_valid_directory_entry(expr):
+            if '.' not in expr:
+                return True
+        return False
 
     def _make_main_menu(self, head=None):
         self.session.io_manager.print_not_yet_implemented()
