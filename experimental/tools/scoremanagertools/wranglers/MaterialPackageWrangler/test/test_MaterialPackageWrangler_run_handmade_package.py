@@ -116,9 +116,11 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
     try:
         score_manager._run(pending_user_input=
             'm h testnotes default default '
-            'testnotes mddelete remove default q')
-        assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testnotes')
+            'testnotes mddelete default q')
+        assert score_manager.configuration.packagesystem_path_exists(
+            'experimental.tools.scoremanagertools.materialpackages.testnotes')
+        mpp = scoremanagertools.proxies.MaterialPackageProxy(
+            'experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
         assert mpp.list_directory() == ['__init__.py', 'tags.py']
         assert not mpp.has_material_definition_module
@@ -127,8 +129,10 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
-        score_manager._run(pending_user_input='m testnotes del remove default q')
-        assert not score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
+        score_manager._run(
+            pending_user_input='m testnotes del remove default q')
+        assert not score_manager.configuration.packagesystem_path_exists(
+            'experimental.tools.scoremanagertools.materialpackages.testnotes')
 
 
 def test_MaterialPackageWrangler_run_handmade_package_06():
@@ -167,13 +171,17 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
     try:
         score_manager._run(pending_user_input=
             'm h testnotes default default '
-            'testnotes mdcanned canned_testnotes_material_definition.py default '
+            'testnotes mdcanned canned_testnotes_material_definition.py '
+            'default '
             'omm default '
-            'omdelete remove default q')
-        assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testnotes')
+            'omdelete default q')
+        assert score_manager.configuration.packagesystem_path_exists(
+            'experimental.tools.scoremanagertools.materialpackages.testnotes')
+        mpp = scoremanagertools.proxies.MaterialPackageProxy(
+            'experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
-        assert mpp.list_directory() == ['__init__.py', 'material_definition.py', 'tags.py']
+        assert mpp.list_directory(
+            ) == ['__init__.py', 'material_definition.py', 'tags.py']
         assert mpp.has_user_finalized_material_definition_module
         assert not mpp.has_output_material_module
         assert not mpp.has_illustration_builder_module
@@ -181,8 +189,10 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
             all(isinstance(x, Note) for x in mpp.material_definition)
         assert mpp.output_material is None
     finally:
-        score_manager._run(pending_user_input='m testnotes del remove default q')
-        assert not score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
+        score_manager._run(
+            pending_user_input='m testnotes del remove default q')
+        assert not score_manager.configuration.packagesystem_path_exists(
+            'experimental.tools.scoremanagertools.materialpackages.testnotes')
 
 
 def test_MaterialPackageWrangler_run_handmade_package_08():

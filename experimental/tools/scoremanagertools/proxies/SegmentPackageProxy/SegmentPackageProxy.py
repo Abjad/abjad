@@ -35,14 +35,16 @@ class SegmentPackageProxy(PackageProxy):
             self.user_input_to_action[result](self)
 
     def _make_main_menu(self):
-        raise Exception('BAZ')
         main_menu = self.session.io_manager.make_menu(where=self._where)
-        asset_section = main_menu.make_asset_section()
-        asset_section.menu_entries = self._make_asset_menu_entries()
+        hidden_section = main_menu.make_command_section(is_hidden=True)
+        hidden_section.append(('remove package', 'rm'))
+        hidden_section.append(('list package', 'ls'))
+        hidden_section.append(('rename package', 'ren'))
+        hidden_section.append(('manage tags', 'tags'))
         command_section = main_menu.make_command_section()
-        command_section.append(('initializer', 'n'))
-        command_section = main_menu.make_command_section()
-        command_section.append(('remove', 'rm'))
+        command_section.append(('segment definition - edit', 'sde'))
+        command_section.append(('output pdf - make', 'pdfm'))
+        command_section.append(('output pdf - view', 'pdfv'))
         return main_menu
 
     ### PUBLIC PROPERTIES ###
@@ -63,6 +65,13 @@ class SegmentPackageProxy(PackageProxy):
 
     ### PUBLIC METHODS ###
 
+    def interactively_edit_segment_definition_module(self):
+        r'''Interactively edits segment definition module.
+
+        Returns none.
+        '''
+        self.session.io_manager.print_not_yet_implemented()
+
     def interactively_make_asset(self, prompt=True):
         r'''Interactively makes asset.
 
@@ -70,8 +79,22 @@ class SegmentPackageProxy(PackageProxy):
         '''
         self.session.io_manager.print_not_yet_implemented()
 
+    def interactively_rename_segment(self):
+        r'''Interactively renames segment.
+
+        Returns none.
+        '''
+        self.session.io_manager.print_not_yet_implemented()
+
     def interactively_set_score_template(self):
         r'''Interactively sets score template.
+
+        Returns none.
+        '''
+        self.session.io_manager.print_not_yet_implemented()
+
+    def interactively_view_segment_pdf(self):
+        r'''Interactively views segment PDF.
 
         Returns none.
         '''
@@ -89,13 +112,14 @@ class SegmentPackageProxy(PackageProxy):
         if not os.path.exists(history_directory):
             os.mkdir(history_directory)
 
+    # hoist to superclass
     def remove_segment_package(self):
         r'''Removes segment package.
 
-        Returns false.
+        Returns none.
         '''
         self.remove()
-        return False
+        self.session.is_backtracking_locally = True
 
     def write_initializer_to_disk(self):
         r'''Writes initializer to disk.
@@ -119,9 +143,22 @@ class SegmentPackageProxy(PackageProxy):
             file_pointer.write('\n\n')
             file_pointer.close()
 
+    def write_segment_ly_and_pdf_to_disk(self):
+        r'''Writes segment LilyPond file and PDF to disk.
+
+        Returns none.
+        '''
+        self.session.io_manager.print_not_yet_implemented()
+
     ### UI MANIFEST ###
 
     user_input_to_action = PackageProxy.user_input_to_action.copy()
     user_input_to_action.update({
-        'd': remove_segment_package,
+        # maybe generalize to interactively_rename_package 
+        'ren': interactively_rename_segment,
+        # maybe generalize to remove_package
+        'rm': remove_segment_package,
+        'sde': interactively_edit_segment_definition_module,
+        'pdfm': write_segment_ly_and_pdf_to_disk,
+        'pdfv': interactively_view_segment_pdf,
         })

@@ -68,7 +68,7 @@ class MaterialPackageProxy(PackageProxy):
 
     def _make_main_menu_section_for_hidden_entries(self, main_menu):
         hidden_section = main_menu.make_command_section(is_hidden=True)
-        hidden_section.append(('delete package', 'rm'))
+        hidden_section.append(('remove package', 'rm'))
         hidden_section.append(('list package', 'ls'))
         hidden_section.append(('rename package', 'ren'))
         hidden_section.append(('manage stylesheets', 'stl'))
@@ -173,7 +173,7 @@ class MaterialPackageProxy(PackageProxy):
             if self.has_material_definition or \
                 self.has_complete_user_input_wrapper_in_memory:
                 command_section = main_menu.make_command_section()
-                command_section.append(('output material = make', 'omm'))
+                command_section.append(('output material - make', 'omm'))
                 has_output_material_section = True
             if self.has_output_material_editor:
                 command_section = main_menu.make_command_section()
@@ -792,6 +792,7 @@ class MaterialPackageProxy(PackageProxy):
         if self.has_material_definition_module:
             self.material_definition_module_proxy.remove()
 
+    # hoist to superclass and rename remove_package()
     def remove_material_package(self):
         self.remove()
         self.session.is_backtracking_locally = True
@@ -931,7 +932,9 @@ class MaterialPackageProxy(PackageProxy):
         'pdfm': write_illustration_ly_and_pdf_to_disk,
         'pdfd': remove_illustration_pdf,
         'pdfv': interactively_view_illustration_pdf,
+        # maybe generalize to interactively_rename_package
         'ren': interactively_rename_material,
+        # maybe generalize to remove_package
         'rm': remove_material_package,
         'ssm': interactively_edit_stylesheet_file,
         'sss': interactively_select_stylesheet,

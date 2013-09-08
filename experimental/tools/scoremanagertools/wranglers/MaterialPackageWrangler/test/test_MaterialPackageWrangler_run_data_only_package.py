@@ -126,7 +126,7 @@ def test_MaterialPackageWrangler_run_data_only_package_05():
     try:
         score_manager._run(pending_user_input=
             'm d testnumbers default '
-            'testnumbers mddelete remove default q')
+            'testnumbers mddelete default q')
         assert score_manager.configuration.packagesystem_path_exists(
             'experimental.tools.scoremanagertools.materialpackages.testnumbers')
         mpp = scoremanagertools.proxies.MaterialPackageProxy(
@@ -172,8 +172,8 @@ def test_MaterialPackageWrangler_run_data_only_package_06():
 
 
 def test_MaterialPackageWrangler_run_data_only_package_07():
-    r'''Make data package. Copy canned material definition. Make output material. Remove output material.
-    Remove package.
+    r'''Make data package. Copy canned material definition. 
+    Make output material. Remove output material. Remove package.
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -183,21 +183,24 @@ def test_MaterialPackageWrangler_run_data_only_package_07():
     try:
         score_manager._run(pending_user_input=
             'm d testnumbers default '
-            'testnumbers mdcanned canned_testnumbers_material_definition.py default '
+            'testnumbers mdcanned canned_testnumbers_material_definition.py '
+            'default '
             'omm default '
-            'omdelete remove default q')
+            'omdelete default q')
         assert score_manager.configuration.packagesystem_path_exists(
             'experimental.tools.scoremanagertools.materialpackages.testnumbers')
         mpp = scoremanagertools.proxies.MaterialPackageProxy(
             'experimental.tools.scoremanagertools.materialpackages.testnumbers')
         assert mpp.is_data_only
-        assert mpp.list_directory() == ['__init__.py', 'material_definition.py', 'tags.py']
+        assert mpp.list_directory() == [
+            '__init__.py', 'material_definition.py', 'tags.py']
         assert mpp.has_user_finalized_material_definition_module
         assert not mpp.has_output_material_module
         assert mpp.material_definition == [1, 2, 3, 4, 5]
         assert mpp.output_material is None
     finally:
-        score_manager._run(pending_user_input='m testnumbers del remove default q')
+        score_manager._run(
+            pending_user_input='m testnumbers del remove default q')
         assert not score_manager.configuration.packagesystem_path_exists(
             'experimental.tools.scoremanagertools.materialpackages.testnumbers')
 
