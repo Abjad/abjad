@@ -5,6 +5,8 @@ from experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler \
 
 
 class ModuleWrangler(PackagesystemAssetWrangler):
+    r'''Module wrangler.
+    '''
 
     ### PRIVATE METHODS ###
 
@@ -19,5 +21,9 @@ class ModuleWrangler(PackagesystemAssetWrangler):
 
     @property
     def asset_proxy_class(self):
+        r'''Asset proxy class of module wrangler.
+
+        Returns class.
+        '''
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.ModuleProxy

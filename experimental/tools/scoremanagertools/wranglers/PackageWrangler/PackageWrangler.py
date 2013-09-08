@@ -7,6 +7,8 @@ from experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler \
 
 
 class PackageWrangler(PackagesystemAssetWrangler):
+    r'''Package wrangler.
+    '''
 
     ### CLASS VARIABLES ###
 
@@ -36,9 +38,17 @@ class PackageWrangler(PackagesystemAssetWrangler):
     ### PUBLIC METHODS ###
 
     def interactively_make_asset(self):
+        r'''Interactively makes asset.
+
+        Returns none.
+        '''
         self.session.io_manager.print_not_yet_implemented()
 
     def make_asset(self, asset_name):
+        r'''Makes asset.
+
+        Returns none.
+        '''
         assert stringtools.is_snake_case_package_name(asset_name)
         asset_filesystem_path = os.path.join(
             self._current_storehouse_filesystem_path, asset_name)

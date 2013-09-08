@@ -70,6 +70,10 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
     ### PUBLIC METHODS ###
 
     def interactively_rename_asset(self, head=None):
+        r'''Interactively renames asset.
+
+        Returns none.
+        '''
         with self.backtracking:
             asset_package_path = \
                 self.interactively_select_asset_packagesystem_path(
@@ -87,6 +91,10 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         infinitival_phrase=None,
         pending_user_input=None,
         ):
+        '''Interactively selects asset packagesystem path.
+
+        Returns string.
+        '''
         self.session.cache_breadcrumbs(cache=cache)
         while True:
             self.session.push_breadcrumb(
@@ -105,12 +113,18 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         self.session.restore_breadcrumbs(cache=cache)
         return result
 
-    def list_asset_packagesystem_paths(self,
+    def list_asset_packagesystem_paths(
+        self,
         in_built_in_asset_library=True,
         in_user_asset_library=True,
         in_built_in_score_packages=True,
         in_user_score_packages=True,
-        head=None):
+        head=None,
+        ):
+        r'''Lists asset packagesystem paths.
+
+        Returns list.
+        '''
         result = []
         for filesystem_path in self.list_asset_filesystem_paths(
             in_built_in_asset_library=in_built_in_asset_library,
@@ -124,28 +138,41 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             result.append(packagesystem_path)
         return result
 
-    def list_asset_proxies(self,
+    def list_asset_proxies(
+        self,
         in_built_in_asset_library=True,
         in_user_asset_library=True,
         in_built_in_score_packages=True,
         in_user_score_packages=True,
-        head=None):
+        head=None,
+        ):
+        r'''Lists asset proxies.
+
+        Returns list.
+        '''
         result = []
         for package_path in self.list_asset_packagesystem_paths(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
-            head=head):
+            head=head,
+            ):
             asset_proxy = self._initialize_asset_proxy(package_path)
             result.append(asset_proxy)
         return result
 
-    def list_asset_storehouse_packagesystem_paths(self,
+    def list_asset_storehouse_packagesystem_paths(
+        self,
         in_built_in_asset_library=True,
         in_user_asset_library=True,
         in_built_in_score_packages=True,
-        in_user_score_packages=True):
+        in_user_score_packages=True,
+        ):
+        r'''Lists asset storehouse packagesystem paths.
+
+        Returns list.
+        '''
         result = []
         superclass = super(PackagesystemAssetWrangler, self)
         for filesystem_path in \
@@ -153,7 +180,8 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             in_built_in_asset_library=True,
             in_user_asset_library=True,
             in_built_in_score_packages=True,
-            in_user_score_packages=True):
+            in_user_score_packages=True,
+            ):
             packagesystem_path = \
                 self.configuration.filesystem_path_to_packagesystem_path(
                 filesystem_path)
@@ -161,6 +189,10 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         return result
 
     def list_visible_asset_packagesystem_paths(self, head=None):
+        r'''Lists visible asset packagesystem paths.
+
+        Returns list.
+        '''
         result = []
         if hasattr(self, 'list_visible_asset_proxies'):
             for asset_proxy in self.list_visible_asset_proxies(head=head):
@@ -171,21 +203,33 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
                 in_user_asset_library=True,
                 in_built_in_score_packages=True,
                 in_user_score_packages=True,
-                head=head):
+                head=head,
+                ):
                 result.append(asset_proxy.package_path)
         return result
 
     def make_asset_storehouse_packages(self, is_interactive=False):
+        r'''Makes asset storehouse packages.
+
+        Returns none.
+        '''
         for package_path in self.list_asset_storehouse_packagesystem_paths(
             in_built_in_asset_library=True,
             in_user_asset_library=True,
             in_built_in_score_packages=True,
-            in_user_score_packages=True):
+            in_user_score_packages=True,
+            ):
             self.make_empty_package(package_path)
         self.session.io_manager.proceed(
-            'missing packages created.', is_interactive=is_interactive)
+            'missing packages created.', 
+            is_interactive=is_interactive,
+            )
 
     def make_empty_package(self, package_path):
+        r'''Makes empty package.
+
+        Returns none.
+        '''
         if package_path is None:
             return
         directory_path = \

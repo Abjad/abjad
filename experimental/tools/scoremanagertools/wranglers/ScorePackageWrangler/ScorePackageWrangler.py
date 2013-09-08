@@ -7,7 +7,7 @@ from experimental.tools.scoremanagertools.wranglers.PackageWrangler \
 
 
 class ScorePackageWrangler(PackageWrangler):
-    r'''Score package wrangler:
+    r'''Score package wrangler.
 
     ::
 
@@ -24,7 +24,6 @@ class ScorePackageWrangler(PackageWrangler):
         >>> wrangler_in_built_in_score
         ScorePackageWrangler()
 
-    Return score package wrangler.
     '''
 
     ### CLASS VARIABLES ###
@@ -89,34 +88,38 @@ class ScorePackageWrangler(PackageWrangler):
 
     @property
     def asset_proxy_class(self):
-        r'''Score package wrangler asset proxy class:
+        r'''Asset proxy class of score package wrangler.
 
         ::
 
             >>> wrangler.asset_proxy_class.__name__
             'ScorePackageProxy'
 
-        Return class.
+        Returns class.
         '''
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.ScorePackageProxy
 
     @property
     def storage_format(self):
-        r'''Score package wrangler storage format:
+        r'''Storage format of score package wrangler.
 
         ::
 
             >>> wrangler.storage_format
             'wranglers.ScorePackageWrangler()'
 
-        Return string.
+        Returns string.
         '''
         return super(ScorePackageWrangler, self).storage_format
 
     ### PUBLIC METHODS ###
 
     def fix_visible_assets(self, is_interactive=True):
+        r'''Fixes visible assets.
+
+        Returns result list.
+        '''
         results = []
         for asset_proxy in self.list_visible_asset_proxies():
             results.append(asset_proxy.fix(is_interactive=is_interactive))
@@ -125,6 +128,10 @@ class ScorePackageWrangler(PackageWrangler):
         return results
 
     def interactively_make_asset(self, rollback=False):
+        r'''Interactively makes asset.
+
+        Return none.
+        '''
         breadcrumb = self.session.pop_breadcrumb(rollback=rollback)
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.indent_level = 1
@@ -146,13 +153,15 @@ class ScorePackageWrangler(PackageWrangler):
         score_package_proxy.year_of_completion = year
         self.session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
 
-    def list_asset_filesystem_paths(self,
+    def list_asset_filesystem_paths(
+        self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
-        head=None):
-        r'''List asset filesystem paths.
+        head=None,
+        ):
+        r'''Lists asset filesystem paths.
 
         Example. List built-in score package filesystem paths:
 
@@ -166,22 +175,26 @@ class ScorePackageWrangler(PackageWrangler):
             '.../tools/scoremanagertools/scorepackages/green_example_score'
             '.../tools/scoremanagertools/scorepackages/red_example_score'
 
-        Return list.
+        Returns list.
         '''
-        return super(ScorePackageWrangler, self).list_asset_filesystem_paths(
+        superclass = super(ScorePackageWrangler, self)
+        return superclass.list_asset_filesystem_paths(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
-            head=head)
+            head=head,
+            )
 
-    def list_asset_names(self,
+    def list_asset_names(
+        self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
-        head=None):
-        r'''List asset names.
+        head=None,
+        ):
+        r'''Lists asset names.
 
         Example. List built-in score package names:
 
@@ -195,22 +208,26 @@ class ScorePackageWrangler(PackageWrangler):
             'green example score'
             'red example score'
 
-        Return list.
+        Returns list.
         '''
-        return super(ScorePackageWrangler, self).list_asset_names(
+        superclass = super(ScorePackageWrangler, self)
+        return superclass.list_asset_names(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
-            head=head)
+            head=head,
+            )
 
-    def list_asset_packagesystem_paths(self,
+    def list_asset_packagesystem_paths(
+        self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
-        head=None):
-        r'''List asset packagesystem paths.
+        head=None,
+        ):
+        r'''Lists asset packagesystem paths.
 
         Example. List built-in score package paths:
 
@@ -224,22 +241,26 @@ class ScorePackageWrangler(PackageWrangler):
             'experimental.tools.scoremanagertools.scorepackages.green_example_score'
             'experimental.tools.scoremanagertools.scorepackages.red_example_score'
 
-        Return list.
+        Returns list.
         '''
-        return super(ScorePackageWrangler, self).list_asset_packagesystem_paths(
+        superclass = super(ScorePackageWrangler, self)
+        return superclass.list_asset_packagesystem_paths(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
-            head=head)
+            head=head,
+            )
 
-    def list_asset_proxies(self,
+    def list_asset_proxies(
+        self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
-        head=None):
-        r'''List asset proxies.
+        head=None,
+        ):
+        r'''Lists asset proxies.
 
         Example. List built-in score package proxies:
 
@@ -253,21 +274,25 @@ class ScorePackageWrangler(PackageWrangler):
             ScorePackageProxy('.../tools/scoremanagertools/scorepackages/green_example_score')
             ScorePackageProxy('.../tools/scoremanagertools/scorepackages/red_example_score')
 
-        Return list.
+        Returns list.
         '''
-        return super(ScorePackageWrangler, self).list_asset_proxies(
+        superclass = super(ScorePackageWrangler, self)
+        return superclass.list_asset_proxies(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
-            head=head)
+            head=head,
+            )
 
-    def list_asset_storehouse_filesystem_paths(self,
+    def list_asset_storehouse_filesystem_paths(
+        self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
-        in_user_score_packages=True):
-        r'''List asset storehouse filesystem paths.
+        in_user_score_packages=True,
+        ):
+        r'''Lists asset storehouse filesystem paths.
 
         Example. List built-in score storehouse:
 
@@ -279,21 +304,25 @@ class ScorePackageWrangler(PackageWrangler):
             ...     x
             '.../tools/scoremanagertools/scorepackages'
 
-        Return list.
+        Returns list.
         '''
-        return super(ScorePackageWrangler, self).list_asset_storehouse_filesystem_paths(
+        superclass = super(ScorePackageWrangler, self)
+        return superclass.list_asset_storehouse_filesystem_paths(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages)
+            in_user_score_packages=in_user_score_packages,
+            )
 
-    def list_visible_asset_filesystem_paths(self,
+    def list_visible_asset_filesystem_paths(
+        self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
-        head=None):
-        r'''List visible asset filesystem paths.
+        head=None,
+        ):
+        r'''Lists visible asset filesystem paths.
 
         Example. List visible built-in score package filesystem paths:
 
@@ -307,7 +336,7 @@ class ScorePackageWrangler(PackageWrangler):
             '.../tools/scoremanagertools/scorepackages/green_example_score'
             '.../tools/scoremanagertools/scorepackages/red_example_score'
 
-        Return list.
+        Returns list.
         '''
         result = []
         for visible_asset_proxy in self.list_visible_asset_proxies(
@@ -315,17 +344,20 @@ class ScorePackageWrangler(PackageWrangler):
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
-            head=head):
+            head=head,
+            ):
             result.append(visible_asset_proxy.filesystem_path)
         return result
 
-    def list_visible_asset_package_path_and_score_title_pairs(self,
+    def list_visible_asset_package_path_and_score_title_pairs(
+        self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True,
-        head=None):
-        r'''List visible asset package path and score title pairs.
+        head=None,
+        ):
+        r'''Lists visible asset package path and score title pairs.
 
         Example. List visible built-in score package path and title pairs:
 
@@ -339,16 +371,18 @@ class ScorePackageWrangler(PackageWrangler):
             ('experimental.tools.scoremanagertools.scorepackages.green_example_score', 'Green Example Score (2013)')
             ('experimental.tools.scoremanagertools.scorepackages.red_example_score', 'Red Example Score (2013)')
 
-        Return list.
+        Returns list.
         '''
         result = []
         scores_to_show = self.session.scores_to_show
-        for asset_proxy in PackageWrangler.list_asset_proxies(self,
+        for asset_proxy in PackageWrangler.list_asset_proxies(
+            self,
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
-            head=head):
+            head=head,
+            ):
             tags = asset_proxy.get_tags()
             is_mothballed = tags.get('is_mothballed', False)
             if scores_to_show == 'all' or \
@@ -362,13 +396,15 @@ class ScorePackageWrangler(PackageWrangler):
                 result.append((asset_proxy.package_path, title_with_year))
         return result
 
-    def list_visible_asset_packagesystem_paths(self,
+    def list_visible_asset_packagesystem_paths(
+        self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
-        head=None):
-        r'''List visible asset packagesystem paths.
+        head=None,
+        ):
+        r'''Lists visible asset packagesystem paths.
 
         Example. List visible built-in score package packagesystem paths:
 
@@ -382,7 +418,7 @@ class ScorePackageWrangler(PackageWrangler):
             'experimental.tools.scoremanagertools.scorepackages.green_example_score'
             'experimental.tools.scoremanagertools.scorepackages.red_example_score'
 
-        Return list.
+        Returns list.
         '''
         result = []
         for filesystem_path in self.list_visible_asset_filesystem_paths(
@@ -390,18 +426,21 @@ class ScorePackageWrangler(PackageWrangler):
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
-            head=head):
+            head=head,
+            ):
             packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
             result.append(packagesystem_path)
         return result
 
-    def list_visible_asset_proxies(self,
+    def list_visible_asset_proxies(
+        self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True,
-        head=None):
-        r'''List visible asset proxies.
+        head=None,
+        ):
+        r'''Lists visible asset proxies.
 
         Example. List visible score package proxies:
 
@@ -415,16 +454,18 @@ class ScorePackageWrangler(PackageWrangler):
             ScorePackageProxy('.../tools/scoremanagertools/scorepackages/green_example_score')
             ScorePackageProxy('.../tools/scoremanagertools/scorepackages/red_example_score')
 
-        Return list.
+        Returns list.
         '''
         result = []
         scores_to_show = self.session.scores_to_show
-        for asset_proxy in PackageWrangler.list_asset_proxies(self,
+        for asset_proxy in PackageWrangler.list_asset_proxies(
+            self,
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
-            head=head):
+            head=head,
+            ):
             is_mothballed = asset_proxy.get_tag('is_mothballed')
             if scores_to_show == 'all':
                 result.append(asset_proxy)
@@ -435,10 +476,18 @@ class ScorePackageWrangler(PackageWrangler):
         return result
 
     def profile_visible_assets(self):
+        r'''Profiles visible assets.
+
+        Returns none.
+        '''
         for asset_proxy in self.list_visible_asset_proxies():
             asset_proxy.profile()
 
     def svn_add_assets(self, is_interactive=True):
+        r'''Adds assets to repository.
+
+        Return none.
+        '''
         if hasattr(self, 'list_visible_asset_proxies'):
             proxies = self.list_visible_asset_proxies()
         else:
@@ -450,6 +499,10 @@ class ScorePackageWrangler(PackageWrangler):
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def svn_ci_assets(self, is_interactive=True):
+        r'''Commits assets to repository.
+
+        Returns none.
+        '''
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string('commit message')
         commit_message = getter._run()
@@ -470,6 +523,10 @@ class ScorePackageWrangler(PackageWrangler):
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def svn_st_assets(self, is_interactive=True):
+        r'''Check asset status in repository.
+
+        Returns none.
+        '''
         if hasattr(self, 'list_visible_asset_proxies'):
             proxies = self.list_visible_asset_proxies()
         else:
@@ -481,6 +538,10 @@ class ScorePackageWrangler(PackageWrangler):
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def svn_up_assets(self, is_interactive=True):
+        r'''Updates assets from repository.
+
+        Returns none.
+        '''
         if hasattr(self, 'list_visible_asset_proxies'):
             proxies = self.list_visible_asset_proxies()
         else:

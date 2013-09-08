@@ -46,9 +46,9 @@ class ScoreManagerObject(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        r'''Score manager object repr.
+        r'''Interpreter representation of score manager object.
 
-        Return string.
+        Returns string.
         '''
         return '{}()'.format(self._class_name)
 
@@ -84,4 +84,8 @@ class ScoreManagerObject(AbjadObject):
 
     @property
     def session(self):
+        '''Session of score manager object.
+
+        Returns session.
+        '''
         return self._session

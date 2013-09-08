@@ -18,7 +18,6 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         >>> wrangler
         MaterialPackageMakerWrangler()
 
-    Return material package maker wrangler.
     '''
 
     ### CLASS VARIABLES ###
@@ -100,34 +99,38 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     @property
     def asset_proxy_class(self):
-        r'''Asset proxy class:
+        r'''Asset proxy class of material package maker wrangler.
 
         ::
 
             >>> wrangler.asset_proxy_class.__name__
             'PackageProxy'
 
-        Return class.
+        Returns class.
         '''
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.PackageProxy
 
     @property
     def storage_format(self):
-        r'''Material package maker wrangler storage format:
+        r'''Storage format of material package maker wrangler.
 
         ::
 
             >>> wrangler.storage_format
             'wranglers.MaterialPackageMakerWrangler()'
 
-        Return string.
+        Returns string.
         '''
         return super(MaterialPackageMakerWrangler, self).storage_format
 
     ### PUBLIC METHODS ###
 
     def interactively_make_asset(self):
+        r'''Interactively makes asset.
+
+        Returns none.
+        '''
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_material_package_maker_class_name(
             'material proxy name')
@@ -146,13 +149,15 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             material_package_maker_class_name, generic_output_product_name)
         self.make_asset_stylesheet(material_package_maker_class_name)
 
-    def list_asset_filesystem_paths(self,
+    def list_asset_filesystem_paths(
+        self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
-        head=None):
-        r'''List asset filesystem paths.
+        head=None,
+        ):
+        r'''Lists asset filesystem paths.
 
         Example. List built-in material package maker filesystem paths:
 
@@ -172,22 +177,26 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             '.../tools/scoremanagertools/materialpackagemakers/SargassoMeasureMaterialPackageMaker'
             '.../tools/scoremanagertools/materialpackagemakers/TempoMarkInventoryMaterialPackageMaker'
 
-        Return list.
+        Returns list.
         '''
-        return super(MaterialPackageMakerWrangler, self).list_asset_filesystem_paths(
+        superclass = super(MaterialPackageMakerWrangler, self)
+        return superclass.list_asset_filesystem_paths(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
-            head=head)
+            head=head,
+            )
 
-    def list_asset_names(self,
+    def list_asset_names(
+        self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
-        head=None):
-        r'''List asset names.
+        head=None,
+        ):
+        r'''Lists asset names.
 
         Example. List built-in material package maker names:
 
@@ -207,22 +216,26 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             'sargasso measure material package maker'
             'tempo mark inventory material package maker'
 
-        Return list.
+        Returns list.
         '''
-        return super(MaterialPackageMakerWrangler, self).list_asset_names(
+        superclass = super(MaterialPackageMakerWrangler, self)
+        return superclass.list_asset_names(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
-            head=head)
+            head=head,
+            )
 
-    def list_asset_packagesystem_paths(self,
+    def list_asset_packagesystem_paths(
+        self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
-        head=None):
-        r'''List asset packagesystem_paths.
+        head=None,
+        ):
+        r'''Lists asset packagesystem_paths.
 
         Example. List built-in material package maker package paths:
 
@@ -242,22 +255,26 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             'experimental.tools.scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker'
             'experimental.tools.scoremanagertools.materialpackagemakers.TempoMarkInventoryMaterialPackageMaker'
 
-        Return list.
+        Returns list.
         '''
-        return super(MaterialPackageMakerWrangler, self).list_asset_packagesystem_paths(
+        superclass = super(MaterialPackageMakerWrangler, self)
+        return superclass.list_asset_packagesystem_paths(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
-            head=head)
+            head=head,
+            )
 
-    def list_asset_proxies(self,
+    def list_asset_proxies(
+        self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
-        head=None):
-        r'''List asset proxies.
+        head=None,
+        ):
+        r'''Lists asset proxies.
 
         Example. List built-in material package maker proxies:
 
@@ -277,21 +294,25 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/SargassoMeasureMaterialPackageMaker')
             MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/TempoMarkInventoryMaterialPackageMaker')
 
-        Return list.
+        Returns list.
         '''
-        return super(MaterialPackageMakerWrangler, self).list_asset_proxies(
+        superclass = super(MaterialPackageMakerWrangler, self)
+        return superclass.list_asset_proxies(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
-            head=head)
+            head=head,
+            )
 
-    def list_asset_storehouse_filesystem_paths(self,
+    def list_asset_storehouse_filesystem_paths(
+        self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
-        in_user_score_packages=True):
-        r'''List asset storehouse filesystem paths.
+        in_user_score_packages=True,
+        ):
+        r'''Lists asset storehouse filesystem paths.
 
         Example. List built-in material package maker storehouses:
 
@@ -303,16 +324,22 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             ...     x
             '.../tools/scoremanagertools/materialpackagemakers'
 
-        Return list.
+        Returns list.
         '''
-        return super(MaterialPackageMakerWrangler, self).list_asset_storehouse_filesystem_paths(
+        superclass = super(MaterialPackageMakerWrangler, self)
+        return superclass.list_asset_storehouse_filesystem_paths(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages)
+            in_user_score_packages=in_user_score_packages,
+            )
 
     # TODO: change to boilerplate
     def make_asset_class_file(self, package_name, generic_output_name):
+        r'''Makes asset class file.
+
+        Returns none.
+        '''
         class_file_name = os.path.join(
             self.asset_storehouse_packagesystem_path_in_built_in_asset_library,
             package_name, package_name + '.py')
@@ -365,10 +392,15 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     # TODO: change to boilerplate
     def make_asset_initializer(self, package_name):
+        r'''Makes asset initializer.
+
+        Returns none.
+        '''
         initializer_file_name = os.path.join(
             self.asset_storehouse_packagesystem_path_in_built_in_asset_library,
             package_name, 
-            '__init__.py')
+            '__init__.py',
+            )
         initializer = file(initializer_file_name, 'w')
         line = 'from abjad.tools import importtools\n'
         initializer.write(line)
@@ -379,6 +411,10 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     # TODO: change to boilerplate
     def make_asset_stylesheet(self, package_name):
+        r'''Makes asset stylesheet.
+
+        Returns none.
+        '''
         stylesheet = lilypondfiletools.make_basic_lilypond_file()
         stylesheet.pop()
         stylesheet.file_initial_system_comments = []

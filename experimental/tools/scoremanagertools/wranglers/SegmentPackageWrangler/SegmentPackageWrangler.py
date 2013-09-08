@@ -14,7 +14,6 @@ class SegmentPackageWrangler(PackageWrangler):
         >>> wrangler
         SegmentPackageWrangler()
 
-    Return segment package wrangler.
     '''
 
     ### CLASS VARIABLES ###
@@ -53,44 +52,50 @@ class SegmentPackageWrangler(PackageWrangler):
 
     @property
     def asset_proxy_class(self):
-        r'''Segment package wrangler asset proxy class:
+        r'''Asset proxy class of segment package wrangler.
 
         ::
 
             >>> wrangler.asset_proxy_class.__name__
             'SegmentPackageProxy'
 
-        Return class.
+        Returns class.
         '''
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.SegmentPackageProxy
 
     @property
     def storage_format(self):
-        r'''Segment package wrangler storage format:
+        r'''Storage format of segment package wrangler.
 
         ::
 
             >>> wrangler.storage_format
             'wranglers.SegmentPackageWrangler()'
 
-        Return string.
+        Returns string.
         '''
         return super(SegmentPackageWrangler, self).storage_format
 
     ### PUBLIC METHODS ###
 
     def interactively_make_asset(self):
+        r'''Interactively makes segment package.
+
+        Returns none.
+        '''
         segment_package_proxy = self.asset_proxy_class(session=self.session)
         segment_package_proxy.interactively_make_asset()
 
-    def list_asset_filesystem_paths(self,
+    def list_asset_filesystem_paths(
+        self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
-        head=None):
-        r'''List asset filesystem paths.
+        head=None,
+        ):
+        r'''Lists asset filesystem paths.
 
         Example. List built-in segment package filesystem paths:
 
@@ -106,24 +111,28 @@ class SegmentPackageWrangler(PackageWrangler):
             '.../tools/scoremanagertools/scorepackages/red_example_score/music/segments/segment_02.py'
             '.../tools/scoremanagertools/scorepackages/red_example_score/music/segments/segment_03.py'
 
-        Return list.
+        Returns list.
         '''
-        return super(SegmentPackageWrangler, self).list_asset_filesystem_paths(
+        superclass = super(SegmentPackageWrangler, self)
+        return superclass.list_asset_filesystem_paths(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
-            head=head)
+            head=head,
+            )
 
-    def list_asset_names(self,
+    def list_asset_names(
+        self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
-        head=None):
-        r'''List asset names.
+        head=None,
+        ):
+        r'''Lists asset names.
 
-        Example. List built-in segment package names:
+        Example 1. List built-in segment package names:
 
         ::
 
@@ -146,22 +155,26 @@ class SegmentPackageWrangler(PackageWrangler):
             'segment 02'
             'segment 03'
 
-        Return list.
+        Returns list.
         '''
-        return super(SegmentPackageWrangler, self).list_asset_names(
+        superclass = super(SegmentPackageWrangler, self)
+        return superclass.list_asset_names(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
-            head=head)
+            head=head,
+            )
 
-    def list_asset_packagesystem_paths(self,
+    def list_asset_packagesystem_paths(
+        self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
-        head=None):
-        r'''List asset packagesystem paths.
+        head=None,
+        ):
+        r'''Lists asset packagesystem paths.
 
         Example. List built-in segment package paths:
 
@@ -177,24 +190,28 @@ class SegmentPackageWrangler(PackageWrangler):
             'experimental.tools.scoremanagertools.scorepackages.red_example_score.music.segments.segment_02'
             'experimental.tools.scoremanagertools.scorepackages.red_example_score.music.segments.segment_03'
 
-        Return list.
+        Returns list.
         '''
-        return super(SegmentPackageWrangler, self).list_asset_packagesystem_paths(
+        superclass = super(SegmentPackageWrangler, self)
+        return superclass.list_asset_packagesystem_paths(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
-            head=head)
+            head=head,
+            )
 
-    def list_asset_proxies(self,
+    def list_asset_proxies(
+        self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
-        head=None):
-        r'''List asset proxies.
+        head=None,
+        ):
+        r'''Lists asset proxies.
 
-        Example. List built-in segment package proxies:
+        Example 1. List built-in segment package proxies:
 
         ::
 
@@ -210,6 +227,8 @@ class SegmentPackageWrangler(PackageWrangler):
 
         Example 2. List red example score segment package proxies:
 
+        ::
+
             >>> head = 'experimental.tools.scoremanagertools.scorepackages.red_example_score'
             >>> for x in wrangler.list_asset_proxies(head=head):
             ...     x
@@ -217,21 +236,25 @@ class SegmentPackageWrangler(PackageWrangler):
             SegmentPackageProxy('.../tools/scoremanagertools/scorepackages/red_example_score/music/segments/segment_02')
             SegmentPackageProxy('.../tools/scoremanagertools/scorepackages/red_example_score/music/segments/segment_03')
 
-        Return list.
+        Returns list.
         '''
-        return super(SegmentPackageWrangler, self).list_asset_proxies(
+        superclass = super(SegmentPackageWrangler, self)
+        return superclass.list_asset_proxies(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
-            head=head)
+            head=head,
+            )
 
-    def list_asset_storehouse_filesystem_paths(self,
+    def list_asset_storehouse_filesystem_paths(
+        self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
-        in_user_score_packages=True):
-        r'''List asset storehouse filesystem paths.
+        in_user_score_packages=True,
+        ):
+        r'''Lists asset storehouse filesystem paths.
 
         Example. List built-in segment package storehouse filesystem paths:
 
@@ -245,13 +268,15 @@ class SegmentPackageWrangler(PackageWrangler):
             '.../tools/scoremanagertools/scorepackages/green_example_score/music/segments'
             '.../tools/scoremanagertools/scorepackages/red_example_score/music/segments'
 
-        Return list.
+        Returns list.
         '''
-        return super(SegmentPackageWrangler, self).list_asset_storehouse_filesystem_paths(
+        superclass = super(SegmentPackageWrangler, self)
+        return superclass.list_asset_storehouse_filesystem_paths(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages)
+            in_user_score_packages=in_user_score_packages,
+            )
 
     ### UI MANIFEST ###
 

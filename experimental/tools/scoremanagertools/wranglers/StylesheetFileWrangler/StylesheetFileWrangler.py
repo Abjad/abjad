@@ -9,11 +9,12 @@ from experimental.tools.scoremanagertools.wranglers.FileWrangler import \
 class StylesheetFileWrangler(FileWrangler):
     r'''Stylesheet file wrangler.
 
+    ::
+
         >>> wrangler = scoremanagertools.wranglers.StylesheetFileWrangler()
         >>> wrangler
         StylesheetFileWrangler()
 
-    Return stylesheet file wrangler.
     '''
 
     ### CLASS VARIABLES ###
@@ -95,21 +96,21 @@ class StylesheetFileWrangler(FileWrangler):
 
     @property
     def asset_proxy_class(self):
-        r'''Stylesheet file wrangler asset class:
+        r'''Asset proxy class of stylesheet file wrangler.
 
         ::
 
             >>> wrangler.asset_proxy_class.__name__
             'StylesheetFileProxy'
 
-        Return class.
+        Returns class.
         '''
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.StylesheetFileProxy
 
     @property
     def storage_format(self):
-        r'''Stylesheet file wrangler storage format:
+        r'''Storage format of stylesheet file wrangler.
 
         ::
 
@@ -123,11 +124,19 @@ class StylesheetFileWrangler(FileWrangler):
     ### PUBLIC METHODS ###
 
     def interactively_edit_asset(self, filesystem_path):
+        r'''Interactively edits asset.
+
+        Returns none.
+        '''
         proxy = self.asset_proxy_class(
             filesystem_path=filesystem_path, session=self.session)
         proxy.interactively_edit()
 
     def interactively_make_asset(self):
+        r'''Interactively makes asset.
+
+        Returns none.
+        '''
         from experimental.tools import scoremanagertools
         with self.backtracking:
             storehouse_path = \
@@ -135,7 +144,8 @@ class StylesheetFileWrangler(FileWrangler):
                 in_built_in_asset_library=False,
                 in_user_asset_library=True,
                 in_built_in_score_packages=False,
-                in_user_score_packages=False)
+                in_user_score_packages=False,
+                )
         if self.session.backtrack():
             return
         getter = self.session.io_manager.make_getter(where=self._where)
@@ -143,34 +153,31 @@ class StylesheetFileWrangler(FileWrangler):
         stylesheet_file_name = getter._run()
         if self.session.backtrack():
             return
-
         stylesheet_file_name = \
             stringtools.string_to_accent_free_snake_case(
             stylesheet_file_name)
-
         if not stylesheet_file_name.endswith('.ly'):
             stylesheet_file_name = stylesheet_file_name + '.ly'
-
         stylesheet_file_path = os.path.join(
             storehouse_path,
             stylesheet_file_name,
             )
-
         proxy = scoremanagertools.proxies.StylesheetFileProxy(
             stylesheet_file_path, session=self.session)
-
         if self.session.is_test:
             proxy.make_empty_asset()
         else:
             proxy.interactively_edit()
 
-    def list_asset_filesystem_paths(self,
+    def list_asset_filesystem_paths(
+        self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
-        head=None):
-        r'''Stylesheet file wrangler list asset filesystem paths.
+        head=None,
+        ):
+        r'''Lists asset filesystem paths.
 
         Example. List built-in stylesheet filesystem paths:
 
@@ -184,23 +191,27 @@ class StylesheetFileWrangler(FileWrangler):
             '.../tools/scoremanagertools/stylesheets/rhythm-letter-16.ly'
             '.../tools/scoremanagertools/scorepackages/red_example_score/music/stylesheets/red-example-score-stylesheet.ly'
 
-        Return list.
+        Returns list.
         '''
-        return super(StylesheetFileWrangler, self).list_asset_filesystem_paths(
+        superclass = super(StylesheetFileWrangler, self)
+        return superclass.list_asset_filesystem_paths(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
-            head=head)
+            head=head,
+            )
 
-    def list_asset_names(self, 
+    def list_asset_names(
+        self, 
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
         head=None, 
-        include_extension=False):
-        r'''Stylesheet file wrangler list asset names.
+        include_extension=False,
+        ):
+        r'''Lists asset names.
 
         Example. List built-in stylesheet names:
 
@@ -216,23 +227,27 @@ class StylesheetFileWrangler(FileWrangler):
             'rhythm-letter-16.ly'
             'red-example-score-stylesheet.ly'
 
-        Return list.
+        Returns list.
         '''
-        return super(StylesheetFileWrangler, self).list_asset_names(
+        superclass = super(StylesheetFileWrangler, self)
+        return superclass.list_asset_names(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head,
-            include_extension=include_extension)
+            include_extension=include_extension,
+            )
 
-    def list_asset_proxies(self, 
+    def list_asset_proxies(
+        self, 
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
-        head=None):
-        r'''Stylesheet file wrangler list asset proxies.
+        head=None,
+        ):
+        r'''Lists asset proxies.
 
         Example. List built-in stylesheet proxies:
 
@@ -247,21 +262,25 @@ class StylesheetFileWrangler(FileWrangler):
             StylesheetFileProxy('.../tools/scoremanagertools/stylesheets/rhythm-letter-16.ly')
             StylesheetFileProxy('.../tools/scoremanagertools/scorepackages/red_example_score/music/stylesheets/red-example-score-stylesheet.ly')
 
-        Return list.
+        Returns list.
         '''
-        return super(StylesheetFileWrangler, self).list_asset_proxies(
+        superclass = super(StylesheetFileWrangler, self)
+        return superclass.list_asset_proxies(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
-            head=head)
+            head=head,
+            )
 
-    def list_asset_storehouse_filesystem_paths(self,
+    def list_asset_storehouse_filesystem_paths(
+        self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
-        in_user_score_packages=True):
-        r'''Stylesheet file wrangler list storehouse filesystem paths.
+        in_user_score_packages=True,
+        ):
+        r'''Lists asset storehouse filesystem paths.
 
         Example. List built-in storehouse filesystem paths:
 
@@ -276,13 +295,15 @@ class StylesheetFileWrangler(FileWrangler):
             '.../tools/scoremanagertools/scorepackages/green_example_score/music/stylesheets'
             '.../tools/scoremanagertools/scorepackages/red_example_score/music/stylesheets'
 
-        Return list.
+        Returns list.
         '''
-        return super(StylesheetFileWrangler, self).list_asset_storehouse_filesystem_paths(
+        superclass = super(StylesheetFileWrangler, self)
+        return superclass.list_asset_storehouse_filesystem_paths(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages)
+            in_user_score_packages=in_user_score_packages,
+            )
 
     ### UI MANIFEST ###
 

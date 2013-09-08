@@ -112,35 +112,41 @@ class MaterialPackageWrangler(PackageWrangler):
 
     @property
     def asset_proxy_class(self):
-        r'''Material package wrangler asset proxy class:
+        r'''Asset proxy class of material packge wrangler.
 
         ::
 
             >>> wrangler.asset_proxy_class.__name__
             'PackageProxy'
 
-        Return class.
+        Returns class.
         '''
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.PackageProxy
 
     @property
     def storage_format(self):
-        r'''Material package wrangler storage format:
+        r'''Storage format of material package wrangler.
 
         ::
 
             >>> wrangler.storage_format
             'wranglers.MaterialPackageWrangler()'
 
-        Return string.
+        Returns string.
         '''
         return super(MaterialPackageWrangler, self).storage_format
 
     ### PUBLIC METHODS ###
 
     def interactively_get_available_material_packagesystem_path(
-        self, pending_user_input=None):
+        self, 
+        pending_user_input=None,
+        ):
+        r'''Interactively gets available material packagesystem path.
+
+        Return string.
+        '''
         self.session.io_manager.assign_user_input(
             pending_user_input=pending_user_input)
         while True:
@@ -165,7 +171,14 @@ class MaterialPackageWrangler(PackageWrangler):
                 return material_package_path
 
     def interactively_make_data_package(
-        self, tags=None, pending_user_input=None):
+        self, 
+        tags=None, 
+        pending_user_input=None,
+        ):
+        r'''Interactively makes data package.
+
+        Returns none.
+        '''
         self.session.io_manager.assign_user_input(
             pending_user_input=pending_user_input)
         with self.backtracking:
@@ -175,7 +188,14 @@ class MaterialPackageWrangler(PackageWrangler):
             return
         self.make_data_package(material_package_path, tags=tags)
 
-    def interactively_make_handmade_material_package(self, pending_user_input=None):
+    def interactively_make_handmade_material_package(
+        self, 
+        pending_user_input=None,
+        ):
+        r'''Interactively makes handmade material package.
+
+        Returns none.
+        '''
         self.session.io_manager.assign_user_input(
             pending_user_input=pending_user_input)
         with self.backtracking:
@@ -186,7 +206,13 @@ class MaterialPackageWrangler(PackageWrangler):
         self.make_handmade_material_package(material_package_path)
 
     def interactively_make_makermade_material_package(
-        self, pending_user_input=None):
+        self, 
+        pending_user_input=None,
+        ):
+        r'''Interactively makes makermade material package.
+
+        Returns none.
+        '''
         self.session.io_manager.assign_user_input(
             pending_user_input=pending_user_input)
         with self.backtracking:
@@ -210,18 +236,28 @@ class MaterialPackageWrangler(PackageWrangler):
         proxy.run_first_time()
 
     def interactively_make_numeric_sequence_package(
-        self, pending_user_input=None):
+        self, 
+        pending_user_input=None,
+        ):
+        r'''Interactively makes numeric sequence package.
+
+        Returns none.
+        '''
         tags = {'is_numeric_sequence': True}
         self.interactively_make_data_package(
-            tags=tags, pending_user_input=pending_user_input)
+            tags=tags, 
+            pending_user_input=pending_user_input,
+            )
 
-    def list_asset_filesystem_paths(self,
+    def list_asset_filesystem_paths(
+        self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
-        head=None):
-        r'''List asset filesystem paths.
+        head=None,
+        ):
+        r'''Lists asset filesystem paths.
 
         Example. List built-in material package filesystem paths:
 
@@ -240,22 +276,26 @@ class MaterialPackageWrangler(PackageWrangler):
             '.../scoremanagertools/materialpackages/sargasso_multipliers'
             '.../scorepackages/red_example_score/music/materials/tempo_inventory'
 
-        Return list.
+        Returns list.
         '''
-        return super(MaterialPackageWrangler, self).list_asset_filesystem_paths(
+        superclass = super(MaterialPackageWrangler, self)
+        return superclass.list_asset_filesystem_paths(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
-            head=head)
+            head=head,
+            )
 
-    def list_asset_names(self,
+    def list_asset_names(
+        self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
-        head=None):
-        r'''List asset names.
+        head=None,
+        ):
+        r'''Lists asset names.
 
         Example. List built-in material package names:
 
@@ -275,22 +315,26 @@ class MaterialPackageWrangler(PackageWrangler):
             'sargasso multipliers'
             'tempo inventory'
 
-        Return list.
+        Returns list.
         '''
-        return super(MaterialPackageWrangler, self).list_asset_names(
+        superclass = super(MaterialPackageWrangler, self)
+        return superclass.list_asset_names(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
-            head=head)
+            head=head,
+            )
 
-    def list_asset_packagesystem_paths(self,
+    def list_asset_packagesystem_paths(
+        self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
-        head=None):
-        r'''List asset packagesystem paths.
+        head=None,
+        ):
+        r'''Lists asset packagesystem paths.
 
         Example. List built-in material package paths:
 
@@ -311,22 +355,26 @@ class MaterialPackageWrangler(PackageWrangler):
             'experimental.tools.scoremanagertools.materialpackages.sargasso_multipliers'
             'experimental.tools.scoremanagertools.scorepackages.red_example_score.music.materials.tempo_inventory'
 
-        Return list.
+        Returns list.
         '''
-        return super(MaterialPackageWrangler, self).list_asset_packagesystem_paths(
+        superclass = super(MaterialPackageWrangler, self)
+        return superclass.list_asset_packagesystem_paths(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
-            head=head)
+            head=head,
+            )
 
-    def list_asset_proxies(self, 
+    def list_asset_proxies(
+        self, 
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
         in_user_score_packages=True, 
-        head=None):
-        r'''List asset proxies.
+        head=None,
+        ):
+        r'''Lists asset proxies.
 
         Example. List built-in material package proxies:
 
@@ -347,21 +395,25 @@ class MaterialPackageWrangler(PackageWrangler):
             MaterialPackageProxy('.../tools/scoremanagertools/materialpackages/sargasso_multipliers')
             TempoMarkInventoryMaterialPackageMaker('.../tools/scoremanagertools/scorepackages/red_example_score/music/materials/tempo_inventory')
 
-        Return list.
+        Returns list.
         '''
-        return super(MaterialPackageWrangler, self).list_asset_proxies(
+        superclass = super(MaterialPackageWrangler, self)
+        return superclass.list_asset_proxies(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
-            head=head)
+            head=head,
+            )
 
-    def list_asset_storehouse_filesystem_paths(self,
+    def list_asset_storehouse_filesystem_paths(
+        self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
         in_built_in_score_packages=True, 
-        in_user_score_packages=True):
-        r'''List asset storehouse filesystem paths.
+        in_user_score_packages=True,
+        ):
+        r'''Lists asset storehouse filesystem paths.
 
         Example. List built-in material package storehouse filesystem paths:
 
@@ -376,15 +428,21 @@ class MaterialPackageWrangler(PackageWrangler):
             '.../tools/scoremanagertools/scorepackages/green_example_score/music/materials'
             '.../tools/scoremanagertools/scorepackages/red_example_score/music/materials'
 
-        Return list.
+        Returns list.
         '''
-        return super(MaterialPackageWrangler, self).list_asset_storehouse_filesystem_paths(
+        superclass = super(MaterialPackageWrangler, self)
+        return superclass.list_asset_storehouse_filesystem_paths(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages)
+            in_user_score_packages=in_user_score_packages,
+            )
 
     def make_data_package(self, material_package_path, tags=None):
+        r'''Makes data package.
+
+        Returns none.
+        '''
         tags = tags or {}
         tags['material_package_maker_class_name'] = None
         tags['should_have_illustration'] = False
@@ -392,6 +450,10 @@ class MaterialPackageWrangler(PackageWrangler):
         self.make_material_package(material_package_path, tags=tags)
 
     def make_handmade_material_package(self, material_package_path, tags=None):
+        r'''Makes handmade material package.
+
+        Returns none.
+        '''
         tags = tags or {}
         tags['material_package_maker_class_name'] = None
         tags['should_have_illustration'] = True
@@ -399,7 +461,14 @@ class MaterialPackageWrangler(PackageWrangler):
         self.make_material_package(material_package_path, tags=tags)
 
     def make_makermade_material_package(self,
-        material_package_path, material_package_maker_class_name, tags=None):
+        material_package_path, 
+        material_package_maker_class_name, 
+        tags=None,
+        ):
+        r'''Makes makermade material package.
+
+        Returns none.
+        '''
         tags = tags or {}
         command = 'from experimental.tools.scoremanagertools.materialpackagemakers '
         command += 'import {} as material_package_maker_class'.format(
@@ -420,8 +489,16 @@ class MaterialPackageWrangler(PackageWrangler):
         tags['should_have_user_input_module'] = should_have_user_input_module
         self.make_material_package(material_package_path, tags=tags)
 
-    def make_material_package(self, material_package_path, 
-        is_interactive=False, tags=None):
+    def make_material_package(
+        self, 
+        material_package_path, 
+        is_interactive=False, 
+        tags=None,
+        ):
+        r'''Makes material package.
+
+        Returns none.
+        '''
         tags = collections.OrderedDict(tags or {})
         tags['is_material_package'] = True
         directory_path = \
@@ -443,6 +520,10 @@ class MaterialPackageWrangler(PackageWrangler):
         self.session.io_manager.proceed(line, is_interactive=is_interactive)
 
     def make_numeric_sequence_package(self, package_path):
+        r'''Makes numeric sequence package.
+
+        Returns none.
+        '''
         tags = {'is_numeric_sequence': True}
         self.make_data_package(package_path, tags=tags)
 
