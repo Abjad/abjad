@@ -43,7 +43,7 @@ class SegmentPackageWrangler(PackageWrangler):
         main_menu = self.session.io_manager.make_menu(where=self._where)
         asset_section = main_menu.make_asset_section()
         asset_menu_entries = self._make_asset_menu_entries(head=head)
-        asset_section.menu_entires = asset_menu_entries
+        asset_section.menu_entries = asset_menu_entries
         command_section = main_menu.make_command_section()
         command_section.append(('new segment', 'new'))
         return main_menu
@@ -138,7 +138,8 @@ class SegmentPackageWrangler(PackageWrangler):
 
             >>> for x in wrangler.list_asset_names(
             ...     in_user_asset_library=False, 
-            ...     in_user_score_packages=False):
+            ...     in_user_score_packages=False,
+            ...     ):
             ...     x
             'segment 01'
             'segment 02'

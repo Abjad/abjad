@@ -8,7 +8,7 @@ from experimental.tools.scoremanagertools.wranglers.PackageWrangler \
 
 
 class MaterialPackageWrangler(PackageWrangler):
-    r'''Material package wrangler:
+    r'''Material package wrangler.
 
     ::
 
@@ -28,7 +28,6 @@ class MaterialPackageWrangler(PackageWrangler):
         >>> wrangler_in_built_in_score
         MaterialPackageWrangler()
 
-    Return material package wrangler.
     '''
 
     ### CLASS VARIABLES ###

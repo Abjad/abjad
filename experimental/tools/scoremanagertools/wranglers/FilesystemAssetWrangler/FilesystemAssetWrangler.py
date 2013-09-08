@@ -333,21 +333,24 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             ):
-            if directory_path:
-                storehouse_package_path = \
-                    self.configuration.filesystem_path_to_packagesystem_path(
-                    directory_path)
-                for directory_entry in os.listdir(directory_path):
-                    if self._is_valid_directory_entry(directory_entry):
-                        filesystem_path = os.path.join(
-                            directory_path, directory_entry)
-                        if head is None:
+            if not directory_path:
+                continue
+            storehouse_package_path = \
+                self.configuration.filesystem_path_to_packagesystem_path(
+                directory_path)
+            for directory_entry in os.listdir(directory_path):
+                if self._is_valid_directory_entry(directory_entry):
+                    filesystem_path = os.path.join(
+                        directory_path, directory_entry,
+                        )
+                    if head is None:
+                        result.append(filesystem_path)
+                    else:
+                        package_path = '.'.join([
+                            storehouse_package_path, directory_entry,
+                            ])
+                        if package_path.startswith(head):
                             result.append(filesystem_path)
-                        else:
-                            package_path = '.'.join([
-                                storehouse_package_path, directory_entry])
-                            if package_path.startswith(head):
-                                result.append(filesystem_path)
         return result
 
     def list_asset_names(
