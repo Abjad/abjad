@@ -100,27 +100,24 @@ class CleanScript(DirectoryScript):
                 dirs.remove(dir)
 
     def setup_argument_parser(self, parser):
-
         parser.add_argument('path',
+            default=os.getcwd(),
+            help='directory tree to be recursed over',
+            nargs='?',
             type=self._validate_path,
-            help='directory tree to be recursed over'
             )
-
         parser.add_argument('--pyc',
             action='store_true',
             help='delete *.pyc files',
             )
-
         parser.add_argument('--pycache',
             action='store_true',
             help='delete __pycache__ folders',
             )
-
         parser.add_argument('--swp',
             action='store_true',
             help='delete Vim *.swp file',
             )
-
         parser.add_argument('--tmp',
             action='store_true',
             help='delete tmp* folders',

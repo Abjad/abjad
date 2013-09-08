@@ -266,8 +266,10 @@ class ReplaceInFilesScript(DirectoryScript):
     def setup_argument_parser(self, parser):
 
         parser.add_argument('path',
+            default=os.getcwd(),
+            help='directory tree to be recursed over',
+            nargs='?',
             type=self._validate_path,
-            help='directory tree to be recursed over'
             )
 
         parser.add_argument('old',

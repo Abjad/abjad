@@ -51,17 +51,13 @@ class SvnAddAllScript(DirectoryScript):
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
-
         command = 'svn st {}'.format(args.path)
-
         process = subprocess.Popen(command,
             shell=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE
             )
-
         lines = process.stdout.readlines()
-
         for line in lines:
             if line.startswith('?'):
                 command = 'svn add {}'.format(line.split()[-1])
@@ -69,6 +65,8 @@ class SvnAddAllScript(DirectoryScript):
 
     def setup_argument_parser(self, parser):
         parser.add_argument('path',
+            default=os.getcwd(),
+            nargs='?',
+            help='directory tree to be recursed over',
             type=self._validate_path,
-            help='directory tree to be recursed over'
             )

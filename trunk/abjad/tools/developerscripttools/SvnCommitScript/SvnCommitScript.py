@@ -87,6 +87,8 @@ class SvnCommitScript(DirectoryScript):
 
     def setup_argument_parser(self, parser):
         parser.add_argument('path',
+            default=os.getcwd(),
             help='commit the path PATH',
+            nargs='?',
             type=self._validate_path,
             )
