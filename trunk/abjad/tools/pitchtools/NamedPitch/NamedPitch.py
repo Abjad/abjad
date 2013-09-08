@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import collections
 from abjad.tools.pitchtools.Accidental import Accidental
 from abjad.tools.pitchtools.Pitch import Pitch
 from abjad.tools.pitchtools.is_chromatic_pitch_name \
@@ -30,40 +31,53 @@ class NamedPitch(Pitch):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args):
         from abjad.tools import pitchtools
-        if len(args) == 1 and isinstance(args[0], (int, long, float)):
-            self._init_by_chromatic_pitch_number(*args)
-        elif len(args) == 1 and isinstance(args[0], type(self)):
-            self._init_by_named_chromatic_pitch(*args)
-        elif len(args) == 1 and isinstance(args[0], pitchtools.NumberedPitch):
-            self._init_by_chromatic_pitch_number(
-                args[0].chromatic_pitch_number)
-        elif len(args) == 1 and hasattr(args[0], 'named_chromatic_pitch'):
-            self._init_by_named_chromatic_pitch(args[0].named_chromatic_pitch)
-        elif len(args) == 1 and \
-            pitchtools.is_chromatic_pitch_class_name_octave_number_pair(
-            args[0]):
-            self._init_by_chromatic_pitch_class_name_octave_number_pair(*args)
-        elif len(args) == 1 and \
-            pitchtools.is_pitch_class_octave_number_string(args[0]):
-            self._init_by_pitch_class_octave_number_string(*args)
-        elif len(args) == 1 and isinstance(args[0], str):
-            self._init_by_chromatic_pitch_name(*args)
-        elif len(args) == 2 and isinstance(args[0], str):
-            self._init_by_chromatic_pitch_class_name_and_octave_number(*args)
-        elif len(args) == 2 and \
-            isinstance(args[0], pitchtools.NamedPitchClass):
-            self._init_by_named_chromatic_pitch_class_and_octave_number(*args)
-        elif len(args) == 2 and isinstance(args[0], (int, long, float)):
-            if isinstance(args[1], str):
-                self._init_by_chromatic_pitch_number_and_diatonic_pitch_class_name(*args)
-            elif isinstance(args[1], pitchtools.NamedPitchClass):
-                self._init_by_chromatic_pitch_number_and_named_chromatic_pitch_class(*args)
+
+        if isinstance(args[0], collections.Iterable) and \
+            not isinstance(args[0], basestring) and \
+            len(args) == 1:            
+            args = args[0]
+
+        if len(args) == 1:
+            if isinstance(args[0], (int, long, float)):
+                self._init_by_chromatic_pitch_number(*args)
+            elif isinstance(args[0], type(self)):
+                self._init_by_named_chromatic_pitch(*args)
+            elif isinstance(args[0], pitchtools.NumberedPitch):
+                self._init_by_chromatic_pitch_number(
+                    args[0].chromatic_pitch_number)
+            elif hasattr(args[0], 'named_chromatic_pitch'):
+                self._init_by_named_chromatic_pitch(args[0].named_chromatic_pitch)
+#            elif pitchtools.is_chromatic_pitch_class_name_octave_number_pair(
+#                args[0]):
+#                self._init_by_chromatic_pitch_class_name_octave_number_pair(*args)
+            elif pitchtools.is_pitch_class_octave_number_string(args[0]):
+                self._init_by_pitch_class_octave_number_string(*args)
+            elif isinstance(args[0], str):
+                self._init_by_chromatic_pitch_name(*args)
             else:
-                raise TypeError
+                raise ValueError('Cannot instantiate {} from {!r}.'.format(
+                    self._class_name, args))
+        elif len(args) == 2:
+            if isinstance(args[0], str):
+                self._init_by_chromatic_pitch_class_name_and_octave_number(*args)
+            elif isinstance(args[0], pitchtools.NamedPitchClass):
+                self._init_by_named_chromatic_pitch_class_and_octave_number(*args)
+            elif isinstance(args[0], (int, long, float)):
+                if isinstance(args[1], str):
+                    self._init_by_chromatic_pitch_number_and_diatonic_pitch_class_name(*args)
+                elif isinstance(args[1], pitchtools.NamedPitchClass):
+                    self._init_by_chromatic_pitch_number_and_named_chromatic_pitch_class(*args)
+                else:
+                    raise TypeError
+            else:
+                raise ValueError('Cannot instantiate {} from {!r}.'.format(
+                    self._class_name, args))
         else:
-            raise ValueError('\n\tNot a valid pitch token: "%s".' % str(args))
+            raise ValueError('Cannot instantiate {} from {!r}.'.format(
+                self._class_name, args))
+
         assert hasattr(self, '_chromatic_pitch_name')
         diatonic_pitch_number = \
             pitchtools.chromatic_pitch_name_to_diatonic_pitch_number(
