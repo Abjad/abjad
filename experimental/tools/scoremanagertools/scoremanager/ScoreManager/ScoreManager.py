@@ -285,18 +285,20 @@ class ScoreManager(ScoreManagerObject):
         self.session.snake_case_current_score_name = None
 
     def interactively_make_new_score(self):
-        self.score_package_wrangler.interactively_make_asset(
-            rollback=True)
+        self.score_package_wrangler.interactively_make_asset(rollback=True)
 
     def manage_materials(self):
         self.material_package_wrangler._run(
             rollback=True, 
-            head=self.configuration.built_in_material_packages_package_path)
+            head=self.configuration.built_in_material_packages_package_path,
+            )
 
     def manage_stylesheets(self):
         self.stylesheet_file_wrangler._run(
             rollback=True, 
-            head=self.configuration.built_in_stylesheets_directory_path)
+            #head=self.configuration.built_in_stylesheets_directory_path,
+            head='scoremanagertools.stylesheets',
+            )
 
     def manage_svn(self, clear=True):
         while True:

@@ -71,7 +71,10 @@ class StylesheetFileWrangler(FileWrangler):
         self._main_menu = main_menu
         asset_section = main_menu.make_asset_section()
         main_menu._asset_section = asset_section
-        menu_entries = self._make_asset_menu_entries(include_extension=True)
+        menu_entries = self._make_asset_menu_entries(
+            head=head,
+            include_extension=True,
+            )
         asset_section.menu_entries = menu_entries
         command_section = main_menu.make_command_section()
         command_section.append(('new', 'new'))
@@ -89,8 +92,15 @@ class StylesheetFileWrangler(FileWrangler):
             if annotation:
                 display_string = '{} ({})'.format(display_string, annotation)
             display_strings.append(display_string)
-        return sequencetools.zip_sequences_cyclically(
-            display_strings, [None], [None], filesystem_paths)
+        menu_entries = []
+        if display_strings:
+            menu_entries = sequencetools.zip_sequences_cyclically(
+                display_strings, 
+                [None], 
+                [None], 
+                filesystem_paths,
+                )
+        return menu_entries
 
     ### PUBLIC PROPERTIES ###
 
@@ -184,12 +194,14 @@ class StylesheetFileWrangler(FileWrangler):
         ::
 
             >>> for x in wrangler.list_asset_filesystem_paths(
-            ...     in_user_asset_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, 
+            ...     in_user_score_packages=False,
+            ...     ):
             ...     x
             '.../tools/scoremanagertools/stylesheets/clean-letter-14.ly'
             '.../tools/scoremanagertools/stylesheets/clean-letter-16.ly'
             '.../tools/scoremanagertools/stylesheets/rhythm-letter-16.ly'
-            '.../tools/scoremanagertools/scorepackages/red_example_score/music/stylesheets/red-example-score-stylesheet.ly'
+            '.../red_example_score/music/stylesheets/red-example-score-stylesheet.ly'
 
         Returns list.
         '''

@@ -13,7 +13,6 @@ class ScoreManagerConfiguration(Configuration):
         >>> configuration
         ScoreManagerConfiguration()
 
-    Return score manager configuration.
     '''
 
     ### CLASS VARIABLES ###
