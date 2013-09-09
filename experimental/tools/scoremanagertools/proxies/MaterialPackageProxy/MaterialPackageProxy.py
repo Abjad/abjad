@@ -607,10 +607,10 @@ class MaterialPackageProxy(PackageProxy):
         return getattr(expr, '_tools_package_qualified_repr', repr(expr))
 
     def interactively_edit_illustration_builder_module(self):
-        self.illustration_builder_module_proxy.edit()
+        self.illustration_builder_module_proxy.interactively_edit()
 
     def interactively_edit_material_definition_module(self):
-        self.material_definition_module_proxy.edit()
+        self.material_definition_module_proxy.interactively_edit()
 
     def interactively_edit_output_material(self):
         if not self.has_output_material_editor:
@@ -645,7 +645,7 @@ class MaterialPackageProxy(PackageProxy):
             output_material_module_body_lines=output_material_module_body_lines)
 
     def interactively_edit_stylesheet_file(self):
-        self.stylesheet_file_proxy.edit()
+        self.stylesheet_file_proxy.interactively_edit()
 
     def interactively_remove(self):
         #self.remove_material_from_materials_initializer()
@@ -917,7 +917,6 @@ class MaterialPackageProxy(PackageProxy):
         'pdfm': write_illustration_ly_and_pdf_to_disk,
         'pdfd': remove_illustration_pdf,
         'pdfv': interactively_view_illustration_pdf,
-        # maybe generalize to interactively_rename_package
         'ren': interactively_rename_package,
         'ssm': interactively_edit_stylesheet_file,
         'sss': interactively_select_stylesheet,

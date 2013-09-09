@@ -63,6 +63,22 @@ class SegmentPackageProxy(PackageProxy):
     def segment_definition_module_file_name(self):
         return os.path.join(self.filesystem_path, 'segment_definition.py')
 
+    @property
+    def segment_definition_module_packagesystem_path(self):
+        return '.'.join([
+            self.package_path,
+            'segment_definition',
+            ])
+
+    @property
+    def segment_definition_module_proxy(self):
+        from experimental.tools import scoremanagertools
+        proxy = scoremanagertools.proxies.ModuleProxy(
+            self.segment_definition_module_packagesystem_path,
+            session=self.session,
+            )
+        return proxy
+
     ### PUBLIC METHODS ###
 
     def interactively_edit_segment_definition_module(self):
@@ -70,7 +86,7 @@ class SegmentPackageProxy(PackageProxy):
 
         Returns none.
         '''
-        self.session.io_manager.print_not_yet_implemented()
+        self.segment_definition_module_proxy.interactively_edit()
 
     def interactively_make_asset(self, prompt=True):
         r'''Interactively makes asset.
