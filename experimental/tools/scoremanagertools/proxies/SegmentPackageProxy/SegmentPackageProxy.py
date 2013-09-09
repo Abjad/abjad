@@ -105,7 +105,14 @@ class SegmentPackageProxy(PackageProxy):
         Returns none.
         '''
         self.session.io_manager.assign_user_input(pending_user_input)
-        self.session.io_manager.print_not_yet_implemented()
+        last_output_file_name = iotools.get_last_output_file_name(
+            path=self.history_directory)
+        result = os.path.splitext(last_output_file_name)
+        file_name_without_extension, extension = result
+        pdf_file_name = file_name_without_extension + '.pdf'
+        pdf_path_name = os.path.join(self.history_directory, pdf_file_name)
+        command = 'open {}'.format(pdf_path_name)
+        iotools.spawn_subprocess(command)
 
     def interactively_write_asset_ly_and_pdf_to_disk(
         self,
@@ -136,6 +143,10 @@ class SegmentPackageProxy(PackageProxy):
             self.session.io_manager.proceed(message)
 
     def make_history_directory(self):
+        r'''Makes history directory.
+
+        Returns none.
+        '''
         if not os.path.exists(self.history_directory):
             os.mkdir(history_directory)
 
