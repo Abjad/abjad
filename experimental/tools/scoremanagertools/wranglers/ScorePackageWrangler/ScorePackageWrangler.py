@@ -127,11 +127,16 @@ class ScorePackageWrangler(PackageWrangler):
                 asset_proxy.profile()
         return results
 
-    def interactively_make_asset(self, rollback=False):
+    def interactively_make_asset(
+        self, 
+        rollback=False,
+        pending_user_input=None,
+        ):
         r'''Interactively makes asset.
 
         Return none.
         '''
+        self.session.io_manager.assign_user_input(pending_user_input)
         breadcrumb = self.session.pop_breadcrumb(rollback=rollback)
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.indent_level = 1
@@ -140,8 +145,7 @@ class ScorePackageWrangler(PackageWrangler):
         getter.include_newlines = False
         getter.number_prompts = True
         getter.append_string('score title')
-        getter.append_snake_case_package_name(
-            'package name')
+        getter.append_snake_case_package_name('package name')
         getter.append_integer_in_range('year', start=1, allow_none=True)
         result = getter._run()
         if self.session.backtrack():

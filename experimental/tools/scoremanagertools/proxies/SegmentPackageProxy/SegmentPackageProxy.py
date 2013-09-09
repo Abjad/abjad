@@ -81,32 +81,37 @@ class SegmentPackageProxy(PackageProxy):
 
     ### PUBLIC METHODS ###
 
-    def interactively_edit_segment_definition_module(self):
+    def interactively_edit_segment_definition_module(
+        self,
+        pending_user_input=None,
+        ):
         r'''Interactively edits segment definition module.
 
         Returns none.
         '''
+        self.session.io_manager.assign_user_input(pending_user_input)
         self.segment_definition_module_proxy.interactively_edit()
 
-    def interactively_make_asset(self, prompt=True):
-        r'''Interactively makes asset.
-
-        Returns none.
-        '''
-        self.session.io_manager.print_not_yet_implemented()
-
-    def interactively_set_score_template(self):
+    def interactively_set_score_template(
+        self,
+        pending_user_input=None,
+        ):
         r'''Interactively sets score template.
 
         Returns none.
         '''
+        self.session.io_manager.assign_user_input(pending_user_input)
         self.session.io_manager.print_not_yet_implemented()
 
-    def interactively_view_segment_pdf(self):
+    def interactively_view_segment_pdf(
+        self,
+        pending_user_input=None,
+        ):
         r'''Interactively views segment PDF.
 
         Returns none.
         '''
+        self.session.io_manager.assign_user_input(pending_user_input)
         self.session.io_manager.print_not_yet_implemented()
 
     def make_asset(self):

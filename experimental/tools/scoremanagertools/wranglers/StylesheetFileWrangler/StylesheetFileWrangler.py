@@ -133,21 +133,32 @@ class StylesheetFileWrangler(FileWrangler):
 
     ### PUBLIC METHODS ###
 
-    def interactively_edit_asset(self, filesystem_path):
+    def interactively_edit_asset(
+        self, 
+        filesystem_path,
+        pending_user_input=None,
+        ):
         r'''Interactively edits asset.
 
         Returns none.
         '''
+        self.session.io_manager.assign_user_input(pending_user_input)
         proxy = self.asset_proxy_class(
-            filesystem_path=filesystem_path, session=self.session)
+            filesystem_path=filesystem_path, 
+            session=self.session,
+            )
         proxy.interactively_edit()
 
-    def interactively_make_asset(self):
+    def interactively_make_asset(
+        self,
+        pending_user_input=None,
+        ):
         r'''Interactively makes asset.
 
         Returns none.
         '''
         from experimental.tools import scoremanagertools
+        self.session.io_manager.assign_user_input(pending_user_input)
         with self.backtracking:
             storehouse_path = \
                 self.interactively_select_asset_storehouse_filesystem_path(

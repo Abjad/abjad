@@ -130,8 +130,13 @@ class MaterialPackageMaker(MaterialPackageProxy):
             user_input_wrapper[user_input_attribute_name] = None
         return user_input_wrapper
 
-    def interactively_edit_user_input_wrapper_at_number(self, 
-        number, include_newline=True):
+    def interactively_edit_user_input_wrapper_at_number(
+        self, 
+        number, 
+        include_newline=True,
+        pending_user_input=None,
+        ):
+        self.session.io_manager.assign_user_input(pending_user_input)
         number = int(number)
         if self.user_input_wrapper_in_memory is None:
             return
@@ -169,7 +174,11 @@ class MaterialPackageMaker(MaterialPackageProxy):
         self.user_input_module_proxy.write_user_input_wrapper_to_disk(
             self.user_input_wrapper_in_memory)
 
-    def interactively_view_user_input_module(self):
+    def interactively_view_user_input_module(
+        self,
+        pending_user_input=None,
+        ):
+        self.session.io_manager.assign_user_input(pending_user_input)
         self.user_input_module_proxy.view()
 
     def load_user_input_wrapper_demo_values(self, prompt=False):

@@ -200,7 +200,10 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     ### PUBLIC METHODS ###
 
     @abc.abstractmethod
-    def interactively_make_asset(self):
+    def interactively_make_asset(
+        self,
+        pending_user_input=None,
+        ):
         r'''Interactively makes asset.
 
         Returns none.
@@ -208,11 +211,16 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         pass
 
     # TODO: write test
-    def interactively_remove_assets(self, head=None):
+    def interactively_remove_assets(
+        self, 
+        head=None,
+        pending_user_input=None,
+        ):
         r'''Interactively removes assets.
 
         Returns none.
         '''
+        self.session.io_manager.assign_user_input(pending_user_input)
         getter = self.session.io_manager.make_getter(where=self._where)
         asset_section = self._main_menu._asset_section
         getter.append_menu_section_range(
@@ -237,11 +245,15 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             total_assets_removed, asset_string))
 
     # TODO: write test
-    def interactively_rename_asset(self):
+    def interactively_rename_asset(
+        self,
+        pending_user_input=None,
+        ):
         r'''Interactively renames asset.
 
         Returns none.
         '''
+        self.session.io_manager.assign_user_input(pending_user_input)
         with self.backtracking:
             asset_filesystem_path = \
                 self.interactively_select_asset_filesystem_path()
@@ -254,11 +266,13 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self, 
         clear=True, 
         cache=False,
+        pending_user_input=None,
         ):
         r'''Interactively selects asset filesystem path.
 
         Returns string.
         '''
+        self.session.io_manager.assign_user_input(pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         menu = self._make_asset_selection_menu()
         while True:
@@ -284,11 +298,13 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         in_user_asset_library=True,
         in_built_in_score_packages=True,
         in_user_score_packages=True,
+        pending_user_input=None,
         ):
         r'''Interactively selects asset storehouse filesystem path.
 
         Returns string.
         '''
+        self.session.io_manager.assign_user_input(pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         menu = self.session.io_manager.make_menu(where=self._where)
         asset_section = menu.make_asset_section()

@@ -69,11 +69,16 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     ### PUBLIC METHODS ###
 
-    def interactively_rename_asset(self, head=None):
+    def interactively_rename_asset(
+        self, 
+        head=None,
+        pending_user_input=None,
+        ):
         r'''Interactively renames asset.
 
         Returns none.
         '''
+        self.session.io_manager.assign_user_input(pending_user_input)
         with self.backtracking:
             asset_package_path = \
                 self.interactively_select_asset_packagesystem_path(
@@ -95,6 +100,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
         Returns string.
         '''
+        self.session.io_manager.assign_user_input(pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         while True:
             self.session.push_breadcrumb(

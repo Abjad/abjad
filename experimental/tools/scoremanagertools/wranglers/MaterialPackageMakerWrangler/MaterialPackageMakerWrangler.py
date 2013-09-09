@@ -126,11 +126,15 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     ### PUBLIC METHODS ###
 
-    def interactively_make_asset(self):
+    def interactively_make_asset(
+        self,
+        pending_user_input=None,
+        ):
         r'''Interactively makes asset.
 
         Returns none.
         '''
+        self.session.io_manager.assign_user_input(pending_user_input)
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_material_package_maker_class_name(
             'material proxy name')

@@ -152,9 +152,11 @@ class FilesystemAssetProxy(ScoreManagerObject):
             return os.path.exists(self.filesystem_path)
         return False
 
-    def interactively_copy(self, pending_user_input=None):
-        self.session.io_manager.assign_user_input(
-            pending_user_input=pending_user_input)
+    def interactively_copy(
+        self, 
+        pending_user_input=None,
+        ):
+        self.session.io_manager.assign_user_input(pending_user_input)
         getter = self._initialize_file_name_getter()
         result = getter._run()
         if self.session.backtrack():
@@ -169,11 +171,13 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self.copy(new_path)
         self.session.io_manager.proceed('asset copied.')
 
-    def interactively_remove(self, pending_user_input=None):
-        self.session.io_manager.assign_user_input(
-            pending_user_input=pending_user_input)
-        self.session.io_manager.display(
-            ['{} will be removed.'.format(self.filesystem_path), ''])
+    def interactively_remove(
+        self, 
+        pending_user_input=None,
+        ):
+        self.session.io_manager.assign_user_input(pending_user_input)
+        message = '{} will be removed.'.format(self.filesystem_path)
+        self.session.io_manager.display([message, ''])
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string("type 'remove' to proceed")
         result = getter._run()
@@ -182,32 +186,36 @@ class FilesystemAssetProxy(ScoreManagerObject):
         if not result == 'remove':
             return
         if self.remove():
-            self.session.io_manager.proceed(
-                '{} removed.'.format(self.filesystem_path))
+            message = '{} removed.'.format(self.filesystem_path)
+            self.session.io_manager.proceed(message)
 
     def interactively_remove_and_backtrack_locally(self):
         self.interactively_remove()
         self.session.is_backtracking_locally = True
 
-    def interactively_rename(self, pending_user_input=None):
-        self.session.io_manager.assign_user_input(
-            pending_user_input=pending_user_input)
+    def interactively_rename(
+        self, 
+        pending_user_input=None,
+        ):
+        self.session.io_manager.assign_user_input(pending_user_input)
         getter = self._initialize_file_name_getter()
         getter.include_newlines = False
         result = getter._run()
         if self.session.backtrack():
             return
         new_path = os.path.join(self.parent_directory_filesystem_path, result)
-        self.session.io_manager.display(
-            ['new path name will be: "{}"'.format(new_path), ''])
+        message = 'new path name will be: "{}"'.format(new_path)
+        self.session.io_manager.display([message, ''])
         if not self.session.io_manager.confirm():
             return
         if self.rename(new_path):
             self.session.io_manager.proceed('asset renamed.')
 
-    def interactively_write_boilerplate(self, pending_user_input=None):
-        self.session.io_manager.assign_user_input(
-            pending_user_input=pending_user_input)
+    def interactively_write_boilerplate(
+        self, 
+        pending_user_input=None,
+        ):
+        self.session.io_manager.assign_user_input(pending_user_input)
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_snake_case_file_name('name of boilerplate asset')
         with self.backtracking:
@@ -217,9 +225,9 @@ class FilesystemAssetProxy(ScoreManagerObject):
         if self.write_boilerplate(boilerplate_filebuilt_in_asset_name):
             self.session.io_manager.proceed('boilerplate asset copied.')
         else:
-            self.session.io_manager.proceed(
-                'boilerplate asset {!r} does not exist.'.format(
-                boilerplate_filebuilt_in_asset_name))
+            message = 'boilerplate asset {!r} does not exist.'
+            message = message.format(boilerplate_filebuilt_in_asset_name)
+            self.session.io_manager.proceed(message)
 
     def is_versioned(self):
         if self.filesystem_path is None:
@@ -227,13 +235,13 @@ class FilesystemAssetProxy(ScoreManagerObject):
         if not os.path.exists(self.filesystem_path):
             return False
         command = 'svn st {}'.format(self.filesystem_path)
-        proc = subprocess.Popen(
+        process = subprocess.Popen(
             command,
             shell=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             )
-        first_line = proc.stdout.readline()
+        first_line = process.stdout.readline()
         if first_line.startswith(('?', 'svn: warning:')):
             return False
         else:

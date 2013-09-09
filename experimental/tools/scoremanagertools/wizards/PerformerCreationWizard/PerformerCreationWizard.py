@@ -84,7 +84,10 @@ class PerformerCreationWizard(Wizard):
     def interactively_initialize_performer(self, 
         performer, 
         cache=False, 
-        clear=True):
+        clear=True,
+        pending_user_input=None,
+        ):
+        self.session.io_manager.assign_user_input(pending_user_input)
         menu = self.make_performer_configuration_menu(performer)
         while True:
             self.session.push_breadcrumb(performer.name)

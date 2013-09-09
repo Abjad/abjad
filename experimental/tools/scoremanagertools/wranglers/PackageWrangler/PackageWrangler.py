@@ -73,12 +73,21 @@ class PackageWrangler(PackagesystemAssetWrangler):
             else:
                 return package_path
 
-    def interactively_make_asset(self):
+    def interactively_make_asset(
+        self,
+        pending_user_input=None,
+        ):
         r'''Interactively makes asset.
 
         Returns none.
         '''
-        self.session.io_manager.print_not_yet_implemented()
+        self.session.io_manager.assign_user_input(pending_user_input)
+        with self.backtracking:
+            package_path = \
+                self.interactively_get_available_packagesystem_path()
+        if self.session.backtrack():
+            return
+        self.make_asset(package_path)
 
     def make_asset(self, asset_name):
         r'''Makes asset.
@@ -97,5 +106,5 @@ class PackageWrangler(PackagesystemAssetWrangler):
     user_input_to_action = \
         PackagesystemAssetWrangler.user_input_to_action.copy()
     user_input_to_action.update({
-
+        'new': interactively_make_asset,
         })
