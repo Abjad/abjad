@@ -79,6 +79,10 @@ class ModuleProxy(FileProxy):
             file_pointer.close()
             exec(file_contents_string)
 
+    def interpret_in_external_process(self):
+        command = 'python {}'.format(self.filesystem_path)
+        os.system(command)
+
     def read_file(self):
         if self.parse():
             try:

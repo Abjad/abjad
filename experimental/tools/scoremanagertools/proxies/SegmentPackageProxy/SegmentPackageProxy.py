@@ -49,6 +49,10 @@ class SegmentPackageProxy(PackageProxy):
 
     ### PUBLIC PROPERTIES ###
 
+    @property
+    def history_directory(self):
+        return os.path.join(self.filesystem_path, 'history')
+
     @apply
     def score_template():
         def fget(self):
@@ -81,49 +85,58 @@ class SegmentPackageProxy(PackageProxy):
 
     ### PUBLIC METHODS ###
 
-    def interactively_edit_segment_definition_module(
+    def interactively_edit_asset_definition_module(
         self,
         pending_user_input=None,
         ):
-        r'''Interactively edits segment definition module.
+        r'''Interactively edits asset definition module.
 
         Returns none.
         '''
         self.session.io_manager.assign_user_input(pending_user_input)
         self.segment_definition_module_proxy.interactively_edit()
 
-    def interactively_set_score_template(
+    def interactively_view_asset_pdf(
         self,
         pending_user_input=None,
         ):
-        r'''Interactively sets score template.
+        r'''Interactively views asset PDF.
 
         Returns none.
         '''
         self.session.io_manager.assign_user_input(pending_user_input)
         self.session.io_manager.print_not_yet_implemented()
 
-    def interactively_view_segment_pdf(
+    def interactively_write_asset_ly_and_pdf_to_disk(
         self,
         pending_user_input=None,
         ):
-        r'''Interactively views segment PDF.
+        r'''Interactively writes asset LilyPond file and PDF to disk.
 
         Returns none.
         '''
         self.session.io_manager.assign_user_input(pending_user_input)
-        self.session.io_manager.print_not_yet_implemented()
-
-    def make_asset(self):
-        r'''Makes asset.
-
-        Returns none.
-        '''
-        self.session.io_manager.print_not_yet_implemented()
+        proxy = self.segment_definition_module_proxy
+        proxy.interpret_in_external_process()
+        getter = self.session.io_manager.make_getter(where=self._where)
+        getter.append_yes_no_string('save PDF?')
+        result = getter._run()
+        if self.session.backtrack():
+            return
+        if result.lower().startswith('y'):
+            history_directory = self.history_directory
+            next_ly_file_name = iotools.get_next_output_file_name(
+                path=history_directory)
+            next_ly_path = os.path.join(history_directory, next_ly_file_name)
+            iotools.save_last_ly_as(next_ly_path)
+            next_pdf_file_name = next_ly_file_name.replace('.ly', '.pdf')
+            next_pdf_path = os.path.join(history_directory, next_pdf_file_name)
+            iotools.save_last_pdf_as(next_pdf_path)
+            message = 'PDF saved.'
+            self.session.io_manager.proceed(message)
 
     def make_history_directory(self):
-        history_directory = os.path.join(self.filesystem_path, 'history')
-        if not os.path.exists(history_directory):
+        if not os.path.exists(self.history_directory):
             os.mkdir(history_directory)
 
     def write_initializer_to_disk(self):
@@ -148,18 +161,11 @@ class SegmentPackageProxy(PackageProxy):
             file_pointer.write('\n\n')
             file_pointer.close()
 
-    def write_segment_ly_and_pdf_to_disk(self):
-        r'''Writes segment LilyPond file and PDF to disk.
-
-        Returns none.
-        '''
-        self.session.io_manager.print_not_yet_implemented()
-
     ### UI MANIFEST ###
 
     user_input_to_action = PackageProxy.user_input_to_action.copy()
     user_input_to_action.update({
-        'sde': interactively_edit_segment_definition_module,
-        'pdfm': write_segment_ly_and_pdf_to_disk,
-        'pdfv': interactively_view_segment_pdf,
+        'sde': interactively_edit_asset_definition_module,
+        'pdfm': interactively_write_asset_ly_and_pdf_to_disk,
+        'pdfv': interactively_view_asset_pdf,
         })

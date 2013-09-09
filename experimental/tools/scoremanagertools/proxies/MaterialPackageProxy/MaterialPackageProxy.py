@@ -587,15 +587,19 @@ class MaterialPackageProxy(PackageProxy):
 
     ### PUBLIC METHODS ###
 
-    def conditionally_write_stub_material_definition_module_to_disk(self, 
-        is_interactive=False):
+    def conditionally_write_stub_material_definition_module_to_disk(
+        self, 
+        is_interactive=False,
+        ):
         if not self.get_tag('material_package_maker_class_name'):
             is_data_only = not self.get_tag('should_have_illustration')
             self.material_definition_module_proxy.write_stub_to_disk(
                 is_data_only, is_interactive=is_interactive)
 
-    def conditionally_write_stub_user_input_module_to_disk(self, 
-        is_interactive=False):
+    def conditionally_write_stub_user_input_module_to_disk(
+        self, 
+        is_interactive=False,
+        ):
         if self.should_have_user_input_module:
             self.write_stub_user_input_module_to_disk(
                 is_interactive=is_interactive)
