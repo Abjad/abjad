@@ -16,7 +16,7 @@ def save_last_pdf_as(file_name):
     ABJADOUTPUT = abjad_configuration['abjad_output']
     last_output_file_name = iotools.get_last_output_file_name()
     without_extension, extension = os.path.splitext(last_output_file_name)
-    last_pdf = withtout_extension + '.pdf'
+    last_pdf = without_extension + '.pdf'
     last_pdf_full_name = os.path.join(ABJADOUTPUT, last_pdf)
     old = open(last_pdf_full_name, 'r')
     new = open(file_name, 'w')
