@@ -207,6 +207,57 @@ class PackageProxy(DirectoryProxy):
             tag_name = result
             self.remove_tag(tag_name)
 
+    def interactively_rename_package(self):
+        r'''Interactively renames package.
+
+        Returns none.
+        '''
+        line = 'current name: {}'.format(self.filesystem_basename)
+        self.session.io_manager.display(line)
+        getter = self.session.io_manager.make_getter(where=self._where)
+        getter.append_snake_case_package_name('new name')
+        new_package_name = getter._run()
+        if self.session.backtrack():
+            return
+        lines = []
+        line = 'current name: {}'.format(self.filesystem_basename)
+        lines.append(line)
+        line = 'new name:     {}'.format(new_package_name)
+        lines.append(line)
+        lines.append('')
+        self.session.io_manager.display(lines)
+        if not self.session.io_manager.confirm():
+            return
+        new_directory_path = self.filesystem_path.replace(
+            self.filesystem_basename,
+            new_package_name,
+            )
+        if self.is_versioned():
+            # rename package directory
+            command = 'svn mv {} {}'
+            command = command.format(self.filesystem_path, new_directory_path)
+            os.system(command)
+            # commit
+            commit_message = 'renamed {} to {}.'
+            commit_message = commit_message.format(
+                self.filesystem_basename,
+                new_package_name,
+                )
+            commit_message = commit_message.replace('_', ' ')
+            command = 'svn commit -m {!r} {}'
+            command = command.format(
+                commit_message,
+                self.parent_directory_filesystem_path,
+                )
+            os.system(command)
+        else:
+            command = 'mv {} {}'
+            command = command.format(self.filesystem_path, new_directory_path)
+            os.system(command)
+        # update path name to reflect change
+        self._path = new_directory_path
+        self.session.is_backtracking_locally = True
+
     def interactively_restore_initializer(self):
         self.initializer_file_proxy.interactively_restore(prompt=True)
 
@@ -285,6 +336,7 @@ class PackageProxy(DirectoryProxy):
         'inr': interactively_restore_initializer,
         'instub': write_initializer_stub_file_to_disk,
         'inv': interactively_view_initializer,
+        'ren': interactively_rename_package,
         'rm': remove_package,
         'tags': manage_tags,
         })

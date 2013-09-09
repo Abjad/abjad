@@ -651,19 +651,17 @@ class MaterialPackageProxy(PackageProxy):
         #self.remove_material_from_materials_initializer()
         PackageProxy.interactively_remove(self)
 
-    def interactively_rename_material(self):
-        line = 'current material name: {}'.format(self.material_package_name)
+    def interactively_rename_package(self):
+        line = 'current name: {}'.format(self.filesystem_basename)
         self.session.io_manager.display(line)
         getter = self.session.io_manager.make_getter(where=self._where)
-        getter.append_snake_case_package_name('new material name')
-        new_material_package_name = getter._run()
+        getter.append_snake_case_package_name('new name')
+        new_package_name = getter._run()
         if self.session.backtrack():
             return
         lines = []
-        lines.append('current material name: {}'.format(
-            self.material_package_name))
-        lines.append('new material name:     {}'.format(
-            new_material_package_name))
+        lines.append('current name: {}'.format(self.filesystem_basename))
+        lines.append('new name:     {}'.format(new_package_name))
         lines.append('')
         self.session.io_manager.display(lines)
         if not self.session.io_manager.confirm():
@@ -671,51 +669,41 @@ class MaterialPackageProxy(PackageProxy):
         if self.is_versioned():
             # rename package directory
             new_directory_path = self.filesystem_path.replace(
-                self.material_package_name, new_material_package_name)
+                self.filesystem_basename, 
+                new_package_name,
+                )
             command = 'svn mv {} {}'
             command = command.format(self.filesystem_path, new_directory_path)
             os.system(command)
-            # update package initializer
-            parent_directory_filesystem_path = \
-                os.path.dirname(self.filesystem_path)
-            new_package_directory = os.path.join(
-                parent_directory_filesystem_path, 
-                new_material_package_name)
-            new_initializer = os.path.join(
-                new_package_directory, 
-                '__init__.py',
-                )
-            self.replace_in_file(
-                new_initializer, 
-                self.material_package_name, 
-                new_material_package_name,
-                )
-            # rename output material
-            new_output_material = os.path.join(
+            # rename output material module
+            new_output_material_module_name = os.path.join(
                 new_package_directory, 
                 'output_material.py',
                 )
+            # rename output material variable
             self.replace_in_file(
-                new_output_material, 
-                self.material_package_name, 
-                new_material_package_name,
+                new_output_material_module_name, 
+                self.filesystem_basename, 
+                new_package_name,
                 )
             # commit
             commit_message = 'renamed {} to {}.'
             commit_message = commit_message.format(
-                self.material_package_name, 
-                new_material_package_name,
+                self.filesystem_basename, 
+                new_package_name,
                 )
             commit_message = commit_message.replace('_', ' ')
             command = 'svn commit -m "{}" {}'
             command = command.format(
                 commit_message, 
-                self.parent_directory_filesystem_path)
+                self.parent_directory_filesystem_path,
+                )
             os.system(command)
-            # update path name to reflect change
-            self._path = new_package_directory
         else:
             raise NotImplementedError('commit to repository and then rename.')
+        # update path name to reflect change
+        self._path = new_package_directory
+        self.session.is_backtracking_locally = True
 
     def interactively_select_material_package_maker(self, prompt=True):
         from experimental.tools import scoremanagertools
@@ -930,7 +918,7 @@ class MaterialPackageProxy(PackageProxy):
         'pdfd': remove_illustration_pdf,
         'pdfv': interactively_view_illustration_pdf,
         # maybe generalize to interactively_rename_package
-        'ren': interactively_rename_material,
+        'ren': interactively_rename_package,
         'ssm': interactively_edit_stylesheet_file,
         'sss': interactively_select_stylesheet,
         'stl': manage_stylesheets,
