@@ -67,6 +67,7 @@ class OctaveTranspositionMapping(TypedList):
                     if candidate_pitch % 12 == \
                         pitch.chromatic_pitch_class_number:
                         return candidate_pitch
+        return pitch
 
     ### PRIVATE PROPERTIES ###
 
