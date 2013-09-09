@@ -672,8 +672,8 @@ class MaterialPackageProxy(PackageProxy):
             # rename package directory
             new_directory_path = self.filesystem_path.replace(
                 self.material_package_name, new_material_package_name)
-            command = 'svn mv {} {}'.format(
-                self.filesystem_path, new_directory_path)
+            command = 'svn mv {} {}'
+            command = command.format(self.filesystem_path, new_directory_path)
             os.system(command)
             # update package initializer
             parent_directory_filesystem_path = \
@@ -701,9 +701,11 @@ class MaterialPackageProxy(PackageProxy):
                 new_material_package_name,
                 )
             # commit
-            commit_message = 'renamed {} to {}.'.format(
+            commit_message = 'renamed {} to {}.'
+            commit_message = commit_message.format(
                 self.material_package_name, 
-                new_material_package_name)
+                new_material_package_name,
+                )
             commit_message = commit_message.replace('_', ' ')
             command = 'svn commit -m "{}" {}'
             command = command.format(

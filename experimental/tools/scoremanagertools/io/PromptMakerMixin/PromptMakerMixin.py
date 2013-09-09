@@ -12,7 +12,8 @@ class PromptMakerMixin(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _make_prompt(self, 
+    def _make_prompt(
+        self, 
         spaced_attribute_name, 
         help_template=None,
         validation_function=None,
@@ -76,10 +77,11 @@ class PromptMakerMixin(AbjadObject):
 
     def append_available_snake_case_package_name(
         self, 
-        spaced_attribute_name, default_value=None):
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must be available '
-        help_template += 'underscore-delimited lowercase package name '
-        help_template += 'of length at least 3.'
+        help_template += 'underscore-delimited lowercase package name.'
         validation_function = predicates.is_available_snake_case_package_name
         self._make_prompt(
             spaced_attribute_name, 
@@ -89,7 +91,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_boolean(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must be boolean.'
         self._make_prompt(
             spaced_attribute_name, 
@@ -99,7 +104,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_clef(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r}'
         help_template += ' must successfully initialize clef mark.'
         self._make_prompt(
@@ -110,7 +118,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_constellation_circuit_id_pair(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r}'
         help_template += ' must be valid constellation circuit id pair.'
         self._make_prompt(
@@ -121,7 +132,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_dash_case_file_name(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must be dash case file name.'
         self._make_prompt(
             spaced_attribute_name, 
@@ -131,7 +145,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_direction_string(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = "value for {!r} must be 'up or 'down'."
         self._make_prompt(
             spaced_attribute_name, 
@@ -141,7 +158,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_duration(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must be duration.'
         setup_statements = []
         setup_statements.append('from abjad import *')
@@ -155,7 +175,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_dynamic(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r}'
         help_template += ' must successfully initialize dynamic mark.'
         self._make_prompt(
@@ -166,7 +189,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_dynamics(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r}'
         help_template += ' must be list of dynamic mark initializers.'
         self._make_prompt(
@@ -177,7 +203,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_existing_package_name(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must be existing package name.'
         self._make_prompt(
             spaced_attribute_name, 
@@ -187,7 +216,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_expr(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} may be anything.'
         self._make_prompt(
             spaced_attribute_name, 
@@ -197,7 +229,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_hairpin_token(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must be hairpin menu_entry.'
         self._make_prompt(
             spaced_attribute_name, 
@@ -207,7 +242,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_hairpin_tokens(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must be hairpin menu_entries.'
         self._make_prompt(
             spaced_attribute_name, 
@@ -217,7 +255,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_integer(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must be integer.'
         self._make_prompt(
             spaced_attribute_name, 
@@ -227,11 +268,19 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_integer_in_range(
-        self, spaced_attribute_name,
-        start=None, stop=None, allow_none=False, default_value=None):
+        self, 
+        spaced_attribute_name,
+        start=None, 
+        stop=None, 
+        allow_none=False, 
+        default_value=None,
+        ):
         validation_function = functools.partial(
             predicates.is_integer_in_range, 
-            start=start, stop=stop, allow_none=allow_none)
+            start=start, 
+            stop=stop, 
+            allow_none=allow_none,
+            )
         help_template = 'value for {!r} must be '
         help_template += 'integer between {} and {}, inclusive.'
         self._make_prompt(
@@ -243,7 +292,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_integers(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must be integers.'
         function = lambda x: all(predicates.is_integer(y) for y in x)
         self._make_prompt(
@@ -254,7 +306,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_list(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must be list.'
         self._make_prompt(
             spaced_attribute_name, 
@@ -264,7 +319,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_lists(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must be lists.'
         self._make_prompt(
             spaced_attribute_name, 
@@ -274,7 +332,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_markup(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must be markup.'
         setup_statements = []
         setup_statements.append('from abjad import *')
@@ -288,7 +349,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_material_package_maker_class_name(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must be '
         help_template += 'uppercamelcase string ending in -Maker.'
         function = lambda x: \
@@ -302,7 +366,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_named_chromatic_pitch(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must be named chromatic pitch.'
         setup_statements = []
         setup_statements.append('from abjad import *')
@@ -317,7 +384,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_nonnegative_integers(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must be nonnegative integers.'
         function = lambda x: all(isinstance(y, int) and 0 <= y for y in x)
         self._make_prompt(
@@ -328,7 +398,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_nonzero_integers(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must be nonzero integers.'
         function = lambda x: all(isinstance(y, int) and not y == 0 for y in x)
         self._make_prompt(
@@ -339,7 +412,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_pitch_range(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must be pitch range.'
         setup_statements = []
         setup_statements.append('from abjad import *')
@@ -355,7 +431,10 @@ class PromptMakerMixin(AbjadObject):
         self._setup_statements[-1] = setup_statements
 
     def append_positive_integer_power_of_two(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r}'
         help_template += ' must be positive integer power of two.'
         self._make_prompt(
@@ -366,7 +445,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_positive_integers(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must be positive integers.'
         function = lambda expr: all(
             mathtools.is_positive_integer(x) for x in expr)
@@ -378,7 +460,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_snake_case_file_name(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must be '
         help_template += 'underscore-delimited lowercase file name.'
         self._make_prompt(
@@ -389,7 +474,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_snake_case_file_name_with_extension(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must be '
         help_template += 'snake case file name with extension.'
         self._make_prompt(
@@ -401,7 +489,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_snake_case_package_name(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must be '
         help_template += 'underscore-delimited lowercase package name '
         help_template += 'of length at least 3.'
@@ -413,7 +504,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_snake_case_string(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must be '
         help_template += 'underscore-delimited lowercase string.'
         self._make_prompt(
@@ -424,7 +518,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_space_delimited_lowercase_string(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} '
         help_template += ' must be space-delimited lowercase string.'
         self._make_prompt(
@@ -435,7 +532,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_string(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must be string.'
         self._make_prompt(
             spaced_attribute_name, 
@@ -445,7 +545,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_string_or_none(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must be string or none.'
         self._make_prompt(
             spaced_attribute_name, 
@@ -455,7 +558,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_strings(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must be strings.'
         self._make_prompt(
             spaced_attribute_name, 
@@ -465,7 +571,10 @@ class PromptMakerMixin(AbjadObject):
             )
 
     def append_symbolic_pitch_range_string(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} '
         help_template += ' must be symbolic pitch range string.'
         help_template += ' Ex: [A0, C8].'
@@ -479,7 +588,10 @@ class PromptMakerMixin(AbjadObject):
 
     # TODO: fix bug to make (Duration(1, 4), 72) work
     def append_tempo(
-        self, spaced_attribute_name, default_value=None):
+        self, 
+        spaced_attribute_name, 
+        default_value=None,
+        ):
         help_template = 'value for {!r} must successfully initialize tempo mark.'
         self._make_prompt(
             spaced_attribute_name, 
@@ -492,7 +604,8 @@ class PromptMakerMixin(AbjadObject):
         self, 
         spaced_attribute_name, 
         default_value=None, 
-        include_chevron=False):
+        include_chevron=False,
+        ):
         help_template = "value for '{}' must be 'y' or 'n'."
         self._make_prompt(
             spaced_attribute_name, 

@@ -19,8 +19,7 @@ def is_articulation_token(expr):
 
 def is_available_snake_case_package_name(expr):
     if stringtools.is_snake_case_package_name(expr):
-        if 3 <= len(expr):
-            return not configuration.packagesystem_path_exists(expr)
+        return not configuration.packagesystem_path_exists(expr)
     return False
 
 def is_boolean(expr):
@@ -121,8 +120,7 @@ def is_tempo_token(expr):
         return False
 
 def is_snake_case_package_name(expr):
-    return stringtools.is_snake_case_package_name(
-        expr) and 3 <= len(expr)
+    return stringtools.is_snake_case_package_name(expr)
 
 def is_yes_no_string(expr):
     return 'yes'.startswith(expr.lower()) or 'no'.startswith(expr.lower())
