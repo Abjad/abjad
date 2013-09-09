@@ -45,6 +45,7 @@ class SegmentPackageProxy(PackageProxy):
         command_section.append(('segment definition - edit', 'sde'))
         command_section.append(('output pdf - make', 'pdfm'))
         command_section.append(('output pdf - view', 'pdfv'))
+        command_section.append(('output pdf - write', 'pdfw'))
         return main_menu
 
     ### PUBLIC PROPERTIES ###
@@ -96,6 +97,18 @@ class SegmentPackageProxy(PackageProxy):
         self.session.io_manager.assign_user_input(pending_user_input)
         self.segment_definition_module_proxy.interactively_edit()
 
+    def interactively_make_asset_pdf(
+        self,
+        pending_user_input=None,
+        ):
+        r'''Interactively makes asset PDF.
+
+        Returns none.
+        '''
+        self.session.io_manager.assign_user_input(pending_user_input)
+        proxy = self.segment_definition_module_proxy
+        proxy.interpret_in_external_process()
+
     def interactively_view_asset_pdf(
         self,
         pending_user_input=None,
@@ -114,7 +127,7 @@ class SegmentPackageProxy(PackageProxy):
         command = 'open {}'.format(pdf_path_name)
         iotools.spawn_subprocess(command)
 
-    def interactively_write_asset_ly_and_pdf_to_disk(
+    def interactively_write_asset_pdf(
         self,
         pending_user_input=None,
         ):
@@ -123,24 +136,17 @@ class SegmentPackageProxy(PackageProxy):
         Returns none.
         '''
         self.session.io_manager.assign_user_input(pending_user_input)
-        proxy = self.segment_definition_module_proxy
-        proxy.interpret_in_external_process()
         getter = self.session.io_manager.make_getter(where=self._where)
-        getter.append_yes_no_string('save PDF?')
-        result = getter._run()
-        if self.session.backtrack():
-            return
-        if result.lower().startswith('y'):
-            history_directory = self.history_directory
-            next_ly_file_name = iotools.get_next_output_file_name(
-                path=history_directory)
-            next_ly_path = os.path.join(history_directory, next_ly_file_name)
-            iotools.save_last_ly_as(next_ly_path)
-            next_pdf_file_name = next_ly_file_name.replace('.ly', '.pdf')
-            next_pdf_path = os.path.join(history_directory, next_pdf_file_name)
-            iotools.save_last_pdf_as(next_pdf_path)
-            message = 'PDF saved.'
-            self.session.io_manager.proceed(message)
+        history_directory = self.history_directory
+        next_ly_file_name = iotools.get_next_output_file_name(
+            path=history_directory)
+        next_ly_path = os.path.join(history_directory, next_ly_file_name)
+        iotools.save_last_ly_as(next_ly_path)
+        next_pdf_file_name = next_ly_file_name.replace('.ly', '.pdf')
+        next_pdf_path = os.path.join(history_directory, next_pdf_file_name)
+        iotools.save_last_pdf_as(next_pdf_path)
+        message = 'PDF & LilyPond source saved.'
+        self.session.io_manager.proceed(message)
 
     def make_history_directory(self):
         r'''Makes history directory.
@@ -177,6 +183,7 @@ class SegmentPackageProxy(PackageProxy):
     user_input_to_action = PackageProxy.user_input_to_action.copy()
     user_input_to_action.update({
         'sde': interactively_edit_asset_definition_module,
-        'pdfm': interactively_write_asset_ly_and_pdf_to_disk,
+        'pdfm': interactively_make_asset_pdf,
         'pdfv': interactively_view_asset_pdf,
+        'pdfw': interactively_write_asset_pdf,
         })
