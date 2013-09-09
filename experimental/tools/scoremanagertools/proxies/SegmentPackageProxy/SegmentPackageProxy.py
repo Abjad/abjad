@@ -84,7 +84,6 @@ class SegmentPackageProxy(PackageProxy):
 
         Returns none.
         '''
-        #self.session.io_manager.print_not_yet_implemented()
         line = 'current name: {}'.format(self.filesystem_basename)
         self.session.io_manager.display(line)
         getter = self.session.io_manager.make_getter(where=self._where)
@@ -157,15 +156,6 @@ class SegmentPackageProxy(PackageProxy):
         if not os.path.exists(history_directory):
             os.mkdir(history_directory)
 
-    # hoist to superclass
-    def remove_segment_package(self):
-        r'''Removes segment package.
-
-        Returns none.
-        '''
-        self.remove()
-        self.session.is_backtracking_locally = True
-
     def write_initializer_to_disk(self):
         r'''Writes initializer to disk.
 
@@ -201,8 +191,6 @@ class SegmentPackageProxy(PackageProxy):
     user_input_to_action.update({
         # maybe generalize to interactively_rename_package 
         'ren': interactively_rename_segment,
-        # maybe generalize to remove_package
-        'rm': remove_segment_package,
         'sde': interactively_edit_segment_definition_module,
         'pdfm': write_segment_ly_and_pdf_to_disk,
         'pdfv': interactively_view_segment_pdf,

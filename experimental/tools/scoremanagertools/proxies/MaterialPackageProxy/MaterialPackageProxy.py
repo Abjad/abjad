@@ -794,11 +794,6 @@ class MaterialPackageProxy(PackageProxy):
         if self.has_material_definition_module:
             self.material_definition_module_proxy.remove()
 
-    # hoist to superclass and rename remove_package()
-    def remove_material_package(self):
-        self.remove()
-        self.session.is_backtracking_locally = True
-
     def remove_output_material_module(self, prompt=True):
         self.remove_illustration_builder_module(prompt=False)
         if self.has_output_material_module:
@@ -936,8 +931,6 @@ class MaterialPackageProxy(PackageProxy):
         'pdfv': interactively_view_illustration_pdf,
         # maybe generalize to interactively_rename_package
         'ren': interactively_rename_material,
-        # maybe generalize to remove_package
-        'rm': remove_material_package,
         'ssm': interactively_edit_stylesheet_file,
         'sss': interactively_select_stylesheet,
         'stl': manage_stylesheets,

@@ -258,6 +258,14 @@ class PackageProxy(DirectoryProxy):
             self.session.io_manager.proceed(
                 line, is_interactive=is_interactive)
 
+    def remove_package(self):
+        r'''Removes package.
+
+        Returns none.
+        '''
+        self.remove()
+        self.session.is_backtracking_locally = True
+
     def remove_tag(self, tag_name):
         tags = self.get_tags()
         del(tags[tag_name])
@@ -277,5 +285,6 @@ class PackageProxy(DirectoryProxy):
         'inr': interactively_restore_initializer,
         'instub': write_initializer_stub_file_to_disk,
         'inv': interactively_view_initializer,
+        'rm': remove_package,
         'tags': manage_tags,
         })
