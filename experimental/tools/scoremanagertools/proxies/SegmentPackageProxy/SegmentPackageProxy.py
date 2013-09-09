@@ -43,6 +43,7 @@ class SegmentPackageProxy(PackageProxy):
         hidden_section.append(('manage tags', 'tags'))
         command_section = main_menu.make_command_section()
         command_section.append(('segment definition - edit', 'sde'))
+        command_section = main_menu.make_command_section()
         command_section.append(('output pdf - make', 'pdfm'))
         command_section.append(('output pdf - view', 'pdfv'))
         command_section.append(('output pdf - write', 'pdfw'))
@@ -154,7 +155,7 @@ class SegmentPackageProxy(PackageProxy):
         Returns none.
         '''
         if not os.path.exists(self.history_directory):
-            os.mkdir(history_directory)
+            os.mkdir(self.history_directory)
 
     def write_initializer_to_disk(self):
         r'''Writes initializer to disk.

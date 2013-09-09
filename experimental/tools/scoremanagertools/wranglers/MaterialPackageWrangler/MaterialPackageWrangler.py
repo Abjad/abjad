@@ -66,7 +66,9 @@ class MaterialPackageWrangler(PackageWrangler):
         if material_package_maker_class_name is None:
             material_package_proxy = \
                 scoremanagertools.proxies.MaterialPackageProxy(
-                material_package_path, session=self.session)
+                material_package_path, 
+                session=self.session,
+                )
         else:
             command = 'material_package_proxy = '
             command += 'scoremanagertools.materialpackagemakers.{}'
@@ -75,13 +77,17 @@ class MaterialPackageWrangler(PackageWrangler):
             try:
                 exec(command)
             except AttributeError:
-                command = 'import {}.{} as material_package_maker_class'
+                command = 'from {0}.{1}.{1}'
+                command += ' import {1} as material_package_maker_class'
                 command = command.format(
                     self.configuration.user_asset_library_material_package_makers_package_path,
-                    material_package_maker_class_name)
+                    material_package_maker_class_name,
+                    )
                 exec(command)
                 material_package_proxy = material_package_maker_class(
-                    material_package_path, session=self.session)
+                    material_package_path, 
+                    session=self.session,
+                    )
         return material_package_proxy
 
     def _handle_main_menu_result(self, result):

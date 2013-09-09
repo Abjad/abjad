@@ -131,7 +131,7 @@ class MaterialPackageProxy(PackageProxy):
     def _make_main_menu_section_for_initializer(self, 
         main_menu, hidden_section):
         if not self.has_initializer:
-            command_section = main_menu.make__command_section()
+            command_section = main_menu.make_command_section()
             command_section.title = '(Note: package has no initializer.)'
         hidden_section.append(('initializer - restore', 'inr'))
         hidden_section.append(('view package initializer', 'inv'))
