@@ -497,12 +497,18 @@ class MaterialPackageProxy(PackageProxy):
             output_material_module_body_lines = \
                 self.make_output_material_module_body_lines(output_material)
         else:
-            line = '{} = {}'.format(
+            line = '{} = {}'
+            output_material_storage_format = \
+                self.get_tools_package_qualified_repr(output_material)
+            line = line.format(
                 self.material_package_name, 
-                self.get_tools_package_qualified_repr(output_material))
+                output_material_storage_format,
+                )
             output_material_module_body_lines = [line]
-        return (output_material_module_import_statements, 
-            output_material_module_body_lines)
+        return (
+            output_material_module_import_statements, 
+            output_material_module_body_lines,
+            )
 
     @property
     def output_material_module_path(self):
@@ -614,6 +620,8 @@ class MaterialPackageProxy(PackageProxy):
         self.output_material_module_proxy.display_output_material()
 
     def get_tools_package_qualified_repr(self, expr):
+        if hasattr(expr, '_make_storage_format_with_overrides'):
+            return expr._make_storage_format_with_overrides()
         return getattr(expr, '_tools_package_qualified_repr', repr(expr))
 
     def interactively_edit_illustration_builder_module(self):
@@ -645,20 +653,25 @@ class MaterialPackageProxy(PackageProxy):
                 self.make_output_material_module_body_lines(
                 output_material_handler.target)
         else:
-            line = '{} = {}'.format(
+            line = '{} = {}'
+            target_repr = self.get_tools_package_qualified_repr(
+                    output_material_handler.target)
+            line = line.format(
                 self.material_package_name,
-                self.get_tools_package_qualified_repr(
-                    output_material_handler.target))
+                target_repr,
+                )
             output_material_module_body_lines = [line]
         self.write_output_material_to_disk(
-            output_material_module_import_statements=output_material_module_import_statements,
-            output_material_module_body_lines=output_material_module_body_lines)
+            output_material_module_import_statements=\
+                output_material_module_import_statements,
+            output_material_module_body_lines=\
+                output_material_module_body_lines,
+            )
 
     def interactively_edit_stylesheet_file(self):
         self.stylesheet_file_proxy.interactively_edit()
 
     def interactively_remove(self):
-        #self.remove_material_from_materials_initializer()
         PackageProxy.interactively_remove(self)
 
     def interactively_rename_package(self):
@@ -884,7 +897,8 @@ class MaterialPackageProxy(PackageProxy):
             'PDF written to disk.', 
             is_interactive=prompt)
 
-    def write_output_material_to_disk(self, 
+    def write_output_material_to_disk(
+        self, 
         output_material_module_import_statements=None,
         output_material_module_body_lines=None, 
         prompt=True,
