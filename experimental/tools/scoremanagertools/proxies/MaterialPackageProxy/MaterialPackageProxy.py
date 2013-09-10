@@ -478,7 +478,8 @@ class MaterialPackageProxy(PackageProxy):
             return tmp.import_output_material_module_import_statements_and_material_definition()
 
     @property
-    def output_material_module_import_statements_and_output_material_module_body_lines(self):
+    def output_material_module_import_statements_and_output_material_module_body_lines(
+        self):
         if self.should_have_material_definition_module:
             pair = \
                 self.output_material_module_import_statements_and_material_definition
@@ -719,9 +720,6 @@ class MaterialPackageProxy(PackageProxy):
                 )
             result = os.path.splitext(self.filesystem_basename)
             old_package_name, extension = result
-            print new_output_material_module_name
-            print old_package_name
-            print new_package_name
             self.replace_in_file(
                 new_output_material_module_name, 
                 old_package_name, 
@@ -849,31 +847,37 @@ class MaterialPackageProxy(PackageProxy):
         iotools.write_expr_to_pdf(
             illustration, 
             self.illustration_pdf_file_name, 
-            print_status=False)
+            print_status=False,
+            )
         iotools.write_expr_to_ly(
             illustration, 
             self.illustration_ly_file_name, 
-            print_status=False)
+            print_status=False,
+            )
         self.session.io_manager.proceed(
             'PDF and LilyPond file written to disk.', 
-            is_interactive=prompt)
+            is_interactive=prompt,
+            )
 
     def write_illustration_ly_to_disk(self, prompt=True):
         illustration = self.illustration_with_stylesheet
         iotools.write_expr_to_ly(
             illustration, 
             self.illustration_ly_file_name, 
-            print_status=False)
+            print_status=False,
+            )
         self.session.io_manager.proceed(
             'LilyPond file written to disk.', 
-            is_interactive=prompt)
+            is_interactive=prompt,
+            )
 
     def write_illustration_pdf_to_disk(self, prompt=True):
         illustration = self.illustration_with_stylesheet
         iotools.write_expr_to_pdf(
             illustration, 
             self.illustration_pdf_file_name, 
-            print_status=False)
+            print_status=False,
+            )
         self.session.io_manager.proceed(
             'PDF written to disk.', 
             is_interactive=prompt)
@@ -883,15 +887,17 @@ class MaterialPackageProxy(PackageProxy):
         output_material_module_body_lines=None, 
         prompt=True,
         ):
-        #self.remove_material_from_materials_initializer()
         self.overwrite_output_material_module()
         output_material_module_proxy = self.output_material_module_proxy
         if output_material_module_import_statements is None or \
             output_material_module_body_lines is None:
             pair = self.output_material_module_import_statements_and_output_material_module_body_lines
-            output_material_module_import_statements, output_material_module_body_lines = pair
+            output_material_module_import_statements = pair[0]
+            output_material_module_body_lines = pair[1]
         output_material_module_import_statements = [
-            x + '\n' for x in output_material_module_import_statements]
+            x + '\n' 
+            for x in output_material_module_import_statements
+            ]
         output_material_module_proxy.setup_statements = \
             output_material_module_import_statements
         output_material_module_proxy.body_lines[:] = \
@@ -900,7 +906,8 @@ class MaterialPackageProxy(PackageProxy):
         self.write_tags_to_disk()
         self.session.io_manager.proceed(
             'output material written to disk.', 
-            is_interactive=prompt)
+            is_interactive=prompt,
+            )
 
     def write_stub_illustration_builder_module_to_disk(self):
         self.illustration_builder_module_proxy.write_stub_to_disk(prompt=True)
