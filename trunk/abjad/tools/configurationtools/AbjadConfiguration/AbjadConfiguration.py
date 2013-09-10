@@ -166,18 +166,18 @@ class AbjadConfiguration(Configuration):
 
     @classmethod
     def get_lilypond_minimum_version_string(cls):
-        r'''Get the x.x.0 version of LilyPond:
+        r'''Gets the x.x.0 version of LilyPond:
 
         ::
 
-            >>> configurationtools.AbjadConfiguration.get_lilypond_minimum_version_string()
+            >>> configurationtools.AbjadConfiguration.get_lilypond_minimum_version_string() # doctest: +SKIP
             '2.17.0'
 
         This is useful for documentation purposes, where all developers are
-        using the development version of LilyPond, but not necessarily the exact
-        same version.
+        using the development version of LilyPond, but not necessarily 
+        the exact same version.
 
-        Return string.
+        Returns string.
         '''
         version = cls.get_lilypond_version_string()
         parts = version.split('.')[0:2]

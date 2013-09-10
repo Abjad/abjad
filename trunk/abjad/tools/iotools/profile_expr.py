@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
 import datetime
-import StringIO
+import platform
 import sys
+import StringIO
 
 
 def profile_expr(
@@ -74,6 +75,10 @@ def profile_expr(
 
     stats_stream = StringIO.StringIO()
     stats = pstats.Stats(profile, stream=stats_stream)
+
+    if sort_by == 'cum':
+        if platform.python_version() == '2.7.5':
+            sort_by = 'cumulative'
 
     if strip_dirs:
         stats.strip_dirs().sort_stats(sort_by).print_stats(line_count)
