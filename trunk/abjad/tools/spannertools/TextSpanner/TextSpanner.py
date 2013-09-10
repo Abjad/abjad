@@ -3,25 +3,27 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class TextSpanner(Spanner):
-    r'''Abjad text spanner:
+    r'''A text spanner.
 
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> text_spanner = spannertools.TextSpanner(staff[:])
+        >>> show(staff) # doctest: +SKIP
 
     ::
 
-        >>> markup = markuptools.Markup(markuptools.MarkupCommand(
-        ...     'bold', markuptools.MarkupCommand('italic', 'foo')))
-        >>> text_spanner.override.text_spanner.bound_details__left__text = \
-        ...     markup
-        >>> markup = markuptools.Markup(
-        ...     markuptools.MarkupCommand(
-        ...     'draw-line', schemetools.SchemePair(0, -1)))
-        >>> text_spanner.override.text_spanner.bound_details__right__text = \
-        ...     markup
+        >>> text_spanner = spannertools.TextSpanner()
+        >>> markup_command = markuptools.MarkupCommand('italic', 'foo')
+        >>> markup_command = markuptools.MarkupCommand('bold', markup_command)
+        >>> left_markup = markuptools.Markup(markup_command)
+        >>> text_spanner.override.text_spanner.bound_details__left__text = left_markup
+        >>> pair = schemetools.SchemePair(0, -1)
+        >>> markup_command = markuptools.MarkupCommand('draw-line', pair)
+        >>> right_markup = markuptools.Markup(markup_command)
+        >>> text_spanner.override.text_spanner.bound_details__right__text = right_markup
         >>> text_spanner.override.text_spanner.dash_fraction = 1
+        >>> text_spanner.attach([staff])
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -41,13 +43,6 @@ class TextSpanner(Spanner):
             \revert TextSpanner #'dash-fraction
         }
 
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
-    Override LilyPond TextSpanner grob.
-
-    Return text spanner.
     '''
 
     ### INITIALIZER ###

@@ -48,17 +48,20 @@ class Spanner(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
-        r'''Call spanner on `expr` as a shortcut to extend spanner:
+        r'''Calls spanner on `expr`.
+
+        Same as attach.
 
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> show(staff) # doctest: +SKIP
 
         ::
 
             >>> beam = spannertools.BeamSpanner()
-            >>> beam(staff[:])
-            BeamSpanner(c'8, d'8, e'8, f'8)
+            >>> beam = beam(staff[:])
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -73,12 +76,17 @@ class Spanner(AbjadObject):
         The method is provided as an experimental way of unifying
         spanner and mark attachment syntax.
 
-        Return spanner.
+        Returns spanner.
         '''
         self.extend(expr)
         return self
 
     def __contains__(self, expr):
+        r'''True when spanner contains `expr`.
+        Otherwise false.
+
+        Returns boolean.
+        '''
         for x in self._components:
             if x is expr:
                 return True
@@ -86,6 +94,12 @@ class Spanner(AbjadObject):
             return False
 
     def __copy__(self, *args):
+        r'''Copies spanner.
+
+        Does not copy spanner components.
+
+        Returns new spanner.
+        '''
         new = type(self)(*self.__getnewargs__())
         if getattr(self, '_override', None) is not None:
             new._override = copy.copy(self.override)
@@ -95,23 +109,43 @@ class Spanner(AbjadObject):
         return new
 
     def __getitem__(self, expr):
+        r'''Gets item from spanner.
+
+        Returns component.
+        '''
         return self._components.__getitem__(expr)
 
     def __getnewargs__(self):
+        r'''Gets new arguments.
+
+        Returns empty tuple.
+        '''
         return ()
 
     def __len__(self):
+        r'''Length of spanner.
+
+        Returns nonnegative integer.
+        '''
         return self._components.__len__()
 
     def __lt__(self, expr):
-        r'''Trivial comparison to allow doctests to work.
+        r'''True when spanner is less than `expr`.
+        
+        Trivial comparison to allow doctests to work.
+
+        Returns boolean.
         '''
         if not isinstance(expr, Spanner):
             raise TypeError
         return repr(self) < repr(expr)
 
     def __repr__(self):
-        return '%s(%s)' % (self._class_name, self._compact_summary)
+        r'''Interpreter representation of spanner.
+
+        Returns string.
+        '''
+        return '{}({})'.format(self._class_name, self._compact_summary)
 
     ### PRIVATE PROPERTIES ###
 
@@ -161,8 +195,8 @@ class Spanner(AbjadObject):
         component._spanners.remove(self)
 
     def _copy(self, components):
-        r'''Return copy of spanner with components.
-        Components must be an iterable of components already 
+        r'''Returns copy of spanner with `components`.
+        `components` must be an iterable of components already 
         contained in spanner.
         '''
         my_components = self._components[:]
@@ -239,7 +273,6 @@ class Spanner(AbjadObject):
     def _get_my_nth_leaf(self, n):
         from abjad.tools import iterationtools
         from abjad.tools import leaftools
-        from abjad.tools import spannertools
         if not isinstance(n, (int, long)):
             raise TypeError
         component_classes = (leaftools.Leaf,)
@@ -274,15 +307,14 @@ class Spanner(AbjadObject):
         self.extend(components)
 
     def _insert(self, i, component):
-        r'''Insert component in spanner at index i.
-        Not composer-safe and may mangle spanners.
+        r'''Not composer-safe.
         '''
         component._spanners.add(self)
         self._components.insert(i, component)
 
     def _is_exterior_leaf(self, leaf):
         r'''True if leaf is first or last in spanner.
-        True if next leaf or prev leaf is none.
+        True if next leaf or previous leaf is none.
         False otherwise.
         '''
         if self._is_my_first_leaf(leaf):
@@ -297,7 +329,9 @@ class Spanner(AbjadObject):
     def _is_my_first(self, leaf, component_classes):
         from abjad.tools import iterationtools
         for component in iterationtools.iterate_components_in_expr(
-            self, component_class=component_classes):
+            self, 
+            component_class=component_classes,
+            ):
             if component is leaf:
                 return True
             else:
@@ -314,7 +348,10 @@ class Spanner(AbjadObject):
     def _is_my_last(self, leaf, component_classes):
         from abjad.tools import iterationtools
         for component in iterationtools.iterate_components_in_expr(
-            self, component_class=component_classes, reverse=True):
+            self, 
+            component_class=component_classes, 
+            reverse=True,
+            ):
             if component is leaf:
                 return True
             else:
@@ -331,7 +368,9 @@ class Spanner(AbjadObject):
     def _is_my_only(self, leaf, component_classes):
         from abjad.tools import iterationtools
         i, components = None, iterationtools.iterate_components_in_expr(
-            self, component_class=component_class)
+            self, 
+            component_class=component_class,
+            )
         for i, component in enumerate(components):
             if 0 < i:
                 return False
@@ -341,9 +380,7 @@ class Spanner(AbjadObject):
         return self._is_my_first_leaf(leaf) and self._is_my_last_leaf(leaf)
 
     def _remove(self, component):
-        r'''Remove 'component' from spanner.
-        Remove spanner from component's aggregator.
-        Not composer-safe and may leave discontiguous spanners.
+        r'''Not composer-safe.
         '''
         self._sever_component(component)
 
@@ -355,11 +392,11 @@ class Spanner(AbjadObject):
                 self._components.pop(i)
                 break
         else:
-            message = 'component "{}" not in spanner components list.'
+            message = 'component {!r} not in spanner components list.'
             raise ValueError(message.format(component))
 
     def _reverse_components(self):
-        r'''Reverse order of spanner components.
+        r'''Reverses order of spanner components.
 
         Not composer-safe because reversing the order of spanner components
         could scramble components of some other spanner.
@@ -401,31 +438,39 @@ class Spanner(AbjadObject):
 
     @property
     def components(self):
-        r'''Return read-only tuple of components in spanner:
+        r'''Components in spanner.
 
         ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
             >>> spanner = spannertools.BeamSpanner(voice[:2])
+            >>> show(voice) # doctest: +SKIP
+
+        ::
+
             >>> spanner.components
             (Note("c'8"), Note("d'8"))
 
-        Return tuple.
+        Returns tuple.
         '''
         return tuple(self._components[:])
 
     @property
     def leaves(self):
-        r'''Return read-only tuple of leaves in spanner:
+        r'''Leaves in spanner.
 
         ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
             >>> spanner = spannertools.BeamSpanner(voice[:2])
+            >>> show(voice) # doctest: +SKIP
+
+        ::
+
             >>> spanner.leaves
             (Note("c'8"), Note("d'8"))
 
-        Return tuple.
+        Returns tuple.
         '''
         from abjad.tools import iterationtools
         result = []
@@ -441,6 +486,8 @@ class Spanner(AbjadObject):
     @property
     def override(self):
         r'''LilyPond grob override component plug-in.
+
+        Returns LilyPond grob override component plug-in.
         '''
         if not hasattr(self, '_override'):
             self._override = \
@@ -450,37 +497,40 @@ class Spanner(AbjadObject):
     @property
     def set(self):
         r'''LilyPond context setting component plug-in.
+
+        Returns LilyPond context setting component plug-in.
         '''
         if not hasattr(self, '_set'):
             self._set = \
                 lilypondproxytools.LilyPondContextSettingComponentPlugIn()
         return self._set
 
+    # TODO: remove?
     @property
     def written_duration(self):
         r'''Sum of written duration of all components in spanner.
+
+        Return duration.
         '''
         return sum([component.written_duration for component in self])
 
     ### PUBLIC METHODS ###
 
     def append(self, component):
-        r'''Add `component` to right of spanner.
+        r'''Appends `component` to spanner.
 
         ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
             >>> spanner = spannertools.BeamSpanner(voice[:2])
-            >>> spanner
-            BeamSpanner(c'8, d'8)
+            >>> show(voice) # doctest: +SKIP
 
         ::
 
             >>> spanner.append(voice[2])
-            >>> spanner
-            BeamSpanner(c'8, d'8, e'8)
+            >>> show(voice) # doctest: +SKIP
 
-        Return none.
+        Returns none.
         '''
         if self._contiguity_constraint == 'logical voice':
             components = self[-1:] + [component]
@@ -490,22 +540,20 @@ class Spanner(AbjadObject):
         self._components.append(component)
 
     def append_left(self, component):
-        r'''Add `component` to left of spanner.
+        r'''Appends `component` to left of spanner.
 
         ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
             >>> spanner = spannertools.BeamSpanner(voice[2:])
-            >>> spanner
-            BeamSpanner(e'8, f'8)
+            >>> show(voice) # doctest: +SKIP
 
         ::
 
             >>> spanner.append_left(voice[1])
-            >>> spanner
-            BeamSpanner(d'8, e'8, f'8)
+            >>> show(voice) # doctest: +SKIP
 
-        Return none.
+        Returns none.
         '''
         components = [component] + self[:1]
         assert Selection._all_are_contiguous_components_in_same_logical_voice(components)
@@ -513,52 +561,48 @@ class Spanner(AbjadObject):
         self._components.insert(0, component)
 
     def attach(self, components):
-        r'''Attach spanner to `components`.
+        r'''Attaches spanner to `components`.
 
         Spanner must be empty.
 
-        Return none.
+        Returns none.
         '''
         assert not self, repr(self)
         self.extend(components)
 
     def detach(self):
-        r'''Detach spanner from all components in spanner:
+        r'''Detaches spanner.
 
         ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
             >>> spanner = spannertools.BeamSpanner(voice[:])
-            >>> spanner
-            BeamSpanner(c'8, d'8, e'8, f'8)
+            >>> show(voice) # doctest: +SKIP
 
         ::
 
             >>> spanner.detach()
-            >>> spanner
-            BeamSpanner()
+            >>> show(voice) # doctest: +SKIP
 
-        Return none.
+        Returns none.
         '''
         self._sever_all_components()
 
     def extend(self, components):
-        r'''Add iterable `components` to right of spanner:
+        r'''Extends spanner with `components`.
 
         ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
             >>> spanner = spannertools.BeamSpanner(voice[:2])
-            >>> spanner
-            BeamSpanner(c'8, d'8)
+            >>> show(voice) # doctest: +SKIP
 
         ::
 
             >>> spanner.extend(voice[2:])
-            >>> spanner
-            BeamSpanner(c'8, d'8, e'8, f'8)
+            >>> show(voice) # doctest: +SKIP
 
-        Return none.
+        Returns none.
         '''
         component_input = self[-1:]
         component_input.extend(components)
@@ -569,22 +613,20 @@ class Spanner(AbjadObject):
             self.append(component)
 
     def extend_left(self, components):
-        r'''Add iterable `components` to left of spanner:
+        r'''Extends left of spanner with `components`.
 
         ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
             >>> spanner = spannertools.BeamSpanner(voice[2:])
-            >>> spanner
-            BeamSpanner(e'8, f'8)
+            >>> show(voice) # doctest: +SKIP
 
         ::
 
             >>> spanner.extend_left(voice[:2])
-            >>> spanner
-            BeamSpanner(c'8, d'8, e'8, f'8)
+            >>> show(voice) # doctest: +SKIP
 
-        Return none.
+        Returns none.
         '''
         component_input = components + self[:1]
         assert Selection._all_are_contiguous_components_in_same_logical_voice(
@@ -593,16 +635,15 @@ class Spanner(AbjadObject):
             self.append_left(component)
 
     def fracture(self, i, direction=None):
-        r'''Fracture spanner at `direction` of component at index `i`.
+        r'''Fractures spanner at `direction` of component at index `i`.
 
         Valid values for `direction` are ``Left``, ``Right`` and ``None``.
 
-        Return original, left and right spanners. ::
+        ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
             >>> beam = spannertools.BeamSpanner(voice[:])
-            >>> beam
-            BeamSpanner(c'8, d'8, e'8, f'8)
+            >>> show(voice) # doctest: +SKIP
 
         ..  doctest::
 
@@ -616,11 +657,11 @@ class Spanner(AbjadObject):
 
         ::
 
+            >>> result = beam.fracture(1, direction=Left)
             >>> show(voice) # doctest: +SKIP
 
         ::
 
-            >>> result = beam.fracture(1, direction=Left)
             >>> for x in result:
             ...     x 
             BeamSpanner(c'8, d'8, e'8, f'8)
@@ -637,13 +678,9 @@ class Spanner(AbjadObject):
                 f'8 ]
             }
 
-        ::
-
-            >>> show(voice) # doctest: +SKIP
-
         Set `direction=None` to fracture on both left and right sides.
 
-        Return tuple.
+        Returns tuple of original, left and right spanners.
         '''
         if i < 0:
             i = len(self) + i
@@ -662,17 +699,18 @@ class Spanner(AbjadObject):
             raise ValueError(message.format(direction))
 
     def fuse(self, spanner):
-        r'''Fuse contiguous spanners.
+        r'''Fuses spanner with contiguous `spanner`.
 
-        Return new spanner. ::
+        ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
             >>> left_beam = spannertools.BeamSpanner(voice[:2])
             >>> right_beam = spannertools.BeamSpanner(voice[2:])
+            >>> show(voice) # doctest: +SKIP
 
-        ::
+        ..  doctest::
 
-            >>> print voice.lilypond_format
+            >>> f(voice)
             \new Voice {
                 c'8 [
                 d'8 ]
@@ -683,15 +721,19 @@ class Spanner(AbjadObject):
         ::
 
             >>> result = left_beam.fuse(right_beam)
+            >>> show(voice) # doctest: +SKIP
+
+        ::
+
             >>> for x in result[0]:
             ...     x
             BeamSpanner(c'8, d'8)
             BeamSpanner(e'8, f'8)
             BeamSpanner(c'8, d'8, e'8, f'8)
 
-        ::
+        ..  doctest::
 
-            >>> print voice.lilypond_format
+            >>> f(voice)
             \new Voice {
                 c'8 [
                 d'8
@@ -699,14 +741,14 @@ class Spanner(AbjadObject):
                 f'8 ]
             }
 
-        Return list.
+        Returns list of left, right and new spanners.
         '''
         return self._fuse_by_reference(spanner)
 
     def get_duration(self, in_seconds=False):
-        '''Get duration.
+        r'''Gets duration of spanner.
 
-        Return duration.
+        Returns duration.
         '''
         return sum(
             component._get_duration(in_seconds=in_seconds)
@@ -714,6 +756,10 @@ class Spanner(AbjadObject):
             )
 
     def get_timespan(self, in_seconds=False):
+        r'''Gets timespan of spanner.
+
+        Returns timespan.
+        '''
         if len(self):
             start_offset = \
                 self[0]._get_timespan(in_seconds=in_seconds).start_offset
@@ -728,21 +774,20 @@ class Spanner(AbjadObject):
             start_offset=start_offset, stop_offset=stop_offset)
         
     def index(self, component):
-        r'''Return nonnegative integer index of `component` in spanner:
+        r'''Returns index of `component` in spanner.
 
         ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
             >>> spanner = spannertools.BeamSpanner(voice[2:])
-            >>> spanner
-            BeamSpanner(e'8, f'8)
+            >>> show(voice) # doctest: +SKIP
 
         ::
 
             >>> spanner.index(voice[-2])
             0
 
-        Return nonnegative integer.
+        Returns nonnegative integer.
         '''
         for i, x in enumerate(self._components):
             if x is component:
@@ -751,14 +796,13 @@ class Spanner(AbjadObject):
             raise IndexError
 
     def pop(self):
-        r'''Remove and return rightmost component in spanner:
+        r'''Pops rightmost component off of spanner.
 
         ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
             >>> spanner = spannertools.SlurSpanner(voice[:])
-            >>> spanner
-            SlurSpanner(c'8, d'8, e'8, f'8)
+            >>> show(voice) # doctest: +SKIP
 
         ..  doctest::
 
@@ -772,17 +816,8 @@ class Spanner(AbjadObject):
 
         ::
 
+            >>> note = spanner.pop()
             >>> show(voice) # doctest: +SKIP
-
-        ::
-
-            >>> spanner.pop()
-            Note("f'8")
-
-        ::
-
-            >>> spanner
-            SlurSpanner(c'8, d'8, e'8)
 
         ..  doctest::
 
@@ -794,25 +829,20 @@ class Spanner(AbjadObject):
                 f'8
             }
 
-        ::
-
-            >>> show(voice) # doctest: +SKIP
-
-        Return component.
+        Returns component.
         '''
         component = self[-1]
         self._sever_component(component)
         return component
 
     def pop_left(self):
-        r'''Remove and return leftmost component in spanner:
+        r'''Pops leftmost component off of spanner.
 
         ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
             >>> spanner = spannertools.SlurSpanner(voice[:])
-            >>> spanner
-            SlurSpanner(c'8, d'8, e'8, f'8)
+            >>> show(voice) # doctest: +SKIP
 
         ..  doctest::
 
@@ -826,17 +856,8 @@ class Spanner(AbjadObject):
 
         ::
 
+            >>> note = spanner.pop_left()
             >>> show(voice) # doctest: +SKIP
-
-        ::
-
-            >>> spanner.pop_left()
-            Note("c'8")
-
-        ::
-
-            >>> spanner
-            SlurSpanner(d'8, e'8, f'8)
 
         ..  doctest::
 
@@ -848,11 +869,7 @@ class Spanner(AbjadObject):
                 f'8 )
             }
 
-        ::
-
-            >>> show(voice) # doctest: +SKIP
-
-        Return component.
+        Returns component.
         '''
         component = self[0]
         self._sever_component(component)
