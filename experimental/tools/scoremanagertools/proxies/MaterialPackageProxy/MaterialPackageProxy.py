@@ -43,7 +43,6 @@ class MaterialPackageProxy(PackageProxy):
 
     ### PRIVATE METHODS ###
 
-    # TODO: audit
     def _handle_main_menu_result(self, result):
         assert isinstance(result, str)
         if result in self.user_input_to_action:
@@ -165,8 +164,11 @@ class MaterialPackageProxy(PackageProxy):
             command_section.append(
                 ('material definition - stub', 'mdstub'))
 
-    def _make_main_menu_section_for_output_material(self, 
-        main_menu, hidden_section):
+    def _make_main_menu_section_for_output_material(
+        self, 
+        main_menu, 
+        hidden_section,
+        ):
         if not self.has_initializer:
             return
         has_output_material_section = False
@@ -251,7 +253,7 @@ class MaterialPackageProxy(PackageProxy):
     def has_material_definition(self):
         if self.should_have_material_definition_module:
             if self.has_material_definition_module:
-                return bool(self.material_definition)
+                return self.material_definition is not None
         return False
 
     @property
