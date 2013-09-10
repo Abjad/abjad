@@ -457,7 +457,7 @@ class MaterialPackageWrangler(PackageWrangler):
         should_have_user_input_module = getattr(
             material_package_maker_class, 'should_have_user_input_module', True)
         should_have_illustration = hasattr(
-            material_package_maker_class, 'illustration_maker')
+            material_package_maker_class, 'illustration_builder')
         tags['material_package_maker_class_name'] = material_package_maker_class_name
         tags['should_have_illustration'] = should_have_illustration
         tags['should_have_user_input_module'] = should_have_user_input_module

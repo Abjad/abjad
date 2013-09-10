@@ -112,13 +112,16 @@ class MaterialPackageProxy(PackageProxy):
             hidden_section.append(('output ly - delete', 'lyd'))
             hidden_section.append(('output ly - view', 'lyv'))
 
-    def _make_main_menu_section_for_illustration_pdf(self, 
-        main_menu, hidden_section):
+    def _make_main_menu_section_for_illustration_pdf(
+        self, 
+        main_menu, 
+        hidden_section,
+        ):
         has_illustration_pdf_section = False
         if self.has_output_material:
             if self.has_illustration_builder_module or \
                 (self.has_material_package_maker and 
-                getattr(self, 'illustration_maker', None)):
+                getattr(self, 'illustration_builder', None)):
                 command_section = main_menu.make_command_section()
                 command_section.append(('output pdf - make', 'pdfm'))
                 has_illustration_pdf_section = True

@@ -64,7 +64,7 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
         return possible_meter_multipliers
 
     @staticmethod
-    def illustration_maker(measures, **kwargs):
+    def illustration_builder(measures, **kwargs):
         staff = stafftools.RhythmicStaff(measures)
         score = scoretools.Score([staff])
         illustration = lilypondfiletools.make_basic_lilypond_file(score)

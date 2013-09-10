@@ -11,7 +11,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
 
     generic_output_name = None
 
-    illustration_maker = None
+    illustration_builder = None
 
     output_material_checker = None
     
@@ -87,7 +87,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
         if self.session.is_in_score:
             kwargs['subtitle'] = '({})'.format(
                 self.session.current_score_package_proxy.title)
-        illustration = self.illustration_maker(output_material, **kwargs)
+        illustration = self.illustration_builder(output_material, **kwargs)
         return illustration
 
     @property

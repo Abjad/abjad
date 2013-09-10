@@ -366,7 +366,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         lines.append('')
         lines.append('    generic_output_name = {!r}'.format(generic_output_name))
         lines.append('')
-        lines.append('    illustration_maker = staticmethod(make_illustration_from_output_material)')
+        lines.append('    illustration_builder = staticmethod(make_illustration_from_output_material)')
         lines.append('')
         lines.append('    output_material_checker = staticmethod(componenttools.all_are_components)')
         lines.append('')

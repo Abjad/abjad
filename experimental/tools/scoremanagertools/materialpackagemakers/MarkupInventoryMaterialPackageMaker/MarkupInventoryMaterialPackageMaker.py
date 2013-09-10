@@ -26,7 +26,7 @@ class MarkupInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def illustration_maker(markup_inventory, **kwargs):
+    def illustration_builder(markup_inventory, **kwargs):
         notes = []
         for markup in markup_inventory:
             note = Note("c'1")
