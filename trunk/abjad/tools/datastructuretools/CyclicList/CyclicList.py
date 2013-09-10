@@ -50,3 +50,21 @@ class CyclicList(list):
 
     def __str__(self):
         return '[%s]' % ', '.join([str(x) for x in self])
+
+    ### PRIVATE METHODS ###
+
+    @property
+    def _tools_package_name(self):
+        module_path = self.__module__
+        parts = module_path.split('.')
+        for part in reversed(parts):
+            if part.endswith('tools'):
+                return part
+
+    @property
+    def _tools_package_qualified_indented_repr(self):
+        return self._tools_package_qualified_repr
+
+    @property
+    def _tools_package_qualified_repr(self):
+        return '{}.{}'.format(self._tools_package_name, repr(self))
