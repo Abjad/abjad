@@ -13,14 +13,15 @@ class TextSpanner(Spanner):
     ::
 
         >>> text_spanner = spannertools.TextSpanner()
+        >>> grob = text_spanner.override.text_spanner
         >>> markup_command = markuptools.MarkupCommand('italic', 'foo')
         >>> markup_command = markuptools.MarkupCommand('bold', markup_command)
         >>> left_markup = markuptools.Markup(markup_command)
-        >>> text_spanner.override.text_spanner.bound_details__left__text = left_markup
+        >>> grob.bound_details__left__text = left_markup
         >>> pair = schemetools.SchemePair(0, -1)
         >>> markup_command = markuptools.MarkupCommand('draw-line', pair)
         >>> right_markup = markuptools.Markup(markup_command)
-        >>> text_spanner.override.text_spanner.bound_details__right__text = right_markup
+        >>> grob.bound_details__right__text = right_markup
         >>> text_spanner.override.text_spanner.dash_fraction = 1
         >>> text_spanner.attach([staff])
         >>> show(staff) # doctest: +SKIP
