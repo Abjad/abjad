@@ -670,24 +670,25 @@ class MaterialPackageProxy(PackageProxy):
         self.session.io_manager.display(lines)
         if not self.session.io_manager.confirm():
             return
+        new_directory_path = self.filesystem_path.replace(
+            self.filesystem_basename, 
+            new_package_name,
+            )
         if self.is_versioned():
-            # rename package directory
-            new_directory_path = self.filesystem_path.replace(
-                self.filesystem_basename, 
-                new_package_name,
-                )
+            # rename package
             command = 'svn mv {} {}'
             command = command.format(self.filesystem_path, new_directory_path)
             os.system(command)
-            # rename output material module
+            # replace output material variable name
             new_output_material_module_name = os.path.join(
-                new_package_directory, 
+                new_directory_path, 
                 'output_material.py',
                 )
-            # rename output material variable
+            result = os.path.splitext(self.filesystem_basename)
+            old_package_name, extension = result
             self.replace_in_file(
                 new_output_material_module_name, 
-                self.filesystem_basename, 
+                old_package_name, 
                 new_package_name,
                 )
             # commit
@@ -704,9 +705,27 @@ class MaterialPackageProxy(PackageProxy):
                 )
             os.system(command)
         else:
-            raise NotImplementedError('commit to repository and then rename.')
+            # rename package
+            command = 'mv {} {}'
+            command = command.format(self.filesystem_path, new_directory_path)
+            os.system(command)
+            # replace output material variable name
+            new_output_material_module_name = os.path.join(
+                new_directory_path, 
+                'output_material.py',
+                )
+            result = os.path.splitext(self.filesystem_basename)
+            old_package_name, extension = result
+            print new_output_material_module_name
+            print old_package_name
+            print new_package_name
+            self.replace_in_file(
+                new_output_material_module_name, 
+                old_package_name, 
+                new_package_name,
+                )
         # update path name to reflect change
-        self._path = new_package_directory
+        self._path = new_directory_path
         self.session.is_backtracking_locally = True
 
     def interactively_select_material_package_maker(self, prompt=True):
