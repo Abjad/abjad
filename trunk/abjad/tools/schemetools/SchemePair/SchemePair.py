@@ -3,7 +3,7 @@ from abjad.tools.schemetools.Scheme import Scheme
 
 
 class SchemePair(Scheme):
-    r'''Abjad model of Scheme pair:
+    r'''A Scheme pair.
 
     ::
 
@@ -31,8 +31,8 @@ class SchemePair(Scheme):
         elif len(args) == 2:
             args = args
         else:
-            message = 'can not initialize Scheme pair from "%s".'
-            raise TypeError(message % str(args))
+            message = 'can not initialize Scheme pair from {!r}.'
+            raise TypeError(message.format(args))
         Scheme.__init__(self, *args, **kwargs)
 
     ### PRIVATE PROPERTIES ###

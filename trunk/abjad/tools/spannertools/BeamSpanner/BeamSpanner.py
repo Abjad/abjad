@@ -4,11 +4,12 @@ from abjad.tools.spannertools.DirectedSpanner.DirectedSpanner \
 
 
 class BeamSpanner(DirectedSpanner):
-    r'''Abjad beam spanner:
+    r'''A beam spanner.
 
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8 g'2")
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -23,12 +24,8 @@ class BeamSpanner(DirectedSpanner):
 
     ::
 
+        >>> beam = spannertools.BeamSpanner(staff[:4])
         >>> show(staff) # doctest: +SKIP
-
-    ::
-
-        >>> spannertools.BeamSpanner(staff[:4])
-        BeamSpanner(c'8, d'8, e'8, f'8)
 
     ..  doctest::
 
@@ -41,11 +38,6 @@ class BeamSpanner(DirectedSpanner):
             g'2
         }
 
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
-    Return beam spanner.
     '''
 
     ### INITIALIZER ###
@@ -73,21 +65,19 @@ class BeamSpanner(DirectedSpanner):
 
     @staticmethod
     def is_beamable_component(expr):
-        '''True when `expr` is a beamable component. Otherwise false:
+        '''True when `expr` is a beamable component. Otherwise false.
 
         ::
 
             >>> staff = Staff(r"r32 a'32 ( [ gs'32 fs''32 \staccato f''8 ) ]")
             >>> staff.extend(r"r8 e''8 ( ef'2 )")
-
-        ::
-
             >>> show(staff) # doctest: +SKIP
 
         ::
 
             >>> for leaf in staff.select_leaves():
-            ...     result = spannertools.BeamSpanner.is_beamable_component(leaf)
+            ...     beam = spannertools.BeamSpanner
+            ...     result = beam.is_beamable_component(leaf)
             ...     print '{:<8}{}'.format(leaf, result)
             ...
             r32     False
@@ -99,7 +89,7 @@ class BeamSpanner(DirectedSpanner):
             e''8    True
             ef'2    False
 
-        Return boolean.
+        Returns boolean.
         '''
         from abjad.tools import chordtools
         from abjad.tools import notetools

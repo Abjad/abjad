@@ -379,6 +379,11 @@ class Spanner(AbjadObject):
     def _is_my_only_leaf(self, leaf):
         return self._is_my_first_leaf(leaf) and self._is_my_last_leaf(leaf)
 
+    def _make_multiline_storage_format(self):
+        pass
+        
+        
+
     def _remove(self, component):
         r'''Not composer-safe.
         '''

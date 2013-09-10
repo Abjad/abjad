@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Scheme(AbjadObject):
-    r'''Abjad model of Scheme code:
+    r'''Abjad model of Scheme code.
 
     ::
 
@@ -11,7 +11,7 @@ class Scheme(AbjadObject):
         >>> scheme.lilypond_format
         '##t'
 
-    schemetools.Scheme can represent nested structures:
+    Scheme can represent nested structures:
 
     ::
 
@@ -20,7 +20,7 @@ class Scheme(AbjadObject):
         >>> scheme.lilypond_format
         '#((left (1 2 #f)) (right (1 2 3.3)))'
 
-    schemetools.Scheme wraps variable-length arguments into a tuple:
+    Scheme wraps variable-length arguments into a tuple:
 
     ::
 
@@ -29,7 +29,7 @@ class Scheme(AbjadObject):
         >>> scheme_1.lilypond_format == scheme_2.lilypond_format
         True
 
-    schemetools.Scheme also takes an optional `quoting` keyword, 
+    Scheme also takes an optional `quoting` keyword, 
     by which Scheme's various quote, unquote, unquote-splicing characters 
     can be prepended to the formatted result:
 
@@ -91,7 +91,7 @@ class Scheme(AbjadObject):
         return (self._value,)
 
     def __repr__(self):
-        return "%s(%r)" % (self._class_name, self._value)
+        return '{}({!r})'.format(self._class_name, self._value)
 
     def __str__(self):
         if self._quoting is not None:
@@ -105,6 +105,21 @@ class Scheme(AbjadObject):
         from abjad.tools import schemetools
         return schemetools.Scheme.format_scheme_value(
             self._value, force_quotes=self.force_quotes)
+
+    @property
+    def _positional_argument_values(self):
+        return self._value
+
+    ### PRIVATE METHODS ###
+
+    # do not indent in storage
+    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
+        pieces = AbjadObject._get_tools_package_qualified_repr_pieces(
+            self, 
+            is_indented=False,
+            )
+        string = ''.join(pieces)
+        return [string]
 
     ### PUBLIC METHODS ###
 

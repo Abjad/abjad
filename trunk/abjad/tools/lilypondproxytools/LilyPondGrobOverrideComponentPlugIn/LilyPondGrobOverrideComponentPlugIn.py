@@ -40,7 +40,7 @@ class LilyPondGrobOverrideComponentPlugIn(LilyPondComponentPlugIn):
                 return vars(self)[name]
 
     def __repr__(self):
-        body_string = ' '
+        body_string = ''
         skeleton_strings = self._get_skeleton_strings()
         if skeleton_strings:
             # remove 'override__'
@@ -84,7 +84,10 @@ class LilyPondGrobOverrideComponentPlugIn(LilyPondComponentPlugIn):
         for grob_override_tuple in grob_override_tuples:
             most = '__'.join(grob_override_tuple[:-1])
             value = grob_override_tuple[-1]
-            skeleton_string = 'override__%s=%s' % (most, repr(value))
+            #value = repr(value)
+            value = getattr(
+                value, '_tools_package_qualified_repr', repr(value))
+            skeleton_string = 'override__{}={}'.format(most, value)
             skeleton_strings.append(skeleton_string)
         return tuple(skeleton_strings)
 
@@ -116,4 +119,15 @@ class LilyPondGrobOverrideComponentPlugIn(LilyPondComponentPlugIn):
                     _make_lilypond_revert_string(
                         grob_name, attribute_name, context_name=context_name))
         result.sort()
+        return result
+
+    def _make_override_dictionary(self):
+        result = {}
+        grob_override_tuples = self._get_attribute_tuples()
+        for grob_override_tuple in grob_override_tuples:
+            most = '__'.join(grob_override_tuple[:-1])
+            value = grob_override_tuple[-1]
+            attribute = '_tools_package_qualified_repr'
+            value = getattr(value, attribute, repr(value))
+            result[most] = value 
         return result
