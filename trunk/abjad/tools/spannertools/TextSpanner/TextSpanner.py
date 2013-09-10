@@ -48,26 +48,19 @@ class TextSpanner(Spanner):
 
     ### INITIALIZER ###
 
-    def __init__(self, components=None, overrides=None):
-        Spanner.__init__(self, components)
-        overrides = overrides or {}
-        self._apply_overrides(overrides)
+    def __init__(
+        self, 
+        components=None, 
+        overrides=None,
+        ):
+        Spanner.__init__(
+            self, 
+            components, 
+            overrides=overrides,
+            )
 
     ### PRIVATE METHODS ###
 
-    def _apply_overrides(self, overrides):
-        from abjad.tools import markuptools
-        exec('from abjad import *')
-        for grob_attribute_string in overrides:
-            grob_value_string = overrides[grob_attribute_string]
-            statement = 'self.override.{} = {}'
-            grob_attribute_string = grob_attribute_string.replace('__', '.', 1)
-            grob_value_string = grob_value_string.replace('\t', '')
-            strings = (grob_attribute_string, grob_value_string)
-            statement = statement.format(*strings)
-            print statement
-            exec(statement)
-            
     def _copy_keyword_args(self, new):
         pass
 

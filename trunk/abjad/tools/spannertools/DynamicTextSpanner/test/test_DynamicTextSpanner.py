@@ -9,16 +9,6 @@ def test_DynamicTextSpanner_01():
     spannertools.DynamicTextSpanner(voice[:2], 'f')
     spannertools.DynamicTextSpanner(voice[2:], 'p')
 
-    r'''
-    \new Voice {
-        c'8 [ \f
-        d'8
-        e'8 \p
-        f'8 ]
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -30,7 +20,10 @@ def test_DynamicTextSpanner_01():
         }
         '''
         )
+
     #assert voice[0].dynamics.effective == 'f'
     #assert voice[1].dynamics.effective == 'f'
     #assert voice[2].dynamics.effective == 'p'
     #assert voice[3].dynamics.effective == 'p'
+
+    assert inspect(voice).is_well_formed()

@@ -35,8 +35,17 @@ class DynamicTextSpanner(Spanner):
 
     ### INTIALIZER ###
 
-    def __init__(self, components=None, mark=''):
-        Spanner.__init__(self, components)
+    def __init__(
+        self, 
+        components=None, 
+        mark='',
+        overrides=None,
+        ):
+        Spanner.__init__(
+            self, 
+            components,
+            overrides=overrides,
+            )
         self.mark = mark
 
     ### PRIVATE METHODS ###

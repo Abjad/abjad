@@ -45,8 +45,17 @@ class StaffLinesSpanner(Spanner):
 
     ### INITIALIZER ###
 
-    def __init__(self, components=None, lines=5):
-        Spanner.__init__(self, components)
+    def __init__(
+        self, 
+        components=None, 
+        lines=5,
+        overrides=None,
+        ):
+        Spanner.__init__(
+            self, 
+            components,
+            overrides=overrides,
+            )
         self.lines = lines
 
     ### PRIVATE METHODS ###

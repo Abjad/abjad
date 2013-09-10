@@ -8,61 +8,31 @@ def test_MeasuredComplexBeamSpanner_01():
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
     measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
-    r'''
-    \new Staff {
-        {
-            \time 2/16
-            c'16
-            d'16
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/16
+                c'16
+                d'16
+            }
+            {
+                \time 2/16
+                e'16
+                f'16
+            }
+            {
+                \time 2/16
+                g'16
+                a'16
+            }
         }
-        {
-            \time 2/16
-            e'16
-            f'16
-        }
-        {
-            \time 2/16
-            g'16
-            a'16
-        }
-    }
-    '''
+        '''
+        )
 
     beam = spannertools.MeasuredComplexBeamSpanner(staff[:])
 
-    r'''
-    \new Staff {
-        {
-            \time 2/16
-            \set stemLeftBeamCount = #0
-            \set stemRightBeamCount = #2
-            c'16 [
-            \set stemLeftBeamCount = #2
-            \set stemRightBeamCount = #1
-            d'16
-        }
-        {
-            \time 2/16
-            \set stemLeftBeamCount = #1
-            \set stemRightBeamCount = #2
-            e'16
-            \set stemLeftBeamCount = #2
-            \set stemRightBeamCount = #1
-            f'16
-        }
-        {
-            \time 2/16
-            \set stemLeftBeamCount = #1
-            \set stemRightBeamCount = #2
-            g'16
-            \set stemLeftBeamCount = #2
-            \set stemRightBeamCount = #0
-            a'16 ]
-        }
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -97,3 +67,5 @@ def test_MeasuredComplexBeamSpanner_01():
         }
         '''
         )
+
+    assert inspect(staff).is_well_formed()

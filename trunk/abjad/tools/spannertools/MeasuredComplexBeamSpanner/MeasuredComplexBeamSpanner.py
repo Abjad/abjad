@@ -59,12 +59,20 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
 
     ### INITIALIZER ###
 
-    def __init__(self, components=None, lone=False, span=1, direction=None):
+    def __init__(
+        self, 
+        components=None, 
+        lone=False, 
+        span=1, 
+        direction=None,
+        overrides=None,
+        ):
         ComplexBeamSpanner.__init__(
             self, 
             components=components, 
             lone=lone, 
             direction=direction,
+            overrides=overrides,
             )
         self.span = span
 

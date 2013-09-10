@@ -32,8 +32,18 @@ class TieSpanner(DirectedSpanner):
 
     ### INITIALIZER ###
 
-    def __init__(self, music=None, direction=None):
-        DirectedSpanner.__init__(self, music, direction)
+    def __init__(
+        self, 
+        music=None, 
+        direction=None,
+        overrides=None,
+        ):
+        DirectedSpanner.__init__(
+            self, 
+            music, 
+            direction,
+            overrides=overrides,
+            )
 
     ### PRIVATE METHODS ###
 

@@ -35,8 +35,18 @@ class PhrasingSlurSpanner(DirectedSpanner):
 
     ### INITIALIZER ###
 
-    def __init__(self, components=None, direction=None):
-        DirectedSpanner.__init__(self, components, direction)
+    def __init__(
+        self, 
+        components=None, 
+        direction=None,
+        overrides=None,
+        ):
+        DirectedSpanner.__init__(
+            self, 
+            components, 
+            direction,
+            overrides=overrides,
+            )
 
     ### PRIVATE METHODS ###
 

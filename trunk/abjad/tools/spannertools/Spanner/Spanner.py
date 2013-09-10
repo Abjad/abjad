@@ -40,10 +40,12 @@ class Spanner(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, components=None):
+    def __init__(self, components=None, overrides=None):
+        overrides = overrides or {}
         self._components = []
         self._contiguity_constraint = 'logical voice'
         self._initialize_components(components)
+        self._apply_overrides(overrides)
 
     ### SPECIAL METHODS ###
 
@@ -183,6 +185,17 @@ class Spanner(AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    def _apply_overrides(self, overrides):
+        exec('from abjad import *')
+        for grob_attribute_string in overrides:
+            grob_value_string = overrides[grob_attribute_string]
+            statement = 'self.override.{} = {}'
+            grob_attribute_string = grob_attribute_string.replace('__', '.', 1)
+            grob_value_string = grob_value_string.replace('\t', '')
+            strings = (grob_attribute_string, grob_value_string)
+            statement = statement.format(*strings)
+            exec(statement)
+            
     def _block_all_components(self):
         r'''Not composer-safe.
         '''
@@ -379,10 +392,23 @@ class Spanner(AbjadObject):
     def _is_my_only_leaf(self, leaf):
         return self._is_my_first_leaf(leaf) and self._is_my_last_leaf(leaf)
 
-    def _make_multiline_storage_format(self):
-        pass
-        
-        
+    def _make_storage_format_with_overrides(self):
+        override_dictionary = self.override._make_override_dictionary()
+        lines = []
+        line = '{}.{}('.format(
+            self._tools_package_name, 
+            self.__class__.__name__,
+            )
+        lines.append(line)
+        lines.append('\toverrides = {')
+        for key, value in override_dictionary.iteritems():
+            value = value.replace('\t', '')
+            line = '\t\t{!r}: {!r},'.format(key, value)
+            lines.append(line)
+        lines.append('\t}')
+        lines.append(')')
+        result = '\n'.join(lines)
+        return result
 
     def _remove(self, component):
         r'''Not composer-safe.

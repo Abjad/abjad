@@ -43,8 +43,18 @@ class MultipartBeamSpanner(BeamSpanner):
 
     ### INITIALIZER ###
 
-    def __init__(self, components=None, direction=None):
-        BeamSpanner.__init__(self, components, direction=direction)
+    def __init__(
+        self, 
+        components=None, 
+        direction=None,
+        overrides=None,
+        ):
+        BeamSpanner.__init__(
+            self, 
+            components, 
+            direction=direction,
+            overrides=overrides,
+            )
 
     ### PRIVATE METHODS ###
 

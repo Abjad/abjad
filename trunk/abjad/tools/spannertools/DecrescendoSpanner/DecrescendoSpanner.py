@@ -86,11 +86,18 @@ class DecrescendoSpanner(HairpinSpanner):
 
     ### INITIALIZER ###
 
-    def __init__(self, components=None, include_rests=True, direction=None):
+    def __init__(
+        self, 
+        components=None, 
+        include_rests=True, 
+        direction=None,
+        overrides=None,
+        ):
         HairpinSpanner.__init__(
             self, 
             components=components, 
             descriptor='>', 
             include_rests=include_rests,
             direction=direction,
+            overrides=overrides,
             )

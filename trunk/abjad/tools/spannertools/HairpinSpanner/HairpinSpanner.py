@@ -82,11 +82,13 @@ class HairpinSpanner(DirectedSpanner):
         descriptor='<',
         include_rests=True,
         direction=None,
+        overrides=None,
         ):
         DirectedSpanner.__init__(
             self,
             components=components,
             direction=direction,
+            overrides=overrides,
             )
         self.include_rests = include_rests
         start_dynamic_string, shape_string, stop_dynamic_string = \

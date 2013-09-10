@@ -7,9 +7,6 @@ def test_PianoPedalSpanner_01():
     staff = Staff(notetools.make_repeated_notes(4))
     piano_pedal = spannertools.PianoPedalSpanner(staff[:])
 
-    assert inspect(staff).is_well_formed()
-    assert piano_pedal.kind == 'sustain'
-    assert piano_pedal.style == 'mixed'
     assert testtools.compare(
         staff,
         r'''
@@ -23,6 +20,10 @@ def test_PianoPedalSpanner_01():
         '''
         )
 
+    assert inspect(staff).is_well_formed()
+    assert piano_pedal.kind == 'sustain'
+    assert piano_pedal.style == 'mixed'
+
 
 def test_PianoPedalSpanner_02():
     r'''PianoPedal spanner supports sostenuto pedal.
@@ -32,7 +33,6 @@ def test_PianoPedalSpanner_02():
     piano_pedal = spannertools.PianoPedalSpanner(staff[:])
     piano_pedal.kind = 'sostenuto'
 
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -46,6 +46,8 @@ def test_PianoPedalSpanner_02():
         '''
         )
 
+    assert inspect(staff).is_well_formed()
+
 
 def test_PianoPedalSpanner_03():
     r'''PianoPedal spanner supports una corda pedal.
@@ -55,7 +57,6 @@ def test_PianoPedalSpanner_03():
     piano_pedal = spannertools.PianoPedalSpanner(staff[:])
     piano_pedal.kind = 'corda'
 
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -69,6 +70,8 @@ def test_PianoPedalSpanner_03():
         '''
         )
 
+    assert inspect(staff).is_well_formed()
+
 
 def test_PianoPedalSpanner_04():
     r'''PianoPedal spanner supports text style.
@@ -79,7 +82,6 @@ def test_PianoPedalSpanner_04():
     assert piano_pedal.kind == 'sustain'
     piano_pedal.style = 'text'
 
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -93,6 +95,8 @@ def test_PianoPedalSpanner_04():
         '''
         )
 
+    assert inspect(staff).is_well_formed()
+
 
 def test_PianoPedalSpanner_05():
     r'''PianoPedal spanner supports bracket style.
@@ -103,7 +107,6 @@ def test_PianoPedalSpanner_05():
     assert piano_pedal.kind == 'sustain'
     piano_pedal.style = 'bracket'
 
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -117,6 +120,8 @@ def test_PianoPedalSpanner_05():
         '''
         )
 
+    assert inspect(staff).is_well_formed()
+
 
 def test_PianoPedalSpanner_06():
     r'''Consecutive dovetailing PianoPedal spanners format correctly.
@@ -126,7 +131,6 @@ def test_PianoPedalSpanner_06():
     spannertools.PianoPedalSpanner(staff[:4])
     spannertools.PianoPedalSpanner(staff[3:])
 
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -144,6 +148,8 @@ def test_PianoPedalSpanner_06():
         }
         '''
         )
+
+    assert inspect(staff).is_well_formed()
 
 
 def test_PianoPedalSpanner_07():

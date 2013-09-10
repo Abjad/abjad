@@ -12,7 +12,6 @@ def test_HairpinSpanner_01():
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     spannertools.CrescendoSpanner(staff[:4])
 
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -29,6 +28,8 @@ def test_HairpinSpanner_01():
         '''
         )
 
+    assert inspect(staff).is_well_formed()
+
 
 def test_HairpinSpanner_02():
     r'''Hairpins spanning a single leaf are allowed but not well-formed.
@@ -38,7 +39,6 @@ def test_HairpinSpanner_02():
     spannertools.CrescendoSpanner(staff[0:1])
     checker = ShortHairpinCheck()
 
-    assert not checker.check(staff)
     assert testtools.compare(
         staff,
         r'''
@@ -55,6 +55,8 @@ def test_HairpinSpanner_02():
         '''
         )
 
+    assert not checker.check(staff)
+
 
 def test_HairpinSpanner_03():
     r'''Hairpins and dynamics apply separately.
@@ -65,7 +67,6 @@ def test_HairpinSpanner_03():
     contexttools.DynamicMark('p')(staff[0])
     contexttools.DynamicMark('f')(staff[3])
 
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -81,6 +82,8 @@ def test_HairpinSpanner_03():
         }
         '''
         )
+
+    assert inspect(staff).is_well_formed()
 
 
 def test_HairpinSpanner_04():
@@ -120,6 +123,7 @@ def test_HairpinSpanner_05():
         }
         '''
         )
+
     assert inspect(staff).is_well_formed()
 
 
@@ -145,6 +149,7 @@ def test_HairpinSpanner_06():
         }
         '''
         )
+
     assert inspect(staff).is_well_formed()
 
 

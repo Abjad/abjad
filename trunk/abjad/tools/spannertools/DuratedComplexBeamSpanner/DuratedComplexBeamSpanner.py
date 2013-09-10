@@ -57,11 +57,13 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
         span=1, 
         lone=False, 
         direction=None,
+        overrides=None,
         ):
         ComplexBeamSpanner.__init__(
             self, 
             components=components, 
             direction=direction,
+            overrides=overrides,
             )
         self.durations = durations
         self.span = span

@@ -12,8 +12,17 @@ class DirectedSpanner(Spanner):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, components=[], direction=None):
-        Spanner.__init__(self, components)
+    def __init__(
+        self, 
+        components=[], 
+        direction=None,
+        overrides=None,
+        ):
+        Spanner.__init__(
+            self, 
+            components,
+            overrides=overrides,
+            )
         self.direction = direction
 
     ### PUBLIC PROPERTIES ###

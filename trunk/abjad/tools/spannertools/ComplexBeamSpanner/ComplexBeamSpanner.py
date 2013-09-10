@@ -56,8 +56,19 @@ class ComplexBeamSpanner(BeamSpanner):
 
     ### INITIALIZER ###
 
-    def __init__(self, components=None, lone=False, direction=None):
-        BeamSpanner.__init__(self, components=components, direction=direction)
+    def __init__(
+        self, 
+        components=None, 
+        lone=False, 
+        direction=None,
+        overrides=None,
+        ):
+        BeamSpanner.__init__(
+            self, 
+            components=components, 
+            direction=direction,
+            overrides=overrides,
+            )
         self.lone = lone
 
     ### PRIVATE METHODS ###

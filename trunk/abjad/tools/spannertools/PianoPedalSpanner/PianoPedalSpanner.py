@@ -48,8 +48,16 @@ class PianoPedalSpanner(Spanner):
 
     ### INITIALIZER ###
 
-    def __init__(self, components=None):
-        Spanner.__init__(self, components)
+    def __init__(
+        self, 
+        components=None,
+        overrides=None,
+        ):
+        Spanner.__init__(
+            self, 
+            components,
+            overrides=overrides,
+            )
         self.kind = 'sustain'
         self.style = 'mixed'
 
