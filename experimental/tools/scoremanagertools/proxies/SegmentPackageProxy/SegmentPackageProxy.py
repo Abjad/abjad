@@ -21,6 +21,7 @@ class SegmentPackageProxy(PackageProxy):
             session=session,
             )
         self.score_template = score_template
+        self._has_made_pdf_in_this_session = False
 
     ### PRIVATE PROPERTIES ###
 
@@ -45,8 +46,12 @@ class SegmentPackageProxy(PackageProxy):
         command_section.append(('segment definition - edit', 'sde'))
         command_section = main_menu.make_command_section()
         command_section.append(('output pdf - make', 'pdfm'))
-        command_section.append(('output pdf - view', 'pdfv'))
-        command_section.append(('output pdf - write', 'pdfw'))
+        last_output_file_name = iotools.get_last_output_file_name(
+            path=self.history_directory)
+        if last_output_file_name is not None:
+            command_section.append(('output pdf - view', 'pdfv'))
+        if self._has_made_pdf_in_this_session:
+            command_section.append(('output pdf - write', 'pdfw'))
         return main_menu
 
     ### PUBLIC PROPERTIES ###
@@ -109,6 +114,7 @@ class SegmentPackageProxy(PackageProxy):
         self.session.io_manager.assign_user_input(pending_user_input)
         proxy = self.segment_definition_module_proxy
         proxy.interpret_in_external_process()
+        self._has_made_pdf_in_this_session = True
 
     def interactively_view_asset_pdf(
         self,
@@ -121,12 +127,13 @@ class SegmentPackageProxy(PackageProxy):
         self.session.io_manager.assign_user_input(pending_user_input)
         last_output_file_name = iotools.get_last_output_file_name(
             path=self.history_directory)
-        result = os.path.splitext(last_output_file_name)
-        file_name_without_extension, extension = result
-        pdf_file_name = file_name_without_extension + '.pdf'
-        pdf_path_name = os.path.join(self.history_directory, pdf_file_name)
-        command = 'open {}'.format(pdf_path_name)
-        iotools.spawn_subprocess(command)
+        if last_output_file_name is not None:
+            result = os.path.splitext(last_output_file_name)
+            file_name_without_extension, extension = result
+            pdf_file_name = file_name_without_extension + '.pdf'
+            pdf_path_name = os.path.join(self.history_directory, pdf_file_name)
+            command = 'open {}'.format(pdf_path_name)
+            iotools.spawn_subprocess(command)
 
     def interactively_write_asset_pdf(
         self,
