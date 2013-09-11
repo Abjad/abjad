@@ -334,19 +334,18 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def svn_st(self, is_interactive=True):
-        if is_interactive:
-            self.session.io_manager.display(self.filesystem_path)
         command = 'svn st -u {}'.format(self.filesystem_path)
         process = subprocess.Popen(
             command,
             shell=True,
             stdout=subprocess.PIPE,
             )
-        path = self.configuration.user_score_packages_directory_path
+        path = self.filesystem_path
+        path = path + os.path.sep
         clean_lines = []
         for line in process.stdout.readlines():
             clean_line = line.strip()
-            clean_line = clean_line.replace(path, '...')
+            clean_line = clean_line.replace(path, '')
             clean_lines.append(clean_line)
         clean_lines.append('')
         self.session.io_manager.display(clean_lines)
