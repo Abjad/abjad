@@ -29,11 +29,17 @@ class ExergueDirectoryProxy(DirectoryProxy):
         else:
             self._run_asset_proxy(result)
 
-    def _has_score_pdf(self):
+    def _get_score_pdf_file_path(self):
         for file_name in self.list_directory():
             if file_name.endswith('score.pdf'):
-                return True
-        return False
+                file_path = os.path.join(self.filesystem_path, file_name)
+                return file_path
+
+    def _get_score_tex_file_path(self):
+        for file_name in self.list_directory():
+            if file_name.endswith('score.tex'):
+                file_path = os.path.join(self.filesystem_path, file_name)
+                return file_path
 
     def _make_asset_menu_entries(self):
         file_names = self.list_directory()
@@ -60,7 +66,9 @@ class ExergueDirectoryProxy(DirectoryProxy):
         menu_entries = self._make_asset_menu_entries()
         asset_section.menu_entries = menu_entries
         command_section = main_menu.make_command_section()
-        if self._has_score_pdf():
+        if bool(self._get_score_tex_file_path()):
+            command_section.append(('typeset score', 't'))
+        if bool(self._get_score_pdf_file_path()):
             command_section.append(('view score', 's'))
         return main_menu
 
@@ -117,9 +125,25 @@ class ExergueDirectoryProxy(DirectoryProxy):
             stderr=subprocess.STDOUT,
             )
 
+    def typeset_score(self):
+        r'''Typesets score.
+
+        Writes PDF to exergue directory.
+
+        Returns none.
+        '''
+        from experimental.tools import scoremanagertools
+        score_tex_file_path = self._get_score_tex_file_path()
+        proxy = scoremanagertools.proxies.FileProxy(
+            filesystem_path=score_tex_file_path,
+            session=self.session,
+            )
+        proxy.typeset_tex_file()
+
     ### UI MANIFEST ###
 
     user_input_to_action = DirectoryProxy.user_input_to_action.copy()
     user_input_to_action.update({
         's': interactively_view_score,
+        't': typeset_score,
         })
