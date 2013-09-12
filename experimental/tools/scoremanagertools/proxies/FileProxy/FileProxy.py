@@ -19,12 +19,24 @@ class FileProxy(FilesystemAssetProxy):
     ### PUBLIC METHODS ###
 
     def interactively_edit(self):
+        r'''Interactively edits file.
+
+        Returns none.
+        '''
         os.system('vim + {}'.format(self.filesystem_path))
 
     def interactively_view(self):
+        r'''Interactively views file.
+
+        Returns none.
+        '''
         os.system('vim -R {}'.format(self.filesystem_path))
 
     def make_empty_asset(self, is_interactive=False):
+        r'''Makes emtpy file.
+
+        Returns none.
+        '''
         if not self.exists():
             file_reference = file(self.filesystem_path, 'w')
             file_reference.write('')
@@ -32,6 +44,10 @@ class FileProxy(FilesystemAssetProxy):
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def read_lines(self):
+        r'''Reads lines in file.
+
+        Returns list.
+        '''
         result = []
         if self.filesystem_path:
             if os.path.exists(self.filesystem_path):

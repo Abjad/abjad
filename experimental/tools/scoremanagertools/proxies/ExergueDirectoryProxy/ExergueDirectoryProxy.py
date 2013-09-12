@@ -56,6 +56,35 @@ class ExergueDirectoryProxy(DirectoryProxy):
         command_section.append(('rename', 'ren'))
         return main_menu
 
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def asset_proxy_class(self):
+        r'''Assset proxy class of exergue directory proxy.
+
+        Returns class.
+        '''
+        from experimental.tools import scoremanagertools
+        return scoremanagertools.proxies.FileProxy
+
+    ### PUBLIC METHODS ###
+
+    def interactively_edit_asset(
+        self,
+        filesystem_path,
+        pending_user_input=None,
+        ):
+        r'''Interactively edits exergue asset.
+
+        Returns none.
+        '''
+        self.session.io_manager.assign_user_input(pending_user_input)
+        proxy = self.asset_proxy_class(
+            filesystem_path=filesystem_path,
+            session=self.session,
+            )
+        proxy.interactively_edit()
+
     ### UI MANIFEST ###
 
     user_input_to_action = DirectoryProxy.user_input_to_action.copy()
