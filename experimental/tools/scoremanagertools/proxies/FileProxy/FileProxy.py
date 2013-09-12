@@ -16,43 +16,30 @@ class FileProxy(FilesystemAssetProxy):
 
     extension = ''
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _is_executable(self):
-        if self.filesystem_path.endswith('.py'):
-            return True
-        return False
-
-    @property
-    def _is_editable(self):
-        if self.filesystem_path.endswith(('.tex', '.py')):
-            return True
-        return False
-
-    @property
-    def _is_viewable(self):
-        if self.filesystem_path.endswith('.pdf'):
-            return True
-        return False
-
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
         if result in self.user_input_to_action:
             self.user_input_to_action[result](self)
 
+    def _is_editable(self):
+        if self.filesystem_path.endswith(('.tex', '.py')):
+            return True
+        return False
+
     def _make_main_menu(self):
         main_menu = self.session.io_manager.make_menu(where=self._where)
         self._main_menu = main_menu
         command_section = main_menu.make_command_section()
-        if self._is_editable:
+        if self._is_editable():
             command_section.append(('edit', 'ed'))
         command_section.append(('rename', 'ren'))
         command_section.append(('remove', 'rm'))
-        if self._is_executable:
+        if self.filesystem_path.endswith('.py'):
             command_section.append(('run', 'run'))
-        if self._is_viewable:
+        if self.filesystem_path.endswith('.tex'):
+            command_section.append(('typeset', 't'))
+        if self.filesystem_path.endswith('.pdf'):
             command_section.append(('view', 'v'))
         return main_menu
 
@@ -100,12 +87,34 @@ class FileProxy(FilesystemAssetProxy):
                 file_pointer.close()
         return result
 
-    def run(self):
-        r'''Runs Python on file.
+    def run_python_file(self):
+        r'''Runs Python on Python file.
 
         Returns none.
         '''
         command = 'python {}'.format(self.filesystem_path)
+        os.system(command)
+
+    def typeset_tex_file(self):
+        r'''Typesets TeX file.
+
+        Returns none.
+        '''
+        input_directory = os.path.dirname(self.filesystem_path)
+        basename = os.path.basename(self.filesystem_path)
+        input_file_name_stem, extension = os.path.splitext(basename)
+        output_directory = input_directory
+        command = 'pdflatex --jobname={} -output-directory={} {}/{}.tex'
+        command = command.format(
+            input_file_name_stem, 
+            output_directory, 
+            input_directory, 
+            input_file_name_stem,
+            )
+        os.system(command)
+        command = 'rm {}/*.aux'.format(output_directory)
+        os.system(command)
+        command = 'rm {}/*.log'.format(output_directory)
         os.system(command)
 
     ### UI MANIFEST ###
@@ -113,6 +122,7 @@ class FileProxy(FilesystemAssetProxy):
     user_input_to_action = FilesystemAssetProxy.user_input_to_action.copy()
     user_input_to_action.update({
         'ed': interactively_edit,
-        'run': run,
+        'run': run_python_file,
+        't': typeset_tex_file,
         'v': interactively_view,
         })

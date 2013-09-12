@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
+import subprocess
 from abjad.tools import sequencetools
 from experimental.tools.scoremanagertools.proxies.DirectoryProxy \
     import DirectoryProxy
@@ -28,6 +29,12 @@ class ExergueDirectoryProxy(DirectoryProxy):
         else:
             self._run_asset_proxy(result)
 
+    def _has_score_pdf(self):
+        for file_name in self.list_directory():
+            if file_name.endswith('score.pdf'):
+                return True
+        return False
+
     def _make_asset_menu_entries(self):
         file_names = self.list_directory()
         file_paths = []
@@ -52,6 +59,9 @@ class ExergueDirectoryProxy(DirectoryProxy):
         main_menu._asset_section = asset_section
         menu_entries = self._make_asset_menu_entries()
         asset_section.menu_entries = menu_entries
+        command_section = main_menu.make_command_section()
+        if self._has_score_pdf():
+            command_section.append(('view score', 's'))
         return main_menu
 
     def _run_asset_proxy(
@@ -93,8 +103,23 @@ class ExergueDirectoryProxy(DirectoryProxy):
             )
         proxy.interactively_edit()
 
+    def interactively_view_score(self, pending_user_input=None):
+        r'''Interactively views score.
+
+        Returns none.
+        '''
+        self.session.io_manager.assign_user_input(pending_user_input)
+        command = 'open {}/*score.pdf'.format(self.filesystem_path)
+        process = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            )
+
     ### UI MANIFEST ###
 
     user_input_to_action = DirectoryProxy.user_input_to_action.copy()
     user_input_to_action.update({
+        's': interactively_view_score,
         })
