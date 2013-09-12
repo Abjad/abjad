@@ -16,6 +16,46 @@ class FileProxy(FilesystemAssetProxy):
 
     extension = ''
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _is_executable(self):
+        if self.filesystem_path.endswith('.py'):
+            return True
+        return False
+
+    @property
+    def _is_editable(self):
+        if self.filesystem_path.endswith(('.tex', '.py')):
+            return True
+        return False
+
+    @property
+    def _is_viewable(self):
+        if self.filesystem_path.endswith('.pdf'):
+            return True
+        return False
+
+    ### PRIVATE METHODS ###
+
+    def _handle_main_menu_result(self, result):
+        if result in self.user_input_to_action:
+            self.user_input_to_action[result](self)
+
+    def _make_main_menu(self):
+        main_menu = self.session.io_manager.make_menu(where=self._where)
+        self._main_menu = main_menu
+        command_section = main_menu.make_command_section()
+        if self._is_editable:
+            command_section.append(('edit', 'ed'))
+        command_section.append(('rename', 'ren'))
+        command_section.append(('remove', 'rm'))
+        if self._is_executable:
+            command_section.append(('run', 'run'))
+        if self._is_viewable:
+            command_section.append(('view', 'v'))
+        return main_menu
+
     ### PUBLIC METHODS ###
 
     def interactively_edit(self):
@@ -30,7 +70,11 @@ class FileProxy(FilesystemAssetProxy):
 
         Returns none.
         '''
-        os.system('vim -R {}'.format(self.filesystem_path))
+        if self.filesystem_path.endswith('.pdf'):
+            command = 'open {}'.format(self.filesystem_path)
+        else:
+            command = 'vim -R {}'.format(self.filesystem_path)
+        os.system(command)
 
     def make_empty_asset(self, is_interactive=False):
         r'''Makes emtpy file.
@@ -56,10 +100,19 @@ class FileProxy(FilesystemAssetProxy):
                 file_pointer.close()
         return result
 
+    def run(self):
+        r'''Runs Python on file.
+
+        Returns none.
+        '''
+        command = 'python {}'.format(self.filesystem_path)
+        os.system(command)
+
     ### UI MANIFEST ###
 
     user_input_to_action = FilesystemAssetProxy.user_input_to_action.copy()
     user_input_to_action.update({
-        'vim': interactively_edit,
-        'vw': interactively_view,
+        'ed': interactively_edit,
+        'run': run,
+        'v': interactively_view,
         })

@@ -26,7 +26,7 @@ class ExergueDirectoryProxy(DirectoryProxy):
         if result in self.user_input_to_action:
             self.user_input_to_action[result](self)
         else:
-            self.interactively_edit_asset(result)
+            self._run_asset_proxy(result)
 
     def _make_asset_menu_entries(self):
         file_names = self.list_directory()
@@ -52,9 +52,17 @@ class ExergueDirectoryProxy(DirectoryProxy):
         main_menu._asset_section = asset_section
         menu_entries = self._make_asset_menu_entries()
         asset_section.menu_entries = menu_entries
-        command_section = main_menu.make_command_section()
-        command_section.append(('rename', 'ren'))
         return main_menu
+
+    def _run_asset_proxy(
+        self,
+        filesystem_path,
+        ):
+        proxy = self.asset_proxy_class(
+            filesystem_path=filesystem_path,
+            session=self.session,
+            )
+        proxy._run()
 
     ### PUBLIC PROPERTIES ###
 
