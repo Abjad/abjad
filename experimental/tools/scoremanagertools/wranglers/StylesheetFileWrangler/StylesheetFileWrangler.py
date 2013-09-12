@@ -66,23 +66,6 @@ class StylesheetFileWrangler(FileWrangler):
         else:
             self.interactively_edit_asset(result)
 
-    def _make_main_menu(self, head=None):
-        main_menu = self.session.io_manager.make_menu(where=self._where)
-        self._main_menu = main_menu
-        asset_section = main_menu.make_asset_section()
-        main_menu._asset_section = asset_section
-        menu_entries = self._make_asset_menu_entries(
-            head=head,
-            include_extension=True,
-            )
-        asset_section.menu_entries = menu_entries
-        command_section = main_menu.make_command_section()
-        command_section.append(('new', 'new'))
-        command_section.append(('copy', 'cp'))
-        command_section.append(('rename', 'ren'))
-        command_section.append(('remove', 'rm'))
-        return main_menu
-
     def _make_asset_menu_entries(self, head=None, include_extension=False):
         filesystem_paths = self.list_asset_filesystem_paths(head=head)
         display_strings = []
@@ -101,6 +84,23 @@ class StylesheetFileWrangler(FileWrangler):
                 filesystem_paths,
                 )
         return menu_entries
+
+    def _make_main_menu(self, head=None):
+        main_menu = self.session.io_manager.make_menu(where=self._where)
+        self._main_menu = main_menu
+        asset_section = main_menu.make_asset_section()
+        main_menu._asset_section = asset_section
+        menu_entries = self._make_asset_menu_entries(
+            head=head,
+            include_extension=True,
+            )
+        asset_section.menu_entries = menu_entries
+        command_section = main_menu.make_command_section()
+        command_section.append(('new', 'new'))
+        command_section.append(('copy', 'cp'))
+        command_section.append(('rename', 'ren'))
+        command_section.append(('remove', 'rm'))
+        return main_menu
 
     ### PUBLIC PROPERTIES ###
 
@@ -311,12 +311,13 @@ class StylesheetFileWrangler(FileWrangler):
 
             >>> for x in wrangler.list_asset_storehouse_filesystem_paths(
             ...     in_user_asset_library=False, 
-            ...     in_user_score_packages=False):
+            ...     in_user_score_packages=False,
+            ...     ):
             ...     x
             '.../tools/scoremanagertools/stylesheets'
-            '.../tools/scoremanagertools/scorepackages/blue_example_score/music/stylesheets'
-            '.../tools/scoremanagertools/scorepackages/green_example_score/music/stylesheets'
-            '.../tools/scoremanagertools/scorepackages/red_example_score/music/stylesheets'
+            '.../blue_example_score/music/stylesheets'
+            '.../green_example_score/music/stylesheets'
+            '.../red_example_score/music/stylesheets'
 
         Returns list.
         '''
@@ -330,7 +331,6 @@ class StylesheetFileWrangler(FileWrangler):
 
     ### UI MANIFEST ###
 
-    #: Maps user input to method.
     user_input_to_action = FileWrangler.user_input_to_action.copy()
     user_input_to_action.update({
         'new': interactively_make_asset,

@@ -13,24 +13,34 @@ class ScorePackageProxy(PackageProxy):
         PackageProxy.__init__(self, packagesystem_path, session=session)
         self._distribution_proxy = \
             scoremanagertools.proxies.DistributionDirectoryProxy(
-            score_package_path=packagesystem_path, session=self.session)
+            score_package_path=packagesystem_path, 
+            session=self.session,
+            )
         self._exergue_directory_proxy = \
             scoremanagertools.proxies.ExergueDirectoryProxy(
-            score_package_path=packagesystem_path, session=self.session)
+            score_package_path=packagesystem_path, 
+            session=self.session,
+            )
         self._music_proxy = scoremanagertools.proxies.MusicPackageProxy(
-            score_package_path=packagesystem_path, session=self.session)
+            score_package_path=packagesystem_path, 
+            session=self.session,
+            )
         self._material_package_wrangler = \
             scoremanagertools.wranglers.MaterialPackageWrangler(
-            session=self.session)
+            session=self.session,
+            )
         self._material_package_maker_wrangler = \
             scoremanagertools.wranglers.MaterialPackageMakerWrangler(
-            session=self.session)
+            session=self.session,
+            )
         self._segment_wrangler = \
             scoremanagertools.wranglers.SegmentPackageWrangler(
-            session=self.session)
+            session=self.session,
+            )
         self._stylesheet_wrangler = \
             scoremanagertools.wranglers.StylesheetFileWrangler(
-            session=self.session)
+            session=self.session,
+            )
 
     ### PRIVATE METHODS ###
 
@@ -47,6 +57,7 @@ class ScorePackageProxy(PackageProxy):
         command_section.append(('materials', 'm'))
         command_section.append(('segments', 'g'))
         command_section.append(('stylesheets', 'y'))
+        command_section.append(('exergue', 'x'))
         command_section.append(('setup', 's'))
         hidden_section = main_menu.make_command_section(is_hidden=True)
         hidden_section.append(('fix package structure', 'fix'))
@@ -264,7 +275,8 @@ class ScorePackageProxy(PackageProxy):
             if not os.path.exists(path):
                 result = False
                 prompt = 'create {!r}? '.format(path)
-                if not is_interactive or self.session.io_manager.confirm(prompt):
+                if not is_interactive or \
+                    self.session.io_manager.confirm(prompt):
                     os.mkdir(path)
         if not os.path.exists(self.initializer_file_name):
             result = False
@@ -382,8 +394,11 @@ class ScorePackageProxy(PackageProxy):
 
     def interactively_edit_year_of_completion(self):
         getter = self.session.io_manager.make_getter(where=self._where)
-        getter.append_integer_in_range('year of completion', 
-            start=1, allow_none=True)
+        getter.append_integer_in_range(
+            'year of completion', 
+            start=1, 
+            allow_none=True,
+            )
         result = getter._run()
         if self.session.backtrack():
             return
@@ -425,6 +440,9 @@ class ScorePackageProxy(PackageProxy):
         command_section.append(('add', 'add'))
         command_section.append(('ci', 'ci'))
         return svn_menu
+
+    def manage_exergue_directory(self):
+        self.exergue_directory_proxy._run()
 
     def manage_materials(self):
         self.material_package_wrangler._run(head=self.package_path)
@@ -523,12 +541,13 @@ class ScorePackageProxy(PackageProxy):
 
     user_input_to_action = PackageProxy.user_input_to_action.copy()
     user_input_to_action.update({
+        'fix': fix,
         'g': manage_segments,
         'm': manage_materials,
-        's': manage_setup,
-        'y': manage_stylesheets,
-        'fix': fix,
         'profile': profile,
         'removescore': interactively_remove,
+        's': manage_setup,
         'svn': manage_svn,
+        'x': manage_exergue_directory,
+        'y': manage_stylesheets,
         })

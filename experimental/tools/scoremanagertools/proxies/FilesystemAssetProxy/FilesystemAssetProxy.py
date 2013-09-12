@@ -9,7 +9,7 @@ from experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject \
 
 
 class FilesystemAssetProxy(ScoreManagerObject):
-    r'''Asset proxy.
+    r'''Filesystem asset proxy.
     '''
 
     ### CLASS VARIABLES ###
@@ -43,7 +43,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
         return False
 
     def __repr__(self):
-        r'''Filesystem asset proxy repr.
+        r'''Interpreter representation of filesystem assset proxy.
 
         Return string.
         '''
@@ -130,24 +130,45 @@ class FilesystemAssetProxy(ScoreManagerObject):
 
     @property
     def filesystem_basename(self):
+        r'''Filesystem basename of filesystem asset proxy.
+
+        Returns string or none.
+        '''
         if self.filesystem_path:
             return os.path.basename(self.filesystem_path)
 
     @property
     def filesystem_path(self):
+        r'''Filesystem path of filesystem asset proxy.
+
+        Returns string.
+        '''
         return self._filesystem_path
 
     @property
     def parent_directory_filesystem_path(self):
+        r'''Filesystem path of filesystem asset proxy parent directory.
+
+        Returns string.
+        '''
         if self.filesystem_path:
             return os.path.dirname(self.filesystem_path)
 
     ### PUBLIC METHODS ###
 
     def copy(self, new_filesystem_path):
+        r'''Copies filesystem asset to `new_filesystem_path`.
+
+        Return none.
+        '''
         shutil.copyfile(self.filesystem_path, new_filesystem_path)
 
     def exists(self):
+        r'''True when filesystem path of filesystem asset proxy exists.
+        False otherwise.
+
+        Returns boolean.
+        '''
         if self.filesystem_path:
             return os.path.exists(self.filesystem_path)
         return False
@@ -156,6 +177,10 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self, 
         pending_user_input=None,
         ):
+        r'''Interactively copies filesystem asset.
+
+        Returns none.
+        '''
         self.session.io_manager.assign_user_input(pending_user_input)
         getter = self._initialize_file_name_getter()
         result = getter._run()
@@ -175,6 +200,10 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self, 
         pending_user_input=None,
         ):
+        r'''Interactively removes filesystem asset.
+
+        Returns none.
+        '''
         self.session.io_manager.assign_user_input(pending_user_input)
         message = '{} will be removed.'.format(self.filesystem_path)
         self.session.io_manager.display([message, ''])
@@ -190,6 +219,10 @@ class FilesystemAssetProxy(ScoreManagerObject):
             self.session.io_manager.proceed(message)
 
     def interactively_remove_and_backtrack_locally(self):
+        r'''Interactively removes filesystem asset and backtracks locally.
+
+        Returns none.
+        '''
         self.interactively_remove()
         self.session.is_backtracking_locally = True
 
@@ -197,6 +230,10 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self, 
         pending_user_input=None,
         ):
+        r'''Interactively renames filesystem asset.
+
+        Returns none.
+        '''
         self.session.io_manager.assign_user_input(pending_user_input)
         getter = self._initialize_file_name_getter()
         getter.include_newlines = False
@@ -215,6 +252,10 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self, 
         pending_user_input=None,
         ):
+        r'''Interactively writes filesystem asset boilerplate.
+
+        Returns none.
+        '''
         self.session.io_manager.assign_user_input(pending_user_input)
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_snake_case_file_name('name of boilerplate asset')
@@ -230,6 +271,11 @@ class FilesystemAssetProxy(ScoreManagerObject):
             self.session.io_manager.proceed(message)
 
     def is_versioned(self):
+        r'''True when filesystem asset is versioned.
+        Otherwise false.
+
+        Returns boolean.
+        '''
         if self.filesystem_path is None:
             return False
         if not os.path.exists(self.filesystem_path):
@@ -249,9 +295,17 @@ class FilesystemAssetProxy(ScoreManagerObject):
 
     @abc.abstractmethod
     def make_empty_asset(self, is_interactive=False):
+        r'''Makes empty filesystem asset.
+
+        Returns none.
+        '''
         pass
 
     def remove(self):
+        r'''Removes filesystem asset.
+
+        Returns none.
+        '''
         if self.is_versioned():
             command = 'svn --force rm {}'.format(self.filesystem_path)
             proc = subprocess.Popen(
@@ -273,6 +327,10 @@ class FilesystemAssetProxy(ScoreManagerObject):
             return True
 
     def rename(self, new_path):
+        r'''Renames filesystem asset.
+
+        Returns none.
+        '''
         if self.is_versioned():
             command = 'svn --force mv {} {}'.format(
                 self.filesystem_path, new_path)
@@ -295,6 +353,10 @@ class FilesystemAssetProxy(ScoreManagerObject):
             self._filesystem_path = new_path
 
     def svn_add(self, is_interactive=False):
+        r'''Adds unversioned filesystem assets to repository.
+
+        Returns none.
+        '''
         if is_interactive:
             self.session.io_manager.display(self.filesystem_path)
         proc = subprocess.Popen(
@@ -309,6 +371,10 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def svn_ci(self, commit_message=None, is_interactive=True):
+        r'''Commits unversioned filesystem assets to repository.
+
+        Returns none.
+        '''
         if commit_message is None:
             getter = self.session.io_manager.make_getter(where=self._where)
             getter.append_string('commit message')
@@ -334,6 +400,10 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def svn_st(self, is_interactive=True):
+        r'''Displays repository status of filesystem assets.
+    
+        Returns none.
+        '''
         command = 'svn st -u {}'.format(self.filesystem_path)
         process = subprocess.Popen(
             command,
@@ -352,6 +422,10 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def svn_up(self, is_interactive=True):
+        r'''Updates versioned filesystem assets.
+
+        Returns none.
+        '''
         if is_interactive:
             self.session.io_manager.display(self.filesystem_path)
         command = 'svn up {}'.format(self.filesystem_path)
@@ -366,6 +440,10 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def write_boilerplate(self, boilerplate_filebuilt_in_asset_name):
+        r'''Writes filesystem asset boilerplate.
+
+        Returns none.
+        '''
         if not os.path.exists(boilerplate_filebuilt_in_asset_name):
             boilerplate_filebuilt_in_asset_name = os.path.join(
                 self.boilerplate_directory_path,
