@@ -6,13 +6,17 @@ from abjad.tools.configurationtools.Configuration import Configuration
 
 
 class AbjadConfiguration(Configuration):
-    r'''Abjad configuration object:
+    r'''Abjad configuration.
 
     ::
 
         >>> ABJCONFIG = configurationtools.AbjadConfiguration()
         >>> ABJCONFIG['accidental_spelling']
         'mixed'
+
+    ::
+
+        >>> configuration = configurationtools.AbjadConfiguration()
 
     `AbjadConfiguration` creates the `$home/.abjad/` directory 
     on instantiation.
@@ -129,14 +133,14 @@ class AbjadConfiguration(Configuration):
 
     @staticmethod
     def get_abjad_revision_string():
-        '''Get Abjad revision string:
+        '''Gets Abjad revision string.
 
         ::
 
             >>> configurationtools.AbjadConfiguration.get_abjad_revision_string() # doctest: +SKIP
             '11266'
 
-        Return string.
+        Returns string.
         '''
         from abjad import abjad_configuration
         command = 'svnversion {}'.format(abjad_configuration.abjad_directory_path)
@@ -145,6 +149,15 @@ class AbjadConfiguration(Configuration):
 
     @classmethod
     def get_abjad_startup_string(cls):
+        r'''Gets Abjad startup string.
+
+        ::
+
+            >>> configuration.get_abjad_startup_string() # doctest: +SKIP
+            'Abjad 2.13 (r12069)'
+
+        Returns string.
+        '''
         return 'Abjad {} (r{})'.format(
             cls.get_abjad_version_string(),
             cls.get_abjad_revision_string(),
@@ -152,21 +165,21 @@ class AbjadConfiguration(Configuration):
 
     @staticmethod
     def get_abjad_version_string():
-        '''Get Abjad version string:
+        '''Gets Abjad version string.
 
         ::
 
             >>> configurationtools.AbjadConfiguration.get_abjad_version_string()
             '2.13'
 
-        Return string.
+        Returns string.
         '''
         import abjad
         return abjad.__version__
 
     @classmethod
     def get_lilypond_minimum_version_string(cls):
-        r'''Gets the x.x.0 version of LilyPond:
+        r'''Gets LilyPond minimum version string.
 
         ::
 
@@ -186,14 +199,14 @@ class AbjadConfiguration(Configuration):
 
     @staticmethod
     def get_lilypond_version_string():
-        '''Get LilyPond version string:
+        '''Gets LilyPond version string:
 
         ::
 
             >>> configurationtools.AbjadConfiguration.get_lilypond_version_string() # doctest: +SKIP
             '2.13.61'
 
-        Return string.
+        Returns string.
         '''
         from abjad import abjad_configuration
         if subprocess.mswindows and not 'LilyPond' in os.environ.get('PATH'):
@@ -216,14 +229,14 @@ class AbjadConfiguration(Configuration):
 
     @staticmethod
     def get_python_version_string():
-        '''Get Python version string:
+        '''Gets Python version string.
 
         ::
 
             >>> configurationtools.AbjadConfiguration.get_python_version_string() # doctest: +SKIP
             '2.6.1'
 
-        Return string.
+        Returns string.
         '''
         # python prints to stderr on startup (instead of stdout)
         command = 'python --version'
@@ -237,22 +250,30 @@ class AbjadConfiguration(Configuration):
         
     @staticmethod
     def get_tab_width():
-        r'''Get system tab width:
+        r'''Gets tab width.
 
         ::
 
             >>> configurationtools.AbjadConfiguration.get_tab_width()
             4
 
-        The value is used by various functions that generate or test code in the system.
+        The value is used by various functions that generate or 
+        test code in the system.
 
-        Return nonnegative integer.
+        Returns nonnegative integer.
         '''
         return 4
 
     @staticmethod
     def get_text_editor():
-        r'''Get OS-appropriate text editor.
+        r'''Get text editor.
+
+        ::
+
+            >>> configuration.get_text_editor() # doctest: +SKIP
+            'vim'
+
+        Returns string.
         '''
         from abjad import abjad_configuration
         text_editor = abjad_configuration['text_editor']
@@ -265,12 +286,18 @@ class AbjadConfiguration(Configuration):
 
     @staticmethod
     def list_abjad_environment_variables():
-        r'''List Abjad environment variables.
+        r'''Lists Abjad environment variables.
 
-        Return tuple of zero or more environment variable / setting pairs.
+        ::
+
+            >>> for x in configuration.list_abjad_environment_variables():
+            ...     x
+
 
         Abjad environment variables are defined in
         ``abjad/tools/configurationtools/AbjadConfiguration/AbjadConfiguration.py``.
+
+        Returns tuple of zero or more environment variable / setting pairs.
         '''
         from abjad import abjad_configuration
         result = []
@@ -281,14 +308,14 @@ class AbjadConfiguration(Configuration):
 
     @staticmethod
     def list_package_dependency_versions():
-        r'''List package dependency versions:
+        r'''Lists package dependency versions.
 
         ::
 
             >>> configurationtools.AbjadConfiguration.list_package_dependency_versions() # doctest: +SKIP
             {'sphinx': '1.1.2', 'py.test': '2.1.2'}
 
-        Return dictionary.
+        Returns dictionary.
         '''
         dependencies = {}
         dependencies['configobj'] = None
@@ -321,14 +348,26 @@ class AbjadConfiguration(Configuration):
 
     @property
     def abjad_configuration_directory_path(self):
+        r'''Abjad configuration directory path.
+
+        Returns string.
+        '''
         return os.path.join(self.home_directory_path, '.abjad')
 
     @property
     def abjad_configuration_file_path(self):
+        r'''Abjad configuration file path.
+
+        Returns string.
+        '''
         return self.configuration_file_path
 
     @property
     def abjad_directory_path(self):
+        r'''Abjad directory path.
+
+        Returns string.
+        '''
         module_parts = self.__module__.split('.')
         file_path_parts = os.path.abspath(__file__).rpartition('.py')
         file_path_parts = file_path_parts[0].split(os.path.sep)
@@ -340,23 +379,42 @@ class AbjadConfiguration(Configuration):
 
     @property
     def abjad_experimental_directory_path(self):
+        r'''Abjad experimental directory path.
+
+        Returns string.
+        '''
         return os.path.abspath(os.path.join(
             self.abjad_directory_path, '..', '..', 'experimental'))
 
     @property
     def abjad_output_directory_path(self):
+        r'''Abjad output directory path.
+
+        Returns string.
+        '''
         return self._settings['abjad_output']
 
     @property
     def abjad_root_directory_path(self):
+        r'''Abjad root directory path.
+
+        Returns string.
+        '''
         return os.path.abspath(os.path.join(
             self.abjad_directory_path, '..', '..'))
 
     @property
     def configuration_directory_path(self):
+        r'''Configuration directory path.
+
+        Returns string.
+        '''
         return self.abjad_configuration_directory_path
 
     @property
     def configuration_file_name(self):
-        return 'abjad.cfg'
+        r'''Configuration file name.
 
+        Returns string.
+        '''
+        return 'abjad.cfg'

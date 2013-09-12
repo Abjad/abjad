@@ -221,18 +221,26 @@ class ScoreManagerConfiguration(Configuration):
 
     @property
     def configuration_directory_path(self):
+        r'''Configuration directory path.
+
+        Returns string.
+        '''
         return os.path.join(self.home_directory_path, '.score_manager')
 
     @property
     def configuration_file_name(self):
+        r'''Configuration file name.
+
+        Returns string.
+        '''
         return 'score_manager.cfg'
 
     ### PUBLIC METHODS ###
 
     def filesystem_path_to_packagesystem_path(self, filesystem_path):
-        r'''Change `filesystem_path` to package path.
+        r'''Changes `filesystem_path` to package path.
 
-        Return string.
+        Returns string.
         '''
         if filesystem_path is None:
             return
@@ -286,13 +294,17 @@ class ScoreManagerConfiguration(Configuration):
             message = 'can not change filesystem path {!r}'
             message += ' to packagesystem path.'
             raise Exception(message.format(filesystem_path))
-        package_path = filesystem_path[prefix_length:]
-        package_path = package_path.replace(os.path.sep, '.')
-        return package_path
+        packagesystem_path = filesystem_path[prefix_length:]
+        packagesystem_path = packagesystem_path.replace(os.path.sep, '.')
+        return packagesystem_path
 
     def list_score_directory_paths(
-        self, built_in=False, user=False, head=None):
-        r'''List score directory paths.
+        self, 
+        built_in=False, 
+        user=False, 
+        head=None,
+        ):
+        r'''Lists score directory paths.
 
         Example. List built-in score directory paths:
 
@@ -305,7 +317,7 @@ class ScoreManagerConfiguration(Configuration):
             '.../tools/scoremanagertools/scorepackages/green_example_score'
             '.../tools/scoremanagertools/scorepackages/red_example_score'
 
-        Return list.
+        Returns list.
         '''
         result = []
         if built_in:
@@ -335,9 +347,9 @@ class ScoreManagerConfiguration(Configuration):
         return result
 
     def packagesystem_path_exists(self, packagesystem_path):
-        r'''True when `packagesystem_path` exists. Otherwise false.
+        r'''True whens `packagesystem_path` exists. Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         assert os.path.sep not in packagesystem_path
         filesystem_path = \
@@ -345,39 +357,40 @@ class ScoreManagerConfiguration(Configuration):
         return os.path.exists(filesystem_path)
 
     def packagesystem_path_to_filesystem_path(
-        self, package_path, is_module=False):
-        r'''Change `package_path` to directory path.
+        self, packagesystem_path, is_module=False):
+        r'''Changes `packagesystem_path` to filesystem path.
 
-        Return string.
+        Returns string.
         '''
-        if package_path is None:
+        if packagesystem_path is None:
             return
-        assert isinstance(package_path, str), repr(package_path)
-        package_path_parts = package_path.split('.')
-        if package_path_parts[0] == 'scoremanagertools':
-            directory_parts = [self.score_manager_tools_directory_path] + \
-                package_path_parts[1:]
-        elif package_path_parts[:3] == \
+        assert isinstance(packagesystem_path, str), repr(packagesystem_path)
+        packagesystem_path_parts = packagesystem_path.split('.')
+        if packagesystem_path_parts[0] == 'scoremanagertools':
+            directory_parts = [self.score_manager_tools_filesystem_path] + \
+                packagesystem_path_parts[1:]
+        elif packagesystem_path_parts[:3] == \
             ['experimental', 'tools', 'scoremanagertools']:
-            directory_parts = [self.score_manager_tools_directory_path] + \
-                package_path_parts[3:]
-        elif package_path_parts[0] == \
-            self.built_in_material_packages_package_path:
+            directory_parts = [self.score_manager_tools_filesystem_path] + \
+                packagesystem_path_parts[3:]
+        elif packagesystem_path_parts[0] == \
+            self.built_in_material_packages_packagesystem_path:
             directory_parts = \
-                [self.built_in_material_packages_directory_path] + \
-                package_path_parts[1:]
-        elif package_path.startswith(self.user_asset_library_package_path):
-            prefix_length = len(self.user_asset_library_package_path)
-            trimmed_package_path = package_path[prefix_length:]
+                [self.built_in_material_packages_filesystem_path] + \
+                packagesystem_path_parts[1:]
+        elif packagesystem_path.startswith(
+            self.user_asset_library_packagesystem_path):
+            prefix_length = len(self.user_asset_library_packagesystem_path)
+            trimmed_packagesystem_path = packagesystem_path[prefix_length:]
             directory_parts = []
-            directory_parts.append(self.user_asset_library_directory_path)
-            directory_parts.extend(trimmed_package_path.split('.'))
+            directory_parts.append(self.user_asset_library_filesystem_path)
+            directory_parts.extend(trimmed_packagesystem_path.split('.'))
         else:
             directory_parts = \
-                [self.user_score_packages_directory_path] + \
-                package_path_parts[:]
-        directory_path = os.path.join(*directory_parts)
-        directory_path = os.path.normpath(directory_path)
+                [self.user_score_packages_filesystem_path] + \
+                packagesystem_path_parts[:]
+        filesystem_path = os.path.join(*directory_parts)
+        filesystem_path = os.path.normpath(filesystem_path)
         if is_module:
-            directory_path += '.py'
-        return directory_path
+            filesystem_path += '.py'
+        return filesystem_path
