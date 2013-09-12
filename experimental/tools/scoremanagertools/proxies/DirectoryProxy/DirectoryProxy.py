@@ -13,27 +13,6 @@ class DirectoryProxy(FilesystemAssetProxy):
     def _svn_add_command(self):
         return 'cd {} && add'.format(self.filesystem_path)
 
-    ### PRIVATE METHODS ###
-
-    def _run(self, cache=False, clear=True, pending_user_input=None):
-        self.session.io_manager.assign_user_input(pending_user_input)
-        self.session.cache_breadcrumbs(cache=cache)
-        while True:
-            self.session.push_breadcrumb(self._breadcrumb)
-            menu = self._make_main_menu()
-            result = menu._run(clear=clear)
-            if self.session.backtrack(source=self._backtracking_source):
-                break
-            elif not result:
-                self.session.pop_breadcrumb()
-                continue
-            self._handle_main_menu_result(result)
-            if self.session.backtrack(source=self._backtracking_source):
-                break
-            self.session.pop_breadcrumb()
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
-
     ### PUBLIC METHODS ###
 
     def interactively_get_filesystem_path(self):

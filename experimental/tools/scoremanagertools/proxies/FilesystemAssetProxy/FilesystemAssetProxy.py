@@ -76,6 +76,25 @@ class FilesystemAssetProxy(ScoreManagerObject):
         getter.append_snake_case_file_name('new name')
         return getter
 
+    def _run(self, cache=False, clear=True, pending_user_input=None):
+        self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.cache_breadcrumbs(cache=cache)
+        while True:
+            self.session.push_breadcrumb(self._breadcrumb)
+            menu = self._make_main_menu()
+            result = menu._run(clear=clear)
+            if self.session.backtrack(source=self._backtracking_source):
+                break
+            elif not result:
+                self.session.pop_breadcrumb()
+                continue
+            self._handle_main_menu_result(result)
+            if self.session.backtrack(source=self._backtracking_source):
+                break
+            self.session.pop_breadcrumb()
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
+
     @staticmethod
     def _safe_import(
         target_namespace,

@@ -61,4 +61,5 @@ class FileProxy(FilesystemAssetProxy):
     user_input_to_action = FilesystemAssetProxy.user_input_to_action.copy()
     user_input_to_action.update({
         'vim': interactively_edit,
+        'vw': interactively_view,
         })

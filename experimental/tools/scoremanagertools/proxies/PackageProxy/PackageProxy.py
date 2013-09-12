@@ -37,25 +37,6 @@ class PackageProxy(DirectoryProxy):
             result.append((display_string, None, tags[key], key))
         return result
 
-    def _run(self, cache=False, clear=True, pending_user_input=None):
-        self.session.io_manager.assign_user_input(pending_user_input)
-        self.session.cache_breadcrumbs(cache=cache)
-        while True:
-            self.session.push_breadcrumb(self._breadcrumb)
-            menu = self._make_main_menu()
-            result = menu._run(clear=clear)
-            if self.session.backtrack(source=self._backtracking_source):
-                break
-            elif not result:
-                self.session.pop_breadcrumb()
-                continue
-            self._handle_main_menu_result(result)
-            if self.session.backtrack(source=self._backtracking_source):
-                break
-            self.session.pop_breadcrumb()
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
-
     ### PUBLIC PROPERTIES ###
 
     @property
