@@ -367,27 +367,27 @@ class ScoreManagerConfiguration(Configuration):
         assert isinstance(packagesystem_path, str), repr(packagesystem_path)
         packagesystem_path_parts = packagesystem_path.split('.')
         if packagesystem_path_parts[0] == 'scoremanagertools':
-            directory_parts = [self.score_manager_tools_filesystem_path] + \
+            directory_parts = [self.score_manager_tools_directory_path] + \
                 packagesystem_path_parts[1:]
         elif packagesystem_path_parts[:3] == \
             ['experimental', 'tools', 'scoremanagertools']:
-            directory_parts = [self.score_manager_tools_filesystem_path] + \
+            directory_parts = [self.score_manager_tools_directory_path] + \
                 packagesystem_path_parts[3:]
         elif packagesystem_path_parts[0] == \
-            self.built_in_material_packages_packagesystem_path:
+            self.built_in_material_packages_package_path:
             directory_parts = \
                 [self.built_in_material_packages_filesystem_path] + \
                 packagesystem_path_parts[1:]
         elif packagesystem_path.startswith(
-            self.user_asset_library_packagesystem_path):
-            prefix_length = len(self.user_asset_library_packagesystem_path)
+            self.user_asset_library_package_path):
+            prefix_length = len(self.user_asset_library_package_path)
             trimmed_packagesystem_path = packagesystem_path[prefix_length:]
             directory_parts = []
-            directory_parts.append(self.user_asset_library_filesystem_path)
+            directory_parts.append(self.user_asset_library_directory_path)
             directory_parts.extend(trimmed_packagesystem_path.split('.'))
         else:
             directory_parts = \
-                [self.user_score_packages_filesystem_path] + \
+                [self.user_score_packages_directory_path] + \
                 packagesystem_path_parts[:]
         filesystem_path = os.path.join(*directory_parts)
         filesystem_path = os.path.normpath(filesystem_path)
