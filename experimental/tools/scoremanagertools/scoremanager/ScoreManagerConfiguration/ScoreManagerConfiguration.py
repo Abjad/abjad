@@ -26,12 +26,12 @@ class ScoreManagerConfiguration(Configuration):
 
         # score manager tools
 
-        self.score_manager_tools_directory_path = os.path.join(
+        self._score_manager_tools_directory_path = os.path.join(
             self.abjad_configuration.abjad_experimental_directory_path,
             'tools',
             'scoremanagertools',
             )
-        self.score_manager_tools_package_path = '.'.join([
+        self._score_manager_tools_package_path = '.'.join([
             'experimental',
             'tools',
             'scoremanagertools',
@@ -223,6 +223,11 @@ class ScoreManagerConfiguration(Configuration):
     def configuration_directory_path(self):
         r'''Configuration directory path.
 
+        ::
+
+            >>> configuration.configuration_directory_path
+            '.../.score_manager'
+
         Returns string.
         '''
         return os.path.join(self.home_directory_path, '.score_manager')
@@ -231,9 +236,68 @@ class ScoreManagerConfiguration(Configuration):
     def configuration_file_name(self):
         r'''Configuration file name.
 
+        ::
+
+            >>> configuration.configuration_file_name
+            'score_manager.cfg'
+
         Returns string.
         '''
         return 'score_manager.cfg'
+
+    @property
+    def configuration_file_path(self):
+        r'''Configuration file path.
+
+        ::
+
+            >>> configuration.configuration_file_path
+            '.../.score_manager/score_manager.cfg'
+
+        Returns string.
+        '''
+        superclass = super(ScoreManagerConfiguration, self)
+        return superclass.configuration_file_path
+        
+    @property
+    def home_directory_path(self):
+        r'''Home directory path.
+
+        ::
+
+            >>> configuration.home_directory_path # doctest: +SKIP
+            '/Users/...'
+
+        Returns string.
+        '''
+        superclass = super(ScoreManagerConfiguration, self)
+        return superclass.home_directory_path
+
+    @property
+    def score_manager_tools_directory_path(self):
+        r'''Score manager tools directory path.
+
+        ::
+
+            >>> configuration.score_manager_tools_directory_path
+            '.../experimental/tools/scoremanagertools'
+
+        Returns string.
+        '''
+        return self._score_manager_tools_directory_path
+
+    @property
+    def score_manager_tools_package_path(self):
+        r'''Score manager tools package path.
+
+        ::
+
+            >>> configuration.score_manager_tools_package_path
+            'experimental.tools.scoremanagertools'
+
+        Returns string.
+        '''
+        return self._score_manager_tools_package_path
 
     ### PUBLIC METHODS ###
 
@@ -348,6 +412,12 @@ class ScoreManagerConfiguration(Configuration):
 
     def packagesystem_path_exists(self, packagesystem_path):
         r'''True whens `packagesystem_path` exists. Otherwise false.
+
+        ::
+
+            >>> packagesystem_path = 'scoremanagertools.materialpackages'
+            >>> configuration.packagesystem_path_exists(packagesystem_path)
+            True
 
         Returns boolean.
         '''
