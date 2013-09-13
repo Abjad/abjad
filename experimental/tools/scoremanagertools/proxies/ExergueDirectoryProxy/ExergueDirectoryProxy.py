@@ -23,12 +23,6 @@ class ExergueDirectoryProxy(DirectoryProxy):
 
     ### PRIVATE METHODS ###
 
-    def _handle_main_menu_result(self, result):
-        if result in self.user_input_to_action:
-            self.user_input_to_action[result](self)
-        else:
-            self._run_asset_proxy(result)
-
     def _get_score_pdf_file_path(self):
         for file_name in self.list_directory():
             if file_name.endswith('score.pdf'):
@@ -41,75 +35,15 @@ class ExergueDirectoryProxy(DirectoryProxy):
                 file_path = os.path.join(self.filesystem_path, file_name)
                 return file_path
 
-    def _make_asset_menu_entries(self):
-        file_names = self.list_directory()
-        file_paths = []
-        for file_name in file_names:
-            file_path = os.path.join(self.filesystem_path, file_name)
-            file_paths.append(file_path)
-        display_strings = file_names[:]
-        menu_entries = []
-        if display_strings:
-            menu_entries = sequencetools.zip_sequences_cyclically(
-                display_strings,
-                [None],
-                [None],
-                file_paths,
-                )
-        return menu_entries
-
     def _make_main_menu(self):
-        main_menu = self.session.io_manager.make_menu(where=self._where)
-        self._main_menu = main_menu
-        asset_section = main_menu.make_asset_section()
-        main_menu._asset_section = asset_section
-        menu_entries = self._make_asset_menu_entries()
-        asset_section.menu_entries = menu_entries
+        superclass = super(ExergueDirectoryProxy, self)
+        main_menu = superclass._make_main_menu()
         command_section = main_menu.make_command_section()
         if bool(self._get_score_tex_file_path()):
             command_section.append(('typeset score', 't'))
         if bool(self._get_score_pdf_file_path()):
             command_section.append(('view score', 's'))
         return main_menu
-
-    def _run_asset_proxy(
-        self,
-        filesystem_path,
-        ):
-        proxy = self.asset_proxy_class(
-            filesystem_path=filesystem_path,
-            session=self.session,
-            )
-        proxy._run()
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def asset_proxy_class(self):
-        r'''Assset proxy class of exergue directory proxy.
-
-        Returns class.
-        '''
-        from experimental.tools import scoremanagertools
-        return scoremanagertools.proxies.FileProxy
-
-    ### PUBLIC METHODS ###
-
-    def interactively_edit_asset(
-        self,
-        filesystem_path,
-        pending_user_input=None,
-        ):
-        r'''Interactively edits exergue asset.
-
-        Returns none.
-        '''
-        self.session.io_manager.assign_user_input(pending_user_input)
-        proxy = self.asset_proxy_class(
-            filesystem_path=filesystem_path,
-            session=self.session,
-            )
-        proxy.interactively_edit()
 
     def interactively_view_score(self, pending_user_input=None):
         r'''Interactively views score.
