@@ -14,7 +14,11 @@ class ScoreTemplateDirectoryProxy(DirectoryProxy):
         score_directory_path = \
             self.configuration.packagesystem_path_to_filesystem_path(
             score_package_path)
-        filesystem_path = os.path.join(score_directory_path, 'templates')
+        filesystem_path = os.path.join(
+            score_directory_path, 
+            'music',
+            'templates',
+            )
         DirectoryProxy.__init__(
             self,
             filesystem_path=filesystem_path,
@@ -43,6 +47,7 @@ class ScoreTemplateDirectoryProxy(DirectoryProxy):
 
     def _make_asset_menu_entries(self):
         file_names = self.list_directory()
+        file_names = [x for x in file_names if x[0].isalpha()]
         file_paths = []
         for file_name in file_names:
             file_path = os.path.join(self.filesystem_path, file_name)

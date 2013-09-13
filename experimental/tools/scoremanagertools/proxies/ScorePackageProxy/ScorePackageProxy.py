@@ -33,6 +33,11 @@ class ScorePackageProxy(PackageProxy):
             scoremanagertools.wranglers.MaterialPackageMakerWrangler(
             session=self.session,
             )
+        self._score_template_directory_proxy = \
+            scoremanagertools.proxies.ScoreTemplateDirectoryProxy(
+                score_package_path=packagesystem_path,
+                session=self.session,
+                )
         self._segment_wrangler = \
             scoremanagertools.wranglers.SegmentPackageWrangler(
             session=self.session,
@@ -54,11 +59,12 @@ class ScorePackageProxy(PackageProxy):
     def _make_main_menu(self):
         main_menu = self.session.io_manager.make_menu(where=self._where)
         command_section = main_menu.make_command_section()
+        command_section.append(('exergue', 'x'))
         command_section.append(('materials', 'm'))
         command_section.append(('segments', 'g'))
-        command_section.append(('stylesheets', 'y'))
-        command_section.append(('exergue', 'x'))
         command_section.append(('setup', 's'))
+        command_section.append(('stylesheets', 'y'))
+        command_section.append(('templates', 't'))
         hidden_section = main_menu.make_command_section(is_hidden=True)
         hidden_section.append(('fix package structure', 'fix'))
         hidden_section.append(('list directory contents', 'ls'))
@@ -198,6 +204,10 @@ class ScorePackageProxy(PackageProxy):
             self.segment_wrangler,
             self.material_package_wrangler,
             )
+
+    @property
+    def score_template_directory_proxy(self):
+        return self._score_template_directory_proxy
 
     @property
     def segment_wrangler(self):
@@ -447,6 +457,9 @@ class ScorePackageProxy(PackageProxy):
     def manage_materials(self):
         self.material_package_wrangler._run(head=self.package_path)
 
+    def manage_score_templates(self):
+        self.score_template_directory_proxy._run()
+
     def manage_segments(self):
         self.segment_wrangler._run(head=self.package_path)
 
@@ -548,6 +561,7 @@ class ScorePackageProxy(PackageProxy):
         'removescore': interactively_remove,
         's': manage_setup,
         'svn': manage_svn,
+        't': manage_score_templates,
         'x': manage_exergue_directory,
         'y': manage_stylesheets,
         })
