@@ -25,7 +25,7 @@ class AttributeInspectionAgent(object):
 
     ### PUBLIC METHODS ###
 
-    def get_annotation_value(
+    def get_annotation(
         self, 
         name, 
         default=None,
