@@ -21,7 +21,6 @@ class SegmentPackageProxy(PackageProxy):
             session=session,
             )
         self.score_template = score_template
-        self._has_made_pdf_in_this_session = False
 
     ### PRIVATE PROPERTIES ###
 
@@ -48,10 +47,9 @@ class SegmentPackageProxy(PackageProxy):
         command_section.append(('output pdf - make', 'pdfm'))
         last_output_file_name = iotools.get_last_output_file_name(
             path=self.history_directory)
+        command_section.append(('output pdf - write', 'pdfw'))
         if last_output_file_name is not None:
             command_section.append(('output pdf - view', 'pdfv'))
-        if self._has_made_pdf_in_this_session:
-            command_section.append(('output pdf - write', 'pdfw'))
         return main_menu
 
     ### PUBLIC PROPERTIES ###
@@ -114,7 +112,7 @@ class SegmentPackageProxy(PackageProxy):
         self.session.io_manager.assign_user_input(pending_user_input)
         proxy = self.segment_definition_module_proxy
         proxy.interpret_in_external_process()
-        self._has_made_pdf_in_this_session = True
+        iotools.pdf()
 
     def interactively_view_asset_pdf(
         self,
@@ -144,7 +142,8 @@ class SegmentPackageProxy(PackageProxy):
         Returns none.
         '''
         self.session.io_manager.assign_user_input(pending_user_input)
-        getter = self.session.io_manager.make_getter(where=self._where)
+        proxy = self.segment_definition_module_proxy
+        proxy.interpret_in_external_process()
         history_directory = self.history_directory
         next_ly_file_name = iotools.get_next_output_file_name(
             path=history_directory)
