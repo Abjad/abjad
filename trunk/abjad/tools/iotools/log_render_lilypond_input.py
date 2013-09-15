@@ -32,7 +32,10 @@ def log_render_lilypond_input(
         output_directory_path or abjad_configuration['abjad_output']
     iotools.verify_output_directory(output_directory_path)
     os.chdir(output_directory_path)
-    name = output_file_name_root or iotools.get_next_output_file_name()
+    if output_file_name_root is None:
+        name = iotools.get_next_output_file_name()
+    else:
+        name = output_file_name_root + '.ly'
     outfile = open(name, 'w')
     # catch Abjad tight loops that result in excessive format time
     start_format_time = time.time()
