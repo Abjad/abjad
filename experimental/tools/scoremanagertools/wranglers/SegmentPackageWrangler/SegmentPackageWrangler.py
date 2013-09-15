@@ -96,22 +96,22 @@ class SegmentPackageWrangler(PackageWrangler):
         for directory_entry in os.listdir(segments_directory_path):
             if not directory_entry[0].isalpha():
                 continue
-            history_directory_path = os.path.join(
+            versions_directory_path = os.path.join(
                 segments_directory_path,
                 directory_entry,
-                'history',
+                'versions',
                 )
-            if not os.path.isdir(history_directory_path):
+            if not os.path.isdir(versions_directory_path):
                 continue
             last_output_file_name = \
-                iotools.get_last_output_file_name(history_directory_path)
+                iotools.get_last_output_file_name(versions_directory_path)
             if last_output_file_name is None:
                 continue
             result = os.path.splitext(last_output_file_name)
             last_output_file_name_root, extension = result
             last_output_pdf_name = last_output_file_name_root + '.pdf'
             last_output_pdf_file_path = os.path.join(
-                history_directory_path,
+                versions_directory_path,
                 last_output_pdf_name,
                 )
             if not os.path.isfile(last_output_pdf_file_path):
@@ -350,7 +350,7 @@ class SegmentPackageWrangler(PackageWrangler):
             )
         proxy.write_initializer_to_disk()
         proxy.write_segment_definition_module_to_disk()
-        proxy.make_history_directory()
+        proxy.make_versions_directory()
         line = 'package {!r} created.'.format(package_path)
         self.session.io_manager.proceed(line, is_interactive=is_interactive)
 
