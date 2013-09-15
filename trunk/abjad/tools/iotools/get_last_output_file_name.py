@@ -3,19 +3,27 @@ import os
 import re
 
 
-def get_last_output_file_name(path=None):
-    r'''Get last output file name like ``6222.ly``.
+def get_last_output_file_name(output_directory_path=None):
+    r'''Gets last output file name in output directory.
+    
+    ::
+        
+        >>> iotools.get_last_output_file_name() # doctest: +SKIP
+        '6222.ly'
 
-    Read Abajd output directory when `path` is none.
+    Gets last output file name in Abjad output directory when
+    `output_directory_path` is none.
 
-    Return string.
+    Returns none when output directory contains no output files.
+
+    Returns string or none.
     '''
     from abjad import abjad_configuration
-
     pattern = re.compile('\d{4,4}.[a-z]{2,3}')
-    path = path or abjad_configuration['abjad_output']
-    all_file_names = os.listdir(path)
-    all_output = [fn for fn in all_file_names if pattern.match(fn)]
+    output_directory_path = \
+        output_directory_path or abjad_configuration['abjad_output']
+    all_file_names = os.listdir(output_directory_path)
+    all_output = [x for x in all_file_names if pattern.match(x)]
     if all_output == []:
         last_output_file_name = None
     else:
