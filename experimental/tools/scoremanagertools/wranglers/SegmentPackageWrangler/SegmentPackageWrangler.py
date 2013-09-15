@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import collections
 import os
+from abjad.tools import iotools
 from experimental.tools.scoremanagertools.wranglers.PackageWrangler import \
     PackageWrangler
 
@@ -47,6 +48,9 @@ class SegmentPackageWrangler(PackageWrangler):
         asset_section.menu_entries = asset_menu_entries
         command_section = main_menu.make_command_section()
         command_section.append(('new segment', 'new'))
+        command_section = main_menu.make_command_section()
+        command_section.append(('view segment pdfs', 'pdfv'))
+        command_section.append(('write segment pdfs', 'pdfw'))
         return main_menu
 
     ### PUBLIC PROPERTIES ###
@@ -79,6 +83,51 @@ class SegmentPackageWrangler(PackageWrangler):
         return super(SegmentPackageWrangler, self).storage_format
 
     ### PUBLIC METHODS ###
+
+    def interactively_view_asset_pdfs(
+        self,
+        pending_user_input=None,
+        ):
+        parts = (self.session.current_score_directory_path,)
+        parts += self.score_package_asset_storehouse_path_infix_parts
+        segments_directory_path = os.path.join(*parts)
+        pdf_file_paths = []
+        for directory_entry in os.listdir(segments_directory_path):
+            if not directory_entry[0].isalpha():
+                continue
+            history_directory_path = os.path.join(
+                segments_directory_path,
+                directory_entry,
+                'history',
+                )
+            if not os.path.isdir(history_directory_path):
+                continue
+            last_output_file_name = \
+                iotools.get_last_output_file_name(history_directory_path)
+            if last_output_file_name is None:
+                continue
+            result = os.path.splitext(last_output_file_name)
+            last_output_file_name_root, extension = result
+            last_output_pdf_name = last_output_file_name_root + '.pdf'
+            last_output_pdf_file_path = os.path.join(
+                history_directory_path,
+                last_output_pdf_name,
+                )
+            if not os.path.isfile(last_output_pdf_file_path):
+                continue
+            pdf_file_paths.append(last_output_pdf_file_path)
+        if not pdf_file_paths:
+            message = 'no PDFs to view.'
+            self.session.io_manager.proceed(message)
+        command = ' '.join(pdf_file_paths)
+        command = 'open ' + command
+        iotools.spawn_subprocess(command)
+
+    def interactively_write_asset_pdfs(
+        self,
+        pending_user_input=None,
+        ):
+        pass
 
     def list_asset_filesystem_paths(
         self,
@@ -304,5 +353,6 @@ class SegmentPackageWrangler(PackageWrangler):
 
     user_input_to_action = PackageWrangler.user_input_to_action.copy()
     user_input_to_action.update({
-
+        'pdfv': interactively_view_asset_pdfs,
+        'pdfw': interactively_write_asset_pdfs,
         })
