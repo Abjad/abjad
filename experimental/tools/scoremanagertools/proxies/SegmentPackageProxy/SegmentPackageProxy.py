@@ -30,6 +30,12 @@ class SegmentPackageProxy(PackageProxy):
 
     ### PRIVATE METHODS ###
 
+    def _get_output_lilypond_file_path(self):
+        return os.path.join(self.filesystem_path, 'output.ly')
+        
+    def _get_output_pdf_file_path(self):
+        return os.path.join(self.filesystem_path, 'output.pdf')
+        
     def _handle_main_menu_result(self, result):
         if result in self.user_input_to_action:
             self.user_input_to_action[result](self)
@@ -42,20 +48,21 @@ class SegmentPackageProxy(PackageProxy):
         hidden_section.append(('rename package', 'ren'))
         hidden_section.append(('manage tags', 'tags'))
         command_section = main_menu.make_command_section()
-        command_section.append(('segment definition - edit', 'sde'))
+        command_section.append(('segment definition - edit', 'e'))
+        command_section.append(('segment definition - execute', 'x'))
         command_section = main_menu.make_command_section()
         command_section.append(('output pdf - make', 'pdfm'))
-        last_output_file_name = iotools.get_last_output_file_name(
-            path=self.history_directory)
-        command_section.append(('output pdf - write', 'pdfw'))
-        if last_output_file_name is not None:
+        if os.path.isfile(self._get_output_pdf_file_path()):
             command_section.append(('output pdf - view', 'pdfv'))
+        hidden_section = main_menu.make_command_section(is_hidden=True)
+        if os.path.isfile(self._get_output_lilypond_file_path()):
+            hidden_section.append(('output ly - view', 'lyv'))
         return main_menu
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def history_directory(self):
+    def history_directory_path(self):
         return os.path.join(self.filesystem_path, 'history')
 
     @apply
@@ -70,13 +77,13 @@ class SegmentPackageProxy(PackageProxy):
 
     @property
     def segment_definition_module_file_name(self):
-        return os.path.join(self.filesystem_path, 'segment_definition.py')
+        return os.path.join(self.filesystem_path, 'definition.py')
 
     @property
     def segment_definition_module_packagesystem_path(self):
         return '.'.join([
             self.package_path,
-            'segment_definition',
+            'definition',
             ])
 
     @property
@@ -101,67 +108,78 @@ class SegmentPackageProxy(PackageProxy):
         self.session.io_manager.assign_user_input(pending_user_input)
         self.segment_definition_module_proxy.interactively_edit()
 
-    def interactively_make_asset_pdf(
-        self,
-        pending_user_input=None,
-        ):
+    def interactively_execute_asset_definition_module(self):
+        r'''Executes asset definition module.
+
+        Returns none.
+        '''
+        proxy = self.segment_definition_module_proxy
+        proxy.interpret_in_external_process()
+        message = 'segment definition module executed.'
+        self.session.io_manager.proceed(message)
+
+    def interactively_make_asset_pdf(self):
         r'''Interactively makes asset PDF.
 
         Returns none.
         '''
-        self.session.io_manager.assign_user_input(pending_user_input)
         proxy = self.segment_definition_module_proxy
         proxy.interpret_in_external_process()
-        iotools.pdf()
+        self.view_output_pdf()
 
-    def interactively_view_asset_pdf(
-        self,
-        pending_user_input=None,
-        ):
-        r'''Interactively views asset PDF.
+    def interactively_view_output_ly(self):
+        r'''Interactively views output LilyPond file.
 
         Returns none.
         '''
-        self.session.io_manager.assign_user_input(pending_user_input)
-        last_output_file_name = iotools.get_last_output_file_name(
-            path=self.history_directory)
-        if last_output_file_name is not None:
-            result = os.path.splitext(last_output_file_name)
-            file_name_without_extension, extension = result
-            pdf_file_name = file_name_without_extension + '.pdf'
-            pdf_path_name = os.path.join(self.history_directory, pdf_file_name)
-            command = 'open {}'.format(pdf_path_name)
+        output_lilypond_file_path = self._get_output_lilypond_file_path()
+        if os.path.isfile(output_lilypond_file_path):
+            command = 'vim -R {}'.format(output_lilypond_file_path)
             iotools.spawn_subprocess(command)
 
-    def interactively_write_asset_pdf(
-        self,
-        pending_user_input=None,
-        ):
-        r'''Interactively writes asset LilyPond file and PDF to disk.
-
-        Returns none.
-        '''
-        self.session.io_manager.assign_user_input(pending_user_input)
-        proxy = self.segment_definition_module_proxy
-        proxy.interpret_in_external_process()
-        history_directory = self.history_directory
-        next_ly_file_name = iotools.get_next_output_file_name(
-            path=history_directory)
-        next_ly_path = os.path.join(history_directory, next_ly_file_name)
-        iotools.save_last_ly_as(next_ly_path)
-        next_pdf_file_name = next_ly_file_name.replace('.ly', '.pdf')
-        next_pdf_path = os.path.join(history_directory, next_pdf_file_name)
-        iotools.save_last_pdf_as(next_pdf_path)
-        message = 'PDF & LilyPond source saved.'
-        self.session.io_manager.proceed(message)
+#    def interactively_write_asset_pdf(
+#        self,
+#        is_interactive=True,
+#        pending_user_input=None,
+#        ):
+#        r'''Interactively writes asset LilyPond file and PDF to disk.
+#
+#        Returns none.
+#        '''
+#        self.session.io_manager.assign_user_input(pending_user_input)
+#        proxy = self.segment_definition_module_proxy
+#        proxy.interpret_in_external_process()
+#        history_directory_path = self.history_directory_path
+#        next_ly_file_name = iotools.get_next_output_file_name(
+#            output_directory_path=history_directory_path)
+#        next_ly_path = os.path.join(history_directory_path, next_ly_file_name)
+#        iotools.save_last_ly_as(next_ly_path)
+#        next_pdf_file_name = next_ly_file_name.replace('.ly', '.pdf')
+#        next_pdf_path = os.path.join(
+#            history_directory_path, 
+#            next_pdf_file_name,
+#            )
+#        iotools.save_last_pdf_as(next_pdf_path)
+#        message = 'PDF & LilyPond source saved.'
+#        self.session.io_manager.proceed(message, is_interactive=is_interactive)
 
     def make_history_directory(self):
         r'''Makes history directory.
 
         Returns none.
         '''
-        if not os.path.exists(self.history_directory):
-            os.mkdir(self.history_directory)
+        if not os.path.exists(self.history_directory_path):
+            os.mkdir(self.history_directory_path)
+
+    def view_output_pdf(self):
+        r'''Views output PDF.
+
+        Returns none.
+        '''
+        output_pdf_file_path = self._get_output_pdf_file_path()
+        if os.path.isfile(output_pdf_file_path):
+            command = 'open {}'.format(output_pdf_file_path)
+            iotools.spawn_subprocess(command)
 
     def write_initializer_to_disk(self):
         r'''Writes initializer to disk.
@@ -189,8 +207,9 @@ class SegmentPackageProxy(PackageProxy):
 
     user_input_to_action = PackageProxy.user_input_to_action.copy()
     user_input_to_action.update({
-        'sde': interactively_edit_asset_definition_module,
+        'e': interactively_edit_asset_definition_module,
+        'lyv': interactively_view_output_ly,
         'pdfm': interactively_make_asset_pdf,
-        'pdfv': interactively_view_asset_pdf,
-        'pdfw': interactively_write_asset_pdf,
+        'pdfv': view_output_pdf,
+        'x': interactively_execute_asset_definition_module,
         })
