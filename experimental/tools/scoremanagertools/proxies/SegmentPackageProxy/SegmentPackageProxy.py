@@ -143,7 +143,10 @@ class SegmentPackageProxy(PackageProxy):
         proxy.interpret_in_external_process()
         self.view_output_pdf()
 
-    def interactively_save_to_versions_directory(self):
+    def interactively_save_to_versions_directory(
+        self,
+        is_interactive=True
+        ):
         r'''Interactively saves asset definition module,
         output PDF and output LilyPond file to versions directory.
 
@@ -154,17 +157,26 @@ class SegmentPackageProxy(PackageProxy):
             self._get_asset_definition_module_file_path()
         if not os.path.isfile(asset_definition_module_file_path):
             message = 'can not find asset definition module.'
-            self.session.io_manager.proceed(message)
+            self.session.io_manager.proceed(
+                message,
+                is_interactive=is_interactive,
+                )
             return
         output_pdf_file_path = self._get_output_pdf_file_path()
         if not os.path.isfile(output_pdf_file_path):
             message = 'can not find output PDF.'
-            self.session.io_manager.proceed(message)
+            self.session.io_manager.proceed(
+                message,
+                is_interactive=is_interactive,
+                )
             return
         output_lilypond_file_path = self._get_output_lilypond_file_path()
         if not os.path.isfile(output_lilypond_file_path):
             message = 'can not find output LilyPond file.'
-            self.session.io_manager.proceed(message)
+            self.session.io_manager.proceed(
+                message,
+                is_interactive=is_interactive,
+                )
             return
         next_output_file_name = iotools.get_next_output_file_name(
             output_directory_path=self._get_versions_directory_path(),
@@ -204,7 +216,11 @@ class SegmentPackageProxy(PackageProxy):
         version_number = int(next_output_file_name_root)
         message = 'version {} written to disk.'
         message = message.format(version_number)
-        self.session.io_manager.proceed(message)
+        self.session.io_manager.proceed(
+            message,
+            is_interactive=is_interactive,
+            )
+        return version_number
 
     def interactively_view_output_ly(self):
         r'''Interactively views output LilyPond file.
