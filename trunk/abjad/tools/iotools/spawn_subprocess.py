@@ -3,8 +3,9 @@ import subprocess
 
 
 def spawn_subprocess(command):
-    r'''Spawn subprocess, run `command`, redirect stderr to stdout 
-    and print result:
+    r'''Spawns subprocess and runs `command`.
+    
+    Redirects stderr to stdout.
 
     ::
 
@@ -14,12 +15,7 @@ def spawn_subprocess(command):
     The function is basically a reimplementation of the 
     deprecated ``os.system()`` using Python's ``subprocess`` module.
 
-    The function provides a type of shell access from the Abjad interpreter.
-
-    Return none.
+    Returns integer result code.
     '''
 
-    subprocess.call(command, shell=True)
-    #proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    #for line in proc.stdout.read().splitlines():
-    #    print line
+    return subprocess.call(command, shell=True)
