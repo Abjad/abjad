@@ -50,7 +50,7 @@ class LilyPondGrobOverrideComponentPlugIn(LilyPondComponentPlugIn):
         return '%s(%s)' % (self.__class__.__name__, body_string)
 
     def __setattr__(self, attr, value):
-        # make sure attr is valid grob name before setting value #
+        # make sure attr is valid grob name before setting value
         attr_value = getattr(self, attr)
         object.__setattr__(self, attr, value)
 
@@ -84,7 +84,6 @@ class LilyPondGrobOverrideComponentPlugIn(LilyPondComponentPlugIn):
         for grob_override_tuple in grob_override_tuples:
             most = '__'.join(grob_override_tuple[:-1])
             value = grob_override_tuple[-1]
-            #value = repr(value)
             value = getattr(
                 value, '_tools_package_qualified_repr', repr(value))
             skeleton_string = 'override__{}={}'.format(most, value)
@@ -101,23 +100,32 @@ class LilyPondGrobOverrideComponentPlugIn(LilyPondComponentPlugIn):
         for attribute_tuple in self._get_attribute_tuples():
             if len(attribute_tuple) == 3:
                 context_name = None
-                grob_name, attribute_name, attribute_value = attribute_tuple
+                grob_name = attribute_tuple[0]
+                attribute_name = attribute_tuple[1]
+                attribute_value = attribute_tuple[2]
             elif len(attribute_tuple) == 4:
-                context_name, grob_name, attribute_name, attribute_value = \
-                    attribute_tuple
+                context_name = attribute_tuple[0]
+                grob_name = attribute_tuple[1]
+                attribute_name = attribute_tuple[2]
+                attribute_value = attribute_tuple[3]
             else:
                 raise ValueError
             if contribution_type == 'override':
-                result.append(_make_lilypond_override_string(
+                override_string = _make_lilypond_override_string(
                     grob_name, 
                     attribute_name,
                     attribute_value, 
                     context_name=context_name, 
-                    is_once=is_once))
+                    is_once=is_once,
+                    )
+                result.append(override_string)
             else:
-                result.append(
-                    _make_lilypond_revert_string(
-                        grob_name, attribute_name, context_name=context_name))
+                revert_string = _make_lilypond_revert_string(
+                    grob_name, 
+                    attribute_name, 
+                    context_name=context_name,
+                    )
+                result.append(revert_string)
         result.sort()
         return result
 

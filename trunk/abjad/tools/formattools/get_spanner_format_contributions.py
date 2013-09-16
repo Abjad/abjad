@@ -49,7 +49,9 @@ def get_spanner_format_contributions(component):
         if spanner._is_my_last_leaf(component):
             for contribution in \
                 spanner.override._list_format_contributions('revert'):
-                after_contributions.append((spanner, contribution, None))
+                triple = (spanner, contribution, None)
+                if triple not in after_contributions:
+                    after_contributions.append(triple)
 
         # contributions for right slot
         contributions = spanner._format_right_of_leaf(component)

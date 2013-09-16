@@ -36,9 +36,7 @@ def make_solid_text_spanner_with_nib(
                 d'8
                 e'8
                 f'8 \stopTextSpan
-                \revert TextSpanner #'bound-details #'left #'text
-                \revert TextSpanner #'bound-details #'right #'text
-                \revert TextSpanner #'bound-details #'right-broken #'text
+                \revert TextSpanner #'bound-details
                 \revert TextSpanner #'dash-fraction
                 \revert TextSpanner #'direction
             }
@@ -65,9 +63,7 @@ def make_solid_text_spanner_with_nib(
                 d'8
                 e'8
                 f'8 \stopTextSpan
-                \revert TextSpanner #'bound-details #'left #'text
-                \revert TextSpanner #'bound-details #'right #'text
-                \revert TextSpanner #'bound-details #'right-broken #'text
+                \revert TextSpanner #'bound-details
                 \revert TextSpanner #'dash-fraction
                 \revert TextSpanner #'direction
             }

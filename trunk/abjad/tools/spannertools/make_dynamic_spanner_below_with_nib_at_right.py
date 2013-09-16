@@ -30,9 +30,7 @@ def make_dynamic_spanner_below_with_nib_at_right(dynamic_text, components=None):
             d'8
             e'8
             f'8 \stopTextSpan
-            \revert TextSpanner #'bound-details #'left #'text
-            \revert TextSpanner #'bound-details #'right #'text
-            \revert TextSpanner #'bound-details #'right-broken #'text
+            \revert TextSpanner #'bound-details
             \revert TextSpanner #'dash-fraction
             \revert TextSpanner #'direction
         }

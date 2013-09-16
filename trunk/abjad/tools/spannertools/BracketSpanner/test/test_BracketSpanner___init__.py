@@ -20,42 +20,6 @@ def test_BracketSpanner___init___02():
     spannertools.BracketSpanner(staff[1])
     measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8
-            d'8
-        }
-        {
-            \time 2/8
-            \override TextSpanner #'bound-details #'left #'text = \markup { \draw-line #'(0 . -1) }
-            \override TextSpanner #'bound-details #'left-broken #'text = ##f
-            \override TextSpanner #'bound-details #'right #'text = \markup { \draw-line #'(0 . -1) }
-            \override TextSpanner #'bound-details #'right-broken #'text = ##f
-            \override TextSpanner #'color = #red
-            \override TextSpanner #'dash-fraction = #1
-            \override TextSpanner #'staff-padding = #2
-            \override TextSpanner #'thickness = #1.5
-            e'8 \startTextSpan
-            f'8 \stopTextSpan
-            \revert TextSpanner #'bound-details #'left #'text
-            \revert TextSpanner #'bound-details #'left-broken #'text
-            \revert TextSpanner #'bound-details #'right #'text
-            \revert TextSpanner #'bound-details #'right-broken #'text
-            \revert TextSpanner #'color
-            \revert TextSpanner #'dash-fraction
-            \revert TextSpanner #'staff-padding
-            \revert TextSpanner #'thickness
-        }
-        {
-            \time 2/8
-            g'8
-            a'8
-        }
-    }
-    '''
-
     assert testtools.compare(
         staff,
         r'''
@@ -77,10 +41,7 @@ def test_BracketSpanner___init___02():
                 \override TextSpanner #'thickness = #1.5
                 e'8 \startTextSpan
                 f'8 \stopTextSpan
-                \revert TextSpanner #'bound-details #'left #'text
-                \revert TextSpanner #'bound-details #'left-broken #'text
-                \revert TextSpanner #'bound-details #'right #'text
-                \revert TextSpanner #'bound-details #'right-broken #'text
+                \revert TextSpanner #'bound-details
                 \revert TextSpanner #'color
                 \revert TextSpanner #'dash-fraction
                 \revert TextSpanner #'staff-padding
