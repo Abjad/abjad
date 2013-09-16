@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
+from abjad.tools import iotools
 from experimental.tools.scoremanagertools.proxies.FileProxy import FileProxy
 
 
@@ -13,4 +14,4 @@ class IllustrationPdfFileProxy(FileProxy):
 
     def interactively_view(self):
         command = 'open {}'.format(self.filesystem_path)
-        os.system(command)
+        iotools.spawn_subprocess(command)

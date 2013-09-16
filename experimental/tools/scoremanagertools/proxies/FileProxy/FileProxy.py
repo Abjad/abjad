@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
+from abjad.tools import iotools
 from experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy \
     import FilesystemAssetProxy
 
@@ -50,7 +51,8 @@ class FileProxy(FilesystemAssetProxy):
 
         Returns none.
         '''
-        os.system('vim + {}'.format(self.filesystem_path))
+        command = 'vim + {}'.format(self.filesystem_path)
+        iotools.spawn_subprocess(command)
 
     def interactively_view(self):
         r'''Interactively views file.
@@ -61,7 +63,7 @@ class FileProxy(FilesystemAssetProxy):
             command = 'open {}'.format(self.filesystem_path)
         else:
             command = 'vim -R {}'.format(self.filesystem_path)
-        os.system(command)
+        iotools.spawn_subprocess(command)
 
     def make_empty_asset(self, is_interactive=False):
         r'''Makes emtpy file.
@@ -93,7 +95,7 @@ class FileProxy(FilesystemAssetProxy):
         Returns none.
         '''
         command = 'python {}'.format(self.filesystem_path)
-        os.system(command)
+        iotools.spawn_subprocess(command)
 
     def typeset_tex_file(self):
         r'''Typesets TeX file.
@@ -111,11 +113,11 @@ class FileProxy(FilesystemAssetProxy):
             input_directory, 
             input_file_name_stem,
             )
-        os.system(command)
+        iotools.spawn_subprocess(command)
         command = 'rm {}/*.aux'.format(output_directory)
-        os.system(command)
+        iotools.spawn_subprocess(command)
         command = 'rm {}/*.log'.format(output_directory)
-        os.system(command)
+        iotools.spawn_subprocess(command)
 
     ### UI MANIFEST ###
 

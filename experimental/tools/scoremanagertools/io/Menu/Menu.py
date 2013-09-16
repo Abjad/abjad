@@ -384,11 +384,12 @@ class Menu(ScoreManagerObject):
             file_name = self.where[1]
             line_number = self.where[2]
             command = 'vim +{} {}'.format(line_number, file_name)
-            os.system(command)
+            iotools.spawn_subprocess(command)
         else:
             lines = []
-            lines.append("where-tracking not enabled. " +
-                "Use 'twt' to toggle where-tracking.")
+            message = 'where-tracking not enabled.'
+            message += " Use 'twt' to toggle where-tracking."
+            lines.append(message)
             lines.append('')
             self.session.io_manager.display(lines)
             self.session.hide_next_redraw = True

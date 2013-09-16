@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
+from abjad.tools import iotools
 from experimental.tools.scoremanagertools.proxies.ModuleProxy \
     import ModuleProxy
 from experimental.tools.scoremanagertools.proxies.ParseableModuleMixin \
@@ -68,7 +69,9 @@ class MaterialDefinitionModuleProxy(ModuleProxy, ParseableModuleMixin):
 
     def interactively_edit(self):
         columns = len(self.material_package_name) + 3
-        os.system("vim + -c'norm {}l' {}".format(columns, self.filesystem_path))
+        command = "vim + -c'norm {}l' {}"
+        command = command.format(columns, self.filesystem_path)
+        iotools.spawn_subprocess(command)
 
     def parse(self):
         is_parsable = True
