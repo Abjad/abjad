@@ -521,8 +521,8 @@ class Spanner(AbjadObject):
         Returns LilyPond grob override component plug-in.
         '''
         if not hasattr(self, '_override'):
-            self._override = \
-                lilypondproxytools.LilyPondGrobOverrideComponentPlugIn()
+            plugin = lilypondproxytools.LilyPondGrobOverrideComponentPlugIn()
+            self._override = plugin
         return self._override
 
     @property
@@ -532,18 +532,9 @@ class Spanner(AbjadObject):
         Returns LilyPond context setting component plug-in.
         '''
         if not hasattr(self, '_set'):
-            self._set = \
-                lilypondproxytools.LilyPondContextSettingComponentPlugIn()
+            plugin = lilypondproxytools.LilyPondContextSettingComponentPlugIn()
+            self._set = plugin
         return self._set
-
-    # TODO: remove?
-    @property
-    def written_duration(self):
-        r'''Sum of written duration of all components in spanner.
-
-        Return duration.
-        '''
-        return sum([component.written_duration for component in self])
 
     ### PUBLIC METHODS ###
 

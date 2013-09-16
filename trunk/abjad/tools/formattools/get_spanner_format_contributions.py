@@ -2,9 +2,10 @@
 
 
 def get_spanner_format_contributions(component):
-    r'''Get spanner format contributions for `component`.
+    r'''Gets spanner format contributions for `component`.
 
-    Return dictionary with format slot keys and format contributions values.
+    Dictionary keys equal to format slot;
+    dictionary values equal to format contributions.
     '''
     from abjad.tools import containertools
     from abjad.tools import spannertools
@@ -30,7 +31,8 @@ def get_spanner_format_contributions(component):
 
         # override contributions (in before slot)
         if spanner._is_my_first_leaf(component):
-            for contribution in spanner.override._list_format_contributions(
+            for contribution in \
+                spanner.override._list_format_contributions(
                 'override', is_once=False):
                 before_contributions.append((spanner, contribution, None))
 
@@ -45,8 +47,8 @@ def get_spanner_format_contributions(component):
 
         # revert contributions (in after slot)
         if spanner._is_my_last_leaf(component):
-            for contribution in spanner.override._list_format_contributions(
-                'revert'):
+            for contribution in \
+                spanner.override._list_format_contributions('revert'):
                 after_contributions.append((spanner, contribution, None))
 
         # contributions for right slot
