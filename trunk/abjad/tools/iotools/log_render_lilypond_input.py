@@ -18,7 +18,8 @@ def log_render_lilypond_input(
     Writes to next 4-digit numeric file name 
     when `output_file_name_root` is none.
 
-    Returns none.
+    Returns file name, Abjad format time (in seconds) and LilyPond
+    format time (in seconds).
     '''
     from abjad import abjad_configuration
     from abjad.tools import iotools

@@ -3,31 +3,38 @@ import os
 
 
 def show(expr, return_timing=False, suppress_pdf=False, docs=False):
-    r'''Show `expr`:
+    r'''Shows `expr`.
 
-    ::
+    ..  container:: example
 
-        >>> note = Note("c'4")
-        >>> show(note) # doctest: +SKIP
+        **Example 1.** Show a note:
+            
+        ::
 
-    Show `expr` and return both Abjad and LilyPond processing time in seconds:
+            >>> note = Note("c'4")
+            >>> show(note) # doctest: +SKIP
 
-    ::
+    ..  container:: example
 
-        >>> staff = Staff(Note("c'4") * 200)
-        >>> show(note, return_timing=True) # doctest: +SKIP
-        (0, 3)
+        **Example 2.** Show a note and return Abjad and LilyPond processing
+        times in seconds:
 
-    Wrap `expr` in a LilyPond file with settings and overrides suitable
+        ::
+
+            >>> staff = Staff(Note("c'4") * 200)
+            >>> show(note, return_timing=True) # doctest: +SKIP
+            (0, 3)
+
+    Wraps `expr` in a LilyPond file with settings and overrides suitable
     for the Abjad reference manual When `docs` is true.
-
-    Return none or timing tuple.
 
     Abjad writes LilyPond input files to the ``~/.abjad/output`` 
     directory by default.
 
     You may change this by setting the ``abjad_output`` variable in 
     the ``config.py`` file.
+
+    Returns none or timing tuple.
     '''
     from abjad import abjad_configuration
     from abjad.tools import iotools

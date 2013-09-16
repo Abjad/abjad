@@ -2,7 +2,7 @@
 
 
 def p(arg, language='english'):
-    r'''Parse `arg` as LilyPond string:
+    r'''Parses `arg` as LilyPond string.
 
     ::
 
@@ -12,6 +12,9 @@ def p(arg, language='english'):
     ::
 
         >>> container = _
+
+    ::
+
         >>> f(container)
         {
             c'4
@@ -27,10 +30,8 @@ def p(arg, language='english'):
         >>> p("{c'8 des' e' fis'}", language='nederlands')
         {c'8, df'8, e'8, fs'8}
 
-    Return Abjad expression.
+    Returns Abjad expression.
     '''
-    # TODO: lilypondparsertools should NOT depend on iotools.
-    #       The direction of dependency should be the other way around.
     from abjad.tools import rhythmtreetools
     from abjad.tools import lilypondparsertools
 

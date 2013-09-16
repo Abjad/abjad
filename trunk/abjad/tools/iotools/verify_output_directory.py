@@ -3,8 +3,17 @@ import os
 
 
 def verify_output_directory(directory):
+    r'''Verifies output `directory`.
+
+    Returns none.
+    '''
     if not os.path.isdir(directory):
-        raw_input('Attention: "%s" does not exist in your system.\n\
-        Abjad will now create it to store all generated output files. \n\
-        Press any key to continue.' % directory)
+        lines = []
+        line = 'Attention: {!} does not exist on your system.'
+        line = line.format(directory)
+        lines.append(line)
+        lines.append('Abjad will now create it to store all output files.')
+        lines.append('Press any key to continue.')
+        message = '\n'.join(lines)
+        raw_input(message)
         os.makedirs(directory)

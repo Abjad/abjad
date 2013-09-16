@@ -4,10 +4,10 @@ import subprocess
 
 
 def plot(expr, image_format='png', width=640, height=320):
-    r'''Plot `expr` with gnuplot, and open resulting image in 
+    r'''Plots `expr` with gnuplot and opens resulting image in 
     the default image viewer.
 
-    Return None.
+    Returns none.
     '''
 
     from abjad import abjad_configuration
@@ -16,16 +16,17 @@ def plot(expr, image_format='png', width=640, height=320):
     assert image_format in ('pdf', 'png')
     assert isinstance(width, int) and 0 < width
     assert isinstance(height, int) and 0 < height
-    assert iotools.which('gnuplot'), 'Cannot find `gnuplot` command-line tool.'
+    message = 'Cannot find `gnuplot` command-line tool.'
+    assert iotools.which('gnuplot'), message
 
     gnuplot_format = expr.gnuplot_format
 
     current_directory = os.path.abspath('.')
-    ABJADOUTPUT = abjad_configuration['abjad_output']
-    iotools.verify_output_directory(ABJADOUTPUT)
+    abjad_output = abjad_configuration['abjad_output']
+    iotools.verify_output_directory(abjad_output)
     txt_path = os.path.join(
-        ABJADOUTPUT, iotools.get_next_output_file_name(file_extension='txt'))
-    img_path = os.path.join(ABJADOUTPUT, txt_path.replace('txt', image_format))
+        abjad_output, iotools.get_next_output_file_name(file_extension='txt'))
+    img_path = os.path.join(abjad_output, txt_path.replace('txt', image_format))
 
     if image_format == 'png':
         image_format = 'pngcairo'
@@ -44,5 +45,5 @@ def plot(expr, image_format='png', width=640, height=320):
     subprocess.call(command, shell=True)
 
     pdf_viewer = abjad_configuration['pdf_viewer']
-    ABJADOUTPUT = abjad_configuration['abjad_output']
+    abjad_output = abjad_configuration['abjad_output']
     iotools.open_file(img_path, pdf_viewer)

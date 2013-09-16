@@ -4,6 +4,10 @@ import sys
 
 
 def run_abjad():
+    r'''Runs Abjad.
+
+    Returns none.
+    '''
     from abjad.tools import iotools
 
     try:

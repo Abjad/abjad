@@ -2,11 +2,17 @@
 
 
 def get_next_output_file_name(file_extension='ly', output_directory_path=None):
-    r'''Get next output file name like ``6223.ly``.
+    r'''Gets next output file name in output directory.
+    
+    ::
 
-    Read Abjad output directory when `output_directory_path` is none.
+        >>> iotools.get_next_output_file_name() # doctest: +SKIP
+        '6223.ly'
 
-    Return string.
+    Gets next output file name in Abjad output directory
+    when `output_directory_path` is none.
+
+    Returns string.
     '''
     from abjad.tools import iotools
 

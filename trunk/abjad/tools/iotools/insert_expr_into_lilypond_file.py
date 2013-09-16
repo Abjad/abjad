@@ -5,6 +5,10 @@ from abjad.tools import markuptools
 
 # TODO: move to lilypondfiletools
 def insert_expr_into_lilypond_file(expr, tagline=False):
+    r'''Inserts `expr` into LilyPond file.
+
+    Returns LilyPond file.
+    '''
     from abjad.tools import contexttools
 
     if isinstance(expr, lilypondfiletools.LilyPondFile):
@@ -23,11 +27,9 @@ def insert_expr_into_lilypond_file(expr, tagline=False):
         #lilypond_file.score = score_block
         lilypond_file.score_block = score_block
         lilypond_file._is_temporary = True
-
     if not tagline:
         try:
             lilypond_file.header_block.tagline = markuptools.Markup('""')
         except:
             pass
-
     return lilypond_file

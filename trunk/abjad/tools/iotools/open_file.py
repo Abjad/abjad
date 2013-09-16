@@ -3,16 +3,23 @@ import os
 import sys
 
 
-def open_file(file_name, application=None):
-    r'''Generic cross-platform file opener.
+def open_file(file_path, application=None):
+    r'''Opens `file_path` with operating system-specific file-opener
+    with `application` is none.
+
+    Opens `file_path` with `application` when `application` is not none.
+
+    Returns none.
     '''
     from abjad.tools import iotools
 
     if os.name == 'nt':
-        os.startfile(file_name)
+        os.startfile(file_path)
+        return
+
+    if sys.platform.lower() == 'linux2':
+        viewer = application or 'xdg-open'
     else:
-        if sys.platform.lower() == 'linux2':
-            viewer = application or 'xdg-open'
-        else:
-            viewer = application or 'open'
-        iotools.spawn_subprocess('{} {} &'.format(viewer, file_name))
+        viewer = application or 'open'
+    command = '{} {} &'.format(viewer, file_path)
+    iotools.spawn_subprocess(command)

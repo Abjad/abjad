@@ -4,14 +4,14 @@ import shutil
 
 
 def write_expr_to_pdf(expr, file_name, print_status=False, tagline=False):
-    r'''Write `expr` to pdf `file_name`:
+    r'''Writes `expr` to PDF `file_name`.
 
     ::
 
         >>> note = Note("c'4")
         >>> iotools.write_expr_to_pdf(note, 'one_note.pdf') # doctest: +SKIP
 
-    Return none.
+    Returns none.
     '''
     from abjad import abjad_configuration
     from abjad.tools import iotools

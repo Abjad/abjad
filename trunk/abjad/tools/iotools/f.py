@@ -2,11 +2,12 @@
 
 
 def f(expr):
-    r'''Format `expr` and print to standard out:
+    r'''Formats `expr` and prints to standard out.
 
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -18,11 +19,7 @@ def f(expr):
             f'8
         }
 
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
-    Return none.
+    Returns none.
     '''
 
     print expr.lilypond_format

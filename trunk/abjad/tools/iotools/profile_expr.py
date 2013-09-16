@@ -15,7 +15,7 @@ def profile_expr(
     local_context=None,
     print_to_terminal=True,
     ):
-    r'''Profile `expr`:
+    r'''Profiles `expr`.
 
     ::
 
@@ -41,7 +41,7 @@ def profile_expr(
                 8    0.000    0.000    0.002    0.000 make_tied_note.py:5(make_
                 8    0.000    0.000    0.002    0.000 make_tied_leaf.py:5(make_
 
-    Function wraps the built-in Python ``cProfile`` module.
+    Wraps the built-in Python ``cProfile`` module.
 
     Set `expr` to any string of Abjad input.
 
@@ -53,6 +53,10 @@ def profile_expr(
 
     See the `Python docs <http://docs.python.org/library/profile.html>`_
     for more information on the Python profilers.
+
+    Returns none when `print_to_terminal` is false.
+
+    Returns string when `print_to_terminal` is true.
     '''
 
     import cProfile

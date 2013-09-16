@@ -6,29 +6,34 @@ import time
 # TODO: Remove code duplication between this and iotools.ly and iotools.show.
 # TODO: Encapsulate stuff below.
 def redo(target=-1, lily_time=10):
-    r'''Rerender the last ``.ly`` file created in Abjad and 
-    then show the resulting PDF:
+    r'''Rerenders the last ``.ly`` file created in Abjad and 
+    then shows the resulting PDF.
 
-    ::
+    ..  container:: example
 
-        >>> iotools.redo() # doctest: +SKIP
+        **Example 1.** Redo the last LilyPond file created in Ajbad:
 
-    Rerender the next-to-last ``.ly`` file created in Abjad and 
-    then show the resulting PDF:
+        ::
 
-    ::
+            >>> iotools.redo() # doctest: +SKIP
 
-        >>> iotools.redo(-2) # doctest: +SKIP
+    ..  container:: example
 
-    Return none.
+        **Examle 2.** Redo the next-to-last LilyPond file created in Abjad:
+
+        ::
+
+            >>> iotools.redo(-2) # doctest: +SKIP
+
+    Returns none.
     '''
     from abjad import abjad_configuration
     from abjad.tools import iotools
 
     current_directory = os.path.abspath('.')
-    ABJADOUTPUT = abjad_configuration['abjad_output']
-    iotools.verify_output_directory(ABJADOUTPUT)
-    os.chdir(ABJADOUTPUT)
+    abjad_output = abjad_configuration['abjad_output']
+    iotools.verify_output_directory(abjad_output)
+    os.chdir(abjad_output)
 
     # TODO: Encapsulate as a single function called cfg._find_target()
     # find target
@@ -41,14 +46,14 @@ def redo(target=-1, lily_time=10):
             last_number = last_number.replace('.mid', '')
             target_number = int(last_number) + (target + 1)
             target_str = '%04d' % target_number
-            target_ly = os.path.join(ABJADOUTPUT, target_str + '.ly')
+            target_ly = os.path.join(abjad_output, target_str + '.ly')
         else:
             print 'Target LilyPond input file does not exist.'
     elif isinstance(target, int) and 0 <= target:
         target_str = '%04d' % target
-        target_ly = os.path.join(ABJADOUTPUT, target_str + '.ly')
+        target_ly = os.path.join(abjad_output, target_str + '.ly')
     elif isinstance(target, str):
-        target_ly = os.path.join(ABJADOUTPUT, target)
+        target_ly = os.path.join(abjad_output, target)
     else:
         raise ValueError('can not get target LilyPond input from %s.' % target)
 
@@ -67,6 +72,6 @@ def redo(target=-1, lily_time=10):
     # TODO: Encapsulate as cfg._open_pdf()
     # open pdf
     pdf_viewer = abjad_configuration['pdf_viewer']
-    ABJADOUTPUT = abjad_configuration['abjad_output']
+    abjad_output = abjad_configuration['abjad_output']
     name = target_ly
     iotools.open_file('%s.pdf' % name[:-3], pdf_viewer)

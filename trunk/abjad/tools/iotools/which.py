@@ -3,14 +3,16 @@ import os
 
 
 def which(name, flags=os.X_OK):
-    r'''Find executable ``name``, similar to Unix's ``which`` command:
+    r'''Finds executable `name`.
+    
+    Similar to Unix ``which`` command.
 
     ::
 
         >>> iotools.which('python2.7') # doctest: +SKIP
         ['/usr/bin/python2.7']
 
-    Return list of zero or more full paths to ``name``.
+    Returns list of zero or more full paths to `name`.
     '''
     result = []
     extensions = [

@@ -3,6 +3,10 @@ import os
 
 
 def run_lilypond(lilypond_file_name, lilypond_path):
+    r'''Runs LilyPond.
+
+    Returns none.
+    '''
     from abjad import abjad_configuration
     from abjad.tools import iotools
     abjad_output_directory_path = abjad_configuration['abjad_output']

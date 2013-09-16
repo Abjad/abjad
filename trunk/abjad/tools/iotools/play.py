@@ -4,7 +4,7 @@ from abjad.tools import lilypondfiletools
 
 
 def play(expr):
-    r'''Play `expr`:
+    r'''Plays `expr`.
 
     ::
 
@@ -21,6 +21,8 @@ def play(expr):
 
     Abjad outputs MIDI files of the format ``filename.midi`` 
     under other operating systems.
+
+    Returns none.
     '''
     from abjad import abjad_configuration
     from abjad.tools import iotools

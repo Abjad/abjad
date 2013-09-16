@@ -10,14 +10,14 @@ def write_expr_to_ly(
     tagline=False,
     docs=False,
     ):
-    r'''Write `expr` to `file_name`:
+    r'''Writes `expr` to `file_name`.
 
     ::
 
         >>> note = Note("c'4")
         >>> iotools.write_expr_to_ly(note, '/home/user/foo.ly') # doctest: +SKIP
 
-    Return none.
+    Returns none.
     '''
     from abjad.tools import iotools
 

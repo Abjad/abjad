@@ -4,8 +4,8 @@ import subprocess
 
 
 def graph(expr, image_format='pdf', layout='dot'):
-    r'''Graph `expr` with graphviz, and open resulting image in 
-    the default image viewer:
+    r'''Graphs `expr` with graphviz and opens resulting image in 
+    the default image viewer.
 
     ::
 
@@ -22,15 +22,16 @@ def graph(expr, image_format='pdf', layout='dot'):
 
         >>> iotools.graph(rhythm_tree) # doctest: +SKIP
 
-    Return None.
+    Returns none.
     '''
-
     from abjad import abjad_configuration
     from abjad.tools import iotools
 
     assert image_format in ('pdf', 'png')
-    assert layout in ('circo', 'dot', 'fdp', 'neato', 'osage', 'sfdp', 'twopi')
-    assert iotools.which(layout), 'Cannot find `{}` command-line tool.'.format(layout)
+    layouts =('circo', 'dot', 'fdp', 'neato', 'osage', 'sfdp', 'twopi')
+    assert layout in layouts
+    message = 'Cannot find `{}` command-line tool.'.format(layout)
+    assert iotools.which(layout), message
 
     if isinstance(expr, str):
         graphviz_format = expr
@@ -42,15 +43,15 @@ def graph(expr, image_format='pdf', layout='dot'):
     iotools.verify_output_directory(ABJADOUTPUT)
     dot_path = os.path.join(
         ABJADOUTPUT,
-        iotools.get_next_output_file_name(file_extension='dot')
+        iotools.get_next_output_file_name(file_extension='dot'),
         )
     img_path = os.path.join(ABJADOUTPUT, dot_path.replace('dot', 'pdf'))
 
     with open(dot_path, 'w') as f:
         f.write(graphviz_format)
 
-    command = '{} -v -T{} {} -o {}'.format(
-        layout, image_format, dot_path, img_path)
+    command = '{} -v -T{} {} -o {}'
+    command = command.format(layout, image_format, dot_path, img_path)
     subprocess.call(command, shell=True)
 
     pdf_viewer = abjad_configuration['pdf_viewer']

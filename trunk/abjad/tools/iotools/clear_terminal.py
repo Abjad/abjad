@@ -3,19 +3,20 @@ import os
 
 
 def clear_terminal():
-    '''Run ``clear`` if OS is POSIX-compliant (UNIX / Linux / MacOS).
+    '''Runs ``clear`` if OS is POSIX-compliant (UNIX / Linux / MacOS).
 
-    Run ``cls`` if OS is not POSIX-compliant (Windows):
+    Runs ``cls`` if OS is not POSIX-compliant (Windows).
 
     ::
 
         >>> iotools.clear_terminal() # doctest: +SKIP
 
-    Return none.
+    Returns none.
     '''
     from abjad.tools import iotools
 
     if os.name == 'posix':
-        iotools.spawn_subprocess('clear')
+        command = 'clear'
     else:
-        iotools.spawn_subprocess('cls')
+        command = 'cls'
+    iotools.spawn_subprocess(command)

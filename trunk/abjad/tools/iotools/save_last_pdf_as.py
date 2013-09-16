@@ -2,14 +2,15 @@
 import os
 
 
-def save_last_pdf_as(file_name):
-    r'''Save last PDF as `file_name`:
+def save_last_pdf_as(file_path):
+    r'''Saves last PDF created in Abjad as `file_path`.
 
     ::
 
-        >>> iotools.save_last_pdf_as('/project/output/example-1.pdf') # doctest: +SKIP
+        >>> file_path = '/project/output/example-1.pdf'
+        >>> iotools.save_last_pdf_as(file_path) # doctest: +SKIP
 
-    Return none.
+    Returns none.
     '''
     from abjad import abjad_configuration
     from abjad.tools import iotools
@@ -19,7 +20,7 @@ def save_last_pdf_as(file_name):
     last_pdf = without_extension + '.pdf'
     last_pdf_full_name = os.path.join(ABJADOUTPUT, last_pdf)
     old = open(last_pdf_full_name, 'r')
-    new = open(file_name, 'w')
+    new = open(file_path, 'w')
     new.write(''.join(old.readlines()))
     old.close()
     new.close()

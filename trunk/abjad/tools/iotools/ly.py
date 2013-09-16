@@ -3,33 +3,37 @@ import os
 
 
 def ly(target=-1):
-    r'''Open the last LilyPond output file in text editor:
+    r'''Opens the last LilyPond output file in text editor.
 
-    ::
+    ..  container:: example
 
-        >>> iotools.ly() # doctest: +SKIP
+        **Example 1.** Open the last LilyPond output file:
 
-    ::
+        ::
 
-        % Abjad revision 2162
-        % 2009-05-31 14:29
+            >>> iotools.ly() # doctest: +SKIP
 
-        \version "2.12.2"
-        \include "english.ly"
+        ::
 
-        {
-            c'4
-        }
+            % Abjad revision 2162
+            % 2009-05-31 14:29
 
-    Open the next-to-last LilyPond output file in text editor:
+            \version "2.12.2"
+            \include "english.ly"
 
-    ::
+            {
+                c'4
+            }
 
-        >>> iotools.ly(-2) # doctest: +SKIP
+    ..  container:: example
 
-    Exit text editor in the usual way.
+        **Example 2.** Open the next-to-last LilyPond output file:
 
-    Return none.
+        ::
+
+            >>> iotools.ly(-2) # doctest: +SKIP
+
+    Returns none.
     '''
     from abjad import abjad_configuration
     from abjad.tools import iotools
@@ -55,12 +59,14 @@ def ly(target=-1):
     elif isinstance(target, str):
         target_ly = os.path.join(ABJADOUTPUT, target)
     else:
-        raise ValueError('can not get target LilyPond input from {}.'.format(target))
+        message = 'can not get target LilyPond input from {}.'
+        message = message.format(target)
+        raise ValueError(message)
 
     if os.stat(target_ly):
         command = '{} {}'.format(text_editor, target_ly)
-        # TODO: how do we get rid of this last tricky call to os.system()?
-        #spawn_subprocess(command)
-        os.system(command)
+        iotools.spawn_subprocess(command)
     else:
-        print 'Target LilyPond input file {} does not exist.'.format(target_ly)
+        message = 'Target LilyPond input file {} does not exist.'
+        message = message.format(target_ly)
+        print message

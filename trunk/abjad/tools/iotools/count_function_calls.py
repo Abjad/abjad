@@ -7,11 +7,12 @@ def count_function_calls(
     local_context=None,
     fixed_point=True,
     ):
-    '''Count function calls returned by ``iotools.profile_expr(expr)``.
+    '''Counts function calls returned by ``iotools.profile_expr(expr)``.
 
     ..  container:: example
 
-        **Example 1.** Function calls required to initialize note from string:
+        **Example 1.** Function calls required to initialize note 
+        from string:
 
         ::
 
@@ -20,14 +21,15 @@ def count_function_calls(
             
     ..  container:: example
 
-        **Example 2.** Function calls required to initialize note from integers:
+        **Example 2.** Function calls required to initialize note 
+        from integers:
 
         ::
 
             >>> iotools.count_function_calls("Note(-12, (1, 4))", globals())
             147
 
-    Return integer.
+    Returns nonnegative integer.
     '''
     from abjad.tools import iotools
 
