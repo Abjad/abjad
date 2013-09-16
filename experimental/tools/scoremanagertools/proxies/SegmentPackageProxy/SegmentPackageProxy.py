@@ -139,9 +139,17 @@ class SegmentPackageProxy(PackageProxy):
 
         Returns none.
         '''
+        output_pdf_file_path = self._get_output_pdf_file_path()
+        modification_time = 0
+        if os.path.isfile(output_pdf_file_path):
+            modification_time = os.path.getmtime(output_pdf_file_path)
         proxy = self.segment_definition_module_proxy
         proxy.interpret_in_external_process()
-        self.view_output_pdf()
+        new_modification_time = 0
+        if os.path.isfile(output_pdf_file_path):
+            new_modification_time = os.path.getmtime(output_pdf_file_path)
+        if modification_time < new_modification_time:
+            self.view_output_pdf()
 
     def interactively_save_to_versions_directory(
         self,

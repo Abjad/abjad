@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 import sys
+from abjad.tools import iotools
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.proxies.FileProxy import FileProxy
 
@@ -81,7 +82,7 @@ class ModuleProxy(FileProxy):
 
     def interpret_in_external_process(self):
         command = 'python {}'.format(self.filesystem_path)
-        os.system(command)
+        iotools.spawn_subprocess(command)
 
     def read_file(self):
         if self.parse():
