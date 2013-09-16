@@ -9,26 +9,27 @@ from experimental.tools.scoremanagertools.scoremanager.ScoreManagerConfiguration
 class Session(abctools.AbjadObject):
     r'''Score manager session.
 
-        >>> session = scoremanagertools.scoremanager.Session()
+    ..  container:: example
 
-    ::
+        **Example 1.** Session outside of score:
 
-        >>> session
-        Session()
+        ::
 
-    Session in score:
+            >>> session = scoremanagertools.scoremanager.Session()
+            >>> session
+            Session()
 
-    ::
+    ..  container:: example
 
-        >>> session_in_score = scoremanagertools.scoremanager.Session()
-        >>> session_in_score.snake_case_current_score_name = 'foo'
+        **Example 2.** Session in score:
 
-    ::
+        ::
 
-        >>> session_in_score
-        Session()
+            >>> session_in_score = scoremanagertools.scoremanager.Session()
+            >>> session_in_score.snake_case_current_score_name = 'foo'
+            >>> session_in_score
+            Session()
 
-    Return session.
     '''
 
     ### CLASS VARIABLES ###
@@ -80,9 +81,9 @@ class Session(abctools.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        r'''Session repr.
+        r'''Interpreter representation of session.
 
-        Return string.
+        Returns string.
         '''
         summary = []
         if self.initial_user_input is not None:
@@ -98,88 +99,94 @@ class Session(abctools.AbjadObject):
 
     @property
     def backtracking_stack(self):
-        r'''Session backtracking stack:
+        r'''Session backtracking stack.
 
         ::
 
             >>> session.backtracking_stack
             []
 
-        Return list.
+        Returns list.
         '''
         return self._backtracking_stack
 
     @property
     def breadcrumb_cache_stack(self):
-        r'''Session breadcrumb cache stack:
+        r'''Session breadcrumb cache stack.
 
         ::
 
             >>> session._breadcrumb_cache_stack
             []
 
-        Return list.
+        Returns list.
         '''
         return self._breadcrumb_cache_stack
 
     @property
     def breadcrumb_stack(self):
-        r'''Session breadcrumb stack:
+        r'''Session breadcrumb stack.
 
         ::
 
             >>> session._breadcrumb_stack
             []
 
-        Return list.
+        Returns list.
         '''
         return self._breadcrumb_stack
 
     @property
     def command_history(self):
-        r'''Session command history:
+        r'''Session command history.
 
         ::
 
             >>> session.command_history
             []
 
-        Return list.
+        Returns list.
         '''
         return self._command_history
 
     @property
     def command_history_string(self):
-        r'''Session command history string:
+        r'''Session command history string.
 
         ::
 
             >>> session.command_history_string
             ''
 
-        Return string.
+        Returns string.
         '''
         return ' '.join(self.explicit_command_history)
 
     @property
     def current_materials_directory_path(self):
-        r'''Session current materials directory path:
+        r'''Session current materials directory path.
 
-        ::
+        ..  container:: example
 
-            >>> session.current_materials_directory_path
-            '.../experimental/tools/scoremanagertools/materialpackages'
+            **Example 1.** Materials directory path of session outside score:
 
-        Session in score:
+            ::
 
-        ::
+                >>> session.current_materials_directory_path
+                '.../experimental/tools/scoremanagertools/materialpackages'
 
-            >>> session_in_score.current_materials_directory_path
-            '.../score_packages/foo/music/materials'
+        ..  container:: example
+
+            **Example 2.** Materials directory path of session in score:
+
+            ::
+
+                >>> session_in_score.current_materials_directory_path
+                '.../score_packages/foo/music/materials'
 
         (Output will vary according to configuration.)
 
-        Return string.
+        Returns string.
         '''
         from experimental.tools import scoremanagertools
         if self.is_in_score:
@@ -194,21 +201,29 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_materials_package_path(self):
-        r'''Session current materials package path:
+        r'''Session current materials package path.
 
-        ::
+        ..  container:: example
 
-            >>> session.current_materials_package_path
-            'experimental.tools.scoremanagertools.materialpackages'
+            **Example 1.** Currents materials package path of session 
+            out of score:
 
-        Session in score:
+            ::
 
-        ::
+                >>> session.current_materials_package_path
+                'experimental.tools.scoremanagertools.materialpackages'
 
-            >>> session_in_score.current_materials_package_path
-            'foo.music.materials'
+        ..  container:: example
 
-        Return string.
+            **Example 2.** Current materials package path of session
+            in score:
+
+            ::
+
+                >>> session_in_score.current_materials_package_path
+                'foo.music.materials'
+
+        Returns string.
         '''
         from experimental.tools import scoremanagertools
         if self.is_in_score:
@@ -222,11 +237,11 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_score_directory_path(self):
-        r'''Session current score directory path:
+        r'''Session current score directory path.
 
         .. note:: add example.
 
-        Return string.
+        Returns string.
         '''
         if self.snake_case_current_score_name:
             if self.snake_case_current_score_name in \
@@ -241,11 +256,11 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_score_package_path(self):
-        r'''Session current score package path:
+        r'''Session current score package path.
 
         .. note:: add example.
 
-        Return string.
+        Returns string.
         '''
         if self.snake_case_current_score_name:
             if self.snake_case_current_score_name in \
@@ -258,7 +273,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_score_package_proxy(self):
-        r'''Session current score package proxy:
+        r'''Session current score package proxy.
 
         ::
 
@@ -274,7 +289,7 @@ class Session(abctools.AbjadObject):
 
         (Ouput will vary according to configuration.)
 
-        Return score package proxy or none.
+        Returns score package proxy or none.
         '''
         from experimental.tools.scoremanagertools.proxies.ScorePackageProxy \
             import ScorePackageProxy
@@ -285,7 +300,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_segments_directory_path(self):
-        r'''Session current segments directory path:
+        r'''Session current segments directory path.
 
         ::
 
@@ -303,7 +318,7 @@ class Session(abctools.AbjadObject):
 
         (Output will vary according to configuration.)
 
-        Return string.
+        Returns string.
         '''
         from experimental.tools import scoremanagertools
         if self.is_in_score:
@@ -332,7 +347,7 @@ class Session(abctools.AbjadObject):
             >>> session_in_score.current_segments_package_path
             'foo.music.segments'
 
-        Return none or string.
+        Returns none or string.
         '''
         from experimental.tools import scoremanagertools
         if self.is_in_score:
@@ -344,6 +359,12 @@ class Session(abctools.AbjadObject):
 
     @apply
     def dump_transcript():
+        r'''Set to true to dump transcript at end of session.
+
+        .. note:: add example.
+
+        Returns boolean.
+        '''
         def fget(self):
             return self._dump_transcript
         def fset(self, dump_transcript):
@@ -353,14 +374,14 @@ class Session(abctools.AbjadObject):
 
     @property
     def explicit_command_history(self):
-        r'''Session explicit command history:
+        r'''Session explicit command history.
 
         ::
 
             >>> session.explicit_command_history
             []
 
-        Return list.
+        Returns list.
         '''
         result = []
         for command in self.command_history:
@@ -372,6 +393,10 @@ class Session(abctools.AbjadObject):
 
     @apply
     def hide_next_redraw():
+        r'''Set to true to hide next redraw.
+
+        Returns boolean.
+        '''
         def fget(self):
             return self._hide_next_redraw
         def fset(self, hide_next_redraw):
@@ -381,6 +406,10 @@ class Session(abctools.AbjadObject):
 
     @property
     def io_manager(self):
+        r'''Session IO manager.
+
+        Returns IO manager.
+        '''
         return self._io_manager
 
     @apply
@@ -429,7 +458,7 @@ class Session(abctools.AbjadObject):
             >>> session.is_complete
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         return self.user_specified_quit
 
@@ -442,7 +471,7 @@ class Session(abctools.AbjadObject):
             >>> session.is_displayable
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         return not self.pending_user_input
 
@@ -455,7 +484,7 @@ class Session(abctools.AbjadObject):
             >>> session.is_in_score
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         return self.snake_case_current_score_name is not None
 
@@ -469,7 +498,7 @@ class Session(abctools.AbjadObject):
             >>> session.is_navigating_to_sibling_score
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         if self.is_navigating_to_next_score:
             return True
@@ -479,14 +508,14 @@ class Session(abctools.AbjadObject):
 
     @property
     def last_semantic_command(self):
-        r'''Session last semantic command:
+        r'''Session last semantic command.
 
         ::
 
             >>> session.last_semantic_command is None
             True
 
-        Return string or none.
+        Returns string or none.
         '''
         for command in reversed(self.command_history):
             if not command.startswith('.'):
@@ -494,14 +523,14 @@ class Session(abctools.AbjadObject):
 
     @property
     def menu_header(self):
-        r'''Session menu header:
+        r'''Session menu header.
 
         ::
 
             >>> session.menu_header
             ''
 
-        Return string.
+        Returns string.
         '''
         return '\n'.join(self.format_breadcrumb_stack())
 
@@ -515,16 +544,27 @@ class Session(abctools.AbjadObject):
                 nonnumbered_menu_sections_are_hidden
         return property(**locals())
 
+    @apply
+    def pending_user_input():
+        def fget(self):
+            return self._pending_user_input
+        def fset(self, pending_user_input):
+            assert isinstance(pending_user_input, (str, type(None)))
+            self._pending_user_input = pending_user_input
+            if isinstance(pending_user_input, str):
+                self._session_once_had_user_input = True
+        return property(**locals())
+
     @property
     def scores_to_show(self):
-        r'''Session scores to show:
+        r'''Session scores to show.
 
         ::
 
             >>> session.scores_to_show
             'active'
 
-        Return string.
+        Returns string.
         '''
         return self._scores_to_show
 
@@ -537,7 +577,7 @@ class Session(abctools.AbjadObject):
             >>> session.session_once_had_user_input
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         return self._session_once_had_user_input
 
@@ -553,14 +593,14 @@ class Session(abctools.AbjadObject):
 
     @property
     def testable_command_history_string(self):
-        r'''Session testable command history string:
+        r'''Session testable command history string.
 
         ::
 
             >>> session.testable_command_history_string
             ''
 
-        Return string.
+        Returns string.
         '''
         result = []
         for part in self.explicit_command_history:
@@ -580,14 +620,14 @@ class Session(abctools.AbjadObject):
 
     @property
     def io_transcript(self):
-        r'''Session io_transcript:
+        r'''Session IO transcript.
 
         ::
 
             >>> session.io_transcript
             IOTranscript()
 
-        Return io_transcript.
+        Returns IO transcript.
         '''
         return self._transcript
 
@@ -601,17 +641,6 @@ class Session(abctools.AbjadObject):
                 use_current_user_input_values_as_default
         return property(**locals())
 
-    @apply
-    def pending_user_input():
-        def fget(self):
-            return self._pending_user_input
-        def fset(self, pending_user_input):
-            assert isinstance(pending_user_input, (str, type(None)))
-            self._pending_user_input = pending_user_input
-            if isinstance(pending_user_input, str):
-                self._session_once_had_user_input = True
-        return property(**locals())
-
     @property
     def user_input_is_consumed(self):
         r'''True when session user input is consumed.
@@ -622,7 +651,7 @@ class Session(abctools.AbjadObject):
             >>> session.user_input_is_consumed
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         if self._session_once_had_user_input:
             if self.pending_user_input is None:
