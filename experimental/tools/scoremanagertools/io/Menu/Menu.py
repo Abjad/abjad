@@ -100,21 +100,30 @@ class Menu(ScoreManagerObject):
         if self.should_clear_terminal:
             self.session.io_manager.clear_terminal()
 
-    def _display(self, 
-        predetermined_user_input=None):
+    def _display(
+        self, 
+        predetermined_user_input=None,
+        ):
         self._clear_terminal()
-        self.session.io_manager.display(self._make_menu_lines(), 
-            capitalize_first_character=False)
+        self.session.io_manager.display(
+            self._make_menu_lines(), 
+            capitalize_first_character=False,
+            )
         if predetermined_user_input is not None:
             return predetermined_user_input
+        user_entered_lone_return = False
         user_input = self.session.io_manager.handle_raw_input_with_default('')
+        if user_input == '':
+            user_entered_lone_return = True
         directive = self._change_user_input_to_directive(user_input)
         directive = self._strip_default_indicators_from_strings(directive)
         self.session.hide_next_redraw = False
+        io_manager = self.session.io_manager
         directive = \
-            self.session.io_manager.handle_hidden_menu_section_return_value(
-                directive)
-        if directive is None:
+            io_manager.handle_hidden_menu_section_return_value(directive)
+        if directive is None and user_entered_lone_return:
+            return 'user entered lone return'
+        elif directive is None and not user_entered_lone_return:
             return
         elif directive == 'hidden':
             self.display_hidden_menu_section()
@@ -196,17 +205,17 @@ class Menu(ScoreManagerObject):
     def _run(self, 
             clear=True, 
             predetermined_user_input=None, 
-            pending_user_input=None):
-        self.session.io_manager.assign_user_input(
-            pending_user_input=pending_user_input)
+            pending_user_input=None,
+            ):
+        self.session.io_manager.assign_user_input(pending_user_input)
         clear, hide_current_run = clear, False
         while True:
             self.should_clear_terminal = clear
             self.hide_current_run = hide_current_run
             clear, hide_current_run = False, True
             result = self._display(
-                predetermined_user_input=\
-                predetermined_user_input)
+                predetermined_user_input=predetermined_user_input,
+                )
             if self.session.is_complete:
                 break
             elif result == 'r':

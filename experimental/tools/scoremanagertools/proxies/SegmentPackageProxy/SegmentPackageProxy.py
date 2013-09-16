@@ -45,6 +45,8 @@ class SegmentPackageProxy(PackageProxy):
     def _handle_main_menu_result(self, result):
         if result in self.user_input_to_action:
             self.user_input_to_action[result](self)
+        elif result == 'user entered lone return':
+            self.interactively_edit_asset_definition_module()
 
     def _make_main_menu(self):
         main_menu = self.session.io_manager.make_menu(where=self._where)
