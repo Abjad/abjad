@@ -83,6 +83,8 @@ class IOManager(AbjadObject):
             self.interactively_exec_statement()
         elif key == 'here':
             self.interactively_edit_calling_code()
+        elif key == 'log':
+            self.interactively_exec_statement('iotools.log()')
         elif key == 'next':
             self.session.is_navigating_to_next_score = True
             self.session.is_backtracking_to_score_manager = True
@@ -162,9 +164,13 @@ class IOManager(AbjadObject):
         finally:
             readline.set_startup_hook()
 
-    def interactively_exec_statement(self):
+    def interactively_exec_statement(self, statement=None):
         lines = []
-        statement = self.handle_raw_input('XCF', include_newline=False)
+        is_interactive = True
+        if statement is None:
+            statement = self.handle_raw_input('XCF', include_newline=False)
+        else:
+            is_interactive = False
         command = 'from abjad import *'
         exec(command)
         try:
@@ -175,7 +181,8 @@ class IOManager(AbjadObject):
         except:
             lines.append('expression not executable.')
         lines.append('')
-        self.display(lines)
+        if is_interactive:
+            self.display(lines)
         self.session.hide_next_redraw = True
 
     def make_default_hidden_section(self):
@@ -188,6 +195,7 @@ class IOManager(AbjadObject):
         hidden_section.append(('edit client source', 'here'))
         hidden_section.append(('display hidden menu section', 'hidden'))
         hidden_section.append(('home', 'home'))
+        hidden_section.append(('view LilyPond log', 'log'))
         hidden_section.append(('next score', 'next'))
         hidden_section.append(('prev score', 'prev'))
         hidden_section.append(('quit', 'q'))

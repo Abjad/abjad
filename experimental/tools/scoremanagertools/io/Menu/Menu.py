@@ -261,7 +261,7 @@ class Menu(ScoreManagerObject):
         ::
 
                 >>> menu.hidden_section
-                <MenuSection (13)>
+                <MenuSection (14)>
 
         ::
 
@@ -272,6 +272,7 @@ class Menu(ScoreManagerObject):
                 <MenuEntry: 'edit client source'>
                 <MenuEntry: 'display hidden menu section'>
                 <MenuEntry: 'home'>
+                <MenuEntry: 'view LilyPond log'>
                 <MenuEntry: 'next score'>
                 <MenuEntry: 'prev score'>
                 <MenuEntry: 'quit'>
@@ -295,7 +296,7 @@ class Menu(ScoreManagerObject):
 
             >>> for menu_section in menu.menu_sections:
             ...     menu_section
-            <MenuSection (13)>
+            <MenuSection (14)>
             <MenuSection (4)>
 
         Return list.
