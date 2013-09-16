@@ -48,8 +48,11 @@ class SegmentPackageWrangler(PackageWrangler):
         asset_section.menu_entries = asset_menu_entries
         command_section = main_menu.make_command_section()
         command_section.append(('new segment', 'new'))
-        command_section.append(('view all segments', 'pdfv'))
-        command_section.append(('version all segments', 'version'))
+        command_section = main_menu.make_command_section()
+        command_section.append(('make all pdfs', 'pdfsm'))
+        command_section.append(('view all pdfs', 'pdfsv'))
+        command_section = main_menu.make_command_section()
+        command_section.append(('save all versions', 'versions'))
         return main_menu
 
     ### PUBLIC PROPERTIES ###
@@ -82,6 +85,39 @@ class SegmentPackageWrangler(PackageWrangler):
         return super(SegmentPackageWrangler, self).storage_format
 
     ### PUBLIC METHODS ###
+
+    def interactively_make_asset_pdfs(
+        self,
+        pending_user_input=None,
+        ):
+        self.session.io_manager.assign_user_input(pending_user_input)
+        parts = (self.session.current_score_directory_path,)
+        parts += self.score_package_asset_storehouse_path_infix_parts
+        segments_directory_path = os.path.join(*parts)
+        for directory_entry in os.listdir(segments_directory_path):
+            if not directory_entry[0].isalpha():
+                continue
+            segment_package_name = directory_entry
+            segment_package_directory_path = os.path.join(
+                segments_directory_path,
+                segment_package_name,
+                )
+            segment_package_path = \
+                self.configuration.filesystem_path_to_packagesystem_path(
+                segment_package_directory_path)
+            proxy = self.asset_proxy_class(
+                segment_package_path,
+                session=self.session,
+                )
+            proxy.interactively_execute_asset_definition_module(prompt=False)
+            output_pdf_file_path = proxy._get_output_pdf_file_path()
+            if os.path.isfile(output_pdf_file_path):
+                message = 'segment {} PDF created.'
+                message = message.format(segment_package_name)
+                self.session.io_manager.display(message)
+        self.session.io_manager.display('')
+        self.interactively_view_asset_pdfs()
+        self.session.io_manager.proceed()
 
     def interactively_view_asset_pdfs(
         self,
@@ -364,6 +400,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
     user_input_to_action = PackageWrangler.user_input_to_action.copy()
     user_input_to_action.update({
-        'pdfv': interactively_view_asset_pdfs,
-        'version': interactively_version_all_assets,
+        'pdfsm': interactively_make_asset_pdfs,
+        'pdfsv': interactively_view_asset_pdfs,
+        'versions': interactively_version_all_assets,
         })

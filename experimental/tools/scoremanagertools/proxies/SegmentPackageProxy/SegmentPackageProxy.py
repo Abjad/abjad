@@ -116,7 +116,7 @@ class SegmentPackageProxy(PackageProxy):
         self.session.io_manager.assign_user_input(pending_user_input)
         self.segment_definition_module_proxy.interactively_edit()
 
-    def interactively_execute_asset_definition_module(self):
+    def interactively_execute_asset_definition_module(self, prompt=True):
         r'''Executes asset definition module.
 
         Returns none.
@@ -124,7 +124,7 @@ class SegmentPackageProxy(PackageProxy):
         proxy = self.segment_definition_module_proxy
         proxy.interpret_in_external_process()
         message = 'segment definition module executed.'
-        self.session.io_manager.proceed(message)
+        self.session.io_manager.proceed(message, is_interactive=prompt)
 
     def interactively_list_versions_directory(self):
         r'''Interactively lists versions directory.
