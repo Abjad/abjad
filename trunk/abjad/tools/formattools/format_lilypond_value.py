@@ -1,7 +1,10 @@
 # -*- encoding: utf-8 -*-
-# TODO: make public and move to bound method of some class.
-def _format_lilypond_value(value):
-    r'''Format LilyPond value.
+
+
+def format_lilypond_value(value):
+    r'''Formats LilyPond value according to Scheme formatting conventions.
+
+    Returns string.
     '''
 
     if 'lilypond_format' in dir(value) and not isinstance(value, str):
@@ -37,6 +40,7 @@ def _format_lilypond_value(value):
 def _is_lilypond_constant(value):
     r'''True if value is constant.  Otherwise false.
     '''
+
     if isinstance(value, int) or isinstance(value, float) or value in [
         'up', 'down', 'left', 'center', 'right',
         'black', 'white', 'red', 'green',
@@ -49,5 +53,7 @@ def _is_lilypond_constant(value):
 
 
 def _is_lilypond_function_name(arg):
-    r'''True if arg contains '::'. Otherwise false.'''
+    r'''True if arg contains '::'. Otherwise false.
+    '''
+
     return isinstance(arg, str) and '::' in arg

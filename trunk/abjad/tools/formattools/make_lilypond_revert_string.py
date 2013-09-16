@@ -2,18 +2,21 @@
 from abjad.tools import stringtools
 
 
-# TODO: make public and move somewhere
-def _make_lilypond_revert_string(grob_name, grob_attribute, context_name=None):
+def make_lilypond_revert_string(
+    grob_name, 
+    grob_attribute, 
+    context_name=None,
+    ):
     '''Makes LilyPond revert string.
 
     Returns string.
     '''
-    from _format_lilypond_attribute import _format_lilypond_attribute
-    from _format_lilypond_value import _format_lilypond_value
+    from format_lilypond_attribute import format_lilypond_attribute
+    from format_lilypond_value import format_lilypond_value
 
     # parse input strings
     grob_name = stringtools.snake_case_to_upper_camel_case(grob_name)
-    grob_attribute = _format_lilypond_attribute(grob_attribute)
+    grob_attribute = format_lilypond_attribute(grob_attribute)
 
     # change #'bound-details #'left #'text to #'bound-details
     grob_attribute = grob_attribute.split(' ')[0]
