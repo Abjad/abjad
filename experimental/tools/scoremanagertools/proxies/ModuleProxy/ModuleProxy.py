@@ -82,7 +82,10 @@ class ModuleProxy(FileProxy):
 
     def interpret_in_external_process(self):
         command = 'python {}'.format(self.filesystem_path)
-        iotools.spawn_subprocess(command)
+        result = iotools.spawn_subprocess(command)
+        if result != 0:
+            self.session.io_manager.display('')
+            self.session.io_manager.proceed()
 
     def read_file(self):
         if self.parse():
