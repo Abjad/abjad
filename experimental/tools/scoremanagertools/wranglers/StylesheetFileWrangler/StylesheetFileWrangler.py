@@ -60,6 +60,39 @@ class StylesheetFileWrangler(FileWrangler):
             annotation = 'built-in'
         return annotation
 
+    def _get_current_directory(self):
+        if self.session.current_score_directory_path:
+            parts = (self.session.current_score_directory_path,)
+            parts += self.score_package_asset_storehouse_path_infix_parts
+            return os.path.join(*parts)
+    
+    def _get_header_stylesheet_file_path(self):
+        for directory_entry in os.listdir(self._get_current_directory()):
+            if directory_entry.endswith('header.ly'):
+                file_path = os.path.join(
+                    self._get_current_directory(),
+                    directory_entry,
+                    )
+                return file_path
+    
+    def _get_layout_stylesheet_file_path(self):
+        for directory_entry in os.listdir(self._get_current_directory()):
+            if directory_entry.endswith('layout.ly'):
+                file_path = os.path.join(
+                    self._get_current_directory(),
+                    directory_entry,
+                    )
+                return file_path
+    
+    def _get_paper_stylesheet_file_path(self):
+        for directory_entry in os.listdir(self._get_current_directory()):
+            if directory_entry.endswith('paper.ly'):
+                file_path = os.path.join(
+                    self._get_current_directory(),
+                    directory_entry,
+                    )
+                return file_path
+    
     def _handle_main_menu_result(self, result):
         if result in self.user_input_to_action:
             self.user_input_to_action[result](self)
@@ -95,6 +128,14 @@ class StylesheetFileWrangler(FileWrangler):
             include_extension=True,
             )
         asset_section.menu_entries = menu_entries
+        if self.session.current_score_directory_path:
+            command_section = main_menu.make_command_section()
+            if self._get_header_stylesheet_file_path():
+                command_section.append(('header stylesheet - edit', 'h'))
+            if self._get_layout_stylesheet_file_path():
+                command_section.append(('layout stylesheet - edit', 'l'))
+            if self._get_paper_stylesheet_file_path():
+                command_section.append(('paper stylesheet - edit', 'p'))
         command_section = main_menu.make_command_section()
         command_section.append(('new', 'new'))
         command_section.append(('copy', 'cp'))
@@ -148,6 +189,39 @@ class StylesheetFileWrangler(FileWrangler):
             session=self.session,
             )
         proxy.interactively_edit()
+
+    def interactively_edit_header_stylesheet(
+        self,
+        pending_user_input=None,
+        ):
+        r'''Interactively edits header stylesheet.
+
+        Returns none.
+        '''
+        file_path = self._get_header_stylesheet_file_path()
+        self.interactively_edit_asset(file_path)
+
+    def interactively_edit_layout_stylesheet(
+        self,
+        pending_user_input=None,
+        ):
+        r'''Interactively edits layout stylesheet.
+
+        Returns none.
+        '''
+        file_path = self._get_layout_stylesheet_file_path()
+        self.interactively_edit_asset(file_path)
+
+    def interactively_edit_paper_stylesheet(
+        self,
+        pending_user_input=None,
+        ):
+        r'''Interactively edits paper stylesheet.
+
+        Returns none.
+        '''
+        file_path = self._get_paper_stylesheet_file_path()
+        self.interactively_edit_asset(file_path)
 
     def interactively_make_asset(
         self,
@@ -333,5 +407,8 @@ class StylesheetFileWrangler(FileWrangler):
 
     user_input_to_action = FileWrangler.user_input_to_action.copy()
     user_input_to_action.update({
+        'h': interactively_edit_header_stylesheet,
+        'l': interactively_edit_layout_stylesheet,
+        'p': interactively_edit_paper_stylesheet,
         'new': interactively_make_asset,
         })
