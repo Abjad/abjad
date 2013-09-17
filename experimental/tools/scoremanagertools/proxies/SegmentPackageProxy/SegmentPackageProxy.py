@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import itertools
 import os
 from abjad.tools import iotools
 from experimental.tools.scoremanagertools.proxies.PackageProxy \
@@ -56,8 +57,8 @@ class SegmentPackageProxy(PackageProxy):
         hidden_section.append(('rename package', 'ren'))
         hidden_section.append(('manage tags', 'tags'))
         command_section = main_menu.make_command_section()
-        command_section.append(('segment definition - edit', 'e'))
-        command_section.append(('segment definition - execute', 'x'))
+        command_section.append(('segment definition module - edit', 'e'))
+        command_section.append(('segment definition module - execute', 'x'))
         command_section.default_index = 0
         command_section = main_menu.make_command_section()
         command_section.append(('output pdf - make', 'pdfm'))
@@ -133,9 +134,15 @@ class SegmentPackageProxy(PackageProxy):
         Returns none.
         '''
         versions_directory_path = self._get_versions_directory_path()
+        file_names = []
         for directory_entry in os.listdir(versions_directory_path):
-            print directory_entry
-        self.session.io_manager.proceed()
+            if directory_entry[0].isdigit():
+                file_names.append(directory_entry)
+        for x in itertools.groupby(file_names, key=lambda x: x[:4]):
+            key, file_names = x
+            string = ' '.join(file_names)
+            print string
+        self.session.io_manager.proceed('')
 
     def interactively_make_asset_pdf(self):
         r'''Interactively makes asset PDF.
