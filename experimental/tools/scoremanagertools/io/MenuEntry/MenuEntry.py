@@ -26,12 +26,12 @@ class MenuEntry(AbjadObject):
         >>> menu_entry
         <MenuEntry: 'svn update scores'>
 
-    Return menu entry.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, 
+    def __init__(
+        self, 
         menu_section,
         display_string,
         key=None,
@@ -47,7 +47,7 @@ class MenuEntry(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        r'''Menu entry interpreter representation.
+        r'''Interpreter representation of menu entry.
 
         Return string.
         '''
@@ -57,84 +57,88 @@ class MenuEntry(AbjadObject):
 
     @property
     def display_string(self):
-        r'''Menu entry display string:
+        r'''Menu entry display string.
 
         ::
 
             >>> menu_entry.display_string
             'svn update scores'
 
-        Return string.
+        Returns string.
         '''
         return self._display_string
 
     @property
     def explicit_return_value(self):
-        r'''Menu entry prepopulated return value:
+        r'''Menu entry prepopulated return value.
 
         ::
 
             >>> menu_entry.explicit_return_value is None
             True
 
-        Return arbitrary value or none.
+        Returns arbitrary value or none.
         '''
         return self._explicit_return_value
 
     @property
     def key(self):
-        r'''Menu entry key:
+        r'''Menu entry key.
 
         ::
 
             >>> menu_entry.key
             'up'
 
-        Return string without spaces or none.
+        Returns string without spaces or none.
         '''
         return self._key
 
     @property
     def menu_section(self):
+        r'''Menu entry menu section.
+
+        Returns menu section.
+        '''
         return self._menu_section
 
     @property
     def number(self):
-        r'''Menu entry number:
+        r'''Menu entry number.
 
         ::
 
             >>> menu_entry.number is None
             True
     
-        Return nonnegative integer or none.
+        Returns nonnegative integer or none.
         '''
         if self.menu_section.is_numbered:
             return self.menu_section.menu_entries.index(self) + 1
 
     @property
     def prepopulated_value(self):
-        r'''Menu entry existing value:
+        r'''Menu entry existing value.
 
         ::
 
             >>> menu_entry.prepopulated_value is None
             True
 
-        Return arbitrary value or none.
+        Returns arbitrary value or none.
         '''
         return self._prepopulated_value
 
     @property
     def return_value(self):
-        r'''Menu entry return value:
+        r'''Menu entry return value.
 
         ::
 
             >>> menu_entry.return_value
             'up'
 
-        Return arbitrary value.
+        Returns arbitrary value.
         '''
         if self.menu_section.return_value_attribute == 'number':
             return_value = str(self.number)
@@ -153,7 +157,7 @@ class MenuEntry(AbjadObject):
 
     @property
     def storage_format(self):
-        r'''Menu entry storage format:
+        r'''Menu entry storage format.
 
             >>> z(menu_entry)
             io.MenuEntry(
@@ -169,14 +173,14 @@ class MenuEntry(AbjadObject):
                 key='up'
                 )
 
-        Return string.
+        Returns string.
         '''
         return super(MenuEntry, self).storage_format
 
     ### PUBLIC METHODS ###
 
     def matches(self, user_input):
-        r'''True when menu entry matches `user_input` string:
+        r'''True when menu entry matches `user_input` string.
 
         ::
 
@@ -195,7 +199,7 @@ class MenuEntry(AbjadObject):
             >>> menu_entry.matches('foo')
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         if self.key is not None and user_input == self.key:
             return True

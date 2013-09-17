@@ -16,6 +16,7 @@ class MenuSection(AbjadObject):
 
 
     ::
+
         >>> menu_section = menu.menu_sections[1]
         >>> menu_section
         <MenuSection (4)>
@@ -29,7 +30,6 @@ class MenuSection(AbjadObject):
         <MenuEntry: 'svn status scores'>
         <MenuEntry: 'svn update scores'>
 
-    Return menu section.
     '''
 
     ### CLASS VARIABLES ###
@@ -43,7 +43,8 @@ class MenuSection(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self,
+    def __init__(
+        self,
         return_value_attribute='display_string',
         default_index=None,
         indent_level=1,
@@ -68,16 +69,16 @@ class MenuSection(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __len__(self):
-        r'''Number of menu entries in menu section:
+        r'''Number of menu entries in menu section.
 
-        Return nonnegative integer.
+        Returns nonnegative integer.
         '''
         return len(self.menu_entries)
 
     def __repr__(self):
-        r'''Menu section interpreter representation.
+        r'''Interpreter representation of menu section.
 
-        Return string.
+        Returns string.
         '''
         return '<{} ({})>'.format(self._class_name, len(self))
 
@@ -143,7 +144,7 @@ class MenuSection(AbjadObject):
     def _make_menu_lines(self):
         menu_lines = []
         menu_lines.extend(self._make_title_lines())
-        for menu_entry in self.menu_entries:
+        for i, menu_entry in enumerate(self.menu_entries):
             menu_line = self._make_tab(self.indent_level) + ' '
             display_string = menu_entry.display_string
             key = menu_entry.key
@@ -152,7 +153,10 @@ class MenuSection(AbjadObject):
                 menu_line += '{}: '.format(menu_entry.number)
             menu_line += display_string
             if key:
-                menu_line += ' ({})'.format(key)
+                if i == self.default_index:
+                    menu_line += ' [{}]'.format(key)
+                else:
+                    menu_line += ' ({})'.format(key)
             if self.display_prepopulated_values and prepopulated_value:
                 menu_line += ':'
                 if prepopulated_value not in (None, 'None'):
@@ -189,14 +193,14 @@ class MenuSection(AbjadObject):
     @apply
     def default_index():
         def fget(self):
-            r'''Menu section default index:
+            r'''Menu section default index.
 
             ::
 
                 >>> menu_section.default_index is None
                 True
 
-            Return nonnegative integer or none.
+            Returns nonnegative integer or none.
             '''
             return self._default_index
         def fset(self, default_index):
@@ -225,7 +229,7 @@ class MenuSection(AbjadObject):
                 >>> menu_section.display_prepopulated_values
                 True
 
-            Return boolean.
+            Returns boolean.
             '''
             return self._display_prepopulated_values
         def fset(self, display_prepopulated_values):
@@ -236,14 +240,14 @@ class MenuSection(AbjadObject):
     @apply
     def indent_level():
         def fget(self):
-            r'''Menu section indent level:
+            r'''Menu section indent level.
 
             ::
 
                 >>> menu_section.indent_level
                 1
 
-            Return nonnegative integer.
+            Returns nonnegative integer.
             '''
             return self._indent_level
         def fset(self, indent_level):
@@ -254,14 +258,15 @@ class MenuSection(AbjadObject):
     @apply
     def is_hidden():
         def fget(self):
-            r'''True when menu section is hidden. Otherwise false:
+            r'''True when menu section is hidden. 
+            Otherwise false:
 
             ::
 
                 >>> menu_section.is_hidden
                 False
 
-            Return boolean.
+            Returns boolean.
             '''
             return self._is_hidden
         def fset(self, expr):
@@ -272,14 +277,15 @@ class MenuSection(AbjadObject):
     @apply
     def is_numbered():
         def fget(self):
-            r'''True when menu section is numbered. Otherwise false:
+            r'''True when menu section is numbered. 
+            Otherwise false:
 
             ::
 
                 >>> menu_section.is_numbered
                 False
 
-            Return boolean.
+            Returns boolean.
             '''
             return self._is_numbered
         def fset(self, expr):
@@ -290,14 +296,15 @@ class MenuSection(AbjadObject):
     @apply
     def is_ranged():
         def fget(self):
-            r'''True when menu section is ranged. Otherwise false:
+            r'''True when menu section is ranged. 
+            Otherwise false:
 
             ::
 
                 >>> menu_section.is_ranged
                 False
 
-            Return boolean.
+            Returns boolean.
             '''
             return self._is_ranged
         def fset(self, expr):
@@ -308,7 +315,7 @@ class MenuSection(AbjadObject):
     @apply
     def menu_entries():
         def fget(self):
-            r'''Menu section menu entries:
+            r'''Menu section menu entries.
 
             ::
 
@@ -319,7 +326,7 @@ class MenuSection(AbjadObject):
                 <MenuEntry: 'svn status scores'>
                 <MenuEntry: 'svn update scores'>
 
-            Return list.
+            Returns list.
             '''
             return self._menu_entries
         def fset(self, menu_entries):
@@ -336,7 +343,7 @@ class MenuSection(AbjadObject):
     @apply
     def return_value_attribute():
         def fget(self):
-            r'''Menu section return value attribute:
+            r'''Menu section return value attribute.
 
             ::
 
@@ -352,7 +359,7 @@ class MenuSection(AbjadObject):
                 'number' 
                 'explicit'
 
-            Return string.
+            Returns string.
             '''
             return self._return_value_attribute
         def fset(self, expr):
@@ -362,7 +369,7 @@ class MenuSection(AbjadObject):
     
     @property
     def storage_format(self):
-        r'''Menu section storage format:
+        r'''Menu section storage format.
 
         ::
 
@@ -376,21 +383,21 @@ class MenuSection(AbjadObject):
                 display_prepopulated_values=True
                 )
 
-        Return string.
+        Returns string.
         '''
         return super(MenuSection, self).storage_format
 
     @apply
     def title():
         def fget(self):
-            r'''Menu section title:
+            r'''Menu section title.
 
             ::
 
                 >>> menu_section.title is None
                 True
 
-            Return string or none.
+            Returns string or none.
             '''
             return self._title
         def fset(self, title):
@@ -401,11 +408,12 @@ class MenuSection(AbjadObject):
     ### PUBLIC METHODS ###
 
     def append(self, expr):
-        r'''Append `expr` to menu section:
+        r'''Appends `expr` to menu section.
 
         ::
 
             >>> menu_section.append(('svn mkdir', 'mkdir'))
+            <MenuEntry: 'svn mkdir'>
 
         ::
 
@@ -417,7 +425,7 @@ class MenuSection(AbjadObject):
             <MenuEntry: 'svn update scores'>
             <MenuEntry: 'svn mkdir'>
 
-        Return none.
+        Returns menu entry.
         '''
         from experimental.tools import scoremanagertools
         assert isinstance(expr, (str, tuple))
@@ -434,3 +442,4 @@ class MenuSection(AbjadObject):
         kwargs['menu_section'] = self
         menu_entry = scoremanagertools.io.MenuEntry(**kwargs)
         self.menu_entries.append(menu_entry)
+        return menu_entry
