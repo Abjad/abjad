@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 import subprocess
+from abjad.tools import iotools
 from abjad.tools import sequencetools
 from experimental.tools.scoremanagertools.proxies.DirectoryProxy \
     import DirectoryProxy
@@ -23,6 +24,12 @@ class ExergueDirectoryProxy(DirectoryProxy):
 
     ### PRIVATE METHODS ###
 
+    def _get_file_path_ending_with(self, string):
+        for file_name in self.list_directory():
+            if file_name.endswith(string):
+                file_path = os.path.join(self.filesystem_path, file_name)
+                return file_path
+
     def _get_score_pdf_file_path(self):
         for file_name in self.list_directory():
             if file_name.endswith('score.pdf'):
@@ -39,11 +46,48 @@ class ExergueDirectoryProxy(DirectoryProxy):
         superclass = super(ExergueDirectoryProxy, self)
         main_menu = superclass._make_main_menu()
         command_section = main_menu.make_command_section()
-        if bool(self._get_score_tex_file_path()):
+        if self._get_file_path_ending_with('back-cover.pdf'):
+            command_section.append(('back cover - view', 'bc'))
+        if self._get_file_path_ending_with('front-cover.pdf'):
+            command_section.append(('front cover - view', 'fc'))
+        if self._get_file_path_ending_with('preface.pdf'):
+            command_section.appned(('preface - view', 'p'))
+        if self._get_file_path_ending_with('score.pdf'):
+            command_section.append(('score - view', 's'))
+            command_section.default_index = len(command_section) - 1
+        command_section = main_menu.make_command_section()
+        if self._get_file_path_ending_with('score.tex'):
             command_section.append(('typeset score', 't'))
-        if bool(self._get_score_pdf_file_path()):
-            command_section.append(('view score', 's'))
         return main_menu
+
+    ### PUBLIC METHODS ###
+
+    def interactively_view_back_cover(self, pending_user_input=None):
+        r'''Interactively views back cover.
+
+        Returns none.
+        '''
+        self.session.io_manager.assign_user_input(pending_user_input)
+        file_path = self._get_file_path_ending_with('back-cover.pdf')
+        iotools.open_file(file_path)
+
+    def interactively_view_front_cover(self, pending_user_input=None):
+        r'''Interactively views front cover.
+
+        Returns none.
+        '''
+        self.session.io_manager.assign_user_input(pending_user_input)
+        file_path = self._get_file_path_ending_with('front-cover.pdf')
+        iotools.open_file(file_path)
+
+    def interactively_view_preface(self, pending_user_input=None):
+        r'''Interactively views preface.
+
+        Returns none.
+        '''
+        self.session.io_manager.assign_user_input(pending_user_input)
+        file_path = self._get_file_path_ending_with('preface.pdf')
+        iotools.open_file(file_path)
 
     def interactively_view_score(self, pending_user_input=None):
         r'''Interactively views score.
@@ -51,13 +95,8 @@ class ExergueDirectoryProxy(DirectoryProxy):
         Returns none.
         '''
         self.session.io_manager.assign_user_input(pending_user_input)
-        command = 'open {}/*score.pdf'.format(self.filesystem_path)
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            )
+        file_path = self._get_file_path_ending_with('score.pdf')
+        iotools.open_file(file_path)
 
     def typeset_score(self):
         r'''Typesets score.
@@ -78,6 +117,9 @@ class ExergueDirectoryProxy(DirectoryProxy):
 
     user_input_to_action = DirectoryProxy.user_input_to_action.copy()
     user_input_to_action.update({
+        'bc': interactively_view_back_cover,
+        'fc': interactively_view_front_cover,
+        'p': interactively_view_preface,
         's': interactively_view_score,
         't': typeset_score,
         })
