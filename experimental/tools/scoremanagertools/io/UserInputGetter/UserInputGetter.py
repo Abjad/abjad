@@ -10,11 +10,10 @@ from experimental.tools.scoremanagertools.io.PromptMakerMixin \
 
 
 class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
-    r'''User input getter menu.
+    r'''User input getter.
 
     .. note:: add docstring.
 
-    Return user input getter.
     '''
 
     ### INITIALIZER ###
@@ -36,14 +35,14 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
     def __len__(self):
         r'''Number of prompts in user input getter menu.
 
-        Return nonnegative integer.
+        Returns nonnegative integer.
         '''
         return len(self.prompts)
         
     def __repr__(self):
         r'''Interpreter representation of user input getter.
 
-        Return string.
+        Returns string.
         '''
         return '<{} ({})>'.format(type(self).__name__, len(self))
 
@@ -154,8 +153,13 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
             else:
                 self.session.io_manager.print_not_yet_implemented()
 
-    def _present_prompts_and_evaluate_user_input(self, include_chevron=True):
-        self.session.io_manager.clear_terminal()
+    def _present_prompts_and_evaluate_user_input(
+        self, 
+        clear_terminal=True,
+        include_chevron=True,
+        ):
+        if clear_terminal:
+            self.session.io_manager.clear_terminal()
         self._prompt_index = 0
         self._prompt_strings = []
         self._evaluated_user_input = []
@@ -165,12 +169,18 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
             self._present_prompt_and_evaluate_user_input(
                 include_chevron=include_chevron)
 
-    def _run(self, pending_user_input=None, include_chevron=True):
-        self.session.io_manager.assign_user_input(
-            pending_user_input=pending_user_input)
+    def _run(
+        self, 
+        pending_user_input=None, 
+        clear_terminal=True,
+        include_chevron=True,
+        ):
+        self.session.io_manager.assign_user_input(pending_user_input)
         with self.backtracking:
             self._present_prompts_and_evaluate_user_input(
-                include_chevron=include_chevron)
+                clear_terminal=clear_terminal,
+                include_chevron=include_chevron,
+                )
         if len(self._evaluated_user_input) == 1:
             return self._evaluated_user_input[0]
         return self._evaluated_user_input[:]

@@ -40,6 +40,16 @@ class SegmentPackageProxy(PackageProxy):
     def _get_output_pdf_file_path(self):
         return os.path.join(self.filesystem_path, 'output.pdf')
 
+    def _get_last_version_number(self):
+        versions_directory_path = self._get_versions_directory_path()
+        file_names = os.listdir(versions_directory_path)
+        file_names.sort()
+        last_file_name = file_names[-1]
+        assert last_file_name[0].isdigit()
+        version_string = last_file_name[:4]
+        version_number = int(version_string)
+        return version_number
+
     def _get_versions_directory_path(self):
         return os.path.join(self.filesystem_path, 'versions')
         
@@ -63,13 +73,18 @@ class SegmentPackageProxy(PackageProxy):
         command_section = main_menu.make_command_section()
         command_section.append(('output pdf - make', 'pdfm'))
         if os.path.isfile(self._get_output_pdf_file_path()):
-            command_section.append(('output pdf - view', 'pdfv'))
+            command_section.append(('current output pdf - view', 'pdf'))
         command_section = main_menu.make_command_section()
         if os.path.isfile(self._get_output_pdf_file_path()):
             command_section.append(('save a version', 'version'))
+        command_section.append(('view all versioned pdfs', 'pdfs'))
         hidden_section = main_menu.make_command_section(is_hidden=True)
         if os.path.isfile(self._get_output_lilypond_file_path()):
-            hidden_section.append(('output ly - view', 'ly'))
+            hidden_section.append(('current output ly - view', 'ly'))
+            hidden_section.append(('versioned output ly - view', 'lyv'))
+        hidden_section.append(('versioned output pdf - view', 'pdfv'))
+        display_string = 'versioned segment definition module - view'
+        hidden_section.append((display_string, 'pyv'))
         hidden_section.append(('list versions directory', 'vl'))
         return main_menu
 
@@ -240,8 +255,29 @@ class SegmentPackageProxy(PackageProxy):
             )
         return version_number
 
-    def interactively_view_output_ly(self):
-        r'''Interactively views output LilyPond file.
+    def interactively_view_all_versioned_pdfs(self):
+        r'''Interactively views all versioend PDFs.
+
+        Returns none.
+        '''
+        versions_directory_path = self._get_versions_directory_path()
+        file_paths = []
+        for directory_entry in os.listdir(versions_directory_path):
+            if not directory_entry[0].isdigit():
+                continue
+            if not directory_entry.endswith('.pdf'):
+                continue
+            file_path = os.path.join(
+                versions_directory_path,
+                directory_entry,
+                )
+            file_paths.append(file_path)
+        file_paths = ' '.join(file_paths)
+        command = 'open {}'.format(file_paths)
+        iotools.spawn_subprocess(command)
+
+    def interactively_view_current_output_ly(self):
+        r'''Interactively views current output LilyPond file.
 
         Returns none.
         '''
@@ -249,6 +285,58 @@ class SegmentPackageProxy(PackageProxy):
         if os.path.isfile(output_lilypond_file_path):
             command = 'vim -R {}'.format(output_lilypond_file_path)
             iotools.spawn_subprocess(command)
+
+    def _interactively_view_versioned_file(self, extension):
+        assert extension in ('.ly', '.pdf', '.py')
+        getter = self.session.io_manager.make_getter(where=self._where)
+        last_version_number = self._get_last_version_number()
+        prompt = 'version number (0-{})'
+        prompt = prompt.format(last_version_number)
+        getter.append_integer(prompt)
+        version_number = getter._run(clear_terminal=False)
+        if self.session.backtrack():
+            return
+        if last_version_number < version_number or \
+            (version_number < 0 and last_version_number < abs(version_number)):
+            message = "version {} doesn't exist yet."
+            message = message.format(version_number)
+            self.session.io_manager.proceed(['', message])
+        if version_number < 0:
+            version_number = last_version_number + version_number + 1
+        version_string = str(version_number).zfill(4)
+        file_name = '{}{}'.format(version_string, extension)
+        file_path = os.path.join(
+            self.filesystem_path,
+            'versions',
+            file_name,
+            )
+        if os.path.isfile(file_path):
+            if extension in ('.ly', '.py'):
+                command = 'vim -R {}'.format(file_path)
+            elif extension == '.pdf':
+                command = 'open {}'.format(file_path)
+            iotools.spawn_subprocess(command)
+        
+    def interactively_view_versioned_output_ly(self):
+        r'''Interactively views output LilyPond file.
+
+        Returns none.
+        '''
+        self._interactively_view_versioned_file('.ly')
+
+    def interactively_view_versioned_output_pdf(self):
+        r'''Interactively views output PDF.
+
+        Returns none.
+        '''
+        self._interactively_view_versioned_file('.pdf')
+
+    def interactively_view_versioned_segment_definition_module(self):
+        r'''Interactively views versioned segment definition module.
+
+        Returns none.
+        '''
+        self._interactively_view_versioned_file('.py')
 
     def make_versions_directory(self):
         r'''Makes versions directory.
@@ -295,9 +383,13 @@ class SegmentPackageProxy(PackageProxy):
     user_input_to_action = PackageProxy.user_input_to_action.copy()
     user_input_to_action.update({
         'e': interactively_edit_asset_definition_module,
-        'ly': interactively_view_output_ly,
+        'ly': interactively_view_current_output_ly,
+        'lyv': interactively_view_versioned_output_ly,
+        'pdf': view_output_pdf,
         'pdfm': interactively_make_asset_pdf,
-        'pdfv': view_output_pdf,
+        'pdfs': interactively_view_all_versioned_pdfs,
+        'pdfv': interactively_view_versioned_output_pdf,
+        'pyv': interactively_view_versioned_segment_definition_module,
         'version': interactively_save_to_versions_directory,
         'vl': interactively_list_versions_directory,
         'x': interactively_execute_asset_definition_module,
