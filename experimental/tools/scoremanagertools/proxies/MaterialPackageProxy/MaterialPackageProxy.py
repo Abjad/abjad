@@ -109,7 +109,7 @@ class MaterialPackageProxy(PackageProxy):
                 hidden_section.append(('output ly - make', 'lym'))
         if self.has_illustration_ly:
             hidden_section.append(('output ly - delete', 'lyd'))
-            hidden_section.append(('output ly - view', 'lyv'))
+            hidden_section.append(('output ly - view', 'ly'))
 
     def _make_main_menu_section_for_illustration_pdf(
         self, 
@@ -950,7 +950,7 @@ class MaterialPackageProxy(PackageProxy):
         'ibxi': run_abjad_on_illustration_builder_module,
         'lyd': remove_illustration_ly,
         'lym': write_illustration_ly_to_disk,
-        'lyv': illustration_ly_file_proxy,
+        'ly': illustration_ly_file_proxy,
         'mdcanned': interactively_write_material_definition_module_boilerplate,
         'mde': interactively_edit_material_definition_module,
         'mddelete': remove_material_definition_module,

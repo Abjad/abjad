@@ -22,6 +22,8 @@ class FileProxy(FilesystemAssetProxy):
     def _handle_main_menu_result(self, result):
         if result in self.user_input_to_action:
             self.user_input_to_action[result](self)
+        elif result == 'user entered lone return':
+            self.interactively_edit()
 
     def _is_editable(self):
         if self.filesystem_path.endswith(('.tex', '.py')):
@@ -33,7 +35,7 @@ class FileProxy(FilesystemAssetProxy):
         self._main_menu = main_menu
         command_section = main_menu.make_command_section()
         if self._is_editable():
-            command_section.append(('edit', 'ed'))
+            command_section.append(('edit', 'e'))
         command_section.append(('rename', 'ren'))
         command_section.append(('remove', 'rm'))
         if self.filesystem_path.endswith('.py'):
@@ -123,7 +125,7 @@ class FileProxy(FilesystemAssetProxy):
 
     user_input_to_action = FilesystemAssetProxy.user_input_to_action.copy()
     user_input_to_action.update({
-        'ed': interactively_edit,
+        'e': interactively_edit,
         'run': run_python_file,
         't': typeset_tex_file,
         'v': interactively_view,

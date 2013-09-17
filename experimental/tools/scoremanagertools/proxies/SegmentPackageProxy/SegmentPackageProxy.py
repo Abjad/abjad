@@ -67,7 +67,7 @@ class SegmentPackageProxy(PackageProxy):
             command_section.append(('save a version', 'version'))
         hidden_section = main_menu.make_command_section(is_hidden=True)
         if os.path.isfile(self._get_output_lilypond_file_path()):
-            hidden_section.append(('output ly - view', 'lyv'))
+            hidden_section.append(('output ly - view', 'ly'))
         hidden_section.append(('list versions directory', 'vl'))
         return main_menu
 
@@ -287,7 +287,7 @@ class SegmentPackageProxy(PackageProxy):
     user_input_to_action = PackageProxy.user_input_to_action.copy()
     user_input_to_action.update({
         'e': interactively_edit_asset_definition_module,
-        'lyv': interactively_view_output_ly,
+        'ly': interactively_view_output_ly,
         'pdfm': interactively_make_asset_pdf,
         'pdfv': view_output_pdf,
         'version': interactively_save_to_versions_directory,
