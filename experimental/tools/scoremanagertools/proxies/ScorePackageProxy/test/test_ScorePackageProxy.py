@@ -13,7 +13,7 @@ def test_ScorePackageProxy_01():
     assert red_example_score.session.io_transcript[-2][1] == \
     ['Red Example Score (2013)',
       '',
-      '     exergue (x)',
+      '     build (u)',
       '     materials (m)',
       '     segments (g)',
       '     setup (s)',
@@ -97,7 +97,7 @@ def test_ScorePackageProxy_07():
         'scoremanagertools.scorepackages.red_example_score')
 
     assert spp.session is spp.distribution_proxy.session
-    assert spp.session is spp.exergue_directory_proxy.session
+    assert spp.session is spp.build_directory_manager.session
     assert spp.session is spp.music_proxy.session
     assert spp.session is spp.segment_wrangler.session
     assert spp.session is spp.material_package_wrangler.session

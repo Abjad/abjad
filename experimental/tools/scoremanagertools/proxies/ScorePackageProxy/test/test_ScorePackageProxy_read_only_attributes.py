@@ -10,16 +10,30 @@ def test_ScorePackageProxy_read_only_attributes_01():
     score_proxy = scoremanagertools.proxies.ScorePackageProxy(
         'scoremanagertools.scorepackages.red_example_score')
 
-    assert isinstance(score_proxy.segment_wrangler, scoremanagertools.wranglers.SegmentPackageWrangler)
-    assert isinstance(score_proxy.distribution_proxy, scoremanagertools.proxies.DirectoryProxy)
-    assert isinstance(score_proxy.exergue_directory_proxy, scoremanagertools.proxies.DirectoryProxy)
+    assert isinstance(
+        score_proxy.segment_wrangler, 
+        scoremanagertools.wranglers.SegmentPackageWrangler,
+        )
+    assert isinstance(
+        score_proxy.distribution_proxy, 
+        scoremanagertools.proxies.DirectoryProxy,
+        )
+    assert isinstance(
+        score_proxy.build_directory_manager, 
+        scoremanagertools.proxies.DirectoryProxy,
+        )
     assert isinstance(
         score_proxy.material_package_maker_wrangler,
-        scoremanagertools.wranglers.MaterialPackageMakerWrangler)
+        scoremanagertools.wranglers.MaterialPackageMakerWrangler,
+        )
     assert isinstance(
         score_proxy.material_package_wrangler,
-        scoremanagertools.wranglers.MaterialPackageWrangler)
-    assert isinstance(score_proxy.music_proxy, scoremanagertools.proxies.MusicPackageProxy)
+        scoremanagertools.wranglers.MaterialPackageWrangler,
+        )
+    assert isinstance(
+        score_proxy.music_proxy, 
+        scoremanagertools.proxies.MusicPackageProxy,
+        )
 
     assert score_proxy.has_correct_initializers
 
@@ -54,7 +68,7 @@ def test_ScorePackageProxy_read_only_attributes_01():
     assert score_proxy.top_level_directory_proxies == (
         scoremanagertools.proxies.DistributionDirectoryProxy(
             'scoremanagertools.scorepackages.red_example_score'),
-        scoremanagertools.proxies.ExergueDirectoryProxy(
+        scoremanagertools.proxies.BuildDirectoryManager(
             'scoremanagertools.scorepackages.red_example_score'),
         scoremanagertools.proxies.MusicPackageProxy(
             'scoremanagertools.scorepackages.red_example_score'))

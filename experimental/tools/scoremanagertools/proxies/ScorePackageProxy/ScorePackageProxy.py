@@ -16,8 +16,8 @@ class ScorePackageProxy(PackageProxy):
             score_package_path=packagesystem_path, 
             session=self.session,
             )
-        self._exergue_directory_proxy = \
-            scoremanagertools.proxies.ExergueDirectoryProxy(
+        self._build_directory_manager = \
+            scoremanagertools.proxies.BuildDirectoryManager(
             score_package_path=packagesystem_path, 
             session=self.session,
             )
@@ -59,7 +59,7 @@ class ScorePackageProxy(PackageProxy):
     def _make_main_menu(self):
         main_menu = self.session.io_manager.make_menu(where=self._where)
         command_section = main_menu.make_command_section()
-        command_section.append(('exergue', 'x'))
+        command_section.append(('build', 'u'))
         command_section.append(('materials', 'm'))
         command_section.append(('segments', 'g'))
         command_section.append(('setup', 's'))
@@ -135,8 +135,8 @@ class ScorePackageProxy(PackageProxy):
         return self._distribution_proxy
 
     @property
-    def exergue_directory_proxy(self):
-        return self._exergue_directory_proxy
+    def build_directory_manager(self):
+        return self._build_directory_manager
 
     @apply
     def forces_tagline():
@@ -261,7 +261,7 @@ class ScorePackageProxy(PackageProxy):
     def top_level_directory_proxies(self):
         return (
             self.distribution_proxy,
-            self.exergue_directory_proxy,
+            self.build_directory_manager,
             self.music_proxy,
             )
 
@@ -451,8 +451,8 @@ class ScorePackageProxy(PackageProxy):
         command_section.append(('ci', 'ci'))
         return svn_menu
 
-    def manage_exergue_directory(self):
-        self.exergue_directory_proxy._run()
+    def manage_build_directory(self):
+        self.build_directory_manager._run()
 
     def manage_materials(self):
         self.material_package_wrangler._run(head=self.package_path)
@@ -562,6 +562,6 @@ class ScorePackageProxy(PackageProxy):
         's': manage_setup,
         'svn': manage_svn,
         't': manage_score_templates,
-        'x': manage_exergue_directory,
+        'u': manage_build_directory,
         'y': manage_stylesheets,
         })

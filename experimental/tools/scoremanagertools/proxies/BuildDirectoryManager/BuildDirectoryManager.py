@@ -7,7 +7,7 @@ from experimental.tools.scoremanagertools.proxies.DirectoryProxy \
     import DirectoryProxy
 
 
-class ExergueDirectoryProxy(DirectoryProxy):
+class BuildDirectoryManager(DirectoryProxy):
 
     ### INITIALIZER ###
 
@@ -43,7 +43,7 @@ class ExergueDirectoryProxy(DirectoryProxy):
                 return file_path
 
     def _make_main_menu(self):
-        superclass = super(ExergueDirectoryProxy, self)
+        superclass = super(BuildDirectoryManager, self)
         main_menu = superclass._make_main_menu()
         command_section = main_menu.make_command_section()
         if self._get_file_path_ending_with('back-cover.pdf'):
@@ -101,7 +101,7 @@ class ExergueDirectoryProxy(DirectoryProxy):
     def typeset_score(self):
         r'''Typesets score.
 
-        Writes PDF to exergue directory.
+        Writes PDF to build directory.
 
         Returns none.
         '''
