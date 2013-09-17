@@ -36,12 +36,13 @@ class FileProxy(FilesystemAssetProxy):
         command_section = main_menu.make_command_section()
         if self._is_editable():
             command_section.append(('edit', 'e'))
+            command_section.default_index = len(command_section) - 1
         command_section.append(('rename', 'ren'))
         command_section.append(('remove', 'rm'))
         if self.filesystem_path.endswith('.py'):
             command_section.append(('run', 'run'))
         if self.filesystem_path.endswith('.tex'):
-            command_section.append(('typeset', 't'))
+            command_section.append(('typeset', 'ts'))
         if self.filesystem_path.endswith('.pdf'):
             command_section.append(('view', 'v'))
         return main_menu
@@ -99,8 +100,8 @@ class FileProxy(FilesystemAssetProxy):
         command = 'python {}'.format(self.filesystem_path)
         iotools.spawn_subprocess(command)
 
-    def typeset_tex_file(self):
-        r'''Typesets TeX file.
+    def interactively_typeset_tex_file(self, prompt=True):
+        r'''Interactively typesets TeX file.
 
         Returns none.
         '''
@@ -120,6 +121,7 @@ class FileProxy(FilesystemAssetProxy):
         iotools.spawn_subprocess(command)
         command = 'rm {}/*.log'.format(output_directory)
         iotools.spawn_subprocess(command)
+        self.session.io_manager.proceed('', is_interactive=prompt)
 
     ### UI MANIFEST ###
 
@@ -127,6 +129,6 @@ class FileProxy(FilesystemAssetProxy):
     user_input_to_action.update({
         'e': interactively_edit,
         'run': run_python_file,
-        't': typeset_tex_file,
+        'ts': interactively_typeset_tex_file,
         'v': interactively_view,
         })

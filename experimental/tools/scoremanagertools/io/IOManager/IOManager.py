@@ -256,9 +256,12 @@ class IOManager(AbjadObject):
         elif lines is None:
             lines = []
         if lines:
-            lines.append('')
+            if lines != ['']:
+                lines.append('')
             self.display(lines)
         self.handle_raw_input(
-            'press return to continue.', include_chevron=False)
+            'press return to continue.', 
+            include_chevron=False,
+            )
         if self.session.is_displayable:
             iotools.clear_terminal()

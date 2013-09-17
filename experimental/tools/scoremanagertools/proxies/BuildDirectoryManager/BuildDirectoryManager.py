@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
+import shutil
 import subprocess
 from abjad.tools import iotools
 from abjad.tools import sequencetools
@@ -62,11 +63,50 @@ class BuildDirectoryManager(DirectoryProxy):
             command_section.append(('score - view', 's'))
             command_section.default_index = len(command_section) - 1
         command_section = main_menu.make_command_section()
+        command_section.append(('segments - copy ', 'cp'))
         if self._get_file_path_ending_with('score.tex'):
-            command_section.append(('typeset score', 't'))
+            command_section.append(('score - typeset', 'ts'))
         return main_menu
 
     ### PUBLIC METHODS ###
+
+    def interactively_copy_segment_pdfs(self, pending_user_input=None):
+        r'''Interactively copies segment PDFs from segment
+        package directories to build directory.
+
+        Returns none.
+        '''
+        from experimental.tools import scoremanagertools
+        self.session.io_manager.assign_user_input(pending_user_input)
+        segments_directory_path = self.session.current_segments_directory_path
+        for directory_entry in os.listdir(segments_directory_path):
+            segment_directory_path = os.path.join(
+                segments_directory_path,
+                directory_entry,
+                )
+            if not os.path.isdir(segment_directory_path):
+                continue
+            source_file_path = os.path.join(
+                segment_directory_path,
+                'output.pdf',
+                )
+            if not os.path.isfile(source_file_path):
+                continue
+            score_package_path = self.session.current_score_package_path
+            target_file_name = '{}-segment-{}.pdf'
+            target_file_name = target_file_name.format(
+                score_package_path,
+                directory_entry,
+                )
+            target_file_path = os.path.join(
+                self.filesystem_path,
+                target_file_name,
+                )
+            shutil.copyfile(source_file_path, target_file_path)
+            message = 'Segment {} copied.'
+            message = message.format(directory_entry)
+            self.session.io_manager.display(message)
+        self.session.io_manager.proceed('')
 
     def interactively_view_back_cover(self, pending_user_input=None):
         r'''Interactively views back cover.
@@ -117,15 +157,16 @@ class BuildDirectoryManager(DirectoryProxy):
             filesystem_path=score_tex_file_path,
             session=self.session,
             )
-        proxy.typeset_tex_file()
+        proxy.interactively_typeset_tex_file()
 
     ### UI MANIFEST ###
 
     user_input_to_action = DirectoryProxy.user_input_to_action.copy()
     user_input_to_action.update({
         'bc': interactively_view_back_cover,
+        'cp': interactively_copy_segment_pdfs,
         'fc': interactively_view_front_cover,
         'p': interactively_view_preface,
         's': interactively_view_score,
-        't': typeset_score,
+        'ts': typeset_score,
         })
