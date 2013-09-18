@@ -74,7 +74,7 @@ class SegmentPackageProxy(PackageProxy):
         command_section = main_menu.make_command_section()
         command_section.append(('output pdf - make', 'pdfm'))
         if os.path.isfile(self._get_output_pdf_file_path()):
-            command_section.append(('current output pdf - view', 'pdf'))
+            command_section.append(('output pdf - view', 'pdfv'))
             command_section.default_index = len(command_section) - 1
         command_section = main_menu.make_command_section()
         if os.path.isfile(self._get_output_pdf_file_path()):
@@ -85,10 +85,10 @@ class SegmentPackageProxy(PackageProxy):
         hidden_section = main_menu.make_command_section(is_hidden=True)
         if os.path.isfile(self._get_output_lilypond_file_path()):
             hidden_section.append(('current output ly - view', 'ly'))
-            hidden_section.append(('versioned output ly - view', 'lyv'))
+            hidden_section.append(('versioned output ly - view', 'lyver'))
         hidden_section.append(('versioned output pdf - view', 'pdfv'))
         display_string = 'versioned segment definition module - view'
-        hidden_section.append((display_string, 'pyv'))
+        hidden_section.append((display_string, 'pyver'))
         hidden_section.append(('list versions directory', 'vl'))
         return main_menu
 
@@ -396,12 +396,12 @@ class SegmentPackageProxy(PackageProxy):
     user_input_to_action.update({
         'e': interactively_edit_asset_definition_module,
         'ly': interactively_view_current_output_ly,
-        'lyv': interactively_view_versioned_output_ly,
-        'pdf': view_output_pdf,
+        'lyver': interactively_view_versioned_output_ly,
+        'pdfv': view_output_pdf,
         'pdfm': interactively_make_asset_pdf,
         'pdfs': interactively_view_all_versioned_pdfs,
-        'pdfv': interactively_view_versioned_output_pdf,
-        'pyv': interactively_view_versioned_segment_definition_module,
+        'pdfver': interactively_view_versioned_output_pdf,
+        'pyver': interactively_view_versioned_segment_definition_module,
         'version': interactively_save_to_versions_directory,
         'vl': interactively_list_versions_directory,
         'x': interactively_execute_asset_definition_module,
