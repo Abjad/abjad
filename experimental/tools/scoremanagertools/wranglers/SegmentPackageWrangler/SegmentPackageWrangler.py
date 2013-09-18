@@ -47,12 +47,11 @@ class SegmentPackageWrangler(PackageWrangler):
         asset_menu_entries = self._make_asset_menu_entries(head=head)
         asset_section.menu_entries = asset_menu_entries
         command_section = main_menu.make_command_section()
+        command_section.append(('all pdfs - make', 'mm'))
+        command_section.append(('all pdfs - save', 'ss'))
+        command_section.append(('all pdfs - view', 'vv'))
+        command_section = main_menu.make_command_section()
         command_section.append(('new segment', 'new'))
-        command_section = main_menu.make_command_section()
-        command_section.append(('make all pdfs', 'pdfsm'))
-        command_section.append(('view all pdfs', 'pdfsv'))
-        command_section = main_menu.make_command_section()
-        command_section.append(('save all versions', 'versions'))
         return main_menu
 
     ### PUBLIC PROPERTIES ###
@@ -400,7 +399,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
     user_input_to_action = PackageWrangler.user_input_to_action.copy()
     user_input_to_action.update({
-        'pdfsm': interactively_make_asset_pdfs,
-        'pdfsv': interactively_view_asset_pdfs,
-        'versions': interactively_version_all_assets,
+        'mm': interactively_make_asset_pdfs,
+        'vv': interactively_view_asset_pdfs,
+        'ss': interactively_version_all_assets,
         })
