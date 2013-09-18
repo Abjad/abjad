@@ -69,11 +69,11 @@ class SegmentPackageProxy(PackageProxy):
         command_section = main_menu.make_command_section()
         command_section.append(('segment definition module - edit', 'e'))
         command_section.append(('segment definition module - execute', 'x'))
-        command_section.default_index = 0
         command_section = main_menu.make_command_section()
         command_section.append(('output pdf - make', 'pdfm'))
         if os.path.isfile(self._get_output_pdf_file_path()):
             command_section.append(('current output pdf - view', 'pdf'))
+            command_section.default_index = len(command_section) - 1
         command_section = main_menu.make_command_section()
         if os.path.isfile(self._get_output_pdf_file_path()):
             command_section.append(('save a version', 'version'))
