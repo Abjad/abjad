@@ -156,10 +156,7 @@ class NoteHead(AbjadObject):
 
         Return string.
         '''
-        from abjad.tools.lilypondfiletools._format_lilypond_attribute \
-            import _format_lilypond_attribute
-        from abjad.tools.lilypondfiletools._format_lilypond_value \
-            import _format_lilypond_value
+        from abjad.tools import formattools
         from abjad.tools import chordtools
         # make sure note head has pitch
         assert self.written_pitch
@@ -168,9 +165,11 @@ class NoteHead(AbjadObject):
         if isinstance(self._client, chordtools.Chord):
             for key, value in vars(self.tweak).iteritems():
                 if not key.startswith('_'):
-                    result.append(r'\tweak %s %s' % (
-                        _format_lilypond_attribute(key),
-                        _format_lilypond_value(value)))
+                    result.append(
+                        r'\tweak %s %s' % (
+                        formattools.format_lilypond_attribute(key),
+                        formattools.format_lilypond_value(value)),
+                        )
         # format note head pitch
         kernel = self.written_pitch.lilypond_format
         if self.is_forced:
