@@ -37,23 +37,37 @@ class IOManager(AbjadObject):
             if self.session.is_displayable:
                 iotools.clear_terminal()
 
-    def confirm(self, prompt_string='ok?', include_chevron=False):
+    def confirm(
+        self, 
+        prompt_string='ok?', 
+        clear_terminal=False,
+        include_chevron=False,
+        ):
         getter = self.make_getter(where=None)
         getter.append_yes_no_string(prompt_string)
         getter.include_newlines = False
-        result = getter._run(include_chevron=include_chevron)
+        result = getter._run(
+            clear_terminal=clear_terminal,
+            include_chevron=include_chevron,
+            )
         if self.session.backtrack():
             return
         return 'yes'.startswith(result.lower())
 
-    def display(self, lines, capitalize_first_character=True):
+    def display(
+        self, 
+        lines, 
+        capitalize_first_character=True,
+        ):
         assert isinstance(lines, (str, list))
         if isinstance(lines, str):
             lines = [lines]
         if not self.session.hide_next_redraw:
             if capitalize_first_character:
-                lines = [stringtools.capitalize_string_start(line) 
-                    for line in lines]
+                lines = [
+                    stringtools.capitalize_string_start(line) 
+                    for line in lines
+                    ]
             if lines:
                 if self.session.transcribe_next_command:
                     self.session.io_transcript.append_lines(lines)

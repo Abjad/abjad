@@ -509,7 +509,7 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string('commit message')
-        commit_message = getter._run()
+        commit_message = getter._run(clear_terminal=False)
         if self.session.backtrack():
             return
         line = 'commit message will be: "{}"\n'.format(commit_message)
@@ -520,8 +520,11 @@ class ScorePackageWrangler(PackageWrangler):
             proxies = self.list_visible_asset_proxies()
         else:
             proxies = self.list_asset_proxies(
-                in_built_in_asset_library=True, in_user_asset_library=True,
-                in_built_in_score_packages=True, in_user_score_packages=True)
+                in_built_in_asset_library=True, 
+                in_user_asset_library=True,
+                in_built_in_score_packages=True, 
+                in_user_score_packages=True,
+                )
         for proxy in proxies:
             proxy.svn_ci(commit_message=commit_message, is_interactive=False)
         self.session.io_manager.proceed(is_interactive=is_interactive)

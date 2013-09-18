@@ -397,7 +397,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
         if commit_message is None:
             getter = self.session.io_manager.make_getter(where=self._where)
             getter.append_string('commit message')
-            commit_message = getter._run()
+            commit_message = getter._run(clear_terminal=False)
             if self.session.backtrack():
                 return
             line = 'commit message will be: "{}"\n'.format(commit_message)
@@ -406,14 +406,14 @@ class FilesystemAssetProxy(ScoreManagerObject):
                 return
         lines = []
         lines.append(self.filesystem_path)
-        command = 'svn commit -m "{}" {}'.format(
-            commit_message, self.filesystem_path)
-        proc = subprocess.Popen(
+        command = 'svn commit -m "{}" {}'
+        command = command.format(commit_message, self.filesystem_path)
+        process = subprocess.Popen(
             command,
             shell=True,
             stdout=subprocess.PIPE,
             )
-        lines.extend([line.strip() for line in proc.stdout.readlines()])
+        lines.extend([line.strip() for line in process.stdout.readlines()])
         lines.append('')
         self.session.io_manager.display(lines)
         self.session.io_manager.proceed(is_interactive=is_interactive)

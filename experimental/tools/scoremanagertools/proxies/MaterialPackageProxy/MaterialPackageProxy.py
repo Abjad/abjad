@@ -148,6 +148,7 @@ class MaterialPackageProxy(PackageProxy):
             command_section = main_menu.make_command_section()
             command_section.append(
                 ('material definition - edit', 'mde'))
+            command_section.default_index = len(command_section) - 1
             command_section.append(
                 ('material definition - execute', 'mdx'))
             hidden_section.append(
