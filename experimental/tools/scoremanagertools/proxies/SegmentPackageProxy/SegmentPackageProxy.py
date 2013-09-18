@@ -43,6 +43,8 @@ class SegmentPackageProxy(PackageProxy):
     def _get_last_version_number(self):
         versions_directory_path = self._get_versions_directory_path()
         file_names = os.listdir(versions_directory_path)
+        if not file_names:
+            return
         file_names.sort()
         last_file_name = file_names[-1]
         assert last_file_name[0].isdigit()
@@ -77,7 +79,9 @@ class SegmentPackageProxy(PackageProxy):
         command_section = main_menu.make_command_section()
         if os.path.isfile(self._get_output_pdf_file_path()):
             command_section.append(('save a version', 'version'))
-        command_section.append(('view all versioned pdfs', 'pdfs'))
+        versions_directory_path = self._get_versions_directory_path()
+        if os.listdir(versions_directory_path):
+            command_section.append(('view all versioned pdfs', 'pdfs'))
         hidden_section = main_menu.make_command_section(is_hidden=True)
         if os.path.isfile(self._get_output_lilypond_file_path()):
             hidden_section.append(('current output ly - view', 'ly'))
@@ -272,6 +276,10 @@ class SegmentPackageProxy(PackageProxy):
                 directory_entry,
                 )
             file_paths.append(file_path)
+        if not file_paths:
+            message = 'version directory empty.'
+            self.session.io_manager.proceed(message)
+            return
         file_paths = ' '.join(file_paths)
         command = 'open {}'.format(file_paths)
         iotools.spawn_subprocess(command)
@@ -290,6 +298,10 @@ class SegmentPackageProxy(PackageProxy):
         assert extension in ('.ly', '.pdf', '.py')
         getter = self.session.io_manager.make_getter(where=self._where)
         last_version_number = self._get_last_version_number()
+        if last_version_number is None:
+            message = 'versions directory empty.'
+            self.session.io_manager.proceed(message)
+            return
         prompt = 'version number (0-{})'
         prompt = prompt.format(last_version_number)
         getter.append_integer(prompt)
