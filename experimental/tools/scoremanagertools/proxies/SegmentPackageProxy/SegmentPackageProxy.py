@@ -70,7 +70,6 @@ class SegmentPackageProxy(PackageProxy):
         hidden_section.append(('manage tags', 'tags'))
         command_section = main_menu.make_command_section()
         command_section.append(('segment definition module - edit', 'e'))
-        command_section.append(('segment definition module - execute', 'x'))
         command_section = main_menu.make_command_section()
         command_section.append(('output pdf - make', 'pdfm'))
         if os.path.isfile(self._get_output_pdf_file_path()):
@@ -136,16 +135,6 @@ class SegmentPackageProxy(PackageProxy):
         '''
         self.session.io_manager.assign_user_input(pending_user_input)
         self.segment_definition_module_proxy.interactively_edit()
-
-    def interactively_execute_asset_definition_module(self, prompt=True):
-        r'''Executes asset definition module.
-
-        Returns none.
-        '''
-        proxy = self.segment_definition_module_proxy
-        proxy.interpret_in_external_process()
-        message = 'segment definition module executed.'
-        self.session.io_manager.proceed(message, is_interactive=prompt)
 
     def interactively_list_versions_directory(self):
         r'''Interactively lists versions directory.
@@ -404,5 +393,4 @@ class SegmentPackageProxy(PackageProxy):
         'pyver': interactively_view_versioned_segment_definition_module,
         'pdfs': interactively_save_to_versions_directory,
         'vl': interactively_list_versions_directory,
-        'x': interactively_execute_asset_definition_module,
         })
