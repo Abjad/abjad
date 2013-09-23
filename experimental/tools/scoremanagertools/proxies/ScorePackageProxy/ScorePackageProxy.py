@@ -21,10 +21,6 @@ class ScorePackageProxy(PackageProxy):
             score_package_path=packagesystem_path, 
             session=self.session,
             )
-        self._music_proxy = scoremanagertools.proxies.MusicPackageProxy(
-            score_package_path=packagesystem_path, 
-            session=self.session,
-            )
         self._material_package_wrangler = \
             scoremanagertools.wranglers.MaterialPackageWrangler(
             session=self.session,
@@ -188,10 +184,6 @@ class ScorePackageProxy(PackageProxy):
         return '.'.join([self.package_path, 'materials'])
 
     @property
-    def music_proxy(self):
-        return self._music_proxy
-
-    @property
     def score_initializer_file_names(self):
         return (
             self.initializer_file_name,
@@ -261,7 +253,6 @@ class ScorePackageProxy(PackageProxy):
         return (
             self.distribution_proxy,
             self.build_directory_manager,
-            self.music_proxy,
             )
 
     @property
@@ -294,28 +285,7 @@ class ScorePackageProxy(PackageProxy):
                 initializer = file(self.initializer_file_name, 'w')
                 initializer.write('')
                 initializer.close()
-        if not os.path.exists(self.music_proxy.initializer_file_name):
-            result = False
-            prompt = 'create {}? '.format(
-                self.music_proxy.initializer_file_name)
-            if not is_interactive or self.session.io_manager.confirm(prompt):
-                initializer = file(self.music_proxy.initializer_file_name, 'w')
-                initializer.write('')
-                initializer.close()
         lines = []
-        initializer = file(self.music_proxy.initializer_file_name, 'r')
-        found_materials_import = False
-        for line in initializer.readlines():
-            lines.append(line)
-            if line.startswith('import materials'):
-                found_materials_import = True
-        initializer.close()
-        if not found_materials_import:
-            result = False
-            lines.insert(0, 'import materials\n')
-            initializer = file(self.music_proxy.initializer_file_name, 'w')
-            initializer.write(''.join(lines))
-            initializer.close()
         if not os.path.exists(self.tags_file_name):
             result = False
             prompt = 'create {}? '.format(self.tags_file_name)

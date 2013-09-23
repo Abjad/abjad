@@ -30,10 +30,6 @@ def test_ScorePackageProxy_read_only_attributes_01():
         score_proxy.material_package_wrangler,
         scoremanagertools.wranglers.MaterialPackageWrangler,
         )
-    assert isinstance(
-        score_proxy.music_proxy, 
-        scoremanagertools.proxies.MusicPackageProxy,
-        )
 
     assert score_proxy.has_correct_initializers
 
@@ -70,5 +66,4 @@ def test_ScorePackageProxy_read_only_attributes_01():
             'scoremanagertools.scorepackages.red_example_score'),
         scoremanagertools.proxies.BuildDirectoryManager(
             'scoremanagertools.scorepackages.red_example_score'),
-        scoremanagertools.proxies.MusicPackageProxy(
-            'scoremanagertools.scorepackages.red_example_score'))
+        )

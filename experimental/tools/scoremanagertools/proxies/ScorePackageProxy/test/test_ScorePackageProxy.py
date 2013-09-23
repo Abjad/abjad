@@ -98,7 +98,6 @@ def test_ScorePackageProxy_07():
 
     assert spp.session is spp.distribution_proxy.session
     assert spp.session is spp.build_directory_manager.session
-    assert spp.session is spp.music_proxy.session
     assert spp.session is spp.segment_wrangler.session
     assert spp.session is spp.material_package_wrangler.session
     assert spp.session is spp.material_package_maker_wrangler.session
