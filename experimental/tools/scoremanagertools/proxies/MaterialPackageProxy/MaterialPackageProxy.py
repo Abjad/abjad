@@ -367,11 +367,9 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def illustration_pdf_file_proxy(self):
         from experimental.tools import scoremanagertools
-        if self.should_have_illustration_pdf:
-            if not self.has_illustration_pdf:
-                file(self.illustration_pdf_file_name, 'w').write('')
-            return scoremanagertools.proxies.IllustrationPdfFileProxy(
-                self.illustration_pdf_file_name, session=self.session)
+        file_path = os.path.join(self.filesystem_path, 'illustration.pdf')
+        proxy = scoremanagertools.proxies.FileProxy(file_path)
+        return proxy
 
     @property
     def illustration_with_stylesheet(self):
