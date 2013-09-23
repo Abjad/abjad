@@ -182,7 +182,7 @@ class Session(abctools.AbjadObject):
             ::
 
                 >>> session_in_score.current_materials_directory_path
-                '.../foo/music/materials'
+                '.../foo/materials'
 
         (Output will vary according to configuration.)
 
@@ -221,7 +221,7 @@ class Session(abctools.AbjadObject):
             ::
 
                 >>> session_in_score.current_materials_package_path
-                'foo.music.materials'
+                'foo.materials'
 
         Returns string.
         '''
@@ -314,7 +314,7 @@ class Session(abctools.AbjadObject):
         ::
 
             >>> session_in_score.current_segments_directory_path
-            '.../foo/music/segments'
+            '.../foo/segments'
 
         (Output will vary according to configuration.)
 
@@ -345,7 +345,7 @@ class Session(abctools.AbjadObject):
         ::
 
             >>> session_in_score.current_segments_package_path
-            'foo.music.segments'
+            'foo.segments'
 
         Returns none or string.
         '''

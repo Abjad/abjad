@@ -16,7 +16,6 @@ class ScoreTemplateDirectoryProxy(DirectoryProxy):
             score_package_path)
         filesystem_path = os.path.join(
             score_directory_path, 
-            'music',
             'templates',
             )
         DirectoryProxy.__init__(

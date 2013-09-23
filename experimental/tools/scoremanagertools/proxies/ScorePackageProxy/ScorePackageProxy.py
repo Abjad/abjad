@@ -177,7 +177,7 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def materials_directory_path(self):
-        return os.path.join(self.filesystem_path, 'music', 'materials')
+        return os.path.join(self.filesystem_path, 'materials')
 
     @property
     def materials_package_initializer_file_name(self):
@@ -185,7 +185,7 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def materials_package_path(self):
-        return '.'.join([self.package_path, 'music', 'materials'])
+        return '.'.join([self.package_path, 'materials'])
 
     @property
     def music_proxy(self):
@@ -195,7 +195,6 @@ class ScorePackageProxy(PackageProxy):
     def score_initializer_file_names(self):
         return (
             self.initializer_file_name,
-            self.music_proxy.initializer_file_name,
             )
 
     @property
@@ -215,7 +214,7 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def segments_directory_path(self):
-        return os.path.join(self.filesystem_path, 'music', 'segments')
+        return os.path.join(self.filesystem_path, 'segments')
 
     @property
     def segments_package_initializer_file_name(self):
@@ -223,7 +222,7 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def segments_package_path(self):
-        return '.'.join([self.package_path, 'music', 'segments'])
+        return '.'.join([self.package_path, 'segments'])
 
     @property
     def stylesheet_wrangler(self):
@@ -231,7 +230,7 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def stylesheets_directory_path(self):
-        return os.path.join(self.filesystem_path, 'music', 'stylesheets')
+        return os.path.join(self.filesystem_path, 'stylesheets')
 
     @property
     def tempo_inventory(self):

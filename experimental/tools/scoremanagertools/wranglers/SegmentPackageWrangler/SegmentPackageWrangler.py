@@ -22,7 +22,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
     asset_storehouse_packagesystem_path_in_built_in_asset_library = None
 
-    score_package_asset_storehouse_path_infix_parts = ('music', 'segments')
+    score_package_asset_storehouse_path_infix_parts = ('segments',)
 
     asset_storehouse_packagesystem_path_in_user_asset_library = None
 
@@ -194,11 +194,11 @@ class SegmentPackageWrangler(PackageWrangler):
             ...     in_user_score_packages=False,
             ...     ):
             ...     x
-            '.../blue_example_score/music/segments/segment_01'
-            '.../blue_example_score/music/segments/segment_02'
-            '.../red_example_score/music/segments/segment_01'
-            '.../red_example_score/music/segments/segment_02'
-            '.../red_example_score/music/segments/segment_03'
+            '.../blue_example_score/segments/segment_01'
+            '.../blue_example_score/segments/segment_02'
+            '.../red_example_score/segments/segment_01'
+            '.../red_example_score/segments/segment_02'
+            '.../red_example_score/segments/segment_03'
 
         Returns list.
         '''
@@ -274,11 +274,11 @@ class SegmentPackageWrangler(PackageWrangler):
             ...     in_user_asset_library=False, 
             ...     in_user_score_packages=False):
             ...     x
-            '....blue_example_score.music.segments.segment_01'
-            '....blue_example_score.music.segments.segment_02'
-            '....red_example_score.music.segments.segment_01'
-            '....red_example_score.music.segments.segment_02'
-            '....red_example_score.music.segments.segment_03'
+            '....blue_example_score.segments.segment_01'
+            '....blue_example_score.segments.segment_02'
+            '....red_example_score.segments.segment_01'
+            '....red_example_score.segments.segment_02'
+            '....red_example_score.segments.segment_03'
 
         Returns list.
         '''
@@ -309,11 +309,11 @@ class SegmentPackageWrangler(PackageWrangler):
             ...     in_user_asset_library=False, 
             ...     in_user_score_packages=False):
             ...     x
-            SegmentPackageProxy('.../blue_example_score/music/segments/segment_01')
-            SegmentPackageProxy('.../blue_example_score/music/segments/segment_02')
-            SegmentPackageProxy('.../red_example_score/music/segments/segment_01')
-            SegmentPackageProxy('.../red_example_score/music/segments/segment_02')
-            SegmentPackageProxy('.../red_example_score/music/segments/segment_03')
+            SegmentPackageProxy('.../blue_example_score/segments/segment_01')
+            SegmentPackageProxy('.../blue_example_score/segments/segment_02')
+            SegmentPackageProxy('.../red_example_score/segments/segment_01')
+            SegmentPackageProxy('.../red_example_score/segments/segment_02')
+            SegmentPackageProxy('.../red_example_score/segments/segment_03')
 
         Example 2. List red example score segment package proxies:
 
@@ -322,9 +322,9 @@ class SegmentPackageWrangler(PackageWrangler):
             >>> head = 'experimental.tools.scoremanagertools.scorepackages.red_example_score'
             >>> for x in wrangler.list_asset_proxies(head=head):
             ...     x
-            SegmentPackageProxy('.../red_example_score/music/segments/segment_01')
-            SegmentPackageProxy('.../red_example_score/music/segments/segment_02')
-            SegmentPackageProxy('.../red_example_score/music/segments/segment_03')
+            SegmentPackageProxy('.../red_example_score/segments/segment_01')
+            SegmentPackageProxy('.../red_example_score/segments/segment_02')
+            SegmentPackageProxy('.../red_example_score/segments/segment_03')
 
         Returns list.
         '''
@@ -355,9 +355,9 @@ class SegmentPackageWrangler(PackageWrangler):
             ...     in_user_score_packages=False,
             ...     ):
             ...     x
-            '.../blue_example_score/music/segments'
-            '.../green_example_score/music/segments'
-            '.../red_example_score/music/segments'
+            '.../blue_example_score/segments'
+            '.../green_example_score/segments'
+            '.../red_example_score/segments'
 
         Returns list.
         '''

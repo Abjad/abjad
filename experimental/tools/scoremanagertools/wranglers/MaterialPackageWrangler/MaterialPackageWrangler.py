@@ -32,7 +32,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
     ### CLASS VARIABLES ###
 
-    score_package_asset_storehouse_path_infix_parts = ('music', 'materials')
+    score_package_asset_storehouse_path_infix_parts = ('materials',)
 
     asset_storehouse_packagesystem_path_in_built_in_asset_library = \
         PackageWrangler.configuration.built_in_material_packages_package_path
@@ -248,7 +248,7 @@ class MaterialPackageWrangler(PackageWrangler):
             '.../scoremanagertools/materialpackages/red_numbers'
             '.../scoremanagertools/materialpackages/red_sargasso_measures'
             '.../scoremanagertools/materialpackages/sargasso_multipliers'
-            '.../scorepackages/red_example_score/music/materials/tempo_inventory'
+            '.../scorepackages/red_example_score/materials/tempo_inventory'
 
         Returns list.
         '''
@@ -327,7 +327,7 @@ class MaterialPackageWrangler(PackageWrangler):
             'experimental.tools.scoremanagertools.materialpackages.red_numbers'
             'experimental.tools.scoremanagertools.materialpackages.red_sargasso_measures'
             'experimental.tools.scoremanagertools.materialpackages.sargasso_multipliers'
-            'experimental.tools.scoremanagertools.scorepackages.red_example_score.music.materials.tempo_inventory'
+            'experimental.tools.scoremanagertools.scorepackages.red_example_score.materials.tempo_inventory'
 
         Returns list.
         '''
@@ -367,7 +367,7 @@ class MaterialPackageWrangler(PackageWrangler):
             MaterialPackageProxy('.../tools/scoremanagertools/materialpackages/red_numbers')
             SargassoMeasureMaterialPackageMaker('.../tools/scoremanagertools/materialpackages/red_sargasso_measures')
             MaterialPackageProxy('.../tools/scoremanagertools/materialpackages/sargasso_multipliers')
-            TempoMarkInventoryMaterialPackageMaker('.../tools/scoremanagertools/scorepackages/red_example_score/music/materials/tempo_inventory')
+            TempoMarkInventoryMaterialPackageMaker('.../tools/scoremanagertools/scorepackages/red_example_score/materials/tempo_inventory')
 
         Returns list.
         '''
@@ -398,9 +398,9 @@ class MaterialPackageWrangler(PackageWrangler):
             ...     in_user_score_packages=False):
             ...     x
             '.../tools/scoremanagertools/materialpackages'
-            '.../tools/scoremanagertools/scorepackages/blue_example_score/music/materials'
-            '.../tools/scoremanagertools/scorepackages/green_example_score/music/materials'
-            '.../tools/scoremanagertools/scorepackages/red_example_score/music/materials'
+            '.../tools/scoremanagertools/scorepackages/blue_example_score/materials'
+            '.../tools/scoremanagertools/scorepackages/green_example_score/materials'
+            '.../tools/scoremanagertools/scorepackages/red_example_score/materials'
 
         Returns list.
         '''

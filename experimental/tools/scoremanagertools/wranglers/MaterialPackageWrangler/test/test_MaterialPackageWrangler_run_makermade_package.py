@@ -32,14 +32,14 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
-        'experimental.tools.scoremanagertools.scorepackages.red_example_score.music.materials.testsargasso')
+        'experimental.tools.scoremanagertools.scorepackages.red_example_score.materials.testsargasso')
 
     try:
         score_manager._run(pending_user_input='red~example~score m m sargasso testsargasso default q')
         assert score_manager.configuration.packagesystem_path_exists(
-            'experimental.tools.scoremanagertools.scorepackages.red_example_score.music.materials.testsargasso')
+            'experimental.tools.scoremanagertools.scorepackages.red_example_score.materials.testsargasso')
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
-            'experimental.tools.scoremanagertools.scorepackages.red_example_score.music.materials.testsargasso')
+            'experimental.tools.scoremanagertools.scorepackages.red_example_score.materials.testsargasso')
         assert mpp.is_makermade
         assert mpp.list_directory() == ['__init__.py', 'tags.py', 'user_input.py']
         assert mpp.has_initializer
@@ -49,7 +49,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
     finally:
         score_manager._run(pending_user_input='red~example~score m testsargasso del remove default q')
         assert not score_manager.configuration.packagesystem_path_exists(
-            'experimental.tools.scoremanagertools.scorepackages.red_example_score.music.materials.testsargasso')
+            'experimental.tools.scoremanagertools.scorepackages.red_example_score.materials.testsargasso')
 
 
 #def test_MaterialPackageWrangler_run_makermade_package_03():

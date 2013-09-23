@@ -23,7 +23,7 @@ class StylesheetFileWrangler(FileWrangler):
         FileWrangler.configuration.score_manager_tools_directory_path, 
         'stylesheets')
 
-    score_package_asset_storehouse_path_infix_parts = ('music', 'stylesheets')
+    score_package_asset_storehouse_path_infix_parts = ('stylesheets',)
 
     asset_storehouse_filesystem_path_in_user_asset_library = \
         FileWrangler.configuration.user_asset_library_stylesheets_directory_path
@@ -47,7 +47,7 @@ class StylesheetFileWrangler(FileWrangler):
             self.configuration.built_in_score_packages_directory_path) or \
             filesystem_path.startswith(
             self.configuration.user_score_packages_directory_path):
-            tmp = os.path.join('music', 'stylesheets')
+            tmp = os.path.join('stylesheets')
             score_filesystem_path = filesystem_path.rpartition(tmp)[0]
             packagesystem_path = \
                 self.configuration.filesystem_path_to_packagesystem_path(
@@ -286,7 +286,7 @@ class StylesheetFileWrangler(FileWrangler):
             '.../tools/scoremanagertools/stylesheets/clean-letter-14.ly'
             '.../tools/scoremanagertools/stylesheets/clean-letter-16.ly'
             '.../tools/scoremanagertools/stylesheets/rhythm-letter-16.ly'
-            '.../red_example_score/music/stylesheets/red-example-score-stylesheet.ly'
+            '.../red_example_score/stylesheets/red-example-score-stylesheet.ly'
 
         Returns list.
         '''
@@ -357,7 +357,7 @@ class StylesheetFileWrangler(FileWrangler):
             StylesheetFileProxy('.../tools/scoremanagertools/stylesheets/clean-letter-14.ly')
             StylesheetFileProxy('.../tools/scoremanagertools/stylesheets/clean-letter-16.ly')
             StylesheetFileProxy('.../tools/scoremanagertools/stylesheets/rhythm-letter-16.ly')
-            StylesheetFileProxy('.../tools/scoremanagertools/scorepackages/red_example_score/music/stylesheets/red-example-score-stylesheet.ly')
+            StylesheetFileProxy('.../tools/scoremanagertools/scorepackages/red_example_score/stylesheets/red-example-score-stylesheet.ly')
 
         Returns list.
         '''
@@ -389,9 +389,9 @@ class StylesheetFileWrangler(FileWrangler):
             ...     ):
             ...     x
             '.../tools/scoremanagertools/stylesheets'
-            '.../blue_example_score/music/stylesheets'
-            '.../green_example_score/music/stylesheets'
-            '.../red_example_score/music/stylesheets'
+            '.../blue_example_score/stylesheets'
+            '.../green_example_score/stylesheets'
+            '.../red_example_score/stylesheets'
 
         Returns list.
         '''

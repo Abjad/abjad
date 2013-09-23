@@ -30,11 +30,11 @@
     The file will test 'import red_example_score', 
     'import green_example_score', and so on.
 
-13. Implement example_score_i.music.materials.divisions to import 
-    example_score_i.music.materials.time_signatures.
+13. Implement example_score_i.materials.divisions to import 
+    example_score_i.materials.time_signatures.
     This will implement an intrapackage material import.
-    Implement example_score_ii.music.materials.divisions to 
-    import example_score_i.music.materials.time_signatures.
+    Implement example_score_ii.materials.divisions to 
+    import example_score_i.materials.time_signatures.
     This will implement an interpackage material import.
 
 14. Remove ModuleProxy.unimport() entirely.
