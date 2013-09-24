@@ -17,7 +17,7 @@ class ScorePackageProxy(PackageProxy):
             session=self.session,
             )
         self._distribution_proxy = \
-            scoremanagertools.proxies.DistributionDirectoryProxy(
+            scoremanagertools.proxies.DistributionDirectoryManager(
             score_package_path=packagesystem_path, 
             session=self.session,
             )

@@ -4,7 +4,7 @@ from experimental.tools.scoremanagertools.proxies.DirectoryProxy \
     import DirectoryProxy
 
 
-class DistributionDirectoryProxy(DirectoryProxy):
+class DistributionDirectoryManager(DirectoryProxy):
 
     ### INITIALIZER ###
 
