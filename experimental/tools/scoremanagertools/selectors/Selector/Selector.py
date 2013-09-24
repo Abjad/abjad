@@ -8,11 +8,13 @@ class Selector(ScoreManagerObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, 
+    def __init__(
+        self, 
         is_numbered=True,
         is_ranged=False, 
         items=None, 
-        session=None):
+        session=None,
+        ):
         ScoreManagerObject.__init__(self, session=session)
         self.is_numbered = is_numbered
         self.is_ranged = is_ranged
@@ -91,7 +93,9 @@ class Selector(ScoreManagerObject):
             )
 
     def get_tag_from_directory_path(self, directory_path, tag_name):
-        tags_file_name = os.path.join(directory_path, 'tags.py')
+        tags_file_name = os.path.join(directory_path, '__metadata__.py')
+        if not os.path.isfile(tags_file_name):
+            tags_file_name = os.path.join(directory_path, 'tags.py')
         if os.path.isfile(tags_file_name):
             tags_file = open(tags_file_name, 'r')
             tags_file_string = tags_file.read()
