@@ -4,6 +4,6 @@ import collections
 
 
 tags = collections.OrderedDict([
-    ('instrumentation', scoretools.InstrumentationSpecifier(performers=scoretools.PerformerInventory([]))),
+    ('forces_tagline', 'for alto flute & guitar'),
     ('title', 'Green Example Score'),
     ('year_of_completion', 2013)])

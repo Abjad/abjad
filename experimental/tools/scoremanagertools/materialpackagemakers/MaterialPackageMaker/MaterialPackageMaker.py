@@ -179,7 +179,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
         pending_user_input=None,
         ):
         self.session.io_manager.assign_user_input(pending_user_input)
-        self.user_input_module_proxy.view()
+        self.user_input_module_proxy.interactively_view()
 
     def load_user_input_wrapper_demo_values(self, prompt=False):
         user_input_demo_values = copy.deepcopy(

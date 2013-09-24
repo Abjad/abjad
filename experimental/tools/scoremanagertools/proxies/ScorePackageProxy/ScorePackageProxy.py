@@ -21,6 +21,12 @@ class ScorePackageProxy(PackageProxy):
             score_package_path=packagesystem_path, 
             session=self.session,
             )
+        package_path = '{}.instrumentation'.format(self.package_path)
+        self._instrumentation_module_proxy = \
+            scoremanagertools.proxies.ModuleProxy(
+            package_path,
+            session=self.session,
+            )
         self._material_package_wrangler = \
             scoremanagertools.wranglers.MaterialPackageWrangler(
             session=self.session,
@@ -32,9 +38,9 @@ class ScorePackageProxy(PackageProxy):
         filesystem_path = os.path.join(self.filesystem_path, 'score_templates')
         self._score_template_directory_proxy = \
             scoremanagertools.proxies.DirectoryManager(
-                filesystem_path=filesystem_path,
-                session=self.session,
-                )
+            filesystem_path=filesystem_path,
+            session=self.session,
+            )
         self._segment_wrangler = \
             scoremanagertools.wranglers.SegmentPackageWrangler(
             session=self.session,
@@ -79,6 +85,7 @@ class ScorePackageProxy(PackageProxy):
         hidden_section.append(('run py.test', 'py.test'))
         hidden_section.append(('remove score package', 'removescore'))
         hidden_section.append(('view initializer', 'inv'))
+        hidden_section.append(('view instrumentation', 'instrumentation'))
         hidden_section.append(('view metadata', 'metadata'))
         return main_menu
 
@@ -94,6 +101,35 @@ class ScorePackageProxy(PackageProxy):
 
     ### PRIVATE METHODS ###
 
+    def _get_instrumentation(self):
+        instrumentation = self.get_tag('instrumentation')
+        if instrumentation is None:
+            instrumentation = \
+                self._import_instrumentation_from_instrumentation_module()
+        return instrumentation
+
+    def _get_instrumentation_module_file_path(self):
+        file_path = os.path.join(
+            self.filesystem_path,
+            'instrumentation.py',
+            )
+        return file_path
+
+    def _import_instrumentation_from_instrumentation_module(self):
+        from experimental.tools import scoremanagertools
+        packagesystem_path = '.'.join([
+            self.package_path,
+            'instrumentation',
+            ])
+        proxy = scoremanagertools.proxies.ModuleProxy(
+            packagesystem_path,
+            session=self.session,
+            )
+        instrumentation = proxy.execute_file_lines(
+            return_attribute_name='instrumentation',
+            )
+        return instrumentation
+    
     def _make_setup_menu_entries(self):
         result = []
         return_value = 'title'
@@ -107,7 +143,7 @@ class ScorePackageProxy(PackageProxy):
         result.append((return_value, None, prepopulated_value, return_value))
         return_value = 'performers'
         prepopulated_value = None
-        instrumentation = self.get_tag('instrumentation')
+        instrumentation = self._get_instrumentation()
         if instrumentation:
             string = instrumentation.performer_name_string
             prepopulated_value = string
@@ -119,6 +155,23 @@ class ScorePackageProxy(PackageProxy):
             prepopulated_value = self.forces_tagline
         result.append((return_value, None, prepopulated_value, return_value))
         return result
+
+    def _write_instrumentation_to_disk(self, instrumentation):
+        assert instrumentation is not None
+        if self.get_tag('instrumentation') is not None:
+            self.add_tag('instrumentation', instrumentation)
+        else:
+            lines = []
+            lines.append('# -*- encoding: utf-8 -*-\n')
+            lines.append('from abjad import *\n')
+            lines.append('\n\n')
+            line = 'instrumentation={}'
+            line = line.format(instrumentation._storage_format)
+            lines.append(line)
+            file_path = self._get_instrumentation_module_file_path()
+            file_pointer = file(file_path, 'w')
+            file_pointer.write(''.join(lines))
+            file_pointer.close()
 
     ### PUBLIC PROPERTIES ###
 
@@ -172,7 +225,11 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def instrumentation(self):
-        return self.get_tag('instrumentation')
+        return self._get_instrumentation()
+
+    @property
+    def instrumentation_module_proxy(self):
+        return self._instrumentation_module_proxy
 
     @property
     def material_package_maker_wrangler(self):
@@ -344,6 +401,8 @@ class ScorePackageProxy(PackageProxy):
             self.interactively_edit_forces_tagline()
         elif result == 'performers':
             self.interactively_edit_instrumentation_specifier()
+        elif result == 'user entered lone return':
+            pass
         else:
             raise ValueError(result)
 
@@ -368,11 +427,15 @@ class ScorePackageProxy(PackageProxy):
 
     def interactively_edit_instrumentation_specifier(self):
         from experimental.tools import scoremanagertools
-        target = self.get_tag('instrumentation')
+        #target = self.get_tag('instrumentation')
+        target = self._get_instrumentation()
         editor = scoremanagertools.editors.InstrumentationEditor(
-            session=self.session, target=target)
+            session=self.session, 
+            target=target,
+            )
         editor._run() # maybe check for backtracking after this?
-        self.add_tag('instrumentation', editor.target)
+        #self.add_tag('instrumentation', editor.target)
+        self._write_instrumentation_to_disk(editor.target)
 
     def interactively_edit_title(self):
         getter = self.session.io_manager.make_getter(where=self._where)
@@ -418,6 +481,9 @@ class ScorePackageProxy(PackageProxy):
         self.build_directory_manager.interactively_view_score(
             pending_user_input=pending_user_input,
             )
+
+    def interactively_view_instrumentation_module(self):
+        return self.instrumentation_module_proxy.interactively_view()
 
     def make_asset_structure(self):
         self.fix_score_package_directory_structure(is_interactive=False)
@@ -541,6 +607,7 @@ class ScorePackageProxy(PackageProxy):
     user_input_to_action.update({
         'fix': fix,
         'g': manage_segments,
+        'instrumentation': interactively_view_instrumentation_module,
         'm': manage_materials,
         'pdfv': interactively_view_score,
         'profile': profile,

@@ -63,5 +63,6 @@ def test_Menu_display_hidden_menu_section_02():
         '     run py.test (py.test)',
         '     remove score package (removescore)',
         '     view initializer (inv)',
+        '     view instrumentation (instrumentation)',
         '     view metadata (metadata)',
         '']
