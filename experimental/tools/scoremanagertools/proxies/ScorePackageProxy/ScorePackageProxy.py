@@ -73,11 +73,13 @@ class ScorePackageProxy(PackageProxy):
         hidden_section = main_menu.make_command_section(is_hidden=True)
         hidden_section.append(('fix package structure', 'fix'))
         hidden_section.append(('list directory contents', 'ls'))
+        hidden_section.append(('manage repository', 'svn'))
+        hidden_section.append(('manage tags', 'tags'))
         hidden_section.append(('profile package structure', 'profile'))
         hidden_section.append(('run py.test', 'py.test'))
         hidden_section.append(('remove score package', 'removescore'))
-        hidden_section.append(('manage repository', 'svn'))
-        hidden_section.append(('manage tags', 'tags'))
+        hidden_section.append(('view initializer', 'inv'))
+        hidden_section.append(('view metadata', 'metadata'))
         return main_menu
 
     ### PRIVATE PROPERTIES ###

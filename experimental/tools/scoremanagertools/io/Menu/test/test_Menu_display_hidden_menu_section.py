@@ -57,9 +57,11 @@ def test_Menu_display_hidden_menu_section_02():
         '',
         '     fix package structure (fix)',
         '     list directory contents (ls)',
+        '     manage repository (svn)',
+        '     manage tags (tags)',
         '     profile package structure (profile)',
         '     run py.test (py.test)',
         '     remove score package (removescore)',
-        '     manage repository (svn)',
-        '     manage tags (tags)',
+        '     view initializer (inv)',
+        '     view metadata (metadata)',
         '']

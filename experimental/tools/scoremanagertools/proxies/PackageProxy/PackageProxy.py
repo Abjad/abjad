@@ -102,15 +102,11 @@ class PackageProxy(DirectoryManager):
 
     @property
     def tags_file_name(self):
-#        file_path = os.path.join(self.filesystem_path, '__metadata__.py')
-#        if os.path.isfile(file_path):
-#            return file_path
-#        return os.path.join(self.filesystem_path, 'tags.py')
         file_path = os.path.join(self.filesystem_path, '__metadata__.py')
         return file_path
 
     @property
-    def tags_file_proxy(self):
+    def tags_module_proxy(self):
         from experimental.tools import scoremanagertools
         if not self.has_tags_file:
             tags_file = open(self.tags_file_name, 'w')
@@ -124,7 +120,7 @@ class PackageProxy(DirectoryManager):
     def add_tag(self, tag_name, tag_value):
         tags = self.get_tags()
         tags[tag_name] = tag_value
-        self.tags_file_proxy.write_tags_to_disk(tags)
+        self.tags_module_proxy.write_tags_to_disk(tags)
 
     def get_tag(self, tag_name):
         tags = self.get_tags()
@@ -133,7 +129,7 @@ class PackageProxy(DirectoryManager):
 
     def get_tags(self):
         from collections import OrderedDict
-        self.tags_file_proxy.make_empty_asset()
+        self.tags_module_proxy.make_empty_asset()
         file_pointer = open(self.tags_file_name, 'r')
         file_contents_string = file_pointer.read()
         file_pointer.close()
@@ -251,7 +247,10 @@ class PackageProxy(DirectoryManager):
         self.package_path = result
 
     def interactively_view_initializer(self):
-        self.initializer_file_proxy.view()
+        self.initializer_file_proxy.interactively_view()
+
+    def interactively_view_metadata_module(self):
+        self.tags_module_proxy.interactively_view()
 
     def interactively_write_initializer_boilerplate(self):
         self.initializer_file_proxy.interactively_write_boilerplate()
@@ -300,7 +299,7 @@ class PackageProxy(DirectoryManager):
     def remove_tag(self, tag_name):
         tags = self.get_tags()
         del(tags[tag_name])
-        self.tags_file_proxy.write_tags_to_disk(tags)
+        self.tags_module_proxy.write_tags_to_disk(tags)
 
     def run_first_time(self, **kwargs):
         self._run(**kwargs)
@@ -316,6 +315,7 @@ class PackageProxy(DirectoryManager):
         'inr': interactively_restore_initializer,
         'instub': write_initializer_stub_file_to_disk,
         'inv': interactively_view_initializer,
+        'metadata': interactively_view_metadata_module,
         'ren': interactively_rename_package,
         'rm': remove_package,
         'tags': manage_tags,
