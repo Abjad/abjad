@@ -16,7 +16,11 @@ def test_RhythmMakerMaterialPackageMaker_01():
             )
         mpp = scoremanagertools.materialpackagemakers.RhythmMakerMaterialPackageMaker(
             'experimental.tools.scoremanagertools.materialpackages.testrhythmmaker')
-        assert mpp.list_directory() == ['__init__.py', 'output_material.py', 'tags.py']
+        assert mpp.list_directory() == [
+            '__init__.py', 
+            '__metadata__.py',
+            'output_material.py',
+            ]
         maker = rhythmmakertools.TaleaRhythmMaker(
             [-1, 2, -3, 4],
             16,

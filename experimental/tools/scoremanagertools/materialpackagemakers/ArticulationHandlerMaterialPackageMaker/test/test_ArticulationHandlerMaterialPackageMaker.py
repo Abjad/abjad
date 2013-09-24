@@ -16,7 +16,11 @@ def test_ArticulationHandlerMaterialPackageMaker_01():
             )
         mpp = scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker(
             'experimental.tools.scoremanagertools.materialpackages.testarticulationhandler')
-        assert mpp.list_directory() == ['__init__.py', 'output_material.py', 'tags.py']
+        assert mpp.list_directory() == [
+            '__init__.py', 
+            '__metadata__.py',
+            'output_material.py', 
+            ]
         handler = handlertools.ReiteratedArticulationHandler(
             articulation_list=['^', '.'],
             minimum_duration=Duration(1, 64),

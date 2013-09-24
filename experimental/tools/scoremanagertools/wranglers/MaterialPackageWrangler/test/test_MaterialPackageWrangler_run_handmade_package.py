@@ -15,7 +15,11 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
         assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
         mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
-        assert mpp.list_directory() == ['__init__.py', 'material_definition.py', 'tags.py']
+        assert mpp.list_directory() == [
+            '__init__.py', 
+            '__metadata__.py',
+            'material_definition.py', 
+            ]
         assert not mpp.has_output_material_module
         assert not mpp.has_illustration_builder_module
         assert mpp.material_definition is None
@@ -39,7 +43,11 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
             'testnotes incanned canned_exception.py default q')
         assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
         mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testnotes')
-        assert mpp.list_directory() == ['__init__.py', 'material_definition.py', 'tags.py']
+        assert mpp.list_directory() == [
+            '__init__.py', 
+            '__metadata__.py',
+            'material_definition.py', 
+            ]
         assert not mpp.has_output_material_module
         assert not mpp.has_illustration_builder_module
         assert mpp.material_definition is None
@@ -65,7 +73,11 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
         assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
         mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
-        assert mpp.list_directory() == ['__init__.py', 'material_definition.py', 'tags.py']
+        assert mpp.list_directory() == [
+            '__init__.py', 
+            '__metadata__.py',
+            'material_definition.py', 
+            ]
         assert not mpp.has_output_material_module
         assert not mpp.has_illustration_builder_module
         assert mpp.material_definition is None
@@ -91,8 +103,13 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
         assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
         mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
-        assert mpp.list_directory() == ['__init__.py',
-            'illustration_builder.py', 'material_definition.py', 'output_material.py', 'tags.py']
+        assert mpp.list_directory() == [
+            '__init__.py',
+            '__metadata__.py',
+            'illustration_builder.py', 
+            'material_definition.py', 
+            'output_material.py', 
+            ]
         assert mpp.has_user_finalized_material_definition_module
         assert mpp.has_illustration_builder_module
         assert mpp.material_definition and \
@@ -121,7 +138,10 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
         mpp = scoremanagertools.proxies.MaterialPackageProxy(
             'experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
-        assert mpp.list_directory() == ['__init__.py', 'tags.py']
+        assert mpp.list_directory() == [
+            '__init__.py', 
+            '__metadata__.py',
+            ]
         assert not mpp.has_material_definition_module
         assert not mpp.has_output_material_module
         assert not mpp.has_illustration_builder_module
@@ -149,7 +169,11 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
         assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
         mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
-        assert mpp.list_directory() == ['__init__.py', 'material_definition.py', 'tags.py']
+        assert mpp.list_directory() == [
+            '__init__.py', 
+            '__metadata__.py',
+            'material_definition.py', 
+            ]
         assert not mpp.has_output_material_module
         assert not mpp.has_illustration_builder_module
         assert mpp.material_definition is None
@@ -179,8 +203,11 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
         mpp = scoremanagertools.proxies.MaterialPackageProxy(
             'experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
-        assert mpp.list_directory(
-            ) == ['__init__.py', 'material_definition.py', 'tags.py']
+        assert mpp.list_directory() == [
+                '__init__.py', 
+                '__metadata__.py',
+                'material_definition.py', 
+                ]
         assert mpp.has_user_finalized_material_definition_module
         assert not mpp.has_output_material_module
         assert not mpp.has_illustration_builder_module
@@ -209,7 +236,11 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
         assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
         mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
-        assert mpp.list_directory() == ['__init__.py', 'material_definition.py', 'tags.py']
+        assert mpp.list_directory() == [
+            '__init__.py', 
+            '__metadata__.py',
+            'material_definition.py', 
+            ]
         assert not mpp.has_output_material_module
         assert not mpp.has_illustration_builder_module
         assert mpp.material_definition is None
@@ -236,8 +267,13 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
         assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
         mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
-        assert mpp.list_directory() == ['__init__.py',
-            'illustration_builder.py', 'material_definition.py', 'output_material.py', 'tags.py']
+        assert mpp.list_directory() == [
+            '__init__.py',
+            '__metadata__.py',
+            'illustration_builder.py', 
+            'material_definition.py', 
+            'output_material.py', 
+            ]
         assert mpp.has_user_finalized_material_definition_module
         assert mpp.has_illustration_builder_module
         assert mpp.material_definition and \
@@ -268,8 +304,14 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
         mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
         assert mpp.list_directory() == [
-            '__init__.py', 'illustration.ly', 'illustration.pdf',
-            'illustration_builder.py', 'material_definition.py', 'output_material.py', 'tags.py']
+            '__init__.py', 
+            '__metadata__.py',
+            'illustration.ly', 
+            'illustration.pdf',
+            'illustration_builder.py', 
+            'material_definition.py', 
+            'output_material.py', 
+            ]
         assert mpp.has_user_finalized_material_definition_module
         assert mpp.has_user_finalized_illustration_builder_module
         assert mpp.has_illustration_ly

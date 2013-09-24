@@ -16,7 +16,11 @@ def test_MarkupInventoryMaterialPackageMaker_01():
             )
         mpp = scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker(
             'experimental.tools.scoremanagertools.materialpackages.testmarkupinventory')
-        assert mpp.list_directory() == ['__init__.py', 'output_material.py', 'tags.py']
+        assert mpp.list_directory() == [
+            '__init__.py', 
+            '__metadata__.py',
+            'output_material.py',
+            ]
         inventory = markuptools.MarkupInventory([
             markuptools.Markup(
                 '\\italic { serenamente }',

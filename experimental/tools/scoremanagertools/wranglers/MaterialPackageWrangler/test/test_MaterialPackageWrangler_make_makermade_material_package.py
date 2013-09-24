@@ -14,7 +14,11 @@ def test_MaterialPackageWrangler_make_makermade_material_package_01():
         assert wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testsargasso')
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('experimental.tools.scoremanagertools.materialpackages.testsargasso')
         assert mpp.is_makermade
-        assert mpp.list_directory() == ['__init__.py', 'tags.py', 'user_input.py']
+        assert mpp.list_directory() == [
+            '__init__.py', 
+            '__metadata__.py',
+            'user_input.py',
+            ]
         assert mpp.has_initializer
         assert not mpp.has_output_material_module
         assert mpp.has_user_input_module
@@ -45,7 +49,11 @@ def test_MaterialPackageWrangler_make_makermade_material_package_03():
         assert wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testsargasso')
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('experimental.tools.scoremanagertools.materialpackages.testsargasso')
         assert mpp.is_makermade
-        assert mpp.list_directory() == ['__init__.py', 'tags.py', 'user_input.py']
+        assert mpp.list_directory() == [
+            '__init__.py', 
+            '__metadata__.py',
+            'user_input.py',
+            ]
     finally:
         mpp.remove()
         assert not wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testsargasso')
@@ -63,7 +71,11 @@ def test_MaterialPackageWrangler_make_makermade_material_package_04():
         assert wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testsargasso')
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('experimental.tools.scoremanagertools.materialpackages.testsargasso')
         assert mpp.is_makermade
-        assert mpp.list_directory() == ['__init__.py', 'tags.py', 'user_input.py']
+        assert mpp.list_directory() == [
+            '__init__.py', 
+            '__metadata__.py',
+            'user_input.py',
+            ]
         assert mpp.get_tag('color') == 'red'
         assert mpp.get_tag('is_colored')
     finally:

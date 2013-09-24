@@ -15,7 +15,11 @@ def test_TempoMarkInventoryMaterialPackageMaker_01():
             )
         mpp = scoremanagertools.materialpackagemakers.TempoMarkInventoryMaterialPackageMaker(
             'experimental.tools.scoremanagertools.materialpackages.testtempoinventory')
-        assert mpp.list_directory() == ['__init__.py', 'output_material.py', 'tags.py']
+        assert mpp.list_directory() == [
+            '__init__.py', 
+            '__metadata__.py',
+            'output_material.py', 
+            ]
         inventory = contexttools.TempoMarkInventory([((1, 4), 60), ((1, 4), 90)])
         assert mpp.output_material == inventory
     finally:

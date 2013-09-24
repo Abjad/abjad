@@ -12,8 +12,9 @@ class TagsModuleProxy(ModuleProxy, ParseableModuleMixin):
     ### INITIALIZER ###
 
     def __init__(self, filesystem_path=None, session=None):
-        assert 'tags' in filesystem_path or \
-            '__metadata__' in filesystem_path, repr(filesystem_path)
+#        assert 'tags' in filesystem_path or \
+#            '__metadata__' in filesystem_path, repr(filesystem_path)
+        assert '__metadata__' in filesystem_path, repr(filesystem_path)
         packagesystem_path = \
             self.configuration.filesystem_path_to_packagesystem_path(
             filesystem_path)

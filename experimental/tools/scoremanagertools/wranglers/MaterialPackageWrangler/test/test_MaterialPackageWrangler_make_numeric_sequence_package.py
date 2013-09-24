@@ -12,7 +12,11 @@ def test_MaterialPackageWrangler_make_numeric_sequence_package_01():
         assert wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testsequence')
         mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testsequence')
         assert mpp.is_data_only
-        assert mpp.list_directory() == ['__init__.py', 'material_definition.py', 'tags.py']
+        assert mpp.list_directory() == [
+            '__init__.py', 
+            '__metadata__.py',
+            'material_definition.py', 
+            ]
         assert mpp.get_tag('is_numeric_sequence')
         assert mpp.get_tag('is_material_package')
     finally:
@@ -32,7 +36,11 @@ def test_MaterialPackageWrangler_make_numeric_sequence_package_02():
         assert wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testsequence')
         mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testsequence')
         assert mpp.is_data_only
-        assert mpp.list_directory() == ['__init__.py', 'material_definition.py', 'tags.py']
+        assert mpp.list_directory() == [
+            '__init__.py', 
+            '__metadata__.py',
+            'material_definition.py', 
+            ]
         assert mpp.get_tag('is_numeric_sequence')
         assert mpp.get_tag('is_material_package')
     finally:

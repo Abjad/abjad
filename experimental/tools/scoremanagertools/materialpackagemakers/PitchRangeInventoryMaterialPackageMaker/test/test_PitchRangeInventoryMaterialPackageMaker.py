@@ -15,7 +15,10 @@ def test_PitchRangeInventoryMaterialPackageMaker_01():
             )
         mpp = scoremanagertools.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker(
             'experimental.tools.scoremanagertools.materialpackages.testpir')
-        assert mpp.list_directory() == ['__init__.py', 'tags.py']
+        assert mpp.list_directory() == [
+            '__init__.py', 
+            '__metadata__.py',
+            ]
         assert mpp.output_material is None
     finally:
         score_manager._run(pending_user_input='m testpir del remove default q')
@@ -37,7 +40,11 @@ def test_PitchRangeInventoryMaterialPackageMaker_02():
             )
         mpp = scoremanagertools.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker(
             'experimental.tools.scoremanagertools.materialpackages.testpir')
-        assert mpp.list_directory() == ['__init__.py', 'output_material.py', 'tags.py']
+        assert mpp.list_directory() == [
+            '__init__.py', 
+            '__metadata__.py',
+            'output_material.py',
+            ]
         pitch_range_inventory = pitchtools.PitchRangeInventory([
             pitchtools.PitchRange('[C2, G5]'), pitchtools.PitchRange('[C2, F#5]')])
         assert mpp.output_material == pitch_range_inventory

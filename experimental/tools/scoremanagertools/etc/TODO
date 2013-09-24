@@ -71,6 +71,4 @@
 24. Implement a menuing decorator in decoratortools.
     Then integrate against all classes.
 
-24. Rename all tags.py files to __metadata__.py instead.
-
-25. Finish the docstrings for all io classes.
+24. Finish the docstrings for all io classes.

@@ -14,7 +14,11 @@ def test_ListMaterialPackageMaker_01():
             )
         mpp = scoremanagertools.materialpackagemakers.ListMaterialPackageMaker(
             'experimental.tools.scoremanagertools.materialpackages.testlist')
-        assert mpp.list_directory() == ['__init__.py', 'output_material.py', 'tags.py']
+        assert mpp.list_directory() == [
+            '__init__.py', 
+            '__metadata__.py',
+            'output_material.py',
+            ]
         assert mpp.output_material == [17, 'foo']
     finally:
         score_manager._run(pending_user_input='m testlist del remove default q')

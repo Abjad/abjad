@@ -13,7 +13,11 @@ def test_MaterialPackageWrangler_make_data_package_01():
         assert wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnumbers')
         mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testnumbers')
         assert mpp.is_data_only
-        assert mpp.list_directory() == ['__init__.py', 'material_definition.py', 'tags.py']
+        assert mpp.list_directory() == [
+            '__init__.py', 
+            '__metadata__.py',
+            'material_definition.py', 
+            ]
         assert not mpp.has_output_material_module
         assert mpp.material_definition is None
         assert mpp.output_material is None
@@ -41,7 +45,11 @@ def test_MaterialPackageWrangler_make_data_package_03():
         assert wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnumbers')
         mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testnumbers')
         assert mpp.is_data_only
-        assert mpp.list_directory() == ['__init__.py', 'material_definition.py', 'tags.py']
+        assert mpp.list_directory() == [
+            '__init__.py', 
+            '__metadata__.py',
+            'material_definition.py', 
+            ]
     finally:
         mpp.remove()
         assert not wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnumbers')
