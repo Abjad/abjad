@@ -102,6 +102,9 @@ class PackageProxy(DirectoryManager):
 
     @property
     def tags_file_name(self):
+        file_path = os.path.join(self.filesystem_path, '__metadata__.py')
+        if os.path.isfile(file_path):
+            return file_path
         return os.path.join(self.filesystem_path, 'tags.py')
 
     @property
