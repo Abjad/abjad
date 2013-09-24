@@ -250,7 +250,8 @@ class PackageProxy(DirectoryManager):
         self.initializer_file_proxy.interactively_view()
 
     def interactively_view_metadata_module(self):
-        self.tags_module_proxy.interactively_view()
+        #self.tags_module_proxy.interactively_view()
+        self.tags_module_proxy.interactively_edit()
 
     def interactively_write_initializer_boilerplate(self):
         self.initializer_file_proxy.interactively_write_boilerplate()

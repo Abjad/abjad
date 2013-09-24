@@ -12,8 +12,6 @@ class MetadataModuleProxy(ModuleProxy, ParseableModuleMixin):
     ### INITIALIZER ###
 
     def __init__(self, filesystem_path=None, session=None):
-#        assert 'tags' in filesystem_path or \
-#            '__metadata__' in filesystem_path, repr(filesystem_path)
         assert '__metadata__' in filesystem_path, repr(filesystem_path)
         packagesystem_path = \
             self.configuration.filesystem_path_to_packagesystem_path(
@@ -162,6 +160,7 @@ class MetadataModuleProxy(ModuleProxy, ParseableModuleMixin):
 
     def write_tags_to_disk(self, tags):
         self.parse()
+        self.encoding_directives[:] = ['# -*- encoding: utf-8 -*-\n']
         ordered_dict_import_statement = 'import collections\n'
         if ordered_dict_import_statement not in self.setup_statements:
             self.setup_statements.append(ordered_dict_import_statement)

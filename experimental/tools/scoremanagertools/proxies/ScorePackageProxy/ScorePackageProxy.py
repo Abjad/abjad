@@ -141,18 +141,18 @@ class ScorePackageProxy(PackageProxy):
         if self.year_of_completion:
             prepopulated_value = str(self.year_of_completion)
         result.append((return_value, None, prepopulated_value, return_value))
+        forces_tagline = self.forces_tagline
+        prepopulated_value = None
+        return_value = 'tagline'
+        if forces_tagline:
+            prepopulated_value = self.forces_tagline
+        result.append((return_value, None, prepopulated_value, return_value))
         return_value = 'performers'
         prepopulated_value = None
         instrumentation = self._get_instrumentation()
         if instrumentation:
             string = instrumentation.performer_name_string
             prepopulated_value = string
-        result.append((return_value, None, prepopulated_value, return_value))
-        forces_tagline = self.forces_tagline
-        prepopulated_value = None
-        return_value = 'tagline'
-        if forces_tagline:
-            prepopulated_value = self.forces_tagline
         result.append((return_value, None, prepopulated_value, return_value))
         return result
 
@@ -427,14 +427,12 @@ class ScorePackageProxy(PackageProxy):
 
     def interactively_edit_instrumentation_specifier(self):
         from experimental.tools import scoremanagertools
-        #target = self.get_tag('instrumentation')
         target = self._get_instrumentation()
         editor = scoremanagertools.editors.InstrumentationEditor(
             session=self.session, 
             target=target,
             )
         editor._run() # maybe check for backtracking after this?
-        #self.add_tag('instrumentation', editor.target)
         self._write_instrumentation_to_disk(editor.target)
 
     def interactively_edit_title(self):
@@ -483,7 +481,8 @@ class ScorePackageProxy(PackageProxy):
             )
 
     def interactively_view_instrumentation_module(self):
-        return self.instrumentation_module_proxy.interactively_view()
+        #return self.instrumentation_module_proxy.interactively_view()
+        return self.instrumentation_module_proxy.interactively_edit()
 
     def make_asset_structure(self):
         self.fix_score_package_directory_structure(is_interactive=False)
