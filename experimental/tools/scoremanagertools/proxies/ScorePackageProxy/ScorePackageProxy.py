@@ -31,7 +31,7 @@ class ScorePackageProxy(PackageProxy):
             )
         filesystem_path = os.path.join(self.filesystem_path, 'score_templates')
         self._score_template_directory_proxy = \
-            scoremanagertools.proxies.DirectoryProxy(
+            scoremanagertools.proxies.DirectoryManager(
                 filesystem_path=filesystem_path,
                 session=self.session,
                 )

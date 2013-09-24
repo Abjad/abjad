@@ -14,11 +14,11 @@ class DirectoryContentSelector(Selector):
     ### PUBLIC METHODS ###
 
     def list_items(self):
-        from experimental.tools.scoremanagertools.proxies.DirectoryProxy \
-            import DirectoryProxy
+        from experimental.tools.scoremanagertools.proxies.DirectoryManager \
+            import DirectoryManager
         result = []
         for directory_path in self.storehouse_filesystem_paths:
-            directory_proxy = DirectoryProxy(
+            directory_proxy = DirectoryManager(
                 filesystem_path=directory_path,
                 session=self.session)
             result.extend(

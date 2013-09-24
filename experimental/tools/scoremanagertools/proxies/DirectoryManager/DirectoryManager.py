@@ -6,7 +6,7 @@ from experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy \
     import FilesystemAssetProxy
 
 
-class DirectoryProxy(FilesystemAssetProxy):
+class DirectoryManager(FilesystemAssetProxy):
 
     ### PRIVATE PROPERTIES ###
 

@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 import os
-from experimental.tools.scoremanagertools.proxies.DirectoryProxy \
-    import DirectoryProxy
+from experimental.tools.scoremanagertools.proxies.DirectoryManager \
+    import DirectoryManager
 
 
-class PackageProxy(DirectoryProxy):
+class PackageProxy(DirectoryManager):
 
     ### INITIALIZER ###
 
@@ -14,7 +14,7 @@ class PackageProxy(DirectoryProxy):
         filesystem_path = \
             self.configuration.packagesystem_path_to_filesystem_path(
             packagesystem_path)
-        DirectoryProxy.__init__(self, 
+        DirectoryManager.__init__(self, 
             filesystem_path=filesystem_path, session=session)
         packagesystem_path = \
             self.configuration.filesystem_path_to_packagesystem_path(
@@ -305,7 +305,7 @@ class PackageProxy(DirectoryProxy):
 
     ### UI MANIFEST ###
 
-    user_input_to_action = DirectoryProxy.user_input_to_action.copy()
+    user_input_to_action = DirectoryManager.user_input_to_action.copy()
     user_input_to_action.update({
         'incanned': interactively_write_initializer_boilerplate,
         'inr': interactively_restore_initializer,

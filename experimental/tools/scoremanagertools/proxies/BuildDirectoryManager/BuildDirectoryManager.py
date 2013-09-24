@@ -4,11 +4,11 @@ import shutil
 import subprocess
 from abjad.tools import iotools
 from abjad.tools import sequencetools
-from experimental.tools.scoremanagertools.proxies.DirectoryProxy \
-    import DirectoryProxy
+from experimental.tools.scoremanagertools.proxies.DirectoryManager \
+    import DirectoryManager
 
 
-class BuildDirectoryManager(DirectoryProxy):
+class BuildDirectoryManager(DirectoryManager):
 
     ### INITIALIZER ###
 
@@ -17,7 +17,7 @@ class BuildDirectoryManager(DirectoryProxy):
             self.configuration.packagesystem_path_to_filesystem_path(
             score_package_path)
         filesystem_path = os.path.join(score_directory_path, 'build')
-        DirectoryProxy.__init__(
+        DirectoryManager.__init__(
             self,
             filesystem_path=filesystem_path,
             session=session,
@@ -161,7 +161,7 @@ class BuildDirectoryManager(DirectoryProxy):
 
     ### UI MANIFEST ###
 
-    user_input_to_action = DirectoryProxy.user_input_to_action.copy()
+    user_input_to_action = DirectoryManager.user_input_to_action.copy()
     user_input_to_action.update({
         'bc': interactively_view_back_cover,
         'cp': interactively_copy_segment_pdfs,

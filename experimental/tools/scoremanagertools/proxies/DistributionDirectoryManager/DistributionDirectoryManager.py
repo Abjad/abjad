@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 import os
-from experimental.tools.scoremanagertools.proxies.DirectoryProxy \
-    import DirectoryProxy
+from experimental.tools.scoremanagertools.proxies.DirectoryManager \
+    import DirectoryManager
 
 
-class DistributionDirectoryManager(DirectoryProxy):
+class DistributionDirectoryManager(DirectoryManager):
 
     ### INITIALIZER ###
 
@@ -13,7 +13,7 @@ class DistributionDirectoryManager(DirectoryProxy):
             self.configuration.packagesystem_path_to_filesystem_path(
             score_package_path)
         filesystem_path = os.path.join(score_directory_path, 'distribution')
-        DirectoryProxy.__init__(
+        DirectoryManager.__init__(
             self,
             filesystem_path=filesystem_path,
             session=session)
