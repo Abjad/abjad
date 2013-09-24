@@ -62,12 +62,13 @@ class PackageProxy(DirectoryProxy):
         if self.filesystem_path is not None:
             return os.path.join(self.filesystem_path, '__init__.py')
 
-    # TODO: write test
     @property
     def initializer_file_proxy(self):
         from experimental.tools import scoremanagertools
-        return scoremanagertools.proxies.InitializerModuleProxy(
-            self.initializer_file_name, session=self.session)
+        return scoremanagertools.proxies.FileProxy(
+            self.initializer_file_name, 
+            session=self.session,
+            )
 
     @property
     def package_path(self):
@@ -89,14 +90,6 @@ class PackageProxy(DirectoryProxy):
         if self.parent_directory_packagesystem_path:
             return os.path.join(
                 self.parent_directory_filesystem_path, '__init__.py')
-
-    # TODO: write test
-    @property
-    def parent_initializer_file_proxy(self):
-        from experimental.tools import scoremanagertools
-        if self.has_parent_initializer:
-            return scoremanagertools.proxies.InitializerModuleProxy(
-                self.parent_initializer_file_name, session=self.session)
 
     @property
     def public_names(self):
@@ -239,7 +232,9 @@ class PackageProxy(DirectoryProxy):
         self.session.is_backtracking_locally = True
 
     def interactively_restore_initializer(self):
-        self.initializer_file_proxy.interactively_restore(prompt=True)
+        #self.initializer_file_proxy.interactively_restore(prompt=True)
+        self.initializer_file_proxy.write_stub_to_disk()
+        self.session.io_manager.proceed(is_interactive=True)
 
     def interactively_set_package_path(self):
         getter = self.session.io_manager.make_getter(where=self._where)

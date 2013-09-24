@@ -152,12 +152,12 @@ class StylesheetFileWrangler(FileWrangler):
         ::
 
             >>> wrangler.asset_proxy_class.__name__
-            'StylesheetFileProxy'
+            'FileProxy'
 
         Returns class.
         '''
         from experimental.tools import scoremanagertools
-        return scoremanagertools.proxies.StylesheetFileProxy
+        return scoremanagertools.proxies.FileProxy
 
     @property
     def storage_format(self):
@@ -257,7 +257,7 @@ class StylesheetFileWrangler(FileWrangler):
             storehouse_path,
             stylesheet_file_name,
             )
-        proxy = scoremanagertools.proxies.StylesheetFileProxy(
+        proxy = scoremanagertools.proxies.FileProxy(
             stylesheet_file_path, session=self.session)
         if self.session.is_test:
             proxy.make_empty_asset()
@@ -354,10 +354,10 @@ class StylesheetFileWrangler(FileWrangler):
             ...     in_user_asset_library=False, 
             ...    in_user_score_packages=False):
             ...     x
-            StylesheetFileProxy('.../tools/scoremanagertools/stylesheets/clean-letter-14.ly')
-            StylesheetFileProxy('.../tools/scoremanagertools/stylesheets/clean-letter-16.ly')
-            StylesheetFileProxy('.../tools/scoremanagertools/stylesheets/rhythm-letter-16.ly')
-            StylesheetFileProxy('.../tools/scoremanagertools/scorepackages/red_example_score/stylesheets/red-example-score-stylesheet.ly')
+            FileProxy('.../tools/scoremanagertools/stylesheets/clean-letter-14.ly')
+            FileProxy('.../tools/scoremanagertools/stylesheets/clean-letter-16.ly')
+            FileProxy('.../tools/scoremanagertools/stylesheets/rhythm-letter-16.ly')
+            FileProxy('.../tools/scoremanagertools/scorepackages/red_example_score/stylesheets/red-example-score-stylesheet.ly')
 
         Returns list.
         '''

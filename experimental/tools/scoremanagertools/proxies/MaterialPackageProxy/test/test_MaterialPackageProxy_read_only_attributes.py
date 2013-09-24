@@ -20,12 +20,9 @@ def test_MaterialPackageProxy_read_only_attributes_01():
     assert     mpp.has_output_material_module
     assert not mpp.has_user_input_module
     assert not mpp.has_user_input_wrapper_on_disk
-    assert     mpp.illustration is None
     assert     mpp.illustration_builder_module_file_name is None
     assert     mpp.illustration_builder_packagesystem_path is None
-    assert     mpp.illustration_builder_module_proxy is None
     assert     mpp.illustration_ly_file_name is None
-    assert     mpp.illustration_ly_file_proxy is None
     assert     mpp.illustration_pdf_file_name is None
     # TODO:
     #assert not mpp.is_changed
@@ -44,7 +41,6 @@ def test_MaterialPackageProxy_read_only_attributes_01():
     assert     mpp.material_package_name == 'red_numbers'
     assert     mpp.space_delimited_material_package_name == 'red numbers'
     assert     mpp.material_package_name == 'red_numbers'
-    assert     mpp.output_material == [1, 2, 3, 4, 5]
     assert     mpp.output_material_module_body_lines == ['red_numbers = [1, 2, 3, 4, 5]']
     assert     mpp.output_material_module_file_name == \
         os.path.join(mpp.configuration.built_in_material_packages_directory_path, 'red_numbers', 'output_material.py')
@@ -59,7 +55,6 @@ def test_MaterialPackageProxy_read_only_attributes_01():
     assert      mpp.should_have_output_material_module
     assert not  mpp.should_have_user_input_module
     assert      mpp.stylesheet_file_name_on_disk is None
-    assert      mpp.stylesheet_file_proxy is None
     assert      mpp.user_input_module_file_name is None
     assert      mpp.user_input_module_packagesystem_path is None
     assert      mpp.user_input_module_proxy is None
@@ -83,10 +78,8 @@ def test_MaterialPackageProxy_read_only_attributes_02():
     assert     mpp.has_user_input_module
     assert     mpp.has_user_input_wrapper_on_disk
     assert     mpp.has_user_input_wrapper_in_memory
-    assert     mpp.illustration is not None
     assert     mpp.illustration_builder_module_file_name is None
     assert     mpp.illustration_builder_packagesystem_path is None
-    assert     mpp.illustration_builder_module_proxy is None
     assert     mpp.illustration_ly_file_name == \
         os.path.join(mpp.configuration.built_in_material_packages_directory_path, 'red_sargasso_measures', 'illustration.ly')
     assert     mpp.illustration_ly_file_proxy is not None
@@ -107,8 +100,6 @@ def test_MaterialPackageProxy_read_only_attributes_02():
     assert     mpp.material_package_name == 'red_sargasso_measures'
     assert     mpp.space_delimited_material_package_name == 'red sargasso measures'
     assert     mpp.material_package_name == 'red_sargasso_measures'
-    assert     all(isinstance(x, measuretools.Measure) 
-                    for x in mpp.output_material)
     assert     mpp.output_material_module_body_lines is None
     assert     mpp.output_material_module_file_name == \
         os.path.join(mpp.configuration.built_in_material_packages_directory_path, 'red_sargasso_measures', 'output_material.py')

@@ -73,18 +73,22 @@ class MaterialPackageProxy(PackageProxy):
         hidden_section.append(('manage stylesheets', 'stl'))
         hidden_section.append(('manage tags', 'tags'))
 
-    def _make_main_menu_section_for_illustration_builder(self, 
-        main_menu, hidden_section):
+    def _make_main_menu_section_for_illustration_builder(
+        self, 
+        main_menu, 
+        hidden_section,
+        ):
         if self.has_output_material:
             if self.should_have_illustration:
                 if not self.has_illustration_builder_module:
                     material_package_path = self.package_path
                     material_package_name = \
                         material_package_path.split('.')[-1]
-                    self.illustration_builder_module_proxy.write_stub_to_disk(
+                    self.write_stub_illustration_builder_module_to_disk(
                         material_package_path,
                         material_package_name,
-                        prompt=False)
+                        prompt=False,
+                        )
                 command_section = main_menu.make_command_section()
                 command_section.append(
                     ('illustration builder - edit', 'ibe'))
@@ -200,8 +204,6 @@ class MaterialPackageProxy(PackageProxy):
                     ('output material - view', 'omv'))
                 hidden_section.append(
                     ('output material - delete', 'omdelete'))
-                hidden_section.append(
-                    ('output material - fetch', 'omfetch'))
         hidden_section.append(
             ('output material - copy canned module', 'omcanned'))
 
@@ -321,11 +323,6 @@ class MaterialPackageProxy(PackageProxy):
         return False
 
     @property
-    def illustration(self):
-        if self.has_illustration_builder_module:
-            return self.illustration_builder_module_proxy.import_illustration()
-
-    @property
     def illustration_builder_module_file_name(self):
         if self.should_have_illustration_builder_module:
             return os.path.join(self.filesystem_path, 'illustration_builder.py')
@@ -333,12 +330,10 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def illustration_builder_module_proxy(self):
         from experimental.tools import scoremanagertools
-        if self.should_have_illustration_builder_module:
-            if not self.has_illustration_builder_module:
-                file(self.illustration_builder_module_file_name, 'w').write('')
-            return scoremanagertools.proxies.IllustrationBuilderModuleProxy(
-                self.illustration_builder_packagesystem_path, 
-                session=self.session)
+        return scoremanagertools.proxies.ModuleProxy(
+            self.illustration_builder_packagesystem_path, 
+            session=self.session,
+            )
 
     @property
     def illustration_builder_packagesystem_path(self):
@@ -351,13 +346,19 @@ class MaterialPackageProxy(PackageProxy):
             return os.path.join(self.filesystem_path, 'illustration.ly')
 
     @property
+    def illustration_ly_file_name(self):
+        if self.should_have_illustration_pdf:
+            return os.path.join(self.filesystem_path, 'illustration.ly')
+
+    @property
     def illustration_ly_file_proxy(self):
         from experimental.tools import scoremanagertools
-        if self.should_have_illustration_ly:
-            if not self.has_illustration_ly:
-                file(self.illustration_ly_file_name, 'w').write('')
-            return scoremanagertools.proxies.IllustrationLyFileProxy(
-                self.illustration_ly_file_name, session=self.session)
+        file_path = os.path.join(self.filesystem_path, 'illustration.ly')
+        proxy = scoremanagertools.proxies.FileProxy(
+            file_path,
+            session=self.session,
+            )
+        return proxy
 
     @property
     def illustration_pdf_file_name(self):
@@ -368,7 +369,10 @@ class MaterialPackageProxy(PackageProxy):
     def illustration_pdf_file_proxy(self):
         from experimental.tools import scoremanagertools
         file_path = os.path.join(self.filesystem_path, 'illustration.pdf')
-        proxy = scoremanagertools.proxies.FileProxy(file_path)
+        proxy = scoremanagertools.proxies.FileProxy(
+            file_path,
+            session=self.session,
+            )
         return proxy
 
     @property
@@ -458,9 +462,14 @@ class MaterialPackageProxy(PackageProxy):
 
     @property
     def output_material(self):
-        if self.has_output_material_module:
-            if self.output_material_module_proxy.read_file():
-                return self.output_material_module_proxy.import_output_material()
+        try:
+            output_material = \
+                self.output_material_module_proxy.execute_file_lines(
+                return_attribute_name=self.material_package_name,
+                )
+        except:
+            output_material = None
+        return output_material
 
     @property
     def output_material_module_body_lines(self):
@@ -517,10 +526,10 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def output_material_module_proxy(self):
         from experimental.tools import scoremanagertools
-        if self.should_have_output_material_module:
-            if self.has_output_material_module:
-                return scoremanagertools.proxies.OutputMaterialModuleProxy(
-                    self.output_material_module_path, session=self.session)
+        return scoremanagertools.proxies.ModuleProxy(
+            self.output_material_module_path, 
+            session=self.session,
+            )
 
     @property
     def should_have_illustration(self):
@@ -572,9 +581,10 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def stylesheet_file_proxy(self):
         from experimental.tools import scoremanagertools
-        if self.should_have_stylesheet:
-            return scoremanagertools.proxies.StylesheetFileProxy(
-                self.stylesheet_file_name, session=self.session)
+        return scoremanagertools.proxies.FileProxy(
+            self.stylesheet_file_name, 
+            session=self.session,
+            )
 
     @property
     def user_input_module_file_name(self):
@@ -614,9 +624,6 @@ class MaterialPackageProxy(PackageProxy):
         if self.should_have_user_input_module:
             self.write_stub_user_input_module_to_disk(
                 is_interactive=is_interactive)
-
-    def display_output_material(self):
-        self.output_material_module_proxy.display_output_material()
 
     def get_tools_package_qualified_repr(self, expr):
         if hasattr(expr, '_make_storage_format_with_overrides'):
@@ -797,7 +804,6 @@ class MaterialPackageProxy(PackageProxy):
         file(self.output_material_module_file_name, 'w').write('')
 
     def remove(self):
-        #self.remove_material_from_materials_initializer()
         PackageProxy.remove(self)
 
     def remove_illustration_builder_module(self, prompt=True):
@@ -915,7 +921,9 @@ class MaterialPackageProxy(PackageProxy):
             ]
         output_material_module_proxy.setup_statements = \
             output_material_module_import_statements
-        output_material_module_proxy.body_lines[:] = \
+        #output_material_module_proxy.body_lines[:] = \
+        #    output_material_module_body_lines
+        output_material_module_proxy.body_lines = \
             output_material_module_body_lines
         output_material_module_proxy.write_to_disk()
         self.write_tags_to_disk()
@@ -924,8 +932,34 @@ class MaterialPackageProxy(PackageProxy):
             is_interactive=prompt,
             )
 
-    def write_stub_illustration_builder_module_to_disk(self):
-        self.illustration_builder_module_proxy.write_stub_to_disk(prompt=True)
+    def write_stub_illustration_builder_module_to_disk(
+        self, 
+        material_package_path, 
+        material_package_name, 
+        prompt=True,
+        ):
+        lines = []
+        lines.append('from abjad import *\n')
+        line = 'from {}.output_material import {}\n'
+        line = line.format(material_package_path, material_package_name)
+        lines.append(line)
+        lines.append('\n')
+        lines.append('\n')
+        line = 'score, treble_staff, bass_staff ='
+        line += ' scoretools.make_piano_score_from_leaves({})\n'
+        line = line.format(material_package_name)
+        line = 'illustration = lilypondfiletools.'
+        line += 'make_basic_lilypond_file(score)\n'
+        lines.append(line)
+        file_path = os.path.join(
+            self.filesystem_path, 
+            'illustration_builder.py',
+            )
+        file_pointer = file(file_path, 'w')
+        file_pointer.write(''.join(lines))
+        file_pointer.close()
+        message = 'stub illustration builder written to disk.'
+        self.session.io_manager.proceed(message, is_interactive=prompt)
 
     def write_stub_material_definition_module_to_disk(self):
         if self.should_have_material_definition_module:
@@ -958,7 +992,6 @@ class MaterialPackageProxy(PackageProxy):
         'mdxe': run_abjad_on_material_definition_module,
         'omcanned': interactively_write_output_material_module_boilerplate,
         'omdelete': remove_output_material_module,
-        'omfetch': display_output_material,
         'omm': write_output_material_to_disk,
         'omi': interactively_edit_output_material,
         'omv': interactively_view_output_material_module,

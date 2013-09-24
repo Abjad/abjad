@@ -6,7 +6,11 @@ from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.proxies.FileProxy import FileProxy
 
 
-class ModuleProxy(FileProxy):
+from experimental.tools.scoremanagertools.proxies.ParseableModuleMixin \
+    import ParseableModuleMixin
+
+
+class ModuleProxy(FileProxy, ParseableModuleMixin):
 
     ### INITIALIZER ###
 
@@ -73,12 +77,15 @@ class ModuleProxy(FileProxy):
 
     ### PUBLIC METHODS ###
 
-    def execute_file_lines(self):
-        if self.filesystem_path:
+    def execute_file_lines(self, return_attribute_name=None):
+        if os.path.isfile(self.filesystem_path):
             file_pointer = open(self.filesystem_path, 'r')
             file_contents_string = file_pointer.read()
             file_pointer.close()
             exec(file_contents_string)
+            if return_attribute_name is not None:
+                if return_attribute_name in locals():
+                    return locals()[return_attribute_name]
 
     def interpret_in_external_process(self):
         command = 'python {}'.format(self.filesystem_path)

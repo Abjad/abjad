@@ -123,6 +123,11 @@ class FileProxy(FilesystemAssetProxy):
         iotools.spawn_subprocess(command)
         self.session.io_manager.proceed('', is_interactive=prompt)
 
+    def write_stub_to_disk(self):
+        file_pointer = open(self.filesystem_path, 'w')
+        file_pointer.write('')
+        file_pointer.close()
+
     ### UI MANIFEST ###
 
     user_input_to_action = FilesystemAssetProxy.user_input_to_action.copy()

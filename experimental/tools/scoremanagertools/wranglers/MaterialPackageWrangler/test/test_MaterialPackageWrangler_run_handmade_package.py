@@ -44,7 +44,6 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
         assert not mpp.has_illustration_builder_module
         assert mpp.material_definition is None
         assert mpp.output_material is None
-        assert mpp.illustration is None
     finally:
         score_manager._run(pending_user_input='m testnotes del remove default q')
         assert not score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
