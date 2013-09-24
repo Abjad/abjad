@@ -132,8 +132,21 @@ class DirectoryManager(FilesystemAssetProxy):
 
         Returns none.
         '''
+        lines = []
+        for directory_entry in self.list_directory():
+            filesystem_path = os.path.join(
+                self.filesystem_path, 
+                directory_entry,
+                )
+            if os.path.isdir(filesystem_path):
+                line = directory_entry + '/'
+            elif os.path.isfile(filesystem_path):
+                line = directory_entry
+            else:
+                raise TypeError(directory_entry)
+            lines.append(line)
         self.session.io_manager.display(
-            self.list_directory(), 
+            lines,
             capitalize_first_character=False,
             )
         self.session.io_manager.display('')
