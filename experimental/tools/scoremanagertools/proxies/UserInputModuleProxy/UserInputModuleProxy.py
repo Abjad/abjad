@@ -79,7 +79,6 @@ class UserInputModuleProxy(ModuleProxy, ParseableModuleMixin):
         return is_parsable
 
     def read_user_input_wrapper_from_disk(self):
-        self.unimport()
         if os.path.exists(self.filesystem_path):
             file_pointer = open(self.filesystem_path, 'r')
             file_contents_string = file_pointer.read()

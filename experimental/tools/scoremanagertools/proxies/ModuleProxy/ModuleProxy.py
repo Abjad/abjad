@@ -4,8 +4,6 @@ import sys
 from abjad.tools import iotools
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.proxies.FileProxy import FileProxy
-
-
 from experimental.tools.scoremanagertools.proxies.ParseableModuleMixin \
     import ParseableModuleMixin
 
@@ -20,11 +18,14 @@ class ModuleProxy(FileProxy, ParseableModuleMixin):
         self._packagesystem_path = packagesystem_path
         filesystem_path = \
             self.configuration.packagesystem_path_to_filesystem_path(
-            self.packagesystem_path, is_module=True)
+            self.packagesystem_path, 
+            is_module=True,
+            )
         FileProxy.__init__(
             self,
             filesystem_path=filesystem_path,
-            session=session)
+            session=session,
+            )
 
     ### CLASS VARIABLES ###
 
@@ -103,14 +104,6 @@ class ModuleProxy(FileProxy, ParseableModuleMixin):
                 pass
         return False
 
-    # TODO: remove entirely
-    def remove_package_path_from_sys_modules(self, package_path):
-        r'''Total hack. Should be eliminated entirely.
-        '''
-        command = "if '{}' in sys.modules: del(sys.modules['{}'])".format(
-            package_path, package_path)
-        exec(command)
-
     def run_abjad(self, prompt=True):
         command = 'abjad {}'.format(self.filesystem_path)
         iotools.spawn_subprocess(command)
@@ -126,7 +119,3 @@ class ModuleProxy(FileProxy, ParseableModuleMixin):
             'file executed.', 
             is_interactive=prompt,
             )
-
-    # TODO: remove entirely
-    def unimport(self):
-        self.remove_package_path_from_sys_modules(self.packagesystem_path)

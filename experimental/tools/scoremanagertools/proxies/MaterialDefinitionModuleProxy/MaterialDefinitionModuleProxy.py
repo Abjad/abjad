@@ -41,7 +41,6 @@ class MaterialDefinitionModuleProxy(ModuleProxy, ParseableModuleMixin):
 
     @property
     def output_material_module_import_statements(self):
-        self.unimport()
         result = self._safe_import(
             locals(),
             self.packagesystem_basename,
