@@ -11,13 +11,13 @@ class ScorePackageProxy(PackageProxy):
     def __init__(self, packagesystem_path=None, session=None):
         from experimental.tools import scoremanagertools
         PackageProxy.__init__(self, packagesystem_path, session=session)
-        self._distribution_proxy = \
-            scoremanagertools.proxies.DistributionDirectoryProxy(
+        self._build_directory_manager = \
+            scoremanagertools.proxies.BuildDirectoryManager(
             score_package_path=packagesystem_path, 
             session=self.session,
             )
-        self._build_directory_manager = \
-            scoremanagertools.proxies.BuildDirectoryManager(
+        self._distribution_proxy = \
+            scoremanagertools.proxies.DistributionDirectoryProxy(
             score_package_path=packagesystem_path, 
             session=self.session,
             )
@@ -29,9 +29,10 @@ class ScorePackageProxy(PackageProxy):
             scoremanagertools.wranglers.MaterialPackageMakerWrangler(
             session=self.session,
             )
+        filesystem_path = os.path.join(self.filesystem_path, 'score_templates')
         self._score_template_directory_proxy = \
-            scoremanagertools.proxies.ScoreTemplateDirectoryProxy(
-                score_package_path=packagesystem_path,
+            scoremanagertools.proxies.DirectoryProxy(
+                filesystem_path=filesystem_path,
                 session=self.session,
                 )
         self._segment_wrangler = \
