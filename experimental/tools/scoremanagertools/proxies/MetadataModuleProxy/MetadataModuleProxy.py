@@ -7,7 +7,7 @@ from experimental.tools.scoremanagertools.proxies.ParseableModuleMixin \
     import ParseableModuleMixin
 
 
-class TagsModuleProxy(ModuleProxy, ParseableModuleMixin):
+class MetadataModuleProxy(ModuleProxy, ParseableModuleMixin):
 
     ### INITIALIZER ###
 

@@ -116,7 +116,7 @@ class PackageProxy(DirectoryManager):
             tags_file = open(self.tags_file_name, 'w')
             tags_file.write('')
             tags_file.close()
-        return scoremanagertools.proxies.TagsModuleProxy(
+        return scoremanagertools.proxies.MetadataModuleProxy(
             self.tags_file_name, session=self.session)
 
     ### PUBLIC METHODS ###
