@@ -1,9 +1,0 @@
-# -*- encoding: utf-8 -*-
-from experimental import *
-
-
-def test_ClefNameSelector_run_01():
-
-    selector = scoremanagertools.selectors.ClefNameSelector()
-
-    assert selector._run(pending_user_input='tre') == 'treble'

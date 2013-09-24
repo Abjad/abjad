@@ -45,14 +45,14 @@ class Selector(ScoreManagerObject):
         menu_section.menu_entries = menu_entries
         return main_menu
 
-    def _run(self, 
+    def _run(
+        self, 
         cache=False,
         clear=True,
         head=None,
         pending_user_input=None,
         ):
-        self.session.io_manager.assign_user_input(
-            pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         while True:
             self.session.push_breadcrumb(self._breadcrumb)
@@ -94,8 +94,6 @@ class Selector(ScoreManagerObject):
 
     def get_tag_from_directory_path(self, directory_path, tag_name):
         tags_file_name = os.path.join(directory_path, '__metadata__.py')
-        if not os.path.isfile(tags_file_name):
-            tags_file_name = os.path.join(directory_path, 'tags.py')
         if os.path.isfile(tags_file_name):
             tags_file = open(tags_file_name, 'r')
             tags_file_string = tags_file.read()
@@ -110,3 +108,12 @@ class Selector(ScoreManagerObject):
 
     def make_menu_entries(self, head=None):
         return [self.change_expr_to_menu_entry(item) for item in self.items]
+
+    ### REAL PUBLIC METHODS ###
+
+    @staticmethod
+    def make_clef_name_selector(session=None, **kwargs):
+        from abjad.tools import contexttools
+        selector = Selector(session=session, **kwargs)
+        selector.items = contexttools.ClefMark.list_clef_names()
+        return selector

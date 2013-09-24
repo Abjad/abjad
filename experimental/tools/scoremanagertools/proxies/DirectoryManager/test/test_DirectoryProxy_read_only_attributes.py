@@ -3,7 +3,7 @@ import os
 from experimental import *
 
 
-def test_DirectoryManager_read_only_attributes_01():
+def test_DirectoryProxy_read_only_attributes_01():
     r'''Named directory proxy already written to disk.
     '''
 
@@ -15,7 +15,7 @@ def test_DirectoryManager_read_only_attributes_01():
     #assert directory_proxy.is_versioned()
 
 
-def test_DirectoryManager_read_only_attributes_02():
+def test_DirectoryProxy_read_only_attributes_02():
 
     score_manager_configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
     directory_path = score_manager_configuration.score_manager_tools_directory_path
