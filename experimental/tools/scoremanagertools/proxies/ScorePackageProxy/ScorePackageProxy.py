@@ -102,11 +102,7 @@ class ScorePackageProxy(PackageProxy):
     ### PRIVATE METHODS ###
 
     def _get_instrumentation(self):
-        instrumentation = self.get_tag('instrumentation')
-        if instrumentation is None:
-            instrumentation = \
-                self._import_instrumentation_from_instrumentation_module()
-        return instrumentation
+        return self._import_instrumentation_from_instrumentation_module()
 
     def _get_instrumentation_module_file_path(self):
         file_path = os.path.join(
@@ -158,20 +154,17 @@ class ScorePackageProxy(PackageProxy):
 
     def _write_instrumentation_to_disk(self, instrumentation):
         assert instrumentation is not None
-        if self.get_tag('instrumentation') is not None:
-            self.add_tag('instrumentation', instrumentation)
-        else:
-            lines = []
-            lines.append('# -*- encoding: utf-8 -*-\n')
-            lines.append('from abjad import *\n')
-            lines.append('\n\n')
-            line = 'instrumentation={}'
-            line = line.format(instrumentation._storage_format)
-            lines.append(line)
-            file_path = self._get_instrumentation_module_file_path()
-            file_pointer = file(file_path, 'w')
-            file_pointer.write(''.join(lines))
-            file_pointer.close()
+        lines = []
+        lines.append('# -*- encoding: utf-8 -*-\n')
+        lines.append('from abjad import *\n')
+        lines.append('\n\n')
+        line = 'instrumentation={}'
+        line = line.format(instrumentation._storage_format)
+        lines.append(line)
+        file_path = self._get_instrumentation_module_file_path()
+        file_pointer = file(file_path, 'w')
+        file_pointer.write(''.join(lines))
+        file_pointer.close()
 
     ### PUBLIC PROPERTIES ###
 
