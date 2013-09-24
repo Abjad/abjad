@@ -7,16 +7,20 @@ def test_ScorePackageProxy_interactively_edit_forces_tagline_01():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(pending_user_input='red~example~score setup tagline q')
+    user_input = 'red~example~score score~setup tagline q'
+    score_manager._run(pending_user_input=user_input)
     assert score_manager.session.io_transcript.signature == (7,)
 
-    score_manager._run(pending_user_input='red~example~score setup tagline b q')
+    user_input = 'red~example~score score~setup tagline b q'
+    score_manager._run(pending_user_input=user_input)
     assert score_manager.session.io_transcript.signature == (9, (4, 7))
 
-    score_manager._run(pending_user_input='red~example~score setup tagline score q')
+    user_input = 'red~example~score score~setup tagline score q'
+    score_manager._run(pending_user_input=user_input)
     assert score_manager.session.io_transcript.signature == (9, (2, 7))
 
-    score_manager._run(pending_user_input='red~example~score setup tagline home q')
+    user_input = 'red~example~score score~setup tagline home q'
+    score_manager._run(pending_user_input=user_input)
     assert score_manager.session.io_transcript.signature == (9, (0, 7))
 
 
@@ -24,12 +28,14 @@ def test_ScorePackageProxy_interactively_edit_forces_tagline_02():
 
     try:
         score_manager = scoremanagertools.scoremanager.ScoreManager()
-        score_manager._run(pending_user_input='red~example~score setup tagline for~foo~bar q')
-        red_example_score = scoremanagertools.proxies.ScorePackageProxy(
-            'scoremanagertools.scorepackages.red_example_score')
-        assert red_example_score.forces_tagline == 'for foo bar'
+        user_input = 'red~example~score score~setup tagline for~foo~bar q'
+        score_manager._run(pending_user_input=user_input)
+        path = 'scoremanagertools.scorepackages.red_example_score'
+        proxy = scoremanagertools.proxies.ScorePackageProxy(path)
+        assert proxy.forces_tagline == 'for foo bar'
     finally:
-        score_manager._run(pending_user_input='red~example~score setup tagline for~six~players q')
-        red_example_score = scoremanagertools.proxies.ScorePackageProxy(
-            'scoremanagertools.scorepackages.red_example_score')
-        assert red_example_score.forces_tagline == 'for six players'
+        user_input = 'red~example~score score~setup tagline for~six~players q'
+        score_manager._run(pending_user_input=user_input)
+        path = 'scoremanagertools.scorepackages.red_example_score'
+        proxy = scoremanagertools.proxies.ScorePackageProxy(path)
+        assert proxy.forces_tagline == 'for six players'

@@ -8,7 +8,7 @@ def test_PerformerCreationWizard_make_performer_configuration_menu_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager._run(pending_user_input=
-        'red~example~score setup performers add clarinetist q')
+        'red~example~score score~setup performers add clarinetist q')
     last_menu_lines = score_manager.session.io_transcript.last_menu_lines
 
     end = 'clarinet in B-flat (default)'

@@ -49,18 +49,26 @@ class ScorePackageProxy(PackageProxy):
         assert isinstance(result, str)
         if result in self.user_input_to_action:
             self.user_input_to_action[result](self)
+        elif result == 'user entered lone return':
+            pass
         else:
-            raise ValueError
+            message = 'unknown user input: {!r}.'.format(result)
+            raise ValueError(message)
 
     def _make_main_menu(self):
         main_menu = self.session.io_manager.make_menu(where=self._where)
         command_section = main_menu.make_command_section()
-        command_section.append(('build', 'u'))
+        command_section.append(('build directory', 'u'))
         command_section.append(('materials', 'm'))
-        command_section.append(('segments', 'g'))
-        command_section.append(('setup', 's'))
+        command_section.append(('score segments', 'g'))
+        command_section.append(('score setup', 's'))
+        command_section.append(('score templates', 't'))
         command_section.append(('stylesheets', 'y'))
-        command_section.append(('templates', 't'))
+        manager = self.build_directory_manager
+        if manager._get_file_path_ending_with('score.pdf'):
+            command_section = main_menu.make_command_section()
+            command_section.append(('score pdf - view', 'pdfv'))
+            command_section.default_index = len(command_section) - 1
         hidden_section = main_menu.make_command_section(is_hidden=True)
         hidden_section.append(('fix package structure', 'fix'))
         hidden_section.append(('list directory contents', 'ls'))
@@ -403,6 +411,11 @@ class ScorePackageProxy(PackageProxy):
                 return
             self.session.is_backtracking_locally = True
 
+    def interactively_view_score(self, pending_user_input=None):
+        self.build_directory_manager.interactively_view_score(
+            pending_user_input=pending_user_input,
+            )
+
     def make_asset_structure(self):
         self.fix_score_package_directory_structure(is_interactive=False)
 
@@ -526,6 +539,7 @@ class ScorePackageProxy(PackageProxy):
         'fix': fix,
         'g': manage_segments,
         'm': manage_materials,
+        'pdfv': interactively_view_score,
         'profile': profile,
         'removescore': interactively_remove,
         's': manage_setup,
