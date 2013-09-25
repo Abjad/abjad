@@ -20,14 +20,17 @@ class ReservoirStartHelperCreationWizard(Wizard):
         head=None,
         pending_user_input=None,
         ):
-        self.session.io_manager.assign_user_input(
-            pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         while True:
             function_application_pairs = []
             self.session.push_breadcrumb(self._breadcrumb)
-            selector = selectors.ReservoirStartHelperSelector(
-                session=self.session)
+            selector = selectors.Selector(session=self.session)
+            items = []
+            items.append('start at index 0')
+            items.append('start at index n')
+            items.append('start at next unused index')
+            selector.items = items
             with self.backtracking:
                 function_name = selector._run(clear=clear)
             if self.session.backtrack():
