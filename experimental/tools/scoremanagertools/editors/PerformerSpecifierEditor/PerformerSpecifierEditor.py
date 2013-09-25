@@ -14,7 +14,7 @@ class PerformerSpecifierEditor(ParameterSpecifierEditor):
 
     target_manifest = TargetManifest(
         PerformerSpecifier,
-        ('performer', 'pf', selectors.PerformerSelector),
+        ('performer', 'pf', selectors.Selector.make_performer_selector,)
         )
 
     ### PUBLIC PROPERTIES ###

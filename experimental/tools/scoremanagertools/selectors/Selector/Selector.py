@@ -259,6 +259,18 @@ class Selector(ScoreManagerObject):
         return selector
 
     @staticmethod
+    def make_performer_selector(
+        session=None,
+        ):
+        selector = Selector(session=session)
+        items = []
+        proxy = selector.session.current_score_package_proxy
+        if hasattr(proxy, 'instrumentation'):
+            items.extend(proxy.instrumentation.performers)
+        selector.items = items
+        return selector
+
+    @staticmethod
     def make_rhythm_maker_class_name_selector(
         session=None,
         ):
