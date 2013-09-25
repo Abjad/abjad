@@ -211,6 +211,16 @@ class Selector(ScoreManagerObject):
         return selector
 
     @staticmethod
+    def make_instrument_tools_instrument_name_selector(
+        session=None,
+        ):
+        from abjad.tools import instrumenttools
+        selector = Selector(session=session)
+        items = instrumenttools.Instrument.list_instrument_names()
+        selector.items = items
+        return selector
+
+    @staticmethod
     def make_material_package_selector(
         session=None,
         generic_output_name='',

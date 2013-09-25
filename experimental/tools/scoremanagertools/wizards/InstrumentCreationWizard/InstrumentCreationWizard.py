@@ -36,8 +36,11 @@ class InstrumentCreationWizard(Wizard):
             pending_user_input=pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         self.session.push_breadcrumb(self._breadcrumb)
-        kwargs = {'session': self.session, 'is_ranged': self.is_ranged}
-        selector = selectors.InstrumentToolsInstrumentNameSelector(**kwargs)
+        selector = \
+            selectors.Selector.make_instrument_tools_instrument_name_selector(
+            session=self.session,
+            )
+        selector.is_ranged = self.is_ranged
         with self.backtracking:
             result = selector._run()
         if self.session.backtrack():
