@@ -18,6 +18,10 @@ class DynamicSpecifierEditor(ParameterSpecifierEditor):
         ('name', 'nm', getters.get_string),
         ('description', 'ds', getters.get_string),
         (),
-        ('dynamic_handler_name', 'dynamic handler', 'dh', 
-            selectors.DynamicHandlerPackageSelector),
+        (
+            'dynamic_handler_name', 
+            'dynamic handler', 
+            'dh', 
+            selectors.Selector.make_dynamic_handler_package_selector,
+            ),
         )

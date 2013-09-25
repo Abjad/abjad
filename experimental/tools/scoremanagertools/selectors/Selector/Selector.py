@@ -182,6 +182,16 @@ class Selector(ScoreManagerObject):
         return selector
 
     @staticmethod
+    def make_dynamic_handler_package_selector(
+        session=None,
+        ):
+        selector = Selector.make_material_package_selector(
+            session=session,
+            generic_output_name='dynamic handler',
+            )
+        return selector
+
+    @staticmethod
     def make_handler_class_name_selector(
         session=None, 
         forbidden_directory_entries=None,
