@@ -167,6 +167,21 @@ class Selector(ScoreManagerObject):
         return selector
 
     @staticmethod
+    def make_dynamic_handler_class_name_selector(
+        session=None, 
+        ):
+        forbidden_directory_entries = [
+            'Handler',
+            'DynamicHandler',
+            'test',
+            ]
+        selector = Selector.make_handler_class_name_selector(
+            session=session,
+            forbidden_directory_entries=forbidden_directory_entries,
+            )
+        return selector
+
+    @staticmethod
     def make_handler_class_name_selector(
         session=None, 
         forbidden_directory_entries=None,
