@@ -18,6 +18,10 @@ class RhythmSpecifierEditor(ParameterSpecifierEditor):
         ('name', 'nm', getters.get_string),
         ('description', 'ds', getters.get_string),
         (),
-        ('rhythm_maker_package_path', 'time-menu_entry', 'ttm', 
-            selectors.RhythmMakerPackageSelector),
+        (
+            'rhythm_maker_package_path', 
+            'time-menu_entry', 
+            'ttm', 
+            selectors.Selector.make_rhythm_maker_package_selector,
+            ),
         )

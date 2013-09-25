@@ -269,3 +269,13 @@ class Selector(ScoreManagerObject):
             storehouse_filesystem_paths=[rhythm_maker_tools_directory_path],
             )
         return selector
+
+    @staticmethod
+    def make_rhythm_maker_package_selector(
+        session=None,
+        ):
+        selector = Selector.make_material_package_selector(
+            session=session,
+            generic_output_name='rhythm-maker',
+            )
+        return selector
