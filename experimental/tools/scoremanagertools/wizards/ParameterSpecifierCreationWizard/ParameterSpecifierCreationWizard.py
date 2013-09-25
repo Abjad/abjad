@@ -24,8 +24,10 @@ class ParameterSpecifierCreationWizard(Wizard):
             pending_user_input=pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         self.session.push_breadcrumb(self._breadcrumb)
-        selector = selectors.ParameterSpecifierClassNameSelector(
-            session=self.session)
+        selector = \
+            selectors.Selector.make_parameter_specifier_class_name_selector(
+            session=self.session,
+            )
         with self.backtracking:
             target_class_name = selector._run()
         if self.session.backtrack():
