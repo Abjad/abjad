@@ -44,7 +44,8 @@ class InteractiveEditor(ScoreManagerObject):
             result, 
             session=self.session, 
             prepopulated_value=prepopulated_value, 
-            **kwargs)
+            **kwargs
+            )
         if editor is not None:
             result = editor._run()
             if self.session.backtrack():
@@ -65,16 +66,17 @@ class InteractiveEditor(ScoreManagerObject):
         main_menu.hidden_section.append(('done', 'done'))
         return main_menu
 
-    def _run(self, 
+    def _run(
+        self, 
         breadcrumb=None, 
         cache=False, 
         clear=True, 
         is_autoadding=False,
         is_autoadvancing=False, 
         is_autostarting=False, 
-        pending_user_input=None):
-        self.session.io_manager.assign_user_input(
-            pending_user_input=pending_user_input)
+        pending_user_input=None,
+        ):
+        self.session.io_manager.assign_user_input(pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         self.session.push_breadcrumb(self._breadcrumb)
         with self.backtracking:
@@ -97,14 +99,16 @@ class InteractiveEditor(ScoreManagerObject):
                 result = 'add'
                 menu._run(
                     clear=clear, 
-                    predetermined_user_input=result)
+                    predetermined_user_input=result,
+                    )
                 is_first_pass = False
             elif is_first_pass and is_autostarting:
                 menu = self._make_main_menu()
                 result = menu._first_nonhidden_return_value_in_menu
                 menu._run(
                     clear=clear, 
-                    predetermined_user_input=result)
+                    predetermined_user_input=result,
+                    )
                 is_first_pass = False
             elif result and self.is_autoadvancing:
                 entry_point = entry_point or result

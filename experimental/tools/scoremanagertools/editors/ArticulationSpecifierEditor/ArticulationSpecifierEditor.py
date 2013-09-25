@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from experimental.tools.scoremanagertools import getters
 from experimental.tools.scoremanagertools import selectors
 from experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor \
     import ParameterSpecifierEditor
@@ -19,6 +18,6 @@ class ArticulationSpecifierEditor(ParameterSpecifierEditor):
             'articulation_handler_name', 
             'articulation handler',
             'ah',
-            selectors.ArticulationHandlerSelector,
+            selectors.Selector.make_articulation_handler_selector,
             ),
         )

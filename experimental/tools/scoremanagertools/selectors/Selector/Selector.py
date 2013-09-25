@@ -112,6 +112,16 @@ class Selector(ScoreManagerObject):
     ### REAL PUBLIC METHODS ###
 
     @staticmethod
+    def make_articulation_handler_selector(
+        session=None,
+        ):
+        selector = Selector.make_material_package_selector(
+            session=session,
+            generic_output_name='articulation handler',
+            )
+        return selector
+
+    @staticmethod
     def make_articulation_handler_class_name_selector(
         session=None, 
         ):
@@ -170,4 +180,52 @@ class Selector(ScoreManagerObject):
             storehouse_filesystem_paths=[handler_tools_directory_path],
             forbidden_directory_entries=forbidden_directory_entries,
             )
+        return selector
+
+    @staticmethod
+    def make_material_package_selector(
+        session=None,
+        generic_output_name='',
+        ):
+        selector = Selector(session=session)
+        def list_public_directory_paths(subtree_path):
+            result = []
+            for triple in os.walk(subtree_path):
+                subtree_path = triple[0]
+                directory_names = triple[1]
+                if '.svn' not in subtree_path:
+                    for directory_name in directory_names:
+                        if '.svn' not in directory_name:
+                            if directory_name[0].isalpha():
+                                directory_path = os.path.join(
+                                    subtree_path, 
+                                    directory_name,
+                                    )
+                                result.append(directory_path)
+            return result
+        def list_public_directory_paths_with_initializers(subtree_path):
+            result = []
+            for directory_path in list_public_directory_paths(subtree_path):
+                if '__init__.py' in os.listdir(directory_path):
+                    result.append(directory_path)
+            return result
+        def list_current_material_directory_paths():
+            result = []
+            path = selector.session.current_materials_directory_path
+            paths = list_public_directory_paths_with_initializers(path)
+            for directory_path in paths:
+                tag = selector.get_tag_from_directory_path(
+                    directory_path, 
+                    'generic_output_name',
+                    )
+                if tag == generic_output_name:
+                    result.append(directory_path)
+            return result
+        items = []
+        configuration = Selector.configuration
+        for directory_path in list_current_material_directory_paths():
+            package_path = configuration.filesystem_path_to_packagesystem_path(
+                directory_path)
+            items.append(package_path)
+        selector.items = items
         return selector
