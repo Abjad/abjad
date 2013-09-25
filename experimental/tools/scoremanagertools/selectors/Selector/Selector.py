@@ -13,12 +13,14 @@ class Selector(ScoreManagerObject):
         is_numbered=True,
         is_ranged=False, 
         items=None, 
+        return_value_attribute='explicit',
         session=None,
         ):
         ScoreManagerObject.__init__(self, session=session)
         self.is_numbered = is_numbered
         self.is_ranged = is_ranged
         self.items = items or []
+        self.return_value_attribute = return_value_attribute
 
     ### PRIVATE PROPERTIES ###
 
@@ -27,8 +29,9 @@ class Selector(ScoreManagerObject):
         if getattr(self, 'explicit_breadcrumb', None):
             return self.explicit_breadcrumb
         elif hasattr(self, 'space_delimited_lowercase_target_name'):
-            return 'select {}:'.format(
-                self.space_delimited_lowercase_target_name)
+            string = 'select {}:'
+            string = string.format(self.space_delimited_lowercase_target_name)
+            return string
         else:
             return 'select:'
 
@@ -37,7 +40,7 @@ class Selector(ScoreManagerObject):
     def _make_main_menu(self, head=None):
         main_menu = self.session.io_manager.make_menu(where=self._where)
         menu_section = main_menu._make_section(
-            return_value_attribute='explicit',
+            return_value_attribute=self.return_value_attribute,
             is_numbered=self.is_numbered,
             is_ranged=self.is_ranged,
             )
