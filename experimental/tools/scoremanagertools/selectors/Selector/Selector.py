@@ -291,6 +291,16 @@ class Selector(ScoreManagerObject):
         return selector
 
     @staticmethod
+    def make_pitch_class_reservoir_selector(
+        session=None,
+        ):
+        selector = Selector.make_material_package_selector(
+            session=session,
+            generic_output_name='pitch class reservoir',
+            )
+        return selector
+
+    @staticmethod
     def make_rhythm_maker_class_name_selector(
         session=None,
         ):
