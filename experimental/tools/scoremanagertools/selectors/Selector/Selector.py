@@ -279,3 +279,15 @@ class Selector(ScoreManagerObject):
             generic_output_name='rhythm-maker',
             )
         return selector
+
+    @staticmethod
+    def make_tempo_mark_selector(
+        session=None,
+        ):
+        selector = Selector(session=session)
+        items = []
+        proxy = selector.session.current_score_package_proxy
+        if hasattr(proxy, 'tempo_inventory'):
+            items = proxy.tempo_inventory
+        selector.items = items
+        return selector
