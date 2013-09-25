@@ -179,6 +179,14 @@ class ScoreManagerConfiguration(Configuration):
         if not os.path.exists(self.transcripts_directory_path):
             os.makedirs(self.transcripts_directory_path)
 
+        # other directory paths
+
+        self._handler_tools_directory_path = os.path.join(
+            self.abjad_configuration.abjad_experimental_directory_path,
+            'tools',
+            'handlertools',
+            )
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -188,7 +196,8 @@ class ScoreManagerConfiguration(Configuration):
             '',
             'Score manager tools configuration file created on {}.'.format(
                 self._current_time),
-            'This file is interpreted by ConfigObj and should follow ini syntax.',
+            'This file is interpreted by ConfigObj'
+            ' and should follow ini syntax.',
         ]
 
     @property
@@ -197,13 +206,16 @@ class ScoreManagerConfiguration(Configuration):
             'user_asset_library_directory_path': {
                 'comment': [
                     '',
-                    'Set to the directory where you house your user-specific assets.',
+                    'Set to the directory where you'
+                    ' house your user-specific assets.',
                     'Defaults to $HOME/score_manager_asset_library/.',
                 ],
                 'spec': 'string(default={!r})'.format(
                     os.path.join(
                         self.home_directory_path,
-                        'score_manager_asset_library')),
+                        'score_manager_asset_library',
+                        )
+                    ),
             },
             'user_score_packages_directory_path': {
                 'comment': [
@@ -212,7 +224,11 @@ class ScoreManagerConfiguration(Configuration):
                     'Defaults to $HOME/score_packages/.'
                 ],
                 'spec': 'string(default={!r})'.format(
-                    os.path.join(self.home_directory_path, 'score_packages'))
+                    os.path.join(
+                        self.home_directory_path, 
+                        'score_packages',
+                        )
+                    )
             },
         }
         return options
@@ -258,6 +274,19 @@ class ScoreManagerConfiguration(Configuration):
         '''
         superclass = super(ScoreManagerConfiguration, self)
         return superclass.configuration_file_path
+
+    @property
+    def handler_tools_directory_path(self):
+        r'''Handler tools directory path.
+
+        ::
+
+            >>> configuration.handler_tools_directory_path
+            '.../experimental/tools/handlertools'
+
+        Returns string.
+        '''
+        return self._handler_tools_directory_path  
         
     @property
     def home_directory_path(self):

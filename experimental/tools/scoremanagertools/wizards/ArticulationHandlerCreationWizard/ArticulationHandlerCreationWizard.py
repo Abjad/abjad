@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from experimental.tools.scoremanagertools import selectors
 from experimental.tools.scoremanagertools.wizards.HandlerCreationWizard \
     import HandlerCreationWizard
 
@@ -8,10 +7,22 @@ class ArticulationHandlerCreationWizard(HandlerCreationWizard):
 
     ### CLASS VARIABLES ###
 
-    handler_class_name_selector = \
-        selectors.ArticulationHandlerClassNameSelector
-
     handler_editor_class_name_suffix = 'Editor'
+
+    ### INITIALIZER ###
+
+    def __init__(self, session=None, target=None):
+        from experimental.tools.scoremanagertools.selectors import Selector
+        HandlerCreationWizard.__init__(
+            self,
+            session=session,
+            target=target,
+            )
+
+        selector = Selector.make_articulation_handler_class_name_selector(
+            session=self.session,
+            )
+        self.selector = selector
 
     ### PRIVATE PROPERTIES ###
 

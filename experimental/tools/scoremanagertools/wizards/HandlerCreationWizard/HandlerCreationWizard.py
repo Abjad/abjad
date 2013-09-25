@@ -18,11 +18,13 @@ class HandlerCreationWizard(Wizard):
         head=None,
         pending_user_input=None,
         ):
-        self.session.io_manager.assign_user_input(
-            pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         self.session.push_breadcrumb(self._breadcrumb)
-        selector = self.handler_class_name_selector(session=self.session)
+        if hasattr(self, 'selector'):
+            selector = self.selector
+        else:
+            selector = self.handler_class_name_selector(session=self.session)
         handler_class_name = selector._run()
         if not self.session.backtrack():
             handler_editor = self.get_handler_editor(handler_class_name)
@@ -37,7 +39,12 @@ class HandlerCreationWizard(Wizard):
     def get_handler_editor(self, handler_class_name, target=None):
         handler_editor_class_name = \
             handler_class_name + self.handler_editor_class_name_suffix
-        command = 'from experimental.tools.scoremanagertools.editors import {} as handler_editor_class'.format(handler_editor_class_name)
+        command = 'from experimental.tools.scoremanagertools.editors'
+        command += ' import {} as handler_editor_class'
+        command = command.format(handler_editor_class_name)
         exec(command)
-        handler_editor = handler_editor_class(session=self.session, target=target)
+        handler_editor = handler_editor_class(
+            session=self.session, 
+            target=target,
+            )
         return handler_editor
