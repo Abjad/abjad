@@ -20,16 +20,19 @@ class PitchClassTransformCreationWizard(Wizard):
         head=None,
         pending_user_input=None,
         ):
-        self.session.io_manager.assign_user_input(
-            pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         function_application_pairs = []
         while True:
             breadcrumb = self.function_application_pairs_to_breadcrumb(
                 function_application_pairs)
             self.session.push_breadcrumb(breadcrumb=breadcrumb)
-            selector = selectors.PitchClassTransformSelector(
-                session=self.session)
+            selector = selectors.Selector(session=self.session)
+            items = []
+            items.append('transpose')
+            items.append('invert')
+            items.append('multiply')
+            selector.items = items
             selector.explicit_breadcrumb = self.get_explicit_breadcrumb(
                 function_application_pairs)
             with self.backtracking:
