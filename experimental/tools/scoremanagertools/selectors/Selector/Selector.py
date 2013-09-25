@@ -134,10 +134,9 @@ class Selector(ScoreManagerObject):
     @staticmethod
     def make_clef_name_selector(
         session=None, 
-        **kwargs
         ):
         from abjad.tools import contexttools
-        selector = Selector(session=session, **kwargs)
+        selector = Selector(session=session)
         selector.items = contexttools.ClefMark.list_clef_names()
         return selector
 
@@ -146,10 +145,9 @@ class Selector(ScoreManagerObject):
         session=None, 
         storehouse_filesystem_paths=None,
         forbidden_directory_entries=None,
-        **kwargs
         ):
         from experimental.tools import scoremanagertools
-        selector = Selector(session=session, **kwargs)
+        selector = Selector(session=session)
         storehouse_filesystem_paths = storehouse_filesystem_paths or []
         forbidden_directory_entries = forbidden_directory_entries or []
         items = []
@@ -195,7 +193,6 @@ class Selector(ScoreManagerObject):
     def make_handler_class_name_selector(
         session=None, 
         forbidden_directory_entries=None,
-        **kwargs
         ):
         forbidden_directory_entries = forbidden_directory_entries or []
         handler_tools_directory_path = \
