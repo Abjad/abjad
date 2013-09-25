@@ -284,6 +284,19 @@ class Selector(ScoreManagerObject):
         return selector
 
     @staticmethod
+    def make_score_instrument_selector(
+        session=None,
+        ):
+        selector = Selector(session=session)
+        items = []
+        if selector.session.is_in_score:
+            proxy = selector.session.current_score_package_proxy
+            items.extend(proxy.instrumentation.instruments)
+            items.append('other')
+        selector.items = items
+        return selector
+
+    @staticmethod
     def make_score_tools_performer_name_selector(
         session=None,
         ):
