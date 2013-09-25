@@ -76,10 +76,11 @@ class InstrumentCreationWizard(Wizard):
         return instrument
 
     def name_untuned_percussion(self, instrument):
+        from abjad.tools.instrumenttools import UntunedPercussion
         if isinstance(instrument, instrumenttools.UntunedPercussion):
-            selector = \
-                selectors.InstrumentToolsUntunedPercussionNameSelector(
-                    session=self.session)
+            selector = selectors.Selector(session=self.session)
+            items = UntunedPercussion.known_untuned_percussion[:]
+            selector.items = items
             with self.backtracking:
                 instrument_name = selector._run()
             if self.session.backtrack():

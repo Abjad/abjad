@@ -117,8 +117,6 @@ class Menu(ScoreManagerObject):
         if user_input == '':
             user_entered_lone_return = True
         directive = self._change_user_input_to_directive(user_input)
-        print user_input, 'UI'
-        print directive, 'directive'
         directive = self._strip_default_indicators_from_strings(directive)
         self.session.hide_next_redraw = False
         io_manager = self.session.io_manager
