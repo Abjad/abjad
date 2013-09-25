@@ -44,7 +44,10 @@ class Selector(ScoreManagerObject):
             is_numbered=self.is_numbered,
             is_ranged=self.is_ranged,
             )
-        menu_entries = self.make_menu_entries(head=head)
+        if hasattr(self, 'menu_entries'):
+            menu_entries = self.menu_entries
+        else:
+            menu_entries = self.make_menu_entries(head=head)
         menu_section.menu_entries = menu_entries
         return main_menu
 
@@ -278,6 +281,25 @@ class Selector(ScoreManagerObject):
             session=session,
             generic_output_name='rhythm-maker',
             )
+        return selector
+
+    @staticmethod
+    def make_score_tools_performer_name_selector(
+        session=None,
+        ):
+        from abjad.tools import scoretools
+        selector = Selector(session=session)
+        selector.return_value_attribute = 'display_string'
+        performer_pairs = scoretools.Performer.list_primary_performer_names()
+        performer_pairs.append(('percussionist', 'perc.'))
+        performer_pairs.sort()
+        menu_entries = []
+        for performer_pair in performer_pairs:
+            performer_name, performer_abbreviation = performer_pair
+            performer_abbreviation = performer_abbreviation.split()[-1]
+            performer_abbreviation = performer_abbreviation.strip('.')
+            menu_entries.append((performer_name, performer_abbreviation)) 
+        selector.menu_entries = menu_entries
         return selector
 
     @staticmethod

@@ -24,7 +24,8 @@ class Menu(ScoreManagerObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, 
+    def __init__(
+        self, 
         session=None, 
         where=None,
         should_clear_terminal=False,
@@ -116,6 +117,8 @@ class Menu(ScoreManagerObject):
         if user_input == '':
             user_entered_lone_return = True
         directive = self._change_user_input_to_directive(user_input)
+        print user_input, 'UI'
+        print directive, 'directive'
         directive = self._strip_default_indicators_from_strings(directive)
         self.session.hide_next_redraw = False
         io_manager = self.session.io_manager
@@ -202,11 +205,12 @@ class Menu(ScoreManagerObject):
         entry_index = (entry_index + 1) % len(menu_section)
         return menu_section._menu_entry_return_values[entry_index]
 
-    def _run(self, 
-            clear=True, 
-            predetermined_user_input=None, 
-            pending_user_input=None,
-            ):
+    def _run(
+        self, 
+        clear=True, 
+        predetermined_user_input=None, 
+        pending_user_input=None,
+        ):
         self.session.io_manager.assign_user_input(pending_user_input)
         clear, hide_current_run = clear, False
         while True:

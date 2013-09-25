@@ -23,17 +23,24 @@ class PerformerCreationWizard(Wizard):
 
     ### PRIVATE METHODS ###
 
-    def _run(self, 
-        cache=False, clear=True, head=None, pending_user_input=None):
-        self.session.io_manager.assign_user_input(
-            pending_user_input=pending_user_input)
+    def _run(
+        self, 
+        cache=False, 
+        clear=True, 
+        head=None, 
+        pending_user_input=None,
+        ):
+        from experimental.tools.scoremanagertools.selectors import Selector
+        self.session.io_manager.assign_user_input(pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         try_again = False
         performers = []
         while True:
             self.session.push_breadcrumb(self._breadcrumb)
-            kwargs = {'session': self.session, 'is_ranged': self.is_ranged}
-            selector = selectors.ScoreToolsPerformerNameSelector(**kwargs)
+            selector = Selector.make_score_tools_performer_name_selector(
+                session=self.session,
+                )
+            selector.is_ranged=self.is_ranged
             with self.backtracking:
                 result = selector._run()
             if self.session.backtrack():
@@ -81,7 +88,8 @@ class PerformerCreationWizard(Wizard):
 
     ### PUBLIC METHODS ###
 
-    def interactively_initialize_performer(self, 
+    def interactively_initialize_performer(
+        self, 
         performer, 
         cache=False, 
         clear=True,
