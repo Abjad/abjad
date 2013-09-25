@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from experimental.tools.scoremanagertools import getters
-from experimental.tools.scoremanagertools import selectors
+from experimental.tools.scoremanagertools import io
 from experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor \
     import ParameterSpecifierEditor
 from experimental.tools.scoremanagertools.editors.TargetManifest \
@@ -22,6 +22,6 @@ class RhythmSpecifierEditor(ParameterSpecifierEditor):
             'rhythm_maker_package_path', 
             'time-menu_entry', 
             'ttm', 
-            selectors.Selector.make_rhythm_maker_package_selector,
+            io.Selector.make_rhythm_maker_package_selector,
             ),
         )

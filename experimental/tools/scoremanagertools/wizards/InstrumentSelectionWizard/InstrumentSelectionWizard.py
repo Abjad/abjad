@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import instrumenttools
 from abjad.tools.instrumenttools.Instrument import Instrument
-from experimental.tools.scoremanagertools import selectors
+from experimental.tools.scoremanagertools import io
 from experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard \
     import InstrumentCreationWizard
 from experimental.tools.scoremanagertools.wizards.Wizard import Wizard
@@ -28,7 +28,7 @@ class InstrumentSelectionWizard(Wizard):
         self.session.cache_breadcrumbs(cache=cache)
         self.session.push_breadcrumb(self._breadcrumb)
         if self.session.is_in_score:
-            selector = selectors.Selector.make_score_instrument_selector(
+            selector = io.Selector.make_score_instrument_selector(
                 session=self.session,
                 )
             with self.backtracking:

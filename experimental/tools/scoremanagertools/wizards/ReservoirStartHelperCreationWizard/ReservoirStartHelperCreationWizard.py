@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from experimental.tools.scoremanagertools.wizards.Wizard import Wizard
-from experimental.tools.scoremanagertools import selectors
+from experimental.tools.scoremanagertools import io
 
 
 class ReservoirStartHelperCreationWizard(Wizard):
@@ -25,7 +25,7 @@ class ReservoirStartHelperCreationWizard(Wizard):
         while True:
             function_application_pairs = []
             self.session.push_breadcrumb(self._breadcrumb)
-            selector = selectors.Selector(session=self.session)
+            selector = io.Selector(session=self.session)
             items = []
             items.append('start at index 0')
             items.append('start at index n')

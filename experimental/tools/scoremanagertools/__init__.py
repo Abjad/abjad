@@ -7,7 +7,6 @@ import io
 import predicates
 import proxies
 import scoremanager
-import selectors
 import specifiers
 import wizards
 import wranglers

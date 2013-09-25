@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from experimental.tools.scoremanagertools import getters
-from experimental.tools.scoremanagertools import selectors
+from experimental.tools.scoremanagertools import io
 from experimental.tools.scoremanagertools import wizards
 from experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor \
     import ParameterSpecifierEditor
@@ -22,7 +22,7 @@ class PitchClassSpecifierEditor(ParameterSpecifierEditor):
         (
             'pitch_class_reservoir', 
             'pc', 
-            selectors.Selector.make_pitch_class_reservoir_selector,
+            io.Selector.make_pitch_class_reservoir_selector,
             ),
         (
             'pitch_class_transform', 

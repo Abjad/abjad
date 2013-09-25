@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from experimental.tools.scoremanagertools import selectors
+from experimental.tools.scoremanagertools import io
 from experimental.tools.scoremanagertools.wizards.Wizard import Wizard
 
 
@@ -25,7 +25,7 @@ class ParameterSpecifierCreationWizard(Wizard):
         self.session.cache_breadcrumbs(cache=cache)
         self.session.push_breadcrumb(self._breadcrumb)
         selector = \
-            selectors.Selector.make_parameter_specifier_class_name_selector(
+            io.Selector.make_parameter_specifier_class_name_selector(
             session=self.session,
             )
         with self.backtracking:

@@ -12,7 +12,7 @@ class RhythmMakerCreationWizard(HandlerCreationWizard):
     ### INITIALIZER ###
 
     def __init__(self, session=None, target=None):
-        from experimental.tools.scoremanagertools.selectors import Selector
+        from experimental.tools.scoremanagertools.io import Selector
         HandlerCreationWizard.__init__(
             self,
             session=session,

@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from experimental.tools.scoremanagertools import selectors
+from experimental.tools.scoremanagertools import io
 from experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor \
     import ParameterSpecifierEditor
 from experimental.tools.scoremanagertools.editors.TargetManifest \
@@ -14,5 +14,5 @@ class ClefSpecifierEditor(ParameterSpecifierEditor):
 
     target_manifest = TargetManifest(
         ClefSpecifier,
-        ('clef_name', 'cf', selectors.Selector.make_clef_name_selector),
+        ('clef_name', 'cf', io.Selector.make_clef_name_selector),
         )

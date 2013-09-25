@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from experimental.tools.scoremanagertools.wizards.Wizard import Wizard
-from experimental.tools.scoremanagertools import selectors
+from experimental.tools.scoremanagertools import io
 
 
 class PitchClassTransformCreationWizard(Wizard):
@@ -27,7 +27,7 @@ class PitchClassTransformCreationWizard(Wizard):
             breadcrumb = self.function_application_pairs_to_breadcrumb(
                 function_application_pairs)
             self.session.push_breadcrumb(breadcrumb=breadcrumb)
-            selector = selectors.Selector(session=self.session)
+            selector = io.Selector(session=self.session)
             items = []
             items.append('transpose')
             items.append('invert')
