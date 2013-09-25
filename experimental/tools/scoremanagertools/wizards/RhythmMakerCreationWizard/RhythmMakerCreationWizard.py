@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from experimental.tools.scoremanagertools import selectors
 from experimental.tools.scoremanagertools.wizards.HandlerCreationWizard \
     import HandlerCreationWizard
 
@@ -8,11 +7,25 @@ class RhythmMakerCreationWizard(HandlerCreationWizard):
 
     ### CLASS VARIABLES ###
 
-    handler_class_name_selector = selectors.RhythmMakerClassNameSelector
     handler_editor_class_name_suffix = 'Editor'
+
+    ### INITIALIZER ###
+
+    def __init__(self, session=None, target=None):
+        from experimental.tools.scoremanagertools.selectors import Selector
+        HandlerCreationWizard.__init__(
+            self,
+            session=session,
+            target=target,
+            )
+
+        selector = Selector.make_rhythm_maker_class_name_selector(
+            session=self.session,
+            )
+        self.selector = selector
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def _breadcrumb(self):
-        return 'time-menu_entry maker creation wizard'
+        return 'rhythm-maker creation wizard'

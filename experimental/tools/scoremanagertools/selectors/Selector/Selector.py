@@ -254,3 +254,18 @@ class Selector(ScoreManagerObject):
             items.append(package_path)
         selector.items = items
         return selector
+
+    @staticmethod
+    def make_rhythm_maker_class_name_selector(
+        session=None,
+        ):
+        rhythm_maker_tools_directory_path = os.path.join(
+            Selector.configuration.abjad_configuration.abjad_directory_path, 
+            'tools', 
+            'rhythmmakertools',
+            )
+        selector = Selector.make_directory_content_selector(
+            session=session,
+            storehouse_filesystem_paths=[rhythm_maker_tools_directory_path],
+            )
+        return selector

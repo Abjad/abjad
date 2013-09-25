@@ -37,8 +37,8 @@ class HandlerCreationWizard(Wizard):
 
     # TODO: abstract up to Wizard?
     def get_handler_editor(self, handler_class_name, target=None):
-        handler_editor_class_name = \
-            handler_class_name + self.handler_editor_class_name_suffix
+        handler_editor_class_name = handler_class_name
+        handler_editor_class_name += self.handler_editor_class_name_suffix
         command = 'from experimental.tools.scoremanagertools.editors'
         command += ' import {} as handler_editor_class'
         command = command.format(handler_editor_class_name)
