@@ -52,6 +52,10 @@ class SegmentPackageWrangler(PackageWrangler):
         command_section.append(('all pdfs - view', 'vv'))
         command_section = main_menu.make_command_section()
         command_section.append(('new segment', 'new'))
+        hidden_section = main_menu.make_command_section(is_hidden=True)
+        hidden_section.append(('views - list', 'vl'))
+        hidden_section.append(('views - new', 'vn'))
+        hidden_section.append(('views - select', 'vs'))
         return main_menu
 
     ### PUBLIC PROPERTIES ###
@@ -69,19 +73,6 @@ class SegmentPackageWrangler(PackageWrangler):
         '''
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.SegmentPackageProxy
-
-    @property
-    def storage_format(self):
-        r'''Storage format of segment package wrangler.
-
-        ::
-
-            >>> wrangler.storage_format
-            'wranglers.SegmentPackageWrangler()'
-
-        Returns string.
-        '''
-        return super(SegmentPackageWrangler, self).storage_format
 
     ### PUBLIC METHODS ###
 

@@ -159,19 +159,6 @@ class StylesheetFileWrangler(FileWrangler):
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.FileProxy
 
-    @property
-    def storage_format(self):
-        r'''Storage format of stylesheet file wrangler.
-
-        ::
-
-            >>> wrangler.storage_format
-            'wranglers.StylesheetFileWrangler()'
-
-        Return string.
-        '''
-        return super(StylesheetFileWrangler, self).storage_format
-
     ### PUBLIC METHODS ###
 
     def interactively_edit_asset(

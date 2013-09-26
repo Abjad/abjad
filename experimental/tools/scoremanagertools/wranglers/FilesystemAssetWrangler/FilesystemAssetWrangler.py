@@ -158,8 +158,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         rollback=None, 
         pending_user_input=None,
         ):
-        self.session.io_manager.assign_user_input(
-            pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(pending_user_input)
         breadcrumb = self.session.pop_breadcrumb(rollback=rollback)
         self.session.cache_breadcrumbs(cache=cache)
         while True:
@@ -189,14 +188,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         '''
         pass
 
-    @property
-    def storage_format(self):
-        r'''Storage format of filesystem asset wrangler.
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr
-
     ### PUBLIC METHODS ###
 
     @abc.abstractmethod
@@ -208,6 +199,25 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
         Returns none.
         '''
+        pass
+
+
+    def interactively_list_views(
+        self,
+        pending_user_input=None,
+        ):
+        pass
+
+    def interactively_make_view(
+        self,
+        pending_user_input=None,
+        ):
+        pass
+
+    def interactively_select_view(
+        self,
+        pending_user_input=None,
+        ):
         pass
 
     # TODO: write test
@@ -481,4 +491,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     user_input_to_action = {
         'ren': interactively_rename_asset,
         'rm': interactively_remove_assets,
+        'vl': interactively_list_views,
+        'vn': interactively_make_view,
+        'vs': interactively_select_view,
         }

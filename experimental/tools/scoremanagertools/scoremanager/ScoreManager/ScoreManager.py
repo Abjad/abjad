@@ -237,19 +237,6 @@ class ScoreManager(ScoreManagerObject):
         return self._segment_package_wrangler
 
     @property
-    def storage_format(self):
-        r'''Score manager storage format:
-
-        ::
-
-            >>> score_manager.storage_format
-            'scoremanager.ScoreManager()'
-
-        Return string.
-        '''
-        return self._tools_package_qualified_indented_repr
-
-    @property
     def stylesheet_file_wrangler(self):
         r'''Score manager stylesheet file wrangler:
 

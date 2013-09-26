@@ -155,28 +155,6 @@ class MenuEntry(AbjadObject):
             ))
         return return_value
 
-    @property
-    def storage_format(self):
-        r'''Menu entry storage format.
-
-            >>> z(menu_entry)
-            io.MenuEntry(
-                io.MenuSection(
-                    return_value_attribute='key',
-                    indent_level=1,
-                    is_hidden=False,
-                    is_numbered=False,
-                    is_ranged=False,
-                    display_prepopulated_values=True
-                    ),
-                'svn update scores',
-                key='up'
-                )
-
-        Returns string.
-        '''
-        return super(MenuEntry, self).storage_format
-
     ### PUBLIC METHODS ###
 
     def matches(self, user_input):

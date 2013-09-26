@@ -367,26 +367,6 @@ class MenuSection(AbjadObject):
                 self._return_value_attribute = expr
         return property(**locals())
     
-    @property
-    def storage_format(self):
-        r'''Menu section storage format.
-
-        ::
-
-            >>> z(menu_section)
-            io.MenuSection(
-                return_value_attribute='key',
-                indent_level=1,
-                is_hidden=False,
-                is_numbered=False,
-                is_ranged=False,
-                display_prepopulated_values=True
-                )
-
-        Returns string.
-        '''
-        return super(MenuSection, self).storage_format
-
     @apply
     def title():
         def fget(self):

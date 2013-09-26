@@ -323,21 +323,6 @@ class Menu(ScoreManagerObject):
             self._should_clear_terminal = should_clear_terminal
         return property(**locals())
 
-    @property
-    def storage_format(self):
-        r'''Menu storage format:
-
-        ::
-    
-            >>> z(menu)
-            io.Menu(
-                should_clear_terminal=False
-                )
-
-        Return string.
-        '''
-        return super(Menu, self).storage_format
-
     @apply
     def title():
         def fget(self):

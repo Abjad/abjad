@@ -132,19 +132,6 @@ class MaterialPackageWrangler(PackageWrangler):
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.PackageProxy
 
-    @property
-    def storage_format(self):
-        r'''Storage format of material package wrangler.
-
-        ::
-
-            >>> wrangler.storage_format
-            'wranglers.MaterialPackageWrangler()'
-
-        Returns string.
-        '''
-        return super(MaterialPackageWrangler, self).storage_format
-
     ### PUBLIC METHODS ###
 
     def interactively_make_data_package(

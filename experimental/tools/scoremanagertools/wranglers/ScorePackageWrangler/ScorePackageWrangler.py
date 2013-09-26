@@ -100,19 +100,6 @@ class ScorePackageWrangler(PackageWrangler):
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.ScorePackageProxy
 
-    @property
-    def storage_format(self):
-        r'''Storage format of score package wrangler.
-
-        ::
-
-            >>> wrangler.storage_format
-            'wranglers.ScorePackageWrangler()'
-
-        Returns string.
-        '''
-        return super(ScorePackageWrangler, self).storage_format
-
     ### PUBLIC METHODS ###
 
     def fix_visible_assets(self, is_interactive=True):
