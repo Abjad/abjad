@@ -101,7 +101,9 @@ class ListEditor(InteractiveEditor):
     def interactively_add_items(self):
         if self.item_creator_class:
             item_creator = self.item_creator_class(
-                session=self.session, **self.item_creator_class_kwargs)
+                session=self.session, 
+                **self.item_creator_class_kwargs
+                )
             with self.backtracking:
                 result = item_creator._run()
             if self.session.backtrack():
@@ -112,8 +114,7 @@ class ListEditor(InteractiveEditor):
             result = result or item_creator.target
         elif self.item_getter_configuration_method:
             getter = self.session.io_manager.make_getter(where=self._where)
-            self.item_getter_configuration_method(
-                getter, self.item_identifier)
+            self.item_getter_configuration_method(getter, self.item_identifier)
             with self.backtracking:
                 item_initialization_token = getter._run()
             if self.session.backtrack():

@@ -212,6 +212,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self,
         pending_user_input=None,
         ):
+        print 'foo'
         pass
 
     def interactively_select_view(

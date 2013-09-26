@@ -172,7 +172,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
     def _run(
         self, 
         pending_user_input=None, 
-        clear_terminal=True,
+        clear_terminal=False,
         include_chevron=True,
         ):
         self.session.io_manager.assign_user_input(pending_user_input)
