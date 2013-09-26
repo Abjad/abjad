@@ -3,11 +3,11 @@ import os
 from experimental import *
 
 
-def test_ScorePackageProxy_read_only_attributes_01():
+def test_ScorePackageManager_read_only_attributes_01():
     r'''Read-only public attributes.
     '''
 
-    score_proxy = scoremanagertools.proxies.ScorePackageProxy(
+    score_proxy = scoremanagertools.proxies.ScorePackageManager(
         'scoremanagertools.scorepackages.red_example_score')
 
     assert isinstance(

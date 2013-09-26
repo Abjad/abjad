@@ -2,9 +2,9 @@
 from experimental import *
 
 
-def test_ScorePackageProxy_tempo_inventory_01():
+def test_ScorePackageManager_tempo_inventory_01():
 
-    score_package_proxy = scoremanagertools.proxies.ScorePackageProxy(
+    score_package_proxy = scoremanagertools.proxies.ScorePackageManager(
         'scoremanagertools.scorepackages.red_example_score')
 
     assert score_package_proxy._get_tempo_inventory() == \

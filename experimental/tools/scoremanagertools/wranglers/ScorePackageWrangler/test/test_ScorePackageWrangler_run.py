@@ -17,7 +17,7 @@ def test_ScorePackageWrangler_run_01():
             'q'
             )
         assert score_manager.configuration.packagesystem_path_exists('testscore')
-        spp = scoremanagertools.proxies.ScorePackageProxy('testscore')
+        spp = scoremanagertools.proxies.ScorePackageManager('testscore')
         assert spp.annotated_title == 'Test score (2012)'
         assert spp.composer is None
         assert spp.instrumentation is None

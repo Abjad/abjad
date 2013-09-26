@@ -52,7 +52,7 @@ class StylesheetFileWrangler(FileWrangler):
             packagesystem_path = \
                 self.configuration.filesystem_path_to_packagesystem_path(
                 score_filesystem_path)
-            score_package_proxy = scoremanagertools.proxies.ScorePackageProxy(
+            score_package_proxy = scoremanagertools.proxies.ScorePackageManager(
                 packagesystem_path=packagesystem_path)
             annotation = score_package_proxy._get_title()
         elif filesystem_path.startswith(

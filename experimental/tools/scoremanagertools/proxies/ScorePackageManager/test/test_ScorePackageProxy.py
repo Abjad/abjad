@@ -2,11 +2,11 @@
 from experimental import *
 
 
-def test_ScorePackageProxy_01():
+def test_ScorePackageManager_01():
     r'''Main menu.
     '''
 
-    red_example_score = scoremanagertools.proxies.ScorePackageProxy(
+    red_example_score = scoremanagertools.proxies.ScorePackageManager(
         'scoremanagertools.scorepackages.red_example_score')
     red_example_score._run(pending_user_input='q')
 
@@ -22,35 +22,35 @@ def test_ScorePackageProxy_01():
       '']
 
 
-def test_ScorePackageProxy_02():
+def test_ScorePackageManager_02():
     r'''Manage tags menu.
     '''
 
-    red_example_score = scoremanagertools.proxies.ScorePackageProxy(
+    red_example_score = scoremanagertools.proxies.ScorePackageManager(
         'scoremanagertools.scorepackages.red_example_score')
     red_example_score.session.pending_user_input = 'q'
     red_example_score.manage_tags()
     assert red_example_score.session.io_transcript.signature == (2,)
 
 
-def test_ScorePackageProxy_03():
+def test_ScorePackageManager_03():
     r'''Add and delete tag interactively.
     '''
 
-    red_example_score = scoremanagertools.proxies.ScorePackageProxy(
+    red_example_score = scoremanagertools.proxies.ScorePackageManager(
         'scoremanagertools.scorepackages.red_example_score')
     red_example_score.session.pending_user_input = 'add foo bar q'
     red_example_score.manage_tags()
     assert red_example_score.get_tag('foo') == 'bar'
 
-    red_example_score = scoremanagertools.proxies.ScorePackageProxy(
+    red_example_score = scoremanagertools.proxies.ScorePackageManager(
         'scoremanagertools.scorepackages.red_example_score')
     red_example_score.session.pending_user_input = 'del foo q'
     red_example_score.manage_tags()
     assert red_example_score.get_tag('foo') is None
 
 
-def test_ScorePackageProxy_04():
+def test_ScorePackageManager_04():
     r'''User 'home' input results in return home.
     '''
 
@@ -63,11 +63,11 @@ def test_ScorePackageProxy_04():
     assert score_manager.session.io_transcript[4][1][0] == 'Score manager - active scores'
 
 
-def test_ScorePackageProxy_05():
+def test_ScorePackageManager_05():
     r'''User 'home' input terminates execution (when score not managed from home).
     '''
 
-    red_example_score = scoremanagertools.proxies.ScorePackageProxy(
+    red_example_score = scoremanagertools.proxies.ScorePackageManager(
         'scoremanagertools.scorepackages.red_example_score')
     red_example_score._run(pending_user_input='home')
 
@@ -76,7 +76,7 @@ def test_ScorePackageProxy_05():
     assert red_example_score.session.io_transcript[1][1][0] == '> home'
 
 
-def test_ScorePackageProxy_06():
+def test_ScorePackageManager_06():
     r'''User 'b' input returns home.
     '''
 
@@ -89,11 +89,11 @@ def test_ScorePackageProxy_06():
     assert score_manager.session.io_transcript[4][1][0] == 'Score manager - active scores'
 
 
-def test_ScorePackageProxy_07():
+def test_ScorePackageManager_07():
     r'''Shared session.
     '''
 
-    spp = scoremanagertools.proxies.ScorePackageProxy(
+    spp = scoremanagertools.proxies.ScorePackageManager(
         'scoremanagertools.scorepackages.red_example_score')
 
     assert spp.session is spp.distribution_directory_manager.session

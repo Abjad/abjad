@@ -42,7 +42,7 @@
 
 15. Sweep inline scoremanagertools TODO items.
 
-16. Author ScorePackageProxy docstrings.
+16. Author ScorePackageManager docstrings.
 
 17. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
 

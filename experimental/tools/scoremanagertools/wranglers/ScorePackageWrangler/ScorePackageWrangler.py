@@ -93,12 +93,12 @@ class ScorePackageWrangler(PackageWrangler):
         ::
 
             >>> wrangler.asset_proxy_class.__name__
-            'ScorePackageProxy'
+            'ScorePackageManager'
 
         Returns class.
         '''
         from experimental.tools import scoremanagertools
-        return scoremanagertools.proxies.ScorePackageProxy
+        return scoremanagertools.proxies.ScorePackageManager
 
     ### PUBLIC METHODS ###
 
@@ -265,9 +265,9 @@ class ScorePackageWrangler(PackageWrangler):
             ...     in_user_asset_library=False, 
             ...     in_user_score_packages=False):
             ...     x
-            ScorePackageProxy('.../tools/scoremanagertools/scorepackages/blue_example_score')
-            ScorePackageProxy('.../tools/scoremanagertools/scorepackages/green_example_score')
-            ScorePackageProxy('.../tools/scoremanagertools/scorepackages/red_example_score')
+            ScorePackageManager('.../tools/scoremanagertools/scorepackages/blue_example_score')
+            ScorePackageManager('.../tools/scoremanagertools/scorepackages/green_example_score')
+            ScorePackageManager('.../tools/scoremanagertools/scorepackages/red_example_score')
 
         Returns list.
         '''
@@ -445,9 +445,9 @@ class ScorePackageWrangler(PackageWrangler):
             ...     in_user_asset_library=False, 
             ...     in_user_score_packages=False):
             ...     x
-            ScorePackageProxy('.../tools/scoremanagertools/scorepackages/blue_example_score')
-            ScorePackageProxy('.../tools/scoremanagertools/scorepackages/green_example_score')
-            ScorePackageProxy('.../tools/scoremanagertools/scorepackages/red_example_score')
+            ScorePackageManager('.../tools/scoremanagertools/scorepackages/blue_example_score')
+            ScorePackageManager('.../tools/scoremanagertools/scorepackages/green_example_score')
+            ScorePackageManager('.../tools/scoremanagertools/scorepackages/red_example_score')
 
         Returns list.
         '''

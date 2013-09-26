@@ -285,16 +285,16 @@ class Session(abctools.AbjadObject):
         ::
 
             >>> session_in_score.current_score_package_proxy
-            ScorePackageProxy('.../foo')
+            ScorePackageManager('.../foo')
 
         (Ouput will vary according to configuration.)
 
         Returns score package proxy or none.
         '''
-        from experimental.tools.scoremanagertools.proxies.ScorePackageProxy \
-            import ScorePackageProxy
+        from experimental.tools.scoremanagertools.proxies.ScorePackageManager \
+            import ScorePackageManager
         if self.is_in_score:
-            return ScorePackageProxy(
+            return ScorePackageManager(
                 packagesystem_path=self.current_score_package_path,
                 session=self)
 

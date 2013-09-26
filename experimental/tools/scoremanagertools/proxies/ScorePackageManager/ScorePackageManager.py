@@ -4,7 +4,7 @@ from experimental.tools.scoremanagertools.proxies.PackageProxy \
     import PackageProxy
 
 
-class ScorePackageProxy(PackageProxy):
+class ScorePackageManager(PackageProxy):
 
     ### INITIALIZER ###
 

@@ -4,7 +4,7 @@ import py
 py.test.skip('unskip me after making decision about cache.')
 
 
-def test_ScorePackageProxy_interactively_edit_title_01():
+def test_ScorePackageManager_interactively_edit_title_01():
 
     try:
         score_manager = scoremanagertools.scoremanager.ScoreManager()
