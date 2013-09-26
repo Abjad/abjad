@@ -90,6 +90,15 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 )
             return file_path
 
+    def _get_current_view_module_proxy(self):
+        from experimental.tools import scoremanagertools
+        file_path = self._get_current_view_file_path()
+        proxy = scoremanagertools.proxies.ModuleProxy(
+            file_path,
+            session=self.session,
+            )
+        return proxy
+
     @abc.abstractmethod
     def _handle_main_menu_result(self, result):
         pass
@@ -240,7 +249,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         '''
         pass
 
-
     def interactively_list_views(
         self,
         pending_user_input=None,
@@ -248,15 +256,24 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self.session.io_manager.assign_user_input(pending_user_input)
         view_inventory = self._read_view_inventory_from_disk()
         if view_inventory is None:
-            message = 'no views defined.'
+            message = 'no views found.'
             self.session.io_manager.proceed(message)
             return
+        lines = []
         names = [x.name for x in view_inventory]
-        message = '{} views found.'
-        message = message.format(len(names))
-        self.session.io_manager.display(message)
+        view_count = len(view_inventory)
+        view_string = 'view'
+        if view_count != 1:
+            view_string = stringtools.pluralize_string(view_string)
+        message = '{} {} found:'
+        message = message.format(view_count, view_string)
+        lines.append(message)
+        lines.append('')
+        names = ['\t' + x for x in names]
+        lines.extend(names)
+        lines.append('')
+        self.session.io_manager.display(lines)
         self.session.io_manager.proceed()
-
 
     def interactively_make_view(
         self,
@@ -289,7 +306,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self,
         pending_user_input=None,
         ):
-        pass
+        self.session.io_manager.print_not_yet_implemented()
 
     # TODO: write test
     def interactively_remove_assets(
@@ -413,6 +430,10 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self.session.pop_breadcrumb()
         self.session.restore_breadcrumbs(cache=cache)
         return result
+
+    def interactively_view_views_module(self):
+        proxy = self._get_current_view_module_proxy()
+        proxy.interactively_view()
 
     def list_asset_filesystem_paths(
         self,
@@ -589,7 +610,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     user_input_to_action = {
         'ren': interactively_rename_asset,
         'rm': interactively_remove_assets,
-        'vl': interactively_list_views,
-        'vn': interactively_make_view,
-        'vs': interactively_select_view,
+        'vwl': interactively_list_views,
+        'vwn': interactively_make_view,
+        'vws': interactively_select_view,
+        'vwx': interactively_view_views_module,
         }

@@ -37,6 +37,8 @@ class SegmentPackageWrangler(PackageWrangler):
     def _handle_main_menu_result(self, result):
         if result in self.user_input_to_action:
             self.user_input_to_action[result](self)
+        elif result == 'user entered lone return':
+            pass
         else:
             segment_package_proxy = self._initialize_asset_proxy(result)
             segment_package_proxy._run()
@@ -53,9 +55,10 @@ class SegmentPackageWrangler(PackageWrangler):
         command_section = main_menu.make_command_section()
         command_section.append(('new segment', 'new'))
         hidden_section = main_menu.make_command_section(is_hidden=True)
-        hidden_section.append(('views - list', 'vl'))
-        hidden_section.append(('views - new', 'vn'))
-        hidden_section.append(('views - select', 'vs'))
+        hidden_section.append(('views - list', 'vwl'))
+        hidden_section.append(('views - new', 'vwn'))
+        hidden_section.append(('views - select', 'vws'))
+        hidden_section.append(('views - views module', 'vwx'))
         return main_menu
 
     ### PUBLIC PROPERTIES ###

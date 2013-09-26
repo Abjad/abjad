@@ -88,7 +88,7 @@ class SegmentPackageProxy(PackageProxy):
         hidden_section.append(('versioned output pdf - view', 'pdfv'))
         display_string = 'versioned segment definition module - view'
         hidden_section.append((display_string, 'pyver'))
-        hidden_section.append(('list versions directory', 'vl'))
+        hidden_section.append(('list versions directory', 'vrl'))
         return main_menu
 
     ### PUBLIC PROPERTIES ###
@@ -392,5 +392,5 @@ class SegmentPackageProxy(PackageProxy):
         'pdfver': interactively_view_versioned_output_pdf,
         'pyver': interactively_view_versioned_segment_definition_module,
         'pdfs': interactively_save_to_versions_directory,
-        'vl': interactively_list_versions_directory,
+        'vrl': interactively_list_versions_directory,
         })

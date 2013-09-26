@@ -15,7 +15,9 @@ class PackageProxy(DirectoryManager):
             self.configuration.packagesystem_path_to_filesystem_path(
             packagesystem_path)
         DirectoryManager.__init__(self, 
-            filesystem_path=filesystem_path, session=session)
+            filesystem_path=filesystem_path, 
+            session=session,
+            )
         packagesystem_path = \
             self.configuration.filesystem_path_to_packagesystem_path(
             filesystem_path)
@@ -233,14 +235,12 @@ class PackageProxy(DirectoryManager):
         self.session.is_backtracking_locally = True
 
     def interactively_restore_initializer(self):
-        #self.initializer_file_proxy.interactively_restore(prompt=True)
         self.initializer_file_proxy.write_stub_to_disk()
         self.session.io_manager.proceed(is_interactive=True)
 
     def interactively_set_package_path(self):
         getter = self.session.io_manager.make_getter(where=self._where)
-        getter.append_snake_case_package_name(
-            'package name')
+        getter.append_snake_case_package_name('package name')
         result = getter._run()
         if self.session.backtrack():
             return
