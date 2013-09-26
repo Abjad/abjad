@@ -80,6 +80,15 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             directory_path = os.path.join(*parts)
             return directory_path
 
+    def _get_current_view_file_path(self):
+        directory_path = self._get_current_directory_path_of_interest()
+        if directory_path:
+            file_path = os.path.join(
+                directory_path,
+                '__views__.py',
+                )
+            return file_path
+
     @abc.abstractmethod
     def _handle_main_menu_result(self, result):
         pass
@@ -165,6 +174,17 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             paths,
             )
 
+    def _read_view_inventory_from_disk(self):
+        from experimental.tools import scoremanagertools
+        view_file_path = self._get_current_view_file_path()
+        if view_file_path is None:
+            return
+        proxy = scoremanagertools.proxies.ModuleProxy(
+            view_file_path,
+            session=self.session,
+            )
+        print proxy
+
     def _run(
         self, 
         cache=False, 
@@ -239,13 +259,16 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             editor._run()
         if self.session.backtrack():
             return
-        display_strings = editor.target
-        print display_strings
-        #view = self.session.io_manager.make_view(display_strings)
-        #self.write_view_to_disk(view)
-        directory_path = self._get_current_directory_path_of_interest()
-        print directory_path
-        self.session.io_manager.proceed()
+        tokens = editor.target
+        getter = self.session.io_manager.make_getter()
+        getter.append_string('view name')
+        with self.backtracking:
+            name = getter._run()
+        if self.session.backtrack():
+            return
+        view = self.session.io_manager.make_view(tokens, name=name)
+        print view
+        self.write_view_to_disk(view)
 
     def interactively_select_view(
         self,
@@ -521,6 +544,19 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             self._current_storehouse_filesystem_path, asset_name)
         asset_proxy = self._initialize_asset_proxy(asset_filesystem_path)
         asset_proxy.write_stub_to_disk()
+
+    def write_view_to_disk(self, view, prompt=True):
+        from experimental.tools import scoremanagertools
+        view_file_path = self._get_current_view_file_path()
+        if view_file_path is None:
+            return
+        print view_file_path
+        print view.storage_format
+        proxy = scoremanagertools.proxies.ModuleProxy(
+            view_file_path,
+            session=self.session,
+            )
+        self.session.io_manager.proceed(is_interactive=prompt)
 
     ### UI MANIFEST ###
 

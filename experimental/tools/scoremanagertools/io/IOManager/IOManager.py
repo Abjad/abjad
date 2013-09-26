@@ -122,7 +122,8 @@ class IOManager(AbjadObject):
         else:
             return directive
 
-    def handle_raw_input(self, 
+    def handle_raw_input(
+        self, 
         prompt_string, 
         include_chevron=True, 
         include_newline=True, 
@@ -156,7 +157,8 @@ class IOManager(AbjadObject):
             self.session.io_transcript.append_lines(menu_chunk)
         return user_input
 
-    def handle_raw_input_with_default(self, 
+    def handle_raw_input_with_default(
+        self, 
         prompt_string, 
         default_value=None, 
         include_chevron=True, 
@@ -222,13 +224,27 @@ class IOManager(AbjadObject):
 
     def make_getter(self, where=None):
         from experimental.tools import scoremanagertools
-        return scoremanagertools.io.UserInputGetter(
-            where=where, session=self.session)
+        getter = scoremanagertools.io.UserInputGetter(
+            where=where, 
+            session=self.session,
+            )
+        return getter
 
     def make_menu(self, where=None):
         from experimental.tools import scoremanagertools
-        return scoremanagertools.io.Menu(
-            where=where, session=self.session)
+        menu = scoremanagertools.io.Menu(
+            where=where, 
+            session=self.session,
+            )
+        return menu
+
+    def make_view(self, tokens, name=None):
+        from experimental.tools import scoremanagertools
+        view = scoremanagertools.io.View(
+            tokens=tokens,
+            name=name,
+            )
+        return view
 
     def pop_from_pending_user_input(self):
         self.session.last_command_was_composite = False
