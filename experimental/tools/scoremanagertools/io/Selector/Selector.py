@@ -368,7 +368,7 @@ class Selector(ScoreManagerObject):
         selector = Selector(session=session)
         items = []
         proxy = selector.session.current_score_package_proxy
-        if hasattr(proxy, 'tempo_inventory'):
-            items = proxy.tempo_inventory
+        if hasattr(proxy, '_get_tempo_inventory'):
+            items = proxy._get_tempo_inventory()
         selector.items = items
         return selector

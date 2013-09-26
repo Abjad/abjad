@@ -169,7 +169,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             ):
-            display_strings.append(proxy.title)
+            display_strings.append(proxy._get_title())
             path_parts = (proxy.filesystem_path,) + \
                 self.score_package_asset_storehouse_path_infix_parts
             key = os.path.join(*path_parts)

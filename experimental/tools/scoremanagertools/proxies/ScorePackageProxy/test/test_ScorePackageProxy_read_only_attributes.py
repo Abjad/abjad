@@ -36,10 +36,3 @@ def test_ScorePackageProxy_read_only_attributes_01():
     assert score_proxy.get_tag('composer') is None
     assert score_proxy.get_tag('title') == 'Red Example Score'
     assert score_proxy.get_tag('year_of_completion') == 2013
-
-    assert score_proxy.top_level_directory_proxies == (
-        scoremanagertools.proxies.DistributionDirectoryManager(
-        'scoremanagertools.scorepackages.red_example_score'),
-        scoremanagertools.proxies.BuildDirectoryManager(
-        'scoremanagertools.scorepackages.red_example_score'),
-        )

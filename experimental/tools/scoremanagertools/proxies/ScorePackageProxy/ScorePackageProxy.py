@@ -67,10 +67,22 @@ class ScorePackageProxy(PackageProxy):
     ### PRIVATE METHODS ###
 
     def _get_annotated_title(self):
-        if isinstance(self.year_of_completion, int):
-            return self.title_with_year
+        if isinstance(self.get_tag('year_of_completion'), int):
+            return self._get_title_with_year()
         else:
-            return self.title
+            return self._get_title()
+
+    def _get_build_directory_path(self):
+        return os.path.join(
+            self.filesystem_path, 
+            'build',
+            )
+
+    def _get_distribution_directory_path(self):
+        return os.path.join(
+            self.filesystem_path, 
+            'distribution',
+            )
 
     def _get_instrumentation(self):
         return self._import_instrumentation_from_instrumentation_module()
@@ -88,6 +100,12 @@ class ScorePackageProxy(PackageProxy):
             'materials',
             )
 
+    def _get_score_templates_directory_path(self):
+        return os.path.join(
+            self.filesystem_path, 
+            'score_templates',
+            )
+
     def _get_segments_directory_path(self):
         return os.path.join(
             self.filesystem_path, 
@@ -98,6 +116,37 @@ class ScorePackageProxy(PackageProxy):
         return os.path.join(
             self.filesystem_path, 
             'stylesheets',
+            )
+
+    def _get_tempo_inventory(self):
+        wrangler = self.material_package_wrangler
+        for proxy in wrangler.list_asset_proxies(head=self.package_path):
+            class_name = proxy.get_tag('material_package_maker_class_name')
+            if class_name == 'TempoMarkInventoryMaterialPackageMaker':
+                return proxy.output_material
+
+    def _get_title(self):
+        return self.get_tag('title') or '(untitled score)'
+
+    def _get_title_with_year(self):
+        if self.get_tag('year_of_completion'):
+            result = '{} ({})'
+            result = result.format(
+                self._get_title(), 
+                self.get_tag('year_of_completion')
+                )
+            return result
+        else:
+            return self._get_title()
+
+    def _get_top_level_directory_paths(self):
+        return (
+            self._get_build_directory_path(),
+            self._get_distribution_directory_path(),
+            self._get_materials_directory_path(),
+            self._get_segments_directory_path(),
+            self._get_score_templates_directory_path(),
+            self._get_stylesheets_directory_path(),
             )
 
     def _handle_main_menu_result(self, result):
@@ -201,7 +250,7 @@ class ScorePackageProxy(PackageProxy):
         result = []
         return_value = 'title'
         prepopulated_value = None
-        prepopulated_value = self.title or None
+        prepopulated_value = self._get_title() or None
         result.append((return_value, None, prepopulated_value, return_value))
         forces_tagline = self.get_tag('forces_tagline')
         prepopulated_value = None
@@ -211,8 +260,9 @@ class ScorePackageProxy(PackageProxy):
         result.append((return_value, None, prepopulated_value, return_value))
         return_value = 'year'
         prepopulated_value = None
-        if self.year_of_completion:
-            prepopulated_value = str(self.year_of_completion)
+        year_of_completion = self.get_tag('year_of_completion')
+        if year_of_completion:
+            prepopulated_value = str(year_of_completion)
         result.append((return_value, None, prepopulated_value, return_value))
         catalog_number = self.get_tag('catalog_number')
         prepopulated_value = None
@@ -270,49 +320,6 @@ class ScorePackageProxy(PackageProxy):
     def stylesheet_wrangler(self):
         return self._stylesheet_wrangler
 
-    @property
-    def tempo_inventory(self):
-        for proxy in self.material_package_wrangler.list_asset_proxies(
-            head=self.package_path):
-            if proxy.get_tag('material_package_maker_class_name') == \
-                'TempoMarkInventoryMaterialPackageMaker':
-                return proxy.output_material
-
-    @property
-    def title(self):
-        return self.get_tag('title') or self.untitled_indicator
-
-    @property
-    def title_with_year(self):
-        if self.year_of_completion:
-            return '{} ({})'.format(self.title, self.year_of_completion)
-        else:
-            return self.title
-
-    @property
-    def top_level_directory_paths(self):
-        return tuple([x.filesystem_path 
-            for x in self.top_level_directory_proxies])
-
-    @property
-    def top_level_directory_proxies(self):
-        return (
-            self.distribution_directory_manager,
-            self.build_directory_manager,
-            )
-
-    @property
-    def untitled_indicator(self):
-        return '(untitled score)'
-
-    @apply
-    def year_of_completion():
-        def fget(self):
-            return self.get_tag('year_of_completion')
-        def fset(self, year_of_completion):
-            return self.add_tag('year_of_completion', year_of_completion)
-        return property(**locals())
-
     ### PUBLIC METHODS ###
 
     def interactively_edit_catalog_number(self):
@@ -363,7 +370,7 @@ class ScorePackageProxy(PackageProxy):
 
     def interactively_fix(self, is_interactive=True):
         result = True
-        for path in self.top_level_directory_paths:
+        for path in self._get_top_level_directory_paths():
             if not os.path.exists(path):
                 result = False
                 prompt = 'create {!r}? '.format(path)
@@ -415,7 +422,7 @@ class ScorePackageProxy(PackageProxy):
             message = message.format(self.filesystem_path)
             raise OSError(message)
         lines = []
-        for directory_path in self.top_level_directory_paths:
+        for directory_path in self._get_top_level_directory_paths():
             if os.path.exists(directory_path):
                 result = 'exists'
             else:

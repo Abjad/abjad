@@ -54,7 +54,7 @@ class StylesheetFileWrangler(FileWrangler):
                 score_filesystem_path)
             score_package_proxy = scoremanagertools.proxies.ScorePackageProxy(
                 packagesystem_path=packagesystem_path)
-            annotation = score_package_proxy.title
+            annotation = score_package_proxy._get_title()
         elif filesystem_path.startswith(
             self.configuration.built_in_stylesheets_directory_path):
             annotation = 'built-in'
