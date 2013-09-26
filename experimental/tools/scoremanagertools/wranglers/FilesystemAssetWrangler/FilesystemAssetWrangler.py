@@ -241,7 +241,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             return
         display_strings = editor.target
         print display_strings
-        print self.session.current_segments_directory_path
         #view = self.session.io_manager.make_view(display_strings)
         #self.write_view_to_disk(view)
         directory_path = self._get_current_directory_path_of_interest()
