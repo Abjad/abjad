@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 from experimental import *
 
 
@@ -8,19 +7,19 @@ def test_InstrumentationEditor_delete_performers_01():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(pending_user_input='red~example~score score~setup performers rm q')
+    score_manager._run(pending_user_input='red~example~score score~setup instrumentation rm q')
     assert score_manager.session.io_transcript.signature == (9,)
 
-    score_manager._run(pending_user_input='red~example~score score~setup performers rm b q')
+    score_manager._run(pending_user_input='red~example~score score~setup instrumentation rm b q')
     assert score_manager.session.io_transcript.signature == (11, (6, 9))
 
-    score_manager._run(pending_user_input='red~example~score score~setup performers rm home q')
+    score_manager._run(pending_user_input='red~example~score score~setup instrumentation rm home q')
     assert score_manager.session.io_transcript.signature == (11, (0, 9))
 
-    score_manager._run(pending_user_input='red~example~score score~setup performers rm score q')
+    score_manager._run(pending_user_input='red~example~score score~setup instrumentation rm score q')
     assert score_manager.session.io_transcript.signature == (11, (2, 9))
 
-    score_manager._run(pending_user_input='red~example~score score~setup performers rm foo q')
+    score_manager._run(pending_user_input='red~example~score score~setup instrumentation rm foo q')
     assert score_manager.session.io_transcript.signature == (11, (6, 9))
 
 

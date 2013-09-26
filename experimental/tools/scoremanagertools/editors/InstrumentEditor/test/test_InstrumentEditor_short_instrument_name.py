@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 from experimental import *
 
 
@@ -8,13 +7,13 @@ def test_InstrumentEditor_short_instrument_name_01():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(pending_user_input='red~example~score score~setup perf hornist horn sn q')
+    score_manager._run(pending_user_input='red~example~score score~setup instrumentation hornist horn sn q')
     assert score_manager.session.io_transcript.signature == (13,)
 
-    score_manager._run(pending_user_input='red~example~score score~setup performers hornist horn sn b q')
+    score_manager._run(pending_user_input='red~example~score score~setup instrumentation hornist horn sn b q')
     assert score_manager.session.io_transcript.signature == (15, (10, 13))
 
-    score_manager._run(pending_user_input='red~example~score score~setup performers hornist horn sn home q')
+    score_manager._run(pending_user_input='red~example~score score~setup instrumentation hornist horn sn home q')
     assert score_manager.session.io_transcript.signature == (15, (0, 13))
 
 
@@ -23,7 +22,7 @@ def test_InstrumentEditor_short_instrument_name_02():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(pending_user_input='red~example~score score~setup performers hornist horn sn -99 q')
+    score_manager._run(pending_user_input='red~example~score score~setup instrumentation hornist horn sn -99 q')
     assert score_manager.session.io_transcript.signature == (15,)
 
 

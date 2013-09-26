@@ -132,31 +132,22 @@ class ScorePackageProxy(PackageProxy):
         prepopulated_value = None
         prepopulated_value = self.title or None
         result.append((return_value, None, prepopulated_value, return_value))
-        return_value = 'year'
-        prepopulated_value = None
-        if self.year_of_completion:
-            prepopulated_value = str(self.year_of_completion)
-        result.append((return_value, None, prepopulated_value, return_value))
         forces_tagline = self.forces_tagline
         prepopulated_value = None
         return_value = 'tagline'
         if forces_tagline:
             prepopulated_value = self.forces_tagline
         result.append((return_value, None, prepopulated_value, return_value))
-
+        return_value = 'year'
+        prepopulated_value = None
+        if self.year_of_completion:
+            prepopulated_value = str(self.year_of_completion)
+        result.append((return_value, None, prepopulated_value, return_value))
         catalog_number = self.get_tag('catalog_number')
         prepopulated_value = None
         return_value = 'catalog number'
         if catalog_number:
             prepopulated_value = catalog_number
-        result.append((return_value, None, prepopulated_value, return_value))
-
-        return_value = 'performers'
-        prepopulated_value = None
-        instrumentation = self._get_instrumentation()
-        if instrumentation:
-            string = instrumentation.performer_name_string
-            prepopulated_value = string
         result.append((return_value, None, prepopulated_value, return_value))
         return result
 
@@ -396,7 +387,7 @@ class ScorePackageProxy(PackageProxy):
         assert isinstance(result, str)
         if result == 'catalog number':
             self.interactively_edit_catalog_number()   
-        elif result == 'performers':
+        elif result == 'instr':
             self.interactively_edit_instrumentation_specifier()
         elif result == 'tagline':
             self.interactively_edit_forces_tagline()
@@ -443,7 +434,7 @@ class ScorePackageProxy(PackageProxy):
             session=self.session, 
             target=target,
             )
-        editor._run() # maybe check for backtracking after this?
+        editor._run()
         self._write_instrumentation_to_disk(editor.target)
 
     def interactively_edit_title(self):
@@ -501,12 +492,10 @@ class ScorePackageProxy(PackageProxy):
     def make_setup_menu(self):
         setup_menu = self.session.io_manager.make_menu(where=self._where)
         attribute_section = setup_menu.make_attribute_section()
-        attribute_section.menu_entries = self._make_setup_menu_entries()
-#        menu_entries = self._make_setup_menu_entries()
-#        attribute_section.menu_entries = menu_entries[:-1]
-#        performer_entry = menu_entries[-1]
-#        command_section = setup_menu.make_attribute_section()
-#        attribute_section.menu_entries = [performer_entry]
+        menu_entries = self._make_setup_menu_entries()
+        attribute_section.menu_entries = menu_entries
+        command_section = setup_menu.make_command_section()
+        command_section.append(('instrumentation', 'instr'))
         return setup_menu
 
     def make_svn_menu(self):

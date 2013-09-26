@@ -106,11 +106,11 @@ def test_ScoreManager_10():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(pending_user_input='Mon perf home q')
+    score_manager._run(pending_user_input='Mon instrumentation home q')
     ts_1 = score_manager.session.io_transcript.signature
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(pending_user_input='Mon perf home q')
+    score_manager._run(pending_user_input='Mon instrumentation home q')
     ts_2 = score_manager.session.io_transcript.signature
 
     assert ts_1 == ts_2

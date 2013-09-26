@@ -7,17 +7,17 @@ def test_InstrumentationEditor_run_01():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(pending_user_input='red~example~score score~setup perf q')
+    score_manager._run(pending_user_input='red~example~score score~setup instrumentation q')
     assert score_manager.session.io_transcript.signature == (8,)
 
-    score_manager._run(pending_user_input='red~example~score score~setup perf b q')
+    score_manager._run(pending_user_input='red~example~score score~setup instrumentation b q')
     assert score_manager.session.io_transcript.signature == (10, (4, 8))
 
-    score_manager._run(pending_user_input='red~example~score score~setup perf home q')
+    score_manager._run(pending_user_input='red~example~score score~setup instrumentation home q')
     assert score_manager.session.io_transcript.signature == (10, (0, 8))
 
-    score_manager._run(pending_user_input='red~example~score score~setup perf score q')
+    score_manager._run(pending_user_input='red~example~score score~setup instrumentation score q')
     assert score_manager.session.io_transcript.signature == (10, (2, 8))
 
-    score_manager._run(pending_user_input='red~example~score score~setup perf foo q')
+    score_manager._run(pending_user_input='red~example~score score~setup instrumentation foo q')
     assert score_manager.session.io_transcript.signature == (10, (6, 8))
