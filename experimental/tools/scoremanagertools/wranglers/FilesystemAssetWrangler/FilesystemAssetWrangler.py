@@ -75,7 +75,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def _get_current_directory_path_of_interest(self):
         score_directory_path = self.session.current_score_directory_path
-        print score_directory_path, 'SDP'
         if score_directory_path is not None:
             parts = (score_directory_path,)
             parts += self.score_package_asset_storehouse_path_infix_parts
