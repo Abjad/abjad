@@ -587,8 +587,9 @@ class Session(abctools.AbjadObject):
             return self._snake_case_current_score_name
         def fset(self, snake_case_current_score_name):
             assert isinstance(snake_case_current_score_name, (str, type(None)))
-            self._snake_case_current_score_name = \
-                snake_case_current_score_name
+            if isinstance(snake_case_current_score_name, str):
+                assert '.' not in snake_case_current_score_name
+            self._snake_case_current_score_name = snake_case_current_score_name
         return property(**locals())
 
     @property

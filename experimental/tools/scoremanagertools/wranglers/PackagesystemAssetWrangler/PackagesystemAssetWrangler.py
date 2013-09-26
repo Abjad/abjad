@@ -64,8 +64,46 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         paths = self.list_visible_asset_packagesystem_paths(head=head)
         assert len(names) == len(keys) == len(paths)
         if names:
-            return sequencetools.zip_sequences_cyclically(
+            entries = sequencetools.zip_sequences_cyclically(
                 names, [None], [None], paths)
+            package_proxy = self._get_current_package_proxy()
+            if package_proxy:
+                view_name = package_proxy.get_tag('view_name')
+                if view_name:
+                    view_inventory = self._read_view_inventory_from_disk()
+                    if view_inventory:
+                        for view in view_inventory:
+                            if view.name == view_name:
+                                correct_view = view
+                                break
+                        else:
+                            correct_view = None
+                        if correct_view:
+                            entries = \
+                                self._sort_asset_menu_entries_by_view(
+                                entries,
+                                correct_view,
+                                )
+            return entries
+
+    @staticmethod
+    def _sort_asset_menu_entries_by_view(entries, view):
+        entries_found_in_view = len(entries) * [None]
+        entries_not_found_in_view = []
+        for entry in entries:
+            name = entry[0]
+            if name in view:
+                index = view.index(name)
+                entries_found_in_view[index] = entry
+            else:
+                entries_not_found_in_view.append(entry)
+        entries_found_in_view = [
+            x for x in entries_found_in_view 
+            if not x is None
+            ]
+        sorted_entries = entries_found_in_view + entries_not_found_in_view
+        assert len(sorted_entries) == len(entries)
+        return sorted_entries
 
     ### PUBLIC METHODS ###
 

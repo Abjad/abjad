@@ -16,6 +16,7 @@ class PackageProxy(DirectoryManager):
                 packagesystem_path)
         else:
             filesystem_path = packagesystem_path
+        assert '.' not in filesystem_path, repr(filesystem_path)
         DirectoryManager.__init__(self, 
             filesystem_path=filesystem_path, 
             session=session,
@@ -23,6 +24,7 @@ class PackageProxy(DirectoryManager):
         packagesystem_path = \
             self.configuration.filesystem_path_to_packagesystem_path(
             filesystem_path)
+        assert os.path.sep not in packagesystem_path, repr(packagesystem_path)
         self._package_path = packagesystem_path
 
     ### PRIVATE PROPERTIES ###

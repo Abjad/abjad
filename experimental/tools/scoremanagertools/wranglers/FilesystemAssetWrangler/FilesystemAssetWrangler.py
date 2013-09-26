@@ -75,10 +75,12 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def _get_current_directory_path_of_interest(self):
         score_directory_path = self.session.current_score_directory_path
+        print score_directory_path, 'SDP'
         if score_directory_path is not None:
             parts = (score_directory_path,)
             parts += self.score_package_asset_storehouse_path_infix_parts
             directory_path = os.path.join(*parts)
+            assert '.' not in directory_path, repr(directory_path)
             return directory_path
 
     def _get_current_package_proxy(self):
@@ -179,21 +181,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     @abc.abstractmethod
     def _make_main_menu(self, head=None):
         pass
-
-    def _make_asset_menu_entries(self, head=None, include_extension=False):
-        raise Exception('FOO')
-        names = self.list_asset_names(
-            head=head, 
-            include_extension=include_extension,
-            )
-        paths = self.list_asset_filesystem_paths(head=head)
-        assert len(names) == len(paths)
-        return sequencetools.zip_sequences_cyclically(
-            names, 
-            [None], 
-            [None], 
-            paths,
-            )
 
     def _read_view_inventory_from_disk(self):
         from experimental.tools import scoremanagertools
@@ -335,11 +322,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             view_name = selector._run()
         if self.session.backtrack():
             return
-        message = 'you selected view {!r}'.format(view_name)
         proxy = self._get_current_package_proxy()
         proxy.add_tag('view_name', view_name)
-        self.session.io_manager.proceed(message)
-        # ZZZ
 
     # TODO: write test
     def interactively_remove_assets(

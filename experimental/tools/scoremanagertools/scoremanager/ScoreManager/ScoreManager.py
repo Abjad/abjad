@@ -268,8 +268,9 @@ class ScoreManager(ScoreManagerObject):
     def interactively_edit_score(self, score_package_path):
         proxy = self.score_package_wrangler._initialize_asset_proxy(
             score_package_path)
-        proxy.session.snake_case_current_score_name = \
-            score_package_path
+        #proxy.session.snake_case_current_score_name = score_package_path
+        score_package_name = score_package_path.split('.')[-1]
+        proxy.session.snake_case_current_score_name = score_package_name
         proxy._run(cache=True)
         self.session.snake_case_current_score_name = None
 
