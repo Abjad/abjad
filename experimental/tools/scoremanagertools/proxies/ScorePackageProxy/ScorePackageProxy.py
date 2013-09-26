@@ -50,7 +50,27 @@ class ScorePackageProxy(PackageProxy):
             session=self.session,
             )
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _backtracking_source(self):
+        return 'score'
+
+    @property
+    def _breadcrumb(self):
+        return self.annotated_title
+
     ### PRIVATE METHODS ###
+
+    def _get_instrumentation(self):
+        return self._import_instrumentation_from_instrumentation_module()
+
+    def _get_instrumentation_module_file_path(self):
+        file_path = os.path.join(
+            self.filesystem_path,
+            'instrumentation.py',
+            )
+        return file_path
 
     def _handle_main_menu_result(self, result):
         assert isinstance(result, str)
@@ -62,6 +82,49 @@ class ScorePackageProxy(PackageProxy):
             message = 'unknown user input: {!r}.'.format(result)
             raise ValueError(message)
 
+    def _handle_repository_menu_result(self, result):
+        if result == 'add':
+            self.repository_add(is_interactive=True)
+        elif result == 'ci':
+            self.repository_ci(is_interactive=True)
+            return True
+        elif result == 'st':
+            self.repository_st(is_interactive=True)
+        else:
+            raise ValueError
+
+    def _handle_setup_menu_result(self, result):
+        assert isinstance(result, str)
+        if result == 'catalog number':
+            self.interactively_edit_catalog_number()   
+        elif result == 'instr':
+            self.interactively_edit_instrumentation_specifier()
+        elif result == 'tagline':
+            self.interactively_edit_forces_tagline()
+        elif result == 'title':
+            self.interactively_edit_title()
+        elif result == 'year':
+            self.interactively_edit_year_of_completion()
+        elif result == 'user entered lone return':
+            pass
+        else:
+            raise ValueError(result)
+
+    def _import_instrumentation_from_instrumentation_module(self):
+        from experimental.tools import scoremanagertools
+        packagesystem_path = '.'.join([
+            self.package_path,
+            'instrumentation',
+            ])
+        proxy = scoremanagertools.proxies.ModuleProxy(
+            packagesystem_path,
+            session=self.session,
+            )
+        instrumentation = proxy.execute_file_lines(
+            return_attribute_name='instrumentation',
+            )
+        return instrumentation
+    
     def _make_main_menu(self):
         main_menu = self.session.io_manager.make_menu(where=self._where)
         command_section = main_menu.make_command_section()
@@ -89,43 +152,23 @@ class ScorePackageProxy(PackageProxy):
         hidden_section.append(('view metadata', 'metadata'))
         return main_menu
 
-    ### PRIVATE PROPERTIES ###
+    def _make_repository_menu(self):
+        repository_menu = self.session.io_manager.make_menu(where=self._where)
+        command_section = repository_menu.make_command_section()
+        command_section.append(('st', 'st'))
+        command_section.append(('add', 'add'))
+        command_section.append(('ci', 'ci'))
+        return repository_menu
 
-    @property
-    def _backtracking_source(self):
-        return 'score'
+    def _make_setup_menu(self):
+        setup_menu = self.session.io_manager.make_menu(where=self._where)
+        attribute_section = setup_menu.make_attribute_section()
+        menu_entries = self._make_setup_menu_entries()
+        attribute_section.menu_entries = menu_entries
+        command_section = setup_menu.make_command_section()
+        command_section.append(('instrumentation', 'instr'))
+        return setup_menu
 
-    @property
-    def _breadcrumb(self):
-        return self.annotated_title
-
-    ### PRIVATE METHODS ###
-
-    def _get_instrumentation(self):
-        return self._import_instrumentation_from_instrumentation_module()
-
-    def _get_instrumentation_module_file_path(self):
-        file_path = os.path.join(
-            self.filesystem_path,
-            'instrumentation.py',
-            )
-        return file_path
-
-    def _import_instrumentation_from_instrumentation_module(self):
-        from experimental.tools import scoremanagertools
-        packagesystem_path = '.'.join([
-            self.package_path,
-            'instrumentation',
-            ])
-        proxy = scoremanagertools.proxies.ModuleProxy(
-            packagesystem_path,
-            session=self.session,
-            )
-        instrumentation = proxy.execute_file_lines(
-            return_attribute_name='instrumentation',
-            )
-        return instrumentation
-    
     def _make_setup_menu_entries(self):
         result = []
         return_value = 'title'
@@ -204,11 +247,6 @@ class ScorePackageProxy(PackageProxy):
             for name in self.top_level_directory_paths)
 
     @property
-    def has_correct_initializers(self):
-        return all(os.path.exists(initializer) 
-            for initializer in self.score_initializer_file_names)
-
-    @property
     def has_correct_package_structure(self):
         if self.has_correct_directory_structure:
             if self.has_correct_initializers:
@@ -243,11 +281,11 @@ class ScorePackageProxy(PackageProxy):
     def materials_package_path(self):
         return '.'.join([self.package_path, 'materials'])
 
-    @property
-    def score_initializer_file_names(self):
-        return (
-            self.initializer_file_name,
-            )
+#    @property
+#    def score_initializer_file_names(self):
+#        return (
+#            self.initializer_file_name,
+#            )
 
     @property
     def score_package_wranglers(self):
@@ -329,7 +367,53 @@ class ScorePackageProxy(PackageProxy):
 
     ### PUBLIC METHODS ###
 
-    def fix(self, is_interactive=True):
+    def interactively_edit_catalog_number(self):
+        getter = self.session.io_manager.make_getter(where=self._where)
+        getter.append_string('Catalog number')
+        result = getter._run()
+        if self.session.backtrack():
+            return
+        self.add_tag('catalog_number', result)
+
+    def interactively_edit_forces_tagline(self):
+        getter = self.session.io_manager.make_getter(where=self._where)
+        getter.append_string('Forces tagline')
+        result = getter._run()
+        if self.session.backtrack():
+            return
+        self.add_tag('forces_tagline', result)
+
+    def interactively_edit_instrumentation_specifier(self):
+        from experimental.tools import scoremanagertools
+        target = self._get_instrumentation()
+        editor = scoremanagertools.editors.InstrumentationEditor(
+            session=self.session, 
+            target=target,
+            )
+        editor._run()
+        self._write_instrumentation_to_disk(editor.target)
+
+    def interactively_edit_title(self):
+        getter = self.session.io_manager.make_getter(where=self._where)
+        getter.append_string('new title')
+        result = getter._run()
+        if self.session.backtrack():
+            return
+        self.add_tag('title', result)
+
+    def interactively_edit_year_of_completion(self):
+        getter = self.session.io_manager.make_getter(where=self._where)
+        getter.append_integer_in_range(
+            'year of completion', 
+            start=1, 
+            allow_none=True,
+            )
+        result = getter._run()
+        if self.session.backtrack():
+            return
+        self.add_tag('year_of_completion', result)
+
+    def interactively_fix(self, is_interactive=True):
         result = True
         for path in self.top_level_directory_paths:
             if not os.path.exists(path):
@@ -383,82 +467,23 @@ class ScorePackageProxy(PackageProxy):
             is_interactive=is_interactive)
         return result
 
-    def handle_setup_menu_result(self, result):
-        assert isinstance(result, str)
-        if result == 'catalog number':
-            self.interactively_edit_catalog_number()   
-        elif result == 'instr':
-            self.interactively_edit_instrumentation_specifier()
-        elif result == 'tagline':
-            self.interactively_edit_forces_tagline()
-        elif result == 'title':
-            self.interactively_edit_title()
-        elif result == 'year':
-            self.interactively_edit_year_of_completion()
-        elif result == 'user entered lone return':
-            pass
-        else:
-            raise ValueError(result)
-
-    def handle_repository_menu_result(self, result):
-        if result == 'add':
-            self.repository_add(is_interactive=True)
-        elif result == 'ci':
-            self.repository_ci(is_interactive=True)
-            return True
-        elif result == 'st':
-            self.repository_st(is_interactive=True)
-        else:
-            raise ValueError
-
-    def interactively_edit_catalog_number(self):
-        getter = self.session.io_manager.make_getter(where=self._where)
-        getter.append_string('Catalog number')
-        result = getter._run()
-        if self.session.backtrack():
-            return
-        self.add_tag('catalog_number', result)
-
-    def interactively_edit_forces_tagline(self):
-        getter = self.session.io_manager.make_getter(where=self._where)
-        getter.append_string('Forces tagline')
-        result = getter._run()
-        if self.session.backtrack():
-            return
-        self.add_tag('forces_tagline', result)
-
-    def interactively_edit_instrumentation_specifier(self):
-        from experimental.tools import scoremanagertools
-        target = self._get_instrumentation()
-        editor = scoremanagertools.editors.InstrumentationEditor(
-            session=self.session, 
-            target=target,
-            )
-        editor._run()
-        self._write_instrumentation_to_disk(editor.target)
-
-    def interactively_edit_title(self):
-        getter = self.session.io_manager.make_getter(where=self._where)
-        getter.append_string('new title')
-        result = getter._run()
-        if self.session.backtrack():
-            return
-        self.add_tag('title', result)
-
-    def interactively_edit_year_of_completion(self):
-        getter = self.session.io_manager.make_getter(where=self._where)
-        getter.append_integer_in_range(
-            'year of completion', 
-            start=1, 
-            allow_none=True,
-            )
-        result = getter._run()
-        if self.session.backtrack():
-            return
-        self.add_tag('year_of_completion', result)
-
-    def interactively_make_score(self):
-        self.session.io_manager.print_not_yet_implemented()
+    def interactively_profile(self, prompt=True):
+        if not os.path.exists(self.filesystem_path):
+            message = 'directory {!r} does not exist.'
+            message = message.format(self.filesystem_path)
+            raise OSError(message)
+        lines = []
+        for directory_path in self.top_level_directory_paths:
+            if os.path.exists(directory_path):
+                result = 'exists'
+            else:
+                result = "doesn't exist"
+            line = '{} {}.'
+            line = line.format(directory_path, result)
+            lines.append(line)
+        lines.append('')
+        self.session.io_manager.display(lines)
+        self.session.io_manager.proceed(is_interactive=prompt)
 
     def interactively_remove(self):
         line = 'WARNING! Score package {!r} will be completely removed.'
@@ -486,26 +511,6 @@ class ScorePackageProxy(PackageProxy):
         #return self.instrumentation_module_proxy.interactively_view()
         return self.instrumentation_module_proxy.interactively_edit()
 
-    def make_asset_structure(self):
-        self.fix_score_package_directory_structure(is_interactive=False)
-
-    def make_setup_menu(self):
-        setup_menu = self.session.io_manager.make_menu(where=self._where)
-        attribute_section = setup_menu.make_attribute_section()
-        menu_entries = self._make_setup_menu_entries()
-        attribute_section.menu_entries = menu_entries
-        command_section = setup_menu.make_command_section()
-        command_section.append(('instrumentation', 'instr'))
-        return setup_menu
-
-    def make_repository_menu(self):
-        repository_menu = self.session.io_manager.make_menu(where=self._where)
-        command_section = repository_menu.make_command_section()
-        command_section.append(('st', 'st'))
-        command_section.append(('add', 'add'))
-        command_section.append(('ci', 'ci'))
-        return repository_menu
-
     def manage_build_directory(self):
         self.build_directory_manager._run()
 
@@ -523,14 +528,14 @@ class ScorePackageProxy(PackageProxy):
         while True:
             breadcrumb = '{} - setup'.format(self.annotated_title)
             self.session.push_breadcrumb(breadcrumb)
-            setup_menu = self.make_setup_menu()
+            setup_menu = self._make_setup_menu()
             result = setup_menu._run(clear=clear)
             if self.session.backtrack():
                 break
             elif not result:
                 self.session.pop_breadcrumb()
                 continue
-            self.handle_setup_menu_result(result)
+            self._handle_setup_menu_result(result)
             if self.session.backtrack():
                 break
             self.session.pop_breadcrumb()
@@ -544,77 +549,30 @@ class ScorePackageProxy(PackageProxy):
         self.session.cache_breadcrumbs(cache=cache)
         while True:
             self.session.push_breadcrumb('repository commands')
-            menu = self.make_repository_menu()
+            menu = self._make_repository_menu()
             result = menu._run(clear=clear)
             if self.session.backtrack():
                 break
             elif not result:
                 self.session.pop_breadcrumb()
                 continue
-            self.handle_repository_menu_result(result)
+            self._handle_repository_menu_result(result)
             if self.session.backtrack():
                 break
             self.session.pop_breadcrumb()
         self.session.pop_breadcrumb()
         self.session.restore_breadcrumbs(cache=cache)
 
-    def profile(self, prompt=True):
-        if not os.path.exists(self.filesystem_path):
-            message = 'directory {!r} does not exist.'
-            message = message.format(self.filesystem_path)
-            raise OSError(message)
-        lines = []
-        for subdirectory_path in self.top_level_directory_paths:
-            lines.append('{} {}'.format(
-                subdirectory_path.ljust(80), 
-                os.path.exists(subdirectory_path)))
-        for initializer in self.score_initializer_file_names:
-            lines.append('{} {}'.format(
-                initializer.ljust(80), 
-                os.path.exists(initializer)))
-        lines.append('')
-        self.session.io_manager.display(lines)
-        self.session.io_manager.proceed(is_interactive=prompt)
-
-    def summarize_materials(self):
-        wrangler = self.material_package_wrangler
-        materials = wrangler.space_delimited_lowercase_names
-        lines = []
-        if not materials:
-            lines.append('{}Materials (none yet)'.format(self._make_tab(1)))
-        else:
-            lines.append('{}Materials'.format(self._make_tab(1)))
-        if materials:
-            lines.append('')
-        for i, material in enumerate(materials):
-            lines.append('{}({}) {}'.format(
-                self._make_tab(1), 
-                i + 1, 
-                material))
-        self.session.io_manager.display(lines)
-
-    def summarize_segments(self):
-        segments = self.segment_wrangler.list_asset_names()
-        lines = []
-        if not segments:
-            lines.append('{}Segments (none yet)'.format(self._make_tab(1)))
-        else:
-            lines.append('{}Segments'.format(self._make_tab(1)))
-        for segment in segments:
-            lines.append('{}{}'.format(self._make_tab(2), segment))
-        lines.append('')
-        self.session.io_manager.display(lines)
-
     ### UI MANIFEST ###
 
     user_input_to_action = PackageProxy.user_input_to_action.copy()
     user_input_to_action.update({
-        'fix': fix,
+        'fix': interactively_fix,
         'g': manage_segments,
         'instrumentation': interactively_view_instrumentation_module,
         'm': manage_materials,
         'pdfv': interactively_view_score,
-        'profile': profile,
+        'profile': interactively_profile,
         'removescore': interactively_remove,
         'rep': manage_repository,
         's': manage_setup,

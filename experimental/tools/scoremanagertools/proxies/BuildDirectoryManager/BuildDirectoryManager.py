@@ -53,10 +53,12 @@ class BuildDirectoryManager(DirectoryManager):
         superclass = super(BuildDirectoryManager, self)
         main_menu = superclass._make_main_menu()
         command_section = main_menu.make_command_section()
+        command_section.append(('back cover - manage', 'bc'))
+        command_section = main_menu.make_command_section()
         if self._get_file_path_ending_with('back-cover.pdf'):
-            command_section.append(('back cover - view', 'bc'))
+            command_section.append(('back cover - view', 'bcv'))
         if self._get_file_path_ending_with('front-cover.pdf'):
-            command_section.append(('front cover - view', 'fc'))
+            command_section.append(('front cover - view', 'fcv'))
         if self._get_file_path_ending_with('preface.pdf'):
             command_section.appned(('preface - view', 'p'))
         if self._get_file_path_ending_with('score.pdf'):
@@ -110,6 +112,14 @@ class BuildDirectoryManager(DirectoryManager):
             message = message.format(directory_entry)
             self.session.io_manager.display(message)
         self.session.io_manager.proceed('')
+
+    def interactively_manage_back_cover(self, pending_user_input=None):
+        r'''Interactively manages back cover.
+
+        Returns none.
+        '''
+        #self.session.io_manager.assign_user_input(pending_user_input)
+        self.session.io_manager.print_not_yet_implemented()
 
     def interactively_view_back_cover(self, pending_user_input=None):
         r'''Interactively views back cover.
@@ -166,9 +176,10 @@ class BuildDirectoryManager(DirectoryManager):
 
     user_input_to_action = DirectoryManager.user_input_to_action.copy()
     user_input_to_action.update({
-        'bc': interactively_view_back_cover,
+        'bc': interactively_manage_back_cover,
+        'bcv': interactively_view_back_cover,
         'cp': interactively_copy_segment_pdfs,
-        'fc': interactively_view_front_cover,
+        'fcv': interactively_view_front_cover,
         'p': interactively_view_preface,
         's': interactively_view_score,
         'ts': typeset_score,

@@ -31,8 +31,6 @@ def test_ScorePackageProxy_read_only_attributes_01():
         scoremanagertools.wranglers.MaterialPackageWrangler,
         )
 
-    assert score_proxy.has_correct_initializers
-
     # TODO: create Red Example Score instrumentation
 #    instrumentation = scoretools.InstrumentationSpecifier()
 #    performer_1 = scoretools.Performer('flutist')
@@ -48,14 +46,12 @@ def test_ScorePackageProxy_read_only_attributes_01():
     # TODO: create Red Example Score instrumentation
     #assert score_proxy.instrumentation == instrumentation
     assert score_proxy.materials_package_path == \
-        'experimental.tools.scoremanagertools.scorepackages.red_example_score.materials'
+        'experimental.tools.scoremanagertools.scorepackages' + \
+        '.red_example_score.materials'
     assert score_proxy.title == 'Red Example Score'
     assert score_proxy.year_of_completion == 2013
 
     directory_path = score_proxy.configuration.built_in_score_packages_directory_path
-    assert score_proxy.score_initializer_file_names == (
-        os.path.join(directory_path, 'red_example_score', '__init__.py'),
-        )
 
     assert score_proxy.score_package_wranglers == (
         scoremanagertools.wranglers.SegmentPackageWrangler(),
@@ -63,7 +59,7 @@ def test_ScorePackageProxy_read_only_attributes_01():
 
     assert score_proxy.top_level_directory_proxies == (
         scoremanagertools.proxies.DistributionDirectoryManager(
-            'scoremanagertools.scorepackages.red_example_score'),
+        'scoremanagertools.scorepackages.red_example_score'),
         scoremanagertools.proxies.BuildDirectoryManager(
-            'scoremanagertools.scorepackages.red_example_score'),
+        'scoremanagertools.scorepackages.red_example_score'),
         )
