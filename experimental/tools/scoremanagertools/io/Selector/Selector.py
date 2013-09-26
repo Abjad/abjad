@@ -15,12 +15,14 @@ class Selector(ScoreManagerObject):
         items=None, 
         return_value_attribute='explicit',
         session=None,
+        where=None,
         ):
         ScoreManagerObject.__init__(self, session=session)
         self.is_numbered = is_numbered
         self.is_ranged = is_ranged
         self.items = items or []
         self.return_value_attribute = return_value_attribute
+        self.where = where
 
     ### PRIVATE PROPERTIES ###
 

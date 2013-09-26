@@ -28,7 +28,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
         self.include_newlines = False
         self.number_prompts = False
         self.prompt_character = '>'
-        self.where=where
+        self.where = where
 
     ### SPECIAL METHODS ###
 

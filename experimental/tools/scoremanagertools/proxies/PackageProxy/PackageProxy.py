@@ -9,11 +9,13 @@ class PackageProxy(DirectoryManager):
     ### INITIALIZER ###
 
     def __init__(self, packagesystem_path=None, session=None):
-        assert packagesystem_path is None or \
-            os.path.sep not in packagesystem_path, repr(packagesystem_path)
-        filesystem_path = \
-            self.configuration.packagesystem_path_to_filesystem_path(
-            packagesystem_path)
+        if packagesystem_path is None or \
+            os.path.sep not in packagesystem_path:
+            filesystem_path = \
+                self.configuration.packagesystem_path_to_filesystem_path(
+                packagesystem_path)
+        else:
+            filesystem_path = packagesystem_path
         DirectoryManager.__init__(self, 
             filesystem_path=filesystem_path, 
             session=session,

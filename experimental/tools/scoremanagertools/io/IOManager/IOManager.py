@@ -241,6 +241,14 @@ class IOManager(AbjadObject):
             )
         return menu
 
+    def make_selector(self, where=None):
+        from experimental.tools import scoremanagertools
+        selector = scoremanagertools.io.Selector(
+            where=where,
+            session=self.session,
+            )
+        return selector
+
     def make_view(self, tokens, name=None):
         from experimental.tools import scoremanagertools
         view = scoremanagertools.io.View(

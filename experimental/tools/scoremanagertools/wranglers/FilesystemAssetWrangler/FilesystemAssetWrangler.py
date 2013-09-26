@@ -81,6 +81,17 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             directory_path = os.path.join(*parts)
             return directory_path
 
+    def _get_current_package_proxy_of_interest(self):
+        from experimental.tools import scoremanagertools
+        directory_path = self._get_current_directory_path_of_interest()
+        if directory_path is None:
+            return
+        proxy = scoremanagertools.proxies.PackageProxy(
+            directory_path,
+            session=self.session,
+            )
+        return proxy
+
     def _get_current_view_file_path(self):
         directory_path = self._get_current_directory_path_of_interest()
         if directory_path:
@@ -292,7 +303,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         if self.session.backtrack():
             return
         tokens = editor.target
-        getter = self.session.io_manager.make_getter()
+        getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string('view name')
         with self.backtracking:
             name = getter._run()
@@ -306,7 +317,26 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self,
         pending_user_input=None,
         ):
-        self.session.io_manager.print_not_yet_implemented()
+        self.session.io_manager.assign_user_input(pending_user_input)
+        view_inventory = self._read_view_inventory_from_disk()
+        if view_inventory is None:
+            message = 'no views found.'
+            self.session.io_manager.proceed(message)
+            return
+        lines = []
+        view_names = [x.name for x in view_inventory]
+        selector = self.session.io_manager.make_selector(where=self._where)
+        selector.explicit_breadcrumb = 'select view'
+        selector.items = view_names
+        with self.backtracking:
+            view_name = selector._run()
+        if self.session.backtrack():
+            return
+        message = 'you selected view {!r}'.format(view_name)
+        proxy = self._get_current_package_proxy_of_interest()
+        print proxy
+        self.session.io_manager.proceed(message)
+        # ZZZ
 
     # TODO: write test
     def interactively_remove_assets(
