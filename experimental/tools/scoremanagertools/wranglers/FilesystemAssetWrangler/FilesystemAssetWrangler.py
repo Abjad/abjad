@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import abc
 import os
+from abjad.tools import datastructuretools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject \
@@ -183,7 +184,10 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             view_file_path,
             session=self.session,
             )
-        print proxy
+        view_inventory = proxy.execute_file_lines(
+            return_attribute_name='view_inventory',
+            )
+        return view_inventory
 
     def _run(
         self, 
@@ -267,7 +271,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         if self.session.backtrack():
             return
         view = self.session.io_manager.make_view(tokens, name=name)
-        print view
         self.write_view_to_disk(view)
 
     def interactively_select_view(
@@ -545,18 +548,29 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         asset_proxy = self._initialize_asset_proxy(asset_filesystem_path)
         asset_proxy.write_stub_to_disk()
 
-    def write_view_to_disk(self, view, prompt=True):
-        from experimental.tools import scoremanagertools
+    def write_view_to_disk(self, new_view, prompt=True):
+        view_inventory = self._read_view_inventory_from_disk()
+        view_inventory = view_inventory or datastructuretools.TypedList()
+        for i, view in enumerate(view_inventory):
+            if view.name == new_view.name:
+                view_inventory[i] = new_view
+                break
+        else:
+            view_inventory.append(new_view)
+        lines = []
+        lines.append('# -*- encoding: utf-8 -*-\n')
+        lines.append('from abjad import *\n')
+        lines.append('from experimental.tools.scoremanagertools import io\n')
+        lines.append('\n\n')
+        line = 'view_inventory={}'.format(view_inventory.storage_format)
+        lines.append(line)
+        lines = ''.join(lines)
         view_file_path = self._get_current_view_file_path()
-        if view_file_path is None:
-            return
-        print view_file_path
-        print view.storage_format
-        proxy = scoremanagertools.proxies.ModuleProxy(
-            view_file_path,
-            session=self.session,
-            )
-        self.session.io_manager.proceed(is_interactive=prompt)
+        file_pointer = file(view_file_path, 'w')
+        file_pointer.write(lines)
+        file_pointer.close()
+        message = 'view written to disk.'
+        self.session.io_manager.proceed(message, is_interactive=prompt)
 
     ### UI MANIFEST ###
 
