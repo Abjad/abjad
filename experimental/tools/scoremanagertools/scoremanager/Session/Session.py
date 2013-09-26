@@ -713,10 +713,7 @@ class Session(abctools.AbjadObject):
         if not self._breadcrumb_stack:
             return ''
         result_lines = [self._breadcrumb_stack[0]]
-        hanging_indent_width = len(
-            stringtools.strip_diacritics_from_binary_string(
-            self._breadcrumb_stack[0]))
-        hanging_indent_width += len(' - ')
+        hanging_indent_width = 5
         for breadcrumb in self._breadcrumb_stack[1:]:
             candidate_line = result_lines[-1] + ' - ' + breadcrumb
             if len(candidate_line) <= self.menu_header_width:

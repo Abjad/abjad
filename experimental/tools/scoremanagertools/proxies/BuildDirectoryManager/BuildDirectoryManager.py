@@ -66,6 +66,8 @@ class BuildDirectoryManager(DirectoryManager):
         command_section.append(('segments - copy ', 'cp'))
         if self._get_file_path_ending_with('score.tex'):
             command_section.append(('score - typeset', 'ts'))
+        hidden_section = main_menu.make_command_section(is_hidden=True)
+        hidden_section.append(('list directory', 'ls'))
         return main_menu
 
     ### PUBLIC METHODS ###
