@@ -11,7 +11,7 @@ class DirectoryManager(FilesystemAssetProxy):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _svn_add_command(self):
+    def _repository_add_command(self):
         return 'cd {} && add'.format(self.filesystem_path)
 
     ### PRIVATE METHODS ###

@@ -45,7 +45,7 @@ def test_FileProxy_rename_02():
     try:
         file_proxy.make_empty_asset()
         assert os.path.exists(filesystem_path)
-        file_proxy.svn_add()
+        file_proxy.repository_add()
         assert file_proxy.is_versioned()
         new_filesystem_path = os.path.join(
             score_manager_configuration.score_manager_tools_directory_path, 'new_temporary_file.txt')

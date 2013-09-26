@@ -10,7 +10,7 @@ class MenuSection(AbjadObject):
     ::
 
         >>> score_manager = scoremanagertools.scoremanager.ScoreManager()
-        >>> menu = score_manager._make_svn_menu()
+        >>> menu = score_manager._make_repository_menu()
         >>> menu
         <Menu (2)>
 
@@ -25,10 +25,10 @@ class MenuSection(AbjadObject):
 
         >>> for menu_entry in menu_section.menu_entries:
         ...     menu_entry
-        <MenuEntry: 'svn add scores'>
-        <MenuEntry: 'svn commit scores'>
-        <MenuEntry: 'svn status scores'>
-        <MenuEntry: 'svn update scores'>
+        <MenuEntry: 'add'>
+        <MenuEntry: 'commit'>
+        <MenuEntry: 'status'>
+        <MenuEntry: 'update'>
 
     '''
 
@@ -322,10 +322,10 @@ class MenuSection(AbjadObject):
 
                 >>> for menu_entry in menu_section.menu_entries:
                 ...     menu_entry
-                <MenuEntry: 'svn add scores'>
-                <MenuEntry: 'svn commit scores'>
-                <MenuEntry: 'svn status scores'>
-                <MenuEntry: 'svn update scores'>
+                <MenuEntry: 'add'>
+                <MenuEntry: 'commit'>
+                <MenuEntry: 'status'>
+                <MenuEntry: 'update'>
 
             Returns list.
             '''
@@ -393,18 +393,18 @@ class MenuSection(AbjadObject):
 
         ::
 
-            >>> menu_section.append(('svn mkdir', 'mkdir'))
-            <MenuEntry: 'svn mkdir'>
+            >>> menu_section.append(('mkdir', 'mkdir'))
+            <MenuEntry: 'mkdir'>
 
         ::
 
             >>> for menu_entry in menu_section.menu_entries:
             ...     menu_entry
-            <MenuEntry: 'svn add scores'>
-            <MenuEntry: 'svn commit scores'>
-            <MenuEntry: 'svn status scores'>
-            <MenuEntry: 'svn update scores'>
-            <MenuEntry: 'svn mkdir'>
+            <MenuEntry: 'add'>
+            <MenuEntry: 'commit'>
+            <MenuEntry: 'status'>
+            <MenuEntry: 'update'>
+            <MenuEntry: 'mkdir'>
 
         Returns menu entry.
         '''

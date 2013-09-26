@@ -23,7 +23,7 @@ def test_ModuleProxy_public_attributes_01():
     assert proxy.filesystem_path is None
     assert proxy._plural_generic_class_name == 'modules'
     assert proxy.filesystem_basename is None
-    assert proxy._svn_add_command is None
+    assert proxy._repository_add_command is None
     assert proxy._temporary_asset_name == 'temporary_module.py'
 
 
@@ -54,5 +54,5 @@ def test_ModuleProxy_public_attributes_02():
         proxy.configuration.built_in_material_packages_directory_path, 'red_notes', 'material_definition.py')
     assert proxy._plural_generic_class_name == 'modules'
     assert proxy.filesystem_basename == 'material_definition.py'
-    assert proxy._svn_add_command
+    assert proxy._repository_add_command
     assert proxy._temporary_asset_name == 'temporary_module.py'

@@ -65,7 +65,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
         return self.filesystem_basename
 
     @property
-    def _svn_add_command(self):
+    def _repository_add_command(self):
         if self.filesystem_path:
             return 'svn add {}'.format(self.filesystem_path)
 
@@ -371,7 +371,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
             proc.stdout.readline()
             self._filesystem_path = new_path
 
-    def svn_add(self, is_interactive=False):
+    def repository_add(self, is_interactive=False):
         r'''Adds unversioned filesystem assets to repository.
 
         Returns none.
@@ -379,7 +379,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
         if is_interactive:
             self.session.io_manager.display(self.filesystem_path)
         proc = subprocess.Popen(
-            self._svn_add_command,
+            self._repository_add_command,
             shell=True,
             stdout=subprocess.PIPE,
             )
@@ -389,7 +389,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
             self.session.io_manager.display(lines)
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
-    def svn_ci(self, commit_message=None, is_interactive=True):
+    def repository_ci(self, commit_message=None, is_interactive=True):
         r'''Commits unversioned filesystem assets to repository.
 
         Returns none.
@@ -418,7 +418,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self.session.io_manager.display(lines)
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
-    def svn_st(self, is_interactive=True):
+    def repository_st(self, is_interactive=True):
         r'''Displays repository status of filesystem assets.
     
         Returns none.
@@ -440,7 +440,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self.session.io_manager.display(clean_lines)
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
-    def svn_up(self, is_interactive=True):
+    def repository_up(self, is_interactive=True):
         r'''Updates versioned filesystem assets.
 
         Returns none.

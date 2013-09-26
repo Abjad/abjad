@@ -7,7 +7,7 @@ class MenuEntry(AbjadObject):
     r'''Menu entry.
 
         >>> score_manager = scoremanagertools.scoremanager.ScoreManager()
-        >>> menu = score_manager._make_svn_menu()
+        >>> menu = score_manager._make_repository_menu()
         >>> menu
         <Menu (2)>
 
@@ -17,14 +17,14 @@ class MenuEntry(AbjadObject):
 
         >>> for menu_entry in menu_section.menu_entries:
         ...     menu_entry
-        <MenuEntry: 'svn add scores'>
-        <MenuEntry: 'svn commit scores'>
-        <MenuEntry: 'svn status scores'>
-        <MenuEntry: 'svn update scores'>
+        <MenuEntry: 'add'>
+        <MenuEntry: 'commit'>
+        <MenuEntry: 'status'>
+        <MenuEntry: 'update'>
 
         >>> menu_entry = menu_section.menu_entries[-1]
         >>> menu_entry
-        <MenuEntry: 'svn update scores'>
+        <MenuEntry: 'update'>
 
     '''
 
@@ -62,7 +62,7 @@ class MenuEntry(AbjadObject):
         ::
 
             >>> menu_entry.display_string
-            'svn update scores'
+            'update'
 
         Returns string.
         '''
@@ -162,7 +162,7 @@ class MenuEntry(AbjadObject):
 
         ::
 
-            >>> menu_entry.matches('svn update scores')
+            >>> menu_entry.matches('update')
             True
 
         ::

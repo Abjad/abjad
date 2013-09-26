@@ -15,7 +15,7 @@ class Menu(ScoreManagerObject):
     ::
 
         >>> score_manager = scoremanagertools.scoremanager.ScoreManager()
-        >>> menu = score_manager._make_svn_menu()
+        >>> menu = score_manager._make_repository_menu()
         >>> menu
         <Menu (2)>
 

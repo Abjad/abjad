@@ -76,18 +76,18 @@ class ScoreManager(ScoreManagerObject):
             if result in wrangler.list_visible_asset_packagesystem_paths():
                 self.interactively_edit_score(result)
 
-    def _handle_svn_menu_result(self, result):
-        r'''Return true to exit the svn menu.
+    def _handle_repository_menu_result(self, result):
+        r'''Return true to exit the repository menu.
         '''
         this_result = False
         if result == 'add':
-            self.score_package_wrangler.svn_add_assets()
+            self.score_package_wrangler.repository_add_assets()
         elif result == 'ci':
-            self.score_package_wrangler.svn_ci_assets()
+            self.score_package_wrangler.repository_ci_assets()
         elif result == 'st':
-            self.score_package_wrangler.svn_st_assets()
+            self.score_package_wrangler.repository_st_assets()
         elif result == 'up':
-            self.score_package_wrangler.svn_up_assets()
+            self.score_package_wrangler.repository_up_assets()
             return True
         return this_result
 
@@ -127,21 +127,23 @@ class ScoreManager(ScoreManagerObject):
         asset_section.menu_entries = menu_entries
         return menu
 
-    def _make_svn_menu(self):
+    def _make_repository_menu(self):
         menu = self.session.io_manager.make_menu(where=self._where)
         command_section = menu.make_command_section()
-        command_section.append(('svn add scores', 'add'))
-        command_section.append(('svn commit scores', 'ci'))
-        command_section.append(('svn status scores', 'st'))
-        command_section.append(('svn update scores', 'up'))
+        command_section.append(('add', 'add'))
+        command_section.append(('commit', 'ci'))
+        command_section.append(('status', 'st'))
+        command_section.append(('update', 'up'))
         return menu
 
-    def _run(self, 
+    def _run(
+        self, 
         pending_user_input=None, 
         clear=True, 
         cache=False, 
         is_test=False, 
-        dump_transcript=False):
+        dump_transcript=False,
+        ):
         type(self).__init__(self)
         self.session.io_manager.assign_user_input(
             pending_user_input=pending_user_input)
@@ -285,14 +287,13 @@ class ScoreManager(ScoreManagerObject):
     def manage_stylesheets(self):
         self.stylesheet_file_wrangler._run(
             rollback=True, 
-            #head=self.configuration.built_in_stylesheets_directory_path,
             head='scoremanagertools.stylesheets',
             )
 
-    def manage_svn(self, clear=True):
+    def manage_repository(self, clear=True):
         while True:
-            self.session.push_breadcrumb('repository commands')
-            menu = self._make_svn_menu()
+            self.session.push_breadcrumb('repository')
+            menu = self._make_repository_menu()
             result = menu._run(clear=clear)
             if self.session.is_backtracking_to_score:
                 self.session.is_backtracking_to_score = False
@@ -300,7 +301,7 @@ class ScoreManager(ScoreManagerObject):
                 continue
             elif self.session.backtrack():
                 break
-            self._handle_svn_menu_result(result)
+            self._handle_repository_menu_result(result)
             if self.session.backtrack():
                 break
             self.session.pop_breadcrumb()
@@ -341,7 +342,7 @@ class ScoreManager(ScoreManagerObject):
         'mothballed':   display_mothballed_scores,
         'new':          interactively_make_new_score,
         'profile':      profile_visible_scores,
-        'rep':          manage_svn,
+        'rep':          manage_repository,
         'test':         run_py_test_on_all_user_scores,
         'y':            manage_stylesheets,
         'wc':           write_cache,

@@ -2,7 +2,7 @@
 from experimental import *
 
 
-def test_ScoreManager_manage_svn_01():
+def test_ScoreManager_manage_repository_01():
     r'''Ignore score backtracking.
     '''
 

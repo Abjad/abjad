@@ -93,6 +93,7 @@ class BuildDirectoryManager(DirectoryManager):
             if not os.path.isfile(source_file_path):
                 continue
             score_package_path = self.session.current_score_package_path
+            directory_entry = directory_entry.replace('_', '-')
             target_file_name = '{}-segment-{}.pdf'
             target_file_name = target_file_name.format(
                 score_package_path,

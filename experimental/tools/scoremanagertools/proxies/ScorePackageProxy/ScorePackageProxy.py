@@ -79,7 +79,7 @@ class ScorePackageProxy(PackageProxy):
         hidden_section = main_menu.make_command_section(is_hidden=True)
         hidden_section.append(('fix package structure', 'fix'))
         hidden_section.append(('list directory contents', 'ls'))
-        hidden_section.append(('manage repository', 'svn'))
+        hidden_section.append(('manage repository', 'rep'))
         hidden_section.append(('manage tags', 'tags'))
         hidden_section.append(('profile package structure', 'profile'))
         hidden_section.append(('run py.test', 'py.test'))
@@ -400,14 +400,14 @@ class ScorePackageProxy(PackageProxy):
         else:
             raise ValueError(result)
 
-    def handle_svn_menu_result(self, result):
+    def handle_repository_menu_result(self, result):
         if result == 'add':
-            self.svn_add(is_interactive=True)
+            self.repository_add(is_interactive=True)
         elif result == 'ci':
-            self.svn_ci(is_interactive=True)
+            self.repository_ci(is_interactive=True)
             return True
         elif result == 'st':
-            self.svn_st(is_interactive=True)
+            self.repository_st(is_interactive=True)
         else:
             raise ValueError
 
@@ -498,13 +498,13 @@ class ScorePackageProxy(PackageProxy):
         command_section.append(('instrumentation', 'instr'))
         return setup_menu
 
-    def make_svn_menu(self):
-        svn_menu = self.session.io_manager.make_menu(where=self._where)
-        command_section = svn_menu.make_command_section()
+    def make_repository_menu(self):
+        repository_menu = self.session.io_manager.make_menu(where=self._where)
+        command_section = repository_menu.make_command_section()
         command_section.append(('st', 'st'))
         command_section.append(('add', 'add'))
         command_section.append(('ci', 'ci'))
-        return svn_menu
+        return repository_menu
 
     def manage_build_directory(self):
         self.build_directory_manager._run()
@@ -540,18 +540,18 @@ class ScorePackageProxy(PackageProxy):
     def manage_stylesheets(self):
         self.stylesheet_wrangler._run(head=self.package_path)
 
-    def manage_svn(self, clear=True, cache=False):
+    def manage_repository(self, clear=True, cache=False):
         self.session.cache_breadcrumbs(cache=cache)
         while True:
             self.session.push_breadcrumb('repository commands')
-            menu = self.make_svn_menu()
+            menu = self.make_repository_menu()
             result = menu._run(clear=clear)
             if self.session.backtrack():
                 break
             elif not result:
                 self.session.pop_breadcrumb()
                 continue
-            self.handle_svn_menu_result(result)
+            self.handle_repository_menu_result(result)
             if self.session.backtrack():
                 break
             self.session.pop_breadcrumb()
@@ -616,8 +616,8 @@ class ScorePackageProxy(PackageProxy):
         'pdfv': interactively_view_score,
         'profile': profile,
         'removescore': interactively_remove,
+        'rep': manage_repository,
         's': manage_setup,
-        'svn': manage_svn,
         't': manage_score_templates,
         'u': manage_build_directory,
         'y': manage_stylesheets,

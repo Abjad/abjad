@@ -474,7 +474,7 @@ class ScorePackageWrangler(PackageWrangler):
         for asset_proxy in self.list_visible_asset_proxies():
             asset_proxy.profile()
 
-    def svn_add_assets(self, is_interactive=True):
+    def repository_add_assets(self, is_interactive=True):
         r'''Adds assets to repository.
 
         Return none.
@@ -486,10 +486,10 @@ class ScorePackageWrangler(PackageWrangler):
                 in_built_in_asset_library=True, in_user_asset_library=True,
                 in_built_in_score_packages=True, in_user_score_packages=True)
         for proxy in proxies:
-            proxy.svn_add(is_interactive=False)
+            proxy.repository_add(is_interactive=False)
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
-    def svn_ci_assets(self, is_interactive=True):
+    def repository_ci_assets(self, is_interactive=True):
         r'''Commits assets to repository.
 
         Returns none.
@@ -513,10 +513,10 @@ class ScorePackageWrangler(PackageWrangler):
                 in_user_score_packages=True,
                 )
         for proxy in proxies:
-            proxy.svn_ci(commit_message=commit_message, is_interactive=False)
+            proxy.repository_ci(commit_message=commit_message, is_interactive=False)
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
-    def svn_st_assets(self, is_interactive=True):
+    def repository_st_assets(self, is_interactive=True):
         r'''Check asset status in repository.
 
         Returns none.
@@ -528,10 +528,10 @@ class ScorePackageWrangler(PackageWrangler):
                 in_built_in_asset_library=True, in_user_asset_library=True,
                 in_built_in_score_packages=True, in_user_score_packages=True)
         for proxy in proxies:
-            proxy.svn_st(is_interactive=False)
+            proxy.repository_st(is_interactive=False)
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
-    def svn_up_assets(self, is_interactive=True):
+    def repository_up_assets(self, is_interactive=True):
         r'''Updates assets from repository.
 
         Returns none.
@@ -543,5 +543,5 @@ class ScorePackageWrangler(PackageWrangler):
                 in_built_in_asset_library=True, in_user_asset_library=True,
                 in_built_in_score_packages=True, in_user_score_packages=True)
         for proxy in proxies:
-            proxy.svn_up(is_interactive=False)
+            proxy.repository_up(is_interactive=False)
         self.session.io_manager.proceed(is_interactive=is_interactive)
