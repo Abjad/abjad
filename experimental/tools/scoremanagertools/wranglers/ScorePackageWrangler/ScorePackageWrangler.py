@@ -109,9 +109,13 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         results = []
         for asset_proxy in self.list_visible_asset_proxies():
-            results.append(asset_proxy.fix(is_interactive=is_interactive))
+            result = asset_proxy.interactively_fix(
+                is_interactive=False,
+                )
+            results.append(result)
             if is_interactive:
-                asset_proxy.profile()
+                asset_proxy.interactively_profile(prompt=False)
+        self.session.io_manager.proceed(is_interactive=is_interactive)
         return results
 
     def interactively_make_asset(

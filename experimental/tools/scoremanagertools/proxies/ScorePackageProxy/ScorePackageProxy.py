@@ -10,13 +10,17 @@ class ScorePackageProxy(PackageProxy):
 
     def __init__(self, packagesystem_path=None, session=None):
         from experimental.tools import scoremanagertools
-        PackageProxy.__init__(self, packagesystem_path, session=session)
+        PackageProxy.__init__(
+            self, 
+            packagesystem_path, 
+            session=session,
+            )
         self._build_directory_manager = \
             scoremanagertools.proxies.BuildDirectoryManager(
             score_package_path=packagesystem_path, 
             session=self.session,
             )
-        self._distribution_proxy = \
+        self._distribution_directory_manager = \
             scoremanagertools.proxies.DistributionDirectoryManager(
             score_package_path=packagesystem_path, 
             session=self.session,
@@ -58,9 +62,15 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def _breadcrumb(self):
-        return self.annotated_title
+        return self._get_annotated_title()
 
     ### PRIVATE METHODS ###
+
+    def _get_annotated_title(self):
+        if isinstance(self.year_of_completion, int):
+            return self.title_with_year
+        else:
+            return self.title
 
     def _get_instrumentation(self):
         return self._import_instrumentation_from_instrumentation_module()
@@ -71,6 +81,24 @@ class ScorePackageProxy(PackageProxy):
             'instrumentation.py',
             )
         return file_path
+
+    def _get_materials_directory_path(self):
+        return os.path.join(
+            self.filesystem_path, 
+            'materials',
+            )
+
+    def _get_segments_directory_path(self):
+        return os.path.join(
+            self.filesystem_path, 
+            'segments',
+            )
+
+    def _get_stylesheets_directory_path(self):
+        return os.path.join(
+            self.filesystem_path, 
+            'stylesheets',
+            )
 
     def _handle_main_menu_result(self, result):
         assert isinstance(result, str)
@@ -175,11 +203,11 @@ class ScorePackageProxy(PackageProxy):
         prepopulated_value = None
         prepopulated_value = self.title or None
         result.append((return_value, None, prepopulated_value, return_value))
-        forces_tagline = self.forces_tagline
+        forces_tagline = self.get_tag('forces_tagline')
         prepopulated_value = None
         return_value = 'tagline'
         if forces_tagline:
-            prepopulated_value = self.forces_tagline
+            prepopulated_value = forces_tagline
         result.append((return_value, None, prepopulated_value, return_value))
         return_value = 'year'
         prepopulated_value = None
@@ -211,51 +239,12 @@ class ScorePackageProxy(PackageProxy):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def annotated_title(self):
-        if isinstance(self.year_of_completion, int):
-            return self.title_with_year
-        else:
-            return self.title
-
-    @property
-    def composer(self):
-        return self.get_tag('composer')
-
-    @property
-    def distribution_pdf_directory_path(self):
-        return os.path.join(self.distribution_proxy.filesystem_path, 'pdf')
-
-    @property
-    def distribution_proxy(self):
-        return self._distribution_proxy
-
-    @property
     def build_directory_manager(self):
         return self._build_directory_manager
 
-    @apply
-    def forces_tagline():
-        def fget(self):
-            return self.get_tag('forces_tagline')
-        def fset(self, forces_tagline):
-            return self.add_tag('forces_tagline', forces_tagline)
-        return property(**locals())
-
     @property
-    def has_correct_directory_structure(self):
-        return all(os.path.exists(name) 
-            for name in self.top_level_directory_paths)
-
-    @property
-    def has_correct_package_structure(self):
-        if self.has_correct_directory_structure:
-            if self.has_correct_initializers:
-                return True
-        return False
-
-    @property
-    def instrumentation(self):
-        return self._get_instrumentation()
+    def distribution_directory_manager(self):
+        return self._distribution_directory_manager
 
     @property
     def instrumentation_module_proxy(self):
@@ -270,31 +259,6 @@ class ScorePackageProxy(PackageProxy):
         return self._material_package_wrangler
 
     @property
-    def materials_directory_path(self):
-        return os.path.join(self.filesystem_path, 'materials')
-
-    @property
-    def materials_package_initializer_file_name(self):
-        return os.path.join(self.materials_directory_path, '__init__.py')
-
-    @property
-    def materials_package_path(self):
-        return '.'.join([self.package_path, 'materials'])
-
-#    @property
-#    def score_initializer_file_names(self):
-#        return (
-#            self.initializer_file_name,
-#            )
-
-    @property
-    def score_package_wranglers(self):
-        return (
-            self.segment_wrangler,
-            self.material_package_wrangler,
-            )
-
-    @property
     def score_template_directory_proxy(self):
         return self._score_template_directory_proxy
 
@@ -303,24 +267,8 @@ class ScorePackageProxy(PackageProxy):
         return self._segment_wrangler
 
     @property
-    def segments_directory_path(self):
-        return os.path.join(self.filesystem_path, 'segments')
-
-    @property
-    def segments_package_initializer_file_name(self):
-        return os.path.join(self.segments_directory_path, '__init__.py')
-
-    @property
-    def segments_package_path(self):
-        return '.'.join([self.package_path, 'segments'])
-
-    @property
     def stylesheet_wrangler(self):
         return self._stylesheet_wrangler
-
-    @property
-    def stylesheets_directory_path(self):
-        return os.path.join(self.filesystem_path, 'stylesheets')
 
     @property
     def tempo_inventory(self):
@@ -349,7 +297,7 @@ class ScorePackageProxy(PackageProxy):
     @property
     def top_level_directory_proxies(self):
         return (
-            self.distribution_proxy,
+            self.distribution_directory_manager,
             self.build_directory_manager,
             )
 
@@ -442,29 +390,23 @@ class ScorePackageProxy(PackageProxy):
                 tags_file.write('\n')
                 tags_file.write('tags = collections.OrderedDict([])\n')
                 tags_file.close()
-        if not os.path.exists(self.materials_directory_path):
+        if not os.path.exists(self._get_materials_directory_path()):
             result = False
-            prompt = 'create {}'.format(self.materials_directory_path)
+            prompt = 'create {}'.format(self._get_materials_directory_path())
             if not is_interactive or self.session.io_manager.confirm(prompt):
-                os.mkdir(self.materials_directory_path)
-        if not os.path.exists(self.materials_package_initializer_file_name):
+                os.mkdir(self._get_materials_directory_path())
+        if not os.path.exists(self._get_segments_directory_path()):
             result = False
-            file(self.materials_package_initializer_file_name, 'w').write('')
-        if not os.path.exists(self.segments_directory_path):
-            result = False
-            prompt = 'create {}'.format(self.segments_directory_path)
+            prompt = 'create {}'.format(self._get_segments_directory_path())
             if not is_interactive or self.session.io_manager.confirm(prompt):
-                os.mkdir(self.segments_directory_path)
-        if not os.path.exists(self.segments_package_initializer_file_name):
+                os.mkdir(self._get_segments_directory_path())
+        if not os.path.exists(self._get_stylesheets_directory_path()):
             result = False
-            file(self.segments_package_initializer_file_name, 'w').write('')
-        if not os.path.exists(self.stylesheets_directory_path):
-            result = False
-            prompt = 'create {}'.format(self.stylesheets_directory_path)
+            prompt = 'create {}'.format(self._get_stylesheets_directory_path())
             if not is_interactive or self.session.io_manager.confirm(prompt):
-                os.mkdir(self.stylesheets_directory_path)
-        self.session.io_manager.proceed('packaged structure fixed.', 
-            is_interactive=is_interactive)
+                os.mkdir(self._get_stylesheets_directory_path())
+        message = 'packaged structure fixed.'
+        self.session.io_manager.proceed(message, is_interactive=is_interactive)
         return result
 
     def interactively_profile(self, prompt=True):
@@ -479,6 +421,14 @@ class ScorePackageProxy(PackageProxy):
             else:
                 result = "doesn't exist"
             line = '{} {}.'
+            directory_path = directory_path.replace(
+                self.configuration.user_score_packages_directory_path,
+                '...',
+                )
+            directory_path = directory_path.replace(
+                self.configuration.built_in_score_packages_directory_path,
+                '...',
+                )
             line = line.format(directory_path, result)
             lines.append(line)
         lines.append('')
@@ -526,7 +476,8 @@ class ScorePackageProxy(PackageProxy):
     def manage_setup(self, clear=True, cache=True):
         self.session.cache_breadcrumbs(cache=cache)
         while True:
-            breadcrumb = '{} - setup'.format(self.annotated_title)
+            annotated_title = self._get_annotated_title()
+            breadcrumb = '{} - setup'.format(annotated_title)
             self.session.push_breadcrumb(breadcrumb)
             setup_menu = self._make_setup_menu()
             result = setup_menu._run(clear=clear)

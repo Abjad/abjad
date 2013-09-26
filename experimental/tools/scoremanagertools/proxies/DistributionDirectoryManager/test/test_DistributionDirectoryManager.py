@@ -5,11 +5,11 @@ from experimental import *
 
 def test_DistributionDirectoryManager_01():
 
-    distribution_proxy = scoremanagertools.proxies.DistributionDirectoryManager(
+    distribution_directory_manager = scoremanagertools.proxies.DistributionDirectoryManager(
         'scoremanagertools.scorepackages.red_example_score')
 
-    assert distribution_proxy.filesystem_path == os.path.join(
-        distribution_proxy.configuration.built_in_score_packages_directory_path,
+    assert distribution_directory_manager.filesystem_path == os.path.join(
+        distribution_directory_manager.configuration.built_in_score_packages_directory_path,
         'red_example_score', 'distribution')
-    assert distribution_proxy._spaced_class_name == \
+    assert distribution_directory_manager._spaced_class_name == \
         'distribution directory manager'
