@@ -16,6 +16,7 @@ class InteractiveEditor(ScoreManagerObject):
         self.initialize_attributes_in_memory()
         if not hasattr(self, 'target_manifest'):
             raise Exception(self)
+        self.explicit_breadcrumb = None
 
     ### SPECIAL METHODS ###
 
@@ -30,8 +31,12 @@ class InteractiveEditor(ScoreManagerObject):
 
     @property
     def _breadcrumb(self):
-        return self.target_name or \
-            self.space_delimited_lowercase_target_class_name
+        if self.explicit_breadcrumb:
+            return self.explicit_breadcrumb
+        elif self.target_name:
+            return self.target_name
+        else:
+            return self.space_delimited_lowercase_target_class_name
 
     ### PRIVATE METHODS ###
 

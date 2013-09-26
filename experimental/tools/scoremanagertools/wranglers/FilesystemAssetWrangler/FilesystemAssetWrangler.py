@@ -291,6 +291,12 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         pending_user_input=None,
         ):
         from experimental.tools import scoremanagertools
+        getter = self.session.io_manager.make_getter(where=self._where)
+        getter.append_string('view name')
+        with self.backtracking:
+            view_name = getter._run()
+        if self.session.backtrack():
+            return
         head = self.session.current_score_package_path
         menu_entries = self._make_asset_menu_entries(head=head)
         display_strings = [x[0] for x in menu_entries]
@@ -298,19 +304,16 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             session=self.session,
             target=display_strings,
             )
+        breadcrumb = 'edit {} view'
+        breadcrumb = breadcrumb.format(view_name)
+        editor.explicit_breadcrumb = breadcrumb
         with self.backtracking:
             editor._run()
         if self.session.backtrack():
             return
         tokens = editor.target
-        getter = self.session.io_manager.make_getter(where=self._where)
-        getter.append_string('view name')
-        with self.backtracking:
-            name = getter._run()
-        if self.session.backtrack():
-            return
         self.session.io_manager.display('')
-        view = self.session.io_manager.make_view(tokens, name=name)
+        view = self.session.io_manager.make_view(tokens, name=view_name)
         self.write_view_to_disk(view)
 
     def interactively_select_view(
@@ -334,7 +337,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             return
         message = 'you selected view {!r}'.format(view_name)
         proxy = self._get_current_package_proxy()
-        print proxy
+        proxy.add_tag('view_name', view_name)
         self.session.io_manager.proceed(message)
         # ZZZ
 
@@ -471,7 +474,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def interactively_view_views_module(self):
         proxy = self._get_current_view_module_proxy()
-        proxy.interactively_view()
+        #proxy.interactively_view()
+        proxy.interactively_edit()
 
     def list_asset_filesystem_paths(
         self,

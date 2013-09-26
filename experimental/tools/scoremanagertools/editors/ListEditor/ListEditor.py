@@ -46,13 +46,6 @@ class ListEditor(InteractiveEditor):
 
     target_manifest = TargetManifest(list,)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _breadcrumb(self):
-        return self.target_name or \
-            self.space_delimited_lowercase_target_class_name
-
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
