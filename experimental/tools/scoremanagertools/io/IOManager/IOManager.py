@@ -58,6 +58,7 @@ class IOManager(AbjadObject):
         self, 
         lines, 
         capitalize_first_character=True,
+        clear_terminal=False,
         ):
         assert isinstance(lines, (str, list))
         if isinstance(lines, str):
@@ -72,6 +73,8 @@ class IOManager(AbjadObject):
                 if self.session.transcribe_next_command:
                     self.session.io_transcript.append_lines(lines)
             if self.session.is_displayable:
+                if clear_terminal:
+                    iotools.clear_terminal()
                 for line in lines:
                     print line
 
@@ -206,20 +209,20 @@ class IOManager(AbjadObject):
         hidden_section = scoremanagertools.io.MenuSection()
         hidden_section.return_value_attribute = 'key'
         hidden_section.is_hidden = True
-        hidden_section.append(('back', 'b'))
-        hidden_section.append(('exec statement', 'exec'))
+        hidden_section.append(('display calling code', 'where'))
+        hidden_section.append(('display hidden menu', 'hidden'))
         hidden_section.append(('edit client source', 'here'))
-        hidden_section.append(('display hidden menu section', 'hidden'))
-        hidden_section.append(('home', 'home'))
-        hidden_section.append(('view LilyPond log', 'log'))
-        hidden_section.append(('next score', 'next'))
-        hidden_section.append(('prev score', 'prev'))
+        hidden_section.append(('execute statement', 'exec'))
+        hidden_section.append(('go back', 'b'))
+        hidden_section.append(('go home', 'home'))
+        hidden_section.append(('go to current score', 'score'))
+        hidden_section.append(('go to next score', 'next'))
+        hidden_section.append(('go to prev score', 'prev'))
         hidden_section.append(('quit', 'q'))
         hidden_section.append(('redraw', 'r'))
-        hidden_section.append(('current score', 'score'))
         hidden_section.append(('toggle menu commands', 'tmc'))
         hidden_section.append(('toggle where-tracking', 'twt'))
-        hidden_section.append(('display calling code line number', 'where'))
+        hidden_section.append(('view LilyPond log', 'log'))
         return hidden_section
 
     def make_getter(self, where=None):

@@ -74,10 +74,10 @@ class ListEditor(InteractiveEditor):
         numbered_section.menu_entries = self.target_summary_lines
         command_section = main_menu.make_command_section()
         command_section.append(('add elements', 'add'))
-        if 0 < len(self.items):
-            command_section.append(('remove elements', 'rm'))
         if 1 < len(self.items):
             command_section.append(('move elements', 'mv'))
+        if 0 < len(self.items):
+            command_section.append(('remove elements', 'rm'))
         hidden_section = main_menu.make_command_section(is_hidden=True)
         hidden_section.append(('done', 'done'))
         return main_menu

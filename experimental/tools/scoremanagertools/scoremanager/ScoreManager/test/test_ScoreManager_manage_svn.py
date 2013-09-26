@@ -7,5 +7,5 @@ def test_ScoreManager_manage_svn_01():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(pending_user_input='svn sco q')
+    score_manager._run(pending_user_input='rep sco q')
     assert score_manager.session.io_transcript.signature == (6, (2, 4))

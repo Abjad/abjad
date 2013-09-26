@@ -98,13 +98,15 @@ class ScoreManager(ScoreManagerObject):
         command_section.append(('stylesheets', 'y'))
         command_section.append(('new score', 'new'))
         hidden_section = menu.make_command_section(is_hidden=True)
-        hidden_section.append(('show active scores only', 'active'))
-        hidden_section.append(('show all scores', 'all'))
-        hidden_section.append(('fix all score package structures', 'fix'))
-        hidden_section.append(('show mothballed scores only', 'mb'))
-        hidden_section.append(('profile packages', 'profile'))
-        hidden_section.append(('run py.test on all scores', 'py.test'))
-        hidden_section.append(('work with repository', 'svn'))
+        hidden_section.append(('scores - fix', 'fix'))
+        hidden_section.append(('scores - profile', 'profile'))
+        hidden_section.append(('scores - test', 'test'))
+        hidden_section = menu.make_command_section(is_hidden=True)
+        hidden_section.append(('show - active scores', 'active'))
+        hidden_section.append(('show - all score', 'all'))
+        hidden_section.append(('show - mothballed scores', 'mothballed'))
+        hidden_section = menu.make_command_section(is_hidden=True)
+        hidden_section.append(('work with repository', 'rep'))
         hidden_section.append(('write cache', 'wc'))
         return menu
 
@@ -332,15 +334,15 @@ class ScoreManager(ScoreManagerObject):
     ### UI MANIFEST ###
 
     user_input_to_action = {
-        'active':   display_active_scores,
-        'all':      display_all_scores,
-        'fix':      fix_visible_scores,
-        'm':        manage_materials,
-        'mb':       display_mothballed_scores,
-        'new':      interactively_make_new_score,
-        'profile':  profile_visible_scores,
-        'py.test':  run_py_test_on_all_user_scores,
-        'svn':      manage_svn,
-        'y':        manage_stylesheets,
-        'wc':       write_cache,
+        'active':       display_active_scores,
+        'all':          display_all_scores,
+        'fix':          fix_visible_scores,
+        'm':            manage_materials,
+        'mothballed':   display_mothballed_scores,
+        'new':          interactively_make_new_score,
+        'profile':      profile_visible_scores,
+        'rep':          manage_svn,
+        'test':         run_py_test_on_all_user_scores,
+        'y':            manage_stylesheets,
+        'wc':           write_cache,
         }

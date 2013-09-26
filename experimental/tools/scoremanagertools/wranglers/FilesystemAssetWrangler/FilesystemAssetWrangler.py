@@ -245,7 +245,18 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self,
         pending_user_input=None,
         ):
-        pass
+        self.session.io_manager.assign_user_input(pending_user_input)
+        view_inventory = self._read_view_inventory_from_disk()
+        if view_inventory is None:
+            message = 'no views defined.'
+            self.session.io_manager.proceed(message)
+            return
+        names = [x.name for x in view_inventory]
+        message = '{} views found.'
+        message = message.format(len(names))
+        self.session.io_manager.display(message)
+        self.session.io_manager.proceed()
+
 
     def interactively_make_view(
         self,
@@ -270,6 +281,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             name = getter._run()
         if self.session.backtrack():
             return
+        self.session.io_manager.display('')
         view = self.session.io_manager.make_view(tokens, name=name)
         self.write_view_to_disk(view)
 

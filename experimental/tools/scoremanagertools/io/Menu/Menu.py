@@ -10,7 +10,7 @@ from experimental.tools.scoremanagertools.io.MenuSection \
 
 
 class Menu(ScoreManagerObject):
-    r'''Menu:
+    r'''Menu.
 
     ::
 
@@ -19,7 +19,6 @@ class Menu(ScoreManagerObject):
         >>> menu
         <Menu (2)>
 
-    Return menu.
     '''
 
     ### INITIALIZER ###
@@ -43,14 +42,14 @@ class Menu(ScoreManagerObject):
     def __len__(self):
         r'''Number of menu sections in menu.
 
-        Return nonnegative integer.
+        Returns nonnegative integer.
         '''
         return len(self.menu_sections)
 
     def __repr__(self):
         r'''Interpreter representation of menu.
 
-        Return string.
+        Returns string.
         '''
         return '<{} ({})>'.format(self._class_name, len(self))
 
@@ -258,7 +257,7 @@ class Menu(ScoreManagerObject):
 
     @property
     def hidden_section(self):
-        r'''Menu hidden section:
+        r'''Menu hidden section.
 
         ::
 
@@ -269,22 +268,22 @@ class Menu(ScoreManagerObject):
 
                 >>> for menu_entry in menu.hidden_section.menu_entries:
                 ...     menu_entry
-                <MenuEntry: 'back'>
-                <MenuEntry: 'exec statement'>
+                <MenuEntry: 'display calling code'>
+                <MenuEntry: 'display hidden menu'>
                 <MenuEntry: 'edit client source'>
-                <MenuEntry: 'display hidden menu section'>
-                <MenuEntry: 'home'>
-                <MenuEntry: 'view LilyPond log'>
-                <MenuEntry: 'next score'>
-                <MenuEntry: 'prev score'>
+                <MenuEntry: 'execute statement'>
+                <MenuEntry: 'go back'>
+                <MenuEntry: 'go home'>
+                <MenuEntry: 'go to current score'>
+                <MenuEntry: 'go to next score'>
+                <MenuEntry: 'go to prev score'>
                 <MenuEntry: 'quit'>
                 <MenuEntry: 'redraw'>
-                <MenuEntry: 'current score'>
                 <MenuEntry: 'toggle menu commands'>
                 <MenuEntry: 'toggle where-tracking'>
-                <MenuEntry: 'display calling code line number'>
+                <MenuEntry: 'view LilyPond log'>
 
-        Return menu section or none.
+        Returns menu section or none.
         '''
         for menu_section in self.menu_sections:
             if menu_section.is_hidden:
@@ -292,7 +291,7 @@ class Menu(ScoreManagerObject):
 
     @property
     def menu_sections(self):
-        r'''Menu sections:
+        r'''Menu sections.
 
         ::
 
@@ -301,7 +300,7 @@ class Menu(ScoreManagerObject):
             <MenuSection (14)>
             <MenuSection (4)>
 
-        Return list.
+        Returns list.
         '''
         return self._menu_sections
 
@@ -315,7 +314,7 @@ class Menu(ScoreManagerObject):
                 >>> menu.should_clear_terminal
                 False
 
-            Return boolean.
+            Returns boolean.
             '''
             return self._should_clear_terminal
         def fset(self, should_clear_terminal):
@@ -326,14 +325,14 @@ class Menu(ScoreManagerObject):
     @apply
     def title():
         def fget(self):
-            r'''Menu title:
+            r'''Menu title.
 
             ::
 
                 >>> menu.title is None
                 True
 
-            Return string or none.
+            Returns string or none.
             '''
             return self._title
         def fset(self, title):
@@ -362,7 +361,12 @@ class Menu(ScoreManagerObject):
             self.session.enable_where = True
 
     def display_hidden_menu_section(self):
+        self.session.push_breadcrumb('hidden commands')
         menu_lines = []
+        title = self.session.menu_header
+        title = stringtools.capitalize_string_start(title)
+        menu_lines.append(title)
+        menu_lines.append('')
         for menu_section in self.menu_sections:
             if menu_section.is_hidden:
                 for menu_entry in menu_section.menu_entries:
@@ -373,8 +377,12 @@ class Menu(ScoreManagerObject):
                     menu_lines.append(menu_line)
                 menu_lines.append('')
         self.session.io_manager.display(
-            menu_lines, capitalize_first_character=False)
+            menu_lines, 
+            capitalize_first_character=False,
+            clear_terminal=True,
+            )
         self.session.hide_next_redraw = True
+        self.session.pop_breadcrumb()
 
     def interactively_edit_calling_code(self):
         if self.where is not None:
