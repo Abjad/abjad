@@ -10,6 +10,25 @@ from experimental.tools.scoremanagertools.editors.TargetManifest \
 
 
 class ListEditor(InteractiveEditor):
+    r'''List editor.
+
+    ::
+
+        >>> editor = scoremanagertools.editors.ListEditor()
+        >>> editor.target = ['first', 'second', 'third']
+        >>> editor
+        ListEditor(target=['first', 'second', 'third'])
+
+    ::
+
+        >>> editor._run(pending_user_input='rm 1 q')
+
+    ::
+
+        >>> editor
+        ListEditor(target=['second', 'third'])
+
+    '''
 
     ### CLASS VARIABLES ###
 
@@ -139,11 +158,14 @@ class ListEditor(InteractiveEditor):
     def interactively_edit_item(self, item_number):
         item = self.get_item_from_item_number(item_number)
         if item is not None:
-            item_editor = self.item_editor_class(
-                session=self.session, target=item)
-            item_editor._run()
-            item_index = int(item_number) - 1
-            self.items[item_index] = item_editor.target
+            if self.item_editor_class is not None:
+                item_editor = self.item_editor_class(
+                    session=self.session, 
+                    target=item,
+                    )
+                item_editor._run()
+                item_index = int(item_number) - 1
+                self.items[item_index] = item_editor.target
 
     def interactively_move_item(self):
         getter = self.session.io_manager.make_getter(where=self._where)

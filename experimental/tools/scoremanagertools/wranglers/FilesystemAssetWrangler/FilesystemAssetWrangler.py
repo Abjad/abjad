@@ -72,6 +72,14 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             asset_name = asset_name[:asset_name.rindex('.')]
         return stringtools.string_to_space_delimited_lowercase(asset_name)
 
+    def _get_current_directory_path_of_interest(self):
+        score_directory_path = self.session.current_score_directory_path
+        if score_directory_path is not None:
+            parts = (score_directory_path,)
+            parts += self.score_package_asset_storehouse_path_infix_parts
+            directory_path = os.path.join(*parts)
+            return directory_path
+
     @abc.abstractmethod
     def _handle_main_menu_result(self, result):
         pass
@@ -128,7 +136,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages):
+            in_user_score_packages=in_user_score_packages,
+            ):
             display_strings.append(proxy.title)
             path_parts = (proxy.filesystem_path,) + \
                 self.score_package_asset_storehouse_path_infix_parts
@@ -144,11 +153,17 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def _make_asset_menu_entries(self, head=None, include_extension=False):
         raise Exception('FOO')
         names = self.list_asset_names(
-            head=head, include_extension=include_extension)
+            head=head, 
+            include_extension=include_extension,
+            )
         paths = self.list_asset_filesystem_paths(head=head)
         assert len(names) == len(paths)
         return sequencetools.zip_sequences_cyclically(
-            names, [None], [None], paths)
+            names, 
+            [None], 
+            [None], 
+            paths,
+            )
 
     def _run(
         self, 
@@ -212,8 +227,26 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self,
         pending_user_input=None,
         ):
-        print 'foo'
-        pass
+        from experimental.tools import scoremanagertools
+        head = self.session.current_score_package_path
+        menu_entries = self._make_asset_menu_entries(head=head)
+        display_strings = [x[0] for x in menu_entries]
+        editor = scoremanagertools.editors.ListEditor(
+            session=self.session,
+            target=display_strings,
+            )
+        with self.backtracking:
+            editor._run()
+        if self.session.backtrack():
+            return
+        display_strings = editor.target
+        print display_strings
+        print self.session.current_segments_directory_path
+        #view = self.session.io_manager.make_view(display_strings)
+        #self.write_view_to_disk(view)
+        directory_path = self._get_current_directory_path_of_interest()
+        print directory_path
+        self.session.io_manager.proceed()
 
     def interactively_select_view(
         self,
@@ -235,7 +268,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         getter = self.session.io_manager.make_getter(where=self._where)
         asset_section = self._main_menu._asset_section
         getter.append_menu_section_range(
-            'number(s) to remove', asset_section)
+            'number(s) to remove', 
+            asset_section,
+            )
         result = getter._run()
         if self.session.backtrack():
             return
@@ -252,8 +287,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             asset_string = 'asset'
         else:
             asset_string = 'assets'
-        self.session.io_manager.proceed('{} {} removed.'.format(
-            total_assets_removed, asset_string))
+        message = '{} {} removed.'
+        message = message.format(total_assets_removed, asset_string)
+        self.session.io_manager.proceed(message)
 
     # TODO: write test
     def interactively_rename_asset(
