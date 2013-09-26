@@ -81,7 +81,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             directory_path = os.path.join(*parts)
             return directory_path
 
-    def _get_current_package_proxy_of_interest(self):
+    def _get_current_package_proxy(self):
         from experimental.tools import scoremanagertools
         directory_path = self._get_current_directory_path_of_interest()
         if directory_path is None:
@@ -333,7 +333,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         if self.session.backtrack():
             return
         message = 'you selected view {!r}'.format(view_name)
-        proxy = self._get_current_package_proxy_of_interest()
+        proxy = self._get_current_package_proxy()
         print proxy
         self.session.io_manager.proceed(message)
         # ZZZ
@@ -460,6 +460,14 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self.session.pop_breadcrumb()
         self.session.restore_breadcrumbs(cache=cache)
         return result
+
+    def interactively_view_initializer(self):
+        proxy = self._get_current_package_proxy()
+        proxy.interactively_view_initializer()
+
+    def interactively_view_metadata_module(self):
+        proxy = self._get_current_package_proxy()
+        proxy.interactively_view_metadata_module()
 
     def interactively_view_views_module(self):
         proxy = self._get_current_view_module_proxy()
@@ -611,6 +619,10 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         asset_proxy = self._initialize_asset_proxy(asset_filesystem_path)
         asset_proxy.write_stub_to_disk()
 
+    def print_directory_entries(self):
+        proxy = self._get_current_package_proxy()
+        proxy.print_directory_entries()
+
     def write_view_to_disk(self, new_view, prompt=True):
         view_inventory = self._read_view_inventory_from_disk()
         view_inventory = view_inventory or datastructuretools.TypedList()
@@ -638,10 +650,13 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     ### UI MANIFEST ###
 
     user_input_to_action = {
+        'initializer': interactively_view_initializer,
+        'ls': print_directory_entries,
+        'metadata': interactively_view_metadata_module,
         'ren': interactively_rename_asset,
         'rm': interactively_remove_assets,
+        'views': interactively_view_views_module,
         'vwl': interactively_list_views,
         'vwn': interactively_make_view,
         'vws': interactively_select_view,
-        'vwx': interactively_view_views_module,
         }

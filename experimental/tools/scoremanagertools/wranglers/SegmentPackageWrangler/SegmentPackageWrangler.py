@@ -55,10 +55,15 @@ class SegmentPackageWrangler(PackageWrangler):
         command_section = main_menu.make_command_section()
         command_section.append(('new segment', 'new'))
         hidden_section = main_menu.make_command_section(is_hidden=True)
+        hidden_section.append(('list', 'ls'))
+        hidden_section = main_menu.make_command_section(is_hidden=True)
+        hidden_section.append(('initializer - view', 'initializer'))
+        hidden_section.append(('metadata module - view', 'metadata'))
+        hidden_section.append(('views module - view', 'views'))
+        hidden_section = main_menu.make_command_section(is_hidden=True)
         hidden_section.append(('views - list', 'vwl'))
         hidden_section.append(('views - new', 'vwn'))
         hidden_section.append(('views - select', 'vws'))
-        hidden_section.append(('views - views module', 'vwx'))
         return main_menu
 
     ### PUBLIC PROPERTIES ###
