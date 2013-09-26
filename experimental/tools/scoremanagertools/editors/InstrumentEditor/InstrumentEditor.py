@@ -22,8 +22,12 @@ class InstrumentEditor(InteractiveEditor):
         ('instrument_name_markup', 'im', getters.get_markup),
         ('short_instrument_name',  'sn', getters.get_string),
         ('short_instrument_name_markup', 'sm', getters.get_markup),
-        ('pitch_range', 'range', 'rg', 
-            getters.get_symbolic_pitch_range_string),
+        (
+            'pitch_range', 
+            'range', 
+            'rg', 
+            getters.get_symbolic_pitch_range_string,
+            ),
         ('all_clefs', 'clefs', 'cf', ClefMarkInventoryEditor),
         )
 
@@ -37,8 +41,8 @@ class InstrumentEditor(InteractiveEditor):
 
     def _make_main_menu(self):
         menu = super(InstrumentEditor, self)._make_main_menu()
-        menu.hidden_section.append(
-            ('toggle pitch range display', 'tprd'))
+        pair = ('toggle pitch range display', 'tprd')
+        menu.hidden_section.append(pair)
         return menu
 
     ### PUBLIC PROPERTIES ###

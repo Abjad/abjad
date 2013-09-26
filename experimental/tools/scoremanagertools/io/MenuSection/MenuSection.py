@@ -51,7 +51,8 @@ class MenuSection(AbjadObject):
         is_hidden=False,
         is_numbered=False,
         is_ranged=False,
-        display_prepopulated_values=True,
+        #display_prepopulated_values=True,
+        display_prepopulated_values=False,
         title=None,
         ):
         AbjadObject.__init__(self)
@@ -157,7 +158,7 @@ class MenuSection(AbjadObject):
                     menu_line += ' [{}]'.format(key)
                 else:
                     menu_line += ' ({})'.format(key)
-            if self.display_prepopulated_values and prepopulated_value:
+            if self.display_prepopulated_values:
                 menu_line += ':'
                 if prepopulated_value not in (None, 'None'):
                     menu_line += ' {}'.format(prepopulated_value)
@@ -227,7 +228,7 @@ class MenuSection(AbjadObject):
             ::
 
                 >>> menu_section.display_prepopulated_values
-                True
+                False
 
             Returns boolean.
             '''

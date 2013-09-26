@@ -410,25 +410,30 @@ class Menu(ScoreManagerObject):
         attribute_section = self._make_section(
             is_numbered=True,
             return_value_attribute='explicit',
+            display_prepopulated_values=True,
             )
         return attribute_section
 
-    def make_command_section(self,
-            is_hidden=False,
-            menu_entries=None,
-            ):
+    def make_command_section(
+        self,
+        is_hidden=False,
+        menu_entries=None,
+        ):
         command_section = self._make_section(
             is_hidden=is_hidden,
             return_value_attribute='key',
             )
         return command_section
 
-    def make_keyed_attribute_section(self, 
+    def make_keyed_attribute_section(
+        self, 
         is_numbered=False, 
-        menu_entries=None):
+        menu_entries=None,
+        ):
         keyed_attribute_section = self._make_section(
             return_value_attribute='key',
             is_numbered=is_numbered,
+            display_prepopulated_values=True,
             )
         return keyed_attribute_section
 
@@ -447,10 +452,12 @@ class Menu(ScoreManagerObject):
             )
         return numbered_section
 
-    def _make_section(self, 
+    def _make_section(
+        self, 
         is_hidden=False, 
         is_numbered=False, 
         is_ranged=False, 
+        display_prepopulated_values=False,
         menu_entries=None,
         return_value_attribute='display_string',
         ):
@@ -461,6 +468,7 @@ class Menu(ScoreManagerObject):
             is_hidden=is_hidden,
             is_numbered=is_numbered,
             is_ranged=is_ranged,
+            display_prepopulated_values=display_prepopulated_values,
             return_value_attribute=return_value_attribute,
             )
         menu_section.menu_entries = menu_entries

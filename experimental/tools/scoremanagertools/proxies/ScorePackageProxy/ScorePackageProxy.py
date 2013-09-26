@@ -143,6 +143,14 @@ class ScorePackageProxy(PackageProxy):
         if forces_tagline:
             prepopulated_value = self.forces_tagline
         result.append((return_value, None, prepopulated_value, return_value))
+
+        catalog_number = self.get_tag('catalog_number')
+        prepopulated_value = None
+        return_value = 'catalog number'
+        if catalog_number:
+            prepopulated_value = catalog_number
+        result.append((return_value, None, prepopulated_value, return_value))
+
         return_value = 'performers'
         prepopulated_value = None
         instrumentation = self._get_instrumentation()
@@ -386,14 +394,16 @@ class ScorePackageProxy(PackageProxy):
 
     def handle_setup_menu_result(self, result):
         assert isinstance(result, str)
-        if result == 'title':
+        if result == 'catalog number':
+            self.interactively_edit_catalog_number()   
+        elif result == 'performers':
+            self.interactively_edit_instrumentation_specifier()
+        elif result == 'tagline':
+            self.interactively_edit_forces_tagline()
+        elif result == 'title':
             self.interactively_edit_title()
         elif result == 'year':
             self.interactively_edit_year_of_completion()
-        elif result == 'tagline':
-            self.interactively_edit_forces_tagline()
-        elif result == 'performers':
-            self.interactively_edit_instrumentation_specifier()
         elif result == 'user entered lone return':
             pass
         else:
@@ -409,6 +419,14 @@ class ScorePackageProxy(PackageProxy):
             self.svn_st(is_interactive=True)
         else:
             raise ValueError
+
+    def interactively_edit_catalog_number(self):
+        getter = self.session.io_manager.make_getter(where=self._where)
+        getter.append_string('Catalog number')
+        result = getter._run()
+        if self.session.backtrack():
+            return
+        self.add_tag('catalog_number', result)
 
     def interactively_edit_forces_tagline(self):
         getter = self.session.io_manager.make_getter(where=self._where)
@@ -484,6 +502,11 @@ class ScorePackageProxy(PackageProxy):
         setup_menu = self.session.io_manager.make_menu(where=self._where)
         attribute_section = setup_menu.make_attribute_section()
         attribute_section.menu_entries = self._make_setup_menu_entries()
+#        menu_entries = self._make_setup_menu_entries()
+#        attribute_section.menu_entries = menu_entries[:-1]
+#        performer_entry = menu_entries[-1]
+#        command_section = setup_menu.make_attribute_section()
+#        attribute_section.menu_entries = [performer_entry]
         return setup_menu
 
     def make_svn_menu(self):
