@@ -1,35 +1,12 @@
 # -*- encoding: utf-8 -*-
-import os
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.proxies.ModuleManager \
     import ModuleManager
-from experimental.tools.scoremanagertools.proxies.ParseableModuleMixin \
-    import ParseableModuleMixin
 
 
-class UserInputModuleManager(ModuleManager, ParseableModuleMixin):
-
-    ### INITIALIZER ###
-
-    def __init__(self, packagesystem_path=None, session=None):
-        ModuleManager.__init__(
-            self,
-            packagesystem_path=packagesystem_path,
-            session=session)
-        ParseableModuleMixin.__init__(self)
-        self.user_input_wrapper_lines = []
-        self.parse()
+class UserInputModuleManager(ModuleManager):
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def file_sections(self):
-        return (
-            (self.encoding_directives, False, 0),
-            (self.docstring_lines, False, 1),
-            (self.setup_statements, True, 2),
-            (self.user_input_wrapper_lines, False, 0),
-            )
 
     @property
     def has_complete_user_input_wrapper_on_disk(self):
@@ -40,62 +17,26 @@ class UserInputModuleManager(ModuleManager, ParseableModuleMixin):
 
     ### PUBLIC METHODS ###
 
-    def parse(self):
-        is_parsable = True
-        output_material_module = file(self.filesystem_path, 'r')
-        encoding_directives = []
-        docstring_lines = []
-        setup_statements = []
-        user_input_wrapper_lines = []
-        current_section = None
-        for line in output_material_module.readlines():
-            if line == '\n':
-                if current_section == 'docstring':
-                    current_section = 'setup'
-                else:
-                    current_section = 'user input wrapper'
-                continue
-            elif line.startswith('# -*-'):
-                current_section = 'encoding'
-            elif line.startswith("'''"):
-                current_section = 'docstring'
-            elif line.startswith(('from', 'import')):
-                current_section = 'setup'
-            if current_section == 'encoding':
-                encoding_directives.append(line)
-            elif current_section == 'docstring':
-                docstring_lines.append(line)
-            elif current_section == 'setup':
-                setup_statements.append(line)
-            elif current_section == 'user input wrapper':
-                user_input_wrapper_lines.append(line)
-            else:
-                is_parsable = False
-        output_material_module.close()
-        self.encoding_directives = encoding_directives
-        self.docstring_lines = docstring_lines
-        self.setup_statements = setup_statements
-        self.user_input_wrapper_lines = user_input_wrapper_lines
-        return is_parsable
-
     def read_user_input_wrapper_from_disk(self):
-        if os.path.exists(self.filesystem_path):
-            file_pointer = open(self.filesystem_path, 'r')
-            file_contents_string = file_pointer.read()
-            file_pointer.close()
-            try:
-                exec(file_contents_string)
-                return locals().get('user_input_wrapper', None)
-            except:
-                message = 'error reading user input module {!r}.'
-                self.session.io_manager.display(
-                    message.format(self.filesystem_path))
+        result = self.execute_file_lines(
+            return_attribute_name='user_input_wrapper',
+            )
+        return result
 
     def write_user_input_wrapper_to_disk(self, user_input_wrapper_in_memory):
-        self.setup_statements[:] = \
-            stringtools.add_terminal_newlines(
-            user_input_wrapper_in_memory.user_input_module_import_statements)[:]
-        self.user_input_wrapper_lines[:] = \
-            stringtools.add_terminal_newlines(
-            user_input_wrapper_in_memory.formatted_lines)
-        ParseableModuleMixin.write_to_disk(self)
+        wrapper = user_input_wrapper_in_memory
+        lines = []
+        lines.append('# -*- encoding: utf-8 -*-\n')
+        lines.append('from abjad import *\n')
+        import_statements = wrapper.user_input_module_import_statements[:]
+        import_statements = \
+            stringtools.add_terminal_newlines(import_statements)
+        lines.extend(import_statements)
+        lines.append('\n\n')
+        formatted_lines = wrapper.formatted_lines
+        formatted_lines = stringtools.add_terminal_newlines(formatted_lines)
+        lines.extend(formatted_lines)
+        lines = ''.join(lines)
+        file_pointer = file(self.filesystem_path, 'w')
+        file_pointer.write(lines)
+        file_pointer.close()
