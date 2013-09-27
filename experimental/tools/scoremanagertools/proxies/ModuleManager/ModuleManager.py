@@ -31,25 +31,13 @@ class ModuleManager(FileManager):
             session=session,
             )
 
-    ### CLASS VARIABLES ###
-
-    extension = '.py'
-
-    _generic_class_name = 'module'
-
-    _temporary_asset_name = 'temporary_module.py'
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _space_delimited_lowercase_name(self):
-        if self.filesystem_basename:
-            name_without_extension = \
-                self.filesystem_basename.strip(self.extension)
-            return stringtools.string_to_space_delimited_lowercase(
-                name_without_extension)
-
     ### PRIVATE METHODS ###
+
+    def _get_space_delimited_lowercase_name(self):
+        if self.filesystem_basename:
+            name = self.filesystem_basename.strip('.py')
+            name = stringtools.string_to_space_delimited_lowercase(name)
+            return name
 
     def _space_delimited_lowercase_name_to_asset_name(
         self, space_delimited_lowercase_name):
