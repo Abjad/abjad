@@ -26,10 +26,6 @@ class MetadataModuleManager(ModuleManager, ParseableModuleMixin):
         self.metadata_lines = []
         self.parse()
 
-    ### CLASS VARIABLES ###
-
-    extension = '.py'
-
     ### PUBLIC PROPERTIES ##
 
     @property
@@ -43,52 +39,6 @@ class MetadataModuleManager(ModuleManager, ParseableModuleMixin):
             )
 
     ### PUBLIC METHODS ###
-
-    def has_line(self, line):
-        file_reference = open(self.filesystem_path, 'r')
-        for file_line in file_reference.readlines():
-            if file_line == line:
-                file_reference.close()
-                return True
-        file_reference.close()
-        return False
-
-    def interactively_restore(self, prompt=True):
-        from experimental.tools import scoremanagertools
-        getter = self.session.io_manager.make_getter(where=self._where)
-        getter.append_yes_no_string('handmade')
-        result = getter._run()
-        if self.session.backtrack():
-            return
-        if 'yes'.startswith(result.lower()):
-            material_package_maker_class_name = None
-            getter = self.session.io_manager.make_getter(where=self._where)
-            getter.append_yes_no_string('should have illustration')
-            result = getter._run()
-            if self.session.backtrack():
-                return
-            should_have_illustration = 'yes'.startswith(result.lower())
-        else:
-            material_package_maker_wrangler = \
-                scoremanagertools.wranglers.MaterialPackageMakerWrangler(
-                session=self.session)
-            with self.backtracking:
-                wrangler = material_package_maker_wrangler
-                material_package_maker_class_name = \
-                    wrangler.select_material_proxy_class_name_interactively(
-                    clear=False, 
-                    cache=True,
-                    )
-            if self.session.backtrack():
-                return
-            should_have_illustration = True
-        metadata = collections.OrderedDict([])
-        metadata['should_have_illustration'] = should_have_illustration
-        metadata['material_package_maker_class_name'] = \
-            material_package_maker_class_name
-        self.write_stub_to_disk()
-        message = 'initializer restored.'
-        self.session.io_manager.proceed(message, is_interactive=prompt)
 
     def make_metadata_lines(self, metadata):
         if metadata:
@@ -155,13 +105,6 @@ class MetadataModuleManager(ModuleManager, ParseableModuleMixin):
         self.metadata_lines = metadata_lines[:]
         self.teardown_statements = teardown_statements[:]
         return is_parsable
-
-    def read_file(self):
-        return self.parse()
-
-    def write_stub_to_disk(self):
-        self.clear()
-        self.write_to_disk()
 
     def write_metadata_to_disk(self, metadata):
         self.parse()
