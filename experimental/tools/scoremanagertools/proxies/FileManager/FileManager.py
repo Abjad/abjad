@@ -6,7 +6,7 @@ from experimental.tools.scoremanagertools.proxies.FilesystemAssetManager \
 
 
 class FileManager(FilesystemAssetManager):
-    r'''File proxy.
+    r'''File manager.
     '''
 
     ### CLASS VARIABLES ###

@@ -230,21 +230,21 @@ class ScorePackageManager(PackageManager):
         return main_menu
 
     def _make_repository_menu(self):
-        repository_menu = self.session.io_manager.make_menu(where=self._where)
-        command_section = repository_menu.make_command_section()
+        menu = self.session.io_manager.make_menu(where=self._where)
+        command_section = menu.make_command_section()
         command_section.append(('st', 'st'))
         command_section.append(('add', 'add'))
         command_section.append(('ci', 'ci'))
-        return repository_menu
+        return menu
 
     def _make_setup_menu(self):
-        setup_menu = self.session.io_manager.make_menu(where=self._where)
-        attribute_section = setup_menu.make_attribute_section()
+        menu = self.session.io_manager.make_menu(where=self._where)
+        attribute_section = menu.make_attribute_section()
         menu_entries = self._make_setup_menu_entries()
         attribute_section.menu_entries = menu_entries
-        command_section = setup_menu.make_command_section()
+        command_section = menu.make_command_section()
         command_section.append(('instrumentation', 'instr'))
-        return setup_menu
+        return menu
 
     def _make_setup_menu_entries(self):
         result = []

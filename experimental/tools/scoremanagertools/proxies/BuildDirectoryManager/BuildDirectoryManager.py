@@ -27,7 +27,7 @@ class BuildDirectoryManager(DirectoryManager):
 
     @property
     def _breadcrumb(self):
-        return 'build directory'
+        return 'build manager'
 
     ### PRIVATE METHODS ###
 
@@ -37,40 +37,165 @@ class BuildDirectoryManager(DirectoryManager):
                 file_path = os.path.join(self.filesystem_path, file_name)
                 return file_path
 
-    def _get_score_pdf_file_path(self):
-        for file_name in self.list_directory():
-            if file_name.endswith('score.pdf'):
-                file_path = os.path.join(self.filesystem_path, file_name)
-                return file_path
+    def _handle_back_cover_menu_result(self, result):
+        from experimental.tools import scoremanagertools
+        if result == 'e':
+            file_path = self._get_file_path_ending_with('back-cover.tex')
+            if file_path:
+                file_manager = self._get_file_manager(file_path)
+                file_manager.interactively_view()
+            else:
+                message = 'file not found.'
+                self.session.io_manager.proceed(message)
+        elif result == 'g':
+            self.session.io_manager.print_not_yet_implemented()
+        elif result == 'pdfv':
+            file_path = self._get_file_path_ending_with('back-cover.pdf')
+            iotools.open_file(file_path)
+        elif result == 'ts':
+            file_path = self._get_file_path_ending_with('back-cover.tex')
+            if file_path:
+                file_manager = self._get_file_manager(file_path)
+                file_manager.interactively_typeset_tex_file()
+            else:
+                message = 'file not found.'
+                self.session.io_manager.proceed(message)
 
-    def _get_score_tex_file_path(self):
-        for file_name in self.list_directory():
-            if file_name.endswith('score.tex'):
-                file_path = os.path.join(self.filesystem_path, file_name)
-                return file_path
+    def _handle_front_cover_menu_result(self, result):
+        from experimental.tools import scoremanagertools
+        if result == 'e':
+            file_path = self._get_file_path_ending_with('front-cover.tex')
+            if file_path:
+                file_manager = self._get_file_manager(file_path)
+                file_manager.interactively_view()
+            else:
+                message = 'file not found.'
+                self.session.io_manager.proceed(message)
+        elif result == 'g':
+            self.session.io_manager.print_not_yet_implemented()
+        elif result == 'pdfv':
+            file_path = self._get_file_path_ending_with('front-cover.pdf')
+            iotools.open_file(file_path)
+        elif result == 'ts':
+            file_path = self._get_file_path_ending_with('front-cover.tex')
+            if file_path:
+                file_manager = self._get_file_manager(file_path)
+                file_manager.interactively_typeset_tex_file()
+            else:
+                message = 'file not found.'
+                self.session.io_manager.proceed(message)
+
+    def _handle_preface_menu_result(self, result):
+        from experimental.tools import scoremanagertools
+        if result == 'e':
+            file_path = self._get_file_path_ending_with('preface.tex')
+            if file_path:
+                file_manager = self._get_file_manager(file_path)
+                file_manager.interactively_view()
+            else:
+                message = 'file not found.'
+                self.session.io_manager.proceed(message)
+        elif result == 'g':
+            self.session.io_manager.print_not_yet_implemented()
+        elif result == 'pdfv':
+            file_path = self._get_file_path_ending_with('preface.pdf')
+            if file_path:
+                iotools.open_file(file_path)
+            else:
+                message = 'file not found.'
+                self.session.io_manager.proceed(message)
+        elif result == 'ts':
+            file_path = self._get_file_path_ending_with('preface.tex')
+            if file_path:
+                file_manager = self._get_file_manager(file_path)
+                file_manager.interactively_typeset_tex_file()
+            else:
+                message = 'file not found.'
+                self.session.io_manager.proceed(message)
+
+    def _handle_score_menu_result(self, result):
+        from experimental.tools import scoremanagertools
+        if result == 'cp':
+            self.interactively_copy_segment_pdfs()
+        elif result == 'e':
+            file_path = self._get_file_path_ending_with('score.tex')
+            if file_path:
+                file_manager = self._get_file_manager(file_path)
+                file_manager.interactively_view()
+            else:
+                message = 'file not found.'
+                self.session.io_manager.proceed(message)
+        elif result == 'g':
+            self.session.io_manager.print_not_yet_implemented()
+        elif result == 'pdfv':
+            file_path = self._get_file_path_ending_with('score.pdf')
+            iotools.open_file(file_path)
+        elif result == 'ts':
+            file_path = self._get_file_path_ending_with('score.tex')
+            if file_path:
+                file_manager = self._get_file_manager(file_path)
+                file_manager.interactively_typeset_tex_file()
+            else:
+                message = 'file not found.'
+                self.session.io_manager.proceed(message)
+
+    def _make_back_cover_menu(self):
+        menu = self.session.io_manager.make_menu(where=self._where)
+        command_section = menu.make_command_section()
+        command_section.append(('source - edit', 'e'))
+        command_section.append(('source - generate', 'g'))
+        command_section.append(('source - typeset', 'ts'))
+        command_section = menu.make_command_section()
+        command_section.append(('pdf - view', 'pdfv'))
+        command_section.default_index = len(command_section) - 1
+        return menu
+
+    def _make_front_cover_menu(self):
+        menu = self.session.io_manager.make_menu(where=self._where)
+        command_section = menu.make_command_section()
+        command_section.append(('source - edit', 'e'))
+        command_section.append(('source - generate', 'g'))
+        command_section.append(('source - typeset', 'ts'))
+        command_section = menu.make_command_section()
+        command_section.append(('pdf - view', 'pdfv'))
+        command_section.default_index = len(command_section) - 1
+        return menu
 
     def _make_main_menu(self):
         superclass = super(BuildDirectoryManager, self)
         main_menu = superclass._make_main_menu()
         command_section = main_menu.make_command_section()
         command_section.append(('back cover - manage', 'bc'))
-        command_section = main_menu.make_command_section()
-        if self._get_file_path_ending_with('back-cover.pdf'):
-            command_section.append(('back cover - view', 'bcv'))
-        if self._get_file_path_ending_with('front-cover.pdf'):
-            command_section.append(('front cover - view', 'fcv'))
-        if self._get_file_path_ending_with('preface.pdf'):
-            command_section.appned(('preface - view', 'p'))
-        if self._get_file_path_ending_with('score.pdf'):
-            command_section.append(('score - view', 's'))
-            command_section.default_index = len(command_section) - 1
-        command_section = main_menu.make_command_section()
-        command_section.append(('segments - copy ', 'cp'))
-        if self._get_file_path_ending_with('score.tex'):
-            command_section.append(('score - typeset', 'ts'))
+        command_section.append(('front cover - manage', 'fc'))
+        command_section.append(('preface - manage', 'pf'))
+        command_section.append(('score - manage', 'sc'))
         hidden_section = main_menu.make_command_section(is_hidden=True)
         hidden_section.append(('list directory', 'ls'))
         return main_menu
+
+    def _make_preface_menu(self):
+        menu = self.session.io_manager.make_menu(where=self._where)
+        command_section = menu.make_command_section()
+        command_section.append(('source - edit', 'e'))
+        command_section.append(('source - generate', 'g'))
+        command_section.append(('source - typeset', 'ts'))
+        command_section = menu.make_command_section()
+        command_section.append(('pdf - view', 'pdfv'))
+        command_section.default_index = len(command_section) - 1
+        return menu
+
+    def _make_score_menu(self):
+        menu = self.session.io_manager.make_menu(where=self._where)
+        command_section = menu.make_command_section()
+        command_section.append(('segments - copy', 'cp'))
+        command_section = menu.make_command_section()
+        command_section.append(('source - edit', 'e'))
+        command_section.append(('source - generate', 'g'))
+        command_section.append(('source - typeset', 'ts'))
+        command_section = menu.make_command_section()
+        command_section.append(('pdf - view', 'pdfv'))
+        command_section.default_index = len(command_section) - 1
+        return menu
 
     ### PUBLIC METHODS ###
 
@@ -113,74 +238,136 @@ class BuildDirectoryManager(DirectoryManager):
             self.session.io_manager.display(message)
         self.session.io_manager.proceed('')
 
-    def interactively_manage_back_cover(self, pending_user_input=None):
-        r'''Interactively manages back cover.
+#    def interactively_view_back_cover(self, pending_user_input=None):
+#        r'''Interactively views back cover.
+#
+#        Returns none.
+#        '''
+#        self.session.io_manager.assign_user_input(pending_user_input)
+#        file_path = self._get_file_path_ending_with('back-cover.pdf')
+#        iotools.open_file(file_path)
+#
+#    def interactively_view_front_cover(self, pending_user_input=None):
+#        r'''Interactively views front cover.
+#
+#        Returns none.
+#        '''
+#        self.session.io_manager.assign_user_input(pending_user_input)
+#        file_path = self._get_file_path_ending_with('front-cover.pdf')
+#        iotools.open_file(file_path)
+#
+#    def interactively_view_preface(self, pending_user_input=None):
+#        r'''Interactively views preface.
+#
+#        Returns none.
+#        '''
+#        self.session.io_manager.assign_user_input(pending_user_input)
+#        file_path = self._get_file_path_ending_with('preface.pdf')
+#        iotools.open_file(file_path)
+#
+#    def interactively_view_score(self, pending_user_input=None):
+#        r'''Interactively views score.
+#
+#        Returns none.
+#        '''
+#        self.session.io_manager.assign_user_input(pending_user_input)
+#        file_path = self._get_file_path_ending_with('score.pdf')
+#        iotools.open_file(file_path)
+
+    def manage_back_cover(self, clear=True, cache=False):
+        r'''Manages back cover.
 
         Returns none.
         '''
-        #self.session.io_manager.assign_user_input(pending_user_input)
-        self.session.io_manager.print_not_yet_implemented()
+        self.session.cache_breadcrumbs(cache=cache)
+        while True:
+            self.session.push_breadcrumb('back cover')
+            menu = self._make_back_cover_menu()
+            result = menu._run(clear=clear)
+            if self.session.backtrack():
+                break
+            elif not result:
+                self.session.pop_breadcrumb()
+                continue
+            self._handle_back_cover_menu_result(result)
+            if self.session.backtrack():
+                break
+            self.session.pop_breadcrumb()
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
 
-    def interactively_view_back_cover(self, pending_user_input=None):
-        r'''Interactively views back cover.
-
-        Returns none.
-        '''
-        self.session.io_manager.assign_user_input(pending_user_input)
-        file_path = self._get_file_path_ending_with('back-cover.pdf')
-        iotools.open_file(file_path)
-
-    def interactively_view_front_cover(self, pending_user_input=None):
-        r'''Interactively views front cover.
-
-        Returns none.
-        '''
-        self.session.io_manager.assign_user_input(pending_user_input)
-        file_path = self._get_file_path_ending_with('front-cover.pdf')
-        iotools.open_file(file_path)
-
-    def interactively_view_preface(self, pending_user_input=None):
-        r'''Interactively views preface.
+    def manage_front_cover(self, clear=True, cache=False):
+        r'''Manages front cover.
 
         Returns none.
         '''
-        self.session.io_manager.assign_user_input(pending_user_input)
-        file_path = self._get_file_path_ending_with('preface.pdf')
-        iotools.open_file(file_path)
+        self.session.cache_breadcrumbs(cache=cache)
+        while True:
+            self.session.push_breadcrumb('front cover')
+            menu = self._make_front_cover_menu()
+            result = menu._run(clear=clear)
+            if self.session.backtrack():
+                break
+            elif not result:
+                self.session.pop_breadcrumb()
+                continue
+            self._handle_front_cover_menu_result(result)
+            if self.session.backtrack():
+                break
+            self.session.pop_breadcrumb()
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
 
-    def interactively_view_score(self, pending_user_input=None):
-        r'''Interactively views score.
+    def manage_preface(self, clear=True, cache=False):
+        r'''Manages preface.
 
         Returns none.
         '''
-        self.session.io_manager.assign_user_input(pending_user_input)
-        file_path = self._get_file_path_ending_with('score.pdf')
-        iotools.open_file(file_path)
+        self.session.cache_breadcrumbs(cache=cache)
+        while True:
+            self.session.push_breadcrumb('preface')
+            menu = self._make_preface_menu()
+            result = menu._run(clear=clear)
+            if self.session.backtrack():
+                break
+            elif not result:
+                self.session.pop_breadcrumb()
+                continue
+            self._handle_preface_menu_result(result)
+            if self.session.backtrack():
+                break
+            self.session.pop_breadcrumb()
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
 
-    def typeset_score(self):
-        r'''Typesets score.
-
-        Writes PDF to build directory.
+    def manage_score(self, clear=True, cache=False):
+        r'''Manages score.
 
         Returns none.
         '''
-        from experimental.tools import scoremanagertools
-        score_tex_file_path = self._get_score_tex_file_path()
-        proxy = scoremanagertools.proxies.FileManager(
-            filesystem_path=score_tex_file_path,
-            session=self.session,
-            )
-        proxy.interactively_typeset_tex_file()
+        self.session.cache_breadcrumbs(cache=cache)
+        while True:
+            self.session.push_breadcrumb('score')
+            menu = self._make_score_menu()
+            result = menu._run(clear=clear)
+            if self.session.backtrack():
+                break
+            elif not result:
+                self.session.pop_breadcrumb()
+                continue
+            self._handle_score_menu_result(result)
+            if self.session.backtrack():
+                break
+            self.session.pop_breadcrumb()
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
 
     ### UI MANIFEST ###
 
     user_input_to_action = DirectoryManager.user_input_to_action.copy()
     user_input_to_action.update({
-        'bc': interactively_manage_back_cover,
-        'bcv': interactively_view_back_cover,
-        'cp': interactively_copy_segment_pdfs,
-        'fcv': interactively_view_front_cover,
-        'p': interactively_view_preface,
-        's': interactively_view_score,
-        'ts': typeset_score,
+        'bc': manage_back_cover,
+        'fc': manage_front_cover,
+        'pf': manage_preface,
+        'sc': manage_score,
         })

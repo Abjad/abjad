@@ -16,6 +16,14 @@ class DirectoryManager(FilesystemAssetManager):
 
     ### PRIVATE METHODS ###
 
+    def _get_file_manager(self, file_path):
+        from experimental.tools import scoremanagertools
+        file_manager = scoremanagertools.proxies.FileManager(
+            file_path,
+            session=self.session,
+            )
+        return file_manager
+
     def _handle_main_menu_result(self, result):
         if result in self.user_input_to_action:
             self.user_input_to_action[result](self)
