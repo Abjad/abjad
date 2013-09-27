@@ -4,7 +4,6 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 class ParseableModuleMixin(AbjadObject):
     r'''Parseable module mixin.
-
     '''
 
     ### INITIALIZER ###

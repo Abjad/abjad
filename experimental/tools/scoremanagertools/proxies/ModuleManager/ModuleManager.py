@@ -1,14 +1,12 @@
 # -*- encoding: utf-8 -*-
 import os
-import sys
 from abjad.tools import iotools
 from abjad.tools import stringtools
-from experimental.tools.scoremanagertools.proxies.FileManager import FileManager
-from experimental.tools.scoremanagertools.proxies.ParseableModuleMixin \
-    import ParseableModuleMixin
+from experimental.tools.scoremanagertools.proxies.FileManager \
+    import FileManager
 
 
-class ModuleManager(FileManager, ParseableModuleMixin):
+class ModuleManager(FileManager):
 
     ### INITIALIZER ###
 
@@ -89,7 +87,10 @@ class ModuleManager(FileManager, ParseableModuleMixin):
             file_pointer = open(self.filesystem_path, 'r')
             file_contents_string = file_pointer.read()
             file_pointer.close()
-            exec(file_contents_string)
+            try:
+                exec(file_contents_string)
+            except Exception:
+                return
             if isinstance(return_attribute_name, str):
                 if return_attribute_name in locals():
                     return locals()[return_attribute_name]
@@ -110,27 +111,14 @@ class ModuleManager(FileManager, ParseableModuleMixin):
             self.session.io_manager.display('')
             self.session.io_manager.proceed()
 
-    def read_file(self):
-        if self.parse():
-            try:
-                self.execute_file_lines()
-                return True
-            except:
-                pass
-        return False
-
     def run_abjad(self, prompt=True):
         command = 'abjad {}'.format(self.filesystem_path)
         iotools.spawn_subprocess(command)
-        self.session.io_manager.proceed(
-            'file executed', 
-            is_interactive=prompt,
-            )
+        message = 'file executed.'
+        self.session.io_manager.proceed(message, is_interactive=prompt)
 
     def run_python(self, prompt=True):
         command = 'python {}'.format(self.filesystem_path)
         iotools.spawn_subprocess(command)
-        self.session.io_manager.proceed(
-            'file executed.', 
-            is_interactive=prompt,
-            )
+        message = 'file executed.'
+        self.session.io_manager.proceed(message, is_interactive=prompt)

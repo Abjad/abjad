@@ -393,16 +393,15 @@ class MaterialPackageManager(PackageManager):
     def is_makermade(self):
         return self.has_material_package_maker
 
-    # TODO: replace with method
-    # TODO: replace with self.material_definition_module_proxy.material_definition
     @property
     def material_definition(self):
-        if self.has_material_definition_module:
-            if self.material_definition_module_proxy.read_file():
-                pair = \
-                    self.output_material_module_import_statements_and_material_definition
-                material_definition = pair[1]
-                return material_definition
+        if not self.has_material_definition_module:
+            return
+        manager = self.material_definition_module_proxy
+        result = manager.execute_file_lines(
+            return_attribute_name=self.material_package_name,
+            )
+        return result
 
     @property
     def material_definition_module_file_name(self):
@@ -796,9 +795,6 @@ class MaterialPackageManager(PackageManager):
             session=self.session)
         stylesheet_file_wrangler._run()
 
-    def overwrite_output_material_module(self):
-        file(self.output_material_module_file_name, 'w').write('')
-
     def remove(self):
         PackageManager.remove(self)
 
@@ -904,8 +900,8 @@ class MaterialPackageManager(PackageManager):
         output_material_module_body_lines=None, 
         prompt=True,
         ):
-        self.overwrite_output_material_module()
-        output_material_module_proxy = self.output_material_module_proxy
+        lines = []
+        lines.append('# -*- encoding: utf-8 -*-\n')
         if output_material_module_import_statements is None or \
             output_material_module_body_lines is None:
             pair = self.output_material_module_import_statements_and_output_material_module_body_lines
@@ -915,18 +911,16 @@ class MaterialPackageManager(PackageManager):
             x + '\n' 
             for x in output_material_module_import_statements
             ]
-        output_material_module_proxy.setup_statements = \
-            output_material_module_import_statements
-        #output_material_module_proxy.body_lines[:] = \
-        #    output_material_module_body_lines
-        output_material_module_proxy.body_lines = \
-            output_material_module_body_lines
-        output_material_module_proxy.write_to_disk()
+        lines.extend(output_material_module_import_statements)
+        lines.extend(output_material_module_body_lines)
+        lines = ''.join(lines)
+        manager = self.output_material_module_proxy
+        file_pointer = file(manager.filesystem_path, 'w')
+        file_pointer.write(lines)
+        file_pointer.close()
         self.write_metadata_to_disk()
-        self.session.io_manager.proceed(
-            'output material written to disk.', 
-            is_interactive=prompt,
-            )
+        message = 'output material written to disk.'
+        self.session.io_manager.proceed(message, is_interactive=prompt)
 
     def write_stub_illustration_builder_module_to_disk(
         self, 
