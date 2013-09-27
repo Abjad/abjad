@@ -474,7 +474,7 @@ class MaterialPackageWrangler(PackageWrangler):
             *pair)
         material_package_proxy.initializer_file_proxy.write_stub_to_disk()
         material_package_proxy.metadata_module_manager.write_stub_to_disk()
-        material_package_proxy.metadata_module_manager.write_tags_to_disk(tags)
+        material_package_proxy.metadata_module_manager.write_metadata_to_disk(tags)
         material_package_proxy.conditionally_write_stub_material_definition_module_to_disk()
         material_package_proxy.conditionally_write_stub_user_input_module_to_disk()
         line = 'material package {!r} created.'.format(package_path)

@@ -126,7 +126,7 @@ class PackageManager(DirectoryManager):
     def add_metadata(self, tag_name, tag_value):
         tags = self.get_metadatas()
         tags[tag_name] = tag_value
-        self.metadata_module_manager.write_tags_to_disk(tags)
+        self.metadata_module_manager.write_metadata_to_disk(tags)
 
     def get_metadata(self, tag_name):
         tags = self.get_metadatas()
@@ -304,7 +304,7 @@ class PackageManager(DirectoryManager):
     def remove_tag(self, tag_name):
         tags = self.get_metadatas()
         del(tags[tag_name])
-        self.metadata_module_manager.write_tags_to_disk(tags)
+        self.metadata_module_manager.write_metadata_to_disk(tags)
 
     def run_first_time(self, **kwargs):
         self._run(**kwargs)

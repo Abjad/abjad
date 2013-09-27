@@ -926,7 +926,7 @@ class MaterialPackageManager(PackageManager):
         output_material_module_proxy.body_lines = \
             output_material_module_body_lines
         output_material_module_proxy.write_to_disk()
-        self.write_tags_to_disk()
+        self.write_metadata_to_disk()
         self.session.io_manager.proceed(
             'output material written to disk.', 
             is_interactive=prompt,
@@ -967,7 +967,7 @@ class MaterialPackageManager(PackageManager):
             self.material_definition_module_proxy.write_stub_to_disk(
                 self.is_data_only, is_interactive=True)
 
-    def write_tags_to_disk(self):
+    def write_metadata_to_disk(self):
         self.add_metadata('is_material_package', True)
         if hasattr(self, 'generic_output_name'):
             self.add_metadata('generic_output_name', self.generic_output_name)

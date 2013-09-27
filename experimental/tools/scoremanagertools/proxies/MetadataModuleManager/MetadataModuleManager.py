@@ -8,6 +8,7 @@ from experimental.tools.scoremanagertools.proxies.ParseableModuleMixin \
 
 
 class MetadataModuleManager(ModuleManager, ParseableModuleMixin):
+#class MetadataModuleManager(ModuleManager):
 
     ### INITIALIZER ###
 
@@ -19,7 +20,8 @@ class MetadataModuleManager(ModuleManager, ParseableModuleMixin):
         ModuleManager.__init__(
             self,
             packagesystem_path=packagesystem_path,
-            session=session)
+            session=session,
+            )
         ParseableModuleMixin.__init__(self)
         self.metadata_lines = []
         self.parse()
@@ -71,24 +73,27 @@ class MetadataModuleManager(ModuleManager, ParseableModuleMixin):
                 scoremanagertools.wranglers.MaterialPackageMakerWrangler(
                 session=self.session)
             with self.backtracking:
+                wrangler = material_package_maker_wrangler
                 material_package_maker_class_name = \
-                    material_package_maker_wrangler.select_material_proxy_class_name_interactively(
-                        clear=False, cache=True)
+                    wrangler.select_material_proxy_class_name_interactively(
+                    clear=False, 
+                    cache=True,
+                    )
             if self.session.backtrack():
                 return
             should_have_illustration = True
-        tags = collections.OrderedDict([])
-        tags['should_have_illustration'] = should_have_illustration
-        tags['material_package_maker_class_name'] = \
+        metadata = collections.OrderedDict([])
+        metadata['should_have_illustration'] = should_have_illustration
+        metadata['material_package_maker_class_name'] = \
             material_package_maker_class_name
         self.write_stub_to_disk()
-        self.session.io_manager.proceed(
-            'initializer restored.', is_interactive=prompt)
+        message = 'initializer restored.'
+        self.session.io_manager.proceed(message, is_interactive=prompt)
 
-    def make_metadata_lines(self, tags):
-        if tags:
+    def make_metadata_lines(self, metadata):
+        if metadata:
             lines = []
-            for key, value in sorted(tags.iteritems()):
+            for key, value in sorted(metadata.iteritems()):
                 key = repr(key)
                 if hasattr(value, '_get_multiline_repr'):
                     repr_lines = \
@@ -158,12 +163,12 @@ class MetadataModuleManager(ModuleManager, ParseableModuleMixin):
         self.clear()
         self.write_to_disk()
 
-    def write_tags_to_disk(self, tags):
+    def write_metadata_to_disk(self, metadata):
         self.parse()
         self.encoding_directives[:] = ['# -*- encoding: utf-8 -*-\n']
         ordered_dict_import_statement = 'import collections\n'
         if ordered_dict_import_statement not in self.setup_statements:
             self.setup_statements.append(ordered_dict_import_statement)
-        metadata_lines = self.make_metadata_lines(tags)
+        metadata_lines = self.make_metadata_lines(metadata)
         self.metadata_lines = metadata_lines[:]
         self.write_to_disk()

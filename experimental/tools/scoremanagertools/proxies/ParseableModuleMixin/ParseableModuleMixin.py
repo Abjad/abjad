@@ -38,12 +38,9 @@ class ParseableModuleMixin(AbjadObject):
     @property
     def file_sections(self):
         return (
-            #(self.encoding_directives, False, 0),
-            #(self.docstring_lines, False, 1),
             (self.setup_statements, True, 2),
             (self.body_lines, False, 0),
             )
-
 
     ### PUBLIC METHODS ###
 
