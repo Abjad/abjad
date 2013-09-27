@@ -4,7 +4,6 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 class ParseableModuleMixin(AbjadObject):
     r'''Parseable module mixin.
-
     '''
 
     ### INITIALIZER ###
@@ -46,7 +45,7 @@ class ParseableModuleMixin(AbjadObject):
     ### PUBLIC METHODS ###
 
     def clear(self):
-        for menu_section, is_sorted, blank_line_count  in self.file_sections:
+        for menu_section, is_sorted, blank_line_count in self.file_sections:
             menu_section[:] = []
 
     def parse(self):
