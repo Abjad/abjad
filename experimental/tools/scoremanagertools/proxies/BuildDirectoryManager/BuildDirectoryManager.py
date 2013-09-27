@@ -166,7 +166,7 @@ class BuildDirectoryManager(DirectoryManager):
         '''
         from experimental.tools import scoremanagertools
         score_tex_file_path = self._get_score_tex_file_path()
-        proxy = scoremanagertools.proxies.FileProxy(
+        proxy = scoremanagertools.proxies.FileManager(
             filesystem_path=score_tex_file_path,
             session=self.session,
             )

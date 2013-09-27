@@ -13,7 +13,7 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
     try:
         score_manager._run(pending_user_input='m h testnotes default default q')
         assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testnotes')
+        mpp = scoremanagertools.proxies.MaterialPackageManager('experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
         assert mpp.list_directory() == [
             '__init__.py', 
@@ -42,7 +42,7 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
             'm h testnotes default default '
             'testnotes incanned canned_exception.py default q')
         assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testnotes')
+        mpp = scoremanagertools.proxies.MaterialPackageManager('experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.list_directory() == [
             '__init__.py', 
             '__metadata__.py',
@@ -71,7 +71,7 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
             'testnotes incanned canned_exception.py default '
             'inr yes yes default q')
         assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testnotes')
+        mpp = scoremanagertools.proxies.MaterialPackageManager('experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
         assert mpp.list_directory() == [
             '__init__.py', 
@@ -101,7 +101,7 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
             'testnotes mdcanned canned_testnotes_material_definition.py default '
             'omm default q')
         assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testnotes')
+        mpp = scoremanagertools.proxies.MaterialPackageManager('experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
         assert mpp.list_directory() == [
             '__init__.py',
@@ -135,7 +135,7 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
             'testnotes mddelete default q')
         assert score_manager.configuration.packagesystem_path_exists(
             'experimental.tools.scoremanagertools.materialpackages.testnotes')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy(
+        mpp = scoremanagertools.proxies.MaterialPackageManager(
             'experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
         assert mpp.list_directory() == [
@@ -167,7 +167,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
             'm h testnotes default '
             'testnotes mdstub default q')
         assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testnotes')
+        mpp = scoremanagertools.proxies.MaterialPackageManager('experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
         assert mpp.list_directory() == [
             '__init__.py', 
@@ -200,7 +200,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
             'omdelete default q')
         assert score_manager.configuration.packagesystem_path_exists(
             'experimental.tools.scoremanagertools.materialpackages.testnotes')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy(
+        mpp = scoremanagertools.proxies.MaterialPackageManager(
             'experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
         assert mpp.list_directory() == [
@@ -234,7 +234,7 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
             'm h testnotes default default '
             'testnotes mdcanned canned_exception.py default q')
         assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testnotes')
+        mpp = scoremanagertools.proxies.MaterialPackageManager('experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
         assert mpp.list_directory() == [
             '__init__.py', 
@@ -265,7 +265,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
             'omm default '
             'omcanned canned_exception.py default q')
         assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testnotes')
+        mpp = scoremanagertools.proxies.MaterialPackageManager('experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
         assert mpp.list_directory() == [
             '__init__.py',
@@ -301,7 +301,7 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
             'pdfm default '
             'q')
         assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testnotes')
+        mpp = scoremanagertools.proxies.MaterialPackageManager('experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
         assert mpp.list_directory() == [
             '__init__.py', 

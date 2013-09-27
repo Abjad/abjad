@@ -57,7 +57,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
                 self.configuration.filesystem_path_to_packagesystem_path(
                     package_path)
         material_package_proxy = \
-            scoremanagertools.proxies.MaterialPackageProxy(
+            scoremanagertools.proxies.MaterialPackageManager(
             package_path, session=self.session)
         material_package_maker_class_name = \
             material_package_proxy.material_package_maker_class_name
@@ -104,12 +104,12 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         ::
 
             >>> wrangler.asset_proxy_class.__name__
-            'PackageProxy'
+            'PackageManager'
 
         Returns class.
         '''
         from experimental.tools import scoremanagertools
-        return scoremanagertools.proxies.PackageProxy
+        return scoremanagertools.proxies.PackageManager
 
     ### PUBLIC METHODS ###
 
@@ -275,15 +275,15 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             ...     in_user_asset_library=False, 
             ...     in_user_score_packages=False):
             ...     x
-            MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/ArticulationHandlerMaterialPackageMaker')
-            MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/DynamicHandlerMaterialPackageMaker')
-            MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/ListMaterialPackageMaker')
-            MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/MarkupInventoryMaterialPackageMaker')
-            MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/OctaveTranspositionMappingInventoryMaterialPackageMaker')
-            MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/PitchRangeInventoryMaterialPackageMaker')
-            MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/RhythmMakerMaterialPackageMaker')
-            MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/SargassoMeasureMaterialPackageMaker')
-            MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/TempoMarkInventoryMaterialPackageMaker')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/ArticulationHandlerMaterialPackageMaker')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/DynamicHandlerMaterialPackageMaker')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/ListMaterialPackageMaker')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/MarkupInventoryMaterialPackageMaker')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/OctaveTranspositionMappingInventoryMaterialPackageMaker')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/PitchRangeInventoryMaterialPackageMaker')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/RhythmMakerMaterialPackageMaker')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/SargassoMeasureMaterialPackageMaker')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/TempoMarkInventoryMaterialPackageMaker')
 
         Returns list.
         '''

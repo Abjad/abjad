@@ -15,7 +15,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_01():
             'experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert wrangler.configuration.packagesystem_path_exists(
             'experimental.tools.scoremanagertools.materialpackages.testnotes')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy(
+        mpp = scoremanagertools.proxies.MaterialPackageManager(
             'experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
         assert mpp.list_directory() == [
@@ -55,7 +55,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_03():
         wrangler.interactively_make_handmade_material_package(pending_user_input='testnotes q')
         assert wrangler.configuration.packagesystem_path_exists(
             'experimental.tools.scoremanagertools.materialpackages.testnotes')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy(
+        mpp = scoremanagertools.proxies.MaterialPackageManager(
             'experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
         assert mpp.list_directory() == [
@@ -84,7 +84,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_04():
             'experimental.tools.scoremanagertools.materialpackages.testnotes', tags=tags)
         assert wrangler.configuration.packagesystem_path_exists(
             'experimental.tools.scoremanagertools.materialpackages.testnotes')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy(
+        mpp = scoremanagertools.proxies.MaterialPackageManager(
             'experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.get_tag('color') == 'red'
         assert mpp.get_tag('is_colored')

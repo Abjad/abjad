@@ -1,16 +1,16 @@
 # -*- encoding: utf-8 -*-
 import os
-from experimental.tools.scoremanagertools.proxies.PackageProxy \
-    import PackageProxy
+from experimental.tools.scoremanagertools.proxies.PackageManager \
+    import PackageManager
 
 
-class ScorePackageManager(PackageProxy):
+class ScorePackageManager(PackageManager):
 
     ### INITIALIZER ###
 
     def __init__(self, packagesystem_path=None, session=None):
         from experimental.tools import scoremanagertools
-        PackageProxy.__init__(
+        PackageManager.__init__(
             self, 
             packagesystem_path, 
             session=session,
@@ -27,7 +27,7 @@ class ScorePackageManager(PackageProxy):
             )
         package_path = '{}.instrumentation'.format(self.package_path)
         self._instrumentation_module_proxy = \
-            scoremanagertools.proxies.ModuleProxy(
+            scoremanagertools.proxies.ModuleManager(
             package_path,
             session=self.session,
             )
@@ -193,7 +193,7 @@ class ScorePackageManager(PackageProxy):
             self.package_path,
             'instrumentation',
             ])
-        proxy = scoremanagertools.proxies.ModuleProxy(
+        proxy = scoremanagertools.proxies.ModuleManager(
             packagesystem_path,
             session=self.session,
             )
@@ -523,7 +523,7 @@ class ScorePackageManager(PackageProxy):
 
     ### UI MANIFEST ###
 
-    user_input_to_action = PackageProxy.user_input_to_action.copy()
+    user_input_to_action = PackageManager.user_input_to_action.copy()
     user_input_to_action.update({
         'fix': interactively_fix,
         'g': manage_segments,

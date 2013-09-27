@@ -87,7 +87,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         directory_path = self._get_current_directory_path_of_interest()
         if directory_path is None:
             return
-        proxy = scoremanagertools.proxies.PackageProxy(
+        proxy = scoremanagertools.proxies.PackageManager(
             directory_path,
             session=self.session,
             )
@@ -105,7 +105,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def _get_current_view_module_proxy(self):
         from experimental.tools import scoremanagertools
         file_path = self._get_current_view_file_path()
-        proxy = scoremanagertools.proxies.ModuleProxy(
+        proxy = scoremanagertools.proxies.ModuleManager(
             file_path,
             session=self.session,
             )
@@ -186,7 +186,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         view_file_path = self._get_current_view_file_path()
         if view_file_path is None:
             return
-        proxy = scoremanagertools.proxies.ModuleProxy(
+        proxy = scoremanagertools.proxies.ModuleManager(
             view_file_path,
             session=self.session,
             )

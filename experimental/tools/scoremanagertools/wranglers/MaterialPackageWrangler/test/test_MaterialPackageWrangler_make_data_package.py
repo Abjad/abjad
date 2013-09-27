@@ -11,7 +11,7 @@ def test_MaterialPackageWrangler_make_data_package_01():
     try:
         wrangler.make_data_package('experimental.tools.scoremanagertools.materialpackages.testnumbers')
         assert wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnumbers')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testnumbers')
+        mpp = scoremanagertools.proxies.MaterialPackageManager('experimental.tools.scoremanagertools.materialpackages.testnumbers')
         assert mpp.is_data_only
         assert mpp.list_directory() == [
             '__init__.py', 
@@ -43,7 +43,7 @@ def test_MaterialPackageWrangler_make_data_package_03():
     try:
         wrangler.interactively_make_data_package(pending_user_input='testnumbers q')
         assert wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnumbers')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testnumbers')
+        mpp = scoremanagertools.proxies.MaterialPackageManager('experimental.tools.scoremanagertools.materialpackages.testnumbers')
         assert mpp.is_data_only
         assert mpp.list_directory() == [
             '__init__.py', 
@@ -66,7 +66,7 @@ def test_MaterialPackageWrangler_make_data_package_04():
         tags = {'color': 'red', 'is_colored': True}
         wrangler.make_data_package('experimental.tools.scoremanagertools.materialpackages.testnumbers', tags=tags)
         assert wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnumbers')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testnumbers')
+        mpp = scoremanagertools.proxies.MaterialPackageManager('experimental.tools.scoremanagertools.materialpackages.testnumbers')
         assert mpp.get_tag('color') == 'red'
         assert mpp.get_tag('is_colored')
     finally:

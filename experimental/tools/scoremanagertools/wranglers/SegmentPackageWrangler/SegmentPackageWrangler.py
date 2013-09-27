@@ -75,12 +75,12 @@ class SegmentPackageWrangler(PackageWrangler):
         ::
 
             >>> wrangler.asset_proxy_class.__name__
-            'SegmentPackageProxy'
+            'SegmentPackageManager'
 
         Returns class.
         '''
         from experimental.tools import scoremanagertools
-        return scoremanagertools.proxies.SegmentPackageProxy
+        return scoremanagertools.proxies.SegmentPackageManager
 
     ### PUBLIC METHODS ###
 
@@ -308,11 +308,11 @@ class SegmentPackageWrangler(PackageWrangler):
             ...     in_user_asset_library=False, 
             ...     in_user_score_packages=False):
             ...     x
-            SegmentPackageProxy('.../blue_example_score/segments/segment_01')
-            SegmentPackageProxy('.../blue_example_score/segments/segment_02')
-            SegmentPackageProxy('.../red_example_score/segments/segment_01')
-            SegmentPackageProxy('.../red_example_score/segments/segment_02')
-            SegmentPackageProxy('.../red_example_score/segments/segment_03')
+            SegmentPackageManager('.../blue_example_score/segments/segment_01')
+            SegmentPackageManager('.../blue_example_score/segments/segment_02')
+            SegmentPackageManager('.../red_example_score/segments/segment_01')
+            SegmentPackageManager('.../red_example_score/segments/segment_02')
+            SegmentPackageManager('.../red_example_score/segments/segment_03')
 
         Example 2. List red example score segment package proxies:
 
@@ -321,9 +321,9 @@ class SegmentPackageWrangler(PackageWrangler):
             >>> head = 'experimental.tools.scoremanagertools.scorepackages.red_example_score'
             >>> for x in wrangler.list_asset_proxies(head=head):
             ...     x
-            SegmentPackageProxy('.../red_example_score/segments/segment_01')
-            SegmentPackageProxy('.../red_example_score/segments/segment_02')
-            SegmentPackageProxy('.../red_example_score/segments/segment_03')
+            SegmentPackageManager('.../red_example_score/segments/segment_01')
+            SegmentPackageManager('.../red_example_score/segments/segment_02')
+            SegmentPackageManager('.../red_example_score/segments/segment_03')
 
         Returns list.
         '''

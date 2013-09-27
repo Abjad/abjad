@@ -26,4 +26,4 @@ class ModuleWrangler(PackagesystemAssetWrangler):
         Returns class.
         '''
         from experimental.tools import scoremanagertools
-        return scoremanagertools.proxies.ModuleProxy
+        return scoremanagertools.proxies.ModuleManager

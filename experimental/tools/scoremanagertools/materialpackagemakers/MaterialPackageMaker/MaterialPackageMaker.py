@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 import copy
 import os
-from experimental.tools.scoremanagertools.proxies.MaterialPackageProxy \
-    import MaterialPackageProxy
+from experimental.tools.scoremanagertools.proxies.MaterialPackageManager \
+    import MaterialPackageManager
 
 
-class MaterialPackageMaker(MaterialPackageProxy):
+class MaterialPackageMaker(MaterialPackageManager):
 
     ### CLASS VARIABLES ###
 
@@ -24,7 +24,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
     ### INITIALIZER ###
 
     def __init__(self, packagesystem_path=None, session=None):
-        MaterialPackageProxy.__init__(
+        MaterialPackageManager.__init__(
             self, 
             packagesystem_path=packagesystem_path, 
             session=session,
@@ -45,7 +45,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
             user_input_module_packagesystem_path, is_module=True)
         if not os.path.exists(user_input_module_file_path):
             file(user_input_module_file_path, 'w').write('')
-        proxy = scoremanagertools.proxies.UserInputModuleProxy(
+        proxy = scoremanagertools.proxies.UserInputModuleManager(
             user_input_module_packagesystem_path, 
             session=self.session)
         user_input_wrapper = proxy.read_user_input_wrapper_from_disk()
@@ -247,7 +247,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
 
     ### UI MANIFEST ###
 
-    user_input_to_action = MaterialPackageProxy.user_input_to_action.copy()
+    user_input_to_action = MaterialPackageManager.user_input_to_action.copy()
     user_input_to_action.update({
         'uic': clear_user_input_wrapper,
         'uil': load_user_input_wrapper_demo_values,

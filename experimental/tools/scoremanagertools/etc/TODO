@@ -19,8 +19,8 @@
 9.  Implement something to tour all materials everywhere 
     and examine in sequence.
 
-10. Currently MaterialPackageMaker inherits from MaterialPackageProxy.
-    Maybe MaterialPackageMaker should *have* a MaterialPackageProxy instead.
+10. Currently MaterialPackageMaker inherits from MaterialPackageManager.
+    Maybe MaterialPackageMaker should *have* a MaterialPackageManager instead.
     This would clean up the inheritance schema somewhat.
 
 11. Audit the UI of the entire materials management system by hand.
@@ -44,12 +44,12 @@
 
 16. Author ScorePackageManager docstrings.
 
-17. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
+17. Add PackageystemAssetManager to superclass ModuleManager and PackageManager.
 
-18. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
+18. Create a PackagesystemAssetManager to parallel PacakagesystemAssetWrangler.
 
 19. Harmonize user input strings with method names in 
-    MaterialPackageProxy.user_input_to_action dictionary.
+    MaterialPackageManager.user_input_to_action dictionary.
 
 20. Author StylesheetFileWrangler.interactively_remove_assets() test.
     Will involve making pending_user_input='... rm ...' work with named 

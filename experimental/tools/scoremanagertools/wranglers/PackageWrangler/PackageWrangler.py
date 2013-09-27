@@ -40,7 +40,7 @@ class PackageWrangler(PackagesystemAssetWrangler):
     @abc.abstractproperty
     def asset_proxy_class(self):
         from experimental.tools import scoremanagertools
-        return scoremanagertools.proxies.PackageProxy
+        return scoremanagertools.proxies.PackageManager
 
     ### PUBLIC METHODS ###
 

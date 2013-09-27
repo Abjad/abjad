@@ -2,11 +2,11 @@
 import os
 import subprocess
 from abjad.tools import sequencetools
-from experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy \
-    import FilesystemAssetProxy
+from experimental.tools.scoremanagertools.proxies.FilesystemAssetManager \
+    import FilesystemAssetManager
 
 
-class DirectoryManager(FilesystemAssetProxy):
+class DirectoryManager(FilesystemAssetManager):
 
     ### PRIVATE PROPERTIES ###
 
@@ -68,7 +68,7 @@ class DirectoryManager(FilesystemAssetProxy):
         Returns class.
         '''
         from experimental.tools import scoremanagertools
-        return scoremanagertools.proxies.FileProxy
+        return scoremanagertools.proxies.FileManager
 
     ### PUBLIC METHODS ###
 
@@ -167,7 +167,7 @@ class DirectoryManager(FilesystemAssetProxy):
 
     ### UI MANIFEST ###
 
-    user_input_to_action = FilesystemAssetProxy.user_input_to_action.copy()
+    user_input_to_action = FilesystemAssetManager.user_input_to_action.copy()
     user_input_to_action.update({
         'ls': print_directory_entries,
         'py.test': run_py_test,

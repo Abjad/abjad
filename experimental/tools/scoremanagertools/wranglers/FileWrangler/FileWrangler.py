@@ -14,4 +14,4 @@ class FileWrangler(FilesystemAssetWrangler):
         Returns class.
         '''
         from experimental.tools import scoremanagertools
-        return scoremanagertools.proxies.FileProxy
+        return scoremanagertools.proxies.FileManager

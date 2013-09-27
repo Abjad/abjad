@@ -65,7 +65,7 @@ class MaterialPackageWrangler(PackageWrangler):
         from experimental.tools import scoremanagertools
         if material_package_maker_class_name is None:
             material_package_proxy = \
-                scoremanagertools.proxies.MaterialPackageProxy(
+                scoremanagertools.proxies.MaterialPackageManager(
                 material_package_path, 
                 session=self.session,
                 )
@@ -125,12 +125,12 @@ class MaterialPackageWrangler(PackageWrangler):
         ::
 
             >>> wrangler.asset_proxy_class.__name__
-            'PackageProxy'
+            'PackageManager'
 
         Returns class.
         '''
         from experimental.tools import scoremanagertools
-        return scoremanagertools.proxies.PackageProxy
+        return scoremanagertools.proxies.PackageManager
 
     ### PUBLIC METHODS ###
 
@@ -345,15 +345,15 @@ class MaterialPackageWrangler(PackageWrangler):
             ...     in_user_asset_library=False, 
             ...     in_user_score_packages=False):
             ...     x
-            MaterialPackageProxy('.../tools/scoremanagertools/materialpackages/black_music_specifier')
-            MaterialPackageProxy('.../tools/scoremanagertools/materialpackages/green_music_specifier')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackages/black_music_specifier')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackages/green_music_specifier')
             MarkupInventoryMaterialPackageMaker('.../tools/scoremanagertools/materialpackages/red_directives')
             DynamicHandlerMaterialPackageMaker('.../tools/scoremanagertools/materialpackages/red_forte')
             ArticulationHandlerMaterialPackageMaker('.../tools/scoremanagertools/materialpackages/red_marcati')
-            MaterialPackageProxy('.../tools/scoremanagertools/materialpackages/red_notes')
-            MaterialPackageProxy('.../tools/scoremanagertools/materialpackages/red_numbers')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackages/red_notes')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackages/red_numbers')
             SargassoMeasureMaterialPackageMaker('.../tools/scoremanagertools/materialpackages/red_sargasso_measures')
-            MaterialPackageProxy('.../tools/scoremanagertools/materialpackages/sargasso_multipliers')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackages/sargasso_multipliers')
             TempoMarkInventoryMaterialPackageMaker('.../tools/scoremanagertools/scorepackages/red_example_score/materials/tempo_inventory')
 
         Returns list.
