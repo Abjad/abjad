@@ -90,9 +90,18 @@ class ModuleManager(FileManager, ParseableModuleMixin):
             file_contents_string = file_pointer.read()
             file_pointer.close()
             exec(file_contents_string)
-            if return_attribute_name is not None:
+            if isinstance(return_attribute_name, str):
                 if return_attribute_name in locals():
                     return locals()[return_attribute_name]
+            elif isinstance(return_attribute_name, (list, tuple)):
+                result = []
+                for name in return_attribute_name:
+                    if name in locals():
+                        result.append(locals()[name])
+                    else:
+                        result.append(None)
+                result = tuple(result)
+                return result
 
     def interpret_in_external_process(self):
         command = 'python {}'.format(self.filesystem_path)

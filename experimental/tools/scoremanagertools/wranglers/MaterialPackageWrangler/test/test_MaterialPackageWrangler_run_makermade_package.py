@@ -130,7 +130,6 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert mpp.is_makermade and not mpp.is_data_only
 #        assert mpp.list_directory() == ['__init__.py',
 #            'illustration_builder.py', 'material_definition.py', 'output_material.py']
-#        assert mpp.has_user_finalized_material_definition_module
 #        assert mpp.has_illustration_builder_module
 #        assert mpp.material_definition and all(isinstance(x, Note) for x in
 #           mpp.material_definition)
@@ -210,7 +209,6 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 #        assert mpp.is_makermade and not mpp.is_data_only
 #        assert mpp.list_directory() == ['__init__.py', 'material_definition.py']
-#        assert mpp.has_user_finalized_material_definition_module
 #        assert not mpp.has_output_material_module
 #        assert not mpp.has_illustration_builder_module
 #        assert mpp.material_definition and all(isinstance(x, Note) for x in
@@ -265,7 +263,6 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert mpp.is_makermade and not mpp.is_data_only
 #        assert mpp.list_directory() == ['__init__.py',
 #            'illustration_builder.py', 'material_definition.py', 'output_material.py']
-#        assert mpp.has_user_finalized_material_definition_module
 #        assert mpp.has_illustration_builder_module
 #        assert mpp.material_definition and all(isinstance(x, Note) for x in
 #           mpp.material_definition
@@ -296,8 +293,6 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert mpp.list_directory() == [
 #            '__init__.py', 'illustration.ly', 'illustration.pdf',
 #            'illustration_builder.py', 'material_definition.py', 'output_material.py']
-#        assert mpp.has_user_finalized_material_definition_module
-#        assert mpp.has_user_finalized_illustration_builder_module
 #        assert mpp.has_illustration_ly
 #        assert mpp.has_illustration_pdf
 #        assert mpp.material_definition and all(isinstance(x, Note) for x in

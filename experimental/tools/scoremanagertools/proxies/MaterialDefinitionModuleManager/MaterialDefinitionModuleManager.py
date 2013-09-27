@@ -31,40 +31,10 @@ class MaterialDefinitionModuleManager(ModuleManager, ParseableModuleMixin):
             )
 
     @property
-    def is_user_finalized(self):
-        # TODO: maybe replace with bool(self.material_definition)
-        return bool(self.import_output_material_module_import_statements_and_material_definition()[1])
-
-    @property
     def material_package_name(self):
         return self.packagesystem_path.split('.')[-2]
 
-    @property
-    def output_material_module_import_statements(self):
-        result = self._safe_import(
-            locals(),
-            self.packagesystem_basename,
-            'output_material_module_import_statements',
-            source_parent_package_path=self.parent_directory_packagesystem_path,
-            )
-        # keep list from persisting between multiple calls to this method
-        if result:
-            result = list(result)
-            return result
-
     ### PUBLIC METHODS ###
-
-    def import_output_material_module_import_statements_and_material_definition(
-        self):
-        if os.path.exists(self.filesystem_path):
-            file_pointer = open(self.filesystem_path, 'r')
-            file_contents_string = file_pointer.read()
-            file_pointer.close()
-            exec(file_contents_string)
-            material_definition = locals().get(self.material_package_name)
-            output_material_module_import_statements = locals().get(
-                'output_material_module_import_statements')
-            return output_material_module_import_statements, material_definition
 
     def interactively_edit(self):
         columns = len(self.material_package_name) + 3
@@ -121,19 +91,22 @@ class MaterialDefinitionModuleManager(ModuleManager, ParseableModuleMixin):
 
     def write_stub_data_material_definition_to_disk(self):
         self.clear()
-        self.setup_statements.append('from abjad.tools import sequencetools\n')
-        self.output_material_module_import_lines.append(
-            'output_material_module_import_statements = []\n')
-        self.body_lines.append('{} = None'.format(self.material_package_name))
+        line = 'from abjad.tools import sequencetools\n'
+        self.setup_statements.append(line)
+        line = 'output_material_module_import_statements = []\n'
+        self.output_material_module_import_lines.append(line)
+        line = '{} = None'.format(self.material_package_name)
+        self.body_lines.append(line)
         self.write_to_disk()
 
     def write_stub_music_material_definition_to_disk(self):
         self.clear()
         self.setup_statements.append('from abjad import *\n')
-        line = \
-            "output_material_module_import_statements = ['from abjad import *']\n"
+        line = 'output_material_module_import_statements'
+        line += " = ['from abjad import *']\n"
         self.output_material_module_import_lines.append(line)
-        self.body_lines.append('{} = None'.format(self.material_package_name))
+        line = '{} = None'.format(self.material_package_name)
+        self.body_lines.append(line)
         self.write_to_disk()
 
     def write_stub_to_disk(self, is_data_only, is_interactive=True):
@@ -141,6 +114,5 @@ class MaterialDefinitionModuleManager(ModuleManager, ParseableModuleMixin):
             self.write_stub_data_material_definition_to_disk()
         else:
             self.write_stub_music_material_definition_to_disk()
-        self.session.io_manager.proceed(
-            'stub material definitiion written to disk.',
-            is_interactive=is_interactive)
+        message = 'stub material definition written to disk.'
+        self.session.io_manager.proceed(message, is_interactive=is_interactive)

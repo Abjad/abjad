@@ -292,18 +292,6 @@ class MaterialPackageManager(PackageManager):
         return False
 
     @property
-    def has_user_finalized_illustration_builder_module(self):
-        if self.has_illustration_builder_module:
-            if self.illustration_builder_module_proxy.read_file():
-                return self.illustration_builder_module_proxy.is_user_finalized
-
-    @property
-    def has_user_finalized_material_definition_module(self):
-        if self.has_material_definition_module:
-            return self.material_definition_module_proxy.is_user_finalized
-        return False
-
-    @property
     def has_user_input_module(self):
         if self.should_have_user_input_module:
             return os.path.exists(self.user_input_module_file_name)
@@ -483,9 +471,17 @@ class MaterialPackageManager(PackageManager):
 
     @property
     def output_material_module_import_statements_and_material_definition(self):
-        if self.should_have_material_definition_module:
-            tmp = self.material_definition_module_proxy
-            return tmp.import_output_material_module_import_statements_and_material_definition()
+        if not self.should_have_material_definition_module:
+            return
+        manager = self.material_definition_module_proxy
+        return_attribute_name = [
+            'output_material_module_import_statements',
+            self.material_package_name,
+            ]
+        result = manager.execute_file_lines(
+            return_attribute_name=return_attribute_name,
+            )
+        return result
 
     @property
     def output_material_module_import_statements_and_output_material_module_body_lines(

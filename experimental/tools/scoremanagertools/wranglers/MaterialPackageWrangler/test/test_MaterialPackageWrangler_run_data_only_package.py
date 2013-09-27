@@ -121,7 +121,6 @@ def test_MaterialPackageWrangler_run_data_only_package_04():
             'material_definition.py', 
             'output_material.py', 
             ]
-        assert mpp.has_user_finalized_material_definition_module
         assert mpp.material_definition == [1, 2, 3, 4, 5]
         assert mpp.output_material == [1, 2, 3, 4, 5]
     finally:
@@ -220,7 +219,6 @@ def test_MaterialPackageWrangler_run_data_only_package_07():
             '__metadata__.py',
             'material_definition.py', 
             ]
-        assert mpp.has_user_finalized_material_definition_module
         assert not mpp.has_output_material_module
         assert mpp.material_definition == [1, 2, 3, 4, 5]
         assert mpp.output_material is None
@@ -289,7 +287,6 @@ def test_MaterialPackageWrangler_run_data_only_package_09():
             'material_definition.py', 
             'output_material.py', 
             ]
-        assert mpp.has_user_finalized_material_definition_module
         assert mpp.material_definition == [1, 2, 3, 4, 5]
         assert mpp.output_material is None
     finally:

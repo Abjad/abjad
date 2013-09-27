@@ -110,7 +110,6 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
             'material_definition.py', 
             'output_material.py', 
             ]
-        assert mpp.has_user_finalized_material_definition_module
         assert mpp.has_illustration_builder_module
         assert mpp.material_definition and \
             all(isinstance(x, Note) for x in mpp.material_definition)
@@ -208,7 +207,6 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
                 '__metadata__.py',
                 'material_definition.py', 
                 ]
-        assert mpp.has_user_finalized_material_definition_module
         assert not mpp.has_output_material_module
         assert not mpp.has_illustration_builder_module
         assert mpp.material_definition and \
@@ -274,7 +272,6 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
             'material_definition.py', 
             'output_material.py', 
             ]
-        assert mpp.has_user_finalized_material_definition_module
         assert mpp.has_illustration_builder_module
         assert mpp.material_definition and \
             all(isinstance(x, Note) for x in mpp.material_definition)
@@ -312,8 +309,6 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
             'material_definition.py', 
             'output_material.py', 
             ]
-        assert mpp.has_user_finalized_material_definition_module
-        assert mpp.has_user_finalized_illustration_builder_module
         assert mpp.has_illustration_ly
         assert mpp.has_illustration_pdf
         assert mpp.material_definition and \
