@@ -164,15 +164,6 @@ class FilesystemAssetManager(ScoreManagerObject):
         '''
         return self._filesystem_path
 
-    @property
-    def parent_directory_filesystem_path(self):
-        r'''Filesystem path of filesystem asset proxy parent directory.
-
-        Returns string.
-        '''
-        if self.filesystem_path:
-            return os.path.dirname(self.filesystem_path)
-
     ### PUBLIC METHODS ###
 
     def copy(self, new_filesystem_path):
@@ -207,9 +198,10 @@ class FilesystemAssetManager(ScoreManagerObject):
             return
         new_asset_name = \
             self._space_delimited_lowercase_name_to_asset_name(result)
-        new_path = \
-            os.path.join(self.parent_directory_filesystem_path, new_asset_name)
-        self.session.io_manager.display('new path will be {}'.format(new_path))
+        parent_directory_path = os.path.dirname(self.filesystem_path)
+        new_path = os.path.join(parent_directory_path, new_asset_name)
+        message = 'new path will be {}'.format(new_path)
+        self.session.io_manager.display(message)
         if not self.session.io_manager.confirm():
             return
         self.copy(new_path)
@@ -259,7 +251,8 @@ class FilesystemAssetManager(ScoreManagerObject):
         result = getter._run()
         if self.session.backtrack():
             return
-        new_path = os.path.join(self.parent_directory_filesystem_path, result)
+        parent_directory_path = os.path.dirname(self.filesystem_path)
+        new_path = os.path.join(parent_directory_path, result)
         message = 'new path name will be: "{}"'.format(new_path)
         self.session.io_manager.display([message, ''])
         if not self.session.io_manager.confirm():

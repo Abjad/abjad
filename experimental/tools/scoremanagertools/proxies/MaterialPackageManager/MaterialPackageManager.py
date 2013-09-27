@@ -718,10 +718,11 @@ class MaterialPackageManager(PackageManager):
                 new_package_name,
                 )
             commit_message = commit_message.replace('_', ' ')
+            parent_directory_path = os.path.dirname(self.filesystem_path)
             command = 'svn commit -m "{}" {}'
             command = command.format(
                 commit_message, 
-                self.parent_directory_filesystem_path,
+                parent_directory_path,
                 )
             iotools.spawn_subprocess(command)
         else:

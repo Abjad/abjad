@@ -51,11 +51,6 @@ class PackageManager(DirectoryManager):
             return os.path.isfile(self.initializer_file_name)
 
     @property
-    def has_parent_initializer(self):
-        if self.parent_initializer_file_name is not None:
-            return os.path.isfile(self.parent_initializer_file_name)
-
-    @property
     def has_metadata_module(self):
         return os.path.isfile(self.metadata_module_name)
 
@@ -77,36 +72,6 @@ class PackageManager(DirectoryManager):
             )
 
     @property
-    def package_path(self):
-        return self._package_path
-
-    @property
-    def package_root_name(self):
-        return self.package_path.split('.')[0]
-
-    @property
-    def parent_directory_packagesystem_path(self):
-        if self.package_path is not None:
-            result = '.'.join(self.package_path.split('.')[:-1])
-            if result:
-                return result
-
-    @property
-    def parent_initializer_file_name(self):
-        if self.parent_directory_packagesystem_path:
-            return os.path.join(
-                self.parent_directory_filesystem_path, '__init__.py')
-
-    @property
-    def public_names(self):
-        result = []
-        imported_package_vars = vars(self.imported_package)
-        for key in sorted(imported_package_vars.keys()):
-            if not key.startswith('_'):
-                result.append(imported_package_vars[key])
-        return result
-
-    @property
     def metadata_module_name(self):
         file_path = os.path.join(self.filesystem_path, '__metadata__.py')
         return file_path
@@ -120,6 +85,23 @@ class PackageManager(DirectoryManager):
             metadata_module.close()
         return scoremanagertools.proxies.MetadataModuleManager(
             self.metadata_module_name, session=self.session)
+
+    @property
+    def package_path(self):
+        return self._package_path
+
+    @property
+    def package_root_name(self):
+        return self.package_path.split('.')[0]
+
+    @property
+    def public_names(self):
+        result = []
+        imported_package_vars = vars(self.imported_package)
+        for key in sorted(imported_package_vars.keys()):
+            if not key.startswith('_'):
+                result.append(imported_package_vars[key])
+        return result
 
     ### PUBLIC METHODS ###
 
@@ -224,10 +206,11 @@ class PackageManager(DirectoryManager):
                 new_package_name,
                 )
             commit_message = commit_message.replace('_', ' ')
+            parent_directory_path = os.path.dirname(self.filesystem_path)
             command = 'svn commit -m {!r} {}'
             command = command.format(
                 commit_message,
-                self.parent_directory_filesystem_path,
+                parent_directory_path,
                 )
             iotools.spawn_subprocess(command)
         else:
