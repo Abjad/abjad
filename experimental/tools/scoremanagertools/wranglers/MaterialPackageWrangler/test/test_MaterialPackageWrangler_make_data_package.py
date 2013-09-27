@@ -67,8 +67,8 @@ def test_MaterialPackageWrangler_make_data_package_04():
         wrangler.make_data_package('experimental.tools.scoremanagertools.materialpackages.testnumbers', tags=tags)
         assert wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnumbers')
         mpp = scoremanagertools.proxies.MaterialPackageManager('experimental.tools.scoremanagertools.materialpackages.testnumbers')
-        assert mpp.get_tag('color') == 'red'
-        assert mpp.get_tag('is_colored')
+        assert mpp.get_metadata('color') == 'red'
+        assert mpp.get_metadata('is_colored')
     finally:
         mpp.remove()
         assert not wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnumbers')

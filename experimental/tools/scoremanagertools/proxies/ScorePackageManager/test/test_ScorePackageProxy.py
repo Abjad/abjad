@@ -29,7 +29,7 @@ def test_ScorePackageManager_02():
     red_example_score = scoremanagertools.proxies.ScorePackageManager(
         'scoremanagertools.scorepackages.red_example_score')
     red_example_score.session.pending_user_input = 'q'
-    red_example_score.manage_tags()
+    red_example_score.manage_metadata()
     assert red_example_score.session.io_transcript.signature == (2,)
 
 
@@ -40,14 +40,14 @@ def test_ScorePackageManager_03():
     red_example_score = scoremanagertools.proxies.ScorePackageManager(
         'scoremanagertools.scorepackages.red_example_score')
     red_example_score.session.pending_user_input = 'add foo bar q'
-    red_example_score.manage_tags()
-    assert red_example_score.get_tag('foo') == 'bar'
+    red_example_score.manage_metadata()
+    assert red_example_score.get_metadata('foo') == 'bar'
 
     red_example_score = scoremanagertools.proxies.ScorePackageManager(
         'scoremanagertools.scorepackages.red_example_score')
     red_example_score.session.pending_user_input = 'del foo q'
-    red_example_score.manage_tags()
-    assert red_example_score.get_tag('foo') is None
+    red_example_score.manage_metadata()
+    assert red_example_score.get_metadata('foo') is None
 
 
 def test_ScorePackageManager_04():

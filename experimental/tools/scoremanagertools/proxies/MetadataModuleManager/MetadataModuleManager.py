@@ -21,7 +21,7 @@ class MetadataModuleManager(ModuleManager, ParseableModuleMixin):
             packagesystem_path=packagesystem_path,
             session=session)
         ParseableModuleMixin.__init__(self)
-        self.tag_lines = []
+        self.metadata_lines = []
         self.parse()
 
     ### CLASS VARIABLES ###
@@ -36,7 +36,7 @@ class MetadataModuleManager(ModuleManager, ParseableModuleMixin):
             (self.encoding_directives, True, 0),
             (self.docstring_lines, False, 1),
             (self.setup_statements, True, 2),
-            (self.tag_lines, False, 1),
+            (self.metadata_lines, False, 1),
             (self.teardown_statements, True, 0),
             )
 
@@ -85,7 +85,7 @@ class MetadataModuleManager(ModuleManager, ParseableModuleMixin):
         self.session.io_manager.proceed(
             'initializer restored.', is_interactive=prompt)
 
-    def make_tag_lines(self, tags):
+    def make_metadata_lines(self, tags):
         if tags:
             lines = []
             for key, value in sorted(tags.iteritems()):
@@ -115,7 +115,7 @@ class MetadataModuleManager(ModuleManager, ParseableModuleMixin):
         encoding_directives = []
         docstring_lines = []
         setup_statements = []
-        tag_lines = []
+        metadata_lines = []
         teardown_statements = []
         current_section = None
         for line in initializer.readlines():
@@ -138,7 +138,7 @@ class MetadataModuleManager(ModuleManager, ParseableModuleMixin):
             elif current_section == 'setup':
                 setup_statements.append(line)
             elif current_section == 'tags':
-                tag_lines.append(line)
+                metadata_lines.append(line)
             elif current_section == 'teardown':
                 teardown_statements.append(line)
             else:
@@ -147,7 +147,7 @@ class MetadataModuleManager(ModuleManager, ParseableModuleMixin):
         self.encoding_directives = encoding_directives[:]
         self.docstring_lines = docstring_lines[:]
         self.setup_statements = setup_statements[:]
-        self.tag_lines = tag_lines[:]
+        self.metadata_lines = metadata_lines[:]
         self.teardown_statements = teardown_statements[:]
         return is_parsable
 
@@ -164,6 +164,6 @@ class MetadataModuleManager(ModuleManager, ParseableModuleMixin):
         ordered_dict_import_statement = 'import collections\n'
         if ordered_dict_import_statement not in self.setup_statements:
             self.setup_statements.append(ordered_dict_import_statement)
-        tag_lines = self.make_tag_lines(tags)
-        self.tag_lines = tag_lines[:]
+        metadata_lines = self.make_metadata_lines(tags)
+        self.metadata_lines = metadata_lines[:]
         self.write_to_disk()

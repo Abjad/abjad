@@ -100,13 +100,13 @@ class Selector(ScoreManagerObject):
             expr,
             )
 
-    def get_tag_from_directory_path(self, directory_path, tag_name):
-        tags_file_name = os.path.join(directory_path, '__metadata__.py')
-        if os.path.isfile(tags_file_name):
-            tags_file = open(tags_file_name, 'r')
-            tags_file_string = tags_file.read()
-            tags_file.close()
-            exec(tags_file_string)
+    def get_metadata_from_directory_path(self, directory_path, tag_name):
+        metadata_module_name = os.path.join(directory_path, '__metadata__.py')
+        if os.path.isfile(metadata_module_name):
+            metadata_module = open(metadata_module_name, 'r')
+            metadata_module_string = metadata_module.read()
+            metadata_module.close()
+            exec(metadata_module_string)
             result = locals().get('tags') or OrderedDict([])
             return result.get(tag_name)
 
@@ -244,7 +244,7 @@ class Selector(ScoreManagerObject):
             path = selector.session.current_materials_directory_path
             paths = list_public_directory_paths_with_initializers(path)
             for directory_path in paths:
-                tag = selector.get_tag_from_directory_path(
+                tag = selector.get_metadata_from_directory_path(
                     directory_path, 
                     'generic_output_name',
                     )

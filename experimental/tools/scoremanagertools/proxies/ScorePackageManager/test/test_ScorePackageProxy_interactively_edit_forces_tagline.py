@@ -32,10 +32,10 @@ def test_ScorePackageManager_interactively_edit_forces_tagline_02():
         score_manager._run(pending_user_input=user_input)
         path = 'scoremanagertools.scorepackages.red_example_score'
         proxy = scoremanagertools.proxies.ScorePackageManager(path)
-        assert proxy.get_tag('forces_tagline') == 'for foo bar'
+        assert proxy.get_metadata('forces_tagline') == 'for foo bar'
     finally:
         user_input = 'red~example~score score~setup tagline for~six~players q'
         score_manager._run(pending_user_input=user_input)
         path = 'scoremanagertools.scorepackages.red_example_score'
         proxy = scoremanagertools.proxies.ScorePackageManager(path)
-        assert proxy.get_tag('forces_tagline') == 'for six players'
+        assert proxy.get_metadata('forces_tagline') == 'for six players'

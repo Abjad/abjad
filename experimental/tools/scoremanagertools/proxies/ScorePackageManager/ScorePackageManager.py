@@ -67,7 +67,7 @@ class ScorePackageManager(PackageManager):
     ### PRIVATE METHODS ###
 
     def _get_annotated_title(self):
-        if isinstance(self.get_tag('year_of_completion'), int):
+        if isinstance(self.get_metadata('year_of_completion'), int):
             return self._get_title_with_year()
         else:
             return self._get_title()
@@ -121,19 +121,19 @@ class ScorePackageManager(PackageManager):
     def _get_tempo_inventory(self):
         wrangler = self.material_package_wrangler
         for proxy in wrangler.list_asset_proxies(head=self.package_path):
-            class_name = proxy.get_tag('material_package_maker_class_name')
+            class_name = proxy.get_metadata('material_package_maker_class_name')
             if class_name == 'TempoMarkInventoryMaterialPackageMaker':
                 return proxy.output_material
 
     def _get_title(self):
-        return self.get_tag('title') or '(untitled score)'
+        return self.get_metadata('title') or '(untitled score)'
 
     def _get_title_with_year(self):
-        if self.get_tag('year_of_completion'):
+        if self.get_metadata('year_of_completion'):
             result = '{} ({})'
             result = result.format(
                 self._get_title(), 
-                self.get_tag('year_of_completion')
+                self.get_metadata('year_of_completion')
                 )
             return result
         else:
@@ -252,7 +252,7 @@ class ScorePackageManager(PackageManager):
         prepopulated_value = None
         prepopulated_value = self._get_title() or None
         result.append((return_value, None, prepopulated_value, return_value))
-        forces_tagline = self.get_tag('forces_tagline')
+        forces_tagline = self.get_metadata('forces_tagline')
         prepopulated_value = None
         return_value = 'tagline'
         if forces_tagline:
@@ -260,11 +260,11 @@ class ScorePackageManager(PackageManager):
         result.append((return_value, None, prepopulated_value, return_value))
         return_value = 'year'
         prepopulated_value = None
-        year_of_completion = self.get_tag('year_of_completion')
+        year_of_completion = self.get_metadata('year_of_completion')
         if year_of_completion:
             prepopulated_value = str(year_of_completion)
         result.append((return_value, None, prepopulated_value, return_value))
-        catalog_number = self.get_tag('catalog_number')
+        catalog_number = self.get_metadata('catalog_number')
         prepopulated_value = None
         return_value = 'catalog number'
         if catalog_number:
@@ -328,7 +328,7 @@ class ScorePackageManager(PackageManager):
         result = getter._run()
         if self.session.backtrack():
             return
-        self.add_tag('catalog_number', result)
+        self.add_metadata('catalog_number', result)
 
     def interactively_edit_forces_tagline(self):
         getter = self.session.io_manager.make_getter(where=self._where)
@@ -336,7 +336,7 @@ class ScorePackageManager(PackageManager):
         result = getter._run()
         if self.session.backtrack():
             return
-        self.add_tag('forces_tagline', result)
+        self.add_metadata('forces_tagline', result)
 
     def interactively_edit_instrumentation_specifier(self):
         from experimental.tools import scoremanagertools
@@ -354,7 +354,7 @@ class ScorePackageManager(PackageManager):
         result = getter._run()
         if self.session.backtrack():
             return
-        self.add_tag('title', result)
+        self.add_metadata('title', result)
 
     def interactively_edit_year_of_completion(self):
         getter = self.session.io_manager.make_getter(where=self._where)
@@ -366,7 +366,7 @@ class ScorePackageManager(PackageManager):
         result = getter._run()
         if self.session.backtrack():
             return
-        self.add_tag('year_of_completion', result)
+        self.add_metadata('year_of_completion', result)
 
     def interactively_fix(self, is_interactive=True):
         result = True
@@ -385,18 +385,18 @@ class ScorePackageManager(PackageManager):
                 initializer.write('')
                 initializer.close()
         lines = []
-        if not os.path.exists(self.tags_file_name):
+        if not os.path.exists(self.metadata_module_name):
             result = False
-            prompt = 'create {}? '.format(self.tags_file_name)
+            prompt = 'create {}? '.format(self.metadata_module_name)
             if not is_interactive or self.session.io_manager.confirm(prompt):
-                tags_file = file(self.tags_file_name, 'w')
-                tags_file.write('# -*- encoding: utf-8 -*-\n')
-                tags_file.write('from abjad import *\n')
-                tags_file.write('import collections\n')
-                tags_file.write('\n')
-                tags_file.write('\n')
-                tags_file.write('tags = collections.OrderedDict([])\n')
-                tags_file.close()
+                metadata_module = file(self.metadata_module_name, 'w')
+                metadata_module.write('# -*- encoding: utf-8 -*-\n')
+                metadata_module.write('from abjad import *\n')
+                metadata_module.write('import collections\n')
+                metadata_module.write('\n')
+                metadata_module.write('\n')
+                metadata_module.write('tags = collections.OrderedDict([])\n')
+                metadata_module.close()
         if not os.path.exists(self._get_materials_directory_path()):
             result = False
             prompt = 'create {}'.format(self._get_materials_directory_path())

@@ -37,7 +37,7 @@ class PackageManager(DirectoryManager):
 
     def _make_tags_menu_entries(self):
         result = []
-        tags = self.get_tags()
+        tags = self.get_metadatas()
         for key in sorted(tags):
             display_string = key.replace('_', ' ')
             result.append((display_string, None, tags[key], key))
@@ -56,8 +56,8 @@ class PackageManager(DirectoryManager):
             return os.path.isfile(self.parent_initializer_file_name)
 
     @property
-    def has_tags_file(self):
-        return os.path.isfile(self.tags_file_name)
+    def has_metadata_module(self):
+        return os.path.isfile(self.metadata_module_name)
 
     @property
     def imported_package(self):
@@ -107,36 +107,36 @@ class PackageManager(DirectoryManager):
         return result
 
     @property
-    def tags_file_name(self):
+    def metadata_module_name(self):
         file_path = os.path.join(self.filesystem_path, '__metadata__.py')
         return file_path
 
     @property
-    def tags_module_proxy(self):
+    def metadata_module_manager(self):
         from experimental.tools import scoremanagertools
-        if not self.has_tags_file:
-            tags_file = open(self.tags_file_name, 'w')
-            tags_file.write('')
-            tags_file.close()
+        if not self.has_metadata_module:
+            metadata_module = open(self.metadata_module_name, 'w')
+            metadata_module.write('')
+            metadata_module.close()
         return scoremanagertools.proxies.MetadataModuleManager(
-            self.tags_file_name, session=self.session)
+            self.metadata_module_name, session=self.session)
 
     ### PUBLIC METHODS ###
 
-    def add_tag(self, tag_name, tag_value):
-        tags = self.get_tags()
+    def add_metadata(self, tag_name, tag_value):
+        tags = self.get_metadatas()
         tags[tag_name] = tag_value
-        self.tags_module_proxy.write_tags_to_disk(tags)
+        self.metadata_module_manager.write_tags_to_disk(tags)
 
-    def get_tag(self, tag_name):
-        tags = self.get_tags()
+    def get_metadata(self, tag_name):
+        tags = self.get_metadatas()
         tag = tags.get(tag_name, None)
         return tag
 
-    def get_tags(self):
+    def get_metadatas(self):
         from collections import OrderedDict
-        self.tags_module_proxy.make_empty_asset()
-        file_pointer = open(self.tags_file_name, 'r')
+        self.metadata_module_manager.make_empty_asset()
+        file_pointer = open(self.metadata_module_name, 'r')
         file_contents_string = file_pointer.read()
         file_pointer.close()
         exec(file_contents_string)
@@ -145,18 +145,18 @@ class PackageManager(DirectoryManager):
 
     def handle_tags_menu_result(self, result):
         if result == 'add':
-            self.interactively_add_tag()
+            self.interactively_add_metadata()
         elif result == 'rm':
             self.interactively_remove_tag()
         elif result == 'get':
-            self.interactively_get_tag()
+            self.interactively_get_metadata()
         return False
 
     def has_tag(self, tag_name):
-        tags = self.get_tags()
+        tags = self.get_metadatas()
         return bool(tag_name in tags)
 
-    def interactively_add_tag(self):
+    def interactively_add_metadata(self):
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string('tag name')
         getter.append_expr('tag value')
@@ -165,15 +165,15 @@ class PackageManager(DirectoryManager):
             return
         if result:
             tag_name, tag_value = result
-            self.add_tag(tag_name, tag_value)
+            self.add_metadata(tag_name, tag_value)
 
-    def interactively_get_tag(self):
+    def interactively_get_metadata(self):
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string('tag name')
         result = getter._run()
         if self.session.backtrack():
             return
-        tag = self.get_tag(result)
+        tag = self.get_metadata(result)
         line = '{!r}'.format(tag)
         self.session.io_manager.proceed(line)
 
@@ -254,8 +254,8 @@ class PackageManager(DirectoryManager):
         self.initializer_file_proxy.interactively_view()
 
     def interactively_view_metadata_module(self):
-        #self.tags_module_proxy.interactively_view()
-        self.tags_module_proxy.interactively_edit()
+        #self.metadata_module_manager.interactively_view()
+        self.metadata_module_manager.interactively_edit()
 
     def interactively_write_initializer_boilerplate(self):
         self.initializer_file_proxy.interactively_write_boilerplate()
@@ -271,7 +271,7 @@ class PackageManager(DirectoryManager):
         command_section.append(('get tag', 'get'))
         return tags_menu
 
-    def manage_tags(self, clear=True, cache=False):
+    def manage_metadata(self, clear=True, cache=False):
         self.session.cache_breadcrumbs(cache=cache)
         while True:
             self.session.push_breadcrumb('tags')
@@ -302,9 +302,9 @@ class PackageManager(DirectoryManager):
         self.session.is_backtracking_locally = True
 
     def remove_tag(self, tag_name):
-        tags = self.get_tags()
+        tags = self.get_metadatas()
         del(tags[tag_name])
-        self.tags_module_proxy.write_tags_to_disk(tags)
+        self.metadata_module_manager.write_tags_to_disk(tags)
 
     def run_first_time(self, **kwargs):
         self._run(**kwargs)
@@ -323,5 +323,5 @@ class PackageManager(DirectoryManager):
         'metadata': interactively_view_metadata_module,
         'ren': interactively_rename_package,
         'rm': remove_package,
-        'tags': manage_tags,
+        'tags': manage_metadata,
         })

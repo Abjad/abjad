@@ -144,7 +144,7 @@ class ScorePackageWrangler(PackageWrangler):
         title, score_package_name, year = result
         self.make_asset(score_package_name)
         score_package_proxy = self._initialize_asset_proxy(score_package_name)
-        score_package_proxy.add_tag('title', title)
+        score_package_proxy.add_metadata('title', title)
         score_package_proxy.year_of_completion = year
         self.session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
 
@@ -378,7 +378,7 @@ class ScorePackageWrangler(PackageWrangler):
             in_user_score_packages=in_user_score_packages,
             head=head,
             ):
-            tags = asset_proxy.get_tags()
+            tags = asset_proxy.get_metadatas()
             is_mothballed = tags.get('is_mothballed', False)
             if scores_to_show == 'all' or \
                 (scores_to_show == 'active' and not is_mothballed) or \
@@ -461,7 +461,7 @@ class ScorePackageWrangler(PackageWrangler):
             in_user_score_packages=in_user_score_packages,
             head=head,
             ):
-            is_mothballed = asset_proxy.get_tag('is_mothballed')
+            is_mothballed = asset_proxy.get_metadata('is_mothballed')
             if scores_to_show == 'all':
                 result.append(asset_proxy)
             elif scores_to_show == 'active' and not is_mothballed:

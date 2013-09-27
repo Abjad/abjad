@@ -33,6 +33,6 @@ def test_ScorePackageManager_read_only_attributes_01():
 
     assert score_proxy._get_annotated_title() == 'Red Example Score (2013)'
     assert score_proxy._breadcrumb == 'Red Example Score (2013)'
-    assert score_proxy.get_tag('composer') is None
-    assert score_proxy.get_tag('title') == 'Red Example Score'
-    assert score_proxy.get_tag('year_of_completion') == 2013
+    assert score_proxy.get_metadata('composer') is None
+    assert score_proxy.get_metadata('title') == 'Red Example Score'
+    assert score_proxy.get_metadata('year_of_completion') == 2013
