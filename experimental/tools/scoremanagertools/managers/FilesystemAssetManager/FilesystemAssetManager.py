@@ -32,17 +32,6 @@ class FilesystemAssetManager(ScoreManagerObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, expr):
-        r'''True when filesystem path properties are equal.
-        Otherwise false.
-
-        Return boolean.
-        '''
-        if isinstance(expr, type(self)):
-            if self.filesystem_path == expr.filesystem_path:
-                return True
-        return False
-
     def __repr__(self):
         r'''Interpreter representation of filesystem assset manager.
 

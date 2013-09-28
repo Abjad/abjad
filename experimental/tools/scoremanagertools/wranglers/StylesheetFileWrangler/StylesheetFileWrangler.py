@@ -143,22 +143,6 @@ class StylesheetFileWrangler(FileWrangler):
         command_section.append(('remove', 'rm'))
         return main_menu
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def asset_manager_class(self):
-        r'''Asset manager class of stylesheet file wrangler.
-
-        ::
-
-            >>> wrangler.asset_manager_class.__name__
-            'FileManager'
-
-        Returns class.
-        '''
-        from experimental.tools import scoremanagertools
-        return scoremanagertools.managers.FileManager
-
     ### PUBLIC METHODS ###
 
     def interactively_edit_asset(

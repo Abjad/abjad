@@ -117,8 +117,10 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def _initialize_asset_manager(self, filesystem_path):
         assert os.path.sep in filesystem_path, repr(filesystem_path)
-        return self.asset_manager_class(
-            filesystem_path=filesystem_path, session=self.session)
+        return self._asset_manager_class(
+            filesystem_path=filesystem_path, 
+            session=self.session,
+            )
 
     def _is_valid_directory_entry(self, directory_entry):
         if directory_entry not in self.forbidden_directory_entries:
@@ -133,14 +135,14 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         ):
         if infinitival_phrase:
             return 'select {} {}:'.format(
-                self.asset_manager_class._generic_class_name, 
+                self._asset_manager_class._generic_class_name, 
                 infinitival_phrase)
         elif is_storehouse:
             return 'select {} storehouse:'.format(
-                self.asset_manager_class._generic_class_name)
+                self._asset_manager_class._generic_class_name)
         else:
             return 'select {}:'.format(
-                self.asset_manager_class._generic_class_name)
+                self._asset_manager_class._generic_class_name)
 
     def _make_asset_selection_menu(self, head=None):
         menu = self.session.io_manager.make_menu(where=self._where)
@@ -222,16 +224,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self.session.pop_breadcrumb()
         self.session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
         self.session.restore_breadcrumbs(cache=cache)
-
-    ### PUBLIC PROPERTIES ###
-
-    @abc.abstractproperty
-    def asset_manager_class(self):
-        r'''Asset manager class of filesystem asset wrangler.
-
-        Returns class.
-        '''
-        pass
 
     ### PUBLIC METHODS ###
 

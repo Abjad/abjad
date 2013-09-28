@@ -45,7 +45,8 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     @property
     def _temporary_asset_manager(self):
-        return self._initialize_asset_manager(self._temporary_asset_package_path)
+        return self._initialize_asset_manager(
+            self._temporary_asset_package_path)
 
     ### PRIVATE METHODS ###
 
@@ -54,8 +55,10 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             pacakgesystem_path = \
             self.configuration.filesystem_path_to_packagesystem_path(
             packagesystem_path)
-        return self.asset_manager_class(
-            packagesystem_path=packagesystem_path, session=self.session)
+        return self._asset_manager_class(
+            packagesystem_path=packagesystem_path, 
+            session=self.session,
+            )
 
     def _make_asset_menu_entries(self, head=None):
         names = self.list_asset_names(head=head)

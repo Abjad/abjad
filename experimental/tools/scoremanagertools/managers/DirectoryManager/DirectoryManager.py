@@ -8,6 +8,17 @@ from experimental.tools.scoremanagertools.managers.FilesystemAssetManager \
 
 class DirectoryManager(FilesystemAssetManager):
 
+    ### INITIALIZER ###
+
+    def __init__(self, filesystem_path=None, session=None):
+        from experimental.tools import scoremanagertools
+        superclass = super(DirectoryManager, self)
+        superclass.__init__(
+            filesystem_path=filesystem_path,
+            session=session,
+            )
+        self._asset_manager_class = scoremanagertools.managers.FileManager
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -66,17 +77,6 @@ class DirectoryManager(FilesystemAssetManager):
             session=self.session,
             )
         manager._run()
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def asset_manager_class(self):
-        r'''Assset manager class of directory manager.
-
-        Returns class.
-        '''
-        from experimental.tools import scoremanagertools
-        return scoremanagertools.managers.FileManager
 
     ### PUBLIC METHODS ###
 

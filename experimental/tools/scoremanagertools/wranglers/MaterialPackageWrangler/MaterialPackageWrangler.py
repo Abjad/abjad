@@ -116,22 +116,6 @@ class MaterialPackageWrangler(PackageWrangler):
         hidden_section.append(('profile packages', 'profile'))
         return main_menu
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def asset_manager_class(self):
-        r'''Asset manager class of material packge wrangler.
-
-        ::
-
-            >>> wrangler.asset_manager_class.__name__
-            'PackageManager'
-
-        Returns class.
-        '''
-        from experimental.tools import scoremanagertools
-        return scoremanagertools.managers.PackageManager
-
     ### PUBLIC METHODS ###
 
     def interactively_make_data_package(

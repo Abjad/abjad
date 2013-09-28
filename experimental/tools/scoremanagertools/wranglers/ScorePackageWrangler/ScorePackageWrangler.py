@@ -42,6 +42,15 @@ class ScorePackageWrangler(PackageWrangler):
     asset_storehouse_packagesystem_path_in_user_asset_library = \
         PackageWrangler.configuration.user_score_packages_package_path
 
+    ### INITIALIZER ###
+
+    def __init__(self, session=None):
+        from experimental.tools import scoremanagertools
+        superclass = super(ScorePackageWrangler, self)
+        superclass.__init__(session=session)
+        self._asset_manager_class = \
+            scoremanagertools.managers.ScorePackageManager
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -83,22 +92,6 @@ class ScorePackageWrangler(PackageWrangler):
         menuing_pairs.sort(key=lambda x: tmp(x[1]))
         menuing_entries = [(x[1], None, None, x[0]) for x in menuing_pairs]
         return menuing_entries
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def asset_manager_class(self):
-        r'''Asset manager class of score package wrangler.
-
-        ::
-
-            >>> wrangler.asset_manager_class.__name__
-            'ScorePackageManager'
-
-        Returns class.
-        '''
-        from experimental.tools import scoremanagertools
-        return scoremanagertools.managers.ScorePackageManager
 
     ### PUBLIC METHODS ###
 

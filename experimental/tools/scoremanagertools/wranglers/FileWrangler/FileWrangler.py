@@ -5,13 +5,10 @@ from experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler \
 
 class FileWrangler(FilesystemAssetWrangler):
 
-    ### PUBLIC PROPERTIES ###
+    ### INITIALIZER ###
 
-    @property
-    def asset_manager_class(self):
-        r'''File wrangler asset manager class.
-
-        Returns class.
-        '''
+    def __init__(self, session=None):
         from experimental.tools import scoremanagertools
-        return scoremanagertools.managers.FileManager
+        superclass = super(FileWrangler, self)
+        superclass.__init__(session=session)
+        self._asset_manager_class = scoremanagertools.managers.FileManager

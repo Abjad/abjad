@@ -95,22 +95,6 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         return sequencetools.zip_sequences_cyclically(
             names, [None], [None], paths)
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def asset_manager_class(self):
-        r'''Asset manager class of material package maker wrangler.
-
-        ::
-
-            >>> wrangler.asset_manager_class.__name__
-            'PackageManager'
-
-        Returns class.
-        '''
-        from experimental.tools import scoremanagertools
-        return scoremanagertools.managers.PackageManager
-
     ### PUBLIC METHODS ###
 
     def interactively_make_asset(

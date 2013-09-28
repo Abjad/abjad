@@ -14,6 +14,14 @@ class PackageWrangler(PackagesystemAssetWrangler):
 
     __meta__ = abc.ABCMeta
 
+    ### INITIALIZER ###
+
+    def __init__(self, session=None):
+        from experimental.tools import scoremanagertools
+        superclass = super(PackageWrangler, self)
+        superclass.__init__(session=session)
+        self._asset_manager_class = scoremanagertools.managers.PackageManager
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -34,13 +42,6 @@ class PackageWrangler(PackagesystemAssetWrangler):
 
     def _make_main_menu(self, head=None):
         self.session.io_manager.print_not_yet_implemented()
-
-    ### PUBLIC PROPERTIES ###
-
-    @abc.abstractproperty
-    def asset_manager_class(self):
-        from experimental.tools import scoremanagertools
-        return scoremanagertools.managers.PackageManager
 
     ### PUBLIC METHODS ###
 

@@ -26,6 +26,15 @@ class SegmentPackageWrangler(PackageWrangler):
 
     asset_storehouse_packagesystem_path_in_user_asset_library = None
 
+    ### INITIALIZER ###
+
+    def __init__(self, session=None):
+        from experimental.tools import scoremanagertools
+        superclass = super(SegmentPackageWrangler, self)
+        superclass.__init__(session=session)
+        self._asset_manager_class = \
+            scoremanagertools.managers.SegmentPackageManager
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -65,22 +74,6 @@ class SegmentPackageWrangler(PackageWrangler):
         hidden_section.append(('views - new', 'vwn'))
         hidden_section.append(('views - select', 'vws'))
         return main_menu
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def asset_manager_class(self):
-        r'''Asset manager class of segment package wrangler.
-
-        ::
-
-            >>> wrangler.asset_manager_class.__name__
-            'SegmentPackageManager'
-
-        Returns class.
-        '''
-        from experimental.tools import scoremanagertools
-        return scoremanagertools.managers.SegmentPackageManager
 
     ### PUBLIC METHODS ###
 

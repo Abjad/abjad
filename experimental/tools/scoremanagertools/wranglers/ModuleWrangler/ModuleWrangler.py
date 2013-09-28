@@ -16,14 +16,3 @@ class ModuleWrangler(PackagesystemAssetWrangler):
             if directory_entry.endswith('.py'):
                 return True
         return False
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def asset_manager_class(self):
-        r'''Asset manager class of module wrangler.
-
-        Returns class.
-        '''
-        from experimental.tools import scoremanagertools
-        return scoremanagertools.managers.ModuleManager
