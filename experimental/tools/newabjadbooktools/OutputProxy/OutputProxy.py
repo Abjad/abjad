@@ -5,7 +5,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class OutputProxy(AbjadObject):
-    r'''Abstact base class for all abjad-book output proxies.
+    r'''Abstact base class for all abjad-book output managers.
 
     An output proxy handles generating a document representation for a given
     structure in different documentation environments:

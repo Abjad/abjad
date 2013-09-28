@@ -57,7 +57,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
                 self.configuration.filesystem_path_to_packagesystem_path(
                     package_path)
         material_package_proxy = \
-            scoremanagertools.proxies.MaterialPackageManager(
+            scoremanagertools.managers.MaterialPackageManager(
             package_path, session=self.session)
         material_package_maker_class_name = \
             material_package_proxy.material_package_maker_class_name
@@ -109,7 +109,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         Returns class.
         '''
         from experimental.tools import scoremanagertools
-        return scoremanagertools.proxies.PackageManager
+        return scoremanagertools.managers.PackageManager
 
     ### PUBLIC METHODS ###
 
@@ -257,7 +257,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             head=head,
             )
 
-    def list_asset_proxies(
+    def list_asset_managers(
         self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
@@ -265,13 +265,13 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         in_user_score_packages=True, 
         head=None,
         ):
-        r'''Lists asset proxies.
+        r'''Lists asset managers.
 
-        Example. List built-in material package maker proxies:
+        Example. List built-in material package maker managers:
 
         ::
 
-            >>> for x in wrangler.list_asset_proxies(
+            >>> for x in wrangler.list_asset_managers(
             ...     in_user_asset_library=False, 
             ...     in_user_score_packages=False):
             ...     x
@@ -288,7 +288,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(MaterialPackageMakerWrangler, self)
-        return superclass.list_asset_proxies(
+        return superclass.list_asset_managers(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,

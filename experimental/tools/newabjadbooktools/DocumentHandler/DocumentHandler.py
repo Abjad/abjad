@@ -44,7 +44,7 @@ class DocumentHandler(AbjadObject):
 
     @property
     def asset_output_proxies(self):
-        r'''All asset output proxies.
+        r'''All asset output managers.
         '''
         result = []
         for code_block in self.source_to_code_block_mapping.iteritems():

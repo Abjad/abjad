@@ -291,7 +291,7 @@ class Session(abctools.AbjadObject):
 
         Returns score package proxy or none.
         '''
-        from experimental.tools.scoremanagertools.proxies.ScorePackageManager \
+        from experimental.tools.scoremanagertools.managers.ScorePackageManager \
             import ScorePackageManager
         if self.is_in_score:
             return ScorePackageManager(

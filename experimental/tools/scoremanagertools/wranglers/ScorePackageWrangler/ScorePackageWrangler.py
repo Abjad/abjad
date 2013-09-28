@@ -98,7 +98,7 @@ class ScorePackageWrangler(PackageWrangler):
         Returns class.
         '''
         from experimental.tools import scoremanagertools
-        return scoremanagertools.proxies.ScorePackageManager
+        return scoremanagertools.managers.ScorePackageManager
 
     ### PUBLIC METHODS ###
 
@@ -108,7 +108,7 @@ class ScorePackageWrangler(PackageWrangler):
         Returns result list.
         '''
         results = []
-        for asset_proxy in self.list_visible_asset_proxies():
+        for asset_proxy in self.list_visible_asset_managers():
             result = asset_proxy.interactively_fix(
                 is_interactive=False,
                 )
@@ -247,7 +247,7 @@ class ScorePackageWrangler(PackageWrangler):
             head=head,
             )
 
-    def list_asset_proxies(
+    def list_asset_managers(
         self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
@@ -255,13 +255,13 @@ class ScorePackageWrangler(PackageWrangler):
         in_user_score_packages=True, 
         head=None,
         ):
-        r'''Lists asset proxies.
+        r'''Lists asset managers.
 
-        Example. List built-in score package proxies:
+        Example. List built-in score package managers:
 
         ::
 
-            >>> for x in wrangler.list_asset_proxies(
+            >>> for x in wrangler.list_asset_managers(
             ...     in_user_asset_library=False, 
             ...     in_user_score_packages=False,
             ...     ):
@@ -273,7 +273,7 @@ class ScorePackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(ScorePackageWrangler, self)
-        return superclass.list_asset_proxies(
+        return superclass.list_asset_managers(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
@@ -337,7 +337,7 @@ class ScorePackageWrangler(PackageWrangler):
         Returns list.
         '''
         result = []
-        for visible_asset_proxy in self.list_visible_asset_proxies(
+        for visible_asset_proxy in self.list_visible_asset_managers(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
@@ -382,7 +382,7 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         result = []
         scores_to_show = self.session.scores_to_show
-        for asset_proxy in PackageWrangler.list_asset_proxies(
+        for asset_proxy in PackageWrangler.list_asset_managers(
             self,
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
@@ -440,7 +440,7 @@ class ScorePackageWrangler(PackageWrangler):
             result.append(packagesystem_path)
         return result
 
-    def list_visible_asset_proxies(
+    def list_visible_asset_managers(
         self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
@@ -448,13 +448,13 @@ class ScorePackageWrangler(PackageWrangler):
         in_user_score_packages=True,
         head=None,
         ):
-        r'''Lists visible asset proxies.
+        r'''Lists visible asset managers.
 
-        Example. List visible score package proxies:
+        Example. List visible score package managers:
 
         ::
 
-            >>> for x in wrangler.list_visible_asset_proxies(
+            >>> for x in wrangler.list_visible_asset_managers(
             ...     in_user_asset_library=False, 
             ...     in_user_score_packages=False,
             ...     ):
@@ -467,7 +467,7 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         result = []
         scores_to_show = self.session.scores_to_show
-        for asset_proxy in PackageWrangler.list_asset_proxies(
+        for asset_proxy in PackageWrangler.list_asset_managers(
             self,
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
@@ -489,7 +489,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         Returns none.
         '''
-        for asset_proxy in self.list_visible_asset_proxies():
+        for asset_proxy in self.list_visible_asset_managers():
             asset_proxy.interactively_profile(prompt=False)
         self.session.io_manager.proceed()
 
@@ -498,16 +498,16 @@ class ScorePackageWrangler(PackageWrangler):
 
         Return none.
         '''
-        if hasattr(self, 'list_visible_asset_proxies'):
-            proxies = self.list_visible_asset_proxies()
+        if hasattr(self, 'list_visible_asset_managers'):
+            managers = self.list_visible_asset_managers()
         else:
-            proxies = self.list_asset_proxies(
+            managers = self.list_asset_managers(
                 in_built_in_asset_library=True, 
                 in_user_asset_library=True,
                 in_built_in_score_packages=True, 
                 in_user_score_packages=True,
                 )
-        for proxy in proxies:
+        for proxy in managers:
             proxy.repository_add(is_interactive=False)
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
@@ -525,16 +525,16 @@ class ScorePackageWrangler(PackageWrangler):
         self.session.io_manager.display(line)
         if not self.session.io_manager.confirm():
             return
-        if hasattr(self, 'list_visible_asset_proxies'):
-            proxies = self.list_visible_asset_proxies()
+        if hasattr(self, 'list_visible_asset_managers'):
+            managers = self.list_visible_asset_managers()
         else:
-            proxies = self.list_asset_proxies(
+            managers = self.list_asset_managers(
                 in_built_in_asset_library=True, 
                 in_user_asset_library=True,
                 in_built_in_score_packages=True, 
                 in_user_score_packages=True,
                 )
-        for proxy in proxies:
+        for proxy in managers:
             proxy.repository_ci(
                 commit_message=commit_message, 
                 is_interactive=False,
@@ -546,16 +546,16 @@ class ScorePackageWrangler(PackageWrangler):
 
         Returns none.
         '''
-        if hasattr(self, 'list_visible_asset_proxies'):
-            proxies = self.list_visible_asset_proxies()
+        if hasattr(self, 'list_visible_asset_managers'):
+            managers = self.list_visible_asset_managers()
         else:
-            proxies = self.list_asset_proxies(
+            managers = self.list_asset_managers(
                 in_built_in_asset_library=True, 
                 in_user_asset_library=True,
                 in_built_in_score_packages=True, 
                 in_user_score_packages=True,
                 )
-        for proxy in proxies:
+        for proxy in managers:
             proxy.repository_st(is_interactive=False)
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
@@ -564,15 +564,15 @@ class ScorePackageWrangler(PackageWrangler):
 
         Returns none.
         '''
-        if hasattr(self, 'list_visible_asset_proxies'):
-            proxies = self.list_visible_asset_proxies()
+        if hasattr(self, 'list_visible_asset_managers'):
+            managers = self.list_visible_asset_managers()
         else:
-            proxies = self.list_asset_proxies(
+            managers = self.list_asset_managers(
                 in_built_in_asset_library=True, 
                 in_user_asset_library=True,
                 in_built_in_score_packages=True, 
                 in_user_score_packages=True,
                 )
-        for proxy in proxies:
+        for proxy in managers:
             proxy.repository_up(is_interactive=False)
         self.session.io_manager.proceed(is_interactive=is_interactive)

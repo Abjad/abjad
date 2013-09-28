@@ -2,10 +2,10 @@
 import editors
 import exceptions
 import getters
-import materialpackagemakers
 import io
+import managers
+import materialpackagemakers
 import predicates
-import proxies
 import scoremanager
 import specifiers
 import wizards

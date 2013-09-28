@@ -52,7 +52,7 @@ class StylesheetFileWrangler(FileWrangler):
             packagesystem_path = \
                 self.configuration.filesystem_path_to_packagesystem_path(
                 score_filesystem_path)
-            score_package_proxy = scoremanagertools.proxies.ScorePackageManager(
+            score_package_proxy = scoremanagertools.managers.ScorePackageManager(
                 packagesystem_path=packagesystem_path)
             annotation = score_package_proxy._get_title()
         elif filesystem_path.startswith(
@@ -157,7 +157,7 @@ class StylesheetFileWrangler(FileWrangler):
         Returns class.
         '''
         from experimental.tools import scoremanagertools
-        return scoremanagertools.proxies.FileManager
+        return scoremanagertools.managers.FileManager
 
     ### PUBLIC METHODS ###
 
@@ -244,7 +244,7 @@ class StylesheetFileWrangler(FileWrangler):
             storehouse_path,
             stylesheet_file_name,
             )
-        proxy = scoremanagertools.proxies.FileManager(
+        proxy = scoremanagertools.managers.FileManager(
             stylesheet_file_path, session=self.session)
         if self.session.is_test:
             proxy.make_empty_asset()
@@ -323,7 +323,7 @@ class StylesheetFileWrangler(FileWrangler):
             include_extension=include_extension,
             )
 
-    def list_asset_proxies(
+    def list_asset_managers(
         self, 
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
@@ -331,13 +331,13 @@ class StylesheetFileWrangler(FileWrangler):
         in_user_score_packages=True, 
         head=None,
         ):
-        r'''Lists asset proxies.
+        r'''Lists asset managers.
 
-        Example. List built-in stylesheet proxies:
+        Example. List built-in stylesheet managers:
 
         ::
 
-            >>> for x in wrangler.list_asset_proxies(
+            >>> for x in wrangler.list_asset_managers(
             ...     in_user_asset_library=False, 
             ...    in_user_score_packages=False):
             ...     x
@@ -349,7 +349,7 @@ class StylesheetFileWrangler(FileWrangler):
         Returns list.
         '''
         superclass = super(StylesheetFileWrangler, self)
-        return superclass.list_asset_proxies(
+        return superclass.list_asset_managers(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,

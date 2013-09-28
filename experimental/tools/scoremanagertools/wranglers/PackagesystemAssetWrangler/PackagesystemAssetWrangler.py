@@ -182,7 +182,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             result.append(packagesystem_path)
         return result
 
-    def list_asset_proxies(
+    def list_asset_managers(
         self,
         in_built_in_asset_library=True,
         in_user_asset_library=True,
@@ -190,7 +190,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         in_user_score_packages=True,
         head=None,
         ):
-        r'''Lists asset proxies.
+        r'''Lists asset managers.
 
         Returns list.
         '''
@@ -238,11 +238,11 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         Returns list.
         '''
         result = []
-        if hasattr(self, 'list_visible_asset_proxies'):
-            for asset_proxy in self.list_visible_asset_proxies(head=head):
+        if hasattr(self, 'list_visible_asset_managers'):
+            for asset_proxy in self.list_visible_asset_managers(head=head):
                 result.append(asset_proxy.package_path)
         else:
-            for asset_proxy in self.list_asset_proxies(
+            for asset_proxy in self.list_asset_managers(
                 in_built_in_asset_library=True,
                 in_user_asset_library=True,
                 in_built_in_score_packages=True,

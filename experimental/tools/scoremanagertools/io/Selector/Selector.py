@@ -160,7 +160,7 @@ class Selector(ScoreManagerObject):
         forbidden_directory_entries = forbidden_directory_entries or []
         items = []
         for directory_path in storehouse_filesystem_paths:
-            proxy = scoremanagertools.proxies.DirectoryManager(
+            proxy = scoremanagertools.managers.DirectoryManager(
                 filesystem_path=directory_path,
                 session=session,
                 )

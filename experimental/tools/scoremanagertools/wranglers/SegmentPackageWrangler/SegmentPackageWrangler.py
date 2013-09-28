@@ -80,7 +80,7 @@ class SegmentPackageWrangler(PackageWrangler):
         Returns class.
         '''
         from experimental.tools import scoremanagertools
-        return scoremanagertools.proxies.SegmentPackageManager
+        return scoremanagertools.managers.SegmentPackageManager
 
     ### PUBLIC METHODS ###
 
@@ -290,7 +290,7 @@ class SegmentPackageWrangler(PackageWrangler):
             head=head,
             )
 
-    def list_asset_proxies(
+    def list_asset_managers(
         self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
@@ -298,13 +298,13 @@ class SegmentPackageWrangler(PackageWrangler):
         in_user_score_packages=True, 
         head=None,
         ):
-        r'''Lists asset proxies.
+        r'''Lists asset managers.
 
-        Example 1. List built-in segment package proxies:
+        Example 1. List built-in segment package managers:
 
         ::
 
-            >>> for x in wrangler.list_asset_proxies(
+            >>> for x in wrangler.list_asset_managers(
             ...     in_user_asset_library=False, 
             ...     in_user_score_packages=False):
             ...     x
@@ -314,12 +314,12 @@ class SegmentPackageWrangler(PackageWrangler):
             SegmentPackageManager('.../red_example_score/segments/segment_02')
             SegmentPackageManager('.../red_example_score/segments/segment_03')
 
-        Example 2. List red example score segment package proxies:
+        Example 2. List red example score segment package managers:
 
         ::
 
             >>> head = 'experimental.tools.scoremanagertools.scorepackages.red_example_score'
-            >>> for x in wrangler.list_asset_proxies(head=head):
+            >>> for x in wrangler.list_asset_managers(head=head):
             ...     x
             SegmentPackageManager('.../red_example_score/segments/segment_01')
             SegmentPackageManager('.../red_example_score/segments/segment_02')
@@ -328,7 +328,7 @@ class SegmentPackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(SegmentPackageWrangler, self)
-        return superclass.list_asset_proxies(
+        return superclass.list_asset_managers(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,

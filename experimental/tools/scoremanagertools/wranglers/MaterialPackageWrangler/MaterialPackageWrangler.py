@@ -65,7 +65,7 @@ class MaterialPackageWrangler(PackageWrangler):
         from experimental.tools import scoremanagertools
         if material_package_maker_class_name is None:
             material_package_proxy = \
-                scoremanagertools.proxies.MaterialPackageManager(
+                scoremanagertools.managers.MaterialPackageManager(
                 material_package_path, 
                 session=self.session,
                 )
@@ -130,7 +130,7 @@ class MaterialPackageWrangler(PackageWrangler):
         Returns class.
         '''
         from experimental.tools import scoremanagertools
-        return scoremanagertools.proxies.PackageManager
+        return scoremanagertools.managers.PackageManager
 
     ### PUBLIC METHODS ###
 
@@ -327,7 +327,7 @@ class MaterialPackageWrangler(PackageWrangler):
             head=head,
             )
 
-    def list_asset_proxies(
+    def list_asset_managers(
         self, 
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
@@ -335,13 +335,13 @@ class MaterialPackageWrangler(PackageWrangler):
         in_user_score_packages=True, 
         head=None,
         ):
-        r'''Lists asset proxies.
+        r'''Lists asset managers.
 
-        Example. List built-in material package proxies:
+        Example. List built-in material package managers:
 
         ::
 
-            >>> for x in wrangler.list_asset_proxies(
+            >>> for x in wrangler.list_asset_managers(
             ...     in_user_asset_library=False, 
             ...     in_user_score_packages=False):
             ...     x
@@ -359,7 +359,7 @@ class MaterialPackageWrangler(PackageWrangler):
         Returns list.
         '''
         superclass = super(MaterialPackageWrangler, self)
-        return superclass.list_asset_proxies(
+        return superclass.list_asset_managers(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,

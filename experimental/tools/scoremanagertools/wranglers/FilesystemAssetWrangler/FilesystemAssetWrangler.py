@@ -87,7 +87,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         directory_path = self._get_current_directory_path_of_interest()
         if directory_path is None:
             return
-        proxy = scoremanagertools.proxies.PackageManager(
+        proxy = scoremanagertools.managers.PackageManager(
             directory_path,
             session=self.session,
             )
@@ -105,7 +105,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def _get_current_view_module_proxy(self):
         from experimental.tools import scoremanagertools
         file_path = self._get_current_view_file_path()
-        proxy = scoremanagertools.proxies.ModuleManager(
+        proxy = scoremanagertools.managers.ModuleManager(
             file_path,
             session=self.session,
             )
@@ -163,7 +163,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         display_strings.append('My {}'.format(self._breadcrumb))
         wrangler = scoremanagertools.wranglers.ScorePackageWrangler(
             session=self.session)
-        for proxy in wrangler.list_asset_proxies(
+        for proxy in wrangler.list_asset_managers(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
@@ -186,7 +186,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         view_file_path = self._get_current_view_file_path()
         if view_file_path is None:
             return
-        proxy = scoremanagertools.proxies.ModuleManager(
+        proxy = scoremanagertools.managers.ModuleManager(
             view_file_path,
             session=self.session,
             )
@@ -528,7 +528,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                         filesystem_path))
         return result
 
-    def list_asset_proxies(
+    def list_asset_managers(
         self,
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
@@ -536,12 +536,12 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         in_user_score_packages=True, 
         head=None,
         ):
-        r'''Lists asset proxies.
+        r'''Lists asset managers.
 
         Returns list.
         '''
-        if hasattr(self, 'list_visible_asset_proxies'):
-            return self.list_visible_asset_proxies(head=head)
+        if hasattr(self, 'list_visible_asset_managers'):
+            return self.list_visible_asset_managers(head=head)
         result = []
         for filesystem_path in self.list_asset_filesystem_paths(
             in_built_in_asset_library=in_built_in_asset_library,
