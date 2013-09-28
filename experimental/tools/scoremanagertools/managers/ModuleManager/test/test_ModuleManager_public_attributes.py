@@ -13,7 +13,6 @@ def test_ModuleManager_public_attributes_01():
     assert not manager.read_lines()
     assert manager._get_space_delimited_lowercase_name() is None
     assert not manager.is_versioned()
-    assert manager.packagesystem_path is None
     assert manager.filesystem_path is None
     assert manager._repository_add_command is None
 

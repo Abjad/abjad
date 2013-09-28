@@ -40,12 +40,6 @@ class ModuleManager(FileManager):
         asset_name += '.py'
         return asset_name
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def packagesystem_path(self):
-        return self._packagesystem_path
-
     ### PUBLIC METHODS ###
 
     def execute_file_lines(self, return_attribute_name=None):

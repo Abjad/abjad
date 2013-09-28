@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import os
 from abjad.tools import iotools
 from experimental.tools.scoremanagertools.managers.ModuleManager \
     import ModuleManager
@@ -10,7 +11,8 @@ class MaterialDefinitionModuleManager(ModuleManager):
 
     @property
     def material_package_name(self):
-        return self.packagesystem_path.split('.')[-2]
+        if self.filesystem_path:
+            return os.path.dirname(self.filesystem_path)
 
     ### PUBLIC METHODS ###
 
