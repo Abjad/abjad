@@ -25,10 +25,15 @@ class ScorePackageManager(PackageManager):
             score_package_path=packagesystem_path, 
             session=self.session,
             )
-        package_path = '{}.instrumentation'.format(self.package_path)
+        #package_path = '{}.instrumentation'.format(self.package_path)
+        instrumentation_module_file_path = os.path.join(
+            self.filesystem_path,
+            'instrumentation.py',
+            )
         self._instrumentation_module_manager = \
             scoremanagertools.managers.ModuleManager(
-            package_path,
+            #package_path,
+            instrumentation_module_file_path,
             session=self.session,
             )
         self._material_package_wrangler = \
@@ -191,12 +196,12 @@ class ScorePackageManager(PackageManager):
 
     def _import_instrumentation_from_instrumentation_module(self):
         from experimental.tools import scoremanagertools
-        packagesystem_path = '.'.join([
-            self.package_path,
-            'instrumentation',
-            ])
+        file_path = os.path.join(
+            self.filesystem_path,
+            'instrumentation.py',
+            )
         manager = scoremanagertools.managers.ModuleManager(
-            packagesystem_path,
+            file_path,
             session=self.session,
             )
         instrumentation = manager.execute_file_lines(

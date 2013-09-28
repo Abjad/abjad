@@ -23,15 +23,18 @@ def test_ModuleManager_public_attributes_02():
     '''
 
     configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
-    packagesystem_path = '.'.join([
-        configuration.built_in_material_packages_package_path, 'red_notes', 'material_definition'])
-    manager = scoremanagertools.managers.ModuleManager(packagesystem_path=packagesystem_path)
+    file_path = os.path.join(
+        configuration.built_in_material_packages_directory_path,
+        'red_notes',
+        'material_definition.py',
+        )
+    manager = scoremanagertools.managers.ModuleManager(file_path)
+
 
     assert manager._breadcrumb == 'material_definition.py'
     assert manager.read_lines()
-    assert manager._get_space_delimited_lowercase_name() == 'material definition'
+    assert manager._get_space_delimited_lowercase_name() == \
+        'material definition'
     assert manager.is_versioned()
-    assert manager.packagesystem_path == packagesystem_path
-    assert manager.filesystem_path == os.path.join(
-        manager.configuration.built_in_material_packages_directory_path, 'red_notes', 'material_definition.py')
+    assert manager.filesystem_path == file_path
     assert manager._repository_add_command

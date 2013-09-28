@@ -11,6 +11,8 @@ class ModuleManager(FileManager):
     ### INITIALIZER ###
 
     def __init__(self, packagesystem_path=None, session=None):
+        assert packagesystem_path is None or \
+            os.path.sep in packagesystem_path, repr(packagesystem_path)
         if packagesystem_path is None or \
             os.path.sep not in packagesystem_path:
             filesystem_path = \

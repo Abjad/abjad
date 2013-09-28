@@ -231,7 +231,7 @@ class MaterialPackageManager(PackageManager):
     @property
     def has_illustration_builder_module(self):
         if self.should_have_illustration_builder_module:
-            return os.path.exists(self.illustration_builder_module_file_name)
+            return os.path.exists(self.illustration_builder_module_file_path)
         return False
 
     @property
@@ -262,7 +262,7 @@ class MaterialPackageManager(PackageManager):
     @property
     def has_material_definition_module(self):
         if self.should_have_material_definition_module:
-            return os.path.exists(self.material_definition_module_file_name)
+            return os.path.exists(self.material_definition_module_file_path)
         return False
 
     @property
@@ -283,7 +283,7 @@ class MaterialPackageManager(PackageManager):
     @property
     def has_output_material_module(self):
         if self.should_have_output_material_module:
-            return os.path.exists(self.output_material_module_file_name)
+            return os.path.exists(self.output_material_module_file_path)
         return False
 
     # TODO: impelement
@@ -294,7 +294,7 @@ class MaterialPackageManager(PackageManager):
     @property
     def has_user_input_module(self):
         if self.should_have_user_input_module:
-            return os.path.exists(self.user_input_module_file_name)
+            return os.path.exists(self.user_input_module_file_path)
         return False
 
     @property
@@ -311,7 +311,7 @@ class MaterialPackageManager(PackageManager):
         return False
 
     @property
-    def illustration_builder_module_file_name(self):
+    def illustration_builder_module_file_path(self):
         if self.should_have_illustration_builder_module:
             return os.path.join(self.filesystem_path, 'illustration_builder.py')
 
@@ -319,7 +319,8 @@ class MaterialPackageManager(PackageManager):
     def illustration_builder_module_manager(self):
         from experimental.tools import scoremanagertools
         return scoremanagertools.managers.ModuleManager(
-            self.illustration_builder_packagesystem_path, 
+            #self.illustration_builder_packagesystem_path, 
+            self.illustration_builder_module_file_path, 
             session=self.session,
             )
 
@@ -404,7 +405,7 @@ class MaterialPackageManager(PackageManager):
         return result
 
     @property
-    def material_definition_module_file_name(self):
+    def material_definition_module_file_path(self):
         if self.should_have_material_definition_module:
             return os.path.join(self.filesystem_path, 'material_definition.py')
 
@@ -413,8 +414,10 @@ class MaterialPackageManager(PackageManager):
         from experimental.tools import scoremanagertools
         if self.should_have_material_definition_module:
             return scoremanagertools.managers.MaterialDefinitionModuleManager(
-                self.material_definition_packagesystem_path,
-                session=self.session)
+                #self.material_definition_packagesystem_path,
+                self.material_definition_module_file_path,
+                session=self.session,
+                )
 
     @property
     def material_definition_packagesystem_path(self):
@@ -475,7 +478,7 @@ class MaterialPackageManager(PackageManager):
             return self.output_material_module_import_statements_and_output_material_module_body_lines[1]
 
     @property
-    def output_material_module_file_name(self):
+    def output_material_module_file_path(self):
         if self.should_have_output_material_module:
             return os.path.join(self.filesystem_path, 'output_material.py')
 
@@ -533,7 +536,8 @@ class MaterialPackageManager(PackageManager):
     def output_material_module_manager(self):
         from experimental.tools import scoremanagertools
         return scoremanagertools.managers.ModuleManager(
-            self.output_material_module_path, 
+            #self.output_material_module_path, 
+            self.output_material_module_file_path, 
             session=self.session,
             )
 
@@ -593,7 +597,7 @@ class MaterialPackageManager(PackageManager):
             )
 
     @property
-    def user_input_module_file_name(self):
+    def user_input_module_file_path(self):
         if self.should_have_user_input_module:
             return os.path.join(self.filesystem_path, 'user_input.py')
 
@@ -607,10 +611,12 @@ class MaterialPackageManager(PackageManager):
         from experimental.tools import scoremanagertools
         if self.should_have_user_input_module:
             if not self.has_user_input_module:
-                file(self.user_input_module_file_name, 'w').write('')
+                file(self.user_input_module_file_path, 'w').write('')
             return scoremanagertools.managers.UserInputModuleManager(
-                self.user_input_module_packagesystem_path, 
-                session=self.session)
+                #self.user_input_module_packagesystem_path, 
+                self.user_input_module_file_path,
+                session=self.session,
+                )
 
     ### PUBLIC METHODS ###
 
@@ -966,7 +972,7 @@ class MaterialPackageManager(PackageManager):
 
     def write_stub_material_definition_module_to_disk(self):
         if self.should_have_material_definition_module:
-            file(self.material_definition_module_file_name, 'w').write('')
+            file(self.material_definition_module_file_path, 'w').write('')
             self.material_definition_module_manager.write_stub_to_disk(
                 self.is_data_only, is_interactive=True)
 

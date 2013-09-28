@@ -11,12 +11,13 @@ class MetadataModuleManager(ModuleManager):
 
     def __init__(self, filesystem_path=None, session=None):
         assert '__metadata__' in filesystem_path, repr(filesystem_path)
+        assert os.path.sep in filesystem_path, repr(filesystem_path)
         packagesystem_path = \
             self.configuration.filesystem_path_to_packagesystem_path(
             filesystem_path)
         ModuleManager.__init__(
             self,
-            packagesystem_path=packagesystem_path,
+            packagesystem_path=filesystem_path,
             session=session,
             )
 
