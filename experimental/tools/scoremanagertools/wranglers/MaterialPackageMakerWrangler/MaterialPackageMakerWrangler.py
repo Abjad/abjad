@@ -50,17 +50,17 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         else:
             raise ValueError
 
-    def _initialize_asset_proxy(self, package_path):
+    def _initialize_asset_manager(self, package_path):
         from experimental.tools import scoremanagertools
         if os.path.sep in package_path:
             package_path = \
                 self.configuration.filesystem_path_to_packagesystem_path(
                     package_path)
-        material_package_proxy = \
+        material_package_manager = \
             scoremanagertools.managers.MaterialPackageManager(
             package_path, session=self.session)
         material_package_maker_class_name = \
-            material_package_proxy.material_package_maker_class_name
+            material_package_manager.material_package_maker_class_name
         if material_package_maker_class_name is not None:
             material_package_maker_class = None
             command = 'from experimental.tools.scoremanagertools'
@@ -75,9 +75,9 @@ class MaterialPackageMakerWrangler(PackageWrangler):
                     self.configuration.user_asset_library_material_package_makers_package_path,
                     material_package_maker_class_name)
                 exec(command)
-            material_package_proxy = material_package_maker_class(
+            material_package_manager = material_package_maker_class(
                 package_path, session=self.session)
-        return material_package_proxy
+        return material_package_manager
 
     def _make_main_menu(self, head=None):
         main_menu = self.session.io_manager.make_menu(where=self._where)
@@ -98,12 +98,12 @@ class MaterialPackageMakerWrangler(PackageWrangler):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def asset_proxy_class(self):
+    def asset_manager_class(self):
         r'''Asset proxy class of material package maker wrangler.
 
         ::
 
-            >>> wrangler.asset_proxy_class.__name__
+            >>> wrangler.asset_manager_class.__name__
             'PackageManager'
 
         Returns class.

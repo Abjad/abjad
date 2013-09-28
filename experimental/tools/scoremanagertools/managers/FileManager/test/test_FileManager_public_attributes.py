@@ -7,15 +7,15 @@ def test_FileManager_public_attributes_01():
     r'''Without path.
     '''
 
-    file_proxy = scoremanagertools.managers.FileManager()
+    file_manager = scoremanagertools.managers.FileManager()
 
-    assert file_proxy._generic_class_name == 'file'
-    assert file_proxy._space_delimited_lowercase_name is None
-    assert not file_proxy.is_versioned()
-    assert file_proxy.filesystem_path is None
-    assert file_proxy._plural_generic_class_name == 'files'
-    assert file_proxy._repository_add_command is None
-    assert file_proxy._temporary_asset_name == 'temporary_file.txt'
+    assert file_manager._generic_class_name == 'file'
+    assert file_manager._space_delimited_lowercase_name is None
+    assert not file_manager.is_versioned()
+    assert file_manager.filesystem_path is None
+    assert file_manager._plural_generic_class_name == 'files'
+    assert file_manager._repository_add_command is None
+    assert file_manager._temporary_asset_name == 'temporary_file.txt'
 
 
 def test_FileManager_public_attributes_02():
@@ -27,12 +27,12 @@ def test_FileManager_public_attributes_02():
     filesystem_path = os.path.join(
         score_manager_configuration.score_manager_tools_directory_path,
         'stylesheets', file_name)
-    file_proxy = scoremanagertools.managers.FileManager(filesystem_path)
+    file_manager = scoremanagertools.managers.FileManager(filesystem_path)
 
-    assert file_proxy._generic_class_name == 'file'
-    assert file_proxy._space_delimited_lowercase_name == file_name
-    assert file_proxy.is_versioned()
-    assert file_proxy.filesystem_path == filesystem_path
-    assert file_proxy._plural_generic_class_name == 'files'
-    assert file_proxy._repository_add_command == 'svn add {}'.format(file_proxy.filesystem_path)
-    assert file_proxy._temporary_asset_name == 'temporary_file.txt'
+    assert file_manager._generic_class_name == 'file'
+    assert file_manager._space_delimited_lowercase_name == file_name
+    assert file_manager.is_versioned()
+    assert file_manager.filesystem_path == filesystem_path
+    assert file_manager._plural_generic_class_name == 'files'
+    assert file_manager._repository_add_command == 'svn add {}'.format(file_manager.filesystem_path)
+    assert file_manager._temporary_asset_name == 'temporary_file.txt'

@@ -38,7 +38,7 @@ class PackageWrangler(PackagesystemAssetWrangler):
     ### PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
-    def asset_proxy_class(self):
+    def asset_manager_class(self):
         from experimental.tools import scoremanagertools
         return scoremanagertools.managers.PackageManager
 
@@ -98,8 +98,8 @@ class PackageWrangler(PackagesystemAssetWrangler):
         asset_filesystem_path = os.path.join(
             self._current_storehouse_filesystem_path, asset_name)
         os.mkdir(asset_filesystem_path)
-        package_proxy = self._initialize_asset_proxy(asset_name)
-        package_proxy.fix(is_interactive=False)
+        package_manager = self._initialize_asset_manager(asset_name)
+        package_manager.fix(is_interactive=False)
 
     ### UI MANIFEST ###
 

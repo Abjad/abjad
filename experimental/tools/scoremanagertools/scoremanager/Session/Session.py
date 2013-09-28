@@ -272,19 +272,19 @@ class Session(abctools.AbjadObject):
                 return self.snake_case_current_score_name
 
     @property
-    def current_score_package_proxy(self):
+    def current_score_package_manager(self):
         r'''Session current score package proxy.
 
         ::
 
-            >>> session.current_score_package_proxy is None
+            >>> session.current_score_package_manager is None
             True
 
         Session in score:
 
         ::
 
-            >>> session_in_score.current_score_package_proxy
+            >>> session_in_score.current_score_package_manager
             ScorePackageManager('.../foo')
 
         (Ouput will vary according to configuration.)

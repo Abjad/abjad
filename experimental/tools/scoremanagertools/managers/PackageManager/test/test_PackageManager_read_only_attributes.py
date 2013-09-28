@@ -7,15 +7,15 @@ def test_PackageManager_read_only_attributes_01():
     r'''Stub package.
     '''
 
-    package_proxy = scoremanagertools.managers.PackageManager(
+    package_manager = scoremanagertools.managers.PackageManager(
         'experimental.tools.scoremanagertools.materialpackages.red_sargasso_measures')
-    assert package_proxy.filesystem_path == os.path.join(
-        package_proxy.configuration.built_in_material_packages_directory_path, 'red_sargasso_measures')
-    assert package_proxy._get_metadata('foo') is None
-    assert package_proxy.initializer_file_name == \
+    assert package_manager.filesystem_path == os.path.join(
+        package_manager.configuration.built_in_material_packages_directory_path, 'red_sargasso_measures')
+    assert package_manager._get_metadata('foo') is None
+    assert package_manager.initializer_file_name == \
         os.path.join(
-            package_proxy.configuration.built_in_material_packages_directory_path,
+            package_manager.configuration.built_in_material_packages_directory_path,
             'red_sargasso_measures','__init__.py')
-    assert package_proxy.package_path == \
+    assert package_manager.package_path == \
         'experimental.tools.scoremanagertools.materialpackages.red_sargasso_measures'
-    assert package_proxy._space_delimited_lowercase_name == 'red sargasso measures'
+    assert package_manager._space_delimited_lowercase_name == 'red sargasso measures'

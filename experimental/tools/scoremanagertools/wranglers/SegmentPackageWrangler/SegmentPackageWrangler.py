@@ -40,8 +40,8 @@ class SegmentPackageWrangler(PackageWrangler):
         elif result == 'user entered lone return':
             pass
         else:
-            segment_package_proxy = self._initialize_asset_proxy(result)
-            segment_package_proxy._run()
+            segment_package_manager = self._initialize_asset_manager(result)
+            segment_package_manager._run()
 
     def _make_main_menu(self, head=None):
         main_menu = self.session.io_manager.make_menu(where=self._where)
@@ -69,12 +69,12 @@ class SegmentPackageWrangler(PackageWrangler):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def asset_proxy_class(self):
+    def asset_manager_class(self):
         r'''Asset proxy class of segment package wrangler.
 
         ::
 
-            >>> wrangler.asset_proxy_class.__name__
+            >>> wrangler.asset_manager_class.__name__
             'SegmentPackageManager'
 
         Returns class.
@@ -103,7 +103,7 @@ class SegmentPackageWrangler(PackageWrangler):
             segment_package_path = \
                 self.configuration.filesystem_path_to_packagesystem_path(
                 segment_package_directory_path)
-            proxy = self.asset_proxy_class(
+            proxy = self.asset_manager_class(
                 segment_package_path,
                 session=self.session,
                 )
@@ -160,7 +160,7 @@ class SegmentPackageWrangler(PackageWrangler):
             segment_package_path = \
                 self.configuration.filesystem_path_to_packagesystem_path(
                 segment_package_directory_path)
-            proxy = self.asset_proxy_class(
+            proxy = self.asset_manager_class(
                 segment_package_path,
                 session=self.session,
                 )
@@ -384,7 +384,7 @@ class SegmentPackageWrangler(PackageWrangler):
             package_path)
         assert not os.path.exists(directory_path)
         os.mkdir(directory_path)
-        proxy = self.asset_proxy_class(
+        proxy = self.asset_manager_class(
             packagesystem_path=package_path,
             session=self.session,
             )

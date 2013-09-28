@@ -28,7 +28,7 @@ class DirectoryManager(FilesystemAssetManager):
         if result in self.user_input_to_action:
             self.user_input_to_action[result](self)
         else:
-            self._run_asset_proxy(result)
+            self._run_asset_manager(result)
 
     def _make_asset_menu_entries(self):
         file_names = self.list_directory()
@@ -57,11 +57,11 @@ class DirectoryManager(FilesystemAssetManager):
         asset_section.menu_entries = menu_entries
         return main_menu
 
-    def _run_asset_proxy(
+    def _run_asset_manager(
         self,
         filesystem_path,
         ):
-        proxy = self.asset_proxy_class(
+        proxy = self.asset_manager_class(
             filesystem_path=filesystem_path,
             session=self.session,
             )
@@ -70,7 +70,7 @@ class DirectoryManager(FilesystemAssetManager):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def asset_proxy_class(self):
+    def asset_manager_class(self):
         r'''Assset proxy class of directory proxy.
 
         Returns class.
@@ -90,7 +90,7 @@ class DirectoryManager(FilesystemAssetManager):
         Returns none.
         '''
         self.session.io_manager.assign_user_input(pending_user_input)
-        proxy = self.asset_proxy_class(
+        proxy = self.asset_manager_class(
             filesystem_path=filesystem_path,
             session=self.session,
             )

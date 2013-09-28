@@ -286,7 +286,7 @@ class Selector(ScoreManagerObject):
         ):
         selector = Selector(session=session)
         items = []
-        proxy = selector.session.current_score_package_proxy
+        proxy = selector.session.current_score_package_manager
         if hasattr(proxy, '_get_instrumentation'):
             instrumentation = proxy._get_instrumentation()
             items.extend(instrumentation.performers)
@@ -335,7 +335,7 @@ class Selector(ScoreManagerObject):
         selector = Selector(session=session)
         items = []
         if selector.session.is_in_score:
-            proxy = selector.session.current_score_package_proxy
+            proxy = selector.session.current_score_package_manager
             instrumentation = proxy._get_instrumentation()
             items.extend(instrumentation.instruments)
             items.append('other')
@@ -367,7 +367,7 @@ class Selector(ScoreManagerObject):
         ):
         selector = Selector(session=session)
         items = []
-        proxy = selector.session.current_score_package_proxy
+        proxy = selector.session.current_score_package_manager
         if hasattr(proxy, '_get_tempo_inventory'):
             items = proxy._get_tempo_inventory()
         selector.items = items

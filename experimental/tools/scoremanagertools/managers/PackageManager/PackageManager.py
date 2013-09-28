@@ -67,7 +67,7 @@ class PackageManager(DirectoryManager):
             return os.path.join(self.filesystem_path, '__init__.py')
 
     @property
-    def initializer_file_proxy(self):
+    def initializer_file_manager(self):
         from experimental.tools import scoremanagertools
         return scoremanagertools.managers.FileManager(
             self.initializer_file_name, 
@@ -226,7 +226,7 @@ class PackageManager(DirectoryManager):
         self.session.is_backtracking_locally = True
 
     def interactively_restore_initializer(self):
-        self.initializer_file_proxy.write_stub_to_disk()
+        self.initializer_file_manager.write_stub_to_disk()
         self.session.io_manager.proceed(is_interactive=True)
 
     def interactively_set_package_path(self):
@@ -238,14 +238,14 @@ class PackageManager(DirectoryManager):
         self.package_path = result
 
     def interactively_view_initializer(self):
-        self.initializer_file_proxy.interactively_view()
+        self.initializer_file_manager.interactively_view()
 
     def interactively_view_metadata_module(self):
         #self.metadata_module_manager.interactively_view()
         self.metadata_module_manager.interactively_edit()
 
     def interactively_write_initializer_boilerplate(self):
-        self.initializer_file_proxy.interactively_write_boilerplate()
+        self.initializer_file_manager.interactively_write_boilerplate()
 
     def make_tags_menu(self):
         tags_menu = self.session.io_manager.make_menu(where=self._where)
@@ -297,7 +297,7 @@ class PackageManager(DirectoryManager):
         self._run(**kwargs)
 
     def write_initializer_stub_file_to_disk(self):
-        self.initializer_file_proxy.write_stub_file_to_disk(prompt=True)
+        self.initializer_file_manager.write_stub_file_to_disk(prompt=True)
 
     ### UI MANIFEST ###
 

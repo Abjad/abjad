@@ -87,12 +87,12 @@ class ScorePackageWrangler(PackageWrangler):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def asset_proxy_class(self):
+    def asset_manager_class(self):
         r'''Asset proxy class of score package wrangler.
 
         ::
 
-            >>> wrangler.asset_proxy_class.__name__
+            >>> wrangler.asset_manager_class.__name__
             'ScorePackageManager'
 
         Returns class.
@@ -108,13 +108,13 @@ class ScorePackageWrangler(PackageWrangler):
         Returns result list.
         '''
         results = []
-        for asset_proxy in self.list_visible_asset_managers():
-            result = asset_proxy.interactively_fix(
+        for asset_manager in self.list_visible_asset_managers():
+            result = asset_manager.interactively_fix(
                 is_interactive=False,
                 )
             results.append(result)
             if is_interactive:
-                asset_proxy.interactively_profile(prompt=False)
+                asset_manager.interactively_profile(prompt=False)
         self.session.io_manager.proceed(is_interactive=is_interactive)
         return results
 
@@ -143,9 +143,9 @@ class ScorePackageWrangler(PackageWrangler):
             return
         title, score_package_name, year = result
         self.make_asset(score_package_name)
-        score_package_proxy = self._initialize_asset_proxy(score_package_name)
-        score_package_proxy._add_metadata('title', title)
-        score_package_proxy.year_of_completion = year
+        score_package_manager = self._initialize_asset_manager(score_package_name)
+        score_package_manager._add_metadata('title', title)
+        score_package_manager.year_of_completion = year
         self.session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
 
     def list_asset_filesystem_paths(
@@ -337,14 +337,14 @@ class ScorePackageWrangler(PackageWrangler):
         Returns list.
         '''
         result = []
-        for visible_asset_proxy in self.list_visible_asset_managers(
+        for visible_asset_manager in self.list_visible_asset_managers(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head,
             ):
-            result.append(visible_asset_proxy.filesystem_path)
+            result.append(visible_asset_manager.filesystem_path)
         return result
 
     def list_visible_asset_package_path_and_score_title_pairs(
@@ -382,7 +382,7 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         result = []
         scores_to_show = self.session.scores_to_show
-        for asset_proxy in PackageWrangler.list_asset_managers(
+        for asset_manager in PackageWrangler.list_asset_managers(
             self,
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
@@ -390,7 +390,7 @@ class ScorePackageWrangler(PackageWrangler):
             in_user_score_packages=in_user_score_packages,
             head=head,
             ):
-            tags = asset_proxy._get_metadatas()
+            tags = asset_manager._get_metadatas()
             is_mothballed = tags.get('is_mothballed', False)
             if scores_to_show == 'all' or \
                 (scores_to_show == 'active' and not is_mothballed) or \
@@ -400,7 +400,7 @@ class ScorePackageWrangler(PackageWrangler):
                     title_with_year = '{} ({})'.format(tags['title'], year_of_completion)
                 else:
                     title_with_year = '{}'.format(tags['title'])
-                result.append((asset_proxy.package_path, title_with_year))
+                result.append((asset_manager.package_path, title_with_year))
         return result
 
     def list_visible_asset_packagesystem_paths(
@@ -467,7 +467,7 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         result = []
         scores_to_show = self.session.scores_to_show
-        for asset_proxy in PackageWrangler.list_asset_managers(
+        for asset_manager in PackageWrangler.list_asset_managers(
             self,
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
@@ -475,13 +475,13 @@ class ScorePackageWrangler(PackageWrangler):
             in_user_score_packages=in_user_score_packages,
             head=head,
             ):
-            is_mothballed = asset_proxy._get_metadata('is_mothballed')
+            is_mothballed = asset_manager._get_metadata('is_mothballed')
             if scores_to_show == 'all':
-                result.append(asset_proxy)
+                result.append(asset_manager)
             elif scores_to_show == 'active' and not is_mothballed:
-                result.append(asset_proxy)
+                result.append(asset_manager)
             elif scores_to_show == 'mothballed' and is_mothballed:
-                result.append(asset_proxy)
+                result.append(asset_manager)
         return result
 
     def profile_visible_assets(self):
@@ -489,8 +489,8 @@ class ScorePackageWrangler(PackageWrangler):
 
         Returns none.
         '''
-        for asset_proxy in self.list_visible_asset_managers():
-            asset_proxy.interactively_profile(prompt=False)
+        for asset_manager in self.list_visible_asset_managers():
+            asset_manager.interactively_profile(prompt=False)
         self.session.io_manager.proceed()
 
     def repository_add_assets(self, is_interactive=True):

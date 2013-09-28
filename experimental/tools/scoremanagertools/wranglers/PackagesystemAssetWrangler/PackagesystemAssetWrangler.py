@@ -44,17 +44,17 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             return self._temporary_asset_name
 
     @property
-    def _temporary_asset_proxy(self):
-        return self._initialize_asset_proxy(self._temporary_asset_package_path)
+    def _temporary_asset_manager(self):
+        return self._initialize_asset_manager(self._temporary_asset_package_path)
 
     ### PRIVATE METHODS ###
 
-    def _initialize_asset_proxy(self, packagesystem_path):
+    def _initialize_asset_manager(self, packagesystem_path):
         if os.path.sep in packagesystem_path:
             pacakgesystem_path = \
             self.configuration.filesystem_path_to_packagesystem_path(
             packagesystem_path)
-        return self.asset_proxy_class(
+        return self.asset_manager_class(
             packagesystem_path=packagesystem_path, session=self.session)
 
     def _make_asset_menu_entries(self, head=None):
@@ -66,9 +66,9 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         if names:
             entries = sequencetools.zip_sequences_cyclically(
                 names, [None], [None], paths)
-            package_proxy = self._get_current_package_proxy()
-            if package_proxy:
-                view_name = package_proxy._get_metadata('view_name')
+            package_manager = self._get_current_package_manager()
+            if package_manager:
+                view_name = package_manager._get_metadata('view_name')
                 if view_name:
                     view_inventory = self._read_view_inventory_from_disk()
                     if view_inventory:
@@ -123,8 +123,8 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
                 head=head, infinitival_phrase='to rename')
         if self.session.backtrack():
             return
-        asset_proxy = self._initialize_asset_proxy(asset_package_path)
-        asset_proxy.interactively_rename()
+        asset_manager = self._initialize_asset_manager(asset_package_path)
+        asset_manager.interactively_rename()
 
     def interactively_select_asset_packagesystem_path(
         self,
@@ -202,8 +202,8 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             in_user_score_packages=in_user_score_packages,
             head=head,
             ):
-            asset_proxy = self._initialize_asset_proxy(package_path)
-            result.append(asset_proxy)
+            asset_manager = self._initialize_asset_manager(package_path)
+            result.append(asset_manager)
         return result
 
     def list_asset_storehouse_packagesystem_paths(
@@ -239,17 +239,17 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         '''
         result = []
         if hasattr(self, 'list_visible_asset_managers'):
-            for asset_proxy in self.list_visible_asset_managers(head=head):
-                result.append(asset_proxy.package_path)
+            for asset_manager in self.list_visible_asset_managers(head=head):
+                result.append(asset_manager.package_path)
         else:
-            for asset_proxy in self.list_asset_managers(
+            for asset_manager in self.list_asset_managers(
                 in_built_in_asset_library=True,
                 in_user_asset_library=True,
                 in_built_in_score_packages=True,
                 in_user_score_packages=True,
                 head=head,
                 ):
-                result.append(asset_proxy.package_path)
+                result.append(asset_manager.package_path)
         return result
 
     def make_asset_storehouse_packages(self, is_interactive=False):

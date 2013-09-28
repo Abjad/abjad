@@ -57,20 +57,20 @@ class MaterialPackageWrangler(PackageWrangler):
 
     ### PRIVATE METHODS ###
 
-    def _get_appropriate_material_package_proxy(
+    def _get_appropriate_material_package_manager(
         self,
         material_package_maker_class_name, 
         material_package_path,
         ):
         from experimental.tools import scoremanagertools
         if material_package_maker_class_name is None:
-            material_package_proxy = \
+            material_package_manager = \
                 scoremanagertools.managers.MaterialPackageManager(
                 material_package_path, 
                 session=self.session,
                 )
         else:
-            command = 'material_package_proxy = '
+            command = 'material_package_manager = '
             command += 'scoremanagertools.materialpackagemakers.{}'
             command += '(material_package_path, session=self.session)'
             command = command.format(material_package_maker_class_name)
@@ -84,21 +84,21 @@ class MaterialPackageWrangler(PackageWrangler):
                     material_package_maker_class_name,
                     )
                 exec(command)
-                material_package_proxy = material_package_maker_class(
+                material_package_manager = material_package_maker_class(
                     material_package_path, 
                     session=self.session,
                     )
-        return material_package_proxy
+        return material_package_manager
 
     def _handle_main_menu_result(self, result):
         if result in self.user_input_to_action:
             self.user_input_to_action[result](self)
         else:
-            material_package_proxy = self._initialize_asset_proxy(result)
-            material_package_proxy._run()
+            material_package_manager = self._initialize_asset_manager(result)
+            material_package_manager._run()
 
-    def _initialize_asset_proxy(self, package_path):
-        return self._material_package_maker_wrangler._initialize_asset_proxy(
+    def _initialize_asset_manager(self, package_path):
+        return self._material_package_maker_wrangler._initialize_asset_manager(
             package_path)
 
     def _make_main_menu(self, head=None):
@@ -119,12 +119,12 @@ class MaterialPackageWrangler(PackageWrangler):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def asset_proxy_class(self):
+    def asset_manager_class(self):
         r'''Asset proxy class of material packge wrangler.
 
         ::
 
-            >>> wrangler.asset_proxy_class.__name__
+            >>> wrangler.asset_manager_class.__name__
             'PackageManager'
 
         Returns class.
@@ -192,7 +192,7 @@ class MaterialPackageWrangler(PackageWrangler):
             return
         self.make_makermade_material_package(
             material_package_path, material_package_maker_class_name)
-        proxy = self._get_appropriate_material_package_proxy(
+        proxy = self._get_appropriate_material_package_manager(
             material_package_maker_class_name, material_package_path)
         proxy.run_first_time()
 
@@ -470,13 +470,13 @@ class MaterialPackageWrangler(PackageWrangler):
         material_package_maker_class_name = tags.get(
             'material_package_maker_class_name')
         pair = (material_package_maker_class_name, package_path)
-        material_package_proxy = self._get_appropriate_material_package_proxy(
+        material_package_manager = self._get_appropriate_material_package_manager(
             *pair)
-        material_package_proxy.initializer_file_proxy.write_stub_to_disk()
-        material_package_proxy.metadata_module_manager.write_stub_to_disk()
-        material_package_proxy.metadata_module_manager.write_metadata_to_disk(tags)
-        material_package_proxy.conditionally_write_stub_material_definition_module_to_disk()
-        material_package_proxy.conditionally_write_stub_user_input_module_to_disk()
+        material_package_manager.initializer_file_manager.write_stub_to_disk()
+        material_package_manager.metadata_module_manager.write_stub_to_disk()
+        material_package_manager.metadata_module_manager.write_metadata_to_disk(tags)
+        material_package_manager.conditionally_write_stub_material_definition_module_to_disk()
+        material_package_manager.conditionally_write_stub_user_input_module_to_disk()
         line = 'material package {!r} created.'.format(package_path)
         self.session.io_manager.proceed(line, is_interactive=is_interactive)
 

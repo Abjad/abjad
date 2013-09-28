@@ -81,12 +81,12 @@ class MaterialPackageMaker(MaterialPackageManager):
     @property
     def illustration(self):
         output_material = \
-            self.output_material_module_proxy.import_output_material_safely()
+            self.output_material_module_manager.import_output_material_safely()
         kwargs = {}
         kwargs['title'] = self._space_delimited_lowercase_name
         if self.session.is_in_score:
             kwargs['subtitle'] = '({})'.format(
-                self.session.current_score_package_proxy.title)
+                self.session.current_score_package_manager.title)
         illustration = self.illustration_builder(output_material, **kwargs)
         return illustration
 
@@ -106,7 +106,7 @@ class MaterialPackageMaker(MaterialPackageManager):
                 'user input already empty.', is_interactive=prompt)
         else:
             self.user_input_wrapper_in_memory.clear()
-            self.user_input_module_proxy.write_user_input_wrapper_to_disk(
+            self.user_input_module_manager.write_user_input_wrapper_to_disk(
                 self.user_input_wrapper_in_memory)
             self.session.io_manager.proceed(
                 'user input wrapper cleared and written to disk.', 
@@ -171,7 +171,7 @@ class MaterialPackageMaker(MaterialPackageManager):
         if self.session.backtrack():
             return
         self.user_input_wrapper_in_memory[key] = new_value
-        self.user_input_module_proxy.write_user_input_wrapper_to_disk(
+        self.user_input_module_manager.write_user_input_wrapper_to_disk(
             self.user_input_wrapper_in_memory)
 
     def interactively_view_user_input_module(
@@ -179,14 +179,14 @@ class MaterialPackageMaker(MaterialPackageManager):
         pending_user_input=None,
         ):
         self.session.io_manager.assign_user_input(pending_user_input)
-        self.user_input_module_proxy.interactively_view()
+        self.user_input_module_manager.interactively_view()
 
     def load_user_input_wrapper_demo_values(self, prompt=False):
         user_input_demo_values = copy.deepcopy(
             type(self).user_input_demo_values)
         for key, value in user_input_demo_values:
             self.user_input_wrapper_in_memory[key] = value
-        self.user_input_module_proxy.write_user_input_wrapper_to_disk(
+        self.user_input_module_manager.write_user_input_wrapper_to_disk(
             self.user_input_wrapper_in_memory)
         self.session.io_manager.proceed(
             'demo values loaded and written to disk.', 
@@ -239,7 +239,7 @@ class MaterialPackageMaker(MaterialPackageManager):
 
     def write_stub_user_input_module_to_disk(self, is_interactive=False):
         empty_user_input_wrapper = self.initialize_empty_user_input_wrapper()
-        self.user_input_module_proxy.write_user_input_wrapper_to_disk(
+        self.user_input_module_manager.write_user_input_wrapper_to_disk(
             empty_user_input_wrapper)
         self.session.io_manager.proceed(
             'stub user input module written to disk.', 

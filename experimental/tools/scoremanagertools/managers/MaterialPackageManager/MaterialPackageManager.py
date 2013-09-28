@@ -307,7 +307,7 @@ class MaterialPackageManager(PackageManager):
     def has_user_input_wrapper_on_disk(self):
         if self.should_have_user_input_module:
             return bool(
-                self.user_input_module_proxy.read_user_input_wrapper_from_disk())
+                self.user_input_module_manager.read_user_input_wrapper_from_disk())
         return False
 
     @property
@@ -316,7 +316,7 @@ class MaterialPackageManager(PackageManager):
             return os.path.join(self.filesystem_path, 'illustration_builder.py')
 
     @property
-    def illustration_builder_module_proxy(self):
+    def illustration_builder_module_manager(self):
         from experimental.tools import scoremanagertools
         return scoremanagertools.managers.ModuleManager(
             self.illustration_builder_packagesystem_path, 
@@ -339,7 +339,7 @@ class MaterialPackageManager(PackageManager):
             return os.path.join(self.filesystem_path, 'illustration.ly')
 
     @property
-    def illustration_ly_file_proxy(self):
+    def illustration_ly_file_manager(self):
         from experimental.tools import scoremanagertools
         file_path = os.path.join(self.filesystem_path, 'illustration.ly')
         proxy = scoremanagertools.managers.FileManager(
@@ -354,7 +354,7 @@ class MaterialPackageManager(PackageManager):
             return os.path.join(self.filesystem_path, 'illustration.pdf')
 
     @property
-    def illustration_pdf_file_proxy(self):
+    def illustration_pdf_file_manager(self):
         from experimental.tools import scoremanagertools
         file_path = os.path.join(self.filesystem_path, 'illustration.pdf')
         proxy = scoremanagertools.managers.FileManager(
@@ -376,9 +376,9 @@ class MaterialPackageManager(PackageManager):
     def is_changed(self):
         self.session.io_manager.print_not_yet_implemented()
         material_definition = \
-            self.material_definition_module_proxy.import_material_definition()
+            self.material_definition_module_manager.import_material_definition()
         output_material = \
-            self.output_material_module_proxy.import_output_material_safely()
+            self.output_material_module_manager.import_output_material_safely()
         return material_definition != output_material
 
     @property
@@ -397,7 +397,7 @@ class MaterialPackageManager(PackageManager):
     def material_definition(self):
         if not self.has_material_definition_module:
             return
-        manager = self.material_definition_module_proxy
+        manager = self.material_definition_module_manager
         result = manager.execute_file_lines(
             return_attribute_name=self.material_package_name,
             )
@@ -409,7 +409,7 @@ class MaterialPackageManager(PackageManager):
             return os.path.join(self.filesystem_path, 'material_definition.py')
 
     @property
-    def material_definition_module_proxy(self):
+    def material_definition_module_manager(self):
         from experimental.tools import scoremanagertools
         if self.should_have_material_definition_module:
             return scoremanagertools.managers.MaterialDefinitionModuleManager(
@@ -462,7 +462,7 @@ class MaterialPackageManager(PackageManager):
     def output_material(self):
         try:
             output_material = \
-                self.output_material_module_proxy.execute_file_lines(
+                self.output_material_module_manager.execute_file_lines(
                 return_attribute_name=self.material_package_name,
                 )
         except:
@@ -483,7 +483,7 @@ class MaterialPackageManager(PackageManager):
     def output_material_module_import_statements_and_material_definition(self):
         if not self.should_have_material_definition_module:
             return
-        manager = self.material_definition_module_proxy
+        manager = self.material_definition_module_manager
         return_attribute_name = [
             'output_material_module_import_statements',
             self.material_package_name,
@@ -530,7 +530,7 @@ class MaterialPackageManager(PackageManager):
             return '{}.output_material'.format(self.package_path)
 
     @property
-    def output_material_module_proxy(self):
+    def output_material_module_manager(self):
         from experimental.tools import scoremanagertools
         return scoremanagertools.managers.ModuleManager(
             self.output_material_module_path, 
@@ -579,13 +579,13 @@ class MaterialPackageManager(PackageManager):
     @property
     def stylesheet_file_name_on_disk(self):
         if self.has_illustration_ly:
-            for line in self.illustration_ly_file_proxy.read_lines():
+            for line in self.illustration_ly_file_manager.read_lines():
                 if line.startswith(r'\include') and 'stylesheets' in line:
                     file_name = line.split()[-1].replace('"', '')
                     return file_name
 
     @property
-    def stylesheet_file_proxy(self):
+    def stylesheet_file_manager(self):
         from experimental.tools import scoremanagertools
         return scoremanagertools.managers.FileManager(
             self.stylesheet_file_name, 
@@ -603,7 +603,7 @@ class MaterialPackageManager(PackageManager):
             return '.'.join([self.package_path, 'user_input'])
 
     @property
-    def user_input_module_proxy(self):
+    def user_input_module_manager(self):
         from experimental.tools import scoremanagertools
         if self.should_have_user_input_module:
             if not self.has_user_input_module:
@@ -620,7 +620,7 @@ class MaterialPackageManager(PackageManager):
         ):
         if not self._get_metadata('material_package_maker_class_name'):
             is_data_only = not self._get_metadata('should_have_illustration')
-            self.material_definition_module_proxy.write_stub_to_disk(
+            self.material_definition_module_manager.write_stub_to_disk(
                 is_data_only, is_interactive=is_interactive)
 
     def conditionally_write_stub_user_input_module_to_disk(
@@ -637,10 +637,10 @@ class MaterialPackageManager(PackageManager):
         return getattr(expr, '_tools_package_qualified_repr', repr(expr))
 
     def interactively_edit_illustration_builder_module(self):
-        self.illustration_builder_module_proxy.interactively_edit()
+        self.illustration_builder_module_manager.interactively_edit()
 
     def interactively_edit_material_definition_module(self):
-        self.material_definition_module_proxy.interactively_edit()
+        self.material_definition_module_manager.interactively_edit()
 
     def interactively_edit_output_material(self):
         if not self.has_output_material_editor:
@@ -681,7 +681,7 @@ class MaterialPackageManager(PackageManager):
             )
 
     def interactively_edit_stylesheet_file(self):
-        self.stylesheet_file_proxy.interactively_edit()
+        self.stylesheet_file_manager.interactively_edit()
 
     def interactively_remove(self):
         PackageManager.interactively_remove(self)
@@ -787,19 +787,19 @@ class MaterialPackageManager(PackageManager):
             'stylesheet selected.', is_interactive=prompt)
 
     def interactively_view_illustration_ly(self):
-        self.illustration_ly_file_proxy.interactively_view()
+        self.illustration_ly_file_manager.interactively_view()
 
     def interactively_view_illustration_pdf(self):
-        self.illustration_pdf_file_proxy.interactively_view()
+        self.illustration_pdf_file_manager.interactively_view()
 
     def interactively_view_output_material_module(self):
-        self.output_material_module_proxy.interactively_view()
+        self.output_material_module_manager.interactively_view()
 
     def interactively_write_material_definition_module_boilerplate(self):
-        self.material_definition_module_proxy.interactively_write_boilerplate()
+        self.material_definition_module_manager.interactively_write_boilerplate()
 
     def interactively_write_output_material_module_boilerplate(self):
-        self.output_material_module_proxy.interactively_write_boilerplate()
+        self.output_material_module_manager.interactively_write_boilerplate()
 
     def manage_stylesheets(self):
         from experimental.tools import scoremanagertools
@@ -814,31 +814,31 @@ class MaterialPackageManager(PackageManager):
     def remove_illustration_builder_module(self, prompt=True):
         self.remove_illustration_pdf(prompt=False)
         if self.has_illustration_builder_module:
-            self.illustration_builder_module_proxy.remove()
+            self.illustration_builder_module_manager.remove()
 
     def remove_illustration_ly(self, prompt=True):
         if self.has_illustration_ly:
-            self.illustration_ly_file_proxy.remove()
+            self.illustration_ly_file_manager.remove()
 
     def remove_illustration_pdf(self, prompt=True):
         self.remove_illustration_ly(prompt=False)
         if self.has_illustration_pdf:
-            self.illustration_pdf_file_proxy.remove()
+            self.illustration_pdf_file_manager.remove()
 
     def remove_material_definition_module(self, prompt=True):
         self.remove_output_material_module(prompt=False)
         self.remove_illustration_builder_module(prompt=False)
         if self.has_material_definition_module:
-            self.material_definition_module_proxy.remove()
+            self.material_definition_module_manager.remove()
 
     def remove_output_material_module(self, prompt=True):
         self.remove_illustration_builder_module(prompt=False)
         if self.has_output_material_module:
-            self.output_material_module_proxy.remove()
+            self.output_material_module_manager.remove()
 
     def remove_user_input_module(self, prompt=True):
         if self.has_user_input_module:
-            self.user_input_module_proxy.remove()
+            self.user_input_module_manager.remove()
 
     @staticmethod
     def replace_in_file(file_path, old, new):
@@ -853,19 +853,19 @@ class MaterialPackageManager(PackageManager):
         file_pointer.close()
 
     def run_abjad_on_illustration_builder_module(self):
-        self.illustration_builder_module_proxy.run_abjad(prompt=True)
+        self.illustration_builder_module_manager.run_abjad(prompt=True)
 
     def run_abjad_on_material_definition_module(self):
-        self.material_definition_module_proxy.run_abjad()
+        self.material_definition_module_manager.run_abjad()
 
     def run_first_time(self):
         self._run(pending_user_input='omi')
 
     def run_python_on_illustration_builder_module(self):
-        self.illustration_builder_module_proxy.run_python(prompt=True)
+        self.illustration_builder_module_manager.run_python(prompt=True)
 
     def run_python_on_material_definition_module(self):
-        self.material_definition_module_proxy.run_python()
+        self.material_definition_module_manager.run_python()
 
     def write_illustration_ly_and_pdf_to_disk(self, prompt=True):
         illustration = self.illustration_with_stylesheet
@@ -927,7 +927,7 @@ class MaterialPackageManager(PackageManager):
         lines.extend(output_material_module_import_statements)
         lines.extend(output_material_module_body_lines)
         lines = ''.join(lines)
-        manager = self.output_material_module_proxy
+        manager = self.output_material_module_manager
         file_pointer = file(manager.filesystem_path, 'w')
         file_pointer.write(lines)
         file_pointer.close()
@@ -967,7 +967,7 @@ class MaterialPackageManager(PackageManager):
     def write_stub_material_definition_module_to_disk(self):
         if self.should_have_material_definition_module:
             file(self.material_definition_module_file_name, 'w').write('')
-            self.material_definition_module_proxy.write_stub_to_disk(
+            self.material_definition_module_manager.write_stub_to_disk(
                 self.is_data_only, is_interactive=True)
 
     def write_metadata_to_disk(self):
@@ -986,7 +986,7 @@ class MaterialPackageManager(PackageManager):
         'ibxi': run_abjad_on_illustration_builder_module,
         'lyd': remove_illustration_ly,
         'lym': write_illustration_ly_to_disk,
-        'ly': illustration_ly_file_proxy,
+        'ly': illustration_ly_file_manager,
         'mdcanned': interactively_write_material_definition_module_boilerplate,
         'mde': interactively_edit_material_definition_module,
         'mddelete': remove_material_definition_module,

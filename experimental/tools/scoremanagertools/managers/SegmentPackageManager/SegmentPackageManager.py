@@ -115,7 +115,7 @@ class SegmentPackageManager(PackageManager):
             ])
 
     @property
-    def segment_definition_module_proxy(self):
+    def segment_definition_module_manager(self):
         from experimental.tools import scoremanagertools
         proxy = scoremanagertools.managers.ModuleManager(
             self.segment_definition_module_packagesystem_path,
@@ -134,7 +134,7 @@ class SegmentPackageManager(PackageManager):
         Returns none.
         '''
         self.session.io_manager.assign_user_input(pending_user_input)
-        self.segment_definition_module_proxy.interactively_edit()
+        self.segment_definition_module_manager.interactively_edit()
 
     def interactively_list_versions_directory(self):
         r'''Interactively lists versions directory.
@@ -161,7 +161,7 @@ class SegmentPackageManager(PackageManager):
         modification_time = 0
         if os.path.isfile(output_pdf_file_path):
             modification_time = os.path.getmtime(output_pdf_file_path)
-        proxy = self.segment_definition_module_proxy
+        proxy = self.segment_definition_module_manager
         proxy.interpret_in_external_process()
         new_modification_time = 0
         if os.path.isfile(output_pdf_file_path):

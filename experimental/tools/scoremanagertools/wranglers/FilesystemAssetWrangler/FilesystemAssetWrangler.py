@@ -57,8 +57,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         pass
 
     @property
-    def _temporary_asset_proxy(self):
-        return self._initialize_asset_proxy(
+    def _temporary_asset_manager(self):
+        return self._initialize_asset_manager(
             self._temporary_asset_filesystem_path)
 
     ### PRIVATE METHODS ###
@@ -82,7 +82,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             assert '.' not in directory_path, repr(directory_path)
             return directory_path
 
-    def _get_current_package_proxy(self):
+    def _get_current_package_manager(self):
         from experimental.tools import scoremanagertools
         directory_path = self._get_current_directory_path_of_interest()
         if directory_path is None:
@@ -102,7 +102,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 )
             return file_path
 
-    def _get_current_view_module_proxy(self):
+    def _get_current_view_module_manager(self):
         from experimental.tools import scoremanagertools
         file_path = self._get_current_view_file_path()
         proxy = scoremanagertools.managers.ModuleManager(
@@ -115,9 +115,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def _handle_main_menu_result(self, result):
         pass
 
-    def _initialize_asset_proxy(self, filesystem_path):
+    def _initialize_asset_manager(self, filesystem_path):
         assert os.path.sep in filesystem_path, repr(filesystem_path)
-        return self.asset_proxy_class(
+        return self.asset_manager_class(
             filesystem_path=filesystem_path, session=self.session)
 
     def _is_valid_directory_entry(self, directory_entry):
@@ -133,14 +133,14 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         ):
         if infinitival_phrase:
             return 'select {} {}:'.format(
-                self.asset_proxy_class._generic_class_name, 
+                self.asset_manager_class._generic_class_name, 
                 infinitival_phrase)
         elif is_storehouse:
             return 'select {} storehouse:'.format(
-                self.asset_proxy_class._generic_class_name)
+                self.asset_manager_class._generic_class_name)
         else:
             return 'select {}:'.format(
-                self.asset_proxy_class._generic_class_name)
+                self.asset_manager_class._generic_class_name)
 
     def _make_asset_selection_menu(self, head=None):
         menu = self.session.io_manager.make_menu(where=self._where)
@@ -226,7 +226,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     ### PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
-    def asset_proxy_class(self):
+    def asset_manager_class(self):
         r'''Asset proxy class of filesystem asset wrangler.
 
         Returns class.
@@ -321,7 +321,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             view_name = selector._run()
         if self.session.backtrack():
             return
-        proxy = self._get_current_package_proxy()
+        proxy = self._get_current_package_manager()
         proxy._add_metadata('view_name', view_name)
 
     # TODO: write test
@@ -350,8 +350,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             asset_index = asset_number - 1
             menu_entry = asset_section.menu_entries[asset_index]
             asset_filesystem_path = menu_entry.return_value
-            asset_proxy = self._initialize_asset_proxy(asset_filesystem_path)
-            asset_proxy.remove()
+            asset_manager = self._initialize_asset_manager(asset_filesystem_path)
+            asset_manager.remove()
             total_assets_removed += 1
         if total_assets_removed == 1:
             asset_string = 'asset'
@@ -376,8 +376,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 self.interactively_select_asset_filesystem_path()
         if self.session.backtrack():
             return
-        asset_proxy = self._initialize_asset_proxy(asset_filesystem_path)
-        asset_proxy.interactively_rename()
+        asset_manager = self._initialize_asset_manager(asset_filesystem_path)
+        asset_manager.interactively_rename()
 
     def interactively_select_asset_filesystem_path(
         self, 
@@ -448,15 +448,15 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         return result
 
     def interactively_view_initializer(self):
-        proxy = self._get_current_package_proxy()
+        proxy = self._get_current_package_manager()
         proxy.interactively_view_initializer()
 
     def interactively_view_metadata_module(self):
-        proxy = self._get_current_package_proxy()
+        proxy = self._get_current_package_manager()
         proxy.interactively_view_metadata_module()
 
     def interactively_view_views_module(self):
-        proxy = self._get_current_view_module_proxy()
+        proxy = self._get_current_view_module_manager()
         #proxy.interactively_view()
         proxy.interactively_edit()
 
@@ -549,8 +549,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head):
-            asset_proxy = self._initialize_asset_proxy(filesystem_path)
-            result.append(asset_proxy)
+            asset_manager = self._initialize_asset_manager(filesystem_path)
+            result.append(asset_manager)
         return result
 
     def list_asset_storehouse_filesystem_paths(
@@ -603,11 +603,11 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         assert stringtools.is_snake_case_string(asset_name)
         asset_filesystem_path = os.path.join(
             self._current_storehouse_filesystem_path, asset_name)
-        asset_proxy = self._initialize_asset_proxy(asset_filesystem_path)
-        asset_proxy.write_stub_to_disk()
+        asset_manager = self._initialize_asset_manager(asset_filesystem_path)
+        asset_manager.write_stub_to_disk()
 
     def print_directory_entries(self):
-        proxy = self._get_current_package_proxy()
+        proxy = self._get_current_package_manager()
         proxy.print_directory_entries()
 
     def write_view_to_disk(self, new_view, prompt=True):

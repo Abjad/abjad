@@ -26,7 +26,7 @@ class ScorePackageManager(PackageManager):
             session=self.session,
             )
         package_path = '{}.instrumentation'.format(self.package_path)
-        self._instrumentation_module_proxy = \
+        self._instrumentation_module_manager = \
             scoremanagertools.managers.ModuleManager(
             package_path,
             session=self.session,
@@ -40,7 +40,7 @@ class ScorePackageManager(PackageManager):
             session=self.session,
             )
         filesystem_path = os.path.join(self.filesystem_path, 'score_templates')
-        self._score_template_directory_proxy = \
+        self._score_template_directory_manager = \
             scoremanagertools.managers.DirectoryManager(
             filesystem_path=filesystem_path,
             session=self.session,
@@ -300,8 +300,8 @@ class ScorePackageManager(PackageManager):
         return self._distribution_directory_manager
 
     @property
-    def instrumentation_module_proxy(self):
-        return self._instrumentation_module_proxy
+    def instrumentation_module_manager(self):
+        return self._instrumentation_module_manager
 
     @property
     def material_package_maker_wrangler(self):
@@ -312,8 +312,8 @@ class ScorePackageManager(PackageManager):
         return self._material_package_wrangler
 
     @property
-    def score_template_directory_proxy(self):
-        return self._score_template_directory_proxy
+    def score_template_directory_manager(self):
+        return self._score_template_directory_manager
 
     @property
     def segment_wrangler(self):
@@ -468,8 +468,8 @@ class ScorePackageManager(PackageManager):
             )
 
     def interactively_view_instrumentation_module(self):
-        #return self.instrumentation_module_proxy.interactively_view()
-        return self.instrumentation_module_proxy.interactively_edit()
+        #return self.instrumentation_module_manager.interactively_view()
+        return self.instrumentation_module_manager.interactively_edit()
 
     def manage_build_directory(self):
         self.build_directory_manager._run()
@@ -478,7 +478,7 @@ class ScorePackageManager(PackageManager):
         self.material_package_wrangler._run(head=self.package_path)
 
     def manage_score_templates(self):
-        self.score_template_directory_proxy._run()
+        self.score_template_directory_manager._run()
 
     def manage_segments(self):
         self.segment_wrangler._run(head=self.package_path)

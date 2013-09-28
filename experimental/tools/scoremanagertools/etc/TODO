@@ -66,7 +66,7 @@
     from one location to another.
 
 23. Find a way to include metadata management in hidden menu 
-    of every package proxy.
+    of every package manager.
 
 24. Implement a menuing decorator in decoratortools.
     Then integrate against all classes.

@@ -52,9 +52,9 @@ class StylesheetFileWrangler(FileWrangler):
             packagesystem_path = \
                 self.configuration.filesystem_path_to_packagesystem_path(
                 score_filesystem_path)
-            score_package_proxy = scoremanagertools.managers.ScorePackageManager(
+            score_package_manager = scoremanagertools.managers.ScorePackageManager(
                 packagesystem_path=packagesystem_path)
-            annotation = score_package_proxy._get_title()
+            annotation = score_package_manager._get_title()
         elif filesystem_path.startswith(
             self.configuration.built_in_stylesheets_directory_path):
             annotation = 'built-in'
@@ -146,12 +146,12 @@ class StylesheetFileWrangler(FileWrangler):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def asset_proxy_class(self):
+    def asset_manager_class(self):
         r'''Asset proxy class of stylesheet file wrangler.
 
         ::
 
-            >>> wrangler.asset_proxy_class.__name__
+            >>> wrangler.asset_manager_class.__name__
             'FileManager'
 
         Returns class.
@@ -171,7 +171,7 @@ class StylesheetFileWrangler(FileWrangler):
         Returns none.
         '''
         self.session.io_manager.assign_user_input(pending_user_input)
-        proxy = self.asset_proxy_class(
+        proxy = self.asset_manager_class(
             filesystem_path=filesystem_path, 
             session=self.session,
             )
