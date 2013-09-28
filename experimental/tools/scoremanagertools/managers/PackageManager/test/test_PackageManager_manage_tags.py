@@ -2,7 +2,7 @@
 from experimental import *
 
 
-def test_PackageManager_manage_metadata_01():
+def test_PackageManager_manage_tags_01():
     r'''Quit, back, home, score & junk all work.
     '''
 
