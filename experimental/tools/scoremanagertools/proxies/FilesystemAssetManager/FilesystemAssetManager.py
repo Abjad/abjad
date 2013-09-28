@@ -20,7 +20,8 @@ class FilesystemAssetManager(ScoreManagerObject):
 
     boilerplate_directory_path = os.path.join(
         ScoreManagerObject.configuration.score_manager_tools_directory_path,
-        'boilerplate')
+        'boilerplate',
+        )
 
     ### INITIALIZER ###
 
@@ -205,7 +206,6 @@ class FilesystemAssetManager(ScoreManagerObject):
         if self.rename(new_path):
             self.session.io_manager.proceed('asset renamed.')
 
-    # TODO: possibly remove?
     def interactively_write_boilerplate(
         self, 
         pending_user_input=None,
@@ -218,14 +218,14 @@ class FilesystemAssetManager(ScoreManagerObject):
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_snake_case_file_name('name of boilerplate asset')
         with self.backtracking:
-            boilerplate_filebuilt_in_asset_name = getter._run()
+            boilerplate_file_built_in_asset_name = getter._run()
         if self.session.backtrack():
             return
-        if self.write_boilerplate(boilerplate_filebuilt_in_asset_name):
+        if self.write_boilerplate(boilerplate_file_built_in_asset_name):
             self.session.io_manager.proceed('boilerplate asset copied.')
         else:
             message = 'boilerplate asset {!r} does not exist.'
-            message = message.format(boilerplate_filebuilt_in_asset_name)
+            message = message.format(boilerplate_file_built_in_asset_name)
             self.session.io_manager.proceed(message)
 
     def is_versioned(self):
@@ -251,7 +251,6 @@ class FilesystemAssetManager(ScoreManagerObject):
         else:
             return True
 
-    # TODO: possibly remove?
     @abc.abstractmethod
     def make_empty_asset(self, is_interactive=False):
         r'''Makes empty filesystem asset.
@@ -407,19 +406,19 @@ class FilesystemAssetManager(ScoreManagerObject):
         self.session.io_manager.display(lines)
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
-    def write_boilerplate(self, boilerplate_filebuilt_in_asset_name):
+    def write_boilerplate(self, boilerplate_file_built_in_asset_name):
         r'''Writes filesystem asset boilerplate.
 
         Returns none.
         '''
-        if not os.path.exists(boilerplate_filebuilt_in_asset_name):
-            boilerplate_filebuilt_in_asset_name = os.path.join(
+        if not os.path.exists(boilerplate_file_built_in_asset_name):
+            boilerplate_file_built_in_asset_name = os.path.join(
                 self.boilerplate_directory_path,
-                boilerplate_filebuilt_in_asset_name,
+                boilerplate_file_built_in_asset_name,
                 )
-        if os.path.exists(boilerplate_filebuilt_in_asset_name):
+        if os.path.exists(boilerplate_file_built_in_asset_name):
             shutil.copyfile(
-                boilerplate_filebuilt_in_asset_name,
+                boilerplate_file_built_in_asset_name,
                 self.filesystem_path,
                 )
             return True

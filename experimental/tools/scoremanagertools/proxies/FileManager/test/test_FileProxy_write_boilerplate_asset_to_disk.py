@@ -12,10 +12,10 @@ def test_FileManager_write_boilerplate_asset_to_disk_01():
     assert not os.path.exists(filesystem_path)
 
     try:
-        boilerplate_filebuilt_in_asset_name = 'canned_testnumbers_material_definition.py'
-        file_proxy.write_boilerplate(boilerplate_filebuilt_in_asset_name)
+        boilerplate_file_built_in_asset_name = 'canned_testnumbers_material_definition.py'
+        file_proxy.write_boilerplate(boilerplate_file_built_in_asset_name)
         source = open(os.path.join(
-            file_proxy.boilerplate_directory_path, boilerplate_filebuilt_in_asset_name), 'r')
+            file_proxy.boilerplate_directory_path, boilerplate_file_built_in_asset_name), 'r')
         target = open(file_proxy.filesystem_path)
         assert source.readlines() == target.readlines()
         file_proxy.remove()
