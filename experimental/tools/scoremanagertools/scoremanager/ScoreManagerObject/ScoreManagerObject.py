@@ -3,13 +3,14 @@ import abc
 import inspect
 import os
 from abjad.tools import stringtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+#from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.abctools.ContextManager import ContextManager
 from experimental.tools.scoremanagertools.scoremanager.ScoreManagerConfiguration \
     import ScoreManagerConfiguration
 
 
-class ScoreManagerObject(AbjadObject):
+#class ScoreManagerObject(AbjadObject):
+class ScoreManagerObject(object):
 
     ### CLASS VARIABLES ###
 
@@ -50,7 +51,7 @@ class ScoreManagerObject(AbjadObject):
 
         Returns string.
         '''
-        return '{}()'.format(self._class_name)
+        return '{}()'.format(self.__class__.__name__)
 
     ### PRIVATE PROPERTIES ###
 
@@ -58,22 +59,22 @@ class ScoreManagerObject(AbjadObject):
     def _backtracking_source(self):
         return
 
-    @property
-    def _keyword_argument_names(self):
-        result = []
-        result.extend(AbjadObject._keyword_argument_names.fget(self))
-        result.remove('session')
-        return tuple(result)
+#    @property
+#    def _keyword_argument_names(self):
+#        result = []
+#        result.extend(AbjadObject._keyword_argument_names.fget(self))
+#        result.remove('session')
+#        return tuple(result)
 
     @property
     def _space_delimited_lowercase_class_name(self):
         return stringtools.string_to_space_delimited_lowercase(
-            self._class_name)
+            self.__class__.__name__)
 
     @property
     def _spaced_class_name(self):
         return stringtools.string_to_space_delimited_lowercase(
-            self._class_name)
+            self.__class__.__name__)
 
     @property
     def _where(self):

@@ -29,7 +29,7 @@ class SpecificationInterface(SelectMethodMixin, TimeContiguousSetMethodMixin):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '{}()'.format(self._class_name)
+        return '{}()'.format(self.__class__.__name__)
 
     ### PRIVATE PROPERTIES ###
 

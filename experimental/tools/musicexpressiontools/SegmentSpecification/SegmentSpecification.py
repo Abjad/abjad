@@ -68,7 +68,7 @@ class SegmentSpecification(Specification):
 
         Return string.
         '''
-        return '{}({!r})'.format(self._class_name, self.segment_name)
+        return '{}({!r})'.format(self.__class__.__name__, self.segment_name)
 
     ### PUBLIC PROPERTIES ###
 

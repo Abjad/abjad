@@ -21,7 +21,7 @@ class VoiceDictionary(AbjadObject, collections.OrderedDict):
 
     def __repr__(self):
         contents = ', '.join([repr(x) for x in self])
-        return '{}([{}])'.format(self._class_name, contents)
+        return '{}([{}])'.format(self.__class__.__name__, contents)
 
     def __setitem__(self, key, value):
         from experimental.tools import musicexpressiontools

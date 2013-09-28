@@ -24,4 +24,4 @@ class SegmentSpecificationInventory(AbjadObject, list):
                 raise KeyError(repr(arg))
 
     def __repr__(self):
-        return '{}({})'.format(self._class_name, list.__repr__(self))
+        return '{}({})'.format(self.__class__.__name__, list.__repr__(self))

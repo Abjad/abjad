@@ -141,7 +141,7 @@ class DivisionList(BoundedObject):
 
         Return string.
         '''
-        return '{}({!r})'.format(self._class_name, self._contents_string)
+        return '{}({!r})'.format(self.__class__.__name__, self._contents_string)
 
     ### PRIVATE PROPERTIES ###
 

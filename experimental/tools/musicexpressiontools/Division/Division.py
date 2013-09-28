@@ -90,9 +90,9 @@ class Division(NonreducedFraction, BoundedObject):
     def __repr__(self):
         if self.start_offset is not None:
             return '{}({!r}, start_offset={!r})'.format(
-                self._class_name, str(self), self.start_offset)
+                self.__class__.__name__, str(self), self.start_offset)
         else:
-            return '{}({!r})'.format(self._class_name, str(self))
+            return '{}({!r})'.format(self.__class__.__name__, str(self))
 
     def __str__(self):
         if self.is_left_open:
