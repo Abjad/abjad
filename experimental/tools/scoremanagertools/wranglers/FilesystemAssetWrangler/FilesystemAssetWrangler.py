@@ -192,7 +192,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             view_file_path,
             session=self.session,
             )
-        view_inventory = manager.execute_file_lines(
+        view_inventory = manager._execute_file_lines(
             return_attribute_name='view_inventory',
             )
         return view_inventory
@@ -343,7 +343,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             menu_entry = asset_section.menu_entries[asset_index]
             asset_filesystem_path = menu_entry.return_value
             asset_manager = self._initialize_asset_manager(asset_filesystem_path)
-            asset_manager.remove()
+            asset_manager._remove()
             total_assets_removed += 1
         if total_assets_removed == 1:
             asset_string = 'asset'
@@ -596,7 +596,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         asset_filesystem_path = os.path.join(
             self._current_storehouse_filesystem_path, asset_name)
         asset_manager = self._initialize_asset_manager(asset_filesystem_path)
-        asset_manager.write_stub_to_disk()
+        asset_manager._write_stub_to_disk()
 
     def print_directory_entries(self):
         manager = self._get_current_package_manager()

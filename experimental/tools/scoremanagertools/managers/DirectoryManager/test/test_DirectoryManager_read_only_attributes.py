@@ -12,4 +12,4 @@ def test_DirectoryManager_read_only_attributes_01():
     directory_manager = scoremanagertools.managers.DirectoryManager(directory_path)
     assert directory_manager.filesystem_path is not None
     # TODO: uncomment soon
-    #assert directory_manager.is_versioned()
+    #assert directory_manager._is_versioned()

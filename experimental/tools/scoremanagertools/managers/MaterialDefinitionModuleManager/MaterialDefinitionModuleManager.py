@@ -49,7 +49,7 @@ class MaterialDefinitionModuleManager(FileManager):
         file_pointer.write(lines)
         file_pointer.close()
 
-    def write_stub_to_disk(self, is_data_only, is_interactive=True):
+    def _write_stub_to_disk(self, is_data_only, is_interactive=True):
         if is_data_only:
             self.write_stub_data_material_definition_to_disk()
         else:

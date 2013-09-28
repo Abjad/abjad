@@ -120,7 +120,7 @@ class PackageManager(DirectoryManager):
 
     def _get_metadatas(self):
         from collections import OrderedDict
-        self.metadata_module_manager.make_empty_asset()
+        self.metadata_module_manager._make_empty_asset()
         file_pointer = open(self.metadata_module_name, 'r')
         file_contents_string = file_pointer.read()
         file_pointer.close()
@@ -132,7 +132,7 @@ class PackageManager(DirectoryManager):
         if result == 'add':
             self.interactively_add_metadata()
         elif result == 'rm':
-            self.interactively_remove_tag()
+            self.interactively__remove_metadata()
         elif result == 'get':
             self.interactively_get_metadata()
         return False
@@ -162,7 +162,7 @@ class PackageManager(DirectoryManager):
         line = '{!r}'.format(tag)
         self.session.io_manager.proceed(line)
 
-    def interactively_remove_tag(self):
+    def interactively__remove_metadata(self):
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string('tag name')
         result = getter._run()
@@ -170,7 +170,7 @@ class PackageManager(DirectoryManager):
             return
         if result:
             tag_name = result
-            self.remove_tag(tag_name)
+            self._remove_metadata(tag_name)
 
     def interactively_rename_package(self):
         r'''Interactively renames package.
@@ -198,7 +198,7 @@ class PackageManager(DirectoryManager):
             base_name,
             new_package_name,
             )
-        if self.is_versioned():
+        if self._is_versioned():
             # rename package directory
             command = 'svn mv {} {}'
             command = command.format(self.filesystem_path, new_directory_path)
@@ -226,7 +226,7 @@ class PackageManager(DirectoryManager):
         self.session.is_backtracking_locally = True
 
     def interactively_restore_initializer(self):
-        self.initializer_file_manager.write_stub_to_disk()
+        self.initializer_file_manager._write_stub_to_disk()
         self.session.io_manager.proceed(is_interactive=True)
 
     def interactively_set_package_path(self):
@@ -285,10 +285,10 @@ class PackageManager(DirectoryManager):
 
         Returns none.
         '''
-        self.remove()
+        self._remove()
         self.session.is_backtracking_locally = True
 
-    def remove_tag(self, tag_name):
+    def _remove_metadata(self, tag_name):
         tags = self._get_metadatas()
         del(tags[tag_name])
         self.metadata_module_manager.write_metadata_to_disk(tags)

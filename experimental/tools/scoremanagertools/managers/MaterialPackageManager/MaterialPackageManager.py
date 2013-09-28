@@ -399,7 +399,7 @@ class MaterialPackageManager(PackageManager):
         if not self.has_material_definition_module:
             return
         manager = self.material_definition_module_manager
-        result = manager.execute_file_lines(
+        result = manager._execute_file_lines(
             return_attribute_name=self.material_package_name,
             )
         return result
@@ -465,7 +465,7 @@ class MaterialPackageManager(PackageManager):
     def output_material(self):
         try:
             output_material = \
-                self.output_material_module_manager.execute_file_lines(
+                self.output_material_module_manager._execute_file_lines(
                 return_attribute_name=self.material_package_name,
                 )
         except:
@@ -491,7 +491,7 @@ class MaterialPackageManager(PackageManager):
             'output_material_module_import_statements',
             self.material_package_name,
             ]
-        result = manager.execute_file_lines(
+        result = manager._execute_file_lines(
             return_attribute_name=return_attribute_name,
             )
         return result
@@ -626,7 +626,7 @@ class MaterialPackageManager(PackageManager):
         ):
         if not self._get_metadata('material_package_maker_class_name'):
             is_data_only = not self._get_metadata('should_have_illustration')
-            self.material_definition_module_manager.write_stub_to_disk(
+            self.material_definition_module_manager._write_stub_to_disk(
                 is_data_only, is_interactive=is_interactive)
 
     def conditionally_write_stub_user_input_module_to_disk(
@@ -712,7 +712,7 @@ class MaterialPackageManager(PackageManager):
             base_name,
             new_package_name,
             )
-        if self.is_versioned():
+        if self._is_versioned():
             # rename package
             command = 'svn mv {} {}'
             command = command.format(self.filesystem_path, new_directory_path)
@@ -815,36 +815,36 @@ class MaterialPackageManager(PackageManager):
         stylesheet_file_wrangler._run()
 
     def remove(self):
-        PackageManager.remove(self)
+        PackageManager._remove(self)
 
     def remove_illustration_builder_module(self, prompt=True):
         self.remove_illustration_pdf(prompt=False)
         if self.has_illustration_builder_module:
-            self.illustration_builder_module_manager.remove()
+            self.illustration_builder_module_manager._remove()
 
     def remove_illustration_ly(self, prompt=True):
         if self.has_illustration_ly:
-            self.illustration_ly_file_manager.remove()
+            self.illustration_ly_file_manager._remove()
 
     def remove_illustration_pdf(self, prompt=True):
         self.remove_illustration_ly(prompt=False)
         if self.has_illustration_pdf:
-            self.illustration_pdf_file_manager.remove()
+            self.illustration_pdf_file_manager._remove()
 
     def remove_material_definition_module(self, prompt=True):
         self.remove_output_material_module(prompt=False)
         self.remove_illustration_builder_module(prompt=False)
         if self.has_material_definition_module:
-            self.material_definition_module_manager.remove()
+            self.material_definition_module_manager._remove()
 
     def remove_output_material_module(self, prompt=True):
         self.remove_illustration_builder_module(prompt=False)
         if self.has_output_material_module:
-            self.output_material_module_manager.remove()
+            self.output_material_module_manager._remove()
 
     def remove_user_input_module(self, prompt=True):
         if self.has_user_input_module:
-            self.user_input_module_manager.remove()
+            self.user_input_module_manager._remove()
 
     @staticmethod
     def replace_in_file(file_path, old, new):
@@ -859,19 +859,19 @@ class MaterialPackageManager(PackageManager):
         file_pointer.close()
 
     def run_abjad_on_illustration_builder_module(self):
-        self.illustration_builder_module_manager.run_abjad(prompt=True)
+        self.illustration_builder_module_manager._run_abjad(prompt=True)
 
     def run_abjad_on_material_definition_module(self):
-        self.material_definition_module_manager.run_abjad()
+        self.material_definition_module_manager._run_abjad()
 
     def run_first_time(self):
         self._run(pending_user_input='omi')
 
     def run_python_on_illustration_builder_module(self):
-        self.illustration_builder_module_manager.run_python(prompt=True)
+        self.illustration_builder_module_manager._run_python(prompt=True)
 
     def run_python_on_material_definition_module(self):
-        self.material_definition_module_manager.run_python()
+        self.material_definition_module_manager._run_python()
 
     def write_illustration_ly_and_pdf_to_disk(self, prompt=True):
         illustration = self.illustration_with_stylesheet
@@ -973,7 +973,7 @@ class MaterialPackageManager(PackageManager):
     def write_stub_material_definition_module_to_disk(self):
         if self.should_have_material_definition_module:
             file(self.material_definition_module_file_path, 'w').write('')
-            self.material_definition_module_manager.write_stub_to_disk(
+            self.material_definition_module_manager._write_stub_to_disk(
                 self.is_data_only, is_interactive=True)
 
     def write_metadata_to_disk(self):

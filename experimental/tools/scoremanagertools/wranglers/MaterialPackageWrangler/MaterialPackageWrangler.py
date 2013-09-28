@@ -456,8 +456,8 @@ class MaterialPackageWrangler(PackageWrangler):
         pair = (material_package_maker_class_name, package_path)
         material_package_manager = self._get_appropriate_material_package_manager(
             *pair)
-        material_package_manager.initializer_file_manager.write_stub_to_disk()
-        material_package_manager.metadata_module_manager.write_stub_to_disk()
+        material_package_manager.initializer_file_manager._write_stub_to_disk()
+        material_package_manager.metadata_module_manager._write_stub_to_disk()
         material_package_manager.metadata_module_manager.write_metadata_to_disk(tags)
         material_package_manager.conditionally_write_stub_material_definition_module_to_disk()
         material_package_manager.conditionally_write_stub_user_input_module_to_disk()

@@ -18,7 +18,7 @@ class UserInputModuleManager(FileManager):
     ### PUBLIC METHODS ###
 
     def read_user_input_wrapper_from_disk(self):
-        result = self.execute_file_lines(
+        result = self._execute_file_lines(
             return_attribute_name='user_input_wrapper',
             )
         return result

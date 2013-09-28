@@ -231,7 +231,7 @@ class StylesheetFileWrangler(FileWrangler):
         manager = scoremanagertools.managers.FileManager(
             stylesheet_file_path, session=self.session)
         if self.session.is_test:
-            manager.make_empty_asset()
+            manager._make_empty_asset()
         else:
             manager.interactively_edit()
 

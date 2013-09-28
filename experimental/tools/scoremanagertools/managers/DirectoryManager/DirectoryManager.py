@@ -126,7 +126,7 @@ class DirectoryManager(FilesystemAssetManager):
                     result.append(directory_entry)
         return result
 
-    def make_empty_asset(self, is_interactive=False):
+    def _make_empty_asset(self, is_interactive=False):
         r'''Makes empty directory.
 
         Returns none.

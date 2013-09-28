@@ -58,7 +58,7 @@ class FileManager(FilesystemAssetManager):
 
     ### PUBLIC METHODS ###
 
-    def execute_file_lines(self, return_attribute_name=None):
+    def _execute_file_lines(self, return_attribute_name=None):
         if os.path.isfile(self.filesystem_path):
             file_pointer = open(self.filesystem_path, 'r')
             file_contents_string = file_pointer.read()
@@ -80,20 +80,20 @@ class FileManager(FilesystemAssetManager):
                 result = tuple(result)
                 return result
 
-    def interpret_in_external_process(self):
+    def _interpret_in_external_process(self):
         command = 'python {}'.format(self.filesystem_path)
         result = iotools.spawn_subprocess(command)
         if result != 0:
             self.session.io_manager.display('')
             self.session.io_manager.proceed()
 
-    def run_abjad(self, prompt=True):
+    def _run_abjad(self, prompt=True):
         command = 'abjad {}'.format(self.filesystem_path)
         iotools.spawn_subprocess(command)
         message = 'file executed.'
         self.session.io_manager.proceed(message, is_interactive=prompt)
 
-    def run_python(self, prompt=True):
+    def _run_python(self, prompt=True):
         command = 'python {}'.format(self.filesystem_path)
         iotools.spawn_subprocess(command)
         message = 'file executed.'
@@ -125,7 +125,7 @@ class FileManager(FilesystemAssetManager):
             command = 'vim -R {}'.format(self.filesystem_path)
         iotools.spawn_subprocess(command)
 
-    def make_empty_asset(self, is_interactive=False):
+    def _make_empty_asset(self, is_interactive=False):
         r'''Makes emtpy file.
 
         Returns none.
@@ -136,7 +136,7 @@ class FileManager(FilesystemAssetManager):
             file_reference.close()
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
-    def read_lines(self):
+    def _read_lines(self):
         r'''Reads lines in file.
 
         Returns list.
@@ -148,14 +148,6 @@ class FileManager(FilesystemAssetManager):
                 result.extend(file_pointer.readlines())
                 file_pointer.close()
         return result
-
-    def run_python_file(self):
-        r'''Runs Python on Python file.
-
-        Returns none.
-        '''
-        command = 'python {}'.format(self.filesystem_path)
-        iotools.spawn_subprocess(command)
 
     def interactively_typeset_tex_file(self, prompt=True):
         r'''Interactively typesets TeX file.
@@ -180,7 +172,7 @@ class FileManager(FilesystemAssetManager):
         iotools.spawn_subprocess(command)
         self.session.io_manager.proceed('', is_interactive=prompt)
 
-    def write_stub_to_disk(self):
+    def _write_stub_to_disk(self):
         file_pointer = open(self.filesystem_path, 'w')
         file_pointer.write('')
         file_pointer.close()
@@ -190,7 +182,6 @@ class FileManager(FilesystemAssetManager):
     user_input_to_action = FilesystemAssetManager.user_input_to_action.copy()
     user_input_to_action.update({
         'e': interactively_edit,
-        'run': run_python_file,
         'ts': interactively_typeset_tex_file,
         'v': interactively_view,
         })

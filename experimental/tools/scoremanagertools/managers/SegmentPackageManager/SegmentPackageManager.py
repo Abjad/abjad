@@ -162,7 +162,7 @@ class SegmentPackageManager(PackageManager):
         if os.path.isfile(output_pdf_file_path):
             modification_time = os.path.getmtime(output_pdf_file_path)
         manager = self.segment_definition_module_manager
-        manager.interpret_in_external_process()
+        manager._interpret_in_external_process()
         new_modification_time = 0
         if os.path.isfile(output_pdf_file_path):
             new_modification_time = os.path.getmtime(output_pdf_file_path)

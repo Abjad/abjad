@@ -14,9 +14,9 @@ def test_FileManager_remove_01():
     assert not os.path.exists(filesystem_path)
 
     try:
-        file_manager.make_empty_asset()
+        file_manager._make_empty_asset()
         assert os.path.exists(filesystem_path)
-        file_manager.remove()
+        file_manager._remove()
         assert not os.path.exists(filesystem_path)
     finally:
         if os.path.exists(filesystem_path):
@@ -35,11 +35,11 @@ def test_FileManager_remove_02():
     assert not os.path.exists(filesystem_path)
 
     try:
-        file_manager.make_empty_asset()
+        file_manager._make_empty_asset()
         assert os.path.exists(filesystem_path)
         file_manager.repository_add()
-        assert file_manager.is_versioned()
-        file_manager.remove()
+        assert file_manager._is_versioned()
+        file_manager._remove()
         assert not os.path.exists(filesystem_path)
     finally:
         if os.path.exists(filesystem_path):

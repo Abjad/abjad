@@ -13,12 +13,12 @@ def test_FileManager_write_boilerplate_asset_to_disk_01():
 
     try:
         boilerplate_file_built_in_asset_name = 'canned_testnumbers_material_definition.py'
-        file_manager.write_boilerplate(boilerplate_file_built_in_asset_name)
+        file_manager._write_boilerplate(boilerplate_file_built_in_asset_name)
         source = open(os.path.join(
             file_manager.boilerplate_directory_path, boilerplate_file_built_in_asset_name), 'r')
         target = open(file_manager.filesystem_path)
         assert source.readlines() == target.readlines()
-        file_manager.remove()
+        file_manager._remove()
     finally:
         if os.path.exists(filesystem_path):
             os.remove(filesystem_path)

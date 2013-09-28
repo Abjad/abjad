@@ -204,7 +204,7 @@ class ScorePackageManager(PackageManager):
             file_path,
             session=self.session,
             )
-        instrumentation = manager.execute_file_lines(
+        instrumentation = manager._execute_file_lines(
             return_attribute_name='instrumentation',
             )
         return instrumentation
@@ -462,7 +462,7 @@ class ScorePackageManager(PackageManager):
             return
         if should_clobber == 'clobberscore':
             with self.backtracking:
-                self.remove()
+                self._remove()
             if self.session.backtrack():
                 return
             self.session.is_backtracking_locally = True

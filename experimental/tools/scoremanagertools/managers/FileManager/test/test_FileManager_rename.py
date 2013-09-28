@@ -14,15 +14,15 @@ def test_FileManager_rename_01():
     assert not os.path.exists(filesystem_path)
 
     try:
-        file_manager.make_empty_asset()
+        file_manager._make_empty_asset()
         assert os.path.exists(filesystem_path)
-        assert not file_manager.is_versioned()
+        assert not file_manager._is_versioned()
         new_filesystem_path = os.path.join(
             score_manager_configuration.score_manager_tools_directory_path, 'new_temporary_file.txt')
-        file_manager.rename(new_filesystem_path)
+        file_manager._rename(new_filesystem_path)
         assert not os.path.exists(filesystem_path)
         assert os.path.exists(new_filesystem_path)
-        file_manager.remove()
+        file_manager._remove()
     finally:
         if os.path.exists(filesystem_path):
             os.remove(filesystem_path)
@@ -43,16 +43,16 @@ def test_FileManager_rename_02():
     assert not os.path.exists(filesystem_path)
 
     try:
-        file_manager.make_empty_asset()
+        file_manager._make_empty_asset()
         assert os.path.exists(filesystem_path)
         file_manager.repository_add()
-        assert file_manager.is_versioned()
+        assert file_manager._is_versioned()
         new_filesystem_path = os.path.join(
             score_manager_configuration.score_manager_tools_directory_path, 'new_temporary_file.txt')
-        file_manager.rename(new_filesystem_path)
+        file_manager._rename(new_filesystem_path)
         assert os.path.exists(new_filesystem_path)
         assert file_manager.filesystem_path == new_filesystem_path
     finally:
-        file_manager.remove()
+        file_manager._remove()
         assert not os.path.exists(filesystem_path)
         assert not os.path.exists(new_filesystem_path)

@@ -11,7 +11,7 @@ def test_FileManager_public_attributes_01():
 
     assert file_manager._generic_class_name == 'file'
     assert file_manager._space_delimited_lowercase_name is None
-    assert not file_manager.is_versioned()
+    assert not file_manager._is_versioned()
     assert file_manager.filesystem_path is None
     assert file_manager._plural_generic_class_name == 'files'
     assert file_manager._repository_add_command is None
@@ -31,7 +31,7 @@ def test_FileManager_public_attributes_02():
 
     assert file_manager._generic_class_name == 'file'
     assert file_manager._space_delimited_lowercase_name == file_name
-    assert file_manager.is_versioned()
+    assert file_manager._is_versioned()
     assert file_manager.filesystem_path == filesystem_path
     assert file_manager._plural_generic_class_name == 'files'
     assert file_manager._repository_add_command == 'svn add {}'.format(file_manager.filesystem_path)

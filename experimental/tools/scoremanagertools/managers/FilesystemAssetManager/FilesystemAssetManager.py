@@ -10,6 +10,7 @@ from experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject \
 
 class FilesystemAssetManager(ScoreManagerObject):
     r'''Filesystem asset manager.
+
     '''
 
     ### CLASS VARIABLES ###
@@ -160,7 +161,7 @@ class FilesystemAssetManager(ScoreManagerObject):
             return
         if not result == 'remove':
             return
-        if self.remove():
+        if self._remove():
             message = '{} removed.'.format(self.filesystem_path)
             self.session.io_manager.proceed(message)
 
@@ -192,7 +193,7 @@ class FilesystemAssetManager(ScoreManagerObject):
         self.session.io_manager.display([message, ''])
         if not self.session.io_manager.confirm():
             return
-        if self.rename(new_path):
+        if self._rename(new_path):
             self.session.io_manager.proceed('asset renamed.')
 
     def interactively_write_boilerplate(
@@ -210,14 +211,14 @@ class FilesystemAssetManager(ScoreManagerObject):
             boilerplate_file_built_in_asset_name = getter._run()
         if self.session.backtrack():
             return
-        if self.write_boilerplate(boilerplate_file_built_in_asset_name):
+        if self._write_boilerplate(boilerplate_file_built_in_asset_name):
             self.session.io_manager.proceed('boilerplate asset copied.')
         else:
             message = 'boilerplate asset {!r} does not exist.'
             message = message.format(boilerplate_file_built_in_asset_name)
             self.session.io_manager.proceed(message)
 
-    def is_versioned(self):
+    def _is_versioned(self):
         r'''True when filesystem asset is versioned.
         Otherwise false.
 
@@ -240,20 +241,12 @@ class FilesystemAssetManager(ScoreManagerObject):
         else:
             return True
 
-    @abc.abstractmethod
-    def make_empty_asset(self, is_interactive=False):
-        r'''Makes empty filesystem asset.
-
-        Returns none.
-        '''
-        pass
-
-    def remove(self):
+    def _remove(self):
         r'''Removes filesystem asset.
 
         Returns none.
         '''
-        if self.is_versioned():
+        if self._is_versioned():
             command = 'svn --force rm {}'.format(self.filesystem_path)
             process = subprocess.Popen(
                 command,
@@ -273,12 +266,12 @@ class FilesystemAssetManager(ScoreManagerObject):
             process.stdout.readline()
             return True
 
-    def rename(self, new_path):
+    def _rename(self, new_path):
         r'''Renames filesystem asset.
 
         Returns none.
         '''
-        if self.is_versioned():
+        if self._is_versioned():
             command = 'svn --force mv {} {}'.format(
                 self.filesystem_path, new_path)
             process = subprocess.Popen(
@@ -395,7 +388,7 @@ class FilesystemAssetManager(ScoreManagerObject):
         self.session.io_manager.display(lines)
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
-    def write_boilerplate(self, boilerplate_file_built_in_asset_name):
+    def _write_boilerplate(self, boilerplate_file_built_in_asset_name):
         r'''Writes filesystem asset boilerplate.
 
         Returns none.
