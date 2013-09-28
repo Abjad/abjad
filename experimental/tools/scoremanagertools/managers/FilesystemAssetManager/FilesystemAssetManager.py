@@ -82,6 +82,67 @@ class FilesystemAssetManager(ScoreManagerObject):
         line = line.lstrip(os.path.sep)
         return line
 
+    def _is_versioned(self):
+        if self.filesystem_path is None:
+            return False
+        if not os.path.exists(self.filesystem_path):
+            return False
+        command = 'svn st {}'.format(self.filesystem_path)
+        process = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            )
+        first_line = process.stdout.readline()
+        if first_line.startswith(('?', 'svn: warning:')):
+            return False
+        else:
+            return True
+
+    def _remove(self):
+        if self._is_versioned():
+            command = 'svn --force rm {}'.format(self.filesystem_path)
+            process = subprocess.Popen(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                )
+            process.stdout.readline()
+            return True
+        else:
+            command = 'rm -rf {}'.format(self.filesystem_path)
+            process = subprocess.Popen(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                )
+            process.stdout.readline()
+            return True
+
+    def _rename(self, new_path):
+        if self._is_versioned():
+            command = 'svn --force mv {} {}'.format(
+                self.filesystem_path, new_path)
+            process = subprocess.Popen(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                )
+            process.stdout.readline()
+            self._filesystem_path = new_path
+        else:
+            command = 'mv {} {}'.format(
+                self.filesystem_path, new_path)
+            process = subprocess.Popen(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                )
+            process.stdout.readline()
+            self._filesystem_path = new_path
+
     def _run(self, cache=False, clear=True, pending_user_input=None):
         self.session.io_manager.assign_user_input(pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
@@ -106,6 +167,19 @@ class FilesystemAssetManager(ScoreManagerObject):
         space_delimited_lowercase_name = space_delimited_lowercase_name.lower()
         asset_name = space_delimited_lowercase_name.replace(' ', '_')
         return asset_name
+
+    def _write_boilerplate(self, boilerplate_file_built_in_asset_name):
+        if not os.path.exists(boilerplate_file_built_in_asset_name):
+            boilerplate_file_built_in_asset_name = os.path.join(
+                self.boilerplate_directory_path,
+                boilerplate_file_built_in_asset_name,
+                )
+        if os.path.exists(boilerplate_file_built_in_asset_name):
+            shutil.copyfile(
+                boilerplate_file_built_in_asset_name,
+                self.filesystem_path,
+                )
+            return True
 
     ### PUBLIC PROPERTIES ###
 
@@ -218,82 +292,8 @@ class FilesystemAssetManager(ScoreManagerObject):
             message = message.format(boilerplate_file_built_in_asset_name)
             self.session.io_manager.proceed(message)
 
-    def _is_versioned(self):
-        r'''True when filesystem asset is versioned.
-        Otherwise false.
-
-        Returns boolean.
-        '''
-        if self.filesystem_path is None:
-            return False
-        if not os.path.exists(self.filesystem_path):
-            return False
-        command = 'svn st {}'.format(self.filesystem_path)
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            )
-        first_line = process.stdout.readline()
-        if first_line.startswith(('?', 'svn: warning:')):
-            return False
-        else:
-            return True
-
-    def _remove(self):
-        r'''Removes filesystem asset.
-
-        Returns none.
-        '''
-        if self._is_versioned():
-            command = 'svn --force rm {}'.format(self.filesystem_path)
-            process = subprocess.Popen(
-                command,
-                shell=True,
-                stdout=subprocess.PIPE,
-                )
-            process.stdout.readline()
-            return True
-        else:
-            command = 'rm -rf {}'.format(self.filesystem_path)
-            process = subprocess.Popen(
-                command,
-                shell=True,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                )
-            process.stdout.readline()
-            return True
-
-    def _rename(self, new_path):
-        r'''Renames filesystem asset.
-
-        Returns none.
-        '''
-        if self._is_versioned():
-            command = 'svn --force mv {} {}'.format(
-                self.filesystem_path, new_path)
-            process = subprocess.Popen(
-                command,
-                shell=True,
-                stdout=subprocess.PIPE,
-                )
-            process.stdout.readline()
-            self._filesystem_path = new_path
-        else:
-            command = 'mv {} {}'.format(
-                self.filesystem_path, new_path)
-            process = subprocess.Popen(
-                command,
-                shell=True,
-                stdout=subprocess.PIPE,
-                )
-            process.stdout.readline()
-            self._filesystem_path = new_path
-
     def repository_add(self, is_interactive=False):
-        r'''Adds unversioned filesystem assets to repository.
+        r'''Interactively adds unversioned filesystem assets to repository.
 
         Returns none.
         '''
@@ -311,7 +311,7 @@ class FilesystemAssetManager(ScoreManagerObject):
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def repository_ci(self, commit_message=None, is_interactive=True):
-        r'''Commits unversioned filesystem assets to repository.
+        r'''Interactively commits unversioned filesystem assets to repository.
 
         Returns none.
         '''
@@ -345,7 +345,7 @@ class FilesystemAssetManager(ScoreManagerObject):
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def repository_st(self, is_interactive=True):
-        r'''Displays repository status of filesystem assets.
+        r'''Intearctively displays repository status of filesystem assets.
     
         Returns none.
         '''
@@ -370,7 +370,7 @@ class FilesystemAssetManager(ScoreManagerObject):
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def repository_up(self, is_interactive=True):
-        r'''Updates versioned filesystem assets.
+        r'''Interactively updates versioned filesystem assets.
 
         Returns none.
         '''
@@ -387,23 +387,6 @@ class FilesystemAssetManager(ScoreManagerObject):
         lines.append('')
         self.session.io_manager.display(lines)
         self.session.io_manager.proceed(is_interactive=is_interactive)
-
-    def _write_boilerplate(self, boilerplate_file_built_in_asset_name):
-        r'''Writes filesystem asset boilerplate.
-
-        Returns none.
-        '''
-        if not os.path.exists(boilerplate_file_built_in_asset_name):
-            boilerplate_file_built_in_asset_name = os.path.join(
-                self.boilerplate_directory_path,
-                boilerplate_file_built_in_asset_name,
-                )
-        if os.path.exists(boilerplate_file_built_in_asset_name):
-            shutil.copyfile(
-                boilerplate_file_built_in_asset_name,
-                self.filesystem_path,
-                )
-            return True
 
     ### UI MANIFEST ###
 

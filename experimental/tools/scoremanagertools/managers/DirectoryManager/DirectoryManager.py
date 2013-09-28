@@ -41,6 +41,20 @@ class DirectoryManager(FilesystemAssetManager):
         else:
             self._run_asset_manager(result)
 
+    def _list_directory(self, public_entries_only=False):
+        result = []
+        if public_entries_only:
+            for directory_entry in os.listdir(self.filesystem_path):
+                if directory_entry[0].isalpha() and \
+                    not directory_entry.endswith('.pyc'):
+                    result.append(directory_entry)
+        else:
+            for directory_entry in os.listdir(self.filesystem_path):
+                if not directory_entry.startswith('.') and \
+                    not directory_entry.endswith('.pyc'):
+                    result.append(directory_entry)
+        return result
+
     def _make_asset_menu_entries(self):
         file_names = self._list_directory()
         file_names = [x for x in file_names if x[0].isalpha()]
@@ -58,6 +72,11 @@ class DirectoryManager(FilesystemAssetManager):
                 file_paths,
                 )
         return menu_entries
+
+    def _make_empty_asset(self, is_interactive=False):
+        if not self.exists():
+            os.mkdir(self.filesystem_path)
+        self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def _make_main_menu(self):
         main_menu = self.session.io_manager.make_menu(where=self._where)
@@ -108,35 +127,8 @@ class DirectoryManager(FilesystemAssetManager):
             return
         self.filesystem_path = result
 
-    def _list_directory(self, public_entries_only=False):
-        r'''Lists directory.
-
-        Returns list.
-        '''
-        result = []
-        if public_entries_only:
-            for directory_entry in os.listdir(self.filesystem_path):
-                if directory_entry[0].isalpha() and \
-                    not directory_entry.endswith('.pyc'):
-                    result.append(directory_entry)
-        else:
-            for directory_entry in os.listdir(self.filesystem_path):
-                if not directory_entry.startswith('.') and \
-                    not directory_entry.endswith('.pyc'):
-                    result.append(directory_entry)
-        return result
-
-    def _make_empty_asset(self, is_interactive=False):
-        r'''Makes empty directory.
-
-        Returns none.
-        '''
-        if not self.exists():
-            os.mkdir(self.filesystem_path)
-        self.session.io_manager.proceed(is_interactive=is_interactive)
-
-    def interactively__list_directory(self):
-        r'''Prints directory entries.
+    def interactively_list_directory(self):
+        r'''Interactively lists directory.
 
         Returns none.
         '''
@@ -161,7 +153,7 @@ class DirectoryManager(FilesystemAssetManager):
         self.session.hide_next_redraw = True
 
     def interactively_run_tests(self, prompt=True):
-        r'''Runs py.test on directory.
+        r'''Interactively runs tests.
 
         Returns none.
         '''
@@ -177,6 +169,6 @@ class DirectoryManager(FilesystemAssetManager):
 
     user_input_to_action = FilesystemAssetManager.user_input_to_action.copy()
     user_input_to_action.update({
-        'ls': interactively__list_directory,
+        'ls': interactively_list_directory,
         'py.test': interactively_run_tests,
         })

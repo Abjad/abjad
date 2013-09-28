@@ -132,7 +132,7 @@ class PackageManager(DirectoryManager):
         if result == 'add':
             self.interactively_add_metadata()
         elif result == 'rm':
-            self.interactively__remove_metadata()
+            self.interactively_remove_metadata()
         elif result == 'get':
             self.interactively_get_metadata()
         return False
@@ -162,7 +162,7 @@ class PackageManager(DirectoryManager):
         line = '{!r}'.format(tag)
         self.session.io_manager.proceed(line)
 
-    def interactively__remove_metadata(self):
+    def interactively_remove_metadata(self):
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string('tag name')
         result = getter._run()

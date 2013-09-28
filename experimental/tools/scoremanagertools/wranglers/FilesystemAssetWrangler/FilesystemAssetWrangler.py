@@ -598,9 +598,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         asset_manager = self._initialize_asset_manager(asset_filesystem_path)
         asset_manager._write_stub_to_disk()
 
-    def interactively__list_directory(self):
+    def interactively_list_directory(self):
         manager = self._get_current_package_manager()
-        manager.interactively__list_directory()
+        manager.interactively_list_directory()
 
     def write_view_to_disk(self, new_view, prompt=True):
         view_inventory = self._read_view_inventory_from_disk()
@@ -630,7 +630,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     user_input_to_action = {
         'initializer': interactively_view_initializer,
-        'ls': interactively__list_directory,
+        'ls': interactively_list_directory,
         'metadata': interactively_view_metadata_module,
         'ren': interactively_rename_asset,
         'rm': interactively_remove_assets,
