@@ -45,10 +45,10 @@ class MaterialPackageMaker(MaterialPackageManager):
             user_input_module_packagesystem_path, is_module=True)
         if not os.path.exists(user_input_module_file_path):
             file(user_input_module_file_path, 'w').write('')
-        proxy = scoremanagertools.managers.UserInputModuleManager(
+        manager = scoremanagertools.managers.UserInputModuleManager(
             user_input_module_packagesystem_path, 
             session=self.session)
-        user_input_wrapper = proxy.read_user_input_wrapper_from_disk()
+        user_input_wrapper = manager.read_user_input_wrapper_from_disk()
         if user_input_wrapper:
             user_input_wrapper._user_input_module_import_statements = \
                 getattr(self, 'user_input_module_import_statements', [])[:]

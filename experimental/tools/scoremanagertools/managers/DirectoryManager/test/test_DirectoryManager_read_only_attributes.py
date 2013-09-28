@@ -4,7 +4,7 @@ from experimental import *
 
 
 def test_DirectoryManager_read_only_attributes_01():
-    r'''Named directory proxy already written to disk.
+    r'''Named directory manager already written to disk.
     '''
 
     score_manager_configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()

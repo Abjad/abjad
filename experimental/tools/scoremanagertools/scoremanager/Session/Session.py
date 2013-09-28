@@ -273,7 +273,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_score_package_manager(self):
-        r'''Session current score package proxy.
+        r'''Session current score package manager.
 
         ::
 
@@ -289,7 +289,7 @@ class Session(abctools.AbjadObject):
 
         (Ouput will vary according to configuration.)
 
-        Returns score package proxy or none.
+        Returns score package manager or none.
         '''
         from experimental.tools.scoremanagertools.managers.ScorePackageManager \
             import ScorePackageManager

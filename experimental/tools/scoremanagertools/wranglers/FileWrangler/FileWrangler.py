@@ -9,7 +9,7 @@ class FileWrangler(FilesystemAssetWrangler):
 
     @property
     def asset_manager_class(self):
-        r'''File wrangler asset proxy class.
+        r'''File wrangler asset manager class.
 
         Returns class.
         '''

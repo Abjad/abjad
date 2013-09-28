@@ -160,11 +160,11 @@ class Selector(ScoreManagerObject):
         forbidden_directory_entries = forbidden_directory_entries or []
         items = []
         for directory_path in storehouse_filesystem_paths:
-            proxy = scoremanagertools.managers.DirectoryManager(
+            manager = scoremanagertools.managers.DirectoryManager(
                 filesystem_path=directory_path,
                 session=session,
                 )
-            entries = proxy.list_directory(public_entries_only=True)
+            entries = manager.list_directory(public_entries_only=True)
             for entry in entries:
                 if entry not in forbidden_directory_entries:
                     items.append(entry)
@@ -286,9 +286,9 @@ class Selector(ScoreManagerObject):
         ):
         selector = Selector(session=session)
         items = []
-        proxy = selector.session.current_score_package_manager
-        if hasattr(proxy, '_get_instrumentation'):
-            instrumentation = proxy._get_instrumentation()
+        manager = selector.session.current_score_package_manager
+        if hasattr(manager, '_get_instrumentation'):
+            instrumentation = manager._get_instrumentation()
             items.extend(instrumentation.performers)
         selector.items = items
         return selector
@@ -335,8 +335,8 @@ class Selector(ScoreManagerObject):
         selector = Selector(session=session)
         items = []
         if selector.session.is_in_score:
-            proxy = selector.session.current_score_package_manager
-            instrumentation = proxy._get_instrumentation()
+            manager = selector.session.current_score_package_manager
+            instrumentation = manager._get_instrumentation()
             items.extend(instrumentation.instruments)
             items.append('other')
         selector.items = items
@@ -367,8 +367,8 @@ class Selector(ScoreManagerObject):
         ):
         selector = Selector(session=session)
         items = []
-        proxy = selector.session.current_score_package_manager
-        if hasattr(proxy, '_get_tempo_inventory'):
-            items = proxy._get_tempo_inventory()
+        manager = selector.session.current_score_package_manager
+        if hasattr(manager, '_get_tempo_inventory'):
+            items = manager._get_tempo_inventory()
         selector.items = items
         return selector

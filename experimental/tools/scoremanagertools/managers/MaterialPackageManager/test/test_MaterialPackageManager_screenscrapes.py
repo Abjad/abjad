@@ -35,11 +35,11 @@ def test_MaterialPackageManager_screenscrapes_02():
     '''
     py.test.skip('TODO: add Red Example Score time signatures.')
 
-    material_proxy = scoremanagertools.managers.MaterialPackageManager(
+    material_manager = scoremanagertools.managers.MaterialPackageManager(
         'red_example_score.materials.time_signatures')
-    material_proxy._run(pending_user_input='q')
+    material_manager._run(pending_user_input='q')
 
-    assert material_proxy.io_transcript[-2] == \
+    assert material_manager.io_transcript[-2] == \
     ['Time signatures',
       '',
       '     material definition - edit (mde)',

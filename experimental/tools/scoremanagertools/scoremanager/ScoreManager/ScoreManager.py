@@ -268,11 +268,11 @@ class ScoreManager(ScoreManagerObject):
         self.score_package_wrangler.fix_visible_assets()
 
     def interactively_edit_score(self, score_package_path):
-        proxy = self.score_package_wrangler._initialize_asset_manager(
+        manager = self.score_package_wrangler._initialize_asset_manager(
             score_package_path)
         score_package_name = score_package_path.split('.')[-1]
-        proxy.session.snake_case_current_score_name = score_package_name
-        proxy._run(cache=True)
+        manager.session.snake_case_current_score_name = score_package_name
+        manager._run(cache=True)
         self.session.snake_case_current_score_name = None
 
     def interactively_make_new_score(self):

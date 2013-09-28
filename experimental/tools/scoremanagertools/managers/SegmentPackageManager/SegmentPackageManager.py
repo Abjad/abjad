@@ -117,11 +117,11 @@ class SegmentPackageManager(PackageManager):
     @property
     def segment_definition_module_manager(self):
         from experimental.tools import scoremanagertools
-        proxy = scoremanagertools.managers.ModuleManager(
+        manager = scoremanagertools.managers.ModuleManager(
             self.segment_definition_module_packagesystem_path,
             session=self.session,
             )
-        return proxy
+        return manager
 
     ### PUBLIC METHODS ###
 
@@ -161,8 +161,8 @@ class SegmentPackageManager(PackageManager):
         modification_time = 0
         if os.path.isfile(output_pdf_file_path):
             modification_time = os.path.getmtime(output_pdf_file_path)
-        proxy = self.segment_definition_module_manager
-        proxy.interpret_in_external_process()
+        manager = self.segment_definition_module_manager
+        manager.interpret_in_external_process()
         new_modification_time = 0
         if os.path.isfile(output_pdf_file_path):
             new_modification_time = os.path.getmtime(output_pdf_file_path)

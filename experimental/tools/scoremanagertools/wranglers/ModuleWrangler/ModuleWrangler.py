@@ -21,7 +21,7 @@ class ModuleWrangler(PackagesystemAssetWrangler):
 
     @property
     def asset_manager_class(self):
-        r'''Asset proxy class of module wrangler.
+        r'''Asset manager class of module wrangler.
 
         Returns class.
         '''

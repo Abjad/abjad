@@ -147,7 +147,7 @@ class StylesheetFileWrangler(FileWrangler):
 
     @property
     def asset_manager_class(self):
-        r'''Asset proxy class of stylesheet file wrangler.
+        r'''Asset manager class of stylesheet file wrangler.
 
         ::
 
@@ -171,11 +171,11 @@ class StylesheetFileWrangler(FileWrangler):
         Returns none.
         '''
         self.session.io_manager.assign_user_input(pending_user_input)
-        proxy = self.asset_manager_class(
+        manager = self.asset_manager_class(
             filesystem_path=filesystem_path, 
             session=self.session,
             )
-        proxy.interactively_edit()
+        manager.interactively_edit()
 
     def interactively_edit_header_stylesheet(
         self,
@@ -244,12 +244,12 @@ class StylesheetFileWrangler(FileWrangler):
             storehouse_path,
             stylesheet_file_name,
             )
-        proxy = scoremanagertools.managers.FileManager(
+        manager = scoremanagertools.managers.FileManager(
             stylesheet_file_path, session=self.session)
         if self.session.is_test:
-            proxy.make_empty_asset()
+            manager.make_empty_asset()
         else:
-            proxy.interactively_edit()
+            manager.interactively_edit()
 
     def list_asset_filesystem_paths(
         self,

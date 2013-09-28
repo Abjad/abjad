@@ -9,7 +9,7 @@ from experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject \
 
 
 class FilesystemAssetManager(ScoreManagerObject):
-    r'''Filesystem asset proxy.
+    r'''Filesystem asset manager.
     '''
 
     ### CLASS VARIABLES ###
@@ -44,7 +44,7 @@ class FilesystemAssetManager(ScoreManagerObject):
         return False
 
     def __repr__(self):
-        r'''Interpreter representation of filesystem assset proxy.
+        r'''Interpreter representation of filesystem assset manager.
 
         Return string.
         '''
@@ -121,7 +121,7 @@ class FilesystemAssetManager(ScoreManagerObject):
 
     @property
     def filesystem_path(self):
-        r'''Filesystem path of filesystem asset proxy.
+        r'''Filesystem path of filesystem asset manager.
 
         Returns string.
         '''

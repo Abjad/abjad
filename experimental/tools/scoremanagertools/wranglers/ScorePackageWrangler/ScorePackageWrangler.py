@@ -88,7 +88,7 @@ class ScorePackageWrangler(PackageWrangler):
 
     @property
     def asset_manager_class(self):
-        r'''Asset proxy class of score package wrangler.
+        r'''Asset manager class of score package wrangler.
 
         ::
 
@@ -507,8 +507,8 @@ class ScorePackageWrangler(PackageWrangler):
                 in_built_in_score_packages=True, 
                 in_user_score_packages=True,
                 )
-        for proxy in managers:
-            proxy.repository_add(is_interactive=False)
+        for manager in managers:
+            manager.repository_add(is_interactive=False)
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def repository_ci_assets(self, is_interactive=True):
@@ -534,8 +534,8 @@ class ScorePackageWrangler(PackageWrangler):
                 in_built_in_score_packages=True, 
                 in_user_score_packages=True,
                 )
-        for proxy in managers:
-            proxy.repository_ci(
+        for manager in managers:
+            manager.repository_ci(
                 commit_message=commit_message, 
                 is_interactive=False,
                 )
@@ -555,8 +555,8 @@ class ScorePackageWrangler(PackageWrangler):
                 in_built_in_score_packages=True, 
                 in_user_score_packages=True,
                 )
-        for proxy in managers:
-            proxy.repository_st(is_interactive=False)
+        for manager in managers:
+            manager.repository_st(is_interactive=False)
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def repository_up_assets(self, is_interactive=True):
@@ -573,6 +573,6 @@ class ScorePackageWrangler(PackageWrangler):
                 in_built_in_score_packages=True, 
                 in_user_score_packages=True,
                 )
-        for proxy in managers:
-            proxy.repository_up(is_interactive=False)
+        for manager in managers:
+            manager.repository_up(is_interactive=False)
         self.session.io_manager.proceed(is_interactive=is_interactive)

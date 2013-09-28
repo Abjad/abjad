@@ -120,7 +120,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
     @property
     def asset_manager_class(self):
-        r'''Asset proxy class of material packge wrangler.
+        r'''Asset manager class of material packge wrangler.
 
         ::
 
@@ -192,9 +192,9 @@ class MaterialPackageWrangler(PackageWrangler):
             return
         self.make_makermade_material_package(
             material_package_path, material_package_maker_class_name)
-        proxy = self._get_appropriate_material_package_manager(
+        manager = self._get_appropriate_material_package_manager(
             material_package_maker_class_name, material_package_path)
-        proxy.run_first_time()
+        manager.run_first_time()
 
     def interactively_make_numeric_sequence_package(
         self, 

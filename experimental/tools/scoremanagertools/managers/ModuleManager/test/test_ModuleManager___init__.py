@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_ModuleManager___init___01():
-    r'''Init empty module proxy.
+    r'''Init empty module manager.
     '''
 
     module_manager = scoremanagertools.managers.ModuleManager()

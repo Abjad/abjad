@@ -8,7 +8,7 @@ from experimental.tools.scoremanagertools.managers.PackageManager \
 
 
 class MaterialPackageManager(PackageManager):
-    r'''Material package proxy.
+    r'''Material package manager.
 
     ::
 
@@ -342,11 +342,11 @@ class MaterialPackageManager(PackageManager):
     def illustration_ly_file_manager(self):
         from experimental.tools import scoremanagertools
         file_path = os.path.join(self.filesystem_path, 'illustration.ly')
-        proxy = scoremanagertools.managers.FileManager(
+        manager = scoremanagertools.managers.FileManager(
             file_path,
             session=self.session,
             )
-        return proxy
+        return manager
 
     @property
     def illustration_pdf_file_name(self):
@@ -357,11 +357,11 @@ class MaterialPackageManager(PackageManager):
     def illustration_pdf_file_manager(self):
         from experimental.tools import scoremanagertools
         file_path = os.path.join(self.filesystem_path, 'illustration.pdf')
-        proxy = scoremanagertools.managers.FileManager(
+        manager = scoremanagertools.managers.FileManager(
             file_path,
             session=self.session,
             )
-        return proxy
+        return manager
 
     @property
     def illustration_with_stylesheet(self):
@@ -760,12 +760,12 @@ class MaterialPackageManager(PackageManager):
 
     def interactively_select_material_package_maker(self, prompt=True):
         from experimental.tools import scoremanagertools
-        material_proxy_wrangler = \
+        material_manager_wrangler = \
             scoremanagertools.wranglers.MaterialPackageMakerWrangler(
             session=self.session)
         with self.backtracking:
             material_package_maker = \
-                material_proxy_wrangler.select_material_proxy_class_name_interactively()
+                material_manager_wrangler.select_material_manager_class_name_interactively()
         if self.session.backtrack():
             return
         self._add_metadata('material_package_maker', material_package_maker.class_name)

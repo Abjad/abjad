@@ -99,7 +99,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     @property
     def asset_manager_class(self):
-        r'''Asset proxy class of material package maker wrangler.
+        r'''Asset manager class of material package maker wrangler.
 
         ::
 
@@ -124,7 +124,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         self.session.io_manager.assign_user_input(pending_user_input)
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_material_package_maker_class_name(
-            'material proxy name')
+            'material manager name')
         getter.append_space_delimited_lowercase_string(
             'generic output product')
         result = getter._run()

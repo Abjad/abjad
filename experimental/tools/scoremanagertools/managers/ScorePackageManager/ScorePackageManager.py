@@ -120,10 +120,10 @@ class ScorePackageManager(PackageManager):
 
     def _get_tempo_inventory(self):
         wrangler = self.material_package_wrangler
-        for proxy in wrangler.list_asset_managers(head=self.package_path):
-            class_name = proxy._get_metadata('material_package_maker_class_name')
+        for manager in wrangler.list_asset_managers(head=self.package_path):
+            class_name = manager._get_metadata('material_package_maker_class_name')
             if class_name == 'TempoMarkInventoryMaterialPackageMaker':
-                return proxy.output_material
+                return manager.output_material
 
     def _get_title(self):
         return self._get_metadata('title') or '(untitled score)'
@@ -195,11 +195,11 @@ class ScorePackageManager(PackageManager):
             self.package_path,
             'instrumentation',
             ])
-        proxy = scoremanagertools.managers.ModuleManager(
+        manager = scoremanagertools.managers.ModuleManager(
             packagesystem_path,
             session=self.session,
             )
-        instrumentation = proxy.execute_file_lines(
+        instrumentation = manager.execute_file_lines(
             return_attribute_name='instrumentation',
             )
         return instrumentation

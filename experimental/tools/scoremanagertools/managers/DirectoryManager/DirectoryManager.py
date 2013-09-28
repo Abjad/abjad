@@ -61,17 +61,17 @@ class DirectoryManager(FilesystemAssetManager):
         self,
         filesystem_path,
         ):
-        proxy = self.asset_manager_class(
+        manager = self.asset_manager_class(
             filesystem_path=filesystem_path,
             session=self.session,
             )
-        proxy._run()
+        manager._run()
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def asset_manager_class(self):
-        r'''Assset proxy class of directory proxy.
+        r'''Assset manager class of directory manager.
 
         Returns class.
         '''
@@ -90,14 +90,14 @@ class DirectoryManager(FilesystemAssetManager):
         Returns none.
         '''
         self.session.io_manager.assign_user_input(pending_user_input)
-        proxy = self.asset_manager_class(
+        manager = self.asset_manager_class(
             filesystem_path=filesystem_path,
             session=self.session,
             )
-        proxy.interactively_edit()
+        manager.interactively_edit()
 
     def interactively_get_filesystem_path(self):
-        r'''Interactively gest filesystem path of directory proxy.
+        r'''Interactively gest filesystem path of directory manager.
 
         Returns none.
         '''

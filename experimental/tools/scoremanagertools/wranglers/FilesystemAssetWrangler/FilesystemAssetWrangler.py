@@ -87,11 +87,11 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         directory_path = self._get_current_directory_path_of_interest()
         if directory_path is None:
             return
-        proxy = scoremanagertools.managers.PackageManager(
+        manager = scoremanagertools.managers.PackageManager(
             directory_path,
             session=self.session,
             )
-        return proxy
+        return manager
 
     def _get_current_view_file_path(self):
         directory_path = self._get_current_directory_path_of_interest()
@@ -105,11 +105,11 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def _get_current_view_module_manager(self):
         from experimental.tools import scoremanagertools
         file_path = self._get_current_view_file_path()
-        proxy = scoremanagertools.managers.ModuleManager(
+        manager = scoremanagertools.managers.ModuleManager(
             file_path,
             session=self.session,
             )
-        return proxy
+        return manager
 
     @abc.abstractmethod
     def _handle_main_menu_result(self, result):
@@ -163,14 +163,14 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         display_strings.append('My {}'.format(self._breadcrumb))
         wrangler = scoremanagertools.wranglers.ScorePackageWrangler(
             session=self.session)
-        for proxy in wrangler.list_asset_managers(
+        for manager in wrangler.list_asset_managers(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             ):
-            display_strings.append(proxy._get_title())
-            path_parts = (proxy.filesystem_path,) + \
+            display_strings.append(manager._get_title())
+            path_parts = (manager.filesystem_path,) + \
                 self.score_package_asset_storehouse_path_infix_parts
             key = os.path.join(*path_parts)
             keys.append(key)
@@ -186,11 +186,11 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         view_file_path = self._get_current_view_file_path()
         if view_file_path is None:
             return
-        proxy = scoremanagertools.managers.ModuleManager(
+        manager = scoremanagertools.managers.ModuleManager(
             view_file_path,
             session=self.session,
             )
-        view_inventory = proxy.execute_file_lines(
+        view_inventory = manager.execute_file_lines(
             return_attribute_name='view_inventory',
             )
         return view_inventory
@@ -227,7 +227,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     @abc.abstractproperty
     def asset_manager_class(self):
-        r'''Asset proxy class of filesystem asset wrangler.
+        r'''Asset manager class of filesystem asset wrangler.
 
         Returns class.
         '''
@@ -321,8 +321,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             view_name = selector._run()
         if self.session.backtrack():
             return
-        proxy = self._get_current_package_manager()
-        proxy._add_metadata('view_name', view_name)
+        manager = self._get_current_package_manager()
+        manager._add_metadata('view_name', view_name)
 
     # TODO: write test
     def interactively_remove_assets(
@@ -448,17 +448,17 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         return result
 
     def interactively_view_initializer(self):
-        proxy = self._get_current_package_manager()
-        proxy.interactively_view_initializer()
+        manager = self._get_current_package_manager()
+        manager.interactively_view_initializer()
 
     def interactively_view_metadata_module(self):
-        proxy = self._get_current_package_manager()
-        proxy.interactively_view_metadata_module()
+        manager = self._get_current_package_manager()
+        manager.interactively_view_metadata_module()
 
     def interactively_view_views_module(self):
-        proxy = self._get_current_view_module_manager()
-        #proxy.interactively_view()
-        proxy.interactively_edit()
+        manager = self._get_current_view_module_manager()
+        #manager.interactively_view()
+        manager.interactively_edit()
 
     def list_asset_filesystem_paths(
         self,
@@ -607,8 +607,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         asset_manager.write_stub_to_disk()
 
     def print_directory_entries(self):
-        proxy = self._get_current_package_manager()
-        proxy.print_directory_entries()
+        manager = self._get_current_package_manager()
+        manager.print_directory_entries()
 
     def write_view_to_disk(self, new_view, prompt=True):
         view_inventory = self._read_view_inventory_from_disk()

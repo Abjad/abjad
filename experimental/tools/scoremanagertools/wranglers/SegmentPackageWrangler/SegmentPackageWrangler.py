@@ -70,7 +70,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
     @property
     def asset_manager_class(self):
-        r'''Asset proxy class of segment package wrangler.
+        r'''Asset manager class of segment package wrangler.
 
         ::
 
@@ -103,12 +103,12 @@ class SegmentPackageWrangler(PackageWrangler):
             segment_package_path = \
                 self.configuration.filesystem_path_to_packagesystem_path(
                 segment_package_directory_path)
-            proxy = self.asset_manager_class(
+            manager = self.asset_manager_class(
                 segment_package_path,
                 session=self.session,
                 )
-            proxy.interactively_execute_asset_definition_module(prompt=False)
-            output_pdf_file_path = proxy._get_output_pdf_file_path()
+            manager.interactively_execute_asset_definition_module(prompt=False)
+            output_pdf_file_path = manager._get_output_pdf_file_path()
             if os.path.isfile(output_pdf_file_path):
                 message = 'segment {} PDF created.'
                 message = message.format(segment_package_name)
@@ -160,11 +160,11 @@ class SegmentPackageWrangler(PackageWrangler):
             segment_package_path = \
                 self.configuration.filesystem_path_to_packagesystem_path(
                 segment_package_directory_path)
-            proxy = self.asset_manager_class(
+            manager = self.asset_manager_class(
                 segment_package_path,
                 session=self.session,
                 )
-            version_number = proxy.interactively_save_to_versions_directory(
+            version_number = manager.interactively_save_to_versions_directory(
                 is_interactive=False,
                 )
             if version_number is not None:
@@ -384,13 +384,13 @@ class SegmentPackageWrangler(PackageWrangler):
             package_path)
         assert not os.path.exists(directory_path)
         os.mkdir(directory_path)
-        proxy = self.asset_manager_class(
+        manager = self.asset_manager_class(
             packagesystem_path=package_path,
             session=self.session,
             )
-        proxy.write_initializer_to_disk()
-        proxy.write_segment_definition_module_to_disk()
-        proxy.make_versions_directory()
+        manager.write_initializer_to_disk()
+        manager.write_segment_definition_module_to_disk()
+        manager.make_versions_directory()
         line = 'package {!r} created.'.format(package_path)
         self.session.io_manager.proceed(line, is_interactive=is_interactive)
 
