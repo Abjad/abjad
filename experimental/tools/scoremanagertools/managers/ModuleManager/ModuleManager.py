@@ -10,28 +10,19 @@ class ModuleManager(FileManager):
 
     ### INITIALIZER ###
 
-    def __init__(self, packagesystem_path=None, session=None):
-        assert packagesystem_path is None or \
-            os.path.sep in packagesystem_path, repr(packagesystem_path)
-        if packagesystem_path is None or \
-            os.path.sep not in packagesystem_path:
-            filesystem_path = \
-                self.configuration.packagesystem_path_to_filesystem_path(
-                packagesystem_path, 
-                is_module=True,
-                )
-        else:
-            filesystem_path = packagesystem_path
-            packagesystem_path = \
-                self.configuration.filesystem_path_to_packagesystem_path(
-                filesystem_path,
-                )
-        self._packagesystem_path = packagesystem_path
+    def __init__(self, filesystem_path=None, session=None):
+        assert filesystem_path is None or \
+            os.path.sep in filesystem_path, repr(filesystem_path)
         FileManager.__init__(
             self,
             filesystem_path=filesystem_path,
             session=session,
             )
+        packagesystem_path = \
+            self.configuration.filesystem_path_to_packagesystem_path(
+            filesystem_path,
+            )
+        self._packagesystem_path = packagesystem_path
 
     ### PRIVATE METHODS ###
 
