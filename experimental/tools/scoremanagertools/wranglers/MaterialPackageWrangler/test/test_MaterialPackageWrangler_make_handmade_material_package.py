@@ -86,8 +86,8 @@ def test_MaterialPackageWrangler_make_handmade_material_package_04():
             'experimental.tools.scoremanagertools.materialpackages.testnotes')
         mpp = scoremanagertools.proxies.MaterialPackageManager(
             'experimental.tools.scoremanagertools.materialpackages.testnotes')
-        assert mpp.get_metadata('color') == 'red'
-        assert mpp.get_metadata('is_colored')
+        assert mpp._get_metadata('color') == 'red'
+        assert mpp._get_metadata('is_colored')
     finally:
         mpp.remove()
         assert not wrangler.configuration.packagesystem_path_exists(

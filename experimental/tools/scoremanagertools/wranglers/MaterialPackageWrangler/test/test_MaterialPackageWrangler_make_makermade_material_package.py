@@ -76,8 +76,8 @@ def test_MaterialPackageWrangler_make_makermade_material_package_04():
             '__metadata__.py',
             'user_input.py',
             ]
-        assert mpp.get_metadata('color') == 'red'
-        assert mpp.get_metadata('is_colored')
+        assert mpp._get_metadata('color') == 'red'
+        assert mpp._get_metadata('is_colored')
     finally:
         mpp.remove()
         assert not wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testsargasso')

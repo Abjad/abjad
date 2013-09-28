@@ -322,7 +322,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         if self.session.backtrack():
             return
         proxy = self._get_current_package_proxy()
-        proxy.add_metadata('view_name', view_name)
+        proxy._add_metadata('view_name', view_name)
 
     # TODO: write test
     def interactively_remove_assets(

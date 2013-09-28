@@ -40,7 +40,7 @@ class PackageManager(DirectoryManager):
 
     def _make_tags_menu_entries(self):
         result = []
-        tags = self.get_metadatas()
+        tags = self._get_metadatas()
         for key in sorted(tags):
             display_string = key.replace('_', ' ')
             result.append((display_string, None, tags[key], key))
@@ -108,17 +108,17 @@ class PackageManager(DirectoryManager):
 
     ### PUBLIC METHODS ###
 
-    def add_metadata(self, tag_name, tag_value):
-        tags = self.get_metadatas()
+    def _add_metadata(self, tag_name, tag_value):
+        tags = self._get_metadatas()
         tags[tag_name] = tag_value
         self.metadata_module_manager.write_metadata_to_disk(tags)
 
-    def get_metadata(self, tag_name):
-        tags = self.get_metadatas()
+    def _get_metadata(self, tag_name):
+        tags = self._get_metadatas()
         tag = tags.get(tag_name, None)
         return tag
 
-    def get_metadatas(self):
+    def _get_metadatas(self):
         from collections import OrderedDict
         self.metadata_module_manager.make_empty_asset()
         file_pointer = open(self.metadata_module_name, 'r')
@@ -138,7 +138,7 @@ class PackageManager(DirectoryManager):
         return False
 
     def has_tag(self, tag_name):
-        tags = self.get_metadatas()
+        tags = self._get_metadatas()
         return bool(tag_name in tags)
 
     def interactively_add_metadata(self):
@@ -150,7 +150,7 @@ class PackageManager(DirectoryManager):
             return
         if result:
             tag_name, tag_value = result
-            self.add_metadata(tag_name, tag_value)
+            self._add_metadata(tag_name, tag_value)
 
     def interactively_get_metadata(self):
         getter = self.session.io_manager.make_getter(where=self._where)
@@ -158,7 +158,7 @@ class PackageManager(DirectoryManager):
         result = getter._run()
         if self.session.backtrack():
             return
-        tag = self.get_metadata(result)
+        tag = self._get_metadata(result)
         line = '{!r}'.format(tag)
         self.session.io_manager.proceed(line)
 
@@ -289,7 +289,7 @@ class PackageManager(DirectoryManager):
         self.session.is_backtracking_locally = True
 
     def remove_tag(self, tag_name):
-        tags = self.get_metadatas()
+        tags = self._get_metadatas()
         del(tags[tag_name])
         self.metadata_module_manager.write_metadata_to_disk(tags)
 

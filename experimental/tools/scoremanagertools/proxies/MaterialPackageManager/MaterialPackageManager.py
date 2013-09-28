@@ -452,7 +452,7 @@ class MaterialPackageManager(PackageManager):
 
     @property
     def material_package_maker_class_name(self):
-        return self.get_metadata('material_package_maker_class_name')
+        return self._get_metadata('material_package_maker_class_name')
 
     @property
     def material_package_name(self):
@@ -539,7 +539,7 @@ class MaterialPackageManager(PackageManager):
 
     @property
     def should_have_illustration(self):
-        return self.get_metadata('should_have_illustration')
+        return self._get_metadata('should_have_illustration')
 
     @property
     def should_have_illustration_builder_module(self):
@@ -618,8 +618,8 @@ class MaterialPackageManager(PackageManager):
         self, 
         is_interactive=False,
         ):
-        if not self.get_metadata('material_package_maker_class_name'):
-            is_data_only = not self.get_metadata('should_have_illustration')
+        if not self._get_metadata('material_package_maker_class_name'):
+            is_data_only = not self._get_metadata('should_have_illustration')
             self.material_definition_module_proxy.write_stub_to_disk(
                 is_data_only, is_interactive=is_interactive)
 
@@ -768,7 +768,7 @@ class MaterialPackageManager(PackageManager):
                 material_proxy_wrangler.select_material_proxy_class_name_interactively()
         if self.session.backtrack():
             return
-        self.add_metadata('material_package_maker', material_package_maker.class_name)
+        self._add_metadata('material_package_maker', material_package_maker.class_name)
         line = 'user input handler selected.'
         self.session.io_manager.proceed(line, is_interactive=prompt)
 
@@ -971,9 +971,9 @@ class MaterialPackageManager(PackageManager):
                 self.is_data_only, is_interactive=True)
 
     def write_metadata_to_disk(self):
-        self.add_metadata('is_material_package', True)
+        self._add_metadata('is_material_package', True)
         if hasattr(self, 'generic_output_name'):
-            self.add_metadata('generic_output_name', self.generic_output_name)
+            self._add_metadata('generic_output_name', self.generic_output_name)
 
     ### UI MANIFEST ###
 

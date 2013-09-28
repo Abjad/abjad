@@ -68,7 +68,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
                 names, [None], [None], paths)
             package_proxy = self._get_current_package_proxy()
             if package_proxy:
-                view_name = package_proxy.get_metadata('view_name')
+                view_name = package_proxy._get_metadata('view_name')
                 if view_name:
                     view_inventory = self._read_view_inventory_from_disk()
                     if view_inventory:
