@@ -31,7 +31,10 @@ class PackageManager(DirectoryManager):
 
     @property
     def _space_delimited_lowercase_name(self):
-        return self.filesystem_basename.replace('_', ' ')
+        if self.filesystem_path:
+            base_name = os.path.basename(self.filesystem_path)
+            result = base_name.replace('_', ' ')
+            return result
 
     ### PRIVATE METHODS ###
 
@@ -174,7 +177,8 @@ class PackageManager(DirectoryManager):
 
         Returns none.
         '''
-        line = 'current name: {}'.format(self.filesystem_basename)
+        base_name = os.path.basename(self.filesystem_path)
+        line = 'current name: {}'.format(base_name)
         self.session.io_manager.display(line)
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_snake_case_package_name('new name')
@@ -182,7 +186,7 @@ class PackageManager(DirectoryManager):
         if self.session.backtrack():
             return
         lines = []
-        line = 'current name: {}'.format(self.filesystem_basename)
+        line = 'current name: {}'.format(base_name)
         lines.append(line)
         line = 'new name:     {}'.format(new_package_name)
         lines.append(line)
@@ -191,7 +195,7 @@ class PackageManager(DirectoryManager):
         if not self.session.io_manager.confirm():
             return
         new_directory_path = self.filesystem_path.replace(
-            self.filesystem_basename,
+            base_name,
             new_package_name,
             )
         if self.is_versioned():
@@ -202,7 +206,7 @@ class PackageManager(DirectoryManager):
             # commit
             commit_message = 'renamed {} to {}.'
             commit_message = commit_message.format(
-                self.filesystem_basename,
+                base_name,
                 new_package_name,
                 )
             commit_message = commit_message.replace('_', ' ')

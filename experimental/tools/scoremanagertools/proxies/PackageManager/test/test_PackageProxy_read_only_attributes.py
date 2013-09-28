@@ -18,5 +18,4 @@ def test_PackageManager_read_only_attributes_01():
             'red_sargasso_measures','__init__.py')
     assert package_proxy.package_path == \
         'experimental.tools.scoremanagertools.materialpackages.red_sargasso_measures'
-    assert package_proxy.filesystem_basename == 'red_sargasso_measures'
     assert package_proxy._space_delimited_lowercase_name == 'red sargasso measures'

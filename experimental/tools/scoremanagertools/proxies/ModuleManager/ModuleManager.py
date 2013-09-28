@@ -34,8 +34,9 @@ class ModuleManager(FileManager):
     ### PRIVATE METHODS ###
 
     def _get_space_delimited_lowercase_name(self):
-        if self.filesystem_basename:
-            name = self.filesystem_basename.strip('.py')
+        if self.filesystem_path:
+            base_name = os.path.basename(self.filesystem_path)
+            name = base_name.strip('.py')
             name = stringtools.string_to_space_delimited_lowercase(name)
             return name
 

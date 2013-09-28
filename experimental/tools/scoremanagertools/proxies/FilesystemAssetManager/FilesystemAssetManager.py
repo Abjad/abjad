@@ -53,8 +53,9 @@ class FilesystemAssetManager(ScoreManagerObject):
 
     @property
     def _breadcrumb(self):
-        return self.filesystem_basename or \
-            self._space_delimited_lowercase_class_name
+        if self.filesystem_path:
+            return os.path.basename(self.filesystem_path)
+        return self._space_delimited_lowercase_class_name
 
     @property
     def _plural_generic_class_name(self):
@@ -62,7 +63,8 @@ class FilesystemAssetManager(ScoreManagerObject):
 
     @property
     def _space_delimited_lowercase_name(self):
-        return self.filesystem_basename
+        if self.filesystem_path:
+            return os.path.basename(self.filesystem_path)
 
     @property
     def _repository_add_command(self):
@@ -115,16 +117,6 @@ class FilesystemAssetManager(ScoreManagerObject):
         return asset_name
 
     ### PUBLIC PROPERTIES ###
-
-    # TODO: remove
-    @property
-    def filesystem_basename(self):
-        r'''Filesystem basename of filesystem asset proxy.
-
-        Returns string or none.
-        '''
-        if self.filesystem_path:
-            return os.path.basename(self.filesystem_path)
 
     @property
     def filesystem_path(self):

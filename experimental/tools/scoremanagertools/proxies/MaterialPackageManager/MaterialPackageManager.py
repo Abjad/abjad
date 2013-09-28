@@ -456,7 +456,7 @@ class MaterialPackageManager(PackageManager):
 
     @property
     def material_package_name(self):
-        return self.filesystem_basename
+        return os.path.basename(self.filesystem_path)
 
     @property
     def output_material(self):
@@ -687,7 +687,8 @@ class MaterialPackageManager(PackageManager):
         PackageManager.interactively_remove(self)
 
     def interactively_rename_package(self):
-        line = 'current name: {}'.format(self.filesystem_basename)
+        base_name = os.path.basename(self.filesystem_path)
+        line = 'current name: {}'.format(base_name)
         self.session.io_manager.display(line)
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_snake_case_package_name('new name')
@@ -695,14 +696,14 @@ class MaterialPackageManager(PackageManager):
         if self.session.backtrack():
             return
         lines = []
-        lines.append('current name: {}'.format(self.filesystem_basename))
+        lines.append('current name: {}'.format(base_name))
         lines.append('new name:     {}'.format(new_package_name))
         lines.append('')
         self.session.io_manager.display(lines)
         if not self.session.io_manager.confirm():
             return
         new_directory_path = self.filesystem_path.replace(
-            self.filesystem_basename, 
+            base_name,
             new_package_name,
             )
         if self.is_versioned():
@@ -715,7 +716,7 @@ class MaterialPackageManager(PackageManager):
                 new_directory_path, 
                 'output_material.py',
                 )
-            result = os.path.splitext(self.filesystem_basename)
+            result = os.path.splitext(base_name)
             old_package_name, extension = result
             self.replace_in_file(
                 new_output_material_module_name, 
@@ -725,7 +726,7 @@ class MaterialPackageManager(PackageManager):
             # commit
             commit_message = 'renamed {} to {}.'
             commit_message = commit_message.format(
-                self.filesystem_basename, 
+                base_name,
                 new_package_name,
                 )
             commit_message = commit_message.replace('_', ' ')
@@ -746,7 +747,7 @@ class MaterialPackageManager(PackageManager):
                 new_directory_path, 
                 'output_material.py',
                 )
-            result = os.path.splitext(self.filesystem_basename)
+            result = os.path.splitext(base_name)
             old_package_name, extension = result
             self.replace_in_file(
                 new_output_material_module_name, 
