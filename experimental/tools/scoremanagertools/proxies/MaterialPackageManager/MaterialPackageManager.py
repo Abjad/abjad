@@ -431,13 +431,24 @@ class MaterialPackageManager(PackageManager):
 
     @property
     def material_package_maker(self):
-        if self.material_package_maker_class_name is not None:
-            maker_class = self._safe_import(
-                locals(), 
-                'materialpackagemakers', 
-                self.material_package_maker_class_name,
-                source_parent_package_path=self.configuration.score_manager_tools_package_path)
-            return maker_class
+        if self.material_package_maker_class_name is None:
+            return
+        directory_path = \
+            self.configuration.built_in_material_package_makers_directory_path
+        package_path = \
+            self.configuration.filesystem_path_to_packagesystem_path(
+            directory_path)
+        import_statement = 'from {} import {}'
+        import_statement = import_statement.format(
+            package_path,
+            self.material_package_maker_class_name,
+            )
+        try:
+            exec(import_statement)
+        except:
+            return
+        result = locals()[self.material_package_maker_class_name]
+        return result
 
     @property
     def material_package_maker_class_name(self):
