@@ -136,24 +136,6 @@ class FilesystemAssetManager(ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
-    def copy(self, new_filesystem_path):
-        r'''Copies filesystem asset to `new_filesystem_path`.
-
-        Return none.
-        '''
-        shutil.copyfile(self.filesystem_path, new_filesystem_path)
-
-    # TODO: remove
-    def exists(self):
-        r'''True when filesystem path of filesystem asset proxy exists.
-        False otherwise.
-
-        Returns boolean.
-        '''
-        if self.filesystem_path:
-            return os.path.exists(self.filesystem_path)
-        return False
-
     def interactively_copy(
         self, 
         pending_user_input=None,
@@ -175,7 +157,7 @@ class FilesystemAssetManager(ScoreManagerObject):
         self.session.io_manager.display(message)
         if not self.session.io_manager.confirm():
             return
-        self.copy(new_path)
+        shutil.copyfile(self.filesystem_path, new_path)
         self.session.io_manager.proceed('asset copied.')
 
     def interactively_remove(
@@ -293,22 +275,22 @@ class FilesystemAssetManager(ScoreManagerObject):
         '''
         if self.is_versioned():
             command = 'svn --force rm {}'.format(self.filesystem_path)
-            proc = subprocess.Popen(
+            process = subprocess.Popen(
                 command,
                 shell=True,
                 stdout=subprocess.PIPE,
                 )
-            proc.stdout.readline()
+            process.stdout.readline()
             return True
         else:
             command = 'rm -rf {}'.format(self.filesystem_path)
-            proc = subprocess.Popen(
+            process = subprocess.Popen(
                 command,
                 shell=True,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
                 )
-            proc.stdout.readline()
+            process.stdout.readline()
             return True
 
     def rename(self, new_path):
@@ -319,22 +301,22 @@ class FilesystemAssetManager(ScoreManagerObject):
         if self.is_versioned():
             command = 'svn --force mv {} {}'.format(
                 self.filesystem_path, new_path)
-            proc = subprocess.Popen(
+            process = subprocess.Popen(
                 command,
                 shell=True,
                 stdout=subprocess.PIPE,
                 )
-            proc.stdout.readline()
+            process.stdout.readline()
             self._filesystem_path = new_path
         else:
             command = 'mv {} {}'.format(
                 self.filesystem_path, new_path)
-            proc = subprocess.Popen(
+            process = subprocess.Popen(
                 command,
                 shell=True,
                 stdout=subprocess.PIPE,
                 )
-            proc.stdout.readline()
+            process.stdout.readline()
             self._filesystem_path = new_path
 
     def repository_add(self, is_interactive=False):
@@ -345,12 +327,12 @@ class FilesystemAssetManager(ScoreManagerObject):
         line = self._get_score_package_directory_name()
         line = line + ' ...'
         self.session.io_manager.display(line, capitalize_first_character=False)
-        proces = subprocess.Popen(
+        process = subprocess.Popen(
             self._repository_add_command,
             shell=True,
             stdout=subprocess.PIPE,
             )
-        lines = [line.strip() for line in proces.stdout.readlines()]
+        lines = [line.strip() for line in process.stdout.readlines()]
         lines.append('')
         self.session.io_manager.display(lines)
         self.session.io_manager.proceed(is_interactive=is_interactive)

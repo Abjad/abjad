@@ -80,7 +80,7 @@ class FileManager(FilesystemAssetManager):
 
         Returns none.
         '''
-        if not self.exists():
+        if not os.path.exists(self.filesystem_path):
             file_reference = file(self.filesystem_path, 'w')
             file_reference.write('')
             file_reference.close()

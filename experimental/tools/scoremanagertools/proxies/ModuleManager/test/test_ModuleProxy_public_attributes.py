@@ -10,7 +10,6 @@ def test_ModuleManager_public_attributes_01():
     proxy = scoremanagertools.proxies.ModuleManager()
 
     assert proxy._breadcrumb == 'module manager'
-    assert not proxy.exists()
     assert not proxy.read_lines()
     assert proxy._get_space_delimited_lowercase_name() is None
     assert not proxy.is_versioned()
@@ -30,7 +29,6 @@ def test_ModuleManager_public_attributes_02():
     proxy = scoremanagertools.proxies.ModuleManager(packagesystem_path=packagesystem_path)
 
     assert proxy._breadcrumb == 'material_definition.py'
-    assert proxy.exists()
     assert proxy.read_lines()
     assert proxy._get_space_delimited_lowercase_name() == 'material definition'
     assert proxy.is_versioned()
