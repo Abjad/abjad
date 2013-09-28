@@ -232,9 +232,9 @@ class ScorePackageWrangler(PackageWrangler):
             ...     in_user_asset_library=False, 
             ...     in_user_score_packages=False):
             ...     x
-            'experimental.tools.scoremanagertools.scorepackages.blue_example_score'
-            'experimental.tools.scoremanagertools.scorepackages.green_example_score'
-            'experimental.tools.scoremanagertools.scorepackages.red_example_score'
+            '...scoremanagertools.scorepackages.blue_example_score'
+            '...scoremanagertools.scorepackages.green_example_score'
+            '...scoremanagertools.scorepackages.red_example_score'
 
         Returns list.
         '''
@@ -263,11 +263,12 @@ class ScorePackageWrangler(PackageWrangler):
 
             >>> for x in wrangler.list_asset_proxies(
             ...     in_user_asset_library=False, 
-            ...     in_user_score_packages=False):
+            ...     in_user_score_packages=False,
+            ...     ):
             ...     x
-            ScorePackageManager('.../tools/scoremanagertools/scorepackages/blue_example_score')
-            ScorePackageManager('.../tools/scoremanagertools/scorepackages/green_example_score')
-            ScorePackageManager('.../tools/scoremanagertools/scorepackages/red_example_score')
+            ScorePackageManager('.../scorepackages/blue_example_score')
+            ScorePackageManager('.../scorepackages/green_example_score')
+            ScorePackageManager('.../scorepackages/red_example_score')
 
         Returns list.
         '''
@@ -295,7 +296,8 @@ class ScorePackageWrangler(PackageWrangler):
 
             >>> for x in wrangler.list_asset_storehouse_filesystem_paths(
             ...     in_user_asset_library=False, 
-            ...     in_user_score_packages=False):
+            ...     in_user_score_packages=False,
+            ...     ):
             ...     x
             '.../tools/scoremanagertools/scorepackages'
 
@@ -325,7 +327,8 @@ class ScorePackageWrangler(PackageWrangler):
 
             >>> for x in wrangler.list_visible_asset_filesystem_paths(
             ...     in_user_asset_library=False, 
-            ...     in_user_score_packages=False):
+            ...     in_user_score_packages=False,
+            ...     ):
             ...     x
             '.../tools/scoremanagertools/scorepackages/blue_example_score'
             '.../tools/scoremanagertools/scorepackages/green_example_score'
@@ -360,11 +363,20 @@ class ScorePackageWrangler(PackageWrangler):
 
             >>> for x in wrangler.list_visible_asset_package_path_and_score_title_pairs(
             ...     in_user_asset_library=False, 
-            ...     in_user_score_packages=False):
-            ...     x
-            ('experimental.tools.scoremanagertools.scorepackages.blue_example_score', 'Blue Example Score (2013)')
-            ('experimental.tools.scoremanagertools.scorepackages.green_example_score', 'Green Example Score (2013)')
-            ('experimental.tools.scoremanagertools.scorepackages.red_example_score', 'Red Example Score (2013)')
+            ...     in_user_score_packages=False,
+            ...     ):
+            ...     x[0]
+            ...     x[1]
+            ...     print
+            '...scoremanagertools.scorepackages.blue_example_score'
+            'Blue Example Score (2013)'
+            <BLANKLINE>
+            '...scoremanagertools.scorepackages.green_example_score'
+            'Green Example Score (2013)'
+            <BLANKLINE>
+            '...scoremanagertools.scorepackages.red_example_score'
+            'Red Example Score (2013)'
+            <BLANKLINE>
 
         Returns list.
         '''
@@ -407,11 +419,12 @@ class ScorePackageWrangler(PackageWrangler):
 
             >>> for x in wrangler.list_visible_asset_packagesystem_paths(
             ...     in_user_asset_library=False, 
-            ...     in_user_score_packages=False):
+            ...     in_user_score_packages=False,
+            ...     ):
             ...     x
-            'experimental.tools.scoremanagertools.scorepackages.blue_example_score'
-            'experimental.tools.scoremanagertools.scorepackages.green_example_score'
-            'experimental.tools.scoremanagertools.scorepackages.red_example_score'
+            '...scoremanagertools.scorepackages.blue_example_score'
+            '...scoremanagertools.scorepackages.green_example_score'
+            '...scoremanagertools.scorepackages.red_example_score'
 
         Returns list.
         '''
@@ -443,11 +456,12 @@ class ScorePackageWrangler(PackageWrangler):
 
             >>> for x in wrangler.list_visible_asset_proxies(
             ...     in_user_asset_library=False, 
-            ...     in_user_score_packages=False):
+            ...     in_user_score_packages=False,
+            ...     ):
             ...     x
-            ScorePackageManager('.../tools/scoremanagertools/scorepackages/blue_example_score')
-            ScorePackageManager('.../tools/scoremanagertools/scorepackages/green_example_score')
-            ScorePackageManager('.../tools/scoremanagertools/scorepackages/red_example_score')
+            ScorePackageManager('.../scorepackages/blue_example_score')
+            ScorePackageManager('.../scorepackages/green_example_score')
+            ScorePackageManager('.../scorepackages/red_example_score')
 
         Returns list.
         '''
@@ -476,7 +490,8 @@ class ScorePackageWrangler(PackageWrangler):
         Returns none.
         '''
         for asset_proxy in self.list_visible_asset_proxies():
-            asset_proxy.profile()
+            asset_proxy.interactively_profile(prompt=False)
+        self.session.io_manager.proceed()
 
     def repository_add_assets(self, is_interactive=True):
         r'''Adds assets to repository.
@@ -487,8 +502,11 @@ class ScorePackageWrangler(PackageWrangler):
             proxies = self.list_visible_asset_proxies()
         else:
             proxies = self.list_asset_proxies(
-                in_built_in_asset_library=True, in_user_asset_library=True,
-                in_built_in_score_packages=True, in_user_score_packages=True)
+                in_built_in_asset_library=True, 
+                in_user_asset_library=True,
+                in_built_in_score_packages=True, 
+                in_user_score_packages=True,
+                )
         for proxy in proxies:
             proxy.repository_add(is_interactive=False)
         self.session.io_manager.proceed(is_interactive=is_interactive)
@@ -517,7 +535,10 @@ class ScorePackageWrangler(PackageWrangler):
                 in_user_score_packages=True,
                 )
         for proxy in proxies:
-            proxy.repository_ci(commit_message=commit_message, is_interactive=False)
+            proxy.repository_ci(
+                commit_message=commit_message, 
+                is_interactive=False,
+                )
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def repository_st_assets(self, is_interactive=True):
@@ -529,8 +550,11 @@ class ScorePackageWrangler(PackageWrangler):
             proxies = self.list_visible_asset_proxies()
         else:
             proxies = self.list_asset_proxies(
-                in_built_in_asset_library=True, in_user_asset_library=True,
-                in_built_in_score_packages=True, in_user_score_packages=True)
+                in_built_in_asset_library=True, 
+                in_user_asset_library=True,
+                in_built_in_score_packages=True, 
+                in_user_score_packages=True,
+                )
         for proxy in proxies:
             proxy.repository_st(is_interactive=False)
         self.session.io_manager.proceed(is_interactive=is_interactive)
@@ -544,8 +568,11 @@ class ScorePackageWrangler(PackageWrangler):
             proxies = self.list_visible_asset_proxies()
         else:
             proxies = self.list_asset_proxies(
-                in_built_in_asset_library=True, in_user_asset_library=True,
-                in_built_in_score_packages=True, in_user_score_packages=True)
+                in_built_in_asset_library=True, 
+                in_user_asset_library=True,
+                in_built_in_score_packages=True, 
+                in_user_score_packages=True,
+                )
         for proxy in proxies:
             proxy.repository_up(is_interactive=False)
         self.session.io_manager.proceed(is_interactive=is_interactive)

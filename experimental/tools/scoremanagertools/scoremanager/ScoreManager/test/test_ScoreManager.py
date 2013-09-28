@@ -36,13 +36,16 @@ def test_ScoreManager_04():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager._run(pending_user_input='q')
-    assert score_manager.session.io_transcript[-2][1][0] == 'Score manager - active scores'
+    assert score_manager.session.io_transcript[-2][1][0] == \
+        'Score manager - active scores'
 
     score_manager._run(pending_user_input='rep q')
-    assert score_manager.session.io_transcript[-2][1][0] == 'Score manager - active scores - repository'
+    assert score_manager.session.io_transcript[-2][1][0] == \
+        'Score manager - active scores - repository commands'
 
     score_manager._run(pending_user_input='rep b q')
-    assert score_manager.session.io_transcript[-2][1][0] == 'Score manager - active scores'
+    assert score_manager.session.io_transcript[-2][1][0] == \
+        'Score manager - active scores'
 
 
 def test_ScoreManager_05():

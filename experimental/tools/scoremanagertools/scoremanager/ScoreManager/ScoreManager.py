@@ -292,7 +292,7 @@ class ScoreManager(ScoreManagerObject):
 
     def manage_repository(self, clear=True):
         while True:
-            self.session.push_breadcrumb('repository')
+            self.session.push_breadcrumb('repository commands')
             menu = self._make_repository_menu()
             result = menu._run(clear=clear)
             if self.session.is_backtracking_to_score:

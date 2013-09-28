@@ -76,6 +76,19 @@ class FilesystemAssetManager(ScoreManagerObject):
         getter.append_snake_case_file_name('new name')
         return getter
 
+    def _get_score_package_directory_name(self):
+        line = self.filesystem_path
+        line = line.replace(
+            self.configuration.built_in_score_packages_directory_path,
+            '',
+            )
+        line = line.replace(
+            self.configuration.user_score_packages_directory_path,
+            '',
+            )
+        line = line.lstrip(os.path.sep)
+        return line
+
     def _run(self, cache=False, clear=True, pending_user_input=None):
         self.session.io_manager.assign_user_input(pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
@@ -95,6 +108,7 @@ class FilesystemAssetManager(ScoreManagerObject):
         self.session.pop_breadcrumb()
         self.session.restore_breadcrumbs(cache=cache)
 
+    # TODO: remove
     @staticmethod
     def _safe_import(
         target_namespace,
@@ -102,12 +116,6 @@ class FilesystemAssetManager(ScoreManagerObject):
         source_attribute_name,
         source_parent_package_path=None,
         ):
-
-        #print repr(target_namespace.keys())
-        #print repr(source_module_name)
-        #print repr(source_attribute_name)
-        #print repr(source_parent_package_path)
-
         if source_parent_package_path is None:
             try:
                 source_parent_package_path = target_namespace['__name__']
@@ -147,6 +155,7 @@ class FilesystemAssetManager(ScoreManagerObject):
 
     ### PUBLIC PROPERTIES ###
 
+    # TODO: remove
     @property
     def filesystem_basename(self):
         r'''Filesystem basename of filesystem asset proxy.
@@ -173,6 +182,7 @@ class FilesystemAssetManager(ScoreManagerObject):
         '''
         shutil.copyfile(self.filesystem_path, new_filesystem_path)
 
+    # TODO: remove
     def exists(self):
         r'''True when filesystem path of filesystem asset proxy exists.
         False otherwise.
@@ -260,6 +270,7 @@ class FilesystemAssetManager(ScoreManagerObject):
         if self.rename(new_path):
             self.session.io_manager.proceed('asset renamed.')
 
+    # TODO: possibly remove?
     def interactively_write_boilerplate(
         self, 
         pending_user_input=None,
@@ -305,6 +316,7 @@ class FilesystemAssetManager(ScoreManagerObject):
         else:
             return True
 
+    # TODO: possibly remove?
     @abc.abstractmethod
     def make_empty_asset(self, is_interactive=False):
         r'''Makes empty filesystem asset.
@@ -369,17 +381,17 @@ class FilesystemAssetManager(ScoreManagerObject):
 
         Returns none.
         '''
-        if is_interactive:
-            self.session.io_manager.display(self.filesystem_path)
-        proc = subprocess.Popen(
+        line = self._get_score_package_directory_name()
+        line = line + ' ...'
+        self.session.io_manager.display(line, capitalize_first_character=False)
+        proces = subprocess.Popen(
             self._repository_add_command,
             shell=True,
             stdout=subprocess.PIPE,
             )
-        lines = [line.strip() for line in proc.stdout.readlines()]
+        lines = [line.strip() for line in proces.stdout.readlines()]
         lines.append('')
-        if is_interactive:
-            self.session.io_manager.display(lines)
+        self.session.io_manager.display(lines)
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def repository_ci(self, commit_message=None, is_interactive=True):
@@ -398,7 +410,9 @@ class FilesystemAssetManager(ScoreManagerObject):
             if not self.session.io_manager.confirm():
                 return
         lines = []
-        lines.append(self.filesystem_path)
+        line = self._get_score_package_directory_name()
+        line = line + ' ...'
+        lines.append(line)
         command = 'svn commit -m "{}" {}'
         command = command.format(commit_message, self.filesystem_path)
         process = subprocess.Popen(
@@ -408,7 +422,10 @@ class FilesystemAssetManager(ScoreManagerObject):
             )
         lines.extend([line.strip() for line in process.stdout.readlines()])
         lines.append('')
-        self.session.io_manager.display(lines)
+        self.session.io_manager.display(
+            lines, 
+            capitalize_first_character=False,
+            )
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def repository_st(self, is_interactive=True):
@@ -416,6 +433,9 @@ class FilesystemAssetManager(ScoreManagerObject):
     
         Returns none.
         '''
+        line = self._get_score_package_directory_name()
+        line = line + ' ...'
+        self.session.io_manager.display(line, capitalize_first_character=False)
         command = 'svn st -u {}'.format(self.filesystem_path)
         process = subprocess.Popen(
             command,
@@ -438,15 +458,16 @@ class FilesystemAssetManager(ScoreManagerObject):
 
         Returns none.
         '''
-        if is_interactive:
-            self.session.io_manager.display(self.filesystem_path)
+        line = self._get_score_package_directory_name()
+        line = line + ' ...'
+        self.session.io_manager.display(line, capitalize_first_character=False)
         command = 'svn up {}'.format(self.filesystem_path)
-        proc = subprocess.Popen(
+        process = subprocess.Popen(
             command,
             shell=True,
             stdout=subprocess.PIPE,
             )
-        lines = [line.strip() for line in proc.stdout.readlines()]
+        lines = [line.strip() for line in process.stdout.readlines()]
         lines.append('')
         self.session.io_manager.display(lines)
         self.session.io_manager.proceed(is_interactive=is_interactive)
@@ -459,11 +480,13 @@ class FilesystemAssetManager(ScoreManagerObject):
         if not os.path.exists(boilerplate_filebuilt_in_asset_name):
             boilerplate_filebuilt_in_asset_name = os.path.join(
                 self.boilerplate_directory_path,
-                boilerplate_filebuilt_in_asset_name)
+                boilerplate_filebuilt_in_asset_name,
+                )
         if os.path.exists(boilerplate_filebuilt_in_asset_name):
             shutil.copyfile(
                 boilerplate_filebuilt_in_asset_name,
-                self.filesystem_path)
+                self.filesystem_path,
+                )
             return True
 
     ### UI MANIFEST ###

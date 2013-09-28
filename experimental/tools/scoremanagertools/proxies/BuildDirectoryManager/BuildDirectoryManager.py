@@ -38,106 +38,80 @@ class BuildDirectoryManager(DirectoryManager):
                 return file_path
 
     def _handle_back_cover_menu_result(self, result):
-        from experimental.tools import scoremanagertools
         if result == 'e':
-            file_path = self._get_file_path_ending_with('back-cover.tex')
-            if file_path:
-                file_manager = self._get_file_manager(file_path)
-                file_manager.interactively_view()
-            else:
-                message = 'file not found.'
-                self.session.io_manager.proceed(message)
+            self._interactively_edit_file_ending_with('back-cover.tex')
         elif result == 'g':
             self.session.io_manager.print_not_yet_implemented()
         elif result == 'pdfv':
-            file_path = self._get_file_path_ending_with('back-cover.pdf')
-            iotools.open_file(file_path)
+            self._interactively_open_file_ending_with('back-cover.pdf')
         elif result == 'ts':
-            file_path = self._get_file_path_ending_with('back-cover.tex')
-            if file_path:
-                file_manager = self._get_file_manager(file_path)
-                file_manager.interactively_typeset_tex_file()
-            else:
-                message = 'file not found.'
-                self.session.io_manager.proceed(message)
+            self._interactively_typeset_file_ending_with('back-cover.tex')
 
     def _handle_front_cover_menu_result(self, result):
-        from experimental.tools import scoremanagertools
         if result == 'e':
-            file_path = self._get_file_path_ending_with('front-cover.tex')
-            if file_path:
-                file_manager = self._get_file_manager(file_path)
-                file_manager.interactively_view()
-            else:
-                message = 'file not found.'
-                self.session.io_manager.proceed(message)
+            self._interactively_edit_file_ending_with('front-cover.tex')
         elif result == 'g':
             self.session.io_manager.print_not_yet_implemented()
         elif result == 'pdfv':
-            file_path = self._get_file_path_ending_with('front-cover.pdf')
-            iotools.open_file(file_path)
+            self._interactively_open_file_ending_with('front-cover.pdf')
         elif result == 'ts':
-            file_path = self._get_file_path_ending_with('front-cover.tex')
-            if file_path:
-                file_manager = self._get_file_manager(file_path)
-                file_manager.interactively_typeset_tex_file()
-            else:
-                message = 'file not found.'
-                self.session.io_manager.proceed(message)
+            self._interactively_typeset_file_ending_with('front-cover.tex')
 
     def _handle_preface_menu_result(self, result):
-        from experimental.tools import scoremanagertools
         if result == 'e':
-            file_path = self._get_file_path_ending_with('preface.tex')
-            if file_path:
-                file_manager = self._get_file_manager(file_path)
-                file_manager.interactively_view()
-            else:
-                message = 'file not found.'
-                self.session.io_manager.proceed(message)
+            self._interactively_edit_file_ending_with('preface.tex')
         elif result == 'g':
             self.session.io_manager.print_not_yet_implemented()
         elif result == 'pdfv':
-            file_path = self._get_file_path_ending_with('preface.pdf')
-            if file_path:
-                iotools.open_file(file_path)
-            else:
-                message = 'file not found.'
-                self.session.io_manager.proceed(message)
+            self._interactively_open_file_ending_with('preface.pdf')
         elif result == 'ts':
-            file_path = self._get_file_path_ending_with('preface.tex')
-            if file_path:
-                file_manager = self._get_file_manager(file_path)
-                file_manager.interactively_typeset_tex_file()
-            else:
-                message = 'file not found.'
-                self.session.io_manager.proceed(message)
+            self._interactively_typeset_file_ending_with('preface.tex')
 
     def _handle_score_menu_result(self, result):
-        from experimental.tools import scoremanagertools
-        if result == 'cp':
-            self.interactively_copy_segment_pdfs()
-        elif result == 'e':
-            file_path = self._get_file_path_ending_with('score.tex')
-            if file_path:
-                file_manager = self._get_file_manager(file_path)
-                file_manager.interactively_view()
-            else:
-                message = 'file not found.'
-                self.session.io_manager.proceed(message)
+        if result == 'e':
+            self._interactively_edit_file_ending_with('score.tex')
         elif result == 'g':
             self.session.io_manager.print_not_yet_implemented()
+        elif result == 'lycp':
+            self.interactively_copy_segment_lilypond_files()
+        elif result == 'pdfcp':
+            self.interactively_copy_segment_pdfs()
         elif result == 'pdfv':
-            file_path = self._get_file_path_ending_with('score.pdf')
-            iotools.open_file(file_path)
+            self._interactively_open_file_ending_with('score.pdf')
+        elif result == 'se':
+            self._interactively_edit_file_ending_with('score-segments.ly')
         elif result == 'ts':
-            file_path = self._get_file_path_ending_with('score.tex')
-            if file_path:
-                file_manager = self._get_file_manager(file_path)
-                file_manager.interactively_typeset_tex_file()
-            else:
-                message = 'file not found.'
-                self.session.io_manager.proceed(message)
+            self._interactively_typeset_file_ending_with('score.tex')
+
+    def _interactively_edit_file_ending_with(self, string):
+        file_path = self._get_file_path_ending_with(string)
+        if file_path:
+            file_manager = self._get_file_manager(file_path)
+            file_manager.interactively_edit()
+        else:
+            message = 'file ending in {!r} not found.'
+            message = message.format(string)
+            self.session.io_manager.proceed(message)
+
+    def _interactively_open_file_ending_with(self, string):
+        file_path = self._get_file_path_ending_with(string)
+        if file_path:
+            file_manager = self._get_file_manager(file_path)
+            file_manager.interactively_open()
+        else:
+            message = 'file ending in {!r} not found.'
+            message = message.format(string)
+            self.session.io_manager.proceed(message)
+
+    def _interactively_typeset_file_ending_with(self, string):
+        file_path = self._get_file_path_ending_with(string)
+        if file_path:
+            file_manager = self._get_file_manager(file_path)
+            file_manager.interactively_typeset_tex_file()
+        else:
+            message = 'file ending in {!r} not found.'
+            message = message.format(string)
+            self.session.io_manager.proceed(message)
 
     def _make_back_cover_menu(self):
         menu = self.session.io_manager.make_menu(where=self._where)
@@ -162,16 +136,15 @@ class BuildDirectoryManager(DirectoryManager):
         return menu
 
     def _make_main_menu(self):
-        superclass = super(BuildDirectoryManager, self)
-        main_menu = superclass._make_main_menu()
-        command_section = main_menu.make_command_section()
+        menu = self.session.io_manager.make_menu(where=self._where)
+        command_section = menu.make_command_section()
         command_section.append(('back cover - manage', 'bc'))
         command_section.append(('front cover - manage', 'fc'))
         command_section.append(('preface - manage', 'pf'))
         command_section.append(('score - manage', 'sc'))
-        hidden_section = main_menu.make_command_section(is_hidden=True)
+        hidden_section = menu.make_command_section(is_hidden=True)
         hidden_section.append(('list directory', 'ls'))
-        return main_menu
+        return menu
 
     def _make_preface_menu(self):
         menu = self.session.io_manager.make_menu(where=self._where)
@@ -187,7 +160,10 @@ class BuildDirectoryManager(DirectoryManager):
     def _make_score_menu(self):
         menu = self.session.io_manager.make_menu(where=self._where)
         command_section = menu.make_command_section()
-        command_section.append(('segments - copy', 'cp'))
+        command_section.append(('segment lys - copy', 'lycp'))
+        command_section.append(('segment pdfs - copy', 'pdfcp'))
+        command_section = menu.make_command_section()
+        command_section.append(('segment assembly tex - edit', 'se'))
         command_section = menu.make_command_section()
         command_section.append(('source - edit', 'e'))
         command_section.append(('source - generate', 'g'))
@@ -197,7 +173,72 @@ class BuildDirectoryManager(DirectoryManager):
         command_section.default_index = len(command_section) - 1
         return menu
 
+    def _trim_lilypond_file(self, file_path):
+        lines = []
+        file_pointer = file(file_path, 'r')
+        found_score_block = False
+        for line in file_pointer.readlines():
+            if line.startswith(r'\score'):
+                found_score_block = True
+            if found_score_block:
+                lines.append(line)
+        file_pointer.close()
+        lines = ''.join(lines)
+        file_pointer = file(file_path, 'w')
+        file_pointer.write(lines)
+        file_pointer.close()
+
     ### PUBLIC METHODS ###
+
+    def interactively_copy_segment_lilypond_files(
+        self, 
+        pending_user_input=None,
+        ):
+        r'''Interactively copies segment LilyPond files from segment
+        package directories to build directory.
+
+        Trims top-level comments, includes and directives from each LilyPond
+        file.
+
+        Trims header and paper block from each LilyPond file.
+
+        Leaves score block in each LilyPond file.
+
+        Returns none.
+        '''
+        from experimental.tools import scoremanagertools
+        self.session.io_manager.assign_user_input(pending_user_input)
+        segments_directory_path = self.session.current_segments_directory_path
+        for directory_entry in os.listdir(segments_directory_path):
+            segment_directory_path = os.path.join(
+                segments_directory_path,
+                directory_entry,
+                )
+            if not os.path.isdir(segment_directory_path):
+                continue
+            source_file_path = os.path.join(
+                segment_directory_path,
+                'output.ly',
+                )
+            if not os.path.isfile(source_file_path):
+                continue
+            score_package_path = self.session.current_score_package_path
+            directory_entry = directory_entry.replace('_', '-')
+            target_file_name = '{}-segment-{}.ly'
+            target_file_name = target_file_name.format(
+                score_package_path,
+                directory_entry,
+                )
+            target_file_path = os.path.join(
+                self.filesystem_path,
+                target_file_name,
+                )
+            shutil.copyfile(source_file_path, target_file_path)
+            self._trim_lilypond_file(target_file_path)
+            message = 'Segment {} LilyPond file copied & trimmed.'
+            message = message.format(directory_entry)
+            self.session.io_manager.display(message)
+        self.session.io_manager.proceed('')
 
     def interactively_copy_segment_pdfs(self, pending_user_input=None):
         r'''Interactively copies segment PDFs from segment
@@ -233,46 +274,10 @@ class BuildDirectoryManager(DirectoryManager):
                 target_file_name,
                 )
             shutil.copyfile(source_file_path, target_file_path)
-            message = 'Segment {} copied.'
+            message = 'Segment {} PDF copied.'
             message = message.format(directory_entry)
             self.session.io_manager.display(message)
         self.session.io_manager.proceed('')
-
-#    def interactively_view_back_cover(self, pending_user_input=None):
-#        r'''Interactively views back cover.
-#
-#        Returns none.
-#        '''
-#        self.session.io_manager.assign_user_input(pending_user_input)
-#        file_path = self._get_file_path_ending_with('back-cover.pdf')
-#        iotools.open_file(file_path)
-#
-#    def interactively_view_front_cover(self, pending_user_input=None):
-#        r'''Interactively views front cover.
-#
-#        Returns none.
-#        '''
-#        self.session.io_manager.assign_user_input(pending_user_input)
-#        file_path = self._get_file_path_ending_with('front-cover.pdf')
-#        iotools.open_file(file_path)
-#
-#    def interactively_view_preface(self, pending_user_input=None):
-#        r'''Interactively views preface.
-#
-#        Returns none.
-#        '''
-#        self.session.io_manager.assign_user_input(pending_user_input)
-#        file_path = self._get_file_path_ending_with('preface.pdf')
-#        iotools.open_file(file_path)
-#
-#    def interactively_view_score(self, pending_user_input=None):
-#        r'''Interactively views score.
-#
-#        Returns none.
-#        '''
-#        self.session.io_manager.assign_user_input(pending_user_input)
-#        file_path = self._get_file_path_ending_with('score.pdf')
-#        iotools.open_file(file_path)
 
     def manage_back_cover(self, clear=True, cache=False):
         r'''Manages back cover.

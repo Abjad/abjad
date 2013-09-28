@@ -57,6 +57,13 @@ class FileManager(FilesystemAssetManager):
         command = 'vim + {}'.format(self.filesystem_path)
         iotools.spawn_subprocess(command)
 
+    def interactively_open(self):
+        r'''Interactively opens file.
+
+        Returns none.
+        '''
+        iotools.open_file(self.filesystem_path)
+
     def interactively_view(self):
         r'''Interactively views file.
 

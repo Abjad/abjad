@@ -167,8 +167,10 @@ class ScorePackageManager(PackageManager):
             return True
         elif result == 'st':
             self.repository_st(is_interactive=True)
+        elif result == 'up':
+            self.repository_up(is_interactive=True)
         else:
-            raise ValueError
+            raise ValueError(result)
 
     def _handle_setup_menu_result(self, result):
         assert isinstance(result, str)
@@ -232,9 +234,10 @@ class ScorePackageManager(PackageManager):
     def _make_repository_menu(self):
         menu = self.session.io_manager.make_menu(where=self._where)
         command_section = menu.make_command_section()
-        command_section.append(('st', 'st'))
         command_section.append(('add', 'add'))
-        command_section.append(('ci', 'ci'))
+        command_section.append(('commit', 'ci'))
+        command_section.append(('status', 'st'))
+        command_section.append(('update', 'up'))
         return menu
 
     def _make_setup_menu(self):
