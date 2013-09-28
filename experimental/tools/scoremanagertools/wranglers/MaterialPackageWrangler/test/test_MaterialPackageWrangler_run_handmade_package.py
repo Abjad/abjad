@@ -15,7 +15,7 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
         assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
         mpp = scoremanagertools.managers.MaterialPackageManager('experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'material_definition.py', 
@@ -43,7 +43,7 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
             'testnotes incanned canned_exception.py default q')
         assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
         mpp = scoremanagertools.managers.MaterialPackageManager('experimental.tools.scoremanagertools.materialpackages.testnotes')
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'material_definition.py', 
@@ -73,7 +73,7 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
         assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
         mpp = scoremanagertools.managers.MaterialPackageManager('experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'material_definition.py', 
@@ -103,7 +103,7 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
         assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
         mpp = scoremanagertools.managers.MaterialPackageManager('experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py',
             '__metadata__.py',
             'illustration_builder.py', 
@@ -137,7 +137,7 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
         mpp = scoremanagertools.managers.MaterialPackageManager(
             'experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             ]
@@ -168,7 +168,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
         assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
         mpp = scoremanagertools.managers.MaterialPackageManager('experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'material_definition.py', 
@@ -202,7 +202,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
         mpp = scoremanagertools.managers.MaterialPackageManager(
             'experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
                 '__init__.py', 
                 '__metadata__.py',
                 'material_definition.py', 
@@ -234,7 +234,7 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
         assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
         mpp = scoremanagertools.managers.MaterialPackageManager('experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'material_definition.py', 
@@ -265,7 +265,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
         assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
         mpp = scoremanagertools.managers.MaterialPackageManager('experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py',
             '__metadata__.py',
             'illustration_builder.py', 
@@ -300,7 +300,7 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
         assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
         mpp = scoremanagertools.managers.MaterialPackageManager('experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'illustration.ly', 

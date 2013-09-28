@@ -15,7 +15,7 @@ def test_TempoMarkInventoryMaterialPackageMaker_01():
             )
         mpp = scoremanagertools.materialpackagemakers.TempoMarkInventoryMaterialPackageMaker(
             'experimental.tools.scoremanagertools.materialpackages.testtempoinventory')
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'output_material.py', 

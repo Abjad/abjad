@@ -18,7 +18,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_01():
         mpp = scoremanagertools.managers.MaterialPackageManager(
             'experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'material_definition.py', 
@@ -58,7 +58,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_03():
         mpp = scoremanagertools.managers.MaterialPackageManager(
             'experimental.tools.scoremanagertools.materialpackages.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'material_definition.py', 

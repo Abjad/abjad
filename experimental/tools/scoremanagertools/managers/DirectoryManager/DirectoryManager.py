@@ -42,7 +42,7 @@ class DirectoryManager(FilesystemAssetManager):
             self._run_asset_manager(result)
 
     def _make_asset_menu_entries(self):
-        file_names = self.list_directory()
+        file_names = self._list_directory()
         file_names = [x for x in file_names if x[0].isalpha()]
         file_paths = []
         for file_name in file_names:
@@ -108,7 +108,7 @@ class DirectoryManager(FilesystemAssetManager):
             return
         self.filesystem_path = result
 
-    def list_directory(self, public_entries_only=False):
+    def _list_directory(self, public_entries_only=False):
         r'''Lists directory.
 
         Returns list.
@@ -135,13 +135,13 @@ class DirectoryManager(FilesystemAssetManager):
             os.mkdir(self.filesystem_path)
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
-    def print_directory_entries(self):
+    def interactively__list_directory(self):
         r'''Prints directory entries.
 
         Returns none.
         '''
         lines = []
-        for directory_entry in self.list_directory():
+        for directory_entry in self._list_directory():
             filesystem_path = os.path.join(
                 self.filesystem_path, 
                 directory_entry,
@@ -160,7 +160,7 @@ class DirectoryManager(FilesystemAssetManager):
         self.session.io_manager.display('')
         self.session.hide_next_redraw = True
 
-    def run_py_test(self, prompt=True):
+    def interactively_run_tests(self, prompt=True):
         r'''Runs py.test on directory.
 
         Returns none.
@@ -177,6 +177,6 @@ class DirectoryManager(FilesystemAssetManager):
 
     user_input_to_action = FilesystemAssetManager.user_input_to_action.copy()
     user_input_to_action.update({
-        'ls': print_directory_entries,
-        'py.test': run_py_test,
+        'ls': interactively__list_directory,
+        'py.test': interactively_run_tests,
         })

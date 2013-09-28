@@ -310,7 +310,7 @@ class ScoreManager(ScoreManagerObject):
     def profile_visible_scores(self):
         self.score_package_wrangler.profile_visible_assets()
 
-    def run_py_test_on_all_user_scores(self, prompt=True):
+    def interactively_run_tests_on_all_user_scores(self, prompt=True):
         command = 'py.test {}'.format(
             self.configuration.user_score_packages_directory_path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
@@ -343,7 +343,7 @@ class ScoreManager(ScoreManagerObject):
         'new':          interactively_make_new_score,
         'profile':      profile_visible_scores,
         'rep':          manage_repository,
-        'test':         run_py_test_on_all_user_scores,
+        'test':         interactively_run_tests_on_all_user_scores,
         'y':            manage_stylesheets,
         'wc':           write_cache,
         }

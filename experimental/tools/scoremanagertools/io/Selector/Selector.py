@@ -164,7 +164,7 @@ class Selector(ScoreManagerObject):
                 filesystem_path=directory_path,
                 session=session,
                 )
-            entries = manager.list_directory(public_entries_only=True)
+            entries = manager._list_directory(public_entries_only=True)
             for entry in entries:
                 if entry not in forbidden_directory_entries:
                     items.append(entry)

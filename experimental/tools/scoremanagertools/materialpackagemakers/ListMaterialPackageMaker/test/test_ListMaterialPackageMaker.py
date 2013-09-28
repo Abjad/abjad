@@ -14,7 +14,7 @@ def test_ListMaterialPackageMaker_01():
             )
         mpp = scoremanagertools.materialpackagemakers.ListMaterialPackageMaker(
             'experimental.tools.scoremanagertools.materialpackages.testlist')
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'output_material.py',

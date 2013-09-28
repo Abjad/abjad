@@ -16,7 +16,7 @@ def test_RhythmMakerMaterialPackageMaker_01():
             )
         mpp = scoremanagertools.materialpackagemakers.RhythmMakerMaterialPackageMaker(
             'experimental.tools.scoremanagertools.materialpackages.testrhythmmaker')
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'output_material.py',

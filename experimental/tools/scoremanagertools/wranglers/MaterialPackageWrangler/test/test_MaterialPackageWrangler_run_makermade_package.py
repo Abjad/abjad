@@ -16,7 +16,7 @@ def test_MaterialPackageWrangler_run_makermade_package_01():
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
             'experimental.tools.scoremanagertools.materialpackages.testsargasso')
         assert mpp.is_makermade
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'user_input.py',
@@ -45,7 +45,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
             'experimental.tools.scoremanagertools.scorepackages.red_example_score.materials.testsargasso')
         assert mpp.is_makermade
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'user_input.py',
@@ -75,7 +75,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 #        mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 #        assert mpp.is_makermade and not mpp.is_data_only
-#        assert mpp.list_directory() == ['__init__.py', 'material_definition.py']
+#        assert mpp._list_directory() == ['__init__.py', 'material_definition.py']
 #        assert not mpp.has_output_material_module
 #        assert not mpp.has_illustration_builder_module
 #        assert mpp.material_definition is None
@@ -102,7 +102,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 #        mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 #        assert mpp.is_makermade and not mpp.is_data_only
-#        assert mpp.list_directory() == ['__init__.py', 'material_definition.py']
+#        assert mpp._list_directory() == ['__init__.py', 'material_definition.py']
 #        assert not mpp.has_output_material_module
 #        assert not mpp.has_illustration_builder_module
 #        assert mpp.material_definition is None
@@ -128,7 +128,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 #        mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 #        assert mpp.is_makermade and not mpp.is_data_only
-#        assert mpp.list_directory() == ['__init__.py',
+#        assert mpp._list_directory() == ['__init__.py',
 #            'illustration_builder.py', 'material_definition.py', 'output_material.py']
 #        assert mpp.has_illustration_builder_module
 #        assert mpp.material_definition and all(isinstance(x, Note) for x in
@@ -155,7 +155,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 #        mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 #        assert mpp.is_makermade and not mpp.is_data_only
-#        assert mpp.list_directory() == ['__init__.py']
+#        assert mpp._list_directory() == ['__init__.py']
 #        assert not mpp.has_material_definition_module
 #        assert not mpp.has_output_material_module
 #        assert not mpp.has_illustration_builder_module
@@ -181,7 +181,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 #        mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 #        assert mpp.is_makermade and not mpp.is_data_only
-#        assert mpp.list_directory() == ['__init__.py', 'material_definition.py']
+#        assert mpp._list_directory() == ['__init__.py', 'material_definition.py']
 #        assert not mpp.has_output_material_module
 #        assert not mpp.has_illustration_builder_module
 #        assert mpp.material_definition is None
@@ -208,7 +208,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 #        mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 #        assert mpp.is_makermade and not mpp.is_data_only
-#        assert mpp.list_directory() == ['__init__.py', 'material_definition.py']
+#        assert mpp._list_directory() == ['__init__.py', 'material_definition.py']
 #        assert not mpp.has_output_material_module
 #        assert not mpp.has_illustration_builder_module
 #        assert mpp.material_definition and all(isinstance(x, Note) for x in
@@ -234,7 +234,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 #        mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 #        assert mpp.is_makermade and not mpp.is_data_only
-#        assert mpp.list_directory() == ['__init__.py', 'material_definition.py']
+#        assert mpp._list_directory() == ['__init__.py', 'material_definition.py']
 #        assert not mpp.has_output_material_module
 #        assert not mpp.has_illustration_builder_module
 #        assert mpp.material_definition is None
@@ -261,7 +261,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 #        mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 #        assert mpp.is_makermade and not mpp.is_data_only
-#        assert mpp.list_directory() == ['__init__.py',
+#        assert mpp._list_directory() == ['__init__.py',
 #            'illustration_builder.py', 'material_definition.py', 'output_material.py']
 #        assert mpp.has_illustration_builder_module
 #        assert mpp.material_definition and all(isinstance(x, Note) for x in
@@ -290,7 +290,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 #        mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 #        assert mpp.is_makermade and not mpp.is_data_only
-#        assert mpp.list_directory() == [
+#        assert mpp._list_directory() == [
 #            '__init__.py', 'illustration.ly', 'illustration.pdf',
 #            'illustration_builder.py', 'material_definition.py', 'output_material.py']
 #        assert mpp.has_illustration_ly

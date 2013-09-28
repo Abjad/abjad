@@ -16,7 +16,7 @@ def test_ArticulationHandlerMaterialPackageMaker_01():
             )
         mpp = scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker(
             'experimental.tools.scoremanagertools.materialpackages.testarticulationhandler')
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'output_material.py', 

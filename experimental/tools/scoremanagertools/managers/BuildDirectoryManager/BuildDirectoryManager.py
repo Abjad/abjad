@@ -32,7 +32,7 @@ class BuildDirectoryManager(DirectoryManager):
     ### PRIVATE METHODS ###
 
     def _get_file_path_ending_with(self, string):
-        for file_name in self.list_directory():
+        for file_name in self._list_directory():
             if file_name.endswith(string):
                 file_path = os.path.join(self.filesystem_path, file_name)
                 return file_path

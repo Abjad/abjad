@@ -15,7 +15,7 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageMaker_01():
             'q'
             )
         mpp = scoremanagertools.materialpackagemakers.OctaveTranspositionMappingInventoryMaterialPackageMaker('experimental.tools.scoremanagertools.materialpackages.testoctavetrans')
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             ]
@@ -42,7 +42,7 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageMaker_02():
             )
         mpp = scoremanagertools.materialpackagemakers.OctaveTranspositionMappingInventoryMaterialPackageMaker(
             'experimental.tools.scoremanagertools.materialpackages.testoctavetrans')
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'output_material.py',

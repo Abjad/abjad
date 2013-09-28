@@ -17,7 +17,7 @@ def test_MaterialPackageWrangler_run_data_only_package_01():
         mpp = scoremanagertools.managers.MaterialPackageManager(
             'experimental.tools.scoremanagertools.materialpackages.testnumbers')
         assert mpp.is_data_only
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'material_definition.py', 
@@ -49,7 +49,7 @@ def test_MaterialPackageWrangler_run_data_only_package_02():
         mpp = scoremanagertools.managers.MaterialPackageManager(
             'experimental.tools.scoremanagertools.materialpackages.testnumbers')
         assert mpp.is_data_only
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'material_definition.py', 
@@ -82,7 +82,7 @@ def test_MaterialPackageWrangler_run_data_only_package_03():
         mpp = scoremanagertools.managers.MaterialPackageManager(
             'experimental.tools.scoremanagertools.materialpackages.testnumbers')
         assert mpp.is_data_only
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'material_definition.py', 
@@ -115,7 +115,7 @@ def test_MaterialPackageWrangler_run_data_only_package_04():
         mpp = scoremanagertools.managers.MaterialPackageManager(
             'experimental.tools.scoremanagertools.materialpackages.testnumbers')
         assert mpp.is_data_only
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'material_definition.py', 
@@ -147,7 +147,7 @@ def test_MaterialPackageWrangler_run_data_only_package_05():
         mpp = scoremanagertools.managers.MaterialPackageManager(
             'experimental.tools.scoremanagertools.materialpackages.testnumbers')
         assert mpp.is_data_only
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             ]
@@ -179,7 +179,7 @@ def test_MaterialPackageWrangler_run_data_only_package_06():
         mpp = scoremanagertools.managers.MaterialPackageManager(
             'experimental.tools.scoremanagertools.materialpackages.testnumbers')
         assert mpp.is_data_only
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'material_definition.py', 
@@ -214,7 +214,7 @@ def test_MaterialPackageWrangler_run_data_only_package_07():
         mpp = scoremanagertools.managers.MaterialPackageManager(
             'experimental.tools.scoremanagertools.materialpackages.testnumbers')
         assert mpp.is_data_only
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'material_definition.py', 
@@ -247,7 +247,7 @@ def test_MaterialPackageWrangler_run_data_only_package_08():
         mpp = scoremanagertools.managers.MaterialPackageManager(
             'experimental.tools.scoremanagertools.materialpackages.testnumbers')
         assert mpp.is_data_only
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'material_definition.py', 
@@ -281,7 +281,7 @@ def test_MaterialPackageWrangler_run_data_only_package_09():
         mpp = scoremanagertools.managers.MaterialPackageManager(
             'experimental.tools.scoremanagertools.materialpackages.testnumbers')
         assert mpp.is_data_only
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'material_definition.py', 

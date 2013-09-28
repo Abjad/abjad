@@ -16,7 +16,7 @@ def test_DynamicHandlerMaterialPackageMaker_01():
             )
         mpp = scoremanagertools.materialpackagemakers.DynamicHandlerMaterialPackageMaker(
             'experimental.tools.scoremanagertools.materialpackages.testdynamichandler')
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'output_material.py', 

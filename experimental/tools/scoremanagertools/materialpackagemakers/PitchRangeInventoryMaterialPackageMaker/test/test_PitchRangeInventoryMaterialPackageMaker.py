@@ -15,7 +15,7 @@ def test_PitchRangeInventoryMaterialPackageMaker_01():
             )
         mpp = scoremanagertools.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker(
             'experimental.tools.scoremanagertools.materialpackages.testpir')
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             ]
@@ -40,7 +40,7 @@ def test_PitchRangeInventoryMaterialPackageMaker_02():
             )
         mpp = scoremanagertools.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker(
             'experimental.tools.scoremanagertools.materialpackages.testpir')
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'output_material.py',

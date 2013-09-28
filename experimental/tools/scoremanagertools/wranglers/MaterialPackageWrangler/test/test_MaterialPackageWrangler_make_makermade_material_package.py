@@ -14,7 +14,7 @@ def test_MaterialPackageWrangler_make_makermade_material_package_01():
         assert wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testsargasso')
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('experimental.tools.scoremanagertools.materialpackages.testsargasso')
         assert mpp.is_makermade
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'user_input.py',
@@ -49,7 +49,7 @@ def test_MaterialPackageWrangler_make_makermade_material_package_03():
         assert wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testsargasso')
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('experimental.tools.scoremanagertools.materialpackages.testsargasso')
         assert mpp.is_makermade
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'user_input.py',
@@ -71,7 +71,7 @@ def test_MaterialPackageWrangler_make_makermade_material_package_04():
         assert wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testsargasso')
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('experimental.tools.scoremanagertools.materialpackages.testsargasso')
         assert mpp.is_makermade
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'user_input.py',

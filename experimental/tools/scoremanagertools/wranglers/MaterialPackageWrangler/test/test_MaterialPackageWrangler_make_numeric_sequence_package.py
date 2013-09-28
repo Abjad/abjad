@@ -12,7 +12,7 @@ def test_MaterialPackageWrangler_make_numeric_sequence_package_01():
         assert wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testsequence')
         mpp = scoremanagertools.managers.MaterialPackageManager('experimental.tools.scoremanagertools.materialpackages.testsequence')
         assert mpp.is_data_only
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'material_definition.py', 
@@ -36,7 +36,7 @@ def test_MaterialPackageWrangler_make_numeric_sequence_package_02():
         assert wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testsequence')
         mpp = scoremanagertools.managers.MaterialPackageManager('experimental.tools.scoremanagertools.materialpackages.testsequence')
         assert mpp.is_data_only
-        assert mpp.list_directory() == [
+        assert mpp._list_directory() == [
             '__init__.py', 
             '__metadata__.py',
             'material_definition.py', 
