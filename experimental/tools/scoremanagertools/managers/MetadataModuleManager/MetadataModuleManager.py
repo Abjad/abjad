@@ -1,22 +1,11 @@
 # -*- encoding: utf-8 -*-
 import collections
 import os
-from experimental.tools.scoremanagertools.managers.ModuleManager \
-    import ModuleManager
+from experimental.tools.scoremanagertools.managers.FileManager \
+    import FileManager
 
 
-class MetadataModuleManager(ModuleManager):
-
-    ### INITIALIZER ###
-
-    def __init__(self, filesystem_path=None, session=None):
-        assert '__metadata__' in filesystem_path, repr(filesystem_path)
-        assert os.path.sep in filesystem_path, repr(filesystem_path)
-        ModuleManager.__init__(
-            self,
-            filesystem_path=filesystem_path,
-            session=session,
-            )
+class MetadataModuleManager(FileManager):
 
     ### PUBLIC METHODS ###
 

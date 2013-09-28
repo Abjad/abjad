@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import stringtools
-from experimental.tools.scoremanagertools.managers.ModuleManager \
-    import ModuleManager
+from experimental.tools.scoremanagertools.managers.FileManager \
+    import FileManager
 
 
-class UserInputModuleManager(ModuleManager):
+class UserInputModuleManager(FileManager):
 
     ### PUBLIC PROPERTIES ###
 

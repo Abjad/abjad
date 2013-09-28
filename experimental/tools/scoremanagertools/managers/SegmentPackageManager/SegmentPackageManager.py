@@ -117,7 +117,7 @@ class SegmentPackageManager(PackageManager):
     @property
     def segment_definition_module_manager(self):
         from experimental.tools import scoremanagertools
-        manager = scoremanagertools.managers.ModuleManager(
+        manager = scoremanagertools.managers.FileManager(
             self.segment_definition_module_packagesystem_path,
             session=self.session,
             )

@@ -31,7 +31,7 @@ class ScorePackageManager(PackageManager):
             'instrumentation.py',
             )
         self._instrumentation_module_manager = \
-            scoremanagertools.managers.ModuleManager(
+            scoremanagertools.managers.FileManager(
             #package_path,
             instrumentation_module_file_path,
             session=self.session,
@@ -200,7 +200,7 @@ class ScorePackageManager(PackageManager):
             self.filesystem_path,
             'instrumentation.py',
             )
-        manager = scoremanagertools.managers.ModuleManager(
+        manager = scoremanagertools.managers.FileManager(
             file_path,
             session=self.session,
             )

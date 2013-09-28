@@ -318,7 +318,7 @@ class MaterialPackageManager(PackageManager):
     @property
     def illustration_builder_module_manager(self):
         from experimental.tools import scoremanagertools
-        return scoremanagertools.managers.ModuleManager(
+        return scoremanagertools.managers.FileManager(
             #self.illustration_builder_packagesystem_path, 
             self.illustration_builder_module_file_path, 
             session=self.session,
@@ -535,7 +535,7 @@ class MaterialPackageManager(PackageManager):
     @property
     def output_material_module_manager(self):
         from experimental.tools import scoremanagertools
-        return scoremanagertools.managers.ModuleManager(
+        return scoremanagertools.managers.FileManager(
             #self.output_material_module_path, 
             self.output_material_module_file_path, 
             session=self.session,

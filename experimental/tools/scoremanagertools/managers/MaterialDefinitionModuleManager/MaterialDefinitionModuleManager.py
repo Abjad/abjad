@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 import os
 from abjad.tools import iotools
-from experimental.tools.scoremanagertools.managers.ModuleManager \
-    import ModuleManager
+from experimental.tools.scoremanagertools.managers.FileManager \
+    import FileManager
 
 
-class MaterialDefinitionModuleManager(ModuleManager):
+class MaterialDefinitionModuleManager(FileManager):
 
     ### PUBLIC PROPERTIES ###
 

@@ -105,7 +105,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def _get_current_view_module_manager(self):
         from experimental.tools import scoremanagertools
         file_path = self._get_current_view_file_path()
-        manager = scoremanagertools.managers.ModuleManager(
+        manager = scoremanagertools.managers.FileManager(
             file_path,
             session=self.session,
             )
@@ -188,7 +188,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         view_file_path = self._get_current_view_file_path()
         if view_file_path is None:
             return
-        manager = scoremanagertools.managers.ModuleManager(
+        manager = scoremanagertools.managers.FileManager(
             view_file_path,
             session=self.session,
             )

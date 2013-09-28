@@ -8,6 +8,7 @@ from experimental.tools.scoremanagertools.managers.FilesystemAssetManager \
 
 class FileManager(FilesystemAssetManager):
     r'''File manager.
+
     '''
 
     ### CLASS VARIABLES ###
