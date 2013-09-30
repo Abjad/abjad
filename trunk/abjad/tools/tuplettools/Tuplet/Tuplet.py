@@ -191,6 +191,7 @@ class Tuplet(Container):
 
     ### PRIVATE METHODS ###
 
+    # TODO: hoist to Tuplet and make work for all tuplet instances
     def _fix(self):
         from abjad.tools import leaftools
         from abjad.tools import tuplettools
