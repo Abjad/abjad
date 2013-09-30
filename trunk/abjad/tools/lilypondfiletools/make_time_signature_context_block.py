@@ -2,7 +2,11 @@
 from abjad.tools import schemetools
 
 
-def make_time_signature_context_block(font_size=3, padding=4):
+def make_time_signature_context_block(
+    font_size=3, 
+    minimum_distance=12, 
+    padding=4,
+    ):
     r'''Make time signature context block:
 
     ::
@@ -46,10 +50,18 @@ def make_time_signature_context_block(font_size=3, padding=4):
         'ly:self-alignment-interface::x-aligned-on-self')
     context_block.override.time_signature.Y_extent = (0, 0)
     context_block.override.time_signature.break_align_symbol = False
-    context_block.override.time_signature.break_visibility = schemetools.Scheme('end-of-line-invisible')
+    context_block.override.time_signature.break_visibility = \
+        schemetools.Scheme('end-of-line-invisible')
     context_block.override.time_signature.font_size = font_size
-    context_block.override.time_signature.self_alignment_X = schemetools.Scheme('center')
-    spacing_vector = layouttools.make_spacing_vector(0, 0, padding, 0)
-    context_block.override.vertical_axis_group.default_staff_staff_spacing = spacing_vector
+    context_block.override.time_signature.self_alignment_X = \
+        schemetools.Scheme('center')
+    spacing_vector = layouttools.make_spacing_vector(
+        0, 
+        minimum_distance, 
+        padding, 
+        0,
+        )
+    context_block.override.vertical_axis_group.default_staff_staff_spacing = \
+        spacing_vector
 
     return context_block
