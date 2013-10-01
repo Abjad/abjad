@@ -91,7 +91,7 @@ class DirectoryManager(FilesystemAssetManager):
         self,
         filesystem_path,
         ):
-        manager = self.asset_manager_class(
+        manager = self._asset_manager_class(
             filesystem_path=filesystem_path,
             session=self.session,
             )
@@ -109,7 +109,7 @@ class DirectoryManager(FilesystemAssetManager):
         Returns none.
         '''
         self.session.io_manager.assign_user_input(pending_user_input)
-        manager = self.asset_manager_class(
+        manager = self._asset_manager_class(
             filesystem_path=filesystem_path,
             session=self.session,
             )

@@ -120,6 +120,15 @@ class FileManager(FilesystemAssetManager):
 
     ### PUBLIC METHODS ###
 
+    def interactively_call_lilypond(self, prompt=True):
+        r'''Interactively calls LilyPond on file.
+
+        Returns none.
+        '''
+        command = 'lily {}'.format(self.filesystem_path)
+        iotools.spawn_subprocess(command)
+        self.session.io_manager.proceed('', is_interactive=prompt)
+
     def interactively_edit(self):
         r'''Interactively edits file.
 

@@ -96,7 +96,7 @@ class SegmentPackageWrangler(PackageWrangler):
             segment_package_path = \
                 self.configuration.filesystem_path_to_packagesystem_path(
                 segment_package_directory_path)
-            manager = self.asset_manager_class(
+            manager = self._asset_manager_class(
                 segment_package_path,
                 session=self.session,
                 )
@@ -153,7 +153,7 @@ class SegmentPackageWrangler(PackageWrangler):
             segment_package_path = \
                 self.configuration.filesystem_path_to_packagesystem_path(
                 segment_package_directory_path)
-            manager = self.asset_manager_class(
+            manager = self._asset_manager_class(
                 segment_package_path,
                 session=self.session,
                 )
@@ -377,7 +377,7 @@ class SegmentPackageWrangler(PackageWrangler):
             package_path)
         assert not os.path.exists(directory_path)
         os.mkdir(directory_path)
-        manager = self.asset_manager_class(
+        manager = self._asset_manager_class(
             packagesystem_path=package_path,
             session=self.session,
             )

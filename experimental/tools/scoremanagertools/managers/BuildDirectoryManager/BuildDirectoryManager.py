@@ -78,10 +78,25 @@ class BuildDirectoryManager(DirectoryManager):
             self.interactively_copy_segment_pdfs()
         elif result == 'pdfv':
             self._interactively_open_file_ending_with('score.pdf')
-        elif result == 'se':
+        elif result == 'seged':
             self._interactively_edit_file_ending_with('score-segments.ly')
+        elif result == 'segly':
+            self._interactively_call_lilypond_on_file_ending_with(
+                'score-segments.ly')
+        elif result == 'segv':
+            self._interactively_open_file_ending_with('score-segments.pdf')
         elif result == 'ts':
             self._interactively_typeset_file_ending_with('score.tex')
+
+    def _interactively_call_lilypond_on_file_ending_with(self, string):
+        file_path = self._get_file_path_ending_with(string)
+        if file_path:
+            file_manager = self._get_file_manager(file_path)
+            file_manager.interactively_call_lilypond()
+        else:
+            message = 'file ending in {!r} not found.'
+            message = message.format(string)
+            self.session.io_manager.proceed(message)
 
     def _interactively_edit_file_ending_with(self, string):
         file_path = self._get_file_path_ending_with(string)
@@ -163,7 +178,9 @@ class BuildDirectoryManager(DirectoryManager):
         command_section.append(('segment lys - copy', 'lycp'))
         command_section.append(('segment pdfs - copy', 'pdfcp'))
         command_section = menu.make_command_section()
-        command_section.append(('segment assembly tex - edit', 'se'))
+        command_section.append(('segment assembly ly - edit', 'seged'))
+        command_section.append(('segment assembly ly - lilypond', 'segly'))
+        command_section.append(('segment assembly pdf - view', 'segv'))
         command_section = menu.make_command_section()
         command_section.append(('source - edit', 'e'))
         command_section.append(('source - generate', 'g'))
