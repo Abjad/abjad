@@ -104,7 +104,7 @@ class SegmentPackageManager(PackageManager):
         return property(**locals())
 
     @property
-    def segment_definition_module_file_name(self):
+    def segment_definition_module_file_path(self):
         return os.path.join(self.filesystem_path, 'definition.py')
 
     @property
@@ -118,7 +118,7 @@ class SegmentPackageManager(PackageManager):
     def segment_definition_module_manager(self):
         from experimental.tools import scoremanagertools
         manager = scoremanagertools.managers.FileManager(
-            self.segment_definition_module_packagesystem_path,
+            self.segment_definition_module_file_path,
             session=self.session,
             )
         return manager
@@ -372,8 +372,8 @@ class SegmentPackageManager(PackageManager):
 
         Returns none.
         '''
-        if not os.path.exists(self.segment_definition_module_file_name):
-            file_pointer = file(self.segment_definition_module_file_name, 'w')
+        if not os.path.exists(self.segment_definition_module_file_path):
+            file_pointer = file(self.segment_definition_module_file_path, 'w')
             file_pointer.write('# -*- encoding: utf-8 -*-\n')
             file_pointer.write('from abjad import *\n')
             file_pointer.write('\n\n')

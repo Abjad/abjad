@@ -44,7 +44,8 @@
 
 16. Author ScorePackageManager docstrings.
 
-17. Add PackageystemAssetManager to superclass ModuleManager and PackageManager.
+17. Add PackageystemAssetManager to superclass ModuleManager and 
+    PackageManager.
 
 18. Create a PackagesystemAssetManager to parallel PacakagesystemAssetWrangler.
 
@@ -72,3 +73,25 @@
     Then integrate against all classes.
 
 24. Finish the docstrings for all io classes.
+
+25. Refactor iotools as a single IOManager class.
+
+26. Make scoremanagertools.io.IOManager inherit from iotools.IOManager.
+
+27. Audit all '*_file_name' variables in the system.
+    Most are probably file path variables and should be renamed.
+    Just run "abjad-ack _file_name" and inspect the output
+    for score manager source files.
+
+28. Beautify the code all of score manager and music expression test files.
+
+29. Refactor scoremanagertools.editors to contain as few classes as possible.
+
+30. Refactor score manager wizard classes to use instance attributes in place
+    of class attributes.
+
+31. Refactor score manager material package maker classes to instance
+    attributes in place of class attributes.
+
+32. Implement a Session.display_variables() method to print the current value
+    of all session variables to the terminal for user inspection.
