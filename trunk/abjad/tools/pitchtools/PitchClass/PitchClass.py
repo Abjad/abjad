@@ -22,6 +22,46 @@ class PitchClass(AbjadObject):
         re.VERBOSE,
         )
 
+    _diatonic_pitch_class_name_to_diatonic_pitch_class_number = {
+        'c': 0,
+        'd': 1,
+        'e': 2,
+        'f': 3,
+        'g': 4,
+        'a': 5,
+        'b': 6,
+        }
+
+    _diatonic_pitch_class_name_to_pitch_class_number = {
+        'c': 0,
+        'd': 2,
+        'e': 4,
+        'f': 5,
+        'g': 7,
+        'a': 9,
+        'b': 11,
+        }
+
+    _diatonic_pitch_class_number_to_diatonic_pitch_class_name = {
+        0: 'c',
+        1: 'd',
+        2: 'e',
+        3: 'f',
+        4: 'g',
+        5: 'a',
+        6: 'b',
+        }
+
+    _diatonic_pitch_class_number_to_pitch_class_number = {
+        0: 0,
+        1: 2,
+        2: 4,
+        3: 5,
+        4: 7,
+        5: 9,
+        6: 11,
+        }
+
     _pitch_class_name_regex_body = '''
         {}          # exactly one diatonic pitch-class name
         {}          # followed by exactly one alphabetic accidental name
@@ -55,44 +95,44 @@ class PitchClass(AbjadObject):
             abctools.AbjadObject._get_tools_package_qualified_repr_pieces(
                 self, is_indented=False))]
 
-    ### PRIVATE PROPERTIES ###
+    ### PUBLIC METHODS ###
 
-    _diatonic_pitch_class_number_to_diatonic_pitch_class_name = {
-        0: 'c',
-        1: 'd',
-        2: 'e',
-        3: 'f',
-        4: 'g',
-        5: 'a',
-        6: 'b',
-        }
+    @staticmethod
+    def is_diatonic_pitch_class_name(expr):
+        '''True when `expr` is a diatonic pitch-class name. Otherwise false:
 
-    _diatonic_pitch_class_name_to_diatonic_pitch_class_number = {
-        'c': 0,
-        'd': 1,
-        'e': 2,
-        'f': 3,
-        'g': 4,
-        'a': 5,
-        'b': 6,
-        }
+        ::
 
-    _diatonic_pitch_class_name_to_pitch_class_number = {
-        'c': 0,
-        'd': 2,
-        'e': 4,
-        'f': 5,
-        'g': 7,
-        'a': 9,
-        'b': 11,
-        }
+            >>> pitchtools.PitchClass.is_diatonic_pitch_class_name('c')
+            True
 
-    _diatonic_pitch_class_number_to_pitch_class_number = {
-        0: 0,
-        1: 2,
-        2: 4,
-        3: 5,
-        4: 7,
-        5: 9,
-        6: 11,
-        }
+        The regex ``^[a-g,A-G]$`` underlies this predicate.
+
+        Return boolean.
+        '''
+        if not isinstance(expr, str):
+            return False
+        return bool(PitchClass._diatonic_pitch_class_name_regex.match(expr))
+
+    @staticmethod
+    def is_diatonic_pitch_class_number(expr):
+        '''True when `expr` is a diatonic pitch-class number. Otherwise false:
+
+        ::
+
+            >>> pitchtools.PitchClass.is_diatonic_pitch_class_number(0)
+            True
+
+        ::
+
+            >>> pitchtools.PitchClass.is_diatonic_pitch_class_number(-5)
+            False
+
+        The diatonic pitch-class numbers are equal to the set
+        ``[0, 1, 2, 3, 4, 5, 6]``.
+
+        Return boolean.
+        '''
+        if expr in range(7):
+            return True
+        return False
