@@ -49,9 +49,9 @@ class NamedPitch(Pitch):
                     args[0].chromatic_pitch_number)
             elif hasattr(args[0], 'named_pitch'):
                 self._init_by_named_pitch(args[0].named_pitch)
-#            elif pitchtools.is_chromatic_pitch_class_name_octave_number_pair(
+#            elif pitchtools.is_pitch_class_name_octave_number_pair(
 #                args[0]):
-#                self._init_by_chromatic_pitch_class_name_octave_number_pair(*args)
+#                self._init_by_pitch_class_name_octave_number_pair(*args)
             elif pitchtools.is_pitch_class_octave_number_string(args[0]):
                 self._init_by_pitch_class_octave_number_string(*args)
             elif isinstance(args[0], str):
@@ -61,7 +61,7 @@ class NamedPitch(Pitch):
                     self._class_name, args))
         elif len(args) == 2:
             if isinstance(args[0], str):
-                self._init_by_chromatic_pitch_class_name_and_octave_number(*args)
+                self._init_by_pitch_class_name_and_octave_number(*args)
             elif isinstance(args[0], pitchtools.NamedPitchClass):
                 self._init_by_named_pitch_class_and_octave_number(*args)
             elif isinstance(args[0], (int, long, float)):
@@ -176,15 +176,15 @@ class NamedPitch(Pitch):
         return not self == arg
 
     def __repr__(self):
-        if self.chromatic_pitch_class_name and not self.octave_number is None:
+        if self.pitch_class_name and not self.octave_number is None:
             return '%s(%r)' % (self._class_name, str(self))
         else:
             return '%s()' % self._class_name
 
     def __str__(self):
-        if self.chromatic_pitch_class_name and not self.octave_number is None:
+        if self.pitch_class_name and not self.octave_number is None:
             return '%s%s' % (
-                self.chromatic_pitch_class_name, self._octave_tick_string)
+                self.pitch_class_name, self._octave_tick_string)
         else:
             return ''
 
@@ -230,27 +230,27 @@ class NamedPitch(Pitch):
 
     ### PRIVATE METHODS ###
 
-    def _init_by_chromatic_pitch_class_name_and_octave_number(
-        self, chromatic_pitch_class_name, octave_number):
+    def _init_by_pitch_class_name_and_octave_number(
+        self, pitch_class_name, octave_number):
         from abjad.tools import pitchtools
         octave_tick_string = str(pitchtools.OctaveIndication(octave_number))
-        chromatic_pitch_name = chromatic_pitch_class_name + octave_tick_string
+        chromatic_pitch_name = pitch_class_name + octave_tick_string
         self._chromatic_pitch_name = chromatic_pitch_name
 
-    def _init_by_chromatic_pitch_class_name_octave_number_pair(self, pair):
+    def _init_by_pitch_class_name_octave_number_pair(self, pair):
         from abjad.tools import pitchtools
-        chromatic_pitch_class_name, octave_number = pair
+        pitch_class_name, octave_number = pair
         octave_tick_string = str(pitchtools.OctaveIndication(octave_number))
-        chromatic_pitch_name = chromatic_pitch_class_name + octave_tick_string
+        chromatic_pitch_name = pitch_class_name + octave_tick_string
         self._chromatic_pitch_name = chromatic_pitch_name
 
     def _init_by_chromatic_pitch_name(self, pitch_string):
         from abjad.tools import pitchtools
-        name = pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_name(
+        name = pitchtools.chromatic_pitch_name_to_pitch_class_name(
             pitch_string)
         octave_number = pitchtools.OctaveIndication.from_pitch_name(
             pitch_string).octave_number
-        self._init_by_chromatic_pitch_class_name_and_octave_number(
+        self._init_by_pitch_class_name_and_octave_number(
             name, octave_number)
 
     def _init_by_chromatic_pitch_number(self, chromatic_pitch_number):
@@ -268,9 +268,9 @@ class NamedPitch(Pitch):
             pitchtools.spell_chromatic_pitch_number(
                 chromatic_pitch_number, diatonic_pitch_class_name)
         octave_tick_string = str(pitchtools.OctaveIndication(octave_number))
-        chromatic_pitch_class_name = diatonic_pitch_class_name + \
+        pitch_class_name = diatonic_pitch_class_name + \
             accidental.alphabetic_accidental_abbreviation
-        chromatic_pitch_name = chromatic_pitch_class_name + octave_tick_string
+        chromatic_pitch_name = pitch_class_name + octave_tick_string
         self._chromatic_pitch_name = chromatic_pitch_name
 
     def _init_by_chromatic_pitch_number_and_named_pitch_class(
@@ -285,8 +285,8 @@ class NamedPitch(Pitch):
 
     def _init_by_named_pitch_class_and_octave_number(
         self, npc, octave_number):
-        self._init_by_chromatic_pitch_class_name_and_octave_number(
-            npc._chromatic_pitch_class_name, octave_number)
+        self._init_by_pitch_class_name_and_octave_number(
+            npc._pitch_class_name, octave_number)
 
     def _init_by_pitch_class_octave_number_string(
         self, pitch_class_octave_number_string):
@@ -313,17 +313,17 @@ class NamedPitch(Pitch):
         return abjad_configuration['accidental_spelling']
 
     @property
-    def chromatic_pitch_class_name(self):
+    def pitch_class_name(self):
         r'''Chromatic pitch-class name:
 
         ::
 
-            >>> pitch.chromatic_pitch_class_name
+            >>> pitch.pitch_class_name
             'cs'
 
         Return string.
         '''
-        return self.named_pitch_class._chromatic_pitch_class_name
+        return self.named_pitch_class._pitch_class_name
 
     @property
     def chromatic_pitch_class_number(self):

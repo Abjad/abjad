@@ -15,7 +15,7 @@ def is_named_pitch_token(pitch_token):
 
     if isinstance(pitch_token, pitchtools.NamedPitch):
         return True
-    elif pitchtools.is_chromatic_pitch_class_name_octave_number_pair(pitch_token):
+    elif pitchtools.is_pitch_class_name_octave_number_pair(pitch_token):
         return True
     elif isinstance(pitch_token, (int, long)):
         return True

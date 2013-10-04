@@ -61,7 +61,7 @@ def _new_pitch_with_flats(pitch):
 
     octave = pitchtools.OctaveIndication.from_pitch_number(
         abs(pitch.numbered_pitch)).octave_number
-    name = pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats(
+    name = pitchtools.chromatic_pitch_class_number_to_pitch_class_name_with_flats(
         pitch.numbered_pitch_class)
     pitch = type(pitch)(name, octave)
 

@@ -27,15 +27,15 @@ def chromatic_pitch_number_to_chromatic_pitch_name(
     chromatic_pitch_class_number = chromatic_pitch_number % 12
 
     if accidental_spelling == 'mixed':
-        chromatic_pitch_class_name = pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name(
+        pitch_class_name = pitchtools.chromatic_pitch_class_number_to_pitch_class_name(
             chromatic_pitch_class_number)
     elif accidental_spelling == 'sharps':
-        chromatic_pitch_class_name = \
-            pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps(
+        pitch_class_name = \
+            pitchtools.chromatic_pitch_class_number_to_pitch_class_name_with_sharps(
             chromatic_pitch_class_number)
     elif accidental_spelling == 'flats':
-        chromatic_pitch_class_name = \
-            pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats(
+        pitch_class_name = \
+            pitchtools.chromatic_pitch_class_number_to_pitch_class_name_with_flats(
             chromatic_pitch_class_number)
     else:
         raise ValueError('unknown accidental spelling: '
@@ -44,6 +44,6 @@ def chromatic_pitch_number_to_chromatic_pitch_name(
     octave_number = chromatic_pitch_number // 12 + 4
     octave_tick_string = str(pitchtools.OctaveIndication(octave_number))
 
-    chromatic_pitch_name = chromatic_pitch_class_name + octave_tick_string
+    chromatic_pitch_name = pitch_class_name + octave_tick_string
 
     return chromatic_pitch_name

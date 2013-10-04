@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
 
 
-def all_are_chromatic_pitch_class_name_octave_number_pairs(expr):
+def all_are_pitch_class_name_octave_number_pairs(expr):
     '''True when all elements of `expr` are pitch tokens. Otherwise false:
 
     ::
 
-        >>> pitchtools.all_are_chromatic_pitch_class_name_octave_number_pairs(
+        >>> pitchtools.all_are_pitch_class_name_octave_number_pairs(
         ... [('c', 4), ('d', 4), pitchtools.NamedPitch('e', 4)])
         True
 

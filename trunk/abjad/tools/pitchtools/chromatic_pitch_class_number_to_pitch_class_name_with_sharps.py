@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
 
 
-def chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps(chromatic_pitch_class_number):
+def chromatic_pitch_class_number_to_pitch_class_name_with_sharps(chromatic_pitch_class_number):
     '''Change `chromatic_pitch_class_number` to chromatic pitch-class name with sharps:
 
     ::
 
-        >>> tmp = pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps
+        >>> tmp = pitchtools.chromatic_pitch_class_number_to_pitch_class_name_with_sharps
         >>> for n in range(13):
         ...     pc = n / 2.0
         ...     name = tmp(pc)

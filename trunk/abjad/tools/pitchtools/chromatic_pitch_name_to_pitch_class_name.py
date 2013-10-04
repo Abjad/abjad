@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
 
 
-def chromatic_pitch_name_to_chromatic_pitch_class_name(chromatic_pitch_name):
+def chromatic_pitch_name_to_pitch_class_name(chromatic_pitch_name):
     '''Change `chromatic_pitch_name` to chromatic pitch-class name:
 
     ::
 
-        >>> pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_name("cs''")
+        >>> pitchtools.chromatic_pitch_name_to_pitch_class_name("cs''")
         'cs'
 
     Return string.
@@ -20,6 +20,6 @@ def chromatic_pitch_name_to_chromatic_pitch_class_name(chromatic_pitch_name):
 
     groups = match.groups()
     diatonic_pitch_class_name, alphabetic_accidental_abbreviation, octave_tick_string = groups
-    chromatic_pitch_class_name = diatonic_pitch_class_name + alphabetic_accidental_abbreviation
+    pitch_class_name = diatonic_pitch_class_name + alphabetic_accidental_abbreviation
 
-    return chromatic_pitch_class_name
+    return pitch_class_name

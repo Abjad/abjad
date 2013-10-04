@@ -21,7 +21,7 @@ class NamedPitchClass(PitchClass):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_chromatic_pitch_class_name',
+        '_pitch_class_name',
         )
 
     ### INITIALIZER ###
@@ -34,7 +34,7 @@ class NamedPitchClass(PitchClass):
             pitchtools.NamedPitchClass,
             )) or pitchtools.is_chromatic_pitch_name(expr):
             pitch_class_name = \
-                pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_name(
+                pitchtools.chromatic_pitch_name_to_pitch_class_name(
                     str(expr))
         # from numbered objects
         elif isinstance(expr, (
@@ -46,17 +46,17 @@ class NamedPitchClass(PitchClass):
                 pitchtools.chromatic_pitch_number_to_chromatic_pitch_class_number(
                     float(expr))
             pitch_class_name = \
-                pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name(
+                pitchtools.chromatic_pitch_class_number_to_pitch_class_name(
                     pitch_number)
         # from pitch carriers
         elif pitchtools.is_pitch_carrier(expr):
             named_pitch = pitchtools.get_named_pitch_from_pitch_carrier(
                 expr)
-            pitch_class_name = named_pitch.chromatic_pitch_class_name
+            pitch_class_name = named_pitch.pitch_class_name
         else:
             raise TypeError('Cannot instantiate {} from '
                 '{!r}.'.format(self._class_name, expr))
-        self._chromatic_pitch_class_name = pitch_class_name.lower()
+        self._pitch_class_name = pitch_class_name.lower()
 
     ### SPECIAL METHODS ###
 
@@ -66,7 +66,7 @@ class NamedPitchClass(PitchClass):
     def __add__(self, melodic_diatonic_interval):
         from abjad.tools import pitchtools
         dummy = pitchtools.NamedPitch(
-            self._chromatic_pitch_class_name, 4)
+            self._pitch_class_name, 4)
         mdi = melodic_diatonic_interval
         new = pitchtools.transpose_pitch_carrier_by_melodic_interval(
             dummy, mdi)
@@ -80,9 +80,9 @@ class NamedPitchClass(PitchClass):
 
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
-            return self._chromatic_pitch_class_name == \
-                expr._chromatic_pitch_class_name
-        return self._chromatic_pitch_class_name == expr
+            return self._pitch_class_name == \
+                expr._pitch_class_name
+        return self._pitch_class_name == expr
 
     def __float__(self):
         return float(self.numbered_pitch_class)
@@ -94,7 +94,7 @@ class NamedPitchClass(PitchClass):
         return '%s(%s)' % (self._class_name, self._repr_string)
 
     def __str__(self):
-        return '%s' % self._chromatic_pitch_class_name
+        return '%s' % self._pitch_class_name
 
     def __sub__(self, arg):
         if not isinstance(arg, type(self)):
@@ -155,7 +155,7 @@ class NamedPitchClass(PitchClass):
     def _init_by_name(self, name):
         if not self._is_acceptable_name(name.lower()):
             raise ValueError("unknown pitch-class name '%s'." % name)
-        self._chromatic_pitch_class_name = name.lower()
+        self._pitch_class_name = name.lower()
 
     def _is_acceptable_name(self, name):
         return name in (
@@ -182,7 +182,7 @@ class NamedPitchClass(PitchClass):
         '''
         from abjad.tools import pitchtools
         return pitchtools.NumberedPitchClass(
-            self._chromatic_pitch_class_name)
+            self._pitch_class_name)
 
     ### PUBLIC METHODS ###
 

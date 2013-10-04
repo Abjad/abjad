@@ -665,11 +665,11 @@ Changes to the ``pitchtools`` package:
 
 - Renamed::
 
-    pitchtools.chromatic_pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_pair()
+    pitchtools.pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_pair()
 
   ::
 
-    pitchtools.split_chromatic_pitch_class_name()
+    pitchtools.split_pitch_class_name()
 
 
 - Renamed::

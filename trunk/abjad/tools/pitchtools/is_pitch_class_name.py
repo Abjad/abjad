@@ -6,21 +6,21 @@ from abjad.tools.pitchtools.is_diatonic_pitch_class_name \
 	import diatonic_pitch_class_name_regex_body
 
 
-chromatic_pitch_class_name_regex_body = '''
+pitch_class_name_regex_body = '''
     %s                # exactly one diatonic pitch-class name
     %s                # followed by exactly one alphabetic accidental name
     ''' % (diatonic_pitch_class_name_regex_body,
         alphabetic_accidental_regex_body)
 
-chromatic_pitch_class_name_regex = re.compile(
-    '^%s$' % chromatic_pitch_class_name_regex_body, re.VERBOSE)
+pitch_class_name_regex = re.compile(
+    '^%s$' % pitch_class_name_regex_body, re.VERBOSE)
 
-def is_chromatic_pitch_class_name(expr):
+def is_pitch_class_name(expr):
     '''True when `expr` is a chromatic pitch-class name. Otherwise false:
 
     ::
 
-        >>> pitchtools.is_chromatic_pitch_class_name('fs')
+        >>> pitchtools.is_pitch_class_name('fs')
         True
 
     The regex ``^([a-g,A-G])(([s]{1,2}|[f]{1,2}|t?q?[fs]|)!?)$`` underlies this predicate.
@@ -31,4 +31,4 @@ def is_chromatic_pitch_class_name(expr):
     if not isinstance(expr, str):
         return False
 
-    return bool(chromatic_pitch_class_name_regex.match(expr))
+    return bool(pitch_class_name_regex.match(expr))

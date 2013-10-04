@@ -226,16 +226,16 @@ class GuileProxy(AbjadObject):
         if pitch.chromatic_pitch_class_number > \
             reference.chromatic_pitch_class_number:
             up_pitch = pitchtools.NamedPitch(
-                pitch.chromatic_pitch_class_name, reference.octave_number)
+                pitch.pitch_class_name, reference.octave_number)
             down_pitch = pitchtools.NamedPitch(
-                pitch.chromatic_pitch_class_name, reference.octave_number - 1)
+                pitch.pitch_class_name, reference.octave_number - 1)
             up_octave, down_octave = \
                 up_pitch.octave_number, down_pitch.octave_number
         else:
             up_pitch = pitchtools.NamedPitch(
-                pitch.chromatic_pitch_class_name, reference.octave_number + 1)
+                pitch.pitch_class_name, reference.octave_number + 1)
             down_pitch = pitchtools.NamedPitch(
-                pitch.chromatic_pitch_class_name, reference.octave_number)
+                pitch.pitch_class_name, reference.octave_number)
             up_octave, down_octave = \
                 up_pitch.octave_number, down_pitch.octave_number
         if abs(
