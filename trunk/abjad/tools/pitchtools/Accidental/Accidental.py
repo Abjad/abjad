@@ -16,6 +16,32 @@ class Accidental(AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    _alphabetic_accidental_abbreviation_to_name = {
+        'ss'  : 'double sharp',
+        'tqs' : 'three-quarters sharp',
+        's'   : 'sharp',
+        'qs'  : 'quarter-sharp',
+        ''    : 'natural',
+        '!'   : 'forced natural',
+        'qf'  : 'quarter-flat',
+        'f'   : 'flat',
+        'tqf' : 'three-quarters flat',
+        'ff'  : 'double flat',
+    }
+
+    _alphabetic_accidental_abbreviation_to_semitones = {
+        'ff'  : -2,
+        'tqf' : -1.5,
+        'f'   : -1,
+        'qf'  : -0.5,
+        ''    : 0,
+        '!'   : 0,
+        'qs'  : 0.5,
+        's'   : 1,
+        'tqs' : 1.5,
+        'ss'  : 2,
+    }
+
     _alphabetic_accidental_regex_body = """
         ([s]{1,2}   # s or ss for sharp or double sharp
         |[f]{1,2}   # or f or ff for flat or double flat
@@ -28,6 +54,31 @@ class Accidental(AbjadObject):
         '^{}$'.format(_alphabetic_accidental_regex_body),
         re.VERBOSE,
         )
+
+    _name_to_alphabetic_accidental_abbreviation = {
+        'double sharp'            : 'ss',
+        'three-quarters sharp'    : 'tqs',
+        'sharp'                   : 's',
+        'quarter sharp'           : 'qs',
+        'natural'                 : '',
+        'forced natural'          : '!',
+        'quarter flat'            : 'qf',
+        'flat'                    : 'f',
+        'three-quarters flat'     : 'tqf',
+        'double flat'             :  'ff',
+    }
+
+    _semitones_to_alphabetic_accidental_abbreviation = {
+        -2   : 'ff',
+        -1.5 : 'tqf',
+        -1   : 'f',
+        -0.5 : 'qf',
+        0    : '',
+        0.5  : 'qs',
+        1    : 's',
+        1.5  : 'tqs',
+        2    : 'ss',
+    }
 
     _symbolic_accidental_string_regex_body = '''
         ([#]{1,2}   # # or ## for sharp or double sharp
@@ -56,9 +107,9 @@ class Accidental(AbjadObject):
     def __init__(self, arg=''):
         from abjad.tools import pitchtools
         # initialize symbolic string from arg
-        if pitchtools.is_alphabetic_accidental_abbreviation(arg):
+        if self.is_alphabetic_accidental_abbreviation(arg):
             _alphabetic_accidental_abbreviation = arg
-        elif pitchtools.is_symbolic_accidental_string(arg):
+        elif self.is_symbolic_accidental_string(arg):
             _alphabetic_accidental_abbreviation = \
             pitchtools.symbolic_accidental_string_to_alphabetic_accidental_abbreviation(arg)
         elif arg in self._all_accidental_names:
@@ -149,57 +200,6 @@ class Accidental(AbjadObject):
     def _all_accidental_alphabetic_accidental_abbreviations(self):
         return self._alphabetic_accidental_abbreviation_to_symbolic_accidental_string.keys()
 
-    _alphabetic_accidental_abbreviation_to_name = {
-        'ss'  : 'double sharp',
-        'tqs' : 'three-quarters sharp',
-        's'   : 'sharp',
-        'qs'  : 'quarter-sharp',
-        ''    : 'natural',
-        '!'   : 'forced natural',
-        'qf'  : 'quarter-flat',
-        'f'   : 'flat',
-        'tqf' : 'three-quarters flat',
-        'ff'  : 'double flat',
-    }
-
-    _alphabetic_accidental_abbreviation_to_semitones = {
-        'ff'  : -2,
-        'tqf' : -1.5,
-        'f'   : -1,
-        'qf'  : -0.5,
-        ''    : 0,
-        '!'   : 0,
-        'qs'  : 0.5,
-        's'   : 1,
-        'tqs' : 1.5,
-        'ss'  : 2,
-    }
-
-    _name_to_alphabetic_accidental_abbreviation = {
-        'double sharp'            : 'ss',
-        'three-quarters sharp'    : 'tqs',
-        'sharp'                   : 's',
-        'quarter sharp'           : 'qs',
-        'natural'                 : '',
-        'forced natural'          : '!',
-        'quarter flat'            : 'qf',
-        'flat'                    : 'f',
-        'three-quarters flat'     : 'tqf',
-        'double flat'             :  'ff',
-    }
-
-    _semitones_to_alphabetic_accidental_abbreviation = {
-        -2   : 'ff',
-        -1.5 : 'tqf',
-        -1   : 'f',
-        -0.5 : 'qf',
-        0    : '',
-        0.5  : 'qs',
-        1    : 's',
-        1.5  : 'tqs',
-        2    : 'ss',
-    }
-
     @property
     def _all_accidental_names(self):
         return self._name_to_alphabetic_accidental_abbreviation.keys()
@@ -207,6 +207,47 @@ class Accidental(AbjadObject):
     @property
     def _all_accidental_semitone_values(self):
         return self._semitones_to_alphabetic_accidental_abbreviation.keys()
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def is_alphabetic_accidental_abbreviation(expr):
+        '''True when `expr` is an alphabetic accidental abbrevation. Otherwise
+        false:
+
+        ::
+
+            >>> pitchtools.Accidental.is_alphabetic_accidental_abbreviation('tqs')
+            True
+
+        The regex ``^([s]{1,2}|[f]{1,2}|t?q?[fs])!?$`` underlies this
+        predicate.
+
+        Return boolean.
+        '''
+        if not isinstance(expr, str):
+            return False
+        return bool(Accidental._alphabetic_accidental_regex.match(expr))
+
+    @staticmethod
+    def is_symbolic_accidental_string(expr):
+        '''True when `expr` is a symbolic accidental string. Otherwise false:
+
+        ::
+
+            >>> pitchtools.Accidental.is_symbolic_accidental_string('#+')
+            True
+
+        True on empty string.
+
+        The regex ``^([#]{1,2}|[b]{1,2}|[#]?[+]|[b]?[~]|)$`` underlies this
+        predicate.
+
+        Return boolean.
+        '''
+        if not isinstance(expr, str):
+            return False
+        return bool(Accidental._symbolic_accidental_string_regex.match(expr))
 
     ### PUBLIC PROPERTIES ###
 
