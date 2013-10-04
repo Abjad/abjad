@@ -16,7 +16,7 @@ def is_pitch_class_name_octave_number_pair(expr):
 
     if isinstance(expr, tuple):
         if len(expr) == 2:
-            if pitchtools.is_pitch_class_name(expr[0]):
+            if pitchtools.PitchClass.is_pitch_class_name(expr[0]):
                 if isinstance(expr[1], (int, long)):
                     return True
     return False

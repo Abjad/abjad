@@ -136,3 +136,38 @@ class PitchClass(AbjadObject):
         if expr in range(7):
             return True
         return False
+
+    @staticmethod
+    def is_pitch_class_name(expr):
+        '''True when `expr` is a chromatic pitch-class name. Otherwise false:
+
+        ::
+
+            >>> pitchtools.PitchClass.is_pitch_class_name('fs')
+            True
+
+        The regex ``^([a-g,A-G])(([s]{1,2}|[f]{1,2}|t?q?[fs]|)!?)$`` underlies
+        this predicate.
+
+        Return boolean.
+        '''
+        if not isinstance(expr, str):
+            return False
+        return bool(PitchClass._pitch_class_name_regex.match(expr))
+
+    @staticmethod
+    def is_pitch_class_number(expr):
+        '''True `expr` is a chromatic pitch-class number. Otherwise false:
+
+        ::
+
+            >>> pitchtools.PitchClass.is_pitch_class_number(1)
+            True
+
+        The chromatic pitch-class numbers are equal to the set
+        ``[0, 0.5, ..., 11, 11.5]``.
+
+        Return boolean.
+        '''
+
+        return expr in [(n).__truediv__(2) for n in range(24)]
