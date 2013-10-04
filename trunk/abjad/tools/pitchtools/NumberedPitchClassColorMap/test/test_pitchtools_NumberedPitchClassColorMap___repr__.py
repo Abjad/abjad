@@ -3,7 +3,7 @@ from abjad import *
 from abjad.tools.pitchtools import NumberedPitchClassColorMap
 
 
-def test_pitchtools_NumberedChromaticPitchClassColorMap___repr___01():
+def test_pitchtools_NumberedPitchClassColorMap___repr___01():
     r'''Numbered chromatic pitch-class color map repr is evaluable.
     '''
 
