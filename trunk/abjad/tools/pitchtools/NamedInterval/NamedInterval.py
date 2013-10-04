@@ -18,23 +18,22 @@ class NamedInterval(Interval):
     ### CLASS VARIABLES ##
 
     __slots__ = (
-        '_number', 
+        '_number',
         '_quality_string',
         )
 
     ### INITIALIZER ###
 
     def __init__(self, *args):
-        from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation \
-            import melodic_diatonic_interval_abbreviation_regex
+        from abjad.tools import pitchtools
         if len(args) == 1 and isinstance(args[0], type(self)):
             quality_string = args[0].quality_string
             number = args[0].number
         elif len(args) == 1 and isinstance(args[0], str):
-            match = melodic_diatonic_interval_abbreviation_regex.match(args[0])
+            match = pitchtools.Interval._interval_name_abbreviation_regex.match(args[0])
             if match is None:
                 raise ValueError(
-                    '"%s" does not have the form of a mdi abbreviation.' % 
+                    '"%s" does not have the form of a mdi abbreviation.' %
                     args[0])
             direction_string, quality_abbreviation, number_string = \
                 match.groups()
@@ -133,8 +132,8 @@ class NamedInterval(Interval):
 
     def __str__(self):
         return '%s%s%s' % (
-            self._direction_symbol, 
-            self._quality_abbreviation, 
+            self._direction_symbol,
+            self._quality_abbreviation,
             abs(self.number),
             )
 
@@ -150,18 +149,18 @@ class NamedInterval(Interval):
     ### PRIVATE PROPERTIES ###
 
     _acceptable_quality_strings = (
-        'perfect', 
-        'major', 
-        'minor', 
-        'diminished', 
+        'perfect',
+        'major',
+        'minor',
+        'diminished',
         'augmented',
         )
 
     _quality_abbreviation_to_quality_string = {
-        'M': 'major', 
-        'm': 'minor', 
-        'P': 'perfect', 
-        'aug': 'augmented', 
+        'M': 'major',
+        'm': 'minor',
+        'P': 'perfect',
+        'aug': 'augmented',
         'dim': 'diminished',
         }
 
@@ -172,20 +171,20 @@ class NamedInterval(Interval):
     @property
     def _interval_string(self):
         interval_to_string = {
-            1: 'unison', 
-            2: 'second', 
+            1: 'unison',
+            2: 'second',
             3: 'third',
-            4: 'fourth', 
-            5: 'fifth', 
-            6: 'sixth', 
-            7: 'seventh', 
+            4: 'fourth',
+            5: 'fifth',
+            6: 'sixth',
+            7: 'seventh',
             8: 'octave',
-            9: 'ninth', 
-            10: 'tenth', 
-            11: 'eleventh', 
+            9: 'ninth',
+            10: 'tenth',
+            11: 'eleventh',
             12: 'twelth',
-            13: 'thirteenth', 
-            14: 'fourteenth', 
+            13: 'thirteenth',
+            14: 'fourteenth',
             15: 'fifteenth',
             }
         try:
@@ -221,7 +220,7 @@ class NamedInterval(Interval):
         ::
 
             >>> pitchtools.NamedInterval.from_pitch_carriers(
-            ...     pitchtools.NamedPitch(-2), 
+            ...     pitchtools.NamedPitch(-2),
             ...     pitchtools.NamedPitch(12),
             ...     )
             NamedInterval('+M9')
@@ -293,13 +292,13 @@ class NamedInterval(Interval):
         from abjad.tools import pitchtools
         result = 0
         interval_class_number_to_semitones = {
-            1: 0,  
-            2: 1,  
-            3: 3, 
-            4: 5, 
-            5: 7, 
-            6: 8, 
-            7: 10, 
+            1: 0,
+            2: 1,
+            3: 3,
+            4: 5,
+            5: 7,
+            6: 8,
+            7: 10,
             8: 0,
             }
         interval_class_number = abs(
@@ -307,10 +306,10 @@ class NamedInterval(Interval):
         result += interval_class_number_to_semitones[interval_class_number]
         result += (abs(self.number) - 1) / 7 * 12
         quality_string_to_semitones = {
-            'perfect': 0, 
-            'major': 1, 
-            'minor': 0, 
-            'augmented': 1, 
+            'perfect': 0,
+            'major': 1,
+            'minor': 0,
+            'augmented': 1,
             'diminished': -1,
             }
         result += quality_string_to_semitones[self.quality_string]

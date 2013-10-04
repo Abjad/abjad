@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import abc
+import re
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -8,6 +9,32 @@ class Interval(AbjadObject):
     '''
 
     ### CLASS VARIABLES ###
+
+    _named_interval_quality_abbreviation_regex_body = '''
+        (M|         # major
+        m|          # minor
+        P|          # perfect
+        aug|        # augmented
+        dim)        # dimished
+        '''
+
+    _named_interval_quality_abbreviation_regex = re.compile(
+        '^{}$'.format(_named_interval_quality_abbreviation_regex_body),
+        re.VERBOSE,
+        )
+
+    _interval_name_abbreviation_regex_body = '''
+        ([+,-]?)    # one plus, one minus, or neither
+        {}          # exactly one diatonic quality abbreviation
+        (\d+)       # followed by one or more digits
+        '''.format(
+        _named_interval_quality_abbreviation_regex_body,
+        )
+
+    _interval_name_abbreviation_regex = re.compile(
+        '^{}$'.format(_interval_name_abbreviation_regex_body),
+        re.VERBOSE,
+        )
 
     __slots__ = ('_format_string', )
 

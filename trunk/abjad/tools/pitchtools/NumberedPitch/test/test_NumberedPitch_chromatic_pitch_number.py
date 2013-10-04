@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_NumberedPitch_pitch_number_01():
+def test_NumberedPitch_chromatic_pitch_number_01():
 
     assert pitchtools.NumberedPitch(-14).pitch_number == -14
     assert pitchtools.NumberedPitch(14).pitch_number == 14

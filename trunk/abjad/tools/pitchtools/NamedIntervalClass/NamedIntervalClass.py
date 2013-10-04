@@ -19,15 +19,13 @@ class NamedIntervalClass(IntervalClass):
     def __init__(self, *args):
         from abjad.tools import pitchtools
         from abjad.tools import sequencetools
-        from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation \
-            import melodic_diatonic_interval_abbreviation_regex
         if len(args) == 1 and\
             isinstance(args[0], (pitchtools.NamedInterval,
                 pitchtools.NamedIntervalClass)):
             quality_string = args[0]._quality_string
             number = args[0].number
         elif len(args) == 1 and isinstance(args[0], str):
-            match = melodic_diatonic_interval_abbreviation_regex.match(
+            match = pitchtools.Interval._interval_name_abbreviation_regex.match(
                 args[0])
             if match is None:
                 raise ValueError(

@@ -77,9 +77,8 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         self._init_by_quality_string_and_number(quality_string, number)
 
     def _init_by_string(self, string):
-        from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation \
-            import melodic_diatonic_interval_abbreviation_regex
-        match = melodic_diatonic_interval_abbreviation_regex.match(string)
+        from abjad.tools import pitchtools
+        match = pitchtools.Interval._interval_name_abbreviation_regex.match(string)
         if match is None:
             raise ValueError(
                 '{!r} does not have the form of a hdi abbreviation.'.format(
