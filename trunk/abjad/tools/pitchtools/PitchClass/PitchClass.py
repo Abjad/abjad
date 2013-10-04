@@ -52,3 +52,23 @@ class PitchClass(AbjadObject):
         'a': 5,
         'b': 6,
         }
+
+    _diatonic_pitch_class_name_to_pitch_class_number = {
+        'c': 0,
+        'd': 2,
+        'e': 4,
+        'f': 5,
+        'g': 7,
+        'a': 9,
+        'b': 11,
+        }
+
+    _diatonic_pitch_class_number_to_pitch_class_number = {
+        0: 0,
+        1: 2,
+        2: 4,
+        3: 5,
+        4: 7,
+        5: 9,
+        6: 11,
+        }

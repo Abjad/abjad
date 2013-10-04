@@ -1,6 +1,4 @@
 # -*- encoding: utf-8 -*-
-_diatonic_pitch_class_number_to_diatonic_pitch_class_name = {
-    0: 'c', 1: 'd', 2: 'e', 3: 'f', 4: 'g', 5: 'a', 6: 'b' }
 
 
 def diatonic_pitch_class_number_to_diatonic_pitch_class_name(diatonic_pitch_class_number):
@@ -13,12 +11,10 @@ def diatonic_pitch_class_number_to_diatonic_pitch_class_name(diatonic_pitch_clas
 
     Return string.
     '''
-
-    error_message = '\n\tNot diatonic pitch-class number: "%s".' % diatonic_pitch_class_number
-    if not isinstance(diatonic_pitch_class_number, (int, long)):
-        raise TypeError(error_message)
-
+    from abjad.tools import pitchtools
     try:
-        return _diatonic_pitch_class_number_to_diatonic_pitch_class_name[diatonic_pitch_class_number]
+        return pitchtools.PitchClass._diatonic_pitch_class_number_to_diatonic_pitch_class_name[
+            diatonic_pitch_class_number]
     except KeyError:
-        raise ValueError(error_message)
+        raise ValueError('Not diatonic pitch-class number: {!r}.'.format(
+            diatonic_pitch_class_number))
