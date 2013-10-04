@@ -45,7 +45,7 @@ def test_Container_is_simultaneous_04():
     r'''A simultaneous container can hold Contexts.
     '''
     container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(container)
     container.is_simultaneous = True
     assert testtools.compare(
         container,

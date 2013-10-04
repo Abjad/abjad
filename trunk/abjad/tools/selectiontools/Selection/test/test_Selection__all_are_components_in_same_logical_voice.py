@@ -369,7 +369,7 @@ def test_Selection__all_are_components_in_same_logical_voice_14():
     '''
 
     container = Container(Staff(Note(0, (1, 8)) * 4) * 2)
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
         container)
     container[0].name = 'foo'
     container[1].name = 'foo'
@@ -598,7 +598,7 @@ def test_Selection__all_are_components_in_same_logical_voice_20():
 
     container = Container(
         [Staff(Note(0, (1, 8)) * 4), Container(Note(0, (1, 8)) * 4)])
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
         container)
 
     assert testtools.compare(
@@ -634,7 +634,7 @@ def test_Selection__all_are_components_in_same_logical_voice_21():
     '''
 
     container = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
         container)
 
     assert testtools.compare(
@@ -668,7 +668,7 @@ def test_Selection__all_are_components_in_same_logical_voice_22():
     '''
 
     container = Container([Voice(Note(0, (1, 8)) * 4)] + Note(0, (1, 8)) * 4)
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
         container)
 
     assert testtools.compare(
@@ -703,7 +703,7 @@ def test_Selection__all_are_components_in_same_logical_voice_23():
 
     container = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
     container[4].name = 'foo'
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
         container)
 
     assert testtools.compare(
@@ -740,7 +740,7 @@ def test_Selection__all_are_components_in_same_logical_voice_24():
     '''
 
     container = Container([Voice(Note(0, (1, 8)) * 4)] + Note(0, (1, 8)) * 4)
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
         container)
     container[0].name = 'foo'
 
@@ -775,7 +775,7 @@ def test_Selection__all_are_components_in_same_logical_voice_25():
     '''
 
     container = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
         container)
 
     assert testtools.compare(
@@ -1037,7 +1037,7 @@ def test_Selection__all_are_components_in_same_logical_voice_32():
     container = Container(
         [Container(Voice(Note(0, (1, 8)) * 4) * 2)] + Note(0, (1, 8)) * 4)
     container[0].is_simultaneous = True
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
         container)
 
     assert testtools.compare(
@@ -1081,7 +1081,7 @@ def test_Selection__all_are_components_in_same_logical_voice_33():
     a, b = Voice(Note(0, (1, 8)) * 4) * 2
     a.insert(2, b)
     container.insert(2, a)
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
         container)
 
     outer = (0, 1, 10, 11)
@@ -1134,7 +1134,7 @@ def test_Selection__all_are_components_in_same_logical_voice_34():
     a, b = staff * 2
     a.insert(2, b)
     staff.insert(2, a)
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
         staff)
 
     outer = (0, 1, 10, 11)
@@ -1185,7 +1185,7 @@ def test_Selection__all_are_components_in_same_logical_voice_35():
     a, b, container = Container(Note(0, (1, 8)) * 4) * 3
     a.insert(2, b)
     container.insert(2, a)
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
         container)
 
     assert testtools.compare(
@@ -1226,7 +1226,7 @@ def test_Selection__all_are_components_in_same_logical_voice_36():
     t.insert(2, b)
     b.target_duration = Duration(6, 8)
     t.target_duration = Duration(9, 8)
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(t)
 
     assert testtools.compare(
         t,
@@ -1266,7 +1266,7 @@ def test_Selection__all_are_components_in_same_logical_voice_37():
     container = Container(Note(0, (1, 8)) * 4)
     container.insert(2, Container([Container([Voice(Note(0, (1, 8)) * 4)])]))
     container[2][0][0].name = 'foo'
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
         container)
 
     assert testtools.compare(
@@ -1311,7 +1311,7 @@ def test_Selection__all_are_components_in_same_logical_voice_38():
     container = Container(Note(0, (1, 8)) * 4)
     container.insert(0, Container([Container([Voice(Note(0, (1, 8)) * 4)])]))
     container[0][0][0].name = 'foo'
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
         container)
 
     assert testtools.compare(
@@ -1353,7 +1353,7 @@ def test_Selection__all_are_components_in_same_logical_voice_39():
     container = Container([container])
     container = Container([container])
     container = Voice([container])
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
         container)
 
     assert testtools.compare(
@@ -1406,7 +1406,7 @@ def test_Selection__all_are_components_in_same_logical_voice_40():
     voice = Voice(Note(0, (1, 8)) * 4)
     voice.insert(2, qq)
     voice.name = 'foo'
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
         voice)
 
     assert testtools.compare(
@@ -1458,7 +1458,7 @@ def test_Selection__all_are_components_in_same_logical_voice_41():
 
     container = Container(notetools.make_repeated_notes(4))
     container[0:0] = Voice(notetools.make_repeated_notes(4)) * 2
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
         container)
 
     assert testtools.compare(
@@ -1507,7 +1507,7 @@ def test_Selection__all_are_components_in_same_logical_voice_42():
     simultaneous_container.is_simultaneous = True
     container = Container(Note(0, (1, 8)) * 4)
     container.insert(2, simultaneous_container)
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
         container)
 
     assert testtools.compare(

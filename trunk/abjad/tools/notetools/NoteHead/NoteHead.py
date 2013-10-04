@@ -182,13 +182,13 @@ class NoteHead(AbjadObject):
         return result
 
     @property
-    def named_chromatic_pitch(self):
+    def named_pitch(self):
         r'''Named chromatic pitch equal to note head:
 
         ::
 
             >>> note_head = notetools.NoteHead("cs''")
-            >>> note_head.named_chromatic_pitch
+            >>> note_head.named_pitch
             NamedPitch("cs''")
 
         Return named chromatic pitch.

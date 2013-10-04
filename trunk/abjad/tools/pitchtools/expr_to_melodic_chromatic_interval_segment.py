@@ -15,7 +15,7 @@ def expr_to_melodic_chromatic_interval_segment(expr):
     '''
     from abjad.tools import pitchtools
 
-    pitches = pitchtools.list_named_chromatic_pitches_in_expr(expr)
+    pitches = pitchtools.list_named_pitches_in_expr(expr)
     mcis = []
     for left, right in sequencetools.iterate_sequence_pairwise_strict(pitches):
         mci = pitchtools.NumberedInterval.from_pitch_carriers(left, right)

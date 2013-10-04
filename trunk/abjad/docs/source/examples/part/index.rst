@@ -217,8 +217,8 @@ as there are pitches in its overall scale:
    
        reservoir = {}
        for instrument_name, pitch_range in pitch_ranges.iteritems():
-           pitch_set = scale.create_named_chromatic_pitch_set_in_pitch_range(pitch_range)
-           pitches = sorted(pitch_set.named_chromatic_pitches, reverse=True)
+           pitch_set = scale.create_named_pitch_set_in_pitch_range(pitch_range)
+           pitches = sorted(pitch_set.named_pitches, reverse=True)
            pitch_descents = []
            for i in xrange(len(pitches)):
                descent = tuple(pitches[:i + 1])

@@ -25,7 +25,7 @@ def test_pitchtools_harmonic_chromatic_interval_class_number_dictionary_01():
 def test_pitchtools_harmonic_chromatic_interval_class_number_dictionary_02():
 
     staff = Staff("c'8 d'8 e'8 f'8 c'8 d'8 e'8 f'8 c'8 d'8 e'8 f'8")
-    pitches = pitchtools.list_named_chromatic_pitches_in_expr(staff)
+    pitches = pitchtools.list_named_pitches_in_expr(staff)
     vector = pitchtools.harmonic_chromatic_interval_class_number_dictionary(pitches)
 
     assert vector == {

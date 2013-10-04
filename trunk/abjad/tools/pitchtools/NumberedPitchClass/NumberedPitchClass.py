@@ -44,7 +44,7 @@ class NumberedPitchClass(PitchClass):
                     str(expr))
         # pitch carriers
         elif pitchtools.is_pitch_carrier(expr):
-            named_pitch = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(
+            named_pitch = pitchtools.get_named_pitch_from_pitch_carrier(
                 expr)
             pitch_class_number = \
                 pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_number( 

@@ -70,7 +70,7 @@ def test_AttributeInspectionAgent_get_effective_context_mark_06():
     '''
 
     staff = Staff(notetools.make_repeated_notes(8))
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(staff)
     contexttools.ClefMark('treble')(staff[0])
     contexttools.ClefMark('treble')(staff[4])
 
@@ -114,7 +114,7 @@ def test_AttributeInspectionAgent_get_effective_context_mark_07():
     '''
 
     staff = Staff(notetools.make_repeated_notes(8))
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(staff)
     contexttools.ClefMark('treble_8')(staff[0])
     contexttools.ClefMark('treble')(staff[4])
 

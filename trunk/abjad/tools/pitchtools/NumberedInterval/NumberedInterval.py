@@ -138,9 +138,9 @@ class NumberedInterval(Interval):
         '''
         from abjad.tools import pitchtools
         # get pitches
-        pitch_1 = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(
+        pitch_1 = pitchtools.get_named_pitch_from_pitch_carrier(
             pitch_carrier_1)
-        pitch_2 = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(
+        pitch_2 = pitchtools.get_named_pitch_from_pitch_carrier(
             pitch_carrier_2)
         # get difference in semitones
         number = abs(pitch_2.numbered_chromatic_pitch) - \

@@ -9,7 +9,7 @@ def test_NamedPitch___init___01():
 
     pitch = pitchtools.NamedPitch('df', 5)
     assert pitch.lilypond_format == "df''"
-    assert pitch.named_chromatic_pitch_class == pitchtools.NamedPitchClass('df')
+    assert pitch.named_pitch_class == pitchtools.NamedPitchClass('df')
     assert pitch.octave_number == 5
     assert pitch.numbered_chromatic_pitch_class == pitchtools.NumberedPitchClass(1)
 
@@ -30,7 +30,7 @@ def test_NamedPitch___init___03():
     pitch = pitchtools.NamedPitch(13)
 
     assert pitch.lilypond_format == "cs''"
-    assert pitch.named_chromatic_pitch_class == pitchtools.NamedPitchClass('cs')
+    assert pitch.named_pitch_class == pitchtools.NamedPitchClass('cs')
     assert pitch.octave_number == 5
     assert pitch.numbered_chromatic_pitch_class == pitchtools.NumberedPitchClass(1)
 
@@ -43,7 +43,7 @@ def test_NamedPitch___init___04():
     pitch = pitchtools.NamedPitch(13, 'd')
 
     assert pitch.lilypond_format == "df''"
-    assert pitch.named_chromatic_pitch_class == pitchtools.NamedPitchClass('df')
+    assert pitch.named_pitch_class == pitchtools.NamedPitchClass('df')
     assert pitch.octave_number == 5
     assert pitch.numbered_chromatic_pitch_class == pitchtools.NumberedPitchClass(1)
 
@@ -56,7 +56,7 @@ def test_NamedPitch___init___05():
     pitch = pitchtools.NamedPitch(('df', 5))
 
     assert pitch.lilypond_format == "df''"
-    assert pitch.named_chromatic_pitch_class == pitchtools.NamedPitchClass('df')
+    assert pitch.named_pitch_class == pitchtools.NamedPitchClass('df')
     assert pitch.octave_number == 5
     assert pitch.numbered_chromatic_pitch_class == pitchtools.NumberedPitchClass(1)
 
@@ -82,7 +82,7 @@ def test_NamedPitch___init___07():
     pitch = pitchtools.NamedPitch(pitch_1)
 
     assert pitch.lilypond_format == "df''"
-    assert pitch.named_chromatic_pitch_class == pitchtools.NamedPitchClass('df')
+    assert pitch.named_pitch_class == pitchtools.NamedPitchClass('df')
     assert pitch.octave_number == 5
     assert pitch.numbered_chromatic_pitch_class == pitchtools.NumberedPitchClass(1)
 

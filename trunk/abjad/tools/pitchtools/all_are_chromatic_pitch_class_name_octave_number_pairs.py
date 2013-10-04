@@ -15,6 +15,6 @@ def all_are_chromatic_pitch_class_name_octave_number_pairs(expr):
     from abjad.tools import pitchtools
 
     if isinstance(expr, (list, tuple, set)):
-        if all(pitchtools.is_named_chromatic_pitch_token(x) for x in expr):
+        if all(pitchtools.is_named_pitch_token(x) for x in expr):
             return True
     return False

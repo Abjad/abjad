@@ -14,7 +14,7 @@ def test_Spanner__is_my_first_leaf_01():
             pass
 
     container = Container(notetools.make_repeated_notes(4))
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(container)
     spanner = MockSpanner(container)
 
     r'''
@@ -48,7 +48,7 @@ def test_Spanner__is_my_first_leaf_02():
 
     container = Container(notetools.make_repeated_notes(4))
     container.insert(2, Container(notetools.make_repeated_notes(2)))
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(container)
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(container)
     spanner = MockSpanner(container[:3])
 
     r'''

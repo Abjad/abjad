@@ -229,8 +229,8 @@ class NamedInterval(Interval):
         Return melodic diatonic interval.
         '''
         from abjad.tools import pitchtools
-        pitch_1 = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier_1)
-        pitch_2 = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier_2)
+        pitch_1 = pitchtools.get_named_pitch_from_pitch_carrier(pitch_carrier_1)
+        pitch_2 = pitchtools.get_named_pitch_from_pitch_carrier(pitch_carrier_2)
         degree_1 = pitch_1._diatonic_pitch_number
         degree_2 = pitch_2._diatonic_pitch_number
         #degree_1 = abs(pitch_1.numbered_diatonic_pitch)

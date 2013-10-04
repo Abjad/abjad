@@ -50,7 +50,7 @@ class NamedPitchClass(PitchClass):
                     pitch_number)
         # from pitch carriers
         elif pitchtools.is_pitch_carrier(expr):
-            named_pitch = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(
+            named_pitch = pitchtools.get_named_pitch_from_pitch_carrier(
                 expr)
             pitch_class_name = named_pitch.chromatic_pitch_class_name
         else:
@@ -70,7 +70,7 @@ class NamedPitchClass(PitchClass):
         mdi = melodic_diatonic_interval
         new = pitchtools.transpose_pitch_carrier_by_melodic_interval(
             dummy, mdi)
-        return new.named_chromatic_pitch_class
+        return new.named_pitch_class
 
     def __copy__(self, *args):
         return type(self)(self)
@@ -221,5 +221,5 @@ class NamedPitchClass(PitchClass):
             pitchtools.transpose_pitch_carrier_by_melodic_interval(
             pitch, melodic_diatonic_interval)
         transposed_named_pitch_class = \
-            transposed_pitch.named_chromatic_pitch_class
+            transposed_pitch.named_pitch_class
         return transposed_named_pitch_class

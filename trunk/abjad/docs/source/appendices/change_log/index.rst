@@ -219,7 +219,7 @@ Use ``duration`` instead.
 Deprecated the term ``pitch_token``.
 Use ``pitch`` instead.
 
-Removed ``pitchtools.named_chromatic_pitch_tokens_to_named_chromatic_pitches()``.
+Removed ``pitchtools.named_pitch_tokens_to_named_pitches()``.
 Just instantiate pitches instead.
 
 Removed the term ``signal`` from the ``rhythmmakertools`` package.

@@ -7,7 +7,7 @@ def test_ClefMark___copy___01():
     '''
 
     staff = Staff(notetools.make_repeated_notes(8))
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(staff)
     contexttools.ClefMark('treble')(staff[0])
     contexttools.ClefMark('bass')(staff[4])
     copied_notes = mutate(staff[:2]).copy()
@@ -52,7 +52,7 @@ def test_ClefMark___copy___02():
     '''
 
     staff = Staff(notetools.make_repeated_notes(8))
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(staff)
     contexttools.ClefMark('treble')(staff[0])
     contexttools.ClefMark('bass')(staff[4])
     copied_notes = mutate(staff[2:4]).copy()

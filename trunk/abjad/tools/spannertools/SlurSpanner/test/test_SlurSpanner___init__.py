@@ -22,7 +22,7 @@ def test_SlurSpanner___init___02():
     container[0].name, container[1].name = 'foo', 'foo'
     container[0][0].name, container[1][0].name = 'first', 'first'
     container[0][1].name, container[1][1].name = 'second', 'second'
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
         container)
     leaves = container[0][0][:] +  container[1][0][:]
     slur = spannertools.SlurSpanner(leaves)
@@ -75,7 +75,7 @@ def test_SlurSpanner___init___03():
         Staff([Voice(notetools.make_repeated_notes(4))]) * 2)
     container[0].name, container[1].name = 'foo', 'foo'
     container[0][0].name, container[1][0].name = 'bar', 'bar'
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
         container)
     slur = spannertools.SlurSpanner(container)
 

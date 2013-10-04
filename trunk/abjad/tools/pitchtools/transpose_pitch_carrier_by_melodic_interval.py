@@ -53,9 +53,9 @@ def transpose_pitch_carrier_by_melodic_interval(
         diatonic_pitch_class_name = \
             pitchtools.diatonic_pitch_class_number_to_diatonic_pitch_class_name(
             diatonic_pitch_class_number)
-        named_chromatic_pitch = pitchtools.NamedPitch(
+        named_pitch = pitchtools.NamedPitch(
             chromatic_pitch_number, diatonic_pitch_class_name)
-        return type(pitch)(named_chromatic_pitch)
+        return type(pitch)(named_pitch)
 
     def _transpose_pitch_carrier_by_melodic_diatonic_interval(
         pitch_carrier, melodic_diatonic_interval):

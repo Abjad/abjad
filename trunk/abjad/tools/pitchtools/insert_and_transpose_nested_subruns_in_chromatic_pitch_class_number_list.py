@@ -80,7 +80,7 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(not
         pairs = _make_index_length_pairs(subrun_indicator)
         for anchor_index, subrun_length in pairs:
             anchor_note = notes[anchor_index % len_notes]
-            anchor_pitch = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(anchor_note)
+            anchor_pitch = pitchtools.get_named_pitch_from_pitch_carrier(anchor_note)
             anchor_written_duration = anchor_note.written_duration
             source_start_index = anchor_index + 1
             source_stop_index = source_start_index + subrun_length + 1
@@ -102,8 +102,8 @@ def _get_intervals_in_subrun(subrun_source):
     subrun_source = list(subrun_source)
     result = [0]
     for first, second in sequencetools.iterate_sequence_pairwise_strict(subrun_source):
-        first_pitch = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(first)
-        second_pitch = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(second)
+        first_pitch = pitchtools.get_named_pitch_from_pitch_carrier(first)
+        second_pitch = pitchtools.get_named_pitch_from_pitch_carrier(second)
         interval = abs(second_pitch.numbered_chromatic_pitch) - \
             abs(first_pitch.numbered_chromatic_pitch)
         result.append(interval + result[-1])

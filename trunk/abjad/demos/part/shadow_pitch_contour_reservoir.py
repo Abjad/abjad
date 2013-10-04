@@ -27,7 +27,7 @@ def shadow_pitch_contour_reservoir(pitch_contour_reservoir):
         for pitch_contour in pitch_contours[:-1]:
             shadowed_pitch_contour = []
             for pitch in pitch_contour:
-                pitch_class = pitch.named_chromatic_pitch_class
+                pitch_class = pitch.named_pitch_class
                 shadow_pitch = pitch + shadow_pitch_lookup[pitch_class]
                 diad = (shadow_pitch, pitch)
                 shadowed_pitch_contour.append(diad)
@@ -36,7 +36,7 @@ def shadow_pitch_contour_reservoir(pitch_contour_reservoir):
         # treat the final contour differently: the last note does not become a diad
         final_shadowed_pitch_contour = []
         for pitch in pitch_contours[-1][:-1]:
-            pitch_class = pitch.named_chromatic_pitch_class
+            pitch_class = pitch.named_pitch_class
             shadow_pitch = pitch + shadow_pitch_lookup[pitch_class]
             diad = (shadow_pitch, pitch)
             final_shadowed_pitch_contour.append(diad)

@@ -43,8 +43,8 @@ class Scale(PitchClassSegment):
             raise TypeError
         npcs = [key_signature.tonic]
         for mdi in key_signature.mode.melodic_diatonic_interval_segment[:-1]:
-            named_chromatic_pitch_class = npcs[-1] + mdi
-            npcs.append(named_chromatic_pitch_class)
+            named_pitch_class = npcs[-1] + mdi
+            npcs.append(named_pitch_class)
         PitchClassSegment.__init__(
             self, 
             tokens=npcs,
@@ -114,7 +114,7 @@ class Scale(PitchClassSegment):
 
     ### PUBLIC METHODS ###
 
-    def create_named_chromatic_pitch_set_in_pitch_range(self, pitch_range):
+    def create_named_pitch_set_in_pitch_range(self, pitch_range):
         if not isinstance(pitch_range, pitchtools.PitchRange):
             pitch_range = pitchtools.PitchRange(
                 float(pitchtools.NamedPitch(pitch_range[0])),
@@ -258,7 +258,7 @@ class Scale(PitchClassSegment):
         score.set.tempo_wholes_per_minute = schemetools.SchemeMoment(30)
         return score
 
-    def named_chromatic_pitch_class_to_scale_degree(self, *args):
+    def named_pitch_class_to_scale_degree(self, *args):
         from abjad.tools import tonalanalysistools
         foreign_pitch_class = pitchtools.NamedPitchClass(*args)
         letter = foreign_pitch_class._diatonic_pitch_class_name
@@ -273,7 +273,7 @@ class Scale(PitchClassSegment):
         accidental = foreign_pitch._accidental - native_pitch._accidental
         return tonalanalysistools.ScaleDegree(accidental, scale_degree_number)
 
-    def scale_degree_to_named_chromatic_pitch_class(self, *args):
+    def scale_degree_to_named_pitch_class(self, *args):
         from abjad.tools import tonalanalysistools
         scale_degree = tonalanalysistools.ScaleDegree(*args)
         scale_index = scale_degree.number - 1

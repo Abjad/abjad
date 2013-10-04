@@ -7,10 +7,10 @@ def test_NamedPitchClass___repr___01():
     r'''Named chromatic pitch-class repr is evaluable.
     '''
 
-    named_chromatic_pitch_class_1 = pitchtools.NamedPitchClass('cs')
-    named_chromatic_pitch_class_2 = eval(repr(named_chromatic_pitch_class_1))
+    named_pitch_class_1 = pitchtools.NamedPitchClass('cs')
+    named_pitch_class_2 = eval(repr(named_pitch_class_1))
 
     "NamedPitchClass('cs')"
 
-    assert isinstance(named_chromatic_pitch_class_1, pitchtools.NamedPitchClass)
-    assert isinstance(named_chromatic_pitch_class_2, pitchtools.NamedPitchClass)
+    assert isinstance(named_pitch_class_1, pitchtools.NamedPitchClass)
+    assert isinstance(named_pitch_class_2, pitchtools.NamedPitchClass)

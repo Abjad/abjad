@@ -631,10 +631,10 @@ Changes to the ``pitchtools`` package:
 
     pitchtools.calculate_harmonic_chromatic_interval_class_from_pitch_carrier_to_pitch_carrier()
     pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier()
-    pitchtools.calculate_harmonic_counterpoint_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch()
-    pitchtools.calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch()
-    pitchtools.calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch()
-    pitchtools.calculate_harmonic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch()
+    pitchtools.calculate_harmonic_counterpoint_interval_class_from_named_pitch_to_named_pitch()
+    pitchtools.calculate_harmonic_counterpoint_interval_from_named_pitch_to_named_pitch()
+    pitchtools.calculate_harmonic_diatonic_interval_class_from_named_pitch_to_named_pitch()
+    pitchtools.calculate_harmonic_diatonic_interval_from_named_pitch_to_named_pitch()
 
   ::
 
@@ -649,10 +649,10 @@ Changes to the ``pitchtools`` package:
 
     pitchtools.calculate_melodic_chromatic_interval_class_from_pitch_carrier_to_pitch_carrier()
     pitchtools.calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier()
-    pitchtools.calculate_melodic_counterpoint_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch()
-    pitchtools.calculate_melodic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch()
-    pitchtools.NamedMelodicInterval.from_pitch_carriers_class_from_named_chromatic_pitch_to_named_chromatic_pitch()
-    pitchtools.NamedMelodicInterval.from_pitch_carriers_from_named_chromatic_pitch_to_named_chromatic_pitch()
+    pitchtools.calculate_melodic_counterpoint_interval_class_from_named_pitch_to_named_pitch()
+    pitchtools.calculate_melodic_counterpoint_interval_from_named_pitch_to_named_pitch()
+    pitchtools.NamedMelodicInterval.from_pitch_carriers_class_from_named_pitch_to_named_pitch()
+    pitchtools.NamedMelodicInterval.from_pitch_carriers_from_named_pitch_to_named_pitch()
 
   ::
 
@@ -682,7 +682,7 @@ Changes to the ``pitchtools`` package:
 
 - Renamed::
 
-    pitchtools.named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictionary()
+    pitchtools.named_pitches_to_harmonic_chromatic_interval_class_number_dictionary()
 
   ::
 
@@ -698,15 +698,15 @@ Changes to the ``pitchtools`` package:
 
 - Renamed::
 
-    pitchtools.list_named_chromatic_pitch_carriers_in_expr_sorted_by_numbered_chromatic_pitch_class()
+    pitchtools.list_named_pitch_carriers_in_expr_sorted_by_numbered_chromatic_pitch_class()
 
   ::
 
-    pitchtools.sort_named_chromatic_pitch_carriers_in_expr()
+    pitchtools.sort_named_pitch_carriers_in_expr()
 
 - Renamed::
 
-    pitchtools.named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary()
+    pitchtools.named_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary()
 
   ::
 
@@ -762,11 +762,11 @@ Changes to the ``pitchtools`` package:
 
 - Renamed::
 
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr()
+    pitchtools.set_ascending_named_pitches_on_nontied_pitched_components_in_expr()
 
   ::
 
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr()
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr()
 
 - Renamed::
 

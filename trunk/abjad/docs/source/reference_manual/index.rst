@@ -18,7 +18,7 @@ Reference manual
    lilypond_files/index
    measures/index
    notes/index
-   named_chromatic_pitch/index
+   named_pitch/index
    python_basics/index
    rests/index
    scores/index

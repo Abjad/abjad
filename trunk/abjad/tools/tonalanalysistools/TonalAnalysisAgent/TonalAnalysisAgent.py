@@ -107,7 +107,7 @@ class TonalAnalysisAgent(object):
             return None
         root = ordered_npcs[0]
         indicator = CQI.from_interval_class_segment(segment)
-        bass = min(pitches).named_chromatic_pitch_class
+        bass = min(pitches).named_pitch_class
         inversion = ordered_npcs.index(bass)
         return tonalanalysistools.ChordClass(
             root,
@@ -148,7 +148,7 @@ class TonalAnalysisAgent(object):
         else:
             message = 'can not identify incomplete tertian chord.'
             raise TonalHarmonyError(message)
-        bass = min(pitches).named_chromatic_pitch_class
+        bass = min(pitches).named_pitch_class
         try:
             npcseg = npcset.order_by(
                 pitchtools.PitchClassSegment(
@@ -179,7 +179,7 @@ class TonalAnalysisAgent(object):
             chord_class = chord_classes[0]
         root = chord_class.root
         scale = tonalanalysistools.Scale(key_signature)
-        scale_degree = scale.named_chromatic_pitch_class_to_scale_degree(root)
+        scale_degree = scale.named_pitch_class_to_scale_degree(root)
         quality = chord_class.quality_indicator.quality_string
         extent = chord_class.extent
         inversion = chord_class.inversion
@@ -204,7 +204,7 @@ class TonalAnalysisAgent(object):
             return None
         root = chord_class.root
         scale = tonalanalysistools.Scale(key_signature)
-        scale_degree = scale.named_chromatic_pitch_class_to_scale_degree(root)
+        scale_degree = scale.named_pitch_class_to_scale_degree(root)
         quality = chord_class.quality_indicator.quality_string
         extent = chord_class.extent
         inversion = chord_class.inversion
@@ -259,8 +259,8 @@ class TonalAnalysisAgent(object):
         return selection.are_scalar_notes()
 
     @staticmethod
-    def _make_dicv(*named_chromatic_pitch_classes):
-        pitch_set = pitchtools.PitchSet(named_chromatic_pitch_classes)
+    def _make_dicv(*named_pitch_classes):
+        pitch_set = pitchtools.PitchSet(named_pitch_classes)
         return pitchtools.IntervalClassVector(
             tokens=pitch_set,
             item_class=pitchtools.NamedInversionEquivalentIntervalClass,

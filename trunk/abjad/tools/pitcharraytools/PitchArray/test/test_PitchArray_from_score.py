@@ -137,11 +137,11 @@ def test_PitchArray_from_score_03():
     '''
 
     assert pitch_array[0].pitches ==\
-        pitchtools.list_named_chromatic_pitches_in_expr(score[0])
+        pitchtools.list_named_pitches_in_expr(score[0])
     assert pitch_array[1].pitches ==\
-        pitchtools.list_named_chromatic_pitches_in_expr(score[1])
+        pitchtools.list_named_pitches_in_expr(score[1])
     assert pitch_array[2].pitches ==\
-        pitchtools.list_named_chromatic_pitches_in_expr(score[2])
+        pitchtools.list_named_pitches_in_expr(score[2])
 
 
 def test_PitchArray_from_score_04():
@@ -189,8 +189,8 @@ def test_PitchArray_from_score_04():
     '''
 
     assert pitch_array[0].pitches ==\
-        pitchtools.list_named_chromatic_pitches_in_expr(score[0])
+        pitchtools.list_named_pitches_in_expr(score[0])
     assert pitch_array[1].pitches ==\
-        pitchtools.list_named_chromatic_pitches_in_expr(score[1])
+        pitchtools.list_named_pitches_in_expr(score[1])
     assert pitch_array[2].pitches ==\
-        pitchtools.list_named_chromatic_pitches_in_expr(score[2])
+        pitchtools.list_named_pitches_in_expr(score[2])

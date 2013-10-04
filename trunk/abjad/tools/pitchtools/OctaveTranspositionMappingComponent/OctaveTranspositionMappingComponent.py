@@ -79,7 +79,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
     @property
     def _input_argument_token(self):
         return '({!r}, {})'.format(
-            self.source_pitch_range.one_line_named_chromatic_pitch_repr,
+            self.source_pitch_range.one_line_named_pitch_repr,
             self.target_octave_start_pitch)
 
     @property
@@ -96,7 +96,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
     @property
     def _one_line_menuing_summary(self):
         return '{} => {}'.format(
-            self.source_pitch_range.one_line_named_chromatic_pitch_repr, 
+            self.source_pitch_range.one_line_named_pitch_repr, 
             self.target_octave_start_pitch,
             )
 

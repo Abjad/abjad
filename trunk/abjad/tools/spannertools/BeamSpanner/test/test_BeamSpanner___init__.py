@@ -480,7 +480,7 @@ def test_BeamSpanner___init___17():
     container[1].is_simultaneous = True
     container[0][0].name, container[1][1].name = 'first', 'first'
     container[0][1].name, container[1][0].name = 'second', 'second'
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
         container)
     beam = spannertools.BeamSpanner(container[0][0][:] + container[1][1][:])
 
@@ -535,7 +535,7 @@ def test_BeamSpanner___init___18():
     container[0][0].name, container[1][0].name = 'first', 'first'
     container[0][1].name, container[1][1].name = 'second', 'second'
     del(container[1][1])
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
         container)
     beam = spannertools.BeamSpanner(container[0][0][:] + container[1][0][:])
 
@@ -601,7 +601,7 @@ def test_BeamSpanner___init___20():
 
     container = Container(Voice(notetools.make_repeated_notes(4)) * 2)
     container.is_simultaneous = True
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
         container)
     beam = spannertools.BeamSpanner(container[0][:])
 
@@ -637,7 +637,7 @@ def test_BeamSpanner___init___21():
     new = Container(Voice(notetools.make_repeated_notes(4)) * 2)
     new.is_simultaneous = True
     staff.insert(2, new)
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
         staff)
 
     assert testtools.compare(
@@ -682,7 +682,7 @@ def test_BeamSpanner___init___22():
     staff.insert(1, new)
     staff[1][0].name = 'foo'
     staff[1][1].name = 'bar'
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
     staff)
     leaves = staff[0][:] + staff[1][0][:] + staff[2][:]
     beam = spannertools.BeamSpanner(leaves)

@@ -161,7 +161,7 @@ class GuileProxy(AbjadObject):
                 for x in key_signatures:
                     tonic = pitchtools.NamedPitch(x.tonic, 4)
                     x.tonic = lilypondparsertools.LilyPondParser._transpose_enharmonically(
-                        from_pitch, to_pitch, tonic).named_chromatic_pitch_class
+                        from_pitch, to_pitch, tonic).named_pitch_class
             if isinstance(music, notetools.Note):
                 music.written_pitch = \
                     lilypondparsertools.LilyPondParser._transpose_enharmonically(
@@ -245,10 +245,10 @@ class GuileProxy(AbjadObject):
                 float(down_pitch._diatonic_pitch_number) - 
                 float(reference._diatonic_pitch_number)):
             pitch = pitchtools.NamedPitch(
-                up_pitch.named_chromatic_pitch_class, 
+                up_pitch.named_pitch_class, 
                 up_octave + pitch.octave_number - 3)
         else:
             pitch = pitchtools.NamedPitch(
-                down_pitch.named_chromatic_pitch_class, 
+                down_pitch.named_pitch_class, 
                 down_octave + pitch.octave_number - 3)
         return pitch

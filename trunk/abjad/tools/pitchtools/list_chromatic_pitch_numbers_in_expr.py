@@ -14,7 +14,7 @@ def list_chromatic_pitch_numbers_in_expr(expr):
     '''
     from abjad.tools import pitchtools
 
-    pitches = pitchtools.list_named_chromatic_pitches_in_expr(expr)
+    pitches = pitchtools.list_named_pitches_in_expr(expr)
 
     pitch_numbers = [pitch.numbered_chromatic_pitch._chromatic_pitch_number for pitch in pitches]
     pitch_numbers = tuple(pitch_numbers)

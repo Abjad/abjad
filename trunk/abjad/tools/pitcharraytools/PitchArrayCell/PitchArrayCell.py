@@ -313,23 +313,23 @@ class PitchArrayCell(AbjadObject):
         elif len(self.pitches) == 1:
             if self.width == 1:
                 return (
-                    str(self.pitches[0].named_chromatic_pitch_class), 
+                    str(self.pitches[0].named_pitch_class), 
                     self.pitches[0].octave_number,
                     )
             else:
                 return (
-                    str(self.pitches[0].named_chromatic_pitch_class), 
+                    str(self.pitches[0].named_pitch_class), 
                     self.pitches[0].octave_number,
                     self.width,
                     )
         else:
             if self.width == 1:
-                return [(str(pitch.named_chromatic_pitch_class), 
+                return [(str(pitch.named_pitch_class), 
                     pitch.octave_number) 
                     for pitch in self.pitches]
             else:
                 return (
-                    [(str(pitch.named_chromatic_pitch_class), 
+                    [(str(pitch.named_pitch_class), 
                     pitch.octave_number) for pitch in self.pitches],
                     self.width
                     )

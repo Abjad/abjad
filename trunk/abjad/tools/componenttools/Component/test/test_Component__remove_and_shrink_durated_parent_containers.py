@@ -194,7 +194,7 @@ def test_Component__remove_and_shrink_durated_parent_containers_04():
         tuplettools.FixedDurationTuplet(Duration(4, 8), Note(0, (1, 8)) * 7),
         ])
 
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(measure)
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(measure)
 
     assert testtools.compare(
         measure,
@@ -283,7 +283,7 @@ def test_Component__remove_and_shrink_durated_parent_containers_05():
     measure = Measure((5, 6),
         [tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(7))] +
             notetools.make_repeated_notes(3, (1, 4)))
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(measure)
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(measure)
 
     assert testtools.compare(
         measure,
@@ -371,7 +371,7 @@ def test_Component__remove_and_shrink_durated_parent_containers_06():
     measure = Measure((5, 6),
         [tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(7))] +
             notetools.make_repeated_notes(3, (1, 4)))
-    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(measure)
+    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(measure)
 
     assert testtools.compare(
         measure,

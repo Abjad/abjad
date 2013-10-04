@@ -37,11 +37,11 @@ def test_sequencetools_rotate_sequence_04():
     r'''Rotate named chromatic pitch segment.
     '''
     py.test.skip('FIXME')
-    named_chromatic_pitch_segment_1 = pitchtools.PitchSegment("c'' d'' e'' f''")
-    named_chromatic_pitch_segment_2 = sequencetools.rotate_sequence(named_chromatic_pitch_segment_1, -1)
-    named_chromatic_pitch_segment_3 = pitchtools.PitchSegment("d'' e'' f'' c''")
+    named_pitch_segment_1 = pitchtools.PitchSegment("c'' d'' e'' f''")
+    named_pitch_segment_2 = sequencetools.rotate_sequence(named_pitch_segment_1, -1)
+    named_pitch_segment_3 = pitchtools.PitchSegment("d'' e'' f'' c''")
 
-    assert named_chromatic_pitch_segment_2 == named_chromatic_pitch_segment_3
-    assert isinstance(named_chromatic_pitch_segment_1, pitchtools.PitchSegment)
-    assert isinstance(named_chromatic_pitch_segment_2, pitchtools.PitchSegment)
-    assert isinstance(named_chromatic_pitch_segment_3, pitchtools.PitchSegment)
+    assert named_pitch_segment_2 == named_pitch_segment_3
+    assert isinstance(named_pitch_segment_1, pitchtools.PitchSegment)
+    assert isinstance(named_pitch_segment_2, pitchtools.PitchSegment)
+    assert isinstance(named_pitch_segment_3, pitchtools.PitchSegment)

@@ -149,7 +149,7 @@ class PitchRange(AbjadObject):
         elif isinstance(arg, containertools.Container):
             return all(x in self for x in arg.select_leaves())
         else:
-            pitches = pitchtools.list_named_chromatic_pitches_in_expr(arg)
+            pitches = pitchtools.list_named_pitches_in_expr(arg)
             if pitches:
                 return all(self._contains_pitch(x) for x in pitches)
             else:
@@ -239,7 +239,7 @@ class PitchRange(AbjadObject):
 
     @property
     def _one_line_menuing_summary(self):
-        return self.one_line_named_chromatic_pitch_repr
+        return self.one_line_named_pitch_repr
 
     @property
     def _open_bracket_string(self):
@@ -251,7 +251,7 @@ class PitchRange(AbjadObject):
     @property
     def _positional_argument_values(self):
         result = []
-        result.append(self.one_line_named_chromatic_pitch_repr)
+        result.append(self.one_line_named_pitch_repr)
         return tuple(result)
 
     ### PRIVATE METHODS ###
@@ -331,12 +331,12 @@ class PitchRange(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def one_line_named_chromatic_pitch_repr(self):
+    def one_line_named_pitch_repr(self):
         r'''One-line named chromatic pitch repr of pitch of range:
 
         ::
 
-            >>> pitch_range.one_line_named_chromatic_pitch_repr
+            >>> pitch_range.one_line_named_pitch_repr
             '[C3, C7]'
 
         Return string.
