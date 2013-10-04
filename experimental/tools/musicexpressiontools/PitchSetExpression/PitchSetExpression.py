@@ -73,9 +73,9 @@ class PitchSetExpression(LeafSetExpression):
             node_count = len(leaves)
         else:
             node_count = self.node_count
-        chromatic_pitch_numbers = \
+        pitch_numbers = \
             statal_server_cursor(n=node_count, level=level)
-        chromatic_pitch_numbers = \
-            datastructuretools.CyclicTuple(chromatic_pitch_numbers)
+        pitch_numbers = \
+            datastructuretools.CyclicTuple(pitch_numbers)
         for i, leaf in enumerate(leaves):
-            leaf.sounding_pitch = chromatic_pitch_numbers[i]
+            leaf.sounding_pitch = pitch_numbers[i]

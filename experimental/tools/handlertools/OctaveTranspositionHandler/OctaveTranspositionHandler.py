@@ -17,12 +17,12 @@ class OctaveTranspositionHandler(PitchHandler):
     def __call__(self, expr):
         for leaf in iterationtools.iterate_leaves_in_expr(expr):
             if isinstance(leaf, Note):
-                n = leaf.pitch.chromatic_pitch_number
-                n = pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(
+                n = leaf.pitch.pitch_number
+                n = pitchtools.transpose_pitch_number_by_octave_transposition_mapping(
                     n, self.octave_transposition_mapping)
                 leaf.pitch = n
             elif isinstance(leaf, Chord):
-                nn = [nh.pitch.chromatic_pitch_number for nh in leaf]
-                nn = [pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(
+                nn = [nh.pitch.pitch_number for nh in leaf]
+                nn = [pitchtools.transpose_pitch_number_by_octave_transposition_mapping(
                     n, self.octave_transposition_mapping) for n in nn]
                 leaf.pitches = nn

@@ -53,7 +53,7 @@ class DiatonicClusterHandler(PitchHandler):
             start = note.written_pitch.diatonic_pitch_number
             diatonic_numbers = range(start, start + cluster_width)
             chromatic_numbers = [
-                pitchtools.diatonic_pitch_number_to_chromatic_pitch_number(x)
+                pitchtools.diatonic_pitch_number_to_pitch_number(x)
                 for x in diatonic_numbers 
                 ] 
             chord_pitches = [pitchtools.NamedPitch(x) 

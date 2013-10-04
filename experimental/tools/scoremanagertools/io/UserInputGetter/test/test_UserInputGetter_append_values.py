@@ -25,7 +25,7 @@ def test_UserInputGetter_append_values_01():
     assert getter._run(pending_user_input='foo') == markuptools.Markup('foo')
 
     getter = scoremanagertools.io.UserInputGetter()
-    getter.append_named_chromatic_pitch('attribute')
+    getter.append_named_pitch('attribute')
     assert getter._run(pending_user_input="cs'") == \
         pitchtools.NamedPitch("cs'")
 

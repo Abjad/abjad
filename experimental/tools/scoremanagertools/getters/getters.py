@@ -75,9 +75,9 @@ def get_markup(space_delimited_attribute_name, session=None, prepopulated_value=
     getter.allow_none = allow_none
     return getter
 
-def get_named_chromatic_pitch(space_delimited_attribute_name, session=None, prepopulated_value=None, allow_none=True):
+def get_named_pitch(space_delimited_attribute_name, session=None, prepopulated_value=None, allow_none=True):
     getter = UserInputGetter(session=session)
-    getter.append_named_chromatic_pitch(space_delimited_attribute_name)
+    getter.append_named_pitch(space_delimited_attribute_name)
     getter.allow_none = allow_none
     return getter
 

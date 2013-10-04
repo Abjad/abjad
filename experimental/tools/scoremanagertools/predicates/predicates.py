@@ -86,7 +86,7 @@ def is_markup_token(expr):
     except:
         return False
 
-def is_named_chromatic_pitch(expr):
+def is_named_pitch(expr):
     return isinstance(expr, pitchtools.NamedPitch)
 
 def is_negative_integer(expr):

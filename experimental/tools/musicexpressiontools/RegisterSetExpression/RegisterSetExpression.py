@@ -19,5 +19,5 @@ class RegisterSetExpression(LeafSetExpression):
             assert isinstance(leaf, notetools.Note), repr(leaf)
             sounding_pitch = \
                 octave_transposition_mapping(
-                    [leaf.sounding_pitch.chromatic_pitch_number])[0]
+                    [leaf.sounding_pitch.pitch_number])[0]
             leaf.sounding_pitch = sounding_pitch

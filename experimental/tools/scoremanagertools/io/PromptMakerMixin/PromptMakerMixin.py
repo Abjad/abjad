@@ -365,7 +365,7 @@ class PromptMakerMixin(AbjadObject):
             default_value=default_value,
             )
 
-    def append_named_chromatic_pitch(
+    def append_named_pitch(
         self, 
         spaced_attribute_name, 
         default_value=None,
@@ -378,7 +378,7 @@ class PromptMakerMixin(AbjadObject):
         self._make_prompt(
             spaced_attribute_name, 
             help_template=help_template, 
-            validation_function=predicates.is_named_chromatic_pitch,
+            validation_function=predicates.is_named_pitch,
             setup_statements=setup_statements,
             default_value=default_value,
             )
