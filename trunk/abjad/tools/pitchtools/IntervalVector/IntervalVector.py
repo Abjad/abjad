@@ -15,29 +15,30 @@ class IntervalVector(Vector):
         ...     tokens=pitch_segment,
         ...     item_class=pitchtools.NumberedInterval,
         ...     )
-        >>> for interval, count in numbered_interval_vector.iteritems():
+        >>> for interval, count in sorted(numbered_interval_vector.items(),
+        ...     key=lambda x: (x[0].direction_number, x[0].number)):
         ...     print interval, count
         ...
+        -11 1
+        -10 1
+        -9 1
+        -8 2
+        -7 3
+        -6 3
+        -5 4
+        -4 4
+        -3 4
+        -2 5
+        -1 6
+        +1 5
+        +2 5
+        +3 5
         +4 4
         +5 3
-        -8 2
-        +3 5
-        -5 4
-        +2 5
-        +1 5
-        -4 4
-        -6 3
-        -7 3
-        -11 1
+        +6 3
+        +7 2
         +8 2
         +9 2
-        -10 1
-        +7 2
-        -1 6
-        +6 3
-        -9 1
-        -2 5
-        -3 4
         +10 1
 
     Return pitch segment.
