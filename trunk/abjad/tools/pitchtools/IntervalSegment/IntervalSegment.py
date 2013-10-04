@@ -26,7 +26,7 @@ class IntervalSegment(Segment):
     def _named_item_class(self):
         from abjad.tools import pitchtools
         return pitchtools.NamedInterval
-    
+
     @property
     def _numbered_item_class(self):
         from abjad.tools import pitchtools
@@ -45,17 +45,16 @@ class IntervalSegment(Segment):
 
         ::
 
-            >>> staff_1 = Staff("c'4 <d' fs' a'>4 b2")
-            >>> staff_2 = Staff("c4. r8 g2")
-            >>> selection = select((staff_1, staff_2))
-            >>> pitchtools.IntervalSegment.from_selection(selection)
-            IntervalSegment(['-M2', '-M3', '-m3', '+m7', '+M7', '-P5'])
-        
+            >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+            >>> pitchtools.IntervalSegment.from_selection(
+            ...     staff, item_class=pitchtools.NumberedInterval)
+            IntervalSegment([+2, +2, +1, +2, +2, +2, +1])
+
         Return interval segment.
         '''
         from abjad.tools import pitchtools
         pitch_segment = pitchtools.PitchSegment.from_selection(selection)
-        intervals = mathtools.difference_series(pitch_segment)
+        intervals = (-x for x in mathtools.difference_series(pitch_segment))
         return cls(
             tokens=intervals,
             item_class=item_class,
@@ -92,7 +91,7 @@ class IntervalSegment(Segment):
 
     @property
     def slope(self):
-        r'''The slope of a melodic interval segment is the sum of its 
+        r'''The slope of a melodic interval segment is the sum of its
         intervals divided by its length:
 
         ::
@@ -107,7 +106,7 @@ class IntervalSegment(Segment):
 
     @property
     def spread(self):
-        r'''The maximum harmonic interval spanned by any combination of 
+        r'''The maximum harmonic interval spanned by any combination of
         the intervals within a harmonic chromatic interval segment:
 
         ::
