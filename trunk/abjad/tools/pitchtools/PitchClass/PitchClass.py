@@ -1,6 +1,8 @@
 # -*- encoding: utf-8 -*-
 import abc
+import re
 from abjad.tools.abctools import AbjadObject
+from abjad.tools.pitchtools.Accidental import Accidental
 
 
 class PitchClass(AbjadObject):
@@ -10,6 +12,28 @@ class PitchClass(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = ()
+
+    _diatonic_pitch_class_name_regex_body = '''
+        ([a-g,A-G]) # exactly one lowercase a - g or uppercase A - G
+        '''
+
+    _diatonic_pitch_class_name_regex = re.compile(
+        '^{}$'.format(_diatonic_pitch_class_name_regex_body),
+        re.VERBOSE,
+        )
+
+    _pitch_class_name_regex_body = '''
+        {}          # exactly one diatonic pitch-class name
+        {}          # followed by exactly one alphabetic accidental name
+        '''.format(
+        _diatonic_pitch_class_name_regex_body,
+        Accidental._alphabetic_accidental_regex_body,
+        )
+
+    _pitch_class_name_regex = re.compile(
+        '^{}$'.format(_pitch_class_name_regex_body),
+        re.VERBOSE,
+        )
 
     ### INITIALIZER ###
 

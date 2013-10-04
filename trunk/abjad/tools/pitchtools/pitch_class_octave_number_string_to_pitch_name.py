@@ -11,13 +11,13 @@ def pitch_class_octave_number_string_to_pitch_name(pitch_class_octave_number_str
     Return string.
     '''
     from abjad.tools import pitchtools
-    from abjad.tools.pitchtools.is_pitch_class_octave_number_string import pitch_class_octave_number_regex
 
     if not pitchtools.is_pitch_class_octave_number_string(pitch_class_octave_number_string):
         raise ValueError(
             'not pitch-class / octave number string: {!r}.'.format(pitch_class_octave_number_string))
 
-    groups = pitch_class_octave_number_regex.match(pitch_class_octave_number_string).groups()
+    groups = pitchtools.Pitch._pitch_class_octave_number_regex.match(
+        pitch_class_octave_number_string).groups()
     diatonic_pitch_class_name = groups[0].lower()
     symbolic_accidental_string = groups[1]
     octave_number = int(groups[2])

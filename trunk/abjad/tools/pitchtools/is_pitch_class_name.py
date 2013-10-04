@@ -1,19 +1,5 @@
 # -*- encoding: utf-8 -*-
-import re
-from abjad.tools.pitchtools.is_alphabetic_accidental_abbreviation \
-	import alphabetic_accidental_regex_body
-from abjad.tools.pitchtools.is_diatonic_pitch_class_name \
-	import diatonic_pitch_class_name_regex_body
 
-
-pitch_class_name_regex_body = '''
-    %s                # exactly one diatonic pitch-class name
-    %s                # followed by exactly one alphabetic accidental name
-    ''' % (diatonic_pitch_class_name_regex_body,
-        alphabetic_accidental_regex_body)
-
-pitch_class_name_regex = re.compile(
-    '^%s$' % pitch_class_name_regex_body, re.VERBOSE)
 
 def is_pitch_class_name(expr):
     '''True when `expr` is a chromatic pitch-class name. Otherwise false:
@@ -23,12 +9,12 @@ def is_pitch_class_name(expr):
         >>> pitchtools.is_pitch_class_name('fs')
         True
 
-    The regex ``^([a-g,A-G])(([s]{1,2}|[f]{1,2}|t?q?[fs]|)!?)$`` underlies this predicate.
+    The regex ``^([a-g,A-G])(([s]{1,2}|[f]{1,2}|t?q?[fs]|)!?)$`` underlies this
+    predicate.
 
     Return boolean.
     '''
-
+    from abjad.tools import pitchtools
     if not isinstance(expr, str):
         return False
-
-    return bool(pitch_class_name_regex.match(expr))
+    return bool(pitchtools.PitchClass._pitch_class_name_regex.match(expr))

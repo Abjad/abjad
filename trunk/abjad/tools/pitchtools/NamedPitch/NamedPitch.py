@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import collections
-from abjad.tools.pitchtools.Accidental import Accidental
+import re
 from abjad.tools.pitchtools.Pitch import Pitch
 
 
@@ -18,7 +18,6 @@ class NamedPitch(Pitch):
 
     ### CLASS VARIABLES ###
 
-
     # calculate accidental_semitones, diatonic_pitch_number at init
     # so notehead sorting doesn't take forever later on
     __slots__ = (
@@ -31,12 +30,10 @@ class NamedPitch(Pitch):
 
     def __init__(self, *args):
         from abjad.tools import pitchtools
-        from abjad.tools.pitchtools.is_pitch_name \
-            import pitch_name_regex
 
         if isinstance(args[0], collections.Iterable) and \
             not isinstance(args[0], basestring) and \
-            len(args) == 1:            
+            len(args) == 1:
             args = args[0]
 
         if len(args) == 1:
@@ -66,7 +63,8 @@ class NamedPitch(Pitch):
                 self._init_by_named_pitch_class_and_octave_number(*args)
             elif isinstance(args[0], (int, long, float)):
                 if isinstance(args[1], str):
-                    self._init_by_pitch_number_and_diatonic_pitch_class_name(*args)
+                    self._init_by_pitch_number_and_diatonic_pitch_class_name(
+                        *args)
                 elif isinstance(args[1], pitchtools.NamedPitchClass):
                     self._init_by_pitch_number_and_named_pitch_class(*args)
                 else:
@@ -79,16 +77,15 @@ class NamedPitch(Pitch):
                 self._class_name, args))
 
         assert hasattr(self, '_pitch_name')
-        diatonic_pitch_number = \
-            pitchtools.pitch_name_to_diatonic_pitch_number(
+        diatonic_pitch_number = pitchtools.pitch_name_to_diatonic_pitch_number(
             self._pitch_name)
         self._diatonic_pitch_number = diatonic_pitch_number
         groups = \
-            pitch_name_regex.match(self._pitch_name).groups()
+            pitchtools.Pitch._pitch_name_regex.match(self._pitch_name).groups()
         alphabetic_accidental_abbreviation = groups[1]
         accidental_semitones = \
-            Accidental._alphabetic_accidental_abbreviation_to_semitones[
-            alphabetic_accidental_abbreviation]
+            pitchtools.Accidental._alphabetic_accidental_abbreviation_to_semitones[
+                alphabetic_accidental_abbreviation]
         self._accidental_semitones = accidental_semitones
 
     ### SPECIAL METHODS ###
@@ -202,13 +199,11 @@ class NamedPitch(Pitch):
 
     @property
     def _accidental(self):
-        from abjad.tools.pitchtools.Accidental import Accidental
-        from abjad.tools.pitchtools.is_pitch_name \
-            import pitch_name_regex
-        groups = \
-            pitch_name_regex.match(self._pitch_name).groups()
+        from abjad.tools import pitchtools
+        groups = pitchtools.Pitch._pitch_name_regex.match(
+            self._pitch_name).groups()
         alphabetic_accidental_abbreviation = groups[1]
-        return Accidental(alphabetic_accidental_abbreviation)
+        return pitchtools.Accidental(alphabetic_accidental_abbreviation)
 
     @property
     def _octave_tick_string(self):
@@ -514,11 +509,8 @@ class NamedPitch(Pitch):
         Return integer.
         '''
         from abjad.tools import pitchtools
-        from abjad.tools.pitchtools.is_pitch_name \
-            import pitch_name_regex
-        groups = \
-            pitch_name_regex.match(
-                self._pitch_name).groups()
+        groups = pitchtools.Pitch._pitch_name_regex.match(
+            self._pitch_name).groups()
         octave_tick_string = groups[-1]
         return pitchtools.OctaveIndication(octave_tick_string).octave_number
 

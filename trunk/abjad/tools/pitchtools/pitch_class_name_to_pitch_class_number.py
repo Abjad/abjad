@@ -12,9 +12,9 @@ def pitch_class_name_to_pitch_class_number(pitch_class_name):
     Return chromatic pitch-class number.
     '''
     from abjad.tools import pitchtools
-    from abjad.tools.pitchtools.is_pitch_class_name import pitch_class_name_regex
 
-    match = pitch_class_name_regex.match(pitch_class_name)
+    match = pitchtools.PitchClass._pitch_class_name_regex.match(
+        pitch_class_name)
     if match is None:
         raise ValueError('\n\tNot chromatic pitch-class name: "%s".' % pitch_class_name)
 

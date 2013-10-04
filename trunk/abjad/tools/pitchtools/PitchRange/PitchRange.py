@@ -4,10 +4,7 @@ import numbers
 import re
 from abjad.tools import datastructuretools
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.pitchtools.is_pitch_name \
-	import pitch_name_regex_body
-from abjad.tools.pitchtools.is_pitch_class_octave_number_string \
-	import pitch_class_octave_number_regex_body
+from abjad.tools.pitchtools.Pitch import Pitch
 
 
 # TODO: make iterable so that for x in PitchRange works
@@ -42,18 +39,18 @@ class PitchRange(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    _symbolic_pitch_range_string_regex_body = """
+    _symbolic_pitch_range_string_regex_body = '''
         ([\[(])         # open bracket or open parenthesis
         ({}|{}|-?\d+)   # pitch indicator
         ,               # comma
         [ ]*            # any amount of whitespace
         ({}|{}|-?\d+)   # pitch indicator
         ([\])])         # close bracket or close parenthesis
-        """.format(
-            pitch_class_octave_number_regex_body,
-            pitch_name_regex_body,
-            pitch_class_octave_number_regex_body,
-            pitch_name_regex_body,
+        '''.format(
+            Pitch._pitch_class_octave_number_regex_body,
+            Pitch._pitch_name_regex_body,
+            Pitch._pitch_class_octave_number_regex_body,
+            Pitch._pitch_name_regex_body,
             )
 
     _symbolic_pitch_range_string_regex = re.compile(

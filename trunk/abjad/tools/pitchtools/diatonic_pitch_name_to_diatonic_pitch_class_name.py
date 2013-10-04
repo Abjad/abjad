@@ -11,9 +11,10 @@ def diatonic_pitch_name_to_diatonic_pitch_class_name(diatonic_pitch_name):
 
     Return string.
     '''
-    from abjad.tools.pitchtools.is_diatonic_pitch_name import diatonic_pitch_name_regex
+    from abjad.tools import pitchtools
 
-    match = diatonic_pitch_name_regex.match(diatonic_pitch_name)
+    match = pitchtools.Pitch._diatonic_pitch_name_regex.match(
+        diatonic_pitch_name)
 
     if match is None:
         raise ValueError('\n\tNot a diatonic pitch name: "%s".' % diatonic_pitch_name)

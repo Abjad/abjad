@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import re
 from abjad.tools.abctools import AbjadObject
 
 
@@ -15,11 +16,38 @@ class Accidental(AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    _alphabetic_accidental_regex_body = """
+        ([s]{1,2}   # s or ss for sharp or double sharp
+        |[f]{1,2}   # or f or ff for flat or double flat
+        |t?q?[fs]   # or qs, qf, tqs, tqf for quartertone accidentals
+        |           # or empty string for no natural
+        )!?         # plus optional ! for forced printing of accidental
+        """
+
+    _alphabetic_accidental_regex = re.compile(
+        '^{}$'.format(_alphabetic_accidental_regex_body),
+        re.VERBOSE,
+        )
+
+    _symbolic_accidental_string_regex_body = '''
+        ([#]{1,2}   # # or ## for sharp or double sharp
+        |[b]{1,2}   # or b or bb for flat or double flat
+        |[#]?[+]    # or + or #+ for qs and tqs
+        |[b]?[~]    # or ~ and b~ for qf and tqf
+        |           # or empty string for no symbolic string
+        )
+        '''
+
+    _symbolic_accidental_string_regex = re.compile(
+        '^{}$'.format(_symbolic_accidental_string_regex_body),
+        re.VERBOSE,
+        )
+
     __slots__ = (
-        '_alphabetic_accidental_abbreviation', 
-        '_is_adjusted', 
+        '_alphabetic_accidental_abbreviation',
+        '_is_adjusted',
         '_name',
-        '_semitones', 
+        '_semitones',
         '_symbolic_accidental_string',
         )
 

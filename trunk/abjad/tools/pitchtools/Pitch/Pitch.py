@@ -1,6 +1,10 @@
 # -*- encoding: utf-8 -*-
 import abc
+import re
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.pitchtools.PitchClass import PitchClass
+from abjad.tools.pitchtools.Accidental import Accidental
+from abjad.tools.pitchtools.OctaveIndication import OctaveIndication
 
 
 class Pitch(AbjadObject):
@@ -8,6 +12,48 @@ class Pitch(AbjadObject):
     '''
 
     ### CLASS VARIABLES ###
+
+    _diatonic_pitch_name_regex_body = '''
+        {}  # exactly one diatonic pitch-class name
+        {}  # followed by exactly one octave tick string
+        '''.format(
+        PitchClass._diatonic_pitch_class_name_regex_body,
+        OctaveIndication._octave_tick_regex_body,
+        )
+
+    _diatonic_pitch_name_regex = re.compile(
+        '^{}$'.format(_diatonic_pitch_name_regex_body),
+        re.VERBOSE,
+        )
+
+    _pitch_class_octave_number_regex_body = '''
+        ([A-G])         # exactly one diatonic pitch-class letter
+        {}                # plus an optional symbolic accidental string
+        ([-]?           # plus an optional negative sign
+        [0-9]+)         # plus one or more digits
+        '''.format(
+        Accidental._symbolic_accidental_string_regex_body,
+        )
+
+    _pitch_class_octave_number_regex = re.compile(
+        '^{}$'.format(_pitch_class_octave_number_regex_body),
+        re.VERBOSE,
+        )
+
+    _pitch_name_regex_body = '''
+        {}  # exactly one diatonic pitch-class name
+        {}  # followed by exactly one alphabetic accidental name
+        {}  # followed by exactly one octave tick string
+        '''.format(
+        PitchClass._diatonic_pitch_class_name_regex_body,
+        Accidental._alphabetic_accidental_regex_body,
+        OctaveIndication._octave_tick_regex_body,
+        )
+
+    _pitch_name_regex = re.compile(
+        '^{}$'.format(_pitch_name_regex_body),
+        re.VERBOSE,
+        )
 
     __slots__ = ()
 

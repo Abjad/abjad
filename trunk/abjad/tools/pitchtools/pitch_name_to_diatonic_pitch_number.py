@@ -12,12 +12,11 @@ def pitch_name_to_diatonic_pitch_number(pitch_name):
     Return integer.
     '''
     from abjad.tools import pitchtools
-    from abjad.tools.pitchtools.is_pitch_name import pitch_name_regex
 
     if not isinstance(pitch_name, str):
         raise TypeError
 
-    match = pitch_name_regex.match(pitch_name)
+    match = pitchtools.Pitch._pitch_name_regex.match(pitch_name)
     if match is None:
         raise ValueError
 

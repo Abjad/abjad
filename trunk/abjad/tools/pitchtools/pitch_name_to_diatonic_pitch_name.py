@@ -11,9 +11,9 @@ def pitch_name_to_diatonic_pitch_name(pitch_name):
 
     Return string.
     '''
-    from abjad.tools.pitchtools.is_pitch_name import pitch_name_regex
+    from abjad.tools import pitchtools
 
-    match = pitch_name_regex.match(pitch_name)
+    match = pitchtools.Pitch._pitch_name_regex.match(pitch_name)
 
     if match is None:
         raise ValueError('\n\tNot chromatic pitch name: "%s".' % pitch_name)

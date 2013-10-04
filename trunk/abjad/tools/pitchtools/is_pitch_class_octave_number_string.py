@@ -1,17 +1,5 @@
 # -*- encoding: utf-8 -*-
-import re
-from abjad.tools.pitchtools.is_symbolic_accidental_string \
-	import symbolic_accidental_string_regex_body
 
-
-pitch_class_octave_number_regex_body = """
-    ([A-G])         # exactly one diatonic pitch-class letter
-    %s                # plus an optional symbolic accidental string
-    ([-]?           # plus an optional negative sign
-    [0-9]+)         # plus one or more digits
-    """ % symbolic_accidental_string_regex_body
-
-pitch_class_octave_number_regex = re.compile('^%s$' % pitch_class_octave_number_regex_body, re.VERBOSE)
 
 def is_pitch_class_octave_number_string(expr):
     '''True when `expr` is a pitch-class / octave number string. Otherwise false:
@@ -28,8 +16,7 @@ def is_pitch_class_octave_number_string(expr):
 
     Return boolean.
     '''
-
+    from abjad.tools import pitchtools
     if not isinstance(expr, str):
         return False
-
-    return bool(pitch_class_octave_number_regex.match(expr))
+    return bool(pitchtools.Pitch._pitch_class_octave_number_regex.match(expr))
