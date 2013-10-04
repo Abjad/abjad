@@ -14,6 +14,4 @@ def is_named_interval_abbreviation(expr):
     Return boolean.
     '''
     from abjad.tools import pitchtools
-    if not isinstance(expr, str):
-        return False
-    return bool(pitchtools.Interval._interval_name_abbreviation_regex.match(expr))
+    return pitchtools.Interval.is_named_interval_abbreviation(expr)

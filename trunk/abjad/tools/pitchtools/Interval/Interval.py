@@ -105,6 +105,45 @@ class Interval(AbjadObject):
     def _format_string(self):
         return str(self.number)
 
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def is_named_interval_abbreviation(expr):
+        '''True when `expr` is a melodic diatonic interval abbreviation.
+        Otherwise false:
+
+        ::
+
+            >>> pitchtools.Interval.is_named_interval_abbreviation('+M9')
+            True
+
+        The regex ``^([+,-]?)(M|m|P|aug|dim)(\d+)$`` underlies this predicate.
+
+        Return boolean.
+        '''
+        if not isinstance(expr, str):
+            return False
+        return bool(Interval._interval_name_abbreviation_regex.match(expr))
+
+    @staticmethod
+    def is_named_interval_quality_abbreviation(expr):
+        '''True when `expr` is a named-interval quality abbreviation. Otherwise
+        false:
+
+        ::
+
+            >>> pitchtools.Interval.is_named_interval_quality_abbreviation('aug')
+            True
+
+        The regex ``^M|m|P|aug|dim$`` underlies this predicate.
+
+        Return boolean.
+        '''
+        if not isinstance(expr, str):
+            return False
+        return bool(Interval._named_interval_quality_abbreviation_regex.match(
+            expr))
+
     ### PUBLIC PROPERTIES ###
 
     @property
