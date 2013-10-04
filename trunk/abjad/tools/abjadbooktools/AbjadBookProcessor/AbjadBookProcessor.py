@@ -4,7 +4,6 @@ import inspect
 import os
 import shutil
 import subprocess
-import tempfile
 from abjad.tools import sequencetools
 from abjad.tools import documentationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
@@ -330,6 +329,7 @@ class AbjadBookProcessor(AbjadObject):
 
     def _setup_tmp_directory(self, directory):
         #print 'SETUP TMP DIRECTORY'
+        import tempfile
         tmp_directory = os.path.abspath(tempfile.mkdtemp(dir=directory))
         return tmp_directory
 

@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
-import doctest
 import importlib
 import os
-import pytest
 from abjad.tools import iotools
 from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 
@@ -61,6 +59,8 @@ class TestAndRebuildScript(DeveloperScript):
         developerscripttools.BuildApiScript()(['-X', '-M'])
 
     def run_doctest(self, args):
+        import doctest
+
         start_message = ' doctest session starts '
         stop_message = ' {} of {} tests passed, in {} modules '
 
@@ -107,6 +107,7 @@ class TestAndRebuildScript(DeveloperScript):
         return False
 
     def run_pytest(self, args):
+        import pytest
         options = ['-x', '-rf', '.']
         return pytest.main(options)
 

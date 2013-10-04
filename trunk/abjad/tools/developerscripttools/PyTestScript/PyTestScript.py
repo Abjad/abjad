@@ -2,7 +2,6 @@
 import argparse
 import multiprocessing
 import os
-import pytest
 from abjad.tools import iotools
 from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 
@@ -55,6 +54,7 @@ class PyTestScript(DirectoryScript):
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
+        import pytest
 
         parallel = ''
         if args.parallel:

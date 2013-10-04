@@ -2,7 +2,6 @@
 import os
 import shutil
 import subprocess
-import tempfile
 
 
 def compare_images(image_one, image_two):
@@ -13,6 +12,7 @@ def compare_images(image_one, image_two):
 
     If `compare` is not available, return `False`.
     '''
+    import tempfile
     from abjad.tools import iotools
 
     assert os.path.exists(image_one)

@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import doctest
 import importlib
 import os
 from abjad.tools import iotools
@@ -48,6 +47,7 @@ class RunDoctestsScript(DirectoryScript):
     ### PUBLIC PROPERTIES ###
 
     def process_args(self, args):
+        import doctest
         globs = importlib.import_module('abjad').__dict__.copy()
         try:
             globs.update(importlib.import_module('experimental').__dict__)
