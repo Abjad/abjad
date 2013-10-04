@@ -8,7 +8,7 @@ from abjad.tools.pitchtools.OctaveIndication \
 	import OctaveIndication
 
 
-chromatic_pitch_name_regex_body = '''
+pitch_name_regex_body = '''
     {}  # exactly one diatonic pitch-class name
     {}  # followed by exactly one alphabetic accidental name
     {}  # followed by exactly one octave tick string
@@ -18,17 +18,17 @@ chromatic_pitch_name_regex_body = '''
         OctaveIndication._octave_tick_regex_body,
         )
 
-chromatic_pitch_name_regex = re.compile(
-    '^{}$'.format(chromatic_pitch_name_regex_body),
+pitch_name_regex = re.compile(
+    '^{}$'.format(pitch_name_regex_body),
     re.VERBOSE,
     )
 
-def is_chromatic_pitch_name(expr):
+def is_pitch_name(expr):
     '''True `expr` is a chromatic pitch name. Otherwise false:
 
     ::
 
-        >>> pitchtools.is_chromatic_pitch_name('c,')
+        >>> pitchtools.is_pitch_name('c,')
         True
 
     The regex ``^([a-g,A-G])(([s]{1,2}|[f]{1,2}|t?q?[f,s]|)!?)(,+|'+|)$`` underlies this predicate.
@@ -39,4 +39,4 @@ def is_chromatic_pitch_name(expr):
     if not isinstance(expr, str):
         return False
 
-    return bool(chromatic_pitch_name_regex.match(expr))
+    return bool(pitch_name_regex.match(expr))

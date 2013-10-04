@@ -16,8 +16,8 @@ def apply_accidental_to_named_pitch(named_pitch, accidental=None):
 
     accidental = pitchtools.Accidental(accidental)
     new_accidental = named_pitch._accidental + accidental
-    new_name = pitchtools.chromatic_pitch_name_to_diatonic_pitch_class_name(
-            named_pitch.chromatic_pitch_name)
+    new_name = pitchtools.pitch_name_to_diatonic_pitch_class_name(
+            named_pitch.pitch_name)
     new_name += new_accidental.alphabetic_accidental_abbreviation
     #new_name = named_pitch.named_diatonic_pitch_class._diatonic_pitch_class_name + \
     #    new_accidental.alphabetic_accidental_abbreviation

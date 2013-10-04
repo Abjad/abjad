@@ -32,9 +32,9 @@ class NamedPitchClass(PitchClass):
         if isinstance(expr, (
             pitchtools.NamedPitch,
             pitchtools.NamedPitchClass,
-            )) or pitchtools.is_chromatic_pitch_name(expr):
+            )) or pitchtools.is_pitch_name(expr):
             pitch_class_name = \
-                pitchtools.chromatic_pitch_name_to_pitch_class_name(
+                pitchtools.pitch_name_to_pitch_class_name(
                     str(expr))
         # from numbered objects
         elif isinstance(expr, (

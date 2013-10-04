@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
-# TODO: implement chromatic_pitch_name_to_pitch_class_octave_number_string()
-def pitch_class_octave_number_string_to_chromatic_pitch_name(pitch_class_octave_number_string):
+# TODO: implement pitch_name_to_pitch_class_octave_number_string()
+def pitch_class_octave_number_string_to_pitch_name(pitch_class_octave_number_string):
     '''Change `pitch_class_octave_number_string` to chromatic pitch name:
 
     ::
 
-        >>> pitchtools.pitch_class_octave_number_string_to_chromatic_pitch_name('C#+2')
+        >>> pitchtools.pitch_class_octave_number_string_to_pitch_name('C#+2')
         'ctqs,'
 
     Return string.
@@ -26,6 +26,6 @@ def pitch_class_octave_number_string_to_chromatic_pitch_name(pitch_class_octave_
         symbolic_accidental_string)
     octave_tick_string = str(pitchtools.OctaveIndication(octave_number))
     pitch_class_name = diatonic_pitch_class_name + alphabetic_accidental_abbreviation
-    chromatic_pitch_name = pitch_class_name + octave_tick_string
+    pitch_name = pitch_class_name + octave_tick_string
 
-    return chromatic_pitch_name
+    return pitch_name

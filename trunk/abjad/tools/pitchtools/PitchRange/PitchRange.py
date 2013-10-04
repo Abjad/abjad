@@ -4,8 +4,8 @@ import numbers
 import re
 from abjad.tools import datastructuretools
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.pitchtools.is_chromatic_pitch_name \
-	import chromatic_pitch_name_regex_body
+from abjad.tools.pitchtools.is_pitch_name \
+	import pitch_name_regex_body
 from abjad.tools.pitchtools.is_pitch_class_octave_number_string \
 	import pitch_class_octave_number_regex_body
 
@@ -51,9 +51,9 @@ class PitchRange(AbjadObject):
         ([\])])         # close bracket or close parenthesis
         """.format(
             pitch_class_octave_number_regex_body,
-            chromatic_pitch_name_regex_body,
+            pitch_name_regex_body,
             pitch_class_octave_number_regex_body,
-            chromatic_pitch_name_regex_body,
+            pitch_name_regex_body,
             )
 
     _symbolic_pitch_range_string_regex = re.compile(

@@ -1,22 +1,22 @@
 # -*- encoding: utf-8 -*-
 
 
-def chromatic_pitch_name_to_chromatic_pitch_number(chromatic_pitch_name):
-    '''Change `chromatic_pitch_name` to chromatic pitch number:
+def pitch_name_to_chromatic_pitch_number(pitch_name):
+    '''Change `pitch_name` to chromatic pitch number:
 
     ::
 
-        >>> pitchtools.chromatic_pitch_name_to_chromatic_pitch_number("cs''")
+        >>> pitchtools.pitch_name_to_chromatic_pitch_number("cs''")
         13
 
     Return integer or float.
     '''
     from abjad.tools import pitchtools
-    from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_regex
+    from abjad.tools.pitchtools.is_pitch_name import pitch_name_regex
 
-    match = chromatic_pitch_name_regex.match(chromatic_pitch_name)
+    match = pitch_name_regex.match(pitch_name)
     if match is None:
-        raise ValueError('\n\tNot chromatic pitch name: "%s".' % chromatic_pitch_name)
+        raise ValueError('\n\tNot chromatic pitch name: "%s".' % pitch_name)
 
     groups = match.groups()
     diatonic_pitch_class_name, alphabetic_accidental_abbreviation, octave_tick_string = groups

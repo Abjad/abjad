@@ -30,9 +30,9 @@ class NumberedPitch(Pitch):
             chromatic_pitch_number = arg.chromatic_pitch_number
         elif pitchtools.is_chromatic_pitch_number(arg):
             chromatic_pitch_number = arg
-        elif pitchtools.is_chromatic_pitch_name(arg):
+        elif pitchtools.is_pitch_name(arg):
             chromatic_pitch_number = \
-                pitchtools.chromatic_pitch_name_to_chromatic_pitch_number(arg)
+                pitchtools.pitch_name_to_chromatic_pitch_number(arg)
         else:
             raise TypeError(
                 'can not initialize numbered chromatic pitch from "%s".' % 

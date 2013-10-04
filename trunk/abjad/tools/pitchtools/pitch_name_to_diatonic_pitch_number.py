@@ -1,23 +1,23 @@
 # -*- encoding: utf-8 -*-
 
 
-def chromatic_pitch_name_to_diatonic_pitch_number(chromatic_pitch_name):
-    '''Change `chromatic_pitch_name` to diatonic pitch number:
+def pitch_name_to_diatonic_pitch_number(pitch_name):
+    '''Change `pitch_name` to diatonic pitch number:
 
     ::
 
-        >>> pitchtools.chromatic_pitch_name_to_diatonic_pitch_number("cs''")
+        >>> pitchtools.pitch_name_to_diatonic_pitch_number("cs''")
         7
 
     Return integer.
     '''
     from abjad.tools import pitchtools
-    from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_regex
+    from abjad.tools.pitchtools.is_pitch_name import pitch_name_regex
 
-    if not isinstance(chromatic_pitch_name, str):
+    if not isinstance(pitch_name, str):
         raise TypeError
 
-    match = chromatic_pitch_name_regex.match(chromatic_pitch_name)
+    match = pitch_name_regex.match(pitch_name)
     if match is None:
         raise ValueError
 

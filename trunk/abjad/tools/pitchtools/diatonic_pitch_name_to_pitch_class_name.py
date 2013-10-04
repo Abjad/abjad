@@ -13,6 +13,6 @@ def diatonic_pitch_name_to_pitch_class_name(diatonic_pitch_name):
     '''
     from abjad.tools import pitchtools
 
-    chromatic_pitch_name = pitchtools.diatonic_pitch_name_to_chromatic_pitch_name(diatonic_pitch_name)
+    pitch_name = pitchtools.diatonic_pitch_name_to_pitch_name(diatonic_pitch_name)
 
-    return pitchtools.chromatic_pitch_name_to_pitch_class_name(chromatic_pitch_name)
+    return pitchtools.pitch_name_to_pitch_class_name(pitch_name)
