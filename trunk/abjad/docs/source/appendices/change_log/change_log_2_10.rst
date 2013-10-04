@@ -237,12 +237,12 @@ All labeling functions are now housed in the new ``labeltools`` package:
 
 - Renamed::
 
-    notetools.color_note_head_by_numbered_chromatic_pitch_class_color_map()
+    notetools.color_note_head_by_numbered_pitch_class_color_map()
     notetools.label_notes_in_expr_with_note_indices()
 
   ::
 
-    labeltools.color_note_head_by_numbered_chromatic_pitch_class_color_map()
+    labeltools.color_note_head_by_numbered_pitch_class_color_map()
     labeltools.label_notes_in_expr_with_note_indices()
 
 - Renamed::
@@ -264,7 +264,7 @@ All labeling functions are now housed in the new ``labeltools`` package:
     verticalitytools.label_vertical_moments_in_expr_with_counterpoint_intervals()
     verticalitytools.label_vertical_moments_in_expr_with_diatonic_intervals()
     verticalitytools.label_vertical_moments_in_expr_with_interval_class_vectors()
-    verticalitytools.label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes()
+    verticalitytools.label_vertical_moments_in_expr_with_numbered_pitch_classes()
     verticalitytools.label_vertical_moments_in_expr_with_pitch_numbers()
 
   ::
@@ -274,7 +274,7 @@ All labeling functions are now housed in the new ``labeltools`` package:
     labeltools.label_vertical_moments_in_expr_with_counterpoint_intervals()
     labeltools.label_vertical_moments_in_expr_with_diatonic_intervals()
     labeltools.label_vertical_moments_in_expr_with_interval_class_vectors()
-    labeltools.label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes()
+    labeltools.label_vertical_moments_in_expr_with_numbered_pitch_classes()
     labeltools.label_vertical_moments_in_expr_with_pitch_numbers()
 
 Renamed all functions that contained ``big_endian``::
@@ -698,7 +698,7 @@ Changes to the ``pitchtools`` package:
 
 - Renamed::
 
-    pitchtools.list_named_pitch_carriers_in_expr_sorted_by_numbered_chromatic_pitch_class()
+    pitchtools.list_named_pitch_carriers_in_expr_sorted_by_numbered_pitch_class()
 
   ::
 

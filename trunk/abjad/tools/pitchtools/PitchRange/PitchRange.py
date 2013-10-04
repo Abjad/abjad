@@ -353,22 +353,22 @@ class PitchRange(AbjadObject):
         return result
 
     @property
-    def one_line_numbered_chromatic_pitch_repr(self):
+    def one_line_numbered_pitch_repr(self):
         r'''One-line numbered chromatic pitch repr 
         of pitch of range:
 
         ::
 
-            >>> pitch_range.one_line_numbered_chromatic_pitch_repr
+            >>> pitch_range.one_line_numbered_pitch_repr
             '[-12, 36]'
 
         Return string.
         '''
         result = []
         result.append(self._open_bracket_string)
-        result.append(str(self.start_pitch.numbered_chromatic_pitch))
+        result.append(str(self.start_pitch.numbered_pitch))
         result.append(', ')
-        result.append(str(self.stop_pitch.numbered_chromatic_pitch))
+        result.append(str(self.stop_pitch.numbered_pitch))
         result.append(self._close_bracket_string)
         result = ''.join(result)
         return result

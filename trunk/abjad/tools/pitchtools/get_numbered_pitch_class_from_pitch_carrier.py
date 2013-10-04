@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 
 
-def get_numbered_chromatic_pitch_class_from_pitch_carrier(pitch_carrier):
+def get_numbered_pitch_class_from_pitch_carrier(pitch_carrier):
     '''Get numbered chromatic pitch-class from `pitch_carrier`:
 
     ::
 
         >>> note = Note("cs'4")
-        >>> pitchtools.get_numbered_chromatic_pitch_class_from_pitch_carrier(note)
+        >>> pitchtools.get_numbered_pitch_class_from_pitch_carrier(note)
         NumberedPitchClass(1)
 
     Raise missing pitch error on empty chords.

@@ -15,9 +15,9 @@ def test_pitchtools_insert_and_transpose_nested_subruns_in_chromatic_pitch_class
     t = []
     for x in notes:
         try:
-            t.append(abs(x.written_pitch.numbered_chromatic_pitch))
+            t.append(abs(x.written_pitch.numbered_pitch))
         except AttributeError:
-            t.append([abs(y.written_pitch.numbered_chromatic_pitch) for y in x])
+            t.append([abs(y.written_pitch.numbered_pitch) for y in x])
 
     print t
 

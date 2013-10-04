@@ -74,7 +74,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_06():
     assert len(iter) == 2
     for e in iter:
         assert isinstance(e, Note)
-        assert e.written_pitch.numbered_chromatic_pitch == 2
+        assert e.written_pitch.numbered_pitch == 2
 
 
 def test_iterationtools_iterate_logical_voice_in_expr_07():
@@ -93,7 +93,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_07():
     assert len(iter) == 2
     for e in iter:
         assert isinstance(e, Note)
-        assert e.written_pitch.numbered_chromatic_pitch == 2
+        assert e.written_pitch.numbered_pitch == 2
 
 
 def test_iterationtools_iterate_logical_voice_in_expr_08():
@@ -168,7 +168,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_13():
     assert len(iter) == 2
     for e in iter:
         assert isinstance(e, Note)
-        assert e.written_pitch.numbered_chromatic_pitch == 0
+        assert e.written_pitch.numbered_pitch == 0
 
 
 def test_iterationtools_iterate_logical_voice_in_expr_14():
@@ -187,4 +187,4 @@ def test_iterationtools_iterate_logical_voice_in_expr_14():
     assert len(iter) == 2
     for e in iter:
         assert isinstance(e, Note)
-        assert e.written_pitch.numbered_chromatic_pitch == 0
+        assert e.written_pitch.numbered_pitch == 0

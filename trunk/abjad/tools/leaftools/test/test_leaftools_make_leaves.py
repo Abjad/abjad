@@ -87,7 +87,7 @@ def test_leaftools_make_leaves_06():
     '''
 
     leaves = leaftools.make_leaves([12, 12.5, 13, 13.5], [(1, 4)])
-    assert [leaf.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number for leaf in leaves] == \
+    assert [leaf.written_pitch.numbered_pitch._chromatic_pitch_number for leaf in leaves] == \
         [12, 12.5, 13, 13.5]
 
 
@@ -96,7 +96,7 @@ def test_leaftools_make_leaves_07():
     '''
 
     leaves = leaftools.make_leaves([pitchtools.NamedPitch(0)], [(1, 8), (1, 8), (1, 4)])
-    assert [leaf.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number for leaf in leaves] == [0, 0, 0]
+    assert [leaf.written_pitch.numbered_pitch._chromatic_pitch_number for leaf in leaves] == [0, 0, 0]
 
 
 def test_leaftools_make_leaves_08():

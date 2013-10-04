@@ -4,7 +4,7 @@ from abjad.tools import markuptools
 from abjad.tools import pitchtools
 
 
-def label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes(
+def label_vertical_moments_in_expr_with_numbered_pitch_classes(
     expr, markup_direction=Down):
     r'''Label pitch-classes of every vertical moment in `expr`:
 
@@ -20,7 +20,7 @@ def label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes(
 
     ::
 
-        >>> labeltools.label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes(
+        >>> labeltools.label_vertical_moments_in_expr_with_numbered_pitch_classes(
         ...     score)
 
     ..  doctest::
@@ -92,7 +92,7 @@ def label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes(
         if not pitches:
             continue
         pitch_classes = \
-            [abs(pitch.numbered_chromatic_pitch_class) for pitch in pitches]
+            [abs(pitch.numbered_pitch_class) for pitch in pitches]
         pitch_classes = list(set(pitch_classes))
         pitch_classes.sort()
         pitch_classes.reverse()

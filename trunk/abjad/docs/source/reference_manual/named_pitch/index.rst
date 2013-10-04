@@ -173,7 +173,7 @@ To a numbered chromatic pitch:
 
 ::
 
-   >>> named_pitch.numbered_chromatic_pitch
+   >>> named_pitch.numbered_pitch
    NumberedPitch(13)
 
 
@@ -209,7 +209,7 @@ To a numbered chromatic pitch-class:
 
 ::
 
-   >>> named_pitch.numbered_chromatic_pitch_class
+   >>> named_pitch.numbered_pitch_class
    NumberedPitchClass(1)
 
 
@@ -292,7 +292,7 @@ The code to generate this table is as follows::
         else:
             treble.append(rest)
             bass.append(note)
-        diatonic_pitch_number = str(note.pitch.numbered_chromatic_pitch)
+        diatonic_pitch_number = str(note.pitch.numbered_pitch)
         markuptools.Markup(diatonic_pitch_number, Down)(bass[-1])
 
     score.override.rest.transparent = True

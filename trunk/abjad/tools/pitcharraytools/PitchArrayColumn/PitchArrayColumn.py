@@ -183,8 +183,8 @@ class PitchArrayColumn(AbjadObject):
             sequencetools.iterate_sequence_pairwise_strict(self.cells):
             for lower_pitch in lower.pitches:
                 for upper_pitch in upper.pitches:
-                    if upper_pitch.numbered_chromatic_pitch < \
-                        lower_pitch.numbered_chromatic_pitch:
+                    if upper_pitch.numbered_pitch < \
+                        lower_pitch.numbered_pitch:
                         return True
         return False
 

@@ -7,8 +7,8 @@ def test_NumberedPitchClass___repr___01():
     r'''Numbered chromatic pitch-class repr is evaluable.
     '''
 
-    numbered_chromatic_pitch_class_1 = pitchtools.NumberedPitchClass(1)
-    numbered_chromatic_pitch_class_2 = eval(repr(numbered_chromatic_pitch_class_1))
+    numbered_pitch_class_1 = pitchtools.NumberedPitchClass(1)
+    numbered_pitch_class_2 = eval(repr(numbered_pitch_class_1))
 
-    assert isinstance(numbered_chromatic_pitch_class_1, pitchtools.NumberedPitchClass)
-    assert isinstance(numbered_chromatic_pitch_class_2, pitchtools.NumberedPitchClass)
+    assert isinstance(numbered_pitch_class_1, pitchtools.NumberedPitchClass)
+    assert isinstance(numbered_pitch_class_2, pitchtools.NumberedPitchClass)

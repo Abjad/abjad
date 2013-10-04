@@ -94,7 +94,7 @@ class NamedPitch(Pitch):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        return abs(self.numbered_chromatic_pitch)
+        return abs(self.numbered_pitch)
 
     def __add__(self, melodic_interval):
         from abjad.tools import pitchtools
@@ -117,7 +117,7 @@ class NamedPitch(Pitch):
             return False
 
     def __float__(self):
-        return float(self.numbered_chromatic_pitch)
+        return float(self.numbered_pitch)
 
     def __ge__(self, arg):
         from abjad.tools import pitchtools
@@ -148,7 +148,7 @@ class NamedPitch(Pitch):
         return hash(repr(self))
 
     def __int__(self):
-        return int(self.numbered_chromatic_pitch)
+        return int(self.numbered_pitch)
 
     def __le__(self, arg):
         from abjad.tools import pitchtools
@@ -336,7 +336,7 @@ class NamedPitch(Pitch):
 
         Return integer or float.
         '''
-        return self.numbered_chromatic_pitch_class._chromatic_pitch_class_number
+        return self.numbered_pitch_class._chromatic_pitch_class_number
 
     @property
     def chromatic_pitch_name(self):
@@ -362,7 +362,7 @@ class NamedPitch(Pitch):
 
         Return integer or float.
         '''
-        return self.numbered_chromatic_pitch._chromatic_pitch_number
+        return self.numbered_pitch._chromatic_pitch_number
 
     @property
     def diatonic_pitch_class_name(self):
@@ -455,12 +455,12 @@ class NamedPitch(Pitch):
         return NamedPitchClass(self._chromatic_pitch_name)
 
     @property
-    def numbered_chromatic_pitch(self):
+    def numbered_pitch(self):
         r'''Numbered chromatic pitch from named chromatic pitch:
 
         ::
 
-            >>> pitch.numbered_chromatic_pitch_class
+            >>> pitch.numbered_pitch_class
             NumberedPitchClass(1)
 
         Return numbered chromatic pitch-class.
@@ -469,12 +469,12 @@ class NamedPitch(Pitch):
         return pitchtools.NumberedPitch(self._chromatic_pitch_name)
 
     @property
-    def numbered_chromatic_pitch_class(self):
+    def numbered_pitch_class(self):
         r'''Numbered pitch-class:
 
         ::
 
-            >>> pitch.numbered_chromatic_pitch_class
+            >>> pitch.numbered_pitch_class
             NumberedPitchClass(1)
 
         Return numbered chromatic pitch-class.

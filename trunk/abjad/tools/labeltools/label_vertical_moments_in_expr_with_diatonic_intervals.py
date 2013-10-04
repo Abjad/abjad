@@ -89,7 +89,7 @@ def label_vertical_moments_in_expr_with_diatonic_intervals(
         notes = [leaf for leaf in leaves if isinstance(leaf, notetools.Note)]
         if not notes:
             continue
-        notes.sort(key=lambda x: x.written_pitch.numbered_chromatic_pitch)
+        notes.sort(key=lambda x: x.written_pitch.numbered_pitch)
         notes.reverse()
         bass_note = notes[-1]
         upper_notes = notes[:-1]

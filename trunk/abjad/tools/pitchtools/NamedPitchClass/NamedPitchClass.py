@@ -61,7 +61,7 @@ class NamedPitchClass(PitchClass):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        return abs(self.numbered_chromatic_pitch_class)
+        return abs(self.numbered_pitch_class)
 
     def __add__(self, melodic_diatonic_interval):
         from abjad.tools import pitchtools
@@ -85,10 +85,10 @@ class NamedPitchClass(PitchClass):
         return self._chromatic_pitch_class_name == expr
 
     def __float__(self):
-        return float(self.numbered_chromatic_pitch_class)
+        return float(self.numbered_pitch_class)
 
     def __int__(self):
-        return int(self.numbered_chromatic_pitch_class)
+        return int(self.numbered_pitch_class)
 
     def __repr__(self):
         return '%s(%s)' % (self._class_name, self._repr_string)
@@ -170,12 +170,12 @@ class NamedPitchClass(PitchClass):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def numbered_chromatic_pitch_class(self):
+    def numbered_pitch_class(self):
         r'''Numbered chromatic pitch-class:
 
         ::
 
-            >>> named_pitch_class.numbered_chromatic_pitch_class
+            >>> named_pitch_class.numbered_pitch_class
             NumberedPitchClass(1)
 
         Return numbered chromatic pitch-class.

@@ -33,8 +33,8 @@ def test_notetools_make_notes_03():
 
     t = notetools.make_notes([1, 2], (1, 4))
     assert len(t) == 2
-    assert t[0].written_pitch.numbered_chromatic_pitch == 1
-    assert t[1].written_pitch.numbered_chromatic_pitch == 2
+    assert t[0].written_pitch.numbered_pitch == 1
+    assert t[1].written_pitch.numbered_pitch == 2
 
 
 def test_notetools_make_notes_04():
@@ -43,8 +43,8 @@ def test_notetools_make_notes_04():
 
     may = notetools.make_notes(1, [(1, 8), (1, 4)])
     assert len(may) == 2
-    assert may[0].written_pitch.numbered_chromatic_pitch == 1
-    assert may[1].written_pitch.numbered_chromatic_pitch == 1
+    assert may[0].written_pitch.numbered_pitch == 1
+    assert may[1].written_pitch.numbered_pitch == 1
     assert may[0].written_duration == Duration(1, 8)
     assert may[1].written_duration == Duration(1, 4)
 
@@ -55,8 +55,8 @@ def test_notetools_make_notes_05():
 
     duration = notetools.make_notes([0, 1], [(1, 8), (1, 4)])
     assert len(duration) == 2
-    assert duration[0].written_pitch.numbered_chromatic_pitch == 0
-    assert duration[1].written_pitch.numbered_chromatic_pitch == 1
+    assert duration[0].written_pitch.numbered_pitch == 0
+    assert duration[1].written_pitch.numbered_pitch == 1
     assert duration[0].written_duration == Duration(1, 8)
     assert duration[1].written_duration == Duration(1, 4)
 

@@ -104,8 +104,8 @@ def _get_intervals_in_subrun(subrun_source):
     for first, second in sequencetools.iterate_sequence_pairwise_strict(subrun_source):
         first_pitch = pitchtools.get_named_pitch_from_pitch_carrier(first)
         second_pitch = pitchtools.get_named_pitch_from_pitch_carrier(second)
-        interval = abs(second_pitch.numbered_chromatic_pitch) - \
-            abs(first_pitch.numbered_chromatic_pitch)
+        interval = abs(second_pitch.numbered_pitch) - \
+            abs(first_pitch.numbered_pitch)
         result.append(interval + result[-1])
     result.pop(0)
     return result
@@ -127,7 +127,7 @@ def _make_new_notes(anchor_pitch, anchor_written_duration, subrun_intervals):
     from abjad.tools import notetools
     new_notes = []
     for subrun_interval in subrun_intervals:
-        new_pc = (abs(anchor_pitch.numbered_chromatic_pitch) + subrun_interval) % 12
+        new_pc = (abs(anchor_pitch.numbered_pitch) + subrun_interval) % 12
         new_note = notetools.Note(new_pc, anchor_written_duration)
         new_notes.append(new_note)
     return new_notes

@@ -9,7 +9,7 @@ def test_notetools_make_percussion_note_01():
     note = notetools.make_percussion_note(1, (5, 64), (1, 1))
 
     assert len(note) == 2
-    assert note[0].written_pitch.numbered_chromatic_pitch == 1
+    assert note[0].written_pitch.numbered_pitch == 1
     assert isinstance(note[0], Note)
     assert isinstance(note[1], Rest)
     assert note[0].written_duration == Duration(1, 16)

@@ -26,7 +26,7 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number=True, color=False
         >>> show(staff) # doctest: +SKIP
 
     When ``color=True`` call
-    :func:`~abjad.tools.labeltools.color_note_head_by_numbered_chromatic_pitch_class_color_map`:
+    :func:`~abjad.tools.labeltools.color_note_head_by_numbered_pitch_class_color_map`:
 
     ::
 
@@ -58,7 +58,7 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number=True, color=False
     for note in iterationtools.iterate_notes_in_expr(expr):
         if number:
             label = markuptools.MarkupCommand(
-                'small', str(abs(note.written_pitch.numbered_chromatic_pitch_class)))
+                'small', str(abs(note.written_pitch.numbered_pitch_class)))
             markuptools.Markup(label, markup_direction)(note)
         if color:
-            labeltools.color_note_head_by_numbered_chromatic_pitch_class_color_map(note)
+            labeltools.color_note_head_by_numbered_pitch_class_color_map(note)

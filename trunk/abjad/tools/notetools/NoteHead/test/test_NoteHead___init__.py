@@ -28,8 +28,8 @@ def test_NoteHead___init___03():
     new = notetools.NoteHead(notehead)
 
     assert notehead is not new
-    assert notehead.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 6
-    assert new.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 6
+    assert notehead.written_pitch.numbered_pitch._chromatic_pitch_number == 6
+    assert new.written_pitch.numbered_pitch._chromatic_pitch_number == 6
 
 
 def test_NoteHead___init___04():

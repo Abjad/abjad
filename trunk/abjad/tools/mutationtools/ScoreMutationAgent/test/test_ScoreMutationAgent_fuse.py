@@ -48,8 +48,8 @@ def test_ScoreMutationAgent_fuse_04():
     assert tie_1 is tie_2
     assert voice[0] is fused[0]
     assert voice[1] is fused[1]
-    assert voice[0].written_pitch.numbered_chromatic_pitch == \
-        voice[1].written_pitch.numbered_chromatic_pitch
+    assert voice[0].written_pitch.numbered_pitch == \
+        voice[1].written_pitch.numbered_pitch
 
 
 def test_ScoreMutationAgent_fuse_05():

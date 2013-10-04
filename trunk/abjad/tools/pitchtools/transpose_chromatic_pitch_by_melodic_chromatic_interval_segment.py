@@ -33,7 +33,7 @@ def transpose_chromatic_pitch_by_melodic_chromatic_interval_segment(pitch, segme
             )
 
     if not hasattr(pitch, 'transpose'):
-        pitch = pitch.numbered_chromatic_pitch
+        pitch = pitch.numbered_pitch
 
     pitches = [pitch.transpose(segment[0].number)]
 

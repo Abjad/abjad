@@ -3,7 +3,7 @@ from abjad.tools import pitchtools
 from abjad.tools import schemetools
 
 
-def color_note_head_by_numbered_chromatic_pitch_class_color_map(pitch_carrier):
+def color_note_head_by_numbered_pitch_class_color_map(pitch_carrier):
     r'''Color `pitch_carrier` note head:
 
     ::
@@ -12,7 +12,7 @@ def color_note_head_by_numbered_chromatic_pitch_class_color_map(pitch_carrier):
 
     ::
 
-        >>> labeltools.color_note_head_by_numbered_chromatic_pitch_class_color_map(note)
+        >>> labeltools.color_note_head_by_numbered_pitch_class_color_map(note)
         Note("c'4")
 
     ..  doctest::
@@ -55,7 +55,7 @@ def color_note_head_by_numbered_chromatic_pitch_class_color_map(pitch_carrier):
     '''
 
     pitch = pitchtools.get_named_pitch_from_pitch_carrier(pitch_carrier)
-    color = _pc_number_to_color(abs(pitch.numbered_chromatic_pitch_class))
+    color = _pc_number_to_color(abs(pitch.numbered_pitch_class))
     if color is not None:
         pitch_carrier.override.note_head.color = color
     return pitch_carrier

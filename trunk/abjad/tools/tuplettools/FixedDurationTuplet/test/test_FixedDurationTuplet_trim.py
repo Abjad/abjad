@@ -11,8 +11,8 @@ def test_FixedDurationTuplet_trim_01():
         leaf.written_pitch = i
     tuplet.trim(0)
     assert len(tuplet) == 2
-    assert tuplet[0].written_pitch.numbered_chromatic_pitch == 1
-    assert tuplet[1].written_pitch.numbered_chromatic_pitch == 2
+    assert tuplet[0].written_pitch.numbered_pitch == 1
+    assert tuplet[1].written_pitch.numbered_pitch == 2
 
 
 def test_FixedDurationTuplet_trim_02():
@@ -23,8 +23,8 @@ def test_FixedDurationTuplet_trim_02():
         leaf.written_pitch = i
     tuplet.trim(1)
     assert len(tuplet) == 2
-    assert tuplet[0].written_pitch.numbered_chromatic_pitch == 0
-    assert tuplet[1].written_pitch.numbered_chromatic_pitch == 2
+    assert tuplet[0].written_pitch.numbered_pitch == 0
+    assert tuplet[1].written_pitch.numbered_pitch == 2
 
 
 def test_FixedDurationTuplet_trim_03():
@@ -35,8 +35,8 @@ def test_FixedDurationTuplet_trim_03():
         leaf.written_pitch = i
     tuplet.trim(2)
     assert len(tuplet) == 2
-    assert tuplet[0].written_pitch.numbered_chromatic_pitch == 0
-    assert tuplet[1].written_pitch.numbered_chromatic_pitch == 1
+    assert tuplet[0].written_pitch.numbered_pitch == 0
+    assert tuplet[1].written_pitch.numbered_pitch == 1
 
 
 def test_FixedDurationTuplet_trim_04():
@@ -56,9 +56,9 @@ def test_FixedDurationTuplet_trim_05():
         leaf.written_pitch = i
     tuplet.trim(0, 0)
     assert len(tuplet) == 3
-    assert tuplet[0].written_pitch.numbered_chromatic_pitch == 0
-    assert tuplet[1].written_pitch.numbered_chromatic_pitch == 1
-    assert tuplet[2].written_pitch.numbered_chromatic_pitch == 2
+    assert tuplet[0].written_pitch.numbered_pitch == 0
+    assert tuplet[1].written_pitch.numbered_pitch == 1
+    assert tuplet[2].written_pitch.numbered_pitch == 2
 
 
 def test_FixedDurationTuplet_trim_06():
@@ -69,8 +69,8 @@ def test_FixedDurationTuplet_trim_06():
         leaf.written_pitch = i
     tuplet.trim(0, 1)
     assert len(tuplet) == 2
-    assert tuplet[0].written_pitch.numbered_chromatic_pitch == 1
-    assert tuplet[1].written_pitch.numbered_chromatic_pitch == 2
+    assert tuplet[0].written_pitch.numbered_pitch == 1
+    assert tuplet[1].written_pitch.numbered_pitch == 2
 
 
 def test_FixedDurationTuplet_trim_07():
@@ -81,8 +81,8 @@ def test_FixedDurationTuplet_trim_07():
         leaf.written_pitch = i
     tuplet.trim(1, 2)
     assert len(tuplet) == 2
-    assert tuplet[0].written_pitch.numbered_chromatic_pitch == 0
-    assert tuplet[1].written_pitch.numbered_chromatic_pitch == 2
+    assert tuplet[0].written_pitch.numbered_pitch == 0
+    assert tuplet[1].written_pitch.numbered_pitch == 2
 
 
 def test_FixedDurationTuplet_trim_08():
@@ -93,8 +93,8 @@ def test_FixedDurationTuplet_trim_08():
         leaf.written_pitch = i
     tuplet.trim(2, 3)
     assert len(tuplet) == 2
-    assert tuplet[0].written_pitch.numbered_chromatic_pitch == 0
-    assert tuplet[1].written_pitch.numbered_chromatic_pitch == 1
+    assert tuplet[0].written_pitch.numbered_pitch == 0
+    assert tuplet[1].written_pitch.numbered_pitch == 1
 
 
 def test_FixedDurationTuplet_trim_09():
