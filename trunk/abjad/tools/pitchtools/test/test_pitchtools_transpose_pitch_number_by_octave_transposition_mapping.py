@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_pitchtools_transpose_chromatic_pitch_number_by_octave_transposition_mapping_01():
+def test_pitchtools_transpose_pitch_number_by_octave_transposition_mapping_01():
     r'''Send pitch number to octave.
     '''
 
@@ -11,12 +11,12 @@ def test_pitchtools_transpose_chromatic_pitch_number_by_octave_transposition_map
 
     t = []
     for pitch_number in pitch_numbers:
-        t.append(pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(pitch_number, mapping))
+        t.append(pitchtools.transpose_pitch_number_by_octave_transposition_mapping(pitch_number, mapping))
 
     assert t == [6, 6, 18, 18, 18, 30, 30]
 
 
-def test_pitchtools_transpose_chromatic_pitch_number_by_octave_transposition_mapping_02():
+def test_pitchtools_transpose_pitch_number_by_octave_transposition_mapping_02():
     r'''Send pitch number to octave.
     '''
 
@@ -25,12 +25,12 @@ def test_pitchtools_transpose_chromatic_pitch_number_by_octave_transposition_map
 
     t = []
     for pitch_number in pitch_numbers:
-        t.append(pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(pitch_number, mapping))
+        t.append(pitchtools.transpose_pitch_number_by_octave_transposition_mapping(pitch_number, mapping))
 
     assert t == [6, 6, 6, 6, 6, 6, 6]
 
 
-def test_pitchtools_transpose_chromatic_pitch_number_by_octave_transposition_mapping_03():
+def test_pitchtools_transpose_pitch_number_by_octave_transposition_mapping_03():
     r'''Send pitch number to octave.
     '''
 
@@ -39,6 +39,6 @@ def test_pitchtools_transpose_chromatic_pitch_number_by_octave_transposition_map
 
     t = []
     for pitch_number in pitch_numbers:
-        t.append(pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(pitch_number, mapping))
+        t.append(pitchtools.transpose_pitch_number_by_octave_transposition_mapping(pitch_number, mapping))
 
     assert t == [2, 2, 2, 14, 14, 14, 14]

@@ -19,7 +19,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
     a string or from another mapping component.
 
     Model 
-    ``pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping``
+    ``pitchtools.transpose_pitch_number_by_octave_transposition_mapping``
     input part. (See the docs for that function.)
 
     Octave transposition mapping components are mutable.
@@ -47,7 +47,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
                 target_octave_start_pitch = NamedPitch(
                     target_octave_start_pitch)
                 target_octave_start_pitch = \
-                    target_octave_start_pitch.chromatic_pitch_number
+                    target_octave_start_pitch.pitch_number
         elif len(args) == 1 and isinstance(args[0], type(self)):
             source_pitch_range = args[0].source_pitch_range
             target_octave_start_pitch = args[0].target_octave_start_pitch
@@ -89,9 +89,9 @@ class OctaveTranspositionMappingComponent(AbjadObject):
     @property
     def _list_format(self):
         return ((
-            self.source_pitch_range.start_pitch.chromatic_pitch_number,
-            self.source_pitch_range.stop_pitch.chromatic_pitch_number),
-            self.target_octave_start_pitch.chromatic_pitch_number)
+            self.source_pitch_range.start_pitch.pitch_number,
+            self.source_pitch_range.stop_pitch.pitch_number),
+            self.target_octave_start_pitch.pitch_number)
 
     @property
     def _one_line_menuing_summary(self):

@@ -17,9 +17,9 @@ def insert_and_transpose_nested_subruns_in_pitch_class_number_list(notes, subrun
         >>> t = []
         >>> for x in notes:
         ...   try:
-        ...        t.append(x.written_pitch.chromatic_pitch_number)
+        ...        t.append(x.written_pitch.pitch_number)
         ...   except AttributeError:
-        ...        t.append([y.written_pitch.chromatic_pitch_number for y in x])
+        ...        t.append([y.written_pitch.pitch_number for y in x])
 
         >>> t
         [0, [5, 7], 2, [4, 0, 6, 11], 7, 9, 5, [10, 6, 8], 11, [7], 4]

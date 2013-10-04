@@ -4,4 +4,4 @@ from abjad import *
 
 def test_NamedPitch_chomatic_pitch_number_01():
 
-    assert pitchtools.NamedPitch("cs''").chromatic_pitch_number == 13
+    assert pitchtools.NamedPitch("cs''").pitch_number == 13

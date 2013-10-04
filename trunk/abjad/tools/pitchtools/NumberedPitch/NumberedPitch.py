@@ -19,30 +19,30 @@ class NumberedPitch(Pitch):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_chromatic_pitch_number',
+        '_pitch_number',
         )
 
     ### INITIALIZER ###
 
     def __init__(self, arg):
         from abjad.tools import pitchtools
-        if hasattr(arg, 'chromatic_pitch_number'):
-            chromatic_pitch_number = arg.chromatic_pitch_number
-        elif pitchtools.is_chromatic_pitch_number(arg):
-            chromatic_pitch_number = arg
+        if hasattr(arg, 'pitch_number'):
+            pitch_number = arg.pitch_number
+        elif pitchtools.is_pitch_number(arg):
+            pitch_number = arg
         elif pitchtools.is_pitch_name(arg):
-            chromatic_pitch_number = \
-                pitchtools.pitch_name_to_chromatic_pitch_number(arg)
+            pitch_number = \
+                pitchtools.pitch_name_to_pitch_number(arg)
         else:
             raise TypeError(
                 'can not initialize numbered chromatic pitch from "%s".' % 
                 arg)
-        self._chromatic_pitch_number = chromatic_pitch_number
+        self._pitch_number = pitch_number
 
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        return self._chromatic_pitch_number
+        return self._pitch_number
 
     def __add__(self, arg):
         arg = type(self)(arg)
@@ -51,29 +51,29 @@ class NumberedPitch(Pitch):
 
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
-            return self._chromatic_pitch_number == expr._chromatic_pitch_number
-        return self._chromatic_pitch_number == expr
+            return self._pitch_number == expr._pitch_number
+        return self._pitch_number == expr
 
     def __float__(self):
-        return float(self._chromatic_pitch_number)
+        return float(self._pitch_number)
 
     def __getnewargs__(self):
-        return (self._chromatic_pitch_number, )
+        return (self._pitch_number, )
 
     def __hash__(self):
         return hash(repr(self))
 
     def __int__(self):
-        return self._chromatic_pitch_number
+        return self._pitch_number
 
     def __lt__(self, expr):
         if isinstance(expr, type(self)):
-            return self._chromatic_pitch_number < expr._chromatic_pitch_number
+            return self._pitch_number < expr._pitch_number
         try:
             expr = type(self)(expr)
         except (ValueError, TypeError):
             return False
-        return self._chromatic_pitch_number < expr._chromatic_pitch_number
+        return self._pitch_number < expr._pitch_number
 
     def __neg__(self):
         return type(self)(-abs(self))
@@ -103,23 +103,23 @@ class NumberedPitch(Pitch):
     @property
     def _positional_argument_values(self):
         return (
-            self.chromatic_pitch_number,
+            self.pitch_number,
             )
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def chromatic_pitch_number(self):
+    def pitch_number(self):
         r'''Chromatic pitch-class number:
 
         ::
 
-            >>> pitch.chromatic_pitch_number
+            >>> pitch.pitch_number
             13
 
         Return integer or float.
         '''
-        return self._chromatic_pitch_number
+        return self._pitch_number
 
     @property
     def diatonic_pitch_class_number(self):
@@ -133,8 +133,8 @@ class NumberedPitch(Pitch):
         Return integer.
         '''
         from abjad.tools import pitchtools
-        return pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_number(
-            self.chromatic_pitch_number)
+        return pitchtools.pitch_number_to_diatonic_pitch_class_number(
+            self.pitch_number)
 
     @property
     def diatonic_pitch_number(self):
@@ -148,8 +148,8 @@ class NumberedPitch(Pitch):
         Return integer.
         '''
         from abjad.tools import pitchtools
-        return pitchtools.chromatic_pitch_number_to_diatonic_pitch_number(
-            self.chromatic_pitch_number)
+        return pitchtools.pitch_number_to_diatonic_pitch_number(
+            self.pitch_number)
 
     ### PUBLIC METHODS ###
 

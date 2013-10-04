@@ -147,10 +147,10 @@ def test_pitchtools_PitchRange___contains___13():
     r'''Iterable containment.
     '''
 
-    chromatic_pitch_numbers = range(10)
+    pitch_numbers = range(10)
 
-    assert chromatic_pitch_numbers in pitchtools.PitchRange(-39, 48)
-    assert not chromatic_pitch_numbers in pitchtools.PitchRange(36, 48)
+    assert pitch_numbers in pitchtools.PitchRange(-39, 48)
+    assert not pitch_numbers in pitchtools.PitchRange(36, 48)
 
 
 def test_pitchtools_PitchRange___contains___14():

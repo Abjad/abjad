@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 # TODO: remove in favor of OctaveTranspositionMapping.__call__()
-def transpose_chromatic_pitch_number_by_octave_transposition_mapping(chromatic_pitch_number, mapping):
-    '''Transpose `chromatic_pitch_number` by the some number of octaves up or down.
+def transpose_pitch_number_by_octave_transposition_mapping(pitch_number, mapping):
+    '''Transpose `pitch_number` by the some number of octaves up or down.
     Derive correct number of octaves from `mapping` where
     `mapping` is a list of ``(range_spec, octave)`` pairs
     and ``range_spec`` is, in turn, a ``(start, stop)`` pair
@@ -39,7 +39,7 @@ def transpose_chromatic_pitch_number_by_octave_transposition_mapping(chromatic_p
 
     ::
 
-        >>> pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(
+        >>> pitchtools.transpose_pitch_number_by_octave_transposition_mapping(
         ...     -30, mapping)
         6
 
@@ -52,7 +52,7 @@ def transpose_chromatic_pitch_number_by_octave_transposition_mapping(chromatic_p
 
     ::
 
-        >>> pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(
+        >>> pitchtools.transpose_pitch_number_by_octave_transposition_mapping(
         ...     -18, mapping)
         6
 
@@ -68,7 +68,7 @@ def transpose_chromatic_pitch_number_by_octave_transposition_mapping(chromatic_p
 
         >>> pitch_numbers = [-30, -18, -6, 6, 18, 30, 42]
         >>> for n in pitch_numbers:
-        ...   n, pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(
+        ...   n, pitchtools.transpose_pitch_number_by_octave_transposition_mapping(
         ...         n, mapping)
         ...
         (-30, 6)
@@ -84,11 +84,11 @@ def transpose_chromatic_pitch_number_by_octave_transposition_mapping(chromatic_p
     Return chromatic pitch number.
     '''
 
-    target_pitch_class = chromatic_pitch_number % 12
+    target_pitch_class = pitch_number % 12
 
     for ((start, stop), octave_root) in mapping:
         source_range = range(start, stop + 1)
-        if chromatic_pitch_number in source_range:
+        if pitch_number in source_range:
             target_octave = range(octave_root, octave_root + 12)
             for candidate_pitch in target_octave:
                 candidate_pitch_class = candidate_pitch % 12

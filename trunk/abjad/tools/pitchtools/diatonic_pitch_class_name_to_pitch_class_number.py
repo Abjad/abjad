@@ -12,8 +12,8 @@ def diatonic_pitch_class_name_to_pitch_class_number(diatonic_pitch_class_name):
     Return integer.
     '''
 
-    return _diatonic_pitch_class_name_to_chromatic_pitch_number[diatonic_pitch_class_name]
+    return _diatonic_pitch_class_name_to_pitch_number[diatonic_pitch_class_name]
 
 
-_diatonic_pitch_class_name_to_chromatic_pitch_number = {
+_diatonic_pitch_class_name_to_pitch_number = {
     'c': 0,  'd': 2,  'e': 4,  'f': 5,  'g': 7,  'a': 9,  'b': 11 }

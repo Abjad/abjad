@@ -41,12 +41,12 @@ class NamedPitch(Pitch):
 
         if len(args) == 1:
             if isinstance(args[0], (int, long, float)):
-                self._init_by_chromatic_pitch_number(*args)
+                self._init_by_pitch_number(*args)
             elif isinstance(args[0], type(self)):
                 self._init_by_named_pitch(*args)
             elif isinstance(args[0], pitchtools.NumberedPitch):
-                self._init_by_chromatic_pitch_number(
-                    args[0].chromatic_pitch_number)
+                self._init_by_pitch_number(
+                    args[0].pitch_number)
             elif hasattr(args[0], 'named_pitch'):
                 self._init_by_named_pitch(args[0].named_pitch)
 #            elif pitchtools.is_pitch_class_name_octave_number_pair(
@@ -66,9 +66,9 @@ class NamedPitch(Pitch):
                 self._init_by_named_pitch_class_and_octave_number(*args)
             elif isinstance(args[0], (int, long, float)):
                 if isinstance(args[1], str):
-                    self._init_by_chromatic_pitch_number_and_diatonic_pitch_class_name(*args)
+                    self._init_by_pitch_number_and_diatonic_pitch_class_name(*args)
                 elif isinstance(args[1], pitchtools.NamedPitchClass):
-                    self._init_by_chromatic_pitch_number_and_named_pitch_class(*args)
+                    self._init_by_pitch_number_and_named_pitch_class(*args)
                 else:
                     raise TypeError
             else:
@@ -253,30 +253,30 @@ class NamedPitch(Pitch):
         self._init_by_pitch_class_name_and_octave_number(
             name, octave_number)
 
-    def _init_by_chromatic_pitch_number(self, chromatic_pitch_number):
+    def _init_by_pitch_number(self, pitch_number):
         from abjad.tools import pitchtools
         accidental_spelling = self.accidental_spelling
         pitch_name = \
-            pitchtools.chromatic_pitch_number_to_pitch_name(
-            chromatic_pitch_number, accidental_spelling)
+            pitchtools.pitch_number_to_pitch_name(
+            pitch_number, accidental_spelling)
         self._pitch_name = pitch_name
 
-    def _init_by_chromatic_pitch_number_and_diatonic_pitch_class_name(
-        self, chromatic_pitch_number, diatonic_pitch_class_name):
+    def _init_by_pitch_number_and_diatonic_pitch_class_name(
+        self, pitch_number, diatonic_pitch_class_name):
         from abjad.tools import pitchtools
         accidental, octave_number = \
-            pitchtools.spell_chromatic_pitch_number(
-                chromatic_pitch_number, diatonic_pitch_class_name)
+            pitchtools.spell_pitch_number(
+                pitch_number, diatonic_pitch_class_name)
         octave_tick_string = str(pitchtools.OctaveIndication(octave_number))
         pitch_class_name = diatonic_pitch_class_name + \
             accidental.alphabetic_accidental_abbreviation
         pitch_name = pitch_class_name + octave_tick_string
         self._pitch_name = pitch_name
 
-    def _init_by_chromatic_pitch_number_and_named_pitch_class(
+    def _init_by_pitch_number_and_named_pitch_class(
         self, pitch_number, npc):
         diatonic_pitch_class_name = npc.name[:1]
-        self._init_by_chromatic_pitch_number_and_diatonic_pitch_class_name(
+        self._init_by_pitch_number_and_diatonic_pitch_class_name(
             pitch_number, diatonic_pitch_class_name)
 
     def _init_by_named_pitch(self, named_pitch):
@@ -352,17 +352,17 @@ class NamedPitch(Pitch):
         return self._pitch_name
 
     @property
-    def chromatic_pitch_number(self):
+    def pitch_number(self):
         r'''Chromatic pitch-class number:
 
         ::
 
-            >>> pitch.chromatic_pitch_number
+            >>> pitch.pitch_number
             13
 
         Return integer or float.
         '''
-        return self.numbered_pitch._chromatic_pitch_number
+        return self.numbered_pitch._pitch_number
 
     @property
     def diatonic_pitch_class_name(self):

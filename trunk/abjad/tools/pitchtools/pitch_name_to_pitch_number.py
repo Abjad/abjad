@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
 
 
-def pitch_name_to_chromatic_pitch_number(pitch_name):
+def pitch_name_to_pitch_number(pitch_name):
     '''Change `pitch_name` to chromatic pitch number:
 
     ::
 
-        >>> pitchtools.pitch_name_to_chromatic_pitch_number("cs''")
+        >>> pitchtools.pitch_name_to_pitch_number("cs''")
         13
 
     Return integer or float.
@@ -27,7 +27,7 @@ def pitch_name_to_chromatic_pitch_number(pitch_name):
     accidental = pitchtools.Accidental(alphabetic_accidental_abbreviation)
     octave_number = \
         pitchtools.OctaveIndication(octave_tick_string).octave_number
-    chromatic_pitch_number = 12 * (octave_number - 4)
-    chromatic_pitch_number += pitch_class_number + accidental.semitones
+    pitch_number = 12 * (octave_number - 4)
+    pitch_number += pitch_class_number + accidental.semitones
 
-    return chromatic_pitch_number
+    return pitch_number

@@ -47,14 +47,14 @@ def transpose_pitch_carrier_by_melodic_interval(
     from abjad.tools import pitchtools
 
     def _transpose_pitch_by_melodic_diatonic_interval(pitch, mdi):
-        chromatic_pitch_number = pitch.chromatic_pitch_number + mdi.semitones
+        pitch_number = pitch.pitch_number + mdi.semitones
         diatonic_pitch_class_number = \
             (pitch.diatonic_pitch_class_number + mdi.staff_spaces) % 7
         diatonic_pitch_class_name = \
             pitchtools.diatonic_pitch_class_number_to_diatonic_pitch_class_name(
             diatonic_pitch_class_number)
         named_pitch = pitchtools.NamedPitch(
-            chromatic_pitch_number, diatonic_pitch_class_name)
+            pitch_number, diatonic_pitch_class_name)
         return type(pitch)(named_pitch)
 
     def _transpose_pitch_carrier_by_melodic_diatonic_interval(
@@ -84,13 +84,13 @@ def transpose_pitch_carrier_by_melodic_interval(
         pitch_carrier, melodic_chromatic_interval):
         mci = pitchtools.NumberedInterval(melodic_chromatic_interval)
         if isinstance(pitch_carrier, pitchtools.Pitch):
-            number = pitch_carrier.chromatic_pitch_number + mci.semitones
+            number = pitch_carrier.pitch_number + mci.semitones
             return type(pitch_carrier)(number)
         elif isinstance(pitch_carrier, numbers.Number):
             pitch_carrier = pitchtools.NumberedPitch(pitch_carrier)
             result = _transpose_pitch_carrier_by_melodic_chromatic_interval(
                 pitch_carrier, mci)
-            return result.chromatic_pitch_number
+            return result.pitch_number
         elif isinstance(pitch_carrier, notetools.Note):
             new_note = copy.copy(pitch_carrier)
             number = abs(pitch_carrier.written_pitch.numbered_pitch)

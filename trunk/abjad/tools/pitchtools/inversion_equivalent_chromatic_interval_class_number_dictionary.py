@@ -31,7 +31,7 @@ def inversion_equivalent_chromatic_interval_class_number_dictionary(pitches):
     for pitch in pitches:
         if not isinstance(pitch, pitchtools.NamedPitch):
             raise ValueError
-        numbers.append(pitch.numbered_pitch._chromatic_pitch_number)
+        numbers.append(pitch.numbered_pitch._pitch_number)
 
     pairs = sequencetools.yield_all_unordered_pairs_of_sequence(numbers)
 

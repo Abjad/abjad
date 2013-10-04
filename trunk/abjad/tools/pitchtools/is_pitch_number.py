@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
 
 
-def is_chromatic_pitch_number(expr):
+def is_pitch_number(expr):
     '''True `expr` is a chromatic pitch number. Otherwise false:
 
     ::
 
-        >>> pitchtools.is_chromatic_pitch_number(13)
+        >>> pitchtools.is_pitch_number(13)
         True
 
     The chromatic pitch numbers are equal to the set of all integers in union

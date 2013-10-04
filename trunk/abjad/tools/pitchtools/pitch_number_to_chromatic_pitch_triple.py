@@ -3,14 +3,14 @@ import math
 
 
 # TODO: can't this just return a named chromatic pitch class instance?
-def chromatic_pitch_number_to_chromatic_pitch_triple(
-    chromatic_pitch_number, accidental_spelling='mixed'):
-    '''Change `chromatic_pitch_number` to diatonic pitch-class name / alphabetic
+def pitch_number_to_chromatic_pitch_triple(
+    pitch_number, accidental_spelling='mixed'):
+    '''Change `pitch_number` to diatonic pitch-class name / alphabetic
     accidental abbreviation / octave number triple:
 
     ::
 
-        >>> pitchtools.chromatic_pitch_number_to_chromatic_pitch_triple(
+        >>> pitchtools.pitch_number_to_chromatic_pitch_triple(
         ... 13, accidental_spelling='sharps')
         ('c', Accidental('s'), 5)
 
@@ -19,7 +19,7 @@ def chromatic_pitch_number_to_chromatic_pitch_triple(
     from abjad.tools import pitchtools
 
     # check input
-    if not isinstance(chromatic_pitch_number, (int, long, float)):
+    if not isinstance(pitch_number, (int, long, float)):
         raise TypeError
 
     if not isinstance(accidental_spelling, str):
@@ -29,7 +29,7 @@ def chromatic_pitch_number_to_chromatic_pitch_triple(
         raise ValueError
 
     # find pc
-    pc = chromatic_pitch_number % 12
+    pc = pitch_number % 12
 
     # find pitch name from pc according to accidental spelling
     if accidental_spelling == 'mixed':
@@ -47,7 +47,7 @@ def chromatic_pitch_number_to_chromatic_pitch_triple(
     accidental = pitchtools.Accidental(alphabetic_accidental_abbreviation)
 
     # find octave
-    octave = int(math.floor(chromatic_pitch_number / 12)) + 4
+    octave = int(math.floor(pitch_number / 12)) + 4
 
     # return uninque letter, accidental, octave triple
     return letter, accidental, octave

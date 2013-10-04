@@ -18,7 +18,7 @@ class OctaveTranspositionMapping(TypedList):
         OctaveTranspositionMapping([('[A0, C4)', 15), ('[C4, C8)', 27)])
 
     Octave transposition mappings model
-    ``pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping`` 
+    ``pitchtools.transpose_pitch_number_by_octave_transposition_mapping`` 
     input.
 
     Octave transposition mappings implement the list interface and 
@@ -60,8 +60,8 @@ class OctaveTranspositionMapping(TypedList):
         for component in self:
             if pitch in component.source_pitch_range:
                 target_octave = range(
-                    component.target_octave_start_pitch.chromatic_pitch_number,
-                    component.target_octave_start_pitch.chromatic_pitch_number 
+                    component.target_octave_start_pitch.pitch_number,
+                    component.target_octave_start_pitch.pitch_number 
                     + 12)
                 for candidate_pitch in target_octave:
                     if candidate_pitch % 12 == \

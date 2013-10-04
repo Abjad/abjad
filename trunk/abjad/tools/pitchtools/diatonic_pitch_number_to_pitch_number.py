@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
 
 
-def diatonic_pitch_number_to_chromatic_pitch_number(diatonic_pitch_number):
+def diatonic_pitch_number_to_pitch_number(diatonic_pitch_number):
     '''Change `diatonic_pitch_number` to chromatic pitch number:
 
     ::
 
-        >>> pitchtools.diatonic_pitch_number_to_chromatic_pitch_number(7)
+        >>> pitchtools.diatonic_pitch_number_to_pitch_number(7)
         12
 
     Return integer.

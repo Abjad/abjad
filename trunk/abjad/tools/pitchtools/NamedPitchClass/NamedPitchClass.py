@@ -43,7 +43,7 @@ class NamedPitchClass(PitchClass):
             pitchtools.NumberedPitchClass,
             )):
             pitch_number = \
-                pitchtools.chromatic_pitch_number_to_pitch_class_number(
+                pitchtools.pitch_number_to_pitch_class_number(
                     float(expr))
             pitch_class_name = \
                 pitchtools.pitch_class_number_to_pitch_class_name(

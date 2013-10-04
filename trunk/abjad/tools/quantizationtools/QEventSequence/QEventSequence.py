@@ -542,9 +542,9 @@ class QEventSequence(AbjadObject):
             if isinstance(group[0], (resttools.Rest, skiptools.Skip)):
                 pitch = None
             elif isinstance(group[0], notetools.Note):
-                pitch = group[0].written_pitch.chromatic_pitch_number
+                pitch = group[0].written_pitch.pitch_number
             else: # chord
-                pitch = [x.written_pitch.chromatic_pitch_number 
+                pitch = [x.written_pitch.pitch_number 
                     for x in group[0].note_heads]
             pitches.append(pitch)
         # convert durations and pitches to QEvents and return

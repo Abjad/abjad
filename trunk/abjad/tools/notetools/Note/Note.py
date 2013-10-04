@@ -418,7 +418,7 @@ class Note(Leaf):
                 pitchtools.NamedInterval('perfect', 4)
         chord = chordtools.Chord(self)
         chord.append(
-            chord[0].written_pitch.numbered_pitch._chromatic_pitch_number)
+            chord[0].written_pitch.numbered_pitch._pitch_number)
         chord[1].written_pitch = \
             pitchtools.transpose_pitch_carrier_by_melodic_interval(
             chord[1].written_pitch, melodic_diatonic_interval)
