@@ -417,6 +417,104 @@ class ScoreMutationAgent(object):
             assert parent is not None, repr(donors)
             parent.__setitem__(slice(start, stop + 1), recipients)
 
+    def respell_with_flats(self):
+        r'''Respell named pitches in mutation client with flats:
+
+        ::
+
+            >>> staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'8
+                cs'8
+                d'8
+                ef'8
+                e'8
+                f'8
+            }
+
+        ::
+
+            >>> mutate(staff).respell_with_flats()
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'8
+                df'8
+                d'8
+                ef'8
+                e'8
+                f'8
+            }
+
+        Return none.
+        '''
+        from abjad.tools import chordtools
+        from abjad.tools import iterationtools
+        for leaf in iterationtools.iterate_leaves_in_expr(self._client):
+            if isinstance(leaf, chordtools.Chord):
+                for note_head in leaf.note_heads:
+                    note_head.written_pitch = \
+                        note_head.written_pitch.respell_with_flats()
+            elif hasattr(leaf, 'written_pitch'):
+                leaf.written_pitch = leaf.written_pitch.respell_with_flats()
+
+    def respell_with_sharps(self):
+        r'''Respell named pitches in mutation client with sharps:
+
+        ::
+
+            >>> staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'8
+                cs'8
+                d'8
+                ef'8
+                e'8
+                f'8
+            }
+
+        ::
+
+            >>> mutate(staff).respell_with_sharps()
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'8
+                cs'8
+                d'8
+                ds'8
+                e'8
+                f'8
+            }
+
+        Return none.
+        '''
+        from abjad.tools import chordtools
+        from abjad.tools import iterationtools
+        for leaf in iterationtools.iterate_leaves_in_expr(self._client):
+            if isinstance(leaf, chordtools.Chord):
+                for note_head in leaf.note_heads:
+                    note_head.written_pitch = \
+                        note_head.written_pitch.respell_with_sharps()
+            elif hasattr(leaf, 'written_pitch'):
+                leaf.written_pitch = leaf.written_pitch.respell_with_sharps()
+
     def scale(self, multiplier):
         r'''Scales mutation client by `multiplier`.
 
