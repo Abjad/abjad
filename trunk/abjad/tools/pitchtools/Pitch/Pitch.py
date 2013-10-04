@@ -91,3 +91,73 @@ class Pitch(AbjadObject):
         return [''.join(
             abctools.AbjadObject._get_tools_package_qualified_repr_pieces(
                 self, is_indented=False))]
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def is_diatonic_pitch_name(expr):
+        '''True when `expr` is a diatonic pitch name. Otherwise false:
+
+        ::
+
+            >>> pitchtools.Pitch.is_diatonic_pitch_name("c''")
+            True
+
+        The regex ``(^[a-g,A-G])(,+|'+|)$`` underlies this predicate.
+
+        Return boolean.
+        '''
+        if not isinstance(expr, str):
+            return False
+        return bool(Pitch._diatonic_pitch_name_regex.match(expr))
+
+    @staticmethod
+    def is_diatonic_pitch_number(expr):
+        '''True when `expr` is a diatonic pitch number. Otherwise false:
+
+        ::
+
+            >>> pitchtools.Pitch.is_diatonic_pitch_number(7)
+            True
+
+        The diatonic pitch numbers are equal to the set of integers.
+
+        Return boolean.
+        '''
+        return isinstance(expr, (int, long))
+
+    @staticmethod
+    def is_pitch_name(expr):
+        '''True `expr` is a chromatic pitch name. Otherwise false:
+
+        ::
+
+            >>> pitchtools.Pitch.is_pitch_name('c,')
+            True
+
+        The regex ``^([a-g,A-G])(([s]{1,2}|[f]{1,2}|t?q?[f,s]|)!?)(,+|'+|)$``
+        underlies this predicate.
+
+        Return boolean.
+        '''
+        if not isinstance(expr, str):
+            return False
+        return bool(Pitch._pitch_name_regex.match(expr))
+
+    @staticmethod
+    def is_pitch_number(expr):
+        '''True `expr` is a chromatic pitch number. Otherwise false:
+
+        ::
+
+            >>> pitchtools.Pitch.is_pitch_number(13)
+            True
+
+        The chromatic pitch numbers are equal to the set of all integers in
+        union with the set of all integers plus of minus ``0.5``.
+
+        Return boolean.
+        '''
+        if isinstance(expr, (int, long, float)):
+            return expr % 0.5 == 0
+        return False

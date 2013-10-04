@@ -13,7 +13,7 @@ def pitch_number_to_pitch_class_number(pitch_number):
     '''
     from abjad.tools import pitchtools
 
-    if not pitchtools.is_pitch_number(pitch_number):
+    if not pitchtools.Pitch.is_pitch_number(pitch_number):
         raise TypeError
 
     return pitch_number % 12

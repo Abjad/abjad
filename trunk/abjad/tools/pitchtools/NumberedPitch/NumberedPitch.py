@@ -28,14 +28,14 @@ class NumberedPitch(Pitch):
         from abjad.tools import pitchtools
         if hasattr(arg, 'pitch_number'):
             pitch_number = arg.pitch_number
-        elif pitchtools.is_pitch_number(arg):
+        elif Pitch.is_pitch_number(arg):
             pitch_number = arg
-        elif pitchtools.is_pitch_name(arg):
+        elif Pitch.is_pitch_name(arg):
             pitch_number = \
                 pitchtools.pitch_name_to_pitch_number(arg)
         else:
             raise TypeError(
-                'can not initialize numbered chromatic pitch from "%s".' % 
+                'can not initialize numbered chromatic pitch from "%s".' %
                 arg)
         self._pitch_number = pitch_number
 

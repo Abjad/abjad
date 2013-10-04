@@ -14,7 +14,7 @@ def pitch_number_to_pitch_name(
     '''
     from abjad.tools import pitchtools
 
-    if not pitchtools.is_pitch_number(pitch_number):
+    if not pitchtools.Pitch.is_pitch_number(pitch_number):
         raise ValueError('\n\tNot chromatic pitch number: '
             '{!r}'.format(pitch_number))
 

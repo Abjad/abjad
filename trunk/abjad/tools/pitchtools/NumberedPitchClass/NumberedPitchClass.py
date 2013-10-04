@@ -38,7 +38,7 @@ class NumberedPitchClass(PitchClass):
         elif isinstance(expr, (
             pitchtools.NamedPitch,
             pitchtools.NamedPitchClass,
-            )) or pitchtools.is_pitch_name(expr):
+            )) or pitchtools.Pitch.is_pitch_name(expr):
             pitch_class_number = \
                 pitchtools.pitch_name_to_pitch_class_number( 
                     str(expr))
