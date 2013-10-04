@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
 
 
-def chromatic_pitch_number_to_chromatic_pitch_class_number(chromatic_pitch_number):
+def chromatic_pitch_number_to_pitch_class_number(chromatic_pitch_number):
     '''Change `chromatic_pitch_number` to chromatic pitch-class number:
 
     ::
 
-        >>> pitchtools.chromatic_pitch_number_to_chromatic_pitch_class_number(13)
+        >>> pitchtools.chromatic_pitch_number_to_pitch_class_number(13)
         1
 
     Return integer or float.

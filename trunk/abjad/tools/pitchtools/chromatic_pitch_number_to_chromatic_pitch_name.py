@@ -24,19 +24,19 @@ def chromatic_pitch_number_to_chromatic_pitch_name(
     if not accidental_spelling in ('mixed', 'flats', 'sharps'):
         raise ValueError
 
-    chromatic_pitch_class_number = chromatic_pitch_number % 12
+    pitch_class_number = chromatic_pitch_number % 12
 
     if accidental_spelling == 'mixed':
-        pitch_class_name = pitchtools.chromatic_pitch_class_number_to_pitch_class_name(
-            chromatic_pitch_class_number)
+        pitch_class_name = pitchtools.pitch_class_number_to_pitch_class_name(
+            pitch_class_number)
     elif accidental_spelling == 'sharps':
         pitch_class_name = \
-            pitchtools.chromatic_pitch_class_number_to_pitch_class_name_with_sharps(
-            chromatic_pitch_class_number)
+            pitchtools.pitch_class_number_to_pitch_class_name_with_sharps(
+            pitch_class_number)
     elif accidental_spelling == 'flats':
         pitch_class_name = \
-            pitchtools.chromatic_pitch_class_number_to_pitch_class_name_with_flats(
-            chromatic_pitch_class_number)
+            pitchtools.pitch_class_number_to_pitch_class_name_with_flats(
+            pitch_class_number)
     else:
         raise ValueError('unknown accidental spelling: '
             '{!r}'.format(accidental_spelling))

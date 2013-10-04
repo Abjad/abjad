@@ -714,15 +714,15 @@ Changes to the ``pitchtools`` package:
 
 - Renamed::
 
-    pitchtools.transpose_chromatic_pitch_class_number_by_octaves_to_nearest_neighbor_of_chromatic_pitch_number()
+    pitchtools.transpose_pitch_class_number_by_octaves_to_nearest_neighbor_of_chromatic_pitch_number()
 
   ::
 
-    pitchtools.transpose_chromatic_pitch_class_number_to_neighbor_of_chromatic_pitch_number()
+    pitchtools.transpose_pitch_class_number_to_neighbor_of_chromatic_pitch_number()
 
 - Renamed::
 
-    pitchtools.ordered_chromatic_pitch_class_numbers_are_within_ordered_chromatic_pitch_numbers()
+    pitchtools.ordered_pitch_class_numbers_are_within_ordered_chromatic_pitch_numbers()
 
   ::
 
@@ -778,11 +778,11 @@ Changes to the ``pitchtools`` package:
 
 - Renamed::
 
-    pitchtools.transpose_chromatic_pitch_class_number_to_neighbor_of_chromatic_pitch_number()
+    pitchtools.transpose_pitch_class_number_to_neighbor_of_chromatic_pitch_number()
 
   ::
 
-    pitchtools.transpose_chromatic_pitch_class_number_chromatic_pitch_number_neighbor()
+    pitchtools.transpose_pitch_class_number_chromatic_pitch_number_neighbor()
 
 Changes to the ``rhythmtreetools`` package:
 

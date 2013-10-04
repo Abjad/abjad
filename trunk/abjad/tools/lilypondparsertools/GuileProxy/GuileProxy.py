@@ -223,8 +223,8 @@ class GuileProxy(AbjadObject):
             marktools.Annotation('UnrelativableMusic')(music)
 
     def _to_relative_octave(self, pitch, reference):
-        if pitch.chromatic_pitch_class_number > \
-            reference.chromatic_pitch_class_number:
+        if pitch.pitch_class_number > \
+            reference.pitch_class_number:
             up_pitch = pitchtools.NamedPitch(
                 pitch.pitch_class_name, reference.octave_number)
             down_pitch = pitchtools.NamedPitch(

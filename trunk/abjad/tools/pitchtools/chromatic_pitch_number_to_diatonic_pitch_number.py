@@ -14,9 +14,9 @@ def chromatic_pitch_number_to_diatonic_pitch_number(chromatic_pitch_number):
     from abjad.tools import pitchtools
 
     octave = chromatic_pitch_number // 12
-    chromatic_pitch_class_number = chromatic_pitch_number % 12
+    pitch_class_number = chromatic_pitch_number % 12
 
-    diatonic_pitch_class_number = pitchtools.chromatic_pitch_class_number_to_diatonic_pitch_class_number(
-        chromatic_pitch_class_number)
+    diatonic_pitch_class_number = pitchtools.pitch_class_number_to_diatonic_pitch_class_number(
+        pitch_class_number)
 
     return 7 * octave + diatonic_pitch_class_number

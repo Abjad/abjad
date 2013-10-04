@@ -18,7 +18,7 @@ class NumberedPitchClass(PitchClass):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_chromatic_pitch_class_number',
+        '_pitch_class_number',
         )
 
     ### INITIALIZER ###
@@ -40,24 +40,24 @@ class NumberedPitchClass(PitchClass):
             pitchtools.NamedPitchClass,
             )) or pitchtools.is_chromatic_pitch_name(expr):
             pitch_class_number = \
-                pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_number( 
+                pitchtools.chromatic_pitch_name_to_pitch_class_number( 
                     str(expr))
         # pitch carriers
         elif pitchtools.is_pitch_carrier(expr):
             named_pitch = pitchtools.get_named_pitch_from_pitch_carrier(
                 expr)
             pitch_class_number = \
-                pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_number( 
+                pitchtools.chromatic_pitch_name_to_pitch_class_number( 
                     str(named_pitch))
         else:
             raise TypeError('Cannot instantiate {} from '
                 '{!r}.'.format(self._class_name, expr))
-        self._chromatic_pitch_class_number = pitch_class_number
+        self._pitch_class_number = pitch_class_number
 
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        return self._chromatic_pitch_class_number
+        return self._pitch_class_number
 
     def __add__(self, expr):
         r'''Addition defined against melodic chromatic intervals only.
@@ -74,15 +74,15 @@ class NumberedPitchClass(PitchClass):
 
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
-            return self._chromatic_pitch_class_number == \
-                expr._chromatic_pitch_class_number
-        return self._chromatic_pitch_class_number == expr
+            return self._pitch_class_number == \
+                expr._pitch_class_number
+        return self._pitch_class_number == expr
 
     def __float__(self):
-        return float(self._chromatic_pitch_class_number)
+        return float(self._pitch_class_number)
 
     def __int__(self):
-        return self._chromatic_pitch_class_number
+        return self._pitch_class_number
 
     def __neg__(self):
         return type(self)(-abs(self))

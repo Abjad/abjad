@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
 
 
-def chromatic_pitch_class_number_to_pitch_class_name(chromatic_pitch_class_number):
-    '''Change `chromatic_pitch_class_number` to chromatic pitch-class name:
+def pitch_class_number_to_pitch_class_name(pitch_class_number):
+    '''Change `pitch_class_number` to chromatic pitch-class name:
 
     ::
 
-        >>> tmp = pitchtools.chromatic_pitch_class_number_to_pitch_class_name
+        >>> tmp = pitchtools.pitch_class_number_to_pitch_class_name
         >>> for n in range(0, 13):
         ...     pc = n / 2.0
         ...     pitch_name = tmp(pc)
@@ -29,7 +29,7 @@ def chromatic_pitch_class_number_to_pitch_class_name(chromatic_pitch_class_numbe
     Return string.
     '''
 
-    return _pitch_class_number_to_pitch_class_name[chromatic_pitch_class_number]
+    return _pitch_class_number_to_pitch_class_name[pitch_class_number]
 
 
 # TODO: externalize and make public somewhere

@@ -1,14 +1,14 @@
 # -*- encoding: utf-8 -*-
-_diatonic_pitch_class_number_to_chromatic_pitch_class_number = {
+_diatonic_pitch_class_number_to_pitch_class_number = {
     0: 0, 1: 2, 2: 4, 3: 5, 4: 7, 5: 9, 6: 11 }
 
 
-def diatonic_pitch_class_number_to_chromatic_pitch_class_number(diatonic_pitch_class_number):
+def diatonic_pitch_class_number_to_pitch_class_number(diatonic_pitch_class_number):
     '''Change `diatonic_pitch_class_number` to chromatic pitch-class number:
 
     ::
 
-        >>> pitchtools.diatonic_pitch_class_number_to_chromatic_pitch_class_number(6)
+        >>> pitchtools.diatonic_pitch_class_number_to_pitch_class_number(6)
         11
 
     Return nonnegative integer.
@@ -19,7 +19,7 @@ def diatonic_pitch_class_number_to_chromatic_pitch_class_number(diatonic_pitch_c
         raise TypeError(error_message)
 
     try:
-        return _diatonic_pitch_class_number_to_chromatic_pitch_class_number[
+        return _diatonic_pitch_class_number_to_pitch_class_number[
             diatonic_pitch_class_number]
     except KeyError:
         raise ValueError(error_message)

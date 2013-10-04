@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
 
 
-def chromatic_pitch_class_number_to_pitch_class_name_with_flats(chromatic_pitch_class_number):
+def pitch_class_number_to_pitch_class_name_with_flats(pitch_class_number):
     '''Change chromatic pitch-class number to chromatic pitch-class name with flats:
 
     ::
 
-        >>> tmp = pitchtools.chromatic_pitch_class_number_to_pitch_class_name_with_flats
+        >>> tmp = pitchtools.pitch_class_number_to_pitch_class_name_with_flats
 
     ::
 
@@ -33,9 +33,9 @@ def chromatic_pitch_class_number_to_pitch_class_name_with_flats(chromatic_pitch_
     '''
 
     try:
-        return _pitch_class_name_to_pitch_class_number_flats[chromatic_pitch_class_number]
+        return _pitch_class_name_to_pitch_class_number_flats[pitch_class_number]
     except KeyError:
-        return _pitch_class_name_to_pitch_class_number_flats[abs(chromatic_pitch_class_number)]
+        return _pitch_class_name_to_pitch_class_number_flats[abs(pitch_class_number)]
 
 
 # TODO: externalize and make public somewhere

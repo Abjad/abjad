@@ -326,17 +326,17 @@ class NamedPitch(Pitch):
         return self.named_pitch_class._pitch_class_name
 
     @property
-    def chromatic_pitch_class_number(self):
+    def pitch_class_number(self):
         r'''Chromatic pitch-class number:
 
         ::
 
-            >>> pitch.chromatic_pitch_class_number
+            >>> pitch.pitch_class_number
             1
 
         Return integer or float.
         '''
-        return self.numbered_pitch_class._chromatic_pitch_class_number
+        return self.numbered_pitch_class._pitch_class_number
 
     @property
     def chromatic_pitch_name(self):

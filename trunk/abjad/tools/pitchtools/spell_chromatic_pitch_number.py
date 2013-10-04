@@ -24,8 +24,8 @@ def spell_chromatic_pitch_number(chromatic_pitch_number, diatonic_pitch_class_na
         raise ValueError
 
     # find accidental semitones
-    pc = pitchtools.diatonic_pitch_class_name_to_chromatic_pitch_class_number(diatonic_pitch_class_name)
-    nearest_neighbor = pitchtools.transpose_chromatic_pitch_class_number_to_chromatic_pitch_number_neighbor(
+    pc = pitchtools.diatonic_pitch_class_name_to_pitch_class_number(diatonic_pitch_class_name)
+    nearest_neighbor = pitchtools.transpose_pitch_class_number_to_chromatic_pitch_number_neighbor(
         chromatic_pitch_number, pc)
     semitones = chromatic_pitch_number - nearest_neighbor
 

@@ -33,11 +33,11 @@ def chromatic_pitch_number_to_chromatic_pitch_triple(
 
     # find pitch name from pc according to accidental spelling
     if accidental_spelling == 'mixed':
-        pitch_name = pitchtools.chromatic_pitch_class_number_to_pitch_class_name(pc)
+        pitch_name = pitchtools.pitch_class_number_to_pitch_class_name(pc)
     elif accidental_spelling == 'sharps':
-        pitch_name = pitchtools.chromatic_pitch_class_number_to_pitch_class_name_with_sharps(pc)
+        pitch_name = pitchtools.pitch_class_number_to_pitch_class_name_with_sharps(pc)
     elif accidental_spelling == 'flats':
-        pitch_name = pitchtools.chromatic_pitch_class_number_to_pitch_class_name_with_flats(pc)
+        pitch_name = pitchtools.pitch_class_number_to_pitch_class_name_with_flats(pc)
     else:
         raise ValueError('unknown accidental spelling.')
 
